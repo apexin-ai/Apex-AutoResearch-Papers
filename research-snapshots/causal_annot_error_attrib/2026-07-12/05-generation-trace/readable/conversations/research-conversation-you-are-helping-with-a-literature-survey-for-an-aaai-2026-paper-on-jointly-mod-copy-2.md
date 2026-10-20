@@ -1,0 +1,5534 @@
+# Research conversation: You are helping with a literature survey for an AAAI 2026 paper on jointly modeling benchmark contamination and robustne
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 92
+- **Recorded user turns:** 1
+- **Tool calls:** 40
+- **Original source:** `logs/chats/exported-trajectories/account-1/agent-aa392d2f0cf04f8c0.jsonl`
+- **Structured JSON:** [`38f5f1818a7e6959d4c1.json`](../../sessions/38/38f5f1818a7e6959d4c1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+92 recorded events
+
+### User
+
+_source line 1 · 2026-05-29T05:16:11.566Z_
+
+You are helping with a literature survey for an AAAI 2026 paper on jointly modeling benchmark contamination and robustness in LLM evaluation.
+
+Search for the most important recent papers (2024-2026) on adversarial robustness evaluation of LLMs, particularly for math reasoning benchmarks. Execute these searches:
+
+1. WebSearch: "adversarial math benchmark LLM robustness evaluation 2025 2026"
+2. WebSearch: "MaSTer automated adversarial math variant generation 2026"
+3. WebSearch: "GSM-Symbolic GSM-Plus MATH-Perturb adversarial benchmark variants 2025"
+4. WebSearch: "LLM reasoning robustness perturbation functional variants 2025 2026"
+5. WebSearch: "symbolic perturbation math problems LLM evaluation SymPy 2025"
+
+For each promising paper found, use WebFetch on its arXiv page to read the abstract and understand what it does.
+
+Focus on papers that:
+- Generate adversarial or perturbed variants of math/reasoning benchmarks
+- Evaluate LLM robustness to problem reformulations
+- Use symbolic methods for provably correct variant generation
+- Study the gap between performance on original vs. perturbed problems
+
+For each paper found, record: title, authors, venue, URL, why it's important, and a one-line summary.
+
+Return a structured list of ALL papers found with these details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "95d70999-40ae-46ba-b577-53719afa3f23",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-29T05:16:11.569Z_
+
+```json
+{
+  "parentUuid": "95d70999-40ae-46ba-b577-53719afa3f23",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": []
+  },
+  "type": "attachment",
+  "uuid": "acb6faf4-05ed-4e57-b208-1420632f9f6c",
+  "timestamp": "2026-05-29T05:16:11.569Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3 · 2026-05-29T05:16:11.569Z_
+
+```json
+{
+  "parentUuid": "acb6faf4-05ed-4e57-b208-1420632f9f6c",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "63674ad0-27b4-4066-8f61-4e36def832f7",
+  "timestamp": "2026-05-29T05:16:11.569Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4 · 2026-05-29T05:16:14.155Z_
+
+
+
+I'll start by loading the WebSearch and WebFetch tool schemas, then execute all five searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63674ad0-27b4-4066-8f61-4e36def832f7",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHt9f2wyntbQtdyGBZq",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e559974c-817b-4f2f-90bd-43edbe1a75b3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AVxCkCRUVYUE8uSp7sDVwj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1680,
+      "cache_read_input_tokens": 7413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1680,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-29T05:16:14.613Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011wLr8V18xabwkW8WuHubno`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e559974c-817b-4f2f-90bd-43edbe1a75b3",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHt9f2wyntbQtdyGBZq",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4585eded-20b9-4fea-b377-6999a92bda35",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AVxCkCRUVYUE8uSp7sDVwj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1680,
+      "cache_read_input_tokens": 7413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1680,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-29T05:16:14.620Z_
+
+<details><summary>↩ Tool result · `toolu_011wLr8V18xabwkW8WuHubno`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4585eded-20b9-4fea-b377-6999a92bda35",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "45f2849d-5e38-4984-b253-cad1780f7112",
+  "sourceToolAssistantUUID": "4585eded-20b9-4fea-b377-6999a92bda35",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-29T05:16:16.943Z_
+
+
+
+Now let me execute all five searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45f2849d-5e38-4984-b253-cad1780f7112",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHtP9PkwJoN9ubVyeMW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b4a73ade-bab5-452d-a964-a57da4f4e5a3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HYk3KcZoCfZq8G9a2fDGya",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1126,
+      "cache_read_input_tokens": 9093,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1126,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-29T05:16:17.387Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012u5kbhFWpFjABZvpH1QJ6J`</summary>
+
+```json
+{
+  "query": "adversarial math benchmark LLM robustness evaluation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4a73ade-bab5-452d-a964-a57da4f4e5a3",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHtP9PkwJoN9ubVyeMW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "75d0309d-e1a9-4f2a-9b9b-4414d2dd23af",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HYk3KcZoCfZq8G9a2fDGya",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1126,
+      "cache_read_input_tokens": 9093,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1126,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-29T05:16:17.886Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01H4bmwQSp6kosHbqRGdn2NZ`</summary>
+
+```json
+{
+  "query": "MaSTer automated adversarial math variant generation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "75d0309d-e1a9-4f2a-9b9b-4414d2dd23af",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHtP9PkwJoN9ubVyeMW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4fd7005a-1a04-42f8-959b-9f1218164e27",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HYk3KcZoCfZq8G9a2fDGya",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1126,
+      "cache_read_input_tokens": 9093,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1126,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-29T05:16:18.367Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Fg6VU6g5XxJ7Xp49Ci9LVq`</summary>
+
+```json
+{
+  "query": "GSM-Symbolic GSM-Plus MATH-Perturb adversarial benchmark variants 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4fd7005a-1a04-42f8-959b-9f1218164e27",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHtP9PkwJoN9ubVyeMW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c86de775-bea9-4768-9fb2-c8d2bc97ac8b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HYk3KcZoCfZq8G9a2fDGya",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1126,
+      "cache_read_input_tokens": 9093,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1126,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-29T05:16:18.376Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TrZE1JvgMQH98TjREik46U`</summary>
+
+```json
+{
+  "query": "LLM reasoning robustness perturbation functional variants 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c86de775-bea9-4768-9fb2-c8d2bc97ac8b",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHtP9PkwJoN9ubVyeMW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a48d38d1-e528-48f5-8245-ee644b84c9e9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HYk3KcZoCfZq8G9a2fDGya",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1126,
+      "cache_read_input_tokens": 9093,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1126,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-29T05:16:18.655Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YPn6XWNEc3asqGVV3Uv3jo`</summary>
+
+```json
+{
+  "query": "symbolic perturbation math problems LLM evaluation SymPy 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a48d38d1-e528-48f5-8245-ee644b84c9e9",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHtP9PkwJoN9ubVyeMW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e80d6113-1c52-4584-aee3-56b7969869eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HYk3KcZoCfZq8G9a2fDGya",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1126,
+      "cache_read_input_tokens": 9093,
+      "output_tokens": 290,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1126
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 290,
+          "cache_read_input_tokens": 9093,
+          "cache_creation_input_tokens": 1126,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1126,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-29T05:16:24.216Z_
+
+<details><summary>↩ Tool result · `toolu_01H4bmwQSp6kosHbqRGdn2NZ`</summary>
+
+```text
+Web search results for query: "MaSTer automated adversarial math variant generation 2026"
+
+Links: [{"title":"Toward Automated Robustness Evaluation of Mathematical Reasoning","url":"https://arxiv.org/html/2506.05038"},{"title":"Adversarial Math Word Problem Generation","url":"https://arxiv.org/html/2402.17916v3"},{"title":"Adversarial Math Word Problem Generation","url":"https://arxiv.org/pdf/2402.17916"},{"title":"2026 AI Master's Degree Careers in Generative AI | Research.com","url":"https://research.com/online-degrees/artificial-intelligence/ai-masters-degree-careers-in-generative-ai"},{"title":"Adversarial Math Word Problem Generation | alphaXiv","url":"https://www.alphaxiv.org/abs/2402.17916"},{"title":"Adversarial Math Word Problem Generation - ACL Anthology","url":"https://aclanthology.org/2024.findings-emnlp.292/"},{"title":"Automatic Robustness Stress Testing of LLMs as Mathematical Problem Solvers","url":"https://arxiv.org/pdf/2506.05038"}]
+
+Based on the search results, I found information about MaSTer, a framework for automated adversarial math variant generation:
+
+MaSTer modifies question stems to introduce semantic variations, such as increasing linguistic complexity or adding irrelevant context, while keeping answer choices and their order fixed. Four LLMs obtain 48.04% and 31.35% less averaged accuracy on evaluation variants of GSM8K and MATH-500 datasets, respectively.
+
+The framework has broader applications beyond mathematics. MaSTer was extended beyond mathematics to general reasoning tasks, covering diverse benchmarks including MMLU, MMLU-Pro, and CommonsenseQA, with LLaMA-3.2-1B-Instruct reaching high success rates on these benchmarks.
+
+Fine-tuning models on the high-quality adversarial variants synthesized by MaSTer yields significant improvements in their in-domain robustness. Additionally, since the evaluation variants are generated dynamically for each LLM, the framework minimizes the risk of data contamination.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4fd7005a-1a04-42f8-959b-9f1218164e27",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "319b912d-8ad4-4841-a330-5b2feed16fd1",
+  "sourceToolAssistantUUID": "4fd7005a-1a04-42f8-959b-9f1218164e27",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-29T05:16:24.831Z_
+
+<details><summary>↩ Tool result · `toolu_01YPn6XWNEc3asqGVV3Uv3jo`</summary>
+
+```text
+Web search results for query: "symbolic perturbation math problems LLM evaluation SymPy 2025"
+
+Links: [{"title":"ASYMOB: ALGEBRAIC SYMBOLIC MATHEMATICAL ...","url":"https://openreview.net/pdf/d6052e060a85435cf51e84555d67652eeacf7ba1.pdf"},{"title":"An Investigation of Robustness of LLMs in Mathematical Reasoning: Benchmarking with Mathematically-Equivalent Transformation of Advanced Mathematical Problems","url":"https://arxiv.org/pdf/2508.08833"},{"title":"Rethinking Math Reasoning Evaluation: A Robust LLM-as-a-Judge Framework Beyond Symbolic Rigidity","url":"https://arxiv.org/html/2604.22597"},{"title":"BrokenMath: A Benchmark for Sycophancy in Theorem Proving with LLMs","url":"https://arxiv.org/pdf/2510.04721"},{"title":"ASyMOB: Algebraic Symbolic Mathematical Operations Benchmark","url":"https://arxiv.org/pdf/2505.23851"},{"title":"MATH-Perturb: Benchmarking LLMs’ Math Reasoning Abilities against Hard Perturbations","url":"https://arxiv.org/html/2502.06453v2"},{"title":"Numerical Sensitivity and Robustness: Exploring the Flaws of Mathematical Reasoning in Large Language Models","url":"https://arxiv.org/pdf/2511.08022"},{"title":"Mathematical Reasoning in Large Language Models: Assessing Logical and   Arithmetic Errors across Wide Numerical Ranges","url":"https://arxiv.org/pdf/2502.08680"},{"title":"Evaluating LLMs' Mathematical and Coding Competency through   Ontology-guided Interventions","url":"https://arxiv.org/pdf/2401.09395"},{"title":"ASyMOB: Algebraic Symbolic Mathematical Operations Benchmark","url":"https://arxiv.org/html/2505.23851"}]
+
+I found several highly relevant research papers on this topic. Here are the key findings from the search results:
+
+## ASyMOB: Algebraic Symbolic Mathematical Operations Benchmark
+
+ASyMOB is a benchmark that assesses LLM capabilities through systematic perturbations of core symbolic tasks. When evaluated, LLMs exhibit substantial degradation in performance for all perturbation types (up to -70.3%), suggesting reliance on memorized patterns rather than deeper understanding of symbolic math.
+
+## Performance Impact of Perturbations
+
+Perturbations significantly challenge LLMs' symbolic math skills, reducing the average model success rate from 74.6% on the unperturbed subset to 46.8% on the full ASyMOB benchmark. The most advanced models (o4-mini, Gemini 2.5 Flash) demonstrate high symbolic math proficiency (scoring 96.8% and 97.6% on the unperturbed set) but also remarkable robustness against perturbations.
+
+## Integration with SymPy
+
+Comparing LLM performance to computer algebra systems like SymPy, researchers identified examples where CAS fail while LLMs succeed, as well as problems solved only when combining both approaches. Models capable of integrated code execution yielded higher accuracy compared to their performance without code, particularly stabilizing weaker models (up to +33.1% for certain perturbation types).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e80d6113-1c52-4584-aee3-56b7969869eb",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "29d69d72-29f9-4c52-8c81-c24b79f25f5d",
+  "sourceToolAssistantUUID": "e80d6113-1c52-4584-aee3-56b7969869eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-29T05:16:25.416Z_
+
+<details><summary>↩ Tool result · `toolu_012u5kbhFWpFjABZvpH1QJ6J`</summary>
+
+```text
+Web search results for query: "adversarial math benchmark LLM robustness evaluation 2025 2026"
+
+Links: [{"title":"[2506.05038] Toward Automated Robustness Evaluation of Mathematical Reasoning","url":"https://arxiv.org/abs/2506.05038"},{"title":"Robust Reasoning Benchmark","url":"https://arxiv.org/html/2604.08571v2"},{"title":"GSM-Plus: A Comprehensive Benchmark for Evaluating the Robustness of   LLMs as Mathematical Problem Solvers","url":"https://arxiv.org/pdf/2402.19255"},{"title":"More Agents Improve Math Problem Solving but Adversarial Robustness Gap Persists","url":"https://arxiv.org/pdf/2511.07112"},{"title":"(PDF) Benchmarking adversarial robustness to bias elicitation in large language models: scalable automated assessment with LLM-as-a-judge","url":"https://www.researchgate.net/publication/396516301_Benchmarking_adversarial_robustness_to_bias_elicitation_in_large_language_models_scalable_automated_assessment_with_LLM-as-a-judge"},{"title":"An Investigation of Robustness of LLMs in Mathematical Reasoning: Benchmarking with Mathematically-Equivalent Transformation of Advanced Mathematical Problems","url":"https://arxiv.org/html/2508.08833"},{"title":"MathAttack: Attacking Large Language Models Towards Math Solving Ability","url":"https://arxiv.org/pdf/2309.01686"},{"title":"Toward Automated Robustness Evaluation of Mathematical Reasoning","url":"https://arxiv.org/html/2506.05038"}]
+
+Based on the web search results, here are some recent developments in adversarial math benchmarks for LLM robustness evaluation in 2025-2026:
+
+## Recent Benchmarks and Frameworks
+
+The Math Stress Tester (MaSTer) is an automated framework inspired by software stress testing that generates adversarial variants via a multi-round rewrite-verify loop, ensuring semantic consistency while successfully inducing model failure. Experiments on GSM8K and MATH-500 demonstrate the effectiveness of MaSTer on mathematical tasks.
+
+The Robust Reasoning Benchmark (RRB) is a pipeline of 13 deterministic textual perturbations applied to AIME 2024 and AIME 2025.
+
+GSM-Plus augments GSM8K with eight families of adversarial variations per problem, revealing large accuracy drops even for models that nearly solve the original benchmark, while GSM-Symbolic shows that merely changing numeric instantiations or adding logically irrelevant clauses can degrade performance by up to 65%.
+
+## Key Findings
+
+Four LLMs obtain 48.04% and 31.35% less averaged accuracy on GSM8K and MATH-500 evaluation variants, respectively. At the character level, studies examine misspellings and typos; at the word level, attacks involve synonym substitution or word shuffling; and at the sentence level, robustness is tested via paraphrasing or insertion of irrelevant context.
+
+These benchmarks demonstrate that current LLMs are notably brittle when faced with adversarial perturbations of mathematical problems, even when they perform well on unmodified versions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "75d0309d-e1a9-4f2a-9b9b-4414d2dd23af",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "b366362b-e17a-449b-a1de-dde5983e1167",
+  "sourceToolAssistantUUID": "75d0309d-e1a9-4f2a-9b9b-4414d2dd23af",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-29T05:16:26.285Z_
+
+<details><summary>↩ Tool result · `toolu_01Fg6VU6g5XxJ7Xp49Ci9LVq`</summary>
+
+```text
+Web search results for query: "GSM-Symbolic GSM-Plus MATH-Perturb adversarial benchmark variants 2025"
+
+Links: [{"title":"An Investigation of Robustness of LLMs in Mathematical Reasoning: Benchmarking with Mathematically-Equivalent Transformation of Advanced Mathematical Problems","url":"https://arxiv.org/html/2508.08833"},{"title":"GSM-Symbolic: Evaluating LLM Mathematical Reasoning","url":"https://www.emergentmind.com/topics/gsm-symbolic-approach"},{"title":"GSM-SEM: Benchmark and Framework for Generating Semantically Variant Augmentations","url":"https://arxiv.org/html/2605.07053v1"},{"title":"GSM-Symbolic: A Rigorous LLM Math Benchmark","url":"https://www.emergentmind.com/topics/gsm-symbolic-benchmark"},{"title":"[PDF] GSM-Plus: A Comprehensive Benchmark for Evaluating the Robustness of LLMs as Mathematical Problem Solvers | Semantic Scholar","url":"https://www.semanticscholar.org/paper/GSM-Plus:-A-Comprehensive-Benchmark-for-Evaluating-Li-Cui/bed35010543191bf57a09a6058e75332702d7afa"},{"title":"Toward Automated Robustness Evaluation of Mathematical Reasoning","url":"https://arxiv.org/html/2506.05038"},{"title":"[2402.19255] GSM-Plus: A Comprehensive Benchmark for Evaluating the Robustness of LLMs as Mathematical Problem Solvers","url":"https://arxiv.org/abs/2402.19255"},{"title":"GSM-Plus: A Comprehensive Benchmark for Evaluating the Robustness of   LLMs as Mathematical Problem Solvers","url":"https://arxiv.org/pdf/2402.19255"},{"title":"GSM-Plus: A Comprehensive Benchmark for Evaluating the Robustness of LLMs as Mathematical Problem Solvers","url":"https://arxiv.org/html/2402.19255v1"}]
+
+Based on the search results, here's what I found about these adversarial benchmark variants:
+
+## GSM-Plus
+
+GSM-Plus augments GSM8K with eight families of adversarial variations per problem, revealing large accuracy drops even for models that nearly solve the original benchmark. It creates eight variations of a single question by perturbing it with eight different math reasoning skills. Experiments on 25 LLMs and 4 prompting techniques show that while LLMs exhibit different levels of math reasoning abilities, their performances are far from robust.
+
+## GSM-Symbolic
+
+GSM-Symbolic is a synthetically generated benchmark designed to provide a more rigorous and interpretable evaluation of the mathematical reasoning abilities of LLMs by extending the popular GSM8K grade-school arithmetic benchmark. Unlike GSM8K, which consists of a fixed set of problems with single canonical instantiations, GSM-Symbolic leverages parameterized symbolic templates to generate families of problems with controlled variations and diversity. Merely changing numeric instantiations or adding logically irrelevant clauses can degrade performance by up to 65%.
+
+## MATH-Perturb
+
+MATH-perturb: benchmarking LLMs' math reasoning abilities against hard perturbation (2025) is mentioned as a recent work in this space. Additionally, MATH-P-Simple and MATH-P-Hard variants consist of 279 perturbed math problems derived from level-5 (hardest) problems in the MATH dataset.
+
+These benchmarks collectively represent recent 2024-2025 efforts to evaluate the robustness and adversarial resilience of large language models in mathematical reasoning tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c86de775-bea9-4768-9fb2-c8d2bc97ac8b",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "07ba1aa1-1886-4407-9b3f-22fd5e09e60f",
+  "sourceToolAssistantUUID": "c86de775-bea9-4768-9fb2-c8d2bc97ac8b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-29T05:16:26.769Z_
+
+<details><summary>↩ Tool result · `toolu_01TrZE1JvgMQH98TjREik46U`</summary>
+
+```text
+Web search results for query: "LLM reasoning robustness perturbation functional variants 2025 2026"
+
+Links: [{"title":"Fragile Thoughts: How Large Language Models Handle Chain-of-Thought Perturbations","url":"https://arxiv.org/html/2603.03332"},{"title":"Exploring LLM Reasoning Through Controlled Prompt Variations","url":"https://arxiv.org/pdf/2504.02111"},{"title":"An Investigation of Robustness of LLMs in Mathematical Reasoning: Benchmarking with Mathematically-Equivalent Transformation of Advanced Mathematical Problems","url":"https://arxiv.org/html/2508.08833v1"},{"title":"Learning Perturbations to Extrapolate Your LLM","url":"https://arxiv.org/html/2605.13284"},{"title":"Robustness of Neurosymbolic Reasoners on First-Order Logic Problems","url":"https://arxiv.org/pdf/2509.17377"},{"title":"Numerical Sensitivity and Robustness: Exploring the Flaws of Mathematical Reasoning in Large Language Models","url":"https://arxiv.org/pdf/2511.08022"},{"title":"Understanding Artificial Theory of Mind: Perturbed Tasks and Reasoning in Large Language Models","url":"https://arxiv.org/html/2602.22072v1"},{"title":"Large language models robustness against perturbation | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-29770-0"},{"title":"Toward Automated Robustness Evaluation of Mathematical Reasoning","url":"https://arxiv.org/html/2506.05038v2"}]
+
+I found several recent research papers on LLM reasoning robustness, perturbations, and functional variants from 2025-2026. Here are the key findings:
+
+## Chain-of-Thought Perturbation Research
+
+A comprehensive empirical evaluation examined LLM robustness to a structured taxonomy of 5 CoT perturbation types: MathError, UnitConversion, Sycophancy, SkippedSteps, and ExtraSteps. Research shows that model size serves as a protective factor against many perturbations but not always.
+
+## Mathematical Reasoning Robustness
+
+Putnam-AXIOM comprises 522 challenging problems from the William Lowell Putnam Competition plus 100 programmatically generated functional variations, furnishing a contamination-resilient benchmark. Additionally, when minor perturbations are applied to input problems, the performance of models will decrease significantly.
+
+## General Perturbation Sensitivity
+
+Research demonstrated that simply replacing the primary noun in the prompt causes models to fail, despite the logical structure remaining unchanged, revealing that LLMs suffer from the token bias problem where they exhibit disproportionate reliance on frequently occurring lexical items.
+
+## Prompt Perturbations
+
+A perturbation-based approach tested the robustness of general LLM reasoning, finding that perturbations can induce inconsistent or nonsensical reasoning—especially on multi-step and commonsense tasks.
+
+These studies collectively demonstrate ongoing research into understanding and improving LLM robustness across different types of perturbations and functional variants.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a48d38d1-e528-48f5-8245-ee644b84c9e9",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "9258bc93-d41a-4215-bf04-d0f786be7afe",
+  "sourceToolAssistantUUID": "a48d38d1-e528-48f5-8245-ee644b84c9e9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-29T05:16:30.398Z_
+
+Excellent. I now have a rich set of results. Let me fetch the arXiv pages for all the key papers to get precise details (titles, authors, venues, abstracts).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9258bc93-d41a-4215-bf04-d0f786be7afe",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHuGfFDhbrKsSNA3o2o",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "88568e3e-a618-4174-9e88-492b46090b4b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H2hrB5kTTE4M2XiLBbi3Xa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 3427,
+      "cache_read_input_tokens": 10219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3427,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-29T05:16:31.863Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012cnyerta4ZaMmkkLoBsuqs`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2506.05038",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88568e3e-a618-4174-9e88-492b46090b4b",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHuGfFDhbrKsSNA3o2o",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e539ab0d-1d60-4fa8-8003-809e2c238597",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H2hrB5kTTE4M2XiLBbi3Xa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 3427,
+      "cache_read_input_tokens": 10219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3427,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-29T05:16:32.336Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013SPP7C7FFY7hJ6KhbhTYVK`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.08571",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e539ab0d-1d60-4fa8-8003-809e2c238597",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHuGfFDhbrKsSNA3o2o",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1461e923-99f8-49bd-8066-e3ccdf3e478b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H2hrB5kTTE4M2XiLBbi3Xa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 3427,
+      "cache_read_input_tokens": 10219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3427,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-29T05:16:33.397Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Qo82sczynfeBGVDJfBfxjd`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2402.19255",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1461e923-99f8-49bd-8066-e3ccdf3e478b",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHuGfFDhbrKsSNA3o2o",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4abc68df-5fef-4edf-9428-dc9e72c5a211",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H2hrB5kTTE4M2XiLBbi3Xa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 3427,
+      "cache_read_input_tokens": 10219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3427,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-29T05:16:33.906Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01LpAdZBxkuJyBuh8itssZSW`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2402.17916",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4abc68df-5fef-4edf-9428-dc9e72c5a211",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHuGfFDhbrKsSNA3o2o",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e4ec7890-48eb-4b9c-b201-8ca67aa7dbd4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H2hrB5kTTE4M2XiLBbi3Xa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 3427,
+      "cache_read_input_tokens": 10219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3427,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-29T05:16:34.821Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01RU1uKQ6x96gLNAcsVEAMqN`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2508.08833",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4ec7890-48eb-4b9c-b201-8ca67aa7dbd4",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHuGfFDhbrKsSNA3o2o",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d2eba57d-c9ce-4e35-8852-78715d2212b2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H2hrB5kTTE4M2XiLBbi3Xa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 3427,
+      "cache_read_input_tokens": 10219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3427,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-29T05:16:35.292Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01J6FeBwXsXfjottNqo4bz53`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2511.07112",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2eba57d-c9ce-4e35-8852-78715d2212b2",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHuGfFDhbrKsSNA3o2o",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "eef1c2fe-ace8-46d6-bab3-bec44c0f5ef9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H2hrB5kTTE4M2XiLBbi3Xa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 3427,
+      "cache_read_input_tokens": 10219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3427,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-29T05:16:36.371Z_
+
+<details><summary>↩ Tool result · `toolu_012cnyerta4ZaMmkkLoBsuqs`</summary>
+
+```text
+# Paper Information
+
+**Title:** "Toward Automated Robustness Evaluation of Mathematical Reasoning"
+
+**Authors:** Yutao Hou, Zeguan Xiao, Fei Yu, Yihan Jiang, Ma Shuguang, Zhaoqian Dai, Hailiang Huang, Yun Chen, Guanhua Chen
+
+**Submission Date:** June 5, 2025 (v1); last revised April 24, 2026 (v2)
+
+**Venue:** Findings of ACL 2026
+
+**Abstract:** The paper introduces Math Stress Tester (MaSTer), an automated framework for evaluating the robustness of Large Language Models on reasoning tasks. The authors note that while LLMs show strong capabilities, they "exhibit unexpected brittleness, often failing on simple variations of the same underlying task." MaSTer generates adversarial variants through a rewrite-verify loop while maintaining semantic consistency. The framework minimizes data contamination risk by generating variants dynamically for each model. Testing on GSM8K and MATH-500 benchmarks demonstrates effectiveness, with results showing the synthesized variants can also enhance model robustness when used for fine-tuning.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e539ab0d-1d60-4fa8-8003-809e2c238597",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "0e7ddbfe-07a5-4330-849b-b2ede410a31c",
+  "sourceToolAssistantUUID": "e539ab0d-1d60-4fa8-8003-809e2c238597",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-29T05:16:36.581Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JnKxMpkiiALwydxr2vfhif`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2502.06453",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e7ddbfe-07a5-4330-849b-b2ede410a31c",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHuGfFDhbrKsSNA3o2o",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2aef3ce7-ac1d-4d05-b23f-651faf9bf1eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H2hrB5kTTE4M2XiLBbi3Xa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 3427,
+      "cache_read_input_tokens": 10219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3427,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-29T05:16:36.653Z_
+
+<details><summary>↩ Tool result · `toolu_013SPP7C7FFY7hJ6KhbhTYVK`</summary>
+
+```text
+# Paper Summary
+
+**Title:** "Robust Reasoning Benchmark"
+
+**Authors:** Pavel Golikov, Evgenii Opryshko, Gennady Pekhimenko, Mark C. Jeffrey
+
+**Submission Date:** March 26, 2026 (v1); Last revised May 20, 2026 (v2)
+
+**Abstract:** The researchers introduce a benchmark testing how language models handle textual perturbations. They applied 13 deterministic modifications to AIME mathematics problems and evaluated 8 advanced models. Frontier models showed resilience, though Claude "categorically refuses many transformed prompts." Open-source reasoning models demonstrated significant vulnerabilities, with accuracy drops reaching 54% on average and 100% on specific cases. The team identified "Intra-Query Attention Dilution," where solving multiple math problems sequentially in one context causes performance decay on later problems, indicating that intermediate reasoning steps degrade standard attention mechanisms.
+
+**Venue:** Not a conference or journal publication—this is a preprint submitted to arXiv (Computer Science > Machine Learning category).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1461e923-99f8-49bd-8066-e3ccdf3e478b",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "3f3692ea-0d0f-45b9-a5bb-05f93f08541b",
+  "sourceToolAssistantUUID": "1461e923-99f8-49bd-8066-e3ccdf3e478b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-29T05:16:36.853Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01LSxkDNiUtX8rFUERnGBp5r`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.23851",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f3692ea-0d0f-45b9-a5bb-05f93f08541b",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHuGfFDhbrKsSNA3o2o",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "edcef692-11fa-4797-a4c5-a8b612df17ad",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H2hrB5kTTE4M2XiLBbi3Xa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 3427,
+      "cache_read_input_tokens": 10219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3427,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-29T05:16:37.113Z_
+
+<details><summary>↩ Tool result · `toolu_01Qo82sczynfeBGVDJfBfxjd`</summary>
+
+```text
+# Paper Details
+
+**Title:** "GSM-Plus: A Comprehensive Benchmark for Evaluating the Robustness of LLMs as Mathematical Problem Solvers"
+
+**Authors:** Qintong Li, Leyang Cui, Xueliang Zhao, Lingpeng Kong, Wei Bi
+
+**Submission Date:** February 29, 2024 (v1); Last revised July 2, 2024 (v2)
+
+**Venue:** ACL 2024
+
+**Abstract Summary:**
+The paper introduces GSM-Plus, a dataset extending GSM8K with mathematical perturbations to assess how robustly large language models handle variations in problem statements. Testing 25 LLMs across 4 prompting strategies, the researchers found that while models demonstrate varying mathematical reasoning abilities, their performance lacks robustness—models frequently fail on modified versions of problems they originally solved. The study also explores whether combining existing prompting approaches yields more stable results through an iterative verification method.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4abc68df-5fef-4edf-9428-dc9e72c5a211",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "8178eb23-ea7d-417d-9afd-5b09892b929f",
+  "sourceToolAssistantUUID": "4abc68df-5fef-4edf-9428-dc9e72c5a211",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-29T05:16:37.641Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01V7x1DmVzRvH5eGEn2GjwBA`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2511.08022",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8178eb23-ea7d-417d-9afd-5b09892b929f",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHuGfFDhbrKsSNA3o2o",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7ee02f59-32b5-49d5-a132-46f5fc2bd309",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H2hrB5kTTE4M2XiLBbi3Xa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 3427,
+      "cache_read_input_tokens": 10219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3427,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-29T05:16:37.710Z_
+
+<details><summary>↩ Tool result · `toolu_01LpAdZBxkuJyBuh8itssZSW`</summary>
+
+```text
+# Paper Information
+
+**Title:** "Adversarial Math Word Problem Generation"
+
+**Authors:** Roy Xie, Chengxuan Huang, Junlin Wang, Bhuwan Dhingra
+
+**Submission Date:** February 27, 2024 (v1); last revised June 15, 2024 (v3)
+
+**Abstract:** The authors address LLM evaluation challenges in education by creating problematic examples that maintain structure and difficulty while remaining unsolvable by language models. They use abstract syntax trees to generate adversarial instances through numeric value modifications in math problems. Testing across multiple LLMs demonstrates significant performance degradation. The work identifies common model vulnerabilities and proposes cost-effective attack methods for expensive models, alongside automatic failure analysis.
+
+**Venue:** No specific conference or journal is mentioned on this arXiv page. The paper is classified under Computation and Language (cs.CL) and Artificial Intelligence (cs.AI).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e4ec7890-48eb-4b9c-b201-8ca67aa7dbd4",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "34425cca-8e69-4448-8999-0f3a6180dbb8",
+  "sourceToolAssistantUUID": "e4ec7890-48eb-4b9c-b201-8ca67aa7dbd4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-29T05:16:38.115Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Kzax7H98ffNVsTHyDFfYCP`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.07053",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34425cca-8e69-4448-8999-0f3a6180dbb8",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHuGfFDhbrKsSNA3o2o",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8866b28d-a872-49b9-9d65-0ac19ce557b4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H2hrB5kTTE4M2XiLBbi3Xa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 3427,
+      "cache_read_input_tokens": 10219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3427,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-29T05:16:39.150Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0139A3hcMHfBko7HFkgEqa4W`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.03332",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8866b28d-a872-49b9-9d65-0ac19ce557b4",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHuGfFDhbrKsSNA3o2o",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a384050c-89ce-4f4f-b752-0f3ca90f633d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H2hrB5kTTE4M2XiLBbi3Xa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 3427,
+      "cache_read_input_tokens": 10219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3427,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-29T05:16:39.504Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0181Ah8ojsrpfSczZa2EYsnZ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2504.02111",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a384050c-89ce-4f4f-b752-0f3ca90f633d",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHuGfFDhbrKsSNA3o2o",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "db649d1b-69c4-455e-a860-fbf5409d79b6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H2hrB5kTTE4M2XiLBbi3Xa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 3427,
+      "cache_read_input_tokens": 10219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3427,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-29T05:16:39.714Z_
+
+<details><summary>↩ Tool result · `toolu_01RU1uKQ6x96gLNAcsVEAMqN`</summary>
+
+```text
+# Paper Information
+
+**Exact Title:**
+"An Investigation of Robustness of LLMs in Mathematical Reasoning: Benchmarking with Mathematically-Equivalent Transformation of Advanced Mathematical Problems"
+
+**Full Author List:**
+Yuren Hao, Xiang Wan, ChengXiang Zhai
+
+**Submission Date:**
+August 12, 2025 (v1); last revised December 4, 2025 (v3)
+
+**Complete Abstract:**
+The authors introduce a framework to evaluate large language models' mathematical reasoning robustness by testing them on "advanced math problems that are mathematically equivalent but with linguistic and parametric variation." They created PutnamGAP, a benchmark with multiple variations of competition-level problems. Testing 18 models, they found significant performance drops: OpenAI's O3 scored 51.5% on originals but declined by 4.7 percentage points on surface-renaming variants and 12.9 percentage points on parametric variants. Smaller models showed worse results overall.
+
+**Venue:**
+No specific conference or journal venue is mentioned. The paper is classified under Computer Science categories (cs.CL, cs.AI, cs.LG) on arXiv.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d2eba57d-c9ce-4e35-8852-78715d2212b2",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "cb5c6082-4b7f-4a6a-a922-93c6ccd4e35b",
+  "sourceToolAssistantUUID": "d2eba57d-c9ce-4e35-8852-78715d2212b2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-29T05:16:39.856Z_
+
+<details><summary>↩ Tool result · `toolu_01J6FeBwXsXfjottNqo4bz53`</summary>
+
+```text
+# Paper Information Extract
+
+**Exact Title:**
+"More Agents Improve Math Problem Solving but Adversarial Robustness Gap Persists"
+
+**Full Author List:**
+Khashayar Alavi, Zhastay Yeltay, Lucie Flek, Akbar Karimi
+
+**Submission Date:**
+Submitted on November 10, 2025 (v1); last revised March 15, 2026 (v2)
+
+**Complete Abstract:**
+The researchers investigate whether collaborative LLM agents maintain robustness against adversarial inputs while solving math problems. They evaluate six open-source models across four benchmarks using adversarially perturbed questions with punctuation noise (at 10%, 30%, and 50% intensities) and human-like typos. Key findings include: punctuation noise impacts scale with severity, while human typos remain the biggest obstacle; increasing agent numbers from 1 to 5 yields substantial accuracy gains with diminishing returns beyond 10 agents; and critically, the adversarial robustness gap persists regardless of agent count.
+
+**Venue:**
+No specific conference or journal venue is mentioned on this arXiv abstract page. The paper is categorized under "Computation and Language (cs.CL)" on arXiv.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eef1c2fe-ace8-46d6-bab3-bec44c0f5ef9",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "5d797a63-5830-4b3d-892e-7e1b34505291",
+  "sourceToolAssistantUUID": "eef1c2fe-ace8-46d6-bab3-bec44c0f5ef9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-29T05:16:41.324Z_
+
+<details><summary>↩ Tool result · `toolu_01V7x1DmVzRvH5eGEn2GjwBA`</summary>
+
+```text
+# Paper Information
+
+**Title:** "Numerical Sensitivity and Robustness: Exploring the Flaws of Mathematical Reasoning in Large Language Models"
+
+**Authors:** Zhishen Sun, Guang Dai, Ivor Tsang, Haishan Ye
+
+**Submission Date:** November 11, 2025
+
+**Venue:** No specific conference or journal is mentioned; posted to arXiv (cs.AI category)
+
+**Abstract Summary:**
+
+The researchers developed a perturbation framework to assess how LLMs handle mathematical reasoning when exposed to irrelevant distracting information. Their findings reveal that "models are more sensitive to perturbations with numerical information" and show performance declines ranging from 10% to over 50% depending on model size and perturbation intensity. Notably, they discovered that models maintained 20-40% accuracy even when core problem instructions were removed, suggesting LLMs may rely on "memory templates or pattern matching" rather than genuine logical reasoning.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7ee02f59-32b5-49d5-a132-46f5fc2bd309",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "144d00cf-ee91-4129-ad39-fba8bd291beb",
+  "sourceToolAssistantUUID": "7ee02f59-32b5-49d5-a132-46f5fc2bd309",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-29T05:16:41.418Z_
+
+<details><summary>↩ Tool result · `toolu_01LSxkDNiUtX8rFUERnGBp5r`</summary>
+
+```text
+# Paper Information
+
+**Title:** "ASyMOB: Algebraic Symbolic Mathematical Operations Benchmark"
+
+**Authors:** Michael Shalyt, Rotem Elimelech, Ido Kaminer
+
+**Submission Date:** May 28, 2025
+
+**Venue:** No specific conference or journal mentioned; posted on arXiv (cs.CL category)
+
+**Abstract:**
+
+The paper introduces a new evaluation framework designed to assess large language models' capabilities in symbolic mathematics. It comprises 17,092 distinct mathematical challenges organized by similarity and difficulty level. The researchers found that "evaluated LLMs exhibit substantial degradation in performance for all perturbation types (up to -70.3%)" when problems were modified slightly, suggesting models rely on memorized content rather than genuine mathematical understanding. Notably, the most advanced models (o4-mini and Gemini 2.5 Flash) showed greater robustness against perturbations compared to other systems, achieving scores around 97% on unperturbed problems. The study also examined how code execution capabilities improved performance and compared LLM results to computer algebra systems.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "edcef692-11fa-4797-a4c5-a8b612df17ad",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "96dbc349-197a-4046-9413-0aa73191e629",
+  "sourceToolAssistantUUID": "edcef692-11fa-4797-a4c5-a8b612df17ad",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-29T05:16:42.280Z_
+
+<details><summary>↩ Tool result · `toolu_01JnKxMpkiiALwydxr2vfhif`</summary>
+
+```text
+# MATH-Perturb Paper Details
+
+**Title:** "MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations"
+
+**Authors:** Kaixuan Huang, Jiacheng Guo, Zihao Li, Xiang Ji, Jiawei Ge, Wenzhe Li, Yingqing Guo, Tianle Cai, Hui Yuan, Runzhe Wang, Yue Wu, Ming Yin, Shange Tang, Yangsibo Huang, Chi Jin, Xinyun Chen, Chiyuan Zhang, and Mengdi Wang
+
+**Submission Date:** February 10, 2025 (v1); revised February 12, 2025 (v2)
+
+**Abstract:** The authors investigate whether LLMs' strong mathematical performance stems from genuine reasoning or memorization. They created two benchmark datasets—MATH-P-Simple and MATH-P-Hard—containing 279 modified problems from the MATH dataset's hardest tier. While simple perturbations preserve solution patterns, hard perturbations "fundamentally change the nature of the problem so that the original solution steps do not apply." Testing revealed substantial performance declines on hard variants across models, including o1-mini and Gemini 2.0 Flash Thinking. The researchers identify a memorization concern where models mechanically apply techniques without evaluating relevance to modified contexts.
+
+**Venue:** No specific conference or journal venue is mentioned in the submission metadata.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2aef3ce7-ac1d-4d05-b23f-651faf9bf1eb",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "b8ce3fbb-b955-4655-b1c6-798f8d5bafb1",
+  "sourceToolAssistantUUID": "2aef3ce7-ac1d-4d05-b23f-651faf9bf1eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-29T05:16:43.385Z_
+
+<details><summary>↩ Tool result · `toolu_0181Ah8ojsrpfSczZa2EYsnZ`</summary>
+
+```text
+# Paper Details
+
+**Title:** "Exploring LLM Reasoning Through Controlled Prompt Variations"
+
+**Authors:** Giannis Chatziveroglou, Richard Yun, Maura Kelleher
+
+**Submission Date:** April 2, 2025
+
+**Abstract:** The research examines how well large language models maintain logical consistency on math problem-solving when given systematically altered prompts. Testing thirteen models using the GSM8K dataset, the team introduced four types of disruptions: irrelevant context, problematic instructions, factually relevant but unnecessary details, and combinations thereof. Results indicate that extraneous information significantly worsens performance, with degradation appearing "relatively insensitive to the complexity of the reasoning task" and not strictly tied to model size. Notably, some alterations unexpectedly prompted chain-of-thought behaviors without explicit instruction, highlighting critical robustness gaps.
+
+**Venue:** No specific conference or journal venue is mentioned in the provided content. The paper is posted on arXiv as a preprint (arXiv:2504.02111).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db649d1b-69c4-455e-a860-fbf5409d79b6",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "d1f87d01-37b8-41db-8b5e-9716940cc88e",
+  "sourceToolAssistantUUID": "db649d1b-69c4-455e-a860-fbf5409d79b6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-29T05:16:43.509Z_
+
+<details><summary>↩ Tool result · `toolu_0139A3hcMHfBko7HFkgEqa4W`</summary>
+
+```text
+# Paper Information
+
+**Title:** "Fragile Thoughts: How Large Language Models Handle Chain-of-Thought Perturbations"
+
+**Authors:** Ashwath Vaithinathan Aravindan, Mayank Kejriwal
+
+**Submission Date:** February 11, 2026 (v1); last revised April 16, 2026 (v3)
+
+**Abstract:** This research examines how robust large language models are when intermediate reasoning steps contain errors. The study tests 13 models across various sizes using five types of perturbations: MathError, UnitConversion, Sycophancy, SkippedSteps, and ExtraSteps on mathematical reasoning tasks. Results show varied vulnerability patterns—smaller models suffer most from mathematical errors (50-60% accuracy loss), while unit conversion remains problematic across all model sizes. Larger models generally show better resilience, though scaling doesn't protect equally against all perturbation types. The findings suggest task-specific robustness assessments are needed for deploying LLMs in multi-stage reasoning pipelines.
+
+**Venue:** No specific conference or journal venue is mentioned. The paper is categorized under Computation and Language (cs.CL) on arXiv.
+
+**Code Availability:** The authors note that "code and results are available" at a GitHub repository.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a384050c-89ce-4f4f-b752-0f3ca90f633d",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "a7465758-d1f0-42c4-867b-f097d6ce7f14",
+  "sourceToolAssistantUUID": "a384050c-89ce-4f4f-b752-0f3ca90f633d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-29T05:16:43.544Z_
+
+<details><summary>↩ Tool result · `toolu_01Kzax7H98ffNVsTHyDFfYCP`</summary>
+
+```text
+# Paper Details
+
+**Title:** "GSM-SEM: Benchmark and Framework for Generating Semantically Variant Augmentations"
+
+**Authors:** Jyotika Singh, Fang Tu, Aziza Mirsaidova, Amit Agarwal, Hitesh Laxmichand Patel, Sandip Ghoshal, Miguel Ballesteros, Karan Dua, Yassine Benajiba, Weiyi Sun, Tao Sheng, Graham Horwood, Sujith Ravi, Dan Roth
+
+**Submission Date:** May 8, 2026 (v1); revised May 26, 2026 (v2)
+
+**Abstract:** The paper presents GSM-SEM, a framework that generates semantically diverse benchmark variants by "perturbing problem statements by modifying entities, attributes, and/or relationships." It addresses memorization issues in fixed test sets like GSM8K by producing fresh variants on each run without re-annotation. Testing 14 state-of-the-art LLMs showed "consistent performance drops with larger decline when semantic perturbations are coupled with symbolic/plus variations (average drop rate 28%)." The authors release three human-validated datasets and demonstrate applicability to benchmarks beyond math problems.
+
+**Venue:** No specific conference or journal venue is mentioned in the provided content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8866b28d-a872-49b9-9d65-0ac19ce557b4",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "895053a6-494e-40b7-8916-62da5b181404",
+  "sourceToolAssistantUUID": "8866b28d-a872-49b9-9d65-0ac19ce557b4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-29T05:16:48.294Z_
+
+Now let me search for a few more key papers that were referenced in the results, including GSM-Symbolic, Putnam-AXIOM, and a few others.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "895053a6-494e-40b7-8916-62da5b181404",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHvWQ1kCkm4WYf4Lo4N",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fa4e66c3-a6db-4bf6-af4b-c4b8a102ecf4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQ2Tw8p1bBXvoxK6vEV8Sn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 588,
+      "cache_creation_input_tokens": 11268,
+      "cache_read_input_tokens": 7413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 11268,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-29T05:16:49.238Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015Q9U2PDrKdKCxaKhbSFG8C`</summary>
+
+```json
+{
+  "query": "GSM-Symbolic Understanding Limitations Mathematical Reasoning LLMs Apple 2024 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa4e66c3-a6db-4bf6-af4b-c4b8a102ecf4",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHvWQ1kCkm4WYf4Lo4N",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3bb77696-b721-44fa-94ad-ab1d0181356a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQ2Tw8p1bBXvoxK6vEV8Sn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 588,
+      "cache_creation_input_tokens": 11268,
+      "cache_read_input_tokens": 7413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 11268,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-29T05:16:49.974Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SNWUn4yB3ELYak1tseQNeP`</summary>
+
+```json
+{
+  "query": "Putnam-AXIOM functional variants contamination-resilient math benchmark 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3bb77696-b721-44fa-94ad-ab1d0181356a",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHvWQ1kCkm4WYf4Lo4N",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4459b1e9-c3bb-40af-8d9e-4fa8f97b6f4a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQ2Tw8p1bBXvoxK6vEV8Sn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 588,
+      "cache_creation_input_tokens": 11268,
+      "cache_read_input_tokens": 7413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 11268,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-29T05:16:50.642Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SHAEKUdAt789g72iburCGt`</summary>
+
+```json
+{
+  "query": "MathAttack attacking large language models math solving ability adversarial 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4459b1e9-c3bb-40af-8d9e-4fa8f97b6f4a",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHvWQ1kCkm4WYf4Lo4N",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "60e4d75f-ad78-4135-8438-cb8b88815793",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQ2Tw8p1bBXvoxK6vEV8Sn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 588,
+      "cache_creation_input_tokens": 11268,
+      "cache_read_input_tokens": 7413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 11268,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-29T05:16:50.936Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013B8jkrQDCBF3eLE7cctmtW`</summary>
+
+```json
+{
+  "query": "benchmark contamination LLM math evaluation data leakage 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60e4d75f-ad78-4135-8438-cb8b88815793",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHvWQ1kCkm4WYf4Lo4N",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a817c799-ef0a-4581-af67-ff7597f82f65",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQ2Tw8p1bBXvoxK6vEV8Sn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 588,
+      "cache_creation_input_tokens": 11268,
+      "cache_read_input_tokens": 7413,
+      "output_tokens": 270,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 11268
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 588,
+          "output_tokens": 270,
+          "cache_read_input_tokens": 7413,
+          "cache_creation_input_tokens": 11268,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 11268,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-29T05:16:57.066Z_
+
+<details><summary>↩ Tool result · `toolu_01SNWUn4yB3ELYak1tseQNeP`</summary>
+
+```text
+Web search results for query: "Putnam-AXIOM functional variants contamination-resilient math benchmark 2024 2025"
+
+Links: [{"title":"Putnam-AXIOM: A Functional & Static Benchmark for Measuring Higher Level Mathematical Reasoning in LLMs","url":"https://proceedings.mlr.press/v267/gulati25a.html"},{"title":"Putnam-AXIOM: A Functional and Static Benchmark for Measuring Higher Level Mathematical Reasoning in LLMs - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250808292G/abstract"},{"title":"Putnam-AXIOM: A Functional & Static Benchmark for Measuring Higher Level Mathematical Reasoning in LLMs | OpenReview","url":"https://openreview.net/forum?id=kqj2Cn3Sxr"},{"title":"[2508.08292] Putnam-AXIOM: A Functional and Static Benchmark for Measuring Higher Level Mathematical Reasoning in LLMs","url":"https://arxiv.org/abs/2508.08292"},{"title":"ICML Poster Putnam-AXIOM: A Functional & Static Benchmark for Measuring Higher Level Mathematical Reasoning in LLMs","url":"https://icml.cc/virtual/2025/poster/44232"},{"title":"Putnam-AXIOM: A Functional & Static Benchmark for Measuring Higher Level Mathematical Reasoning in LLMs","url":"https://arxiv.org/html/2508.08292v1"},{"title":"Putnam-AXIOM: A Functional and Static Benchmark for ...","url":"https://arxiv.org/pdf/2508.08292"},{"title":"Putnam-AXIOM: A Functional and Static Benchmark for ...","url":"https://openreview.net/pdf?id=YXnwlZe0yf"},{"title":"Putnam-AXIOM: A Functional and Static Benchmark for Measuring Higher Level Mathematical Reasoning | OpenReview","url":"https://openreview.net/forum?id=YXnwlZe0yf&noteId=yrsGpHd0Sf"},{"title":"PUTNAM-AXIOM: A FUNCTIONAL & STATIC BENCH-","url":"https://openreview.net/pdf?id=WrBqgoseGL"}]
+
+Based on the search results, here's what I found about Putnam-AXIOM:
+
+## Overview
+
+Putnam-AXIOM is a benchmark of 522 university-level competition problems drawn from the William Lowell Putnam Mathematical Competition, and Putnam-AXIOM Variation, an unseen companion set of 100 functional variants generated by programmatically perturbing variables and constants.
+
+## Purpose and Design
+
+Current mathematical reasoning benchmarks for large language models (LLMs) are approaching saturation, with some achieving >90% accuracy, and are increasingly compromised by training-set contamination. The variation protocol produces an unlimited stream of equally difficult, unseen instances – yielding a contamination-resilient test bed, providing a rigorous, contamination-resilient evaluation framework for assessing advanced mathematical reasoning of LLMs.
+
+## Results
+
+On the Original set, OpenAI's o1-preview – the strongest evaluated model – scores 41.9%, but its accuracy drops by 19.6% (46.8% relative decrease) on the paired Variations. These gaps suggest memorization and highlight the necessity of dynamic benchmarks.
+
+## Publication
+
+The benchmark was presented at the Proceedings of the 42nd International Conference on Machine Learning, PMLR 267:20723-20747, 2025. Data and evaluation code are publicly available at https://github.com/brando90/putnam-axiom.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4459b1e9-c3bb-40af-8d9e-4fa8f97b6f4a",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "e160c78b-3699-4838-a601-a00322fb8292",
+  "sourceToolAssistantUUID": "4459b1e9-c3bb-40af-8d9e-4fa8f97b6f4a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-29T05:16:57.259Z_
+
+<details><summary>↩ Tool result · `toolu_015Q9U2PDrKdKCxaKhbSFG8C`</summary>
+
+```text
+Web search results for query: "GSM-Symbolic Understanding Limitations Mathematical Reasoning LLMs Apple 2024 arXiv"
+
+Links: [{"title":"GSM-Symbolic: Understanding the Limitations of Mathematical Reasoning in Large Language Models - Apple Machine Learning Research","url":"https://machinelearning.apple.com/research/gsm-symbolic"},{"title":"[2410.05229] GSM-Symbolic: Understanding the Limitations of Mathematical Reasoning in Large Language Models","url":"https://arxiv.org/abs/2410.05229"},{"title":"[2410.05229v2] GSM-Symbolic: Understanding the Limitations of Mathematical Reasoning in Large Language Models","url":"https://arxiv.org/abs/2410.05229v2"},{"title":"On Some (Fixable) Limitations of 'Understanding the Limitations of Mathematical Reasoning in LLMs' | Desi R. Ivanova","url":"https://desirivanova.com/post/gsm-symbolic/"},{"title":"Musing 88: GSM-Symbolic: Understanding the Limitations of Mathematical Reasoning in Large Language Models","url":"https://aiscientist.substack.com/p/musing-88-gsm-symbolic-understanding"},{"title":"GSM-Symbolic: Understanding the Limitations of Mathematical Reasoning in Large Language Models","url":"https://arxiv.org/pdf/2410.05229"},{"title":"GSM-Symbolic: Understanding the Limitations of Mathematical Reasoning in Large Language Models","url":"https://arxiv.org/html/2410.05229v1"}]
+
+I found the research paper you were looking for. Here's what the search revealed:
+
+## GSM-Symbolic: Understanding the Limitations of Mathematical Reasoning in Large Language Models
+
+This research from Apple (authors: Iman Mirzadeh, Keivan Alizadeh, Hooman Shahrokhi, Oncel Tuzel, Samy Bengio, and Mehrdad Farajtabar) investigates the formal reasoning capabilities of LLMs, particularly in mathematics.
+
+### Key Findings:
+
+The researchers introduce GSM-Symbolic, an improved benchmark created from symbolic templates that allow for diverse question generation, enabling more controllable evaluations and more reliable metrics for measuring model reasoning capabilities.
+
+The study reveals several important limitations in LLM mathematical reasoning:
+
+1. **Numerical Sensitivity**: The performance of all models declines when only the numerical values in the question are altered in the GSM-Symbolic benchmark.
+
+2. **Fragility with Additional Information**: Adding a single clause that seems relevant to the question causes significant performance drops (up to 65%) across all state-of-the-art models, even though the clause doesn't contribute to the reasoning chain needed for the final answer.
+
+3. **Deterioration with Complexity**: Performance significantly deteriorates as the number of clauses in a question increases.
+
+### Core Hypothesis:
+
+The researchers hypothesize that LLMs cannot perform genuine logical reasoning; they replicate reasoning steps from their training data.
+
+The paper (arXiv:2410.05229) was first submitted in October 2024 and represents significant work from Apple's machine learning research team.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3bb77696-b721-44fa-94ad-ab1d0181356a",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "d6d99b08-c016-4dd7-bb05-6763bac4d2aa",
+  "sourceToolAssistantUUID": "3bb77696-b721-44fa-94ad-ab1d0181356a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-29T05:16:57.862Z_
+
+<details><summary>↩ Tool result · `toolu_01SHAEKUdAt789g72iburCGt`</summary>
+
+```text
+Web search results for query: "MathAttack attacking large language models math solving ability adversarial 2024"
+
+Links: [{"title":"GitHub - zhouzihao501/MathAttack: [AAAI 2024]MathAttack: Attacking Large Language Models Towards Math Solving Ability","url":"https://github.com/zhouzihao501/MathAttack"},{"title":"MathAttack: Attacking Large Language Models towards Math Solving Ability - Xi'an Jiaotong-Liverpool University","url":"https://scholar.xjtlu.edu.cn/en/publications/mathattack-attacking-large-language-models-towards-math-solving-a/"},{"title":"MathAttack: Attacking Large Language Models towards Math Solving Ability | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/29949"},{"title":"MathAttack: Attacking Large Language Models towards Math Solving Ability - The University of Liverpool Repository","url":"https://livrepository.liverpool.ac.uk/3182768/"},{"title":"ArithmAttack: Evaluating Robustness of LLMs to Noisy Context","url":"https://arxiv.org/pdf/2501.08203v1"},{"title":"MathAttack: Attacking Large Language Models Towards Math Solving Ability | Request PDF","url":"https://www.researchgate.net/publication/373686347_MathAttack_Attacking_Large_Language_Models_Towards_Math_Solving_Ability"},{"title":"[2309.01686] MathAttack: Attacking Large Language Models Towards Math Solving Ability","url":"https://arxiv.org/abs/2309.01686"},{"title":"Aaai","url":"https://ojs.aaai.org/index.php/AAAI/citationstylelanguage/get/apa?submissionId=29949&publicationId=28233"},{"title":"230901686","url":"https://grokipedia.com/page/230901686"},{"title":"MathAttack: Attacking Large Language Models Towards Math Solving Ability","url":"https://arxiv.org/pdf/2309.01686"}]
+
+Based on the search results, here's what I found about MathAttack:
+
+## Overview
+
+MathAttack is a model designed to attack math word problem (MWP) samples to test the robustness of LLMs in solving math problems. The research was published in the Proceedings of the AAAI Conference on Artificial Intelligence in 2024.
+
+## Key Approach
+
+Unlike traditional text adversarial attacks, MathAttack preserves the mathematical logic of original MWPs by proposing logical entity recognition to identify and freeze logical entries. The remaining text is then attacked using a word-level attacker.
+
+## Key Findings
+
+The experiments show that: (1) adversarial samples from higher-accuracy LLMs are also effective for attacking LLMs with lower accuracy; (2) complex MWPs with more solving steps, longer text, and more numbers are more vulnerable to attack; and (3) robustness can be improved by using adversarial samples in few-shot prompts.
+
+## Dataset and Evaluation
+
+The researchers proposed a new dataset called RobustMath to evaluate the robustness of LLMs in math solving ability. Experiments on RobustMath and two other math benchmark datasets (GSM8K and MultiArith) demonstrated that MathAttack could effectively attack the math solving ability of LLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60e4d75f-ad78-4135-8438-cb8b88815793",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "a7e76f59-c471-4ce5-b057-9f8bd49128d0",
+  "sourceToolAssistantUUID": "60e4d75f-ad78-4135-8438-cb8b88815793",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-29T05:16:59.006Z_
+
+<details><summary>↩ Tool result · `toolu_013B8jkrQDCBF3eLE7cctmtW`</summary>
+
+```text
+Web search results for query: "benchmark contamination LLM math evaluation data leakage 2025 2026"
+
+Links: [{"title":"LLM Benchmark Datasets Should Be Contamination-Resistant","url":"https://arxiv.org/html/2605.19999v1"},{"title":"Evaluating Large Language Models on the 2026 Korean CSAT Mathematics Exam: Measuring Mathematical Ability in a Zero-Data-Leakage Setting","url":"https://arxiv.org/pdf/2511.18649"},{"title":"How Much Can We Forget about Data Contamination? | OpenReview","url":"https://openreview.net/forum?id=Pf0PaYS9KG&noteId=MbAmNvpmdZ"},{"title":"When Benchmarks Lie: Why Contamination Breaks LLM Evaluation | by Anna Alexandra Grigoryan | Medium","url":"https://thegrigorian.medium.com/when-benchmarks-lie-why-contamination-breaks-llm-evaluation-1fa335706f32"},{"title":"AntiLeakBench: Preventing Data Contamination by Automatically Constructing Benchmarks with Updated Real-World Knowledge","url":"https://arxiv.org/pdf/2412.13670"},{"title":"Towards Reliable Benchmarking: A Contamination Free, Controllable Evaluation Framework for Multi-step LLM Function Calling","url":"https://arxiv.org/html/2509.26553v2"},{"title":"When Benchmarks Leak: Inference-Time Decontamination for LLMs","url":"https://arxiv.org/html/2601.19334v1"},{"title":"LiveBench: A Challenging, Contamination-Limited LLM Benchmark","url":"https://arxiv.org/pdf/2406.19314"},{"title":"Benchmarking Benchmark Leakage in Large Language Models","url":"https://arxiv.org/pdf/2404.18824"}]
+
+Based on the search results, here are the key findings regarding benchmark contamination, LLM math evaluation, and data leakage in 2025-2026:
+
+## Benchmark Contamination as a Critical Issue
+
+Benchmark contamination is a significant obstacle to fair LLM evaluation and can quickly render benchmarks obsolete. Data contamination (test-set leakage) in widely used benchmarks (e.g., MMLU, GSM8K) can inflate reported performance by inducing memorization rather than genuine generalization.
+
+## Math-Specific Evaluation Approaches
+
+Recent research has constructed a new evaluation framework using the 2026 Korean CSAT Mathematics exam in a data contamination-free environment, collecting and processing original data within 2 hours of exam release to create a non-exposure mathematics benchmark.
+
+If LLMs have seen benchmark questions during training, their performance becomes artificially inflated, with recent evidence including observations that LLMs' performance on Codeforces plummets after the training cutoff date, and before the cutoff, performance is highly correlated with problem frequency on GitHub.
+
+## Mitigation Strategies
+
+LiveBench is a contamination-limited benchmark that is refreshed regularly and spans multiple domains such as math, reasoning, and instruction following tasks. Recent studies have dynamically updated benchmarks by collecting new data released after LLM knowledge cutoffs, with instances like LiveBench collecting newly released questions from math exams and platforms like LeetCode.
+
+## Emerging Research
+
+Some 2025 research challenges the common assumption that small-scale contamination renders benchmark evaluations invalid, showing that moderate amounts of data contamination are forgotten by the end of LLM training runs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a817c799-ef0a-4581-af67-ff7597f82f65",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "1976e709-26de-4bdc-8ac8-5857c5a8d6cc",
+  "sourceToolAssistantUUID": "a817c799-ef0a-4581-af67-ff7597f82f65",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-29T05:17:01.844Z_
+
+Let me now fetch the remaining key papers for full details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1976e709-26de-4bdc-8ac8-5857c5a8d6cc",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHweUxp3ptaDJpCWCaj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "07c47279-6116-44a4-9117-ea773bc8ff5a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019cHy6z2P7QcvXaiX95ijoB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4349,
+      "cache_read_input_tokens": 18681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4349,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-29T05:17:02.805Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01YLreu4LVJxMyEwCVHTJU1W`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2410.05229",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "07c47279-6116-44a4-9117-ea773bc8ff5a",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHweUxp3ptaDJpCWCaj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4f6b01eb-365e-46e9-949f-1462ad16963c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019cHy6z2P7QcvXaiX95ijoB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4349,
+      "cache_read_input_tokens": 18681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4349,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-29T05:17:03.721Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01WRzBY58WGfvDXYbiLU3LNq`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2508.08292",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f6b01eb-365e-46e9-949f-1462ad16963c",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHweUxp3ptaDJpCWCaj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "cc9f20bf-22c4-4e70-9f51-491872a9c0b0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019cHy6z2P7QcvXaiX95ijoB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4349,
+      "cache_read_input_tokens": 18681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4349,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-29T05:17:04.139Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GWfoyKsT46yXE8DXU6wjvb`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2309.01686",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc9f20bf-22c4-4e70-9f51-491872a9c0b0",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHweUxp3ptaDJpCWCaj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d368bb0c-9698-436e-996a-300ebb6fd6e5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019cHy6z2P7QcvXaiX95ijoB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4349,
+      "cache_read_input_tokens": 18681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4349,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-29T05:17:05.135Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Vfvo736CDiVcv7NohUiYRV`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.19999",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d368bb0c-9698-436e-996a-300ebb6fd6e5",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHweUxp3ptaDJpCWCaj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d3a6105c-1ae5-4641-a2ab-f42cf7d35739",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019cHy6z2P7QcvXaiX95ijoB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4349,
+      "cache_read_input_tokens": 18681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4349,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-29T05:17:06.259Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FtTJUygsMaz8oBfLjH5uGz`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2401.09395",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3a6105c-1ae5-4641-a2ab-f42cf7d35739",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHweUxp3ptaDJpCWCaj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8427d2d7-8bba-4753-8872-9917a40b5e95",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019cHy6z2P7QcvXaiX95ijoB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4349,
+      "cache_read_input_tokens": 18681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4349,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-29T05:17:06.474Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PvBehjocHyxD4EbG2i7C6s`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2406.19314",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8427d2d7-8bba-4753-8872-9917a40b5e95",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHweUxp3ptaDJpCWCaj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8885d6c6-9936-4329-97c5-c52695ccd4fc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019cHy6z2P7QcvXaiX95ijoB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4349,
+      "cache_read_input_tokens": 18681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4349,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-29T05:17:07.225Z_
+
+<details><summary>↩ Tool result · `toolu_01YLreu4LVJxMyEwCVHTJU1W`</summary>
+
+```text
+# Paper Information
+
+**Title:** "GSM-Symbolic: Understanding the Limitations of Mathematical Reasoning in Large Language Models"
+
+**Authors:** Iman Mirzadeh, Keivan Alizadeh, Hooman Shahrokhi, Oncel Tuzel, Samy Bengio, Mehrdad Farajtabar
+
+**Submission Date:** October 7, 2024 (v1); last revised August 27, 2025 (v2)
+
+**Venue:** ICLR (International Conference on Learning Representations) - noted as "camera ready" version
+
+**Abstract Summary:**
+
+The researchers created GSM-Symbolic, an improved benchmark using symbolic templates to evaluate LLMs' mathematical reasoning more rigorously than the standard GSM8K dataset. Their key findings indicate that changing numerical values in identical problem structures produces "noticeable variance" in model responses. Performance notably declines as question complexity increases, and introducing irrelevant clauses causes "significant performance drops (up to 65%)" across state-of-the-art models. The authors conclude these results suggest current LLMs "replicate reasoning steps from their training data" rather than performing genuine logical reasoning.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f6b01eb-365e-46e9-949f-1462ad16963c",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "93829bd7-0b06-4409-9697-85723224a963",
+  "sourceToolAssistantUUID": "4f6b01eb-365e-46e9-949f-1462ad16963c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-29T05:17:08.105Z_
+
+<details><summary>↩ Tool result · `toolu_01GWfoyKsT46yXE8DXU6wjvb`</summary>
+
+```text
+# Paper Details
+
+**Title:** "MathAttack: Attacking Large Language Models Towards Math Solving Ability"
+
+**Authors:** Zihao Zhou, Qiufeng Wang, Mingyu Jin, Jie Yao, Jianan Ye, Wei Liu, Wei Wang, Xiaowei Huang, Kaizhu Huang
+
+**Submission Date:** September 4, 2023
+
+**Abstract:** The paper examines security vulnerabilities in LLMs' mathematical problem-solving capabilities by proposing MathAttack, which targets math word problem samples rather than prompts. The approach preserves mathematical logic through logical entity recognition while applying word-level attacks to remaining text. Researchers introduce the RobustMath dataset and evaluate performance on GSM8K and MultiArith benchmarks, finding that adversarial samples transfer across models and that complex problems are more vulnerable to attack.
+
+**Venue:** No specific conference or journal publication is mentioned on this arXiv page. The submission is classified under "Computation and Language (cs.CL)."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d368bb0c-9698-436e-996a-300ebb6fd6e5",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "ac6f9845-7135-42f1-86d4-b5517f558c8f",
+  "sourceToolAssistantUUID": "d368bb0c-9698-436e-996a-300ebb6fd6e5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-29T05:17:08.212Z_
+
+<details><summary>↩ Tool result · `toolu_01WRzBY58WGfvDXYbiLU3LNq`</summary>
+
+```text
+# Paper Extraction
+
+**Title:** "Putnam-AXIOM: A Functional and Static Benchmark for Measuring Higher Level Mathematical Reasoning in LLMs"
+
+**Authors:** Aryan Gulati, Brando Miranda, Eric Chen, Emily Xia, Kai Fronsdal, Bruno Dumont, Elyas Obbad, Sanmi Koyejo
+
+**Submission Date:** August 5, 2025 (v1); revised August 27, 2025 (v2)
+
+**Venue:** ICML 2025 (under review)
+
+**Abstract Summary:** The paper introduces a benchmark comprising 522 university-level competition problems from the William Lowell Putnam Mathematical Competition, plus 100 functional variants created through programmatic perturbations. The work demonstrates that "OpenAI's o1-preview scores 41.9% on the original set but accuracy drops by 19.6% on paired variations," suggesting memorization issues. The authors propose Teacher-Forced Accuracy as an evaluation metric and provide "a rigorous, contamination-resilient evaluation framework for assessing advanced mathematical reasoning of LLMs."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc9f20bf-22c4-4e70-9f51-491872a9c0b0",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "9ea73692-04e6-4ccc-8d6a-d69a444d26fc",
+  "sourceToolAssistantUUID": "cc9f20bf-22c4-4e70-9f51-491872a9c0b0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-29T05:17:08.342Z_
+
+<details><summary>↩ Tool result · `toolu_01Vfvo736CDiVcv7NohUiYRV`</summary>
+
+```text
+# Paper Extraction
+
+**Title:** "LLM Benchmark Datasets Should Be Contamination-Resistant"
+
+**Authors:** Ali Al-Lawati, Jason Lucas, Dongwon Lee, Suhang Wang
+
+**Submission Date:** May 19, 2026
+
+**Venue:** ICML 2026 Position Paper Track
+
+**Abstract:**
+The paper addresses benchmark dataset contamination in LLM evaluation. It argues that benchmarks should be "contamination-resistant" (unlearnable during training yet functional for inference). The authors highlight three main contributions: documenting contamination prevalence and defining resistance properties, leveraging Transformer architectural asymmetries between training and inference pipelines, and establishing mathematical frameworks for cross-architecture compatibility. The work calls for community action through advancing contamination-resistant methodologies, developing supporting tools, and integrating such benchmarks into evaluation workflows.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d3a6105c-1ae5-4641-a2ab-f42cf7d35739",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "63ae4a61-68cb-48be-8f4b-79bcbb434aa2",
+  "sourceToolAssistantUUID": "d3a6105c-1ae5-4641-a2ab-f42cf7d35739",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-29T05:17:10.228Z_
+
+<details><summary>↩ Tool result · `toolu_01FtTJUygsMaz8oBfLjH5uGz`</summary>
+
+```text
+# Paper Extraction
+
+**Title:** "Evaluating LLMs' Mathematical and Coding Competency through Ontology-guided Interventions"
+
+**Authors:** Pengfei Hong, Navonil Majumder, Deepanway Ghosal, Somak Aditya, Rada Mihalcea, Soujanya Poria
+
+**Submission Date:** January 17, 2024 (v1); last revised November 3, 2024 (v6)
+
+**Abstract:** The researchers assess whether Large Language Models demonstrate genuine reasoning robustness by introducing "a general ontology of perturbations for math and coding questions" and applying these to create two datasets: GSMORE and HUMANEVAL-CORE. Testing various LLMs reveals "a significant performance drop across all the models against the perturbed questions," indicating deficiencies in problem-solving and structured reasoning capabilities.
+
+**Venue:** No conference or journal venue is mentioned. This is an arXiv preprint (arXiv:2401.09395) in the Computation and Language category (cs.CL).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8427d2d7-8bba-4753-8872-9917a40b5e95",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "4e51096c-b216-4710-bd43-31e850bb38cc",
+  "sourceToolAssistantUUID": "8427d2d7-8bba-4753-8872-9917a40b5e95",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-29T05:17:11.551Z_
+
+<details><summary>↩ Tool result · `toolu_01PvBehjocHyxD4EbG2i7C6s`</summary>
+
+```text
+# Paper Extraction
+
+**Title:** "LiveBench: A Challenging, Contamination-Limited LLM Benchmark"
+
+**Authors:** Colin White, Samuel Dooley, Manley Roberts, Arka Pal, Ben Feuer, Siddhartha Jain, Ravid Shwartz-Ziv, Neel Jain, Khalid Saifullah, Sreemanti Dey, Shubh-Agrawal, Sandeep Singh Sandha, Siddartha Naidu, Chinmay Hegde, Yann LeCun, Tom Goldstein, Willie Neiswanger, Micah Goldblum
+
+**Submission Date:** June 27, 2024 (v1); Last revised April 18, 2025 (v2)
+
+**Venue:** ICLR 2025 Spotlight
+
+**Abstract:** The paper addresses test set contamination in LLM benchmarking by introducing LiveBench, which features "frequently-updated questions from recent information sources" and "scores answers automatically according to objective ground-truth values." The benchmark spans diverse tasks including math, coding, reasoning, and data analysis, drawing from math competitions, arXiv papers, and news articles. The authors note that "top models achieving below 70% accuracy" and commit to monthly updates with new tasks to maintain the benchmark's discriminative power as models improve.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8885d6c6-9936-4329-97c5-c52695ccd4fc",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "30febbe3-4e51-4c75-be67-465d816d766c",
+  "sourceToolAssistantUUID": "8885d6c6-9936-4329-97c5-c52695ccd4fc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-29T05:17:14.297Z_
+
+Now let me search for a few more targeted papers that are highly relevant to the joint contamination-robustness angle.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30febbe3-4e51-4c75-be67-465d816d766c",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHxa5aT6i3J32nY9qMB",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f7574cd7-cd4a-4012-9870-56c9617c425a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkngSwNwa85oy5ZnKJnKMP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2383,
+      "cache_read_input_tokens": 23030,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2383,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-29T05:17:14.721Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01F2iW624BueDV8Qy9Rnkp1J`</summary>
+
+```json
+{
+  "query": "DyVal dynamic evaluation LLM reasoning benchmark contamination 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7574cd7-cd4a-4012-9870-56c9617c425a",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHxa5aT6i3J32nY9qMB",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "095e951c-adcb-4c5b-bad1-ee70f0acefc1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkngSwNwa85oy5ZnKJnKMP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2383,
+      "cache_read_input_tokens": 23030,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2383,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-29T05:17:15.711Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015EMyu5uvqHuXiiiSAdrQiH`</summary>
+
+```json
+{
+  "query": "CRUXEval code reasoning functional equivalence benchmark perturbation 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "095e951c-adcb-4c5b-bad1-ee70f0acefc1",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHxa5aT6i3J32nY9qMB",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f69f49e4-13c7-43e6-a8fb-36987c440d92",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkngSwNwa85oy5ZnKJnKMP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2383,
+      "cache_read_input_tokens": 23030,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2383,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-29T05:17:16.429Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017LH1TnneayHRM2ertJVBuQ`</summary>
+
+```json
+{
+  "query": "AIME AMC math competition LLM contamination robustness perturbation evaluation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f69f49e4-13c7-43e6-a8fb-36987c440d92",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHxa5aT6i3J32nY9qMB",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9621d3ce-fef0-418c-8d93-5017e1d1cf9d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkngSwNwa85oy5ZnKJnKMP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2383,
+      "cache_read_input_tokens": 23030,
+      "output_tokens": 206,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2383
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 206,
+          "cache_read_input_tokens": 23030,
+          "cache_creation_input_tokens": 2383,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2383,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-29T05:17:22.859Z_
+
+<details><summary>↩ Tool result · `toolu_015EMyu5uvqHuXiiiSAdrQiH`</summary>
+
+```text
+Web search results for query: "CRUXEval code reasoning functional equivalence benchmark perturbation 2024"
+
+Links: [{"title":"CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution","url":"https://bibbase.org/network/publication/gu-rozire-leather-solarlezama-synnaeve-wang-cruxevalabenchmarkforcodereasoningunderstandingandexecution-2024"},{"title":"[2401.03065] CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution","url":"https://arxiv.org/abs/2401.03065"},{"title":"[PDF] CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CRUXEval:-A-Benchmark-for-Code-Reasoning,-and-Gu-Rozi%C3%A8re/4701914bc77dedef9e0a001687277103fb3ddfc6"},{"title":"GitHub - facebookresearch/cruxeval: CRUXEval: Code Reasoning, Understanding, and Execution Evaluation · GitHub","url":"https://github.com/facebookresearch/cruxeval"},{"title":"CRUXEval: a benchmark for code reasoning ...","url":"https://dl.acm.org/doi/10.5555/3692070.3692729"},{"title":"CRUXEval: Code Reasoning, Understanding, and Execution Evaluation","url":"https://crux-eval.github.io/"},{"title":"CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution Alex Gu⋆","url":"https://arxiv.org/pdf/2401.03065"},{"title":"ICLR CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution","url":"https://iclr.cc/virtual/2024/22440"}]
+
+Based on the search results, here's what I found about CRUXEval:
+
+## Overview
+
+CRUXEval (Code Reasoning, Understanding, and eXecution Evaluation) is a benchmark consisting of 800 Python functions (3-13 lines), with each function coming with an input-output pair, leading to two natural tasks: input prediction and output prediction.
+
+## Key Features
+
+The researchers proposed a generic recipe for generating their execution benchmark which can be used to create future variations of the benchmark. The benchmark was constructed by using Code Llama 34B to generate a large set of functions and inputs, with outputs generated by executing the functions on the inputs, then filtering the set to include only short problems with low computation and memory requirements.
+
+## Benchmark Results
+
+The best setup, GPT-4 with chain of thought (CoT), achieves a pass@1 of 75% and 81% on input and output prediction, respectively. In contrast, Code Llama 34B achieves a pass@1 of 50% and 46% on input and output prediction.
+
+## Key Findings
+
+The researchers evaluated twenty code models on their benchmark and discovered that many recent high-scoring models on HumanEval do not show the same improvements on their benchmark.
+
+The paper was presented at ICML 2024 in July 2024, with an arXiv preprint submission in January 2024.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f69f49e4-13c7-43e6-a8fb-36987c440d92",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "ab28a92d-3b16-47c2-bf0c-d24a6e4d8df3",
+  "sourceToolAssistantUUID": "f69f49e4-13c7-43e6-a8fb-36987c440d92",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-29T05:17:23.523Z_
+
+<details><summary>↩ Tool result · `toolu_017LH1TnneayHRM2ertJVBuQ`</summary>
+
+```text
+Web search results for query: "AIME AMC math competition LLM contamination robustness perturbation evaluation 2025 2026"
+
+Links: [{"title":"An Investigation of Robustness of LLMs in Mathematical Reasoning: Benchmarking with Mathematically-Equivalent Transformation of Advanced Mathematical Problems","url":"https://arxiv.org/html/2508.08833v2"},{"title":"MathArena: Evaluating LLMs on Uncontaminated Math Competitions","url":"https://arxiv.org/pdf/2505.23281"},{"title":"An Investigation of Robustness of LLMs in Mathematical Reasoning: Benchmarking with Mathematically-Equivalent Transformation of Advanced Mathematical Problems","url":"https://arxiv.org/pdf/2508.08833"},{"title":"AIME Benchmarks: Math & AI Evaluation","url":"https://www.emergentmind.com/topics/aime-benchmarks"},{"title":"AIME 2025 Benchmark Leaderboard | Artificial Analysis","url":"https://artificialanalysis.ai/evaluations/aime-2025"},{"title":"Automatic Robustness Stress Testing of LLMs as Mathematical Problem Solvers","url":"https://arxiv.org/pdf/2506.05038"},{"title":"AIME 2025 Benchmark: An Analysis of AI Math Reasoning | IntuitionLabs","url":"https://intuitionlabs.ai/articles/aime-2025-ai-benchmark-explained"},{"title":"RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning","url":"https://arxiv.org/pdf/2511.04120"}]
+
+I found several relevant research papers and resources related to LLM evaluation on AIME and AMC math competitions, with emphasis on contamination, robustness, and perturbation analysis:
+
+## Key Research Findings:
+
+**Contamination Issues:**
+Many commonly used evaluation datasets like AIME 2024 are widely available online, making it difficult to separate genuine reasoning from memorization, with strong signs of contamination detected in AIME 2024. Evidence indicates that widely available AIME 2024 problems have contaminated pretraining for several LLMs, inflating model scores by 10–20 points over uncontaminated contests.
+
+**Robustness and Perturbation Evaluation:**
+A Generalization-and-Perturbation (GAP) evaluation strategy addresses both leakage and robustness by stress-testing models on mathematically equivalent versions of the same problem. Recent work released rewritten competition-level benchmarks RIDE-AIME and RIDE-AMC, along with a training dataset of over 10K rewritten questions.
+
+**Evaluation Benchmarks:**
+MathArena introduces a benchmark based on recurring math competitions, enabling real-time evaluation of LLMs and effectively eliminating contamination risk by evaluating models as soon as new problems are released. The benchmark has evaluated 30 models across five competitions totaling 149 problems and continues to track progress on newly released competitions.
+
+These resources provide comprehensive frameworks for addressing LLM evaluation challenges in mathematical reasoning competitions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9621d3ce-fef0-418c-8d93-5017e1d1cf9d",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "89cd67d8-048f-4489-9254-08fd576ad603",
+  "sourceToolAssistantUUID": "9621d3ce-fef0-418c-8d93-5017e1d1cf9d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-29T05:17:23.526Z_
+
+<details><summary>↩ Tool result · `toolu_01F2iW624BueDV8Qy9Rnkp1J`</summary>
+
+```text
+Web search results for query: "DyVal dynamic evaluation LLM reasoning benchmark contamination 2024 2025"
+
+Links: [{"title":"DyVal: Dynamic Evaluation for LLMs","url":"https://www.emergentmind.com/papers/2309.17167"},{"title":"Recent Advances in Large Langauge Model Benchmarks against Data Contamination: From Static to Dynamic Evaluation","url":"https://arxiv.org/html/2502.17521v1"},{"title":"Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation","url":"https://arxiv.org/html/2502.17521v2"},{"title":"[2309.17167] DyVal: Dynamic Evaluation of Large Language Models for Reasoning Tasks","url":"https://arxiv.org/abs/2309.17167"},{"title":"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub","url":"https://github.com/lyy1994/awesome-data-contamination"},{"title":"DyVal: Dynamic Evaluation of Large Language Models for Reasoning Tasks | OpenReview","url":"https://openreview.net/forum?id=gjfOL9z5Xr"},{"title":"evaluation of reasoning in language models","url":"https://arxiv.org/pdf/2509.24210"},{"title":"Published as a conference paper at ICLR 2024 DYVAL: DYNAMIC EVALUATION OF LARGE","url":"https://arxiv.org/pdf/2309.17167"},{"title":"DyCodeEval: Dynamic Benchmarking of Reasoning Capabilities in Code Large Language Models Under Data Contamination | OpenReview","url":"https://openreview.net/forum?id=3BZyQqbytZ"}]
+
+Based on the search results, here's what I found about DyVal, dynamic evaluation, LLM reasoning benchmarks, and data contamination:
+
+## DyVal Overview
+
+DyVal is a general and flexible protocol for dynamic evaluation of LLMs that leverages directed acyclic graphs to dynamically generate evaluation samples with controllable complexities. The dynamic evaluation protocol continuously generates test samples to mitigate data contamination in LLM assessments.
+
+## Problem It Addresses
+
+Concerns are raised about potential data contamination in the considerable volume of training corpus of LLMs, and the static nature and fixed complexity of current benchmarks may inadequately gauge the advancing capabilities of LLMs.
+
+## Key Features and Performance
+
+DyVal generates challenging evaluation sets on reasoning tasks including mathematics, logical reasoning, and algorithm problems. Experiments demonstrate that LLMs perform worse in DyVal-generated evaluation samples with different complexities, emphasizing the significance of dynamic evaluation.
+
+## Notable Findings
+
+Some models like phi-1.5, WizardMath-13B, and Xwin-13B perform poorly on DyVal while claiming huge improvements on existing benchmarks, indicating possible data contamination of existing LLMs.
+
+## Recent Extensions (2024-2025)
+
+DyVal was later extended with meta-probing in DyVal2 (Zhu et al., 2024b) to generate math and logic problems dynamically. Additionally, GSM-Symbolic (Mirzadeh et al., 2025) creates dynamic math benchmarks by using query templates with placeholder variables, which are randomly filled to generate diverse problem instances.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "095e951c-adcb-4c5b-bad1-ee70f0acefc1",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "5da9d5c2-4507-43f2-93f7-2db7cf061cb0",
+  "sourceToolAssistantUUID": "095e951c-adcb-4c5b-bad1-ee70f0acefc1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72 · 2026-05-29T05:17:26.131Z_
+
+Let me fetch several more key papers found in this last round.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5da9d5c2-4507-43f2-93f7-2db7cf061cb0",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHyTGakxhTBisXEvH61",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0f0a50b1-e6e0-41c8-9e2e-1367e7d25252",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X77py6Xf45Q2QioCuwgrw9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1620,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 25413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1049,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-29T05:17:27.567Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013FnGtDA2PTr5oyYHMZrrRm`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2309.17167",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f0a50b1-e6e0-41c8-9e2e-1367e7d25252",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHyTGakxhTBisXEvH61",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "139b1e34-b5c5-42ca-8e7c-3a9e9e8ae084",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X77py6Xf45Q2QioCuwgrw9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1620,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 25413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1049,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-29T05:17:27.965Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UoeVanWWYJV9twEWoX3ag9`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.23281",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "139b1e34-b5c5-42ca-8e7c-3a9e9e8ae084",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHyTGakxhTBisXEvH61",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "eb10e08e-27e2-4674-a00a-8c4cf3cf5dbb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X77py6Xf45Q2QioCuwgrw9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1620,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 25413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1049,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-29T05:17:28.980Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XrBx7VyvNfE7vLASFQ2xYY`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2511.04120",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eb10e08e-27e2-4674-a00a-8c4cf3cf5dbb",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHyTGakxhTBisXEvH61",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fff646db-82d5-43ff-92f7-bd6408bbc207",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X77py6Xf45Q2QioCuwgrw9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1620,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 25413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1049,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-29T05:17:29.460Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Qx4SRB5TfoyBt4bvvw4g3J`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2502.17521",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fff646db-82d5-43ff-92f7-bd6408bbc207",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHyTGakxhTBisXEvH61",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d58c0731-0b62-4198-815b-05dc775e7d72",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X77py6Xf45Q2QioCuwgrw9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1620,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 25413,
+      "output_tokens": 415,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1049
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1620,
+          "output_tokens": 415,
+          "cache_read_input_tokens": 25413,
+          "cache_creation_input_tokens": 1049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1049,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-29T05:17:31.220Z_
+
+<details><summary>↩ Tool result · `toolu_013FnGtDA2PTr5oyYHMZrrRm`</summary>
+
+```text
+# Paper Information
+
+**Title:** "DyVal: Dynamic Evaluation of Large Language Models for Reasoning Tasks"
+
+**Authors:** Kaijie Zhu, Jiaao Chen, Jindong Wang, Neil Zhenqiang Gong, Diyi Yang, Xing Xie
+
+**Submission Date:** September 29, 2023 (v1); last revised March 14, 2024 (v3)
+
+**Venue:** ICLR 2024 spotlight
+
+**Abstract:** The researchers present a framework for dynamically assessing large language models on reasoning tasks. Their approach leverages directed acyclic graphs to generate evaluation samples with adjustable difficulty levels across mathematics, logical reasoning, and algorithmic problems. Testing on models from Flan-T5-large through GPT-4 demonstrates that LLMs perform worse on these dynamically generated samples compared to static benchmarks. The authors note their generated samples also serve as training data to enhance performance on established benchmarks, and code is made available through their project repository.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "139b1e34-b5c5-42ca-8e7c-3a9e9e8ae084",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "1cbf9836-b5ae-4316-9d5c-735d07a34396",
+  "sourceToolAssistantUUID": "139b1e34-b5c5-42ca-8e7c-3a9e9e8ae084",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-29T05:17:32.125Z_
+
+<details><summary>↩ Tool result · `toolu_01UoeVanWWYJV9twEWoX3ag9`</summary>
+
+```text
+# MathArena Paper Details
+
+**Title:** "MathArena: Evaluating LLMs on Uncontaminated Math Competitions"
+
+**Authors:** Mislav Balunović, Jasper Dekoninck, Ivo Petrov, Nikola Jovanović, Martin Vechev
+
+**Submission Date:** May 29, 2025 (v1); last revised January 14, 2026 (v3)
+
+**Abstract:** The authors introduce MathArena, a benchmark designed to evaluate LLM reasoning on freshly released math competition problems, eliminating contamination risks. They report "strong signs of contamination in AIME 2024" while demonstrating impressive performance on harder competitions. Notably, this represents "the first benchmark for proof-writing capabilities," where top models achieve "slightly less than 40%" on IMO 2025. The benchmark currently covers over 50 models across seven competitions totaling 162 problems.
+
+**Venue:** No specific conference or journal is mentioned. The paper is classified as Computer Science > Artificial Intelligence (cs.AI) on arXiv.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eb10e08e-27e2-4674-a00a-8c4cf3cf5dbb",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "0a400709-99a7-4d1c-ae26-5638286b1b9c",
+  "sourceToolAssistantUUID": "eb10e08e-27e2-4674-a00a-8c4cf3cf5dbb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-29T05:17:33.213Z_
+
+<details><summary>↩ Tool result · `toolu_01XrBx7VyvNfE7vLASFQ2xYY`</summary>
+
+```text
+# Paper Information
+
+**Exact Title:**
+"RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning"
+
+**Full Author List:**
+Xinyuan Li, Murong Xu, Wenbiao Tao, Hanlun Zhu, Yike Zhao, Jipeng Zhang, Yunshi Lan
+
+**Submission Date:**
+November 6, 2025 (v1); last revised January 31, 2026 (v2)
+
+**Complete Abstract:**
+The researchers developed a framework to evaluate large language models' mathematical reasoning abilities through adversarial question modification. Rather than using rule-based methods that may produce flawed questions, they employ Item Response Theory to systematically measure difficulty. The approach uses 35 LLMs to simulate student responses, building a difficulty ranking system that guides a reinforcement learning-based question rewriting model. When applied to competition-level math benchmarks, the resulting perturbed questions caused an average 21.73% performance decline across 26 models, revealing vulnerabilities in their mathematical reasoning capabilities.
+
+**Venue:**
+No specific conference or journal is mentioned. The paper is categorized under "Computation and Language (cs.CL)" on arXiv.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fff646db-82d5-43ff-92f7-bd6408bbc207",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "1f9cae28-11f5-4761-924c-e92883de25b0",
+  "sourceToolAssistantUUID": "fff646db-82d5-43ff-92f7-bd6408bbc207",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-29T05:17:33.740Z_
+
+<details><summary>↩ Tool result · `toolu_01Qx4SRB5TfoyBt4bvvw4g3J`</summary>
+
+```text
+# Paper Details
+
+**Title:** "Recent Advances in Large Langauge Model Benchmarks against Data Contamination: From Static to Dynamic Evaluation"
+
+**Authors:** Simin Chen, Yiming Chen, Zexin Li, Yifan Jiang, Zhongwei Wan, Yixin He, Dezhi Ran, Tianle Gu, Haizhou Li, Tao Xie, Baishakhi Ray
+
+**Submission Date:** February 23, 2025 (v1); revised September 29, 2025 (v2)
+
+**Abstract:** The authors examine how LLM benchmarking has shifted from static to dynamic approaches to address data contamination risks. They analyze enhancement methods for static benchmarks, identify their limitations, and note a significant gap: the absence of standardized evaluation criteria for dynamic benchmarks. The work proposes design principles for dynamic benchmarking, evaluates existing dynamic benchmark limitations, and maintains "a GitHub repository to continuously collect both static and dynamic benchmarking methods for LLMs."
+
+**Venue:** No specific conference or journal is mentioned. The paper is categorized under arXiv subject areas: Machine Learning (cs.LG), Artificial Intelligence (cs.AI), and Computation and Language (cs.CL).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d58c0731-0b62-4198-815b-05dc775e7d72",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "72b6ee8c-fe77-4915-94c8-9e7879b4b846",
+  "sourceToolAssistantUUID": "d58c0731-0b62-4198-815b-05dc775e7d72",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-29T05:17:40.157Z_
+
+Now let me fetch the AAAI 2024 MathAttack paper and do one more targeted search for papers that jointly model contamination and robustness.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72b6ee8c-fe77-4915-94c8-9e7879b4b846",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHzTM58Jn5d69zPZQvd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "86144105-16d7-4e1e-b4ae-3e149bdf1936",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MEAN4GiAa41XgQfBz8xCFB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3188,
+      "cache_read_input_tokens": 26462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3188,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-29T05:17:41.527Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015XQNCfvxSGkru5cadnC4Wg`</summary>
+
+```json
+{
+  "query": "\"jointly modeling\" OR \"joint analysis\" benchmark contamination robustness LLM math reasoning evaluation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86144105-16d7-4e1e-b4ae-3e149bdf1936",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHzTM58Jn5d69zPZQvd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "77131631-e069-4b99-b02f-4654369eaac9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MEAN4GiAa41XgQfBz8xCFB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3188,
+      "cache_read_input_tokens": 26462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3188,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-29T05:17:41.842Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WNSTRWUHa1zvrs9UGwtVZa`</summary>
+
+```json
+{
+  "query": "ArithmAttack noisy context LLM math robustness 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77131631-e069-4b99-b02f-4654369eaac9",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWHzTM58Jn5d69zPZQvd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d7f060d0-c9f1-4bb6-a887-db70cfd03787",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MEAN4GiAa41XgQfBz8xCFB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3188,
+      "cache_read_input_tokens": 26462,
+      "output_tokens": 166,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3188
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 166,
+          "cache_read_input_tokens": 26462,
+          "cache_creation_input_tokens": 3188,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3188,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-29T05:17:48.861Z_
+
+<details><summary>↩ Tool result · `toolu_01WNSTRWUHa1zvrs9UGwtVZa`</summary>
+
+```text
+Web search results for query: "ArithmAttack noisy context LLM math robustness 2025"
+
+Links: [{"title":"[2501.08203v1] ArithmAttack: Evaluating Robustness of LLMs to Noisy Context in Math Problem Solving","url":"https://arxiv.org/abs/2501.08203v1"},{"title":"[2501.08203] ArithmAttack: Evaluating Robustness of LLMs to Noisy Context in Math Problem Solving","url":"https://arxiv.org/abs/2501.08203"},{"title":"ArithmAttack: Evaluating Robustness of LLMs to Noisy Context","url":"https://arxiv.org/pdf/2501.08203v1"},{"title":"(PDF) ArithmAttack: Evaluating Robustness of LLMs to Noisy Context in Math Problem Solving","url":"https://www.researchgate.net/publication/388028995_ArithmAttack_Evaluating_Robustness_of_LLMs_to_Noisy_Context_in_Math_Problem_Solving"},{"title":"ArithmAttack: Evaluating Robustness of LLMs to Noisy Context in Math Problem Solving","url":"https://arxiv.org/html/2501.08203v1"},{"title":"[Literature Review] ArithmAttack: Evaluating Robustness of LLMs to Noisy Context in Math Problem Solving","url":"https://www.themoonlight.io/en/review/arithmattack-evaluating-robustness-of-llms-to-noisy-context-in-math-problem-solving"},{"title":"More Agents Improve Math Problem Solving but Adversarial Robustness Gap Persists","url":"https://arxiv.org/html/2511.07112"},{"title":"Evaluating Robustness of LLMs to Noisy Context in Math ...","url":"https://aclanthology.org/2025.llmsec-1.5.pdf"},{"title":"More Agents Improve Math Problem Solving but Adversarial Robustness Gap Persists","url":"https://arxiv.org/pdf/2511.07112"}]
+
+Here are the key findings from the search results about ArithmAttack:
+
+## Overview
+
+ArithmAttack is a method that examines how robust LLMs are when they encounter noisy prompts that contain extra noise in the form of punctuation marks. While being easy to implement, ArithmAttack does not cause any information loss since words are not added or deleted from the context.
+
+## Research Methodology
+
+The authors designed ArithmAttack to test how LLMs respond to prompts that are distorted by the addition of extraneous punctuation marks, without modifying the actual content of the words.
+
+## Evaluation Results
+
+The research evaluated the robustness of eight LLMs, including LLama3, Mistral, Mathstral, and DeepSeek on noisy GSM8K and MultiArith datasets, and found that all the studied models show vulnerability to such noise, with more noise leading to poorer performances. Llama models show the highest robustness as well as performance.
+
+## Impact and Usage
+
+ArithmAttack has been used by other researchers to generate synthetic noise for evaluating LLM robustness in mathematical question answering. The paper was published in January 2025 and has already influenced subsequent research on adversarial robustness in LLM mathematical reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7f060d0-c9f1-4bb6-a887-db70cfd03787",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "cd64e046-1199-4b35-8a84-ec989b10842b",
+  "sourceToolAssistantUUID": "d7f060d0-c9f1-4bb6-a887-db70cfd03787",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-29T05:17:53.061Z_
+
+<details><summary>↩ Tool result · `toolu_015XQNCfvxSGkru5cadnC4Wg`</summary>
+
+```text
+Web search results for query: ""jointly modeling" OR "joint analysis" benchmark contamination robustness LLM math reasoning evaluation 2025 2026"
+
+Links: [{"title":"(PDF) An Investigation of Robustness of LLMs in Mathematical Reasoning: Benchmarking with Mathematically-Equivalent Transformation of Advanced Mathematical Problems","url":"https://www.researchgate.net/publication/394457714_An_Investigation_of_Robustness_of_LLMs_in_Mathematical_Reasoning_Benchmarking_with_Mathematically-Equivalent_Transformation_of_Advanced_Mathematical_Problems"},{"title":"An Investigation of Robustness of LLMs in Mathematical Reasoning: Benchmarking with Mathematically-Equivalent Transformation of Advanced Mathematical Problems","url":"https://arxiv.org/html/2508.08833"},{"title":"evaluation of reasoning in language models","url":"https://arxiv.org/pdf/2509.24210"},{"title":"An Investigation of Robustness of LLMs in Mathematical Reasoning: Benchmarking with Mathematically-Equivalent Transformation of Advanced Mathematical Problems","url":"https://arxiv.org/pdf/2508.08833"},{"title":"Beyond Memorization: Reasoning-Driven Synthesis as a Mitigation Strategy Against Benchmark Contamination","url":"https://arxiv.org/pdf/2509.00072"},{"title":"MathArena: Evaluating LLMs on Uncontaminated Math Competitions","url":"https://arxiv.org/pdf/2505.23281"},{"title":"Provable Joint Decontamination for Benchmarking Multiple Large Language Models","url":"https://arxiv.org/html/2605.21543"},{"title":"Benchmarking LLMs’ Mathematical Reasoning with","url":"https://arxiv.org/pdf/2501.11790"}]
+
+Based on the search results, I found several highly relevant papers addressing your query about jointly modeling, joint analysis, benchmark contamination, and LLM math reasoning evaluation from 2025-2026:
+
+## Key Findings
+
+**PutnamGAP - Robustness Evaluation Framework:**
+A new evaluation methodology created PutnamGAP, a benchmark dataset with multiple mathematically-equivalent variations of competition-level math problems, which was used to evaluate multiple families of representative LLMs and examine their robustness. Across 18 commercial and open-source models, OpenAI's O3 scores 51.5% on original problems but drops significantly on variants.
+
+**Joint Decontamination Approach:**
+Benchmark data contamination occurs when evaluation examples overlap with a model's training data, which can inflate reported performance. A recent paper titled "Provable Joint Decontamination for Benchmarking Multiple Large Language Models" (from 1 week ago) appears to address jointly modeling multiple models' contamination.
+
+**Contamination-Driven Robustness Analysis:**
+The reliability of LLM evaluations faces a critical threat from data contamination, which could artificially inflate performance metrics. Many previous works have demonstrated that contamination has reached concerning proportions across various evaluation benchmarks, where models achieve inflated scores through memorized patterns rather than authentic problem-solving abilities.
+
+**MathArena - Uncontaminated Competitions:**
+Evaluations on harder competitions published after model release dates demonstrate impressive reasoning capabilities, and MathArena is the first benchmark for proof-writing capabilities that will continue to track progress on newly released competitions.
+
+These papers collectively address your query about jointly modeling benchmark contamination and robustness in LLM mathematical reasoning evaluation during 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "77131631-e069-4b99-b02f-4654369eaac9",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "932d7141-e2e3-4d71-964e-1d43715d909a",
+  "sourceToolAssistantUUID": "77131631-e069-4b99-b02f-4654369eaac9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-29T05:17:55.817Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QTnNHhnzQYDotaAX8caWto`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.21543",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "932d7141-e2e3-4d71-964e-1d43715d909a",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWJ1deiuEHLnmZvZraMF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "97dcaa3d-fadf-4627-89a9-da7212a89947",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SS2fYkVru4izUQdKuXHcS3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 873,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 29650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1147,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-29T05:17:56.653Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013Ajiwg3m5jxt5iKHSTeDFw`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2501.08203",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97dcaa3d-fadf-4627-89a9-da7212a89947",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWJ1deiuEHLnmZvZraMF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b0fdf793-2caa-40d7-b28e-928e87ebc131",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SS2fYkVru4izUQdKuXHcS3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 873,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 29650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1147,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-29T05:17:57.010Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01J3c6qk4ysFwpSAMuPaZ88u`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2509.00072",
+  "prompt": "Extract the exact title, full author list, submission date, and complete abstract of this paper. Also note if it mentions a venue (conference/journal)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0fdf793-2caa-40d7-b28e-928e87ebc131",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWJ1deiuEHLnmZvZraMF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "52d1e655-b9d8-4c4e-9b3f-4d8ac85391f1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SS2fYkVru4izUQdKuXHcS3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 873,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 29650,
+      "output_tokens": 305,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1147
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 873,
+          "output_tokens": 305,
+          "cache_read_input_tokens": 29650,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1147,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-29T05:18:00.293Z_
+
+<details><summary>↩ Tool result · `toolu_01QTnNHhnzQYDotaAX8caWto`</summary>
+
+```text
+# Paper Information
+
+**Title:** "Provable Joint Decontamination for Benchmarking Multiple Large Language Models"
+
+**Authors:** Zhenlong Liu, Hao Zeng, Hongxin Wei
+
+**Submission Date:** May 20, 2026
+
+**Abstract:** The paper addresses benchmark contamination in LLM evaluation by proposing Joint Envelope Conformal Selection (JECS). The method handles cases where evaluation examples appear in training data of one or more models being audited. Rather than applying contamination detection separately per model, JECS enables "global contamination rate (GCR) control" through a joint selection approach. It computes per-model conformal p-values, aggregates them, and applies the adaptive Benjamini-Hochberg procedure to select benchmarks with provable contamination control while maintaining higher detection power than baseline methods.
+
+**Venue:** No specific conference or journal is mentioned in the provided content. The paper is classified as cs.LG (Machine Learning) on arXiv.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "97dcaa3d-fadf-4627-89a9-da7212a89947",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "267e230b-ffba-48f4-92bc-cd828a1d948e",
+  "sourceToolAssistantUUID": "97dcaa3d-fadf-4627-89a9-da7212a89947",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-29T05:18:00.426Z_
+
+<details><summary>↩ Tool result · `toolu_013Ajiwg3m5jxt5iKHSTeDFw`</summary>
+
+```text
+# Paper Details
+
+**Title:** "ArithmAttack: Evaluating Robustness of LLMs to Noisy Context in Math Problem Solving"
+
+**Authors:** Zain Ul Abedin, Shahzeb Qamar, Lucie Flek, Akbar Karimi
+
+**Submission Date:** January 14, 2025
+
+**Abstract:** The researchers propose ArithmAttack to assess how well Large Language Models handle noisy prompts containing extra punctuation marks. The method avoids information loss by not adding or removing words. Testing eight models including LLama3, Mistral, Mathstral, and DeepSeek on GSM8K and MultiArith datasets, they found "all the studied models show vulnerability to such noise, with more noise leading to poorer performances."
+
+**Venue:** Accepted to LLMSEC Workshop at ACL 2025
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b0fdf793-2caa-40d7-b28e-928e87ebc131",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "f86f0851-6484-48c1-8d4e-a00ba4a5f261",
+  "sourceToolAssistantUUID": "b0fdf793-2caa-40d7-b28e-928e87ebc131",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-29T05:18:02.214Z_
+
+<details><summary>↩ Tool result · `toolu_01J3c6qk4ysFwpSAMuPaZ88u`</summary>
+
+```text
+# Paper Information
+
+**Title:** "Test of Time: Rethinking Temporal Signal of Benchmark Contamination"
+
+**Authors:** Terry Jingchen Zhang, Gopal Dev, Ning Wang, Max Obreiter, Punya Syon Pandey, Keenan Samway, Wenyuan Jiang, Yinya Huang, Bernhard Schölkopf, Mrinmaya Sachan, Zhijing Jin
+
+**Submission Date:** August 26, 2025 (v1); last revised May 13, 2026 (v4)
+
+**Venue:** ACL 2026
+
+**Abstract:** The researchers challenge the interpretation that post-cutoff performance decline indicates "benchmark contamination, where public information released before the training cutoff may have been included into training corpora and inflated model performance by memorization." They demonstrate that temporal decay patterns depend heavily on question formatting rather than source material alone. When applying LLM-driven transformations to problems from LiveCodeBench—which previously showed clear post-cutoff decay—the temporal pattern effectively disappears. The team employs influence function analysis to explain this mechanism and concludes that post-cutoff performance decay represents a "sensitive contamination signal, motivating more robust contamination probes for reliable LLM evaluation."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "52d1e655-b9d8-4c4e-9b3f-4d8ac85391f1",
+  "isSidechain": true,
+  "promptId": "84dbaf4c-3911-4231-b0f2-284bc794a129",
+  "agentId": "aa392d2f0cf04f8c0",
+  "type": "user",
+  "uuid": "6555fa0b-0881-4fb1-a302-9e62746a6b62",
+  "sourceToolAssistantUUID": "52d1e655-b9d8-4c4e-9b3f-4d8ac85391f1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 92 · 2026-05-29T05:20:01.868Z_
+
+I now have a comprehensive set of papers. Here is the structured literature survey:
+
+---
+
+## Literature Survey: Adversarial Robustness Evaluation of LLMs on Math Reasoning Benchmarks (2024--2026)
+
+### TIER 1: Core Papers -- Adversarial/Perturbed Math Benchmark Generation
+
+---
+
+**1. MaSTer: Toward Automated Robustness Evaluation of Mathematical Reasoning**
+- **Authors:** Yutao Hou, Zeguan Xiao, Fei Yu, Yihan Jiang, Ma Shuguang, Zhaoqian Dai, Hailiang Huang, Yun Chen, Guanhua Chen
+- **Venue:** Findings of ACL 2026
+- **URL:** https://arxiv.org/abs/2506.05038
+- **Date:** June 2025 (revised April 2026)
+- **Summary:** Automated stress-testing framework that generates adversarial math problem variants via a multi-round rewrite-verify loop; models lose 48% and 31% accuracy on GSM8K and MATH-500 variants respectively.
+- **Why important:** Closest prior work to automated adversarial variant generation with semantic consistency verification. Directly relevant as a baseline method. Extends beyond math to MMLU, MMLU-Pro, CommonsenseQA.
+
+---
+
+**2. GSM-Symbolic: Understanding the Limitations of Mathematical Reasoning in Large Language Models**
+- **Authors:** Iman Mirzadeh, Keivan Alizadeh, Hooman Shahrokhi, Oncel Tuzel, Samy Bengio, Mehrdad Farajtabar
+- **Venue:** ICLR 2025
+- **URL:** https://arxiv.org/abs/2410.05229
+- **Date:** October 2024 (revised August 2025)
+- **Summary:** Uses parameterized symbolic templates over GSM8K to generate controlled problem variants; changing numeric values causes noticeable variance, and adding irrelevant clauses degrades performance up to 65%.
+- **Why important:** Seminal work demonstrating that LLMs replicate reasoning patterns from training data rather than performing genuine reasoning. Introduces the symbolic template methodology central to your paper's approach.
+
+---
+
+**3. GSM-Plus: A Comprehensive Benchmark for Evaluating the Robustness of LLMs as Mathematical Problem Solvers**
+- **Authors:** Qintong Li, Leyang Cui, Xueliang Zhao, Lingpeng Kong, Wei Bi
+- **Venue:** ACL 2024
+- **URL:** https://arxiv.org/abs/2402.19255
+- **Date:** February 2024 (revised July 2024)
+- **Summary:** Extends GSM8K with 8 families of mathematical perturbations per problem; tests 25 LLMs across 4 prompting strategies and finds performance is far from robust on perturbed variants.
+- **Why important:** Establishes the taxonomy of mathematical perturbation types (numerical variation, adding operations, reversing questions, etc.) that has become standard in the field.
+
+---
+
+**4. MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations**
+- **Authors:** Kaixuan Huang, Jiacheng Guo, Zihao Li, Xiang Ji, Jiawei Ge, Wenzhe Li, Yingqing Guo, Tianle Cai, Hui Yuan, Runzhe Wang, Yue Wu, Ming Yin, Shange Tang, Yangsibo Huang, Chi Jin, Xinyun Chen, Chiyuan Zhang, Mengdi Wang
+- **Venue:** Preprint (arXiv)
+- **URL:** https://arxiv.org/abs/2502.06453
+- **Date:** February 2025
+- **Summary:** Creates MATH-P-Simple and MATH-P-Hard benchmarks (279 problems from MATH level-5); "hard" perturbations fundamentally change the problem nature so original solution steps do not apply, revealing memorization-driven reasoning.
+- **Why important:** Distinguishes between surface-level and deep structural perturbations, directly addressing whether LLMs truly reason or memorize solution templates.
+
+---
+
+**5. GSM-SEM: Benchmark and Framework for Generating Semantically Variant Augmentations**
+- **Authors:** Jyotika Singh, Fang Tu, Aziza Mirsaidova, Amit Agarwal, Hitesh Laxmichand Patel, Sandip Ghoshal, Miguel Ballesteros, Karan Dua, Yassine Benajiba, Weiyi Sun, Tao Sheng, Graham Horwood, Sujith Ravi, Dan Roth
+- **Venue:** Preprint (arXiv)
+- **URL:** https://arxiv.org/abs/2605.07053
+- **Date:** May 2026
+- **Summary:** Generates semantically diverse GSM8K variants by perturbing entities, attributes, and relationships; coupling semantic perturbations with symbolic/numerical variations yields an average 28% accuracy drop across 14 LLMs.
+- **Why important:** Very recent work combining semantic and symbolic perturbation axes, producing fresh variants on each run to combat memorization.
+
+---
+
+**6. Putnam-AXIOM: A Functional and Static Benchmark for Measuring Higher Level Mathematical Reasoning in LLMs**
+- **Authors:** Aryan Gulati, Brando Miranda, Eric Chen, Emily Xia, Kai Fronsdal, Bruno Dumont, Elyas Obbad, Sanmi Koyejo
+- **Venue:** ICML 2025
+- **URL:** https://arxiv.org/abs/2508.08292
+- **Date:** August 2025
+- **Summary:** 522 Putnam competition problems plus 100 programmatically generated functional variants; o1-preview drops 19.6% on variants, indicating memorization.
+- **Why important:** Demonstrates the functional-variant methodology at competition level (university-level math), directly showing the contamination-robustness gap.
+
+---
+
+**7. PutnamGAP: An Investigation of Robustness of LLMs in Mathematical Reasoning**
+- **Authors:** Yuren Hao, Xiang Wan, ChengXiang Zhai
+- **Venue:** Preprint (arXiv)
+- **URL:** https://arxiv.org/abs/2508.08833
+- **Date:** August 2025 (revised December 2025)
+- **Summary:** Evaluates 18 LLMs on mathematically-equivalent transformations of advanced problems; O3 drops 4.7pp on surface-renaming and 12.9pp on parametric variants from a 51.5% baseline.
+- **Why important:** Introduces the "Generalization-and-Perturbation" (GAP) strategy that explicitly addresses both data leakage and robustness simultaneously.
+
+---
+
+**8. RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning**
+- **Authors:** Xinyuan Li, Murong Xu, Wenbiao Tao, Hanlun Zhu, Yike Zhao, Jipeng Zhang, Yunshi Lan
+- **Venue:** Preprint (arXiv)
+- **URL:** https://arxiv.org/abs/2511.04120
+- **Date:** November 2025 (revised January 2026)
+- **Summary:** Uses Item Response Theory calibrated on 35 LLMs to guide RL-based question rewriting; perturbed AIME/AMC questions cause average 21.73% performance decline across 26 models.
+- **Why important:** Unique approach combining psychometric theory (IRT) with adversarial perturbation for principled difficulty control of generated variants.
+
+---
+
+**9. ASyMOB: Algebraic Symbolic Mathematical Operations Benchmark**
+- **Authors:** Michael Shalyt, Rotem Elimelech, Ido Kaminer
+- **Venue:** Preprint (arXiv)
+- **URL:** https://arxiv.org/abs/2505.23851
+- **Date:** May 2025
+- **Summary:** 17,092 symbolic math challenges with systematic perturbations; LLMs degrade up to 70.3% on perturbed problems; compares LLMs to computer algebra systems (SymPy), finding complementary strengths.
+- **Why important:** Directly relevant to symbolic perturbation methodology. Demonstrates the gap between unperturbed (74.6% avg) and perturbed (46.8% avg) performance, and examines SymPy integration.
+
+---
+
+**10. Adversarial Math Word Problem Generation**
+- **Authors:** Roy Xie, Chengxuan Huang, Junlin Wang, Bhuwan Dhingra
+- **Venue:** Findings of EMNLP 2024
+- **URL:** https://arxiv.org/abs/2402.17916
+- **Date:** February 2024 (revised June 2024)
+- **Summary:** Uses abstract syntax trees to generate adversarial math word problems through numeric value modifications; identifies common model vulnerabilities and proposes cost-effective attack transfer methods.
+- **Why important:** Introduces AST-based symbolic manipulation for adversarial generation, a precursor to more sophisticated symbolic approaches.
+
+---
+
+**11. MathAttack: Attacking Large Language Models Towards Math Solving Ability**
+- **Authors:** Zihao Zhou, Qiufeng Wang, Mingyu Jin, Jie Yao, Jianan Ye, Wei Liu, Wei Wang, Xiaowei Huang, Kaizhu Huang
+- **Venue:** AAAI 2024
+- **URL:** https://arxiv.org/abs/2309.01686
+- **Date:** September 2023
+- **Summary:** Proposes word-level adversarial attacks on math word problems that preserve mathematical logic via logical entity recognition; introduces the RobustMath dataset.
+- **Why important:** First AAAI paper specifically on adversarial attacks against LLM math reasoning. Establishes that adversarial samples transfer across models.
+
+---
+
+### TIER 2: Robustness Evaluation & Perturbation Sensitivity
+
+---
+
+**12. Robust Reasoning Benchmark (RRB)**
+- **Authors:** Pavel Golikov, Evgenii Opryshko, Gennady Pekhimenko, Mark C. Jeffrey
+- **Venue:** Preprint (arXiv)
+- **URL:** https://arxiv.org/abs/2604.08571
+- **Date:** March 2026 (revised May 2026)
+- **Summary:** Applies 13 deterministic textual perturbations to AIME 2024/2025; open-source reasoning models show accuracy drops up to 54% average and 100% in specific cases; identifies "Intra-Query Attention Dilution."
+- **Why important:** Comprehensive perturbation taxonomy on competition-level problems; novel attention-dilution finding relevant to understanding why perturbations degrade reasoning.
+
+---
+
+**13. Fragile Thoughts: How Large Language Models Handle Chain-of-Thought Perturbations**
+- **Authors:** Ashwath Vaithinathan Aravindan, Mayank Kejriwal
+- **Venue:** Preprint (arXiv)
+- **URL:** https://arxiv.org/abs/2603.03332
+- **Date:** February 2026 (revised April 2026)
+- **Summary:** Tests 13 models across 5 CoT perturbation types (MathError, UnitConversion, Sycophancy, SkippedSteps, ExtraSteps); smaller models lose 50-60% accuracy on math errors.
+- **Why important:** Addresses robustness of the reasoning chain itself, not just the problem statement -- a complementary angle to input perturbation.
+
+---
+
+**14. Numerical Sensitivity and Robustness: Exploring the Flaws of Mathematical Reasoning in Large Language Models**
+- **Authors:** Zhishen Sun, Guang Dai, Ivor Tsang, Haishan Ye
+- **Venue:** Preprint (arXiv)
+- **URL:** https://arxiv.org/abs/2511.08022
+- **Date:** November 2025
+- **Summary:** Studies LLM sensitivity to numerical distractors; performance drops 10-50%; models maintain 20-40% accuracy even when core instructions are removed, suggesting pattern matching over reasoning.
+- **Why important:** Provides evidence that models use "memory templates" rather than genuine reasoning, supporting the contamination hypothesis.
+
+---
+
+**15. ArithmAttack: Evaluating Robustness of LLMs to Noisy Context in Math Problem Solving**
+- **Authors:** Zain Ul Abedin, Shahzeb Qamar, Lucie Flek, Akbar Karimi
+- **Venue:** LLMSEC Workshop at ACL 2025
+- **URL:** https://arxiv.org/abs/2501.08203
+- **Date:** January 2025
+- **Summary:** Evaluates robustness to punctuation noise injection on GSM8K and MultiArith across 8 models; all models are vulnerable, with performance degrading monotonically with noise level.
+- **Why important:** Demonstrates that even trivial surface-level perturbations (punctuation noise) break math reasoning, complementing deeper structural perturbation studies.
+
+---
+
+**16. Exploring LLM Reasoning Through Controlled Prompt Variations**
+- **Authors:** Giannis Chatziveroglou, Richard Yun, Maura Kelleher
+- **Venue:** Preprint (arXiv)
+- **URL:** https://arxiv.org/abs/2504.02111
+- **Date:** April 2025
+- **Summary:** Tests 13 models on GSM8K with 4 types of prompt disruptions (irrelevant context, bad instructions, unnecessary facts, combinations); degradation is insensitive to task complexity.
+- **Why important:** Shows that extraneous information universally degrades performance, and some perturbations unexpectedly trigger chain-of-thought behavior.
+
+---
+
+**17. More Agents Improve Math Problem Solving but Adversarial Robustness Gap Persists**
+- **Authors:** Khashayar Alavi, Zhastay Yeltay, Lucie Flek, Akbar Karimi
+- **Venue:** Preprint (arXiv)
+- **URL:** https://arxiv.org/abs/2511.07112
+- **Date:** November 2025 (revised March 2026)
+- **Summary:** Scaling from 1 to 10 collaborative agents improves accuracy but the adversarial robustness gap persists regardless of agent count.
+- **Why important:** Shows that multi-agent approaches do not solve the fundamental robustness problem, ruling out a potential mitigation strategy.
+
+---
+
+**18. Evaluating LLMs' Mathematical and Coding Competency through Ontology-guided Interventions**
+- **Authors:** Pengfei Hong, Navonil Majumder, Deepanway Ghosal, Somak Aditya, Rada Mihalcea, Soujanya Poria
+- **Venue:** Preprint (arXiv)
+- **URL:** https://arxiv.org/abs/2401.09395
+- **Date:** January 2024 (revised November 2024)
+- **Summary:** Introduces an ontology of perturbations for math and code; creates GSMORE (math) and HUMANEVAL-CORE (code) benchmarks; significant performance drops across all tested LLMs.
+- **Why important:** Provides a principled perturbation ontology that can systematically guide variant generation.
+
+---
+
+### TIER 3: Contamination-Focused / Dynamic Evaluation
+
+---
+
+**19. MathArena: Evaluating LLMs on Uncontaminated Math Competitions**
+- **Authors:** Mislav Balunovic, Jasper Dekoninck, Ivo Petrov, Nikola Jovanovic, Martin Vechev
+- **Venue:** Preprint (arXiv)
+- **URL:** https://arxiv.org/abs/2505.23281
+- **Date:** May 2025 (revised January 2026)
+- **Summary:** Evaluates 50+ models on freshly released competition problems immediately after publication; detects strong contamination signs in AIME 2024 (10-20 point score inflation).
+- **Why important:** Establishes ground truth for contamination in math benchmarks, providing the "contamination baseline" that robustness studies aim to control for.
+
+---
+
+**20. DyVal: Dynamic Evaluation of Large Language Models for Reasoning Tasks**
+- **Authors:** Kaijie Zhu, Jiaao Chen, Jindong Wang, Neil Zhenqiang Gong, Diyi Yang, Xing Xie
+- **Venue:** ICLR 2024 (Spotlight)
+- **URL:** https://arxiv.org/abs/2309.17167
+- **Date:** September 2023 (revised March 2024)
+- **Summary:** Uses directed acyclic graphs to dynamically generate evaluation samples with controllable complexity for math, logic, and algorithm tasks; exposes suspected contamination in phi-1.5, WizardMath, Xwin models.
+- **Why important:** Foundational work on dynamic benchmark generation to combat contamination; DAG-based generation is a precursor to symbolic template approaches.
+
+---
+
+**21. Provable Joint Decontamination for Benchmarking Multiple Large Language Models**
+- **Authors:** Zhenlong Liu, Hao Zeng, Hongxin Wei
+- **Venue:** Preprint (arXiv)
+- **URL:** https://arxiv.org/abs/2605.21543
+- **Date:** May 2026
+- **Summary:** Proposes JECS (Joint Envelope Conformal Selection) for provable global contamination rate control across multiple LLMs simultaneously using conformal p-values and adaptive BH procedure.
+- **Why important:** Directly addresses the joint contamination-robustness modeling problem -- provides statistical framework for decontaminating benchmark results across multiple models.
+
+---
+
+**22. Test of Time: Rethinking Temporal Signal of Benchmark Contamination**
+- **Authors:** Terry Jingchen Zhang, Gopal Dev, Ning Wang, Max Obreiter, Punya Syon Pandey, Keenan Samway, Wenyuan Jiang, Yinya Huang, Bernhard Scholkopf, Mrinmaya Sachan, Zhijing Jin
+- **Venue:** ACL 2026
+- **URL:** https://arxiv.org/abs/2509.00072
+- **Date:** August 2025 (revised May 2026)
+- **Summary:** Shows that post-cutoff performance decay (a widely used contamination signal) disappears when problems are reformulated via LLM-driven transformations; uses influence functions to explain why.
+- **Why important:** Critically challenges standard contamination detection methodology, showing that problem reformulation (perturbation) can serve as both a robustness test AND a contamination probe.
+
+---
+
+**23. LLM Benchmark Datasets Should Be Contamination-Resistant**
+- **Authors:** Ali Al-Lawati, Jason Lucas, Dongwon Lee, Suhang Wang
+- **Venue:** ICML 2026 Position Paper Track
+- **URL:** https://arxiv.org/abs/2605.19999
+- **Date:** May 2026
+- **Summary:** Position paper arguing benchmarks should be "contamination-resistant" (unlearnable during training yet functional at inference); establishes mathematical framework for cross-architecture compatibility.
+- **Why important:** Provides the theoretical framing for why adversarial variant generation is needed as a systematic defense against contamination.
+
+---
+
+**24. LiveBench: A Challenging, Contamination-Limited LLM Benchmark**
+- **Authors:** Colin White, Samuel Dooley, Manley Roberts, Arka Pal, Ben Feuer, Siddhartha Jain, Ravid Shwartz-Ziv, Neel Jain, Khalid Saifullah, et al.
+- **Venue:** ICLR 2025 (Spotlight)
+- **URL:** https://arxiv.org/abs/2406.19314
+- **Date:** June 2024 (revised April 2025)
+- **Summary:** Frequently-updated benchmark with automatic scoring across math, coding, reasoning, and data analysis; top models achieve below 70% accuracy; refreshed monthly.
+- **Why important:** Establishes the "living benchmark" paradigm that complements static adversarial variant generation approaches.
+
+---
+
+**25. Recent Advances in Large Language Model Benchmarks against Data Contamination: From Static to Dynamic Evaluation**
+- **Authors:** Simin Chen, Yiming Chen, Zexin Li, Yifan Jiang, Zhongwei Wan, Yixin He, Dezhi Ran, Tianle Gu, Haizhou Li, Tao Xie, Baishakhi Ray
+- **Venue:** Preprint (arXiv)
+- **URL:** https://arxiv.org/abs/2502.17521
+- **Date:** February 2025 (revised September 2025)
+- **Summary:** Survey paper analyzing the shift from static to dynamic benchmarking; proposes design principles for dynamic benchmarks and identifies the absence of standardized evaluation criteria.
+- **Why important:** Comprehensive survey paper that contextualizes all the above work; useful for the Related Work section of your AAAI paper.
+
+---
+
+### Summary Statistics
+
+- **Total papers found:** 25
+- **Published at top venues:** ACL 2024/2026 (3), ICLR 2024/2025 (3), ICML 2025/2026 (2), AAAI 2024 (1)
+- **Time range:** September 2023 -- May 2026 (bulk from 2025--2026)
+- **Key themes covered:**
+  - Symbolic template-based variant generation: GSM-Symbolic, ASyMOB, Adversarial Math Word Problem Generation
+  - Perturbation taxonomy: GSM-Plus, GSMORE, RRB, MATH-Perturb
+  - Automated adversarial generation: MaSTer, RIDE
+  - Contamination detection/mitigation: MathArena, DyVal, JECS, Test of Time, LiveBench
+  - Joint contamination + robustness: Putnam-AXIOM, PutnamGAP, LLM Benchmark Datasets Should Be Contamination-Resistant
+
+The most directly relevant papers for your AAAI 2026 paper on "jointly modeling benchmark contamination and robustness" are: MaSTer (#1), GSM-Symbolic (#2), MATH-Perturb (#4), Putnam-AXIOM (#6), PutnamGAP (#7), Test of Time (#22), JECS (#21), and the contamination-resistance position paper (#23). These collectively define the space your paper operates in.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6555fa0b-0881-4fb1-a302-9e62746a6b62",
+  "isSidechain": true,
+  "agentId": "aa392d2f0cf04f8c0",
+  "requestId": "req_011CbWJ2JjToJvJivAuNeW8c",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1e480090-e25b-4a65-977a-57666004d6b8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "48bf462a-d28d-43ae-96da-d57db5986663",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EuTJLTkh9wRF9Z9nUVWoNi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1982,
+      "cache_read_input_tokens": 30797,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1982,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

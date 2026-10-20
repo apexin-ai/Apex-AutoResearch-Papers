@@ -1,0 +1,3746 @@
+# Research conversation: Search for the most recent (2026) papers on hallucination mitigation during LLM generation that use internal representat
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 58
+- **Recorded user turns:** 1
+- **Tool calls:** 27
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-ace86fdde9ac363f5.jsonl`
+- **Structured JSON:** [`400cdeb5b4c2f7afa471.json`](../../sessions/40/400cdeb5b4c2f7afa471.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+58 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T09:42:31.615Z_
+
+Search for the most recent (2026) papers on hallucination mitigation during LLM generation that use internal representations or logit-level interventions. I'm looking for any work the proposal might have missed. Search for:
+
+1. "logit intervention hallucination 2026" or "logit bias hallucination reduction"
+2. "inference-time hallucination mitigation 2026 arxiv"
+3. "calibration-aware decoding hallucination 2026"
+4. "overconfident hallucination detection probe 2026"
+5. "selective decoding factuality 2026"
+
+Also search specifically for:
+- "PC-LDCD" or "Probabilistic Circuits hallucination" (arXiv 2605.05953) - verify it exists
+- "CSS calibrated specificity" (arXiv 2604.17487) - verify it exists
+- "CAG calibration-aware generation" (arXiv 2605.01749) - verify it exists
+
+Report any papers from 2025-2026 that combine internal uncertainty signals with decoding-time intervention for hallucination reduction. I'm specifically interested in whether there are papers that combine verbal confidence signals with factuality probes (the core novelty claim of the idea under review).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "42edb1d8-f0f8-4686-ac71-2b0f59059cb0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T09:42:31.618Z_
+
+```json
+{
+  "parentUuid": "42edb1d8-f0f8-4686-ac71-2b0f59059cb0",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "b34f304d-ad80-4f33-9c42-7c9233de6b3d",
+  "timestamp": "2026-05-16T09:42:31.618Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T09:42:34.549Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01YY2UPGCXZbjKVHPgXrRYWm`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b34f304d-ad80-4f33-9c42-7c9233de6b3d",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62gCocz3EAFXqUPzfss",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3b07b5b4-e2c8-4c39-8456-99b6fdc0068c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015GjNWCqQFDrtLRzpeEkXqV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 839,
+      "cache_read_input_tokens": 8223,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 839
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 8223,
+          "cache_creation_input_tokens": 839,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 839,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T09:42:34.552Z_
+
+<details><summary>↩ Tool result · `toolu_01YY2UPGCXZbjKVHPgXrRYWm`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3b07b5b4-e2c8-4c39-8456-99b6fdc0068c",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "688eb825-09df-475f-9398-93c2106ba007",
+  "sourceToolAssistantUUID": "3b07b5b4-e2c8-4c39-8456-99b6fdc0068c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5 · 2026-05-16T09:42:38.099Z_
+
+I'll search for all the specified queries to find recent papers on hallucination mitigation using internal representations and logit-level interventions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "688eb825-09df-475f-9398-93c2106ba007",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62gRZaLSko9NRiBpkDx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c9f28364-3400-421a-be3d-056ea7ea2d97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Qeyqqx97aMroiC1jPuwnL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 9062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1392,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-16T09:42:38.567Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MYMdKzWDGroLTaccFQAzUR`</summary>
+
+```json
+{
+  "query": "logit intervention hallucination 2026 LLM generation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9f28364-3400-421a-be3d-056ea7ea2d97",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62gRZaLSko9NRiBpkDx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "94bbd126-137b-4525-ab0e-b755dbfdb2e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Qeyqqx97aMroiC1jPuwnL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 9062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1392,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T09:42:39.096Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017jKnA77MnomsW2ravFoRZr`</summary>
+
+```json
+{
+  "query": "logit bias hallucination reduction LLM decoding 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "94bbd126-137b-4525-ab0e-b755dbfdb2e8",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62gRZaLSko9NRiBpkDx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6b56ba15-4f2f-44f8-ab93-3da894341716",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Qeyqqx97aMroiC1jPuwnL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 9062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1392,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T09:42:39.204Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EtnaG2KzXQJP7U9ZfBNNyN`</summary>
+
+```json
+{
+  "query": "inference-time hallucination mitigation 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b56ba15-4f2f-44f8-ab93-3da894341716",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62gRZaLSko9NRiBpkDx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9209f246-7773-40e5-afaf-30cdc1c413f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Qeyqqx97aMroiC1jPuwnL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 9062,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1392
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 9062,
+          "cache_creation_input_tokens": 1392,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1392,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T09:42:45.167Z_
+
+<details><summary>↩ Tool result · `toolu_01MYMdKzWDGroLTaccFQAzUR`</summary>
+
+```text
+Web search results for query: "logit intervention hallucination 2026 LLM generation"
+
+Links: [{"title":"A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202510.0540/v1"},{"title":"Mitigating Hallucination in Large Vision-Language Models via Adaptive Attention Calibration","url":"https://arxiv.org/html/2505.21472v2"},{"title":"Logical Consistency as a Bridge: Improving LLM Hallucination Detection via Label Constraint Modeling between Responses and Self-Judgments","url":"https://arxiv.org/html/2605.03971v1"},{"title":"From Illusion to Insight: A Taxonomic Survey of Hallucination Mitigation Techniques in LLMs","url":"https://www.mdpi.com/2673-2688/6/10/260"},{"title":"[2510.06265] Large Language Models Hallucination: A Comprehensive Survey","url":"https://arxiv.org/abs/2510.06265"},{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"A Comprehensive Survey of Hallucination in Large Language Models: Causes, Detection, and Mitigation","url":"https://arxiv.org/html/2510.06265v1"},{"title":"Large Language Models Hallucination: A Comprehensive Survey","url":"https://arxiv.org/html/2510.06265v2"},{"title":"LLM hallucination rate evaluation for engineering | PatSnap","url":"https://www.patsnap.com/resources/blog/articles/llm-hallucination-rate-evaluation-for-engineering/"},{"title":"Mitigating Hallucination in Large Language Models (LLMs): An Application-Oriented Survey on RAG, Reasoning, and Agentic Systems","url":"https://arxiv.org/html/2510.24476v1"}]
+
+Based on the search results, here are the key findings about logit interventions for hallucination mitigation in LLM generation:
+
+## Logit-Based Intervention Methods
+
+Techniques that intervene directly in the model's output probabilities or internal representations typically require logit or layer-level access. One prominent approach is DoLa (Decoding by Contrasting Layers), which amplifies factual content by contrasting logit distributions from mature (later) and premature (earlier) layers, suppressing shallow patterns and emphasizing deep semantic knowledge.
+
+## Hallucination Detection via Logits
+
+Recent research emphasizes logit-based approaches for detecting hallucinations. Logit-based methods interpret the output probability distribution as a proxy for model confidence, where lower confidence or higher entropy often correlates with hallucination. Additionally, token probability scores derived from the LLM's logit outputs can be used to measure uncertainty.
+
+## 2026 Developments
+
+In the context of 2026 research, Think tokens are additional computation prompts injected by SRI International's hallucination prevention system whenever token-by-token generation uncertainty exceeds a predetermined threshold during generation, operating as an inline intervention mechanism during streaming rather than post-hoc.
+
+## Broader Context
+
+Decoding-aware methods enable finer-grained control over generation and offer promising directions for mitigating hallucinations, particularly when paired with external retrieval or structured prompting.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "94bbd126-137b-4525-ab0e-b755dbfdb2e8",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "627f8135-afb5-4e48-afab-5016cc24f40b",
+  "sourceToolAssistantUUID": "94bbd126-137b-4525-ab0e-b755dbfdb2e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T09:42:47.111Z_
+
+<details><summary>↩ Tool result · `toolu_01EtnaG2KzXQJP7U9ZfBNNyN`</summary>
+
+```text
+Web search results for query: "inference-time hallucination mitigation 2026 arxiv"
+
+Links: [{"title":"Mitigating Multimodal LLMs Hallucinations via Relevance Propagation at Inference Time","url":"https://arxiv.org/html/2605.01766"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2601.18753"},{"title":"Fighting Hallucinations with Counterfactuals: Diffusion-Guided Perturbations for LVLM Hallucination Suppression","url":"https://arxiv.org/html/2603.10470"},{"title":"[2604.03556] Focus Matters: Phase-Aware Suppression for Hallucination in Vision-Language Models","url":"https://arxiv.org/abs/2604.03556"},{"title":"Hallucination Detection and Mitigation in Large Language ...","url":"https://arxiv.org/pdf/2601.09929"},{"title":"Mitigating Multimodal Hallucination via Phase-wise Self-reward","url":"https://arxiv.org/html/2604.17982"},{"title":"Mitigating Hallucination in Large Language Models (LLMs): An Application-Oriented Survey on RAG, Reasoning, and Agentic Systems","url":"https://arxiv.org/html/2510.24476v1"},{"title":"[2601.09929] Hallucination Detection and Mitigation in Large Language Models","url":"https://arxiv.org/abs/2601.09929"},{"title":"Mitigating Hallucinations in Large Language Models via Causal Reasoning","url":"https://arxiv.org/pdf/2508.12495"},{"title":"(PDF) A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation","url":"https://www.researchgate.net/publication/396593833_A_Survey_on_Hallucination_in_Large_Language_Models_Definitions_Detection_and_Mitigation"}]
+
+Here are the search results for "inference-time hallucination mitigation 2026 arxiv":
+
+## Recent 2026 ArXiv Papers on Inference-Time Hallucination Mitigation
+
+The search reveals several recent approaches to mitigating hallucinations at inference time:
+
+1. **LIME (Learning Inference-time Modality Enhancement)** - This method adopts an inference-time approach that operates by intervening directly in the model's key-value representations, enabling dynamic adjustment of attention weights during decoding.
+
+2. **CIPHER (Counterfactual-guided)** - CIPHER suppresses hallucinations by projecting intermediate hidden representations away from a hallucination subspace at inference time, without modifying model weights or requiring additional training. The solution operates entirely at test time and introduces no inference-time overhead.
+
+3. **Focus Matters (Phase-Aware Suppression)** - This lightweight inference-time intervention selectively suppresses tokens during the focus phase, operating in a training-free manner using statistics from a single forward pass and employing a Determinantal Point Process to preserve diverse visual cues.
+
+4. **HALLUGUARD** - This method integrates hallucination detectors into beam search and achieves strong gains, reaching 81.00% accuracy on MATH-500 and 70.96% on Natural tasks.
+
+5. **Phase-wise Self-reward approach** - Recent efforts to mitigate multimodal hallucinations follow two primary trajectories: training-based alignment and inference-time post-hoc correction.
+
+These methods represent the current state of inference-time hallucination mitigation research on ArXiv in 2026, with an emphasis on training-free approaches that modify model behavior at test time.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9209f246-7773-40e5-afaf-30cdc1c413f9",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "60db9c3b-aa44-4394-8902-5af3b82b17ab",
+  "sourceToolAssistantUUID": "9209f246-7773-40e5-afaf-30cdc1c413f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T09:42:47.770Z_
+
+<details><summary>↩ Tool result · `toolu_017jKnA77MnomsW2ravFoRZr`</summary>
+
+```text
+Web search results for query: "logit bias hallucination reduction LLM decoding 2026"
+
+Links: [{"title":"Theoretical Foundations and Mitigation of Hallucination in Large Language Models","url":"https://arxiv.org/html/2507.22915v1"},{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202510.0540/v1"},{"title":"LLM Hallucination Statistics 2026: AI Gets Facts Wrong Up to 82% of the Time","url":"https://sqmagazine.co.uk/llm-hallucination-statistics/"},{"title":"Large Language Models Hallucination: A Comprehensive Survey","url":"https://arxiv.org/html/2510.06265v2"},{"title":"Towards trustworthy LLMs: a review on debiasing and dehallucinating in large language models | Artificial Intelligence Review | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10462-024-10896-y"},{"title":"Mitigating Hallucination in Large Vision-Language Models via Adaptive Attention Calibration","url":"https://arxiv.org/html/2505.21472v2"},{"title":"LLM hallucination and bias detection in regulated ...","url":"https://wjarr.com/sites/default/files/fulltext_pdf/WJARR-2026-0302.pdf"},{"title":"LLM hallucination and bias detection in regulated enterprise systems","url":"https://wjarr.com/content/llm-hallucination-and-bias-detection-regulated-enterprise-systems"},{"title":"GitHub - NishilBalar/Awesome-LVLM-Hallucination: up-to-date curated list of state-of-the-art Large vision language models hallucinations research work, papers & resources · GitHub","url":"https://github.com/NishilBalar/Awesome-LVLM-Hallucination"}]
+
+I've completed the web search for "logit bias hallucination reduction LLM decoding 2026". Here are the key findings:
+
+## Recent Research on Hallucination Reduction Through Decoding (2026)
+
+**Logit-Based Decoding Techniques:**
+
+Logit penalties or masks can be applied to prevent hallucinated tokens from being generated unless certain conditions are met. DoLa (Decoding by Contrasting Layers) amplifies factual content by contrasting logit distributions from mature (later) and premature (earlier) layers, suppressing shallow patterns and emphasizing deep semantic knowledge. CAD (Context-Aware Decoding) forces the model to attend to provided evidence by penalizing tokens that would have been generated in the absence of context.
+
+**Incentive-Driven Approach (2025-2026 Shift):**
+
+OpenAI's September 2025 paper shows that next-token training objectives and common leaderboards reward confident guessing over calibrated uncertainty, so models learn to bluff. Training objectives and benchmarks often reward confident guessing over calibrated uncertainty, and that insight drives a new generation of mitigations: fix incentives first with calibration-aware rewards and uncertainty-friendly evaluation metrics.
+
+**Attention-Based Calibration:**
+
+Recent work addresses hallucinations through attention mechanisms. Truthful tokens are heavily skewed toward high probabilities, whereas hallucinatory tokens are skewed toward the low-probability regime, suggesting a distinct generation dynamic between truthful and hallucinatory tokens: the model hallucinates when its confidence is low and its attention to the image has diminished.
+
+**Current 2026 Benchmarks:**
+
+A 2026 benchmark across 37 models reported hallucination rates between 15% and 52%, highlighting that hallucinations remain a persistent challenge despite advances in mitigation techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6b56ba15-4f2f-44f8-ab93-3da894341716",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "130207dc-f9d9-4256-9e75-2213be4e373b",
+  "sourceToolAssistantUUID": "6b56ba15-4f2f-44f8-ab93-3da894341716",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T09:42:51.067Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LtuHYch8Bv5zxz7ifQam27`</summary>
+
+```json
+{
+  "query": "calibration-aware decoding hallucination 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "130207dc-f9d9-4256-9e75-2213be4e373b",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62hPt9kMU81trQddnub",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "83fbbb35-a0ae-4b32-9409-e60888a57e0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VbzPeWBSrRuSyxFm5eTcgD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 940,
+      "cache_creation_input_tokens": 2148,
+      "cache_read_input_tokens": 10454,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2148,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T09:42:51.519Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FvnQ21pmKaJRGcnmQHqGFm`</summary>
+
+```json
+{
+  "query": "overconfident hallucination detection probe 2026 LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83fbbb35-a0ae-4b32-9409-e60888a57e0e",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62hPt9kMU81trQddnub",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b865eb8a-f8e9-49cf-9734-1d33e6b10703",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VbzPeWBSrRuSyxFm5eTcgD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 940,
+      "cache_creation_input_tokens": 2148,
+      "cache_read_input_tokens": 10454,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2148,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T09:42:51.863Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WWM15i56gAG5TL7zK6RECn`</summary>
+
+```json
+{
+  "query": "selective decoding factuality 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b865eb8a-f8e9-49cf-9734-1d33e6b10703",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62hPt9kMU81trQddnub",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "38a473d5-9ee4-4eca-a89d-d05e0a57ad34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VbzPeWBSrRuSyxFm5eTcgD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 940,
+      "cache_creation_input_tokens": 2148,
+      "cache_read_input_tokens": 10454,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2148,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T09:42:59.862Z_
+
+<details><summary>↩ Tool result · `toolu_01LtuHYch8Bv5zxz7ifQam27`</summary>
+
+```text
+Web search results for query: "calibration-aware decoding hallucination 2026"
+
+Links: [{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"Mitigating Hallucinations in Large Vision-Language Models via Dual Contrastive Decoding | Proceedings of the 7th ACM International Conference on Multimedia in Asia","url":"https://dl.acm.org/doi/10.1145/3743093.3770933"},{"title":"Med-VCD: Mitigating hallucination for medical large vision language models through visual contrastive decoding - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0010482525017019"},{"title":"AI Hallucination Rates & Benchmarks in 2026","url":"https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/"},{"title":"GitHub - showlab/Awesome-MLLM-Hallucination: 📖 A curated list of resources dedicated to hallucination of multimodal large language models (MLLM).","url":"https://github.com/showlab/Awesome-MLLM-Hallucination"},{"title":"Hallucination Detection and Mitigation in Large Language ...","url":"https://arxiv.org/pdf/2601.09929"},{"title":"How MIT and Brown Solved the AI Hallucination Crisis in 2026","url":"https://www.shshell.com/blog/solving-ai-hallucinations-2026"},{"title":"Mitigating Hallucination for Large Vision Language Model by Inter-Modality Correlation Calibration Decoding - Paper Detail","url":"https://deeplearn.org/arxiv/564391/mitigating-hallucination-for-large-vision-language-model-by-inter-modality-correlation-calibration-decoding"},{"title":"1 Large Language Models Hallucination: A Comprehensive Survey","url":"https://arxiv.org/pdf/2510.06265"},{"title":"Delve into Visual Contrastive Decoding for Hallucination Mitigation of Large Vision-Language Models","url":"https://arxiv.org/html/2412.06775v1"}]
+
+Based on the search results, here's what I found about calibration-aware decoding and hallucination mitigation in 2026:
+
+## Calibration-Aware Approaches to Hallucination
+
+Recent research has shifted toward calibration-aware rewards and uncertainty-friendly evaluation metrics as key mitigations, moving away from approaches that reward confident guessing toward those that incentivize calibrated uncertainty.
+
+Researchers are focusing on calibration-aware metrics and reward schemes—approaches that give models credit for signalling uncertainty and treat refusal as a valid outcome.
+
+## Key 2026 Developments
+
+**Reinforcement Learning with Calibration Rewards (RLCR):** MIT researchers developed an approach called RLCR that reduces hallucinations by over 90%. The model is mathematically incentivized to be perfectly calibrated—meaning its stated confidence must exactly match its statistical frequency of correctness.
+
+**Practical Results:** Google's calibration tuning on Gemini cut the hallucination rate from 88% to 50% while maintaining nearly identical accuracy.
+
+## Decoding-Based Methods
+
+Recent approaches apply contrastive decoding to calibrate the model's response via contrasting output distributions with original and visually distorted samples, demonstrating promising hallucination mitigation in a training-free manner. This includes specialized methods like Dual Contrastive Decoding, which introduces two stages of contrastive distributions to calibrate the model's output.
+
+The field has moved from attempting to eliminate hallucinations entirely toward managing uncertainty in a measurable, calibrated way.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "83fbbb35-a0ae-4b32-9409-e60888a57e0e",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "93f3ca1e-33eb-4387-955a-e39b94eb36ba",
+  "sourceToolAssistantUUID": "83fbbb35-a0ae-4b32-9409-e60888a57e0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T09:43:00.448Z_
+
+<details><summary>↩ Tool result · `toolu_01FvnQ21pmKaJRGcnmQHqGFm`</summary>
+
+```text
+Web search results for query: "overconfident hallucination detection probe 2026 LLM"
+
+Links: [{"title":"MIT Researchers Develop New Method to Identify Overconfident Large Language Models and Flag Hallucinations","url":"https://creati.ai/ai-news/2026-03-20/mit-new-method-identify-overconfident-large-language-models-hallucinations/"},{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub","url":"https://github.com/EdinburghNLP/awesome-hallucination-detection"},{"title":"How to Detect Hallucinations in Your LLM Applications","url":"https://www.getmaxim.ai/articles/how-to-detect-hallucinations-in-your-llm-applications/"},{"title":"Hallucination Detection in LLMs: Methods, Metrics, Benchmarks","url":"https://www.statsig.com/perspectives/hallucination-detection-llms-methods"},{"title":"GitHub - Mattbusel/LLM-Hallucination-Detection-Script: A comprehensive toolkit for detecting potential hallucinations in LLM responses. Compatible with any LLM API (OpenAI, Anthropic, local models, etc.) · GitHub","url":"https://github.com/Mattbusel/LLM-Hallucination-Detection-Script"},{"title":"Logical Consistency as a Bridge: Improving LLM Hallucination Detection via Label Constraint Modeling between Responses and Self-Judgments","url":"https://arxiv.org/html/2605.03971v1"},{"title":"INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection | OpenReview","url":"https://openreview.net/forum?id=Zj12nzlQbz"},{"title":"HALT: Hallucination Assessment via Latent Testing","url":"https://arxiv.org/html/2601.14210v1"},{"title":"LLM Hallucination Statistics 2026: AI Gets Facts Wrong Up to 82% of the Time","url":"https://sqmagazine.co.uk/llm-hallucination-statistics/"}]
+
+Based on the search results, here are the key findings on overconfident hallucination detection for LLMs in 2026:
+
+## MIT's Total Uncertainty Metric
+
+MIT researchers have introduced a total uncertainty metric that compares a model's outputs across an ensemble of LLMs from different developers, more accurately detecting overconfident and hallucinated predictions than existing self-consistency approaches. The MIT method incorporates epistemic uncertainty to address "knowledge gaps" inherent in the model's training by measuring how much a target model disagrees with a diverse ensemble of other LLMs, helping to distinguish between a model that is truly confident and one that is merely hallucinating.
+
+## Neural Probe-Based Detection
+
+Researchers have trained lightweight probes (3M–37M params) on intermediate hidden states instead of final-layer outputs, with two modes: question-only (runs before or alongside generation with no added latency) and question+answer (waits for the full response, more accurate), where a built-in LLM router uses probe confidence to decide whether to return the answer or hand off to a stronger model / RAG.
+
+Another approach uses lightweight residual probes that read hallucination risk directly from intermediate hidden states of question tokens, motivated by the hypothesis that these layers retain epistemic signals that are attenuated in the final decoding stage.
+
+## Key Challenge: Overconfident Hallucinations
+
+Methods that capture internal signals from a micro perspective may lack proper calibration, resulting in failure to identify high-certainty hallucinations. A test-time feature clipping approach is explored to truncate extreme activations in internal states, which reduces overconfident generations and potentially benefits detection of overconfident hallucinations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b865eb8a-f8e9-49cf-9734-1d33e6b10703",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "d124d050-42b1-4bd0-bee2-49c06e43ba17",
+  "sourceToolAssistantUUID": "b865eb8a-f8e9-49cf-9734-1d33e6b10703",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T09:43:03.707Z_
+
+<details><summary>↩ Tool result · `toolu_01WWM15i56gAG5TL7zK6RECn`</summary>
+
+```text
+Web search results for query: "selective decoding factuality 2026 arxiv"
+
+Links: [{"title":"Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation","url":"https://arxiv.org/html/2503.03106v1"},{"title":"1 Introduction","url":"https://arxiv.org/html/2602.09486"},{"title":"SLED: Self Logits Evolution Decoding for Improving Factuality in Large Language Models","url":"https://arxiv.org/html/2411.02433v1"},{"title":"Calibrated Speculative Decoding: Frequency-Guided Candidate Selection for Efficient Inference","url":"https://arxiv.org/html/2604.13634v1"},{"title":"A Factuality and Diversity Reconciled Decoding Method for Knowledge-Grounded Dialogue Generation","url":"https://arxiv.org/html/2407.05718"},{"title":"Speculative Decoding and Beyond: An In-Depth Survey of Techniques","url":"https://arxiv.org/html/2502.19732v4"},{"title":"Improving Factuality in Large Language Models via Decoding-Time Hallucinatory and Truthful Comparators","url":"https://arxiv.org/html/2408.12325v3"},{"title":"Speculative Speculative Decoding","url":"https://arxiv.org/html/2603.03251v2"},{"title":"[2502.03199] Improve Decoding Factuality by Token-wise Cross Layer Entropy of Large Language Models","url":"https://arxiv.org/abs/2502.03199"},{"title":"A Thorough Examination of Decoding Methods in the Era of LLMs","url":"https://arxiv.org/html/2402.06925v3"}]
+
+Based on the web search results, here are the key findings for "selective decoding factuality 2026 arxiv":
+
+## Recent ArXiv Papers on Selective Decoding and Factuality (2026)
+
+The CoCoA decoder is a novel, training-free decoding algorithm that mitigates hallucinations at inference time by listening to signals in the middle layers, proposing two metrics to quantify instability in the middle layers and use it to penalize outputs that exhibit high internal confusion, with a self-information gated variant called CoCoA-SIG that dynamically modulates this penalty to selectively target high-surprise, unstable generations.
+
+Calibrated Speculative Decoding (CSD) is a training-free framework that improves the efficiency of speculative decoding by selectively relaxing rigid token-level verification, recovering valid tokens discarded by standard verification through two lightweight modules: Online Correction Memory, which aggregates historical rejections to propose recurring divergence patterns as rescue candidates, and Semantic Consistency Gating, which verifies candidate admissibility using probability ratios instead of exact token matching.
+
+Monitoring Decoding (MD) is a novel framework that dynamically monitors the generation process and selectively applies in-process interventions by identifying hallucination-prone tokens during generation using a monitor function, and further refining these tokens through a tree-based decoding strategy.
+
+These papers represent cutting-edge approaches to improving factuality in language models through selective decoding techniques that target specific problematic tokens or layers rather than resampling entire responses.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "38a473d5-9ee4-4eca-a89d-d05e0a57ad34",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "2aac4af1-f2b6-4bbc-864b-9412541909d3",
+  "sourceToolAssistantUUID": "38a473d5-9ee4-4eca-a89d-d05e0a57ad34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T09:43:07.672Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QLJ6Hsf7Rffkdpq3P7oLTi`</summary>
+
+```json
+{
+  "query": "PC-LDCD \"Probabilistic Circuits\" hallucination arxiv 2605.05953"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2aac4af1-f2b6-4bbc-864b-9412541909d3",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62iZyQPoBnxSJz1XsLt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "708eace8-4f74-478b-a06e-fbdf4a6e78c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AFpKjdxnNMr7i42JnHRnZz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3956,
+      "cache_read_input_tokens": 12602,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3956,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T09:43:08.090Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017iugJpaMyzNrZDLtovSL5f`</summary>
+
+```json
+{
+  "query": "CSS \"calibrated specificity\" arxiv 2604.17487"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "708eace8-4f74-478b-a06e-fbdf4a6e78c4",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62iZyQPoBnxSJz1XsLt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "be6d1846-bfb9-4572-a0d1-5e274c37467f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AFpKjdxnNMr7i42JnHRnZz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3956,
+      "cache_read_input_tokens": 12602,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3956,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T09:43:08.651Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FGQpwSn2LUbWvoT1TH4eUr`</summary>
+
+```json
+{
+  "query": "CAG \"calibration-aware generation\" arxiv 2605.01749"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "be6d1846-bfb9-4572-a0d1-5e274c37467f",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62iZyQPoBnxSJz1XsLt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "298434cb-c044-41c4-82a6-051265a28953",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AFpKjdxnNMr7i42JnHRnZz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3956,
+      "cache_read_input_tokens": 12602,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3956
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 12602,
+          "cache_creation_input_tokens": 3956,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3956,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T09:43:11.025Z_
+
+<details><summary>↩ Tool result · `toolu_017iugJpaMyzNrZDLtovSL5f`</summary>
+
+```text
+Web search results for query: "CSS "calibrated specificity" arxiv 2604.17487"
+
+No links found.
+
+The search didn't return any results for that specific arXiv paper (arxiv 2604.17487). This could mean:
+
+1. The paper may not be publicly available or indexed yet
+2. The arXiv ID might be slightly different
+3. The paper might use different terminology in its metadata
+
+Would you like me to try a modified search, such as:
+- Searching just for the arXiv ID: "2604.17487"
+- Searching for "calibrated specificity" without the specific arXiv reference
+- Searching for CSS and calibrated specificity more broadly
+
+Let me know how you'd like to proceed!
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "be6d1846-bfb9-4572-a0d1-5e274c37467f",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "634aebb7-16a1-499d-948e-9ed3c26ef470",
+  "sourceToolAssistantUUID": "be6d1846-bfb9-4572-a0d1-5e274c37467f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T09:43:13.866Z_
+
+<details><summary>↩ Tool result · `toolu_01QLJ6Hsf7Rffkdpq3P7oLTi`</summary>
+
+```text
+Web search results for query: "PC-LDCD "Probabilistic Circuits" hallucination arxiv 2605.05953"
+
+Links: [{"title":"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits","url":"https://arxiv.org/html/2605.05953"},{"title":"[2605.05953] Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits","url":"https://arxiv.org/abs/2605.05953"},{"title":"Computer Science Feb 2023","url":"http://arxiv.org/list/cs/2023-02?skip=2625&show=25"},{"title":"[2605.06831] Why DDIM Hallucinates More than DDPM: A Theoretical Analysis of Reverse Dynamics","url":"https://arxiv.org/abs/2605.06831"},{"title":"Probabilistic Guarantees for Reducing Contextual Hallucinations in LLMs","url":"https://arxiv.org/pdf/2601.00641"},{"title":"Computer Science Apr 2025","url":"https://www.arxiv.org/list/cs/2025-04?skip=5650&show=25"},{"title":"Rethinking Probabilistic Circuit Parameter Learning","url":"https://arxiv.org/html/2505.19982v1"},{"title":"1 INTRODUCTION","url":"https://arxiv.org/html/2411.12256"},{"title":"A Probabilistic Framework for LLM Hallucination Detection via Belief Tree Propagation","url":"https://arxiv.org/html/2406.06950v1"},{"title":"Hallucination Detection: A Probabilistic Framework Using Embeddings Distance Analysis","url":"https://arxiv.org/html/2502.08663v1"}]
+
+I found the paper you're looking for! Here's what the search results show about PC-LDCD and Probabilistic Circuits:
+
+PC-LDCD (Probabilistic Circuit Latent Density Contrastive Decoding) is triggered only when the latent geometry deviates from factual regions, while leaving correct generations untouched.
+
+The paper proposes PCNet, a Probabilistic Circuit trained as a tractable density estimator over the LLM residual stream. The method detects hallucinations as geometric anomalies on the factual manifold, which is done via exact Negative Log-Likelihood computation, hence without the need for sampling, external verifiers, or weight modifications.
+
+In terms of performance, across four LLMs ranging from 1B to 8B models and four benchmarks, PCNet achieves near-perfect hallucination detection with AUROC reaching up to 99%, and PC-LDCD obtains the highest True+Info, MC2, and MC3 scores on TruthfulQA in three out of four models, while reducing the mean corruption rate to 53.7% and achieving a preservation rate of 79.3%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "708eace8-4f74-478b-a06e-fbdf4a6e78c4",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "7919f370-f2dd-4095-950d-20d2986a5a44",
+  "sourceToolAssistantUUID": "708eace8-4f74-478b-a06e-fbdf4a6e78c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T09:43:15.394Z_
+
+<details><summary>↩ Tool result · `toolu_01FGQpwSn2LUbWvoT1TH4eUr`</summary>
+
+```text
+Web search results for query: "CAG "calibration-aware generation" arxiv 2605.01749"
+
+Links: [{"title":"[2605.01749] Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality","url":"https://arxiv.org/abs/2605.01749"},{"title":"Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality","url":"https://arxiv.org/html/2605.01749"},{"title":"Enhancing Cache-Augmented Generation (CAG) with Adaptive Contextual Compression for Scalable Knowledge Integration","url":"https://arxiv.org/html/2505.08261v1"},{"title":"Cache-Augmented Generation (CAG) Is Here To Replace RAG","url":"https://www.intoai.pub/p/cache-augmented-generation-cag-is"},{"title":"Enhancing Cache-Augmented Generation (CAG) with ...","url":"https://arxiv.org/pdf/2505.08261"},{"title":"[2505.08261] Enhancing Cache-Augmented Generation (CAG) with Adaptive Contextual Compression for Scalable Knowledge Integration","url":"https://arxiv.org/abs/2505.08261"},{"title":"[1912.07742] CAG: A Real-time Low-cost Enhanced-robustness High-transferability Content-aware Adversarial Attack Generator","url":"https://arxiv.org/abs/1912.07742"},{"title":"[2412.18708] CAG: Chunked Augmented Generation for Google Chrome's Built-in Gemini Nano","url":"https://arxiv.org/abs/2412.18708"},{"title":"Optimizing Calibration by Gaining Aware of Prediction Correctness","url":"https://arxiv.org/html/2404.13016v1"},{"title":"Preparing Students for AI-Powered Materials Discovery: A Workflow-Aligned Framework for AI Literacy, Equity, and Scientific Judgment","url":"https://arxiv.org/html/2605.09624"}]
+
+Based on the search results, here's the information about the arXiv paper 2605.01749:
+
+## Paper Overview
+
+The paper is titled "Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality", with authors including Wen Luo, Guangyue Peng, Liang Wang, Nan Yang, Wei Li, Yuhan Song, Shaohang Wei, Feifan Song, Furu Wei, and Houfeng Wang.
+
+## Problem and Approach
+
+Large Reasoning Models achieve strong performance on complex tasks but remain prone to hallucinations, particularly in long-form generation where errors compound across reasoning steps. 
+
+The paper proposes an Exploration-Commitment Decoupling paradigm that disentangles knowledge exploration from final commitment, and instantiates it with Calibration-Aware Generation (CAG), a framework that equips models with end-to-end, calibration-aware generation capabilities, by augmenting intermediate reasoning with calibrated reliability estimates and prioritizing reliable content in final outputs.
+
+## Results
+
+Across five long-form factuality benchmarks and multiple model families, CAG improves factuality by up to 13%, while reducing decoding time by up to 37%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "298434cb-c044-41c4-82a6-051265a28953",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "e23ffcd9-ab2e-48eb-8f46-52b5ec67293e",
+  "sourceToolAssistantUUID": "298434cb-c044-41c4-82a6-051265a28953",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T09:43:18.415Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FJGnQcfDhDuyqq4RcsRxdW`</summary>
+
+```json
+{
+  "query": "arxiv 2604.17487"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e23ffcd9-ab2e-48eb-8f46-52b5ec67293e",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62jS8Pnh9FcADeqW8tq",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "367adbeb-2d27-4599-8b34-3f29a1c3b368",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GC6GTKVYuAstUAFTGBhEdq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2073,
+      "cache_read_input_tokens": 16558,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2073,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T09:43:20.002Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LebkkgtT4L3sDnjNZCaJti`</summary>
+
+```json
+{
+  "query": "\"verbal confidence\" \"factuality probe\" hallucination decoding LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "367adbeb-2d27-4599-8b34-3f29a1c3b368",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62jS8Pnh9FcADeqW8tq",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b76be47a-100b-4065-a610-4c38a39dcd68",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GC6GTKVYuAstUAFTGBhEdq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2073,
+      "cache_read_input_tokens": 16558,
+      "output_tokens": 165,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2073
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 165,
+          "cache_read_input_tokens": 16558,
+          "cache_creation_input_tokens": 2073,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2073,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T09:43:20.010Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NacMjo9v9TFtEqrgrjuYd9`</summary>
+
+```json
+{
+  "query": "combining uncertainty estimation decoding intervention hallucination LLM 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b76be47a-100b-4065-a610-4c38a39dcd68",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62jS8Pnh9FcADeqW8tq",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b81442f0-ff55-4b2e-9ff4-116bc0eec978",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GC6GTKVYuAstUAFTGBhEdq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2073,
+      "cache_read_input_tokens": 16558,
+      "output_tokens": 165,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2073
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 165,
+          "cache_read_input_tokens": 16558,
+          "cache_creation_input_tokens": 2073,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2073,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T09:43:24.627Z_
+
+<details><summary>↩ Tool result · `toolu_01FJGnQcfDhDuyqq4RcsRxdW`</summary>
+
+```text
+Web search results for query: "arxiv 2604.17487"
+
+Links: [{"title":"[2604.17487] Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control for Agentic Systems","url":"https://arxiv.org/abs/2604.17487"},{"title":"Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control for Agentic Systems","url":"https://arxiv.org/html/2604.17487"},{"title":"Arxiv","url":"https://arxiv.org/pdf/2404.17487"},{"title":"arXiv:2409.17487v1 [cs.CV] 26 Sep 2024","url":"https://arxiv.org/pdf/2409.17487"},{"title":"Autonomous Circular Drift Control for 4WD-4WS Vehicles Without Precomputed Drifting Equilibrium","url":"https://arxiv.org/html/2505.17487"},{"title":"Artificial Intelligence Feb 2025","url":"https://arxiv.org/list/cs.AI/2025-02?skip=400&show=1000"},{"title":"[2507.17487] CQE under Epistemic Dependencies: Algorithms and Experiments (extended version)","url":"https://arxiv.org/abs/2507.17487"},{"title":"DeepMF: Deep Motion Factorization for Closed-Loop Safety-Critical Driving Scenario Simulation","url":"https://arxiv.org/html/2412.17487"},{"title":"[2602.17487] Modeling of Relativistic Plasmas with a Conservative Discontinuous Galerkin Method","url":"https://arxiv.org/abs/2602.17487"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=543&show=2000"}]
+
+Based on the search results, arxiv paper 2604.17487 is titled "Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control for Agentic Systems" and addresses a failure mode where agentic systems are too precise with responses that may be generally useful while particular claims exceed what the evidence supports.
+
+The paper introduces compositional selective specificity (CSS), a post-generation layer that decomposes an answer into claims, proposes coarser backoffs, and emits each claim at the most specific calibrated level that appears admissible. The method is designed to express uncertainty as a local semantic backoff rather than as a whole-answer refusal.
+
+On the full LongFact run, the method raises overcommitment-aware utility from 0.846 to 0.913 while achieving 0.938 specificity retention.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "367adbeb-2d27-4599-8b34-3f29a1c3b368",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "28ab1d13-ae28-42cf-ad6a-2de8490cb11b",
+  "sourceToolAssistantUUID": "367adbeb-2d27-4599-8b34-3f29a1c3b368",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T09:43:27.201Z_
+
+<details><summary>↩ Tool result · `toolu_01LebkkgtT4L3sDnjNZCaJti`</summary>
+
+```text
+Web search results for query: ""verbal confidence" "factuality probe" hallucination decoding LLM 2025 2026"
+
+Links: [{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202510.0540/v1"},{"title":"Simple Factuality Probes Detect Hallucinations in Long- ...","url":"https://aclanthology.org/2025.findings-emnlp.880.pdf"},{"title":"LLM Hallucination Statistics 2026: AI Gets Facts Wrong Up to 82% of the Time","url":"https://sqmagazine.co.uk/llm-hallucination-statistics/"},{"title":"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub","url":"https://github.com/EdinburghNLP/awesome-hallucination-detection"},{"title":"AI Hallucination Rates & Benchmarks in 2026","url":"https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/"},{"title":"Frontiers | Survey and analysis of hallucinations in large language models: attribution to prompting strategies or model behavior","url":"https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1622292/full"},{"title":"1 Large Language Models Hallucination: A Comprehensive Survey","url":"https://arxiv.org/pdf/2510.06265"},{"title":"Hallucination to truth: a review of fact-checking and factuality evaluation in large language models | Artificial Intelligence Review | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10462-025-11454-w"},{"title":"SENSITIVITY-GUIDED HALLUCINATION DETECTION IN ...","url":"https://openreview.net/pdf?id=aZdcNDf3pc"}]
+
+I've completed the web search for your query about "verbal confidence," "factuality probe," and hallucination decoding in LLMs for 2025-2026. Here's what I found:
+
+## Key Research Areas
+
+**Factuality Probes for Hallucination Detection:**
+
+Factuality Probes enable fine-grained reporting of confidence in long-form generations by decomposing generated text into atomic claims, obtaining hidden states for each claim, and applying a lightweight probe on hidden states to estimate claim-level factuality, then propagating claim-level factuality back to the long-form generation. This research was published at EMNLP 2025.
+
+**Verbal Confidence and Hallucinations:**
+
+Research has identified a concerning pattern: MIT researchers found that AI models use more confident language when hallucinating than when stating facts. This counterintuitive finding suggests that training and evaluation regimes teach models that confident guessing pays off.
+
+**Recent Advances in Hallucination Detection:**
+
+Hallucinations are being categorized into two types based on "belief state"—a measure of model confidence: Overconfident (model confidently lies) and Unaware (model guesses due to missing knowledge). Additionally, tuning a model's calibration—its ability to match confidence to actual accuracy—can dramatically reduce hallucination, with one example showing a 38 percentage point AI hallucination reduction with only 1% accuracy loss.
+
+The research demonstrates that managing uncertainty rather than eliminating hallucinations entirely is emerging as the dominant approach in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b76be47a-100b-4065-a610-4c38a39dcd68",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "05037c0c-d11d-4d1f-ab92-41af3dc459ef",
+  "sourceToolAssistantUUID": "b76be47a-100b-4065-a610-4c38a39dcd68",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T09:43:28.621Z_
+
+<details><summary>↩ Tool result · `toolu_01NacMjo9v9TFtEqrgrjuYd9`</summary>
+
+```text
+Web search results for query: "combining uncertainty estimation decoding intervention hallucination LLM 2026"
+
+Links: [{"title":"Hallucination Detection and Mitigation in Large Language Models","url":"https://arxiv.org/html/2601.09929v1"},{"title":"From Illusion to Insight: A Taxonomic Survey of Hallucination Mitigation Techniques in LLMs","url":"https://www.mdpi.com/2673-2688/6/10/260"},{"title":"Uncertainty Quantification for Hallucination Detection in Large Language Models: Foundations, Methodology, and Future Directions","url":"https://arxiv.org/html/2510.12040"},{"title":"Uncertainty-Aware Fusion: An Ensemble Framework for Mitigating Hallucinations in Large Language Models | Companion Proceedings of the ACM on Web Conference 2025","url":"https://dl.acm.org/doi/10.1145/3701716.3715523"},{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202510.0540/v1"},{"title":"The Challenge of LLM Hallucination: A Review of Current ...","url":"https://www.techrxiv.org/users/959186/articles/1328087/master/file/data/LLM_Hallucination/LLM_Hallucination.pdf"},{"title":"Thinking, Faithful and Stable: Mitigating Hallucinations in LLMs","url":"https://cs224r.stanford.edu/projects/pdfs/Final_Report_CS224r.pdf"},{"title":"Review Not peer-reviewed version A Survey on Hallucination in Large","url":"https://www.preprints.org/manuscript/202510.0540/v1/download"},{"title":"LLM hallucination rate evaluation for engineering | PatSnap","url":"https://www.patsnap.com/resources/blog/articles/llm-hallucination-rate-evaluation-for-engineering/"}]
+
+I found several highly relevant sources on combining uncertainty estimation with decoding interventions for hallucination mitigation in LLMs. Here's a summary of the key findings:
+
+## Core Concepts
+
+A comprehensive operational framework for hallucination management is built on categorizing hallucination sources into model, data, and context-related factors to allow targeted interventions over generic fixes.
+
+## Uncertainty Estimation Approaches
+
+Uncertainty can be estimated by analyzing internal signals from LLMs such as hidden states and attention weights, with the intuition that embeddings from hallucinated and factual responses occupy different regions in the feature space, enabling their separation.
+
+Modern LLMs can explicitly express confidence through self-declared uncertainty—a metacognitive signal where the model communicates how sure it is about an answer, derived from the model's own reasoning chain or post-hoc reflection.
+
+## Decoding Interventions
+
+Critic-driven Decoding combines an LLM's probabilistic outputs with a text critic classifier that evaluates generated text and steers decoding away from hallucinations.
+
+Self-consistency samples multiple reasoning paths, selecting the most consistent answer; this not only improves reliability but also provides an uncertainty estimate for detecting hallucinations.
+
+Understanding how decoding strategies affect uncertainty estimation is underexplored; decoding techniques such as temperature scaling directly reshape the probability distribution, influencing uncertainty quantification methods, and decoding choices should be explicitly accounted for in UQ research.
+
+## Recent 2026 Innovations
+
+SRI International's hallucination prevention system injects "think tokens" whenever token-by-token generation uncertainty exceeds a predetermined threshold during generation, operating during streaming rather than post-hoc.
+
+A process-level reward framework incorporates fine-grained indicators of uncertainty and model introspection, focusing on token-level entropy spikes and self-assessed confidence alignment, where the model reflects on its reasoning and expresses a confidence score.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b81442f0-ff55-4b2e-9ff4-116bc0eec978",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "5b95e52d-c2c1-41fb-b99a-cfe840235dcd",
+  "sourceToolAssistantUUID": "b81442f0-ff55-4b2e-9ff4-116bc0eec978",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T09:43:31.916Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JXYzAQLwRdEXS3vUCQDtDf`</summary>
+
+```json
+{
+  "query": "\"INSIDE\" internal states hallucination detection LLM probe decoding 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b95e52d-c2c1-41fb-b99a-cfe840235dcd",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62kQXgAPLmmiCkEfUjv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d09607ae-4008-4559-b9e1-747faf891975",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJvTrziyVmRynSg3fjcm4C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2881,
+      "cache_read_input_tokens": 18631,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2881,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T09:43:32.782Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016phXarkrFmxHNpdys11eU1`</summary>
+
+```json
+{
+  "query": "SLED \"self logits evolution decoding\" factuality hallucination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d09607ae-4008-4559-b9e1-747faf891975",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62kQXgAPLmmiCkEfUjv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7e85f7f8-887c-4f78-9dc3-81e269cdb787",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJvTrziyVmRynSg3fjcm4C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2881,
+      "cache_read_input_tokens": 18631,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2881,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T09:43:33.375Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016TDoC2U6yeUwz3dVyQXySJ`</summary>
+
+```json
+{
+  "query": "\"confidence elicitation\" probe \"decoding strategy\" hallucination mitigation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e85f7f8-887c-4f78-9dc3-81e269cdb787",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62kQXgAPLmmiCkEfUjv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1294f2cc-6a3c-4708-a808-7494eb0ae0aa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UJvTrziyVmRynSg3fjcm4C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2881,
+      "cache_read_input_tokens": 18631,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2881
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 18631,
+          "cache_creation_input_tokens": 2881,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2881,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T09:43:38.937Z_
+
+<details><summary>↩ Tool result · `toolu_01JXYzAQLwRdEXS3vUCQDtDf`</summary>
+
+```text
+Web search results for query: ""INSIDE" internal states hallucination detection LLM probe decoding 2025"
+
+Links: [{"title":"[2402.03744] INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection","url":"https://arxiv.org/abs/2402.03744"},{"title":"Detection of Hallucinations Based on the Internal States of Large Language Models | Automatic Documentation and Mathematical Linguistics | Springer Nature Link","url":"https://link.springer.com/article/10.3103/S0005105525701456"},{"title":"INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection | OpenReview","url":"https://openreview.net/forum?id=Zj12nzlQbz"},{"title":"Prompt-Guided Internal States for Hallucination Detection ...","url":"https://aclanthology.org/2025.acl-long.1058.pdf"},{"title":"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub","url":"https://github.com/EdinburghNLP/awesome-hallucination-detection"},{"title":"Logical Consistency as a Bridge: Improving LLM Hallucination Detection via Label Constraint Modeling between Responses and Self-Judgments","url":"https://arxiv.org/html/2605.03971v1"},{"title":"llms' internal states retain the power of hallucination detection","url":"https://arxiv.org/pdf/2402.03744"},{"title":"INSIDE: LLMs’ Internal States Retain the Power of Hallucination Detection","url":"https://arxiv.org/html/2402.03744"},{"title":"MIND: Unsupervised Hallucination Detection Framework ...","url":"https://github.com/oneal2000/MIND"},{"title":"Hallucination Detection in LLMs Using Spectral Features of Attention Maps","url":"https://arxiv.org/html/2502.17598v2"}]
+
+Based on the search results, here's what I found about INSIDE and related research on hallucination detection using internal states and probe decoding:
+
+## INSIDE: LLMs' Internal States for Hallucination Detection
+
+INSIDE proposes to explore the dense semantic information retained within LLMs' Internal States for hallucInation DEtection. 
+
+**Key Components:**
+
+1. **EigenScore Metric**: A simple yet effective EigenScore metric is proposed to better evaluate responses' self-consistency, which exploits the eigenvalues of responses' covariance matrix to measure the semantic consistency/diversity in the dense embedding space.
+
+2. **Feature Clipping Approach**: From the perspective of self-consistent hallucination detection, a test time feature clipping approach is explored to truncate extreme activations in the internal states.
+
+3. **Motivation**: Previous efforts in detecting hallucinations have been employed at logit-level uncertainty estimation or language-level self-consistency evaluation, where the semantic information is inevitably lost during the token-decoding procedure.
+
+## Related Research
+
+Recent 2025 work includes Prompt-Guided Internal States for Hallucination Detection, which builds on these internal state analysis techniques. Additionally, factual retrieval produces stable eigen-structures, while hallucination leads to diffuse, chaotic patterns, as observed through spectral analysis of attention mechanisms.
+
+SAPLMA was one of the first probes that demonstrated one could predict the correctness of generated text straight from LLM's hidden states.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d09607ae-4008-4559-b9e1-747faf891975",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "c74abe40-f4e6-4005-afc8-0481d8beb24c",
+  "sourceToolAssistantUUID": "d09607ae-4008-4559-b9e1-747faf891975",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T09:43:41.892Z_
+
+<details><summary>↩ Tool result · `toolu_016TDoC2U6yeUwz3dVyQXySJ`</summary>
+
+```text
+Web search results for query: ""confidence elicitation" probe "decoding strategy" hallucination mitigation 2025 2026"
+
+Links: [{"title":"A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202510.0540/v1"},{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"Mitigating Hallucinations in Large Vision-Language Models via Dual Contrastive Decoding | Proceedings of the 7th ACM International Conference on Multimedia in Asia","url":"https://dl.acm.org/doi/10.1145/3743093.3770933"},{"title":"Hallucination Detection and Mitigation in Large Language Models","url":"https://arxiv.org/html/2601.09929v1"},{"title":"Hallucination Rates in 2025 — Accuracy, Refusal, and Liability | by Markus Brinsa | Medium","url":"https://medium.com/@markus_brinsa/hallucination-rates-in-2025-accuracy-refusal-and-liability-aa0032019ca1"},{"title":"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub","url":"https://github.com/EdinburghNLP/awesome-hallucination-detection"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2602.18671"},{"title":"Hallucination Detection and Mitigation in Large Language ...","url":"https://arxiv.org/pdf/2601.09929"},{"title":"Seeing Far and Clearly: Mitigating Hallucinations in MLLMs with Attention Causal Decoding - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12425127/"},{"title":"1 Large Language Models Hallucination: A Comprehensive Survey","url":"https://arxiv.org/pdf/2510.06265"}]
+
+Based on the search results, here's what I found about confidence elicitation, probes, decoding strategies, and hallucination mitigation in 2025-2026:
+
+## Confidence Elicitation and Detection
+
+A secondary prompt or reflection step is used to elicit a confidence score, such as: "On a scale from 0 to 1, how confident are you that the above statement is factually correct?" Expected Calibration Error (ECE) addresses the disconnect between model confidence scores and actual accuracy by identifying systematic overconfidence, which helps flag scenarios where models are confidently wrong.
+
+## Probe-Based Approaches
+
+Recent approaches train lightweight probes (3M–37M parameters) on intermediate hidden states, with two modes: question-only (runs before or alongside generation with no added latency) and question+answer (waits for the full response, more accurate), where a built-in LLM router uses probe confidence to decide whether to return the answer or hand off to a stronger model/RAG.
+
+## Decoding Strategies for Mitigation
+
+A Dual Contrastive Decoding method introduces two stages of contrastive distributions to calibrate the model's output. When an imminent hallucination is detected mid-generation, the decoding trajectory is dynamically altered to enforce factual consistency, shifting the paradigm from post-generation correction to active preventative decoding.
+
+## Recent Findings on Confidence Calibration
+
+Rewarding Doubt (2025) integrates confidence calibration into reinforcement learning, penalising both over- and underconfidence so model certainty better matches correctness. OpenAI's 2025 analysis emphasizes that a major driver of hallucinations is evaluation design that punishes uncertainty; changing scoring to penalize confident errors more heavily and reward appropriate uncertainty pushes models toward safer behavior.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1294f2cc-6a3c-4708-a808-7494eb0ae0aa",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "ddfe5dd6-3dad-49d5-ab70-a2ac1b787f7d",
+  "sourceToolAssistantUUID": "1294f2cc-6a3c-4708-a808-7494eb0ae0aa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T09:43:42.243Z_
+
+<details><summary>↩ Tool result · `toolu_016phXarkrFmxHNpdys11eU1`</summary>
+
+```text
+Web search results for query: "SLED "self logits evolution decoding" factuality hallucination"
+
+Links: [{"title":"[2411.02433] SLED: Self Logits Evolution Decoding for Improving Factuality in Large Language Models","url":"https://arxiv.org/abs/2411.02433"},{"title":"GitHub - JayZhang42/SLED: SLED: Self Logits Evolution Decoding for Improving Factuality in Large Language Model https://arxiv.org/pdf/2411.02433 · GitHub","url":"https://github.com/JayZhang42/SLED"},{"title":"SLED: self logits evolution decoding for improving factuality ...","url":"https://dl.acm.org/doi/10.5555/3737916.3738084"},{"title":"SLED: Self Logits Evolution Decoding for Improving Factuality in Large Language Models","url":"https://arxiv.org/html/2411.02433v2"},{"title":"SLED: Self Logits Evolution Decoding Boosts Factuality Without Retraining | Joshua Berkowitz","url":"https://joshuaberkowitz.us/blog/papers-7/sled-self-logits-evolution-decoding-boosts-factuality-without-retraining-1174"},{"title":"SLED: Self Logits Evolution Decoding for Improving Factuality in Large Language Models | OpenReview","url":"https://openreview.net/forum?id=t7wvJstsiV"},{"title":"SLED: Self Logits Evolution Decoding for Improving Factuality in Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/397200047_SLED_Self_Logits_Evolution_Decoding_for_Improving_Factuality_in_Large_Language_Models"},{"title":"SLED: Self Logits Evolution Decoding for Improving","url":"https://arxiv.org/pdf/2411.02433"},{"title":"Making LLMs more accurate by using all of their layers","url":"https://research.google/blog/making-llms-more-accurate-by-using-all-of-their-layers/"},{"title":"[Quick Review] SLED: Self Logits Evolution Decoding for Improving Factuality in Large Language Models","url":"https://liner.com/review/sled-self-logits-evolution-decoding-for-improving-factuality-in-large"}]
+
+Based on the search results, here's comprehensive information about SLED (Self Logits Evolution Decoding):
+
+## Overview
+
+SLED is a novel decoding framework that enhances the truthfulness of LLMs without relying on external knowledge bases or requiring further fine-tuning.
+
+## How It Works
+
+SLED leverages the latent knowledge embedded within the LLM by contrasting the output logits from the final layer with those from early layers, then utilizes an approximate gradient approach to enable latent knowledge to guide the self-refinement of outputs, thereby effectively improving factual accuracy.
+
+More specifically, during the decoding process, as LLMs progress from early to final layers, they progressively incorporate factual information stored in each layer into the output. SLED tracks this evolution process to unearth the latent knowledge within LLMs, and enables the "self-evolution" of the output distribution further to align it more closely with real-world facts.
+
+## Key Features
+
+- **No External Dependencies**: Unlike retrieval-augmented methods that query external knowledge bases or techniques that require fine-tuning, SLED runs as a drop-in decoding strategy.
+
+- **Efficiency**: SLED just increases the decoding time of DoLa by factors ranging from 0.1% to 10%.
+
+- **Versatility**: Extensive experiments have been conducted on established benchmarks across a diverse range of model families (Gemma, Qwen, Mixtral, gpt-oss) and scales (from 1B to 45B), including more advanced architectural configurations such as the mixture of experts (MoE).
+
+## Performance and Recognition
+
+The SLED paper was accepted for NeurIPS 2024. It has been tested with factual accuracy enhancement across various tasks and benchmarks, such as TruthfulQA, StrategyQA, FACTOR, GSM8K, HotPotQA, Natural Questions, and TriviaQA.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e85f7f8-887c-4f78-9dc3-81e269cdb787",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "47d4f924-3d53-4387-b7e2-42761aa9b130",
+  "sourceToolAssistantUUID": "7e85f7f8-887c-4f78-9dc3-81e269cdb787",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-16T09:43:46.870Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TcyK9PQYvJCh9AM8NJqMGF`</summary>
+
+```json
+{
+  "query": "CoCoA \"middle layers\" instability hallucination decoding 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "47d4f924-3d53-4387-b7e2-42761aa9b130",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62mRvJHudzQk8f39FsN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fae46652-e342-4236-a752-cac7ef7ae482",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NALrh88Tbo4AZPdfUKPLCT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1032,
+      "cache_creation_input_tokens": 2139,
+      "cache_read_input_tokens": 21512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2139,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T09:43:47.579Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016nJekDuvinauUmnNp8ims1`</summary>
+
+```json
+{
+  "query": "\"Monitoring Decoding\" hallucination factuality partial response generation arxiv 2503.03106"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fae46652-e342-4236-a752-cac7ef7ae482",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62mRvJHudzQk8f39FsN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ee0852ae-f69d-4cbe-a38d-909166eecf94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NALrh88Tbo4AZPdfUKPLCT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1032,
+      "cache_creation_input_tokens": 2139,
+      "cache_read_input_tokens": 21512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2139,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-16T09:43:48.173Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01L6qKJpcYeocb52djjYKFEt`</summary>
+
+```json
+{
+  "query": "HALT \"hallucination assessment latent testing\" arxiv 2601.14210"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee0852ae-f69d-4cbe-a38d-909166eecf94",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62mRvJHudzQk8f39FsN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c705f734-86ff-45da-af1c-df3e2ddf72bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NALrh88Tbo4AZPdfUKPLCT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1032,
+      "cache_creation_input_tokens": 2139,
+      "cache_read_input_tokens": 21512,
+      "output_tokens": 181,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2139
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1032,
+          "output_tokens": 181,
+          "cache_read_input_tokens": 21512,
+          "cache_creation_input_tokens": 2139,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2139,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T09:43:53.708Z_
+
+<details><summary>↩ Tool result · `toolu_01TcyK9PQYvJCh9AM8NJqMGF`</summary>
+
+```text
+Web search results for query: "CoCoA "middle layers" instability hallucination decoding 2026 arxiv"
+
+Links: [{"title":"1 Introduction","url":"https://arxiv.org/html/2602.09486"},{"title":"[2602.09486] Listen to the Layers: Mitigating Hallucinations with Inter-Layer Disagreement","url":"https://arxiv.org/abs/2602.09486"},{"title":"Listen to the Layers: Mitigating Hallucinations with Inter-Layer Disagreement","url":"https://arxiv.org/pdf/2602.09486"},{"title":"Devils in Middle Layers of Large Vision-Language Models: Interpreting, Detecting and Mitigating Object Hallucinations via Attention Lens","url":"https://arxiv.org/html/2411.16724"},{"title":"LISA: A Layer-wise Integration and Suppression Approach for Hallucination Mitigation in Multimodal Large Language Models","url":"https://arxiv.org/html/2507.19110"},{"title":"GitHub - showlab/Awesome-MLLM-Hallucination: 📖 A curated list of resources dedicated to hallucination of multimodal large language models (MLLM).","url":"https://github.com/showlab/Awesome-MLLM-Hallucination"}]
+
+Based on the search results, I found a relevant paper on arXiv about CoCoA and middle layer instability for hallucination mitigation:
+
+## CoCoA: Confusion and Consistency Aware Decoder
+
+CoCoA (Confusion and Consistency Aware) is a novel, training-free decoding algorithm that mitigates hallucinations at inference time by listening to signals in the middle layers.
+
+### Core Approach
+
+The method is based on the hypothesis that a generated text span's factuality is correlated with its representational instability across the model's internal layers. Two metrics quantify this instability in the middle layers and are used to penalize outputs that exhibit high internal confusion, thereby steering the model towards more internally consistent and factually grounded outputs.
+
+### Method Variants
+
+CoCoA-SIG is a self-information gated variant that dynamically modulates the penalty to selectively target high-surprise, unstable generations.
+
+### Experimental Results
+
+Extensive experiments on diverse tasks, including question-answering, summarization, mathematical reasoning and code generation, demonstrate that CoCoA significantly improves factual correctness across multiple model families (e.g., Llama-3, Qwen-2.5, Mistral), offering an effective and broadly applicable method for enhancing trustworthiness of LLMs at inference time without requiring model retraining.
+
+The paper was submitted to arXiv on February 10, 2026, with the latest version published on March 8, 2026 (arXiv:2602.09486).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fae46652-e342-4236-a752-cac7ef7ae482",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "906cbb40-29a8-4f7e-9a55-33688c3e4a69",
+  "sourceToolAssistantUUID": "fae46652-e342-4236-a752-cac7ef7ae482",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T09:43:54.989Z_
+
+<details><summary>↩ Tool result · `toolu_016nJekDuvinauUmnNp8ims1`</summary>
+
+```text
+Web search results for query: ""Monitoring Decoding" hallucination factuality partial response generation arxiv 2503.03106"
+
+Links: [{"title":"[2503.03106] Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation","url":"https://arxiv.org/abs/2503.03106"},{"title":"Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation","url":"https://arxiv.org/html/2503.03106v1"},{"title":"Monitoring Decoding: Mitigating Hallucination via Evaluating the","url":"https://www.researchgate.net/publication/389617318_Monitoring_Decoding_Mitigating_Hallucination_via_Evaluating_the_Factuality_of_Partial_Response_during_Generation/fulltext/67c9beef32265243f583202b/Monitoring-Decoding-Mitigating-Hallucination-via-Evaluating-the-Factuality-of-Partial-Response-during-Generation.pdf?origin=scientificContributions"},{"title":"Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/monitoring-decoding-mitigating-hallucination-via-evaluating-factuality"},{"title":"Computer Science Mar 2025","url":"https://arxiv.org/list/cs/2025-03?skip=1575&show=2000"},{"title":"Computation and Language Mar 2025","url":"https://arxiv.org/list/cs.CL/2025-03?skip=200&show=2000"},{"title":"Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation","url":"https://www.researchgate.net/publication/394269763_Monitoring_Decoding_Mitigating_Hallucination_via_Evaluating_the_Factuality_of_Partial_Response_during_Generation"},{"title":"Mitigating Hallucination via Evaluating the Factuality of ...","url":"https://aclanthology.org/2025.findings-acl.752.pdf"},{"title":"[Quick Review] Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation","url":"https://liner.com/review/monitoring-decoding-mitigating-hallucination-via-evaluating-factuality-partial-response-during"},{"title":"Detection of Hallucinations Based on the Internal States of Large Language Models | Automatic Documentation and Mathematical Linguistics | Springer Nature Link","url":"https://link.springer.com/article/10.3103/S0005105525701456"}]
+
+I found the paper! Here's information about arxiv 2503.03106:
+
+## Paper Overview
+
+The paper introduces Monitoring Decoding (MD), a novel framework that dynamically monitors the generation process and selectively applies in-process interventions, focusing on revising crucial tokens responsible for hallucinations. Instead of waiting until completion of multiple full-length generations, it identifies hallucination-prone tokens during generation using a monitor function, and further refines these tokens through a tree-based decoding strategy.
+
+## Problem Being Addressed
+
+While large language models have demonstrated exceptional performance across a wide range of tasks, they remain susceptible to hallucinations -- generating plausible yet factually incorrect contents. Existing methods to mitigating such risk often rely on sampling multiple full-length generations, which introduces significant response latency and becomes ineffective when the model consistently produces hallucinated outputs with high confidence.
+
+## Key Technical Approach
+
+The paper introduces a monitor function that acts as a supervisory component to assess the factual consistency of intermediate tokens during partial decoding, flagging and rejecting those with hallucination risk. It employs a tree-based decoding strategy that selectively resamples and revises only the critical tokens flagged by the monitor function, allowing for searching for more potentially factual tokens within a smaller context window, effectively reducing hallucinations with improved sampling efficiency.
+
+## Results
+
+Experimental results demonstrate that MD consistently outperforms self-consistency-based approaches in both effectiveness and efficiency, achieving higher factual accuracy while significantly reducing computational overhead.
+
+## Publication Status
+
+The paper was accepted to ACL 2025 (Findings) and was submitted on March 5, 2025, with a revised version on September 13, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee0852ae-f69d-4cbe-a38d-909166eecf94",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "0881d401-b23b-4e73-9dda-88ccb5ad8a33",
+  "sourceToolAssistantUUID": "ee0852ae-f69d-4cbe-a38d-909166eecf94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T09:43:55.220Z_
+
+<details><summary>↩ Tool result · `toolu_01L6qKJpcYeocb52djjYKFEt`</summary>
+
+```text
+Web search results for query: "HALT "hallucination assessment latent testing" arxiv 2601.14210"
+
+Links: [{"title":"HALT: Hallucination Assessment via Latent Testing","url":"https://arxiv.org/html/2601.14210v1"},{"title":"[2601.14210] DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness","url":"https://arxiv.org/abs/2601.14210"},{"title":"Halt: Residual Probes Achieve Near-Instantaneous LLM Hallucination Risk Estimation","url":"https://quantumzeitgeist.com/halt-residual-probes-near-instantaneous/"},{"title":"HALT: Hallucination Assessment via Log-probs as Time series","url":"https://arxiv.org/html/2602.02888"},{"title":"[2602.02888] HALT: Hallucination Assessment via Log-probs as Time series","url":"https://arxiv.org/abs/2602.02888"},{"title":"DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness","url":"https://arxiv.org/html/2601.14210"},{"title":"(PDF) HALT: Hallucination Assessment via Log-probs as Time series","url":"https://www.researchgate.net/publication/400415154_HALT_Hallucination_Assessment_via_Log-probs_as_Time_series"},{"title":"Streaming Hallucination Detection in Long Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2601.02170"},{"title":"HALT: Hallucination Assessment via Log-probs as Time series","url":"https://www.arxiv.org/pdf/2602.02888"},{"title":"DHI: Leveraging Diverse Hallucination Induction for Enhanced Contrastive Factuality Control in Large Language Models","url":"https://arxiv.org/html/2601.01156v1"}]
+
+Based on the search results, here's what I found about the paper arxiv 2601.14210:
+
+HALT proposes lightweight residual probes that read hallucination risk directly from intermediate hidden states of question tokens, motivated by the hypothesis that these layers retain epistemic signals that are attenuated in the final decoding stage.
+
+The research is presented by Rohan Bhatnagar, Youran Sun, and Chi Andrew Zhang from the University of Maryland and University of Chicago, and identifies hallucination risk by analysing intermediate hidden states within LLMs.
+
+The method hypothesizes that intermediate layers encode confidence signals that are lost in the final output layer, and proposes a lightweight probe to read these signals directly from hidden states. The probe adds less than 0.1% computational overhead and can run fully in parallel with generation, enabling hallucination detection before the answer is produced.
+
+The method achieves state-of-the-art AUROC on 10 out of 12 settings across four QA benchmarks and three LLM families, with gains of up to 13 points over prior methods, and generalizes across dataset shifts without retraining.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c705f734-86ff-45da-af1c-df3e2ddf72bd",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "e19278d1-a024-4116-b0ab-b958f4ae7546",
+  "sourceToolAssistantUUID": "c705f734-86ff-45da-af1c-df3e2ddf72bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-16T09:43:59.538Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01X735fbtkVD9oJFMa9Zh1Qn`</summary>
+
+```json
+{
+  "query": "\"verbal confidence\" \"internal probe\" combined hallucination LLM uncertainty signal fusion"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e19278d1-a024-4116-b0ab-b958f4ae7546",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62nNHJCvxYeZRVF8fh2",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e6ba4354-6e16-42e2-b208-9f0d8b87ae2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WuSJGHzrsCMPCUk1PPHMv5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3852,
+      "cache_read_input_tokens": 23651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3852,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T09:44:00.601Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018g4dgRJKYb4A5LQHTK2a6U`</summary>
+
+```json
+{
+  "query": "CAG \"calibration-aware generation\" 2605.01749 method details probe confidence"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6ba4354-6e16-42e2-b208-9f0d8b87ae2d",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62nNHJCvxYeZRVF8fh2",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9a741565-c160-4329-a55e-c687adb1076c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WuSJGHzrsCMPCUk1PPHMv5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3852,
+      "cache_read_input_tokens": 23651,
+      "output_tokens": 123,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3852
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 123,
+          "cache_read_input_tokens": 23651,
+          "cache_creation_input_tokens": 3852,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3852,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T09:44:07.645Z_
+
+<details><summary>↩ Tool result · `toolu_018g4dgRJKYb4A5LQHTK2a6U`</summary>
+
+```text
+Web search results for query: "CAG "calibration-aware generation" 2605.01749 method details probe confidence"
+
+Links: [{"title":"[2605.01749] Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality","url":"https://arxiv.org/abs/2605.01749"},{"title":"Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality","url":"https://arxiv.org/html/2605.01749"},{"title":"[2605.12780] When to Trust Confidence Thresholding: Calibration Diagnostics for Pseudo-Labelled Regression","url":"https://arxiv.org/abs/2605.12780"},{"title":"When to Trust Confidence Thresholding: Calibration Diagnostics for Pseudo-Labelled Regression","url":"https://arxiv.org/html/2605.12780"},{"title":"Beyond ECE: Calibrated Size Ratio, Risk Assessment, and Confidence-Weighted Metrics","url":"https://arxiv.org/html/2605.01796"},{"title":"[2605.13484] Discovery of Hidden Miscalibration Regimes","url":"https://arxiv.org/abs/2605.13484"},{"title":"Perception and Semantic Aware Regularization for Sequential Confidence","url":"https://openaccess.thecvf.com/content/CVPR2023/papers/Peng_Perception_and_Semantic_Aware_Regularization_for_Sequential_Confidence_Calibration_CVPR_2023_paper.pdf"},{"title":"Calibrated Confidence Expression for Radiology Report Generation","url":"https://arxiv.org/html/2603.29492"},{"title":"Be Confident! Towards Trustworthy Graph Neural Networks via Confidence Calibration | DeepAI","url":"https://deepai.org/publication/be-confident-towards-trustworthy-graph-neural-networks-via-confidence-calibration"},{"title":"Confidence Calibration and Predictive Uncertainty Estimation ...","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC7704933/"}]
+
+Based on the search results, I found detailed information about CAG (Calibration-Aware Generation) from paper 2605.01749:
+
+## Overview
+
+CAG (Calibration-Aware Generation) is a framework that enables end-to-end, calibration-aware generation by explicitly separating exploration from commitment.
+
+## Method Details
+
+The framework equips models with end-to-end, calibration-aware generation capabilities by augmenting intermediate reasoning with calibrated reliability estimates and prioritizing reliable content in final outputs.
+
+The approach is built on an Exploration-Commitment Decoupling paradigm that disentangles knowledge exploration from final commitment, enabling models to explore with awareness while answering cautiously.
+
+## Key Mechanisms
+
+CAG is characterized by two complementary mechanisms: (i) Calibrated exploration—knowing what the model knows. During reasoning, the model generates well-calibrated intermediate steps, each accompanied by explicit reliability estimates.
+
+## Performance
+
+Across five long-form factuality benchmarks and multiple model families, CAG improves factuality by up to 13%, while reducing decoding time by up to 37%.
+
+The paper addresses the problem that existing approaches to improving factuality, including abstention and factuality-driven optimization, follow a coupled exploration-commitment paradigm, in which intermediate reasoning is unconditionally propagated to the final output, limiting fine-grained control over information selection and integration.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9a741565-c160-4329-a55e-c687adb1076c",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "967f50de-da96-456d-899e-4e0cd232e01b",
+  "sourceToolAssistantUUID": "9a741565-c160-4329-a55e-c687adb1076c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-16T09:44:08.036Z_
+
+<details><summary>↩ Tool result · `toolu_01X735fbtkVD9oJFMa9Zh1Qn`</summary>
+
+```text
+Web search results for query: ""verbal confidence" "internal probe" combined hallucination LLM uncertainty signal fusion"
+
+Links: [{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/html/2503.14477v1"},{"title":"I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation","url":"https://arxiv.org/html/2604.03904v1"},{"title":"[2604.03904v1] I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation","url":"https://arxiv.org/abs/2604.03904v1"},{"title":"Uncertainty-Aware Fusion: An Ensemble Framework for Mitigating Hallucinations in Large Language Models | Companion Proceedings of the ACM on Web Conference 2025","url":"https://dl.acm.org/doi/10.1145/3701716.3715523"},{"title":"Thinking, Faithful and Stable: Mitigating Hallucinations in LLMs","url":"https://cs224r.stanford.edu/projects/pdfs/Final_Report_CS224r.pdf"},{"title":"Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals","url":"https://arxiv.org/html/2605.05025"},{"title":"Teaming LLMs to Detect and Mitigate Hallucinations Demian Till1∗John Smeaton1","url":"https://arxiv.org/pdf/2510.19507"},{"title":"Detecting LLM Hallucination Through Layer-wise Information Deficiency: Analysis of Unanswerable Questions and Ambiguous Prompts","url":"https://arxiv.org/html/2412.10246"},{"title":"Efficient Hallucination Detection for LLMs Using Uncertainty-Aware Attention Heads | OpenReview","url":"https://openreview.net/forum?id=FSOoR1ZFtf"},{"title":"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub","url":"https://github.com/EdinburghNLP/awesome-hallucination-detection"}]
+
+Based on the search results, I found several highly relevant research papers addressing your query about combining verbal confidence, internal probes, and hallucination detection in large language models with uncertainty signal fusion:
+
+## Key Findings:
+
+**1. Verbal Confidence and Internal Probes**
+
+Research has discovered a linear verbal uncertainty feature (VUF) that controls model expression of uncertainty, which can be used to detect hallucinations arising from miscalibration between high semantic uncertainty (SU) and low verbal uncertainty (VU), and to mitigate hallucinations by intervening on activations along the VUF direction at inference time.
+
+**2. Combining Multiple Uncertainty Signals**
+
+A combination of different rewards from both fine-grained token entropy as well as self-reflective confidence helps LLMs reason more faithfully and stable. Additionally, self-reported verbal confidence has been assessed as a usable uncertainty signal, showing stability under prompt paraphrasing and reasonable calibration against a token-probability baseline.
+
+**3. Internal Probe-Based Detection**
+
+Research involves training a lightweight probe on intermediate hidden states instead of final-layer outputs, since middle layers retain uncertainty signals that the token-projection step throws away. Furthermore, Kullback–Leibler divergence between each attention head's distribution and a uniform reference distribution has been used in a logistic regression probe, which is highly predictive of answer correctness and concentrated in middle layers on factual tokens such as named entities and numbers.
+
+**4. Signal Fusion Approaches**
+
+Transformer attention behavior shows that certain "uncertainty-aware" attention heads tend to reduce their focus on preceding tokens when incorrect information is generated, and these patterns can be combined with token-level confidence measures in a recurrent scheme.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6ba4354-6e16-42e2-b208-9f0d8b87ae2d",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "b59f57c4-c410-4937-b72c-53e06ca53773",
+  "sourceToolAssistantUUID": "e6ba4354-6e16-42e2-b208-9f0d8b87ae2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-16T09:44:17.978Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QJ1S9U6vAMFNLUCUc2oWZE`</summary>
+
+```json
+{
+  "query": "\"Calibrating Verbal Uncertainty as a Linear Feature\" hallucination 2503.14477 arxiv intervention decoding"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b59f57c4-c410-4937-b72c-53e06ca53773",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62oem2AFUw31mB4LyfL",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "78aabd42-585f-4a2e-aa88-3d0cf37aff4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018k7eDHGzdJmnXKz8NBeQxF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 888,
+      "cache_creation_input_tokens": 1216,
+      "cache_read_input_tokens": 27503,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1216,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-16T09:44:18.296Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LruHaVGjiMfPFVjeQLJxgs`</summary>
+
+```json
+{
+  "query": "I-CALM \"confidence-aware abstention\" hallucination 2604.03904 method"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78aabd42-585f-4a2e-aa88-3d0cf37aff4d",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62oem2AFUw31mB4LyfL",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5fd4cac7-bb5a-4a3b-a4b7-1c33b62ae4ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018k7eDHGzdJmnXKz8NBeQxF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 888,
+      "cache_creation_input_tokens": 1216,
+      "cache_read_input_tokens": 27503,
+      "output_tokens": 135,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1216
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 888,
+          "output_tokens": 135,
+          "cache_read_input_tokens": 27503,
+          "cache_creation_input_tokens": 1216,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1216,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T09:44:23.304Z_
+
+<details><summary>↩ Tool result · `toolu_01QJ1S9U6vAMFNLUCUc2oWZE`</summary>
+
+```text
+Web search results for query: ""Calibrating Verbal Uncertainty as a Linear Feature" hallucination 2503.14477 arxiv intervention decoding"
+
+Links: [{"title":"[2503.14477] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/abs/2503.14477"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/pdf/2503.14477"},{"title":"(PDF) Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://www.researchgate.net/publication/389947447_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations | alphaXiv","url":"https://www.alphaxiv.org/overview/2503.14477"},{"title":"Can Large Language Models Express Uncertainty Like ...","url":"https://www.arxiv.org/pdf/2509.24202"},{"title":"Revisiting Uncertainty Estimation and Calibration of Large ...","url":"https://arxiv.org/pdf/2505.23854"},{"title":"dblp: Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations.","url":"https://dblp.org/rec/journals/corr/abs-2503-14477.html"},{"title":"arXiv:2504.03735v1 [cs.CR] 1 Apr 2025","url":"https://arxiv.org/pdf/2504.03735"},{"title":"Teaching Language Models to Faithfully Express their Uncertainty","url":"https://arxiv.org/pdf/2510.12587"},{"title":"GitHub - facebookresearch/verbal_uncertainty_feature_calibration: Mechanistic uncertainty calibration of LLMs. · GitHub","url":"https://github.com/facebookresearch/verbal_uncertainty_feature_calibration"}]
+
+I found the paper you're looking for! Here's what I found about this research:
+
+## Paper Overview
+
+The paper "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations" (arXiv:2503.14477) addresses how LLMs often adopt an assertive language style even when making false claims.
+
+## Key Findings
+
+The researchers found that "verbal uncertainty" is governed by a single linear feature in the representation space of LLMs, and this has only moderate correlation with the actual "semantic uncertainty" of the model.
+
+## Main Contributions
+
+The research shows that (1) the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone and (2) they can intervene on verbal uncertainty at inference time and reduce confident hallucinations on short-form answers, achieving an average relative reduction of ~30%.
+
+## Authors
+
+The paper was authored by Ziwei Ji, Lei Yu, Yeskendir Koishekenov, Yejin Bang, Anthony Hartshorn, Alan Schelten, Cheng Zhang, Pascale Fung, and Nicola Cancedda.
+
+The paper was submitted on March 18, 2025, with the latest revision on April 22, 2025, and there's also a GitHub repository available for the code.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "78aabd42-585f-4a2e-aa88-3d0cf37aff4d",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "1051d811-bec4-440d-a5ca-308877212329",
+  "sourceToolAssistantUUID": "78aabd42-585f-4a2e-aa88-3d0cf37aff4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T09:44:26.325Z_
+
+<details><summary>↩ Tool result · `toolu_01LruHaVGjiMfPFVjeQLJxgs`</summary>
+
+```text
+Web search results for query: "I-CALM "confidence-aware abstention" hallucination 2604.03904 method"
+
+Links: [{"title":"[2604.03904] I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation","url":"https://arxiv.org/abs/2604.03904"},{"title":"[2604.03904v1] I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation","url":"https://arxiv.org/abs/2604.03904v1"},{"title":"I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation","url":"https://arxiv.org/html/2604.03904v1"},{"title":"(PDF) I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation","url":"https://www.researchgate.net/publication/403562099_I-CALM_Incentivizing_Confidence-Aware_Abstention_for_LLM_Hallucination_Mitigation"},{"title":"Abstain-R1: Calibrated Abstention and Post-Refusal Clarification via Verifiable RL","url":"https://arxiv.org/html/2604.17073"},{"title":"Hallucination, Abstention, and Recursive Inseparability","url":"https://arxiv.org/html/2604.28067v1"},{"title":"Purging the Gray Zone: Latent-Geometric Denoising for Precise Knowledge Boundary Awareness","url":"https://arxiv.org/html/2604.14324"},{"title":"Mitigating LLM Hallucination via Behaviorally Calibrated Reinforcement Learning","url":"https://arxiv.org/html/2512.19920"},{"title":"Hallucinations Undermine Trust; Metacognition is a Way Forward","url":"https://arxiv.org/pdf/2605.01428"},{"title":"Don’t Hallucinate, Abstain: Identifying LLM Knowledge Gaps via Multi-LLM Collaboration","url":"https://www.researchgate.net/publication/384216001_Don't_Hallucinate_Abstain_Identifying_LLM_Knowledge_Gaps_via_Multi-LLM_Collaboration"}]
+
+Based on the search results, I found detailed information about the I-CALM method:
+
+## I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation
+
+Large language models (LLMs) frequently produce confident but incorrect answers, partly because common binary scoring conventions reward answering over honestly expressing uncertainty.
+
+### Method Overview
+
+I-CALM studies whether prompt-only interventions -- explicitly announcing reward schemes for answer-versus-abstain decisions plus humility-oriented normative principles -- can reduce hallucination risk without modifying the model.
+
+The focus is epistemic abstention on factual questions with a verifiable answer, where current LLMs often fail to abstain despite being uncertain about their answers.
+
+### Key Components
+
+I-CALM is a prompt-based framework that (i) elicits verbal confidence, (ii) partially rewards abstention through explicit reward schemes, and (iii) adds lightweight normative principles emphasizing truthfulness, humility
+
+The method first assesses self-reported verbal confidence as a usable uncertainty signal, showing stability under prompt paraphrasing and reasonable calibration against a token-probability baseline.
+
+### Results
+
+Using GPT-5 mini on PopQA as the main setting, confidence-eliciting, abstention-rewarding prompts, especially with norms, reduce the false-answer rate on answered cases mainly by identifying and shifting error-prone cases to abstention and re-calibrating their confidence, trading coverage for reliability while leaving forced-answer performance largely unchanged.
+
+Overall, results show the framework can improve selective answering on factual questions without retraining, with the magnitude of effect varying across models and datasets.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5fd4cac7-bb5a-4a3b-a4b7-1c33b62ae4ef",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "79429327-0ed7-45ac-b809-f1cd5a1bc594",
+  "sourceToolAssistantUUID": "5fd4cac7-bb5a-4a3b-a4b7-1c33b62ae4ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-16T09:44:29.483Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U3EHx2JtT9dApD28gp2Tp9`</summary>
+
+```json
+{
+  "query": "\"token-level entropy\" \"self-reflective confidence\" decoding reward hallucination 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79429327-0ed7-45ac-b809-f1cd5a1bc594",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62pfG4sjkCCTfkJA6qa",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "81f1bbf9-3471-4384-9665-96b96cb66209",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QjFWrGiJc8WE3GGrBpSKnx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2878,
+      "cache_read_input_tokens": 28719,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2878,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-16T09:44:30.516Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019Gk1BAWZHJzqNzi5thoNyH`</summary>
+
+```json
+{
+  "query": "DHI \"diverse hallucination induction\" contrastive factuality 2601.01156"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81f1bbf9-3471-4384-9665-96b96cb66209",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62pfG4sjkCCTfkJA6qa",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "41f0e573-8122-4424-94dd-5c148c255270",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QjFWrGiJc8WE3GGrBpSKnx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2878,
+      "cache_read_input_tokens": 28719,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2878,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T09:44:37.334Z_
+
+<details><summary>↩ Tool result · `toolu_01U3EHx2JtT9dApD28gp2Tp9`</summary>
+
+```text
+Web search results for query: ""token-level entropy" "self-reflective confidence" decoding reward hallucination 2025 2026"
+
+Links: [{"title":"Thinking, Faithful and Stable: Mitigating Hallucinations in LLMs","url":"https://cs224r.stanford.edu/projects/pdfs/Final_Report_CS224r.pdf"},{"title":"Thinking in Uncertainty: Mitigating Hallucinations in MLRMs with Latent Entropy-Aware Decoding","url":"https://arxiv.org/html/2603.13366"},{"title":"Towards Token-Level Hallucination Control via Self- ...","url":"https://www.arxiv.org/pdf/2601.21969"},{"title":"[2605.05166] The First Token Knows: Single-Decode Confidence for Hallucination Detection","url":"https://arxiv.org/abs/2605.05166"},{"title":"A Framework for Self-Reflective Error Detection and Correction in Large Language Models for Communications Applications","url":"https://www.edupub.org/2026/03/a-framework-for-self-reflective-error.html"},{"title":"Review Not peer-reviewed version A Survey on Hallucination in Large","url":"https://www.preprints.org/manuscript/202510.0540/v1/download"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2601.18753"},{"title":"Token-Level Self-Consistency for Hallucination Detection","url":"https://aclanthology.org/2025.semeval-1.38.pdf"},{"title":"The First Token Knows: Single-Decode Confidence for Hallucination Detection","url":"https://arxiv.org/html/2605.05166"},{"title":"TECP: Token-Entropy Conformal Prediction for LLMs","url":"https://www.mdpi.com/2227-7390/13/20/3351"}]
+
+I found several relevant research papers and projects on this topic. Here's a summary of what I discovered:
+
+## Key Findings
+
+Recent research focuses on two key signals: (1) token-level entropy spikes, which reflect sudden increases in uncertainty during generation, and (2) self-assessed confidence alignment.
+
+### Process-Level Reward Framework
+
+A process-level reward framework incorporates fine-grained indicators of uncertainty and model introspection, where a combination of different rewards from both fine-grained token entropy as well as self-reflective confidence helps LLMs reason more faithfully and stable.
+
+### Entropy-Aware Decoding
+
+An entropy-aware dynamic reasoning switch mechanism uses token-level entropy as a confidence indicator, activating latent reasoning decoding during high-entropy phases to maintain semantic diversity, and switching back to discrete decoding as entropy decreases to ensure stable convergence.
+
+### Token-Level Hallucination Control
+
+Token-Guard is a decoding method designed to provide explicit and robust hallucination reduction throughout the LLM reasoning process, building on multi-level control and self-reflective decoding.
+
+### Reward Models and Confidence
+
+Research suggests that relative entropy spikes and confidence-consistency reward terms provide a richer training signal than token entropy alone, encouraging LLMs not only to answer correctly, but to reason transparently and faithfully.
+
+The literature from 2025-2026 demonstrates growing interest in using token-level entropy and self-reflective confidence signals within reward-based frameworks to detect and mitigate hallucinations in language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "81f1bbf9-3471-4384-9665-96b96cb66209",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "00eff48e-0be1-4f9c-99f9-24f82f202ef4",
+  "sourceToolAssistantUUID": "81f1bbf9-3471-4384-9665-96b96cb66209",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-16T09:44:38.423Z_
+
+<details><summary>↩ Tool result · `toolu_019Gk1BAWZHJzqNzi5thoNyH`</summary>
+
+```text
+Web search results for query: "DHI "diverse hallucination induction" contrastive factuality 2601.01156"
+
+Links: [{"title":"[2601.01156] DHI: Leveraging Diverse Hallucination Induction for Enhanced Contrastive Factuality Control in Large Language Models","url":"https://arxiv.org/abs/2601.01156"},{"title":"DHI: Leveraging Diverse Hallucination Induction for Enhanced Contrastive Factuality Control in Large Language Models","url":"https://arxiv.org/html/2601.01156v1"},{"title":"HICD: Hallucination-Inducing via Attention Dispersion for Contrastive","url":"https://openreview.net/attachment?id=VgkyVfXRXf&name=pdf"},{"title":"HICD: Hallucination-Inducing via Attention Dispersion for Contrastive Decoding to Mitigate Hallucinations in Large Language Models","url":"https://arxiv.org/html/2503.12908v1"},{"title":"Improving Factuality by Contrastive Decoding with Factual and Hallucination Prompts","url":"https://www.mdpi.com/1424-8220/24/21/7097"},{"title":"Large Language Models Hallucination: A Comprehensive Survey","url":"https://arxiv.org/html/2510.06265v2"},{"title":"A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions | ACM Transactions on Information Systems","url":"https://dl.acm.org/doi/10.1145/3703155"},{"title":"Improving Factuality by Contrastive Decoding with Factual and Hallucination Prompts - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11548250/"},{"title":"1 A Survey on Hallucination in Large Language Models:","url":"https://arxiv.org/pdf/2311.05232"},{"title":"Review Not peer-reviewed version A Survey on Hallucination in Large","url":"https://www.preprints.org/manuscript/202504.1236/v1/download"}]
+
+Based on the search results, I found comprehensive information about the paper you're looking for:
+
+## DHI: Diverse Hallucination Induction
+
+The paper "DHI: Leveraging Diverse Hallucination Induction for Enhanced Contrastive Factuality Control in Large Language Models" addresses the problem that large language models (LLMs) frequently produce inaccurate or fabricated information, known as "hallucinations," which compromises their reliability.
+
+### The Problem
+
+Existing approaches train an "Evil LLM" to deliberately generate hallucinations on curated datasets, using these induced hallucinations to guide contrastive decoding against a reliable "positive model" for hallucination mitigation. However, this strategy is limited by the narrow diversity of hallucinations induced, as Evil LLMs trained on specific error types tend to reproduce only these particular patterns, thereby restricting their overall effectiveness.
+
+### The Solution
+
+DHI (Diverse Hallucination Induction) is a novel training framework that enables the Evil LLM to generate a broader range of hallucination types without relying on pre-annotated hallucination data.
+
+The approach works through several key mechanisms:
+
+1. **Modified Loss Function**: DHI employs a modified loss function that down-weights the generation of specific factually correct tokens, encouraging the Evil LLM to produce diverse hallucinations at targeted positions while maintaining overall factual content.
+
+2. **Attention Masking**: DHI introduces a causal attention masking adaptation to reduce the impact of this penalization on the generation of subsequent tokens.
+
+3. **Adaptive Rationality Constraint**: During inference, DHI applies an adaptive rationality constraint that restricts contrastive decoding to tokens where the positive model exhibits high confidence, thereby avoiding unnecessary penalties on factually correct tokens.
+
+### Results
+
+Extensive empirical results show that DHI achieves significant performance gains over other contrastive decoding-based approaches across multiple hallucination benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "41f0e573-8122-4424-94dd-5c148c255270",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "3291a04a-d78d-40c5-b103-dd93bb167173",
+  "sourceToolAssistantUUID": "41f0e573-8122-4424-94dd-5c148c255270",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-16T09:44:42.033Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Wb2M3NoeR4jxHZp1G77S1X`</summary>
+
+```json
+{
+  "query": "\"Token-Guard\" OR \"token level self-consistency\" hallucination control decoding self-reflective 2601.21969"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3291a04a-d78d-40c5-b103-dd93bb167173",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62qYxaRkpzURZcLc5qj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fd16f1d3-3fc9-4688-8320-dd9b52de3265",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5gnrH8VFCVdFcG1NgkM9z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2031,
+      "cache_read_input_tokens": 31597,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2031,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-16T09:44:42.494Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XdJzfVCCqo1P47sJvVY79t`</summary>
+
+```json
+{
+  "query": "arxiv 2503.14477 \"verbal uncertainty feature\" intervention inference time reduce hallucination method"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd16f1d3-3fc9-4688-8320-dd9b52de3265",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62qYxaRkpzURZcLc5qj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6435dee2-502e-42b3-acd1-8c6a3de82fa5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5gnrH8VFCVdFcG1NgkM9z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2031,
+      "cache_read_input_tokens": 31597,
+      "output_tokens": 136,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2031
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 136,
+          "cache_read_input_tokens": 31597,
+          "cache_creation_input_tokens": 2031,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2031,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T09:44:49.035Z_
+
+<details><summary>↩ Tool result · `toolu_01XdJzfVCCqo1P47sJvVY79t`</summary>
+
+```text
+Web search results for query: "arxiv 2503.14477 "verbal uncertainty feature" intervention inference time reduce hallucination method"
+
+Links: [{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/pdf/2503.14477"},{"title":"[2503.14477] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/abs/2503.14477"},{"title":"Can Large Language Models Express Uncertainty Like ...","url":"https://www.arxiv.org/pdf/2509.24202"},{"title":"dblp: Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations.","url":"https://dblp.org/rec/journals/corr/abs-2503-14477.html"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations | alphaXiv","url":"https://www.alphaxiv.org/overview/2503.14477"},{"title":"Explaining Sources of Uncertainty in Automated Fact-Checking","url":"https://openreview.net/pdf/70305af7cc2d78a5f257a455ff26f7e3033eb46f.pdf"},{"title":"(PDF) Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://www.researchgate.net/publication/389947447_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"},{"title":"Language Model Uncertainty Quantification with Attention Chain","url":"https://arxiv.org/html/2503.19168v2"},{"title":"[2503.20583] Feature Statistics with Uncertainty Help Adversarial Robustness","url":"https://arxiv.org/abs/2503.20583"},{"title":"arXiv:2503.15850v1 [cs.CL] 20 Mar 2025","url":"https://openreview.net/pdf?id=HtzPGTfhnP"}]
+
+Perfect! I found the paper. Here's what I found about arxiv 2503.14477:
+
+## Paper Summary
+
+The paper "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations" was submitted on March 18, 2025 with version 2 last revised on April 22, 2025. It's authored by Ziwei Ji, Lei Yu, Yeskendir Koishekenov, Yejin Bang, Anthony Hartshorn, Alan Schelten, Cheng Zhang, Pascale Fung, and Nicola Cancedda.
+
+## Key Findings
+
+The paper finds that "verbal uncertainty" is governed by a single linear feature in the representation space of LLMs, and shows that this has only moderate correlation with the actual "semantic uncertainty" of the model.
+
+The research shows that (1) the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone and (2) they can intervene on verbal uncertainty at inference time and reduce confident hallucinations on short-form answers, achieving an average relative reduction of ~30%.
+
+## Main Method
+
+The paper proposes Mechanistic Uncertainty Calibration (MUC), a method that steers LLM activations using Verbal Uncertainty Features (VUF) to calibrate verbal uncertainty with the model's semantic uncertainty.
+
+MUC is an inference-time intervention mechanism using VUFs to calibrate verbal uncertainty with semantic uncertainty, thereby mitigating hallucinations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6435dee2-502e-42b3-acd1-8c6a3de82fa5",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "5123dc05-cfc2-41f7-a762-814af51f167a",
+  "sourceToolAssistantUUID": "6435dee2-502e-42b3-acd1-8c6a3de82fa5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-16T09:44:49.272Z_
+
+<details><summary>↩ Tool result · `toolu_01Wb2M3NoeR4jxHZp1G77S1X`</summary>
+
+```text
+Web search results for query: ""Token-Guard" OR "token level self-consistency" hallucination control decoding self-reflective 2601.21969"
+
+Links: [{"title":"[2601.21969] Token-Guard: Towards Token-Level Hallucination Control via Self-Checking Decoding","url":"https://arxiv.org/abs/2601.21969"},{"title":"GitHub - RongHuiQiang/Token-Guard: [ICLR 2026] Official resources of \"Token-Guard: Towards Token-Level Hallucination Control via Self-Checking Decoding\" · GitHub","url":"https://github.com/rhq945/Token-Guard"},{"title":"Token-Guard: Towards Token-Level Hallucination Control via Self-Checking Decoding","url":"https://arxiv.org/html/2601.21969v2"},{"title":"Token-Guard: Towards Token-Level Hallucination Control via Self-Checking Decoding | OpenReview","url":"https://openreview.net/forum?id=5fCDEz43ya"},{"title":"Towards Token-Level Hallucination Control via Self- ...","url":"https://www.arxiv.org/pdf/2601.21969"},{"title":"TOKEN-GUARD: TOWARDS TOKEN-LEVEL HALLUCI","url":"https://openreview.net/pdf/d627b27613103d142086cf6b1da93c0f6de8ee8d.pdf"},{"title":"Token-Guard: Fine-Grained Security & Trust","url":"https://www.emergentmind.com/topics/token-guard"},{"title":"Towards Token-Level Hallucination Control via Self- ...","url":"https://www.themoonlight.io/en/review/token-guard-towards-token-level-hallucination-control-via-self-checking-decoding"},{"title":"KCTS: Knowledge-Constrained Tree Search Decoding with Token-Level Hallucination Detection | Request PDF","url":"https://www.researchgate.net/publication/376393787_KCTS_Knowledge-Constrained_Tree_Search_Decoding_with_Token-Level_Hallucination_Detection"},{"title":"Token-Level Self-Consistency for Hallucination Detection","url":"https://aclanthology.org/2025.semeval-1.38.pdf"}]
+
+I found comprehensive information about Token-Guard. Here's what the search revealed:
+
+## Token-Guard Overview
+
+Token-Guard is a token-level hallucination control method based on self-checking decoding. Token-Guard is a decoding-based framework that mitigates hallucinations in Large Language Models through a three-stage self-checking pipeline. The paper (arXiv 2601.21969) was accepted at ICLR 2026.
+
+## Key Methodology
+
+The approach addresses hallucinations in LLMs through three main components:
+
+1. **Token-Level Detection**: Token-Guard performs internal verification at each reasoning step to detect hallucinated tokens before they propagate.
+
+2. **Explicit Hallucination Scoring**: Candidate fragments are further evaluated in a latent space with explicit hallucination risk scoring, while iterative pruning and regeneration dynamically correct detected errors.
+
+3. **Iterative Correction**: When hallucinations are detected, local fragment regeneration and global iteration strategies are applied to dynamically correct prior fragments. For multi-fragment reasoning paths, these strategies maintain logical consistency while avoiding unnecessary time and computational overhead.
+
+## Performance
+
+Token-Guard demonstrates significant gains in generation accuracy, with relative improvements of up to 16.3% over the strongest baseline, and notable enhancements in output quality, including logical and factual consistency. The Token-Guard decoding framework improves F1 by 16 percentage points on HALU hallucination benchmarks over the best prior methods, with only 20–50% additional decoding latency.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd16f1d3-3fc9-4688-8320-dd9b52de3265",
+  "isSidechain": true,
+  "promptId": "8e0bfd6d-3b8f-4cb8-bc33-ad7b2f34cfed",
+  "agentId": "ace86fdde9ac363f5",
+  "type": "user",
+  "uuid": "7d33cfea-6f0c-4ff1-a23c-2ab160855200",
+  "sourceToolAssistantUUID": "fd16f1d3-3fc9-4688-8320-dd9b52de3265",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-16T09:45:41.491Z_
+
+Based on my extensive research, here is a comprehensive report of findings:
+
+---
+
+## Verification of Specific Papers
+
+**1. PC-LDCD (arXiv 2605.05953) -- CONFIRMED**
+- Title: "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits"
+- Proposes PCNet, a Probabilistic Circuit trained as a tractable density estimator over the LLM residual stream. Detects hallucinations as geometric anomalies on the factual manifold via exact Negative Log-Likelihood computation. PC-LDCD intervenes only when latent geometry deviates from factual regions. Achieves AUROC up to 99% for hallucination detection across 1B-8B models.
+
+**2. CSS (arXiv 2604.17487) -- CONFIRMED**
+- Title: "Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control for Agentic Systems"
+- Introduces Compositional Selective Specificity (CSS), a post-generation layer that decomposes answers into claims, proposes coarser backoffs, and emits each claim at the most specific calibrated level. Raises overcommitment-aware utility from 0.846 to 0.913 with 0.938 specificity retention. Note: This is a post-generation intervention on specificity, not a decoding-time hallucination method per se.
+
+**3. CAG (arXiv 2605.01749) -- CONFIRMED**
+- Title: "Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality"
+- Proposes an Exploration-Commitment Decoupling paradigm that separates knowledge exploration from final commitment. Equips models with calibrated reliability estimates during intermediate reasoning steps, then prioritizes reliable content in outputs. Improves factuality by up to 13% while reducing decoding time by 37%.
+
+---
+
+## Key 2025-2026 Papers Combining Internal Uncertainty Signals with Decoding-Time Intervention
+
+### Most Directly Relevant to the "verbal confidence + factuality probes" Novelty Claim:
+
+**4. "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations" (arXiv 2503.14477, March 2025, Meta/Facebook Research)**
+- THIS IS THE CLOSEST MATCH to the core novelty claim you describe. Discovers that verbal uncertainty is governed by a single linear feature (VUF) in representation space; shows the mismatch between semantic uncertainty and verbal uncertainty predicts hallucinations better than either alone; proposes Mechanistic Uncertainty Calibration (MUC)--an inference-time activation intervention steering VUFs to calibrate verbal confidence with internal semantic uncertainty, achieving ~30% reduction in confident hallucinations. This paper explicitly combines a "verbal confidence signal" with an internal representational intervention at inference time.
+
+**5. Token-Guard (arXiv 2601.21969, ICLR 2026)**
+- Three-stage self-checking decoding pipeline: token-level detection, explicit hallucination risk scoring in latent space, and iterative pruning/regeneration. Improves F1 by 16pp over best baselines with 20-50% latency overhead.
+
+**6. CoCoA (arXiv 2602.09486, February 2026)**
+- Training-free decoder that monitors inter-layer representational instability in middle layers. Penalizes outputs with high internal confusion. CoCoA-SIG variant uses self-information gating to selectively target high-surprise, unstable generations. Works across Llama-3, Qwen-2.5, Mistral.
+
+**7. Monitoring Decoding (arXiv 2503.03106, ACL 2025 Findings)**
+- Dynamically monitors generation and identifies hallucination-prone tokens using a monitor function during partial decoding. Tree-based decoding strategy selectively resamples flagged tokens.
+
+**8. DRIFT / HALT probes (arXiv 2601.14210, January 2026)**
+- Lightweight residual probes (adding <0.1% overhead) that read hallucination risk from intermediate hidden states of question tokens before generation completes. Achieves SOTA AUROC on 10/12 settings across four QA benchmarks.
+
+**9. DHI: Diverse Hallucination Induction (arXiv 2601.01156, January 2026)**
+- Trains an "Evil LLM" to produce diverse hallucinations, then uses contrastive decoding between the Evil LLM and a positive model. Adaptive rationality constraint restricts contrastive decoding to tokens where the positive model has high confidence.
+
+**10. SLED: Self Logits Evolution Decoding (NeurIPS 2024, arXiv 2411.02433)**
+- Contrasts logits from final and early layers and uses approximate gradient to enable "self-evolution" of the output distribution. Training-free drop-in decoding strategy.
+
+**11. I-CALM (arXiv 2604.03904, April 2026)**
+- Prompt-based framework that elicits verbal confidence, partially rewards abstention, and adds normative principles. Assesses self-reported verbal confidence as a calibrated uncertainty signal. Reduces false-answer rate by shifting uncertain cases to abstention.
+
+**12. "Thinking in Uncertainty: Latent Entropy-Aware Decoding" (arXiv 2603.13366, March 2026)**
+- Entropy-aware dynamic reasoning switch that uses token-level entropy as confidence indicator, activating latent reasoning decoding during high-entropy phases.
+
+---
+
+## Critical Assessment: Does Any Paper Already Combine Verbal Confidence Signals with Factuality Probes?
+
+The paper that most directly threatens the novelty claim is **arXiv 2503.14477 (Meta, March 2025)**. It:
+- Identifies verbal uncertainty as a linear feature in LLM representations
+- Shows the mismatch between verbal confidence and semantic uncertainty predicts hallucinations
+- Intervenes on activations at inference time to calibrate verbal confidence with internal uncertainty
+- Achieves hallucination reduction without retraining
+
+However, there are important distinctions that may preserve novelty:
+- 2503.14477 uses a single linear probe direction (VUF) and intervenes by steering activations, not by modifying the decoding distribution
+- It does not use a separately trained "factuality probe" in the sense of a classifier on hidden states (like HALT/DRIFT does)
+- It does not combine a factuality probe's output with a verbal confidence signal at the logit/decoding level
+
+The **gap** that may still be novel: explicitly fusing (a) a trained factuality probe reading intermediate hidden states with (b) a verbal/self-reported confidence signal to produce a joint gating mechanism that modifies token-level logits during decoding. No single paper I found does exactly this fusion. The closest components exist in separate papers:
+- Factuality probes on hidden states: HALT (2601.14210), INSIDE (2402.03744), SAPLMA
+- Verbal confidence calibration + activation intervention: 2503.14477
+- Logit-level decoding intervention gated by internal signals: PC-LDCD (2605.05953), CoCoA (2602.09486), Token-Guard (2601.21969)
+
+But the specific combination of verbal confidence elicitation fused with a factuality probe to gate decoding does not appear to have been published as a single unified method--yet the ingredients are very close and the research community is clearly converging on this intersection.
+
+---
+
+Sources:
+- [PC-LDCD: Hallucination as an Anomaly via Probabilistic Circuits](https://arxiv.org/abs/2605.05953)
+- [CSS: Calibrated Claim-Level Specificity Control](https://arxiv.org/abs/2604.17487)
+- [CAG: Only Say What You Know](https://arxiv.org/abs/2605.01749)
+- [Calibrating Verbal Uncertainty as a Linear Feature (Meta)](https://arxiv.org/abs/2503.14477)
+- [Token-Guard: Token-Level Hallucination Control (ICLR 2026)](https://arxiv.org/abs/2601.21969)
+- [CoCoA: Listen to the Layers](https://arxiv.org/abs/2602.09486)
+- [Monitoring Decoding (ACL 2025)](https://arxiv.org/abs/2503.03106)
+- [DRIFT/HALT: Residual Probes for Hallucination](https://arxiv.org/abs/2601.14210)
+- [DHI: Diverse Hallucination Induction](https://arxiv.org/abs/2601.01156)
+- [SLED: Self Logits Evolution Decoding (NeurIPS 2024)](https://arxiv.org/abs/2411.02433)
+- [I-CALM: Confidence-Aware Abstention](https://arxiv.org/abs/2604.03904)
+- [INSIDE: Internal States for Hallucination Detection](https://arxiv.org/abs/2402.03744)
+- [Thinking in Uncertainty: Latent Entropy-Aware Decoding](https://arxiv.org/html/2603.13366)
+- [Lakera: LLM Hallucinations in 2026](https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d33cfea-6f0c-4ff1-a23c-2ab160855200",
+  "isSidechain": true,
+  "agentId": "ace86fdde9ac363f5",
+  "requestId": "req_011Cb62rMNqV38nCVQqPuMLs",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9f874940-0a8c-4c21-b829-d6fd79857df9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "58d3af57-1d7d-4d3c-9365-116ec456346a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015jaBQciiyYbWZfzn1er4zX",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 902,
+      "cache_creation_input_tokens": 1100,
+      "cache_read_input_tokens": 33628,
+      "output_tokens": 2265,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1100
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 902,
+          "output_tokens": 2265,
+          "cache_read_input_tokens": 33628,
+          "cache_creation_input_tokens": 1100,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1100,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

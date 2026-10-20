@@ -1,0 +1,649 @@
+# Research conversation: Title EncoGuard: Learning Content-Invariant Safety Features via Complexity-Structured Curriculum for Encoding-Based Atta
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-1/e7459128-2033-4d1b-973e-37da2debc51e.jsonl`
+- **Structured JSON:** [`380a97c33b826fb7d3dc.json`](../../sessions/38/380a97c33b826fb7d3dc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T12:23:58.260Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T12:23:58.260Z",
+  "sessionId": "e7459128-2033-4d1b-973e-37da2debc51e",
+  "content": "## Title\n\nEncoGuard: Learning Content-Invariant Safety Features via Complexity-Structured Curriculum for Encoding-Based Attacks\n\n## Problem Statement\n\nEncoding-based jailbreak attacks (base64, ROT13, homoglyph substitution, and their nested compositions) exploit a fundamental vulnerability in LLM safety guardrails: classifiers trained on plaintext or limited encoding variations fail when inputs are transformed through unseen encoding schemes. Existing defenses fall into two categories, both with critical limitations:\n\n1. **Rule-based detection + decoding pipelines** (e.g., regex-based encoding detection → known decoder → standard guardrail): Effective for known single-layer encodings with distinctive statistical signatures, but fail on (a) partial encoding where only segments are transformed, (b) adversarial mixing of encoded/plaintext to evade detection heuristics, and (c) novel encodings without pre-programmed decoders.\n\n2. **Learned canonicalization** (seq2seq decode → classify): Suffers from error propagation in nested encodings, creates a new adversarial attack surface (the canonicalizer itself), and requires semantic understanding to identify which portions to decode.\n\nThe core challenge is achieving **generalization to unseen encoding families**—classifiers that remain robust against encoding types never encountered during training. No existing defense reliably provides this capability.\n\n## Core Thesis\n\nWe hypothesize that a classifier trained via **complexity-structured curriculum**—where encoding attacks are presented in order of a principled complexity metric—learns **content-invariant safety features** that generalize to held-out encoding types unseen during training. The key mechanism is **representation disentanglement**: curriculum ordering forces the model to first anchor the semantic signature of harmful content under low-noise surface perturbations (simple encodings), then learn to preserve this semantic signature under progressively higher-noise perturbations (complex encodings). The result is a representation space where harmful content clusters by semantic meaning regardless of surface encoding—a separation of content features from encoding-specific surface features.\n\nThis differs fundamentally from memorizing encoding-specific detection patterns. A model that merely memorizes base64 character distributions cannot generalize to Braille; but a model that has learned to extract content semantics despite surface perturbation can generalize to any encoding that preserves underlying content structure.\n\n**General Principle:** This approach instantiates a broader defense paradigm for compositional attack spaces: when attacks are built from composable primitives with natural complexity ordering, structured curriculum training can induce invariance to attack-specific surface features while preserving task-relevant content features. We demonstrate this principle on encoding attacks as the canonical instance where complexity is formally quantifiable.\n\n## Relationship to Prior Work on Curriculum Adversarial Training\n\nCurriculum-based approaches to adversarial robustness exist (Cai et al., IJCAI 2018: progressively increasing perturbation magnitude for image classifiers; Wang et al., NeurIPS 2021: ordered SGD by sample difficulty). Our work differs in two critical dimensions:\n\n1. **Discrete compositional attack space vs. continuous perturbation space:** Prior work operates in continuous ε-ball perturbation spaces where difficulty is a scalar magnitude. Encoding attacks form a discrete compositional space where primitives (base64, ROT13, homoglyphs) can be arbitrarily nested—requiring a multi-dimensional complexity metric rather than a single scalar.\n\n2. **OOD generalization vs. in-distribution robustness:** Prior curriculum adversarial training only evaluates robustness against the same attack types used during training (within the same ε-ball). We explicitly evaluate generalization to **entirely unseen encoding families** (Braille, Morse, custom ciphers)—demonstrating that curriculum ordering induces transferable content-invariance, not just better in-distribution fitting. This OOD generalization claim is our primary novel contribution.\n\n## Key Contributions\n\n1. **Primary Contribution (Representation Disentanglement via Curriculum):** We demonstrate that complexity-structured curriculum training produces content-invariant representations that generalize to entirely unseen encoding families (Braille, Morse, custom cipher, NATO phonetic), while flat augmentation and random-order training do not. We provide direct representation-level evidence (CKA similarity analysis) that curriculum-trained models cluster same-content different-encoding inputs more tightly than baselines.\n\n2. **Formalized Encoding Complexity Score (ECS):** A principled complexity metric combining nesting depth, character-per-token (CPT) ratio deviation, and tokenizer perplexity. We validate that ECS predicts classifier difficulty on held-out encodings (Spearman ρ), establishing it as a transferable methodological contribution for any encoding-related defense work.\n\n3. **Co-Evolutionary Training Framework:** GRPO-trained attacker generates encoding attacks of escalating ECS, paired with SFT classifier trained on curriculum-ordered adversarial data. The co-evolutionary dynamic ensures curriculum adapts to classifier capability frontier.\n\n4. **Comprehensive Controlled Evaluation:** Controlled ablations (random-order, flat augmentation, reverse curriculum, static curriculum, decode-then-classify pipeline) with multi-seed statistical validation, supplemented by representation analysis directly verifying the content-invariance claim.\n\n## Methodology\n\n### Encoding Complexity Score (ECS)\n\n$$ECS(e) = \\alpha \\cdot \\text{NestingDepth}(e) + \\beta \\cdot \\text{CPT\\_Deviation}(e) + \\gamma \\cdot \\text{TokenizerPerplexity}(e)$$\n\n- NestingDepth: number of compositional encoding layers\n- CPT_Deviation: absolute deviation of encoded text's characters-per-token ratio from plaintext baseline\n- TokenizerPerplexity: perplexity of target model's tokenizer on encoded text\n\nWeights determined via pilot study measuring correlation of each component with classifier error rate on a validation set. Pilot results reported to justify weight selection. Full leave-one-out component ablation planned for camera-ready.\n\n### Mechanistic Motivation: Content-Invariance via Progressive Noise Escalation\n\nUnder flat exposure, the classifier simultaneously encounters simple encodings (low surface noise, content semantics still partially accessible through tokenization) and complex nested encodings (high surface noise, content semantics completely obscured at token level). For high-noise inputs in early training, the model cannot extract content signal—gradients from these samples are effectively random with respect to content features, interfering with content-feature learning on low-noise inputs.\n\nCurriculum ordering resolves this by staged noise escalation:\n- **Stage 1 (low-ECS):** Simple encodings partially preserve content-correlated token patterns. The model learns to extract harmful-content semantic features despite mild surface perturbation, anchoring a content representation.\n- **Stage 2 (high-ECS):** Complex encodings fully obscure surface patterns. But the model already has anchored content features from Stage 1—it now learns to access these features through higher-noise channels, effectively learning encoding-invariance as noise robustness.\n\nThis predicts generalization: a model that has learned \"extract content semantics despite surface noise\" should transfer to any novel encoding that preserves content structure—regardless of the specific noise pattern. Braille (character substitution) and Morse (symbolic re-encoding) are different noise types but preserve content, so a content-invariant model should handle them.\n\n### Why Not Simpler Alternatives?\n\n**Rule-based detection + decode:** For known single-layer encodings (base64, ROT13) with distinctive character-set signatures, regex detection + decode + standard guardrail achieves high accuracy at near-zero cost. Our method targets the regime where this fails:\n- **Partial encoding:** Only segments of input are encoded, defeating whole-input detection heuristics\n- **Adversarial mixing:** Attacker deliberately mixes encoded/plaintext to create ambiguous statistical signatures\n- **Novel encodings:** No pre-programmed decoder exists (the motivating scenario for generalization)\n\nWe include a Deterministic-Decode + LlamaGuard-3 baseline to empirically demonstrate this boundary.\n\n**Learned canonicalization:** (1) Error propagation—each nested decode step compounds errors; (2) canonicalizer becomes a new attack surface; (3) partial encoding requires semantic understanding to identify decode targets.\n\n### Co-Evolutionary Training Loop\n\n**Attacker (Qwen2.5-1.5B, GRPO-trained):**\n- Generates encoding attacks with ECS constrained to current curriculum stage\n- Reward: +1 if encoding bypasses current classifier AND oracle confirms harmful content\n- Entropy regularization prevents collapse to single encoding type\n\n**Classifier (Qwen2.5-4B, SFT):**\n- Trains on curriculum-ordered adversarial examples (Stage 1: ECS ≤ threshold, Stage 2: ECS > threshold)\n- FPR rollback: revert checkpoint if FPR exceeds 2% on benign validation set\n- Semantic deduplication: removes near-duplicates (cosine similarity > 0.95)\n\n**Oracle:** GPT-4o judges content harmfulness. Deterministic decoder cross-validates; disagreements excluded.\n\n**Fallback Plan:** If co-evolutionary loop proves unstable by Day 6, fall back to static curriculum-ordered SFT (pre-generated curriculum data, no GRPO attacker). This still validates H1-H3.\n\n### Compute and Cost\n\n- Hardware: 4× A100 80GB\n- Classifier training: ~8h per run × 3 seeds × 2 stages = ~48h (parallelizable across GPUs)\n- Baselines: random-order (5 seeds × 8h = 40h), flat augmentation (3 seeds × 8h = 24h), reverse curriculum (3 seeds × 8h = 24h), static curriculum (3 seeds × 8h = 24h)\n- Attacker training: ~6h per round × 2 rounds = 12h\n- Oracle: ~18K calls ≈ $200-350\n- Representation analysis: inference only, ~2h\n- Total: ~160h GPU-hours (manageable on 4×A100 over 16 days with parallelization)\n- Compute normalization: training FLOPs (primary), with training tokens and wall-clock reported\n\n## Experimental Design\n\n### Hypotheses\n\n- **H1 (Curriculum > Random):** Curriculum-ordered training achieves ≥10pp lower encoding-ASR than random-order at equivalent FLOPs (validated by paired t-test across seeds, p < 0.05).\n- **H2 (OOD Generalization):** Curriculum-trained classifier maintains ≤30% encoding-ASR on held-out encoding families (Braille, Morse, custom cipher, NATO phonetic) where random-order and flat augmentation exceed 60%.\n- **H3 (ECS Predictiveness):** ECS correlates with classifier error rate (Spearman ρ ≥ 0.7) on held-out encodings.\n- **H4 (Co-evolution > Static):** Co-evolutionary training outperforms static curriculum SFT by ≥5pp on composite encodings (conditional on co-evolutionary loop stability).\n\n### Baselines and Ablations\n\n**Controlled comparisons (same architecture, same FLOPs, multi-seed):**\n1. Random-order training: 5 seeds, mean ± std\n2. Flat augmentation: 3 seeds\n3. Reverse curriculum (high-ECS first, then low-ECS): 3 seeds\n4. Static curriculum SFT (no co-evolutionary attacker): 3 seeds\n5. **Deterministic-Decode + LlamaGuard-3 pipeline:** Deterministic decoder attempts to decode input, decoded text classified by LlamaGuard-3. No training needed.\n\n**Curriculum (our method):** 3 seeds, mean ± std\n\n**Indicative comparisons (Discussion section):**\n6. Broken-Token CPT-Filtering (published numbers)\n7. TRYLOCK Layer 0 (published numbers)\n\n### Evaluation Protocol\n\n**External benchmarks (primary evidence):**\n- HarmBench encoding-perturbed variant\n- JailbreakBench encoding attack subset\n- WildGuardTest encoding-perturbed variant\n\n**EncoAttack (supplementary analysis):**\n- 500 base prompts: HarmBench (200) + AdvBench (150) + WildGuardTest (150), 10+ harm categories\n- 8 encoding types × 3 nesting levels = 12,000 test cases\n- Independent encoding implementation from training pipeline\n- Validation: ≥80% bypass rate on undefended LlamaGuard-3\n\n**Held-out encoding families (generalization test—NEVER seen during training):**\n- Braille Unicode substitution\n- Morse code symbolic encoding\n- Custom Caesar-variant cipher (position-dependent shift)\n- NATO phonetic alphabet encoding\n\n**Metrics:**\n- Encoding-ASR (primary)\n- Clean FPR at multiple thresholds (0.5%, 1%, 2%, 5%) with Pareto frontier analysis\n- Benign test set: WildGuardTest benign split (~1000) + LMSYS-Chat-1M random sample (1000)\n- Per-encoding-type breakdown\n- ECS-difficulty correlation on held-out encodings\n\n### Representation Analysis (Direct Evidence for Content-Invariance)\n\nFor each of 100 harmful prompts, generate plaintext + 8 encoding variants. Extract classifier penultimate-layer representations. Compute:\n1. **Intra-prompt cross-encoding similarity:** Average cosine similarity between same-prompt different-encoding representations\n2. **CKA analysis:** Centered Kernel Alignment between encoding-variant representation matrices\n3. **Compare curriculum-trained vs. random-order-trained:** Prediction—curriculum model shows significantly higher intra-prompt similarity (content clusters by meaning, not by encoding type)\n\nThis directly validates \"encoding-invariant representations\" without relying solely on task-level metrics.\n\n### Learning Dynamics\n\n- Per-checkpoint (every 500 steps) encoding-ASR curves\n- Separate curves for low-ECS and high-ECS encodings\n- Expected: curriculum shows earlier convergence on low-ECS, smooth transition to high-ECS; random-order shows chaotic learning on both\n\n### Oracle Reliability Pilot\n\nBefore full training: 100 samples per ECS band, measure GPT-4o agreement with deterministic decoder. If agreement < 80% for high-ECS, switch to deterministic-only oracle for Stage 2.\n\n## Stability Mechanisms (Not Claimed as Contributions)\n\n- Entropy regularization (from TriPlay-RL diversity penalty)\n- FPR rollback (standard safety constraint)\n- Semantic deduplication (standard data quality)\n\nTrigger frequencies reported as indirect utility evidence. Full ablation in camera-ready.\n\n## Timeline (16 days)\n\n**Submission-critical (Days 1-12):**\n- Days 1-3: ECS implementation, encoding generators, data pipeline, oracle pilot\n- Days 4-7: Curriculum training (3 seeds) + random-order (5 seeds) + flat augmentation (3 seeds) [parallelized across GPUs]\n- Days 8-9: Reverse curriculum (3 seeds) + decode-pipeline baseline + co-evolutionary attempt\n- Days 10-11: Full evaluation on all benchmarks + held-out encodings + representation analysis\n- Day 12: Core results analysis, statistical tests, main writing\n\n**Camera-ready extensions (Days 13-16 + post-submission):**\n- Day 13-14: ECS component leave-one-out ablation (3 runs)\n- Day 15: Stability mechanism ablation\n- Day 16: Writing polish, full 5-seed curriculum if time permits\n\n**Fallback trigger:** If co-evolutionary loop unstable by Day 6, switch to static curriculum SFT."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T12:23:58.263Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T12:23:58.263Z",
+  "sessionId": "e7459128-2033-4d1b-973e-37da2debc51e"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T12:23:58.277Z_
+
+## Title
+
+EncoGuard: Learning Content-Invariant Safety Features via Complexity-Structured Curriculum for Encoding-Based Attacks
+
+## Problem Statement
+
+Encoding-based jailbreak attacks (base64, ROT13, homoglyph substitution, and their nested compositions) exploit a fundamental vulnerability in LLM safety guardrails: classifiers trained on plaintext or limited encoding variations fail when inputs are transformed through unseen encoding schemes. Existing defenses fall into two categories, both with critical limitations:
+
+1. **Rule-based detection + decoding pipelines** (e.g., regex-based encoding detection → known decoder → standard guardrail): Effective for known single-layer encodings with distinctive statistical signatures, but fail on (a) partial encoding where only segments are transformed, (b) adversarial mixing of encoded/plaintext to evade detection heuristics, and (c) novel encodings without pre-programmed decoders.
+
+2. **Learned canonicalization** (seq2seq decode → classify): Suffers from error propagation in nested encodings, creates a new adversarial attack surface (the canonicalizer itself), and requires semantic understanding to identify which portions to decode.
+
+The core challenge is achieving **generalization to unseen encoding families**—classifiers that remain robust against encoding types never encountered during training. No existing defense reliably provides this capability.
+
+## Core Thesis
+
+We hypothesize that a classifier trained via **complexity-structured curriculum**—where encoding attacks are presented in order of a principled complexity metric—learns **content-invariant safety features** that generalize to held-out encoding types unseen during training. The key mechanism is **representation disentanglement**: curriculum ordering forces the model to first anchor the semantic signature of harmful content under low-noise surface perturbations (simple encodings), then learn to preserve this semantic signature under progressively higher-noise perturbations (complex encodings). The result is a representation space where harmful content clusters by semantic meaning regardless of surface encoding—a separation of content features from encoding-specific surface features.
+
+This differs fundamentally from memorizing encoding-specific detection patterns. A model that merely memorizes base64 character distributions cannot generalize to Braille; but a model that has learned to extract content semantics despite surface perturbation can generalize to any encoding that preserves underlying content structure.
+
+**General Principle:** This approach instantiates a broader defense paradigm for compositional attack spaces: when attacks are built from composable primitives with natural complexity ordering, structured curriculum training can induce invariance to attack-specific surface features while preserving task-relevant content features. We demonstrate this principle on encoding attacks as the canonical instance where complexity is formally quantifiable.
+
+## Relationship to Prior Work on Curriculum Adversarial Training
+
+Curriculum-based approaches to adversarial robustness exist (Cai et al., IJCAI 2018: progressively increasing perturbation magnitude for image classifiers; Wang et al., NeurIPS 2021: ordered SGD by sample difficulty). Our work differs in two critical dimensions:
+
+1. **Discrete compositional attack space vs. continuous perturbation space:** Prior work operates in continuous ε-ball perturbation spaces where difficulty is a scalar magnitude. Encoding attacks form a discrete compositional space where primitives (base64, ROT13, homoglyphs) can be arbitrarily nested—requiring a multi-dimensional complexity metric rather than a single scalar.
+
+2. **OOD generalization vs. in-distribution robustness:** Prior curriculum adversarial training only evaluates robustness against the same attack types used during training (within the same ε-ball). We explicitly evaluate generalization to **entirely unseen encoding families** (Braille, Morse, custom ciphers)—demonstrating that curriculum ordering induces transferable content-invariance, not just better in-distribution fitting. This OOD generalization claim is our primary novel contribution.
+
+## Key Contributions
+
+1. **Primary Contribution (Representation Disentanglement via Curriculum):** We demonstrate that complexity-structured curriculum training produces content-invariant representations that generalize to entirely unseen encoding families (Braille, Morse, custom cipher, NATO phonetic), while flat augmentation and random-order training do not. We provide direct representation-level evidence (CKA similarity analysis) that curriculum-trained models cluster same-content different-encoding inputs more tightly than baselines.
+
+2. **Formalized Encoding Complexity Score (ECS):** A principled complexity metric combining nesting depth, character-per-token (CPT) ratio deviation, and tokenizer perplexity. We validate that ECS predicts classifier difficulty on held-out encodings (Spearman ρ), establishing it as a transferable methodological contribution for any encoding-related defense work.
+
+3. **Co-Evolutionary Training Framework:** GRPO-trained attacker generates encoding attacks of escalating ECS, paired with SFT classifier trained on curriculum-ordered adversarial data. The co-evolutionary dynamic ensures curriculum adapts to classifier capability frontier.
+
+4. **Comprehensive Controlled Evaluation:** Controlled ablations (random-order, flat augmentation, reverse curriculum, static curriculum, decode-then-classify pipeline) with multi-seed statistical validation, supplemented by representation analysis directly verifying the content-invariance claim.
+
+## Methodology
+
+### Encoding Complexity Score (ECS)
+
+$$ECS(e) = \alpha \cdot \text{NestingDepth}(e) + \beta \cdot \text{CPT\_Deviation}(e) + \gamma \cdot \text{TokenizerPerplexity}(e)$$
+
+- NestingDepth: number of compositional encoding layers
+- CPT_Deviation: absolute deviation of encoded text's characters-per-token ratio from plaintext baseline
+- TokenizerPerplexity: perplexity of target model's tokenizer on encoded text
+
+Weights determined via pilot study measuring correlation of each component with classifier error rate on a validation set. Pilot results reported to justify weight selection. Full leave-one-out component ablation planned for camera-ready.
+
+### Mechanistic Motivation: Content-Invariance via Progressive Noise Escalation
+
+Under flat exposure, the classifier simultaneously encounters simple encodings (low surface noise, content semantics still partially accessible through tokenization) and complex nested encodings (high surface noise, content semantics completely obscured at token level). For high-noise inputs in early training, the model cannot extract content signal—gradients from these samples are effectively random with respect to content features, interfering with content-feature learning on low-noise inputs.
+
+Curriculum ordering resolves this by staged noise escalation:
+- **Stage 1 (low-ECS):** Simple encodings partially preserve content-correlated token patterns. The model learns to extract harmful-content semantic features despite mild surface perturbation, anchoring a content representation.
+- **Stage 2 (high-ECS):** Complex encodings fully obscure surface patterns. But the model already has anchored content features from Stage 1—it now learns to access these features through higher-noise channels, effectively learning encoding-invariance as noise robustness.
+
+This predicts generalization: a model that has learned "extract content semantics despite surface noise" should transfer to any novel encoding that preserves content structure—regardless of the specific noise pattern. Braille (character substitution) and Morse (symbolic re-encoding) are different noise types but preserve content, so a content-invariant model should handle them.
+
+### Why Not Simpler Alternatives?
+
+**Rule-based detection + decode:** For known single-layer encodings (base64, ROT13) with distinctive character-set signatures, regex detection + decode + standard guardrail achieves high accuracy at near-zero cost. Our method targets the regime where this fails:
+- **Partial encoding:** Only segments of input are encoded, defeating whole-input detection heuristics
+- **Adversarial mixing:** Attacker deliberately mixes encoded/plaintext to create ambiguous statistical signatures
+- **Novel encodings:** No pre-programmed decoder exists (the motivating scenario for generalization)
+
+We include a Deterministic-Decode + LlamaGuard-3 baseline to empirically demonstrate this boundary.
+
+**Learned canonicalization:** (1) Error propagation—each nested decode step compounds errors; (2) canonicalizer becomes a new attack surface; (3) partial encoding requires semantic understanding to identify decode targets.
+
+### Co-Evolutionary Training Loop
+
+**Attacker (Qwen2.5-1.5B, GRPO-trained):**
+- Generates encoding attacks with ECS constrained to current curriculum stage
+- Reward: +1 if encoding bypasses current classifier AND oracle confirms harmful content
+- Entropy regularization prevents collapse to single encoding type
+
+**Classifier (Qwen2.5-4B, SFT):**
+- Trains on curriculum-ordered adversarial examples (Stage 1: ECS ≤ threshold, Stage 2: ECS > threshold)
+- FPR rollback: revert checkpoint if FPR exceeds 2% on benign validation set
+- Semantic deduplication: removes near-duplicates (cosine similarity > 0.95)
+
+**Oracle:** GPT-4o judges content harmfulness. Deterministic decoder cross-validates; disagreements excluded.
+
+**Fallback Plan:** If co-evolutionary loop proves unstable by Day 6, fall back to static curriculum-ordered SFT (pre-generated curriculum data, no GRPO attacker). This still validates H1-H3.
+
+### Compute and Cost
+
+- Hardware: 4× A100 80GB
+- Classifier training: ~8h per run × 3 seeds × 2 stages = ~48h (parallelizable across GPUs)
+- Baselines: random-order (5 seeds × 8h = 40h), flat augmentation (3 seeds × 8h = 24h), reverse curriculum (3 seeds × 8h = 24h), static curriculum (3 seeds × 8h = 24h)
+- Attacker training: ~6h per round × 2 rounds = 12h
+- Oracle: ~18K calls ≈ $200-350
+- Representation analysis: inference only, ~2h
+- Total: ~160h GPU-hours (manageable on 4×A100 over 16 days with parallelization)
+- Compute normalization: training FLOPs (primary), with training tokens and wall-clock reported
+
+## Experimental Design
+
+### Hypotheses
+
+- **H1 (Curriculum > Random):** Curriculum-ordered training achieves ≥10pp lower encoding-ASR than random-order at equivalent FLOPs (validated by paired t-test across seeds, p < 0.05).
+- **H2 (OOD Generalization):** Curriculum-trained classifier maintains ≤30% encoding-ASR on held-out encoding families (Braille, Morse, custom cipher, NATO phonetic) where random-order and flat augmentation exceed 60%.
+- **H3 (ECS Predictiveness):** ECS correlates with classifier error rate (Spearman ρ ≥ 0.7) on held-out encodings.
+- **H4 (Co-evolution > Static):** Co-evolutionary training outperforms static curriculum SFT by ≥5pp on composite encodings (conditional on co-evolutionary loop stability).
+
+### Baselines and Ablations
+
+**Controlled comparisons (same architecture, same FLOPs, multi-seed):**
+1. Random-order training: 5 seeds, mean ± std
+2. Flat augmentation: 3 seeds
+3. Reverse curriculum (high-ECS first, then low-ECS): 3 seeds
+4. Static curriculum SFT (no co-evolutionary attacker): 3 seeds
+5. **Deterministic-Decode + LlamaGuard-3 pipeline:** Deterministic decoder attempts to decode input, decoded text classified by LlamaGuard-3. No training needed.
+
+**Curriculum (our method):** 3 seeds, mean ± std
+
+**Indicative comparisons (Discussion section):**
+6. Broken-Token CPT-Filtering (published numbers)
+7. TRYLOCK Layer 0 (published numbers)
+
+### Evaluation Protocol
+
+**External benchmarks (primary evidence):**
+- HarmBench encoding-perturbed variant
+- JailbreakBench encoding attack subset
+- WildGuardTest encoding-perturbed variant
+
+**EncoAttack (supplementary analysis):**
+- 500 base prompts: HarmBench (200) + AdvBench (150) + WildGuardTest (150), 10+ harm categories
+- 8 encoding types × 3 nesting levels = 12,000 test cases
+- Independent encoding implementation from training pipeline
+- Validation: ≥80% bypass rate on undefended LlamaGuard-3
+
+**Held-out encoding families (generalization test—NEVER seen during training):**
+- Braille Unicode substitution
+- Morse code symbolic encoding
+- Custom Caesar-variant cipher (position-dependent shift)
+- NATO phonetic alphabet encoding
+
+**Metrics:**
+- Encoding-ASR (primary)
+- Clean FPR at multiple thresholds (0.5%, 1%, 2%, 5%) with Pareto frontier analysis
+- Benign test set: WildGuardTest benign split (~1000) + LMSYS-Chat-1M random sample (1000)
+- Per-encoding-type breakdown
+- ECS-difficulty correlation on held-out encodings
+
+### Representation Analysis (Direct Evidence for Content-Invariance)
+
+For each of 100 harmful prompts, generate plaintext + 8 encoding variants. Extract classifier penultimate-layer representations. Compute:
+1. **Intra-prompt cross-encoding similarity:** Average cosine similarity between same-prompt different-encoding representations
+2. **CKA analysis:** Centered Kernel Alignment between encoding-variant representation matrices
+3. **Compare curriculum-trained vs. random-order-trained:** Prediction—curriculum model shows significantly higher intra-prompt similarity (content clusters by meaning, not by encoding type)
+
+This directly validates "encoding-invariant representations" without relying solely on task-level metrics.
+
+### Learning Dynamics
+
+- Per-checkpoint (every 500 steps) encoding-ASR curves
+- Separate curves for low-ECS and high-ECS encodings
+- Expected: curriculum shows earlier convergence on low-ECS, smooth transition to high-ECS; random-order shows chaotic learning on both
+
+### Oracle Reliability Pilot
+
+Before full training: 100 samples per ECS band, measure GPT-4o agreement with deterministic decoder. If agreement < 80% for high-ECS, switch to deterministic-only oracle for Stage 2.
+
+## Stability Mechanisms (Not Claimed as Contributions)
+
+- Entropy regularization (from TriPlay-RL diversity penalty)
+- FPR rollback (standard safety constraint)
+- Semantic deduplication (standard data quality)
+
+Trigger frequencies reported as indirect utility evidence. Full ablation in camera-ready.
+
+## Timeline (16 days)
+
+**Submission-critical (Days 1-12):**
+- Days 1-3: ECS implementation, encoding generators, data pipeline, oracle pilot
+- Days 4-7: Curriculum training (3 seeds) + random-order (5 seeds) + flat augmentation (3 seeds) [parallelized across GPUs]
+- Days 8-9: Reverse curriculum (3 seeds) + decode-pipeline baseline + co-evolutionary attempt
+- Days 10-11: Full evaluation on all benchmarks + held-out encodings + representation analysis
+- Day 12: Core results analysis, statistical tests, main writing
+
+**Camera-ready extensions (Days 13-16 + post-submission):**
+- Day 13-14: ECS component leave-one-out ablation (3 runs)
+- Day 15: Stability mechanism ablation
+- Day 16: Writing polish, full 5-seed curriculum if time permits
+
+**Fallback trigger:** If co-evolutionary loop unstable by Day 6, switch to static curriculum SFT.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "4ba8db20-fc71-413a-8993-419fe61faca3",
+  "type": "user",
+  "uuid": "3a565d7e-0c4f-47e3-a0cc-615b092f7763",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7459128-2033-4d1b-973e-37da2debc51e",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T12:23:58.275Z_
+
+```json
+{
+  "parentUuid": "3a565d7e-0c4f-47e3-a0cc-615b092f7763",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "99b36f22-0eac-4ce0-8cfb-bf8fcee80b33",
+  "timestamp": "2026-05-16T12:23:58.275Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7459128-2033-4d1b-973e-37da2debc51e",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T12:23:58.276Z_
+
+```json
+{
+  "parentUuid": "99b36f22-0eac-4ce0-8cfb-bf8fcee80b33",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "c83d5336-4b21-4070-b8de-578707e7e563",
+  "timestamp": "2026-05-16T12:23:58.276Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7459128-2033-4d1b-973e-37da2debc51e",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "## Title  EncoGuard: Learning Content-Invariant Safety Features via Complexity-Structured Curriculum for Encoding-Based Attacks  ## Problem Statement  Encoding-based jailbreak attacks (base64, ROT13,…",
+  "leafUuid": "c83d5336-4b21-4070-b8de-578707e7e563",
+  "sessionId": "e7459128-2033-4d1b-973e-37da2debc51e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Content-invariant safety features via curriculum learning",
+  "sessionId": "e7459128-2033-4d1b-973e-37da2debc51e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T12:24:58.995Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully analyze this proposal as the "发掘 agent" (Discovery Agent). I need to assess:
+
+1. **Novelty** - How novel is the core contribution after stripping away surface differences from related work?
+2. **Significance** - How important is the research problem and how impactful would the solution be?
+3. **Related Work differentiation** - Is there overlooked work that threatens the novelty claim?
+
+Let me also ask myself the two critical questions:
+1. Is there a trivial alternative that could achieve similar effects?
+2. Are the core assumptions/premises actually valid?
+
+Let me think deeply about this proposal.
+
+
+The core mechanism here is that curriculum learning—progressively exposing the model to increasingly complex encodings—forces the classifier to learn representations that separate content from encoding-specific artifacts, enabling generalization to unseen encoding types. While curriculum learning and adversarial training with curriculum ordering aren't new, the specific application to encoding-based safety attacks has some novelty, though I need to examine whether the claim that progressive complexity naturally leads to content-invariant representations actually holds up.
+
+The real question is whether the OOD generalization they're claiming is genuinely surprising or just what you'd expect from training on diverse perturbations. Data augmentation already achieves this to some degree, so the empirical contribution hinges on whether curriculum ordering actually outperforms random-order augmentation—that's the testable claim that matters.
+
+The more concerning issue is the trivial alternative: why not just decode the input before classification? Their counterarguments about partial encoding and novel encodings feel somewhat hand-wavy, since you could apply multiple decoders or the model itself might learn to handle variations.
+
+But actually, the strongest trivial alternative is simpler: just use GPT-4 directly as the classifier. It already understands many encoding schemes through its training, so asking it to identify potentially encoded harmful content might already work reasonably well. Or even more directly: train a decoder-free classifier with massive diverse augmentation across many encoding types without any curriculum ordering—wouldn't the model learn encoding-invariant features anyway just from exposure?
+
+The core claim hinges on whether curriculum ordering actually forces representation disentanglement, or if it's just an optimization speedup. The argument is that low-ECS encodings preserve content-correlated patterns, allowing the model to learn content first, but I'm not convinced this is the only path to learning robust features.
+
+Here's the real problem though: if high-ECS encodings completely scramble the token-level representation, how can any classifier—curriculum-trained or not—classify without decoding? The model would need to implicitly learn to decode, which means it's learning encoding-specific patterns, not content-invariant features at all. This might be the critical flaw in the whole "content-invariance" premise.
+
+For the model to classify encoded text, it has to either learn to decode (encoding-specific), learn statistical signatures of encoded harmful content (also encoding-specific), or somehow extract truly invariant features from scrambled tokens (which seems impossible). The proposal might be confusing a diverse set of encoding-specific decoders with actual invariant features.
+
+But there's a wrinkle: if the model generalizes to unseen encodings, it must have learned something beyond encoding-specific patterns. Maybe it's learning general decoding strategies—recognizing character substitution patterns, nested structures, and other meta-features about how encodings work—rather than content-invariant features. That's a meaningful distinction that changes how I should think about the threat model.
+
+Encoding-based jailbreaks are real but providers are already addressing them through input preprocessing, the attack surface is narrower than other jailbreak strategies like persuasion or role-play, and as models improve at understanding encoded content, the arms race will likely shift. Still, deployed safety systems need robustness here, and the curriculum learning approach could apply more broadly.
+
+I should consider what related work might already tackle this—multilingual safety classifiers handling diverse scripts face similar invariance challenges, adversarial training with text augmentation could help, domain generalization literature frames this as generalizing to unseen encoding domains, and recent jailbreak defenses might already handle encoded attacks.
+
+Now I'm thinking about how to strengthen the work. The "content-invariant" framing might be imprecise—what the model probably learns is how to decode and understand encoding structures rather than features that are literally invariant to encoding. I should clarify what generalization actually means here, maybe framing it as compositional generalization across the encoding transformation space. The connection to domain generalization is also underexploited—each encoding type is essentially a domain, so the curriculum approach could be positioned as progressive domain generalization, which ties into much richer literature. And the broader insight about composable primitives with natural complexity ordering might be more impactful than the specific encoding defense application itself.
+
+But there's a tension in the OOD generalization claim I need to address. If Braille and Morse are just character substitution and symbolic re-encoding, they might not be truly out-of-distribution from the training encodings, which already include those principles. I need to be precise about what "OOD" means here—is it OOD in terms of the specific mapping function, or the encoding principle itself?
+
+I'm also reconsidering the baselines more carefully. They mention a "Deterministic-Decode + LlamaGuard-3" baseline, but what about simpler alternatives like just using an LLM with a decode prompt?
+
+The proposal does address these to some extent, and the key differentiator is handling novel encodings without pre-programmed decoders. But that raises a practical question: how often do attackers actually use truly novel encodings versus just composing known ones?
+
+On the ECS metric itself, it's a weighted combination of nesting depth, character-per-token deviation, and tokenizer perplexity—useful but not particularly novel. The weights are determined by correlation with classifier error rates, which makes the metric somewhat circular since it's defined in terms of what makes classifiers fail.
+
+I think I have enough to provide a substantive assessment now. The proposal is well-structured and thoughtful, but there are several areas where the core idea could be strengthened.
+
+The main issues I'm seeing: the "content-invariance" framing might be conceptually muddled, the OOD generalization claim needs clearer definition of what "out-of-distribution" actually means here, and the connection to domain generalization could provide much stronger theoretical grounding. The general principle about curriculum learning for compositional attack spaces is actually more interesting than the specific application, but it's undersold. And the obvious alternative—just using a more powerful model or better prompting—needs a more convincing rebuttal.
+
+Let me organize my feedback now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c83d5336-4b21-4070-b8de-578707e7e563",
+  "isSidechain": false,
+  "requestId": "req_011Cb6EzFeBCs6WnUxTuz9LF",
+  "type": "assistant",
+  "uuid": "ca18e9ec-d0fd-43a9-803e-99b04b5caa64",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7459128-2033-4d1b-973e-37da2debc51e",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012e4Bz2ecpQZW1j6pKTgvke",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5070,
+      "cache_read_input_tokens": 13247,
+      "output_tokens": 4613,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5070,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4613,
+          "cache_read_input_tokens": 13247,
+          "cache_creation_input_tokens": 5070,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5070
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T12:25:50.971Z_
+
+【状态】: 有发掘空间
+
+---
+
+【发掘点 1】
+- 维度: 前提假设质疑
+- 内容: "Content-invariant features" 这一核心 framing 存在概念上的内在张力。对于高 ECS 编码（如多层 base64 嵌套），token-level representation 与原始内容之间的语义关系已被完全摧毁——tokens 本质上是随机字符相对于原文内容。在这种情况下，模型要成功分类，逻辑上只有两条路径：(a) 隐式学会解码（encoding-specific，恰恰不是 invariant），或 (b) 学会识别"编码文本的统计特征与有害内容的统计特征之间的相关性"（也是 encoding-specific）。那么所谓的"content-invariant feature"在 token 空间中具体对应的是什么？如果模型实际学到的是"多样化的编码结构识别+隐式解码策略组合"（即 meta-decoding capabilities），那应该用更精确的语言表达这一机制——比如 "compositional encoding-structure awareness" 或 "generalized decoding inductive bias"。当前 framing 暗示存在一种直接绕过编码、直达内容语义的表征，但这在信息论上对完全打乱 token 映射的编码是不成立的。修正这一 framing 不仅更诚实，还能让 reviewer 更难以 "mechanism claim 缺乏理论支撑" 来攻击。
+- 价值: 直接关系到 Novelty 和核心 claim 的逻辑强度。如果核心机制描述本身有概念漏洞，reviewer 的第一反应是 "authors don't understand their own method"——这是致命的。精确化机制描述反而能让 contribution 更 defensible。
+
+【发掘点 2】
+- 维度: significance 提升
+- 内容: 当前 proposal 将 "general principle"（curriculum for compositional attack spaces）作为 secondary framing 放在 Core Thesis 末尾。但这个 general principle 才是真正有 lasting impact 的贡献——编码攻击只是一个 demonstration instance。建议将论文的 primary framing 提升为："我们发现，对于由可组合原语构成的离散攻击空间，如果原语具有自然复杂度序，curriculum ordering 可以诱导出超越训练分布的 invariance。" 编码攻击作为 canonical testbed（因为复杂度可精确量化）。这种提升的好处是：(1) 扩大了潜在引用范围（任何面对 compositional adversarial space 的工作都可引用），(2) 让审稿人觉得"即使编码攻击的具体结果 margin 不够大，general principle 本身仍值得发表"，(3) 与未来工作的连接更有说服力（prompt injection 的组合攻击、multi-modal 的组合扰动等）。
+- 价值: 命中 Significance 维度。将一个"specific defense technique paper"提升为"reveals a general training principle with encoding attacks as formal demonstration"，显著抬高了影响力天花板。
+
+【发掘点 3】
+- 维度: related work 差异化
+- 内容: 当前 proposal 将自己定位在"curriculum adversarial training"文献中做差异化（Cai et al., Wang et al.）。但实际上更具威胁性的相关文献是 **domain generalization (DG)** 领域——特别是 progressive/sequential domain adaptation。本质上，每种编码类型就是一个 domain，OOD generalization 到 unseen encoding = generalization to unseen domains。DG 领域有大量关于"如何从多个 source domain 学到 domain-invariant features 以泛化到 unseen target domain"的工作（DANN, CORAL, IRM, DRO 等）。如果不主动定位和区分，reviewer 很可能会说 "this is just domain generalization applied to encoding attacks, what's new?" 建议显式讨论：为什么 standard DG 方法（如 invariant risk minimization）不直接适用于此处（离散组合空间、domain 数目爆炸、无法在 training 时显式枚举所有 domains），以及为什么 curriculum ordering 在此结构下比 standard DG 方法更 natural。
+- 价值: 命中 Related Work 差异化维度。提前封堵一个高概率的 reviewer objection，同时通过连接到更大的文献体系来强化理论 grounding。
+
+【发掘点 4】
+- 维度: novelty 锐化
+- 内容: 当前 OOD generalization claim 的"OOD"定义需要更锐利。Held-out encodings 是 Braille（字符替换）、Morse（符号重编码）、custom cipher（位移）、NATO（词替换）。但 training distribution 已经包含了 base64（字符重编码）、ROT13（位移）、homoglyph（字符替换）。从 encoding 的 structural principle 看，Braille 和 homoglyph 都是 character-level substitution，Morse 和 base64 都是 symbolic re-encoding，custom cipher 和 ROT13 都是 shift-based。那么 "OOD" 的实质含义是什么——是 specific mapping function 的 OOD，还是 encoding principle 的 OOD？如果是前者，这其实是同一 encoding family 内的 interpolation 而非真正的 extrapolation，novelty 大打折扣。建议：(a) 明确区分 "encoding principle OOD"（如 steganographic encoding，其中 harmful content 被嵌入看似 benign 的自然语言中——这是一个与训练中所有 encoding 都有 qualitative difference 的 family）和 "mapping function OOD"，(b) 在 held-out set 中加入至少一种 truly structurally different encoding（如 whitespace steganography, invisible Unicode characters），以强化 OOD claim 的说服力。
+- 价值: 命中 Novelty 维度。OOD generalization 是 primary novel contribution——如果 reviewer 能论证 held-out encodings 只是 interpolation，整个 novelty claim 崩塌。锐化 OOD 的定义和证据是守护核心 contribution 的关键。
+
+【发掘点 5】
+- 维度: trivial alternative 威胁
+- 内容: 当前 proposal 讨论了 "rule-based decode + classify" 和 "learned canonicalization" 两个 trivial alternatives。但遗漏了一个更具威胁性的 baseline：**直接用强 LLM（如 GPT-4 或 Claude）做 zero-shot 分类**，prompt 为 "This text may be encoded. Determine if the underlying content is harmful." 当前的强 LLM 在 pre-training 中已见过大量编码形式，具备一定的隐式解码能力。如果 GPT-4 zero-shot 在 held-out encodings 上已经表现 reasonable，那 EncoGuard 的增量价值需要从 **efficiency**（轻量级 4B 模型 vs. API cost）和 **latency**（毫秒级 vs. 秒级）角度来论证，而不仅仅是 accuracy。建议在 framing 中预先定位：EncoGuard 解决的是 "deployment-practical robust detection"——在推理成本受限（不能对每个 input 调用 GPT-4）的场景下实现接近 frontier model 的编码鲁棒性。这把问题从"能不能做到"变成"在什么约束下做到"，更 defensible。
+- 价值: 命中 Novelty 维度（避免被 "just use GPT-4" 的 reviewer comment 击穿）。同时通过精确定位 value proposition，让 contribution 更 crisp。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca18e9ec-d0fd-43a9-803e-99b04b5caa64",
+  "isSidechain": false,
+  "requestId": "req_011Cb6EzFeBCs6WnUxTuz9LF",
+  "type": "assistant",
+  "uuid": "95cbdba5-5681-4378-a01d-4ddd9518ee9c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e7459128-2033-4d1b-973e-37da2debc51e",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012e4Bz2ecpQZW1j6pKTgvke",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5070,
+      "cache_read_input_tokens": 13247,
+      "output_tokens": 4613,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5070,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4613,
+          "cache_read_input_tokens": 13247,
+          "cache_creation_input_tokens": 5070,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5070
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "## Title  EncoGuard: Learning Content-Invariant Safety Features via Complexity-Structured Curriculum for Encoding-Based Attacks  ## Problem Statement  Encoding-based jailbreak attacks (base64, ROT13,…",
+  "leafUuid": "95cbdba5-5681-4378-a01d-4ddd9518ee9c",
+  "sessionId": "e7459128-2033-4d1b-973e-37da2debc51e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Content-invariant safety features via curriculum learning",
+  "sessionId": "e7459128-2033-4d1b-973e-37da2debc51e"
+}
+```
+
+---

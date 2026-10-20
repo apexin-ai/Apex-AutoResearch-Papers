@@ -1,0 +1,3224 @@
+# Research conversation: Search for the following VLA token pruning papers to verify they exist and check their claims: 1. "VLA-IAP" - Training-F
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 1
+- **Tool calls:** 22
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-a61b9d011048080b3.jsonl`
+- **Structured JSON:** [`4904e1162f8395e6fb63.json`](../../sessions/49/4904e1162f8395e6fb63.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+51 recorded events
+
+### User
+
+_source line 1 · 2026-05-14T05:32:54.940Z_
+
+Search for the following VLA token pruning papers to verify they exist and check their claims:
+
+1. "VLA-IAP" - Training-Free Visual Token Pruning via Interaction Alignment (arXiv 2603.22991)
+2. "LightVLA" - Differentiable Token Pruning (ICRA 2026)
+3. "GridS" - Differentiable Grid Sample Pruning (ICML 2026)
+4. "SP-VLA" - action-aware scheduling with spatial pruning
+5. "SpecPrune-VLA" - action-aware self-speculative pruning
+6. "DTP" - dynamically detects and prunes distracting tokens (ICLR 2026)
+7. "BFA++" - hierarchical two-level importance predictors (Feb 2026)
+
+For each, verify: does it exist? What venue? Does it focus on efficiency or robustness? 
+
+Also search for: "token pruning VLA robustness 2026" and "visual token compression adversarial robustness VLA" to find any work that DOES combine token pruning with robustness (which would undermine the novelty claim).
+
+Search queries to use:
+- "VLA-IAP interaction alignment pruning"
+- "LightVLA differentiable token pruning"
+- "GridS differentiable grid sample VLA"
+- "SP-VLA spatial pruning"
+- "DTP distracting token pruning VLA"
+- "token pruning robustness vision language action 2026"
+
+Report findings with URLs.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "5b7c7b04-7932-4554-a9cd-d826eb6ef1c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T05:32:54.944Z_
+
+```json
+{
+  "parentUuid": "5b7c7b04-7932-4554-a9cd-d826eb6ef1c7",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "7c3e5448-d8a8-4bfd-97fb-0a3ddd9de608",
+  "timestamp": "2026-05-14T05:32:54.944Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T05:33:03.752Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EmggBzQHUqYnb3XgtMpMgr`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c3e5448-d8a8-4bfd-97fb-0a3ddd9de608",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v2Nspp3b1fCvZb7VR6",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "dd77a07f-1b0c-40e7-a8c2-7cfbb5fd6fc8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018eQUmYkGbKYnujBH95mRwZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 917,
+      "cache_read_input_tokens": 8223,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 917
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 8223,
+          "cache_creation_input_tokens": 917,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 917,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T05:33:03.756Z_
+
+<details><summary>↩ Tool result · `toolu_01EmggBzQHUqYnb3XgtMpMgr`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dd77a07f-1b0c-40e7-a8c2-7cfbb5fd6fc8",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "2e0c349a-632c-4360-af1f-80727ad72ce1",
+  "sourceToolAssistantUUID": "dd77a07f-1b0c-40e7-a8c2-7cfbb5fd6fc8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5 · 2026-05-14T05:33:07.020Z_
+
+I'll search for each of these papers systematically. Let me run multiple searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e0c349a-632c-4360-af1f-80727ad72ce1",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v32mdSKpzcKiJXi7Ar",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "aaa5382b-6173-4dce-bd05-5dcc9f06152e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fn4GTzcskEg13vXPK5JJtD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 9140,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1392,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T05:33:07.046Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CPfmLCSwEQWAK8rDCYPG5B`</summary>
+
+```json
+{
+  "query": "VLA-IAP interaction alignment pruning arXiv 2603.22991"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aaa5382b-6173-4dce-bd05-5dcc9f06152e",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v32mdSKpzcKiJXi7Ar",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0c040d0d-182c-4c1e-8601-b4d7eda3baa9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fn4GTzcskEg13vXPK5JJtD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 9140,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1392,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T05:33:07.494Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EgiLwFuccoRq3Taj2KrQEM`</summary>
+
+```json
+{
+  "query": "LightVLA differentiable token pruning ICRA 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c040d0d-182c-4c1e-8601-b4d7eda3baa9",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v32mdSKpzcKiJXi7Ar",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b76a559c-62d1-4e5e-93d6-af0cea356ce3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fn4GTzcskEg13vXPK5JJtD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 9140,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1392,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-14T05:33:07.965Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P1674oTdLKhFVS6sa4ULNd`</summary>
+
+```json
+{
+  "query": "GridS differentiable grid sample VLA ICML 2026 pruning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b76a559c-62d1-4e5e-93d6-af0cea356ce3",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v32mdSKpzcKiJXi7Ar",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bda0b145-92b9-4ca2-91d4-3abb5fc966e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fn4GTzcskEg13vXPK5JJtD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 9140,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1392,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T05:33:08.208Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015jUcs9mRSB5crGqhiHMphR`</summary>
+
+```json
+{
+  "query": "SP-VLA spatial pruning action-aware scheduling"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bda0b145-92b9-4ca2-91d4-3abb5fc966e6",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v32mdSKpzcKiJXi7Ar",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e0bbb17c-a0fb-4249-b77e-2235d81f5103",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fn4GTzcskEg13vXPK5JJtD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 9140,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1392
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 9140,
+          "cache_creation_input_tokens": 1392,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1392,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T05:33:13.169Z_
+
+<details><summary>↩ Tool result · `toolu_01P1674oTdLKhFVS6sa4ULNd`</summary>
+
+```text
+Web search results for query: "GridS differentiable grid sample VLA ICML 2026 pruning"
+
+Links: [{"title":"ICML Poster See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model","url":"https://icml.cc/virtual/2026/poster/65010"},{"title":"Downloads 2026","url":"https://iclr.cc/Downloads/2026"},{"title":"Deterministic Differentiable Structured Pruning for Large Language Models","url":"https://arxiv.org/html/2603.08065"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"ICML 2026 Papers","url":"https://icml.cc/virtual/2026/papers.html"},{"title":"ICML 2026","url":"https://icml.cc/"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/html/2509.12594v1"},{"title":"GitHub - Ed1sonChen/DailyArxiv · GitHub","url":"https://github.com/Ed1sonChen/DailyArxiv"},{"title":"∂^∞-Grid: A Neural Differential Equation Solver with Differentiable Feature Grids","url":"https://4dqv.mpi-inf.mpg.de/DInf-Grid/"},{"title":"ICML 2026 Statistics - Paper Copilot","url":"https://papercopilot.com/statistics/icml-statistics/icml-2026-statistics/"}]
+
+Based on the search results, I found relevant information about GridS (Differentiable Grid Sampler):
+
+GridS (Differentiable Grid Sampler) is a plug-and-play module that performs task-aware, continuous resampling of visual tokens in VLA (Vision-Language-Action models).
+
+Vision-Language-Action models have shown remarkable promise in robotics manipulation, yet their high computational cost hinders real-time deployment. Existing token pruning methods suffer from a fundamental trade-off where aggressive compression using pruning inevitably discards critical geometric details like contact points, leading to severe performance degradation.
+
+GridS is a plug-and-play module that performs task-aware, continuous resampling of visual tokens in VLA. By adaptively predicting a minimal set of salient coordinates and extracting features via differentiable interpolation, GridS preserves essential spatial information while achieving drastic compression (with fewer than 10% of tokens).
+
+This paper appears to be presented at ICML 2026, where it addresses the challenge of compressing visual tokens in VLA models while maintaining performance on robotics manipulation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bda0b145-92b9-4ca2-91d4-3abb5fc966e6",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "42437994-8d9c-4122-835d-01e1408637a6",
+  "sourceToolAssistantUUID": "bda0b145-92b9-4ca2-91d4-3abb5fc966e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T05:33:13.940Z_
+
+<details><summary>↩ Tool result · `toolu_01EgiLwFuccoRq3Taj2KrQEM`</summary>
+
+```text
+Web search results for query: "LightVLA differentiable token pruning ICRA 2026"
+
+Links: [{"title":"GitHub - LiAutoAD/LightVLA: Official Code for LightVLA (ICRA 2026)","url":"https://github.com/LiAutoAD/LightVLA"},{"title":"Beyond Training-Free Pruning: LightVLA Introduces Differentiable Token Pruning and Achieves a Dual Breakthrough in the Performance and Efficiency of VLA Models for the First Time | by Beck Moulton | Medium","url":"https://beckmoulton.medium.com/beyond-training-free-pruning-lightvla-introduces-differentiable-token-pruning-and-achieves-a-dual-7b2f562b0ab8"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/html/2509.12594"},{"title":"LightVLA","url":"https://liauto-research.github.io/LightVLA/"},{"title":"[2509.12594] The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/abs/2509.12594"},{"title":"ICML Poster See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model","url":"https://icml.cc/virtual/2026/poster/65010"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250912594J/abstract"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"AI Bites | YouTube Channel on X: \"LightVLA, a simple yet effective differentiable token pruning framework for vision-language-action (VLA) models. While VLA models have shown impressive capability in executing real-world robotic tasks, their deployment on resource-constrained platforms is often bottlenecked by https://t.co/bE0Zv0mb0c\" / X","url":"https://x.com/ai_bites/status/1970481721163313156"},{"title":"GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub","url":"https://github.com/daixiangzi/Awesome-Token-Compress"}]
+
+Based on the search results, here's what I found about LightVLA and its differentiable token pruning approach for ICRA 2026:
+
+## Overview
+
+LightVLA has been accepted by ICRA 2026. LightVLA is an innovative, simple yet effective differentiable token pruning framework designed for Vision-Language-Action (VLA) models.
+
+## Technical Approach
+
+LightVLA generates dynamic queries to assess the importance of visual tokens and utilizes Gumbel softmax for differentiable token selection. This approach enables the model to intelligently identify and retain crucial visual information for task execution while discarding redundant tokens.
+
+## Key Results and Benefits
+
+By learning pruning strategies during fine-tuning, LightVLA not only significantly reduces computational overhead (FLOPs and latency) but also improves task success rates on the LIBERO benchmark, achieving a win-win in both efficiency and performance. More specifically, LightVLA reduces FLOPs and latency by 59.1% and 38.2% respectively, with a 2.6% improvement in task success rate on the LIBERO benchmark.
+
+## Design Advantages
+
+A major advantage of LightVLA is its design, which does not rely on any heuristic magic numbers and introduces no additional trainable parameters. This makes it seamlessly integrable with existing modern inference frameworks, facilitating easy deployment and application.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b76a559c-62d1-4e5e-93d6-af0cea356ce3",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "c4065e07-15ba-4bd5-a5e4-89f95bec69a9",
+  "sourceToolAssistantUUID": "b76a559c-62d1-4e5e-93d6-af0cea356ce3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T05:33:15.512Z_
+
+<details><summary>↩ Tool result · `toolu_015jUcs9mRSB5crGqhiHMphR`</summary>
+
+```text
+Web search results for query: "SP-VLA spatial pruning action-aware scheduling"
+
+Links: [{"title":"[2506.12723] SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://arxiv.org/abs/2506.12723"},{"title":"SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration | OpenReview","url":"https://openreview.net/forum?id=RwdGIIjPlC"},{"title":"SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://arxiv.org/html/2506.12723v2"},{"title":"Preprint. SP-VLA: A JOINT MODEL SCHEDULING AND TOKEN","url":"https://arxiv.org/pdf/2506.12723"},{"title":"(PDF) SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://www.researchgate.net/publication/392736853_SP-VLA_A_Joint_Model_Scheduling_and_Token_Pruning_Approach_for_VLA_Model_Acceleration"},{"title":"SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration | alphaXiv","url":"https://www.alphaxiv.org/overview/2506.12723v3"},{"title":"[Literature Review] SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://www.themoonlight.io/en/review/sp-vla-a-joint-model-scheduling-and-token-pruning-approach-for-vla-model-acceleration"},{"title":"GitHub - ChildTang/SP-VLA · GitHub","url":"https://github.com/ChildTang/SP-VLA"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning","url":"https://arxiv.org/html/2509.05614"}]
+
+Based on the search results, here's what I found about SP-VLA:
+
+## Overview
+
+SP-VLA is a unified framework that accelerates VLA models by jointly scheduling models and pruning tokens. Vision-Language-Action (VLA) models have attracted increasing attention for their strong control capabilities. However, their high computational cost and low execution frequency hinder their suitability for real-time tasks such as robotic manipulation and autonomous navigation.
+
+## Key Components
+
+**Action-Aware Model Scheduling:**
+The framework design includes an action-aware model scheduling mechanism that reduces temporal redundancy by dynamically switching between VLA model and a lightweight generator. Inspired by the human motion pattern of focusing on key decision points while relying on intuition for other actions, it categorizes VLA actions into deliberative and intuitive, assigning the former to the VLA model and the latter to the lightweight generator.
+
+**Spatial Pruning:**
+To address spatial redundancy, the framework develops a spatio-semantic dual-aware token pruning method. Tokens are classified into spatial and semantic types and pruned based on their dual-aware importance to accelerate VLA inference.
+
+## Performance
+
+Experimental results demonstrate that the method achieves 1.5× lossless speedup in LIBERO and 2.4× in SimplerEnv, with up to 6% performance gain, while simultaneously improving both inference frequency and latency by 1.4× in LIBERO and 2.2× in SimplerEnv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e0bbb17c-a0fb-4249-b77e-2235d81f5103",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "ed08c9e3-4a8d-4307-8ccf-696a21ad3f27",
+  "sourceToolAssistantUUID": "e0bbb17c-a0fb-4249-b77e-2235d81f5103",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T05:33:15.690Z_
+
+<details><summary>↩ Tool result · `toolu_01CPfmLCSwEQWAK8rDCYPG5B`</summary>
+
+```text
+Web search results for query: "VLA-IAP interaction alignment pruning arXiv 2603.22991"
+
+Links: [{"title":"[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991"},{"title":"[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991v1"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.25766"},{"title":"SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://arxiv.org/html/2506.12723v2"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning","url":"https://arxiv.org/html/2509.05614v1"},{"title":"A Pragmatic VLA Foundation Model","url":"https://arxiv.org/html/2601.18692v1"},{"title":"[2603.07404] Adaptive Capacity Allocation for Vision Language Action Fine-tuning","url":"https://arxiv.org/abs/2603.07404"},{"title":"Beyond Attention Magnitude: Leveraging Inter-layer Rank Consistency for Efficient Vision-Language-Action Models","url":"https://arxiv.org/html/2603.24941"}]
+
+I found the paper for you! Here's information about arXiv paper 2603.22991:
+
+**Title:** VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models
+
+**Overview:**
+Vision-Language-Action (VLA) models have rapidly advanced embodied intelligence, enabling robots to execute complex, instruction-driven tasks. However, as model capacity and visual context length grow, the inference cost of VLA systems becomes a major bottleneck for real-world deployment on resource-constrained platforms.
+
+**Problem Addressed:**
+Existing visual token pruning methods mainly rely on semantic saliency or simple temporal cues, overlooking the continuous physical interaction, a fundamental property of VLA tasks. Consequently, current approaches often prune visually sparse yet structurally critical regions that support manipulation, leading to unstable behavior during early task phases.
+
+**Solution:**
+The paper proposes a shift toward an explicit Interaction-First paradigm. Their proposed training-free method, VLA-IAP (Interaction-Aligned Pruning), introduces a geometric prior mechanism to preserve structural anchors and a dynamic scheduling strategy that adapts pruning intensity based on semantic information.
+
+**Results:**
+VLA-IAP achieves a 97.8% success rate with a 1.25× speedup on the LIBERO benchmark, and up to 1.54× speedup while maintaining performance comparable to the unpruned backbone. Moreover, the method demonstrates superior and consistent performance across multiple model architectures and three different simulation environments, as well as a real robot platform, validating its strong generalization capability and practical applicability.
+
+The paper was submitted on March 24, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0c040d0d-182c-4c1e-8601-b4d7eda3baa9",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "5d35154f-650b-45fa-9676-5b574e65eaf8",
+  "sourceToolAssistantUUID": "0c040d0d-182c-4c1e-8601-b4d7eda3baa9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-14T05:33:18.411Z_
+
+Now let me search for the remaining papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d35154f-650b-45fa-9676-5b574e65eaf8",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v3ubZ8NaACku9f5FPQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3ce7cdf0-825f-4005-9ae2-4ed718b53209",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PaAAxaTFNHm98xRcWGAmsQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2753,
+      "cache_creation_input_tokens": 1169,
+      "cache_read_input_tokens": 10532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1169,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T05:33:18.860Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LRwQDhXsoX3QewpbPruwBA`</summary>
+
+```json
+{
+  "query": "SpecPrune-VLA action-aware self-speculative pruning arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ce7cdf0-825f-4005-9ae2-4ed718b53209",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v3ubZ8NaACku9f5FPQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bef15909-81f0-4370-9ff1-c0e1f3304626",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PaAAxaTFNHm98xRcWGAmsQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2753,
+      "cache_creation_input_tokens": 1169,
+      "cache_read_input_tokens": 10532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1169,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T05:33:19.318Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XrasmHNKcMsB8fEd3sYJos`</summary>
+
+```json
+{
+  "query": "DTP distracting token pruning VLA ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bef15909-81f0-4370-9ff1-c0e1f3304626",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v3ubZ8NaACku9f5FPQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "11581fc2-c8c3-4f37-b7ad-4280be3ec8ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PaAAxaTFNHm98xRcWGAmsQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2753,
+      "cache_creation_input_tokens": 1169,
+      "cache_read_input_tokens": 10532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1169,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T05:33:19.961Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BqsJk2QBJgq9buxRNJw8Y8`</summary>
+
+```json
+{
+  "query": "\"BFA++\" hierarchical importance predictors VLA 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11581fc2-c8c3-4f37-b7ad-4280be3ec8ae",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v3ubZ8NaACku9f5FPQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6cb7561d-a7a3-4662-b4df-9f15b5eb0d19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PaAAxaTFNHm98xRcWGAmsQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2753,
+      "cache_creation_input_tokens": 1169,
+      "cache_read_input_tokens": 10532,
+      "output_tokens": 181,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1169
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2753,
+          "output_tokens": 181,
+          "cache_read_input_tokens": 10532,
+          "cache_creation_input_tokens": 1169,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1169,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T05:33:25.115Z_
+
+<details><summary>↩ Tool result · `toolu_01LRwQDhXsoX3QewpbPruwBA`</summary>
+
+```text
+Web search results for query: "SpecPrune-VLA action-aware self-speculative pruning arXiv"
+
+Links: [{"title":"[2509.05614] SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning","url":"https://arxiv.org/abs/2509.05614"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning","url":"https://arxiv.org/html/2509.05614v1"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware","url":"https://arxiv.org/pdf/2509.05614"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning | OpenReview","url":"https://openreview.net/forum?id=t85Ni0LwjC"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning | Request PDF","url":"https://www.researchgate.net/publication/395354566_SpecPrune-VLA_Accelerating_Vision-Language-Action_Models_via_Action-Aware_Self-Speculative_Pruning"},{"title":"Beyond Attention Magnitude: Leveraging Inter-layer Rank Consistency for Efficient Vision-Language-Action Models","url":"https://arxiv.org/html/2603.24941"},{"title":"VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference","url":"https://arxiv.org/html/2511.16449"},{"title":"Environment-Aware Adaptive Pruning with Interleaved Inference Orchestration for Vision-Language-Action Models","url":"https://arxiv.org/html/2602.00780"},{"title":"SPECPRUNE-VLA:","url":"https://openreview.net/pdf/f898de78034757b0bb38f30b7b6fd21bca97b4ad.pdf"},{"title":"Specprune-vla Boosts Vision-Language-Action Models, Avoiding Over 20% Success Rate Drops With Smart Pruning","url":"https://quantumzeitgeist.com/faster-models-performance-specprune-vla-boosts-vision-language-action-avoiding-success/"}]
+
+Based on the search results, here's what I found about SpecPrune-VLA:
+
+## Overview
+
+SpecPrune-VLA is a training-free, two-level pruning method with heuristic control designed to accelerate Vision-Language-Action (VLA) models.
+
+## Key Problem
+
+Existing acceleration methods focus on local information from the current action step and ignore the global context, leading to >20% success rate drop and limited speedup in some scenarios. The key insight is that input images in consecutive steps exhibit high similarity, and token selection should combine local information with global context of the model.
+
+## Core Techniques
+
+SpecPrune-VLA consists of three main components:
+
+1. **Action-level static pruning**: Global history and local attention are leveraged to statically reduce visual tokens per action.
+
+2. **Layer-level dynamic pruning**: Tokens are pruned adaptively per layer based on layer-wise importance.
+
+3. **Lightweight action-aware controller**: Actions are classified as coarse- or fine-grained by the speed of the end effector and pruning aggressiveness is adjusted accordingly.
+
+## Performance Results
+
+SpecPrune-VLA achieves up to 1.57× speedup in LIBERO simulation and 1.70× on real-world tasks, with negligible success rate degradation.
+
+The paper was published on arXiv as preprint 2509.05614 by Hanzhen Wang and collaborators.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bef15909-81f0-4370-9ff1-c0e1f3304626",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "aab37446-e027-4c8a-9441-c3adeceebf1c",
+  "sourceToolAssistantUUID": "bef15909-81f0-4370-9ff1-c0e1f3304626",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T05:33:25.804Z_
+
+<details><summary>↩ Tool result · `toolu_01XrasmHNKcMsB8fEd3sYJos`</summary>
+
+```text
+Web search results for query: "DTP distracting token pruning VLA ICLR 2026"
+
+Links: [{"title":"DTP: A Simple yet Effective Distracting Token Pruning Framework for Vision-Language Action Models | OpenReview","url":"https://openreview.net/forum?id=5yYQDuXzZh"},{"title":"[2601.16065] DTP: A Simple yet Effective Distracting Token Pruning Framework for Vision-Language Action Models","url":"https://arxiv.org/abs/2601.16065"},{"title":"DTP:A Simple yet Effective Distracting Token Pruning Framework for Vision-Language Action Models","url":"https://arxiv.org/html/2601.16065"},{"title":"DTP:A SIMPLE YET EFFECTIVE DISTRACTING TOKEN ...","url":"https://openreview.net/pdf/81a879f3502bf537aca1b6c9bab050f3b90967e4.pdf"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"ICLR Poster An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models","url":"https://iclr.cc/virtual/2026/poster/10011749"},{"title":"ICLR Poster HiDivDrop: Vision Token Reduction in MLLMs via Late Injection and Differentiable Top-K","url":"https://iclr.cc/virtual/2026/poster/10011723"},{"title":"[ICLR 2026] AgilePruner: An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models","url":"https://paper.pnu-cvsp.com/AgilePruner/"},{"title":"GitHub - cvsp-lab/AgilePruner: [ICLR 2026] AgilePruner: An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models · GitHub","url":"https://github.com/cvsp-lab/AgilePruner"}]
+
+Based on the search results, I found information about DTP (Distracting Token Pruning) for Vision-Language Action models submitted to ICLR 2026:
+
+## Overview
+
+DTP: A Simple yet Effective Distracting Token Pruning Framework for Vision-Language Action Models was submitted to ICLR 2026.
+
+## Problem Statement
+
+Vision-Language Action (VLA) models have shown remarkable progress in robotic manipulation by leveraging the powerful perception abilities of Vision-Language Models (VLMs) to understand environments and directly output actions. However, VLA models may overly attend to image tokens in the task-irrelevant region, described as 'distracting tokens', which can disturb the model from the generation of the desired action tokens in each step, affecting the success rate of tasks.
+
+## Proposed Solution
+
+The paper introduces a simple yet effective plug-and-play Distracting Token Pruning (DTP) framework, which dynamically detects and prunes these distracting image tokens, with the aim to improve the task success rate as well as exploring the performance upper boundaries of the model without altering its original architecture or adding additional inputs.
+
+## Results
+
+Experiments on the SIMPLER Benchmark show that the method consistently achieves relative improvements in task success rates across different types of novel VLA models, demonstrating generalizability to transformer-based VLAs. Additionally, analysis reveals a negative correlation between the task success rate and the amount of attentions in the task-irrelevant region for all models tested.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "11581fc2-c8c3-4f37-b7ad-4280be3ec8ae",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "66000515-303e-4040-85ed-a071d16563e1",
+  "sourceToolAssistantUUID": "11581fc2-c8c3-4f37-b7ad-4280be3ec8ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T05:33:26.278Z_
+
+<details><summary>↩ Tool result · `toolu_01BqsJk2QBJgq9buxRNJw8Y8`</summary>
+
+```text
+Web search results for query: ""BFA++" hierarchical importance predictors VLA 2026"
+
+Links: [{"title":"BFA++: Hierarchical Best-Feature-Aware Token Prune for Multi-View Vision Language Action Model","url":"https://arxiv.org/html/2602.20566"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"GitHub - guanweifan/awesome-efficient-vla: 🔥 A curated roadmap to the Efficient VLA landscape. We’re keeping this list live—contribute your latest work!","url":"https://github.com/guanweifan/awesome-efficient-vla"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"Bayesian Hierarchical Model to Determine if Dichotomization is Justified with Extensions to Tree-Based Models","url":"https://medica-musc.researchcommons.org/theses/1135/"},{"title":"Embodied AI Robot Large Model (Including VLA) Research Report 2026: World Models Are About to Become Standard, and OEMs Enter and Accelerate Mass Production and Application","url":"https://www.globenewswire.com/news-release/2026/05/13/3293694/28124/en/Embodied-AI-Robot-Large-Model-Including-VLA-Research-Report-2026-World-Models-Are-About-to-Become-Standard-and-OEMs-Enter-and-Accelerate-Mass-Production-and-Application.html"},{"title":"HAMSTER: Hierarchical Action Models for Open-World Robot Manipulation | OpenReview","url":"https://openreview.net/forum?id=h7aQxzKbq6"},{"title":"Modeling the Impact of Socioeconomic Determinants on Childhood Malnutrition: A Hierarchical Bayesian Approach with Measurement Error Adjustment, Applied and Computational Mathematics, Science Publishing Group","url":"https://www.sciencepublishinggroup.com/article/10.11648/j.acm.20261501.14"},{"title":"Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey","url":"https://arxiv.org/html/2508.13073v1"},{"title":"HiMoE-VLA: Hierarchical Mixture-of-Experts for Generalist...","url":"https://openreview.net/forum?id=TX3oGD99CJ"}]
+
+Based on the search results, I found relevant information about BFA++ and VLA models from 2026:
+
+## BFA++: Hierarchical Best-Feature-Aware Token Pruning for VLA
+
+BFA++ is a supervised dynamic token pruning method designed for Vision-Language-Action (VLA) post-training that employs a hierarchical local-global token pruning strategy: first, locally pruning less important tokens within each view; then, globally ranking all remaining tokens by their combined importance scores to eliminate the least critical tokens across all views.
+
+### Hierarchical Importance Predictors
+
+The method uses two networks for hierarchical token pruning: an intra-view importance predictor (Intra-IP) that identifies crucial tokens (e.g., robotic grippers, target objects) within each view, and an inter-view importance predictor (Inter-IP) that determines critical views across manipulation stages.
+
+Both predictors are jointly trained with the backbone during post-training, enabling robust elimination of redundant tokens while preserving task-critical information.
+
+### Performance Results
+
+Experiments on RoboTwin and real environments demonstrated that the method achieves 1.8× speedup with 10% improvement on RDT.
+
+BFA++ is described as hierarchical multi-view token pruning that removes redundant regions and camera views, released in February 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6cb7561d-a7a3-4662-b4df-9f15b5eb0d19",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "8da85a0e-fc38-4c2e-8f18-847e0dda7735",
+  "sourceToolAssistantUUID": "6cb7561d-a7a3-4662-b4df-9f15b5eb0d19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-14T05:33:29.855Z_
+
+Good, all seven papers are confirmed. Now let me search for work combining token pruning with robustness.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8da85a0e-fc38-4c2e-8f18-847e0dda7735",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v4h6ztgxTbr9eYVckw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "127f5d76-5c43-4eb3-adf4-a8810fa249ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EteLJ4AVpkUcNWmTVTF1qR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5943,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5943,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T05:33:30.195Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RHQiHvPrSXiXGPufC7T7wn`</summary>
+
+```json
+{
+  "query": "token pruning VLA robustness adversarial 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "127f5d76-5c43-4eb3-adf4-a8810fa249ad",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v4h6ztgxTbr9eYVckw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "19a6a476-6c12-4768-a95b-9faf09731931",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EteLJ4AVpkUcNWmTVTF1qR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5943,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5943,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T05:33:30.672Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01H6xS7XNMgvyxkpPa1Fndnn`</summary>
+
+```json
+{
+  "query": "visual token compression adversarial robustness vision language action model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "19a6a476-6c12-4768-a95b-9faf09731931",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v4h6ztgxTbr9eYVckw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bc7ea3db-998a-4f92-98dc-963d513d71f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EteLJ4AVpkUcNWmTVTF1qR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5943,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5943,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T05:33:30.950Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0149vZSULKK5dzAf4vuDYzr7`</summary>
+
+```json
+{
+  "query": "token pruning robustness vision language action 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc7ea3db-998a-4f92-98dc-963d513d71f3",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v4h6ztgxTbr9eYVckw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "05fa78e1-69b8-430e-9438-2314238ac784",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EteLJ4AVpkUcNWmTVTF1qR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5943,
+      "cache_read_input_tokens": 11701,
+      "output_tokens": 182,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5943
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 182,
+          "cache_read_input_tokens": 11701,
+          "cache_creation_input_tokens": 5943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5943,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T05:33:38.768Z_
+
+<details><summary>↩ Tool result · `toolu_01H6xS7XNMgvyxkpPa1Fndnn`</summary>
+
+```text
+Web search results for query: "visual token compression adversarial robustness vision language action model"
+
+Links: [{"title":"[2601.21531] On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/abs/2601.21531"},{"title":"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/html/2601.21531"},{"title":"Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models","url":"https://arxiv.org/html/2601.12042"},{"title":"Break the Visual Perception: Adversarial Attacks Targeting Encoded Visual Tokens of Large Vision-Language Models | Proceedings of the 32nd ACM International Conference on Multimedia","url":"https://dl.acm.org/doi/10.1145/3664647.3680779"},{"title":"Dynamic Token Reweighting for Robust Vision-Language Models","url":"https://arxiv.org/html/2505.17132"},{"title":"Break the Visual Perception: Adversarial Attacks Targeting Encoded Visual Tokens of Large Vision-Language Models","url":"https://arxiv.org/html/2410.06699v1"},{"title":"[2410.06699] Break the Visual Perception: Adversarial Attacks Targeting Encoded Visual Tokens of Large Vision-Language Models","url":"https://arxiv.org/abs/2410.06699"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"Revisiting Visual Token Pruning for Vision-Language Model ...","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Endo_Feather_the_Throttle_Revisiting_Visual_Token_Pruning_for_Vision-Language_Model_ICCV_2025_paper.pdf"},{"title":"On the Adversarial Robustness of Visual-Language Chat ...","url":"https://dl.acm.org/doi/pdf/10.1145/3731715.3733407"}]
+
+Based on the search results, I found several highly relevant papers and research on visual token compression and adversarial robustness in vision-language models. Here are the key findings:
+
+## Main Research Areas
+
+Visual token compression is widely used to accelerate large vision-language models (LVLMs) by pruning or merging visual tokens, yet its adversarial robustness remains unexplored.
+
+### Key Studies on Adversarial Robustness of Compressed Vision-Language Models
+
+**1. CAGE Attack (Compression-AliGnEd Attack)**
+
+Existing encoder-based attacks can substantially overestimate the robustness of compressed LVLMs, due to an optimization-inference mismatch: perturbations are optimized on the full-token representation, while inference is performed through a token-compression bottleneck. 
+
+To address this gap, researchers proposed the Compression-AliGnEd attack (CAGE), which aligns perturbation optimization with compression inference without assuming access to the deployed compression mechanism or its token budget. CAGE combines expected feature disruption and rank distortion alignment.
+
+**2. Compression-Aware Attack (CAA)**
+
+Extensive experiments across multiple models, datasets, and compression methods consistently demonstrate that visual token compression significantly undermines model robustness, exposing a previously overlooked trade-off between efficiency and security.
+
+**3. Visual Tokens Attack (VT-Attack)**
+
+VT-Attack is a joint method that constructs adversarial images by disrupting the visual tokens output by image encoders of LVLMs from multiple perspectives, in order to investigate the robustness of LVLMs against compromised visual information.
+
+### Applications to Vision-Language Action Models
+
+Assessing the adversarial robustness of such models is crucial, as token compression has become indispensable for deploying LVLMs in real-time, safety-critical applications (e.g., autonomous driving and robotics) due to strict latency and energy constraints.
+
+These research findings highlight critical security implications for deploying efficient vision-language models in real-world applications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bc7ea3db-998a-4f92-98dc-963d513d71f3",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "89f286c3-b5d4-4920-b2a1-abe5eeb1d280",
+  "sourceToolAssistantUUID": "bc7ea3db-998a-4f92-98dc-963d513d71f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T05:33:38.885Z_
+
+<details><summary>↩ Tool result · `toolu_01RHQiHvPrSXiXGPufC7T7wn`</summary>
+
+```text
+Web search results for query: "token pruning VLA robustness adversarial 2026"
+
+Links: [{"title":"[2601.21531] On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/abs/2601.21531"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/html/2601.21531"},{"title":"[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991v1"},{"title":"XPENG-Peking University Collaborative Research Accepted by AAAI 2026:","url":"https://www.xpeng.com/pressroom/news/019b649d31c59b49d00d8a028c720027"},{"title":"XPENG-Peking University Collaborative Research Accepted by AAAI 2026: Introducing a Novel Visual Token Pruning Framework for Autonomous Driving | Press Releases | shipnc.com","url":"https://www.shipnc.com/online_features/press_releases/article_7c5fd3a0-2f28-50f1-b6cf-7f708457ac9f.html"},{"title":"[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991"},{"title":"XPENG–Peking University Collaborative Research Accepted By AAAI 2026: Introducing A Novel Visual Token Pruning Framework For Autonomous Driving - CleanTechnica","url":"https://cleantechnica.com/2025/12/28/xpeng-peking-university-collaborative-research-accepted-by-aaai-2026-introducing-a-novel-visual-token-pruning-framework-for-autonomous-driving/"},{"title":"FastDriveVLA: Efficient End-to-End Driving via Plug-and-Play Reconstruction-based Token Pruning","url":"https://arxiv.org/html/2507.23318"}]
+
+I found several highly relevant papers and research from 2026 on token pruning, VLA (Vision-Language-Action) models, robustness, and adversarial topics. Here are the key findings:
+
+## Primary Research
+
+**Adversarial Robustness of Compressed LVLMs:**
+Visual token compression is widely used to accelerate large vision-language models (LVLMs) by pruning or merging visual tokens, yet its adversarial robustness remains unexplored. Existing encoder-based attacks can substantially overestimate the robustness of compressed LVLMs, due to an optimization-inference mismatch: perturbations are optimized on the full-token representation, while inference is performed through a token-compression bottleneck. 
+
+To address this gap, researchers propose the Compression-AliGnEd attack (CAGE), which aligns perturbation optimization with compression inference without assuming access to the deployed compression mechanism or its token budget.
+
+## VLA Token Pruning Applications
+
+**Robotic Manipulation:**
+Vision-Language-Action (VLA) models have rapidly advanced embodied intelligence, enabling robots to execute complex, instruction-driven tasks. However, as model capacity and visual context length grow, the inference cost of VLA systems becomes a major bottleneck for real-world deployment on resource-constrained platforms. Existing visual token pruning methods mainly rely on semantic saliency or simple temporal cues, overlooking the continuous physical interaction, a fundamental property of VLA tasks. VLA-IAP achieves a 97.8% success rate with a 1.25× speedup on the LIBERO benchmark, and up to 1.54× speedup while maintaining performance comparable to the unpruned backbone.
+
+**Autonomous Driving:**
+FastDriveVLA is a novel reconstruction-based token pruning framework inspired by how human drivers focus on relevant foreground information while ignoring non-critical background areas. The method introduces an adversarial foreground-background reconstruction strategy that enhances the model's ability to identify and retain valuable tokens. When the number of visual tokens was reduced from 3,249 to 812, the framework achieved a nearly 7.5x reduction in computational load while maintaining high planning accuracy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "19a6a476-6c12-4768-a95b-9faf09731931",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "fc4cbb09-095b-4cb6-9b47-6f1e37c9cfbe",
+  "sourceToolAssistantUUID": "19a6a476-6c12-4768-a95b-9faf09731931",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T05:33:39.025Z_
+
+<details><summary>↩ Tool result · `toolu_0149vZSULKK5dzAf4vuDYzr7`</summary>
+
+```text
+Web search results for query: "token pruning robustness vision language action 2026"
+
+Links: [{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"ICML Poster See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model","url":"https://icml.cc/virtual/2026/poster/65010"},{"title":"[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991v1"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991"},{"title":"BFA++: Hierarchical Best-Feature-Aware Token Prune for Multi-View Vision Language Action Model","url":"https://arxiv.org/html/2602.20566"},{"title":"LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models","url":"https://arxiv.org/html/2604.23950"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/html/2509.12594v1"},{"title":"QAPruner: Quantization-Aware Vision Token Pruning for Multimodal Large Language Models","url":"https://arxiv.org/html/2604.02816"},{"title":"Efficient Vision-Language Reasoning via Adaptive Token Pruning | OpenReview","url":"https://openreview.net/forum?id=Vbqemx4YCC"}]
+
+Based on the search results, here's what I found about token pruning, robustness, and vision-language-action models in 2026:
+
+## Recent Research on Token Pruning in Vision-Language-Action Models
+
+Vision-Language-Action (VLA) models have rapidly advanced embodied intelligence for robots to execute complex tasks, but as model capacity and visual context length grow, the inference cost becomes a major bottleneck for real-world deployment on resource-constrained platforms.
+
+### Key Challenges and Solutions
+
+Existing visual token pruning methods mainly rely on semantic saliency or simple temporal cues, overlooking the continuous physical interaction, leading to pruning of visually sparse yet structurally critical regions that support manipulation.
+
+Several recent approaches are addressing these challenges:
+
+1. **VLA-IAP (Interaction-Aligned Pruning)**: This training-free method introduces a geometric prior mechanism to preserve structural anchors and a dynamic scheduling strategy that adapts pruning intensity based on semantic-motion alignment, enabling a conservative-to-aggressive transition for robustness. It achieves a 97.8% success rate with a 1.25× speedup on the LIBERO benchmark.
+
+2. **Differentiable Grid Sampler (GridS)**: This method performs task-aware, continuous resampling of visual tokens by adaptively predicting a minimal set of salient coordinates and extracting features via differentiable interpolation. It achieves a 76% reduction in FLOPs with no degradation in success rate.
+
+3. **BFA++ (Hierarchical Token Pruning)**: This employs a hierarchical local-global token pruning strategy that first locally prunes less important tokens within each view, then globally ranks remaining tokens to eliminate the least critical tokens across all views.
+
+### Robustness Findings
+
+Research shows that adaptive pruning tends to suppress spurious correlations and hallucinated features, suggesting that resource-constrained inference and model reliability are not necessarily competing objectives.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "05fa78e1-69b8-430e-9438-2314238ac784",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "2f8c1f72-4f64-411f-abea-7b499812d20e",
+  "sourceToolAssistantUUID": "05fa78e1-69b8-430e-9438-2314238ac784",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-14T05:33:42.372Z_
+
+Let me get more details on the key paper that directly connects token pruning with adversarial robustness.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f8c1f72-4f64-411f-abea-7b499812d20e",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v5dPHdSaaYPNygg6iW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a5424532-c392-4e2f-a5d2-02cbbc82ad7f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YQK3NawzNyqWWcUcZLdwMg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3514,
+      "cache_read_input_tokens": 17644,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3514,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T05:33:42.804Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KhiwTz6MWMWoGA8FQRmEhb`</summary>
+
+```json
+{
+  "query": "arXiv 2601.21531 \"adversarial robustness\" \"visual token compression\" LVLM venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a5424532-c392-4e2f-a5d2-02cbbc82ad7f",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v5dPHdSaaYPNygg6iW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f9b29852-cc09-4945-a619-140dc5ba82c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YQK3NawzNyqWWcUcZLdwMg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3514,
+      "cache_read_input_tokens": 17644,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3514,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-14T05:33:44.346Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PMWsx1nVkUTw51VnvWmg3E`</summary>
+
+```json
+{
+  "query": "\"Less Is More Until It Breaks\" security vision token compression arXiv 2601.12042"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9b29852-cc09-4945-a619-140dc5ba82c6",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v5dPHdSaaYPNygg6iW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4391a76b-1d2a-42b7-ac10-c6443d28048d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YQK3NawzNyqWWcUcZLdwMg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3514,
+      "cache_read_input_tokens": 17644,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3514,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T05:33:44.452Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0158LzBKnH3yEuxK7ebpAd37`</summary>
+
+```json
+{
+  "query": "DTP distracting token pruning ICLR 2026 accepted poster"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4391a76b-1d2a-42b7-ac10-c6443d28048d",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v5dPHdSaaYPNygg6iW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "90ae8f10-f77e-4665-a31d-6dc3b61bb788",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YQK3NawzNyqWWcUcZLdwMg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3514,
+      "cache_read_input_tokens": 17644,
+      "output_tokens": 211,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3514
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 211,
+          "cache_read_input_tokens": 17644,
+          "cache_creation_input_tokens": 3514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3514,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T05:33:47.620Z_
+
+<details><summary>↩ Tool result · `toolu_01KhiwTz6MWMWoGA8FQRmEhb`</summary>
+
+```text
+Web search results for query: "arXiv 2601.21531 "adversarial robustness" "visual token compression" LVLM venue"
+
+Links: [{"title":"[2601.21531] On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/abs/2601.21531"},{"title":"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/html/2601.21531"},{"title":"Understanding and Enhancing Encoder-based Adversarial Transferability against Large Vision-Language Models","url":"https://arxiv.org/html/2602.09431"},{"title":"Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models","url":"https://arxiv.org/html/2601.12042"},{"title":"VEAttack: Downstream-agnostic Vision Encoder Attack against Large Vision Language Models","url":"https://arxiv.org/html/2505.17440"},{"title":"[2603.21701] Rethinking Token Reduction for Large Vision-Language Models","url":"https://arxiv.org/abs/2603.21701"},{"title":"Break the Visual Perception: Adversarial Attacks Targeting Encoded Visual Tokens of Large Vision-Language Models","url":"https://arxiv.org/html/2410.06699v1"},{"title":"AdPO: Enhancing the Adversarial Robustness of Large Vision-Language Models with Preference Optimization","url":"https://arxiv.org/html/2504.01735v1"},{"title":"Securing Vision-Language Models with a Robust Encoder Against Jailbreak and Adversarial Attacks","url":"https://arxiv.org/html/2409.07353"},{"title":"A Survey of Attacks on Large Vision-Language Models: Resources, Advances, and Future Trends","url":"https://arxiv.org/html/2407.07403v2"}]
+
+Based on the search results, I found information about arXiv paper 2601.21531:
+
+The paper is titled "On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression" and was submitted on January 29, 2026.
+
+The paper addresses the gap where visual token compression is widely used to accelerate LVLMs, yet existing encoder-based attacks can substantially overestimate the robustness of compressed LVLMs due to an optimization-inference mismatch. The authors propose CAGE (Compression-AliGnEd attack) to address this gap by aligning perturbation optimization with compression inference.
+
+However, I was unable to find specific information about the publication venue for this paper in the search results. The search results only indicate it is an arXiv preprint without mentioning whether it has been accepted or submitted to a particular conference or journal venue.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9b29852-cc09-4945-a619-140dc5ba82c6",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "4c8ea0f0-a25c-4ab2-8687-e15b5b887395",
+  "sourceToolAssistantUUID": "f9b29852-cc09-4945-a619-140dc5ba82c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T05:33:48.884Z_
+
+<details><summary>↩ Tool result · `toolu_01PMWsx1nVkUTw51VnvWmg3E`</summary>
+
+```text
+Web search results for query: ""Less Is More Until It Breaks" security vision token compression arXiv 2601.12042"
+
+Links: [{"title":"Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models","url":"https://arxiv.org/html/2601.12042"},{"title":"(PDF) Less Is More -- Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models","url":"https://www.researchgate.net/publication/399931955_Less_Is_More_--_Until_It_Breaks_Security_Pitfalls_of_Vision_Token_Compression_in_Large_Vision-Language_Models"},{"title":"[2601.20742] Compression Tells Intelligence: Visual Coding, Visual Token Technology, and the Unification","url":"https://arxiv.org/abs/2601.20742"},{"title":"[2601.21531] On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/abs/2601.21531"},{"title":"[2601.22674] VisionTrim: Unified Vision Token Compression for Training-Free MLLM Acceleration","url":"https://arxiv.org/abs/2601.22674"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2601.22674"},{"title":"Vision-centric Token Compression in Large Language Model","url":"https://arxiv.org/html/2502.00791v2"},{"title":"When Tokens Talk Too Much: A Survey of Multimodal Long-Context Token Compression across Images, Videos, and Audios","url":"https://arxiv.org/html/2507.20198v4"},{"title":"Efficient Token Compression for Vision Transformer with Spatial Information Preserved","url":"https://arxiv.org/html/2503.23455v1"},{"title":"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/html/2601.21531"}]
+
+Based on the search results, I found the paper you were looking for:
+
+**"Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models"** (arXiv:2601.12042)
+
+The research reveals that visual token compression substantially degrades the robustness of Large Vision-Language Models (LVLMs), with models that are robust under uncompressed inference becoming highly vulnerable once compression is enabled.
+
+While visual token compression is widely adopted to improve the inference efficiency of LVLMs for deployment in latency-sensitive and resource-constrained scenarios, existing work has mainly focused on efficiency and performance, while the security implications of visual token compression remain largely unexplored.
+
+The paper uses a concrete example from autonomous driving to illustrate the security risks, showing how compression can cause models to miss critical visual information like STOP signs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4391a76b-1d2a-42b7-ac10-c6443d28048d",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "4b5523d3-c37e-4aa3-be5d-57205cb94623",
+  "sourceToolAssistantUUID": "4391a76b-1d2a-42b7-ac10-c6443d28048d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T05:33:50.262Z_
+
+<details><summary>↩ Tool result · `toolu_0158LzBKnH3yEuxK7ebpAd37`</summary>
+
+```text
+Web search results for query: "DTP distracting token pruning ICLR 2026 accepted poster"
+
+Links: [{"title":"[2601.16065] DTP: A Simple yet Effective Distracting Token Pruning Framework for Vision-Language Action Models","url":"https://arxiv.org/abs/2601.16065"},{"title":"DTP: A Simple yet Effective Distracting Token Pruning Framework for Vision-Language Action Models | OpenReview","url":"https://openreview.net/forum?id=5yYQDuXzZh"},{"title":"DTP:A Simple yet Effective Distracting Token Pruning Framework for Vision-Language Action Models","url":"https://arxiv.org/html/2601.16065"},{"title":"ICLR Poster An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models","url":"https://iclr.cc/virtual/2026/poster/10011749"},{"title":"ICLR Poster HiDivDrop: Vision Token Reduction in MLLMs via Late Injection and Differentiable Top-K","url":"https://iclr.cc/virtual/2026/poster/10011723"},{"title":"[ICLR 2026] AgilePruner: An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models","url":"https://paper.pnu-cvsp.com/AgilePruner/"},{"title":"ICLR Poster Prune Redundancy, Preserve Essence: Vision Token Compression in VLMs via Synergistic Importance-Diversity","url":"https://iclr.cc/virtual/2026/poster/10008000"},{"title":"ICLR Poster Enhancing Vision Transformers for Object Detection via Context-Aware Token Selection and Packing","url":"https://iclr.cc/virtual/2026/poster/10009628"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"Unbiased Token Pruning for Efficient Large Multimodal Models | OpenReview","url":"https://openreview.net/forum?id=mTR9CVXpFv"}]
+
+Based on the search results, I found information about the DTP paper related to token pruning:
+
+DTP (Distracting Token Pruning) is a simple yet effective plug-and-play framework that dynamically detects and prunes distracting image tokens, aiming to improve task success rate by correcting the model's visual attention patterns without altering the original architecture or adding additional inputs.
+
+The framework addresses Vision-Language Action (VLA) models which may overly attend to image tokens in task-irrelevant regions (described as 'distracting tokens'), and this behavior can disturb the model from generating desired action tokens, affecting task success rates.
+
+The paper appears on the OpenReview platform at https://openreview.net/forum?id=5yYQDuXzZh, which suggests it has been submitted to ICLR 2026. However, the search results do not explicitly confirm whether it has been accepted as a poster presentation at ICLR 2026. You may want to check the official ICLR 2026 website or the OpenReview page directly to confirm the acceptance status and presentation format.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "90ae8f10-f77e-4665-a31d-6dc3b61bb788",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "a0fc079b-0a3a-4c09-b2a9-c43efec84cf6",
+  "sourceToolAssistantUUID": "90ae8f10-f77e-4665-a31d-6dc3b61bb788",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T05:33:54.115Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WstHFp9zXdKnnH51YPEDAL`</summary>
+
+```json
+{
+  "query": "SP-VLA arxiv 2506.12723 venue conference accepted 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a0fc079b-0a3a-4c09-b2a9-c43efec84cf6",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v6TRY4ZsYMDQcY1f7P",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7e5d8934-a35a-45f5-a191-7803fc03fb52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HtzeJaAx3FdR7XWN32pMB4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2597,
+      "cache_read_input_tokens": 21158,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2597,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T05:33:55.121Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01THDKR7bs5KssPrPeFNTeCW`</summary>
+
+```json
+{
+  "query": "SpecPrune-VLA 2509.05614 conference venue accepted"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e5d8934-a35a-45f5-a191-7803fc03fb52",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v6TRY4ZsYMDQcY1f7P",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "36a9f4f7-b52c-42e6-a2dc-d5d6e98c53d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HtzeJaAx3FdR7XWN32pMB4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2597,
+      "cache_read_input_tokens": 21158,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2597,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T05:33:55.472Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WZafRRwh9mgYRkzWDATZqE`</summary>
+
+```json
+{
+  "query": "\"token pruning\" \"robustness\" VLA robot manipulation adversarial perturbation defense"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36a9f4f7-b52c-42e6-a2dc-d5d6e98c53d6",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v6TRY4ZsYMDQcY1f7P",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3f4ba932-dbc3-46c8-a605-b40927d7f69f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HtzeJaAx3FdR7XWN32pMB4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2597,
+      "cache_read_input_tokens": 21158,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2597
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 21158,
+          "cache_creation_input_tokens": 2597,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2597,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T05:33:58.351Z_
+
+<details><summary>↩ Tool result · `toolu_01WstHFp9zXdKnnH51YPEDAL`</summary>
+
+```text
+Web search results for query: "SP-VLA arxiv 2506.12723 venue conference accepted 2026"
+
+Links: [{"title":"[2506.12723] SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://arxiv.org/abs/2506.12723"},{"title":"SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://arxiv.org/html/2506.12723v2"},{"title":"Preprint. SP-VLA: A JOINT MODEL SCHEDULING AND TOKEN","url":"https://arxiv.org/pdf/2506.12723"},{"title":"dblp: SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration.","url":"https://dblp.org/rec/journals/corr/abs-2506-12723.html"},{"title":"Parallels Between VLA Model Post-Training and Human ...","url":"https://arxiv.org/pdf/2506.20966"},{"title":"SwitchVLA: Execution-Aware Task Switching for Vision-Language-Action Models","url":"https://arxiv.org/html/2506.03574v1"},{"title":"Computer Vision and Pattern Recognition Jun 2025","url":"https://www.arxiv.org/list/cs.CV/2025-06?skip=1950&show=1000"},{"title":"A Survey on Vision-Language-Action Models for Autonomous Driving","url":"https://arxiv.org/html/2506.24044v1"},{"title":"Atomic-Probe Governance for Skill Updates in Compositional Robot PoliciesCorresponding authors.","url":"https://arxiv.org/html/2604.26689"},{"title":"[2506.24044] A Survey on Vision-Language-Action Models for Autonomous Driving","url":"https://arxiv.org/abs/2506.24044"}]
+
+Based on the search results, I found information about the arxiv paper 2506.12723 (SP-VLA). SP-VLA is a unified framework that accelerates VLA models by jointly scheduling models and pruning tokens.
+
+However, the search results do not contain specific information about a venue or conference where this paper has been accepted. The paper is listed as a preprint dated October 3, 2025. The search results show this is currently a preprint on arXiv, but do not indicate acceptance at any particular conference or venue for 2026 or beyond.
+
+If you're looking for information about where this paper has been or will be presented, you may need to check the paper directly on arxiv.org or contact the authors, as that information may not yet be publicly available.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e5d8934-a35a-45f5-a191-7803fc03fb52",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "89dc9960-bcb8-408e-83fc-fe1b6c6a6a07",
+  "sourceToolAssistantUUID": "7e5d8934-a35a-45f5-a191-7803fc03fb52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T05:33:59.349Z_
+
+<details><summary>↩ Tool result · `toolu_01THDKR7bs5KssPrPeFNTeCW`</summary>
+
+```text
+Web search results for query: "SpecPrune-VLA 2509.05614 conference venue accepted"
+
+Links: [{"title":"[2509.05614] SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning","url":"https://arxiv.org/abs/2509.05614"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning","url":"https://arxiv.org/html/2509.05614"},{"title":"Specprune-vla Boosts Vision-Language-Action Models, Avoiding Over 20% Success Rate Drops With Smart Pruning","url":"https://quantumzeitgeist.com/faster-models-performance-specprune-vla-boosts-vision-language-action-avoiding-success/"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware","url":"https://arxiv.org/pdf/2509.05614"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning | Request PDF","url":"https://www.researchgate.net/publication/395354566_SpecPrune-VLA_Accelerating_Vision-Language-Action_Models_via_Action-Aware_Self-Speculative_Pruning"},{"title":"SPECPRUNE-VLA:","url":"https://openreview.net/pdf/f898de78034757b0bb38f30b7b6fd21bca97b4ad.pdf"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning | OpenReview","url":"https://openreview.net/forum?id=t85Ni0LwjC"},{"title":"13th International Conference on Clinical Spectroscopy | June 2-6, 2024, Ioannina, Greece | Grand Serai Hotel","url":"https://spec2024.com/"},{"title":"Welcome to ICPE 2023: ICPE 2023","url":"https://icpe2023.spec.org"},{"title":"ICPE 2021 - Welcome! | ICPE 2021 - 12th ACM / SPEC International Conference on Computational Performance","url":"https://icpe2021.spec.org/"}]
+
+Based on the search results, I found information about SpecPrune-VLA paper (arXiv:2509.05614) and its submission status:
+
+The paper "SpecPrune-VLA" is under review as a conference paper at ICLR 2026. OpenReview is the platform being used for this peer review process.
+
+The paper has not yet been accepted to a conference - it is currently in the review phase. The most recent version (v2) was submitted on February 9, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36a9f4f7-b52c-42e6-a2dc-d5d6e98c53d6",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "8a4383ee-0c00-4542-a495-08f0b6b954dd",
+  "sourceToolAssistantUUID": "36a9f4f7-b52c-42e6-a2dc-d5d6e98c53d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T05:34:04.167Z_
+
+<details><summary>↩ Tool result · `toolu_01WZafRRwh9mgYRkzWDATZqE`</summary>
+
+```text
+Web search results for query: ""token pruning" "robustness" VLA robot manipulation adversarial perturbation defense"
+
+Links: [{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"Exploring the Adversarial Vulnerabilities of Vision-Language-Action Models in Robotics","url":"https://arxiv.org/html/2411.13587v2"},{"title":"Exploring the Adversarial Vulnerabilities of Vision-Language-Action Models in Robotics","url":"https://vlaattacker.github.io/"},{"title":"VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference","url":"https://arxiv.org/html/2511.16449"},{"title":"Spec-VLA: Speculative Decoding for Vision-Language- ...","url":"https://aclanthology.org/2025.emnlp-main.1367.pdf"},{"title":"[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991v1"},{"title":"[2601.21531] On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/abs/2601.21531"},{"title":"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/html/2601.21531"},{"title":"Spec-VLA: Speculative Decoding for Vision-Language-Action Models with","url":"https://nicsefc.ee.tsinghua.edu.cn/nics_file/pdf/803c4427-374f-4604-8e9e-01a4ba26ea19.pdf"},{"title":"[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991"}]
+
+Based on the web search results, I found several highly relevant papers addressing token pruning, robustness, VLA (Vision-Language-Action) models, and robot manipulation in the context of adversarial perturbations and defenses:
+
+## Key Findings:
+
+### 1. **Token Pruning for VLA Robustness**
+
+VLA-IAP introduces a geometric prior mechanism to preserve structural anchors and a dynamic scheduling strategy that adapts pruning intensity based on semantic-motion alignment, enabling a conservative-to-aggressive transition to ensure robustness during early uncertainty and efficiency once interaction is locked. VLA-IAP demonstrates superior robustness, and at 70% retention, surpasses the unpruned baseline on multiple metrics, achieving a 4.45 average sequence length on CALVIN and 46.3% success rate on VLABench.
+
+### 2. **Adversarial Vulnerabilities in VLA Models**
+
+The research is the first to define attack objectives specific to the powerful VLA model and to employ a straightforward adversarial patch against it. Rigorous evaluation in both simulated and physical environments across four distinct robotic tasks observed significant raises in task failure rates of 100% and 43%, respectively.
+
+### 3. **Adversarial Robustness Under Token Compression**
+
+Visual token compression is widely used to accelerate large vision-language models by pruning or merging visual tokens, yet existing encoder-based attacks can substantially overestimate the robustness of compressed LVLMs due to an optimization-inference mismatch. The Compression-AliGnEd attack (CAGE) aligns perturbation optimization with compression inference and combines expected feature disruption with rank distortion alignment.
+
+### 4. **Temporal-Aware Token Pruning**
+
+VLA-Pruner is a general, training-free framework that achieves state-of-the-art performance across simulated environments, delivering up to 1.99× speedup with negligible performance drops and maintaining robustness even at an 87.5% pruning ratio.
+
+These works collectively address the intersection of token pruning efficiency and robustness against adversarial perturbations in VLA systems for robot manipulation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3f4ba932-dbc3-46c8-a605-b40927d7f69f",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "e428cad3-4f65-4956-aa2e-08082f287cd7",
+  "sourceToolAssistantUUID": "3f4ba932-dbc3-46c8-a605-b40927d7f69f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T05:34:07.351Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017mLwForeHmNPZPAZ2xt45c`</summary>
+
+```json
+{
+  "query": "BFA++ arXiv 2602.20566 venue conference journal submission"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e428cad3-4f65-4956-aa2e-08082f287cd7",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v7UrPL8x9CG7vfuPuc",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "421248ad-2941-4dee-bc52-60faa1db5c94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D18LvFDWoZGx8N39hR2hWH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2724,
+      "cache_read_input_tokens": 23755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2724,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-14T05:34:07.940Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015JaNckCQT3i2ULF6KvHYoE`</summary>
+
+```json
+{
+  "query": "\"token pruning\" improves robustness VLA adversarial defense mechanism 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "421248ad-2941-4dee-bc52-60faa1db5c94",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v7UrPL8x9CG7vfuPuc",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "57768c3f-3839-4e1d-a609-1e2d88a76cdd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D18LvFDWoZGx8N39hR2hWH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2724,
+      "cache_read_input_tokens": 23755,
+      "output_tokens": 125,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2724
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 125,
+          "cache_read_input_tokens": 23755,
+          "cache_creation_input_tokens": 2724,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2724,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T05:34:11.509Z_
+
+<details><summary>↩ Tool result · `toolu_017mLwForeHmNPZPAZ2xt45c`</summary>
+
+```text
+Web search results for query: "BFA++ arXiv 2602.20566 venue conference journal submission"
+
+Links: [{"title":"[2602.20566] BFA++: Hierarchical Best-Feature-Aware Token Prune for Multi-View Vision Language Action Model","url":"https://arxiv.org/abs/2602.20566"},{"title":"BFA++: Hierarchical Best-Feature-Aware Token Prune for Multi-View Vision Language Action Model","url":"https://arxiv.org/html/2602.20566"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=796&show=25"},{"title":"Monocular Human-Object Reconstruction in the Wild","url":"https://arxiv.org/html/2407.20566"},{"title":"[2601.20566] Local convergence analysis of a linearized Alikhanov scheme for the time fractional sine-Gordon equation","url":"https://arxiv.org/abs/2601.20566"},{"title":"[2511.20566] The origin of B-type runaway stars based on kinematics","url":"https://arxiv.org/abs/2511.20566"},{"title":"[2506.20566] HRIBench: Benchmarking Vision-Language Models for Real-Time Human Perception in Human-Robot Interaction","url":"https://arxiv.org/abs/2506.20566"},{"title":"[2407.20566] Monocular Human-Object Reconstruction in the Wild","url":"https://ar5iv.labs.arxiv.org/html/2407.20566"},{"title":"[2503.20566] Accurate Gauge-Invariant Tensor Network Simulations for Abelian Lattice Gauge Theory in (2+1)D: ground state and real-time dynamics","url":"https://arxiv.org/abs/2503.20566"},{"title":"[2502.20566] Stochastic Rounding for LLM Training: Theory and Practice","url":"https://arxiv.org/abs/2502.20566"}]
+
+Based on the search results, I found information about the paper with arXiv ID 2602.20566:
+
+BFA++ introduces a hierarchical pruning strategy guided by two-level importance predictors for multi-view Vision Language Action models. The paper is titled "BFA++: Hierarchical Best-Feature-Aware Token Prune for Multi-View Vision Language Action Model."
+
+Regarding the venue information: The paper appears as a preprint on arXiv with 9 pages and 10 figures. However, the search results from the arXiv page do not contain information about a specific conference or journal submission venue. The paper is currently hosted on arXiv, which is a preprint repository, but the search results do not indicate whether it has been submitted to or accepted by a specific conference or journal.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "421248ad-2941-4dee-bc52-60faa1db5c94",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "15c2d56d-6762-4d5b-bb96-ec8fae6a4e9e",
+  "sourceToolAssistantUUID": "421248ad-2941-4dee-bc52-60faa1db5c94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T05:34:16.565Z_
+
+<details><summary>↩ Tool result · `toolu_015JaNckCQT3i2ULF6KvHYoE`</summary>
+
+```text
+Web search results for query: ""token pruning" improves robustness VLA adversarial defense mechanism 2025 2026"
+
+Links: [{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"XPENG-Peking University Collaborative Research Accepted by AAAI 2026:","url":"https://www.xpeng.com/pressroom/news/019b649d31c59b49d00d8a028c720027"},{"title":"[2601.21531] On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/abs/2601.21531"},{"title":"Exploring the Robustness of Vision-Language-Action Models against Sensor Attacks | Proceedings of the 2025 Workshop on Large AI Systems and Models with Privacy and Security Analysis","url":"https://dl.acm.org/doi/10.1145/3733800.3763262"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"XPENG–Peking University Collaborative Research Accepted By AAAI 2026: Introducing A Novel Visual Token Pruning Framework For Autonomous Driving - CleanTechnica","url":"https://cleantechnica.com/2025/12/28/xpeng-peking-university-collaborative-research-accepted-by-aaai-2026-introducing-a-novel-visual-token-pruning-framework-for-autonomous-driving/"},{"title":"Spec-VLA: Speculative Decoding for Vision-Language- ...","url":"https://aclanthology.org/2025.emnlp-main.1367.pdf"},{"title":"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/html/2601.21531"},{"title":"[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991v1"},{"title":"[2512.22128] Pruning Graphs by Adversarial Robustness Evaluation to Strengthen GNN Defenses","url":"https://arxiv.org/abs/2512.22128"}]
+
+Based on the search results, here are the key findings related to token pruning, robustness, and VLA (Vision-Language-Action) models with adversarial defense considerations from 2025-2026:
+
+## Adversarial Robustness of Token Pruning in VLMs
+
+Visual token compression is widely used to accelerate large vision-language models (LVLMs) by pruning or merging visual tokens, yet its adversarial robustness remains unexplored. Importantly, existing encoder-based attacks can substantially overestimate the robustness of compressed LVLMs, due to an optimization-inference mismatch: perturbations are optimized on the full-token representation, while inference is performed through a token-compression bottleneck.
+
+To address this gap, researchers proposed the Compression-AliGnEd attack (CAGE), which aligns perturbation optimization with compression inference without assuming access to the deployed compression mechanism or its token budget, combining expected feature disruption and rank distortion alignment.
+
+## Token Pruning for VLA Models
+
+Recent research on VLA robustness includes a shift toward an explicit Interaction-First paradigm, with VLA-IAP (Interaction-Aligned Pruning) introducing a geometric prior mechanism to preserve structural anchors and a dynamic scheduling strategy that adapts pruning intensity based on semantic-motion alignment. This system dynamically switches between conservative and aggressive pruning modes, preventing premature token loss and ensuring robustness under extreme compression.
+
+Additionally, FastDriveVLA introduces an adversarial foreground-background reconstruction strategy that enhances the model's ability to identify and retain valuable tokens.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "57768c3f-3839-4e1d-a609-1e2d88a76cdd",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "e192bd46-ca78-402b-9937-69f7db92ae61",
+  "sourceToolAssistantUUID": "57768c3f-3839-4e1d-a609-1e2d88a76cdd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T05:34:20.867Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PCByVv1BpsYXw74wi9prz2`</summary>
+
+```json
+{
+  "query": "GridS \"See What Matters\" arXiv paper ID authors ICML 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e192bd46-ca78-402b-9937-69f7db92ae61",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v8PtGYhZC7p8ww43yh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b0b13e75-0cef-456b-9428-a7f6275aa647",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Em7V2zbZ5vhvfUf8mEP4F6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1909,
+      "cache_read_input_tokens": 26479,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1909,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-14T05:34:21.217Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015879avgfhmEL1UccgB5xcp`</summary>
+
+```json
+{
+  "query": "\"token pruning\" \"adversarial robustness\" \"vision language action\" explicitly designed defense"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0b13e75-0cef-456b-9428-a7f6275aa647",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v8PtGYhZC7p8ww43yh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "65846975-018a-4f9b-a6d0-32782ae4d8a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Em7V2zbZ5vhvfUf8mEP4F6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1909,
+      "cache_read_input_tokens": 26479,
+      "output_tokens": 126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1909
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 126,
+          "cache_read_input_tokens": 26479,
+          "cache_creation_input_tokens": 1909,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1909,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T05:34:29.312Z_
+
+<details><summary>↩ Tool result · `toolu_01PCByVv1BpsYXw74wi9prz2`</summary>
+
+```text
+Web search results for query: "GridS "See What Matters" arXiv paper ID authors ICML 2026"
+
+No links found.
+
+The search didn't return results for that specific query. Let me try a broader search:
+
+Links: [{"title":"ICML 2026","url":"https://icml.cc/"},{"title":"ICML 2026 | OpenReview","url":"https://openreview.net/group?id=ICML.cc%2F2026"},{"title":"ICML 2026 Statistics - Paper Copilot","url":"https://papercopilot.com/statistics/icml-statistics/icml-2026-statistics/"},{"title":"2026 Dates and Deadlines","url":"https://icml.cc/Conferences/2026/Dates"},{"title":"Paper Digest: ICML 2026 Papers & Highlights – Paper Digest","url":"https://www.paperdigest.org/2026/05/icml-2026-papers-highlights/"},{"title":"ICML 2026 Conference | OpenReview","url":"https://openreview.net/group?id=ICML.cc%2F2026%2FConference"},{"title":"International Conference on Machine Learning - Wikipedia","url":"https://en.wikipedia.org/wiki/International_Conference_on_Machine_Learning"},{"title":"ICML 2026 Workshop | OpenReview","url":"https://openreview.net/group?id=ICML.cc%2F2026%2FWorkshop"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"ICML 2026 Papers","url":"https://icml.cc/virtual/2026/papers.html"}]
+
+Let me search more specifically for the GridS paper:
+
+Links: [{"title":"GRIDS: Grouped Multiple-Degradation Restoration with Image Degradation Similarity","url":"https://arxiv.org/html/2407.12273"},{"title":"[2312.17181] Geometric Guidance for the Deployment of Elastic Geodesic Grids","url":"https://arxiv.org/abs/2312.17181"},{"title":"[2501.01316] Computational Grids","url":"https://arxiv.org/abs/2501.01316"},{"title":"[2104.13478] Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges","url":"https://arxiv.org/abs/2104.13478"},{"title":"Machine learning for modelling unstructured grid data in computational physics: a review","url":"https://arxiv.org/html/2502.09346v1"},{"title":"[2104.13478v2] Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges","url":"https://arxiv.org/abs/2104.13478v2"},{"title":"Grounding and Enhancing Grid-based Models for Neural Fields","url":"https://arxiv.org/html/2403.20002"},{"title":"[2310.00887] GRID: A Platform for General Robot Intelligence Development","url":"https://arxiv.org/abs/2310.00887"},{"title":"[2104.13478v1] Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges","url":"https://arxiv.org/abs/2104.13478v1"},{"title":"[2605.01015] Leveraging unstructured grids for direct numerical simulations of wall turbulence","url":"https://arxiv.org/abs/2605.01015"}]
+
+The search results don't show the specific "GridS" paper with "See What Matters" in the title. Let me try a more targeted search:
+
+No links found.
+
+Unfortunately, my search for the specific paper "GridS: See What Matters" did not return relevant results. The query you provided appears to reference a paper that may be:
+
+- Very recently published (potentially at or after the knowledge cutoff)
+- Not yet widely indexed by search engines
+- Listed under a slightly different title or venue
+
+I was unable to find the arXiv paper ID, author information, or confirmation of an ICML 2026 publication for this paper based on the web search results. If you have additional information such as the paper's arXiv ID, author names, or a direct link, I'd be happy to search for more specific details.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b0b13e75-0cef-456b-9428-a7f6275aa647",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "93ee692f-b394-453d-9009-c11235b7477c",
+  "sourceToolAssistantUUID": "b0b13e75-0cef-456b-9428-a7f6275aa647",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T05:34:29.870Z_
+
+<details><summary>↩ Tool result · `toolu_015879avgfhmEL1UccgB5xcp`</summary>
+
+```text
+Web search results for query: ""token pruning" "adversarial robustness" "vision language action" explicitly designed defense"
+
+Links: [{"title":"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/html/2601.21531"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"[2601.21531] On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/abs/2601.21531"},{"title":"Token Pruning for Efficient NLP, Vision, and Speech Models[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202502.2098"},{"title":"Efficient Vision-Language Reasoning via Adaptive Token Pruning","url":"https://arxiv.org/html/2512.12701v1"},{"title":"[2108.04890] On the Effect of Pruning on Adversarial Robustness","url":"https://arxiv.org/abs/2108.04890"},{"title":"Chain of Attack: On the Robustness of Vision-Language Models Against","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Xie_Chain_of_Attack_On_the_Robustness_of_Vision-Language_Models_Against_CVPR_2025_paper.pdf"},{"title":"Break the Visual Perception: Adversarial Attacks Targeting Encoded Visual Tokens of Large Vision-Language Models","url":"https://arxiv.org/html/2410.06699v1"},{"title":"LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models","url":"https://arxiv.org/html/2604.23950"},{"title":"Efficient Vision-Language Reasoning via Adaptive Token Pruning Xue Li","url":"https://arxiv.org/pdf/2512.12701"}]
+
+Based on the web search results, I found several relevant papers and resources on token pruning, adversarial robustness, and vision-language models:
+
+## Key Findings:
+
+**Adversarial Robustness Under Token Compression**
+
+Visual token compression is widely used to accelerate large vision-language models (LVLMs) by pruning or merging visual tokens, yet its adversarial robustness remains largely unexplored. Existing encoder-based attacks can substantially overestimate the robustness of compressed LVLMs, due to an optimization-inference mismatch where perturbations are optimized on the full-token representation, while inference is performed through a token-compression bottleneck.
+
+**Explicit Defense Mechanisms**
+
+Two countermeasures have been proposed: D1 (Robustness-aware Selection), which penalizes tokens with unstable attention scores under random noise; D2 (Stochastic Candidate Pool), which introduces randomness by sampling survivors from a larger candidate pool. However, the adversarial robustness remains limited, likely due to an inherent informativeness–robustness trade-off where tokens that are most stable under perturbations are often less semantically informative for downstream tasks.
+
+**Token Pruning and Adversarial Concerns**
+
+Recent studies suggest that pruning techniques may introduce vulnerabilities to adversarial attacks, where slight modifications to input data lead to unexpected performance degradation. Ensuring robustness against such adversarial manipulations is an emerging concern in token pruning research.
+
+**Vision-Language-Action Models**
+
+Recent work on Adaptive Token Pruning (ATP) for vision-language models indicates that ATP enhances the robustness of VLMs under various perturbations, and under visual corruptions like Gaussian noise, blur, and occlusion, ATP prunes noisy background patches and retains more stable object regions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "65846975-018a-4f9b-a6d0-32782ae4d8a2",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "5b12e4f9-3bf2-4eb7-b716-96d5804347c5",
+  "sourceToolAssistantUUID": "65846975-018a-4f9b-a6d0-32782ae4d8a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-14T05:34:32.997Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E2umZzcE3pf2H8N4Mr8DYm`</summary>
+
+```json
+{
+  "query": "\"See What Matters\" differentiable grid sample pruning VLA arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b12e4f9-3bf2-4eb7-b716-96d5804347c5",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1v9Nkaw23YuamwPt4Xq",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e5d098cf-5e28-4037-b5aa-6292b716eed4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FM5DDibLpZRdhdZYY5iQm2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2259,
+      "cache_read_input_tokens": 28388,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2259
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 28388,
+          "cache_creation_input_tokens": 2259,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2259,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T05:34:39.088Z_
+
+<details><summary>↩ Tool result · `toolu_01E2umZzcE3pf2H8N4Mr8DYm`</summary>
+
+```text
+Web search results for query: ""See What Matters" differentiable grid sample pruning VLA arXiv"
+
+Links: [{"title":"ICML Poster See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model","url":"https://icml.cc/virtual/2026/poster/65010"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/html/2509.12594"},{"title":"PDP: Parameter-free Differentiable Pruning is All You Need Minsik Cho","url":"https://arxiv.org/pdf/2305.11203v3"},{"title":"SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://arxiv.org/html/2506.12723v2"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"[2603.08065] Deterministic Differentiable Structured Pruning for Large Language Models","url":"https://arxiv.org/abs/2603.08065"},{"title":"Latent Bridge: Feature Delta Prediction for Efficient Dual-System Vision-Language-Action Model Inference","url":"https://arxiv.org/html/2605.02739v1"},{"title":"[2509.12594] The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/abs/2509.12594"},{"title":"Environment-Aware Adaptive Pruning with Interleaved Inference Orchestration for Vision-Language-Action Models","url":"https://arxiv.org/html/2602.00780"},{"title":"PDP: Parameter-free Differentiable Pruning is All You Need","url":"https://arxiv.org/pdf/2305.11203"}]
+
+Based on the search results, I found the paper you're looking for. "See What Matters" proposes the Differentiable Grid Sampler (GridS), a plug-and-play module that performs task-aware, continuous resampling of visual tokens in VLA (Vision-Language-Action models).
+
+Vision-Language-Action (VLA) models have shown remarkable promise in robotics manipulation, yet their high computational cost hinders real-time deployment. Existing token pruning methods suffer from a fundamental trade-off: aggressive compression using pruning inevitably discards critical geometric details like contact points, leading to severe performance degradation.
+
+The paper argues that breaking this trade-off requires rethinking compression as a geometry-aware, continuous token resampling in the vision encoder. By adaptively predicting a minimal set of salient coordinates and extracting features via differentiable interpolation, GridS preserves essential spatial information while achieving drastic compression.
+
+The work was recently presented at ICML 2026. The approach offers an alternative to traditional token pruning methods by using differentiable grid sampling to maintain critical spatial information while significantly reducing computational cost for robotic manipulation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e5d098cf-5e28-4037-b5aa-6292b716eed4",
+  "isSidechain": true,
+  "promptId": "7eed4653-b9f3-4dd3-bb68-b431a54098c8",
+  "agentId": "a61b9d011048080b3",
+  "type": "user",
+  "uuid": "f7599dcc-ea8f-4a03-9def-cf930bb1fa9c",
+  "sourceToolAssistantUUID": "e5d098cf-5e28-4037-b5aa-6292b716eed4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-14T05:35:32.427Z_
+
+Now I have comprehensive findings. Here is my report:
+
+---
+
+## Verification Results for VLA Token Pruning Papers
+
+### 1. VLA-IAP (arXiv 2603.22991)
+- **EXISTS:** Yes, confirmed.
+- **Title:** "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models"
+- **Venue:** arXiv preprint (submitted March 24, 2026). No confirmed conference acceptance found.
+- **Focus:** **Efficiency.** Proposes an "Interaction-First" paradigm with geometric prior mechanism and dynamic scheduling. Achieves 97.8% success rate with 1.25x-1.54x speedup on LIBERO.
+- **URL:** [https://arxiv.org/abs/2603.22991](https://arxiv.org/abs/2603.22991)
+
+### 2. LightVLA (ICRA 2026)
+- **EXISTS:** Yes, confirmed.
+- **Title:** "The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning"
+- **Venue:** **ICRA 2026** (confirmed accepted). arXiv: 2509.12594. Official code at GitHub (LiAutoAD/LightVLA).
+- **Focus:** **Efficiency.** Uses differentiable token pruning with dynamic queries and Gumbel softmax for token selection. Reduces FLOPs by 59.1%, latency by 38.2%, with 2.6% success rate improvement.
+- **URL:** [https://arxiv.org/abs/2509.12594](https://arxiv.org/abs/2509.12594)
+
+### 3. GridS (ICML 2026)
+- **EXISTS:** Yes, confirmed.
+- **Title:** "See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model"
+- **Venue:** **ICML 2026** (confirmed poster).
+- **Focus:** **Efficiency.** Proposes a differentiable grid sampler (GridS) as a plug-and-play module for continuous resampling of visual tokens. Achieves 76% FLOPs reduction with fewer than 10% tokens retained.
+- **URL:** [https://icml.cc/virtual/2026/poster/65010](https://icml.cc/virtual/2026/poster/65010)
+
+### 4. SP-VLA (arXiv 2506.12723)
+- **EXISTS:** Yes, confirmed.
+- **Title:** "SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration"
+- **Venue:** arXiv preprint. Under review (OpenReview page exists). No confirmed venue acceptance yet.
+- **Focus:** **Efficiency.** Combines action-aware model scheduling (deliberative vs. intuitive actions) with spatio-semantic dual-aware token pruning. 1.5x lossless speedup in LIBERO, 2.4x in SimplerEnv.
+- **URL:** [https://arxiv.org/abs/2506.12723](https://arxiv.org/abs/2506.12723)
+
+### 5. SpecPrune-VLA (arXiv 2509.05614)
+- **EXISTS:** Yes, confirmed.
+- **Title:** "SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning"
+- **Venue:** Under review at **ICLR 2026** (OpenReview submission confirmed). Not yet confirmed accepted.
+- **Focus:** **Efficiency.** Training-free two-level pruning (action-level static + layer-level dynamic) with lightweight action-aware controller. Up to 1.57x speedup in LIBERO, 1.70x real-world.
+- **URL:** [https://arxiv.org/abs/2509.05614](https://arxiv.org/abs/2509.05614)
+
+### 6. DTP (arXiv 2601.16065)
+- **EXISTS:** Yes, confirmed.
+- **Title:** "DTP: A Simple yet Effective Distracting Token Pruning Framework for Vision-Language Action Models"
+- **Venue:** Submitted to **ICLR 2026** (OpenReview page exists). Acceptance status not explicitly confirmed as a poster in the ICLR 2026 virtual site (not appearing in confirmed poster list alongside other token pruning papers like AgilePruner and HiDivDrop).
+- **Focus:** Primarily **efficiency**, but with a unique angle: it frames "distracting tokens" as harmful to task success rate (performance/reliability angle). It prunes tokens that cause the model to attend to task-irrelevant regions. Not adversarial robustness -- it is about improving accuracy by removing distractors.
+- **URL:** [https://arxiv.org/abs/2601.16065](https://arxiv.org/abs/2601.16065)
+
+### 7. BFA++ (arXiv 2602.20566)
+- **EXISTS:** Yes, confirmed.
+- **Title:** "BFA++: Hierarchical Best-Feature-Aware Token Prune for Multi-View Vision Language Action Model"
+- **Venue:** arXiv preprint (February 2026). No confirmed conference venue found.
+- **Focus:** **Efficiency.** Hierarchical two-level importance predictors (intra-view and inter-view) for multi-view VLA models. Achieves 1.8x speedup with 10% improvement on RDT.
+- **URL:** [https://arxiv.org/abs/2602.20566](https://arxiv.org/abs/2602.20566)
+
+---
+
+## Critical Search: Token Pruning + Robustness in VLA
+
+### Papers Found That Combine Token Pruning/Compression with Adversarial Robustness
+
+**Key finding: There ARE papers that study the intersection of token compression and adversarial robustness, but they focus on VLMs (not specifically VLAs for robotic manipulation), and they study robustness AS A VULNERABILITY rather than proposing pruning as a defense.**
+
+1. **"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression"** (arXiv 2601.21531, Jan 2026)
+   - Studies how token compression affects adversarial robustness of LVLMs
+   - Finds that existing attacks overestimate robustness of compressed models due to optimization-inference mismatch
+   - Proposes CAGE attack (not a defense)
+   - Proposes two countermeasures: D1 (Robustness-aware Selection) and D2 (Stochastic Candidate Pool)
+   - Concludes there is an inherent "informativeness-robustness trade-off"
+   - **This is the closest paper to combining pruning + robustness but focuses on VLMs, not VLAs for robotics**
+   - URL: [https://arxiv.org/abs/2601.21531](https://arxiv.org/abs/2601.21531)
+
+2. **"Less Is More -- Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models"** (arXiv 2601.12042, Jan 2026)
+   - Shows that token compression **degrades** robustness -- models robust under uncompressed inference become vulnerable once compression is enabled
+   - Uses autonomous driving example (missing STOP signs)
+   - **Argues pruning HURTS robustness, not helps it**
+   - URL: [https://arxiv.org/abs/2601.12042](https://arxiv.org/abs/2601.12042)
+
+3. **"Exploring the Robustness of Vision-Language-Action Models against Sensor Attacks"** (ACM Workshop 2025)
+   - Studies VLA adversarial robustness but does NOT propose token pruning as a defense
+   - URL: [https://dl.acm.org/doi/10.1145/3733800.3763262](https://dl.acm.org/doi/10.1145/3733800.3763262)
+
+4. **Adaptive Token Pruning enhancing robustness** (general finding in VLM literature)
+   - Some general VLM work notes that pruning noisy background patches can incidentally improve robustness under visual corruptions (Gaussian noise, blur, occlusion) -- but this is noted as an observation, not a principled robustness framework for VLAs.
+
+---
+
+## Summary Assessment for Novelty
+
+**All seven VLA token pruning papers exist and are confirmed. They ALL focus on efficiency (speed/FLOPs reduction), not adversarial robustness.**
+
+**Regarding the novelty gap:**
+- No paper was found that **explicitly designs** token pruning as an adversarial defense mechanism for VLA models in robotic manipulation.
+- The two most relevant papers (arXiv 2601.21531 and 2601.12042) study the robustness implications of token compression in VLMs but: (a) focus on VLMs not VLAs, (b) find that compression generally **hurts** robustness rather than helping it, and (c) do not propose pruning as a principled defense.
+- There is an incidental observation in some works that pruning can remove noisy/corrupted tokens, but no paper frames this as a deliberate robustness mechanism for VLA robotic control.
+
+**Bottom line:** A paper proposing token pruning as a robustness mechanism for VLAs would occupy a relatively novel position. However, the existing work (especially arXiv 2601.21531 and 2601.12042) suggests a tension -- the literature currently leans toward "compression hurts robustness" rather than "compression helps robustness." Any novelty claim should carefully position against these findings.
+
+Sources:
+- [VLA-IAP](https://arxiv.org/abs/2603.22991)
+- [LightVLA (ICRA 2026)](https://arxiv.org/abs/2509.12594)
+- [GridS - ICML 2026 Poster](https://icml.cc/virtual/2026/poster/65010)
+- [SP-VLA](https://arxiv.org/abs/2506.12723)
+- [SpecPrune-VLA](https://arxiv.org/abs/2509.05614)
+- [DTP](https://arxiv.org/abs/2601.16065)
+- [BFA++](https://arxiv.org/abs/2602.20566)
+- [Adversarial Robustness under Visual Token Compression](https://arxiv.org/abs/2601.21531)
+- [Less Is More Until It Breaks](https://arxiv.org/abs/2601.12042)
+- [VLA Adversarial Vulnerabilities](https://dl.acm.org/doi/10.1145/3733800.3763262)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7599dcc-ea8f-4a03-9def-cf930bb1fa9c",
+  "isSidechain": true,
+  "agentId": "a61b9d011048080b3",
+  "requestId": "req_011Cb1vA4BALHi4msCxt834e",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "77d275f6-fe71-4a25-af65-1e2284569eb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ff6d9a32-54b2-458b-be61-7a2497b3e836",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UqwuAp5nZYN1nRsiZXSr7u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 868,
+      "cache_read_input_tokens": 30647,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 868,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

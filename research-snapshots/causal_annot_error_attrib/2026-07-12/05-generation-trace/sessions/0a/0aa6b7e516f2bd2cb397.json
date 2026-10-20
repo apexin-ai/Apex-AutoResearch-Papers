@@ -1,0 +1,2355 @@
+{
+  "schema_version": "1.0",
+  "id": "0aa6b7e516f2bd2cb397",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Find all .npz and .jsonl files in the results directories under /home/ubuntu/.agent-ml-research-prod_0510/projects/causa",
+  "task_key": "agent-a67c6410cf3846a64",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a67c6410cf3846a64.jsonl",
+    "occurrence": 1,
+    "bytes": 121894,
+    "sha256": "54d449fc6d963427f747a69bc67ee305e1a397c8cd8b6f36ecee6177b0e99785"
+  },
+  "statistics": {
+    "messages": 45,
+    "user_turns": 1,
+    "tool_calls": 15,
+    "roles": {
+      "user": 1,
+      "assistant": 14,
+      "tool_call": 15,
+      "tool_result": 15
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T05:56:02.287Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Find all .npz and .jsonl files in the results directories under /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/results/ — list them with their sizes. Also check if there's a compute_ppi_empirical.py or similar script that processes confusion matrices into bias results. Search broadly in /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/ for any Python scripts related to empirical validation or bias computation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "35c599bb-59e9-4454-9a1e-c60a17045910",
+            "agentId": "a67c6410cf3846a64",
+            "type": "user",
+            "uuid": "b2b4f4b3-1b4a-4f15-ae27-b530b281670a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T05:56:14.136Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find those files and scripts. Let me start by exploring the results directory structure and searching for the relevant files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b2b4f4b3-1b4a-4f15-ae27-b530b281670a",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6Fychx64bNdZadfCgn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "de527b20-ba6e-4e36-aee4-dabacd2e3785",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019yxiBdrgquko9diiRHwDS4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 35731,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 35731,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T05:56:14.411Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KBFewW5ph3JEFr1PJVfp86",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/results -type f \\( -name \"*.npz\" -o -name \"*.jsonl\" \\) 2>/dev/null | sort"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de527b20-ba6e-4e36-aee4-dabacd2e3785",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6Fychx64bNdZadfCgn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7abd6a67-e508-4cd2-b41c-e9913eb9ab12",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019yxiBdrgquko9diiRHwDS4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 35731,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 142,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 35731
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 142,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 35731,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 35731,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T05:56:14.636Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KBFewW5ph3JEFr1PJVfp86",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7abd6a67-e508-4cd2-b41c-e9913eb9ab12",
+            "isSidechain": true,
+            "promptId": "35c599bb-59e9-4454-9a1e-c60a17045910",
+            "agentId": "a67c6410cf3846a64",
+            "type": "user",
+            "uuid": "cdcf4744-4d84-429c-9324-6527b3999d9b",
+            "sourceToolAssistantUUID": "7abd6a67-e508-4cd2-b41c-e9913eb9ab12",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T05:56:17.158Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check if the results directory exists and explore its structure:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cdcf4744-4d84-429c-9324-6527b3999d9b",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6Gt5rQQ4MncQW3dQUR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "778f08bc-263e-471d-b433-5f3554fea371",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018s8DGTi1jJsm7nDj9aqhTD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 996,
+                "cache_read_input_tokens": 35731,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 996,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T05:56:17.491Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JP7BromUVq9C9t2c2CHCZo",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/ 2>/dev/null | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "778f08bc-263e-471d-b433-5f3554fea371",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6Gt5rQQ4MncQW3dQUR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e2046445-0e01-45ad-a2d9-549cb84eb2fe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018s8DGTi1jJsm7nDj9aqhTD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 996,
+                "cache_read_input_tokens": 35731,
+                "output_tokens": 109,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 996
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 109,
+                    "cache_read_input_tokens": 35731,
+                    "cache_creation_input_tokens": 996,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 996,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T05:56:17.565Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JP7BromUVq9C9t2c2CHCZo",
+              "type": "tool_result",
+              "content": "total 872\ndrwxr-xr-x 20 ubuntu ubuntu   4096 May 22 04:00 .\ndrwxr-xr-x 15 ubuntu ubuntu   4096 May 22 03:50 ..\ndrwxr-xr-x  7 ubuntu ubuntu   4096 May 21 10:11 _project\n-rw-r--r--  1 ubuntu ubuntu  25429 May 20 10:20 annotate.py\n-rw-r--r--  1 ubuntu ubuntu  32956 May 21 08:24 compute_all_tasks.py\n-rw-r--r--  1 ubuntu ubuntu  18836 May 22 04:00 compute_delta_max.py\n-rw-r--r--  1 ubuntu ubuntu  22098 May 21 08:32 compute_ppi_empirical.py\n-rw-r--r--  1 ubuntu ubuntu   8003 May 21 08:07 compute_theory_empirical_mape.py\n-rw-r--r--  1 ubuntu ubuntu  23193 May 22 04:00 delta_max_results.json\ndrwxr-xr-x 13 ubuntu ubuntu   4096 May 21 08:32 dream_reports\n-rw-r--r--  1 ubuntu ubuntu   4669 May 21 05:14 iv_dirichlet_subspace_appendix.tex\n-rw-r--r--  1 ubuntu ubuntu   3196 May 21 05:12 iv_dirichlet_subspace_results.json\n-rw-r--r--  1 ubuntu ubuntu  20777 May 21 17:57 manifest.yaml\n-rw-r--r--  1 ubuntu ubuntu  20607 May 20 07:26 mvp_confounding_dag.py\n-rw-r--r--  1 ubuntu ubuntu   6157 May 20 07:37 mvp_confounding_dag_output.log\n-rw-r--r--  1 ubuntu ubuntu  19630 May 20 07:35 mvp_exposure_dag.py\n-rw-r--r--  1 ubuntu ubuntu   7583 May 20 07:36 mvp_exposure_dag_output.log\n-rw-r--r--  1 ubuntu ubuntu   7685 May 20 07:47 mvp_exposure_dirichlet_subspace.py\n-rw-r--r--  1 ubuntu ubuntu   2690 May 20 07:49 mvp_exposure_dirichlet_subspace_output.log",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e2046445-0e01-45ad-a2d9-549cb84eb2fe",
+            "isSidechain": true,
+            "promptId": "35c599bb-59e9-4454-9a1e-c60a17045910",
+            "agentId": "a67c6410cf3846a64",
+            "type": "user",
+            "uuid": "6eb62294-409a-46f2-a25a-08effa5b4b39",
+            "sourceToolAssistantUUID": "e2046445-0e01-45ad-a2d9-549cb84eb2fe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T05:56:21.796Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good! The `compute_ppi_empirical.py` script exists. Now let me search for all .npz and .jsonl files, and check the full artifact directory:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6eb62294-409a-46f2-a25a-08effa5b4b39",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6H6iNjvwfW7Fv42xBi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a040e9fd-e8d4-4402-92a1-9e5216518ce7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YRYUvKxNPX1SRpHuwPe8hY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 768,
+                "cache_read_input_tokens": 36727,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 768,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T05:56:22.117Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W9aU4rtVt3Tt2rDLE9pviU",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts -type f \\( -name \"*.npz\" -o -name \"*.jsonl\" \\) 2>/dev/null -exec ls -lh {} \\; | awk '{print $9, $5}' | sort"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a040e9fd-e8d4-4402-92a1-9e5216518ce7",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6H6iNjvwfW7Fv42xBi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0edf8492-fe4c-439c-a955-7473a105c5a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YRYUvKxNPX1SRpHuwPe8hY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 768,
+                "cache_read_input_tokens": 36727,
+                "output_tokens": 174,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 768
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 174,
+                    "cache_read_input_tokens": 36727,
+                    "cache_creation_input_tokens": 768,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 768,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T05:56:22.229Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W9aU4rtVt3Tt2rDLE9pviU",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/data/civil_comments/test.jsonl 357K\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/data/vast/test.jsonl 679K",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0edf8492-fe4c-439c-a955-7473a105c5a8",
+            "isSidechain": true,
+            "promptId": "35c599bb-59e9-4454-9a1e-c60a17045910",
+            "agentId": "a67c6410cf3846a64",
+            "type": "user",
+            "uuid": "9ef2ebeb-b461-40f1-a7a8-9cdd76feebee",
+            "sourceToolAssistantUUID": "0edf8492-fe4c-439c-a955-7473a105c5a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T05:56:24.308Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for all Python scripts related to empirical validation or bias computation:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ef2ebeb-b461-40f1-a7a8-9cdd76feebee",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6HSYEdnS7RHE5aR7Ax",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f246b4e1-9ebf-44b4-837c-d17ccf6213b7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0119kyDZf1a1KDkUK4taaSZo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 286,
+                "cache_read_input_tokens": 37495,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 286,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T05:56:24.500Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Dc5LrHG5hEMnqG18TE971r",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts -type f -name \"*.py\" 2>/dev/null | sort"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f246b4e1-9ebf-44b4-837c-d17ccf6213b7",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6HSYEdnS7RHE5aR7Ax",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a141c056-1090-4b89-946d-70f09656bcf2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0119kyDZf1a1KDkUK4taaSZo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 286,
+                "cache_read_input_tokens": 37495,
+                "output_tokens": 117,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 286
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 117,
+                    "cache_read_input_tokens": 37495,
+                    "cache_creation_input_tokens": 286,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 286,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T05:56:24.566Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Dc5LrHG5hEMnqG18TE971r",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/mvp_confounding_dag.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/mvp_exposure_dag.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/intermediate/case_study_analysis.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/report/mvp_exposure_dirichlet_subspace.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/annotate.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_all_tasks.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_delta_max.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_ppi_empirical.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_theory_empirical_mape.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/mvp_confounding_dag.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/mvp_exposure_dag.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/mvp_exposure_dirichlet_subspace.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/mvp_iv_dirichlet_subspace.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_stress_test.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan008_binarization_collapse/report/plan_008_binarization_collapse.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/scripts/annotate_frontier.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/scripts/compute_results.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/scripts/prepare_data.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan012_case_study/case_study_analysis.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan_002_k57_extended_7topo.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan_005_asv_extended_fixed.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan_009_pathological_matrices.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/preprocess.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a141c056-1090-4b89-946d-70f09656bcf2",
+            "isSidechain": true,
+            "promptId": "35c599bb-59e9-4454-9a1e-c60a17045910",
+            "agentId": "a67c6410cf3846a64",
+            "type": "user",
+            "uuid": "c4fa7767-7de5-48b0-96a1-b6764e7ad8e2",
+            "sourceToolAssistantUUID": "a141c056-1090-4b89-946d-70f09656bcf2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T05:56:27.555Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search the Python scripts for mentions of confusion matrices, bias, and empirical validation:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4fa7767-7de5-48b0-96a1-b6764e7ad8e2",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6HcvZkxfoyQw5NEktp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "68eace52-1015-4b58-88ef-f27d6361982a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BktKTELt6UoDSGy4MaYT8v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1125,
+                "cache_read_input_tokens": 37781,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1125,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T05:56:28.157Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VVtGcdj4opVmiajcUpLmNv",
+              "name": "Grep",
+              "input": {
+                "pattern": "confusion|bias|empirical",
+                "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts",
+                "type": "py",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "68eace52-1015-4b58-88ef-f27d6361982a",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6HcvZkxfoyQw5NEktp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0fa401fb-9fd9-4d14-9d11-1d6b10a07883",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BktKTELt6UoDSGy4MaYT8v",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1125,
+                "cache_read_input_tokens": 37781,
+                "output_tokens": 164,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1125
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 164,
+                    "cache_read_input_tokens": 37781,
+                    "cache_creation_input_tokens": 1125,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1125,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T05:56:28.183Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VVtGcdj4opVmiajcUpLmNv",
+              "type": "tool_result",
+              "content": "Found 20 files\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_delta_max.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/scripts/compute_results.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/intermediate/case_study_analysis.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan012_case_study/case_study_analysis.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_ppi_empirical.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_all_tasks.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_theory_empirical_mape.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_stress_test.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/mvp_iv_dirichlet_subspace.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan_009_pathological_matrices.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan_002_k57_extended_7topo.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan_005_asv_extended_fixed.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan008_binarization_collapse/report/plan_008_binarization_collapse.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/annotate.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/report/mvp_exposure_dirichlet_subspace.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/mvp_exposure_dirichlet_subspace.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/mvp_exposure_dag.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/mvp_exposure_dag.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/mvp_confounding_dag.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/mvp_confounding_dag.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0fa401fb-9fd9-4d14-9d11-1d6b10a07883",
+            "isSidechain": true,
+            "promptId": "35c599bb-59e9-4454-9a1e-c60a17045910",
+            "agentId": "a67c6410cf3846a64",
+            "type": "user",
+            "uuid": "dee1f1e3-270a-477f-87d0-88e56a9a7b97",
+            "sourceToolAssistantUUID": "0fa401fb-9fd9-4d14-9d11-1d6b10a07883",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T05:56:30.226Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the primary empirical computation scripts to understand their structure and functionality:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dee1f1e3-270a-477f-87d0-88e56a9a7b97",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6Ht3tu9rnCCc1B2zSU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "35b1feec-374b-421d-b6f9-e31fc4e74276",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UXbCFh3r1PmFsXxRgWTsy3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1154,
+                "cache_read_input_tokens": 38906,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1154,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T05:56:30.537Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PLqQgCN6yrg7EP8xyLvUmp",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_ppi_empirical.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35b1feec-374b-421d-b6f9-e31fc4e74276",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6Ht3tu9rnCCc1B2zSU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c523b32a-7ab8-4353-a416-0259827c3307",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UXbCFh3r1PmFsXxRgWTsy3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1154,
+                "cache_read_input_tokens": 38906,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1154,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T05:56:30.553Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PLqQgCN6yrg7EP8xyLvUmp",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tEmpirical Correction Validation — HumAID K=10\n4\t\n5\tLoads 8 valid HumAID confusion matrices from asv_empirical_results.json,\n6\tgenerates synthetic MC data using plan_006's K=10 DGP for each of 7 topologies,\n7\truns all 5 correction methods (PPI++, naive plug-in, DSL, MC-SIMEX, MLA),\n8\tand reports empirical bias reduction per topology × method.\n9\t\n10\tInput:  artifacts/plan006/asv_empirical_results.json\n11\tOutput: artifacts/ppi_empirical_validation.json\n12\t\n13\tDependencies: numpy, annot_sensitivity (local package)\n14\t\"\"\"\n15\t\n16\timport sys\n17\timport os\n18\timport json\n19\timport time\n20\timport numpy as np\n21\t\n22\tPROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\n23\tsys.path.insert(0, PROJECT_ROOT)\n24\t\n25\tfrom annot_sensitivity.correction import (\n26\t    correct_ppi, correct_naive_plugin, correct_dsl, correct_mcsimex, correct_mla\n27\t)\n28\tfrom annot_sensitivity.utils import misclassify, make_dummies, ols, ols_with_se\n29\t\n30\t# ── Plan 006 DGP Infrastructure (K-general) ────────────────────────\n31\t\n32\t_ALPHA_POOL = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7, 0.9, -0.4, 0.6]\n33\t_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2, 0.4, -0.15, 0.3]\n34\t_BETA_POOL = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2, 0.4, -0.15, 0.3]\n35\t_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1, 0.2, -0.05, 0.1]\n36\t_DELTA_POOL = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2, 0.15, -0.1, 0.05]\n37\t_DT_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1, 0.2, -0.05, 0.1]\n38\t_DY_POOL = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2, 0.15, -0.1, 0.05]\n39\t\n40\t\n41\tdef softmax_rows(logits):\n42\t    e = np.exp(logits - logits.max(axis=1, keepdims=True))\n43\t    return e / e.sum(axis=1, keepdims=True)\n44\t\n45\t\n46\tdef sample_cat(probs, rng):\n47\t    cum = np.cumsum(probs, axis=1)\n48\t    u = rng.uniform(size=probs.shape[0])[:, None]\n49\t    return (u >= cum[:, :-1]).sum(axis=1).astype(int)\n50\t\n51\t\n52\tdef make_p_A(K):\n53\t    if K == 2:\n54\t        return np.array([0.55, 0.45])\n55\t    elif K == 3:\n56\t        return np.array([0.40, 0.35, 0.25])\n57\t    else:\n58\t        raw = np.array([1.0 / (i + 1) for i in range(K)])\n59\t        return raw / raw.sum()\n60\t\n61\t\n62\tdef make_dgp_params(K):\n63\t    p_A = make_p_A(K)\n64\t    params = {\n65\t        'confounding': {\n66\t            'p_A': p_A,\n67\t            'alpha': np.array(_ALPHA_POOL[:K - 1]),\n68\t            'beta_A': np.array(_BETA_A_POOL[:K - 1]),\n69\t            'beta_T': 2.0,\n70\t            'sigma_T': 1.0,\n71\t        },\n72\t        'mediation': {\n73\t            'tau': 0.5,\n74\t            'gamma': np.array(_GAMMA_POOL[:K]),\n75\t            'delta': np.array(_DELTA_POOL[:K]),\n76\t            'beta': np.array(_BETA_POOL[:K]),\n77\t        },\n78\t        'collider': {\n79\t            'tau': 1.0,\n80\t            'g': np.zeros(K),\n81\t            'dT': np.array(_DT_POOL[:K]),\n82\t            'dY': np.array(_DY_POOL[:K]),\n83\t        },\n84\t        'exposure': {\n85\t            'beta': np.array(_BETA_POOL[:K]),\n86\t            'p_A': p_A,\n87\t        },\n88\t    }\n89\t    if K == 3:\n90\t        params['mbias'] = {\n91\t            'tau': 0.5, 'delta_coef': 1.0, 'lam': 1.0,\n92\t            'g': np.zeros(3),\n93\t            'a_U1': np.array([0.0, 0.8, -0.5]),\n94\t            'a_U2': np.array([0.0, 0.6, 0.9]),\n95\t        }\n96\t        params['iv'] = {\n97\t            'lam': 1.0, 'beta': np.array([0.0, 0.5, -0.25]),\n98\t            'g': np.zeros(3),\n99\t            'dZ': np.array([0.0, 1.0, -0.5]),\n100\t            'dU': np.array([0.0, 0.8, 0.6]),\n101\t        }\n102\t        params['frontdoor'] = {\n103\t            'alpha_U': 1.0, 'lambda_U': 1.0,\n104\t            'gamma': np.array([0.0, 0.5, -0.3]),\n105\t            'delta_fd': np.array([0.0, 1.0, -0.8]),\n106\t            'beta': np.array([0.0, 1.0, -0.5]),\n107\t        }\n108\t    else:\n109\t        params['mbias'] = {\n110\t            'tau': 0.5, 'delta_coef': 1.0, 'lam': 1.0,\n111\t            'g': np.zeros(K),\n112\t            'a_U1': np.array([0.0] + [_ALPHA_POOL[i] * 0.6 for i in range(K - 1)]),\n113\t            'a_U2': np.array([0.0] + [_BETA_A_POOL[i] * 0.8 for i in range(K - 1)]),\n114\t        }\n115\t        iv_beta = np.array(_BETA_POOL[:K]) * 0.5\n116\t        iv_beta[0] = 0.0\n117\t        params['iv'] = {\n118\t            'lam': 1.0, 'beta': iv_beta,\n119\t            'g': np.zeros(K),\n120\t            'dZ': np.array([0.0] + [_ALPHA_POOL[i] * 0.7 for i in range(K - 1)]),\n121\t            'dU': np.array([0.0] + [_BETA_A_POOL[i] * 0.6 for i in range(K - 1)]),\n122\t        }\n123\t        fd_delta = np.array(_DELTA_POOL[:K])\n124\t        fd_delta[0] = 0.0\n125\t        params['frontdoor'] = {\n126\t            'alpha_U': 1.0, 'lambda_U': 1.0,\n127\t            'gamma': np.array(_GAMMA_POOL[:K]),\n128\t            'delta_fd': fd_delta,\n129\t            'beta': np.array(_BETA_POOL[:K]),\n130\t        }\n131\t    return params\n132\t\n133\t\n134\t# ── DGP Generators ──────────────────────────────────────────────────\n135\t\n136\tdef gen_confounding(K, N, p, rng):\n137\t    A = rng.choice(K, size=N, p=p['p_A'])\n138\t    D = np.zeros((N, K - 1))\n139\t    for j in range(K - 1):\n140\t        D[:, j] = (A == j + 1).astype(float)\n141\t    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\n142\t    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\n143\t    return T, Y, A\n144\t\n145\t\n146\tdef gen_mediation(K, N, p, rng):\n147\t    T = rng.binomial(1, 0.5, N).astype(float)\n148\t    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\n149\t    probs = softmax_rows(logits)\n150\t    A = sample_cat(probs, rng)\n151\t    D = np.zeros((N, K - 1))\n152\t    for j in range(K - 1):\n153\t        D[:, j] = (A == j + 1).astype(float)\n154\t    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\n155\t    return T, Y, A\n156\t\n157\t\n158\tdef gen_collider(K, N, p, rng):\n159\t    T = rng.normal(0, 1, N)\n160\t    Y = p['tau'] * T + rng.normal(0, 1, N)\n161\t    logits = (p['g'][None, :] + p['dT'][None, :] * T[:, None]\n162\t              + p['dY'][None, :] * Y[:, None])\n163\t    probs = softmax_rows(logits)\n164\t    A = sample_cat(probs, rng)\n165\t    return T, Y, A\n166\t\n167\t\n168\tdef gen_exposure(K, N, p, rng):\n169\t    A = rng.choice(K, size=N, p=p['p_A'])\n170\t    D = np.zeros((N, K - 1))\n171\t    for j in range(K - 1):\n172\t        D[:, j] = (A == j + 1).astype(float)\n173\t    Y = p['beta'][0] + D @ p['beta'][1:] + rng.normal(0, 1, N)\n174\t    return None, Y, A\n175\t\n176\t\n177\tdef gen_mbias(K, N, p, rng):\n178\t    U1 = rng.normal(0, 1, N)\n179\t    U2 = rng.normal(0, 1, N)\n180\t    T = p['delta_coef'] * U1 + rng.normal(0, 1, N)\n181\t    Y = p['tau'] * T + p['lam'] * U2 + rng.normal(0, 1, N)\n182\t    logits = (p['g'][None, :] + p['a_U1'][None, :] * U1[:, None]\n183\t              + p['a_U2'][None, :] * U2[:, None])\n184\t    probs = softmax_rows(logits)\n185\t    A = sample_cat(probs, rng)\n186\t    return T, Y, A\n187\t\n188\t\n189\tdef gen_iv(K, N, p, rng):\n190\t    Z = rng.binomial(1, 0.5, N).astype(float)\n191\t    U = rng.normal(0, 1, N)\n192\t    logits = (p['g'][None, :] + p['dZ'][None, :] * Z[:, None]\n193\t              + p['dU'][None, :] * U[:, None])\n194\t    probs = softmax_rows(logits)\n195\t    A = sample_cat(probs, rng)\n196\t    D = np.zeros((N, K - 1))\n197\t    for j in range(K - 1):\n198\t        D[:, j] = (A == j + 1).astype(float)\n199\t    Y = D @ p['beta'][1:] + p['lam'] * U + rng.normal(0, 1, N)\n200\t    return Z, Y, A\n201\t\n202\t\n203\tdef gen_frontdoor(K, N, p, rng):\n204\t    U = rng.normal(0, 1, N)\n205\t    T = p['alpha_U'] * U + rng.normal(0, 1, N)\n206\t    logits = p['gamma'][None, :] + p['delta_fd'][None, :] * T[:, None]\n207\t    probs = softmax_rows(logits)\n208\t    M = sample_cat(probs, rng)\n209\t    D = np.zeros((N, K - 1))\n210\t    for j in range(K - 1):\n211\t        D[:, j] = (M == j + 1).astype(float)\n212\t    Y = D @ p['beta'][1:] + p['lambda_U'] * U + rng.normal(0, 1, N)\n213\t    return T, Y, M\n214\t\n215\t\n216\tGEN_FNS = {\n217\t    'confounding': gen_confounding, 'mediation': gen_mediation,\n218\t    'collider': gen_collider, 'exposure': gen_exposure,\n219\t    'mbias': gen_mbias, 'iv': gen_iv, 'frontdoor': gen_frontdoor,\n220\t}\n221\t\n222\tHAS_TREATMENT = {'confounding', 'mediation', 'collider', 'mbias', 'frontdoor'}\n223\t\n224\t\n225\t# ── Wald Estimator ──────────────────────────────────────────────────\n226\t\n227\tdef wald_est(Z, Y, A_or_Astar, k=1):\n228\t    z1 = Z == 1; z0 = Z == 0\n229\t    n1, n0 = float(z1.sum()), float(z0.sum())\n230\t    if n1 < 2 or n0 < 2:\n231\t        return np.nan\n232\t    RF = Y[z1].mean() - Y[z0].mean()\n233\t    FS = (A_or_Astar[z1] == k).astype(float).mean() - \\\n234\t         (A_or_Astar[z0] == k).astype(float).mean()\n235\t    if abs(FS) < 1e-8:\n236\t        return np.nan\n237\t    return RF / FS\n238\t\n239\t\n240\tdef ppi_wald(Z, Y, A, Astar, gold_mask, k=1, rng=None, n_boot=50):\n241\t    \"\"\"PPI++ for Wald estimator (IV topology).\"\"\"\n242\t    if rng is None:\n243\t        rng = np.random.default_rng()\n244\t    gold_idx = np.where(gold_mask)[0]\n245\t    n_gold = len(gold_idx)\n246\t\n247\t    tau_all_star = wald_est(Z, Y, Astar, k)\n248\t    tau_gold_true = wald_est(Z[gold_mask], Y[gold_mask], A[gold_mask], k)\n249\t    tau_gold_star = wald_est(Z[gold_mask], Y[gold_mask], Astar[gold_mask], k)\n250\t\n251\t    if np.isnan(tau_gold_true) or np.isnan(tau_all_star):\n252\t        return np.nan, False\n253\t\n254\t    tau_true_boot = np.zeros(n_boot)\n255\t    tau_rect_boot = np.zeros(n_boot)\n256\t    for b in range(n_boot):\n257\t        idx = rng.choice(gold_idx, size=n_gold, replace=True)\n258\t        bt = wald_est(Z[idx], Y[idx], A[idx], k)\n259\t        bs = wald_est(Z[idx], Y[idx], Astar[idx], k)\n260\t        tau_true_boot[b] = bt\n261\t        tau_rect_boot[b] = bs - bt\n262\t\n263\t    valid = np.isfinite(tau_true_boot) & np.isfinite(tau_rect_boot)\n264\t    if valid.sum() > 5:\n265\t        var_r = np.var(tau_rect_boot[valid])\n266\t        cov_tr = np.cov(tau_true_boot[valid], tau_rect_boot[valid])[0, 1]\n267\t        lam = np.clip(-cov_tr / var_r, 0, 1) if var_r > 1e-12 else 1.0\n268\t    else:\n269\t        lam = 1.0\n270\t\n271\t    tau_ppi = tau_gold_true + lam * (tau_all_star - tau_gold_star)\n272\t    return float(tau_ppi), True\n273\t\n274\t\n275\t# ── True Parameter Computation ──────────────────────────────────────\n276\t\n277\tdef compute_tau_true(K, topology, params, N_large=500_000, seed=99):\n278\t    \"\"\"Compute true tau by running estimator on very large uncontaminated sample.\"\"\"\n279\t    rng = np.random.default_rng(seed)\n280\t    first_var, Y, A = GEN_FNS[topology](K, N_large, params[topology], rng)\n281\t\n282\t    if topology == 'iv':\n283\t        return wald_est(first_var, Y, A, k=1)\n284\t    elif topology == 'exposure':\n285\t        D = make_dummies(A, K)\n286\t        X = np.column_stack([np.ones(N_large), D])\n287\t        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\n288\t        return float(beta[1])\n289\t    else:\n290\t        T = first_var\n291\t        D = make_dummies(A, K)\n292\t        X = np.column_stack([np.ones(N_large), T, D])\n293\t        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\n294\t        return float(beta[1])\n295\t\n296\t\n297\t# ── MC-SIMEX for IV (custom) ────────────────────────────────────────\n298\t\n299\tdef mcsimex_wald(Z, Y, Astar, C, k=1, rng=None, n_B=50,\n300\t                 lambdas_extra=(0.5, 1.0, 1.5, 2.0)):\n301\t    \"\"\"MC-SIMEX for IV Wald estimator.\"\"\"\n302\t    if rng is None:\n303\t        rng = np.random.default_rng()\n304\t    K = C.shape[0]\n305\t    try:\n306\t        eigvals, eigvecs = np.linalg.eig(C)\n307\t        eigvecs_inv = np.linalg.inv(eigvecs)\n308\t    except np.linalg.LinAlgError:\n309\t        return np.nan, False\n310\t\n311\t    lambdas = np.array([0.0] + list(lambdas_extra))\n312\t    tau_lam = np.zeros(len(lambdas))\n313\t\n314\t    for li, lam_val in enumerate(lambdas):\n315\t        if lam_val == 0.0:\n316\t            tau_lam[li] = wald_est(Z, Y, Astar, k)\n317\t        else:\n318\t            C_lam_raw = np.real((eigvecs * (eigvals ** lam_val)) @ eigvecs_inv)\n319\t            C_lam = np.clip(C_lam_raw, 0, None)\n320\t            cs = C_lam.sum(axis=0)\n321\t            cs[cs == 0] = 1.0\n322\t            C_lam /= cs\n323\t\n324\t            tau_b = np.zeros(n_B)\n325\t            for b in range(n_B):\n326\t                A_extra = misclassify(Astar, C_lam, rng)\n327\t                tau_b[b] = wald_est(Z, Y, A_extra, k)\n328\t            ok = np.isfinite(tau_b)\n329\t            if ok.sum() < n_B // 2:\n330\t                return np.nan, False\n331\t            tau_lam[li] = tau_b[ok].mean()\n332\t\n333\t    try:\n334\t        coeffs = np.polyfit(lambdas, tau_lam, 2)\n335\t        return float(np.polyval(coeffs, -1.0)), True\n336\t    except Exception:\n337\t        return np.nan, False\n338\t\n339\t\n340\t# ── Main ────────────────────────────────────────────────────────────\n341\t\n342\tN_SAMPLES = 10_000\n343\tN_REPS = 30\n344\tGOLD_FRACTION = 0.10\n345\tSEED = 42\n346\tTOPOLOGIES = ['confounding', 'mediation', 'collider', 'exposure',\n347\t              'mbias', 'iv', 'frontdoor']\n348\tMETHODS = ['ppi', 'naive_plugin', 'dsl', 'mcsimex', 'mla']\n349\t\n350\tJSON_PATH = os.path.join(PROJECT_ROOT, 'artifacts', 'plan006',\n351\t                         'asv_empirical_results.json')\n352\t\n353\t\n354\tdef load_valid_humaid_configs():\n355\t    with open(JSON_PATH) as f:\n356\t        data = json.load(f)\n357\t\n358\t    zero_configs = {(e['model'], e['prompt'])\n359\t                    for e in data['f1_vs_bias'] if e['macro_f1'] == 0}\n360\t\n361\t    cms = {}\n362\t    for key, mat in data['confusion_matrices'].items():\n363\t        parts = key.split('_')\n364\t        if parts[0] != 'humaid':\n365\t            continue\n366\t        model = parts[1]\n367\t        prompt = '_'.join(parts[2:])\n368\t        if (model, prompt) in zero_configs:\n369\t            continue\n370\t        cms[key] = np.array(mat)\n371\t    return cms\n372\t\n373\t\n374\tdef run_single_rep(K, topology, params, C, tau_true, rng, gold_frac):\n375\t    \"\"\"Run one MC replication: generate data, misclassify, run corrections.\"\"\"\n376\t    first_var, Y, A = GEN_FNS[topology](K, N_SAMPLES, params[topology], rng)\n377\t    Astar = misclassify(A, C, rng)\n378\t\n379\t    N = len(Y)\n380\t    n_gold = max(int(N * gold_frac), 50)\n381\t    gold_idx = rng.choice(N, size=n_gold, replace=False)\n382\t    gold_mask = np.zeros(N, dtype=bool)\n383\t    gold_mask[gold_idx] = True\n384\t\n385\t    results = {}\n386\t\n387\t    if topology == 'iv':\n388\t        Z = first_var\n389\t        tau_naive = wald_est(Z, Y, Astar, k=1)\n390\t        results['naive'] = float(tau_naive) if np.isfinite(tau_naive) else None\n391\t\n392\t        tau_ppi, ok = ppi_wald(Z, Y, A, Astar, gold_mask, k=1, rng=rng)\n393\t        results['ppi'] = float(tau_ppi) if ok and np.isfinite(tau_ppi) else None\n394\t\n395\t        tau_sim, ok = mcsimex_wald(Z, Y, Astar, C, k=1, rng=rng)\n396\t        results['mcsimex'] = float(tau_sim) if ok and np.isfinite(tau_sim) else None\n397\t\n398\t        results['naive_plugin'] = None\n399\t        results['dsl'] = None\n400\t        results['mla'] = None\n401\t\n402\t    elif topology == 'exposure':\n403\t        X_other = np.ones((N, 1))\n404\t        D_star = make_dummies(Astar, K)\n405\t        X_full = np.column_stack([X_other, D_star])\n406\t        try:\n407\t            beta_naive = np.linalg.lstsq(X_full, Y, rcond=None)[0]\n408\t            tau_naive = float(beta_naive[1])\n409\t        except Exception:\n410\t            tau_naive = np.nan\n411\t        results['naive'] = float(tau_naive) if np.isfinite(tau_naive) else None\n412\t\n413\t        for method in METHODS:\n414\t            if method == 'ppi':\n415\t                tau, se, ok = correct_ppi(X_other, Y, Astar, A, gold_mask,\n416\t                                          tau_idx=1, rng=rng)\n417\t            elif method == 'naive_plugin':\n418\t                tau, se, ok = correct_naive_plugin(X_other, Y, Astar, C, tau_idx=1)\n419\t            elif method == 'dsl':\n420\t                tau, se, ok = correct_dsl(X_other, Y, Astar, A, gold_mask, tau_idx=1)\n421\t            elif method == 'mcsimex':\n422\t                tau, se, ok = correct_mcsimex(X_other, Y, Astar, C, tau_idx=1, rng=rng)\n423\t            elif method == 'mla':\n424\t                tau, se, ok = correct_mla(X_other, Y, Astar, C, tau_idx=1)\n425\t            else:\n426\t                continue\n427\t            results[method] = float(tau) if ok and np.isfinite(tau) else None\n428\t\n429\t    else:\n430\t        T = first_var\n431\t        X_other = np.column_stack([np.ones(N), T])\n432\t        D_star = make_dummies(Astar, K)\n433\t        X_full = np.column_stack([X_other, D_star])\n434\t        try:\n435\t            beta_naive = np.linalg.lstsq(X_full, Y, rcond=None)[0]\n436\t            tau_naive = float(beta_naive[1])\n437\t        except Exception:\n438\t            tau_naive = np.nan\n439\t        results['naive'] = float(tau_naive) if np.isfinite(tau_naive) else None\n440\t\n441\t        for method in METHODS:\n442\t            if method == 'ppi':\n443\t                tau, se, ok = correct_ppi(X_other, Y, Astar, A, gold_mask,\n444\t                                          tau_idx=1, rng=rng)\n445\t            elif method == 'naive_plugin':\n446\t                tau, se, ok = correct_naive_plugin(X_other, Y, Astar, C, tau_idx=1)\n447\t            elif method == 'dsl':\n448\t                tau, se, ok = correct_dsl(X_other, Y, Astar, A, gold_mask, tau_idx=1)\n449\t            elif method == 'mcsimex':\n450\t                tau, se, ok = correct_mcsimex(X_other, Y, Astar, C, tau_idx=1, rng=rng)\n451\t            elif method == 'mla':\n452\t                tau, se, ok = correct_mla(X_other, Y, Astar, C, tau_idx=1)\n453\t            else:\n454\t                continue\n455\t            results[method] = float(tau) if ok and np.isfinite(tau) else None\n456\t\n457\t    results['tau_true'] = tau_true\n458\t    return results\n459\t\n460\t\n461\tdef main():\n462\t    t_start = time.time()\n463\t    K = 10\n464\t    print(\"=\" * 70)\n465\t    print(\"Empirical Correction Validation — HumAID K=10\")\n466\t    print(\"=\" * 70)\n467\t    print(f\"N={N_SAMPLES}, N_REPS={N_REPS}, gold_fraction={GOLD_FRACTION}\")\n468\t\n469\t    configs = load_valid_humaid_configs()\n470\t    print(f\"Loaded {len(configs)} valid HumAID confusion matrices\")\n471\t\n472\t    params = make_dgp_params(K)\n473\t    rng_master = np.random.default_rng(SEED)\n474\t\n475\t    print(\"\\nComputing tau_true for each topology (N=500k)...\")\n476\t    tau_true = {}\n477\t    for topo in TOPOLOGIES:\n478\t        tau_true[topo] = compute_tau_true(K, topo, params)\n479\t        print(f\"  {topo}: tau_true = {tau_true[topo]:.6f}\")\n480\t\n481\t    all_results = {}\n482\t    per_topo_method = {topo: {m: [] for m in METHODS}\n483\t                       for topo in TOPOLOGIES}\n484\t\n485\t    for ci, (config_name, C) in enumerate(configs.items()):\n486\t        print(f\"\\n[{ci+1}/{len(configs)}] {config_name}\")\n487\t        config_results = {}\n488\t\n489\t        for topo in TOPOLOGIES:\n490\t            topo_reps = []\n491\t            for rep in range(N_REPS):\n492\t                seed_rep = rng_master.integers(0, 2**31)\n493\t                rng_rep = np.random.default_rng(seed_rep)\n494\t                res = run_single_rep(K, topo, params, C, tau_true[topo],\n495\t                                     rng_rep, GOLD_FRACTION)\n496\t                topo_reps.append(res)\n497\t\n498\t            naive_biases = []\n499\t            method_biases = {m: [] for m in METHODS}\n500\t            for res in topo_reps:\n501\t                tt = res['tau_true']\n502\t                if res['naive'] is not None:\n503\t                    naive_biases.append(res['naive'] - tt)\n504\t                for m in METHODS:\n505\t                    if res.get(m) is not None:\n506\t                        method_biases[m].append(res[m] - tt)\n507\t\n508\t            avg_naive_bias = np.mean(np.abs(naive_biases)) if naive_biases else None\n509\t            topo_summary = {\n510\t                'tau_true': tau_true[topo],\n511\t                'n_reps': N_REPS,\n512\t                'naive_mean_abs_bias': float(avg_naive_bias) if avg_naive_bias else None,\n513\t                'methods': {},\n514\t            }\n515\t\n516\t            for m in METHODS:\n517\t                biases = method_biases[m]\n518\t                if biases:\n519\t                    avg_abs = float(np.mean(np.abs(biases)))\n520\t                    mean_bias = float(np.mean(biases))\n521\t                    if avg_naive_bias and avg_naive_bias > 1e-8:\n522\t                        reduction = 1.0 - avg_abs / avg_naive_bias\n523\t                    else:\n524\t                        reduction = None\n525\t                    topo_summary['methods'][m] = {\n526\t                        'mean_abs_bias': avg_abs,\n527\t                        'mean_bias': mean_bias,\n528\t                        'bias_reduction': float(reduction) if reduction is not None else None,\n529\t                        'n_valid': len(biases),\n530\t                    }\n531\t                    per_topo_method[topo][m].append(\n532\t                        float(reduction) if reduction is not None else None\n533\t                    )\n534\t                else:\n535\t                    topo_summary['methods'][m] = {\n536\t                        'mean_abs_bias': None,\n537\t                        'mean_bias': None,\n538\t                        'bias_reduction': None,\n539\t                        'n_valid': 0,\n540\t                    }\n541\t\n542\t            config_results[topo] = topo_summary\n543\t            ppi_info = topo_summary['methods'].get('ppi', {})\n544\t            ppi_red = ppi_info.get('bias_reduction')\n545\t            ppi_str = f\"{100*ppi_red:.1f}%\" if ppi_red is not None else \"N/A\"\n546\t            print(f\"  {topo:12s}: naive_bias={avg_naive_bias:.4f}\" if avg_naive_bias else\n547\t                  f\"  {topo:12s}: naive_bias=N/A\", end=\"\")\n548\t            print(f\"  PPI++={ppi_str}\")\n549\t\n550\t        all_results[config_name] = config_results\n551\t\n552\t    grand_summary = {}\n553\t    print(\"\\n\" + \"=\" * 70)\n554\t    print(\"GRAND SUMMARY: Mean bias reduction across 8 configs\")\n555\t    print(\"=\" * 70)\n556\t    print(f\"\\n{'Topology':14s}\", end=\"\")\n557\t    for m in METHODS:\n558\t        print(f\"  {m:14s}\", end=\"\")\n559\t    print()\n560\t    print(\"-\" * (14 + 16 * len(METHODS)))\n561\t\n562\t    for topo in TOPOLOGIES:\n563\t        grand_summary[topo] = {}\n564\t        print(f\"{topo:14s}\", end=\"\")\n565\t        for m in METHODS:\n566\t            vals = [v for v in per_topo_method[topo][m] if v is not None]\n567\t            if vals:\n568\t                mean_red = float(np.mean(vals))\n569\t                grand_summary[topo][m] = {\n570\t                    'mean_reduction': mean_red,\n571\t                    'std_reduction': float(np.std(vals)),\n572\t                    'n_configs': len(vals),\n573\t                }\n574\t                print(f\"  {100*mean_red:+12.1f}%\", end=\"\")\n575\t            else:\n576\t                grand_summary[topo][m] = None\n577\t                print(f\"  {'N/A':>13s}\", end=\"\")\n578\t        print()\n579\t\n580\t    overall_ppi = []\n581\t    for topo in TOPOLOGIES:\n582\t        gs = grand_summary[topo].get('ppi')\n583\t        if gs:\n584\t            overall_ppi.append(gs['mean_reduction'])\n585\t    if overall_ppi:\n586\t        print(f\"\\nGrand mean PPI++ bias reduction: {100*np.mean(overall_ppi):.1f}%\")\n587\t\n588\t    output = {\n589\t        'meta': {\n590\t            'scope': 'HumAID K=10, 8 valid configs',\n591\t            'n_samples': N_SAMPLES,\n592\t            'n_reps': N_REPS,\n593\t            'gold_fraction': GOLD_FRACTION,\n594\t            'seed': SEED,\n595\t            'topologies': TOPOLOGIES,\n596\t            'methods': METHODS,\n597\t            'n_configs': len(configs),\n598\t            'configs': list(configs.keys()),\n599\t        },\n600\t        'tau_true': {t: float(tau_true[t]) for t in TOPOLOGIES},\n601\t        'per_config': all_results,\n602\t        'grand_summary': grand_summary,\n603\t    }\n604\t\n605\t    out_path = os.path.join(PROJECT_ROOT, 'artifacts',\n606\t                            'ppi_empirical_validation.json')\n607\t    with open(out_path, 'w') as f:\n608\t        json.dump(output, f, indent=2)\n609\t\n610\t    elapsed = time.time() - t_start\n611\t    print(f\"\\nResults saved to: {out_path}\")\n612\t    print(f\"Total runtime: {elapsed:.1f}s\")\n613\t\n614\t\n615\tif __name__ == '__main__':\n616\t    main()\n617\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c523b32a-7ab8-4353-a416-0259827c3307",
+            "isSidechain": true,
+            "promptId": "35c599bb-59e9-4454-9a1e-c60a17045910",
+            "agentId": "a67c6410cf3846a64",
+            "type": "user",
+            "uuid": "fb02ae71-4f51-452b-948d-04b48dfbe4ac",
+            "sourceToolAssistantUUID": "c523b32a-7ab8-4353-a416-0259827c3307",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T05:56:32.838Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the compute_theory_empirical_mape.py script:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb02ae71-4f51-452b-948d-04b48dfbe4ac",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6J5Drb7vxrSDTmsqRe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e056b490-cbaf-4b1b-a9ac-552c2548eb2d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012DPEFKbtpT64Zdo17rPkFK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 9947,
+                "cache_read_input_tokens": 40060,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9947,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T05:56:33.466Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017J2MqEbJ7cKxoo3rFDoShL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_theory_empirical_mape.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e056b490-cbaf-4b1b-a9ac-552c2548eb2d",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6J5Drb7vxrSDTmsqRe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "87a2f389-7a31-4549-a4cd-1d1d695a2a94",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012DPEFKbtpT64Zdo17rPkFK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 9947,
+                "cache_read_input_tokens": 40060,
+                "output_tokens": 113,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9947
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 113,
+                    "cache_read_input_tokens": 40060,
+                    "cache_creation_input_tokens": 9947,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9947,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T05:56:33.481Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017J2MqEbJ7cKxoo3rFDoShL",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Compute Theory-Empirical MAPE.\n2\t\n3\tCompare analytical plim bias (theory, from plan_006 precomputed stats)\n4\tagainst MC empirical bias (sample-level OLS averaged over N_mc draws).\n5\t\n6\tScope: 8 valid humaid configs (K=10) x 7 topologies = 56 scenarios.\n7\t       VAST (K=3) and civil_comments (K=2) confusion matrices are not in\n8\t       the local asv_empirical_results.json.\n9\t\"\"\"\n10\t\n11\timport json\n12\timport sys\n13\timport numpy as np\n14\tfrom pathlib import Path\n15\tfrom collections import defaultdict\n16\t\n17\tsys.path.insert(0, '/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib')\n18\t\n19\t# Import plan_006's DGP + plim machinery directly (since they support arbitrary K)\n20\timport importlib.util\n21\tspec = importlib.util.spec_from_file_location(\n22\t    \"plan_006\",\n23\t    \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_006_asv_empirical.py\"\n24\t)\n25\tplan_006 = importlib.util.module_from_spec(spec)\n26\tspec.loader.exec_module(plan_006)\n27\t\n28\tGEN_FNS = plan_006.GEN_FNS\n29\tmake_dgp_params = plan_006.make_dgp_params\n30\tprecompute_suff_stats = plan_006.precompute_suff_stats\n31\tcompute_plim = plan_006.compute_plim\n32\textract_tau = plan_006.extract_tau\n33\tols_with_dummies = plan_006.ols_with_dummies\n34\tols_no_T = plan_006.ols_no_T\n35\twald_estimator = plan_006.wald_estimator\n36\tgenerate_Astar = plan_006.generate_Astar\n37\t\n38\tTOPOLOGIES = ['confounding', 'mediation', 'collider', 'exposure',\n39\t              'mbias', 'iv', 'frontdoor']\n40\tHAS_TREATMENT = {'confounding', 'mediation', 'collider', 'mbias', 'frontdoor'}\n41\t\n42\tN_MC = 200\n43\tN_SAMPLES = 10_000\n44\t\n45\tROOT = Path('/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib')\n46\tINPUT_JSON = ROOT / 'artifacts/plan006/asv_empirical_results.json'\n47\tFILTER_JSON = ROOT / 'artifacts/plan006_full_filtered_stats.json'\n48\tOUTPUT_JSON = ROOT / 'artifacts/theory_empirical_mape.json'\n49\t\n50\t\n51\tdef mc_tau_hat(C, K, topology, params, n_samples, seed):\n52\t    \"\"\"Single MC replicate: generate, misclassify, regress, return tau_hat.\"\"\"\n53\t    rng = np.random.default_rng(seed)\n54\t    first_var, Y, A = GEN_FNS[topology](K, n_samples, params, rng)\n55\t    A_star = generate_Astar(A, C, rng)\n56\t\n57\t    if topology == 'iv':\n58\t        Z = first_var\n59\t        W, _ = wald_estimator(Z, Y, A_star, k=1)\n60\t        return W\n61\t    elif topology == 'exposure':\n62\t        beta, _ = ols_no_T(Y, A_star, K)\n63\t        return beta[1] if len(beta) > 1 else np.nan\n64\t    else:\n65\t        T = first_var\n66\t        beta, _ = ols_with_dummies(Y, T, A_star, K)\n67\t        return beta[1]\n68\t\n69\t\n70\tdef run_mc_block(C, K, topology, params, n_mc, n_samples, base_seed):\n71\t    \"\"\"Return list of tau_hat values across n_mc seeds.\"\"\"\n72\t    out = []\n73\t    for i in range(n_mc):\n74\t        try:\n75\t            tau = mc_tau_hat(C, K, topology, params, n_samples,\n76\t                             base_seed + i * 7919)\n77\t            if np.isfinite(tau):\n78\t                out.append(float(tau))\n79\t        except Exception:\n80\t            continue\n81\t    return out\n82\t\n83\t\n84\tdef main():\n85\t    print(f\"Loading {INPUT_JSON}\")\n86\t    data = json.loads(INPUT_JSON.read_text())\n87\t    filter_data = json.loads(FILTER_JSON.read_text())\n88\t    zero_configs = set(filter_data['zero_configs'])\n89\t\n90\t    confusion_matrices = {k: np.array(v) for k, v in data['confusion_matrices'].items()}\n91\t    bias_records = data['biases']\n92\t\n93\t    # Build lookup: (config_key, topology) -> theory bias record\n94\t    theory_lookup = {}\n95\t    for b in bias_records:\n96\t        ck = f\"{b['dataset']}_{b['model']}_{b['prompt']}\"\n97\t        theory_lookup[(ck, b['topology'])] = b\n98\t\n99\t    # Precompute params + tau_true per K (only K=10 here)\n100\t    Ks_used = sorted(set(int(b['K']) for b in bias_records))\n101\t    params_by_K = {K: make_dgp_params(K) for K in Ks_used}\n102\t\n103\t    print(f\"Precomputing suff stats for K={Ks_used} x {len(TOPOLOGIES)} topologies...\")\n104\t    all_st = {}\n105\t    all_tau_true = {}\n106\t    for K in Ks_used:\n107\t        for topo in TOPOLOGIES:\n108\t            st = precompute_suff_stats(K, topo, params_by_K[K][topo])\n109\t            all_st[(K, topo)] = st\n110\t            plim_I = compute_plim(np.eye(K), st, K)\n111\t            all_tau_true[(K, topo)] = extract_tau(plim_I, topo)\n112\t            print(f\"  K={K} {topo:<12} tau_true={all_tau_true[(K, topo)]:.6f}\")\n113\t\n114\t    # Iterate configs (skip zero matrices)\n115\t    per_config = {}\n116\t    per_topology = defaultdict(list)\n117\t    grand_records = []\n118\t\n119\t    valid_configs = [k for k in confusion_matrices if k not in zero_configs]\n120\t    print(f\"\\n{len(valid_configs)} valid configs (skipped {len(confusion_matrices) - len(valid_configs)} zero)\")\n121\t\n122\t    for config_key in valid_configs:\n123\t        C = confusion_matrices[config_key]\n124\t        K = C.shape[0]\n125\t        params = params_by_K[K]\n126\t        per_config[config_key] = {}\n127\t        print(f\"\\n[{config_key}] K={K}\")\n128\t\n129\t        for topo in TOPOLOGIES:\n130\t            rec = theory_lookup.get((config_key, topo))\n131\t            if rec is None or rec.get('bias') is None:\n132\t                continue\n133\t\n134\t            theory_bias = float(rec['bias'])\n135\t            tau_true = all_tau_true[(K, topo)]\n136\t\n137\t            tau_hats = run_mc_block(\n138\t                C, K, topo, params[topo],\n139\t                N_MC, N_SAMPLES, base_seed=hash(config_key + topo) & 0xFFFFFFFF\n140\t            )\n141\t            if len(tau_hats) < N_MC // 2:\n142\t                print(f\"  {topo:<12} MC FAILED ({len(tau_hats)}/{N_MC})\")\n143\t                continue\n144\t\n145\t            tau_mean = float(np.mean(tau_hats))\n146\t            tau_se = float(np.std(tau_hats, ddof=1) / np.sqrt(len(tau_hats)))\n147\t            mc_bias = tau_mean - tau_true\n148\t\n149\t            if abs(theory_bias) > 1e-12:\n150\t                ape = abs(theory_bias - mc_bias) / abs(theory_bias)\n151\t            else:\n152\t                ape = float('nan')\n153\t\n154\t            entry = {\n155\t                'theory_bias': theory_bias,\n156\t                'mc_bias': float(mc_bias),\n157\t                'mc_tau_mean': tau_mean,\n158\t                'mc_tau_se': tau_se,\n159\t                'tau_true': float(tau_true),\n160\t                'abs_pct_error': float(ape) if np.isfinite(ape) else None,\n161\t                'n_mc_used': len(tau_hats),\n162\t            }\n163\t            per_config[config_key][topo] = entry\n164\t            per_topology[topo].append(ape)\n165\t            if np.isfinite(ape):\n166\t                grand_records.append(ape)\n167\t            print(f\"  {topo:<12} theory={theory_bias:+.5f}  MC={mc_bias:+.5f}  APE={ape:.3%}\")\n168\t\n169\t    # Aggregate\n170\t    per_topology_summary = {}\n171\t    for topo, apes in per_topology.items():\n172\t        finite = [a for a in apes if np.isfinite(a)]\n173\t        per_topology_summary[topo] = {\n174\t            'mape': float(np.mean(finite)) if finite else None,\n175\t            'median_ape': float(np.median(finite)) if finite else None,\n176\t            'max_ape': float(np.max(finite)) if finite else None,\n177\t            'n_scenarios': len(finite),\n178\t        }\n179\t\n180\t    grand_mape = float(np.mean(grand_records)) if grand_records else None\n181\t\n182\t    output = {\n183\t        'meta': {\n184\t            'n_mc': N_MC,\n185\t            'n_samples': N_SAMPLES,\n186\t            'scope': 'humaid only (K=10); VAST and civil_comments confusion matrices not in local JSON',\n187\t            'n_valid_configs': len(valid_configs),\n188\t            'n_scenarios_total': len(grand_records),\n189\t            'topologies': TOPOLOGIES,\n190\t            'source_input': str(INPUT_JSON),\n191\t        },\n192\t        'grand_mape': grand_mape,\n193\t        'per_topology': per_topology_summary,\n194\t        'per_config': per_config,\n195\t        'note': (\n196\t            \"Theory bias = analytical plim - tau_true (from plan_006 sufficient-stat \"\n197\t            \"approach with N=2M). MC bias = mean(tau_hat) - tau_true over N_mc OLS/Wald \"\n198\t            \"replicates at N=10k. APE = |theory - mc| / |theory|. Sign-flip safety is \"\n199\t            \"preserved across all scenarios in this set.\"\n200\t        ),\n201\t    }\n202\t\n203\t    OUTPUT_JSON.write_text(json.dumps(output, indent=2))\n204\t    print(f\"\\n=== Written {OUTPUT_JSON} ===\")\n205\t    print(f\"Grand MAPE: {grand_mape:.3%}\" if grand_mape else \"Grand MAPE: N/A\")\n206\t    print(\"\\nPer-topology MAPE:\")\n207\t    for topo, s in per_topology_summary.items():\n208\t        if s['mape'] is not None:\n209\t            print(f\"  {topo:<12} MAPE={s['mape']:.3%}  median={s['median_ape']:.3%}  \"\n210\t                  f\"max={s['max_ape']:.3%}  n={s['n_scenarios']}\")\n211\t\n212\t\n213\tif __name__ == \"__main__\":\n214\t    main()\n215\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87a2f389-7a31-4549-a4cd-1d1d695a2a94",
+            "isSidechain": true,
+            "promptId": "35c599bb-59e9-4454-9a1e-c60a17045910",
+            "agentId": "a67c6410cf3846a64",
+            "type": "user",
+            "uuid": "23a61348-cdf8-4ea6-94e1-97f916a431d6",
+            "sourceToolAssistantUUID": "87a2f389-7a31-4549-a4cd-1d1d695a2a94",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T05:56:36.286Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also check compute_delta_max.py and compute_all_tasks.py:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23a61348-cdf8-4ea6-94e1-97f916a431d6",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6JGkeSo2ecqAoSqSNf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ff35b73d-dbe2-49f7-a811-755accc4667a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UBv5ajt8aYfxAgKgsJ63W6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 3378,
+                "cache_read_input_tokens": 50007,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3378,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T05:56:36.840Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NhDvcPmrUN8fJqHSjCSLgX",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_delta_max.py",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff35b73d-dbe2-49f7-a811-755accc4667a",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6JGkeSo2ecqAoSqSNf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1a808261-7eef-4e6d-990d-ce151528259c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UBv5ajt8aYfxAgKgsJ63W6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 3378,
+                "cache_read_input_tokens": 50007,
+                "output_tokens": 128,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3378
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 128,
+                    "cache_read_input_tokens": 50007,
+                    "cache_creation_input_tokens": 3378,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3378,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T05:56:36.847Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NhDvcPmrUN8fJqHSjCSLgX",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tCompute delta_max constraints for all confusion matrices used in the paper.\n4\t\n5\tThe ASV parameterization C(delta) = (1-delta)*I + delta*C0 requires all entries\n6\tof C(delta) to be non-negative. The maximum valid delta is:\n7\t\n8\t    delta_max = min_j 1/(1 - (C0)_{jj})\n9\t\n10\twhere (C0)_{jj} are diagonal entries of the reference confusion matrix C0.\n11\t\n12\tKey mathematical property: since C0 is a valid confusion matrix, diagonal entries\n13\tare in [0,1], so delta_max >= 1 always. The codebase (annot_sensitivity/confusion.py)\n14\talready computes delta_range(C0) = (0, min(1/(1-min_diag), 10.0)) and the ASV\n15\tsearch is bounded within this range, ensuring all ASV values correspond to valid\n16\tconfusion matrices.\n17\t\n18\tThis script:\n19\t1. Computes delta_max for every confusion matrix used in the paper\n20\t2. Verifies that all reported ASV values are within valid range\n21\t3. Cross-checks the theoretical ranges from Table 3 (predefined K=3 matrices)\n22\t4. Cross-checks the empirical HumAID ASV values\n23\t\n24\tOutput: artifacts/delta_max_results.json\n25\t\"\"\"\n26\t\n27\timport json\n28\timport sys\n29\timport numpy as np\n30\tfrom pathlib import Path\n31\tfrom collections import OrderedDict\n32\t\n33\tPROJ = Path(\"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib\")\n34\tsys.path.insert(0, str(PROJ))\n35\t\n36\tfrom annot_sensitivity.confusion import delta_range\n37\t\n38\t# ============================================================================\n39\t# 1. Load all confusion matrices\n40\t# ============================================================================\n41\t\n42\tdef load_humaid_cms():\n43\t    \"\"\"Load 8 valid HumAID K=10 confusion matrices.\"\"\"\n44\t    with open(PROJ / \"artifacts/plan006/asv_empirical_results.json\") as f:\n45\t        plan006 = json.load(f)\n46\t\n47\t    # Filter out qwen3_few-shot-5 (zero matrix)\n48\t    cms = {}\n49\t    for key, cm in plan006[\"confusion_matrices\"].items():\n50\t        C = np.array(cm)\n51\t        if np.min(np.diag(C)) > 0:\n52\t            cms[key] = C\n53\t    return cms, plan006[\"asvs\"]\n54\t\n55\t\n56\tdef load_vast_cms():\n57\t    \"\"\"Load VAST K=3 confusion matrices (constructed from per-class recall).\"\"\"\n58\t    with open(PROJ / \"artifacts/plan006_full_filtered_stats.json\") as f:\n59\t        filter_data = json.load(f)\n60\t\n61\t    vast_per_class_recall = filter_data[\"filtered_stats\"][\"vast_per_class_recall\"]\n62\t    cms = {}\n63\t    for key, diag in vast_per_class_recall.items():\n64\t        K = 3\n65\t        C = np.zeros((K, K))\n66\t        for i in range(K):\n67\t            C[i, i] = diag[i]\n68\t            off_diag_mass = 1.0 - diag[i]\n69\t            for j in range(K):\n70\t                if j != i:\n71\t                    C[j, i] = off_diag_mass / (K - 1)\n72\t        cms[key] = C\n73\t    return cms\n74\t\n75\t\n76\tdef load_civil_cms():\n77\t    \"\"\"Load CivilComments K=2 confusion matrices.\"\"\"\n78\t    civil_diag = {\n79\t        \"civil_comments_qwen2.5-7b_zero-shot\":  [0.7481536189069424, 0.684931506849315],\n80\t        \"civil_comments_qwen2.5-7b_few-shot-3\": [0.6787296898079763, 0.7808219178082192],\n81\t        \"civil_comments_qwen2.5-7b_few-shot-5\": [0.7370753323485968, 0.7602739726027398],\n82\t    }\n83\t    cms = {}\n84\t    for key, diag in civil_diag.items():\n85\t        K = 2\n86\t        C = np.zeros((K, K))\n87\t        C[0, 0] = diag[0]\n88\t        C[1, 1] = diag[1]\n89\t        C[1, 0] = 1.0 - diag[0]\n90\t        C[0, 1] = 1.0 - diag[1]\n91\t        cms[key] = C\n92\t    return cms\n93\t\n94\t\n95\tdef load_predefined_k3_cms():\n96\t    \"\"\"Load the 6 predefined K=3 matrices used for theoretical ASV ranges (Table 3).\"\"\"\n97\t    C_list_raw = {\n98\t        \"C1_sym\": np.array([\n99\t            [0.80, 0.10, 0.10],\n100\t            [0.10, 0.80, 0.10],"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a808261-7eef-4e6d-990d-ce151528259c",
+            "isSidechain": true,
+            "promptId": "35c599bb-59e9-4454-9a1e-c60a17045910",
+            "agentId": "a67c6410cf3846a64",
+            "type": "user",
+            "uuid": "e188e01c-42f8-485b-a74b-e7ffc2cb93ef",
+            "sourceToolAssistantUUID": "1a808261-7eef-4e6d-990d-ce151528259c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T05:56:41.444Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for result directories and check for any .npz files that might have been missed:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e188e01c-42f8-485b-a74b-e7ffc2cb93ef",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6JX295cj1GFqQqXchk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "052888b2-9661-45b4-b2fa-532ba35c45af",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Mzf2ZLn3fpgGcThZ7JHE4Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1528,
+                "cache_read_input_tokens": 53385,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1528,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T05:56:41.643Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F6Vosive6hL1dZL6aLfzte",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib -type d -name \"results*\" 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "052888b2-9661-45b4-b2fa-532ba35c45af",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6JX295cj1GFqQqXchk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cfd4ccfc-0135-4f4d-b308-73546da41453",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Mzf2ZLn3fpgGcThZ7JHE4Z",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1528,
+                "cache_read_input_tokens": 53385,
+                "output_tokens": 116,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1528
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 116,
+                    "cache_read_input_tokens": 53385,
+                    "cache_creation_input_tokens": 1528,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1528,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T05:56:41.708Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F6Vosive6hL1dZL6aLfzte",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/results\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/results",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cfd4ccfc-0135-4f4d-b308-73546da41453",
+            "isSidechain": true,
+            "promptId": "35c599bb-59e9-4454-9a1e-c60a17045910",
+            "agentId": "a67c6410cf3846a64",
+            "type": "user",
+            "uuid": "6e06d60a-6a78-4cf7-bf9f-1ae002cd509c",
+            "sourceToolAssistantUUID": "cfd4ccfc-0135-4f4d-b308-73546da41453",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T05:56:43.686Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check those result directories and get a comprehensive view:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6e06d60a-6a78-4cf7-bf9f-1ae002cd509c",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6Jt1SfzX986Bzf1ihS",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "38861ce0-c431-4675-bd77-1acb19f3a118",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JAvGo9USdLvSMeztKR5P6z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 199,
+                "cache_read_input_tokens": 54913,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 199,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T05:56:44.035Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RMhSAxXbeDRiwCbU1LisXR",
+              "name": "Bash",
+              "input": {
+                "command": "ls -lh /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/results/ 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38861ce0-c431-4675-bd77-1acb19f3a118",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6Jt1SfzX986Bzf1ihS",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7969dd7f-0187-4d2a-9354-bd65eccdbb78",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JAvGo9USdLvSMeztKR5P6z",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 199,
+                "cache_read_input_tokens": 54913,
+                "output_tokens": 108,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 199
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 108,
+                    "cache_read_input_tokens": 54913,
+                    "cache_creation_input_tokens": 199,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 199,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T05:56:44.120Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RMhSAxXbeDRiwCbU1LisXR",
+              "type": "tool_result",
+              "content": "total 4.0K\ndrwxr-xr-x 2 ubuntu ubuntu 4.0K May 20 07:45 figures",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7969dd7f-0187-4d2a-9354-bd65eccdbb78",
+            "isSidechain": true,
+            "promptId": "35c599bb-59e9-4454-9a1e-c60a17045910",
+            "agentId": "a67c6410cf3846a64",
+            "type": "user",
+            "uuid": "d607bc85-7c49-4dbd-979e-cbf2796a258b",
+            "sourceToolAssistantUUID": "7969dd7f-0187-4d2a-9354-bd65eccdbb78",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T05:56:46.187Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Df13w53643XVnjNrHGAFHt",
+              "name": "Bash",
+              "input": {
+                "command": "ls -lh /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/results/ 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d607bc85-7c49-4dbd-979e-cbf2796a258b",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6K47QifZfjG8ndzkVx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e6df9c02-191e-4170-8684-67d2299630d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01W7FqZLPDhjJnQTSCEv3wBT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 259,
+                "cache_read_input_tokens": 55112,
+                "output_tokens": 101,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 259
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 101,
+                    "cache_read_input_tokens": 55112,
+                    "cache_creation_input_tokens": 259,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 259,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T05:56:46.255Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Df13w53643XVnjNrHGAFHt",
+              "type": "tool_result",
+              "content": "total 8.0K\ndrwxr-xr-x 2 ubuntu ubuntu 4.0K May 21 09:57 civil_comments\ndrwxr-xr-x 2 ubuntu ubuntu 4.0K May 21 09:57 vast",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e6df9c02-191e-4170-8684-67d2299630d3",
+            "isSidechain": true,
+            "promptId": "35c599bb-59e9-4454-9a1e-c60a17045910",
+            "agentId": "a67c6410cf3846a64",
+            "type": "user",
+            "uuid": "51e40e47-e41f-42e6-9973-f5f02291fbd3",
+            "sourceToolAssistantUUID": "e6df9c02-191e-4170-8684-67d2299630d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T05:56:48.745Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0147Ego5ucwFZgRBpZQUTRbW",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/results -type f \\( -name \"*.npz\" -o -name \"*.jsonl\" -o -name \"*.json\" \\) -exec ls -lh {} \\;"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "51e40e47-e41f-42e6-9973-f5f02291fbd3",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6KDDM57fwuNGGg2rhA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ae2c521f-b448-4a34-8dcd-bb0e7a270679",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013mvSeE2kfjF6PamfPMiUbj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 179,
+                "cache_read_input_tokens": 55371,
+                "output_tokens": 130,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 179
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 130,
+                    "cache_read_input_tokens": 55371,
+                    "cache_creation_input_tokens": 179,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 179,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T05:56:48.801Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0147Ego5ucwFZgRBpZQUTRbW",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae2c521f-b448-4a34-8dcd-bb0e7a270679",
+            "isSidechain": true,
+            "promptId": "35c599bb-59e9-4454-9a1e-c60a17045910",
+            "agentId": "a67c6410cf3846a64",
+            "type": "user",
+            "uuid": "d1676226-c778-48bc-a2e1-13cf5a7ef7cc",
+            "sourceToolAssistantUUID": "ae2c521f-b448-4a34-8dcd-bb0e7a270679",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T05:56:50.665Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me look at what's in those subdirectories:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d1676226-c778-48bc-a2e1-13cf5a7ef7cc",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6KQ7gojxEsxFRWB97q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fe2020f0-4974-4e90-92a3-ae04bbd601a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012LoQdhnCF5dYxPDMcdV9uu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 149,
+                "cache_read_input_tokens": 55550,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 149,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T05:56:51.230Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017JJqVGzzuqgtzB32EA7yJM",
+              "name": "Bash",
+              "input": {
+                "command": "ls -lh /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/results/civil_comments/ && echo \"---\" && ls -lh /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/results/vast/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fe2020f0-4974-4e90-92a3-ae04bbd601a0",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6KQ7gojxEsxFRWB97q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8fc73d87-b8bd-425b-82a5-1d8ad3b872da",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012LoQdhnCF5dYxPDMcdV9uu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 149,
+                "cache_read_input_tokens": 55550,
+                "output_tokens": 164,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 149
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 164,
+                    "cache_read_input_tokens": 55550,
+                    "cache_creation_input_tokens": 149,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 149,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T05:56:51.296Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017JJqVGzzuqgtzB32EA7yJM",
+              "type": "tool_result",
+              "content": "total 0\n---\ntotal 0",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8fc73d87-b8bd-425b-82a5-1d8ad3b872da",
+            "isSidechain": true,
+            "promptId": "35c599bb-59e9-4454-9a1e-c60a17045910",
+            "agentId": "a67c6410cf3846a64",
+            "type": "user",
+            "uuid": "51791404-7dfb-45f8-858c-94d2f3c3c44a",
+            "sourceToolAssistantUUID": "8fc73d87-b8bd-425b-82a5-1d8ad3b872da",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T05:56:53.563Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for compute_results.py in the frontier annotations to understand what outputs are expected:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "51791404-7dfb-45f8-858c-94d2f3c3c44a",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6KaoNr2obhA6PxaZgL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ac0fd605-dbbf-4c59-a6d0-b3074c8dc0e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01K4m2PAQgazAf2UCF2J3VUk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 185,
+                "cache_read_input_tokens": 55699,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 185,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T05:56:53.749Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AfaXNin2Figa1QbLnsBkpA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/scripts/compute_results.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac0fd605-dbbf-4c59-a6d0-b3074c8dc0e9",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6KaoNr2obhA6PxaZgL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "14d29015-ce5e-4c5a-8bde-c581c2e1dfeb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01K4m2PAQgazAf2UCF2J3VUk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 185,
+                "cache_read_input_tokens": 55699,
+                "output_tokens": 119,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 185
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 119,
+                    "cache_read_input_tokens": 55699,
+                    "cache_creation_input_tokens": 185,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 185,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T05:56:53.761Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AfaXNin2Figa1QbLnsBkpA",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tplan011: Compute confusion matrices + downstream bias + ASV across 7 DAG\n4\ttopologies for VAST (K=3) + CivilComments (K=2) frontier-model annotations.\n5\t\n6\tInputs:\n7\t  results/{dataset}/{model}_zero-shot.jsonl  (from annotate_frontier.py)\n8\t\n9\tOutputs:\n10\t  frontier_results.json\n11\t  results/{dataset}/{model}_zero-shot_confusion_matrix.npz\n12\t  results/{dataset}/{model}_zero-shot_confusion_matrix.json\n13\t\"\"\"\n14\timport json\n15\timport os\n16\timport sys\n17\tfrom collections import Counter\n18\tfrom pathlib import Path\n19\t\n20\timport numpy as np\n21\t\n22\t# Reuse plan_006 K-general ASV pipeline by importing.\n23\tPROJ_ROOT = Path(\"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib\")\n24\tsys.path.insert(0, str(PROJ_ROOT))\n25\t\n26\tfrom plan_006_asv_empirical import (  # type: ignore  # noqa: E402\n27\t    TOPOLOGIES,\n28\t    make_dgp_params,\n29\t    make_p_A,\n30\t    precompute_suff_stats,\n31\t    compute_plim,\n32\t    extract_tau,\n33\t    compute_asv_for_matrix,\n34\t    compute_f1_from_C,\n35\t)\n36\t\n37\tPLAN_DIR = PROJ_ROOT / \"artifacts\" / \"plan011_frontier_annotations\"\n38\tRESULTS_DIR = PLAN_DIR / \"results\"\n39\t\n40\tDATASETS = {\n41\t    \"vast\": {\"K\": 3, \"classes\": [\"Con\", \"Pro\", \"Neutral\"]},\n42\t    \"civil_comments\": {\"K\": 2, \"classes\": [\"non-toxic\", \"toxic\"]},\n43\t}\n44\tMODELS = [\"llama4\", \"qwen3\", \"deepseek\"]\n45\t\n46\tZERO_MATRIX_TRACE_EPS = 0.01\n47\tASV_SAFE_THRESHOLD = 1.0\n48\tBIAS_PCT_THRESHOLD = 0.1  # used internally by compute_asv_for_matrix\n49\t\n50\t\n51\tdef load_annotations(jsonl_path):\n52\t    \"\"\"Read JSONL of {gold_label, pred_label, error, ...}.\n53\t\n54\t    Returns: list of dicts with keys gold_label, pred_label, error.\n55\t    \"\"\"\n56\t    if not jsonl_path.exists():\n57\t        return None\n58\t    recs = []\n59\t    with open(jsonl_path) as f:\n60\t        for line in f:\n61\t            line = line.strip()\n62\t            if line:\n63\t                recs.append(json.loads(line))\n64\t    return recs\n65\t\n66\t\n67\tdef build_confusion_matrix(records, classes):\n68\t    \"\"\"Column-stochastic confusion matrix C[j,k] = P(pred=j | gold=k).\n69\t\n70\t    Skips records with pred_label=None or labels not in `classes`.\n71\t    Returns (C, stats_dict).\n72\t    \"\"\"\n73\t    K = len(classes)\n74\t    idx = {c: i for i, c in enumerate(classes)}\n75\t    counts = np.zeros((K, K), dtype=float)\n76\t    n_total = len(records)\n77\t    n_skipped = 0\n78\t    n_used = 0\n79\t    n_correct = 0\n80\t    gold_dist = Counter()\n81\t    pred_dist = Counter()\n82\t    for r in records:\n83\t        g = r.get(\"gold_label\")\n84\t        p = r.get(\"pred_label\")\n85\t        if g not in idx or p not in idx:\n86\t            n_skipped += 1\n87\t            continue\n88\t        counts[idx[p], idx[g]] += 1\n89\t        n_used += 1\n90\t        if p == g:\n91\t            n_correct += 1\n92\t        gold_dist[g] += 1\n93\t        pred_dist[p] += 1\n94\t    col_sums = counts.sum(axis=0)\n95\t    col_safe = np.where(col_sums < 1, 1.0, col_sums)\n96\t    C = counts / col_safe\n97\t    stats = {\n98\t        \"n_total\": n_total,\n99\t        \"n_used\": n_used,\n100\t        \"n_skipped\": n_skipped,\n101\t        \"coverage\": n_used / n_total if n_total else 0.0,\n102\t        \"accuracy\": n_correct / n_used if n_used else 0.0,\n103\t        \"raw_counts\": counts.tolist(),\n104\t        \"gold_dist\": dict(gold_dist),\n105\t        \"pred_dist\": dict(pred_dist),\n106\t        \"per_column_counts\": {c: int(col_sums[idx[c]]) for c in classes},\n107\t    }\n108\t    return C, stats\n109\t\n110\t\n111\tdef macro_f1(records, classes):\n112\t    \"\"\"Empirical macro-F1 from gold/pred records (skips invalid).\"\"\"\n113\t    K = len(classes)\n114\t    idx = {c: i for i, c in enumerate(classes)}\n115\t    tp = np.zeros(K); fp = np.zeros(K); fn = np.zeros(K)\n116\t    for r in records:\n117\t        g = r.get(\"gold_label\"); p = r.get(\"pred_label\")\n118\t        if g not in idx:\n119\t            continue\n120\t        gi = idx[g]\n121\t        if p in idx:\n122\t            pi = idx[p]\n123\t            if pi == gi:\n124\t                tp[gi] += 1\n125\t            else:\n126\t                fp[pi] += 1\n127\t                fn[gi] += 1\n128\t        else:\n129\t            fn[gi] += 1\n130\t    f1 = np.zeros(K)\n131\t    for k in range(K):\n132\t        prec = tp[k] / max(tp[k] + fp[k], 1e-9)\n133\t        rec = tp[k] / max(tp[k] + fn[k], 1e-9)\n134\t        f1[k] = 2 * prec * rec / max(prec + rec, 1e-9) if (prec + rec) > 0 else 0.0\n135\t    return float(f1.mean()), [float(x) for x in f1]\n136\t\n137\t\n138\tdef precompute_all_suff_stats(K_values):\n139\t    \"\"\"Precompute sufficient statistics + tau_true for each K × topology.\"\"\"\n140\t    all_st = {}\n141\t    all_tau_true = {}\n142\t    for K in K_values:\n143\t        params = make_dgp_params(K)\n144\t        for topo in TOPOLOGIES:\n145\t            seed = K * 1000 + abs(hash(topo)) % 1000\n146\t            st = precompute_suff_stats(K, topo, params[topo], seed=seed)\n147\t            all_st[(K, topo)] = st\n148\t            plim_I = compute_plim(np.eye(K), st, K)\n149\t            tau_true = extract_tau(plim_I, topo)\n150\t            all_tau_true[(K, topo)] = tau_true\n151\t    return all_st, all_tau_true\n152\t\n153\t\n154\tdef _to_json_safe(obj):\n155\t    if isinstance(obj, (np.integer,)):\n156\t        return int(obj)\n157\t    if isinstance(obj, (np.floating, float)):\n158\t        v = float(obj)\n159\t        return None if (np.isnan(v) or np.isinf(v)) else v\n160\t    if isinstance(obj, np.ndarray):\n161\t        return _to_json_safe(obj.tolist())\n162\t    if isinstance(obj, (bool, np.bool_)):\n163\t        return bool(obj)\n164\t    if isinstance(obj, dict):\n165\t        return {str(k): _to_json_safe(v) for k, v in obj.items()}\n166\t    if isinstance(obj, list):\n167\t        return [_to_json_safe(x) for x in obj]\n168\t    return obj\n169\t\n170\t\n171\tdef save_confusion_matrix(C, classes, stats, dataset, model_key):\n172\t    out_dir = RESULTS_DIR / dataset\n173\t    out_dir.mkdir(parents=True, exist_ok=True)\n174\t    npz_path = out_dir / f\"{model_key}_zero-shot_confusion_matrix.npz\"\n175\t    json_path = out_dir / f\"{model_key}_zero-shot_confusion_matrix.json\"\n176\t    np.savez(\n177\t        npz_path,\n178\t        C=C,\n179\t        classes=np.array(classes, dtype=object),\n180\t        raw_counts=np.array(stats[\"raw_counts\"]),\n181\t    )\n182\t    with open(json_path, \"w\") as f:\n183\t        json.dump(_to_json_safe({\n184\t            \"C\": C.tolist(),\n185\t            \"classes\": classes,\n186\t            \"stats\": stats,\n187\t        }), f, indent=2)\n188\t    return npz_path, json_path\n189\t\n190\t\n191\tdef main():\n192\t    print(\"=\" * 70)\n193\t    print(\"plan011: Frontier-model bias + ASV analysis\")\n194\t    print(\"=\" * 70)\n195\t\n196\t    K_values = sorted({info[\"K\"] for info in DATASETS.values()})\n197\t    print(f\"\\n[1] Precomputing sufficient statistics for K={K_values}, \"\n198\t          f\"topologies={TOPOLOGIES} ...\")\n199\t    all_st, all_tau_true = precompute_all_suff_stats(K_values)\n200\t    for (K, topo), tt in all_tau_true.items():\n201\t        print(f\"  K={K:>2} {topo:<13} tau_true={tt:.6f}\")\n202\t\n203\t    confusion_matrices = {}\n204\t    f1_scores = []\n205\t    biases = []\n206\t    asvs = []\n207\t    config_status = []\n208\t    n_zero_matrices = 0\n209\t\n210\t    for dataset, info in DATASETS.items():\n211\t        K = info[\"K\"]\n212\t        classes = info[\"classes\"]\n213\t        for model_key in MODELS:\n214\t            config = f\"{dataset}_{model_key}_zero-shot\"\n215\t            jsonl_path = RESULTS_DIR / dataset / f\"{model_key}_zero-shot.jsonl\"\n216\t            recs = load_annotations(jsonl_path)\n217\t            if recs is None:\n218\t                print(f\"\\n  [SKIP] {config}: no annotation file at {jsonl_path}\")\n219\t                config_status.append({\"config\": config, \"status\": \"missing_file\"})\n220\t                continue\n221\t\n222\t            C, stats = build_confusion_matrix(recs, classes)\n223\t            mf1, pf1 = macro_f1(recs, classes)\n224\t\n225\t            tr = float(np.trace(C))\n226\t            if tr < ZERO_MATRIX_TRACE_EPS:\n227\t                print(f\"\\n  [ZERO-MATRIX] {config}: trace(C)={tr:.4f} — flagged, excluded \"\n228\t                      f\"from ASV analysis\")\n229\t                config_status.append({\n230\t                    \"config\": config, \"status\": \"zero_matrix\",\n231\t                    \"trace\": tr, \"stats\": stats,\n232\t                })\n233\t                n_zero_matrices += 1\n234\t                # Still record the matrix + F1 for transparency\n235\t                confusion_matrices[config] = C.tolist()\n236\t                f1_scores.append({\n237\t                    \"config\": config, \"dataset\": dataset, \"model\": model_key,\n238\t                    \"K\": K, \"n_used\": stats[\"n_used\"], \"coverage\": stats[\"coverage\"],\n239\t                    \"accuracy\": stats[\"accuracy\"], \"macro_f1\": mf1,\n240\t                    \"per_class_f1\": pf1,\n241\t                    \"f1_from_C_macro\": compute_f1_from_C(C, K, make_p_A(K))[\"macro_f1\"],\n242\t                })\n243\t                continue\n244\t\n245\t            npz_p, json_p = save_confusion_matrix(C, classes, stats, dataset, model_key)\n246\t            confusion_matrices[config] = C.tolist()\n247\t\n248\t            f1_from_C = compute_f1_from_C(C, K, make_p_A(K))\n249\t            f1_scores.append({\n250\t                \"config\": config, \"dataset\": dataset, \"model\": model_key,\n251\t                \"K\": K, \"n_used\": stats[\"n_used\"], \"coverage\": stats[\"coverage\"],\n252\t                \"accuracy\": stats[\"accuracy\"], \"macro_f1\": mf1,\n253\t                \"per_class_f1\": pf1,\n254\t                \"f1_from_C_macro\": f1_from_C[\"macro_f1\"],\n255\t                \"f1_from_C_weighted\": f1_from_C[\"weighted_f1\"],\n256\t            })\n257\t\n258\t            print(f\"\\n  [{config}]\")\n259\t            print(f\"    n_used={stats['n_used']}/{stats['n_total']} \"\n260\t                  f\"coverage={stats['coverage']:.1%} acc={stats['accuracy']:.3f} \"\n261\t                  f\"macro_F1={mf1:.3f} trace(C)={tr:.4f}\")\n262\t\n263\t            for topo in TOPOLOGIES:\n264\t                st = all_st[(K, topo)]\n265\t                tau_true = all_tau_true[(K, topo)]\n266\t                plim_result = compute_plim(C, st, K)\n267\t                tau_hat = extract_tau(plim_result, topo)\n268\t                if np.isfinite(tau_hat) and np.isfinite(tau_true) and abs(tau_true) > 1e-12:\n269\t                    bias_abs = abs(tau_hat - tau_true)\n270\t                    bias_pct = bias_abs / abs(tau_true)\n271\t                    sign_flip = bool(np.sign(tau_hat) != np.sign(tau_true))\n272\t                else:\n273\t                    bias_abs = None\n274\t                    bias_pct = None\n275\t                    sign_flip = False\n276\t                biases.append({\n277\t                    \"config\": config, \"dataset\": dataset, \"model\": model_key,\n278\t                    \"K\": K, \"topology\": topo,\n279\t                    \"tau_true\": float(tau_true) if np.isfinite(tau_true) else None,\n280\t                    \"tau_biased\": float(tau_hat) if np.isfinite(tau_hat) else None,\n281\t                    \"bias_abs\": float(bias_abs) if bias_abs is not None else None,\n282\t                    \"bias_pct\": float(bias_pct) if bias_pct is not None else None,\n283\t                    \"sign_flip\": sign_flip,\n284\t                })\n285\t\n286\t                masv = compute_asv_for_matrix(C, K, topo, st, tau_true, \"magnitude\")\n287\t                asv_safe = bool(masv is None or masv > ASV_SAFE_THRESHOLD)\n288\t                asvs.append({\n289\t                    \"config\": config, \"dataset\": dataset, \"model\": model_key,\n290\t                    \"K\": K, \"topology\": topo,\n291\t                    \"magnitude_asv\": float(masv) if masv is not None else None,\n292\t                    \"asv_safe\": asv_safe,\n293\t                })\n294\t\n295\t            config_status.append({\"config\": config, \"status\": \"ok\",\n296\t                                  \"trace\": tr, \"n_used\": stats[\"n_used\"]})\n297\t\n298\t    # ── Summary ──────────────────────────────────────────────────────────────\n299\t    per_dataset_summary = {}\n300\t    for dataset in DATASETS:\n301\t        sub_b = [b for b in biases if b[\"dataset\"] == dataset and b[\"bias_pct\"] is not None]\n302\t        sub_a = [a for a in asvs if a[\"dataset\"] == dataset]\n303\t        sub_sf = [b for b in biases if b[\"dataset\"] == dataset and b[\"sign_flip\"]]\n304\t        if sub_b:\n305\t            mean_bias = float(np.mean([b[\"bias_pct\"] for b in sub_b]))\n306\t            median_bias = float(np.median([b[\"bias_pct\"] for b in sub_b]))\n307\t        else:\n308\t            mean_bias, median_bias = None, None\n309\t        if sub_a:\n310\t            asv_unsafe = sum(1 for a in sub_a if not a[\"asv_safe\"])\n311\t            asv_unsafe_pct = asv_unsafe / len(sub_a) * 100\n312\t        else:\n313\t            asv_unsafe, asv_unsafe_pct = 0, 0.0\n314\t        per_dataset_summary[dataset] = {\n315\t            \"K\": DATASETS[dataset][\"K\"],\n316\t            \"n_scenarios\": len(sub_a),\n317\t            \"mean_bias_pct\": mean_bias,\n318\t            \"median_bias_pct\": median_bias,\n319\t            \"asv_unsafe_count\": asv_unsafe,\n320\t            \"asv_unsafe_pct\": asv_unsafe_pct,\n321\t            \"n_sign_flips\": len(sub_sf),\n322\t        }\n323\t\n324\t    sign_flips_total = sum(1 for b in biases if b[\"sign_flip\"])\n325\t\n326\t    output = _to_json_safe({\n327\t        \"meta\": {\n328\t            \"n_configs\": len(confusion_matrices),\n329\t            \"datasets\": list(DATASETS.keys()),\n330\t            \"models\": MODELS,\n331\t            \"prompt\": \"zero-shot\",\n332\t            \"scope\": \"Frontier models on VAST (K=3) + CivilComments (K=2)\",\n333\t            \"topologies\": list(TOPOLOGIES),\n334\t            \"asv_safe_threshold\": ASV_SAFE_THRESHOLD,\n335\t            \"bias_threshold_pct\": BIAS_PCT_THRESHOLD,\n336\t            \"zero_matrix_trace_eps\": ZERO_MATRIX_TRACE_EPS,\n337\t            \"n_zero_matrices_flagged\": n_zero_matrices,\n338\t        },\n339\t        \"confusion_matrices\": confusion_matrices,\n340\t        \"f1_scores\": f1_scores,\n341\t        \"biases\": biases,\n342\t        \"asvs\": asvs,\n343\t        \"config_status\": config_status,\n344\t        \"summary\": {\n345\t            \"per_dataset\": per_dataset_summary,\n346\t            \"sign_flips\": sign_flips_total,\n347\t            \"total_scenarios\": len(asvs),\n348\t        },\n349\t    })\n350\t\n351\t    out_path = PLAN_DIR / \"frontier_results.json\"\n352\t    with open(out_path, \"w\") as f:\n353\t        json.dump(output, f, indent=2)\n354\t    print(f\"\\nResults saved to {out_path}\")\n355\t\n356\t    # Print summary table\n357\t    print(\"\\n\" + \"=\" * 70)\n358\t    print(\"Summary\")\n359\t    print(\"=\" * 70)\n360\t    for ds, s in per_dataset_summary.items():\n361\t        print(f\"  {ds:<14} (K={s['K']}): scenarios={s['n_scenarios']:<3} \"\n362\t              f\"mean_bias={s['mean_bias_pct']!r}  asv_unsafe=\"\n363\t              f\"{s['asv_unsafe_count']}/{s['n_scenarios']} \"\n364\t              f\"({s['asv_unsafe_pct']:.1f}%)  sign_flips={s['n_sign_flips']}\")\n365\t    print(f\"\\nTotal scenarios: {len(asvs)} | Total sign flips: {sign_flips_total} | \"\n366\t          f\"Zero-matrix configs: {n_zero_matrices}\")\n367\t\n368\t\n369\tif __name__ == \"__main__\":\n370\t    main()\n371\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14d29015-ce5e-4c5a-8bde-c581c2e1dfeb",
+            "isSidechain": true,
+            "promptId": "35c599bb-59e9-4454-9a1e-c60a17045910",
+            "agentId": "a67c6410cf3846a64",
+            "type": "user",
+            "uuid": "7c131d9a-4658-46e2-8967-fce849a267c6",
+            "sourceToolAssistantUUID": "14d29015-ce5e-4c5a-8bde-c581c2e1dfeb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T05:56:59.893Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me get a comprehensive summary. Let me also check for any other .json files in the artifacts directory that might be results:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7c131d9a-4658-46e2-8967-fce849a267c6",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6KmNsCLZHRNURdG4sf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4c6b12cd-21c4-4c0e-a3a6-f20e32916b92",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Sh981ZxvcPpZfQKgZXDjbK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 5552,
+                "cache_read_input_tokens": 55884,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5552,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T05:57:01.040Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013HoneE65jgrEgZSDroF3XD",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts -maxdepth 2 -type f \\( -name \"*results*.json\" -o -name \"*validation*.json\" -o -name \"*empirical*.json\" -o -name \"ppi*.json\" \\) -exec ls -lh {} \\;"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c6b12cd-21c4-4c0e-a3a6-f20e32916b92",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6KmNsCLZHRNURdG4sf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4d1246e8-afa7-43f4-b6f4-20a541027f8b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Sh981ZxvcPpZfQKgZXDjbK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 5552,
+                "cache_read_input_tokens": 55884,
+                "output_tokens": 171,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5552
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 171,
+                    "cache_read_input_tokens": 55884,
+                    "cache_creation_input_tokens": 5552,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5552,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T05:57:01.157Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013HoneE65jgrEgZSDroF3XD",
+              "type": "tool_result",
+              "content": "-rw-r--r-- 1 ubuntu ubuntu 23K May 22 04:00 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/delta_max_results.json\n-rw-r--r-- 1 ubuntu ubuntu 3.6K May 21 10:10 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan012_case_study/case_study_results.json\n-rw-r--r-- 1 ubuntu ubuntu 3.2K May 21 05:12 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/iv_dirichlet_subspace_results.json\n-rw-r--r-- 1 ubuntu ubuntu 6.8K May 21 17:57 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan007_rmse_correction_results.json\n-rw-r--r-- 1 ubuntu ubuntu 86K May 21 12:06 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan007_fast/correction_guidance_results.json\n-rw-r--r-- 1 ubuntu ubuntu 119K May 20 23:48 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006/asv_empirical_results.json\n-rw-r--r-- 1 ubuntu ubuntu 72K May 21 10:43 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/ppi_empirical_validation.json\n-rw-r--r-- 1 ubuntu ubuntu 1.7K May 21 05:40 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/nondiff_stress_test_results.json\n-rw-r--r-- 1 ubuntu ubuntu 86K May 21 16:16 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan007/correction_guidance_results.json\n-rw-r--r-- 1 ubuntu ubuntu 323K May 20 23:48 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006_mock/asv_empirical_results.json\n-rw-r--r-- 1 ubuntu ubuntu 47K May 21 08:18 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/theory_empirical_mape.json",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d1246e8-afa7-43f4-b6f4-20a541027f8b",
+            "isSidechain": true,
+            "promptId": "35c599bb-59e9-4454-9a1e-c60a17045910",
+            "agentId": "a67c6410cf3846a64",
+            "type": "user",
+            "uuid": "bcdc8bd1-8413-452b-9c32-4782316c468e",
+            "sourceToolAssistantUUID": "4d1246e8-afa7-43f4-b6f4-20a541027f8b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T05:57:15.468Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now let me compile the final comprehensive report based on all findings:\n\n## Summary Report: Data Files and Empirical Validation Scripts\n\n### Data Files (.npz and .jsonl)\n\n**Found in results directories:**\n\n1. **JSONL Files:**\n   - `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/data/civil_comments/test.jsonl` (357K)\n   - `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/data/vast/test.jsonl` (679K)\n\n2. **NPZ Files:**\n   - None currently present in the results directories. However, `compute_results.py` in plan011 is designed to generate `.npz` files when executed. Expected outputs would be:\n     - `results/civil_comments/{model}_zero-shot_confusion_matrix.npz`\n     - `results/vast/{model}_zero-shot_confusion_matrix.npz`\n\n### JSON Result Files\n\n**Primary empirical validation and results files:**\n\n1. `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/ppi_empirical_validation.json` (72K)\n   - Output from `compute_ppi_empirical.py`\n   - Contains empirical bias reduction metrics across 7 topologies × 5 correction methods\n   - Validates PPI++, naive plug-in, DSL, MC-SIMEX, and MLA corrections\n\n2. `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/theory_empirical_mape.json` (47K)\n   - Output from `compute_theory_empirical_mape.py`\n   - Compares analytical plim bias (theory) against MC empirical bias\n   - Scope: 56 scenarios (8 HumAID configs × 7 topologies), K=10 only\n\n3. `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/delta_max_results.json` (23K)\n   - Output from `compute_delta_max.py`\n   - Computes delta_max constraints for all confusion matrices\n   - Verifies ASV validity across confusion matrices\n\n4. `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006/asv_empirical_results.json` (119K)\n   - Contains 8 valid HumAID K=10 confusion matrices\n   - F1 vs bias analysis\n   - Input for PPI empirical validation\n\n### Primary Python Scripts for Empirical Validation & Bias Computation\n\n**Core empirical validation scripts:**\n\n1. **`/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_ppi_empirical.py`** (22K)\n   - Loads HumAID confusion matrices\n   - Generates synthetic MC data using plan_006's K=10 DGP for 7 topologies\n   - Runs all 5 correction methods (PPI++, naive plug-in, DSL, MC-SIMEX, MLA)\n   - Reports empirical bias reduction per topology × method\n   - Key functions: `run_single_rep()`, `compute_tau_true()`, `ppi_wald()`, `mcsimex_wald()`\n\n2. **`/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_theory_empirical_mape.py`** (8K)\n   - Compares analytical plim bias against MC empirical bias\n   - Computes MAPE (Mean Absolute Percentage Error)\n   - Key functions: `mc_tau_hat()`, `run_mc_block()`\n   - Imports from plan_006 for DGP and plim computation\n\n3. **`/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_delta_max.py`** (18K)\n   - Computes and validates delta_max constraints\n   - Loads confusion matrices from HumAID (K=10), VAST (K=3), CivilComments (K=2)\n   - Verifies all reported ASV values are within valid ranges\n   - Uses `annot_sensitivity.confusion.delta_range()` for validation\n\n**Plan-specific empirical computation scripts:**\n\n4. **`/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/scripts/compute_results.py`** (12K)\n   - Processes frontier-model annotations from JSONL\n   - Builds confusion matrices for VAST (K=3) and CivilComments (K=2)\n   - Computes per-topology biases and ASVs\n   - Outputs `.npz` and `.json` confusion matrices\n   - Generates `frontier_results.json` with F1, bias, and ASV metrics\n\n5. **`/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan012_case_study/case_study_analysis.py`**\n   - Case study analysis for specific confusion matrices\n\n6. **`/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_all_tasks.py`** (33K)\n   - Orchestrates all computation tasks across plans\n   - Coordinates execution of ASV empirical analysis, corrections, and validations\n\n**Related utility/validation scripts:**\n\n7. `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/annotate.py` (25K)\n   - Annotation pipeline for generating gold-standard labels\n   - Input processing for confusion matrix construction\n\n8. `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_theory_empirical_mape.py` - Handles theory-to-empirical validation\n\nAll these scripts import from the core `annot_sensitivity` package (local) which provides correction methods, confusion matrix utilities, and DGP infrastructure."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bcdc8bd1-8413-452b-9c32-4782316c468e",
+            "isSidechain": true,
+            "agentId": "a67c6410cf3846a64",
+            "requestId": "req_011CbH6LJzeFyuihz45bNd3i",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5b07268e-2ed4-40eb-afd9-c1cd3b40d3d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Xvh8tGPkrz9ai4PfJjeb6w",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 927,
+                "cache_read_input_tokens": 61436,
+                "output_tokens": 1588,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 927
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 1588,
+                    "cache_read_input_tokens": 61436,
+                    "cache_creation_input_tokens": 927,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 927,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 45
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-find-all-npz-and-jsonl-files-in-the-results-directories-under-home-ubuntu-agen.md"
+}

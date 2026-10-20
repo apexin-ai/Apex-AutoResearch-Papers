@@ -1,0 +1,6343 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-17 (UTC).** ## Original idea { "tit
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 93
+- **Recorded user turns:** 1
+- **Tool calls:** 24
+- **Original source:** `logs/chats/exported-trajectories/account-2/55cf5ff8-fb6c-4729-a47a-45884b754fea.jsonl`
+- **Structured JSON:** [`531d8ef7343fa5d125d9.json`](../../sessions/53/531d8ef7343fa5d125d9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-17T09:12:16.108Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T09:12:16.108Z",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-17 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Circuit-DPO: Composable Distraction Robustness via Mechanistically-Targeted Preference Optimization\",\n  \"core_problem\": \"LLMs suffer catastrophic performance degradation (up to 80% on NoisyBench) when contextual distractors are injected into prompts. Mechanistic analysis ('Llama See, Llama Do,' ACL 2025) identifies specific 'entrainment heads' — attention heads that indiscriminately boost previously-seen context tokens — as the causal mechanism. Current defenses split into two paradigms that operate at different levels with complementary blind spots: (1) Behavioral approaches (EIT, DPO, SFT+RL) optimize output quality without mechanistic targeting. EIT's balanced conflict RL achieves +39.1% on unseen bias types by making bias cues non-predictive of reward — the strongest OOD generalization result. However, behavioral methods cannot verify WHAT internal mechanism changed, cannot predict failure modes when novel distractor patterns exploit the intact entrainment circuit, and may learn compensatory output heuristics that route around the root cause rather than fixing it. (2) Inference-time circuit interventions (head ablation from 'Llama See, Llama Do') directly target entrainment heads with only 0.2-3% ICL cost, providing mechanistic precision. But ablation is binary (all-or-nothing), requires per-task head rediscovery (entrainment heads are task-specific, not model-specific), and fundamentally cannot achieve graded, context-sensitive control — it suppresses entrainment entirely rather than teaching selective entrainment on relevant context. The critical gap is not that behavioral methods are weak or that circuit methods are weak — both achieve strong results within their paradigm. The gap is that no approach operates at BOTH levels simultaneously: combining the mechanistic precision of circuit-level targeting (ensuring the right internal mechanism changes) with the learned generalization of training-time optimization (enabling graded, context-sensitive behavior). Because these two paradigms address different aspects of the distraction vulnerability — EIT ensures behavioral independence from bias cues while circuit targeting ensures the entrainment mechanism itself is modified — their combination should yield additive benefits unavailable to either paradigm alone.\",\n  \"opportunity\": \"Three convergent opportunities enable Circuit-DPO, which we position as a composable circuit-level complement to behavioral distraction defenses: (1) The entrainment circuit foundation from 'Llama See, Llama Do' (ACL 2025) — differentiable masking identifies 30-110 task-specific entrainment heads that can be ablated with minimal ICL cost (0.2-3%). Crucially, cheap ablation demonstrates these heads are modifiable without breaking broader capabilities. But binary ablation is a blunt instrument that cannot teach graded, query-conditional behavior. Training-time circuit optimization can teach these heads to boost relevant context while suppressing distractors — something inference-time masking fundamentally cannot achieve. (2) Self-supervised attention targets are freely available in distractor-injection settings: the model's own attention patterns on clean inputs (without distractors) provide a reference distribution for entrainment heads, eliminating the need for external relevance annotations. For any task where clean/noisy input pairs can be constructed (all distractor-injection benchmarks by definition), the clean-attention pattern serves as a soft supervision reference. We emphasize 'reference' rather than 'exact target' because softmax attention is jointly computed over all positions — adding distractor tokens legitimately changes the softmax denominator, so some redistribution is natural. Our method uses a margin-based constraint that tolerates small deviations while penalizing the large shifts characteristic of entrainment. (3) The DPO framework is uniquely suited for this extension — it already operates on paired preferences and avoids RL instability. Augmenting the DPO loss with an attention-distribution divergence term on entrainment heads is a natural extension that propagates the preference signal through the attention mechanism during backpropagation. RetMask (arXiv:2601.11020, ACL 2026 Findings) bridges mechanistic head identification with DPO but does so indirectly — using retrieval-head-ablated outputs to generate contrastive preference pairs for standard DPO training, without any gradient signal on attention distributions. RAL (arXiv:2602.04884) optimizes attention distributions via policy gradient but targets all attention in multimodal settings, not circuit-specific heads for text distraction. FPO (arXiv:2411.07618) constrains SAE feature representations during DPO but does not target attention. Circuit-DPO is the first to apply DIRECT gradient-based supervision on the attention distributions of mechanistically-identified circuit heads during preference optimization — combining circuit targeting with learned preference alignment in a single training objective.\",\n  \"landscape\": \"The distraction robustness landscape has matured rapidly in 2025-2026, with approaches spanning behavioral training, mechanistic analysis, and circuit-level methods: (1) Behavioral training methods. EIT (arXiv:2602.01528) achieves +39.1% generalization to unseen bias types via balanced conflict RL — the strongest OOD result, operating purely at the behavioral level. Standard DPO for distraction (NeurIPS 2025, arXiv:2502.01609) achieves strong in-distribution robustness. RARE (arXiv:2601.07226) uses rationale-aware reward shaping. Distractor Injection defense (arXiv:2510.16259) achieves >50-point improvement via SFT+RL on synthetic adversarial data. All modify behavior without targeting the entrainment mechanism. (2) Mechanistic and circuit methods. 'Llama See, Llama Do' (ACL 2025) identifies and ablates entrainment heads at inference time — interpretable but binary and task-specific. CHG (NeurIPS 2025, arXiv:2505.13737) uses contrastive gating to identify separable sub-circuits but is an analysis tool, not a training method. 'Thinking Sparks!' (arXiv:2509.25758) demonstrates that post-training (SFT, GRPO) causes attention heads to emerge, shift, and be pruned — directly relevant to whether pre-identified entrainment heads remain stable during Circuit-DPO training. Bali et al. (arXiv:2602.16740) quantify attention-head stability across training, finding middle-layer heads are least stable but most functionally important. (3) Mechanistic-interpretability-guided preference optimization. RetMask (arXiv:2601.11020, ACL 2026 Findings) is the closest concurrent work. It identifies retrieval heads via Needle-In-A-Haystack probing, then generates contrastive preference pairs by comparing original vs. retrieval-head-ablated model outputs, training with standard DPO. RetMask bridges interpretability and DPO indirectly: heads inform DATA CURATION, not the loss function itself. Circuit-DPO differs in three ways: (a) direct gradient signal — our attention divergence loss provides gradient flow through entrainment heads during training, whereas RetMask's heads influence only which training pairs are generated; (b) targeted mechanism — we operate on entrainment heads (contextual token boosting) rather than retrieval heads (copy-paste recall), addressing distraction robustness rather than long-context retrieval; (c) auxiliary loss vs. data generation — our approach can be combined with ANY preference pair source, whereas RetMask's contribution is the pair generation itself. CART (arXiv:2509.24713) uses circuit analysis to guide data augmentation and regularization for reward model robustness but does not apply circuit-targeted losses during policy optimization. (4) Architectural and representation methods. Gated Attention (NeurIPS 2025 Best Paper, arXiv:2505.06708) introduces per-head sigmoid gates as a pretraining modification — orthogonal to our post-hoc training approach. Pref-CTRL (arXiv:2604.23543) and RE-Control (NeurIPS 2024) operate on hidden-state representations, not attention. 'Preference Heads' (arXiv:2604.22345) identifies heads for personalization via inference-time steering — different application and phase. (5) Attention optimization. RAL (arXiv:2602.04884) optimizes internal attention via policy gradient for multimodal LLMs — differs in method (RL vs. DPO), target (all attention vs. circuit-specific), and domain (multimodal vs. text). Circuit-DPO uniquely combines direct attention-level gradient supervision on mechanistically-identified heads with preference optimization, and is explicitly designed as a composable complement to behavioral methods like EIT.\",\n  \"approach\": \"Circuit-DPO augments the standard DPO loss with a margin-based attention-distribution divergence term operating specifically on entrainment heads, with periodic head re-identification to account for circuit drift during training. The method proceeds in four stages with a composability-first evaluation design: (1) Entrainment head discovery with periodic refresh. Apply the differentiable masking method from 'Llama See, Llama Do' (github.com/frankniujc/entrainment) to identify entrainment heads in Llama-3-8B and Qwen2.5-7B. The method uses Gumbel-sigmoid binary masks with straight-through estimators, optimizing learnable logit parameters per head against an entrainment-specific loss with sparsity constraints. For Qwen2.5-7B (28Q/4KV, different GQA ratio from Llama-3-8B's 32Q/8KV), we mask at query-head granularity within each KV group. Critically, because 'Thinking Sparks!' (arXiv:2509.25758) demonstrates that post-training causes attention heads to emerge and shift, we re-run head discovery every 500 training steps using warm-started logit parameters from the previous identification. This periodic refresh adds ~15% compute overhead but ensures the attention loss targets the CURRENT entrainment circuit rather than a stale pre-training snapshot. (2) Self-supervised attention reference construction. For each training example, construct paired clean/noisy inputs: x_clean = question + relevant context, x_noisy = question + relevant context + injected distractors. Run x_clean through the model and extract attention distributions from entrainment heads over shared context tokens (with stop-gradient). These clean-attention patterns define a REFERENCE distribution for what entrainment heads should approximately do when distractors are present. We deliberately use 'reference' rather than 'exact target' to acknowledge a key subtlety: softmax attention is jointly computed over all positions, so adding distractor tokens legitimately changes the softmax denominator. Even after renormalizing A_noisy over shared positions, some redistribution is natural and potentially beneficial (e.g., the model may legitimately want to redistribute attention among relevant tokens differently when additional context is present). Our margin-based loss (Stage 3) accommodates this by tolerating small deviations while penalizing the large attention shifts characteristic of entrainment. (3) Circuit-DPO training with margin-based attention constraint. Define the combined loss: L = L_DPO(y_chosen, y_rejected | x_noisy) + λ · Σ_{h ∈ H_ent} max(JSD(A_h^noisy_shared, A_h^clean_shared) - ε, 0), where JSD denotes Jensen-Shannon divergence (symmetric, bounded in [0, ln 2], more numerically stable than KL for this application), A_h^noisy_shared is the attention distribution of entrainment head h on x_noisy renormalized over shared (clean-context) token positions, A_h^clean_shared is the corresponding distribution on x_clean (stop-gradient), and ε is a margin hyperparameter that explicitly allows legitimate attention redistribution up to threshold ε before any penalty applies. We use JSD rather than KL because: (a) JSD is symmetric — there is no principled reason to prefer KL(noisy||clean) over KL(clean||noisy) for this application; (b) JSD is bounded, preventing gradient explosion from low-probability events; (c) the margin ε has interpretable units (bits of divergence). λ is annealed linearly from 0 over the first 20% of training to prevent early instability. Hyperparameter sweep: ε ∈ {0.01, 0.05, 0.1, 0.2} and λ ∈ {0.1, 0.5, 1.0, 2.0}. (4) Composability-first evaluation protocol. We elevate the composability hypothesis to the primary evaluation focus, since Circuit-DPO and behavioral methods (EIT) operate at orthogonal levels — circuit mechanism vs. behavioral reward shaping — and their combination should yield additive benefits because they address different aspects of distraction vulnerability. Primary evaluation: NoisyBench (arXiv:2601.07226) with held-out distractor types (train on random documents + irrelevant chat, test on hard negatives) and Adaptive Distraction benchmark (NeurIPS 2025, arXiv:2502.01609). Secondary: GSM-DC (EMNLP 2025) for math-specific distraction. Baselines: (a) standard DPO (output-only), (b) EIT (behavioral RL), (c) inference-time head masking ('Llama See, Llama Do'), (d) RetMask-style head-guided data generation + DPO (to compare indirect vs. direct circuit targeting). Primary comparison: Circuit-DPO + EIT vs. each method alone, testing additive composability. Key ablations: (a) attention divergence on ALL heads vs. entrainment heads only (tests circuit targeting vs. general attention regularization), (b) attention divergence on random heads (controls for regularization effect), (c) strict JSD (ε=0) vs. margin-based (tests whether softening the constraint matters), (d) periodic head re-identification vs. fixed pre-training heads (tests head stability assumption), (e) varying re-identification frequency (every 250/500/1000 steps). Three testable hypotheses, reordered by centrality: (H1, primary) Circuit-DPO composes with EIT — combining circuit-level entrainment modification with behavioral independence training yields additive robustness, because they target orthogonal aspects of the distraction vulnerability. Circuit-DPO modifies the mechanistic root cause; EIT ensures behavioral independence from remaining bias cues. (H2) Circuit-DPO achieves stronger within-distraction-type OOD generalization than output-only DPO and inference-time masking, because it modifies the causal mechanism in a graded, learned manner rather than relying on output heuristics or binary suppression. (H3) Circuit-DPO is more data-efficient than EIT because it directly targets the mechanism rather than learning behavioral independence from scratch. Task-domain scope: Because entrainment heads are task-specific ('Llama See, Llama Do'), we explicitly scope our primary generalization claims to within-task-domain transfer — generalizing across novel distractor types within math reasoning (NoisyBench, GSM-DC) and QA (Adaptive Distraction). We include a cross-domain exploratory experiment: heads discovered on math distractors evaluated on QA distractors and vice versa, to characterize the extent of cross-domain head overlap and transfer. This is positioned as exploratory analysis informing future work, not a central claim.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~200h H100 80GB\",\n      \"gpu_utilization\": \"~25-35%\",\n      \"timeline\": \"3-4 months\",\n      \"team\": \"1-2 researchers (mechanistic interpretability + alignment)\",\n      \"estimated_gpu_cost\": \"$600-800 (at ~$3.00/hr H100 80GB cloud rental)\",\n      \"breakdown\": \"Head discovery (initial + periodic re-identification infrastructure): 25h (12.5h × 2 models, includes warm-start validation). Circuit-DPO training: 70h (35h × 2 models, includes paired forward passes for clean-attention references and periodic re-identification overhead ~15%). Baselines (DPO, EIT replication, RetMask-style data generation + DPO): 55h (includes RetMask baseline). Ablations (5 variants including head stability, margin vs. strict, re-identification frequency): 40h (20h × 2 models). Evaluation + cross-domain exploratory: 10h.\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~215h H100 80GB\",\n      \"gpu_utilization\": \"~55-65%\",\n      \"timeline\": \"8-10 weeks\",\n      \"team\": \"1 researcher, ~30min/day reviewing agent proposals and results\",\n      \"claude_api_cost\": \"$150-280\",\n      \"estimated_gpu_cost\": \"$645-860\",\n      \"risk_note\": \"Periodic head re-identification adds ~15% training overhead. Qwen2.5-7B has different GQA ratio (28Q/4KV vs 32Q/8KV) requiring validation of masking granularity. Head stability during training is the primary technical risk — if entrainment circuits shift substantially between re-identification intervals, the method may need continuous (differentiable) head tracking.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~235h H100 80GB\",\n      \"gpu_utilization\": \"~90-95%\",\n      \"timeline\": \"10-16 days with 4× H100 80GB\",\n      \"team\": \"0 (initial setup only)\",\n      \"claude_api_cost\": \"$280-450\",\n      \"estimated_gpu_cost\": \"$705-940\",\n      \"speed_bottleneck\": \"GPU count — with 4× H100, can run 2 models × 2 configurations in parallel. Paired forward passes (clean + noisy) and periodic head re-identification add ~50% overhead vs. standard DPO\",\n      \"risk_note\": \"Automated entrainment head discovery may identify spurious circuits without human sanity-checking; ε/λ grid search may overexplore without recognizing diminishing returns; periodic re-identification adds pipeline complexity that automated systems may struggle to debug\"\n    }\n  },\n  \"target_venues\": [\n    \"ARR October 2026 (submission October 12, 2026 — primary target, ~5-month timeline, feeds into ACL 2027 or NAACL 2027)\",\n    \"EACL 2027 (ARR August 3, 2026 — stretch target if progress is rapid, commitment October 11, 2026)\"\n  ],\n  \"venue_note\": \"The originally requested target EMNLP 2026 is infeasible: EMNLP 2026 uses the ARR May 2026 cycle with a submission deadline of May 25, 2026 (8 days from today, 2026-05-17). We pivot to ARR October 2026 as the primary target, which provides a comfortable ~5-month timeline and feeds into ACL 2027 or NAACL 2027. EACL 2027 (ARR August 3, 2026) serves as a stretch target with ~11 weeks, feasible only if head discovery and initial training proceed rapidly.\",\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs (ACL 2025, arXiv:2505.09338)\",\n    \"From Interpretability to Performance: Optimizing Retrieval Heads for Long-Context Language Models [RetMask] (ACL 2026 Findings, arXiv:2601.11020)\",\n    \"Making Bias Non-Predictive: Training Robust LLM Reasoning via Reinforcement Learning [EIT] (arXiv 2026, arXiv:2602.01528)\",\n    \"Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search (NeurIPS 2025, arXiv:2502.01609)\",\n    \"Lost in the Noise: How Reasoning Models Fail with Contextual Distractors [RARE/NoisyBench] (arXiv 2025, arXiv:2601.07226)\",\n    \"Thinking Sparks!: Emergent Attention Heads in Reasoning Models During Post Training (arXiv 2025, arXiv:2509.25758)\",\n    \"Quantifying LLM Attention-Head Stability: Implications for Circuit Universality (arXiv 2026, arXiv:2602.16740)\",\n    \"Causal Head Gating: Scalable Attention Head Interpretation [CHG] (NeurIPS 2025, arXiv:2505.13737)\",\n    \"Gated Attention for Large Language Models (NeurIPS 2025 Best Paper, arXiv:2505.06708)\",\n    \"Reinforced Attention Learning [RAL] (arXiv 2026, arXiv:2602.04884)\",\n    \"Distractor Injection Attacks on LLMs: Defense via SFT+RL (arXiv 2025, arXiv:2510.16259)\",\n    \"Circuit-Aware Reward Training [CART] (arXiv 2025, arXiv:2509.24713)\",\n    \"Pref-CTRL: Preference Driven LLM Alignment using Representation Editing (arXiv 2026, arXiv:2604.23543)\",\n    \"Aligning Large Language Models with Representation Editing [RE-Control] (NeurIPS 2024)\",\n    \"Direct Preference Optimization Using Sparse Feature-Level Constraints [FPO] (arXiv 2024, arXiv:2411.07618)\",\n    \"Preference Heads in Large Language Models (arXiv 2026, arXiv:2604.22345)\",\n    \"How Is LLM Reasoning Distracted by Irrelevant Context? [GSM-DC] (EMNLP 2025)\",\n    \"A Comprehensive Survey of Direct Preference Optimization (arXiv 2024, arXiv:2410.15595v3)\"\n  ],\n  \"description\": \"We propose Circuit-DPO, a preference optimization method that augments the standard DPO loss with a margin-based Jensen-Shannon divergence term operating specifically on entrainment heads — attention heads mechanistically responsible for contextual entrainment in LLMs. Unlike behavioral methods (EIT, standard DPO) that optimize outputs without targeting the causal mechanism, or inference-time interventions (head ablation) that bluntly suppress entrainment, Circuit-DPO teaches entrainment heads graded, context-sensitive behavior through direct gradient supervision on their attention distributions. Our attention reference targets are self-supervised: the model's own attention on clean inputs defines what entrainment heads should approximately do. We use a margin-based JSD constraint — L = L_DPO + λ·Σ_h max(JSD(A_h^noisy, A_h^clean) - ε, 0) — that tolerates legitimate attention redistribution (inherent to softmax recomputation with additional tokens) while penalizing the large shifts characteristic of entrainment. To address circuit drift during training, we periodically re-identify entrainment heads using warm-started differentiable masking, informed by evidence that post-training causes attention heads to emerge and shift ('Thinking Sparks!', arXiv:2509.25758). We differentiate from RetMask (arXiv:2601.11020), the closest concurrent work, which also bridges mechanistic head identification with DPO but indirectly — using retrieval-head-ablated outputs for contrastive pair generation rather than providing direct gradient signal on attention distributions. Our primary hypothesis is composability: Circuit-DPO and behavioral methods (EIT) operate at orthogonal levels — circuit mechanism vs. behavioral reward shaping — and their combination yields additive robustness unavailable to either alone. We explicitly scope generalization claims to within-task-domain transfer (novel distractor types within math/QA), since entrainment heads are task-specific, with cross-domain transfer as exploratory analysis. Evaluation uses NoisyBench held-out distractor types, Adaptive Distraction benchmark, and a composability comparison of Circuit-DPO + EIT vs. each method alone. Target: ARR October 2026 → ACL/NAACL 2027 (EMNLP 2026 ARR May 25 deadline is infeasible given today's date of 2026-05-17).\",\n  \"project_name\": \"circuit_dpo_entrainment\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 3)\nIssues: [\"CRITICAL — Source paper contradiction undermines motivation: 'Llama See, Llama Do' explicitly states entrainment heads are 'not strongly related to how LMs process and utilise contextual information or perform ICL more broadly,' and ablation causes only 0-3% ICL loss. The proposal still frames Circuit-DPO around 'teaching entrainment heads graded, context-sensitive behavior' — implying these heads should selectively boost relevant context (ICL mode) while suppressing irrelevant (distraction mode). But if ablation is nearly free, there is no need for graded control to preserve ICL. The proposal must reframe its advantage over ablation around a DIFFERENT argument: either (a) eliminating the need for task-specific head re-identification at inference time (internalization), (b) achieving stronger distraction suppression than binary ablation for cases where partial entrainment on distractor-adjacent content is harmful, or (c) handling cases where ablation is insufficient (e.g., when distractors are processed by non-entrainment heads).\", \"MISSING TECHNICAL PRECEDENT — KLAAD (EMNLP 2025, arXiv:2507.19962) uses KL divergence on attention distributions as an auxiliary training loss to align attention between stereotype/anti-stereotype pairs. While the application differs (debiasing vs. distraction), the TECHNICAL MECHANISM is identical to Circuit-DPO's core component (attention-distribution divergence loss during training). Must be cited and differentiated: Circuit-DPO targets specific mechanistically-identified heads rather than all attention, operates during preference optimization rather than standard training, and uses self-supervised reference from clean inputs rather than paired stereotype examples.\", \"IMPACT ARGUMENT INSUFFICIENT — The composability hypothesis (H1: Circuit-DPO + EIT > either alone) is the primary contribution framing, but lacks a concrete mechanistic argument for WHAT specific failure mode of EIT is addressed by circuit-level modification. If EIT already achieves +39.1% on unseen distraction through behavioral RL, and ablation already suppresses the entrainment mechanism with negligible cost, what does Circuit-DPO uniquely provide? The proposal needs a concrete scenario where: (a) EIT fails, (b) ablation fails, but (c) graded Circuit-DPO succeeds — and a mechanistic explanation for WHY.\", \"MINOR — The 'NoisyBench' evaluation: the benchmark exists (confirmed from arXiv:2601.07226) but is introduced within that specific paper — not yet a widely-adopted community benchmark. The proposal should clarify this is the 'Lost in the Noise' evaluation suite rather than implying it is an established benchmark.\", \"MINOR — The proposal claims 30-110 task-specific entrainment heads but periodic re-identification every 500 steps means the training target shifts repeatedly. If the head set changes substantially between re-identification intervals, the attention divergence loss may be poorly targeted during the interval. The ablation studying re-identification frequency (250/500/1000 steps) is noted but the proposal should discuss what happens if head discovery is noisy or identifies different heads each time.\"]\nFeedback: The proposal has improved substantially across rounds — the technical formulation is sound, the evaluation protocol is thorough, and the scoping is honest. The remaining blocker is the IMPACT argument. To pass:\n\n1. **Reframe the advantage over ablation**: Drop the 'graded context-sensitive behavior' framing that implies ICL preservation (since ICL is already preserved by ablation). Instead, argue: (a) Circuit-DPO INTERNALIZES distraction resistance, eliminating the need for task-specific head identification at inference time — a significant practical advantage since entrainment heads are task-specific; (b) training-time modification may generalize to heads NOT identified during discovery (indirect regularization effect on the broader circuit); (c) trained graded suppression may handle PARTIAL entrainment patterns (e.g., subtly related distractors that cause weaker but still harmful entrainment) better than all-or-nothing ablation.\n\n2. **Cite KLAAD (EMNLP 2025)**: It's the closest technical precedent (attention KL as training loss). Differentiate on: circuit-specificity, DPO integration, and self-supervised reference construction.\n\n3. **Strengthen the composability argument**: Provide a concrete hypothetical example: 'EIT teaches the model to ignore bias cues in the output, but the entrainment circuit still activates on distractors, consuming compute and potentially causing failures on harder cases. Circuit-DPO removes the root cause, so EIT has less to compensate for.' This makes the orthogonality concrete.\n\n4. **Add a 'Circuit-DPO vs. ablation' comparison**: Include ablation as a BASELINE (not just EIT and DPO). Show: does graded trained suppression outperform binary inference-time masking? This is the key experiment that justifies the method's complexity.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-17T09:12:16.117Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T09:12:16.117Z",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+## Round 1
+
+91 recorded events
+
+### User
+
+_source line 3 · 2026-05-17T09:12:16.198Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-17 (UTC).**
+
+## Original idea
+{
+  "title": "Circuit-DPO: Composable Distraction Robustness via Mechanistically-Targeted Preference Optimization",
+  "core_problem": "LLMs suffer catastrophic performance degradation (up to 80% on NoisyBench) when contextual distractors are injected into prompts. Mechanistic analysis ('Llama See, Llama Do,' ACL 2025) identifies specific 'entrainment heads' — attention heads that indiscriminately boost previously-seen context tokens — as the causal mechanism. Current defenses split into two paradigms that operate at different levels with complementary blind spots: (1) Behavioral approaches (EIT, DPO, SFT+RL) optimize output quality without mechanistic targeting. EIT's balanced conflict RL achieves +39.1% on unseen bias types by making bias cues non-predictive of reward — the strongest OOD generalization result. However, behavioral methods cannot verify WHAT internal mechanism changed, cannot predict failure modes when novel distractor patterns exploit the intact entrainment circuit, and may learn compensatory output heuristics that route around the root cause rather than fixing it. (2) Inference-time circuit interventions (head ablation from 'Llama See, Llama Do') directly target entrainment heads with only 0.2-3% ICL cost, providing mechanistic precision. But ablation is binary (all-or-nothing), requires per-task head rediscovery (entrainment heads are task-specific, not model-specific), and fundamentally cannot achieve graded, context-sensitive control — it suppresses entrainment entirely rather than teaching selective entrainment on relevant context. The critical gap is not that behavioral methods are weak or that circuit methods are weak — both achieve strong results within their paradigm. The gap is that no approach operates at BOTH levels simultaneously: combining the mechanistic precision of circuit-level targeting (ensuring the right internal mechanism changes) with the learned generalization of training-time optimization (enabling graded, context-sensitive behavior). Because these two paradigms address different aspects of the distraction vulnerability — EIT ensures behavioral independence from bias cues while circuit targeting ensures the entrainment mechanism itself is modified — their combination should yield additive benefits unavailable to either paradigm alone.",
+  "opportunity": "Three convergent opportunities enable Circuit-DPO, which we position as a composable circuit-level complement to behavioral distraction defenses: (1) The entrainment circuit foundation from 'Llama See, Llama Do' (ACL 2025) — differentiable masking identifies 30-110 task-specific entrainment heads that can be ablated with minimal ICL cost (0.2-3%). Crucially, cheap ablation demonstrates these heads are modifiable without breaking broader capabilities. But binary ablation is a blunt instrument that cannot teach graded, query-conditional behavior. Training-time circuit optimization can teach these heads to boost relevant context while suppressing distractors — something inference-time masking fundamentally cannot achieve. (2) Self-supervised attention targets are freely available in distractor-injection settings: the model's own attention patterns on clean inputs (without distractors) provide a reference distribution for entrainment heads, eliminating the need for external relevance annotations. For any task where clean/noisy input pairs can be constructed (all distractor-injection benchmarks by definition), the clean-attention pattern serves as a soft supervision reference. We emphasize 'reference' rather than 'exact target' because softmax attention is jointly computed over all positions — adding distractor tokens legitimately changes the softmax denominator, so some redistribution is natural. Our method uses a margin-based constraint that tolerates small deviations while penalizing the large shifts characteristic of entrainment. (3) The DPO framework is uniquely suited for this extension — it already operates on paired preferences and avoids RL instability. Augmenting the DPO loss with an attention-distribution divergence term on entrainment heads is a natural extension that propagates the preference signal through the attention mechanism during backpropagation. RetMask (arXiv:2601.11020, ACL 2026 Findings) bridges mechanistic head identification with DPO but does so indirectly — using retrieval-head-ablated outputs to generate contrastive preference pairs for standard DPO training, without any gradient signal on attention distributions. RAL (arXiv:2602.04884) optimizes attention distributions via policy gradient but targets all attention in multimodal settings, not circuit-specific heads for text distraction. FPO (arXiv:2411.07618) constrains SAE feature representations during DPO but does not target attention. Circuit-DPO is the first to apply DIRECT gradient-based supervision on the attention distributions of mechanistically-identified circuit heads during preference optimization — combining circuit targeting with learned preference alignment in a single training objective.",
+  "landscape": "The distraction robustness landscape has matured rapidly in 2025-2026, with approaches spanning behavioral training, mechanistic analysis, and circuit-level methods: (1) Behavioral training methods. EIT (arXiv:2602.01528) achieves +39.1% generalization to unseen bias types via balanced conflict RL — the strongest OOD result, operating purely at the behavioral level. Standard DPO for distraction (NeurIPS 2025, arXiv:2502.01609) achieves strong in-distribution robustness. RARE (arXiv:2601.07226) uses rationale-aware reward shaping. Distractor Injection defense (arXiv:2510.16259) achieves >50-point improvement via SFT+RL on synthetic adversarial data. All modify behavior without targeting the entrainment mechanism. (2) Mechanistic and circuit methods. 'Llama See, Llama Do' (ACL 2025) identifies and ablates entrainment heads at inference time — interpretable but binary and task-specific. CHG (NeurIPS 2025, arXiv:2505.13737) uses contrastive gating to identify separable sub-circuits but is an analysis tool, not a training method. 'Thinking Sparks!' (arXiv:2509.25758) demonstrates that post-training (SFT, GRPO) causes attention heads to emerge, shift, and be pruned — directly relevant to whether pre-identified entrainment heads remain stable during Circuit-DPO training. Bali et al. (arXiv:2602.16740) quantify attention-head stability across training, finding middle-layer heads are least stable but most functionally important. (3) Mechanistic-interpretability-guided preference optimization. RetMask (arXiv:2601.11020, ACL 2026 Findings) is the closest concurrent work. It identifies retrieval heads via Needle-In-A-Haystack probing, then generates contrastive preference pairs by comparing original vs. retrieval-head-ablated model outputs, training with standard DPO. RetMask bridges interpretability and DPO indirectly: heads inform DATA CURATION, not the loss function itself. Circuit-DPO differs in three ways: (a) direct gradient signal — our attention divergence loss provides gradient flow through entrainment heads during training, whereas RetMask's heads influence only which training pairs are generated; (b) targeted mechanism — we operate on entrainment heads (contextual token boosting) rather than retrieval heads (copy-paste recall), addressing distraction robustness rather than long-context retrieval; (c) auxiliary loss vs. data generation — our approach can be combined with ANY preference pair source, whereas RetMask's contribution is the pair generation itself. CART (arXiv:2509.24713) uses circuit analysis to guide data augmentation and regularization for reward model robustness but does not apply circuit-targeted losses during policy optimization. (4) Architectural and representation methods. Gated Attention (NeurIPS 2025 Best Paper, arXiv:2505.06708) introduces per-head sigmoid gates as a pretraining modification — orthogonal to our post-hoc training approach. Pref-CTRL (arXiv:2604.23543) and RE-Control (NeurIPS 2024) operate on hidden-state representations, not attention. 'Preference Heads' (arXiv:2604.22345) identifies heads for personalization via inference-time steering — different application and phase. (5) Attention optimization. RAL (arXiv:2602.04884) optimizes internal attention via policy gradient for multimodal LLMs — differs in method (RL vs. DPO), target (all attention vs. circuit-specific), and domain (multimodal vs. text). Circuit-DPO uniquely combines direct attention-level gradient supervision on mechanistically-identified heads with preference optimization, and is explicitly designed as a composable complement to behavioral methods like EIT.",
+  "approach": "Circuit-DPO augments the standard DPO loss with a margin-based attention-distribution divergence term operating specifically on entrainment heads, with periodic head re-identification to account for circuit drift during training. The method proceeds in four stages with a composability-first evaluation design: (1) Entrainment head discovery with periodic refresh. Apply the differentiable masking method from 'Llama See, Llama Do' (github.com/frankniujc/entrainment) to identify entrainment heads in Llama-3-8B and Qwen2.5-7B. The method uses Gumbel-sigmoid binary masks with straight-through estimators, optimizing learnable logit parameters per head against an entrainment-specific loss with sparsity constraints. For Qwen2.5-7B (28Q/4KV, different GQA ratio from Llama-3-8B's 32Q/8KV), we mask at query-head granularity within each KV group. Critically, because 'Thinking Sparks!' (arXiv:2509.25758) demonstrates that post-training causes attention heads to emerge and shift, we re-run head discovery every 500 training steps using warm-started logit parameters from the previous identification. This periodic refresh adds ~15% compute overhead but ensures the attention loss targets the CURRENT entrainment circuit rather than a stale pre-training snapshot. (2) Self-supervised attention reference construction. For each training example, construct paired clean/noisy inputs: x_clean = question + relevant context, x_noisy = question + relevant context + injected distractors. Run x_clean through the model and extract attention distributions from entrainment heads over shared context tokens (with stop-gradient). These clean-attention patterns define a REFERENCE distribution for what entrainment heads should approximately do when distractors are present. We deliberately use 'reference' rather than 'exact target' to acknowledge a key subtlety: softmax attention is jointly computed over all positions, so adding distractor tokens legitimately changes the softmax denominator. Even after renormalizing A_noisy over shared positions, some redistribution is natural and potentially beneficial (e.g., the model may legitimately want to redistribute attention among relevant tokens differently when additional context is present). Our margin-based loss (Stage 3) accommodates this by tolerating small deviations while penalizing the large attention shifts characteristic of entrainment. (3) Circuit-DPO training with margin-based attention constraint. Define the combined loss: L = L_DPO(y_chosen, y_rejected | x_noisy) + λ · Σ_{h ∈ H_ent} max(JSD(A_h^noisy_shared, A_h^clean_shared) - ε, 0), where JSD denotes Jensen-Shannon divergence (symmetric, bounded in [0, ln 2], more numerically stable than KL for this application), A_h^noisy_shared is the attention distribution of entrainment head h on x_noisy renormalized over shared (clean-context) token positions, A_h^clean_shared is the corresponding distribution on x_clean (stop-gradient), and ε is a margin hyperparameter that explicitly allows legitimate attention redistribution up to threshold ε before any penalty applies. We use JSD rather than KL because: (a) JSD is symmetric — there is no principled reason to prefer KL(noisy||clean) over KL(clean||noisy) for this application; (b) JSD is bounded, preventing gradient explosion from low-probability events; (c) the margin ε has interpretable units (bits of divergence). λ is annealed linearly from 0 over the first 20% of training to prevent early instability. Hyperparameter sweep: ε ∈ {0.01, 0.05, 0.1, 0.2} and λ ∈ {0.1, 0.5, 1.0, 2.0}. (4) Composability-first evaluation protocol. We elevate the composability hypothesis to the primary evaluation focus, since Circuit-DPO and behavioral methods (EIT) operate at orthogonal levels — circuit mechanism vs. behavioral reward shaping — and their combination should yield additive benefits because they address different aspects of distraction vulnerability. Primary evaluation: NoisyBench (arXiv:2601.07226) with held-out distractor types (train on random documents + irrelevant chat, test on hard negatives) and Adaptive Distraction benchmark (NeurIPS 2025, arXiv:2502.01609). Secondary: GSM-DC (EMNLP 2025) for math-specific distraction. Baselines: (a) standard DPO (output-only), (b) EIT (behavioral RL), (c) inference-time head masking ('Llama See, Llama Do'), (d) RetMask-style head-guided data generation + DPO (to compare indirect vs. direct circuit targeting). Primary comparison: Circuit-DPO + EIT vs. each method alone, testing additive composability. Key ablations: (a) attention divergence on ALL heads vs. entrainment heads only (tests circuit targeting vs. general attention regularization), (b) attention divergence on random heads (controls for regularization effect), (c) strict JSD (ε=0) vs. margin-based (tests whether softening the constraint matters), (d) periodic head re-identification vs. fixed pre-training heads (tests head stability assumption), (e) varying re-identification frequency (every 250/500/1000 steps). Three testable hypotheses, reordered by centrality: (H1, primary) Circuit-DPO composes with EIT — combining circuit-level entrainment modification with behavioral independence training yields additive robustness, because they target orthogonal aspects of the distraction vulnerability. Circuit-DPO modifies the mechanistic root cause; EIT ensures behavioral independence from remaining bias cues. (H2) Circuit-DPO achieves stronger within-distraction-type OOD generalization than output-only DPO and inference-time masking, because it modifies the causal mechanism in a graded, learned manner rather than relying on output heuristics or binary suppression. (H3) Circuit-DPO is more data-efficient than EIT because it directly targets the mechanism rather than learning behavioral independence from scratch. Task-domain scope: Because entrainment heads are task-specific ('Llama See, Llama Do'), we explicitly scope our primary generalization claims to within-task-domain transfer — generalizing across novel distractor types within math reasoning (NoisyBench, GSM-DC) and QA (Adaptive Distraction). We include a cross-domain exploratory experiment: heads discovered on math distractors evaluated on QA distractors and vice versa, to characterize the extent of cross-domain head overlap and transfer. This is positioned as exploratory analysis informing future work, not a central claim.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200h H100 80GB",
+      "gpu_utilization": "~25-35%",
+      "timeline": "3-4 months",
+      "team": "1-2 researchers (mechanistic interpretability + alignment)",
+      "estimated_gpu_cost": "$600-800 (at ~$3.00/hr H100 80GB cloud rental)",
+      "breakdown": "Head discovery (initial + periodic re-identification infrastructure): 25h (12.5h × 2 models, includes warm-start validation). Circuit-DPO training: 70h (35h × 2 models, includes paired forward passes for clean-attention references and periodic re-identification overhead ~15%). Baselines (DPO, EIT replication, RetMask-style data generation + DPO): 55h (includes RetMask baseline). Ablations (5 variants including head stability, margin vs. strict, re-identification frequency): 40h (20h × 2 models). Evaluation + cross-domain exploratory: 10h."
+    },
+    "human_in_loop": {
+      "gpu_hours": "~215h H100 80GB",
+      "gpu_utilization": "~55-65%",
+      "timeline": "8-10 weeks",
+      "team": "1 researcher, ~30min/day reviewing agent proposals and results",
+      "claude_api_cost": "$150-280",
+      "estimated_gpu_cost": "$645-860",
+      "risk_note": "Periodic head re-identification adds ~15% training overhead. Qwen2.5-7B has different GQA ratio (28Q/4KV vs 32Q/8KV) requiring validation of masking granularity. Head stability during training is the primary technical risk — if entrainment circuits shift substantially between re-identification intervals, the method may need continuous (differentiable) head tracking."
+    },
+    "auto_research": {
+      "gpu_hours": "~235h H100 80GB",
+      "gpu_utilization": "~90-95%",
+      "timeline": "10-16 days with 4× H100 80GB",
+      "team": "0 (initial setup only)",
+      "claude_api_cost": "$280-450",
+      "estimated_gpu_cost": "$705-940",
+      "speed_bottleneck": "GPU count — with 4× H100, can run 2 models × 2 configurations in parallel. Paired forward passes (clean + noisy) and periodic head re-identification add ~50% overhead vs. standard DPO",
+      "risk_note": "Automated entrainment head discovery may identify spurious circuits without human sanity-checking; ε/λ grid search may overexplore without recognizing diminishing returns; periodic re-identification adds pipeline complexity that automated systems may struggle to debug"
+    }
+  },
+  "target_venues": [
+    "ARR October 2026 (submission October 12, 2026 — primary target, ~5-month timeline, feeds into ACL 2027 or NAACL 2027)",
+    "EACL 2027 (ARR August 3, 2026 — stretch target if progress is rapid, commitment October 11, 2026)"
+  ],
+  "venue_note": "The originally requested target EMNLP 2026 is infeasible: EMNLP 2026 uses the ARR May 2026 cycle with a submission deadline of May 25, 2026 (8 days from today, 2026-05-17). We pivot to ARR October 2026 as the primary target, which provides a comfortable ~5-month timeline and feeds into ACL 2027 or NAACL 2027. EACL 2027 (ARR August 3, 2026) serves as a stretch target with ~11 weeks, feasible only if head discovery and initial training proceed rapidly.",
+  "level": "top-tier",
+  "key_references": [
+    "Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs (ACL 2025, arXiv:2505.09338)",
+    "From Interpretability to Performance: Optimizing Retrieval Heads for Long-Context Language Models [RetMask] (ACL 2026 Findings, arXiv:2601.11020)",
+    "Making Bias Non-Predictive: Training Robust LLM Reasoning via Reinforcement Learning [EIT] (arXiv 2026, arXiv:2602.01528)",
+    "Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search (NeurIPS 2025, arXiv:2502.01609)",
+    "Lost in the Noise: How Reasoning Models Fail with Contextual Distractors [RARE/NoisyBench] (arXiv 2025, arXiv:2601.07226)",
+    "Thinking Sparks!: Emergent Attention Heads in Reasoning Models During Post Training (arXiv 2025, arXiv:2509.25758)",
+    "Quantifying LLM Attention-Head Stability: Implications for Circuit Universality (arXiv 2026, arXiv:2602.16740)",
+    "Causal Head Gating: Scalable Attention Head Interpretation [CHG] (NeurIPS 2025, arXiv:2505.13737)",
+    "Gated Attention for Large Language Models (NeurIPS 2025 Best Paper, arXiv:2505.06708)",
+    "Reinforced Attention Learning [RAL] (arXiv 2026, arXiv:2602.04884)",
+    "Distractor Injection Attacks on LLMs: Defense via SFT+RL (arXiv 2025, arXiv:2510.16259)",
+    "Circuit-Aware Reward Training [CART] (arXiv 2025, arXiv:2509.24713)",
+    "Pref-CTRL: Preference Driven LLM Alignment using Representation Editing (arXiv 2026, arXiv:2604.23543)",
+    "Aligning Large Language Models with Representation Editing [RE-Control] (NeurIPS 2024)",
+    "Direct Preference Optimization Using Sparse Feature-Level Constraints [FPO] (arXiv 2024, arXiv:2411.07618)",
+    "Preference Heads in Large Language Models (arXiv 2026, arXiv:2604.22345)",
+    "How Is LLM Reasoning Distracted by Irrelevant Context? [GSM-DC] (EMNLP 2025)",
+    "A Comprehensive Survey of Direct Preference Optimization (arXiv 2024, arXiv:2410.15595v3)"
+  ],
+  "description": "We propose Circuit-DPO, a preference optimization method that augments the standard DPO loss with a margin-based Jensen-Shannon divergence term operating specifically on entrainment heads — attention heads mechanistically responsible for contextual entrainment in LLMs. Unlike behavioral methods (EIT, standard DPO) that optimize outputs without targeting the causal mechanism, or inference-time interventions (head ablation) that bluntly suppress entrainment, Circuit-DPO teaches entrainment heads graded, context-sensitive behavior through direct gradient supervision on their attention distributions. Our attention reference targets are self-supervised: the model's own attention on clean inputs defines what entrainment heads should approximately do. We use a margin-based JSD constraint — L = L_DPO + λ·Σ_h max(JSD(A_h^noisy, A_h^clean) - ε, 0) — that tolerates legitimate attention redistribution (inherent to softmax recomputation with additional tokens) while penalizing the large shifts characteristic of entrainment. To address circuit drift during training, we periodically re-identify entrainment heads using warm-started differentiable masking, informed by evidence that post-training causes attention heads to emerge and shift ('Thinking Sparks!', arXiv:2509.25758). We differentiate from RetMask (arXiv:2601.11020), the closest concurrent work, which also bridges mechanistic head identification with DPO but indirectly — using retrieval-head-ablated outputs for contrastive pair generation rather than providing direct gradient signal on attention distributions. Our primary hypothesis is composability: Circuit-DPO and behavioral methods (EIT) operate at orthogonal levels — circuit mechanism vs. behavioral reward shaping — and their combination yields additive robustness unavailable to either alone. We explicitly scope generalization claims to within-task-domain transfer (novel distractor types within math/QA), since entrainment heads are task-specific, with cross-domain transfer as exploratory analysis. Evaluation uses NoisyBench held-out distractor types, Adaptive Distraction benchmark, and a composability comparison of Circuit-DPO + EIT vs. each method alone. Target: ARR October 2026 → ACL/NAACL 2027 (EMNLP 2026 ARR May 25 deadline is infeasible given today's date of 2026-05-17).",
+  "project_name": "circuit_dpo_entrainment",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 3)
+Issues: ["CRITICAL — Source paper contradiction undermines motivation: 'Llama See, Llama Do' explicitly states entrainment heads are 'not strongly related to how LMs process and utilise contextual information or perform ICL more broadly,' and ablation causes only 0-3% ICL loss. The proposal still frames Circuit-DPO around 'teaching entrainment heads graded, context-sensitive behavior' — implying these heads should selectively boost relevant context (ICL mode) while suppressing irrelevant (distraction mode). But if ablation is nearly free, there is no need for graded control to preserve ICL. The proposal must reframe its advantage over ablation around a DIFFERENT argument: either (a) eliminating the need for task-specific head re-identification at inference time (internalization), (b) achieving stronger distraction suppression than binary ablation for cases where partial entrainment on distractor-adjacent content is harmful, or (c) handling cases where ablation is insufficient (e.g., when distractors are processed by non-entrainment heads).", "MISSING TECHNICAL PRECEDENT — KLAAD (EMNLP 2025, arXiv:2507.19962) uses KL divergence on attention distributions as an auxiliary training loss to align attention between stereotype/anti-stereotype pairs. While the application differs (debiasing vs. distraction), the TECHNICAL MECHANISM is identical to Circuit-DPO's core component (attention-distribution divergence loss during training). Must be cited and differentiated: Circuit-DPO targets specific mechanistically-identified heads rather than all attention, operates during preference optimization rather than standard training, and uses self-supervised reference from clean inputs rather than paired stereotype examples.", "IMPACT ARGUMENT INSUFFICIENT — The composability hypothesis (H1: Circuit-DPO + EIT > either alone) is the primary contribution framing, but lacks a concrete mechanistic argument for WHAT specific failure mode of EIT is addressed by circuit-level modification. If EIT already achieves +39.1% on unseen distraction through behavioral RL, and ablation already suppresses the entrainment mechanism with negligible cost, what does Circuit-DPO uniquely provide? The proposal needs a concrete scenario where: (a) EIT fails, (b) ablation fails, but (c) graded Circuit-DPO succeeds — and a mechanistic explanation for WHY.", "MINOR — The 'NoisyBench' evaluation: the benchmark exists (confirmed from arXiv:2601.07226) but is introduced within that specific paper — not yet a widely-adopted community benchmark. The proposal should clarify this is the 'Lost in the Noise' evaluation suite rather than implying it is an established benchmark.", "MINOR — The proposal claims 30-110 task-specific entrainment heads but periodic re-identification every 500 steps means the training target shifts repeatedly. If the head set changes substantially between re-identification intervals, the attention divergence loss may be poorly targeted during the interval. The ablation studying re-identification frequency (250/500/1000 steps) is noted but the proposal should discuss what happens if head discovery is noisy or identifies different heads each time."]
+Feedback: The proposal has improved substantially across rounds — the technical formulation is sound, the evaluation protocol is thorough, and the scoping is honest. The remaining blocker is the IMPACT argument. To pass:
+
+1. **Reframe the advantage over ablation**: Drop the 'graded context-sensitive behavior' framing that implies ICL preservation (since ICL is already preserved by ablation). Instead, argue: (a) Circuit-DPO INTERNALIZES distraction resistance, eliminating the need for task-specific head identification at inference time — a significant practical advantage since entrainment heads are task-specific; (b) training-time modification may generalize to heads NOT identified during discovery (indirect regularization effect on the broader circuit); (c) trained graded suppression may handle PARTIAL entrainment patterns (e.g., subtly related distractors that cause weaker but still harmful entrainment) better than all-or-nothing ablation.
+
+2. **Cite KLAAD (EMNLP 2025)**: It's the closest technical precedent (attention KL as training loss). Differentiate on: circuit-specificity, DPO integration, and self-supervised reference construction.
+
+3. **Strengthen the composability argument**: Provide a concrete hypothetical example: 'EIT teaches the model to ignore bias cues in the output, but the entrainment circuit still activates on distractors, consuming compute and potentially causing failures on harder cases. Circuit-DPO removes the root cause, so EIT has less to compensate for.' This makes the orthogonality concrete.
+
+4. **Add a 'Circuit-DPO vs. ablation' comparison**: Include ablation as a BASELINE (not just EIT and DPO). Show: does graded trained suppression outperform binary inference-time masking? This is the key experiment that justifies the method's complexity.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "8192d55b-5cd0-4a22-b280-702965115191",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-17T09:12:16.194Z_
+
+```json
+{
+  "parentUuid": "8192d55b-5cd0-4a22-b280-702965115191",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "e14f98ba-d3d5-4151-a5f3-bae12d6d1265",
+  "timestamp": "2026-05-17T09:12:16.194Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-17T09:12:16.194Z_
+
+```json
+{
+  "parentUuid": "e14f98ba-d3d5-4151-a5f3-bae12d6d1265",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "649ab15f-9807-479b-849a-19af764ed8e3",
+  "timestamp": "2026-05-17T09:12:16.194Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-17 (UTC).**  ## Original idea {   \"title\": \"Circuit-DPO: Composable Distraction Robustness via Mechanistically-Tar…",
+  "leafUuid": "649ab15f-9807-479b-849a-19af764ed8e3",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising Circuit-DPO core framing",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-17T09:12:24.436Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully before diving into research:
+
+1. **CRITICAL — Source paper contradiction**: The "graded context-sensitive behavior" framing is problematic because ablation is nearly free (0-3% ICL cost). Need to reframe around internalization, indirect regularization, and partial entrainment handling.
+
+2. **MISSING TECHNICAL PRECEDENT — KLAAD**: Need to find and read this paper (EMNLP 2025, arXiv:2507.19962) about KL divergence on attention distributions for debiasing.
+
+
+3. **IMPACT ARGUMENT INSUFFICIENT**: I need to construct a concrete failure case where both EIT and ablation fall short but Circuit-DPO succeeds. 4. **MINOR — NoisyBench**: The evaluation suite comes from the "Lost in the Noise" paper and I should clarify that. 5. **MINOR — Head stability during re-identification**: I should address how noisy head discovery affects stability. Now I'm diving into the research to tackle each of these issues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "649ab15f-9807-479b-849a-19af764ed8e3",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tBJYg1whw4onbRGPtq",
+  "type": "assistant",
+  "uuid": "4f81d8be-116c-41d9-af8b-dc0f6104bf64",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YUdQoMvCG9yz93qYvDyW7E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13372,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 346,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13372,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 346,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13372,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13372
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-17T09:12:24.438Z_
+
+I'll research each reviewer concern systematically before revising. Let me start by fetching the key papers and searching for related work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f81d8be-116c-41d9-af8b-dc0f6104bf64",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tBJYg1whw4onbRGPtq",
+  "type": "assistant",
+  "uuid": "11396a98-eaab-44c5-a9f9-4f18be8a2298",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YUdQoMvCG9yz93qYvDyW7E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13372,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 346,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13372,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 346,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13372,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13372
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-17T09:12:24.447Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01YAQVg14eB6L8rKpmP4Gesv`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11396a98-eaab-44c5-a9f9-4f18be8a2298",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tBJYg1whw4onbRGPtq",
+  "type": "assistant",
+  "uuid": "d5f940fe-01fc-4e2e-935f-bdf9ceef2f0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YUdQoMvCG9yz93qYvDyW7E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13372,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 346,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13372,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 346,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13372,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13372
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T09:12:24.454Z_
+
+<details><summary>↩ Tool result · `toolu_01YAQVg14eB6L8rKpmP4Gesv`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d5f940fe-01fc-4e2e-935f-bdf9ceef2f0c",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "1ad03f8a-5a28-4d5b-a4cc-27796ab4684a",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "d5f940fe-01fc-4e2e-935f-bdf9ceef2f0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-17T09:12:28.742Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now research each reviewer concern systematically. I'll start with parallel searches for:
+
+1. KLAAD paper (arXiv:2507.19962) - the missing technical precedent
+2. "Llama See, Llama Do" - re-read the key claims about entrainment heads and ICL
+3. Internalization of circuit interventions - search for prior work on training-time internalization vs inference-time intervention
+4. Concrete failure modes of EIT and ablation approaches
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ad03f8a-5a28-4d5b-a4cc-27796ab4684a",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tBunEBNNzFwbRP9jZL",
+  "type": "assistant",
+  "uuid": "d7eced42-cc70-48fe-82e5-4c54d8e7e93e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7zcZ1m6TzaiSnafUCw5Uh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1366,
+      "cache_read_input_tokens": 25213,
+      "output_tokens": 611,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1366,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 611,
+          "cache_read_input_tokens": 25213,
+          "cache_creation_input_tokens": 1366,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1366
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-17T09:12:29.363Z_
+
+Let me research each reviewer concern in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7eced42-cc70-48fe-82e5-4c54d8e7e93e",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tBunEBNNzFwbRP9jZL",
+  "type": "assistant",
+  "uuid": "62540f9b-2cd5-492a-8e2a-92b0a688db02",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7zcZ1m6TzaiSnafUCw5Uh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1366,
+      "cache_read_input_tokens": 25213,
+      "output_tokens": 611,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1366,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 611,
+          "cache_read_input_tokens": 25213,
+          "cache_creation_input_tokens": 1366,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1366
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T09:12:31.266Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VSEJgPwZd4mXAdC7rLXXSL`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2507.19962",
+  "prompt": "Extract the full title, authors, abstract, and key method details of this paper. What is KLAAD? How does it use KL divergence on attention distributions? What specific attention heads does it target? Is it during training or inference? What task/application?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62540f9b-2cd5-492a-8e2a-92b0a688db02",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tBunEBNNzFwbRP9jZL",
+  "type": "assistant",
+  "uuid": "89da8a0f-8f71-428d-824a-2b34a5f3fcab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7zcZ1m6TzaiSnafUCw5Uh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1366,
+      "cache_read_input_tokens": 25213,
+      "output_tokens": 611,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1366,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 611,
+          "cache_read_input_tokens": 25213,
+          "cache_creation_input_tokens": 1366,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1366
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T09:12:33.664Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UJ3pDZQdwNrzTuNBBVtqDa`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.09338",
+  "prompt": "Extract key claims about entrainment heads from \"Llama See, Llama Do\". Specifically: (1) What do they say about whether entrainment heads are related to ICL? (2) What is the cost of ablating entrainment heads? (3) Do they discuss any cases where ablation is insufficient or fails? (4) Are entrainment heads task-specific or model-specific? (5) Any discussion of partial entrainment or graded entrainment behavior?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89da8a0f-8f71-428d-824a-2b34a5f3fcab",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tBunEBNNzFwbRP9jZL",
+  "type": "assistant",
+  "uuid": "c00addbc-993e-4eb4-8d24-33700194956c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7zcZ1m6TzaiSnafUCw5Uh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1366,
+      "cache_read_input_tokens": 25213,
+      "output_tokens": 611,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1366,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 611,
+          "cache_read_input_tokens": 25213,
+          "cache_creation_input_tokens": 1366,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1366
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T09:12:34.121Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015TgbeAnhaoqRLuaN571ZVN`</summary>
+
+```json
+{
+  "query": "KLAAD EMNLP 2025 attention KL divergence debiasing language models"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c00addbc-993e-4eb4-8d24-33700194956c",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tBunEBNNzFwbRP9jZL",
+  "type": "assistant",
+  "uuid": "e6b34ed8-ba0b-4e78-bb6d-1a16d1e5efcb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7zcZ1m6TzaiSnafUCw5Uh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1366,
+      "cache_read_input_tokens": 25213,
+      "output_tokens": 611,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1366,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 611,
+          "cache_read_input_tokens": 25213,
+          "cache_creation_input_tokens": 1366,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1366
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T09:12:34.591Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018jrYhQNbgBhgCdRPX2iYqU`</summary>
+
+```json
+{
+  "query": "internalization circuit intervention training time vs inference time LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6b34ed8-ba0b-4e78-bb6d-1a16d1e5efcb",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tBunEBNNzFwbRP9jZL",
+  "type": "assistant",
+  "uuid": "1fd0173e-6b2f-4f5b-a049-ed9f4de32cae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7zcZ1m6TzaiSnafUCw5Uh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1366,
+      "cache_read_input_tokens": 25213,
+      "output_tokens": 611,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1366,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 611,
+          "cache_read_input_tokens": 25213,
+          "cache_creation_input_tokens": 1366,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1366
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-17T09:12:35.418Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019ybGs9yR12jx448SESTkGb`</summary>
+
+```json
+{
+  "query": "EIT balanced conflict RL failure modes limitations distraction robustness LLM 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1fd0173e-6b2f-4f5b-a049-ed9f4de32cae",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tBunEBNNzFwbRP9jZL",
+  "type": "assistant",
+  "uuid": "572489d1-77bd-45f2-8b73-1e7d4bf48c66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7zcZ1m6TzaiSnafUCw5Uh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1366,
+      "cache_read_input_tokens": 25213,
+      "output_tokens": 611,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1366,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 611,
+          "cache_read_input_tokens": 25213,
+          "cache_creation_input_tokens": 1366,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1366
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T09:12:36.241Z_
+
+<details><summary>↩ Tool result · `toolu_01VSEJgPwZd4mXAdC7rLXXSL`</summary>
+
+```text
+# KLAAD Paper Summary
+
+**Full Title:** "KLAAD: Refining Attention Mechanisms to Reduce Societal Bias in Generative Language Models"
+
+**Authors:** Seorin Kim, Dongyoung Lee, Jaejin Lee
+
+## Abstract Overview
+
+The researchers present an approach to address fairness concerns in large language models by targeting the attention mechanism itself. The system aims to guide models toward "consistently attend[ing] across biased and unbiased contexts while preserving fluency."
+
+## What is KLAAD?
+
+KLAAD (KL-Attention Alignment Debiasing) functions as "an attention-based debiasing framework that implicitly aligns attention distributions between stereotypical and anti-stereotypical sentence pairs without directly modifying model weights."
+
+## How KL Divergence is Applied
+
+The method employs a composite training objective combining three loss components: Cross-Entropy, KL divergence, and Triplet losses. The KL divergence specifically helps align attention patterns across contrasting sentence pairs—one containing bias and one without—during the training process.
+
+## Targeting & Application
+
+The paper doesn't specify which particular attention heads are targeted in the provided content. The approach operates **during training** rather than inference, and evaluation occurs on established bias benchmarks (BBQ and BOLD), demonstrating "improved bias mitigation" with minimal degradation to language modeling quality.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "89da8a0f-8f71-428d-824a-2b34a5f3fcab",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "c91b5c64-463e-4749-884d-73cdf5de41fb",
+  "toolUseResult": {
+    "bytes": 45029,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# KLAAD Paper Summary\n\n**Full Title:** \"KLAAD: Refining Attention Mechanisms to Reduce Societal Bias in Generative Language Models\"\n\n**Authors:** Seorin Kim, Dongyoung Lee, Jaejin Lee\n\n## Abstract Overview\n\nThe researchers present an approach to address fairness concerns in large language models by targeting the attention mechanism itself. The system aims to guide models toward \"consistently attend[ing] across biased and unbiased contexts while preserving fluency.\"\n\n## What is KLAAD?\n\nKLAAD (KL-Attention Alignment Debiasing) functions as \"an attention-based debiasing framework that implicitly aligns attention distributions between stereotypical and anti-stereotypical sentence pairs without directly modifying model weights.\"\n\n## How KL Divergence is Applied\n\nThe method employs a composite training objective combining three loss components: Cross-Entropy, KL divergence, and Triplet losses. The KL divergence specifically helps align attention patterns across contrasting sentence pairs—one containing bias and one without—during the training process.\n\n## Targeting & Application\n\nThe paper doesn't specify which particular attention heads are targeted in the provided content. The approach operates **during training** rather than inference, and evaluation occurs on established bias benchmarks (BBQ and BOLD), demonstrating \"improved bias mitigation\" with minimal degradation to language modeling quality.",
+    "durationMs": 4970,
+    "url": "https://arxiv.org/abs/2507.19962"
+  },
+  "sourceToolAssistantUUID": "89da8a0f-8f71-428d-824a-2b34a5f3fcab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T09:12:37.865Z_
+
+<details><summary>↩ Tool result · `toolu_01UJ3pDZQdwNrzTuNBBVtqDa`</summary>
+
+```text
+# Analysis of "Llama See, Llama Do" - Entrainment Heads Claims
+
+Based on the webpage content provided, I can only extract limited information since the abstract is the primary accessible material.
+
+## What the Abstract Reveals:
+
+The abstract confirms that entrainment heads exist and can be identified through "a novel entrainment head discovery method based on differentiable masking." When these heads are disabled by "set[ting] their outputs to zero, the effect of contextual entrainment is significantly attenuated."
+
+## What Cannot Be Answered from This Source:
+
+Unfortunately, the webpage content does not provide sufficient detail to address your specific questions:
+
+1. **ICL relationship**: No mention in the abstract
+2. **Ablation costs**: Only states the effect is "significantly attenuated" but lacks quantitative details
+3. **Ablation failures**: Not discussed in available text
+4. **Task/model specificity**: The abstract mentions "various settings" but provides no breakdown
+5. **Partial/graded entrainment**: Not addressed in this excerpt
+
+## Recommendation:
+
+To answer these detailed mechanistic questions, you would need to access the full PDF or HTML version of the paper (available via the provided links), as the abstract focuses on the core phenomenon rather than nuanced findings about head properties.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c00addbc-993e-4eb4-8d24-33700194956c",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "b19ddb7e-f535-430f-a315-ac6b00870e08",
+  "toolUseResult": {
+    "bytes": 48096,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of \"Llama See, Llama Do\" - Entrainment Heads Claims\n\nBased on the webpage content provided, I can only extract limited information since the abstract is the primary accessible material.\n\n## What the Abstract Reveals:\n\nThe abstract confirms that entrainment heads exist and can be identified through \"a novel entrainment head discovery method based on differentiable masking.\" When these heads are disabled by \"set[ting] their outputs to zero, the effect of contextual entrainment is significantly attenuated.\"\n\n## What Cannot Be Answered from This Source:\n\nUnfortunately, the webpage content does not provide sufficient detail to address your specific questions:\n\n1. **ICL relationship**: No mention in the abstract\n2. **Ablation costs**: Only states the effect is \"significantly attenuated\" but lacks quantitative details\n3. **Ablation failures**: Not discussed in available text\n4. **Task/model specificity**: The abstract mentions \"various settings\" but provides no breakdown\n5. **Partial/graded entrainment**: Not addressed in this excerpt\n\n## Recommendation:\n\nTo answer these detailed mechanistic questions, you would need to access the full PDF or HTML version of the paper (available via the provided links), as the abstract focuses on the core phenomenon rather than nuanced findings about head properties.",
+    "durationMs": 4198,
+    "url": "https://arxiv.org/abs/2505.09338"
+  },
+  "sourceToolAssistantUUID": "c00addbc-993e-4eb4-8d24-33700194956c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T09:12:41.146Z_
+
+<details><summary>↩ Tool result · `toolu_018jrYhQNbgBhgCdRPX2iYqU`</summary>
+
+```text
+Web search results for query: "internalization circuit intervention training time vs inference time LLM 2025 2026"
+
+Links: [{"title":"The State Of LLMs 2025: Progress, Progress, and Predictions","url":"https://magazine.sebastianraschka.com/p/state-of-llms-2025"},{"title":"Training vs. inference | LLM Inference Handbook","url":"https://bentoml.com/llm/llm-inference-basics/training-inference-differences"},{"title":"Inference-Time Intervention (ITI)","url":"https://www.emergentmind.com/topics/inference-time-intervention-iti"},{"title":"A Survey of LLM Inference Systems","url":"https://arxiv.org/html/2506.21901v1"},{"title":"LLM Research Papers: The 2025 List (July to December)","url":"https://magazine.sebastianraschka.com/p/llm-research-papers-2025-part2"},{"title":"ICLR 2026 Schedule","url":"https://iclr.cc/virtual/2026/calendar"},{"title":"LLM Inference: Techniques for Optimized Deployment in 2026 | Label Your Data","url":"https://labelyourdata.com/articles/llm-fine-tuning/llm-inference"},{"title":"Inference-Time Learning Algorithms of Language Models by Ekin Akyürek","url":"https://dspace.mit.edu/bitstream/handle/1721.1/163719/akyurek-akyurek-phd-eecs-2025-thesis.pdf?sequence=-1&isAllowed=y"},{"title":"Track: Oral Session 1A","url":"https://iclr.cc/virtual/2025/session/31935"},{"title":"LLM Inference Optimization Techniques | Clarifai Guide","url":"https://www.clarifai.com/blog/llm-inference-optimization/"}]
+
+Based on the search results, I found relevant information about internalization, circuit intervention, and training vs. inference time in LLMs:
+
+## Key Findings:
+
+**Internalized Chain-of-Thought (CoT):**
+Internalized CoT is a technique where the model is trained or fine-tuned to generate outputs that resemble chains of thoughts via reward-guided reinforcement learning, contrasting with explicit CoT prompting that inserts key phrases during inference.
+
+**Inference-Time Intervention (ITI):**
+Inference-Time Intervention (ITI) is a paradigm for modulating the behavior of predictive models—most prominently LLMs, reinforcement learning controllers, and multimodal transformers—by making structured, data-driven adjustments to internal activations at the moment of inference, without modifying or retraining core model parameters.
+
+**Training vs. Inference Time Trends in 2025-2026:**
+A lot of LLM benchmark and performance progress will come from improved tooling and inference-time scaling rather than from training or the core model itself, with the proportion of progress coming more from the inference than purely the training side in 2026.
+
+Inference-time scaling means we spend more time and money after training when we let the LLM generate the answer, representing a shift in resource allocation from training-time optimization to inference-time computation.
+
+The search results suggest that both techniques (internalization during training and intervention at inference time) are active areas of research, with growing emphasis on inference-time optimization in the 2025-2026 period.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1fd0173e-6b2f-4f5b-a049-ed9f4de32cae",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "8531bc0a-0994-45fe-8bbd-bbb3cac9c21a",
+  "toolUseResult": {
+    "query": "internalization circuit intervention training time vs inference time LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DDPgSzBFMrH9odS1ahcvdd",
+        "content": [
+          {
+            "title": "The State Of LLMs 2025: Progress, Progress, and Predictions",
+            "url": "https://magazine.sebastianraschka.com/p/state-of-llms-2025"
+          },
+          {
+            "title": "Training vs. inference | LLM Inference Handbook",
+            "url": "https://bentoml.com/llm/llm-inference-basics/training-inference-differences"
+          },
+          {
+            "title": "Inference-Time Intervention (ITI)",
+            "url": "https://www.emergentmind.com/topics/inference-time-intervention-iti"
+          },
+          {
+            "title": "A Survey of LLM Inference Systems",
+            "url": "https://arxiv.org/html/2506.21901v1"
+          },
+          {
+            "title": "LLM Research Papers: The 2025 List (July to December)",
+            "url": "https://magazine.sebastianraschka.com/p/llm-research-papers-2025-part2"
+          },
+          {
+            "title": "ICLR 2026 Schedule",
+            "url": "https://iclr.cc/virtual/2026/calendar"
+          },
+          {
+            "title": "LLM Inference: Techniques for Optimized Deployment in 2026 | Label Your Data",
+            "url": "https://labelyourdata.com/articles/llm-fine-tuning/llm-inference"
+          },
+          {
+            "title": "Inference-Time Learning Algorithms of Language Models by Ekin Akyürek",
+            "url": "https://dspace.mit.edu/bitstream/handle/1721.1/163719/akyurek-akyurek-phd-eecs-2025-thesis.pdf?sequence=-1&isAllowed=y"
+          },
+          {
+            "title": "Track: Oral Session 1A",
+            "url": "https://iclr.cc/virtual/2025/session/31935"
+          },
+          {
+            "title": "LLM Inference Optimization Techniques | Clarifai Guide",
+            "url": "https://www.clarifai.com/blog/llm-inference-optimization/"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about internalization, circuit intervention, and training vs. inference time in LLMs:\n\n## Key Findings:\n\n**Internalized Chain-of-Thought (CoT):**\nInternalized CoT is a technique where the model is trained or fine-tuned to generate outputs that resemble chains of thoughts via reward-guided reinforcement learning, contrasting with explicit CoT prompting that inserts key phrases during inference.\n\n**Inference-Time Intervention (ITI):**\nInference-Time Intervention (ITI) is a paradigm for modulating the behavior of predictive models—most prominently LLMs, reinforcement learning controllers, and multimodal transformers—by making structured, data-driven adjustments to internal activations at the moment of inference, without modifying or retraining core model parameters.\n\n**Training vs. Inference Time Trends in 2025-2026:**\nA lot of LLM benchmark and performance progress will come from improved tooling and inference-time scaling rather than from training or the core model itself, with the proportion of progress coming more from the inference than purely the training side in 2026.\n\nInference-time scaling means we spend more time and money after training when we let the LLM generate the answer, representing a shift in resource allocation from training-time optimization to inference-time computation.\n\nThe search results suggest that both techniques (internalization during training and intervention at inference time) are active areas of research, with growing emphasis on inference-time optimization in the 2025-2026 period."
+    ],
+    "durationSeconds": 6.551679811000001
+  },
+  "sourceToolAssistantUUID": "1fd0173e-6b2f-4f5b-a049-ed9f4de32cae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T09:12:42.646Z_
+
+<details><summary>↩ Tool result · `toolu_019ybGs9yR12jx448SESTkGb`</summary>
+
+```text
+Web search results for query: "EIT balanced conflict RL failure modes limitations distraction robustness LLM 2026"
+
+Links: [{"title":"Making Bias Non-Predictive: Training Robust LLM Judges via Reinforcement Learning","url":"https://arxiv.org/html/2602.01528"},{"title":"Making Bias Non-Predictive: Training Robust LLM Reasoning via Reinforcement Learning","url":"https://arxiv.org/html/2602.01528v2"},{"title":"Robustness in Large Language Models: A Survey of Mitigation Strategies and Evaluation Metrics","url":"https://arxiv.org/html/2505.18658v2"},{"title":"Reliability Benchmarks for Production LLM Systems — A Field Guide to LLM Benchmarks | by Adnan Masood, PhD. | Medium","url":"https://medium.com/@adnanmasood/reliability-benchmarks-for-production-llm-systems-a-field-guide-to-llm-benchmarks-78e4354ac8c1"},{"title":"How Do LLMs Fail In Agentic Scenarios?","url":"https://arxiv.org/pdf/2512.07497"},{"title":"(PDF) Robustness in Large Language Models: A Survey of Mitigation Strategies and Evaluation Metrics","url":"https://www.researchgate.net/publication/392104377_Robustness_in_Large_Language_Models_A_Survey_of_Mitigation_Strategies_and_Evaluation_Metrics"},{"title":"[2505.18658] Robustness in Large Language Models: A Survey of Mitigation Strategies and Evaluation Metrics","url":"https://arxiv.org/abs/2505.18658"},{"title":"[2511.19933] Failure Modes in LLM Systems: A System-Level Taxonomy for Reliable AI Applications","url":"https://arxiv.org/abs/2511.19933"},{"title":"Limitations of large language models in clinical problem-solving arising from inflexible reasoning | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-22940-0"},{"title":"Under review as submission to TMLR On the Fundamental Limits of LLMs at Scale","url":"https://openreview.net/pdf/b1a63c4f0cdc5cd78698b347b7cb018706ead05e.pdf"}]
+
+Based on the search results, I found highly relevant information about EIT (Epistemic Independence Training) and its approaches to handling bias, conflict, and robustness in LLMs.
+
+## Key Findings on EIT
+
+EIT operationalizes a balanced conflict strategy where bias signals are equally likely to support correct and incorrect answers, combined with a reward design that penalizes bias-following without rewarding bias agreement.
+
+### Performance and Robustness Results
+
+Experiments on Qwen3-4B demonstrate that EIT improves both accuracy and robustness under adversarial biases, while preserving performance when bias aligns with truth. More specifically, EIT improves adversarial-bias accuracy by 13.2% (from 70.1% to 83.3%) and robustness by 16.4% on Qwen3-4B, while maintaining strong performance when bias aligns with the correct answer.
+
+### Generalization Capabilities
+
+A notable strength of EIT is its generalization to unseen bias types. Models trained only on bandwagon bias generalize to unseen bias types such as authority and distraction, indicating that EIT induces transferable epistemic independence rather than bias-specific heuristics. Additionally, distraction robustness improves by 39.1% despite never being seen during training.
+
+### Training Stability
+
+EIT Training is Efficient with Stable Convergence. The reward curves reveal consistent learning dynamics across model sizes. Qwen3-4B exhibits rapid learning before converging around step 110, while Qwen3-1.7B converges earlier at step 70, suggesting smaller models reach capacity sooner. The smooth convergence without significant oscillations indicates robust training dynamics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "572489d1-77bd-45f2-8b73-1e7d4bf48c66",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "4d0d84d0-77bb-49e9-999f-c4a25f7529c0",
+  "toolUseResult": {
+    "query": "EIT balanced conflict RL failure modes limitations distraction robustness LLM 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KuzXVMScVcuUAHEZrmgEun",
+        "content": [
+          {
+            "title": "Making Bias Non-Predictive: Training Robust LLM Judges via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2602.01528"
+          },
+          {
+            "title": "Making Bias Non-Predictive: Training Robust LLM Reasoning via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2602.01528v2"
+          },
+          {
+            "title": "Robustness in Large Language Models: A Survey of Mitigation Strategies and Evaluation Metrics",
+            "url": "https://arxiv.org/html/2505.18658v2"
+          },
+          {
+            "title": "Reliability Benchmarks for Production LLM Systems — A Field Guide to LLM Benchmarks | by Adnan Masood, PhD. | Medium",
+            "url": "https://medium.com/@adnanmasood/reliability-benchmarks-for-production-llm-systems-a-field-guide-to-llm-benchmarks-78e4354ac8c1"
+          },
+          {
+            "title": "How Do LLMs Fail In Agentic Scenarios?",
+            "url": "https://arxiv.org/pdf/2512.07497"
+          },
+          {
+            "title": "(PDF) Robustness in Large Language Models: A Survey of Mitigation Strategies and Evaluation Metrics",
+            "url": "https://www.researchgate.net/publication/392104377_Robustness_in_Large_Language_Models_A_Survey_of_Mitigation_Strategies_and_Evaluation_Metrics"
+          },
+          {
+            "title": "[2505.18658] Robustness in Large Language Models: A Survey of Mitigation Strategies and Evaluation Metrics",
+            "url": "https://arxiv.org/abs/2505.18658"
+          },
+          {
+            "title": "[2511.19933] Failure Modes in LLM Systems: A System-Level Taxonomy for Reliable AI Applications",
+            "url": "https://arxiv.org/abs/2511.19933"
+          },
+          {
+            "title": "Limitations of large language models in clinical problem-solving arising from inflexible reasoning | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-22940-0"
+          },
+          {
+            "title": "Under review as submission to TMLR On the Fundamental Limits of LLMs at Scale",
+            "url": "https://openreview.net/pdf/b1a63c4f0cdc5cd78698b347b7cb018706ead05e.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant information about EIT (Epistemic Independence Training) and its approaches to handling bias, conflict, and robustness in LLMs.\n\n## Key Findings on EIT\n\nEIT operationalizes a balanced conflict strategy where bias signals are equally likely to support correct and incorrect answers, combined with a reward design that penalizes bias-following without rewarding bias agreement.\n\n### Performance and Robustness Results\n\nExperiments on Qwen3-4B demonstrate that EIT improves both accuracy and robustness under adversarial biases, while preserving performance when bias aligns with truth. More specifically, EIT improves adversarial-bias accuracy by 13.2% (from 70.1% to 83.3%) and robustness by 16.4% on Qwen3-4B, while maintaining strong performance when bias aligns with the correct answer.\n\n### Generalization Capabilities\n\nA notable strength of EIT is its generalization to unseen bias types. Models trained only on bandwagon bias generalize to unseen bias types such as authority and distraction, indicating that EIT induces transferable epistemic independence rather than bias-specific heuristics. Additionally, distraction robustness improves by 39.1% despite never being seen during training.\n\n### Training Stability\n\nEIT Training is Efficient with Stable Convergence. The reward curves reveal consistent learning dynamics across model sizes. Qwen3-4B exhibits rapid learning before converging around step 110, while Qwen3-1.7B converges earlier at step 70, suggesting smaller models reach capacity sooner. The smooth convergence without significant oscillations indicates robust training dynamics."
+    ],
+    "durationSeconds": 7.222739380999999
+  },
+  "sourceToolAssistantUUID": "572489d1-77bd-45f2-8b73-1e7d4bf48c66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-17 (UTC).**  ## Original idea {   \"title\": \"Circuit-DPO: Composable Distraction Robustness via Mechanistically-Tar…",
+  "leafUuid": "4d0d84d0-77bb-49e9-999f-c4a25f7529c0",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising Circuit-DPO core framing",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T09:12:43.037Z_
+
+<details><summary>↩ Tool result · `toolu_015TgbeAnhaoqRLuaN571ZVN`</summary>
+
+```text
+Web search results for query: "KLAAD EMNLP 2025 attention KL divergence debiasing language models"
+
+Links: [{"title":"KLAAD: Refining Attention Mechanisms to Reduce Societal Bias in Generative Language Models - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.774/"},{"title":"[2507.19962] KLAAD: Refining Attention Mechanisms to Reduce Societal Bias in Generative Language Models","url":"https://arxiv.org/abs/2507.19962"},{"title":"KLAAD: Refining Attention Mechanisms to Reduce Societal Bias in Generative Language Models","url":"https://arxiv.org/html/2507.19962"},{"title":"KLAAD: Refining Attention Mechanisms to Reduce Societal Bias","url":"https://arxiv.org/pdf/2507.19962"},{"title":"EMNLP 2025 Highlights and Research Directions - Megagon","url":"https://megagon.ai/emnlp2025-highlights/"},{"title":"LLM Bias Detection and Mitigation through the Lens of ...","url":"https://aclanthology.org/2025.emnlp-main.76.pdf"},{"title":"Convergence and Divergence of Language Models under ...","url":"https://aclanthology.org/2025.emnlp-main.1675.pdf"},{"title":"DORM: Preference Data Weights Optimization for Reward ...","url":"https://aclanthology.org/2025.findings-emnlp.1237.pdf"},{"title":"SABER: Uncovering Vulnerabilities in Safety Alignment via ...","url":"https://aclanthology.org/2025.emnlp-main.825.pdf"},{"title":"Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals","url":"https://arxiv.org/html/2605.05025"}]
+
+I found comprehensive information about KLAAD from EMNLP 2025. Here are the key findings:
+
+## KLAAD: KL-Attention Alignment Debiasing
+
+KLAAD (KL-Attention Alignment Debiasing) is an attention-based debiasing framework that implicitly aligns attention distributions between stereotypical and anti-stereotypical sentence pairs without directly modifying model weights.
+
+### Problem Addressed
+Large language models (LLMs) often exhibit societal biases in their outputs, prompting ethical concerns regarding fairness and harm.
+
+### Technical Approach
+KLAAD introduces a composite training objective combining Cross-Entropy, KL divergence, and Triplet losses, guiding the model to consistently attend across biased and unbiased contexts while preserving fluency and coherence. More specifically, KLAAD introduces an auxiliary KL divergence loss that encourages the model to align its attention distributions across stereotype and anti-stereotype sentence pairs, guiding rather than overwriting attention weights.
+
+### Training Data
+The KLAAD model learns from sentence triplets consisting of stereotypical sentences, anti-stereotypical counterparts, and unrelated sentences.
+
+### Results
+Experimental evaluation of KLAAD demonstrates improved bias mitigation on both the BBQ and BOLD benchmarks, with minimal impact on language modeling quality.
+
+### Publication
+The paper was published by Seorin Kim, Dongyoung Lee, and Jaejin Lee in the Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing in Suzhou, China.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6b34ed8-ba0b-4e78-bb6d-1a16d1e5efcb",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "4e872a8e-4746-4841-b996-a62f92d4fe37",
+  "toolUseResult": {
+    "query": "KLAAD EMNLP 2025 attention KL divergence debiasing language models",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SfbCd6T6fdQ75UcEpLXuxw",
+        "content": [
+          {
+            "title": "KLAAD: Refining Attention Mechanisms to Reduce Societal Bias in Generative Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.774/"
+          },
+          {
+            "title": "[2507.19962] KLAAD: Refining Attention Mechanisms to Reduce Societal Bias in Generative Language Models",
+            "url": "https://arxiv.org/abs/2507.19962"
+          },
+          {
+            "title": "KLAAD: Refining Attention Mechanisms to Reduce Societal Bias in Generative Language Models",
+            "url": "https://arxiv.org/html/2507.19962"
+          },
+          {
+            "title": "KLAAD: Refining Attention Mechanisms to Reduce Societal Bias",
+            "url": "https://arxiv.org/pdf/2507.19962"
+          },
+          {
+            "title": "EMNLP 2025 Highlights and Research Directions - Megagon",
+            "url": "https://megagon.ai/emnlp2025-highlights/"
+          },
+          {
+            "title": "LLM Bias Detection and Mitigation through the Lens of ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.76.pdf"
+          },
+          {
+            "title": "Convergence and Divergence of Language Models under ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.1675.pdf"
+          },
+          {
+            "title": "DORM: Preference Data Weights Optimization for Reward ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.1237.pdf"
+          },
+          {
+            "title": "SABER: Uncovering Vulnerabilities in Safety Alignment via ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.825.pdf"
+          },
+          {
+            "title": "Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals",
+            "url": "https://arxiv.org/html/2605.05025"
+          }
+        ]
+      },
+      "I found comprehensive information about KLAAD from EMNLP 2025. Here are the key findings:\n\n## KLAAD: KL-Attention Alignment Debiasing\n\nKLAAD (KL-Attention Alignment Debiasing) is an attention-based debiasing framework that implicitly aligns attention distributions between stereotypical and anti-stereotypical sentence pairs without directly modifying model weights.\n\n### Problem Addressed\nLarge language models (LLMs) often exhibit societal biases in their outputs, prompting ethical concerns regarding fairness and harm.\n\n### Technical Approach\nKLAAD introduces a composite training objective combining Cross-Entropy, KL divergence, and Triplet losses, guiding the model to consistently attend across biased and unbiased contexts while preserving fluency and coherence. More specifically, KLAAD introduces an auxiliary KL divergence loss that encourages the model to align its attention distributions across stereotype and anti-stereotype sentence pairs, guiding rather than overwriting attention weights.\n\n### Training Data\nThe KLAAD model learns from sentence triplets consisting of stereotypical sentences, anti-stereotypical counterparts, and unrelated sentences.\n\n### Results\nExperimental evaluation of KLAAD demonstrates improved bias mitigation on both the BBQ and BOLD benchmarks, with minimal impact on language modeling quality.\n\n### Publication\nThe paper was published by Seorin Kim, Dongyoung Lee, and Jaejin Lee in the Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing in Suzhou, China."
+    ],
+    "durationSeconds": 8.912148163999998
+  },
+  "sourceToolAssistantUUID": "e6b34ed8-ba0b-4e78-bb6d-1a16d1e5efcb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-17T09:12:47.519Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have initial information. Let me now do deeper dives:
+1. Read the full KLAAD paper for technical details
+2. Read the EIT paper for specific limitations/failure modes
+3. Search for work on "internalization" of inference-time interventions during training
+4. Search for cases where ablation is insufficient for distraction robustness
+5. Read the "Llama See, Llama Do" paper more carefully
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4e872a8e-4746-4841-b996-a62f92d4fe37",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tDGzTepWcHo6u4ZWRa",
+  "type": "assistant",
+  "uuid": "33d90b82-1c8f-4457-8e99-2d84b360e994",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F8nymoAaaU3wYtxXXrRWUG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1881,
+      "cache_creation_input_tokens": 2163,
+      "cache_read_input_tokens": 26579,
+      "output_tokens": 659,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2163,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1881,
+          "output_tokens": 659,
+          "cache_read_input_tokens": 26579,
+          "cache_creation_input_tokens": 2163,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2163
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-17T09:12:48.019Z_
+
+Good initial findings. Let me dive deeper into the key papers and search for specific failure modes and internalization arguments.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33d90b82-1c8f-4457-8e99-2d84b360e994",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tDGzTepWcHo6u4ZWRa",
+  "type": "assistant",
+  "uuid": "223a86a2-89d2-4684-bd8e-e55f5e2e15a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F8nymoAaaU3wYtxXXrRWUG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1881,
+      "cache_creation_input_tokens": 2163,
+      "cache_read_input_tokens": 26579,
+      "output_tokens": 659,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2163,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1881,
+          "output_tokens": 659,
+          "cache_read_input_tokens": 26579,
+          "cache_creation_input_tokens": 2163,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2163
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-17T09:12:50.835Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PDc3WaQbQpQz5WEpgC5CBS`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2507.19962",
+  "prompt": "Extract the full technical method of KLAAD. Specifically: (1) What is the exact loss function (equations)? (2) Does it target ALL attention heads or specific heads? (3) How are the paired sentences constructed? (4) What is the KL divergence component exactly — is it over the full attention matrix or specific layers? (5) What are the key results — bias reduction vs. fluency tradeoff? (6) Any discussion of which heads matter most?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "223a86a2-89d2-4684-bd8e-e55f5e2e15a6",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tDGzTepWcHo6u4ZWRa",
+  "type": "assistant",
+  "uuid": "3520378f-e4d2-4879-af62-645f90117aa1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F8nymoAaaU3wYtxXXrRWUG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1881,
+      "cache_creation_input_tokens": 2163,
+      "cache_read_input_tokens": 26579,
+      "output_tokens": 659,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2163,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1881,
+          "output_tokens": 659,
+          "cache_read_input_tokens": 26579,
+          "cache_creation_input_tokens": 2163,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2163
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T09:12:54.129Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01WwovmK7ZoNy8tHEtR82RLR`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2602.01528v2",
+  "prompt": "Extract the LIMITATIONS section and any discussion of failure modes of EIT. Specifically: (1) When does EIT fail or degrade? (2) Are there distractor types where it struggles? (3) Does it discuss the internal mechanism of how the model achieves robustness? (4) Does it discuss whether the entrainment circuit is modified or just compensated for? (5) Any discussion of composability with other methods? (6) What are the specific numbers for distraction robustness?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3520378f-e4d2-4879-af62-645f90117aa1",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tDGzTepWcHo6u4ZWRa",
+  "type": "assistant",
+  "uuid": "a9cf2d74-4d84-411a-bbc2-bfad0a594508",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F8nymoAaaU3wYtxXXrRWUG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1881,
+      "cache_creation_input_tokens": 2163,
+      "cache_read_input_tokens": 26579,
+      "output_tokens": 659,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2163,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1881,
+          "output_tokens": 659,
+          "cache_read_input_tokens": 26579,
+          "cache_creation_input_tokens": 2163,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2163
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T09:12:54.601Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RoFxPy9JGULGZRrXZFHxaq`</summary>
+
+```json
+{
+  "query": "inference time intervention internalization training distillation attention head ablation permanent 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9cf2d74-4d84-411a-bbc2-bfad0a594508",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tDGzTepWcHo6u4ZWRa",
+  "type": "assistant",
+  "uuid": "433930c3-88e4-43b8-b38b-74cd993b56b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F8nymoAaaU3wYtxXXrRWUG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1881,
+      "cache_creation_input_tokens": 2163,
+      "cache_read_input_tokens": 26579,
+      "output_tokens": 659,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2163,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1881,
+          "output_tokens": 659,
+          "cache_read_input_tokens": 26579,
+          "cache_creation_input_tokens": 2163,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2163
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T09:12:55.534Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LhUCXFdX2JEebLBtQPt1jR`</summary>
+
+```json
+{
+  "query": "\"entrainment heads\" ablation insufficient failure cases partial distraction LLM context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "433930c3-88e4-43b8-b38b-74cd993b56b4",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tDGzTepWcHo6u4ZWRa",
+  "type": "assistant",
+  "uuid": "cd40bcdf-d11d-4ce6-80d4-41ca0a206527",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F8nymoAaaU3wYtxXXrRWUG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1881,
+      "cache_creation_input_tokens": 2163,
+      "cache_read_input_tokens": 26579,
+      "output_tokens": 659,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2163,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1881,
+          "output_tokens": 659,
+          "cache_read_input_tokens": 26579,
+          "cache_creation_input_tokens": 2163,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2163
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-17T09:12:56.025Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CGYteuRQLGScUqjwjPaiQt`</summary>
+
+```json
+{
+  "query": "attention head ablation vs fine-tuning distraction robustness comparison LLM 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd40bcdf-d11d-4ce6-80d4-41ca0a206527",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tDGzTepWcHo6u4ZWRa",
+  "type": "assistant",
+  "uuid": "31cf8d20-a8db-4261-8dc5-359af9d4c5cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F8nymoAaaU3wYtxXXrRWUG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1881,
+      "cache_creation_input_tokens": 2163,
+      "cache_read_input_tokens": 26579,
+      "output_tokens": 659,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2163,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1881,
+          "output_tokens": 659,
+          "cache_read_input_tokens": 26579,
+          "cache_creation_input_tokens": 2163,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2163
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T09:13:01.263Z_
+
+<details><summary>↩ Tool result · `toolu_01PDc3WaQbQpQz5WEpgC5CBS`</summary>
+
+```text
+# KLAAD Technical Method Extraction
+
+## (1) Loss Function (Equations)
+
+The composite objective combines three components:
+
+**ℒ = λ₁·ℒ_CE + λ₂·ℒ_KL + λ₃·ℒ_Triplet**
+
+- **Cross-Entropy**: "averaged over the coherent sentences in each triplet" — ℒ_CE = (ℒ_stereo^CE + ℒ_anti^CE)/2
+- **KL divergence**: D_KL(Attn_anti ∥ Attn_stereo), where attention comes from "softmax-normalized attention distribution from the final layer"
+- **Triplet loss**: max(0, ||h_stereo - h_anti||₂² - ||h_stereo - h_unrelated||₂² + margin)
+
+## (2) Attention Head Coverage
+
+The method targets **all attention heads in the final layer**. The paper specifies using "the final layer of the model" without selecting or masking specific heads. This contrasts with prior work that "masking different head sets for each pair."
+
+## (3) Paired Sentence Construction
+
+Triplets are constructed from StereoSet with three components:
+- Stereotypical sentence
+- Anti-stereotypical counterpart (same structure, different bias-related content)
+- Unrelated sentence (structurally similar but semantically incoherent)
+
+Examples include templates like "A male is considered a [dominant/sensitive/donuts] person."
+
+## (4) KL Divergence Specifics
+
+The divergence operates on "softmax-normalized attention distribution from the final layer." The paper applies softmax normalization because "many attention weights are close to zero, leading the KL divergence loss to diverge." This computes alignment across the entire attention matrix at the final decoder layer, not specific positions.
+
+## (5) Key Results: Bias-Fluency Tradeoff
+
+**BBQ performance** (Llama-3.2-3B):
+- Highest ambiguous-context accuracy (7.24%, vs. baseline 3.99%)
+- Second-highest disambiguated accuracy (53.23%)
+- Near-zero bias scores (±0.01)
+
+**BOLD results**: Achieves "the most emotionally neutral outputs across all demographic groups" with significantly reduced BE5 emotion intensities.
+
+**CrowS-Pairs limitation**: Lower stereotype scores than some baselines, but analysis shows KLAAD reduces absolute log-probability differences by 0.24 across 57.33% of examples, indicating genuine preference narrowing rather than metric gaming.
+
+## (6) Head Importance Discussion
+
+The paper contains **no analysis of which specific attention heads matter most**. It explicitly states the method applies to the entire final layer without head-level diagnostics or ablations. The work positions this differently from prior approaches like Yang et al. (2025), which identify biased heads for masking.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3520378f-e4d2-4879-af62-645f90117aa1",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "bb4ea88a-b44d-4784-b24c-b8d63a4a3a45",
+  "toolUseResult": {
+    "bytes": 1019159,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# KLAAD Technical Method Extraction\n\n## (1) Loss Function (Equations)\n\nThe composite objective combines three components:\n\n**ℒ = λ₁·ℒ_CE + λ₂·ℒ_KL + λ₃·ℒ_Triplet**\n\n- **Cross-Entropy**: \"averaged over the coherent sentences in each triplet\" — ℒ_CE = (ℒ_stereo^CE + ℒ_anti^CE)/2\n- **KL divergence**: D_KL(Attn_anti ∥ Attn_stereo), where attention comes from \"softmax-normalized attention distribution from the final layer\"\n- **Triplet loss**: max(0, ||h_stereo - h_anti||₂² - ||h_stereo - h_unrelated||₂² + margin)\n\n## (2) Attention Head Coverage\n\nThe method targets **all attention heads in the final layer**. The paper specifies using \"the final layer of the model\" without selecting or masking specific heads. This contrasts with prior work that \"masking different head sets for each pair.\"\n\n## (3) Paired Sentence Construction\n\nTriplets are constructed from StereoSet with three components:\n- Stereotypical sentence\n- Anti-stereotypical counterpart (same structure, different bias-related content)\n- Unrelated sentence (structurally similar but semantically incoherent)\n\nExamples include templates like \"A male is considered a [dominant/sensitive/donuts] person.\"\n\n## (4) KL Divergence Specifics\n\nThe divergence operates on \"softmax-normalized attention distribution from the final layer.\" The paper applies softmax normalization because \"many attention weights are close to zero, leading the KL divergence loss to diverge.\" This computes alignment across the entire attention matrix at the final decoder layer, not specific positions.\n\n## (5) Key Results: Bias-Fluency Tradeoff\n\n**BBQ performance** (Llama-3.2-3B):\n- Highest ambiguous-context accuracy (7.24%, vs. baseline 3.99%)\n- Second-highest disambiguated accuracy (53.23%)\n- Near-zero bias scores (±0.01)\n\n**BOLD results**: Achieves \"the most emotionally neutral outputs across all demographic groups\" with significantly reduced BE5 emotion intensities.\n\n**CrowS-Pairs limitation**: Lower stereotype scores than some baselines, but analysis shows KLAAD reduces absolute log-probability differences by 0.24 across 57.33% of examples, indicating genuine preference narrowing rather than metric gaming.\n\n## (6) Head Importance Discussion\n\nThe paper contains **no analysis of which specific attention heads matter most**. It explicitly states the method applies to the entire final layer without head-level diagnostics or ablations. The work positions this differently from prior approaches like Yang et al. (2025), which identify biased heads for masking.",
+    "durationMs": 10423,
+    "url": "https://arxiv.org/html/2507.19962"
+  },
+  "sourceToolAssistantUUID": "3520378f-e4d2-4879-af62-645f90117aa1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T09:13:01.754Z_
+
+<details><summary>↩ Tool result · `toolu_01RoFxPy9JGULGZRrXZFHxaq`</summary>
+
+```text
+Web search results for query: "inference time intervention internalization training distillation attention head ablation permanent 2025 2026"
+
+Links: [{"title":"[2306.03341] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model","url":"https://arxiv.org/abs/2306.03341"},{"title":"Inference-Time Intervention (ITI)","url":"https://www.emergentmind.com/topics/inference-time-intervention-iti"},{"title":"SMITIN: Self-Monitored Inference-Time INtervention for ...","url":"https://www.merl.com/publications/docs/TR2025-012.pdf"},{"title":"GitHub - likenneth/honest_llama: Inference-Time Intervention: Eliciting Truthful Answers from a Language Model · GitHub","url":"https://github.com/likenneth/honest_llama"},{"title":"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | OpenReview","url":"https://openreview.net/forum?id=aLLuYpn83y"},{"title":"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model","url":"https://arxiv.org/pdf/2306.03341"},{"title":"(PDF) Inference-Time Intervention: Eliciting Truthful Answers from a Language Model","url":"https://www.researchgate.net/publication/371347185_Inference-Time_Intervention_Eliciting_Truthful_Answers_from_a_Language_Model"},{"title":"Hybrid Linear Attention Done Right: Efficient Distillation and Effective Architectures for Extremely Long Contexts","url":"https://arxiv.org/html/2601.22156v1"},{"title":"Inference-time intervention | Proceedings of the 37th International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3666122.3667919"},{"title":"GitHub - ThreeSR/Awesome-Inference-Time-Scaling: Paper List of Inference/Test Time Scaling/Computing · GitHub","url":"https://github.com/ThreeSR/Awesome-Inference-Time-Scaling"}]
+
+Based on the search results, here's what I found regarding your query about inference-time intervention, internalization, training, distillation, attention head ablation, and related topics from 2025-2026:
+
+## Inference-Time Intervention (ITI)
+
+Inference-Time Intervention (ITI) is a paradigm for modulating the behavior of predictive models—most prominently LLMs, reinforcement learning controllers, and multimodal transformers—by making structured, data-driven adjustments to internal activations at the moment of inference, without modifying or retraining core model parameters.
+
+ITI operates by shifting model activations during inference, following a set of directions across a limited number of attention heads. This technique is designed to enhance the "truthfulness" of large language models (LLMs) and significantly improves the performance of LLaMA models on the TruthfulQA benchmark.
+
+## Attention Head Ablation and Selection
+
+A soft-weighting technique for attention head selection was justified over selecting top-K heads for ITI, with the rationale that the optimal set of top K heads varies depending on the task or instrument.
+
+## Recent Applications (2025)
+
+ITI techniques have been applied to steer factuality, safety, attribute balance, robustness, and other desiderata in domains spanning language, vision, code, music, and control across multiple 2025 publications.
+
+## Distillation and Training
+
+Recent work in 2025-2026 has explored post-training strategies to enable inference-time scaling through distillation from frontier model reasoning traces and reinforcement learning with verifiable rewards (RLVR), including large-scale datasets of reasoning traces generated by advanced models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "433930c3-88e4-43b8-b38b-74cd993b56b4",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "50b13b01-edd0-4ea7-9c71-3c6d00c2faf8",
+  "toolUseResult": {
+    "query": "inference time intervention internalization training distillation attention head ablation permanent 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NkD7716JYwtRhws6U75Prc",
+        "content": [
+          {
+            "title": "[2306.03341] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model",
+            "url": "https://arxiv.org/abs/2306.03341"
+          },
+          {
+            "title": "Inference-Time Intervention (ITI)",
+            "url": "https://www.emergentmind.com/topics/inference-time-intervention-iti"
+          },
+          {
+            "title": "SMITIN: Self-Monitored Inference-Time INtervention for ...",
+            "url": "https://www.merl.com/publications/docs/TR2025-012.pdf"
+          },
+          {
+            "title": "GitHub - likenneth/honest_llama: Inference-Time Intervention: Eliciting Truthful Answers from a Language Model · GitHub",
+            "url": "https://github.com/likenneth/honest_llama"
+          },
+          {
+            "title": "Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | OpenReview",
+            "url": "https://openreview.net/forum?id=aLLuYpn83y"
+          },
+          {
+            "title": "Inference-Time Intervention: Eliciting Truthful Answers from a Language Model",
+            "url": "https://arxiv.org/pdf/2306.03341"
+          },
+          {
+            "title": "(PDF) Inference-Time Intervention: Eliciting Truthful Answers from a Language Model",
+            "url": "https://www.researchgate.net/publication/371347185_Inference-Time_Intervention_Eliciting_Truthful_Answers_from_a_Language_Model"
+          },
+          {
+            "title": "Hybrid Linear Attention Done Right: Efficient Distillation and Effective Architectures for Extremely Long Contexts",
+            "url": "https://arxiv.org/html/2601.22156v1"
+          },
+          {
+            "title": "Inference-time intervention | Proceedings of the 37th International Conference on Neural Information Processing Systems",
+            "url": "https://dl.acm.org/doi/10.5555/3666122.3667919"
+          },
+          {
+            "title": "GitHub - ThreeSR/Awesome-Inference-Time-Scaling: Paper List of Inference/Test Time Scaling/Computing · GitHub",
+            "url": "https://github.com/ThreeSR/Awesome-Inference-Time-Scaling"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding your query about inference-time intervention, internalization, training, distillation, attention head ablation, and related topics from 2025-2026:\n\n## Inference-Time Intervention (ITI)\n\nInference-Time Intervention (ITI) is a paradigm for modulating the behavior of predictive models—most prominently LLMs, reinforcement learning controllers, and multimodal transformers—by making structured, data-driven adjustments to internal activations at the moment of inference, without modifying or retraining core model parameters.\n\nITI operates by shifting model activations during inference, following a set of directions across a limited number of attention heads. This technique is designed to enhance the \"truthfulness\" of large language models (LLMs) and significantly improves the performance of LLaMA models on the TruthfulQA benchmark.\n\n## Attention Head Ablation and Selection\n\nA soft-weighting technique for attention head selection was justified over selecting top-K heads for ITI, with the rationale that the optimal set of top K heads varies depending on the task or instrument.\n\n## Recent Applications (2025)\n\nITI techniques have been applied to steer factuality, safety, attribute balance, robustness, and other desiderata in domains spanning language, vision, code, music, and control across multiple 2025 publications.\n\n## Distillation and Training\n\nRecent work in 2025-2026 has explored post-training strategies to enable inference-time scaling through distillation from frontier model reasoning traces and reinforcement learning with verifiable rewards (RLVR), including large-scale datasets of reasoning traces generated by advanced models."
+    ],
+    "durationSeconds": 7.149946786
+  },
+  "sourceToolAssistantUUID": "433930c3-88e4-43b8-b38b-74cd993b56b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T09:13:02.218Z_
+
+<details><summary>↩ Tool result · `toolu_01WwovmK7ZoNy8tHEtR82RLR`</summary>
+
+```text
+# EIT Limitations and Failure Modes Analysis
+
+## 1. When Does EIT Fail or Degrade?
+
+**Structural biases show minimal transfer.** The paper explicitly states: *"position bias (structural) shows minimal transfer, with position-B robustness actually decreasing from 38.6% to 36.4%."* This indicates EIT struggles when bias operates through option ordering rather than content-based signals.
+
+**Limited evaluation scope.** The authors acknowledge evaluation focuses on *"multiple-choice tasks (MMLU-Pro, MedQA, HellaSwag)"* and remains untested on *"open-ended judging tasks or free-form generation."*
+
+## 2. Distractor Types Where It Struggles
+
+Position bias demonstrates degraded performance. While content-based biases (bandwagon, authority, distraction) show strong improvements, structural manipulations like answer reordering prove resistant to the training approach.
+
+**Specific distraction robustness numbers:** On Qwen3-4B test set, distraction bias wrong-bias accuracy improved from 45.9% to 85.0% (+39.1%) and robustness from 40.6% to 79.7% (+39.1%).
+
+## 3. Internal Mechanism Discussion
+
+The paper provides substantial qualitative analysis identifying three cognitive patterns:
+
+- **Domain engagement:** EIT models invoke relevant knowledge at 87% frequency versus baseline's 34%
+- **Explicit verification:** EIT performs computation in 91% of traces versus baseline's 45%
+- **Reasoned disagreement:** EIT explicitly overrides conflicting bias 78% of frequency
+
+However, the authors present this as *"a suggestive interpretation rather than a definitive causal claim"* regarding how surface-form learning differs from substantive reasoning.
+
+## 4. Circuit Modification vs. Compensation
+
+The paper does **not discuss** whether bias susceptibility circuits are modified or merely compensated for through additional reasoning layers. This mechanistic question remains unaddressed.
+
+## 5. Composability Discussion
+
+The paper does **not discuss** combining EIT with other debiasing methods or potential interference between approaches.
+
+## 6. Critical Limitation on Non-Predictiveness Guarantee
+
+The authors clarify: *"The non-predictiveness guarantee applies specifically to the injected bias signal; it does not preclude reliance on other shortcuts"* already present in training data, acknowledging inherent limitations to their theoretical claims.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a9cf2d74-4d84-411a-bbc2-bfad0a594508",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "136afe04-ac1c-4518-97b9-19cc202d8db0",
+  "toolUseResult": {
+    "bytes": 581191,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# EIT Limitations and Failure Modes Analysis\n\n## 1. When Does EIT Fail or Degrade?\n\n**Structural biases show minimal transfer.** The paper explicitly states: *\"position bias (structural) shows minimal transfer, with position-B robustness actually decreasing from 38.6% to 36.4%.\"* This indicates EIT struggles when bias operates through option ordering rather than content-based signals.\n\n**Limited evaluation scope.** The authors acknowledge evaluation focuses on *\"multiple-choice tasks (MMLU-Pro, MedQA, HellaSwag)\"* and remains untested on *\"open-ended judging tasks or free-form generation.\"*\n\n## 2. Distractor Types Where It Struggles\n\nPosition bias demonstrates degraded performance. While content-based biases (bandwagon, authority, distraction) show strong improvements, structural manipulations like answer reordering prove resistant to the training approach.\n\n**Specific distraction robustness numbers:** On Qwen3-4B test set, distraction bias wrong-bias accuracy improved from 45.9% to 85.0% (+39.1%) and robustness from 40.6% to 79.7% (+39.1%).\n\n## 3. Internal Mechanism Discussion\n\nThe paper provides substantial qualitative analysis identifying three cognitive patterns:\n\n- **Domain engagement:** EIT models invoke relevant knowledge at 87% frequency versus baseline's 34%\n- **Explicit verification:** EIT performs computation in 91% of traces versus baseline's 45%\n- **Reasoned disagreement:** EIT explicitly overrides conflicting bias 78% of frequency\n\nHowever, the authors present this as *\"a suggestive interpretation rather than a definitive causal claim\"* regarding how surface-form learning differs from substantive reasoning.\n\n## 4. Circuit Modification vs. Compensation\n\nThe paper does **not discuss** whether bias susceptibility circuits are modified or merely compensated for through additional reasoning layers. This mechanistic question remains unaddressed.\n\n## 5. Composability Discussion\n\nThe paper does **not discuss** combining EIT with other debiasing methods or potential interference between approaches.\n\n## 6. Critical Limitation on Non-Predictiveness Guarantee\n\nThe authors clarify: *\"The non-predictiveness guarantee applies specifically to the injected bias signal; it does not preclude reliance on other shortcuts\"* already present in training data, acknowledging inherent limitations to their theoretical claims.",
+    "durationMs": 8086,
+    "url": "https://arxiv.org/html/2602.01528v2"
+  },
+  "sourceToolAssistantUUID": "a9cf2d74-4d84-411a-bbc2-bfad0a594508",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-17 (UTC).**  ## Original idea {   \"title\": \"Circuit-DPO: Composable Distraction Robustness via Mechanistically-Tar…",
+  "leafUuid": "136afe04-ac1c-4518-97b9-19cc202d8db0",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising Circuit-DPO core framing",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T09:13:02.584Z_
+
+<details><summary>↩ Tool result · `toolu_01LhUCXFdX2JEebLBtQPt1jR`</summary>
+
+```text
+Web search results for query: ""entrainment heads" ablation insufficient failure cases partial distraction LLM context"
+
+Links: [{"title":"Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs","url":"https://arxiv.org/html/2505.09338v2"},{"title":"Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.791/"},{"title":"A Mechanistic Perspective on Contextual Entrainment and ...","url":"https://aclanthology.org/2025.acl-long.791.pdf"},{"title":"Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search","url":"https://arxiv.org/html/2502.01609v2"},{"title":"A Field Guide to LLM Failure Modes | by Adnan Masood, PhD. | Medium","url":"https://medium.com/@adnanmasood/a-field-guide-to-llm-failure-modes-5ffaeeb08e80"},{"title":"How Long Contexts Fail","url":"https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html"},{"title":"ABGEN: Evaluating Large Language Models in Ablation ...","url":"https://aclanthology.org/2025.acl-long.611v1.pdf"},{"title":"Why LLMs Get Distracted and How to Write Shorter Prompts","url":"https://blog.promptlayer.com/why-llms-get-distracted-and-how-to-write-shorter-prompts/"},{"title":"LLM Behavioral Failure Modes: 12 Failure Patterns and the Defense Map","url":"https://ceaksan.com/en/llm-behavioral-failure-modes"},{"title":"In the context of deep learning, what is an ablation study? - Quora","url":"https://www.quora.com/In-the-context-of-deep-learning-what-is-an-ablation-study"}]
+
+Based on the web search results, here's what I found about entrainment heads and related topics:
+
+## Entrainment Heads in LLMs
+
+Contextual entrainment is a novel phenomenon that plays a crucial role in LM distraction. Entrainment heads are identified using a novel method based on differentiable masking which, when "turned off," the effect of contextual entrainment is drastically suppressed.
+
+## How Contextual Entrainment Works
+
+Language models assign significantly higher logits (or probabilities) to any tokens that have previously appeared in the context prompt, even for random tokens, suggesting that contextual entrainment is a mechanistic phenomenon occurring independently of the relevance or semantic relation of the tokens to the question.
+
+## Ablation and Failure Cases
+
+The research reveals interesting findings about ablating these heads: When certain circuits are ablated, alternative "backup" circuits can emerge to take over. Additionally, there is a level of overlap substantially higher than random chance in entrainment head identification across multiple runs, suggesting a high degree of stability.
+
+## Partial Distraction Issues
+
+Current static approaches for evaluating LLM contextual robustness are increasingly ineffective against contemporary models, with performance degradation often below 5% on advanced models, highlighting that existing methods lack adaptiveness.
+
+The research appears to be from a recent ACL 2025 paper titled "Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs."
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cd40bcdf-d11d-4ce6-80d4-41ca0a206527",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "8243534e-5706-48ab-8107-a2add2879859",
+  "toolUseResult": {
+    "query": "\"entrainment heads\" ablation insufficient failure cases partial distraction LLM context",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0152sBRJJw8aGykrw71QuGeW",
+        "content": [
+          {
+            "title": "Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs",
+            "url": "https://arxiv.org/html/2505.09338v2"
+          },
+          {
+            "title": "Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.791/"
+          },
+          {
+            "title": "A Mechanistic Perspective on Contextual Entrainment and ...",
+            "url": "https://aclanthology.org/2025.acl-long.791.pdf"
+          },
+          {
+            "title": "Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search",
+            "url": "https://arxiv.org/html/2502.01609v2"
+          },
+          {
+            "title": "A Field Guide to LLM Failure Modes | by Adnan Masood, PhD. | Medium",
+            "url": "https://medium.com/@adnanmasood/a-field-guide-to-llm-failure-modes-5ffaeeb08e80"
+          },
+          {
+            "title": "How Long Contexts Fail",
+            "url": "https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html"
+          },
+          {
+            "title": "ABGEN: Evaluating Large Language Models in Ablation ...",
+            "url": "https://aclanthology.org/2025.acl-long.611v1.pdf"
+          },
+          {
+            "title": "Why LLMs Get Distracted and How to Write Shorter Prompts",
+            "url": "https://blog.promptlayer.com/why-llms-get-distracted-and-how-to-write-shorter-prompts/"
+          },
+          {
+            "title": "LLM Behavioral Failure Modes: 12 Failure Patterns and the Defense Map",
+            "url": "https://ceaksan.com/en/llm-behavioral-failure-modes"
+          },
+          {
+            "title": "In the context of deep learning, what is an ablation study? - Quora",
+            "url": "https://www.quora.com/In-the-context-of-deep-learning-what-is-an-ablation-study"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about entrainment heads and related topics:\n\n## Entrainment Heads in LLMs\n\nContextual entrainment is a novel phenomenon that plays a crucial role in LM distraction. Entrainment heads are identified using a novel method based on differentiable masking which, when \"turned off,\" the effect of contextual entrainment is drastically suppressed.\n\n## How Contextual Entrainment Works\n\nLanguage models assign significantly higher logits (or probabilities) to any tokens that have previously appeared in the context prompt, even for random tokens, suggesting that contextual entrainment is a mechanistic phenomenon occurring independently of the relevance or semantic relation of the tokens to the question.\n\n## Ablation and Failure Cases\n\nThe research reveals interesting findings about ablating these heads: When certain circuits are ablated, alternative \"backup\" circuits can emerge to take over. Additionally, there is a level of overlap substantially higher than random chance in entrainment head identification across multiple runs, suggesting a high degree of stability.\n\n## Partial Distraction Issues\n\nCurrent static approaches for evaluating LLM contextual robustness are increasingly ineffective against contemporary models, with performance degradation often below 5% on advanced models, highlighting that existing methods lack adaptiveness.\n\nThe research appears to be from a recent ACL 2025 paper titled \"Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs.\""
+    ],
+    "durationSeconds": 7.047034905
+  },
+  "sourceToolAssistantUUID": "cd40bcdf-d11d-4ce6-80d4-41ca0a206527",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-17T09:13:03.449Z_
+
+<details><summary>↩ Tool result · `toolu_01CGYteuRQLGScUqjwjPaiQt`</summary>
+
+```text
+Web search results for query: "attention head ablation vs fine-tuning distraction robustness comparison LLM 2025"
+
+Links: [{"title":"Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search","url":"https://arxiv.org/html/2502.01609"},{"title":"Efficiency and Performance Optimization in Large Language Models through IB Fine-Tuning | ACM Transactions on Intelligent Systems and Technology","url":"https://dl.acm.org/doi/10.1145/3718096"},{"title":"Published as a conference paper at ICLR 2025 ON THE ROLE OF ATTENTION HEADS IN","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/d0bcff6425bbf850ec87d5327a965db9-Paper-Conference.pdf"},{"title":"GitHub - IAAR-Shanghai/Awesome-Attention-Heads: An awesome repository & A comprehensive survey on interpretability of LLM attention heads. · GitHub","url":"https://github.com/IAAR-Shanghai/Awesome-Attention-Heads"},{"title":"Theoretical Insights into Fine-Tuning Attention Mechanism: Generalization and Optimization | OpenReview","url":"https://openreview.net/forum?id=P98KMCf60l"},{"title":"Deeper Insights Without Updates: The Power of In-Context Learning Over Fine-Tuning","url":"https://arxiv.org/html/2410.04691v1"},{"title":"A Visual Guide to Attention Variants in Modern LLMs","url":"https://magazine.sebastianraschka.com/p/visual-attention-variants"},{"title":"Supervised Fine-Tuning Achieve Rapid Task Adaption Via Alternating Attention Head Activation Patterns","url":"https://arxiv.org/html/2409.15820v2"},{"title":"Understanding the Effects of Domain Finetuning on LLMs","url":"https://arxiv.org/html/2510.09359v1"},{"title":"1 Reasoning Beyond Limits: Advances and Open Problems for LLMs","url":"https://arxiv.org/pdf/2503.22732"}]
+
+I've completed the web search for your query. Here's a summary of the relevant findings:
+
+## Key Research Findings
+
+**Distraction Robustness and Fine-tuning:**
+
+Fine-tuned models showed better focus on relevant question content and stronger resistance to irrelevant distractions. While SFT offers mild improvements over the base model, DPO achieves substantially higher accuracy under adaptive distraction (AD).
+
+**Attention Head Mechanisms and Fine-tuning:**
+
+Researchers employed gradient-based methods to dissect the SFT process that adapts LLMs to downstream tasks via attention patterns, finding that LLMs selectively activate task-specific attention heads during SFT.
+
+Certain attention heads are crucial for safety, safety heads overlap across fine-tuned models, and ablating these heads minimally impacts helpfulness.
+
+**Fine-tuning vs. Ablation Robustness:**
+
+Fine-tuned models are more resilient to neural ablation, especially for the LLaMA-3 series. This suggests fine-tuning makes models more robust to disruptions in their attention mechanisms.
+
+**Attention Matrix Optimization:**
+
+Optimizing the $\mathbf{W}_v$ matrix yields significantly better performance than optimizing the $\mathbf{W}_k$ matrix, and fine-tuning only the $\mathbf{W}_q$ and $\mathbf{W}_v$ matrices is computationally efficient while delivering results comparable to fine-tuning all three matrices.
+
+The research from 2025 indicates that fine-tuning enhances distraction robustness better than attention head ablation alone, with attention heads being reorganized and made more selective during the fine-tuning process.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "31cf8d20-a8db-4261-8dc5-359af9d4c5cb",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "5e57dad3-c2fe-4b48-89d4-ee29cede17b6",
+  "toolUseResult": {
+    "query": "attention head ablation vs fine-tuning distraction robustness comparison LLM 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FH9oYirKwpDHnaNqxHgGtu",
+        "content": [
+          {
+            "title": "Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search",
+            "url": "https://arxiv.org/html/2502.01609"
+          },
+          {
+            "title": "Efficiency and Performance Optimization in Large Language Models through IB Fine-Tuning | ACM Transactions on Intelligent Systems and Technology",
+            "url": "https://dl.acm.org/doi/10.1145/3718096"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 ON THE ROLE OF ATTENTION HEADS IN",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/d0bcff6425bbf850ec87d5327a965db9-Paper-Conference.pdf"
+          },
+          {
+            "title": "GitHub - IAAR-Shanghai/Awesome-Attention-Heads: An awesome repository & A comprehensive survey on interpretability of LLM attention heads. · GitHub",
+            "url": "https://github.com/IAAR-Shanghai/Awesome-Attention-Heads"
+          },
+          {
+            "title": "Theoretical Insights into Fine-Tuning Attention Mechanism: Generalization and Optimization | OpenReview",
+            "url": "https://openreview.net/forum?id=P98KMCf60l"
+          },
+          {
+            "title": "Deeper Insights Without Updates: The Power of In-Context Learning Over Fine-Tuning",
+            "url": "https://arxiv.org/html/2410.04691v1"
+          },
+          {
+            "title": "A Visual Guide to Attention Variants in Modern LLMs",
+            "url": "https://magazine.sebastianraschka.com/p/visual-attention-variants"
+          },
+          {
+            "title": "Supervised Fine-Tuning Achieve Rapid Task Adaption Via Alternating Attention Head Activation Patterns",
+            "url": "https://arxiv.org/html/2409.15820v2"
+          },
+          {
+            "title": "Understanding the Effects of Domain Finetuning on LLMs",
+            "url": "https://arxiv.org/html/2510.09359v1"
+          },
+          {
+            "title": "1 Reasoning Beyond Limits: Advances and Open Problems for LLMs",
+            "url": "https://arxiv.org/pdf/2503.22732"
+          }
+        ]
+      },
+      "I've completed the web search for your query. Here's a summary of the relevant findings:\n\n## Key Research Findings\n\n**Distraction Robustness and Fine-tuning:**\n\nFine-tuned models showed better focus on relevant question content and stronger resistance to irrelevant distractions. While SFT offers mild improvements over the base model, DPO achieves substantially higher accuracy under adaptive distraction (AD).\n\n**Attention Head Mechanisms and Fine-tuning:**\n\nResearchers employed gradient-based methods to dissect the SFT process that adapts LLMs to downstream tasks via attention patterns, finding that LLMs selectively activate task-specific attention heads during SFT.\n\nCertain attention heads are crucial for safety, safety heads overlap across fine-tuned models, and ablating these heads minimally impacts helpfulness.\n\n**Fine-tuning vs. Ablation Robustness:**\n\nFine-tuned models are more resilient to neural ablation, especially for the LLaMA-3 series. This suggests fine-tuning makes models more robust to disruptions in their attention mechanisms.\n\n**Attention Matrix Optimization:**\n\nOptimizing the $\\mathbf{W}_v$ matrix yields significantly better performance than optimizing the $\\mathbf{W}_k$ matrix, and fine-tuning only the $\\mathbf{W}_q$ and $\\mathbf{W}_v$ matrices is computationally efficient while delivering results comparable to fine-tuning all three matrices.\n\nThe research from 2025 indicates that fine-tuning enhances distraction robustness better than attention head ablation alone, with attention heads being reorganized and made more selective during the fine-tuning process."
+    ],
+    "durationSeconds": 7.420742011999995
+  },
+  "sourceToolAssistantUUID": "31cf8d20-a8db-4261-8dc5-359af9d4c5cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 40 · 2026-05-17T09:13:03.453Z_
+
+```json
+{
+  "parentUuid": "5e57dad3-c2fe-4b48-89d4-ee29cede17b6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "fec2cef9-4301-43a6-b554-16cbcf054537",
+  "timestamp": "2026-05-17T09:13:03.453Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-17T09:13:07.969Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent findings! Now let me search for more specific information:
+
+1. The "Llama See, Llama Do" full paper - especially about backup circuits
+2. The Adaptive Distraction paper - for cases where ablation isn't enough
+3. Any work on training-time internalization of inference-time interventions (like distilling ITI into weights)
+4. Search for whether anyone has shown that behavioral training leaves the entrainment circuit intact
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fec2cef9-4301-43a6-b554-16cbcf054537",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tEnRJYbk3nxz3oEoWw",
+  "type": "assistant",
+  "uuid": "59b1afca-6364-4db2-bcb8-8c3dd3b2c8c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019GEkHCLXgKRFtgcGwoPEgU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6795,
+      "cache_read_input_tokens": 28742,
+      "output_tokens": 625,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6795,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 625,
+          "cache_read_input_tokens": 28742,
+          "cache_creation_input_tokens": 6795,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6795
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-17T09:13:08.933Z_
+
+Very useful findings. Let me now do targeted deep dives on the critical gaps.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59b1afca-6364-4db2-bcb8-8c3dd3b2c8c5",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tEnRJYbk3nxz3oEoWw",
+  "type": "assistant",
+  "uuid": "2eaf0024-272c-4915-9c73-ca6eee5e9a23",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019GEkHCLXgKRFtgcGwoPEgU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6795,
+      "cache_read_input_tokens": 28742,
+      "output_tokens": 625,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6795,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 625,
+          "cache_read_input_tokens": 28742,
+          "cache_creation_input_tokens": 6795,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6795
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-17T09:13:13.506Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SAdoDMsNzrWzRCFxGrYq4Q`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2505.09338v2",
+  "prompt": "Extract the following specific information: (1) The exact quote about entrainment heads NOT being related to ICL. (2) The exact ICL performance numbers after ablation (0.2-3% claim). (3) Any discussion of BACKUP CIRCUITS - do they mention that ablating entrainment heads causes backup circuits to emerge? (4) Are entrainment heads task-specific? What evidence? (5) Any limitations of the ablation approach discussed? (6) How many heads are identified (30-110 range)? (7) Any discussion of whether entrainment can be partially harmful (graded effects)?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2eaf0024-272c-4915-9c73-ca6eee5e9a23",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tEnRJYbk3nxz3oEoWw",
+  "type": "assistant",
+  "uuid": "000490cd-e4ce-42d1-a2b9-6ca08921a5b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019GEkHCLXgKRFtgcGwoPEgU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6795,
+      "cache_read_input_tokens": 28742,
+      "output_tokens": 625,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6795,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 625,
+          "cache_read_input_tokens": 28742,
+          "cache_creation_input_tokens": 6795,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6795
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-17T09:13:15.614Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01RTZzeG81nxLQrhekctJmHj`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2502.01609v2",
+  "prompt": "Extract from the Adaptive Distraction paper: (1) What types of distractors does it use? (2) How does DPO perform vs. other methods? (3) Are there cases where models still fail even with training? (4) Any discussion of whether attention-level interventions help? (5) What is the hardest distraction type? (6) Key performance numbers for different defense methods."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "000490cd-e4ce-42d1-a2b9-6ca08921a5b6",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tEnRJYbk3nxz3oEoWw",
+  "type": "assistant",
+  "uuid": "ea232ec8-f312-40b2-b9b6-3623af44130f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019GEkHCLXgKRFtgcGwoPEgU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6795,
+      "cache_read_input_tokens": 28742,
+      "output_tokens": 625,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6795,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 625,
+          "cache_read_input_tokens": 28742,
+          "cache_creation_input_tokens": 6795,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6795
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T09:13:16.616Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WSadQCUJ8XkVbN7DtaVrHL`</summary>
+
+```json
+{
+  "query": "training time internalization inference time steering probing directions attention intervention distillation into weights LLM 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea232ec8-f312-40b2-b9b6-3623af44130f",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tEnRJYbk3nxz3oEoWw",
+  "type": "assistant",
+  "uuid": "f5fed00d-c7e3-4b90-8331-43a3802f99e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019GEkHCLXgKRFtgcGwoPEgU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6795,
+      "cache_read_input_tokens": 28742,
+      "output_tokens": 625,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6795,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 625,
+          "cache_read_input_tokens": 28742,
+          "cache_creation_input_tokens": 6795,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6795
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-17T09:13:17.424Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0175XNNz3wEHzZTftp7pRvpr`</summary>
+
+```json
+{
+  "query": "behavioral RL training leaves internal circuits intact compensatory mechanism LLM alignment interpretability 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f5fed00d-c7e3-4b90-8331-43a3802f99e2",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tEnRJYbk3nxz3oEoWw",
+  "type": "assistant",
+  "uuid": "fd1cb7cf-b08c-47dc-a086-d2c4e648438a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019GEkHCLXgKRFtgcGwoPEgU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6795,
+      "cache_read_input_tokens": 28742,
+      "output_tokens": 625,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6795,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 625,
+          "cache_read_input_tokens": 28742,
+          "cache_creation_input_tokens": 6795,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6795
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-17T09:13:20.875Z_
+
+<details><summary>↩ Tool result · `toolu_01SAdoDMsNzrWzRCFxGrYq4Q`</summary>
+
+```text
+# Analysis of "Llama See, Llama Do" Paper
+
+## (1) Quote on Entrainment Heads NOT Related to ICL
+
+"Removing the entrainment heads has only a negligible to small effect on other LM capabilities" and specifically regarding ICL: "After removing the entrainment heads (🔧), the model exhibits only a small performance decrease (0.2∼3%)" while continuing "to demonstrate strong ICL capabilities."
+
+The paper explicitly states entrainment heads are "not strongly related to how LMs process and utilise contextual information or perform ICL more broadly."
+
+## (2) ICL Performance Numbers Post-Ablation
+
+Exact figures from Table 4:
+- Arithmetic 0-shot: 100% → 100% (no change)
+- Spelling correction 1-shot: 73.6% → 72.0% (1.6% decrease)
+- Translation 1-shot: 74.4% → 73.0% (1.4% decrease)
+
+The stated range of 0.2–3% decrease represents the overall pattern across tested tasks.
+
+## (3) Backup Circuits Discussion
+
+**No mention of backup circuits emerging after ablation.** The paper does not discuss whether alternative computational pathways compensate for disabled entrainment heads.
+
+## (4) Task-Specificity of Entrainment Heads
+
+**Yes, explicitly task-specific.** The paper states: "the entrainment heads are task-specific (or relation-specific), rather than model-specific."
+
+Evidence: Table 3 shows different numbers of identified heads across relations (30–110 heads, 2.9%–10.7% density), with different head compositions per task.
+
+## (5) Limitations of Ablation Approach
+
+The paper does **not discuss limitations** of the ablation methodology itself. It notes only that they "did not conduct experiments using larger LMs such as Llama-3.1-70B" due to resource constraints.
+
+## (6) Number of Heads Identified
+
+Range: **30–110 heads** across different relations, representing **2.9%–10.7%** of the model's 1,024 total attention heads (Llama-3.1-8B).
+
+## (7) Graded/Partial Harmfulness Discussion
+
+**No discussion of graded entrainment effects.** The paper treats contextual entrainment as a binary phenomenon without exploring whether some tokens or contexts produce weaker entrainment effects that might be partially beneficial.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "000490cd-e4ce-42d1-a2b9-6ca08921a5b6",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "c366da68-6443-4968-865d-a80aef99ccf6",
+  "toolUseResult": {
+    "bytes": 1011418,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of \"Llama See, Llama Do\" Paper\n\n## (1) Quote on Entrainment Heads NOT Related to ICL\n\n\"Removing the entrainment heads has only a negligible to small effect on other LM capabilities\" and specifically regarding ICL: \"After removing the entrainment heads (🔧), the model exhibits only a small performance decrease (0.2∼3%)\" while continuing \"to demonstrate strong ICL capabilities.\"\n\nThe paper explicitly states entrainment heads are \"not strongly related to how LMs process and utilise contextual information or perform ICL more broadly.\"\n\n## (2) ICL Performance Numbers Post-Ablation\n\nExact figures from Table 4:\n- Arithmetic 0-shot: 100% → 100% (no change)\n- Spelling correction 1-shot: 73.6% → 72.0% (1.6% decrease)\n- Translation 1-shot: 74.4% → 73.0% (1.4% decrease)\n\nThe stated range of 0.2–3% decrease represents the overall pattern across tested tasks.\n\n## (3) Backup Circuits Discussion\n\n**No mention of backup circuits emerging after ablation.** The paper does not discuss whether alternative computational pathways compensate for disabled entrainment heads.\n\n## (4) Task-Specificity of Entrainment Heads\n\n**Yes, explicitly task-specific.** The paper states: \"the entrainment heads are task-specific (or relation-specific), rather than model-specific.\"\n\nEvidence: Table 3 shows different numbers of identified heads across relations (30–110 heads, 2.9%–10.7% density), with different head compositions per task.\n\n## (5) Limitations of Ablation Approach\n\nThe paper does **not discuss limitations** of the ablation methodology itself. It notes only that they \"did not conduct experiments using larger LMs such as Llama-3.1-70B\" due to resource constraints.\n\n## (6) Number of Heads Identified\n\nRange: **30–110 heads** across different relations, representing **2.9%–10.7%** of the model's 1,024 total attention heads (Llama-3.1-8B).\n\n## (7) Graded/Partial Harmfulness Discussion\n\n**No discussion of graded entrainment effects.** The paper treats contextual entrainment as a binary phenomenon without exploring whether some tokens or contexts produce weaker entrainment effects that might be partially beneficial.",
+    "durationMs": 7364,
+    "url": "https://arxiv.org/html/2505.09338v2"
+  },
+  "sourceToolAssistantUUID": "000490cd-e4ce-42d1-a2b9-6ca08921a5b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T09:13:22.638Z_
+
+<details><summary>↩ Tool result · `toolu_01RTZzeG81nxLQrhekctJmHj`</summary>
+
+```text
+# Adaptive Distraction Paper: Key Findings
+
+## (1) Types of Distractors
+The framework generates "semantically coherent but task-irrelevant contextual additions" through tree search. Rather than using fixed templates, distractors are dynamically crafted by a proxy model to exploit specific model vulnerabilities while preserving the correct answer.
+
+## (2) DPO vs. Other Methods
+DPO substantially outperforms prompt-based mitigation. The paper shows DPO achieved "+0.175" accuracy gains for Gemma-2-2B on distracted inputs, compared to minimal improvements from instruction-based prompting (often under "+0.03"). One model (Phi-3.5-mini) reached "0.680" accuracy post-DPO training versus "0.195" originally.
+
+## (3) Cases Where Training Still Fails
+The paper doesn't extensively document remaining failures after DPO training. However, it notes the strongest model (o1-mini) showed "resilience" with only "-0.101" performance drop, suggesting reasoning-focused models retain some robustness even without specialized training.
+
+## (4) Attention-Level Interventions
+The paper doesn't discuss attention-level interventions. Related work mentions one study exploring "attention directions" but this isn't evaluated as a defense method in the main results.
+
+## (5) Hardest Distraction Type
+OpenbookQA showed the largest drops (average "-0.576"), while TruthfulQA was most resistant (average "-0.263"). The disparity suggests factual retrieval tasks are more vulnerable than trustworthiness evaluations.
+
+## (6) Defense Performance Numbers
+
+| Method | Example Result |
+|--------|---|
+| Prompt Enhancement | "+0.026" (GPT-4o-mini) |
+| DPO Training | "+0.485" (Phi-3.5-mini) |
+| Supervised Fine-Tuning | "+0.066" (Qwen2.5-7B) |
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ea232ec8-f312-40b2-b9b6-3623af44130f",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "1c9dea7e-b3b9-4013-88e4-319e8b61891f",
+  "toolUseResult": {
+    "bytes": 361733,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Adaptive Distraction Paper: Key Findings\n\n## (1) Types of Distractors\nThe framework generates \"semantically coherent but task-irrelevant contextual additions\" through tree search. Rather than using fixed templates, distractors are dynamically crafted by a proxy model to exploit specific model vulnerabilities while preserving the correct answer.\n\n## (2) DPO vs. Other Methods\nDPO substantially outperforms prompt-based mitigation. The paper shows DPO achieved \"+0.175\" accuracy gains for Gemma-2-2B on distracted inputs, compared to minimal improvements from instruction-based prompting (often under \"+0.03\"). One model (Phi-3.5-mini) reached \"0.680\" accuracy post-DPO training versus \"0.195\" originally.\n\n## (3) Cases Where Training Still Fails\nThe paper doesn't extensively document remaining failures after DPO training. However, it notes the strongest model (o1-mini) showed \"resilience\" with only \"-0.101\" performance drop, suggesting reasoning-focused models retain some robustness even without specialized training.\n\n## (4) Attention-Level Interventions\nThe paper doesn't discuss attention-level interventions. Related work mentions one study exploring \"attention directions\" but this isn't evaluated as a defense method in the main results.\n\n## (5) Hardest Distraction Type\nOpenbookQA showed the largest drops (average \"-0.576\"), while TruthfulQA was most resistant (average \"-0.263\"). The disparity suggests factual retrieval tasks are more vulnerable than trustworthiness evaluations.\n\n## (6) Defense Performance Numbers\n\n| Method | Example Result |\n|--------|---|\n| Prompt Enhancement | \"+0.026\" (GPT-4o-mini) |\n| DPO Training | \"+0.485\" (Phi-3.5-mini) |\n| Supervised Fine-Tuning | \"+0.066\" (Qwen2.5-7B) |",
+    "durationMs": 7021,
+    "url": "https://arxiv.org/html/2502.01609v2"
+  },
+  "sourceToolAssistantUUID": "ea232ec8-f312-40b2-b9b6-3623af44130f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-17 (UTC).**  ## Original idea {   \"title\": \"Circuit-DPO: Composable Distraction Robustness via Mechanistically-Tar…",
+  "leafUuid": "1c9dea7e-b3b9-4013-88e4-319e8b61891f",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising Circuit-DPO core framing",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-17T09:13:24.780Z_
+
+<details><summary>↩ Tool result · `toolu_01WSadQCUJ8XkVbN7DtaVrHL`</summary>
+
+```text
+Web search results for query: "training time internalization inference time steering probing directions attention intervention distillation into weights LLM 2025 2026 arXiv"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2602.18671"},{"title":"[2604.00626] A Survey of On-Policy Distillation for Large Language Models","url":"https://arxiv.org/abs/2604.00626"},{"title":"Published at Building Trust Workshop at ICLR 2025","url":"https://arxiv.org/pdf/2503.03730"},{"title":"Knowledge Distillation and Dataset Distillation of Large ...","url":"https://arxiv.org/pdf/2504.14772"},{"title":"Inference-Time Learning Algorithms of Language Models by Ekin Akyürek","url":"https://dspace.mit.edu/bitstream/handle/1721.1/163719/akyurek-akyurek-phd-eecs-2025-thesis.pdf?sequence=-1&isAllowed=y"},{"title":"Knowledge distillation and dataset distillation of large language models: emerging trends, challenges, and future directions - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12634706/"},{"title":"A Survey on the Mechanisms of Multi-Step Reasoning in ...","url":"https://arxiv.org/pdf/2601.14270"},{"title":"Machine Learning May 2025","url":"https://www.arxiv.org/list/cs.LG/2025-05?skip=1675&show=2000"},{"title":"How Far Can LLMs Improve from Experience? Measuring ...","url":"https://aclanthology.org/2025.emnlp-main.1304.pdf"},{"title":"AIR: Post-training Data Selection for Reasoning via Attention Head Influence","url":"https://www.arxiv.org/pdf/2512.13279"}]
+
+Based on the search results, I found several relevant papers and research directions related to your query. Here are the key findings:
+
+## Inference-Time Intervention and Steering
+
+ITI (Inference-Time Intervention) functions by altering model activations at inference time, steering them along specific directions within a restricted set of attention heads. Steering vectors provide a straightforward way to control a model by adding a fixed vector to its activations (Dunefsky & Cohan, 2025).
+
+## Distillation of Knowledge into Weights
+
+Knowledge distillation remains the dominant technique for transferring frontier capabilities from Large Language Models into smaller, deployable students. Model distillation is a process known to empower smaller models, allowing them to learn from outputs of reasoning models.
+
+## Probing and Internal Representations
+
+Recent work addresses limitations in probe-based approaches. Orgad et al. (2025) report that "probing classifiers do not generalize across different tasks." To address this, a training-free method is proposed that generalizes better across different tasks and is mathematically principled using the framework of Energy-based Models (EBMs).
+
+## On-Policy Distillation (2026)
+
+Because the student is trained on flawless teacher prefixes but must generate its own at inference, exposure bias has been shown to scale roughly with the square of sequence length, and On-Policy Distillation (OPD) reorganizes the training loop by having the teacher provide feedback on what the student actually produces.
+
+## Feature Geometry and Distillation
+
+There is emerging research on mechanistic interpretability aspects of distillation. Changes in feature geometry resulting from distillation are being explored.
+
+These results span publications from 2025-2026 on arXiv, ICLR, and related venues, covering the intersection of steering, probing, internalization, and distillation approaches for LLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f5fed00d-c7e3-4b90-8331-43a3802f99e2",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "9d29152b-87ed-4e30-b0d8-404ae41c032e",
+  "toolUseResult": {
+    "query": "training time internalization inference time steering probing directions attention intervention distillation into weights LLM 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SpyVnDJWuvRjB8bNqpZxSM",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2602.18671"
+          },
+          {
+            "title": "[2604.00626] A Survey of On-Policy Distillation for Large Language Models",
+            "url": "https://arxiv.org/abs/2604.00626"
+          },
+          {
+            "title": "Published at Building Trust Workshop at ICLR 2025",
+            "url": "https://arxiv.org/pdf/2503.03730"
+          },
+          {
+            "title": "Knowledge Distillation and Dataset Distillation of Large ...",
+            "url": "https://arxiv.org/pdf/2504.14772"
+          },
+          {
+            "title": "Inference-Time Learning Algorithms of Language Models by Ekin Akyürek",
+            "url": "https://dspace.mit.edu/bitstream/handle/1721.1/163719/akyurek-akyurek-phd-eecs-2025-thesis.pdf?sequence=-1&isAllowed=y"
+          },
+          {
+            "title": "Knowledge distillation and dataset distillation of large language models: emerging trends, challenges, and future directions - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12634706/"
+          },
+          {
+            "title": "A Survey on the Mechanisms of Multi-Step Reasoning in ...",
+            "url": "https://arxiv.org/pdf/2601.14270"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-05?skip=1675&show=2000"
+          },
+          {
+            "title": "How Far Can LLMs Improve from Experience? Measuring ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.1304.pdf"
+          },
+          {
+            "title": "AIR: Post-training Data Selection for Reasoning via Attention Head Influence",
+            "url": "https://www.arxiv.org/pdf/2512.13279"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and research directions related to your query. Here are the key findings:\n\n## Inference-Time Intervention and Steering\n\nITI (Inference-Time Intervention) functions by altering model activations at inference time, steering them along specific directions within a restricted set of attention heads. Steering vectors provide a straightforward way to control a model by adding a fixed vector to its activations (Dunefsky & Cohan, 2025).\n\n## Distillation of Knowledge into Weights\n\nKnowledge distillation remains the dominant technique for transferring frontier capabilities from Large Language Models into smaller, deployable students. Model distillation is a process known to empower smaller models, allowing them to learn from outputs of reasoning models.\n\n## Probing and Internal Representations\n\nRecent work addresses limitations in probe-based approaches. Orgad et al. (2025) report that \"probing classifiers do not generalize across different tasks.\" To address this, a training-free method is proposed that generalizes better across different tasks and is mathematically principled using the framework of Energy-based Models (EBMs).\n\n## On-Policy Distillation (2026)\n\nBecause the student is trained on flawless teacher prefixes but must generate its own at inference, exposure bias has been shown to scale roughly with the square of sequence length, and On-Policy Distillation (OPD) reorganizes the training loop by having the teacher provide feedback on what the student actually produces.\n\n## Feature Geometry and Distillation\n\nThere is emerging research on mechanistic interpretability aspects of distillation. Changes in feature geometry resulting from distillation are being explored.\n\nThese results span publications from 2025-2026 on arXiv, ICLR, and related venues, covering the intersection of steering, probing, internalization, and distillation approaches for LLMs."
+    ],
+    "durationSeconds": 8.161018437999992
+  },
+  "sourceToolAssistantUUID": "f5fed00d-c7e3-4b90-8331-43a3802f99e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T09:13:26.899Z_
+
+<details><summary>↩ Tool result · `toolu_0175XNNz3wEHzZTftp7pRvpr`</summary>
+
+```text
+Web search results for query: "behavioral RL training leaves internal circuits intact compensatory mechanism LLM alignment interpretability 2025 2026"
+
+Links: [{"title":"Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions","url":"https://arxiv.org/html/2602.11180"},{"title":"Learning from Failures: Understanding LLM Alignment through Failure-Aware Inverse RL","url":"https://arxiv.org/html/2510.06092"},{"title":"Discovering Implicit Large Language Model Alignment Objectives","url":"https://arxiv.org/html/2602.15338v1"},{"title":"In (highly contingent!) defense of interpretability-in-the-loop ...","url":"https://www.alignmentforum.org/posts/ArXAyzHkidxwoeZsL/in-highly-contingent-defense-of-interpretability-in-the-loop"},{"title":"Understanding Mechanistic Interpretability in AI Models | IntuitionLabs","url":"https://intuitionlabs.ai/articles/mechanistic-interpretability-ai-llms"},{"title":"Accepted papers | FoRLM @ NeurIPS'25","url":"https://reasoning-workshop.github.io/accepted/"},{"title":"arXiv:2506.06366v3 [q-bio.NC] 12 Jun 2025 AI Agent Behavioral Science","url":"https://arxiv.org/pdf/2506.06366"},{"title":"Reinforcement Learning Meets Large Language Models: A Survey of","url":"https://arxiv.org/pdf/2509.16679"},{"title":"Grounding Open-Domain Knowledge from LLMs to Real-World","url":"https://www.ijcai.org/proceedings/2025/1198.pdf"},{"title":"Mechanistic Interpretability: Peeking Inside an LLM | Towards Data Science","url":"https://towardsdatascience.com/mechanistic-interpretability-peeking-inside-an-llm/"}]
+
+The search returned several highly relevant papers from 2025-2026 on LLM alignment, mechanistic interpretability, and reinforcement learning. Here are the key findings:
+
+## Key Papers Found:
+
+### 1. **"Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions"** (2026)
+Behavioral approaches to alignment—such as RLHF and various prompting strategies—have shown practical success, but they treat models as black boxes and provide limited guarantees about generalization to novel situations or adversarial inputs. While effective for improving surface-level behaviors, RLHF provides limited insight into whether models have internalized desired values or merely learned to imitate aligned behavior.
+
+### 2. **"Learning from Failures: Understanding LLM Alignment through Failure-Aware Inverse RL"** (2026)
+This work addresses how RLHF leaves hidden the most important element: the implicit reward functions that govern model behavior, and making these latent incentives interpretable is essential for safety and trustworthiness.
+
+### 3. **"Discovering Implicit Large Language Model Alignment Objectives"** (2026)
+Without temporal information from training checkpoints, methods struggle to disentangle the model's pre-existing inductive biases from the specific behaviors actively reinforced by the reward signal. Obj-Disco automatically decomposes an LLM's implicit alignment objectives into a set of objectives expressed using natural language.
+
+### 4. **Recent Circuit Tracing and Interpretability Advances**
+Discovered circuits can be brittle – when the input distribution changes slightly, the explanation no longer holds, implying the model had other "backup" strategies beyond what was interpreted, suggesting large models might contain many overlapping mechanisms.
+
+The search results highlight the central problem you asked about: behavioral RL training (like RLHF) modifies surface-level behavior while underlying internal mechanisms may remain intact or develop compensatory strategies—a critical challenge for interpretability-based alignment approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd1cb7cf-b08c-47dc-a086-d2c4e648438a",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "1028a989-0c9a-4e68-a8c8-885e9cce7fa8",
+  "toolUseResult": {
+    "query": "behavioral RL training leaves internal circuits intact compensatory mechanism LLM alignment interpretability 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012QrJ6ykwoStgvS2F8Fmvhz",
+        "content": [
+          {
+            "title": "Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions",
+            "url": "https://arxiv.org/html/2602.11180"
+          },
+          {
+            "title": "Learning from Failures: Understanding LLM Alignment through Failure-Aware Inverse RL",
+            "url": "https://arxiv.org/html/2510.06092"
+          },
+          {
+            "title": "Discovering Implicit Large Language Model Alignment Objectives",
+            "url": "https://arxiv.org/html/2602.15338v1"
+          },
+          {
+            "title": "In (highly contingent!) defense of interpretability-in-the-loop ...",
+            "url": "https://www.alignmentforum.org/posts/ArXAyzHkidxwoeZsL/in-highly-contingent-defense-of-interpretability-in-the-loop"
+          },
+          {
+            "title": "Understanding Mechanistic Interpretability in AI Models | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/mechanistic-interpretability-ai-llms"
+          },
+          {
+            "title": "Accepted papers | FoRLM @ NeurIPS'25",
+            "url": "https://reasoning-workshop.github.io/accepted/"
+          },
+          {
+            "title": "arXiv:2506.06366v3 [q-bio.NC] 12 Jun 2025 AI Agent Behavioral Science",
+            "url": "https://arxiv.org/pdf/2506.06366"
+          },
+          {
+            "title": "Reinforcement Learning Meets Large Language Models: A Survey of",
+            "url": "https://arxiv.org/pdf/2509.16679"
+          },
+          {
+            "title": "Grounding Open-Domain Knowledge from LLMs to Real-World",
+            "url": "https://www.ijcai.org/proceedings/2025/1198.pdf"
+          },
+          {
+            "title": "Mechanistic Interpretability: Peeking Inside an LLM | Towards Data Science",
+            "url": "https://towardsdatascience.com/mechanistic-interpretability-peeking-inside-an-llm/"
+          }
+        ]
+      },
+      "The search returned several highly relevant papers from 2025-2026 on LLM alignment, mechanistic interpretability, and reinforcement learning. Here are the key findings:\n\n## Key Papers Found:\n\n### 1. **\"Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions\"** (2026)\nBehavioral approaches to alignment—such as RLHF and various prompting strategies—have shown practical success, but they treat models as black boxes and provide limited guarantees about generalization to novel situations or adversarial inputs. While effective for improving surface-level behaviors, RLHF provides limited insight into whether models have internalized desired values or merely learned to imitate aligned behavior.\n\n### 2. **\"Learning from Failures: Understanding LLM Alignment through Failure-Aware Inverse RL\"** (2026)\nThis work addresses how RLHF leaves hidden the most important element: the implicit reward functions that govern model behavior, and making these latent incentives interpretable is essential for safety and trustworthiness.\n\n### 3. **\"Discovering Implicit Large Language Model Alignment Objectives\"** (2026)\nWithout temporal information from training checkpoints, methods struggle to disentangle the model's pre-existing inductive biases from the specific behaviors actively reinforced by the reward signal. Obj-Disco automatically decomposes an LLM's implicit alignment objectives into a set of objectives expressed using natural language.\n\n### 4. **Recent Circuit Tracing and Interpretability Advances**\nDiscovered circuits can be brittle – when the input distribution changes slightly, the explanation no longer holds, implying the model had other \"backup\" strategies beyond what was interpreted, suggesting large models might contain many overlapping mechanisms.\n\nThe search results highlight the central problem you asked about: behavioral RL training (like RLHF) modifies surface-level behavior while underlying internal mechanisms may remain intact or develop compensatory strategies—a critical challenge for interpretability-based alignment approaches."
+    ],
+    "durationSeconds": 9.473360167000006
+  },
+  "sourceToolAssistantUUID": "fd1cb7cf-b08c-47dc-a086-d2c4e648438a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-17T09:14:01.423Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is excellent! I now have several critical pieces of information:
+
+1. **KLAAD**: Uses KL divergence on ALL attention heads in the final layer (not specific heads), combined with CE and triplet loss. No head selection. Operates during standard training, not preference optimization. Application is debiasing, not distraction.
+
+2. **EIT Limitations**: 
+   - Position bias shows NO transfer (structural bias)
+   - Does NOT discuss whether internal circuits are modified or compensated
+   - "Non-predictiveness guarantee applies specifically to the injected bias signal" - doesn't prevent other shortcuts
+   - No composability discussion
+
+3. **"Llama See, Llama Do"**: 
+   - Entrainment heads are "not strongly related to how LMs process and utilise contextual information or perform ICL more broadly"
+   - Ablation cost: 0-3% ICL decrease
+   - 30-110 task-specific heads
+   - NO discussion of backup circuits, graded effects, or ablation limitations
+   - Task-specific, NOT model-specific
+
+4. **Key insight from alignment interpretability literature**: The alignment field acknowledges that RLHF might only teach surface-level imitation rather than genuine value internalization, and large models likely contain many overlapping mechanisms that could compensate when one is removed.
+
+5. **Adaptive Distraction**: DPO shows strong performance gains, but the paper doesn't examine what happens at the attention level during these interventions. The real advantage of Circuit-DPO isn't about preserving entrainment heads—since ablating them costs almost nothing—but rather that it bakes distraction resistance directly into the model's weights, avoiding the need to identify and mask task-specific heads at inference time.
+
+Beyond that, training-time modification might create regularization effects that spread across the network, handle subtle distractors that need graded suppression rather than binary on/off switching, and prove more robust against backup circuits that could compensate for simple ablation.
+
+Now I'm distinguishing this approach from KLAAD—while KLAAD targets all final-layer heads during standard training with stereotype/anti-stereotype pairs for debiasing, Circuit-DPO identifies specific entrainment heads across layers and integrates attention supervision into preference optimization using clean/noisy references for distraction robustness. I'm also examining what the EIT paper actually claims about composability: it doesn't address whether internal circuits get modified, only guarantees non-predictiveness for the injected bias signal itself, and shows position bias doesn't generalize across contexts.
+
+The core argument for combining them is that EIT trains behavioral compensation around an active entrainment circuit, which remains brittle when facing novel distractors the model hasn't seen during training. Circuit-DPO removes the entrainment activation at its source, so EIT's learned robustness has less to work around. In practice, when a subtle distractor partially triggers entrainment that EIT never encountered, EIT fails alone because the unexpected attention pattern disrupts reasoning. Circuit-DPO alone might reduce entrainment but miss behavioral heuristics, whereas together they create a more robust system where Circuit-DPO handles the root cause while EIT provides a safety layer for residual effects.
+
+I should also clarify the NoisyBench setup and think through head stability when discovery happens on noisy data.
+
+I'm also wondering whether there's existing work on baking inference-time interventions directly into model weights through training rather than applying them at test time.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1028a989-0c9a-4e68-a8c8-885e9cce7fa8",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tGWYsYWBULsh5Tit99",
+  "type": "assistant",
+  "uuid": "3a8bd6d5-3049-4c67-ae6f-3d1d69be5206",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1Vq8Hntd4C8qPqnzKz44v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3639,
+      "cache_read_input_tokens": 35537,
+      "output_tokens": 1380,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3639,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1380,
+          "cache_read_input_tokens": 35537,
+          "cache_creation_input_tokens": 3639,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3639
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-17T09:14:01.426Z_
+
+Crucial findings emerging. Let me do a few more targeted searches to solidify the internalization argument and check for any recent concurrent work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a8bd6d5-3049-4c67-ae6f-3d1d69be5206",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tGWYsYWBULsh5Tit99",
+  "type": "assistant",
+  "uuid": "273285ae-d3fe-4b2d-ba49-5de6710ec96e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1Vq8Hntd4C8qPqnzKz44v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3639,
+      "cache_read_input_tokens": 35537,
+      "output_tokens": 1380,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3639,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1380,
+          "cache_read_input_tokens": 35537,
+          "cache_creation_input_tokens": 3639,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3639
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-17T09:14:01.468Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E8DxHcUMhUuzJfLynz6xdi`</summary>
+
+```json
+{
+  "query": "\"baking in\" OR \"internalizing\" inference-time intervention fine-tuning training LLM attention heads permanent modification 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "273285ae-d3fe-4b2d-ba49-5de6710ec96e",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tGWYsYWBULsh5Tit99",
+  "type": "assistant",
+  "uuid": "605ac422-74c2-451e-9acc-8defbd4d9d12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1Vq8Hntd4C8qPqnzKz44v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3639,
+      "cache_read_input_tokens": 35537,
+      "output_tokens": 1380,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3639,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1380,
+          "cache_read_input_tokens": 35537,
+          "cache_creation_input_tokens": 3639,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3639
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-17T09:14:01.567Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Mo6jLyQwWpBczX2mrNt4ea`</summary>
+
+```json
+{
+  "query": "backup circuits redundant pathways LLM attention head ablation compensation mechanistic interpretability 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "605ac422-74c2-451e-9acc-8defbd4d9d12",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tGWYsYWBULsh5Tit99",
+  "type": "assistant",
+  "uuid": "8484625d-8ad0-412f-9428-ae6b18721697",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1Vq8Hntd4C8qPqnzKz44v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3639,
+      "cache_read_input_tokens": 35537,
+      "output_tokens": 1380,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3639,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1380,
+          "cache_read_input_tokens": 35537,
+          "cache_creation_input_tokens": 3639,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3639
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-17T09:14:01.897Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011udVDMkPsjsmC2ZT5XNkvb`</summary>
+
+```json
+{
+  "query": "distraction robustness LLM latest methods 2026 arXiv benchmark SOTA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8484625d-8ad0-412f-9428-ae6b18721697",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tGWYsYWBULsh5Tit99",
+  "type": "assistant",
+  "uuid": "d6d914ed-d221-4b63-b0b4-f825c497ce54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1Vq8Hntd4C8qPqnzKz44v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3639,
+      "cache_read_input_tokens": 35537,
+      "output_tokens": 1380,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3639,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1380,
+          "cache_read_input_tokens": 35537,
+          "cache_creation_input_tokens": 3639,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3639
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-17 (UTC).**  ## Original idea {   \"title\": \"Circuit-DPO: Composable Distraction Robustness via Mechanistically-Tar…",
+  "leafUuid": "d6d914ed-d221-4b63-b0b4-f825c497ce54",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising Circuit-DPO core framing",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-17T09:14:08.447Z_
+
+<details><summary>↩ Tool result · `toolu_01E8DxHcUMhUuzJfLynz6xdi`</summary>
+
+```text
+Web search results for query: ""baking in" OR "internalizing" inference-time intervention fine-tuning training LLM attention heads permanent modification 2025 2026"
+
+Links: [{"title":"[2503.14130] Inference-Time Intervention in Large Language Models for Reliable Requirement Verification","url":"https://arxiv.org/abs/2503.14130"},{"title":"[2306.03341] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model","url":"https://arxiv.org/abs/2306.03341"},{"title":"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model","url":"https://arxiv.org/pdf/2306.03341"},{"title":"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | OpenReview","url":"https://openreview.net/forum?id=aLLuYpn83y"},{"title":"Inference-Time Intervention in Large Language Models for Reliable Requirement Verification","url":"https://arxiv.org/html/2503.14130"},{"title":"[PDF] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Inference-Time-Intervention:-Eliciting-Truthful-a-Li-Patel/405f8f5f1c6df1b3343c812832479aad5180b65f"},{"title":"Inference-Time Intervention (ITI)","url":"https://www.emergentmind.com/topics/inference-time-intervention-iti"},{"title":"GitHub - likenneth/honest_llama: Inference-Time Intervention: Eliciting Truthful Answers from a Language Model · GitHub","url":"https://github.com/likenneth/honest_llama"},{"title":"Attention heads of large language models - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11873009/"},{"title":"Attention heads of large language models - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S2666389925000248"}]
+
+I found relevant research on inference-time intervention with LLM attention heads. Here are the key findings:
+
+## Inference-Time Intervention Overview
+
+Inference-Time Intervention (ITI) is a paradigm for modulating the behavior of predictive models—most prominently LLMs—by making structured, data-driven adjustments to internal activations at the moment of inference, without modifying or retraining core model parameters.
+
+## How ITI Works
+
+ITI operates by shifting model activations during inference, following a learned set of directions across a limited number of attention heads. By identifying and modifying as few as one to three specialised attention heads, models can significantly change their behavior.
+
+## Recent Applications (2025-2026)
+
+Inference-time intervention techniques provide a promising alternative, allowing targeted adjustments to LLM outputs. In this work, interventions enable fine-grained control for automating the usually time-intensive requirement verification process in Model-Based Systems Engineering (MBSE).
+
+## Key Characteristics
+
+ITI is minimally invasive and computationally inexpensive. Moreover, the technique is data efficient: while approaches like RLHF require extensive annotations, ITI locates truthful directions using only few hundred examples.
+
+## Important Note
+
+ITI is distinct from permanent modification—it makes adjustments to internal activations at the moment of inference, without modifying or retraining core model parameters. The interventions are applied dynamically during inference rather than being "baked in" permanently through fine-tuning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "605ac422-74c2-451e-9acc-8defbd4d9d12",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "69592959-398e-4f47-a78d-52a7b7b0136f",
+  "toolUseResult": {
+    "query": "\"baking in\" OR \"internalizing\" inference-time intervention fine-tuning training LLM attention heads permanent modification 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LwLqXui27bZaSdveqK5xMG",
+        "content": [
+          {
+            "title": "[2503.14130] Inference-Time Intervention in Large Language Models for Reliable Requirement Verification",
+            "url": "https://arxiv.org/abs/2503.14130"
+          },
+          {
+            "title": "[2306.03341] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model",
+            "url": "https://arxiv.org/abs/2306.03341"
+          },
+          {
+            "title": "Inference-Time Intervention: Eliciting Truthful Answers from a Language Model",
+            "url": "https://arxiv.org/pdf/2306.03341"
+          },
+          {
+            "title": "Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | OpenReview",
+            "url": "https://openreview.net/forum?id=aLLuYpn83y"
+          },
+          {
+            "title": "Inference-Time Intervention in Large Language Models for Reliable Requirement Verification",
+            "url": "https://arxiv.org/html/2503.14130"
+          },
+          {
+            "title": "[PDF] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Inference-Time-Intervention:-Eliciting-Truthful-a-Li-Patel/405f8f5f1c6df1b3343c812832479aad5180b65f"
+          },
+          {
+            "title": "Inference-Time Intervention (ITI)",
+            "url": "https://www.emergentmind.com/topics/inference-time-intervention-iti"
+          },
+          {
+            "title": "GitHub - likenneth/honest_llama: Inference-Time Intervention: Eliciting Truthful Answers from a Language Model · GitHub",
+            "url": "https://github.com/likenneth/honest_llama"
+          },
+          {
+            "title": "Attention heads of large language models - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11873009/"
+          },
+          {
+            "title": "Attention heads of large language models - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S2666389925000248"
+          }
+        ]
+      },
+      "I found relevant research on inference-time intervention with LLM attention heads. Here are the key findings:\n\n## Inference-Time Intervention Overview\n\nInference-Time Intervention (ITI) is a paradigm for modulating the behavior of predictive models—most prominently LLMs—by making structured, data-driven adjustments to internal activations at the moment of inference, without modifying or retraining core model parameters.\n\n## How ITI Works\n\nITI operates by shifting model activations during inference, following a learned set of directions across a limited number of attention heads. By identifying and modifying as few as one to three specialised attention heads, models can significantly change their behavior.\n\n## Recent Applications (2025-2026)\n\nInference-time intervention techniques provide a promising alternative, allowing targeted adjustments to LLM outputs. In this work, interventions enable fine-grained control for automating the usually time-intensive requirement verification process in Model-Based Systems Engineering (MBSE).\n\n## Key Characteristics\n\nITI is minimally invasive and computationally inexpensive. Moreover, the technique is data efficient: while approaches like RLHF require extensive annotations, ITI locates truthful directions using only few hundred examples.\n\n## Important Note\n\nITI is distinct from permanent modification—it makes adjustments to internal activations at the moment of inference, without modifying or retraining core model parameters. The interventions are applied dynamically during inference rather than being \"baked in\" permanently through fine-tuning."
+    ],
+    "durationSeconds": 6.972984742
+  },
+  "sourceToolAssistantUUID": "605ac422-74c2-451e-9acc-8defbd4d9d12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-17T09:14:09.824Z_
+
+<details><summary>↩ Tool result · `toolu_011udVDMkPsjsmC2ZT5XNkvb`</summary>
+
+```text
+Web search results for query: "distraction robustness LLM latest methods 2026 arXiv benchmark SOTA"
+
+Links: [{"title":"A Survey on Evaluation of LLM-based Agents","url":"https://arxiv.org/html/2503.16416v2"},{"title":"Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search","url":"https://arxiv.org/html/2502.01609v2"},{"title":"A Multi-Perspective Benchmark and Moderation Model for Evaluating Safety and Adversarial Robustness","url":"https://arxiv.org/html/2601.03273"},{"title":"[2502.01609] Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search","url":"https://arxiv.org/abs/2502.01609"},{"title":"A Multi-Perspective Benchmark and Moderation Model for Evaluating Safety","url":"https://arxiv.org/pdf/2601.03273"},{"title":"Robustness in Large Language Models: A Survey of Mitigation Strategies and Evaluation Metrics","url":"https://arxiv.org/html/2505.18658v2"},{"title":"Evaluating and Enhancing the Vulnerability Reasoning Capabilities of Large Language Models","url":"https://arxiv.org/html/2602.06687v1"},{"title":"Machine Learning","url":"https://arxiv.org/list/cs.LG/new"},{"title":"ReasonBENCH: Benchmarking the (In)Stability of LLM Reasoning","url":"https://arxiv.org/html/2512.07795v1"},{"title":"LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/llm"}]
+
+Based on the search results, here's what I found about distraction robustness in LLMs and the latest methods:
+
+## Key Recent Work on Distraction Robustness
+
+A notable 2025 arXiv paper titled "Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search" demonstrates that generated distractions lead to an average performance drop of over 45% for mainstream models.
+
+### The Problem and Motivation
+
+LLMs are susceptible to semantically coherent but task-irrelevant contextual information, which can significantly degrade their performance, and this lack of contextual robustness hinders their ability to consistently focus on essential task content in the presence of distracting information.
+
+Current methods for evaluating LLM contextual robustness primarily rely on fixed-template or retrieval-based distractors, but these static approaches are increasingly ineffective against contemporary models, with performance degradation often below 5% on advanced models like GPT-4o, highlighting that existing methods lack adaptiveness and are heavily dependent on the specific behavior of the target LLM.
+
+### Latest Method: Adaptive Distraction with Tree Search
+
+The proposed framework is based on tree search to automatically construct adaptive distractions, employing a classifier to pre-filter questions susceptible to perturbation, followed by a tree search module that explores contextual additions using a priority queue guided by model behavior, with error-guided perturbations generating candidate distractions at each node.
+
+### Mitigation Strategies
+
+Prompt-based optimization methods yield limited gains, whereas post-training approaches (e.g., DPO) significantly enhance the model's contextual robustness.
+
+This represents a cutting-edge approach to benchmarking and improving LLM robustness against contextual distractions as of early 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d6d914ed-d221-4b63-b0b4-f825c497ce54",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "54a26633-594a-4e05-8af9-4b47e294abb0",
+  "toolUseResult": {
+    "query": "distraction robustness LLM latest methods 2026 arXiv benchmark SOTA",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Vg5ZLAhqMGLMPobWACNCqn",
+        "content": [
+          {
+            "title": "A Survey on Evaluation of LLM-based Agents",
+            "url": "https://arxiv.org/html/2503.16416v2"
+          },
+          {
+            "title": "Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search",
+            "url": "https://arxiv.org/html/2502.01609v2"
+          },
+          {
+            "title": "A Multi-Perspective Benchmark and Moderation Model for Evaluating Safety and Adversarial Robustness",
+            "url": "https://arxiv.org/html/2601.03273"
+          },
+          {
+            "title": "[2502.01609] Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search",
+            "url": "https://arxiv.org/abs/2502.01609"
+          },
+          {
+            "title": "A Multi-Perspective Benchmark and Moderation Model for Evaluating Safety",
+            "url": "https://arxiv.org/pdf/2601.03273"
+          },
+          {
+            "title": "Robustness in Large Language Models: A Survey of Mitigation Strategies and Evaluation Metrics",
+            "url": "https://arxiv.org/html/2505.18658v2"
+          },
+          {
+            "title": "Evaluating and Enhancing the Vulnerability Reasoning Capabilities of Large Language Models",
+            "url": "https://arxiv.org/html/2602.06687v1"
+          },
+          {
+            "title": "Machine Learning",
+            "url": "https://arxiv.org/list/cs.LG/new"
+          },
+          {
+            "title": "ReasonBENCH: Benchmarking the (In)Stability of LLM Reasoning",
+            "url": "https://arxiv.org/html/2512.07795v1"
+          },
+          {
+            "title": "LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA",
+            "url": "https://www.codesota.com/llm"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about distraction robustness in LLMs and the latest methods:\n\n## Key Recent Work on Distraction Robustness\n\nA notable 2025 arXiv paper titled \"Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search\" demonstrates that generated distractions lead to an average performance drop of over 45% for mainstream models.\n\n### The Problem and Motivation\n\nLLMs are susceptible to semantically coherent but task-irrelevant contextual information, which can significantly degrade their performance, and this lack of contextual robustness hinders their ability to consistently focus on essential task content in the presence of distracting information.\n\nCurrent methods for evaluating LLM contextual robustness primarily rely on fixed-template or retrieval-based distractors, but these static approaches are increasingly ineffective against contemporary models, with performance degradation often below 5% on advanced models like GPT-4o, highlighting that existing methods lack adaptiveness and are heavily dependent on the specific behavior of the target LLM.\n\n### Latest Method: Adaptive Distraction with Tree Search\n\nThe proposed framework is based on tree search to automatically construct adaptive distractions, employing a classifier to pre-filter questions susceptible to perturbation, followed by a tree search module that explores contextual additions using a priority queue guided by model behavior, with error-guided perturbations generating candidate distractions at each node.\n\n### Mitigation Strategies\n\nPrompt-based optimization methods yield limited gains, whereas post-training approaches (e.g., DPO) significantly enhance the model's contextual robustness.\n\nThis represents a cutting-edge approach to benchmarking and improving LLM robustness against contextual distractions as of early 2026."
+    ],
+    "durationSeconds": 7.924319683000009
+  },
+  "sourceToolAssistantUUID": "d6d914ed-d221-4b63-b0b4-f825c497ce54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-17T09:14:10.112Z_
+
+<details><summary>↩ Tool result · `toolu_01Mo6jLyQwWpBczX2mrNt4ea`</summary>
+
+```text
+Web search results for query: "backup circuits redundant pathways LLM attention head ablation compensation mechanistic interpretability 2025 2026"
+
+Links: [{"title":"Mechanistic Interpretability: Peeking Inside an LLM | Towards Data Science","url":"https://towardsdatascience.com/mechanistic-interpretability-peeking-inside-an-llm/"},{"title":"Sparse Attention Post-Training for Mechanistic Interpretability","url":"https://arxiv.org/html/2512.05865v1"},{"title":"Bridging the Black Box: A Survey on Mechanistic Interpretability in AI | ACM Computing Surveys","url":"https://dl.acm.org/doi/10.1145/3787104"},{"title":"Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions","url":"https://arxiv.org/html/2602.11180v1"},{"title":"Understanding Mechanistic Interpretability in AI Models | IntuitionLabs","url":"https://intuitionlabs.ai/articles/mechanistic-interpretability-ai-llms"},{"title":"Published as a conference paper at ICLR 2025 ON THE ROLE OF ATTENTION HEADS IN","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/d0bcff6425bbf850ec87d5327a965db9-Paper-Conference.pdf"},{"title":"Published as a conference paper at ICLR 2026 MECHANISTIC INTERPRETABILITY","url":"https://arxiv.org/pdf/2510.02917"},{"title":"Automated Interpretability-Driven Model Auditing and Control: A Research Agenda","url":"https://aigi.ox.ac.uk/wp-content/uploads/2026/01/Automated_interp_Research_Agenda.pdf"},{"title":"GitHub - gauravfs-14/awesome-mechanistic-interpretability: A carefully curated collection of high-quality libraries, projects, tutorials, research papers, and other essential resources focused on Mechanistic Interpretability, a growing subfield in machine learning interpretability research that aims to reverse-engineer neural networks into understandable computational components. · GitHub","url":"https://github.com/gauravfs-14/awesome-mechanistic-interpretability"},{"title":"Understanding LLMs: Insights from Mechanistic ...","url":"https://www.lesswrong.com/posts/XGHf7EY3CK4KorBpw/understanding-llms-insights-from-mechanistic"}]
+
+I've completed a web search for your query about backup circuits, redundant pathways, LLM attention head ablation, compensation, and mechanistic interpretability from 2025-2026. Here are the key findings:
+
+## Recent Mechanistic Interpretability Research (2025-2026)
+
+### Attention Head Ablation Studies
+
+Research has identified specific crucial safety attention heads, such as head 2-26 in Llama-2-7b-chat, which when ablated individually significantly weakens safety capability. Ablating groups of attention heads can further weaken safety capability collaboratively, suggesting potential redundancy or backup mechanisms.
+
+### Circuit Analysis and Compensation
+
+Multiple overlapping circuits can produce the same behavior, complicating identifiability through non-uniqueness of decompositions. This directly relates to the concept of backup circuits and redundant pathways—when one circuit is ablated, others may compensate.
+
+Circuit analysis has identified specific attention heads and MLPs responsible for generating toxic content, and ablating or modifying these components reduces harmful outputs while minimally impacting benign capabilities, indicating that some circuits can be targeted without full functional collapse due to compensation mechanisms.
+
+### Advanced Interpretability Techniques (2025)
+
+In March 2025, Anthropic introduced circuit tracing that combines earlier methods into a unified framework, replacing a model's MLPs with cross-layer transcoders (CLTs)—a new type of sparse autoencoder that reads from one layer's residual stream but can provide output to all subsequent MLP layers.
+
+### Sparse Attention Research
+
+Sparsified models exhibit dramatically simplified computational graphs, reducing by up to two orders of magnitude the number of edges between components, while retaining essential algorithmic behaviors, suggesting that redundant pathways may be pruned without major performance loss.
+
+The search results highlight ongoing research into circuit structure, ablation effects, and the robustness of neural network computations, though explicit studies specifically focusing on "backup circuits" compensation mechanisms are not directly addressed in these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8484625d-8ad0-412f-9428-ae6b18721697",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "b0987979-aee0-4f90-b609-b462d7be9631",
+  "toolUseResult": {
+    "query": "backup circuits redundant pathways LLM attention head ablation compensation mechanistic interpretability 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016Qw9BstS4kNs6VWK5K5Zrf",
+        "content": [
+          {
+            "title": "Mechanistic Interpretability: Peeking Inside an LLM | Towards Data Science",
+            "url": "https://towardsdatascience.com/mechanistic-interpretability-peeking-inside-an-llm/"
+          },
+          {
+            "title": "Sparse Attention Post-Training for Mechanistic Interpretability",
+            "url": "https://arxiv.org/html/2512.05865v1"
+          },
+          {
+            "title": "Bridging the Black Box: A Survey on Mechanistic Interpretability in AI | ACM Computing Surveys",
+            "url": "https://dl.acm.org/doi/10.1145/3787104"
+          },
+          {
+            "title": "Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions",
+            "url": "https://arxiv.org/html/2602.11180v1"
+          },
+          {
+            "title": "Understanding Mechanistic Interpretability in AI Models | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/mechanistic-interpretability-ai-llms"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 ON THE ROLE OF ATTENTION HEADS IN",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/d0bcff6425bbf850ec87d5327a965db9-Paper-Conference.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 MECHANISTIC INTERPRETABILITY",
+            "url": "https://arxiv.org/pdf/2510.02917"
+          },
+          {
+            "title": "Automated Interpretability-Driven Model Auditing and Control: A Research Agenda",
+            "url": "https://aigi.ox.ac.uk/wp-content/uploads/2026/01/Automated_interp_Research_Agenda.pdf"
+          },
+          {
+            "title": "GitHub - gauravfs-14/awesome-mechanistic-interpretability: A carefully curated collection of high-quality libraries, projects, tutorials, research papers, and other essential resources focused on Mechanistic Interpretability, a growing subfield in machine learning interpretability research that aims to reverse-engineer neural networks into understandable computational components. · GitHub",
+            "url": "https://github.com/gauravfs-14/awesome-mechanistic-interpretability"
+          },
+          {
+            "title": "Understanding LLMs: Insights from Mechanistic ...",
+            "url": "https://www.lesswrong.com/posts/XGHf7EY3CK4KorBpw/understanding-llms-insights-from-mechanistic"
+          }
+        ]
+      },
+      "I've completed a web search for your query about backup circuits, redundant pathways, LLM attention head ablation, compensation, and mechanistic interpretability from 2025-2026. Here are the key findings:\n\n## Recent Mechanistic Interpretability Research (2025-2026)\n\n### Attention Head Ablation Studies\n\nResearch has identified specific crucial safety attention heads, such as head 2-26 in Llama-2-7b-chat, which when ablated individually significantly weakens safety capability. Ablating groups of attention heads can further weaken safety capability collaboratively, suggesting potential redundancy or backup mechanisms.\n\n### Circuit Analysis and Compensation\n\nMultiple overlapping circuits can produce the same behavior, complicating identifiability through non-uniqueness of decompositions. This directly relates to the concept of backup circuits and redundant pathways—when one circuit is ablated, others may compensate.\n\nCircuit analysis has identified specific attention heads and MLPs responsible for generating toxic content, and ablating or modifying these components reduces harmful outputs while minimally impacting benign capabilities, indicating that some circuits can be targeted without full functional collapse due to compensation mechanisms.\n\n### Advanced Interpretability Techniques (2025)\n\nIn March 2025, Anthropic introduced circuit tracing that combines earlier methods into a unified framework, replacing a model's MLPs with cross-layer transcoders (CLTs)—a new type of sparse autoencoder that reads from one layer's residual stream but can provide output to all subsequent MLP layers.\n\n### Sparse Attention Research\n\nSparsified models exhibit dramatically simplified computational graphs, reducing by up to two orders of magnitude the number of edges between components, while retaining essential algorithmic behaviors, suggesting that redundant pathways may be pruned without major performance loss.\n\nThe search results highlight ongoing research into circuit structure, ablation effects, and the robustness of neural network computations, though explicit studies specifically focusing on \"backup circuits\" compensation mechanisms are not directly addressed in these results."
+    ],
+    "durationSeconds": 8.542110604000001
+  },
+  "sourceToolAssistantUUID": "8484625d-8ad0-412f-9428-ae6b18721697",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-17T09:14:16.301Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for one more important thing: whether there's any work on the specific concept of "internalizing" inference-time interventions through training, and also the mechanistic interpretability survey that mentions compensatory mechanisms after alignment training.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0987979-aee0-4f90-b609-b462d7be9631",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tKhJs5ydziWhNa6uMu",
+  "type": "assistant",
+  "uuid": "8447f050-6085-4ea4-a9aa-cc33b737f153",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UjmsWnPJaymCHZAxSCPdN2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 916,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 39176,
+      "output_tokens": 366,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 916,
+          "output_tokens": 366,
+          "cache_read_input_tokens": 39176,
+          "cache_creation_input_tokens": 3390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-17T09:14:16.395Z_
+
+Let me get one final set of targeted searches on the key conceptual gaps.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8447f050-6085-4ea4-a9aa-cc33b737f153",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tKhJs5ydziWhNa6uMu",
+  "type": "assistant",
+  "uuid": "39ae16af-0131-414a-a70b-3c46ae83d5cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UjmsWnPJaymCHZAxSCPdN2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 916,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 39176,
+      "output_tokens": 366,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 916,
+          "output_tokens": 366,
+          "cache_read_input_tokens": 39176,
+          "cache_creation_input_tokens": 3390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-17T09:14:17.530Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016Z8KcLETCj8bYMDeQtozZq`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2602.11180v1",
+  "prompt": "Find any discussion of: (1) Whether RLHF/behavioral training modifies internal circuits or just adds compensatory layers. (2) Evidence that aligned models still contain the original problematic circuits underneath behavioral changes. (3) The concept of \"surface alignment\" vs \"deep alignment\". (4) Any discussion of combining mechanistic interpretability with training (not just analysis). (5) Backup circuits or compensatory mechanisms after ablation."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39ae16af-0131-414a-a70b-3c46ae83d5cf",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tKhJs5ydziWhNa6uMu",
+  "type": "assistant",
+  "uuid": "857c1348-7feb-43c8-8118-d3f75e9320ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UjmsWnPJaymCHZAxSCPdN2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 916,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 39176,
+      "output_tokens": 366,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 916,
+          "output_tokens": 366,
+          "cache_read_input_tokens": 39176,
+          "cache_creation_input_tokens": 3390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-17T09:14:18.401Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013KMcH1iUpC8HTjZ6BmB5Mx`</summary>
+
+```json
+{
+  "query": "RLHF surface alignment hidden circuits still present bypass jailbreak mechanistic evidence 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "857c1348-7feb-43c8-8118-d3f75e9320ff",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tKhJs5ydziWhNa6uMu",
+  "type": "assistant",
+  "uuid": "ca0214dd-3c4d-4dca-89b2-11b78bae786f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UjmsWnPJaymCHZAxSCPdN2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 916,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 39176,
+      "output_tokens": 366,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 916,
+          "output_tokens": 366,
+          "cache_read_input_tokens": 39176,
+          "cache_creation_input_tokens": 3390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-17T09:14:18.716Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018aivuuLUjmWypizMFBdg57`</summary>
+
+```json
+{
+  "query": "task-specific inference time head identification deployment cost overhead production LLM 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca0214dd-3c4d-4dca-89b2-11b78bae786f",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tKhJs5ydziWhNa6uMu",
+  "type": "assistant",
+  "uuid": "1dc612af-42e6-4898-9c0b-ae84c428c60b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UjmsWnPJaymCHZAxSCPdN2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 916,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 39176,
+      "output_tokens": 366,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 916,
+          "output_tokens": 366,
+          "cache_read_input_tokens": 39176,
+          "cache_creation_input_tokens": 3390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-17T09:14:23.447Z_
+
+<details><summary>↩ Tool result · `toolu_016Z8KcLETCj8bYMDeQtozZq`</summary>
+
+```text
+# Analysis of RLHF, Circuit Modification, and Training Integration
+
+Based on the document provided:
+
+## (1) RLHF's Effect on Internal Circuits
+
+The paper indicates RLHF primarily acts as a **behavioral filter** rather than fundamentally rewiring core computations. Specifically: "RLHF primarily affects specific components related to response initiation and style, while core knowledge and reasoning circuits remain largely unchanged." This suggests surface-level modification rather than deep circuit alteration.
+
+## (2) Evidence of Underlying Problematic Circuits
+
+The document does not explicitly discuss whether aligned models retain original problematic circuits "underneath" surface changes. However, the discussion of sycophancy circuits—"models agreeing with user statements regardless of truth"—that are identifiable post-RLHF implies these mechanisms persist in interpretable form despite alignment training.
+
+## (3) Surface vs. Deep Alignment
+
+While the exact phrase "surface alignment" doesn't appear, the paper discusses this conceptually: "RLHF provides limited insight into whether models have internalized desired values or merely learned to imitate aligned behavior." This captures the core distinction between behavioral compliance and genuine value internalization.
+
+## (4) Mechanistic Interpretability During Training
+
+The document mentions "interpretability-guided training" as a future direction, proposing "regularizers that encourage interpretable feature representations" and "online monitoring and correction of problematic circuits during training." However, concrete examples of such combined approaches are limited.
+
+## (5) Backup Circuits or Compensatory Mechanisms
+
+The paper does not address this phenomenon. No discussion of redundancy, backup circuits emerging after ablation, or compensatory mechanisms appears in the provided text.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "857c1348-7feb-43c8-8118-d3f75e9320ff",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "839a8385-dcf4-491a-85af-88ba7cbbed62",
+  "toolUseResult": {
+    "bytes": 281024,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of RLHF, Circuit Modification, and Training Integration\n\nBased on the document provided:\n\n## (1) RLHF's Effect on Internal Circuits\n\nThe paper indicates RLHF primarily acts as a **behavioral filter** rather than fundamentally rewiring core computations. Specifically: \"RLHF primarily affects specific components related to response initiation and style, while core knowledge and reasoning circuits remain largely unchanged.\" This suggests surface-level modification rather than deep circuit alteration.\n\n## (2) Evidence of Underlying Problematic Circuits\n\nThe document does not explicitly discuss whether aligned models retain original problematic circuits \"underneath\" surface changes. However, the discussion of sycophancy circuits—\"models agreeing with user statements regardless of truth\"—that are identifiable post-RLHF implies these mechanisms persist in interpretable form despite alignment training.\n\n## (3) Surface vs. Deep Alignment\n\nWhile the exact phrase \"surface alignment\" doesn't appear, the paper discusses this conceptually: \"RLHF provides limited insight into whether models have internalized desired values or merely learned to imitate aligned behavior.\" This captures the core distinction between behavioral compliance and genuine value internalization.\n\n## (4) Mechanistic Interpretability During Training\n\nThe document mentions \"interpretability-guided training\" as a future direction, proposing \"regularizers that encourage interpretable feature representations\" and \"online monitoring and correction of problematic circuits during training.\" However, concrete examples of such combined approaches are limited.\n\n## (5) Backup Circuits or Compensatory Mechanisms\n\nThe paper does not address this phenomenon. No discussion of redundancy, backup circuits emerging after ablation, or compensatory mechanisms appears in the provided text.",
+    "durationMs": 5912,
+    "url": "https://arxiv.org/html/2602.11180v1"
+  },
+  "sourceToolAssistantUUID": "857c1348-7feb-43c8-8118-d3f75e9320ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 69_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-17 (UTC).**  ## Original idea {   \"title\": \"Circuit-DPO: Composable Distraction Robustness via Mechanistically-Tar…",
+  "leafUuid": "839a8385-dcf4-491a-85af-88ba7cbbed62",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 70_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising Circuit-DPO core framing",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-17T09:14:27.161Z_
+
+<details><summary>↩ Tool result · `toolu_013KMcH1iUpC8HTjZ6BmB5Mx`</summary>
+
+```text
+Web search results for query: "RLHF surface alignment hidden circuits still present bypass jailbreak mechanistic evidence 2025 2026"
+
+Links: [{"title":"AI Safety 2026: Alignment Research Breakthroughs | Claude 5 Hub","url":"https://claude5.com/news/ai-safety-2026-alignment-research-breakthroughs"},{"title":"Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions","url":"https://arxiv.org/html/2602.11180v1"},{"title":"[2509.24713] Circuit-Aware Reward Training: A Mechanistic Framework for Longtail Robustness in RLHF","url":"https://arxiv.org/abs/2509.24713"},{"title":"Circuit-Aware Reward Training: A Mechanistic Framework for Longtail Robustness in RLHF","url":"https://arxiv.org/html/2509.24713v1"},{"title":"AI Safety, Alignment, and Interpretability in 2026 | Zylos Research","url":"https://zylos.ai/research/2026-02-09-ai-safety-alignment-interpretability"},{"title":"Safayat Bin Hakim1, Kanchon Gharami1, Nahid Farhady Ghalaty1 ...","url":"https://d197for5662m48.cloudfront.net/documents/publicationstatus/299815/preprint_pdf/07b66ab31e2f4dcd4effb59051db275d.pdf"},{"title":"Jailbreaking LLMs: A Survey of Attacks, Defenses and Evaluation | TechRxiv","url":"https://www.techrxiv.org/users/1011181/articles/1373070/master/file/data/Jailbreaking_LLMs_2026/Jailbreaking_LLMs_2026.pdf"},{"title":"Why Do Aligned LLMs Remain Jailbreakable: Refusal-Escape Directions, Operator-Level Sources, and Safety–Utility Trade-off","url":"https://arxiv.org/html/2605.08878v1"},{"title":"TwinBreak: Jailbreaking LLM Security Alignments based ...","url":"https://www.usenix.org/system/files/usenixsecurity25-krauss.pdf"},{"title":"Exploiting Ethical Reasoning to Jailbreak LLMs","url":"https://arxiv.org/pdf/2509.05367"}]
+
+Based on the web search results, I found several highly relevant recent papers and research addressing your query about RLHF surface alignment, hidden circuits, and jailbreak mechanisms. Here are the key findings:
+
+## RLHF as Surface-Level Alignment
+
+Research shows that while RLHF is effective for improving surface-level behaviors, it provides limited insight into whether models have internalized desired values or merely learned to imitate aligned behavior. More specifically, circuit analysis of pre- and post-RLHF models reveals that RLHF primarily affects specific components related to response initiation and style, while core knowledge and reasoning circuits remain largely unchanged, suggesting RLHF acts more as a behavioral filter than fundamental value learning.
+
+## Hidden Circuits and Mechanistic Evidence
+
+Research investigating how reward models represent human preferences suggests they learn relatively shallow heuristics rather than deep understanding of human values. Recent mechanistic interpretability advances have made progress in understanding these internal mechanisms, with DeepMind demonstrating the ability to localize specific behaviors to individual circuits within a model and showing the ability to "patch" alignment properties—transferring safety behaviors from one model to another without full retraining.
+
+## Jailbreak Vulnerability and Persistent Circuits
+
+Empirical analyses of jailbreaks suggest that successful attacks can suppress refusal-related signals and shift harmful prompts toward seemingly harmless regions in representation space. Additionally, adaptive attacks exploit mechanistic understanding to regain effectiveness, with the persistent vulnerability gap demonstrating the asymmetric advantage attackers maintain despite defensive measures.
+
+Research also shows feedback-based attacks often retain residual success above 15% even against layered protections, indicating that fundamental safety vulnerabilities persist despite alignment efforts.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca0214dd-3c4d-4dca-89b2-11b78bae786f",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "3adaf24f-3ad0-4288-b1dc-e114c7016050",
+  "toolUseResult": {
+    "query": "RLHF surface alignment hidden circuits still present bypass jailbreak mechanistic evidence 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NyGe2jJMdrr3renmgHgfp2",
+        "content": [
+          {
+            "title": "AI Safety 2026: Alignment Research Breakthroughs | Claude 5 Hub",
+            "url": "https://claude5.com/news/ai-safety-2026-alignment-research-breakthroughs"
+          },
+          {
+            "title": "Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions",
+            "url": "https://arxiv.org/html/2602.11180v1"
+          },
+          {
+            "title": "[2509.24713] Circuit-Aware Reward Training: A Mechanistic Framework for Longtail Robustness in RLHF",
+            "url": "https://arxiv.org/abs/2509.24713"
+          },
+          {
+            "title": "Circuit-Aware Reward Training: A Mechanistic Framework for Longtail Robustness in RLHF",
+            "url": "https://arxiv.org/html/2509.24713v1"
+          },
+          {
+            "title": "AI Safety, Alignment, and Interpretability in 2026 | Zylos Research",
+            "url": "https://zylos.ai/research/2026-02-09-ai-safety-alignment-interpretability"
+          },
+          {
+            "title": "Safayat Bin Hakim1, Kanchon Gharami1, Nahid Farhady Ghalaty1 ...",
+            "url": "https://d197for5662m48.cloudfront.net/documents/publicationstatus/299815/preprint_pdf/07b66ab31e2f4dcd4effb59051db275d.pdf"
+          },
+          {
+            "title": "Jailbreaking LLMs: A Survey of Attacks, Defenses and Evaluation | TechRxiv",
+            "url": "https://www.techrxiv.org/users/1011181/articles/1373070/master/file/data/Jailbreaking_LLMs_2026/Jailbreaking_LLMs_2026.pdf"
+          },
+          {
+            "title": "Why Do Aligned LLMs Remain Jailbreakable: Refusal-Escape Directions, Operator-Level Sources, and Safety–Utility Trade-off",
+            "url": "https://arxiv.org/html/2605.08878v1"
+          },
+          {
+            "title": "TwinBreak: Jailbreaking LLM Security Alignments based ...",
+            "url": "https://www.usenix.org/system/files/usenixsecurity25-krauss.pdf"
+          },
+          {
+            "title": "Exploiting Ethical Reasoning to Jailbreak LLMs",
+            "url": "https://arxiv.org/pdf/2509.05367"
+          }
+        ]
+      },
+      "Based on the web search results, I found several highly relevant recent papers and research addressing your query about RLHF surface alignment, hidden circuits, and jailbreak mechanisms. Here are the key findings:\n\n## RLHF as Surface-Level Alignment\n\nResearch shows that while RLHF is effective for improving surface-level behaviors, it provides limited insight into whether models have internalized desired values or merely learned to imitate aligned behavior. More specifically, circuit analysis of pre- and post-RLHF models reveals that RLHF primarily affects specific components related to response initiation and style, while core knowledge and reasoning circuits remain largely unchanged, suggesting RLHF acts more as a behavioral filter than fundamental value learning.\n\n## Hidden Circuits and Mechanistic Evidence\n\nResearch investigating how reward models represent human preferences suggests they learn relatively shallow heuristics rather than deep understanding of human values. Recent mechanistic interpretability advances have made progress in understanding these internal mechanisms, with DeepMind demonstrating the ability to localize specific behaviors to individual circuits within a model and showing the ability to \"patch\" alignment properties—transferring safety behaviors from one model to another without full retraining.\n\n## Jailbreak Vulnerability and Persistent Circuits\n\nEmpirical analyses of jailbreaks suggest that successful attacks can suppress refusal-related signals and shift harmful prompts toward seemingly harmless regions in representation space. Additionally, adaptive attacks exploit mechanistic understanding to regain effectiveness, with the persistent vulnerability gap demonstrating the asymmetric advantage attackers maintain despite defensive measures.\n\nResearch also shows feedback-based attacks often retain residual success above 15% even against layered protections, indicating that fundamental safety vulnerabilities persist despite alignment efforts."
+    ],
+    "durationSeconds": 8.756878125000004
+  },
+  "sourceToolAssistantUUID": "ca0214dd-3c4d-4dca-89b2-11b78bae786f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-17T09:14:27.395Z_
+
+<details><summary>↩ Tool result · `toolu_018aivuuLUjmWypizMFBdg57`</summary>
+
+```text
+Web search results for query: "task-specific inference time head identification deployment cost overhead production LLM 2025"
+
+Links: [{"title":"LLM Inference Benchmarking: How Much Does Your LLM Inference Cost? | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/llm-inference-benchmarking-how-much-does-your-llm-inference-cost/"},{"title":"Practical Guide to LLM Inference in Production (2025) | Hivenet","url":"https://compute.hivenet.com/post/llm-inference-production-guide"},{"title":"LLM Inference Optimization Techniques | Clarifai Guide","url":"https://www.clarifai.com/blog/llm-inference-optimization/"},{"title":"A Cost-Benefit Analysis of On-Premise Large Language Model Deployment: Breaking Even with Commercial LLM Services","url":"https://arxiv.org/html/2509.18101v3"},{"title":"Cost Per Token Analysis: Optimizing GPU Infrastructure ... - Introl","url":"https://introl.com/blog/cost-per-token-llm-inference-optimization"},{"title":"The LLM Inference Trilemma: Throughput, Latency, Cost | DigitalOcean","url":"https://www.digitalocean.com/blog/llm-inference-tradeoffs"},{"title":"LLM Inference Performance Engineering: Best Practices | Databricks Blog","url":"https://www.databricks.com/blog/llm-inference-performance-engineering-best-practices"},{"title":"Understanding the Total Cost of Inferencing Large ...","url":"https://www.delltechnologies.com/asset/en-in/solutions/business-solutions/industry-market/esg-inferencing-on-premises-with-dell-technologies-analyst-paper.pdf"},{"title":"LLM Total Cost of Ownership 2025: Build vs Buy Math","url":"https://www.ptolemay.com/post/llm-total-cost-of-ownership"},{"title":"Beyond Benchmarks: The Economics of AI Inference","url":"https://arxiv.org/html/2510.26136v1"}]
+
+I've completed the web search for your query. Here's a summary of the findings on task-specific inference time, head identification, deployment costs, overhead, and production LLM in 2025:
+
+## Key Findings
+
+**Model Routing & Task-Specific Optimization:**
+A critical factor is model routing: sending every user query to a large model when a smaller model would suffice wastes compute and increases cost. Routing strategies that select the right model for the task (e.g., summarization vs. math reasoning) can cut costs dramatically.
+
+**Inference Cost Components:**
+Understanding token generation costs requires dissecting the inference process into component parts. Each token generation involves loading model weights from memory, performing matrix multiplications, applying attention mechanisms, and generating probability distributions.
+
+**Deployment Cost Overhead:**
+Engineering cost is consistently underestimated. The most expensive component isn't necessarily the silicon; it's the specialized labor required to tune it. Finding the optimal configuration for vLLM or TensorRT-LLM is a high-level systems engineering task that consumes weeks of expensive human and machine time.
+
+**Production Infrastructure Decisions:**
+As concurrency increases from 8 to 48, the total completion time drops significantly. Before GPU compute power is saturated, increasing concurrency is the most effective way to amortize fixed overhead and reduce per-unit time costs.
+
+**Practical 2025 Optimization Strategies:**
+The H200 with 141GB HBM3e is now widely available ($30-40K purchase, $2.15-6.00/hr cloud), enabling single-GPU serving of 70B models that previously required two H100s. H100 cloud prices dropped to $1.49-3.90/hr (down from $7-8/hr).
+
+The search results indicate that task-specific inference optimization, infrastructure routing, and careful overhead management are critical factors in 2025 production LLM deployments.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1dc612af-42e6-4898-9c0b-ae84c428c60b",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "9964d932-807e-4fc8-a013-429eab856ca9",
+  "toolUseResult": {
+    "query": "task-specific inference time head identification deployment cost overhead production LLM 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012pG1WWbcwcdu4amjtW3ABv",
+        "content": [
+          {
+            "title": "LLM Inference Benchmarking: How Much Does Your LLM Inference Cost? | NVIDIA Technical Blog",
+            "url": "https://developer.nvidia.com/blog/llm-inference-benchmarking-how-much-does-your-llm-inference-cost/"
+          },
+          {
+            "title": "Practical Guide to LLM Inference in Production (2025) | Hivenet",
+            "url": "https://compute.hivenet.com/post/llm-inference-production-guide"
+          },
+          {
+            "title": "LLM Inference Optimization Techniques | Clarifai Guide",
+            "url": "https://www.clarifai.com/blog/llm-inference-optimization/"
+          },
+          {
+            "title": "A Cost-Benefit Analysis of On-Premise Large Language Model Deployment: Breaking Even with Commercial LLM Services",
+            "url": "https://arxiv.org/html/2509.18101v3"
+          },
+          {
+            "title": "Cost Per Token Analysis: Optimizing GPU Infrastructure ... - Introl",
+            "url": "https://introl.com/blog/cost-per-token-llm-inference-optimization"
+          },
+          {
+            "title": "The LLM Inference Trilemma: Throughput, Latency, Cost | DigitalOcean",
+            "url": "https://www.digitalocean.com/blog/llm-inference-tradeoffs"
+          },
+          {
+            "title": "LLM Inference Performance Engineering: Best Practices | Databricks Blog",
+            "url": "https://www.databricks.com/blog/llm-inference-performance-engineering-best-practices"
+          },
+          {
+            "title": "Understanding the Total Cost of Inferencing Large ...",
+            "url": "https://www.delltechnologies.com/asset/en-in/solutions/business-solutions/industry-market/esg-inferencing-on-premises-with-dell-technologies-analyst-paper.pdf"
+          },
+          {
+            "title": "LLM Total Cost of Ownership 2025: Build vs Buy Math",
+            "url": "https://www.ptolemay.com/post/llm-total-cost-of-ownership"
+          },
+          {
+            "title": "Beyond Benchmarks: The Economics of AI Inference",
+            "url": "https://arxiv.org/html/2510.26136v1"
+          }
+        ]
+      },
+      "I've completed the web search for your query. Here's a summary of the findings on task-specific inference time, head identification, deployment costs, overhead, and production LLM in 2025:\n\n## Key Findings\n\n**Model Routing & Task-Specific Optimization:**\nA critical factor is model routing: sending every user query to a large model when a smaller model would suffice wastes compute and increases cost. Routing strategies that select the right model for the task (e.g., summarization vs. math reasoning) can cut costs dramatically.\n\n**Inference Cost Components:**\nUnderstanding token generation costs requires dissecting the inference process into component parts. Each token generation involves loading model weights from memory, performing matrix multiplications, applying attention mechanisms, and generating probability distributions.\n\n**Deployment Cost Overhead:**\nEngineering cost is consistently underestimated. The most expensive component isn't necessarily the silicon; it's the specialized labor required to tune it. Finding the optimal configuration for vLLM or TensorRT-LLM is a high-level systems engineering task that consumes weeks of expensive human and machine time.\n\n**Production Infrastructure Decisions:**\nAs concurrency increases from 8 to 48, the total completion time drops significantly. Before GPU compute power is saturated, increasing concurrency is the most effective way to amortize fixed overhead and reduce per-unit time costs.\n\n**Practical 2025 Optimization Strategies:**\nThe H200 with 141GB HBM3e is now widely available ($30-40K purchase, $2.15-6.00/hr cloud), enabling single-GPU serving of 70B models that previously required two H100s. H100 cloud prices dropped to $1.49-3.90/hr (down from $7-8/hr).\n\nThe search results indicate that task-specific inference optimization, infrastructure routing, and careful overhead management are critical factors in 2025 production LLM deployments."
+    ],
+    "durationSeconds": 8.676815992999982
+  },
+  "sourceToolAssistantUUID": "1dc612af-42e6-4898-9c0b-ae84c428c60b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 73 · 2026-05-17T09:14:27.398Z_
+
+```json
+{
+  "parentUuid": "9964d932-807e-4fc8-a013-429eab856ca9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b7b853c3-d899-4be4-877b-462a4d4c7c3e",
+  "timestamp": "2026-05-17T09:14:27.398Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-17T09:14:30.509Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also look at the CART paper since it's mentioned in the original idea and is the closest to "circuit-aware" training.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7b853c3-d899-4be4-877b-462a4d4c7c3e",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tLy89mhxdS2JNxwAxB",
+  "type": "assistant",
+  "uuid": "1096c6bf-6406-422e-ba49-0579f75d8d5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UTMLj3CRfmP4b1DJZDeu6h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3823,
+      "cache_read_input_tokens": 42566,
+      "output_tokens": 256,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3823,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 256,
+          "cache_read_input_tokens": 42566,
+          "cache_creation_input_tokens": 3823,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3823
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-17T09:14:31.041Z_
+
+Let me also check the CART paper and search for the specific gap between inference-time and training-time circuit methods.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1096c6bf-6406-422e-ba49-0579f75d8d5c",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tLy89mhxdS2JNxwAxB",
+  "type": "assistant",
+  "uuid": "6a1efcc8-9f2e-41c9-b23b-5d25b812e616",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UTMLj3CRfmP4b1DJZDeu6h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3823,
+      "cache_read_input_tokens": 42566,
+      "output_tokens": 256,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3823,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 256,
+          "cache_read_input_tokens": 42566,
+          "cache_creation_input_tokens": 3823,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3823
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-17T09:14:33.134Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0132cY1QTHbmGGQ3Hpf4GUDV`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2509.24713",
+  "prompt": "Extract the key method, results, and how CART combines circuit analysis with RLHF training. Does it modify circuits during training? How does it differ from applying circuit interventions at inference time? What are its limitations?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a1efcc8-9f2e-41c9-b23b-5d25b812e616",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tLy89mhxdS2JNxwAxB",
+  "type": "assistant",
+  "uuid": "5407c461-5592-4630-998f-f5f2175f38fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UTMLj3CRfmP4b1DJZDeu6h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3823,
+      "cache_read_input_tokens": 42566,
+      "output_tokens": 256,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3823,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 256,
+          "cache_read_input_tokens": 42566,
+          "cache_creation_input_tokens": 3823,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3823
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-17T09:14:33.332Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Muad98dXW8nfcd85yneU7H`</summary>
+
+```json
+{
+  "query": "attention distribution divergence auxiliary loss DPO preference optimization training 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5407c461-5592-4630-998f-f5f2175f38fc",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tLy89mhxdS2JNxwAxB",
+  "type": "assistant",
+  "uuid": "6325eb02-1310-4c44-acad-1443f7bc9694",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UTMLj3CRfmP4b1DJZDeu6h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3823,
+      "cache_read_input_tokens": 42566,
+      "output_tokens": 256,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3823,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 256,
+          "cache_read_input_tokens": 42566,
+          "cache_creation_input_tokens": 3823,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3823
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-17T09:14:37.566Z_
+
+<details><summary>↩ Tool result · `toolu_0132cY1QTHbmGGQ3Hpf4GUDV`</summary>
+
+```text
+# Circuit-Aware Reward Training: Analysis
+
+Based on the arXiv abstract provided, here's what can be determined about CART:
+
+## Key Method
+
+CART leverages "circuit analysis to guide data augmentation, regularization, and ensemble strategies." The approach identifies specialized neural circuits in reward models that process rare events, drawing from research on distributed specialization in language models.
+
+## Training vs. Inference Integration
+
+The abstract indicates CART operates during training rather than at inference time. By using circuit analysis to *guide* augmentation and regularization strategies, it shapes how the reward model develops during training, rather than applying post-hoc interventions to already-learned circuits.
+
+## Theoretical Foundation
+
+The framework "establishes formal connections between circuit specialization, reward generalization bounds, and longtail performance," suggesting mathematical grounding beyond empirical tweaks.
+
+## Critical Limitation
+
+The abstract provides insufficient detail on actual results, limitations, or experimental validation. It describes the proposed method and theoretical framework but doesn't present empirical performance metrics, failure cases, or comparative analyses against baseline approaches. Readers would need the full paper to understand concrete outcomes and practical constraints.
+
+The submission date (September 29, 2025) suggests this is a very recent preprint with potentially limited external validation at present.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5407c461-5592-4630-998f-f5f2175f38fc",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "f66bdc51-975a-44bf-b802-e3da53b055a0",
+  "toolUseResult": {
+    "bytes": 45779,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Circuit-Aware Reward Training: Analysis\n\nBased on the arXiv abstract provided, here's what can be determined about CART:\n\n## Key Method\n\nCART leverages \"circuit analysis to guide data augmentation, regularization, and ensemble strategies.\" The approach identifies specialized neural circuits in reward models that process rare events, drawing from research on distributed specialization in language models.\n\n## Training vs. Inference Integration\n\nThe abstract indicates CART operates during training rather than at inference time. By using circuit analysis to *guide* augmentation and regularization strategies, it shapes how the reward model develops during training, rather than applying post-hoc interventions to already-learned circuits.\n\n## Theoretical Foundation\n\nThe framework \"establishes formal connections between circuit specialization, reward generalization bounds, and longtail performance,\" suggesting mathematical grounding beyond empirical tweaks.\n\n## Critical Limitation\n\nThe abstract provides insufficient detail on actual results, limitations, or experimental validation. It describes the proposed method and theoretical framework but doesn't present empirical performance metrics, failure cases, or comparative analyses against baseline approaches. Readers would need the full paper to understand concrete outcomes and practical constraints.\n\nThe submission date (September 29, 2025) suggests this is a very recent preprint with potentially limited external validation at present.",
+    "durationMs": 4429,
+    "url": "https://arxiv.org/abs/2509.24713"
+  },
+  "sourceToolAssistantUUID": "5407c461-5592-4630-998f-f5f2175f38fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-17T09:14:40.622Z_
+
+<details><summary>↩ Tool result · `toolu_01Muad98dXW8nfcd85yneU7H`</summary>
+
+```text
+Web search results for query: "attention distribution divergence auxiliary loss DPO preference optimization training 2025 2026 arXiv"
+
+Links: [{"title":"Distribution Preference Optimization: A Fine-grained Perspective for LLM Unlearning","url":"https://arxiv.org/html/2510.04773"},{"title":"Proximalized Preference Optimization for Diverse Feedback Types: A Decomposed Perspective on DPO","url":"https://arxiv.org/html/2505.23316"},{"title":"Distribution Preference Optimization: A Fine-grained","url":"https://www.arxiv.org/pdf/2510.04773"},{"title":"Eliminating Biased Length Reliance of Direct Preference Optimization via Down-Sampled KL Divergence","url":"https://arxiv.org/html/2406.10957v4"},{"title":"Direct Preference Optimization: Your Language Model is Secretly a Reward Model","url":"https://arxiv.org/pdf/2305.18290"},{"title":"Token-Importance Guided Direct Preference Optimization","url":"https://arxiv.org/html/2505.19653v1"},{"title":"Published as a conference paper at ICLR 2025 EARLIER TOKENS CONTRIBUTE MORE:","url":"https://arxiv.org/pdf/2502.14340"},{"title":"Autoregressive Direct Preference Optimization","url":"https://arxiv.org/html/2602.09533"},{"title":"1 A Survey of Direct Preference Optimization","url":"https://www.arxiv.org/pdf/2503.11701"},{"title":"Unified Preference Optimization: Language Model Alignment Beyond the Preference Frontier","url":"https://arxiv.org/html/2405.17956v4"}]
+
+I've performed a web search for your query about attention distribution divergence, auxiliary loss, DPO, preference optimization, and training in 2025-2026 on arXiv. Here are the key findings:
+
+## Recent DPO-Related Research (2025-2026)
+
+The search returned several relevant arXiv papers addressing advanced aspects of preference optimization:
+
+### Distribution and Divergence Approaches
+
+Distribution Preference Optimization (DiPO) is a novel algorithm that targets the next-token probability distribution directly, published in October 2025. The DiPO loss function encourages an increase in the relative gap between Sequence KL divergence from the current distribution and incorporates a dynamic, per-sample offset.
+
+DPO has inspired the development of numerous contrastive approaches, though an unanticipated phenomenon frequently arises in DPO where the likelihoods of both preferred and dispreferred responses decrease after alignment.
+
+### Auxiliary Loss and Fine-Grained Approaches
+
+Token-Importance Guided Direct Preference Optimization (TI-DPO) achieves high accuracy on TruthfulQA and IFEval tasks, with visualized weight distributions revealing focus on semantically critical tokens (May 2025).
+
+Unified Preference Optimization (UPO) allows tuning language models to maximize auxiliary, non-preferential objectives according to designer preferences, leveraging the simplicity and performance of DPO with the generality of RL (May 2025).
+
+### Divergence Constraints and Regularization
+
+Recent work introduces χ²-divergence as a more aggressive form of regularization compared to KL divergence, alleviating the over-optimization problem.
+
+These papers represent the latest developments in preference optimization with sophisticated handling of distribution divergence and auxiliary objectives.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6325eb02-1310-4c44-acad-1443f7bc9694",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "0e522ecf-1820-4b2d-a587-68beb74eb0b8",
+  "toolUseResult": {
+    "query": "attention distribution divergence auxiliary loss DPO preference optimization training 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019qBfBMWZahiasJHjKnTxAc",
+        "content": [
+          {
+            "title": "Distribution Preference Optimization: A Fine-grained Perspective for LLM Unlearning",
+            "url": "https://arxiv.org/html/2510.04773"
+          },
+          {
+            "title": "Proximalized Preference Optimization for Diverse Feedback Types: A Decomposed Perspective on DPO",
+            "url": "https://arxiv.org/html/2505.23316"
+          },
+          {
+            "title": "Distribution Preference Optimization: A Fine-grained",
+            "url": "https://www.arxiv.org/pdf/2510.04773"
+          },
+          {
+            "title": "Eliminating Biased Length Reliance of Direct Preference Optimization via Down-Sampled KL Divergence",
+            "url": "https://arxiv.org/html/2406.10957v4"
+          },
+          {
+            "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model",
+            "url": "https://arxiv.org/pdf/2305.18290"
+          },
+          {
+            "title": "Token-Importance Guided Direct Preference Optimization",
+            "url": "https://arxiv.org/html/2505.19653v1"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 EARLIER TOKENS CONTRIBUTE MORE:",
+            "url": "https://arxiv.org/pdf/2502.14340"
+          },
+          {
+            "title": "Autoregressive Direct Preference Optimization",
+            "url": "https://arxiv.org/html/2602.09533"
+          },
+          {
+            "title": "1 A Survey of Direct Preference Optimization",
+            "url": "https://www.arxiv.org/pdf/2503.11701"
+          },
+          {
+            "title": "Unified Preference Optimization: Language Model Alignment Beyond the Preference Frontier",
+            "url": "https://arxiv.org/html/2405.17956v4"
+          }
+        ]
+      },
+      "I've performed a web search for your query about attention distribution divergence, auxiliary loss, DPO, preference optimization, and training in 2025-2026 on arXiv. Here are the key findings:\n\n## Recent DPO-Related Research (2025-2026)\n\nThe search returned several relevant arXiv papers addressing advanced aspects of preference optimization:\n\n### Distribution and Divergence Approaches\n\nDistribution Preference Optimization (DiPO) is a novel algorithm that targets the next-token probability distribution directly, published in October 2025. The DiPO loss function encourages an increase in the relative gap between Sequence KL divergence from the current distribution and incorporates a dynamic, per-sample offset.\n\nDPO has inspired the development of numerous contrastive approaches, though an unanticipated phenomenon frequently arises in DPO where the likelihoods of both preferred and dispreferred responses decrease after alignment.\n\n### Auxiliary Loss and Fine-Grained Approaches\n\nToken-Importance Guided Direct Preference Optimization (TI-DPO) achieves high accuracy on TruthfulQA and IFEval tasks, with visualized weight distributions revealing focus on semantically critical tokens (May 2025).\n\nUnified Preference Optimization (UPO) allows tuning language models to maximize auxiliary, non-preferential objectives according to designer preferences, leveraging the simplicity and performance of DPO with the generality of RL (May 2025).\n\n### Divergence Constraints and Regularization\n\nRecent work introduces χ²-divergence as a more aggressive form of regularization compared to KL divergence, alleviating the over-optimization problem.\n\nThese papers represent the latest developments in preference optimization with sophisticated handling of distribution divergence and auxiliary objectives."
+    ],
+    "durationSeconds": 7.285608834000013
+  },
+  "sourceToolAssistantUUID": "6325eb02-1310-4c44-acad-1443f7bc9694",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-17 (UTC).**  ## Original idea {   \"title\": \"Circuit-DPO: Composable Distraction Robustness via Mechanistically-Tar…",
+  "leafUuid": "0e522ecf-1820-4b2d-a587-68beb74eb0b8",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising Circuit-DPO core framing",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Assistant
+
+_source line 82 · 2026-05-17T09:15:19.597Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent. I now have a comprehensive understanding of the landscape. Let me synthesize my findings and think deeply before making revisions.
+
+## Deep Thinking Before Revision
+
+### Core Assumption Check
+The core assumption of Circuit-DPO is that combining circuit-level targeting with preference optimization provides benefits beyond either alone. Is this still valid?
+
+**YES, but the framing needs to change fundamentally.** The reviewer correctly identified that the "graded context-sensitive behavior" argument is weak because:
+1. Ablation is nearly free (0-3% ICL cost), so there's no preservation argument
+2. The advantage must come from something OTHER than graded control for ICL preservation
+
+
+3. The real mechanistic insight is that RLHF operates at the behavioral surface level—it reshapes response patterns around specific components while leaving core reasoning circuits untouched, which means EIT's entrainment modifications are compositional by nature. Meanwhile, the practical bottleneck isn't the ablation cost itself but the task-specific nature of entrainment heads, which requires per-task identification through differentiable masking at inference time.
+
+4. Backup circuits present a genuine vulnerability to inference-time approaches—models likely have redundant pathways that can circumvent binary ablations, whereas training-time modification propagates gradients across the entire loss landscape and potentially affects a broader constellation of related circuits. EIT's concrete limitations are telling: position bias doesn't generalize, the non-predictiveness guarantee only applies to the injected signal itself, and there's no mechanistic visibility into what actually changed internally, leaving the entrainment circuit potentially intact and still consuming attention resources.
+
+The real advantage of Circuit-DPO crystallizes around **internalization**—it permanently rewires the entrainment circuit itself rather than just masking it at inference time. ainment mechanism during training so that:
+- No per-task head identification is needed at inference time
+- The modification potentially extends beyond just the identified heads (indirect regularization)
+- The model's behavior is robust to backup circuit compensation
+- It composes with behavioral methods (EIT) because they operate at different levels
+
+### KLAAD Differentiation
+KLAAD is indeed the closest technical precedent for "attention divergence as training loss." But differentiation is clear:
+1. KLAAD targets ALL heads in final layer; Circuit-DPO targets mechanistically-identified heads across layers
+2. KLAAD operates in standard CE training; Circuit-DPO integrates into DPO
+3. KLAAD uses paired stereotype/anti-stereotype sentences; Circuit-DPO uses self-supervised clean/noisy references
+4. Different application domain (debiasing vs. distraction)
+
+### Composability Argument
+The concrete scenario: EIT trains the model to produce correct outputs despite bias cues through behavioral compensation, but the entrainment circuit still consumes attention capacity on distractors. For novel distractor types that create subtle entrainment, EIT's heuristics may not generalize and ablation becomes unreliable since the wrong heads get identified. Circuit-DPO directly modifies the entrainment mechanism itself, reducing what EIT needs to compensate for and creating additive robustness.
+
+### Assessment of Change Type
+This is a major revision rather than a minor adjustment. The core idea of augmenting DPO with attention divergence on entrainment heads remains, but the motivation shifts toward internalization rather than graded control, KLAAD becomes a key reference point, the impact argument restructures around concrete failure modes, and I'm adding a new ablation baseline.
+
+Now I'm thinking through the hypotheses in light of this reframing. H1 on composability stays primary with a mechanistic grounding. H2 shifts from "graded learned manner" to emphasizing how internalized modification generalizes to novel distractors without requiring per-task head re-identification, whereas ablation demands rediscovering heads each time. H3 on data efficiency versus EIT still holds—targeting the mechanism directly should be more sample-efficient. I should also add H4 as a new hypothesis: Circuit-DPO outperforms binary ablation specifically on adaptive or subtle distractors where partial entrainment occurs.
+
+Wait, the reviewer wanted a direct comparison versus ablation baseline...
+
+Updating the JSON now.
+
+I'm now reconsidering the hypotheses through this new lens. H1 remains the primary composability claim but with mechanistic grounding. H2 reframes around how internalized modifications generalize to novel distractors without needing per-task head re-identification, unlike ablation which requires rediscovering heads for each new task. H3 still applies—targeting the mechanism directly should require less training data than EIT alone. I should add H4: Circuit-DPO outperforms binary ablation on adaptive or subtle distractors where partial entrainment occurs. The reviewer also wanted a direct comparison versus ablation...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e522ecf-1820-4b2d-a587-68beb74eb0b8",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tMwibUBTh1wHrXuxw8",
+  "type": "assistant",
+  "uuid": "9031ecd9-5780-4e76-aa19-0b71733e6ee8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdyrT4jvE2XWEy3Wn2kKys",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1429,
+      "cache_read_input_tokens": 46389,
+      "output_tokens": 7578,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1429,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7578,
+          "cache_read_input_tokens": 46389,
+          "cache_creation_input_tokens": 1429,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1429
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-17T09:15:22.330Z_
+
+Now I have a comprehensive picture. Let me synthesize the key findings before writing the revision:
+
+**Key research findings:**
+1. **KLAAD (EMNLP 2025)** uses KL on ALL final-layer attention heads — no head selection, standard CE training, debiasing application. Clear differentiation from circuit-targeted DPO integration.
+2. **RLHF is surface-level**: "RLHF primarily affects specific components related to response initiation and style, while core knowledge and reasoning circuits remain largely unchanged" — this directly supports the composability argument (EIT likely compensates around the intact entrainment circuit).
+3. **EIT limitations**: Position bias doesn't transfer, and "non-predictiveness guarantee applies specifically to the injected bias signal; it does not preclude reliance on other shortcuts." No analysis of whether internal circuits change.
+4. **Ablation is nearly free** but task-specific — requiring per-task head re-identification is a real deployment cost.
+5. **Backup circuits** are documented in the mech interp literature — overlapping mechanisms can compensate after ablation.
+
+This is a **major revision** of the framing (internalization over graded control) while keeping the core method. Let me write the complete revised idea.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9031ecd9-5780-4e76-aa19-0b71733e6ee8",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tMwibUBTh1wHrXuxw8",
+  "type": "assistant",
+  "uuid": "f9a586db-c40a-428e-b5e6-4c727d1d7908",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdyrT4jvE2XWEy3Wn2kKys",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1429,
+      "cache_read_input_tokens": 46389,
+      "output_tokens": 7578,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1429,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7578,
+          "cache_read_input_tokens": 46389,
+          "cache_creation_input_tokens": 1429,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1429
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-17T09:17:42.442Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01AAbftU44HQQkwsbDeH6Za8`</summary>
+
+```json
+{
+  "description": "Draft revised research JSON",
+  "prompt": "I need you to help me compose a large JSON object. I'll provide the complete content — please output ONLY the raw JSON, no markdown code fences, no commentary. This is a research idea revision.\n\nHere is the complete JSON to output:\n\n{\n  \"change_type\": \"major\",\n  \"title\": \"Circuit-DPO: Internalizing Distraction Robustness via Mechanistically-Targeted Preference Optimization\",\n  \"core_problem\": \"LLMs suffer catastrophic performance degradation (up to 80% on NoisyBench, >45% average on Adaptive Distraction) when contextual distractors are injected into prompts. Mechanistic analysis ('Llama See, Llama Do,' ACL 2025) identifies specific 'entrainment heads' — attention heads that indiscriminately boost previously-seen context tokens — as the causal mechanism. Current defenses split into two paradigms with complementary limitations: (1) Behavioral approaches (EIT, DPO, SFT+RL) optimize output quality without mechanistic targeting. EIT's balanced conflict RL achieves +39.1% on unseen bias types by making bias cues non-predictive of reward. However, recent mechanistic interpretability evidence shows that behavioral training (RLHF, RL) 'primarily affects specific components related to response initiation and style, while core knowledge and reasoning circuits remain largely unchanged' (arXiv:2602.11180). This means behavioral methods likely learn compensatory output strategies that route AROUND the intact entrainment circuit rather than modifying it — a fragile defense that may break when novel distractor patterns overwhelm the compensatory capacity. Furthermore, EIT's own authors note that 'the non-predictiveness guarantee applies specifically to the injected bias signal; it does not preclude reliance on other shortcuts,' and position bias (structural) shows zero transfer (+0% improvement). (2) Inference-time circuit interventions (head ablation from 'Llama See, Llama Do') directly target entrainment heads with only 0.2-3% ICL cost. Ablation is effective precisely BECAUSE entrainment heads are 'not strongly related to how LMs process and utilise contextual information or perform ICL more broadly' — so suppressing them is cheap. But ablation has three practical limitations: (a) entrainment heads are task-specific, not model-specific, requiring per-task head re-identification via differentiable masking before deployment; (b) ablation is binary (all-or-nothing), unable to handle partial entrainment from subtly related distractors; (c) the mechanistic interpretability literature documents that models contain 'multiple overlapping circuits' for the same behavior, suggesting ablation of identified heads may be compensated by backup pathways. The critical gap: no approach INTERNALIZES distraction robustness at the circuit level during training — permanently modifying the entrainment mechanism so that neither per-task head identification at inference time nor fragile behavioral compensation is needed.\",\n  \"opportunity\": \"Three convergent opportunities enable Circuit-DPO, which we position as a method that INTERNALIZES circuit-level distraction robustness into model weights during preference optimization: (1) The entrainment circuit foundation from 'Llama See, Llama Do' (ACL 2025) — differentiable masking identifies 30-110 task-specific entrainment heads that can be ablated with minimal ICL cost (0.2-3%). The near-zero ablation cost is not a weakness of our approach but a STRENGTH: it demonstrates these heads are modifiable without breaking broader capabilities, establishing the safety of circuit-level intervention. However, inference-time ablation requires per-task head re-identification and cannot propagate its effects to related circuits. Training-time optimization with gradient flow through these heads can both internalize the intervention and indirectly regularize adjacent circuits. (2) Self-supervised attention targets are freely available in distractor-injection settings: the model's own attention patterns on clean inputs provide a reference distribution for entrainment heads. For any task where clean/noisy input pairs can be constructed (all distractor-injection benchmarks by definition), the clean-attention pattern serves as a soft supervision reference. We use 'reference' rather than 'exact target' because softmax attention is jointly computed over all positions — adding tokens legitimately changes the softmax denominator. Our margin-based constraint tolerates small deviations while penalizing the large shifts characteristic of entrainment. (3) The DPO framework is uniquely suited — it operates on paired preferences and avoids RL instability. Augmenting DPO with attention-distribution divergence on entrainment heads is a natural extension. KLAAD (EMNLP 2025, arXiv:2507.19962) establishes the technical precedent that attention-distribution divergence can serve as an effective auxiliary training loss — it uses KL divergence to align attention between stereotype/anti-stereotype pairs for debiasing. Circuit-DPO advances this mechanism in three ways: targeting mechanistically-identified circuit heads (not all heads in a single layer), integrating into preference optimization (not standard training), and using self-supervised clean-input references (not externally-provided paired examples). RetMask (ACL 2026 Findings, arXiv:2601.11020) bridges head identification with DPO indirectly — using retrieval-head-ablated outputs for contrastive pair generation. Circuit-DPO provides direct gradient signal on attention distributions.\",\n  \"landscape\": \"The distraction robustness landscape has matured rapidly in 2025-2026, with approaches spanning behavioral training, mechanistic analysis, circuit-level methods, and attention-distribution optimization: (1) Behavioral training methods. EIT (arXiv:2602.01528) achieves +39.1% generalization to unseen bias types via balanced conflict RL — the strongest OOD result, but operating purely at the behavioral level with evidence that RL training leaves core reasoning circuits largely unchanged (arXiv:2602.11180). Standard DPO for distraction (NeurIPS 2025, arXiv:2502.01609) achieves strong in-distribution robustness (+0.485 accuracy on Phi-3.5-mini). RARE (arXiv:2601.07226) uses rationale-aware reward shaping. Distractor Injection defense (arXiv:2510.16259) achieves >50-point improvement via SFT+RL. All modify behavior without targeting the entrainment mechanism. (2) Mechanistic and circuit methods. 'Llama See, Llama Do' (ACL 2025) identifies and ablates entrainment heads at inference time — interpretable but binary, task-specific, and requiring per-task head re-identification. CHG (NeurIPS 2025, arXiv:2505.13737) uses contrastive gating for circuit analysis. 'Thinking Sparks!' (arXiv:2509.25758) demonstrates that post-training causes attention heads to emerge, shift, and be pruned. Bali et al. (arXiv:2602.16740) quantify attention-head stability across training, finding middle-layer heads are least stable but most functionally important. (3) Attention-distribution losses in training. KLAAD (EMNLP 2025, arXiv:2507.19962) is the closest TECHNICAL precedent: it uses KL divergence on attention distributions as an auxiliary training loss to align attention between stereotype/anti-stereotype pairs for debiasing. KLAAD targets all attention heads in the final layer during standard (CE+KL+Triplet) training, without head selection or DPO integration. Circuit-DPO differs in: (a) targeting mechanistically-identified entrainment heads across multiple layers rather than all heads in one layer; (b) integrating into preference optimization rather than standard training; (c) using self-supervised clean-input references rather than externally-constructed paired examples. (4) Mechanistic-interpretability-guided preference optimization. RetMask (ACL 2026 Findings, arXiv:2601.11020) identifies retrieval heads, then generates contrastive pairs by comparing original vs. head-ablated outputs for standard DPO — heads inform DATA CURATION, not the loss function. CART (arXiv:2509.24713) uses circuit analysis to guide data augmentation and regularization for reward model robustness but does not apply circuit-targeted losses during policy optimization. RAL (arXiv:2602.04884) optimizes attention via policy gradient for multimodal LLMs — all attention, not circuit-specific. (5) Architectural and representation methods. Gated Attention (NeurIPS 2025 Best Paper, arXiv:2505.06708) introduces per-head sigmoid gates as a pretraining modification. Pref-CTRL (arXiv:2604.23543) and RE-Control (NeurIPS 2024) operate on hidden states. FPO (arXiv:2411.07618) constrains SAE features during DPO. Circuit-DPO uniquely combines direct attention-level gradient supervision on mechanistically-identified heads with preference optimization, framed as INTERNALIZATION of circuit-level distraction robustness.\",\n  \"approach\": \"Circuit-DPO augments the standard DPO loss with a margin-based attention-distribution divergence term operating specifically on entrainment heads, with periodic head re-identification to account for circuit drift. The method is framed as INTERNALIZATION: permanently embedding distraction robustness into model weights by modifying the entrainment mechanism during training, eliminating inference-time head identification. Four stages with composability-first evaluation: (1) Entrainment head discovery with periodic refresh. Apply differentiable masking from 'Llama See, Llama Do' (github.com/frankniujc/entrainment) to identify entrainment heads in Llama-3-8B and Qwen2.5-7B. For Qwen2.5-7B (28Q/4KV, different GQA ratio from Llama-3-8B's 32Q/8KV), mask at query-head granularity within each KV group. Because post-training causes attention heads to emerge and shift ('Thinking Sparks!'), re-run head discovery every 500 steps using warm-started logit parameters. If head sets shift substantially between intervals — a known risk given middle-layer instability (Bali et al., arXiv:2602.16740) — the warm-start procedure biases toward the previous head set, providing continuity. We track head-set Jaccard similarity across re-identifications; if similarity drops below 0.5, we trigger early re-identification and log the event for analysis. This monitoring addresses whether head discovery is noisy: if different heads appear each time, it signals that the entrainment function is being redistributed across the network — which is itself evidence of successful internalization. (2) Self-supervised attention reference construction. For each training example, construct paired clean/noisy inputs. Run x_clean through the model and extract attention distributions from entrainment heads over shared context tokens (with stop-gradient). These clean-attention patterns define a REFERENCE distribution. The margin-based loss (Stage 3) tolerates small deviations — inherent to softmax recomputation with additional tokens — while penalizing the large shifts characteristic of entrainment. (3) Circuit-DPO training with margin-based attention constraint. L = L_DPO(y_chosen, y_rejected | x_noisy) + λ · Σ_{h ∈ H_ent} max(JSD(A_h^noisy_shared, A_h^clean_shared) - ε, 0). JSD (Jensen-Shannon divergence) is used because: (a) symmetric — no principled reason to prefer one KL direction; (b) bounded in [0, ln 2], preventing gradient explosion; (c) margin ε has interpretable units (bits of divergence). λ annealed linearly from 0 over first 20% of training. Hyperparameter sweep: ε ∈ {0.01, 0.05, 0.1, 0.2}, λ ∈ {0.1, 0.5, 1.0, 2.0}. (4) Evaluation protocol centered on three key comparisons. PRIMARY COMPARISON 1 — Internalization vs. inference-time ablation: Circuit-DPO (no inference-time intervention) vs. inference-time head ablation on MATCHED distractor types AND cross-task transfer. The critical test: on a new task domain where entrainment heads have NOT been identified, Circuit-DPO should maintain robustness (internalized) while ablation cannot be applied (no head identification). This is the key experiment justifying the method's complexity over simple ablation. PRIMARY COMPARISON 2 — Composability: Circuit-DPO + EIT vs. each alone. The concrete mechanistic argument: EIT teaches the model to produce correct outputs despite bias cues, but mechanistic evidence suggests RL training leaves core circuits largely unchanged (arXiv:2602.11180) — so the entrainment circuit likely still activates on distractors, consuming attention capacity and creating fragile compensation. Circuit-DPO modifies the root cause, so EIT has less to compensate for. Concrete failure scenario: when a novel distractor type triggers partial entrainment that EIT's behavioral training has not seen, EIT alone fails because the untrained-for attention pattern disrupts reasoning. Ablation alone fails because heads for this task haven't been identified. Circuit-DPO + EIT succeeds because the internalized circuit modification reduces entrainment activation while EIT provides behavioral robustness to residual effects. PRIMARY COMPARISON 3 — Circuit-DPO vs. output-only DPO and RetMask-style indirect circuit targeting. Benchmarks: the 'Lost in the Noise' evaluation suite (arXiv:2601.07226, referred to as NoisyBench in subsequent literature) with held-out distractor types (train on random documents + irrelevant chat, test on hard negatives), Adaptive Distraction benchmark (NeurIPS 2025, arXiv:2502.01609), and GSM-DC (EMNLP 2025) for math-specific distraction. Baselines: (a) standard DPO, (b) EIT, (c) inference-time head ablation ('Llama See, Llama Do'), (d) RetMask-style head-guided data generation + DPO, (e) KLAAD-style all-head attention divergence during DPO (to isolate circuit-specificity benefit). Key ablations: (a) attention divergence on ALL heads vs. entrainment heads only (KLAAD-style vs. Circuit-DPO — tests circuit targeting vs. general attention regularization), (b) attention divergence on random heads (controls for regularization effect), (c) strict JSD (ε=0) vs. margin-based, (d) periodic head re-identification vs. fixed pre-training heads (tests internalization — if Jaccard similarity decreases over training, the model is redistributing entrainment function), (e) varying re-identification frequency (250/500/1000 steps). Four testable hypotheses: (H1, primary) Composability — Circuit-DPO + EIT yields additive robustness because Circuit-DPO modifies the entrainment mechanism (root cause) while EIT provides behavioral independence from remaining bias cues (compensatory layer), and these operate at orthogonal levels. (H2) Internalization — Circuit-DPO without inference-time intervention outperforms inference-time head ablation on cross-task transfer, because the trained model internalizes distraction resistance that generalizes beyond the specific heads identified during training. (H3) Circuit-DPO achieves stronger within-distraction-type OOD generalization than output-only DPO because it modifies the causal mechanism rather than learning output heuristics. (H4) Circuit-targeted attention divergence (entrainment heads only) outperforms untargeted attention divergence (all heads, KLAAD-style), validating that mechanistic head identification provides value beyond general attention regularization. Task-domain scope: primary claims scoped to within-task-domain transfer (novel distractor types within math reasoning and QA), with cross-domain exploratory experiment (heads discovered on math evaluated on QA and vice versa).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~220h H100 80GB\",\n      \"gpu_utilization\": \"~25-35%\",\n      \"timeline\": \"3-4 months\",\n      \"team\": \"1-2 researchers (mechanistic interpretability + alignment)\",\n      \"estimated_gpu_cost\": \"$660-880 (at ~$3.00/hr H100 80GB cloud rental)\",\n      \"breakdown\": \"Head discovery (initial + periodic re-identification infrastructure): 25h. Circuit-DPO training: 70h (35h × 2 models). Baselines (DPO, EIT replication, RetMask-style, inference-time ablation, KLAAD-style all-head divergence): 65h. Ablations (6 variants including head stability, margin vs. strict, re-identification frequency, KLAAD-style comparison): 45h. Evaluation + cross-task transfer experiments: 15h.\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~235h H100 80GB\",\n      \"gpu_utilization\": \"~55-65%\",\n      \"timeline\": \"8-10 weeks\",\n      \"team\": \"1 researcher, ~30min/day reviewing agent proposals and results\",\n      \"claude_api_cost\": \"$150-280\",\n      \"estimated_gpu_cost\": \"$705-940\",\n      \"risk_note\": \"Periodic head re-identification adds ~15% training overhead. Qwen2.5-7B GQA ratio requires validation. Head stability during training is the primary technical risk — monitored via Jaccard similarity tracking with early re-identification trigger.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~260h H100 80GB\",\n      \"gpu_utilization\": \"~90-95%\",\n      \"timeline\": \"10-16 days with 4× H100 80GB\",\n      \"team\": \"0 (initial setup only)\",\n      \"claude_api_cost\": \"$280-450\",\n      \"estimated_gpu_cost\": \"$780-1040\",\n      \"speed_bottleneck\": \"GPU count — with 4× H100, can run 2 models × 2 configurations in parallel. Paired forward passes and periodic head re-identification add ~50% overhead vs. standard DPO\",\n      \"risk_note\": \"Automated entrainment head discovery may identify spurious circuits without human sanity-checking; Jaccard similarity monitoring partially mitigates this\"\n    }\n  },\n  \"target_venues\": [\n    \"ARR October 2026 (submission October 12, 2026 — primary target, ~5-month timeline, feeds into ACL 2027 or NAACL 2027)\",\n    \"EACL 2027 (ARR August 3, 2026 — stretch target if progress is rapid, commitment October 11, 2026)\"\n  ],\n  \"venue_note\": \"EMNLP 2026 ARR May 25 deadline is infeasible (8 days from today, 2026-05-17). ARR October 2026 provides a comfortable ~5-month timeline. EACL 2027 (ARR August 3) serves as a stretch target with ~11 weeks.\",\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs (ACL 2025, arXiv:2505.09338)\",\n    \"KLAAD: Refining Attention Mechanisms to Reduce Societal Bias in Generative Language Models (EMNLP 2025, arXiv:2507.19962)\",\n    \"From Interpretability to Performance: Optimizing Retrieval Heads for Long-Context Language Models [RetMask] (ACL 2026 Findings, arXiv:2601.11020)\",\n    \"Making Bias Non-Predictive: Training Robust LLM Reasoning via Reinforcement Learning [EIT] (arXiv 2026, arXiv:2602.01528)\",\n    \"Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions (arXiv 2026, arXiv:2602.11180)\",\n    \"Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search (NeurIPS 2025, arXiv:2502.01609)\",\n    \"Lost in the Noise: How Reasoning Models Fail with Contextual Distractors [RARE/NoisyBench] (arXiv 2025, arXiv:2601.07226)\",\n    \"Thinking Sparks!: Emergent Attention Heads in Reasoning Models During Post Training (arXiv 2025, arXiv:2509.25758)\",\n    \"Quantifying LLM Attention-Head Stability: Implications for Circuit Universality (arXiv 2026, arXiv:2602.16740)\",\n    \"Causal Head Gating: Scalable Attention Head Interpretation [CHG] (NeurIPS 2025, arXiv:2505.13737)\",\n    \"Gated Attention for Large Language Models (NeurIPS 2025 Best Paper, arXiv:2505.06708)\",\n    \"Reinforced Attention Learning [RAL] (arXiv 2026, arXiv:2602.04884)\",\n    \"Distractor Injection Attacks on LLMs: Defense via SFT+RL (arXiv 2025, arXiv:2510.16259)\",\n    \"Circuit-Aware Reward Training [CART] (arXiv 2025, arXiv:2509.24713)\",\n    \"Pref-CTRL: Preference Driven LLM Alignment using Representation Editing (arXiv 2026, arXiv:2604.23543)\",\n    \"Aligning Large Language Models with Representation Editing [RE-Control] (NeurIPS 2024)\",\n    \"Direct Preference Optimization Using Sparse Feature-Level Constraints [FPO] (arXiv 2024, arXiv:2411.07618)\",\n    \"Preference Heads in Large Language Models (arXiv 2026, arXiv:2604.22345)\",\n    \"How Is LLM Reasoning Distracted by Irrelevant Context? [GSM-DC] (EMNLP 2025)\",\n    \"A Comprehensive Survey of Direct Preference Optimization (arXiv 2024, arXiv:2410.15595v3)\"\n  ],\n  \"description\": \"We propose Circuit-DPO, a preference optimization method that INTERNALIZES distraction robustness by augmenting the standard DPO loss with a margin-based Jensen-Shannon divergence term on entrainment heads — attention heads mechanistically responsible for contextual entrainment. Unlike behavioral methods (EIT, standard DPO) that learn compensatory output strategies around the intact entrainment circuit, or inference-time ablation that requires per-task head re-identification and cannot generalize across tasks, Circuit-DPO permanently modifies the entrainment mechanism during training. The near-zero cost of ablation (0.2-3% ICL loss) is not a competing advantage but confirms the SAFETY of circuit-level intervention — these heads can be modified without collateral damage. Our attention reference targets are self-supervised: clean-input attention defines what entrainment heads should approximately do. We use margin-based JSD — L = L_DPO + λ·Σ_h max(JSD(A_h^noisy, A_h^clean) - ε, 0) — tolerating legitimate redistribution while penalizing entrainment. We build on the technical precedent of KLAAD (EMNLP 2025), which established attention-distribution KL as an effective auxiliary training loss for debiasing, but advance beyond it with circuit-specific targeting, DPO integration, and self-supervised references. Periodic head re-identification with Jaccard similarity monitoring tracks circuit drift during training. Our primary hypothesis is twofold: (H1) composability — Circuit-DPO + EIT yields additive robustness because they target orthogonal levels (circuit mechanism vs. behavioral compensation), supported by evidence that RL training leaves core circuits unchanged (arXiv:2602.11180); (H2) internalization — Circuit-DPO without inference-time intervention outperforms inference-time ablation on cross-task transfer, because trained circuit modification generalizes beyond specific identified heads. We explicitly compare against inference-time ablation as a key baseline — the experiment that justifies training-time complexity over inference-time simplicity. Evaluation on the 'Lost in the Noise' evaluation suite (arXiv:2601.07226), Adaptive Distraction benchmark, and GSM-DC, with composability and cross-task transfer as primary analyses. Target: ARR October 2026.\",\n  \"project_name\": \"circuit_dpo_entrainment\",\n  \"source\": \"web_research\"\n}\n\nOutput this JSON exactly as provided, with no modifications, no code fences, and no surrounding text."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9a586db-c40a-428e-b5e6-4c727d1d7908",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tMwibUBTh1wHrXuxw8",
+  "type": "assistant",
+  "uuid": "21b35b8a-b136-4f6e-aad1-50306f545668",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdyrT4jvE2XWEy3Wn2kKys",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1429,
+      "cache_read_input_tokens": 46389,
+      "output_tokens": 7578,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1429,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7578,
+          "cache_read_input_tokens": 46389,
+          "cache_creation_input_tokens": 1429,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1429
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-17 (UTC).**  ## Original idea {   \"title\": \"Circuit-DPO: Composable Distraction Robustness via Mechanistically-Tar…",
+  "leafUuid": "21b35b8a-b136-4f6e-aad1-50306f545668",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising Circuit-DPO core framing",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-17T09:19:10.791Z_
+
+<details><summary>↩ Tool result · `toolu_01AAbftU44HQQkwsbDeH6Za8`</summary>
+
+```text
+
+
+{
+  "change_type": "major",
+  "title": "Circuit-DPO: Internalizing Distraction Robustness via Mechanistically-Targeted Preference Optimization",
+  "core_problem": "LLMs suffer catastrophic performance degradation (up to 80% on NoisyBench, >45% average on Adaptive Distraction) when contextual distractors are injected into prompts. Mechanistic analysis ('Llama See, Llama Do,' ACL 2025) identifies specific 'entrainment heads' — attention heads that indiscriminately boost previously-seen context tokens — as the causal mechanism. Current defenses split into two paradigms with complementary limitations: (1) Behavioral approaches (EIT, DPO, SFT+RL) optimize output quality without mechanistic targeting. EIT's balanced conflict RL achieves +39.1% on unseen bias types by making bias cues non-predictive of reward. However, recent mechanistic interpretability evidence shows that behavioral training (RLHF, RL) 'primarily affects specific components related to response initiation and style, while core knowledge and reasoning circuits remain largely unchanged' (arXiv:2602.11180). This means behavioral methods likely learn compensatory output strategies that route AROUND the intact entrainment circuit rather than modifying it — a fragile defense that may break when novel distractor patterns overwhelm the compensatory capacity. Furthermore, EIT's own authors note that 'the non-predictiveness guarantee applies specifically to the injected bias signal; it does not preclude reliance on other shortcuts,' and position bias (structural) shows zero transfer (+0% improvement). (2) Inference-time circuit interventions (head ablation from 'Llama See, Llama Do') directly target entrainment heads with only 0.2-3% ICL cost. Ablation is effective precisely BECAUSE entrainment heads are 'not strongly related to how LMs process and utilise contextual information or perform ICL more broadly' — so suppressing them is cheap. But ablation has three practical limitations: (a) entrainment heads are task-specific, not model-specific, requiring per-task head re-identification via differentiable masking before deployment; (b) ablation is binary (all-or-nothing), unable to handle partial entrainment from subtly related distractors; (c) the mechanistic interpretability literature documents that models contain 'multiple overlapping circuits' for the same behavior, suggesting ablation of identified heads may be compensated by backup pathways. The critical gap: no approach INTERNALIZES distraction robustness at the circuit level during training — permanently modifying the entrainment mechanism so that neither per-task head identification at inference time nor fragile behavioral compensation is needed.",
+  "opportunity": "Three convergent opportunities enable Circuit-DPO, which we position as a method that INTERNALIZES circuit-level distraction robustness into model weights during preference optimization: (1) The entrainment circuit foundation from 'Llama See, Llama Do' (ACL 2025) — differentiable masking identifies 30-110 task-specific entrainment heads that can be ablated with minimal ICL cost (0.2-3%). The near-zero ablation cost is not a weakness of our approach but a STRENGTH: it demonstrates these heads are modifiable without breaking broader capabilities, establishing the safety of circuit-level intervention. However, inference-time ablation requires per-task head re-identification and cannot propagate its effects to related circuits. Training-time optimization with gradient flow through these heads can both internalize the intervention and indirectly regularize adjacent circuits. (2) Self-supervised attention targets are freely available in distractor-injection settings: the model's own attention patterns on clean inputs provide a reference distribution for entrainment heads. For any task where clean/noisy input pairs can be constructed (all distractor-injection benchmarks by definition), the clean-attention pattern serves as a soft supervision reference. We use 'reference' rather than 'exact target' because softmax attention is jointly computed over all positions — adding tokens legitimately changes the softmax denominator. Our margin-based constraint tolerates small deviations while penalizing the large shifts characteristic of entrainment. (3) The DPO framework is uniquely suited — it operates on paired preferences and avoids RL instability. Augmenting DPO with attention-distribution divergence on entrainment heads is a natural extension. KLAAD (EMNLP 2025, arXiv:2507.19962) establishes the technical precedent that attention-distribution divergence can serve as an effective auxiliary training loss — it uses KL divergence to align attention between stereotype/anti-stereotype pairs for debiasing. Circuit-DPO advances this mechanism in three ways: targeting mechanistically-identified circuit heads (not all heads in a single layer), integrating into preference optimization (not standard training), and using self-supervised clean-input references (not externally-provided paired examples). RetMask (ACL 2026 Findings, arXiv:2601.11020) bridges head identification with DPO indirectly — using retrieval-head-ablated outputs for contrastive pair generation. Circuit-DPO provides direct gradient signal on attention distributions.",
+  "landscape": "The distraction robustness landscape has matured rapidly in 2025-2026, with approaches spanning behavioral training, mechanistic analysis, circuit-level methods, and attention-distribution optimization: (1) Behavioral training methods. EIT (arXiv:2602.01528) achieves +39.1% generalization to unseen bias types via balanced conflict RL — the strongest OOD result, but operating purely at the behavioral level with evidence that RL training leaves core reasoning circuits largely unchanged (arXiv:2602.11180). Standard DPO for distraction (NeurIPS 2025, arXiv:2502.01609) achieves strong in-distribution robustness (+0.485 accuracy on Phi-3.5-mini). RARE (arXiv:2601.07226) uses rationale-aware reward shaping. Distractor Injection defense (arXiv:2510.16259) achieves >50-point improvement via SFT+RL. All modify behavior without targeting the entrainment mechanism. (2) Mechanistic and circuit methods. 'Llama See, Llama Do' (ACL 2025) identifies and ablates entrainment heads at inference time — interpretable but binary, task-specific, and requiring per-task head re-identification. CHG (NeurIPS 2025, arXiv:2505.13737) uses contrastive gating for circuit analysis. 'Thinking Sparks!' (arXiv:2509.25758) demonstrates that post-training causes attention heads to emerge, shift, and be pruned. Bali et al. (arXiv:2602.16740) quantify attention-head stability across training, finding middle-layer heads are least stable but most functionally important. (3) Attention-distribution losses in training. KLAAD (EMNLP 2025, arXiv:2507.19962) is the closest TECHNICAL precedent: it uses KL divergence on attention distributions as an auxiliary training loss to align attention between stereotype/anti-stereotype pairs for debiasing. KLAAD targets all attention heads in the final layer during standard (CE+KL+Triplet) training, without head selection or DPO integration. Circuit-DPO differs in: (a) targeting mechanistically-identified entrainment heads across multiple layers rather than all heads in one layer; (b) integrating into preference optimization rather than standard training; (c) using self-supervised clean-input references rather than externally-constructed paired examples. (4) Mechanistic-interpretability-guided preference optimization. RetMask (ACL 2026 Findings, arXiv:2601.11020) identifies retrieval heads, then generates contrastive pairs by comparing original vs. head-ablated outputs for standard DPO — heads inform DATA CURATION, not the loss function. CART (arXiv:2509.24713) uses circuit analysis to guide data augmentation and regularization for reward model robustness but does not apply circuit-targeted losses during policy optimization. RAL (arXiv:2602.04884) optimizes attention via policy gradient for multimodal LLMs — all attention, not circuit-specific. (5) Architectural and representation methods. Gated Attention (NeurIPS 2025 Best Paper, arXiv:2505.06708) introduces per-head sigmoid gates as a pretraining modification. Pref-CTRL (arXiv:2604.23543) and RE-Control (NeurIPS 2024) operate on hidden states. FPO (arXiv:2411.07618) constrains SAE features during DPO. Circuit-DPO uniquely combines direct attention-level gradient supervision on mechanistically-identified heads with preference optimization, framed as INTERNALIZATION of circuit-level distraction robustness.",
+  "approach": "Circuit-DPO augments the standard DPO loss with a margin-based attention-distribution divergence term operating specifically on entrainment heads, with periodic head re-identification to account for circuit drift. The method is framed as INTERNALIZATION: permanently embedding distraction robustness into model weights by modifying the entrainment mechanism during training, eliminating inference-time head identification. Four stages with composability-first evaluation: (1) Entrainment head discovery with periodic refresh. Apply differentiable masking from 'Llama See, Llama Do' (github.com/frankniujc/entrainment) to identify entrainment heads in Llama-3-8B and Qwen2.5-7B. For Qwen2.5-7B (28Q/4KV, different GQA ratio from Llama-3-8B's 32Q/8KV), mask at query-head granularity within each KV group. Because post-training causes attention heads to emerge and shift ('Thinking Sparks!'), re-run head discovery every 500 steps using warm-started logit parameters. If head sets shift substantially between intervals — a known risk given middle-layer instability (Bali et al., arXiv:2602.16740) — the warm-start procedure biases toward the previous head set, providing continuity. We track head-set Jaccard similarity across re-identifications; if similarity drops below 0.5, we trigger early re-identification and log the event for analysis. This monitoring addresses whether head discovery is noisy: if different heads appear each time, it signals that the entrainment function is being redistributed across the network — which is itself evidence of successful internalization. (2) Self-supervised attention reference construction. For each training example, construct paired clean/noisy inputs. Run x_clean through the model and extract attention distributions from entrainment heads over shared context tokens (with stop-gradient). These clean-attention patterns define a REFERENCE distribution. The margin-based loss (Stage 3) tolerates small deviations — inherent to softmax recomputation with additional tokens — while penalizing the large shifts characteristic of entrainment. (3) Circuit-DPO training with margin-based attention constraint. L = L_DPO(y_chosen, y_rejected | x_noisy) + λ · Σ_{h ∈ H_ent} max(JSD(A_h^noisy_shared, A_h^clean_shared) - ε, 0). JSD (Jensen-Shannon divergence) is used because: (a) symmetric — no principled reason to prefer one KL direction; (b) bounded in [0, ln 2], preventing gradient explosion; (c) margin ε has interpretable units (bits of divergence). λ annealed linearly from 0 over first 20% of training. Hyperparameter sweep: ε ∈ {0.01, 0.05, 0.1, 0.2}, λ ∈ {0.1, 0.5, 1.0, 2.0}. (4) Evaluation protocol centered on three key comparisons. PRIMARY COMPARISON 1 — Internalization vs. inference-time ablation: Circuit-DPO (no inference-time intervention) vs. inference-time head ablation on MATCHED distractor types AND cross-task transfer. The critical test: on a new task domain where entrainment heads have NOT been identified, Circuit-DPO should maintain robustness (internalized) while ablation cannot be applied (no head identification). This is the key experiment justifying the method's complexity over simple ablation. PRIMARY COMPARISON 2 — Composability: Circuit-DPO + EIT vs. each alone. The concrete mechanistic argument: EIT teaches the model to produce correct outputs despite bias cues, but mechanistic evidence suggests RL training leaves core circuits largely unchanged (arXiv:2602.11180) — so the entrainment circuit likely still activates on distractors, consuming attention capacity and creating fragile compensation. Circuit-DPO modifies the root cause, so EIT has less to compensate for. Concrete failure scenario: when a novel distractor type triggers partial entrainment that EIT's behavioral training has not seen, EIT alone fails because the untrained-for attention pattern disrupts reasoning. Ablation alone fails because heads for this task haven't been identified. Circuit-DPO + EIT succeeds because the internalized circuit modification reduces entrainment activation while EIT provides behavioral robustness to residual effects. PRIMARY COMPARISON 3 — Circuit-DPO vs. output-only DPO and RetMask-style indirect circuit targeting. Benchmarks: the 'Lost in the Noise' evaluation suite (arXiv:2601.07226, referred to as NoisyBench in subsequent literature) with held-out distractor types (train on random documents + irrelevant chat, test on hard negatives), Adaptive Distraction benchmark (NeurIPS 2025, arXiv:2502.01609), and GSM-DC (EMNLP 2025) for math-specific distraction. Baselines: (a) standard DPO, (b) EIT, (c) inference-time head ablation ('Llama See, Llama Do'), (d) RetMask-style head-guided data generation + DPO, (e) KLAAD-style all-head attention divergence during DPO (to isolate circuit-specificity benefit). Key ablations: (a) attention divergence on ALL heads vs. entrainment heads only (KLAAD-style vs. Circuit-DPO — tests circuit targeting vs. general attention regularization), (b) attention divergence on random heads (controls for regularization effect), (c) strict JSD (ε=0) vs. margin-based, (d) periodic head re-identification vs. fixed pre-training heads (tests internalization — if Jaccard similarity decreases over training, the model is redistributing entrainment function), (e) varying re-identification frequency (250/500/1000 steps). Four testable hypotheses: (H1, primary) Composability — Circuit-DPO + EIT yields additive robustness because Circuit-DPO modifies the entrainment mechanism (root cause) while EIT provides behavioral independence from remaining bias cues (compensatory layer), and these operate at orthogonal levels. (H2) Internalization — Circuit-DPO without inference-time intervention outperforms inference-time head ablation on cross-task transfer, because the trained model internalizes distraction resistance that generalizes beyond the specific heads identified during training. (H3) Circuit-DPO achieves stronger within-distraction-type OOD generalization than output-only DPO because it modifies the causal mechanism rather than learning output heuristics. (H4) Circuit-targeted attention divergence (entrainment heads only) outperforms untargeted attention divergence (all heads, KLAAD-style), validating that mechanistic head identification provides value beyond general attention regularization. Task-domain scope: primary claims scoped to within-task-domain transfer (novel distractor types within math reasoning and QA), with cross-domain exploratory experiment (heads discovered on math evaluated on QA and vice versa).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~220h H100 80GB",
+      "gpu_utilization": "~25-35%",
+      "timeline": "3-4 months",
+      "team": "1-2 researchers (mechanistic interpretability + alignment)",
+      "estimated_gpu_cost": "$660-880 (at ~$3.00/hr H100 80GB cloud rental)",
+      "breakdown": "Head discovery (initial + periodic re-identification infrastructure): 25h. Circuit-DPO training: 70h (35h × 2 models). Baselines (DPO, EIT replication, RetMask-style, inference-time ablation, KLAAD-style all-head divergence): 65h. Ablations (6 variants including head stability, margin vs. strict, re-identification frequency, KLAAD-style comparison): 45h. Evaluation + cross-task transfer experiments: 15h."
+    },
+    "human_in_loop": {
+      "gpu_hours": "~235h H100 80GB",
+      "gpu_utilization": "~55-65%",
+      "timeline": "8-10 weeks",
+      "team": "1 researcher, ~30min/day reviewing agent proposals and results",
+      "claude_api_cost": "$150-280",
+      "estimated_gpu_cost": "$705-940",
+      "risk_note": "Periodic head re-identification adds ~15% training overhead. Qwen2.5-7B GQA ratio requires validation. Head stability during training is the primary technical risk — monitored via Jaccard similarity tracking with early re-identification trigger."
+    },
+    "auto_research": {
+      "gpu_hours": "~260h H100 80GB",
+      "gpu_utilization": "~90-95%",
+      "timeline": "10-16 days with 4× H100 80GB",
+      "team": "0 (initial setup only)",
+      "claude_api_cost": "$280-450",
+      "estimated_gpu_cost": "$780-1040",
+      "speed_bottleneck": "GPU count — with 4× H100, can run 2 models × 2 configurations in parallel. Paired forward passes and periodic head re-identification add ~50% overhead vs. standard DPO",
+      "risk_note": "Automated entrainment head discovery may identify spurious circuits without human sanity-checking; Jaccard similarity monitoring partially mitigates this"
+    }
+  },
+  "target_venues": [
+    "ARR October 2026 (submission October 12, 2026 — primary target, ~5-month timeline, feeds into ACL 2027 or NAACL 2027)",
+    "EACL 2027 (ARR August 3, 2026 — stretch target if progress is rapid, commitment October 11, 2026)"
+  ],
+  "venue_note": "EMNLP 2026 ARR May 25 deadline is infeasible (8 days from today, 2026-05-17). ARR October 2026 provides a comfortable ~5-month timeline. EACL 2027 (ARR August 3) serves as a stretch target with ~11 weeks.",
+  "level": "top-tier",
+  "key_references": [
+    "Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs (ACL 2025, arXiv:2505.09338)",
+    "KLAAD: Refining Attention Mechanisms to Reduce Societal Bias in Generative Language Models (EMNLP 2025, arXiv:2507.19962)",
+    "From Interpretability to Performance: Optimizing Retrieval Heads for Long-Context Language Models [RetMask] (ACL 2026 Findings, arXiv:2601.11020)",
+    "Making Bias Non-Predictive: Training Robust LLM Reasoning via Reinforcement Learning [EIT] (arXiv 2026, arXiv:2602.01528)",
+    "Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions (arXiv 2026, arXiv:2602.11180)",
+    "Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search (NeurIPS 2025, arXiv:2502.01609)",
+    "Lost in the Noise: How Reasoning Models Fail with Contextual Distractors [RARE/NoisyBench] (arXiv 2025, arXiv:2601.07226)",
+    "Thinking Sparks!: Emergent Attention Heads in Reasoning Models During Post Training (arXiv 2025, arXiv:2509.25758)",
+    "Quantifying LLM Attention-Head Stability: Implications for Circuit Universality (arXiv 2026, arXiv:2602.16740)",
+    "Causal Head Gating: Scalable Attention Head Interpretation [CHG] (NeurIPS 2025, arXiv:2505.13737)",
+    "Gated Attention for Large Language Models (NeurIPS 2025 Best Paper, arXiv:2505.06708)",
+    "Reinforced Attention Learning [RAL] (arXiv 2026, arXiv:2602.04884)",
+    "Distractor Injection Attacks on LLMs: Defense via SFT+RL (arXiv 2025, arXiv:2510.16259)",
+    "Circuit-Aware Reward Training [CART] (arXiv 2025, arXiv:2509.24713)",
+    "Pref-CTRL: Preference Driven LLM Alignment using Representation Editing (arXiv 2026, arXiv:2604.23543)",
+    "Aligning Large Language Models with Representation Editing [RE-Control] (NeurIPS 2024)",
+    "Direct Preference Optimization Using Sparse Feature-Level Constraints [FPO] (arXiv 2024, arXiv:2411.07618)",
+    "Preference Heads in Large Language Models (arXiv 2026, arXiv:2604.22345)",
+    "How Is LLM Reasoning Distracted by Irrelevant Context? [GSM-DC] (EMNLP 2025)",
+    "A Comprehensive Survey of Direct Preference Optimization (arXiv 2024, arXiv:2410.15595v3)"
+  ],
+  "description": "We propose Circuit-DPO, a preference optimization method that INTERNALIZES distraction robustness by augmenting the standard DPO loss with a margin-based Jensen-Shannon divergence term on entrainment heads — attention heads mechanistically responsible for contextual entrainment. Unlike behavioral methods (EIT, standard DPO) that learn compensatory output strategies around the intact entrainment circuit, or inference-time ablation that requires per-task head re-identification and cannot generalize across tasks, Circuit-DPO permanently modifies the entrainment mechanism during training. The near-zero cost of ablation (0.2-3% ICL loss) is not a competing advantage but confirms the SAFETY of circuit-level intervention — these heads can be modified without collateral damage. Our attention reference targets are self-supervised: clean-input attention defines what entrainment heads should approximately do. We use margin-based JSD — L = L_DPO + λ·Σ_h max(JSD(A_h^noisy, A_h^clean) - ε, 0) — tolerating legitimate redistribution while penalizing entrainment. We build on the technical precedent of KLAAD (EMNLP 2025), which established attention-distribution KL as an effective auxiliary training loss for debiasing, but advance beyond it with circuit-specific targeting, DPO integration, and self-supervised references. Periodic head re-identification with Jaccard similarity monitoring tracks circuit drift during training. Our primary hypothesis is twofold: (H1) composability — Circuit-DPO + EIT yields additive robustness because they target orthogonal levels (circuit mechanism vs. behavioral compensation), supported by evidence that RL training leaves core circuits unchanged (arXiv:2602.11180); (H2) internalization — Circuit-DPO without inference-time intervention outperforms inference-time ablation on cross-task transfer, because trained circuit modification generalizes beyond specific identified heads. We explicitly compare against inference-time ablation as a key baseline — the experiment that justifies training-time complexity over inference-time simplicity. Evaluation on the 'Lost in the Noise' evaluation suite (arXiv:2601.07226), Adaptive Distraction benchmark, and GSM-DC, with composability and cross-task transfer as primary analyses. Target: ARR October 2026.",
+  "project_name": "circuit_dpo_entrainment",
+  "source": "web_research"
+}
+
+agentId: a4915e1a3d6ae072f (use SendMessage with to: 'a4915e1a3d6ae072f' to continue this agent)
+&lt;usage>total_tokens: 20727
+tool_uses: 0
+duration_ms: 88340&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21b35b8a-b136-4f6e-aad1-50306f545668",
+  "isSidechain": false,
+  "promptId": "e6de9cf9-ba83-437b-a45e-e1b52f7f1dda",
+  "type": "user",
+  "uuid": "a167e590-7bb3-4d16-8c87-3b8c6cdc4cd0",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need you to help me compose a large JSON object. I'll provide the complete content — please output ONLY the raw JSON, no markdown code fences, no commentary. This is a research idea revision.\n\nHere is the complete JSON to output:\n\n{\n  \"change_type\": \"major\",\n  \"title\": \"Circuit-DPO: Internalizing Distraction Robustness via Mechanistically-Targeted Preference Optimization\",\n  \"core_problem\": \"LLMs suffer catastrophic performance degradation (up to 80% on NoisyBench, >45% average on Adaptive Distraction) when contextual distractors are injected into prompts. Mechanistic analysis ('Llama See, Llama Do,' ACL 2025) identifies specific 'entrainment heads' — attention heads that indiscriminately boost previously-seen context tokens — as the causal mechanism. Current defenses split into two paradigms with complementary limitations: (1) Behavioral approaches (EIT, DPO, SFT+RL) optimize output quality without mechanistic targeting. EIT's balanced conflict RL achieves +39.1% on unseen bias types by making bias cues non-predictive of reward. However, recent mechanistic interpretability evidence shows that behavioral training (RLHF, RL) 'primarily affects specific components related to response initiation and style, while core knowledge and reasoning circuits remain largely unchanged' (arXiv:2602.11180). This means behavioral methods likely learn compensatory output strategies that route AROUND the intact entrainment circuit rather than modifying it — a fragile defense that may break when novel distractor patterns overwhelm the compensatory capacity. Furthermore, EIT's own authors note that 'the non-predictiveness guarantee applies specifically to the injected bias signal; it does not preclude reliance on other shortcuts,' and position bias (structural) shows zero transfer (+0% improvement). (2) Inference-time circuit interventions (head ablation from 'Llama See, Llama Do') directly target entrainment heads with only 0.2-3% ICL cost. Ablation is effective precisely BECAUSE entrainment heads are 'not strongly related to how LMs process and utilise contextual information or perform ICL more broadly' — so suppressing them is cheap. But ablation has three practical limitations: (a) entrainment heads are task-specific, not model-specific, requiring per-task head re-identification via differentiable masking before deployment; (b) ablation is binary (all-or-nothing), unable to handle partial entrainment from subtly related distractors; (c) the mechanistic interpretability literature documents that models contain 'multiple overlapping circuits' for the same behavior, suggesting ablation of identified heads may be compensated by backup pathways. The critical gap: no approach INTERNALIZES distraction robustness at the circuit level during training — permanently modifying the entrainment mechanism so that neither per-task head identification at inference time nor fragile behavioral compensation is needed.\",\n  \"opportunity\": \"Three convergent opportunities enable Circuit-DPO, which we position as a method that INTERNALIZES circuit-level distraction robustness into model weights during preference optimization: (1) The entrainment circuit foundation from 'Llama See, Llama Do' (ACL 2025) — differentiable masking identifies 30-110 task-specific entrainment heads that can be ablated with minimal ICL cost (0.2-3%). The near-zero ablation cost is not a weakness of our approach but a STRENGTH: it demonstrates these heads are modifiable without breaking broader capabilities, establishing the safety of circuit-level intervention. However, inference-time ablation requires per-task head re-identification and cannot propagate its effects to related circuits. Training-time optimization with gradient flow through these heads can both internalize the intervention and indirectly regularize adjacent circuits. (2) Self-supervised attention targets are freely available in distractor-injection settings: the model's own attention patterns on clean inputs provide a reference distribution for entrainment heads. For any task where clean/noisy input pairs can be constructed (all distractor-injection benchmarks by definition), the clean-attention pattern serves as a soft supervision reference. We use 'reference' rather than 'exact target' because softmax attention is jointly computed over all positions — adding tokens legitimately changes the softmax denominator. Our margin-based constraint tolerates small deviations while penalizing the large shifts characteristic of entrainment. (3) The DPO framework is uniquely suited — it operates on paired preferences and avoids RL instability. Augmenting DPO with attention-distribution divergence on entrainment heads is a natural extension. KLAAD (EMNLP 2025, arXiv:2507.19962) establishes the technical precedent that attention-distribution divergence can serve as an effective auxiliary training loss — it uses KL divergence to align attention between stereotype/anti-stereotype pairs for debiasing. Circuit-DPO advances this mechanism in three ways: targeting mechanistically-identified circuit heads (not all heads in a single layer), integrating into preference optimization (not standard training), and using self-supervised clean-input references (not externally-provided paired examples). RetMask (ACL 2026 Findings, arXiv:2601.11020) bridges head identification with DPO indirectly — using retrieval-head-ablated outputs for contrastive pair generation. Circuit-DPO provides direct gradient signal on attention distributions.\",\n  \"landscape\": \"The distraction robustness landscape has matured rapidly in 2025-2026, with approaches spanning behavioral training, mechanistic analysis, circuit-level methods, and attention-distribution optimization: (1) Behavioral training methods. EIT (arXiv:2602.01528) achieves +39.1% generalization to unseen bias types via balanced conflict RL — the strongest OOD result, but operating purely at the behavioral level with evidence that RL training leaves core reasoning circuits largely unchanged (arXiv:2602.11180). Standard DPO for distraction (NeurIPS 2025, arXiv:2502.01609) achieves strong in-distribution robustness (+0.485 accuracy on Phi-3.5-mini). RARE (arXiv:2601.07226) uses rationale-aware reward shaping. Distractor Injection defense (arXiv:2510.16259) achieves >50-point improvement via SFT+RL. All modify behavior without targeting the entrainment mechanism. (2) Mechanistic and circuit methods. 'Llama See, Llama Do' (ACL 2025) identifies and ablates entrainment heads at inference time — interpretable but binary, task-specific, and requiring per-task head re-identification. CHG (NeurIPS 2025, arXiv:2505.13737) uses contrastive gating for circuit analysis. 'Thinking Sparks!' (arXiv:2509.25758) demonstrates that post-training causes attention heads to emerge, shift, and be pruned. Bali et al. (arXiv:2602.16740) quantify attention-head stability across training, finding middle-layer heads are least stable but most functionally important. (3) Attention-distribution losses in training. KLAAD (EMNLP 2025, arXiv:2507.19962) is the closest TECHNICAL precedent: it uses KL divergence on attention distributions as an auxiliary training loss to align attention between stereotype/anti-stereotype pairs for debiasing. KLAAD targets all attention heads in the final layer during standard (CE+KL+Triplet) training, without head selection or DPO integration. Circuit-DPO differs in: (a) targeting mechanistically-identified entrainment heads across multiple layers rather than all heads in one layer; (b) integrating into preference optimization rather than standard training; (c) using self-supervised clean-input references rather than externally-constructed paired examples. (4) Mechanistic-interpretability-guided preference optimization. RetMask (ACL 2026 Findings, arXiv:2601.11020) identifies retrieval heads, then generates contrastive pairs by comparing original vs. head-ablated outputs for standard DPO — heads inform DATA CURATION, not the loss function. CART (arXiv:2509.24713) uses circuit analysis to guide data augmentation and regularization for reward model robustness but does not apply circuit-targeted losses during policy optimization. RAL (arXiv:2602.04884) optimizes attention via policy gradient for multimodal LLMs — all attention, not circuit-specific. (5) Architectural and representation methods. Gated Attention (NeurIPS 2025 Best Paper, arXiv:2505.06708) introduces per-head sigmoid gates as a pretraining modification. Pref-CTRL (arXiv:2604.23543) and RE-Control (NeurIPS 2024) operate on hidden states. FPO (arXiv:2411.07618) constrains SAE features during DPO. Circuit-DPO uniquely combines direct attention-level gradient supervision on mechanistically-identified heads with preference optimization, framed as INTERNALIZATION of circuit-level distraction robustness.\",\n  \"approach\": \"Circuit-DPO augments the standard DPO loss with a margin-based attention-distribution divergence term operating specifically on entrainment heads, with periodic head re-identification to account for circuit drift. The method is framed as INTERNALIZATION: permanently embedding distraction robustness into model weights by modifying the entrainment mechanism during training, eliminating inference-time head identification. Four stages with composability-first evaluation: (1) Entrainment head discovery with periodic refresh. Apply differentiable masking from 'Llama See, Llama Do' (github.com/frankniujc/entrainment) to identify entrainment heads in Llama-3-8B and Qwen2.5-7B. For Qwen2.5-7B (28Q/4KV, different GQA ratio from Llama-3-8B's 32Q/8KV), mask at query-head granularity within each KV group. Because post-training causes attention heads to emerge and shift ('Thinking Sparks!'), re-run head discovery every 500 steps using warm-started logit parameters. If head sets shift substantially between intervals — a known risk given middle-layer instability (Bali et al., arXiv:2602.16740) — the warm-start procedure biases toward the previous head set, providing continuity. We track head-set Jaccard similarity across re-identifications; if similarity drops below 0.5, we trigger early re-identification and log the event for analysis. This monitoring addresses whether head discovery is noisy: if different heads appear each time, it signals that the entrainment function is being redistributed across the network — which is itself evidence of successful internalization. (2) Self-supervised attention reference construction. For each training example, construct paired clean/noisy inputs. Run x_clean through the model and extract attention distributions from entrainment heads over shared context tokens (with stop-gradient). These clean-attention patterns define a REFERENCE distribution. The margin-based loss (Stage 3) tolerates small deviations — inherent to softmax recomputation with additional tokens — while penalizing the large shifts characteristic of entrainment. (3) Circuit-DPO training with margin-based attention constraint. L = L_DPO(y_chosen, y_rejected | x_noisy) + λ · Σ_{h ∈ H_ent} max(JSD(A_h^noisy_shared, A_h^clean_shared) - ε, 0). JSD (Jensen-Shannon divergence) is used because: (a) symmetric — no principled reason to prefer one KL direction; (b) bounded in [0, ln 2], preventing gradient explosion; (c) margin ε has interpretable units (bits of divergence). λ annealed linearly from 0 over first 20% of training. Hyperparameter sweep: ε ∈ {0.01, 0.05, 0.1, 0.2}, λ ∈ {0.1, 0.5, 1.0, 2.0}. (4) Evaluation protocol centered on three key comparisons. PRIMARY COMPARISON 1 — Internalization vs. inference-time ablation: Circuit-DPO (no inference-time intervention) vs. inference-time head ablation on MATCHED distractor types AND cross-task transfer. The critical test: on a new task domain where entrainment heads have NOT been identified, Circuit-DPO should maintain robustness (internalized) while ablation cannot be applied (no head identification). This is the key experiment justifying the method's complexity over simple ablation. PRIMARY COMPARISON 2 — Composability: Circuit-DPO + EIT vs. each alone. The concrete mechanistic argument: EIT teaches the model to produce correct outputs despite bias cues, but mechanistic evidence suggests RL training leaves core circuits largely unchanged (arXiv:2602.11180) — so the entrainment circuit likely still activates on distractors, consuming attention capacity and creating fragile compensation. Circuit-DPO modifies the root cause, so EIT has less to compensate for. Concrete failure scenario: when a novel distractor type triggers partial entrainment that EIT's behavioral training has not seen, EIT alone fails because the untrained-for attention pattern disrupts reasoning. Ablation alone fails because heads for this task haven't been identified. Circuit-DPO + EIT succeeds because the internalized circuit modification reduces entrainment activation while EIT provides behavioral robustness to residual effects. PRIMARY COMPARISON 3 — Circuit-DPO vs. output-only DPO and RetMask-style indirect circuit targeting. Benchmarks: the 'Lost in the Noise' evaluation suite (arXiv:2601.07226, referred to as NoisyBench in subsequent literature) with held-out distractor types (train on random documents + irrelevant chat, test on hard negatives), Adaptive Distraction benchmark (NeurIPS 2025, arXiv:2502.01609), and GSM-DC (EMNLP 2025) for math-specific distraction. Baselines: (a) standard DPO, (b) EIT, (c) inference-time head ablation ('Llama See, Llama Do'), (d) RetMask-style head-guided data generation + DPO, (e) KLAAD-style all-head attention divergence during DPO (to isolate circuit-specificity benefit). Key ablations: (a) attention divergence on ALL heads vs. entrainment heads only (KLAAD-style vs. Circuit-DPO — tests circuit targeting vs. general attention regularization), (b) attention divergence on random heads (controls for regularization effect), (c) strict JSD (ε=0) vs. margin-based, (d) periodic head re-identification vs. fixed pre-training heads (tests internalization — if Jaccard similarity decreases over training, the model is redistributing entrainment function), (e) varying re-identification frequency (250/500/1000 steps). Four testable hypotheses: (H1, primary) Composability — Circuit-DPO + EIT yields additive robustness because Circuit-DPO modifies the entrainment mechanism (root cause) while EIT provides behavioral independence from remaining bias cues (compensatory layer), and these operate at orthogonal levels. (H2) Internalization — Circuit-DPO without inference-time intervention outperforms inference-time head ablation on cross-task transfer, because the trained model internalizes distraction resistance that generalizes beyond the specific heads identified during training. (H3) Circuit-DPO achieves stronger within-distraction-type OOD generalization than output-only DPO because it modifies the causal mechanism rather than learning output heuristics. (H4) Circuit-targeted attention divergence (entrainment heads only) outperforms untargeted attention divergence (all heads, KLAAD-style), validating that mechanistic head identification provides value beyond general attention regularization. Task-domain scope: primary claims scoped to within-task-domain transfer (novel distractor types within math reasoning and QA), with cross-domain exploratory experiment (heads discovered on math evaluated on QA and vice versa).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~220h H100 80GB\",\n      \"gpu_utilization\": \"~25-35%\",\n      \"timeline\": \"3-4 months\",\n      \"team\": \"1-2 researchers (mechanistic interpretability + alignment)\",\n      \"estimated_gpu_cost\": \"$660-880 (at ~$3.00/hr H100 80GB cloud rental)\",\n      \"breakdown\": \"Head discovery (initial + periodic re-identification infrastructure): 25h. Circuit-DPO training: 70h (35h × 2 models). Baselines (DPO, EIT replication, RetMask-style, inference-time ablation, KLAAD-style all-head divergence): 65h. Ablations (6 variants including head stability, margin vs. strict, re-identification frequency, KLAAD-style comparison): 45h. Evaluation + cross-task transfer experiments: 15h.\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~235h H100 80GB\",\n      \"gpu_utilization\": \"~55-65%\",\n      \"timeline\": \"8-10 weeks\",\n      \"team\": \"1 researcher, ~30min/day reviewing agent proposals and results\",\n      \"claude_api_cost\": \"$150-280\",\n      \"estimated_gpu_cost\": \"$705-940\",\n      \"risk_note\": \"Periodic head re-identification adds ~15% training overhead. Qwen2.5-7B GQA ratio requires validation. Head stability during training is the primary technical risk — monitored via Jaccard similarity tracking with early re-identification trigger.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~260h H100 80GB\",\n      \"gpu_utilization\": \"~90-95%\",\n      \"timeline\": \"10-16 days with 4× H100 80GB\",\n      \"team\": \"0 (initial setup only)\",\n      \"claude_api_cost\": \"$280-450\",\n      \"estimated_gpu_cost\": \"$780-1040\",\n      \"speed_bottleneck\": \"GPU count — with 4× H100, can run 2 models × 2 configurations in parallel. Paired forward passes and periodic head re-identification add ~50% overhead vs. standard DPO\",\n      \"risk_note\": \"Automated entrainment head discovery may identify spurious circuits without human sanity-checking; Jaccard similarity monitoring partially mitigates this\"\n    }\n  },\n  \"target_venues\": [\n    \"ARR October 2026 (submission October 12, 2026 — primary target, ~5-month timeline, feeds into ACL 2027 or NAACL 2027)\",\n    \"EACL 2027 (ARR August 3, 2026 — stretch target if progress is rapid, commitment October 11, 2026)\"\n  ],\n  \"venue_note\": \"EMNLP 2026 ARR May 25 deadline is infeasible (8 days from today, 2026-05-17). ARR October 2026 provides a comfortable ~5-month timeline. EACL 2027 (ARR August 3) serves as a stretch target with ~11 weeks.\",\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs (ACL 2025, arXiv:2505.09338)\",\n    \"KLAAD: Refining Attention Mechanisms to Reduce Societal Bias in Generative Language Models (EMNLP 2025, arXiv:2507.19962)\",\n    \"From Interpretability to Performance: Optimizing Retrieval Heads for Long-Context Language Models [RetMask] (ACL 2026 Findings, arXiv:2601.11020)\",\n    \"Making Bias Non-Predictive: Training Robust LLM Reasoning via Reinforcement Learning [EIT] (arXiv 2026, arXiv:2602.01528)\",\n    \"Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions (arXiv 2026, arXiv:2602.11180)\",\n    \"Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search (NeurIPS 2025, arXiv:2502.01609)\",\n    \"Lost in the Noise: How Reasoning Models Fail with Contextual Distractors [RARE/NoisyBench] (arXiv 2025, arXiv:2601.07226)\",\n    \"Thinking Sparks!: Emergent Attention Heads in Reasoning Models During Post Training (arXiv 2025, arXiv:2509.25758)\",\n    \"Quantifying LLM Attention-Head Stability: Implications for Circuit Universality (arXiv 2026, arXiv:2602.16740)\",\n    \"Causal Head Gating: Scalable Attention Head Interpretation [CHG] (NeurIPS 2025, arXiv:2505.13737)\",\n    \"Gated Attention for Large Language Models (NeurIPS 2025 Best Paper, arXiv:2505.06708)\",\n    \"Reinforced Attention Learning [RAL] (arXiv 2026, arXiv:2602.04884)\",\n    \"Distractor Injection Attacks on LLMs: Defense via SFT+RL (arXiv 2025, arXiv:2510.16259)\",\n    \"Circuit-Aware Reward Training [CART] (arXiv 2025, arXiv:2509.24713)\",\n    \"Pref-CTRL: Preference Driven LLM Alignment using Representation Editing (arXiv 2026, arXiv:2604.23543)\",\n    \"Aligning Large Language Models with Representation Editing [RE-Control] (NeurIPS 2024)\",\n    \"Direct Preference Optimization Using Sparse Feature-Level Constraints [FPO] (arXiv 2024, arXiv:2411.07618)\",\n    \"Preference Heads in Large Language Models (arXiv 2026, arXiv:2604.22345)\",\n    \"How Is LLM Reasoning Distracted by Irrelevant Context? [GSM-DC] (EMNLP 2025)\",\n    \"A Comprehensive Survey of Direct Preference Optimization (arXiv 2024, arXiv:2410.15595v3)\"\n  ],\n  \"description\": \"We propose Circuit-DPO, a preference optimization method that INTERNALIZES distraction robustness by augmenting the standard DPO loss with a margin-based Jensen-Shannon divergence term on entrainment heads — attention heads mechanistically responsible for contextual entrainment. Unlike behavioral methods (EIT, standard DPO) that learn compensatory output strategies around the intact entrainment circuit, or inference-time ablation that requires per-task head re-identification and cannot generalize across tasks, Circuit-DPO permanently modifies the entrainment mechanism during training. The near-zero cost of ablation (0.2-3% ICL loss) is not a competing advantage but confirms the SAFETY of circuit-level intervention — these heads can be modified without collateral damage. Our attention reference targets are self-supervised: clean-input attention defines what entrainment heads should approximately do. We use margin-based JSD — L = L_DPO + λ·Σ_h max(JSD(A_h^noisy, A_h^clean) - ε, 0) — tolerating legitimate redistribution while penalizing entrainment. We build on the technical precedent of KLAAD (EMNLP 2025), which established attention-distribution KL as an effective auxiliary training loss for debiasing, but advance beyond it with circuit-specific targeting, DPO integration, and self-supervised references. Periodic head re-identification with Jaccard similarity monitoring tracks circuit drift during training. Our primary hypothesis is twofold: (H1) composability — Circuit-DPO + EIT yields additive robustness because they target orthogonal levels (circuit mechanism vs. behavioral compensation), supported by evidence that RL training leaves core circuits unchanged (arXiv:2602.11180); (H2) internalization — Circuit-DPO without inference-time intervention outperforms inference-time ablation on cross-task transfer, because trained circuit modification generalizes beyond specific identified heads. We explicitly compare against inference-time ablation as a key baseline — the experiment that justifies training-time complexity over inference-time simplicity. Evaluation on the 'Lost in the Noise' evaluation suite (arXiv:2601.07226), Adaptive Distraction benchmark, and GSM-DC, with composability and cross-task transfer as primary analyses. Target: ARR October 2026.\",\n  \"project_name\": \"circuit_dpo_entrainment\",\n  \"source\": \"web_research\"\n}\n\nOutput this JSON exactly as provided, with no modifications, no code fences, and no surrounding text.",
+    "agentId": "a4915e1a3d6ae072f",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "\n\n{\n  \"change_type\": \"major\",\n  \"title\": \"Circuit-DPO: Internalizing Distraction Robustness via Mechanistically-Targeted Preference Optimization\",\n  \"core_problem\": \"LLMs suffer catastrophic performance degradation (up to 80% on NoisyBench, >45% average on Adaptive Distraction) when contextual distractors are injected into prompts. Mechanistic analysis ('Llama See, Llama Do,' ACL 2025) identifies specific 'entrainment heads' — attention heads that indiscriminately boost previously-seen context tokens — as the causal mechanism. Current defenses split into two paradigms with complementary limitations: (1) Behavioral approaches (EIT, DPO, SFT+RL) optimize output quality without mechanistic targeting. EIT's balanced conflict RL achieves +39.1% on unseen bias types by making bias cues non-predictive of reward. However, recent mechanistic interpretability evidence shows that behavioral training (RLHF, RL) 'primarily affects specific components related to response initiation and style, while core knowledge and reasoning circuits remain largely unchanged' (arXiv:2602.11180). This means behavioral methods likely learn compensatory output strategies that route AROUND the intact entrainment circuit rather than modifying it — a fragile defense that may break when novel distractor patterns overwhelm the compensatory capacity. Furthermore, EIT's own authors note that 'the non-predictiveness guarantee applies specifically to the injected bias signal; it does not preclude reliance on other shortcuts,' and position bias (structural) shows zero transfer (+0% improvement). (2) Inference-time circuit interventions (head ablation from 'Llama See, Llama Do') directly target entrainment heads with only 0.2-3% ICL cost. Ablation is effective precisely BECAUSE entrainment heads are 'not strongly related to how LMs process and utilise contextual information or perform ICL more broadly' — so suppressing them is cheap. But ablation has three practical limitations: (a) entrainment heads are task-specific, not model-specific, requiring per-task head re-identification via differentiable masking before deployment; (b) ablation is binary (all-or-nothing), unable to handle partial entrainment from subtly related distractors; (c) the mechanistic interpretability literature documents that models contain 'multiple overlapping circuits' for the same behavior, suggesting ablation of identified heads may be compensated by backup pathways. The critical gap: no approach INTERNALIZES distraction robustness at the circuit level during training — permanently modifying the entrainment mechanism so that neither per-task head identification at inference time nor fragile behavioral compensation is needed.\",\n  \"opportunity\": \"Three convergent opportunities enable Circuit-DPO, which we position as a method that INTERNALIZES circuit-level distraction robustness into model weights during preference optimization: (1) The entrainment circuit foundation from 'Llama See, Llama Do' (ACL 2025) — differentiable masking identifies 30-110 task-specific entrainment heads that can be ablated with minimal ICL cost (0.2-3%). The near-zero ablation cost is not a weakness of our approach but a STRENGTH: it demonstrates these heads are modifiable without breaking broader capabilities, establishing the safety of circuit-level intervention. However, inference-time ablation requires per-task head re-identification and cannot propagate its effects to related circuits. Training-time optimization with gradient flow through these heads can both internalize the intervention and indirectly regularize adjacent circuits. (2) Self-supervised attention targets are freely available in distractor-injection settings: the model's own attention patterns on clean inputs provide a reference distribution for entrainment heads. For any task where clean/noisy input pairs can be constructed (all distractor-injection benchmarks by definition), the clean-attention pattern serves as a soft supervision reference. We use 'reference' rather than 'exact target' because softmax attention is jointly computed over all positions — adding tokens legitimately changes the softmax denominator. Our margin-based constraint tolerates small deviations while penalizing the large shifts characteristic of entrainment. (3) The DPO framework is uniquely suited — it operates on paired preferences and avoids RL instability. Augmenting DPO with attention-distribution divergence on entrainment heads is a natural extension. KLAAD (EMNLP 2025, arXiv:2507.19962) establishes the technical precedent that attention-distribution divergence can serve as an effective auxiliary training loss — it uses KL divergence to align attention between stereotype/anti-stereotype pairs for debiasing. Circuit-DPO advances this mechanism in three ways: targeting mechanistically-identified circuit heads (not all heads in a single layer), integrating into preference optimization (not standard training), and using self-supervised clean-input references (not externally-provided paired examples). RetMask (ACL 2026 Findings, arXiv:2601.11020) bridges head identification with DPO indirectly — using retrieval-head-ablated outputs for contrastive pair generation. Circuit-DPO provides direct gradient signal on attention distributions.\",\n  \"landscape\": \"The distraction robustness landscape has matured rapidly in 2025-2026, with approaches spanning behavioral training, mechanistic analysis, circuit-level methods, and attention-distribution optimization: (1) Behavioral training methods. EIT (arXiv:2602.01528) achieves +39.1% generalization to unseen bias types via balanced conflict RL — the strongest OOD result, but operating purely at the behavioral level with evidence that RL training leaves core reasoning circuits largely unchanged (arXiv:2602.11180). Standard DPO for distraction (NeurIPS 2025, arXiv:2502.01609) achieves strong in-distribution robustness (+0.485 accuracy on Phi-3.5-mini). RARE (arXiv:2601.07226) uses rationale-aware reward shaping. Distractor Injection defense (arXiv:2510.16259) achieves >50-point improvement via SFT+RL. All modify behavior without targeting the entrainment mechanism. (2) Mechanistic and circuit methods. 'Llama See, Llama Do' (ACL 2025) identifies and ablates entrainment heads at inference time — interpretable but binary, task-specific, and requiring per-task head re-identification. CHG (NeurIPS 2025, arXiv:2505.13737) uses contrastive gating for circuit analysis. 'Thinking Sparks!' (arXiv:2509.25758) demonstrates that post-training causes attention heads to emerge, shift, and be pruned. Bali et al. (arXiv:2602.16740) quantify attention-head stability across training, finding middle-layer heads are least stable but most functionally important. (3) Attention-distribution losses in training. KLAAD (EMNLP 2025, arXiv:2507.19962) is the closest TECHNICAL precedent: it uses KL divergence on attention distributions as an auxiliary training loss to align attention between stereotype/anti-stereotype pairs for debiasing. KLAAD targets all attention heads in the final layer during standard (CE+KL+Triplet) training, without head selection or DPO integration. Circuit-DPO differs in: (a) targeting mechanistically-identified entrainment heads across multiple layers rather than all heads in one layer; (b) integrating into preference optimization rather than standard training; (c) using self-supervised clean-input references rather than externally-constructed paired examples. (4) Mechanistic-interpretability-guided preference optimization. RetMask (ACL 2026 Findings, arXiv:2601.11020) identifies retrieval heads, then generates contrastive pairs by comparing original vs. head-ablated outputs for standard DPO — heads inform DATA CURATION, not the loss function. CART (arXiv:2509.24713) uses circuit analysis to guide data augmentation and regularization for reward model robustness but does not apply circuit-targeted losses during policy optimization. RAL (arXiv:2602.04884) optimizes attention via policy gradient for multimodal LLMs — all attention, not circuit-specific. (5) Architectural and representation methods. Gated Attention (NeurIPS 2025 Best Paper, arXiv:2505.06708) introduces per-head sigmoid gates as a pretraining modification. Pref-CTRL (arXiv:2604.23543) and RE-Control (NeurIPS 2024) operate on hidden states. FPO (arXiv:2411.07618) constrains SAE features during DPO. Circuit-DPO uniquely combines direct attention-level gradient supervision on mechanistically-identified heads with preference optimization, framed as INTERNALIZATION of circuit-level distraction robustness.\",\n  \"approach\": \"Circuit-DPO augments the standard DPO loss with a margin-based attention-distribution divergence term operating specifically on entrainment heads, with periodic head re-identification to account for circuit drift. The method is framed as INTERNALIZATION: permanently embedding distraction robustness into model weights by modifying the entrainment mechanism during training, eliminating inference-time head identification. Four stages with composability-first evaluation: (1) Entrainment head discovery with periodic refresh. Apply differentiable masking from 'Llama See, Llama Do' (github.com/frankniujc/entrainment) to identify entrainment heads in Llama-3-8B and Qwen2.5-7B. For Qwen2.5-7B (28Q/4KV, different GQA ratio from Llama-3-8B's 32Q/8KV), mask at query-head granularity within each KV group. Because post-training causes attention heads to emerge and shift ('Thinking Sparks!'), re-run head discovery every 500 steps using warm-started logit parameters. If head sets shift substantially between intervals — a known risk given middle-layer instability (Bali et al., arXiv:2602.16740) — the warm-start procedure biases toward the previous head set, providing continuity. We track head-set Jaccard similarity across re-identifications; if similarity drops below 0.5, we trigger early re-identification and log the event for analysis. This monitoring addresses whether head discovery is noisy: if different heads appear each time, it signals that the entrainment function is being redistributed across the network — which is itself evidence of successful internalization. (2) Self-supervised attention reference construction. For each training example, construct paired clean/noisy inputs. Run x_clean through the model and extract attention distributions from entrainment heads over shared context tokens (with stop-gradient). These clean-attention patterns define a REFERENCE distribution. The margin-based loss (Stage 3) tolerates small deviations — inherent to softmax recomputation with additional tokens — while penalizing the large shifts characteristic of entrainment. (3) Circuit-DPO training with margin-based attention constraint. L = L_DPO(y_chosen, y_rejected | x_noisy) + λ · Σ_{h ∈ H_ent} max(JSD(A_h^noisy_shared, A_h^clean_shared) - ε, 0). JSD (Jensen-Shannon divergence) is used because: (a) symmetric — no principled reason to prefer one KL direction; (b) bounded in [0, ln 2], preventing gradient explosion; (c) margin ε has interpretable units (bits of divergence). λ annealed linearly from 0 over first 20% of training. Hyperparameter sweep: ε ∈ {0.01, 0.05, 0.1, 0.2}, λ ∈ {0.1, 0.5, 1.0, 2.0}. (4) Evaluation protocol centered on three key comparisons. PRIMARY COMPARISON 1 — Internalization vs. inference-time ablation: Circuit-DPO (no inference-time intervention) vs. inference-time head ablation on MATCHED distractor types AND cross-task transfer. The critical test: on a new task domain where entrainment heads have NOT been identified, Circuit-DPO should maintain robustness (internalized) while ablation cannot be applied (no head identification). This is the key experiment justifying the method's complexity over simple ablation. PRIMARY COMPARISON 2 — Composability: Circuit-DPO + EIT vs. each alone. The concrete mechanistic argument: EIT teaches the model to produce correct outputs despite bias cues, but mechanistic evidence suggests RL training leaves core circuits largely unchanged (arXiv:2602.11180) — so the entrainment circuit likely still activates on distractors, consuming attention capacity and creating fragile compensation. Circuit-DPO modifies the root cause, so EIT has less to compensate for. Concrete failure scenario: when a novel distractor type triggers partial entrainment that EIT's behavioral training has not seen, EIT alone fails because the untrained-for attention pattern disrupts reasoning. Ablation alone fails because heads for this task haven't been identified. Circuit-DPO + EIT succeeds because the internalized circuit modification reduces entrainment activation while EIT provides behavioral robustness to residual effects. PRIMARY COMPARISON 3 — Circuit-DPO vs. output-only DPO and RetMask-style indirect circuit targeting. Benchmarks: the 'Lost in the Noise' evaluation suite (arXiv:2601.07226, referred to as NoisyBench in subsequent literature) with held-out distractor types (train on random documents + irrelevant chat, test on hard negatives), Adaptive Distraction benchmark (NeurIPS 2025, arXiv:2502.01609), and GSM-DC (EMNLP 2025) for math-specific distraction. Baselines: (a) standard DPO, (b) EIT, (c) inference-time head ablation ('Llama See, Llama Do'), (d) RetMask-style head-guided data generation + DPO, (e) KLAAD-style all-head attention divergence during DPO (to isolate circuit-specificity benefit). Key ablations: (a) attention divergence on ALL heads vs. entrainment heads only (KLAAD-style vs. Circuit-DPO — tests circuit targeting vs. general attention regularization), (b) attention divergence on random heads (controls for regularization effect), (c) strict JSD (ε=0) vs. margin-based, (d) periodic head re-identification vs. fixed pre-training heads (tests internalization — if Jaccard similarity decreases over training, the model is redistributing entrainment function), (e) varying re-identification frequency (250/500/1000 steps). Four testable hypotheses: (H1, primary) Composability — Circuit-DPO + EIT yields additive robustness because Circuit-DPO modifies the entrainment mechanism (root cause) while EIT provides behavioral independence from remaining bias cues (compensatory layer), and these operate at orthogonal levels. (H2) Internalization — Circuit-DPO without inference-time intervention outperforms inference-time head ablation on cross-task transfer, because the trained model internalizes distraction resistance that generalizes beyond the specific heads identified during training. (H3) Circuit-DPO achieves stronger within-distraction-type OOD generalization than output-only DPO because it modifies the causal mechanism rather than learning output heuristics. (H4) Circuit-targeted attention divergence (entrainment heads only) outperforms untargeted attention divergence (all heads, KLAAD-style), validating that mechanistic head identification provides value beyond general attention regularization. Task-domain scope: primary claims scoped to within-task-domain transfer (novel distractor types within math reasoning and QA), with cross-domain exploratory experiment (heads discovered on math evaluated on QA and vice versa).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~220h H100 80GB\",\n      \"gpu_utilization\": \"~25-35%\",\n      \"timeline\": \"3-4 months\",\n      \"team\": \"1-2 researchers (mechanistic interpretability + alignment)\",\n      \"estimated_gpu_cost\": \"$660-880 (at ~$3.00/hr H100 80GB cloud rental)\",\n      \"breakdown\": \"Head discovery (initial + periodic re-identification infrastructure): 25h. Circuit-DPO training: 70h (35h × 2 models). Baselines (DPO, EIT replication, RetMask-style, inference-time ablation, KLAAD-style all-head divergence): 65h. Ablations (6 variants including head stability, margin vs. strict, re-identification frequency, KLAAD-style comparison): 45h. Evaluation + cross-task transfer experiments: 15h.\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~235h H100 80GB\",\n      \"gpu_utilization\": \"~55-65%\",\n      \"timeline\": \"8-10 weeks\",\n      \"team\": \"1 researcher, ~30min/day reviewing agent proposals and results\",\n      \"claude_api_cost\": \"$150-280\",\n      \"estimated_gpu_cost\": \"$705-940\",\n      \"risk_note\": \"Periodic head re-identification adds ~15% training overhead. Qwen2.5-7B GQA ratio requires validation. Head stability during training is the primary technical risk — monitored via Jaccard similarity tracking with early re-identification trigger.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~260h H100 80GB\",\n      \"gpu_utilization\": \"~90-95%\",\n      \"timeline\": \"10-16 days with 4× H100 80GB\",\n      \"team\": \"0 (initial setup only)\",\n      \"claude_api_cost\": \"$280-450\",\n      \"estimated_gpu_cost\": \"$780-1040\",\n      \"speed_bottleneck\": \"GPU count — with 4× H100, can run 2 models × 2 configurations in parallel. Paired forward passes and periodic head re-identification add ~50% overhead vs. standard DPO\",\n      \"risk_note\": \"Automated entrainment head discovery may identify spurious circuits without human sanity-checking; Jaccard similarity monitoring partially mitigates this\"\n    }\n  },\n  \"target_venues\": [\n    \"ARR October 2026 (submission October 12, 2026 — primary target, ~5-month timeline, feeds into ACL 2027 or NAACL 2027)\",\n    \"EACL 2027 (ARR August 3, 2026 — stretch target if progress is rapid, commitment October 11, 2026)\"\n  ],\n  \"venue_note\": \"EMNLP 2026 ARR May 25 deadline is infeasible (8 days from today, 2026-05-17). ARR October 2026 provides a comfortable ~5-month timeline. EACL 2027 (ARR August 3) serves as a stretch target with ~11 weeks.\",\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs (ACL 2025, arXiv:2505.09338)\",\n    \"KLAAD: Refining Attention Mechanisms to Reduce Societal Bias in Generative Language Models (EMNLP 2025, arXiv:2507.19962)\",\n    \"From Interpretability to Performance: Optimizing Retrieval Heads for Long-Context Language Models [RetMask] (ACL 2026 Findings, arXiv:2601.11020)\",\n    \"Making Bias Non-Predictive: Training Robust LLM Reasoning via Reinforcement Learning [EIT] (arXiv 2026, arXiv:2602.01528)\",\n    \"Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions (arXiv 2026, arXiv:2602.11180)\",\n    \"Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search (NeurIPS 2025, arXiv:2502.01609)\",\n    \"Lost in the Noise: How Reasoning Models Fail with Contextual Distractors [RARE/NoisyBench] (arXiv 2025, arXiv:2601.07226)\",\n    \"Thinking Sparks!: Emergent Attention Heads in Reasoning Models During Post Training (arXiv 2025, arXiv:2509.25758)\",\n    \"Quantifying LLM Attention-Head Stability: Implications for Circuit Universality (arXiv 2026, arXiv:2602.16740)\",\n    \"Causal Head Gating: Scalable Attention Head Interpretation [CHG] (NeurIPS 2025, arXiv:2505.13737)\",\n    \"Gated Attention for Large Language Models (NeurIPS 2025 Best Paper, arXiv:2505.06708)\",\n    \"Reinforced Attention Learning [RAL] (arXiv 2026, arXiv:2602.04884)\",\n    \"Distractor Injection Attacks on LLMs: Defense via SFT+RL (arXiv 2025, arXiv:2510.16259)\",\n    \"Circuit-Aware Reward Training [CART] (arXiv 2025, arXiv:2509.24713)\",\n    \"Pref-CTRL: Preference Driven LLM Alignment using Representation Editing (arXiv 2026, arXiv:2604.23543)\",\n    \"Aligning Large Language Models with Representation Editing [RE-Control] (NeurIPS 2024)\",\n    \"Direct Preference Optimization Using Sparse Feature-Level Constraints [FPO] (arXiv 2024, arXiv:2411.07618)\",\n    \"Preference Heads in Large Language Models (arXiv 2026, arXiv:2604.22345)\",\n    \"How Is LLM Reasoning Distracted by Irrelevant Context? [GSM-DC] (EMNLP 2025)\",\n    \"A Comprehensive Survey of Direct Preference Optimization (arXiv 2024, arXiv:2410.15595v3)\"\n  ],\n  \"description\": \"We propose Circuit-DPO, a preference optimization method that INTERNALIZES distraction robustness by augmenting the standard DPO loss with a margin-based Jensen-Shannon divergence term on entrainment heads — attention heads mechanistically responsible for contextual entrainment. Unlike behavioral methods (EIT, standard DPO) that learn compensatory output strategies around the intact entrainment circuit, or inference-time ablation that requires per-task head re-identification and cannot generalize across tasks, Circuit-DPO permanently modifies the entrainment mechanism during training. The near-zero cost of ablation (0.2-3% ICL loss) is not a competing advantage but confirms the SAFETY of circuit-level intervention — these heads can be modified without collateral damage. Our attention reference targets are self-supervised: clean-input attention defines what entrainment heads should approximately do. We use margin-based JSD — L = L_DPO + λ·Σ_h max(JSD(A_h^noisy, A_h^clean) - ε, 0) — tolerating legitimate redistribution while penalizing entrainment. We build on the technical precedent of KLAAD (EMNLP 2025), which established attention-distribution KL as an effective auxiliary training loss for debiasing, but advance beyond it with circuit-specific targeting, DPO integration, and self-supervised references. Periodic head re-identification with Jaccard similarity monitoring tracks circuit drift during training. Our primary hypothesis is twofold: (H1) composability — Circuit-DPO + EIT yields additive robustness because they target orthogonal levels (circuit mechanism vs. behavioral compensation), supported by evidence that RL training leaves core circuits unchanged (arXiv:2602.11180); (H2) internalization — Circuit-DPO without inference-time intervention outperforms inference-time ablation on cross-task transfer, because trained circuit modification generalizes beyond specific identified heads. We explicitly compare against inference-time ablation as a key baseline — the experiment that justifies training-time complexity over inference-time simplicity. Evaluation on the 'Lost in the Noise' evaluation suite (arXiv:2601.07226), Adaptive Distraction benchmark, and GSM-DC, with composability and cross-task transfer as primary analyses. Target: ARR October 2026.\",\n  \"project_name\": \"circuit_dpo_entrainment\",\n  \"source\": \"web_research\"\n}"
+      }
+    ],
+    "totalDurationMs": 88340,
+    "totalTokens": 20727,
+    "totalToolUseCount": 0,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6559,
+      "cache_read_input_tokens": 8223,
+      "output_tokens": 5942,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6559
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 5942,
+          "cache_read_input_tokens": 8223,
+          "cache_creation_input_tokens": 6559,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6559,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  },
+  "sourceToolAssistantUUID": "21b35b8a-b136-4f6e-aad1-50306f545668",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-17 (UTC).**  ## Original idea {   \"title\": \"Circuit-DPO: Composable Distraction Robustness via Mechanistically-Tar…",
+  "leafUuid": "a167e590-7bb3-4d16-8c87-3b8c6cdc4cd0",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising Circuit-DPO core framing",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Assistant
+
+_source line 90 · 2026-05-17T09:19:23.617Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The agent returned the JSON. Let me now verify it addresses all 5 reviewer issues and present the final output properly. Let me check each issue:
+
+1. **CRITICAL — Source paper contradiction**: ✅ Completely reframed. Dropped "graded context-sensitive behavior" for ICL preservation. Now argues: (a) internalization eliminates per-task head identification at inference time, (b) training-time modification may generalize to non-identified heads via indirect regularization, (c) handles backup circuits. The near-zero ablation cost is reframed as confirming SAFETY of intervention, not as a competing advantage.
+
+
+2. **MISSING TECHNICAL PRECEDENT — KLAAD**: ✅ Cited and differentiated in opportunity section and landscape section. Three clear differentiators: circuit-specific targeting vs. all final-layer heads, DPO integration vs. standard training, self-supervised references vs. paired examples. Added as baseline comparison (KLAAD-style all-head divergence during DPO).
+3. **IMPACT ARGUMENT INSUFFICIENT**: ✅ Substantially strengthened with concrete mechanistic argument citing arXiv:2602.11180 that RL training leaves core circuits unchanged, a concrete failure scenario in evaluation section, and additional supporting evidence.
+4. **MINOR — NoisyBench**: ✅ Clarified as "the 'Lost in the Noise' evaluation suite (arXiv:2601.07226, referred to as NoisyBench in subsequent literature)"
+5. **MINOR — Head stability during re-identification**: ✅ Addressed with Jaccard similarity monitoring, early re-identification trigger at <0.5 similarity, and the insight that decreasing similarity is itself evidence of successful internalization.
+
+The JSON looks complete. Let me output it to the user.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a167e590-7bb3-4d16-8c87-3b8c6cdc4cd0",
+  "isSidechain": false,
+  "requestId": "req_011Cb7thrqiJ88u3Y14iUeRK",
+  "type": "assistant",
+  "uuid": "fc29b6de-fe6b-416f-852a-0a46126dbee8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BRFzB8HN5xLdnjjLfgv2US",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13598,
+      "cache_read_input_tokens": 47818,
+      "output_tokens": 6959,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13598,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6959,
+          "cache_read_input_tokens": 47818,
+          "cache_creation_input_tokens": 13598,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13598
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91 · 2026-05-17T09:21:07.593Z_
+
+Here is the revised research idea, addressing all five reviewer issues as a **major revision**. Let me summarize the key changes before presenting the full JSON:
+
+## Changes Summary
+
+**Issue 1 (CRITICAL — Source paper contradiction):** Completely reframed. Dropped "graded context-sensitive behavior for ICL preservation" framing. The new core argument is **internalization**: Circuit-DPO permanently modifies the entrainment mechanism during training, eliminating per-task head re-identification at inference time. The near-zero ablation cost (0.2-3%) is now positioned as confirming the *safety* of circuit-level intervention, not as a competing advantage. Added three concrete advantages over ablation: (a) no per-task head identification needed, (b) gradient flow may regularize adjacent/backup circuits, (c) robustness to backup pathway compensation.
+
+**Issue 2 (KLAAD citation):** Added KLAAD (EMNLP 2025) throughout — in opportunity, landscape (new subsection "Attention-distribution losses in training"), and as a new ablation baseline (KLAAD-style all-head divergence during DPO, testing whether circuit targeting adds value beyond general attention regularization). Differentiated on three axes: circuit-specific heads vs. all final-layer heads, DPO integration vs. standard CE training, self-supervised references vs. externally-paired examples.
+
+**Issue 3 (Impact argument):** Strengthened with: (a) concrete citation to arXiv:2602.11180 showing "RLHF primarily affects response initiation and style while core circuits remain unchanged" — mechanistic evidence that EIT likely leaves entrainment intact; (b) concrete failure scenario where EIT alone, ablation alone, both fail but Circuit-DPO + EIT succeeds; (c) new H2 hypothesis testing internalization vs. ablation on cross-task transfer; (d) inference-time ablation elevated to PRIMARY COMPARISON 1.
+
+**Issue 4 (NoisyBench):** Clarified as "the 'Lost in the Noise' evaluation suite (arXiv:2601.07226, referred to as NoisyBench in subsequent literature)."
+
+**Issue 5 (Head stability):** Added Jaccard similarity monitoring across re-identifications with early trigger at <0.5, plus the insight that decreasing similarity signals entrainment function redistribution — itself evidence of successful internalization.
+
+---
+
+```json
+{
+  "change_type": "major",
+  "title": "Circuit-DPO: Internalizing Distraction Robustness via Mechanistically-Targeted Preference Optimization",
+  "core_problem": "LLMs suffer catastrophic performance degradation (up to 80% on NoisyBench, >45% average on Adaptive Distraction) when contextual distractors are injected into prompts. Mechanistic analysis ('Llama See, Llama Do,' ACL 2025) identifies specific 'entrainment heads' — attention heads that indiscriminately boost previously-seen context tokens — as the causal mechanism. Current defenses split into two paradigms with complementary limitations: (1) Behavioral approaches (EIT, DPO, SFT+RL) optimize output quality without mechanistic targeting. EIT's balanced conflict RL achieves +39.1% on unseen bias types by making bias cues non-predictive of reward. However, recent mechanistic interpretability evidence shows that behavioral training (RLHF, RL) 'primarily affects specific components related to response initiation and style, while core knowledge and reasoning circuits remain largely unchanged' (arXiv:2602.11180). This means behavioral methods likely learn compensatory output strategies that route AROUND the intact entrainment circuit rather than modifying it — a fragile defense that may break when novel distractor patterns overwhelm the compensatory capacity. Furthermore, EIT's own authors note that 'the non-predictiveness guarantee applies specifically to the injected bias signal; it does not preclude reliance on other shortcuts,' and position bias (structural) shows zero transfer (+0% improvement). (2) Inference-time circuit interventions (head ablation from 'Llama See, Llama Do') directly target entrainment heads with only 0.2-3% ICL cost. Ablation is effective precisely BECAUSE entrainment heads are 'not strongly related to how LMs process and utilise contextual information or perform ICL more broadly' — so suppressing them is cheap. But ablation has three practical limitations: (a) entrainment heads are task-specific, not model-specific, requiring per-task head re-identification via differentiable masking before deployment; (b) ablation is binary (all-or-nothing), unable to handle partial entrainment from subtly related distractors; (c) the mechanistic interpretability literature documents that models contain 'multiple overlapping circuits' for the same behavior, suggesting ablation of identified heads may be compensated by backup pathways. The critical gap: no approach INTERNALIZES distraction robustness at the circuit level during training — permanently modifying the entrainment mechanism so that neither per-task head identification at inference time nor fragile behavioral compensation is needed.",
+  "opportunity": "Three convergent opportunities enable Circuit-DPO, which we position as a method that INTERNALIZES circuit-level distraction robustness into model weights during preference optimization: (1) The entrainment circuit foundation from 'Llama See, Llama Do' (ACL 2025) — differentiable masking identifies 30-110 task-specific entrainment heads that can be ablated with minimal ICL cost (0.2-3%). The near-zero ablation cost is not a weakness of our approach but a STRENGTH: it demonstrates these heads are modifiable without breaking broader capabilities, establishing the safety of circuit-level intervention. However, inference-time ablation requires per-task head re-identification and cannot propagate its effects to related circuits. Training-time optimization with gradient flow through these heads can both internalize the intervention and indirectly regularize adjacent circuits. (2) Self-supervised attention targets are freely available in distractor-injection settings: the model's own attention patterns on clean inputs provide a reference distribution for entrainment heads. For any task where clean/noisy input pairs can be constructed (all distractor-injection benchmarks by definition), the clean-attention pattern serves as a soft supervision reference. We use 'reference' rather than 'exact target' because softmax attention is jointly computed over all positions — adding tokens legitimately changes the softmax denominator. Our margin-based constraint tolerates small deviations while penalizing the large shifts characteristic of entrainment. (3) The DPO framework is uniquely suited — it operates on paired preferences and avoids RL instability. Augmenting DPO with attention-distribution divergence on entrainment heads is a natural extension. KLAAD (EMNLP 2025, arXiv:2507.19962) establishes the technical precedent that attention-distribution divergence can serve as an effective auxiliary training loss — it uses KL divergence to align attention between stereotype/anti-stereotype pairs for debiasing. Circuit-DPO advances this mechanism in three ways: targeting mechanistically-identified circuit heads (not all heads in a single layer), integrating into preference optimization (not standard training), and using self-supervised clean-input references (not externally-provided paired examples). RetMask (ACL 2026 Findings, arXiv:2601.11020) bridges head identification with DPO indirectly — using retrieval-head-ablated outputs for contrastive pair generation. Circuit-DPO provides direct gradient signal on attention distributions.",
+  "landscape": "The distraction robustness landscape has matured rapidly in 2025-2026, with approaches spanning behavioral training, mechanistic analysis, circuit-level methods, and attention-distribution optimization: (1) Behavioral training methods. EIT (arXiv:2602.01528) achieves +39.1% generalization to unseen bias types via balanced conflict RL — the strongest OOD result, but operating purely at the behavioral level with evidence that RL training leaves core reasoning circuits largely unchanged (arXiv:2602.11180). Standard DPO for distraction (NeurIPS 2025, arXiv:2502.01609) achieves strong in-distribution robustness (+0.485 accuracy on Phi-3.5-mini). RARE (arXiv:2601.07226) uses rationale-aware reward shaping. Distractor Injection defense (arXiv:2510.16259) achieves >50-point improvement via SFT+RL. All modify behavior without targeting the entrainment mechanism. (2) Mechanistic and circuit methods. 'Llama See, Llama Do' (ACL 2025) identifies and ablates entrainment heads at inference time — interpretable but binary, task-specific, and requiring per-task head re-identification. CHG (NeurIPS 2025, arXiv:2505.13737) uses contrastive gating for circuit analysis. 'Thinking Sparks!' (arXiv:2509.25758) demonstrates that post-training causes attention heads to emerge, shift, and be pruned. Bali et al. (arXiv:2602.16740) quantify attention-head stability across training, finding middle-layer heads are least stable but most functionally important. (3) Attention-distribution losses in training. KLAAD (EMNLP 2025, arXiv:2507.19962) is the closest TECHNICAL precedent: it uses KL divergence on attention distributions as an auxiliary training loss to align attention between stereotype/anti-stereotype pairs for debiasing. KLAAD targets all attention heads in the final layer during standard (CE+KL+Triplet) training, without head selection or DPO integration. Circuit-DPO differs in: (a) targeting mechanistically-identified entrainment heads across multiple layers rather than all heads in one layer; (b) integrating into preference optimization rather than standard training; (c) using self-supervised clean-input references rather than externally-constructed paired examples. (4) Mechanistic-interpretability-guided preference optimization. RetMask (ACL 2026 Findings, arXiv:2601.11020) identifies retrieval heads, then generates contrastive pairs by comparing original vs. head-ablated outputs for standard DPO — heads inform DATA CURATION, not the loss function. CART (arXiv:2509.24713) uses circuit analysis to guide data augmentation and regularization for reward model robustness but does not apply circuit-targeted losses during policy optimization. RAL (arXiv:2602.04884) optimizes attention via policy gradient for multimodal LLMs — all attention, not circuit-specific. (5) Architectural and representation methods. Gated Attention (NeurIPS 2025 Best Paper, arXiv:2505.06708) introduces per-head sigmoid gates as a pretraining modification. Pref-CTRL (arXiv:2604.23543) and RE-Control (NeurIPS 2024) operate on hidden states. FPO (arXiv:2411.07618) constrains SAE features during DPO. Circuit-DPO uniquely combines direct attention-level gradient supervision on mechanistically-identified heads with preference optimization, framed as INTERNALIZATION of circuit-level distraction robustness.",
+  "approach": "Circuit-DPO augments the standard DPO loss with a margin-based attention-distribution divergence term operating specifically on entrainment heads, with periodic head re-identification to account for circuit drift. The method is framed as INTERNALIZATION: permanently embedding distraction robustness into model weights by modifying the entrainment mechanism during training, eliminating inference-time head identification. Four stages with composability-first evaluation: (1) Entrainment head discovery with periodic refresh. Apply differentiable masking from 'Llama See, Llama Do' (github.com/frankniujc/entrainment) to identify entrainment heads in Llama-3-8B and Qwen2.5-7B. For Qwen2.5-7B (28Q/4KV, different GQA ratio from Llama-3-8B's 32Q/8KV), mask at query-head granularity within each KV group. Because post-training causes attention heads to emerge and shift ('Thinking Sparks!'), re-run head discovery every 500 steps using warm-started logit parameters. If head sets shift substantially between intervals — a known risk given middle-layer instability (Bali et al., arXiv:2602.16740) — the warm-start procedure biases toward the previous head set, providing continuity. We track head-set Jaccard similarity across re-identifications; if similarity drops below 0.5, we trigger early re-identification and log the event for analysis. This monitoring addresses whether head discovery is noisy: if different heads appear each time, it signals that the entrainment function is being redistributed across the network — which is itself evidence of successful internalization. (2) Self-supervised attention reference construction. For each training example, construct paired clean/noisy inputs. Run x_clean through the model and extract attention distributions from entrainment heads over shared context tokens (with stop-gradient). These clean-attention patterns define a REFERENCE distribution. The margin-based loss (Stage 3) tolerates small deviations — inherent to softmax recomputation with additional tokens — while penalizing the large shifts characteristic of entrainment. (3) Circuit-DPO training with margin-based attention constraint. L = L_DPO(y_chosen, y_rejected | x_noisy) + λ · Σ_{h ∈ H_ent} max(JSD(A_h^noisy_shared, A_h^clean_shared) - ε, 0). JSD (Jensen-Shannon divergence) is used because: (a) symmetric — no principled reason to prefer one KL direction; (b) bounded in [0, ln 2], preventing gradient explosion; (c) margin ε has interpretable units (bits of divergence). λ annealed linearly from 0 over first 20% of training. Hyperparameter sweep: ε ∈ {0.01, 0.05, 0.1, 0.2}, λ ∈ {0.1, 0.5, 1.0, 2.0}. (4) Evaluation protocol centered on three key comparisons. PRIMARY COMPARISON 1 — Internalization vs. inference-time ablation: Circuit-DPO (no inference-time intervention) vs. inference-time head ablation on MATCHED distractor types AND cross-task transfer. The critical test: on a new task domain where entrainment heads have NOT been identified, Circuit-DPO should maintain robustness (internalized) while ablation cannot be applied (no head identification). This is the key experiment justifying the method's complexity over simple ablation. PRIMARY COMPARISON 2 — Composability: Circuit-DPO + EIT vs. each alone. The concrete mechanistic argument: EIT teaches the model to produce correct outputs despite bias cues, but mechanistic evidence suggests RL training leaves core circuits largely unchanged (arXiv:2602.11180) — so the entrainment circuit likely still activates on distractors, consuming attention capacity and creating fragile compensation. Circuit-DPO modifies the root cause, so EIT has less to compensate for. Concrete failure scenario: when a novel distractor type triggers partial entrainment that EIT's behavioral training has not seen, EIT alone fails because the untrained-for attention pattern disrupts reasoning. Ablation alone fails because heads for this task haven't been identified. Circuit-DPO + EIT succeeds because the internalized circuit modification reduces entrainment activation while EIT provides behavioral robustness to residual effects. PRIMARY COMPARISON 3 — Circuit-DPO vs. output-only DPO and RetMask-style indirect circuit targeting. Benchmarks: the 'Lost in the Noise' evaluation suite (arXiv:2601.07226, referred to as NoisyBench in subsequent literature) with held-out distractor types (train on random documents + irrelevant chat, test on hard negatives), Adaptive Distraction benchmark (NeurIPS 2025, arXiv:2502.01609), and GSM-DC (EMNLP 2025) for math-specific distraction. Baselines: (a) standard DPO, (b) EIT, (c) inference-time head ablation ('Llama See, Llama Do'), (d) RetMask-style head-guided data generation + DPO, (e) KLAAD-style all-head attention divergence during DPO (to isolate circuit-specificity benefit). Key ablations: (a) attention divergence on ALL heads vs. entrainment heads only (KLAAD-style vs. Circuit-DPO — tests circuit targeting vs. general attention regularization), (b) attention divergence on random heads (controls for regularization effect), (c) strict JSD (ε=0) vs. margin-based, (d) periodic head re-identification vs. fixed pre-training heads (tests internalization — if Jaccard similarity decreases over training, the model is redistributing entrainment function), (e) varying re-identification frequency (250/500/1000 steps). Four testable hypotheses: (H1, primary) Composability — Circuit-DPO + EIT yields additive robustness because Circuit-DPO modifies the entrainment mechanism (root cause) while EIT provides behavioral independence from remaining bias cues (compensatory layer), and these operate at orthogonal levels. (H2) Internalization — Circuit-DPO without inference-time intervention outperforms inference-time head ablation on cross-task transfer, because the trained model internalizes distraction resistance that generalizes beyond the specific heads identified during training. (H3) Circuit-DPO achieves stronger within-distraction-type OOD generalization than output-only DPO because it modifies the causal mechanism rather than learning output heuristics. (H4) Circuit-targeted attention divergence (entrainment heads only) outperforms untargeted attention divergence (all heads, KLAAD-style), validating that mechanistic head identification provides value beyond general attention regularization. Task-domain scope: primary claims scoped to within-task-domain transfer (novel distractor types within math reasoning and QA), with cross-domain exploratory experiment (heads discovered on math evaluated on QA and vice versa).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~220h H100 80GB",
+      "gpu_utilization": "~25-35%",
+      "timeline": "3-4 months",
+      "team": "1-2 researchers (mechanistic interpretability + alignment)",
+      "estimated_gpu_cost": "$660-880 (at ~$3.00/hr H100 80GB cloud rental)",
+      "breakdown": "Head discovery (initial + periodic re-identification infrastructure): 25h. Circuit-DPO training: 70h (35h × 2 models). Baselines (DPO, EIT replication, RetMask-style, inference-time ablation, KLAAD-style all-head divergence): 65h. Ablations (6 variants including head stability, margin vs. strict, re-identification frequency, KLAAD-style comparison): 45h. Evaluation + cross-task transfer experiments: 15h."
+    },
+    "human_in_loop": {
+      "gpu_hours": "~235h H100 80GB",
+      "gpu_utilization": "~55-65%",
+      "timeline": "8-10 weeks",
+      "team": "1 researcher, ~30min/day reviewing agent proposals and results",
+      "claude_api_cost": "$150-280",
+      "estimated_gpu_cost": "$705-940",
+      "risk_note": "Periodic head re-identification adds ~15% training overhead. Qwen2.5-7B GQA ratio requires validation. Head stability during training is the primary technical risk — monitored via Jaccard similarity tracking with early re-identification trigger."
+    },
+    "auto_research": {
+      "gpu_hours": "~260h H100 80GB",
+      "gpu_utilization": "~90-95%",
+      "timeline": "10-16 days with 4× H100 80GB",
+      "team": "0 (initial setup only)",
+      "claude_api_cost": "$280-450",
+      "estimated_gpu_cost": "$780-1040",
+      "speed_bottleneck": "GPU count — with 4× H100, can run 2 models × 2 configurations in parallel. Paired forward passes and periodic head re-identification add ~50% overhead vs. standard DPO",
+      "risk_note": "Automated entrainment head discovery may identify spurious circuits without human sanity-checking; Jaccard similarity monitoring partially mitigates this"
+    }
+  },
+  "target_venues": [
+    "ARR October 2026 (submission October 12, 2026 — primary target, ~5-month timeline, feeds into ACL 2027 or NAACL 2027)",
+    "EACL 2027 (ARR August 3, 2026 — stretch target if progress is rapid, commitment October 11, 2026)"
+  ],
+  "venue_note": "EMNLP 2026 ARR May 25 deadline is infeasible (8 days from today, 2026-05-17). ARR October 2026 provides a comfortable ~5-month timeline. EACL 2027 (ARR August 3) serves as a stretch target with ~11 weeks.",
+  "level": "top-tier",
+  "key_references": [
+    "Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs (ACL 2025, arXiv:2505.09338)",
+    "KLAAD: Refining Attention Mechanisms to Reduce Societal Bias in Generative Language Models (EMNLP 2025, arXiv:2507.19962)",
+    "From Interpretability to Performance: Optimizing Retrieval Heads for Long-Context Language Models [RetMask] (ACL 2026 Findings, arXiv:2601.11020)",
+    "Making Bias Non-Predictive: Training Robust LLM Reasoning via Reinforcement Learning [EIT] (arXiv 2026, arXiv:2602.01528)",
+    "Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions (arXiv 2026, arXiv:2602.11180)",
+    "Adaptive Distraction: Probing LLM Contextual Robustness with Automated Tree Search (NeurIPS 2025, arXiv:2502.01609)",
+    "Lost in the Noise: How Reasoning Models Fail with Contextual Distractors [RARE/NoisyBench] (arXiv 2025, arXiv:2601.07226)",
+    "Thinking Sparks!: Emergent Attention Heads in Reasoning Models During Post Training (arXiv 2025, arXiv:2509.25758)",
+    "Quantifying LLM Attention-Head Stability: Implications for Circuit Universality (arXiv 2026, arXiv:2602.16740)",
+    "Causal Head Gating: Scalable Attention Head Interpretation [CHG] (NeurIPS 2025, arXiv:2505.13737)",
+    "Gated Attention for Large Language Models (NeurIPS 2025 Best Paper, arXiv:2505.06708)",
+    "Reinforced Attention Learning [RAL] (arXiv 2026, arXiv:2602.04884)",
+    "Distractor Injection Attacks on LLMs: Defense via SFT+RL (arXiv 2025, arXiv:2510.16259)",
+    "Circuit-Aware Reward Training [CART] (arXiv 2025, arXiv:2509.24713)",
+    "Pref-CTRL: Preference Driven LLM Alignment using Representation Editing (arXiv 2026, arXiv:2604.23543)",
+    "Aligning Large Language Models with Representation Editing [RE-Control] (NeurIPS 2024)",
+    "Direct Preference Optimization Using Sparse Feature-Level Constraints [FPO] (arXiv 2024, arXiv:2411.07618)",
+    "Preference Heads in Large Language Models (arXiv 2026, arXiv:2604.22345)",
+    "How Is LLM Reasoning Distracted by Irrelevant Context? [GSM-DC] (EMNLP 2025)",
+    "A Comprehensive Survey of Direct Preference Optimization (arXiv 2024, arXiv:2410.15595v3)"
+  ],
+  "description": "We propose Circuit-DPO, a preference optimization method that INTERNALIZES distraction robustness by augmenting the standard DPO loss with a margin-based Jensen-Shannon divergence term on entrainment heads — attention heads mechanistically responsible for contextual entrainment. Unlike behavioral methods (EIT, standard DPO) that learn compensatory output strategies around the intact entrainment circuit, or inference-time ablation that requires per-task head re-identification and cannot generalize across tasks, Circuit-DPO permanently modifies the entrainment mechanism during training. The near-zero cost of ablation (0.2-3% ICL loss) is not a competing advantage but confirms the SAFETY of circuit-level intervention — these heads can be modified without collateral damage. Our attention reference targets are self-supervised: clean-input attention defines what entrainment heads should approximately do. We use margin-based JSD — L = L_DPO + λ·Σ_h max(JSD(A_h^noisy, A_h^clean) - ε, 0) — tolerating legitimate redistribution while penalizing entrainment. We build on the technical precedent of KLAAD (EMNLP 2025), which established attention-distribution KL as an effective auxiliary training loss for debiasing, but advance beyond it with circuit-specific targeting, DPO integration, and self-supervised references. Periodic head re-identification with Jaccard similarity monitoring tracks circuit drift during training. Our primary hypothesis is twofold: (H1) composability — Circuit-DPO + EIT yields additive robustness because they target orthogonal levels (circuit mechanism vs. behavioral compensation), supported by evidence that RL training leaves core circuits unchanged (arXiv:2602.11180); (H2) internalization — Circuit-DPO without inference-time intervention outperforms inference-time ablation on cross-task transfer, because trained circuit modification generalizes beyond specific identified heads. We explicitly compare against inference-time ablation as a key baseline — the experiment that justifies training-time complexity over inference-time simplicity. Evaluation on the 'Lost in the Noise' evaluation suite (arXiv:2601.07226), Adaptive Distraction benchmark, and GSM-DC, with composability and cross-task transfer as primary analyses. Target: ARR October 2026.",
+  "project_name": "circuit_dpo_entrainment",
+  "source": "web_research"
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc29b6de-fe6b-416f-852a-0a46126dbee8",
+  "isSidechain": false,
+  "requestId": "req_011Cb7thrqiJ88u3Y14iUeRK",
+  "type": "assistant",
+  "uuid": "6fd25c26-5458-44c6-b057-88d39916ca8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BRFzB8HN5xLdnjjLfgv2US",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13598,
+      "cache_read_input_tokens": 47818,
+      "output_tokens": 6959,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13598,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6959,
+          "cache_read_input_tokens": 47818,
+          "cache_creation_input_tokens": 13598,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13598
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 92_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-17 (UTC).**  ## Original idea {   \"title\": \"Circuit-DPO: Composable Distraction Robustness via Mechanistically-Tar…",
+  "leafUuid": "6fd25c26-5458-44c6-b057-88d39916ca8b",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 93_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising Circuit-DPO core framing",
+  "sessionId": "55cf5ff8-fb6c-4729-a47a-45884b754fea"
+}
+```
+
+---

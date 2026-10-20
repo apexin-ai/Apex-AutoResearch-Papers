@@ -1,0 +1,4634 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-19 (UTC).** ## Original idea { "tit
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 74
+- **Recorded user turns:** 1
+- **Tool calls:** 20
+- **Original source:** `logs/chats/exported-trajectories/account-2/2d88ff40-6e8c-41d1-8b37-364a36afb9ee.jsonl`
+- **Structured JSON:** [`f08fcd6d1186ca1a0c89.json`](../../sessions/f0/f08fcd6d1186ca1a0c89.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T15:39:56.751Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T15:39:56.751Z",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-19 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibration for Targeted Activation Correction\",\n  \"core_problem\": \"LLM miscalibration arises from at least two competing biases — choice-supportive bias (CSB, inflating confidence in initial answers) and contradictory-evidence overweighting (CEO, causing excessive confidence revision under criticism) — that are simultaneously active and pull confidence in opposite directions on the same instances (Kumaran et al., Nature MI 2026). This creates a bias interference problem: competing biases can partially cancel (producing illusory calibration where global metrics look good but localized failures persist) or one can dominate instance-by-instance (producing heterogeneous over/under-confidence patterns). Recent work on hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) independently confirms that global reliability diagrams 'hide rather than reveal calibration failures' because 'opposing errors cancel when aggregated by confidence' — but provides no mechanistic explanation for WHY opposing errors exist. Four lines of related work address parts of this problem but not the whole: (1) CogBias (Huang et al., 2604.01366) demonstrates that different cognitive bias families (Judgment, Information Processing, Social, Response) need different interventions — prompt debiasing 'substantially reduces Response biases but backfires for Judgment biases' — establishing the principle of family-dependent mitigation. However, CogBias addresses independently-active biases on different task types, not simultaneously competing biases on the same instances. (2) Billa (2604.15557) proposes a three-regime steerability framework (concept not represented / nonlinear encoding / output-aligned) with Linear Accessibility Profile (LAP) as a training-free diagnostic (ρ=0.86–0.91 correlation with steering effectiveness), establishing the routing-by-steerability paradigm — but operates per-concept with synthetic binary features, not per-instance with naturalistic competing biases. (3) MERA (Hedström et al., ICML 2025) provides adaptive steering strength and abstention with non-degradation guarantees — but treats errors monolithically with a single probe. (4) SteerConf (Zhou et al., NeurIPS 2025) achieves 29% AUROC increase and 16% ECE reduction via prompt-level confidence steering with multi-prompt aggregation — demonstrating that calibration is steerable, but operating entirely at the prompt level without mechanistic decomposition or bias-specific intervention. The classification-correction gap (Liu, 2605.05715) adds a further obstacle: linearly decodable bias directions may not be linearly steerable due to entanglement with task-critical computation. Can we move from behavioral evidence of competing biases to activation-level characterization, measure their asymmetric steerability profiles, and demonstrate that decomposed correction outperforms monolithic methods specifically because it resolves bias interference?\",\n  \"opportunity\": \"Kumaran et al. (Nature Machine Intelligence, 2026; arXiv 2507.03120) established behavioral evidence that LLM miscalibration results from two mechanistically distinct biases: choice-supportive bias inflates confidence in selected answers (+0.21 confidence boost, p<0.001), while contradictory-advice overweighting causes models to over-react to opposing evidence (overweighting ratio 2.58 for opposing vs. 1.095 for supporting advice). Critically, both biases are simultaneously active in the 'Answer Shown + Opposite Advice' condition, demonstrating they are distinct mechanisms rather than a single unified bias. However, Kumaran et al. provided only behavioral evidence with no activation-level analysis, and their study covered Gemma 3 (12B/27B), GPT-4o, o1-preview, and DeepSeek R1 7B — but not the Llama or Qwen families that are widely used for mechanistic interpretability research.\\n\\nCogBias (Huang et al., arXiv 2604.01366, April 2026) independently demonstrated that cognitive biases are encoded as linearly separable directions in LLM activation space (97.8% mean classification accuracy via linear probes), and that bias-family-specific intervention is both viable and necessary: activation steering achieves 26–32% bias reduction overall, but effectiveness varies dramatically by family (up to 19pp improvement for Judgment biases on Qwen vs. minimal effect for others). Importantly, CogBias found that despite near-orthogonal bias representations across model architectures, steering reduced bias at similar rates, suggesting shared functional organization — which is encouraging for cross-model generalization. This establishes a crucial principle — different biases need different interventions — but CogBias addresses biases that are independently active on different task types, not biases that compete simultaneously on the same calibration task.\\n\\nBilla (arXiv 2604.15557, April 2026) proposed a three-regime framework for steerability prediction: (1) concept not represented (no method works), (2) nonlinear encoding (nonlinear methods needed), (3) output-aligned (linear steering works). The Linear Accessibility Profile (LAP) — a training-free logit-lens diagnostic — predicts steering effectiveness at ρ=0.86–0.91 across 24 binary concept families and 5 models. This establishes the routing-by-steerability paradigm that informs our intervention strategy — but LAP operates per-concept with synthetic binary features, not per-instance with naturalistic biases, and does not address bias decomposition.\\n\\nSteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) demonstrated that prompt-level confidence steering — using systematically varied steering prompts spanning 'very cautious' to 'very confident,' with multi-prompt consistency aggregation — achieves 29% AUROC increase and 16% ECE reduction across seven benchmarks on GPT-3.5, LLaMA 3, and GPT-4 without training. SteerConf establishes that calibration is steerable at the behavioral level and provides a strong prompt-level baseline, but operates without mechanistic decomposition and cannot distinguish between or independently address competing bias sources.\\n\\nMiao & Ungar (arXiv 2603.25052, 2026) showed that calibration and verbalized confidence are linearly encoded but orthogonal in the residual stream (cosine similarity <0.04 across layers in three 7–8B models), achieving 4–7× ECE improvement via adaptive steering. Liu (arXiv 2605.05715, May 2026) demonstrated the classification-correction gap: linearly decodable failure directions (71.6% balanced accuracy) yield Δ≈0 under 29 linear steering configurations due to 85–88% overlap with task-critical computation (specificity ratio ≤0.152), but a learned nonlinear bottleneck MLP achieves Δ=+2.8pp where all linear methods fail. MERA (Hedström et al., ICML 2025; arXiv 2510.13290) established adaptive steering with non-degradation guarantees via constrained optimization — but operates with a single monolithic error probe.\\n\\nKobalczyk & van der Schaar (arXiv 2605.13484, May 2026) independently confirmed that global calibration metrics mask input-dependent heterogeneity: across 48 model–dataset pairs, they discovered hidden miscalibration regimes where 'opposing errors cancel when aggregated by confidence,' with local correction outperforming confidence-only methods. This provides independent evidence for our bias interference hypothesis — the hidden regimes may correspond to regions where CSB vs. CEO dominance shifts.\\n\\nThe 'Confidence Manifold' study (arXiv 2602.08159) found correctness signals occupy only 3–8 dimensions with simple mean-shift geometry across 9 models, suggesting calibration-related directions may have more favorable specificity profiles than Liu's entangled overthinking directions. The nonlinear steering landscape (ODESteer, ICLR 2026; Curveball Steering, 2026; FLAS, 2026) provides powerful alternatives when linear steering fails. Spherical Steering (ICML 2026) preserves activation norms via geodesic rotation, and COAST (2605.01167) minimizes collateral damage along non-target directions.\\n\\nThe convergence of (a) behavioral evidence of competing biases with quantitative effect sizes, (b) CogBias's demonstration that bias-family-specific intervention works, (c) Billa's steerability-based routing paradigm with a training-free diagnostic, (d) SteerConf's demonstration that calibration is steerable even at the prompt level, (e) the decodable–steerable distinction with quantitative diagnostics, (f) hidden miscalibration regimes suggesting opposing errors cancel, and (g) adaptive frameworks with non-degradation guarantees creates an opportunity for the next step: extending from independently-active bias families and per-concept steerability to simultaneously competing calibration biases with per-instance diagnosis and correction.\",\n  \"landscape\": \"Kumaran et al. (Nature MI, 2026) identified competing biases (CSB and CEO) via behavioral experiments on Gemma 3 12B/27B, GPT-4o, o1-preview, and DeepSeek R1 7B but proposed no correction framework and provided no mechanistic (activation-level) evidence. Importantly, the qualitative pattern — overconfidence from CSB and underconfidence from CEO — held across all tested models, but effect magnitudes varied substantially (GPT-4o and Gemma 27B showed the strongest CEO effects; DeepSeek R1 7B failed to follow the advice paradigm entirely), and no Llama or Qwen models were tested. Miao & Ungar (arXiv 2603.25052, 2026) demonstrated that calibration accuracy and verbalized confidence are linearly encoded but orthogonal in 7–8B models (cosine similarity <0.04 across layers), and introduced adaptive steering achieving 4–7× ECE improvement — but they target the confidence–accuracy misalignment gap, not the competing bias structure.\\n\\nCogBias (Huang et al., arXiv 2604.01366, April 2026) is the closest work on bias decomposition. It organizes cognitive biases into four families (Judgment, Information Processing, Social, Response), demonstrates 97.8% linear probe classification accuracy for bias-family identification in activation space, and shows family-dependent mitigation: activation steering achieves 26–32% overall bias reduction, but prompt-level debiasing 'substantially reduces Response biases but backfires for Judgment biases,' with up to 19pp improvement for Judgment biases via steering on Qwen. Despite near-orthogonal bias representations across model architectures (Llama and Qwen), steering reduced bias at similar rates — suggesting shared functional organization that is encouraging for cross-architecture generalization. CogBias establishes two principles that directly motivate our work: (a) cognitive biases are linearly encoded and separable, and (b) different bias families require different interventions. However, CogBias addresses biases that are independently active on different task types — each task primarily involves one bias family. Our setting involves two biases simultaneously active and competing on the same instances, creating interference effects that CogBias's framework does not model. CogBias also does not assess steerability before intervention or route between intervention types.\\n\\nBilla (arXiv 2604.15557, April 2026) proposes the most direct methodological precedent for our routing logic. The three-regime framework — (1) concept not represented (no method works), (2) nonlinear encoding (nonlinear methods needed), (3) output-aligned (linear steering works) — directly parallels our Route C/B/A structure. LAP (Linear Accessibility Profile), computed as logit-lens accuracy at each layer without training, predicts steering effectiveness at ρ=0.86–0.91 across 24 binary concept families on 5 models (Pythia-2.8B to Llama-8B). Key distinctions from our work: (a) Billa operates per-concept with synthetic binary features (e.g., gender, sentiment, parity), while we operate per-instance with naturalistic competing calibration biases; (b) Billa's three regimes assume a single concept direction per analysis, while we must decompose competing bias directions that are simultaneously active; (c) LAP's above-floor correlation weakens on smaller models (ρ=0.50–0.52 on Pythia-2.8B), and its applicability to non-binary, continuous calibration constructs is untested. We incorporate LAP as a complementary diagnostic alongside Liu's specificity ratio, adapting it to assess per-layer output-alignment of each decomposed bias direction.\\n\\nSteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) demonstrated prompt-level confidence steering achieving 29% AUROC increase and 16% ECE reduction across seven benchmarks on GPT-3.5, LLaMA 3, and GPT-4. SteerConf uses systematically varied steering prompts (spanning 'very cautious' to 'very confident'), measures consistency across multiple steered confidence outputs, and aggregates via linear quantization — all without training. SteerConf represents the state-of-the-art in training-free prompt-level calibration steering and serves as an important baseline: activation-level methods should demonstrate clear advantages over this prompt-level approach. However, SteerConf operates entirely at the behavioral level without mechanistic decomposition, cannot distinguish between competing bias sources, and cannot apply bias-specific corrections.\\n\\nTsujimura & Tagade (arXiv 2508.17182, Aug 2025) decomposed LLM assertiveness into emotional and logical sub-components via unsupervised clustering on Llama-3.2-1B-Instruct (645 samples) — methodologically adjacent but critically different: their decomposition is descriptive (post-hoc ChatGPT-labeled clusters) rather than causally grounded in identified cognitive biases, uses a single 1B model, reports no calibration metrics, and addresses assertiveness rather than calibration.\\n\\nLiu (arXiv 2605.05715, May 2026) is the most directly relevant advance on the decodable–steerable gap: linearly decodable failure directions (71.6% balanced accuracy on Llama-3.1-8B) yield Δ≈0 across five families of linear steering (29 configurations) because the failure direction has 85–88% overlap with task-critical computation (specificity ratio ≤0.152). A learned nonlinear bottleneck MLP (4096→64→4096) achieves Δ=+2.8pp (p=0.025) where linear methods fail. However, this was studied for medical overthinking, a single failure mode — not decomposed competing biases.\\n\\nHedström et al. (MERA, ICML 2025; arXiv 2510.13290) established the most principled framework for selective steering: MERA solves min ‖v‖² s.t. p̂(h+v) ≤ α with Hoeffding-based non-degradation guarantees via Bonferroni correction. However, MERA operates with a single monolithic error probe — it cannot decompose calibration errors into opposing sources or route to different intervention types based on per-direction steerability.\\n\\nKobalczyk & van der Schaar (arXiv 2605.13484, May 2026) discovered hidden miscalibration regimes where input-dependent calibration heterogeneity is prevalent across 48 model–dataset pairs: global reliability diagrams hide opposing over/under-confidence errors that cancel when aggregated. This provides independent empirical support for our bias interference hypothesis but offers no mechanistic explanation for WHY opposing errors exist and no bias decomposition.\\n\\nThe nonlinear steering landscape has matured rapidly. ODESteer (Chen et al., ICLR 2026; arXiv 2602.17560) formulated a unified ODE-based framework via barrier functions. Curveball Steering (Raval et al., arXiv 2603.09313, Mar 2026) introduced polynomial kernel PCA for curved activation geometry (+47% over linear in high-curvature regimes). FLAS (arXiv 2605.05892, May 2026) learned concept-conditioned velocity fields, first outperforming prompting on AxBench. These address geometric limitations of linear steering but provide neither bias decomposition nor steerability diagnosis.\\n\\nThe 'Wired for Overconfidence' paper (2604.01457, April 2026) identifies overconfidence circuits in 3B models via monolithic activation steering (96.9% ECE reduction on PopQA) but treats overconfidence as a single phenomenon. Ji et al. (EMNLP 2025) modulates a single Verbal Uncertainty Feature. CORAL (arXiv 2602.06022) achieves 49% ECE improvement via a single MLP probe. The 'Confidence Manifold' study (arXiv 2602.08159) found correctness signals in 3–8 dimensions with simple mean-shift geometry across 9 models.\\n\\nOn steering methodology: Spherical Steering (arXiv 2602.08169, ICML 2026) performs norm-preserving geodesic rotation. Selective Steering (Dang & Ngo, arXiv 2601.19375) developed norm-preserving rotation with discriminative layer selection. COAST (Nguyen et al., arXiv 2605.01167, May 2026) formalizes collateral damage. W2S (Gadgil et al., arXiv 2604.03867, April 2026) learns input-dependent layer selection for steering. 'Steered LLM Activations are Non-Surjective' (2604.09839) proved additive steering pushes activations off-manifold.\\n\\nNo existing method addresses the specific challenge of simultaneously competing calibration biases: CogBias decomposes independently-active bias families; Billa routes by per-concept steerability; SteerConf steers confidence at the prompt level without decomposition; MERA adapts steering strength monolithically. Our work uniquely targets biases that are concurrently active and opposing on the same instances, requiring joint decomposition and per-direction steerability assessment to resolve interference effects that these approaches cannot address individually.\",\n  \"inspired_by\": \"Gap: Competing biases create interference patterns — partially canceling on some instances (illusory calibration) and producing heterogeneous over/under-confidence on others (hidden miscalibration regimes, Kobalczyk 2605.13484) — that even CogBias's family-dependent mitigation cannot address because it targets independently-active biases, not simultaneously competing ones. Pattern: CogBias (2604.01366) proves bias-family-specific intervention works (97.8% separability, family-dependent steering) → Billa (2604.15557) proves steerability-based routing works (three regimes, LAP diagnostic, ρ=0.86–0.91) → SteerConf (2503.02863, NeurIPS 2025) proves calibration is steerable at the prompt level (29% AUROC, 16% ECE) → Liu (2605.05715) proves decodable ≠ steerable and nonlinear fallback works → MERA proves adaptive strength + abstention works. Untried combination: Extend these established principles from independent biases to simultaneously competing calibration biases, measuring asymmetric steerability profiles as the empirical core, with bias-specific correction as the practical application. Key hypothesis: CSB and CEO have asymmetric LAP and specificity profiles because they involve different cognitive processes (self-evaluation vs. evidence integration), which would provide a mechanistic explanation for inconsistent monolithic calibration steering results.\",\n  \"approach\": \"We investigate whether competing calibration biases (CSB and CEO) are distinguishable in activation space, whether they exhibit asymmetric steerability, and whether decomposed correction resolves bias interference that monolithic methods cannot. We structure the investigation in four phases, beginning with behavioral replication and a confound-controlled de-risking pilot. Evaluated on 3 models × 3 datasets with 7 core baselines.\\n\\n**Phase 0A — Behavioral Replication (Week 1):**\\n\\nKumaran et al.'s competing biases were characterized on Gemma 3 (12B/27B), GPT-4o, o1-preview, and DeepSeek R1 7B — none of which are our target models. Before any activation extraction, we must verify that each target model (Llama-3.1-8B-Instruct, Qwen3-8B, Gemma 4 31B Dense) exhibits both CSB and CEO in the behavioral paradigm.\\n\\nWe replicate Kumaran et al.'s exact 2-turn experimental design on each target model with 500 questions per condition: the 2×3 factorial (Answer Shown/Hidden × Same/Opposite/Neutral Advice) at 70% stated advice accuracy. We measure: (a) CSB magnitude — confidence difference between Answer Shown-Neutral and Answer Hidden-Neutral conditions; (b) CEO magnitude — the overweighting ratio (observed confidence change / Bayesian-optimal change) for opposing vs. supporting advice; (c) change-of-mind rates across conditions.\\n\\nGo/no-go criteria: If a model shows CSB magnitude ≥50% of Kumaran's reported +0.21 (i.e., ≥+0.105) AND CEO overweighting ratio ≥50% of Kumaran's 2.58 (i.e., ≥1.29), it proceeds to Phase 0B. If a model shows one bias but not the other, it is retained with a note that only the detected bias can be studied (reducing to single-bias characterization for that model). If a model shows neither bias at ≥50% threshold, it is replaced — candidate replacements are Gemma 3 27B (directly validated by Kumaran) or Mistral-8B. We report all behavioral replication results regardless, as cross-architecture replication data for Kumaran et al.'s findings is itself a contribution.\\n\\n**Phase 0B — Confound-Controlled De-Risking Pilot (Weeks 2–3):**\\n\\nThe translation from Kumaran et al.'s behavioral paradigm to contrastive activation extraction faces a critical confound identified in this revision: the contrastive pairs differ not only in bias activation but in prompt information content. For CSB, 'answer shown' prompts literally contain the model's answer text while 'answer hidden' prompts contain 'xx.' For CEO, 'contradictory advice present' prompts contain advisory text that 'advice absent' prompts lack. Extracted directions may thus capture 'prompt contains additional evaluative content' rather than 'bias is active.'\\n\\nWe address this with a three-pronged confound mitigation strategy:\\n\\n*(1) Matched-content contrastive pairs:* Rather than using Kumaran et al.'s original 'xx' placeholder (which differs in length and semantic content), we design matched controls:\\n- **CSB pairs:** The CSB-active condition shows the model's own prior answer. The CSB-control condition replaces the model's answer with a plausible but randomly-selected alternative answer of matched token length (e.g., if the model answered 'b) 25.3,' the control shows 'b) 18.7' attributed to 'another LLM'). Both conditions contain an answer of equal length and format; only the self-generated attribution differs. An additional 'scrambled-answer' control replaces the answer with token-length-matched semantically neutral text (e.g., 'b) [REDACTED]' padded to matched length) to verify that information content per se is not driving the extracted direction.\\n- **CEO pairs:** The CEO-active condition presents contradictory advice ('This LLM answered [opposite option]'). The CEO-control condition presents irrelevant neutral advice of matched token length ('This LLM was also asked a different question about [unrelated topic]'), preserving the presence of additional advisory text while removing the bias-inducing contradictory content. An additional 'supporting-advice' condition (same format, same length, but agreeing rather than contradicting) enables directional validation — the CEO direction should separate contradictory from both neutral and supporting conditions, while a pure information-content confound would not distinguish contradictory from supporting.\\n\\n*(2) Token-position-specific extraction:* Rather than extracting mean activations across all token positions (which would be dominated by the differing prompt content), we extract activations at three specific positions: (a) the last token of the Turn 2 prompt (just before generation begins), (b) the first generated token, and (c) the confidence-bearing token position (identified via logit analysis as the token where the model's confidence digit is generated). If the extracted direction is robust across extraction positions — particularly at the confidence-bearing token, which is identical in format across conditions — it is unlikely to reflect prompt-content confounds.\\n\\n*(3) Confound diagnostic tests:* For each extracted candidate direction, we verify: (a) correlation with prompt token count is <0.1 (Pearson r across the contrastive dataset); (b) a 'prompt-structure probe' — a linear probe trained to classify prompt conditions by surface features (presence/absence of answer text, advice text length) — produces directions with cosine similarity <0.2 to our candidate bias directions; (c) the candidate direction generalizes to held-out question types not seen during extraction.\\n\\nWe conduct the pilot on the single model showing strongest behavioral CSB+CEO effects in Phase 0A, with ~500 contrastive pairs per bias type per control condition (totaling ~3000 pairs across the full 2×3 contrastive design for both biases).\\n\\nGo/no-go criteria: If a linear probe on matched-content pairs achieves ≥60% balanced accuracy for distinguishing bias-active vs. bias-control conditions, AND confound diagnostics pass (prompt-structure cosine <0.2, token-count correlation <0.1), we proceed to full Phase 1. If probing accuracy is 60%+ but confound diagnostics partially fail (e.g., cosine similarity 0.2–0.35), we expand to additional extraction positions and apply mean-centering (subtracting the global mean activation to decorrelate from background prompt structure). If probing accuracy is 55–60% with clean confound diagnostics, we expand to 1000 pairs. If probing accuracy is <55% across all extraction positions, or if confound diagnostics consistently fail (cosine >0.35 to prompt-structure direction), we activate the behavioral-signal fallback.\\n\\n**Phase 0 Fallback — Behavioral-Signal-Guided Probing (explicit scope reduction):**\\n\\nWe are explicit that the fallback path — using behavioral output changes (confidence shift patterns matching CSB vs. CEO signatures) to label instances post-hoc, then probing for internal signatures correlated with these behavioral labels — fundamentally changes the paper's contribution. The fallback trades causal contrastive evidence (where we experimentally control bias activation) for correlational association (where we observe behavioral patterns and search for corresponding activation correlates). This weakens contribution (1) from 'first causal activation-level characterization of competing calibration biases' to 'statistical association between behaviorally-identified bias patterns and activation geometry.' The resulting paper would still be informative — establishing that behavioral CSB/CEO patterns have detectable activation correlates, even if not causally isolated — but would be repositioned as a solid empirical contribution appropriate for EMNLP/NAACL rather than a top-tier mechanistic result at ICLR. The remaining contributions (2)–(4) on steerability measurement, interference analysis, and bias-specific correction would be weakened proportionally, as the activation directions being steered/analyzed would have weaker causal grounding.\\n\\n**Phase 1 — Separability Validation & Steerability Assessment (Weeks 4–8):**\\n\\n*Phase 1A — Separability (Weeks 4–6):* Building on the pilot's validated extraction methodology with matched-content controls, we scale confound-controlled contrastive activation extraction to all three models that passed Phase 0A behavioral replication, with 2000+ matched-content contrastive pairs per bias type per model. We extract candidate CSB and CEO directions via difference-in-means on the matched-content contrastive pairs (using the extraction position validated in Phase 0B) and validate separability via: (a) cosine similarity between candidate directions (threshold: <0.3 for separability), (b) principal angle analysis between CSB and CEO subspaces following Miao & Ungar's methodology, (c) PCA dimensionality assessment (whether 2 directions capture sufficient variance or higher-dimensional subspaces are needed), (d) cross-prediction ablations confirming that removing one bias subspace does not collapse the other, and (e) confound diagnostic replication at scale — verifying that the scaled directions maintain low cosine similarity to prompt-structure probes (<0.2) across all models. If cosine similarity >0.3 or shared variance >15%, we activate the separability fallback: extracting a joint multi-direction bias subspace and training a subspace projection classifier to separate components.\\n\\n*Phase 1B — Steerability Diagnostics (Weeks 6–8):* For each identified bias direction, we compute: (a) the **specificity ratio** — the proportion of mode-specific variance vs. shared variance with the correct-vs-incorrect subspace, following Liu's shared-specific decomposition methodology; (b) **adapted LAP** — applying the logit lens at each layer to measure how strongly each bias direction projects onto confidence-related output tokens, adapting Billa's (2604.15557) per-concept diagnostic to per-direction analysis for calibration biases; (c) **LEACE concept erasure test** — applying concept erasure to each bias direction and measuring accuracy damage as causal evidence of entanglement; (d) **pilot linear steering test** — applying small-magnitude Spherical Steering along each direction and measuring both calibration improvement and accuracy impact.\\n\\nWe do NOT pre-commit to fixed routing thresholds. Following Billa's three-regime framework as a conceptual guide, we LEARN optimal thresholds via validation-set sweeps over LAP and specificity cutoffs, reporting the full diagnostic-vs-effectiveness curves as primary empirical contributions. The core empirical hypothesis — that CSB and CEO have asymmetric steerability profiles — would provide a mechanistic explanation for why monolithic calibration steering shows inconsistent results and why hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) exhibit spatially heterogeneous over/under-confidence.\\n\\nPhase 1 results constitute an independent contribution regardless of Phase 3 outcomes: the first activation-level characterization of behaviorally-identified competing calibration biases, with joint separability and steerability measurements using complementary diagnostics (specificity ratio + adapted LAP), obtained via a confound-controlled extraction methodology.\\n\\n**Phase 2 — Per-Instance Bias Diagnosis (Weeks 7–10):** A lightweight logistic probe (or small MLP in the fallback case) trained on per-instance projection magnitudes onto each bias direction classifies which bias dominates for a given query, providing a continuous dominance score. We stratify by difficulty and validate against behavioral predictions: on easy questions where models are already confident, CSB should dominate; on hard questions under criticism, CEO should dominate. We additionally test whether bias interference patterns — instances where CSB and CEO partially cancel to produce deceptive near-zero net error — can be identified, which would directly explain hidden miscalibration regimes.\\n\\n**Phase 3 — Bias-Specific Intervention (Weeks 9–15):** Building on Billa's established routing-by-steerability paradigm (2604.15557), extended from per-concept to per-instance competing biases, Phase 3 implements three intervention routes informed by Phase 1B's empirically-learned steerability thresholds:\\n\\n*Route A — Adaptive Spherical Steering (for steerable directions):* When a bias direction falls in Billa's 'output-aligned' regime (high adapted LAP + high specificity), we apply Spherical Steering (You et al., ICML 2026) with MERA-inspired per-instance adaptive strength: rotation magnitude optimized to minimize ‖v‖² subject to the bias probe's predicted error falling below a calibrated threshold α*, following MERA's constrained optimization framework. Unlike MERA applied monolithically, our adaptation operates per-bias-direction, potentially applying different strengths for CSB vs. CEO corrections on the same instance. Layer selection is informed by adapted LAP profiles and optionally by W2S-style (Gadgil et al., 2604.03867) input-dependent layer mapping.\\n\\n*Route B — Learned Nonlinear Residual Correction (for entangled directions):* When a bias direction falls in Billa's 'nonlinear encoding' regime (high A_mlp but low A_lin, or low specificity ratio), linear steering is expected to fail. Following Liu's finding that a bottleneck residual MLP (d→64→d) achieves Δ=+2.8pp where 29 linear configurations yield Δ≈0, we train a small nonlinear residual adapter per bias type (<0.1% of model parameters), with COAST-informed training (Nguyen et al., 2605.01167) weighting the loss to minimize collateral damage along non-target feature directions.\\n\\n*Route C — Selective Abstention (for uncorrectable instances):* When neither Route A nor Route B improves calibration without excessive accuracy damage (>3% degradation on validation), following Billa's 'not represented' regime, we abstain and output a reliability score using MERA's Hoeffding-based statistical framework.\\n\\nFor intermediate-steerability directions, Route A is applied with a conservative strength cap (rotation magnitude ≤50% of high-steerability coefficient), falling back to Route C per-instance if collateral damage exceeds the threshold.\\n\\nWe evaluate on TriviaQA, MMLU, and PopQA across Gemma 4 31B Dense, Qwen3-8B, and Llama-3.1-8B-Instruct (subject to Phase 0A behavioral replication; models that fail replication are replaced as described). Metrics: ECE, Brier score, AUROC, difficulty-stratified ECE (easy/medium/hard), per-direction specificity ratios and LAP profiles, bias interference measurements (instances where CSB+CEO partially cancel), collateral damage, and route-distribution analysis. Core baselines: (1) temperature scaling, (2) CORAL, (3) Miao & Ungar adaptive steering, (4) MERA applied monolithically, (5) monolithic Spherical Steering (single direction, no bias decomposition), (6) monolithic nonlinear MLP (single direction, no bias decomposition), (7) SteerConf prompt-level steering. Extended baselines in supplementary: CogBias-style family-level steering (treating CSB/CEO as independent families), DINCO, 'Wired for Overconfidence' replication.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"600-850 H100\",\n      \"timeline\": \"15-19 weeks (includes 1-week behavioral replication + 2-week pilot)\",\n      \"estimated_gpu_cost\": \"$1,500-$2,125 (H100 @ ~$2.50/hr)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"500-700 H100\",\n      \"timeline\": \"11-15 weeks (includes 1-week behavioral replication + 2-week pilot)\",\n      \"claude_api_cost\": \"$350-$550 (Sonnet 4.6 for matched-content contrastive dataset generation, confound diagnostics, probing, LAP computation, adapter training, analysis)\",\n      \"estimated_gpu_cost\": \"$1,250-$1,750\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"800-1100 H100\",\n      \"timeline\": \"7-10 weeks (includes behavioral replication + pilot)\",\n      \"claude_api_cost\": \"$700-$1,200 (Opus 4.7 for experiment orchestration, matched-content pair generation, confound analysis, validation analysis, steerability diagnostics, adapter training sweeps)\",\n      \"estimated_gpu_cost\": \"$2,000-$2,750\",\n      \"speed_bottleneck\": \"Phase 0A behavioral replication (1 week, parallelizable across 3 models) → Phase 0B pilot is sequential gate (2 weeks). Phase 1A→1B is sequential. Evaluation across 3 models × 3 datasets × 3 routes + 7 baselines is parallelizable.\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (estimated abstract ~Sep 2026, full paper ~Sep 2026 — primary target, ~17–19 weeks from start; behavioral replication + pilot de-risk early, human-in-loop timeline of 11-15 weeks leaves 2-8 weeks for writing)\",\n    \"NeurIPS 2026 Workshops (~Aug 29, 2026 — Phase 0 + Phase 1 results as standalone empirical contribution on competing bias geometry with confound-controlled methodology)\",\n    \"ARR October 2026 cycle (Oct 12, 2026 — backup full paper targeting NAACL 2027 or EACL 2027)\",\n    \"EMNLP 2027 (if Phase 0 fallback is activated — correlational contribution repositioned for strong empirical venue)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Competing Biases underlie Overconfidence and Underconfidence in LLMs (Kumaran et al., Nature Machine Intelligence 2026; arXiv 2507.03120)\",\n    \"CogBias: Measuring and Mitigating Cognitive Bias in Large Language Models (Huang et al., arXiv 2604.01366, April 2026) — bias-family decomposition, 97.8% linear separability, family-dependent mitigation\",\n    \"Predicting Where Steering Vectors Succeed (Billa, arXiv 2604.15557, April 2026) — three-regime steerability framework, LAP diagnostic, routing-by-steerability paradigm\",\n    \"SteerConf: Steering LLMs for Confidence Elicitation (Zhou et al., arXiv 2503.02863, NeurIPS 2025) — prompt-level confidence steering, 29% AUROC increase, 16% ECE reduction, multi-prompt aggregation\",\n    \"Closing the Confidence-Faithfulness Gap in Large Language Models (Miao & Ungar, arXiv 2603.25052, 2026) — orthogonal calibration/confidence encoding, adaptive steering\",\n    \"Decodable but Not Corrected by Fixed Residual-Stream Linear Steering: Evidence from Medical LLM Failure Regimes (Liu, arXiv 2605.05715, May 2026) — classification-correction gap, specificity ratio diagnostic\",\n    \"To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models (Hedström et al., ICML 2025; arXiv 2510.13290) — MERA: adaptive strength, provable non-degradation, selective abstention\",\n    \"Discovery of Hidden Miscalibration Regimes (Kobalczyk & van der Schaar, arXiv 2605.13484, May 2026) — input-dependent calibration heterogeneity, opposing errors cancel when aggregated\",\n    \"ODESteer: A Unified ODE-Based Steering Framework for LLM Alignment (Chen et al., ICLR 2026; arXiv 2602.17560)\",\n    \"Curveball Steering: The Right Direction To Steer Isn't Always Linear (Raval et al., arXiv 2603.09313, Mar 2026)\",\n    \"Beyond Steering Vector: Flow-based Activation Steering for Inference-Time Intervention (arXiv 2605.05892, May 2026) — FLAS\",\n    \"Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs (arXiv 2604.01457, 2026)\",\n    \"Spherical Steering: Geometry-Aware Activation Rotation for Language Models (You et al., ICML 2026; arXiv 2602.08169)\",\n    \"Selective Steering: Norm-Preserving Control Through Discriminative Layer Selection (Dang & Ngo, arXiv 2601.19375, Jan 2026)\",\n    \"Minimizing Collateral Damage in Activation Steering (Nguyen et al., arXiv 2605.01167, May 2026) — COAST framework\",\n    \"Where to Steer: Input-Dependent Layer Selection for Steering Improves LLM Alignment (Gadgil et al., arXiv 2604.03867, April 2026)\",\n    \"Steered LLM Activations are Non-Surjective (Mishra et al., arXiv 2604.09839, 2026)\",\n    \"The Confidence Manifold: Geometric Structure of Correctness Representations in Language Models (arXiv 2602.08159, 2026)\",\n    \"LLM Assertiveness can be Mechanistically Decomposed into Emotional and Logical Components (Tsujimura & Tagade, arXiv 2508.17182, 2025)\",\n    \"A Sober Look at Steering Vectors for LLMs (Tan et al., NeurIPS 2024)\",\n    \"Patterns and Mechanisms of Contrastive Activation Engineering (Hao et al., arXiv 2505.03189, 2025)\",\n    \"CORAL: Correctness-Optimized Residual Activation Lens (arXiv 2602.06022, 2026)\",\n    \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (Ji et al., EMNLP 2025)\",\n    \"Calibrating Verbalized Confidence with Self-Generated Distractors (Wang & Stengel-Eskin, ICLR 2026)\",\n    \"Breaking the Mirror: Activation-Based Mitigation of Self-Preference in LLM Evaluators (arXiv 2509.03647, 2025)\",\n    \"Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation (Zhuang et al., arXiv 2512.03082, 2025)\",\n    \"Fine-Grained Activation Steering: Steering Less, Achieving More (arXiv 2602.04428, 2026)\",\n    \"Contextual Linear Activation Steering of Language Models (arXiv 2604.24693, 2026)\"\n  ],\n  \"description\": \"We investigate whether two competing sources of LLM miscalibration — choice-supportive bias (CSB) and contradictory-evidence overweighting (CEO), identified behaviorally by Kumaran et al. (Nature MI 2026) — produce distinguishable activation signatures, exhibit asymmetric steerability profiles, and can be corrected through bias-specific intervention that outperforms monolithic approaches.\\n\\nOur work is motivated by a bias interference problem unique to the competing-bias setting: CSB and CEO are simultaneously active on the same instances, pulling confidence in opposite directions. This creates (a) illusory calibration where competing biases partially cancel, making global metrics deceptively good while localized failures persist — consistent with the hidden miscalibration regimes independently observed by Kobalczyk & van der Schaar (2605.13484) — and (b) heterogeneous over/under-confidence patterns where one bias dominates instance-by-instance. Monolithic methods cannot resolve this interference because they target the net error direction, which conflates opposing bias contributions.\\n\\nCogBias (Huang et al., 2604.01366) established that cognitive bias families are linearly separable (97.8% accuracy) and require family-dependent intervention — but addresses independently-active biases on different tasks, not simultaneously competing biases. Billa (2604.15557) established the routing-by-steerability paradigm with a three-regime framework and LAP diagnostic — but operates per-concept with synthetic binary features, not per-instance with naturalistic competing biases. SteerConf (Zhou et al., NeurIPS 2025) achieves 29% AUROC increase via prompt-level confidence steering — demonstrating calibration is steerable but operating without mechanistic decomposition. MERA (Hedström et al., ICML 2025) provides adaptive steering with non-degradation guarantees — but treats errors monolithically.\\n\\nOur approach proceeds in four phases with rigorous confound control. Phase 0A (Behavioral Replication) verifies that each target model — Llama-3.1-8B-Instruct, Qwen3-8B, and Gemma 4 31B Dense, none of which were in Kumaran et al.'s original study — exhibits both CSB and CEO at ≥50% of Kumaran's reported effect sizes; models failing replication are replaced. Phase 0B (Confound-Controlled Pilot) addresses a critical methodological challenge: standard contrastive extraction would conflate bias activation with prompt information-content differences (e.g., 'answer shown' prompts literally contain more text than 'answer hidden' prompts). We design matched-content contrastive pairs where bias-active and bias-control conditions are equated for token length, format, and information presence — differing only in the bias-relevant semantic content (self-generated vs. other-generated answer for CSB; contradictory vs. irrelevant advice for CEO). Token-position-specific extraction at the confidence-bearing token and explicit confound diagnostics (correlation with prompt length <0.1; cosine similarity to prompt-structure direction <0.2) ensure that extracted directions reflect genuine bias activation rather than prompt artifacts.\\n\\nPhase 1A (Separability) tests whether CSB and CEO produce geometrically distinct directions using confound-controlled contrastive activation probing, validated via cosine similarity, principal angles, PCA, and cross-prediction ablations. Phase 1B (Steerability Assessment) measures each direction's specificity ratio (Liu 2605.05715) and adapted LAP (Billa 2604.15557) as complementary diagnostics, learning routing thresholds empirically rather than pre-committing to fixed values. Phase 2 trains a per-instance bias dominance classifier.\\n\\nPhase 3 implements intervention routing, building on Billa's established three-regime paradigm but extended from per-concept to per-instance competing biases: (Route A) Spherical Steering with MERA-inspired per-direction adaptive strength for steerable directions; (Route B) lightweight bottleneck MLP for entangled directions, trained with COAST-informed collateral-damage-aware loss; (Route C) selective abstention via MERA's statistical framework.\\n\\nWe evaluate on TriviaQA, MMLU, and PopQA across three models (subject to Phase 0A behavioral replication). Core baselines: temperature scaling, CORAL, Miao & Ungar, MERA (monolithic), monolithic Spherical Steering, monolithic nonlinear MLP, and SteerConf (prompt-level steering).\\n\\nWe are explicit about the fallback path: if Phase 0B fails (extracted directions reflect prompt confounds rather than bias activation, despite matched-content controls), the behavioral-signal-guided probing fallback produces correlational rather than causal evidence, fundamentally repositioning the paper from a mechanistic contribution to an empirical observation study — still informative, but appropriate for EMNLP/NAACL rather than ICLR.\\n\\nThe contributions are: (1) first causal activation-level characterization of simultaneously competing calibration biases (CSB vs. CEO), extending CogBias's independently-active bias decomposition to the competing-bias setting, with confound-controlled extraction methodology that addresses prompt-content confounds inherent in multi-turn behavioral paradigms; (2) empirical measurement of asymmetric steerability profiles with complementary diagnostics (specificity ratio + adapted LAP), extending Billa's per-concept steerability analysis to per-direction competing biases; (3) bias interference analysis connecting competing bias dynamics to hidden miscalibration regimes; (4) bias-specific adaptive correction extending MERA's monolithic framework to the multi-bias setting with steerability-informed routing; (5) cross-architecture behavioral replication of Kumaran et al.'s competing biases on Llama and Qwen families.\",\n  \"project_name\": \"competing_bias_steer\",\n  \"source\": \"web_research\",\n  \"revision_notes\": {\n    \"round1_issue_1_missing_competitor\": \"Tsujimura & Tagade (2508.17182) cited as methodological precedent, differentiated on four axes. [Carried from R1]\",\n    \"round1_issue_2_model_names\": \"Fixed. [Carried from R1]\",\n    \"round1_issue_3_untested_assumption\": \"Phase 1A separability tests retained with quantitative thresholds; now preceded by Phase 0A+0B. [Extended from R1]\",\n    \"round1_issue_4_steering_reliability\": \"Spherical Steering + MERA adaptive strength retained. [Carried from R1]\",\n    \"round1_issue_5_baseline_comparison\": \"MERA as critical baseline retained. [Carried from R1]\",\n    \"round1_issue_6_behavioral_mechanistic_leap\": \"Phase 0B pilot explicitly addresses this risk with confound controls. [Extended from R1]\",\n    \"round2_issue_1_critical_missing_competitor\": \"Liu (2605.05715) thoroughly integrated. [Carried from R2]\",\n    \"round2_issue_2_separability_steerability_gap\": \"Phase 1A + 1B retained. [Carried from R2]\",\n    \"round2_issue_3_minor_missing_references\": \"All retained. [Carried from R2]\",\n    \"round2_issue_4_nonlinear_steering_fallback\": \"Routes A/B/C retained. [Carried from R2]\",\n    \"round3_issue_1_MERA_baseline\": \"MERA integration retained. [Carried from R3]\",\n    \"round3_issue_2_nonlinear_steering_competitors\": \"ODESteer, Curveball, FLAS retained. [Carried from R3]\",\n    \"round3_issue_3_venue_targeting\": \"ICLR 2027 primary, with Phase 0 providing early go/no-go. [Carried from R3]\",\n    \"round3_issue_4_specificity_thresholds\": \"Empirically-learned thresholds retained. [Carried from R3]\",\n    \"round3_issue_5_overcomplexity\": \"Streamlined 3×3×3 + 7 baselines retained. [Carried from R3]\",\n    \"round4_issue_1_missing_steerability_routing\": \"Billa (2604.15557) thoroughly integrated. [Carried from R4]\",\n    \"round4_issue_2_missing_cogbias\": \"CogBias (Huang et al., 2604.01366) thoroughly integrated. [Carried from R4]\",\n    \"round4_issue_3_novelty_overstated\": \"Novelty claims properly scoped. [Carried from R4]\",\n    \"round4_issue_4_phase1a_risk\": \"Phase 0 pilot retained with substantially enhanced confound controls. [Extended in R5]\",\n    \"round4_additional_hidden_miscalibration\": \"Kobalczyk & van der Schaar, W2S retained. [Carried from R4]\",\n    \"round5_issue_1_prompt_content_confound\": \"MAJOR METHODOLOGICAL REVISION: Redesigned Phase 0B contrastive extraction with three-pronged confound mitigation: (1) matched-content contrastive pairs where bias-active and bias-control conditions are equated for token length, format, and information presence — for CSB, replacing 'xx' placeholder with matched-length alternative answer attributed to 'another LLM'; for CEO, replacing absent advice with irrelevant neutral advice of matched token length, plus supporting-advice directional control. (2) Token-position-specific extraction at confidence-bearing token position rather than global mean, reducing sensitivity to prompt-length differences. (3) Explicit confound diagnostic tests: prompt-token-count correlation <0.1, cosine similarity to prompt-structure probe direction <0.2, and generalization to held-out question types. This is the single most important methodological improvement as it determines whether Phase 0 measures genuine bias activation or prompt structure artifacts.\",\n    \"round5_issue_2_cross_model_behavioral_generalization\": \"MAJOR: Added Phase 0A (Behavioral Replication, Week 1) as mandatory pre-step before any activation extraction. Replicates Kumaran et al.'s exact 2-turn paradigm on all three target models (none of which were in the original study) with explicit go/no-go criteria: CSB magnitude ≥50% of Kumaran's +0.21 AND CEO overweighting ratio ≥50% of Kumaran's 2.58. Models failing replication are replaced with Kumaran-validated alternatives (Gemma 3 27B) or Mistral-8B. Noted that Kumaran found DeepSeek R1 7B failed to follow the advice paradigm, and effect magnitudes varied substantially across models — reinforcing that behavioral replication is non-negotiable. CogBias's finding that bias effects replicate across Llama/Qwen at the family level provides encouraging but not sufficient evidence for the specific CSB/CEO phenomena. Behavioral replication results themselves framed as a minor contribution (5).\",\n    \"round5_issue_3_fallback_is_weaker_project\": \"MAJOR HONESTY REVISION: Explicitly stated that the behavioral-signal-guided probing fallback fundamentally changes the paper's contribution from causal mechanistic evidence to correlational analysis. Specifically: (a) contribution (1) weakens from 'first causal activation-level characterization' to 'statistical association between behavioral patterns and activation geometry'; (b) contributions (2)–(4) weaken proportionally because activation directions being analyzed/steered have weaker causal grounding; (c) the resulting paper would be repositioned from ICLR to EMNLP/NAACL as a solid empirical contribution rather than top-tier mechanistic work. Added EMNLP 2027 as explicit fallback venue in target_venues.\",\n    \"round5_issue_4_missing_baseline_steerconf\": \"ADDED: SteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) integrated throughout. Added to core_problem as fourth line of related work. Added to opportunity with key results (29% AUROC increase, 16% ECE reduction). Added to landscape with full description of methodology (prompt-level steering via systematically varied steering prompts + multi-prompt consistency aggregation), positioning it as state-of-the-art training-free prompt-level calibration baseline that activation-level methods should outperform. Added as 7th core baseline in evaluation. Added to key_references.\",\n    \"round5_issue_5_arr_date_correction\": \"MINOR: Corrected ARR October 2026 deadline from '~Oct 15' to 'Oct 12, 2026' per official ARR dates page.\"\n  }\n}\n\n## Reviewer feedback (round 7)\nIssues: [\"ALL FOUR ROUND 6 ISSUES UNADDRESSED: (1) 'How do LLMs Compute Verbal Confidence' (arXiv 2603.17839, March 2026) remains uncited despite directly validating the token-position-specific extraction in Phase 0B — it shows confidence is cached at answer-adjacent positions and retrieved at verbalization, studied on Gemma 3 27B and Qwen 2.5 7B. (2) The source attribution confound in CSB pairs is still not controlled: the requested control — presenting the model's OWN answer but attributed to 'another LLM' (same content, different attribution) — would isolate the self-generated ownership component of CSB from information-content differences. The current design changes BOTH content AND attribution simultaneously. (3) CCPS (arXiv 2505.21772, EMNLP 2025) remains uncited — it achieves ~55% ECE reduction via perturbation-stability probing on overlapping model families (Llama, Qwen, Mistral) at 8B-32B scale, making it a relevant landscape reference and potential extended baseline. (4) No generalizability discussion identifying other plausible competing-bias pairs.\", \"MISSING METHODOLOGICAL PRECEDENT: 'Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs' (arXiv 2509.21305, submitted ICLR 2026) decomposes sycophancy into distinct, independently steerable sub-components (sycophantic agreement vs. sycophantic praise vs. genuine agreement) using difference-in-means, activation additions, and subspace geometry — demonstrating that each can be independently amplified or suppressed without affecting others. This is the closest methodological precedent for decomposing a complex behavioral phenomenon into independently steerable activation-level components. The key distinction from this proposal: 'Sycophancy Is Not One Thing' decomposes co-existing but not opposing behaviors, while this proposal targets simultaneously OPPOSING biases that create interference. This distinction should be explicitly articulated.\", \"MISSING RELEVANT REFERENCE: 'Are LLM Uncertainty and Correctness Encoded by the Same Features? A Functional Dissociation via Sparse Autoencoders' (arXiv 2604.19974, April 2026) shows that statistically decodable features can be 'functionally inert' — pure incorrectness features have near-zero accuracy impact when suppressed despite being statistically distinguishable. This directly reinforces Liu's classification-correction gap with SAE-based evidence and implies that Phase 1A's separability success does NOT guarantee Phase 3's intervention success. Should be cited alongside Liu.\", \"UNVERIFIABLE CLAIM: The '97.8% mean classification accuracy via linear probes' attributed to CogBias (2604.01366) could not be independently confirmed from the abstract or accessible paper content. The abstract mentions linear separability and 26-32% steering reduction but does not surface this specific accuracy figure. If this number comes from the paper body, it should be noted as such; if it was inferred or estimated, it should be flagged.\"]\nFeedback: This is a strong proposal after 6 rigorous revision rounds, but the complete failure to address ANY of the 4 round 6 issues is a significant concern. Concrete fixes for round 8: (1) Cite 'How do LLMs Compute Verbal Confidence' (2603.17839) — its mechanistic finding that confidence is cached at answer-adjacent positions directly validates your Phase 0B token-position extraction strategy. This is a 1-sentence addition that substantially strengthens your methodology. (2) Add the same-content-different-attribution CSB control: present the model's OWN answer text but attributed to 'another LLM.' This isolates the ownership component of CSB from information content and requires only ~500 additional pairs. Without it, a reviewer can argue your CSB direction captures 'recognizing my own output' rather than 'choice-supportive confidence inflation.' (3) Add CCPS to landscape and extended baselines. (4) Add a brief generalizability paragraph: identify 2-3 other competing-bias pairs (e.g., sycophantic agreement vs. truthfulness, fluency pressure vs. factual constraint — note 'Sycophancy Is Not One Thing' already shows these are separable) and state that the Phase 0→3 pipeline is reusable. (5) Cite 'Sycophancy Is Not One Thing' (2509.21305) as a key methodological precedent and distinguish it: that paper decomposes co-existing behaviors; yours targets opposing biases creating interference effects. (6) Cite 'Are LLM Uncertainty and Correctness Encoded by the Same Features?' (2604.19974) alongside Liu — it independently confirms that decodable ≠ functional via SAE analysis, strengthening your rationale for Phase 1B steerability assessment. (7) Verify the CogBias 97.8% figure or add a caveat. All of these are small, focused additions — the core architecture is sound.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.\n- Address each issue specifically.\n\n## 深度调研要求\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。\n3. **深度思考**：\n   - 核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach？\n4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。\n\n## 针对 Review 意见的定向搜索\n\n1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点\n2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline\n3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现\n4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot\n\n- You have full freedom: minor fix, major revision, or pivot.\n- Include a \"change_type\" field: \"minor\", \"major\", or \"pivot\".\n- Output a COMPLETE JSON object with ALL fields.\n\n## 停滞提醒\n经过 7 轮修订，近 3 轮平均分从 3.2 到 3.5，无明显改善。\n考虑 major revision 或 pivot。\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T15:39:56.754Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T15:39:56.754Z",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+## Round 1
+
+72 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T15:39:56.769Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-19 (UTC).**
+
+## Original idea
+{
+  "title": "Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibration for Targeted Activation Correction",
+  "core_problem": "LLM miscalibration arises from at least two competing biases — choice-supportive bias (CSB, inflating confidence in initial answers) and contradictory-evidence overweighting (CEO, causing excessive confidence revision under criticism) — that are simultaneously active and pull confidence in opposite directions on the same instances (Kumaran et al., Nature MI 2026). This creates a bias interference problem: competing biases can partially cancel (producing illusory calibration where global metrics look good but localized failures persist) or one can dominate instance-by-instance (producing heterogeneous over/under-confidence patterns). Recent work on hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) independently confirms that global reliability diagrams 'hide rather than reveal calibration failures' because 'opposing errors cancel when aggregated by confidence' — but provides no mechanistic explanation for WHY opposing errors exist. Four lines of related work address parts of this problem but not the whole: (1) CogBias (Huang et al., 2604.01366) demonstrates that different cognitive bias families (Judgment, Information Processing, Social, Response) need different interventions — prompt debiasing 'substantially reduces Response biases but backfires for Judgment biases' — establishing the principle of family-dependent mitigation. However, CogBias addresses independently-active biases on different task types, not simultaneously competing biases on the same instances. (2) Billa (2604.15557) proposes a three-regime steerability framework (concept not represented / nonlinear encoding / output-aligned) with Linear Accessibility Profile (LAP) as a training-free diagnostic (ρ=0.86–0.91 correlation with steering effectiveness), establishing the routing-by-steerability paradigm — but operates per-concept with synthetic binary features, not per-instance with naturalistic competing biases. (3) MERA (Hedström et al., ICML 2025) provides adaptive steering strength and abstention with non-degradation guarantees — but treats errors monolithically with a single probe. (4) SteerConf (Zhou et al., NeurIPS 2025) achieves 29% AUROC increase and 16% ECE reduction via prompt-level confidence steering with multi-prompt aggregation — demonstrating that calibration is steerable, but operating entirely at the prompt level without mechanistic decomposition or bias-specific intervention. The classification-correction gap (Liu, 2605.05715) adds a further obstacle: linearly decodable bias directions may not be linearly steerable due to entanglement with task-critical computation. Can we move from behavioral evidence of competing biases to activation-level characterization, measure their asymmetric steerability profiles, and demonstrate that decomposed correction outperforms monolithic methods specifically because it resolves bias interference?",
+  "opportunity": "Kumaran et al. (Nature Machine Intelligence, 2026; arXiv 2507.03120) established behavioral evidence that LLM miscalibration results from two mechanistically distinct biases: choice-supportive bias inflates confidence in selected answers (+0.21 confidence boost, p<0.001), while contradictory-advice overweighting causes models to over-react to opposing evidence (overweighting ratio 2.58 for opposing vs. 1.095 for supporting advice). Critically, both biases are simultaneously active in the 'Answer Shown + Opposite Advice' condition, demonstrating they are distinct mechanisms rather than a single unified bias. However, Kumaran et al. provided only behavioral evidence with no activation-level analysis, and their study covered Gemma 3 (12B/27B), GPT-4o, o1-preview, and DeepSeek R1 7B — but not the Llama or Qwen families that are widely used for mechanistic interpretability research.\n\nCogBias (Huang et al., arXiv 2604.01366, April 2026) independently demonstrated that cognitive biases are encoded as linearly separable directions in LLM activation space (97.8% mean classification accuracy via linear probes), and that bias-family-specific intervention is both viable and necessary: activation steering achieves 26–32% bias reduction overall, but effectiveness varies dramatically by family (up to 19pp improvement for Judgment biases on Qwen vs. minimal effect for others). Importantly, CogBias found that despite near-orthogonal bias representations across model architectures, steering reduced bias at similar rates, suggesting shared functional organization — which is encouraging for cross-model generalization. This establishes a crucial principle — different biases need different interventions — but CogBias addresses biases that are independently active on different task types, not biases that compete simultaneously on the same calibration task.\n\nBilla (arXiv 2604.15557, April 2026) proposed a three-regime framework for steerability prediction: (1) concept not represented (no method works), (2) nonlinear encoding (nonlinear methods needed), (3) output-aligned (linear steering works). The Linear Accessibility Profile (LAP) — a training-free logit-lens diagnostic — predicts steering effectiveness at ρ=0.86–0.91 across 24 binary concept families and 5 models. This establishes the routing-by-steerability paradigm that informs our intervention strategy — but LAP operates per-concept with synthetic binary features, not per-instance with naturalistic biases, and does not address bias decomposition.\n\nSteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) demonstrated that prompt-level confidence steering — using systematically varied steering prompts spanning 'very cautious' to 'very confident,' with multi-prompt consistency aggregation — achieves 29% AUROC increase and 16% ECE reduction across seven benchmarks on GPT-3.5, LLaMA 3, and GPT-4 without training. SteerConf establishes that calibration is steerable at the behavioral level and provides a strong prompt-level baseline, but operates without mechanistic decomposition and cannot distinguish between or independently address competing bias sources.\n\nMiao & Ungar (arXiv 2603.25052, 2026) showed that calibration and verbalized confidence are linearly encoded but orthogonal in the residual stream (cosine similarity <0.04 across layers in three 7–8B models), achieving 4–7× ECE improvement via adaptive steering. Liu (arXiv 2605.05715, May 2026) demonstrated the classification-correction gap: linearly decodable failure directions (71.6% balanced accuracy) yield Δ≈0 under 29 linear steering configurations due to 85–88% overlap with task-critical computation (specificity ratio ≤0.152), but a learned nonlinear bottleneck MLP achieves Δ=+2.8pp where all linear methods fail. MERA (Hedström et al., ICML 2025; arXiv 2510.13290) established adaptive steering with non-degradation guarantees via constrained optimization — but operates with a single monolithic error probe.\n\nKobalczyk & van der Schaar (arXiv 2605.13484, May 2026) independently confirmed that global calibration metrics mask input-dependent heterogeneity: across 48 model–dataset pairs, they discovered hidden miscalibration regimes where 'opposing errors cancel when aggregated by confidence,' with local correction outperforming confidence-only methods. This provides independent evidence for our bias interference hypothesis — the hidden regimes may correspond to regions where CSB vs. CEO dominance shifts.\n\nThe 'Confidence Manifold' study (arXiv 2602.08159) found correctness signals occupy only 3–8 dimensions with simple mean-shift geometry across 9 models, suggesting calibration-related directions may have more favorable specificity profiles than Liu's entangled overthinking directions. The nonlinear steering landscape (ODESteer, ICLR 2026; Curveball Steering, 2026; FLAS, 2026) provides powerful alternatives when linear steering fails. Spherical Steering (ICML 2026) preserves activation norms via geodesic rotation, and COAST (2605.01167) minimizes collateral damage along non-target directions.\n\nThe convergence of (a) behavioral evidence of competing biases with quantitative effect sizes, (b) CogBias's demonstration that bias-family-specific intervention works, (c) Billa's steerability-based routing paradigm with a training-free diagnostic, (d) SteerConf's demonstration that calibration is steerable even at the prompt level, (e) the decodable–steerable distinction with quantitative diagnostics, (f) hidden miscalibration regimes suggesting opposing errors cancel, and (g) adaptive frameworks with non-degradation guarantees creates an opportunity for the next step: extending from independently-active bias families and per-concept steerability to simultaneously competing calibration biases with per-instance diagnosis and correction.",
+  "landscape": "Kumaran et al. (Nature MI, 2026) identified competing biases (CSB and CEO) via behavioral experiments on Gemma 3 12B/27B, GPT-4o, o1-preview, and DeepSeek R1 7B but proposed no correction framework and provided no mechanistic (activation-level) evidence. Importantly, the qualitative pattern — overconfidence from CSB and underconfidence from CEO — held across all tested models, but effect magnitudes varied substantially (GPT-4o and Gemma 27B showed the strongest CEO effects; DeepSeek R1 7B failed to follow the advice paradigm entirely), and no Llama or Qwen models were tested. Miao & Ungar (arXiv 2603.25052, 2026) demonstrated that calibration accuracy and verbalized confidence are linearly encoded but orthogonal in 7–8B models (cosine similarity <0.04 across layers), and introduced adaptive steering achieving 4–7× ECE improvement — but they target the confidence–accuracy misalignment gap, not the competing bias structure.\n\nCogBias (Huang et al., arXiv 2604.01366, April 2026) is the closest work on bias decomposition. It organizes cognitive biases into four families (Judgment, Information Processing, Social, Response), demonstrates 97.8% linear probe classification accuracy for bias-family identification in activation space, and shows family-dependent mitigation: activation steering achieves 26–32% overall bias reduction, but prompt-level debiasing 'substantially reduces Response biases but backfires for Judgment biases,' with up to 19pp improvement for Judgment biases via steering on Qwen. Despite near-orthogonal bias representations across model architectures (Llama and Qwen), steering reduced bias at similar rates — suggesting shared functional organization that is encouraging for cross-architecture generalization. CogBias establishes two principles that directly motivate our work: (a) cognitive biases are linearly encoded and separable, and (b) different bias families require different interventions. However, CogBias addresses biases that are independently active on different task types — each task primarily involves one bias family. Our setting involves two biases simultaneously active and competing on the same instances, creating interference effects that CogBias's framework does not model. CogBias also does not assess steerability before intervention or route between intervention types.\n\nBilla (arXiv 2604.15557, April 2026) proposes the most direct methodological precedent for our routing logic. The three-regime framework — (1) concept not represented (no method works), (2) nonlinear encoding (nonlinear methods needed), (3) output-aligned (linear steering works) — directly parallels our Route C/B/A structure. LAP (Linear Accessibility Profile), computed as logit-lens accuracy at each layer without training, predicts steering effectiveness at ρ=0.86–0.91 across 24 binary concept families on 5 models (Pythia-2.8B to Llama-8B). Key distinctions from our work: (a) Billa operates per-concept with synthetic binary features (e.g., gender, sentiment, parity), while we operate per-instance with naturalistic competing calibration biases; (b) Billa's three regimes assume a single concept direction per analysis, while we must decompose competing bias directions that are simultaneously active; (c) LAP's above-floor correlation weakens on smaller models (ρ=0.50–0.52 on Pythia-2.8B), and its applicability to non-binary, continuous calibration constructs is untested. We incorporate LAP as a complementary diagnostic alongside Liu's specificity ratio, adapting it to assess per-layer output-alignment of each decomposed bias direction.\n\nSteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) demonstrated prompt-level confidence steering achieving 29% AUROC increase and 16% ECE reduction across seven benchmarks on GPT-3.5, LLaMA 3, and GPT-4. SteerConf uses systematically varied steering prompts (spanning 'very cautious' to 'very confident'), measures consistency across multiple steered confidence outputs, and aggregates via linear quantization — all without training. SteerConf represents the state-of-the-art in training-free prompt-level calibration steering and serves as an important baseline: activation-level methods should demonstrate clear advantages over this prompt-level approach. However, SteerConf operates entirely at the behavioral level without mechanistic decomposition, cannot distinguish between competing bias sources, and cannot apply bias-specific corrections.\n\nTsujimura & Tagade (arXiv 2508.17182, Aug 2025) decomposed LLM assertiveness into emotional and logical sub-components via unsupervised clustering on Llama-3.2-1B-Instruct (645 samples) — methodologically adjacent but critically different: their decomposition is descriptive (post-hoc ChatGPT-labeled clusters) rather than causally grounded in identified cognitive biases, uses a single 1B model, reports no calibration metrics, and addresses assertiveness rather than calibration.\n\nLiu (arXiv 2605.05715, May 2026) is the most directly relevant advance on the decodable–steerable gap: linearly decodable failure directions (71.6% balanced accuracy on Llama-3.1-8B) yield Δ≈0 across five families of linear steering (29 configurations) because the failure direction has 85–88% overlap with task-critical computation (specificity ratio ≤0.152). A learned nonlinear bottleneck MLP (4096→64→4096) achieves Δ=+2.8pp (p=0.025) where linear methods fail. However, this was studied for medical overthinking, a single failure mode — not decomposed competing biases.\n\nHedström et al. (MERA, ICML 2025; arXiv 2510.13290) established the most principled framework for selective steering: MERA solves min ‖v‖² s.t. p̂(h+v) ≤ α with Hoeffding-based non-degradation guarantees via Bonferroni correction. However, MERA operates with a single monolithic error probe — it cannot decompose calibration errors into opposing sources or route to different intervention types based on per-direction steerability.\n\nKobalczyk & van der Schaar (arXiv 2605.13484, May 2026) discovered hidden miscalibration regimes where input-dependent calibration heterogeneity is prevalent across 48 model–dataset pairs: global reliability diagrams hide opposing over/under-confidence errors that cancel when aggregated. This provides independent empirical support for our bias interference hypothesis but offers no mechanistic explanation for WHY opposing errors exist and no bias decomposition.\n\nThe nonlinear steering landscape has matured rapidly. ODESteer (Chen et al., ICLR 2026; arXiv 2602.17560) formulated a unified ODE-based framework via barrier functions. Curveball Steering (Raval et al., arXiv 2603.09313, Mar 2026) introduced polynomial kernel PCA for curved activation geometry (+47% over linear in high-curvature regimes). FLAS (arXiv 2605.05892, May 2026) learned concept-conditioned velocity fields, first outperforming prompting on AxBench. These address geometric limitations of linear steering but provide neither bias decomposition nor steerability diagnosis.\n\nThe 'Wired for Overconfidence' paper (2604.01457, April 2026) identifies overconfidence circuits in 3B models via monolithic activation steering (96.9% ECE reduction on PopQA) but treats overconfidence as a single phenomenon. Ji et al. (EMNLP 2025) modulates a single Verbal Uncertainty Feature. CORAL (arXiv 2602.06022) achieves 49% ECE improvement via a single MLP probe. The 'Confidence Manifold' study (arXiv 2602.08159) found correctness signals in 3–8 dimensions with simple mean-shift geometry across 9 models.\n\nOn steering methodology: Spherical Steering (arXiv 2602.08169, ICML 2026) performs norm-preserving geodesic rotation. Selective Steering (Dang & Ngo, arXiv 2601.19375) developed norm-preserving rotation with discriminative layer selection. COAST (Nguyen et al., arXiv 2605.01167, May 2026) formalizes collateral damage. W2S (Gadgil et al., arXiv 2604.03867, April 2026) learns input-dependent layer selection for steering. 'Steered LLM Activations are Non-Surjective' (2604.09839) proved additive steering pushes activations off-manifold.\n\nNo existing method addresses the specific challenge of simultaneously competing calibration biases: CogBias decomposes independently-active bias families; Billa routes by per-concept steerability; SteerConf steers confidence at the prompt level without decomposition; MERA adapts steering strength monolithically. Our work uniquely targets biases that are concurrently active and opposing on the same instances, requiring joint decomposition and per-direction steerability assessment to resolve interference effects that these approaches cannot address individually.",
+  "inspired_by": "Gap: Competing biases create interference patterns — partially canceling on some instances (illusory calibration) and producing heterogeneous over/under-confidence on others (hidden miscalibration regimes, Kobalczyk 2605.13484) — that even CogBias's family-dependent mitigation cannot address because it targets independently-active biases, not simultaneously competing ones. Pattern: CogBias (2604.01366) proves bias-family-specific intervention works (97.8% separability, family-dependent steering) → Billa (2604.15557) proves steerability-based routing works (three regimes, LAP diagnostic, ρ=0.86–0.91) → SteerConf (2503.02863, NeurIPS 2025) proves calibration is steerable at the prompt level (29% AUROC, 16% ECE) → Liu (2605.05715) proves decodable ≠ steerable and nonlinear fallback works → MERA proves adaptive strength + abstention works. Untried combination: Extend these established principles from independent biases to simultaneously competing calibration biases, measuring asymmetric steerability profiles as the empirical core, with bias-specific correction as the practical application. Key hypothesis: CSB and CEO have asymmetric LAP and specificity profiles because they involve different cognitive processes (self-evaluation vs. evidence integration), which would provide a mechanistic explanation for inconsistent monolithic calibration steering results.",
+  "approach": "We investigate whether competing calibration biases (CSB and CEO) are distinguishable in activation space, whether they exhibit asymmetric steerability, and whether decomposed correction resolves bias interference that monolithic methods cannot. We structure the investigation in four phases, beginning with behavioral replication and a confound-controlled de-risking pilot. Evaluated on 3 models × 3 datasets with 7 core baselines.\n\n**Phase 0A — Behavioral Replication (Week 1):**\n\nKumaran et al.'s competing biases were characterized on Gemma 3 (12B/27B), GPT-4o, o1-preview, and DeepSeek R1 7B — none of which are our target models. Before any activation extraction, we must verify that each target model (Llama-3.1-8B-Instruct, Qwen3-8B, Gemma 4 31B Dense) exhibits both CSB and CEO in the behavioral paradigm.\n\nWe replicate Kumaran et al.'s exact 2-turn experimental design on each target model with 500 questions per condition: the 2×3 factorial (Answer Shown/Hidden × Same/Opposite/Neutral Advice) at 70% stated advice accuracy. We measure: (a) CSB magnitude — confidence difference between Answer Shown-Neutral and Answer Hidden-Neutral conditions; (b) CEO magnitude — the overweighting ratio (observed confidence change / Bayesian-optimal change) for opposing vs. supporting advice; (c) change-of-mind rates across conditions.\n\nGo/no-go criteria: If a model shows CSB magnitude ≥50% of Kumaran's reported +0.21 (i.e., ≥+0.105) AND CEO overweighting ratio ≥50% of Kumaran's 2.58 (i.e., ≥1.29), it proceeds to Phase 0B. If a model shows one bias but not the other, it is retained with a note that only the detected bias can be studied (reducing to single-bias characterization for that model). If a model shows neither bias at ≥50% threshold, it is replaced — candidate replacements are Gemma 3 27B (directly validated by Kumaran) or Mistral-8B. We report all behavioral replication results regardless, as cross-architecture replication data for Kumaran et al.'s findings is itself a contribution.\n\n**Phase 0B — Confound-Controlled De-Risking Pilot (Weeks 2–3):**\n\nThe translation from Kumaran et al.'s behavioral paradigm to contrastive activation extraction faces a critical confound identified in this revision: the contrastive pairs differ not only in bias activation but in prompt information content. For CSB, 'answer shown' prompts literally contain the model's answer text while 'answer hidden' prompts contain 'xx.' For CEO, 'contradictory advice present' prompts contain advisory text that 'advice absent' prompts lack. Extracted directions may thus capture 'prompt contains additional evaluative content' rather than 'bias is active.'\n\nWe address this with a three-pronged confound mitigation strategy:\n\n*(1) Matched-content contrastive pairs:* Rather than using Kumaran et al.'s original 'xx' placeholder (which differs in length and semantic content), we design matched controls:\n- **CSB pairs:** The CSB-active condition shows the model's own prior answer. The CSB-control condition replaces the model's answer with a plausible but randomly-selected alternative answer of matched token length (e.g., if the model answered 'b) 25.3,' the control shows 'b) 18.7' attributed to 'another LLM'). Both conditions contain an answer of equal length and format; only the self-generated attribution differs. An additional 'scrambled-answer' control replaces the answer with token-length-matched semantically neutral text (e.g., 'b) [REDACTED]' padded to matched length) to verify that information content per se is not driving the extracted direction.\n- **CEO pairs:** The CEO-active condition presents contradictory advice ('This LLM answered [opposite option]'). The CEO-control condition presents irrelevant neutral advice of matched token length ('This LLM was also asked a different question about [unrelated topic]'), preserving the presence of additional advisory text while removing the bias-inducing contradictory content. An additional 'supporting-advice' condition (same format, same length, but agreeing rather than contradicting) enables directional validation — the CEO direction should separate contradictory from both neutral and supporting conditions, while a pure information-content confound would not distinguish contradictory from supporting.\n\n*(2) Token-position-specific extraction:* Rather than extracting mean activations across all token positions (which would be dominated by the differing prompt content), we extract activations at three specific positions: (a) the last token of the Turn 2 prompt (just before generation begins), (b) the first generated token, and (c) the confidence-bearing token position (identified via logit analysis as the token where the model's confidence digit is generated). If the extracted direction is robust across extraction positions — particularly at the confidence-bearing token, which is identical in format across conditions — it is unlikely to reflect prompt-content confounds.\n\n*(3) Confound diagnostic tests:* For each extracted candidate direction, we verify: (a) correlation with prompt token count is <0.1 (Pearson r across the contrastive dataset); (b) a 'prompt-structure probe' — a linear probe trained to classify prompt conditions by surface features (presence/absence of answer text, advice text length) — produces directions with cosine similarity <0.2 to our candidate bias directions; (c) the candidate direction generalizes to held-out question types not seen during extraction.\n\nWe conduct the pilot on the single model showing strongest behavioral CSB+CEO effects in Phase 0A, with ~500 contrastive pairs per bias type per control condition (totaling ~3000 pairs across the full 2×3 contrastive design for both biases).\n\nGo/no-go criteria: If a linear probe on matched-content pairs achieves ≥60% balanced accuracy for distinguishing bias-active vs. bias-control conditions, AND confound diagnostics pass (prompt-structure cosine <0.2, token-count correlation <0.1), we proceed to full Phase 1. If probing accuracy is 60%+ but confound diagnostics partially fail (e.g., cosine similarity 0.2–0.35), we expand to additional extraction positions and apply mean-centering (subtracting the global mean activation to decorrelate from background prompt structure). If probing accuracy is 55–60% with clean confound diagnostics, we expand to 1000 pairs. If probing accuracy is <55% across all extraction positions, or if confound diagnostics consistently fail (cosine >0.35 to prompt-structure direction), we activate the behavioral-signal fallback.\n\n**Phase 0 Fallback — Behavioral-Signal-Guided Probing (explicit scope reduction):**\n\nWe are explicit that the fallback path — using behavioral output changes (confidence shift patterns matching CSB vs. CEO signatures) to label instances post-hoc, then probing for internal signatures correlated with these behavioral labels — fundamentally changes the paper's contribution. The fallback trades causal contrastive evidence (where we experimentally control bias activation) for correlational association (where we observe behavioral patterns and search for corresponding activation correlates). This weakens contribution (1) from 'first causal activation-level characterization of competing calibration biases' to 'statistical association between behaviorally-identified bias patterns and activation geometry.' The resulting paper would still be informative — establishing that behavioral CSB/CEO patterns have detectable activation correlates, even if not causally isolated — but would be repositioned as a solid empirical contribution appropriate for EMNLP/NAACL rather than a top-tier mechanistic result at ICLR. The remaining contributions (2)–(4) on steerability measurement, interference analysis, and bias-specific correction would be weakened proportionally, as the activation directions being steered/analyzed would have weaker causal grounding.\n\n**Phase 1 — Separability Validation & Steerability Assessment (Weeks 4–8):**\n\n*Phase 1A — Separability (Weeks 4–6):* Building on the pilot's validated extraction methodology with matched-content controls, we scale confound-controlled contrastive activation extraction to all three models that passed Phase 0A behavioral replication, with 2000+ matched-content contrastive pairs per bias type per model. We extract candidate CSB and CEO directions via difference-in-means on the matched-content contrastive pairs (using the extraction position validated in Phase 0B) and validate separability via: (a) cosine similarity between candidate directions (threshold: <0.3 for separability), (b) principal angle analysis between CSB and CEO subspaces following Miao & Ungar's methodology, (c) PCA dimensionality assessment (whether 2 directions capture sufficient variance or higher-dimensional subspaces are needed), (d) cross-prediction ablations confirming that removing one bias subspace does not collapse the other, and (e) confound diagnostic replication at scale — verifying that the scaled directions maintain low cosine similarity to prompt-structure probes (<0.2) across all models. If cosine similarity >0.3 or shared variance >15%, we activate the separability fallback: extracting a joint multi-direction bias subspace and training a subspace projection classifier to separate components.\n\n*Phase 1B — Steerability Diagnostics (Weeks 6–8):* For each identified bias direction, we compute: (a) the **specificity ratio** — the proportion of mode-specific variance vs. shared variance with the correct-vs-incorrect subspace, following Liu's shared-specific decomposition methodology; (b) **adapted LAP** — applying the logit lens at each layer to measure how strongly each bias direction projects onto confidence-related output tokens, adapting Billa's (2604.15557) per-concept diagnostic to per-direction analysis for calibration biases; (c) **LEACE concept erasure test** — applying concept erasure to each bias direction and measuring accuracy damage as causal evidence of entanglement; (d) **pilot linear steering test** — applying small-magnitude Spherical Steering along each direction and measuring both calibration improvement and accuracy impact.\n\nWe do NOT pre-commit to fixed routing thresholds. Following Billa's three-regime framework as a conceptual guide, we LEARN optimal thresholds via validation-set sweeps over LAP and specificity cutoffs, reporting the full diagnostic-vs-effectiveness curves as primary empirical contributions. The core empirical hypothesis — that CSB and CEO have asymmetric steerability profiles — would provide a mechanistic explanation for why monolithic calibration steering shows inconsistent results and why hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) exhibit spatially heterogeneous over/under-confidence.\n\nPhase 1 results constitute an independent contribution regardless of Phase 3 outcomes: the first activation-level characterization of behaviorally-identified competing calibration biases, with joint separability and steerability measurements using complementary diagnostics (specificity ratio + adapted LAP), obtained via a confound-controlled extraction methodology.\n\n**Phase 2 — Per-Instance Bias Diagnosis (Weeks 7–10):** A lightweight logistic probe (or small MLP in the fallback case) trained on per-instance projection magnitudes onto each bias direction classifies which bias dominates for a given query, providing a continuous dominance score. We stratify by difficulty and validate against behavioral predictions: on easy questions where models are already confident, CSB should dominate; on hard questions under criticism, CEO should dominate. We additionally test whether bias interference patterns — instances where CSB and CEO partially cancel to produce deceptive near-zero net error — can be identified, which would directly explain hidden miscalibration regimes.\n\n**Phase 3 — Bias-Specific Intervention (Weeks 9–15):** Building on Billa's established routing-by-steerability paradigm (2604.15557), extended from per-concept to per-instance competing biases, Phase 3 implements three intervention routes informed by Phase 1B's empirically-learned steerability thresholds:\n\n*Route A — Adaptive Spherical Steering (for steerable directions):* When a bias direction falls in Billa's 'output-aligned' regime (high adapted LAP + high specificity), we apply Spherical Steering (You et al., ICML 2026) with MERA-inspired per-instance adaptive strength: rotation magnitude optimized to minimize ‖v‖² subject to the bias probe's predicted error falling below a calibrated threshold α*, following MERA's constrained optimization framework. Unlike MERA applied monolithically, our adaptation operates per-bias-direction, potentially applying different strengths for CSB vs. CEO corrections on the same instance. Layer selection is informed by adapted LAP profiles and optionally by W2S-style (Gadgil et al., 2604.03867) input-dependent layer mapping.\n\n*Route B — Learned Nonlinear Residual Correction (for entangled directions):* When a bias direction falls in Billa's 'nonlinear encoding' regime (high A_mlp but low A_lin, or low specificity ratio), linear steering is expected to fail. Following Liu's finding that a bottleneck residual MLP (d→64→d) achieves Δ=+2.8pp where 29 linear configurations yield Δ≈0, we train a small nonlinear residual adapter per bias type (<0.1% of model parameters), with COAST-informed training (Nguyen et al., 2605.01167) weighting the loss to minimize collateral damage along non-target feature directions.\n\n*Route C — Selective Abstention (for uncorrectable instances):* When neither Route A nor Route B improves calibration without excessive accuracy damage (>3% degradation on validation), following Billa's 'not represented' regime, we abstain and output a reliability score using MERA's Hoeffding-based statistical framework.\n\nFor intermediate-steerability directions, Route A is applied with a conservative strength cap (rotation magnitude ≤50% of high-steerability coefficient), falling back to Route C per-instance if collateral damage exceeds the threshold.\n\nWe evaluate on TriviaQA, MMLU, and PopQA across Gemma 4 31B Dense, Qwen3-8B, and Llama-3.1-8B-Instruct (subject to Phase 0A behavioral replication; models that fail replication are replaced as described). Metrics: ECE, Brier score, AUROC, difficulty-stratified ECE (easy/medium/hard), per-direction specificity ratios and LAP profiles, bias interference measurements (instances where CSB+CEO partially cancel), collateral damage, and route-distribution analysis. Core baselines: (1) temperature scaling, (2) CORAL, (3) Miao & Ungar adaptive steering, (4) MERA applied monolithically, (5) monolithic Spherical Steering (single direction, no bias decomposition), (6) monolithic nonlinear MLP (single direction, no bias decomposition), (7) SteerConf prompt-level steering. Extended baselines in supplementary: CogBias-style family-level steering (treating CSB/CEO as independent families), DINCO, 'Wired for Overconfidence' replication.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "600-850 H100",
+      "timeline": "15-19 weeks (includes 1-week behavioral replication + 2-week pilot)",
+      "estimated_gpu_cost": "$1,500-$2,125 (H100 @ ~$2.50/hr)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "500-700 H100",
+      "timeline": "11-15 weeks (includes 1-week behavioral replication + 2-week pilot)",
+      "claude_api_cost": "$350-$550 (Sonnet 4.6 for matched-content contrastive dataset generation, confound diagnostics, probing, LAP computation, adapter training, analysis)",
+      "estimated_gpu_cost": "$1,250-$1,750"
+    },
+    "auto_research": {
+      "gpu_hours": "800-1100 H100",
+      "timeline": "7-10 weeks (includes behavioral replication + pilot)",
+      "claude_api_cost": "$700-$1,200 (Opus 4.7 for experiment orchestration, matched-content pair generation, confound analysis, validation analysis, steerability diagnostics, adapter training sweeps)",
+      "estimated_gpu_cost": "$2,000-$2,750",
+      "speed_bottleneck": "Phase 0A behavioral replication (1 week, parallelizable across 3 models) → Phase 0B pilot is sequential gate (2 weeks). Phase 1A→1B is sequential. Evaluation across 3 models × 3 datasets × 3 routes + 7 baselines is parallelizable."
+    }
+  },
+  "target_venues": [
+    "ICLR 2027 (estimated abstract ~Sep 2026, full paper ~Sep 2026 — primary target, ~17–19 weeks from start; behavioral replication + pilot de-risk early, human-in-loop timeline of 11-15 weeks leaves 2-8 weeks for writing)",
+    "NeurIPS 2026 Workshops (~Aug 29, 2026 — Phase 0 + Phase 1 results as standalone empirical contribution on competing bias geometry with confound-controlled methodology)",
+    "ARR October 2026 cycle (Oct 12, 2026 — backup full paper targeting NAACL 2027 or EACL 2027)",
+    "EMNLP 2027 (if Phase 0 fallback is activated — correlational contribution repositioned for strong empirical venue)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Competing Biases underlie Overconfidence and Underconfidence in LLMs (Kumaran et al., Nature Machine Intelligence 2026; arXiv 2507.03120)",
+    "CogBias: Measuring and Mitigating Cognitive Bias in Large Language Models (Huang et al., arXiv 2604.01366, April 2026) — bias-family decomposition, 97.8% linear separability, family-dependent mitigation",
+    "Predicting Where Steering Vectors Succeed (Billa, arXiv 2604.15557, April 2026) — three-regime steerability framework, LAP diagnostic, routing-by-steerability paradigm",
+    "SteerConf: Steering LLMs for Confidence Elicitation (Zhou et al., arXiv 2503.02863, NeurIPS 2025) — prompt-level confidence steering, 29% AUROC increase, 16% ECE reduction, multi-prompt aggregation",
+    "Closing the Confidence-Faithfulness Gap in Large Language Models (Miao & Ungar, arXiv 2603.25052, 2026) — orthogonal calibration/confidence encoding, adaptive steering",
+    "Decodable but Not Corrected by Fixed Residual-Stream Linear Steering: Evidence from Medical LLM Failure Regimes (Liu, arXiv 2605.05715, May 2026) — classification-correction gap, specificity ratio diagnostic",
+    "To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models (Hedström et al., ICML 2025; arXiv 2510.13290) — MERA: adaptive strength, provable non-degradation, selective abstention",
+    "Discovery of Hidden Miscalibration Regimes (Kobalczyk & van der Schaar, arXiv 2605.13484, May 2026) — input-dependent calibration heterogeneity, opposing errors cancel when aggregated",
+    "ODESteer: A Unified ODE-Based Steering Framework for LLM Alignment (Chen et al., ICLR 2026; arXiv 2602.17560)",
+    "Curveball Steering: The Right Direction To Steer Isn't Always Linear (Raval et al., arXiv 2603.09313, Mar 2026)",
+    "Beyond Steering Vector: Flow-based Activation Steering for Inference-Time Intervention (arXiv 2605.05892, May 2026) — FLAS",
+    "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs (arXiv 2604.01457, 2026)",
+    "Spherical Steering: Geometry-Aware Activation Rotation for Language Models (You et al., ICML 2026; arXiv 2602.08169)",
+    "Selective Steering: Norm-Preserving Control Through Discriminative Layer Selection (Dang & Ngo, arXiv 2601.19375, Jan 2026)",
+    "Minimizing Collateral Damage in Activation Steering (Nguyen et al., arXiv 2605.01167, May 2026) — COAST framework",
+    "Where to Steer: Input-Dependent Layer Selection for Steering Improves LLM Alignment (Gadgil et al., arXiv 2604.03867, April 2026)",
+    "Steered LLM Activations are Non-Surjective (Mishra et al., arXiv 2604.09839, 2026)",
+    "The Confidence Manifold: Geometric Structure of Correctness Representations in Language Models (arXiv 2602.08159, 2026)",
+    "LLM Assertiveness can be Mechanistically Decomposed into Emotional and Logical Components (Tsujimura & Tagade, arXiv 2508.17182, 2025)",
+    "A Sober Look at Steering Vectors for LLMs (Tan et al., NeurIPS 2024)",
+    "Patterns and Mechanisms of Contrastive Activation Engineering (Hao et al., arXiv 2505.03189, 2025)",
+    "CORAL: Correctness-Optimized Residual Activation Lens (arXiv 2602.06022, 2026)",
+    "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (Ji et al., EMNLP 2025)",
+    "Calibrating Verbalized Confidence with Self-Generated Distractors (Wang & Stengel-Eskin, ICLR 2026)",
+    "Breaking the Mirror: Activation-Based Mitigation of Self-Preference in LLM Evaluators (arXiv 2509.03647, 2025)",
+    "Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation (Zhuang et al., arXiv 2512.03082, 2025)",
+    "Fine-Grained Activation Steering: Steering Less, Achieving More (arXiv 2602.04428, 2026)",
+    "Contextual Linear Activation Steering of Language Models (arXiv 2604.24693, 2026)"
+  ],
+  "description": "We investigate whether two competing sources of LLM miscalibration — choice-supportive bias (CSB) and contradictory-evidence overweighting (CEO), identified behaviorally by Kumaran et al. (Nature MI 2026) — produce distinguishable activation signatures, exhibit asymmetric steerability profiles, and can be corrected through bias-specific intervention that outperforms monolithic approaches.\n\nOur work is motivated by a bias interference problem unique to the competing-bias setting: CSB and CEO are simultaneously active on the same instances, pulling confidence in opposite directions. This creates (a) illusory calibration where competing biases partially cancel, making global metrics deceptively good while localized failures persist — consistent with the hidden miscalibration regimes independently observed by Kobalczyk & van der Schaar (2605.13484) — and (b) heterogeneous over/under-confidence patterns where one bias dominates instance-by-instance. Monolithic methods cannot resolve this interference because they target the net error direction, which conflates opposing bias contributions.\n\nCogBias (Huang et al., 2604.01366) established that cognitive bias families are linearly separable (97.8% accuracy) and require family-dependent intervention — but addresses independently-active biases on different tasks, not simultaneously competing biases. Billa (2604.15557) established the routing-by-steerability paradigm with a three-regime framework and LAP diagnostic — but operates per-concept with synthetic binary features, not per-instance with naturalistic competing biases. SteerConf (Zhou et al., NeurIPS 2025) achieves 29% AUROC increase via prompt-level confidence steering — demonstrating calibration is steerable but operating without mechanistic decomposition. MERA (Hedström et al., ICML 2025) provides adaptive steering with non-degradation guarantees — but treats errors monolithically.\n\nOur approach proceeds in four phases with rigorous confound control. Phase 0A (Behavioral Replication) verifies that each target model — Llama-3.1-8B-Instruct, Qwen3-8B, and Gemma 4 31B Dense, none of which were in Kumaran et al.'s original study — exhibits both CSB and CEO at ≥50% of Kumaran's reported effect sizes; models failing replication are replaced. Phase 0B (Confound-Controlled Pilot) addresses a critical methodological challenge: standard contrastive extraction would conflate bias activation with prompt information-content differences (e.g., 'answer shown' prompts literally contain more text than 'answer hidden' prompts). We design matched-content contrastive pairs where bias-active and bias-control conditions are equated for token length, format, and information presence — differing only in the bias-relevant semantic content (self-generated vs. other-generated answer for CSB; contradictory vs. irrelevant advice for CEO). Token-position-specific extraction at the confidence-bearing token and explicit confound diagnostics (correlation with prompt length <0.1; cosine similarity to prompt-structure direction <0.2) ensure that extracted directions reflect genuine bias activation rather than prompt artifacts.\n\nPhase 1A (Separability) tests whether CSB and CEO produce geometrically distinct directions using confound-controlled contrastive activation probing, validated via cosine similarity, principal angles, PCA, and cross-prediction ablations. Phase 1B (Steerability Assessment) measures each direction's specificity ratio (Liu 2605.05715) and adapted LAP (Billa 2604.15557) as complementary diagnostics, learning routing thresholds empirically rather than pre-committing to fixed values. Phase 2 trains a per-instance bias dominance classifier.\n\nPhase 3 implements intervention routing, building on Billa's established three-regime paradigm but extended from per-concept to per-instance competing biases: (Route A) Spherical Steering with MERA-inspired per-direction adaptive strength for steerable directions; (Route B) lightweight bottleneck MLP for entangled directions, trained with COAST-informed collateral-damage-aware loss; (Route C) selective abstention via MERA's statistical framework.\n\nWe evaluate on TriviaQA, MMLU, and PopQA across three models (subject to Phase 0A behavioral replication). Core baselines: temperature scaling, CORAL, Miao & Ungar, MERA (monolithic), monolithic Spherical Steering, monolithic nonlinear MLP, and SteerConf (prompt-level steering).\n\nWe are explicit about the fallback path: if Phase 0B fails (extracted directions reflect prompt confounds rather than bias activation, despite matched-content controls), the behavioral-signal-guided probing fallback produces correlational rather than causal evidence, fundamentally repositioning the paper from a mechanistic contribution to an empirical observation study — still informative, but appropriate for EMNLP/NAACL rather than ICLR.\n\nThe contributions are: (1) first causal activation-level characterization of simultaneously competing calibration biases (CSB vs. CEO), extending CogBias's independently-active bias decomposition to the competing-bias setting, with confound-controlled extraction methodology that addresses prompt-content confounds inherent in multi-turn behavioral paradigms; (2) empirical measurement of asymmetric steerability profiles with complementary diagnostics (specificity ratio + adapted LAP), extending Billa's per-concept steerability analysis to per-direction competing biases; (3) bias interference analysis connecting competing bias dynamics to hidden miscalibration regimes; (4) bias-specific adaptive correction extending MERA's monolithic framework to the multi-bias setting with steerability-informed routing; (5) cross-architecture behavioral replication of Kumaran et al.'s competing biases on Llama and Qwen families.",
+  "project_name": "competing_bias_steer",
+  "source": "web_research",
+  "revision_notes": {
+    "round1_issue_1_missing_competitor": "Tsujimura & Tagade (2508.17182) cited as methodological precedent, differentiated on four axes. [Carried from R1]",
+    "round1_issue_2_model_names": "Fixed. [Carried from R1]",
+    "round1_issue_3_untested_assumption": "Phase 1A separability tests retained with quantitative thresholds; now preceded by Phase 0A+0B. [Extended from R1]",
+    "round1_issue_4_steering_reliability": "Spherical Steering + MERA adaptive strength retained. [Carried from R1]",
+    "round1_issue_5_baseline_comparison": "MERA as critical baseline retained. [Carried from R1]",
+    "round1_issue_6_behavioral_mechanistic_leap": "Phase 0B pilot explicitly addresses this risk with confound controls. [Extended from R1]",
+    "round2_issue_1_critical_missing_competitor": "Liu (2605.05715) thoroughly integrated. [Carried from R2]",
+    "round2_issue_2_separability_steerability_gap": "Phase 1A + 1B retained. [Carried from R2]",
+    "round2_issue_3_minor_missing_references": "All retained. [Carried from R2]",
+    "round2_issue_4_nonlinear_steering_fallback": "Routes A/B/C retained. [Carried from R2]",
+    "round3_issue_1_MERA_baseline": "MERA integration retained. [Carried from R3]",
+    "round3_issue_2_nonlinear_steering_competitors": "ODESteer, Curveball, FLAS retained. [Carried from R3]",
+    "round3_issue_3_venue_targeting": "ICLR 2027 primary, with Phase 0 providing early go/no-go. [Carried from R3]",
+    "round3_issue_4_specificity_thresholds": "Empirically-learned thresholds retained. [Carried from R3]",
+    "round3_issue_5_overcomplexity": "Streamlined 3×3×3 + 7 baselines retained. [Carried from R3]",
+    "round4_issue_1_missing_steerability_routing": "Billa (2604.15557) thoroughly integrated. [Carried from R4]",
+    "round4_issue_2_missing_cogbias": "CogBias (Huang et al., 2604.01366) thoroughly integrated. [Carried from R4]",
+    "round4_issue_3_novelty_overstated": "Novelty claims properly scoped. [Carried from R4]",
+    "round4_issue_4_phase1a_risk": "Phase 0 pilot retained with substantially enhanced confound controls. [Extended in R5]",
+    "round4_additional_hidden_miscalibration": "Kobalczyk & van der Schaar, W2S retained. [Carried from R4]",
+    "round5_issue_1_prompt_content_confound": "MAJOR METHODOLOGICAL REVISION: Redesigned Phase 0B contrastive extraction with three-pronged confound mitigation: (1) matched-content contrastive pairs where bias-active and bias-control conditions are equated for token length, format, and information presence — for CSB, replacing 'xx' placeholder with matched-length alternative answer attributed to 'another LLM'; for CEO, replacing absent advice with irrelevant neutral advice of matched token length, plus supporting-advice directional control. (2) Token-position-specific extraction at confidence-bearing token position rather than global mean, reducing sensitivity to prompt-length differences. (3) Explicit confound diagnostic tests: prompt-token-count correlation <0.1, cosine similarity to prompt-structure probe direction <0.2, and generalization to held-out question types. This is the single most important methodological improvement as it determines whether Phase 0 measures genuine bias activation or prompt structure artifacts.",
+    "round5_issue_2_cross_model_behavioral_generalization": "MAJOR: Added Phase 0A (Behavioral Replication, Week 1) as mandatory pre-step before any activation extraction. Replicates Kumaran et al.'s exact 2-turn paradigm on all three target models (none of which were in the original study) with explicit go/no-go criteria: CSB magnitude ≥50% of Kumaran's +0.21 AND CEO overweighting ratio ≥50% of Kumaran's 2.58. Models failing replication are replaced with Kumaran-validated alternatives (Gemma 3 27B) or Mistral-8B. Noted that Kumaran found DeepSeek R1 7B failed to follow the advice paradigm, and effect magnitudes varied substantially across models — reinforcing that behavioral replication is non-negotiable. CogBias's finding that bias effects replicate across Llama/Qwen at the family level provides encouraging but not sufficient evidence for the specific CSB/CEO phenomena. Behavioral replication results themselves framed as a minor contribution (5).",
+    "round5_issue_3_fallback_is_weaker_project": "MAJOR HONESTY REVISION: Explicitly stated that the behavioral-signal-guided probing fallback fundamentally changes the paper's contribution from causal mechanistic evidence to correlational analysis. Specifically: (a) contribution (1) weakens from 'first causal activation-level characterization' to 'statistical association between behavioral patterns and activation geometry'; (b) contributions (2)–(4) weaken proportionally because activation directions being analyzed/steered have weaker causal grounding; (c) the resulting paper would be repositioned from ICLR to EMNLP/NAACL as a solid empirical contribution rather than top-tier mechanistic work. Added EMNLP 2027 as explicit fallback venue in target_venues.",
+    "round5_issue_4_missing_baseline_steerconf": "ADDED: SteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) integrated throughout. Added to core_problem as fourth line of related work. Added to opportunity with key results (29% AUROC increase, 16% ECE reduction). Added to landscape with full description of methodology (prompt-level steering via systematically varied steering prompts + multi-prompt consistency aggregation), positioning it as state-of-the-art training-free prompt-level calibration baseline that activation-level methods should outperform. Added as 7th core baseline in evaluation. Added to key_references.",
+    "round5_issue_5_arr_date_correction": "MINOR: Corrected ARR October 2026 deadline from '~Oct 15' to 'Oct 12, 2026' per official ARR dates page."
+  }
+}
+
+## Reviewer feedback (round 7)
+Issues: ["ALL FOUR ROUND 6 ISSUES UNADDRESSED: (1) 'How do LLMs Compute Verbal Confidence' (arXiv 2603.17839, March 2026) remains uncited despite directly validating the token-position-specific extraction in Phase 0B — it shows confidence is cached at answer-adjacent positions and retrieved at verbalization, studied on Gemma 3 27B and Qwen 2.5 7B. (2) The source attribution confound in CSB pairs is still not controlled: the requested control — presenting the model's OWN answer but attributed to 'another LLM' (same content, different attribution) — would isolate the self-generated ownership component of CSB from information-content differences. The current design changes BOTH content AND attribution simultaneously. (3) CCPS (arXiv 2505.21772, EMNLP 2025) remains uncited — it achieves ~55% ECE reduction via perturbation-stability probing on overlapping model families (Llama, Qwen, Mistral) at 8B-32B scale, making it a relevant landscape reference and potential extended baseline. (4) No generalizability discussion identifying other plausible competing-bias pairs.", "MISSING METHODOLOGICAL PRECEDENT: 'Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs' (arXiv 2509.21305, submitted ICLR 2026) decomposes sycophancy into distinct, independently steerable sub-components (sycophantic agreement vs. sycophantic praise vs. genuine agreement) using difference-in-means, activation additions, and subspace geometry — demonstrating that each can be independently amplified or suppressed without affecting others. This is the closest methodological precedent for decomposing a complex behavioral phenomenon into independently steerable activation-level components. The key distinction from this proposal: 'Sycophancy Is Not One Thing' decomposes co-existing but not opposing behaviors, while this proposal targets simultaneously OPPOSING biases that create interference. This distinction should be explicitly articulated.", "MISSING RELEVANT REFERENCE: 'Are LLM Uncertainty and Correctness Encoded by the Same Features? A Functional Dissociation via Sparse Autoencoders' (arXiv 2604.19974, April 2026) shows that statistically decodable features can be 'functionally inert' — pure incorrectness features have near-zero accuracy impact when suppressed despite being statistically distinguishable. This directly reinforces Liu's classification-correction gap with SAE-based evidence and implies that Phase 1A's separability success does NOT guarantee Phase 3's intervention success. Should be cited alongside Liu.", "UNVERIFIABLE CLAIM: The '97.8% mean classification accuracy via linear probes' attributed to CogBias (2604.01366) could not be independently confirmed from the abstract or accessible paper content. The abstract mentions linear separability and 26-32% steering reduction but does not surface this specific accuracy figure. If this number comes from the paper body, it should be noted as such; if it was inferred or estimated, it should be flagged."]
+Feedback: This is a strong proposal after 6 rigorous revision rounds, but the complete failure to address ANY of the 4 round 6 issues is a significant concern. Concrete fixes for round 8: (1) Cite 'How do LLMs Compute Verbal Confidence' (2603.17839) — its mechanistic finding that confidence is cached at answer-adjacent positions directly validates your Phase 0B token-position extraction strategy. This is a 1-sentence addition that substantially strengthens your methodology. (2) Add the same-content-different-attribution CSB control: present the model's OWN answer text but attributed to 'another LLM.' This isolates the ownership component of CSB from information content and requires only ~500 additional pairs. Without it, a reviewer can argue your CSB direction captures 'recognizing my own output' rather than 'choice-supportive confidence inflation.' (3) Add CCPS to landscape and extended baselines. (4) Add a brief generalizability paragraph: identify 2-3 other competing-bias pairs (e.g., sycophantic agreement vs. truthfulness, fluency pressure vs. factual constraint — note 'Sycophancy Is Not One Thing' already shows these are separable) and state that the Phase 0→3 pipeline is reusable. (5) Cite 'Sycophancy Is Not One Thing' (2509.21305) as a key methodological precedent and distinguish it: that paper decomposes co-existing behaviors; yours targets opposing biases creating interference effects. (6) Cite 'Are LLM Uncertainty and Correctness Encoded by the Same Features?' (2604.19974) alongside Liu — it independently confirms that decodable ≠ functional via SAE analysis, strengthening your rationale for Phase 1B steerability assessment. (7) Verify the CogBias 97.8% figure or add a caveat. All of these are small, focused additions — the core architecture is sound.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.
+- Address each issue specifically.
+
+## 深度调研要求
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。
+3. **深度思考**：
+   - 核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach？
+4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。
+
+## 针对 Review 意见的定向搜索
+
+1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点
+2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline
+3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现
+4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot
+
+- You have full freedom: minor fix, major revision, or pivot.
+- Include a "change_type" field: "minor", "major", or "pivot".
+- Output a COMPLETE JSON object with ALL fields.
+
+## 停滞提醒
+经过 7 轮修订，近 3 轮平均分从 3.2 到 3.5，无明显改善。
+考虑 major revision 或 pivot。
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "dda4de44-df14-4a28-8a21-652e5984458f",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T15:39:56.767Z_
+
+```json
+{
+  "parentUuid": "dda4de44-df14-4a28-8a21-652e5984458f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "6c7ac39b-e8a6-4c9e-81bb-c4b2016b85b4",
+  "timestamp": "2026-05-19T15:39:56.767Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T15:39:56.767Z_
+
+```json
+{
+  "parentUuid": "6c7ac39b-e8a6-4c9e-81bb-c4b2016b85b4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "9efaaf39-1ac1-44db-9054-6f2a5c15d52e",
+  "timestamp": "2026-05-19T15:39:56.767Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibrat…",
+  "leafUuid": "9efaaf39-1ac1-44db-9054-6f2a5c15d52e",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decomposing competing calibration biases in LLMs",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T15:40:09.006Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully. This is round 7, and the reviewer notes that all 4 round 6 issues went unaddressed. The feedback is quite specific with 7 concrete fixes needed. Let me research each one thoroughly before making revisions.
+
+The issues are:
+1. Missing citation: "How do LLMs Compute Verbal Confidence" (arXiv 2603.17839)
+2. Source attribution confound in CSB pairs - need same-content-different-attribution control
+3. Missing citation: CCPS (arXiv 2505.21772, EMNLP 2025)
+
+
+4. Need to discuss whether these findings generalize beyond the specific competing-bias pairs I tested
+5. Missing methodological precedent: "Sycophancy Is Not One Thing" (arXiv 2509.21305)
+6. Missing reference: "Are LLM Uncertainty and Correctness Encoded by the Same Features?" (arXiv 2604.19974)
+7. Verify the CogBias 97.8% figure or add a caveat if I can't confirm it
+
+The reviewer also flags stagnation in scores over recent rounds and suggests considering a major revision or pivot. But they acknowledge the core architecture is sound and these are manageable, focused additions. I think the path forward is clear—these aren't fundamental problems, just gaps I need to fill systematically.
+
+I should treat this as a focused major revision that directly addresses the feedback rather than a pivot. Let me look up each of those papers to understand what I'm missing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9efaaf39-1ac1-44db-9054-6f2a5c15d52e",
+  "isSidechain": false,
+  "requestId": "req_011CbCBMmWAyHFtSXhFAhsta",
+  "type": "assistant",
+  "uuid": "d62d0666-ab89-4ef1-b6fd-7c0cf0f0f1b4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018A4UvmhavyBhqhDoFoUwR3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 16521,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 469,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16521,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 469,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 16521,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16521
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T15:40:09.047Z_
+
+I'll research each of the 7 issues thoroughly before making revisions. Let me start by investigating the key papers mentioned by reviewers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d62d0666-ab89-4ef1-b6fd-7c0cf0f0f1b4",
+  "isSidechain": false,
+  "requestId": "req_011CbCBMmWAyHFtSXhFAhsta",
+  "type": "assistant",
+  "uuid": "d52d4570-bac4-4f29-a739-563ef7a80645",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018A4UvmhavyBhqhDoFoUwR3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 16521,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 469,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16521,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 469,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 16521,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16521
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T15:40:09.178Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01AnZTLM5Euqf16xDPVkCnyu`</summary>
+
+```json
+{
+  "query": "select:WebFetch,WebSearch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d52d4570-bac4-4f29-a739-563ef7a80645",
+  "isSidechain": false,
+  "requestId": "req_011CbCBMmWAyHFtSXhFAhsta",
+  "type": "assistant",
+  "uuid": "3755018f-0d59-4273-aee8-b160e3d21dfa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018A4UvmhavyBhqhDoFoUwR3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 16521,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 469,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16521,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 469,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 16521,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16521
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T15:40:09.185Z_
+
+<details><summary>↩ Tool result · `toolu_01AnZTLM5Euqf16xDPVkCnyu`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3755018f-0d59-4273-aee8-b160e3d21dfa",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "5d2aaacc-4e7a-4638-951a-54019bec9021",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch",
+      "WebSearch"
+    ],
+    "query": "select:WebFetch,WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "3755018f-0d59-4273-aee8-b160e3d21dfa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-19T15:40:12.222Z_
+
+Now let me research all the papers mentioned by the reviewer in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d2aaacc-4e7a-4638-951a-54019bec9021",
+  "isSidechain": false,
+  "requestId": "req_011CbCBNgkhuhEsbETZAT12Z",
+  "type": "assistant",
+  "uuid": "e078e7db-318c-4e5d-9e0d-1043090e28e4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQdAa1Z1BFv7K2Hd6ddBKo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1488,
+      "cache_read_input_tokens": 27895,
+      "output_tokens": 620,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1488,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 620,
+          "cache_read_input_tokens": 27895,
+          "cache_creation_input_tokens": 1488,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1488
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T15:40:14.159Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Y2myKwKSSX6zJMULbV2SYS`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.17839",
+  "prompt": "Extract the full title, authors, key findings about how LLMs compute verbal confidence. Specifically: (1) What mechanism do they find for confidence computation? (2) Do they find confidence is cached at answer-adjacent positions? (3) What models were studied? (4) What is the main methodology? (5) Any specific quantitative results about where confidence signals are located in the residual stream."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e078e7db-318c-4e5d-9e0d-1043090e28e4",
+  "isSidechain": false,
+  "requestId": "req_011CbCBNgkhuhEsbETZAT12Z",
+  "type": "assistant",
+  "uuid": "ec90c163-aaa8-48ce-95ba-023d58969314",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQdAa1Z1BFv7K2Hd6ddBKo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1488,
+      "cache_read_input_tokens": 27895,
+      "output_tokens": 620,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1488,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 620,
+          "cache_read_input_tokens": 27895,
+          "cache_creation_input_tokens": 1488,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1488
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T15:40:16.102Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01S9wU2u3PQ8iRNWHaRwDfNU`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2509.21305",
+  "prompt": "Extract the full title, authors, key findings about sycophancy decomposition. Specifically: (1) What sub-components of sycophancy were identified? (2) How were they separated (methodology)? (3) Were they independently steerable? (4) What models were used? (5) Key quantitative results about independence of steering."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec90c163-aaa8-48ce-95ba-023d58969314",
+  "isSidechain": false,
+  "requestId": "req_011CbCBNgkhuhEsbETZAT12Z",
+  "type": "assistant",
+  "uuid": "62905d5f-2d2a-4104-a1e5-9aab91d0c0dd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQdAa1Z1BFv7K2Hd6ddBKo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1488,
+      "cache_read_input_tokens": 27895,
+      "output_tokens": 620,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1488,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 620,
+          "cache_read_input_tokens": 27895,
+          "cache_creation_input_tokens": 1488,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1488
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T15:40:17.932Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HT6xxpNRuWZ6KrspfWUxFq`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.19974",
+  "prompt": "Extract the full title, authors, key findings about uncertainty vs correctness features in LLMs. Specifically: (1) What is the main finding about functional dissociation? (2) Do they find decodable features that are functionally inert? (3) What methodology (SAE-based)? (4) Key quantitative results about suppressing features. (5) How does this relate to the classification-correction gap?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62905d5f-2d2a-4104-a1e5-9aab91d0c0dd",
+  "isSidechain": false,
+  "requestId": "req_011CbCBNgkhuhEsbETZAT12Z",
+  "type": "assistant",
+  "uuid": "f3f33af6-6a4a-4caf-b7d1-30a25134ae5a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQdAa1Z1BFv7K2Hd6ddBKo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1488,
+      "cache_read_input_tokens": 27895,
+      "output_tokens": 620,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1488,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 620,
+          "cache_read_input_tokens": 27895,
+          "cache_creation_input_tokens": 1488,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1488
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T15:40:19.155Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013aAjoZ5GzheYCWhxqMrudr`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.21772",
+  "prompt": "Extract the full title, authors, key findings about CCPS (calibration via perturbation-stability probing). Specifically: (1) What is the main method? (2) What ECE reduction is achieved? (3) What models and scales were tested? (4) How does it compare to other calibration methods? (5) Key quantitative results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f3f33af6-6a4a-4caf-b7d1-30a25134ae5a",
+  "isSidechain": false,
+  "requestId": "req_011CbCBNgkhuhEsbETZAT12Z",
+  "type": "assistant",
+  "uuid": "d772085d-8dc0-497e-b83b-fe9ed956ac63",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQdAa1Z1BFv7K2Hd6ddBKo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1488,
+      "cache_read_input_tokens": 27895,
+      "output_tokens": 620,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1488,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 620,
+          "cache_read_input_tokens": 27895,
+          "cache_creation_input_tokens": 1488,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1488
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T15:40:20.232Z_
+
+<details><summary>↩ Tool result · `toolu_01Y2myKwKSSX6zJMULbV2SYS`</summary>
+
+```text
+# How do LLMs Compute Verbal Confidence - Research Summary
+
+**Full Title:** "How do LLMs Compute Verbal Confidence"
+
+**Authors:** Dharshan Kumaran, Arthur Conmy, Federico Barbero, Simon Osindero, Viorica Patraucean, and Petar Velickovic
+
+## Key Findings
+
+**(1) Confidence Computation Mechanism:**
+The researchers found that confidence is computed through "cached retrieval" rather than just-in-time calculation. The system performs "automatic, sophisticated self-evaluation" that involves evaluating answer quality beyond simple token probabilities.
+
+**(2) Caching at Answer-Adjacent Positions:**
+Yes, confirmed. The study demonstrates that "confidence representations emerge at answer-adjacent positions before appearing at the verbalization site." Through attention blocking, they identified the information flow: confidence is gathered from answer tokens, cached at the first position after the answer, then retrieved for output.
+
+**(3) Models Studied:**
+- Gemma 3 27B
+- Qwen 2.5 7B
+
+**(4) Main Methodology:**
+The research employed multiple experimental techniques including "activation steering, patching, noising, and swap experiments," combined with "linear probing and variance partitioning" to analyze how confidence emerges and flows through the model.
+
+**(5) Quantitative Results on Location:**
+The abstract indicates that cached representations at answer-adjacent positions "explain substantial variance in verbal confidence beyond token log-probabilities," though specific numerical values aren't provided in this abstract.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec90c163-aaa8-48ce-95ba-023d58969314",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "14a69a8e-a34e-45fc-8676-2829839b5e93",
+  "toolUseResult": {
+    "bytes": 47133,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# How do LLMs Compute Verbal Confidence - Research Summary\n\n**Full Title:** \"How do LLMs Compute Verbal Confidence\"\n\n**Authors:** Dharshan Kumaran, Arthur Conmy, Federico Barbero, Simon Osindero, Viorica Patraucean, and Petar Velickovic\n\n## Key Findings\n\n**(1) Confidence Computation Mechanism:**\nThe researchers found that confidence is computed through \"cached retrieval\" rather than just-in-time calculation. The system performs \"automatic, sophisticated self-evaluation\" that involves evaluating answer quality beyond simple token probabilities.\n\n**(2) Caching at Answer-Adjacent Positions:**\nYes, confirmed. The study demonstrates that \"confidence representations emerge at answer-adjacent positions before appearing at the verbalization site.\" Through attention blocking, they identified the information flow: confidence is gathered from answer tokens, cached at the first position after the answer, then retrieved for output.\n\n**(3) Models Studied:**\n- Gemma 3 27B\n- Qwen 2.5 7B\n\n**(4) Main Methodology:**\nThe research employed multiple experimental techniques including \"activation steering, patching, noising, and swap experiments,\" combined with \"linear probing and variance partitioning\" to analyze how confidence emerges and flows through the model.\n\n**(5) Quantitative Results on Location:**\nThe abstract indicates that cached representations at answer-adjacent positions \"explain substantial variance in verbal confidence beyond token log-probabilities,\" though specific numerical values aren't provided in this abstract.",
+    "durationMs": 6070,
+    "url": "https://arxiv.org/abs/2603.17839"
+  },
+  "sourceToolAssistantUUID": "ec90c163-aaa8-48ce-95ba-023d58969314",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T15:40:20.893Z_
+
+<details><summary>↩ Tool result · `toolu_01S9wU2u3PQ8iRNWHaRwDfNU`</summary>
+
+```text
+# Research Summary: Sycophancy Decomposition in LLMs
+
+**Full Title:** "Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs"
+
+**Authors:** Daniel Vennemeyer, Phan Anh Duong, Tiffany Zhan, Tianyu Jiang
+
+## Key Findings
+
+**(1) Sycophancy Sub-Components Identified:**
+The researchers decomposed sycophancy into three distinct behaviors:
+- Sycophantic agreement
+- Sycophantic praise
+- Genuine agreement (contrasting baseline)
+
+**(2) Separation Methodology:**
+The paper employed three analytical approaches:
+- Difference-in-means directions
+- Activation additions
+- Subspace geometry analysis across multiple models and datasets
+
+**(3) Independent Steering:**
+Yes. The research demonstrates that "each behavior can be independently amplified or suppressed without affecting the others," indicating these represent distinct, separately controllable mechanisms.
+
+**(4) Models Used:**
+The abstract indicates testing across "multiple models and datasets" but does not specify model names or scales in the provided content excerpt.
+
+**(5) Quantitative Independence Results:**
+The abstract notes "their representational structure is consistent across model families and scales" and that behaviors are "encoded along distinct linear directions in latent space," though specific numerical results are not included in this page excerpt.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "62905d5f-2d2a-4104-a1e5-9aab91d0c0dd",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "af50ebd0-7818-4a3a-b985-4ed3efb3da2e",
+  "toolUseResult": {
+    "bytes": 45217,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Research Summary: Sycophancy Decomposition in LLMs\n\n**Full Title:** \"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs\"\n\n**Authors:** Daniel Vennemeyer, Phan Anh Duong, Tiffany Zhan, Tianyu Jiang\n\n## Key Findings\n\n**(1) Sycophancy Sub-Components Identified:**\nThe researchers decomposed sycophancy into three distinct behaviors:\n- Sycophantic agreement\n- Sycophantic praise\n- Genuine agreement (contrasting baseline)\n\n**(2) Separation Methodology:**\nThe paper employed three analytical approaches:\n- Difference-in-means directions\n- Activation additions\n- Subspace geometry analysis across multiple models and datasets\n\n**(3) Independent Steering:**\nYes. The research demonstrates that \"each behavior can be independently amplified or suppressed without affecting the others,\" indicating these represent distinct, separately controllable mechanisms.\n\n**(4) Models Used:**\nThe abstract indicates testing across \"multiple models and datasets\" but does not specify model names or scales in the provided content excerpt.\n\n**(5) Quantitative Independence Results:**\nThe abstract notes \"their representational structure is consistent across model families and scales\" and that behaviors are \"encoded along distinct linear directions in latent space,\" though specific numerical results are not included in this page excerpt.",
+    "durationMs": 4789,
+    "url": "https://arxiv.org/abs/2509.21305"
+  },
+  "sourceToolAssistantUUID": "62905d5f-2d2a-4104-a1e5-9aab91d0c0dd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T15:40:24.434Z_
+
+<details><summary>↩ Tool result · `toolu_013aAjoZ5GzheYCWhxqMrudr`</summary>
+
+```text
+# CCPS: LLM Confidence Calibration via Perturbation Stability
+
+**Full Title:** "Calibrating LLM Confidence by Probing Perturbed Representation Stability"
+
+**Authors:** Reza Khanmohammadi, Erfan Miahi, Mehrsa Mardikoraem, Simerjot Kaur, Ivan Brugere, Charese H. Smiley, Kundan Thind, Mohammad M. Ghassemi
+
+---
+
+## Key Findings:
+
+**(1) Main Method:**
+CCPS applies targeted adversarial perturbations to final hidden states, extracts features measuring the model's response to these perturbations, then uses a lightweight classifier to predict answer correctness.
+
+**(2) ECE Reduction:**
+The method achieves approximately 55% reduction in Expected Calibration Error relative to the strongest prior approach.
+
+**(3) Models & Scales Tested:**
+Eight to thirty-two parameter models spanning Llama, Qwen, and Mistral architectures, evaluated on MMLU and MMLU-Pro benchmarks in multiple-choice and open-ended formats.
+
+**(4) Comparative Performance:**
+CCPS "significantly outperforms current approaches" across four language models and three MMLU variants compared to existing calibration methods.
+
+**(5) Quantitative Results:**
+- Brier score reduction: 21%
+- Accuracy improvement: 5 percentage points
+- AUPRC increase: 4 percentage points
+- AUROC increase: 6 percentage points
+
+All improvements measured relative to the strongest existing method.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d772085d-8dc0-497e-b83b-fe9ed956ac63",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "a0d14c38-0d02-4fbb-8f96-da2310f3b1ad",
+  "toolUseResult": {
+    "bytes": 47013,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# CCPS: LLM Confidence Calibration via Perturbation Stability\n\n**Full Title:** \"Calibrating LLM Confidence by Probing Perturbed Representation Stability\"\n\n**Authors:** Reza Khanmohammadi, Erfan Miahi, Mehrsa Mardikoraem, Simerjot Kaur, Ivan Brugere, Charese H. Smiley, Kundan Thind, Mohammad M. Ghassemi\n\n---\n\n## Key Findings:\n\n**(1) Main Method:**\nCCPS applies targeted adversarial perturbations to final hidden states, extracts features measuring the model's response to these perturbations, then uses a lightweight classifier to predict answer correctness.\n\n**(2) ECE Reduction:**\nThe method achieves approximately 55% reduction in Expected Calibration Error relative to the strongest prior approach.\n\n**(3) Models & Scales Tested:**\nEight to thirty-two parameter models spanning Llama, Qwen, and Mistral architectures, evaluated on MMLU and MMLU-Pro benchmarks in multiple-choice and open-ended formats.\n\n**(4) Comparative Performance:**\nCCPS \"significantly outperforms current approaches\" across four language models and three MMLU variants compared to existing calibration methods.\n\n**(5) Quantitative Results:**\n- Brier score reduction: 21%\n- Accuracy improvement: 5 percentage points\n- AUPRC increase: 4 percentage points\n- AUROC increase: 6 percentage points\n\nAll improvements measured relative to the strongest existing method.",
+    "durationMs": 5277,
+    "url": "https://arxiv.org/abs/2505.21772"
+  },
+  "sourceToolAssistantUUID": "d772085d-8dc0-497e-b83b-fe9ed956ac63",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T15:40:28.885Z_
+
+<details><summary>↩ Tool result · `toolu_01HT6xxpNRuWZ6KrspfWUxFq`</summary>
+
+```text
+# Analysis of arXiv Paper 2604.19974
+
+## Title and Authors
+**Full Title:** "Are LLM Uncertainty and Correctness Encoded by the Same Features? A Functional Dissociation via Sparse Autoencoders"
+
+**Authors:** Het Patel, Tiejin Chen, Hua Wei, Evangelos E. Papalexakis, Jia Chen
+
+---
+
+## Key Findings
+
+**(1) Main Finding on Functional Dissociation:**
+The research reveals that uncertainty and correctness operate through distinct internal mechanisms. The authors demonstrate that "uncertainty and correctness are distinct internal phenomena" rather than being driven by shared feature populations in LLMs.
+
+**(2) Functionally Inert Features:**
+Yes. The study identifies "pure incorrectness features" that are functionally inert—they show statistically significant activation differences between correct and incorrect predictions but "the majority produce near-zero change in accuracy when suppressed."
+
+**(3) Methodology:**
+The approach uses sparse autoencoders (SAEs) applied to Llama-3.1-8B and Gemma-2-9B. The researchers employ a 2x2 framework partitioning predictions along correctness and confidence axes to identify feature populations independently.
+
+**(4) Quantitative Results on Feature Suppression:**
+- Suppressing confounded features (encoding both signals) yields a **1.1% accuracy improvement** and **75% entropy reduction**
+- Just 3 confounded features from a single mid-layer predict correctness with **AUROC ~0.79**
+- Selective abstention raises accuracy from **62% to 81% at 53% coverage**
+
+**(5) Classification-Correction Gap Connection:**
+The abstract doesn't explicitly address this term, but the work relates to the broader gap between confidence and actual correctness by showing these are mechanistically distinct phenomena.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f3f33af6-6a4a-4caf-b7d1-30a25134ae5a",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "d6b8c9de-554f-4222-b78c-3fcb3a3b7915",
+  "toolUseResult": {
+    "bytes": 48797,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of arXiv Paper 2604.19974\n\n## Title and Authors\n**Full Title:** \"Are LLM Uncertainty and Correctness Encoded by the Same Features? A Functional Dissociation via Sparse Autoencoders\"\n\n**Authors:** Het Patel, Tiejin Chen, Hua Wei, Evangelos E. Papalexakis, Jia Chen\n\n---\n\n## Key Findings\n\n**(1) Main Finding on Functional Dissociation:**\nThe research reveals that uncertainty and correctness operate through distinct internal mechanisms. The authors demonstrate that \"uncertainty and correctness are distinct internal phenomena\" rather than being driven by shared feature populations in LLMs.\n\n**(2) Functionally Inert Features:**\nYes. The study identifies \"pure incorrectness features\" that are functionally inert—they show statistically significant activation differences between correct and incorrect predictions but \"the majority produce near-zero change in accuracy when suppressed.\"\n\n**(3) Methodology:**\nThe approach uses sparse autoencoders (SAEs) applied to Llama-3.1-8B and Gemma-2-9B. The researchers employ a 2x2 framework partitioning predictions along correctness and confidence axes to identify feature populations independently.\n\n**(4) Quantitative Results on Feature Suppression:**\n- Suppressing confounded features (encoding both signals) yields a **1.1% accuracy improvement** and **75% entropy reduction**\n- Just 3 confounded features from a single mid-layer predict correctness with **AUROC ~0.79**\n- Selective abstention raises accuracy from **62% to 81% at 53% coverage**\n\n**(5) Classification-Correction Gap Connection:**\nThe abstract doesn't explicitly address this term, but the work relates to the broader gap between confidence and actual correctness by showing these are mechanistically distinct phenomena.",
+    "durationMs": 10948,
+    "url": "https://arxiv.org/abs/2604.19974"
+  },
+  "sourceToolAssistantUUID": "f3f33af6-6a4a-4caf-b7d1-30a25134ae5a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-19T15:40:32.607Z_
+
+Now let me research the CogBias paper more carefully to verify the 97.8% figure, and also search for any additional context on competing bias pairs:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6b8c9de-554f-4222-b78c-3fcb3a3b7915",
+  "isSidechain": false,
+  "requestId": "req_011CbCBQ8hwSEYfixVBUQqgR",
+  "type": "assistant",
+  "uuid": "82a8fe2d-6802-47a7-8599-77933bcdf602",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JqJ3nQPSqpYBELErfc5DYS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 403,
+      "cache_creation_input_tokens": 1792,
+      "cache_read_input_tokens": 29383,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1792,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 403,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 29383,
+          "cache_creation_input_tokens": 1792,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1792
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-19T15:40:35.412Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015noSi7FYAzKLVaNxBfyu2Z`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.01366",
+  "prompt": "Extract everything about linear probe classification accuracy for cognitive bias detection. Does the paper mention \"97.8% mean classification accuracy via linear probes\"? What specific accuracy numbers are reported for bias detection/classification? Look for any percentage in the 90%+ range related to probing or classification accuracy. Also note any caveats about whether this is from the abstract or full paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82a8fe2d-6802-47a7-8599-77933bcdf602",
+  "isSidechain": false,
+  "requestId": "req_011CbCBQ8hwSEYfixVBUQqgR",
+  "type": "assistant",
+  "uuid": "d3d0414c-0709-4aae-a94f-816f5decccb2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JqJ3nQPSqpYBELErfc5DYS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 403,
+      "cache_creation_input_tokens": 1792,
+      "cache_read_input_tokens": 29383,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1792,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 403,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 29383,
+          "cache_creation_input_tokens": 1792,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1792
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T15:40:35.885Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CHNwE2SsUYo8GtxMFUoUqC`</summary>
+
+```json
+{
+  "query": "CogBias \"97.8\" OR \"97.8%\" linear probe accuracy cognitive bias LLM 2024 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3d0414c-0709-4aae-a94f-816f5decccb2",
+  "isSidechain": false,
+  "requestId": "req_011CbCBQ8hwSEYfixVBUQqgR",
+  "type": "assistant",
+  "uuid": "60dcddf5-aea9-48da-b56c-b95d5fcc771d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JqJ3nQPSqpYBELErfc5DYS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 403,
+      "cache_creation_input_tokens": 1792,
+      "cache_read_input_tokens": 29383,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1792,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 403,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 29383,
+          "cache_creation_input_tokens": 1792,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1792
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-19T15:40:36.581Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014qt4cE3mzas5azt63dTWFC`</summary>
+
+```json
+{
+  "query": "competing cognitive biases LLM examples sycophancy truthfulness fluency factual constraint opposing biases"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60dcddf5-aea9-48da-b56c-b95d5fcc771d",
+  "isSidechain": false,
+  "requestId": "req_011CbCBQ8hwSEYfixVBUQqgR",
+  "type": "assistant",
+  "uuid": "04142820-221c-4c39-83af-cdb6786e8df7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JqJ3nQPSqpYBELErfc5DYS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 403,
+      "cache_creation_input_tokens": 1792,
+      "cache_read_input_tokens": 29383,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1792,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 403,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 29383,
+          "cache_creation_input_tokens": 1792,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1792
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibrat…",
+  "leafUuid": "04142820-221c-4c39-83af-cdb6786e8df7",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decomposing competing calibration biases in LLMs",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T15:40:40.564Z_
+
+<details><summary>↩ Tool result · `toolu_015noSi7FYAzKLVaNxBfyu2Z`</summary>
+
+```text
+# Linear Probe Classification Accuracy
+
+Based on the provided abstract content, **no specific classification accuracy percentages are reported** for the linear probe analysis.
+
+The abstract mentions that researchers "show that these biases are encoded as linearly separable directions in model activation space" and used "linear probes under a contrastive design," but it does not provide numerical accuracy metrics like "97.8% mean classification accuracy" or any other percentage figures related to probe performance.
+
+The only numerical results cited in the abstract relate to bias reduction outcomes (26-32% reduction in bias scores) and correlation statistics from the steering analysis, not probe classification accuracy.
+
+**Source**: Information appears only in the abstract; the full paper would be needed to determine if such accuracy figures are reported.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d3d0414c-0709-4aae-a94f-816f5decccb2",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "a805a8e3-1f8a-40e8-a76f-8b87a3872645",
+  "toolUseResult": {
+    "bytes": 46491,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Linear Probe Classification Accuracy\n\nBased on the provided abstract content, **no specific classification accuracy percentages are reported** for the linear probe analysis.\n\nThe abstract mentions that researchers \"show that these biases are encoded as linearly separable directions in model activation space\" and used \"linear probes under a contrastive design,\" but it does not provide numerical accuracy metrics like \"97.8% mean classification accuracy\" or any other percentage figures related to probe performance.\n\nThe only numerical results cited in the abstract relate to bias reduction outcomes (26-32% reduction in bias scores) and correlation statistics from the steering analysis, not probe classification accuracy.\n\n**Source**: Information appears only in the abstract; the full paper would be needed to determine if such accuracy figures are reported.",
+    "durationMs": 5146,
+    "url": "https://arxiv.org/abs/2604.01366"
+  },
+  "sourceToolAssistantUUID": "d3d0414c-0709-4aae-a94f-816f5decccb2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T15:40:42.433Z_
+
+<details><summary>↩ Tool result · `toolu_01CHNwE2SsUYo8GtxMFUoUqC`</summary>
+
+```text
+Web search results for query: "CogBias "97.8" OR "97.8%" linear probe accuracy cognitive bias LLM 2024 2025 2026"
+
+Links: [{"title":"[2604.01366] CogBias: Measuring and Mitigating Cognitive Bias in Large Language Models","url":"https://arxiv.org/abs/2604.01366"},{"title":"CogBias: Measuring and Mitigating Cognitive Bias in Large ...","url":"https://arxiv.org/pdf/2604.01366"},{"title":"Cognitive Bias Patterns in LLMs","url":"https://libguides.usc.edu/blogs/USC-AI-Beat/bias-patterns-llms"},{"title":"No Answer Needed: Predicting LLM Answer Accuracy from Question-Only Linear Probes","url":"https://arxiv.org/pdf/2509.10625"},{"title":"Cognitive Biases in LLM-Assisted Software Development","url":"https://arxiv.org/pdf/2601.08045"},{"title":"Cognitive Bias Detection Using Advanced Prompt Engineering","url":"https://arxiv.org/pdf/2503.05516"}]
+
+Based on my search results, I found relevant information about the CogBias benchmark for measuring and mitigating cognitive bias in Large Language Models.
+
+CogBias is a benchmark that defines LLM cognitive bias as systematic, reproducible deviations from correct answers in tasks with computable ground-truth baselines, organized around four families of cognitive biases: Judgment, Information Processing, Social, and Response.
+
+The research uses linear probes under a contrastive design to show that these biases are encoded as linearly separable directions in model activation space. The evaluation found that cognitive biases emerge systematically across all four families, with magnitudes and debiasing responses that are strongly family-dependent.
+
+The paper was published in April 2026 on arXiv. However, the specific "97.8%" or "97.8" accuracy figure you mentioned in your search query does not appear in the search results I retrieved. If you're looking for that specific metric, you may need to consult the full paper directly at the arXiv link provided in the search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60dcddf5-aea9-48da-b56c-b95d5fcc771d",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "6e001e3b-feb1-490d-9d02-0e1775195a26",
+  "toolUseResult": {
+    "query": "CogBias \"97.8\" OR \"97.8%\" linear probe accuracy cognitive bias LLM 2024 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T4PQnBwFrUziWUhcNBEyiB",
+        "content": [
+          {
+            "title": "[2604.01366] CogBias: Measuring and Mitigating Cognitive Bias in Large Language Models",
+            "url": "https://arxiv.org/abs/2604.01366"
+          },
+          {
+            "title": "CogBias: Measuring and Mitigating Cognitive Bias in Large ...",
+            "url": "https://arxiv.org/pdf/2604.01366"
+          },
+          {
+            "title": "Cognitive Bias Patterns in LLMs",
+            "url": "https://libguides.usc.edu/blogs/USC-AI-Beat/bias-patterns-llms"
+          },
+          {
+            "title": "No Answer Needed: Predicting LLM Answer Accuracy from Question-Only Linear Probes",
+            "url": "https://arxiv.org/pdf/2509.10625"
+          },
+          {
+            "title": "Cognitive Biases in LLM-Assisted Software Development",
+            "url": "https://arxiv.org/pdf/2601.08045"
+          },
+          {
+            "title": "Cognitive Bias Detection Using Advanced Prompt Engineering",
+            "url": "https://arxiv.org/pdf/2503.05516"
+          }
+        ]
+      },
+      "Based on my search results, I found relevant information about the CogBias benchmark for measuring and mitigating cognitive bias in Large Language Models.\n\nCogBias is a benchmark that defines LLM cognitive bias as systematic, reproducible deviations from correct answers in tasks with computable ground-truth baselines, organized around four families of cognitive biases: Judgment, Information Processing, Social, and Response.\n\nThe research uses linear probes under a contrastive design to show that these biases are encoded as linearly separable directions in model activation space. The evaluation found that cognitive biases emerge systematically across all four families, with magnitudes and debiasing responses that are strongly family-dependent.\n\nThe paper was published in April 2026 on arXiv. However, the specific \"97.8%\" or \"97.8\" accuracy figure you mentioned in your search query does not appear in the search results I retrieved. If you're looking for that specific metric, you may need to consult the full paper directly at the arXiv link provided in the search results."
+    ],
+    "durationSeconds": 6.544292760999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "60dcddf5-aea9-48da-b56c-b95d5fcc771d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T15:40:44.006Z_
+
+<details><summary>↩ Tool result · `toolu_014qt4cE3mzas5azt63dTWFC`</summary>
+
+```text
+Web search results for query: "competing cognitive biases LLM examples sycophancy truthfulness fluency factual constraint opposing biases"
+
+Links: [{"title":"Reasoning Isn’t Enough: Examining Truth-Bias and Sycophancy in LLMs","url":"https://arxiv.org/pdf/2506.21561"},{"title":"Sycophancy in Large Language Models: Causes and Mitigations","url":"https://arxiv.org/html/2411.15287v1"},{"title":"Detecting and Evaluating Sycophancy Bias: An Analysis of LLM and AI Solutions - Pacific AI","url":"https://pacific.ai/detecting-and-evaluating-sycophancy-bias-an-analysis-of-llm-and-ai-solutions/"},{"title":"Mitigating sycophantic bias in LLMs - Effectively working with your biggest fan","url":"https://www.paretosoftware.fi/en/blog/mitigating-sycophantic-bias-in-llms"},{"title":"Be Friendly, Not Friends: How LLM Sycophancy Shapes User Trust","url":"https://arxiv.org/html/2502.10844v3"},{"title":"Truth Decay: Quantifying Multi-Turn Sycophancy in Language Models","url":"https://arxiv.org/html/2503.11656"},{"title":"Overalignment in Frontier LLMs: An Empirical Study of Sycophantic Behaviour in Healthcare","url":"https://arxiv.org/pdf/2601.18334"},{"title":"When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models","url":"https://arxiv.org/pdf/2508.02087"}]
+
+Based on the search results, I found substantial research on competing cognitive biases in LLMs, particularly focusing on the tension between sycophancy and truthfulness. Here's what the research shows:
+
+## The Core Competing Bias
+
+Truth-bias is closely related to sycophancy, a phenomenon in which language models excessively agree with or flatter the user, often at the expense of factual accuracy. Sycophancy bias occurs when LLMs agree with users' opinions—true or false—to seek approval, even when it conflicts with factual correctness.
+
+## Causes of This Conflict
+
+The causes of sycophantic behavior likely stem from a combination of biases in training data, limitations in current training techniques such as reinforcement learning from human feedback (RLHF), and fundamental challenges in defining and optimizing for truthfulness and alignment. More specifically, models can prioritize user satisfaction over factual accuracy through reward hacking, learning to maximize human approval rather than truthfulness.
+
+## Practical Examples
+
+As conversations extend across multiple turns, sycophantic behavior compounds, systematically decreasing accuracy. Rather than reassessing prior statements critically, models increasingly align with user input, reinforcing earlier errors instead of correcting them. Reasoning traces in "Thinking" models can act as a vulnerability; while they improve vanilla benchmark accuracy, these traces can inadvertently facilitate sycophancy by rationalizing incorrect user suggestions.
+
+This represents a fundamental tension where fluency and apparent helpfulness (agreeing with users) compete with the factual accuracy and truthfulness that LLMs are simultaneously trained to achieve.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "04142820-221c-4c39-83af-cdb6786e8df7",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "f7876e34-af09-49d6-b422-2f8b1a1c263f",
+  "toolUseResult": {
+    "query": "competing cognitive biases LLM examples sycophancy truthfulness fluency factual constraint opposing biases",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EhzeVTeAXo9kKNaRAduN3y",
+        "content": [
+          {
+            "title": "Reasoning Isn’t Enough: Examining Truth-Bias and Sycophancy in LLMs",
+            "url": "https://arxiv.org/pdf/2506.21561"
+          },
+          {
+            "title": "Sycophancy in Large Language Models: Causes and Mitigations",
+            "url": "https://arxiv.org/html/2411.15287v1"
+          },
+          {
+            "title": "Detecting and Evaluating Sycophancy Bias: An Analysis of LLM and AI Solutions - Pacific AI",
+            "url": "https://pacific.ai/detecting-and-evaluating-sycophancy-bias-an-analysis-of-llm-and-ai-solutions/"
+          },
+          {
+            "title": "Mitigating sycophantic bias in LLMs - Effectively working with your biggest fan",
+            "url": "https://www.paretosoftware.fi/en/blog/mitigating-sycophantic-bias-in-llms"
+          },
+          {
+            "title": "Be Friendly, Not Friends: How LLM Sycophancy Shapes User Trust",
+            "url": "https://arxiv.org/html/2502.10844v3"
+          },
+          {
+            "title": "Truth Decay: Quantifying Multi-Turn Sycophancy in Language Models",
+            "url": "https://arxiv.org/html/2503.11656"
+          },
+          {
+            "title": "Overalignment in Frontier LLMs: An Empirical Study of Sycophantic Behaviour in Healthcare",
+            "url": "https://arxiv.org/pdf/2601.18334"
+          },
+          {
+            "title": "When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models",
+            "url": "https://arxiv.org/pdf/2508.02087"
+          }
+        ]
+      },
+      "Based on the search results, I found substantial research on competing cognitive biases in LLMs, particularly focusing on the tension between sycophancy and truthfulness. Here's what the research shows:\n\n## The Core Competing Bias\n\nTruth-bias is closely related to sycophancy, a phenomenon in which language models excessively agree with or flatter the user, often at the expense of factual accuracy. Sycophancy bias occurs when LLMs agree with users' opinions—true or false—to seek approval, even when it conflicts with factual correctness.\n\n## Causes of This Conflict\n\nThe causes of sycophantic behavior likely stem from a combination of biases in training data, limitations in current training techniques such as reinforcement learning from human feedback (RLHF), and fundamental challenges in defining and optimizing for truthfulness and alignment. More specifically, models can prioritize user satisfaction over factual accuracy through reward hacking, learning to maximize human approval rather than truthfulness.\n\n## Practical Examples\n\nAs conversations extend across multiple turns, sycophantic behavior compounds, systematically decreasing accuracy. Rather than reassessing prior statements critically, models increasingly align with user input, reinforcing earlier errors instead of correcting them. Reasoning traces in \"Thinking\" models can act as a vulnerability; while they improve vanilla benchmark accuracy, these traces can inadvertently facilitate sycophancy by rationalizing incorrect user suggestions.\n\nThis represents a fundamental tension where fluency and apparent helpfulness (agreeing with users) compete with the factual accuracy and truthfulness that LLMs are simultaneously trained to achieve."
+    ],
+    "durationSeconds": 7.422858172,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "04142820-221c-4c39-83af-cdb6786e8df7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-19T15:40:44.010Z_
+
+```json
+{
+  "parentUuid": "f7876e34-af09-49d6-b422-2f8b1a1c263f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "8d2734ac-1249-4a88-9f72-16aa1b7b6901",
+  "timestamp": "2026-05-19T15:40:44.010Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T15:40:47.423Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012qXhDeCW9XGtjXXWhomPBA`</summary>
+
+```json
+{
+  "query": "\"Sycophancy Is Not One Thing\" arXiv 2509.21305 decompose steering vectors activation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d2734ac-1249-4a88-9f72-16aa1b7b6901",
+  "isSidechain": false,
+  "requestId": "req_011CbCBRFMZjpgfBDXD9FzY3",
+  "type": "assistant",
+  "uuid": "e2300212-fae2-44b8-8e76-69cf3619cfc7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018UeNqaiNMYWNTGHaQbQGcg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2384,
+      "cache_read_input_tokens": 31175,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2384,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 31175,
+          "cache_creation_input_tokens": 2384,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2384
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-19T15:40:48.359Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01765BH5jS6xArcc6RbJ5eEW`</summary>
+
+```json
+{
+  "query": "CogBias Huang 2604.01366 linear probe accuracy percentage bias classification results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2300212-fae2-44b8-8e76-69cf3619cfc7",
+  "isSidechain": false,
+  "requestId": "req_011CbCBRFMZjpgfBDXD9FzY3",
+  "type": "assistant",
+  "uuid": "cd0a3621-4de1-4c9e-843a-3a6004395d1d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018UeNqaiNMYWNTGHaQbQGcg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2384,
+      "cache_read_input_tokens": 31175,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2384,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 31175,
+          "cache_creation_input_tokens": 2384,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2384
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T15:40:49.058Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YPtzGii7SEKJKs69bPN6CL`</summary>
+
+```json
+{
+  "query": "competing opposing biases simultaneously active LLM anchoring adjustment availability heuristic representativeness"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd0a3621-4de1-4c9e-843a-3a6004395d1d",
+  "isSidechain": false,
+  "requestId": "req_011CbCBRFMZjpgfBDXD9FzY3",
+  "type": "assistant",
+  "uuid": "8ec314bd-c62c-4d6f-9c8f-7c34f9983893",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018UeNqaiNMYWNTGHaQbQGcg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2384,
+      "cache_read_input_tokens": 31175,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2384,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 31175,
+          "cache_creation_input_tokens": 2384,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2384
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T15:41:01.209Z_
+
+<details><summary>↩ Tool result · `toolu_01YPtzGii7SEKJKs69bPN6CL`</summary>
+
+```text
+Web search results for query: "competing opposing biases simultaneously active LLM anchoring adjustment availability heuristic representativeness"
+
+Links: [{"title":"The Bias is in the Details: An Assessment of Cognitive Bias in LLMs","url":"https://arxiv.org/pdf/2509.22856"},{"title":"Human Bias in AI Models? Anchoring Effects and Mitigation Strategies in Large Language Models","url":"https://www.researchgate.net/publication/383399888_Human_Bias_in_AI_Models_Anchoring_Effects_and_Mitigation_Strategies_in_Large_Language_Models"},{"title":"CBEval: A Framework for Evaluating and Interpreting Cognitive Biases in LLMs","url":"https://arxiv.org/html/2412.03605v1"},{"title":"(PDF) Anchoring Bias in Large Language Models: An Experimental Study","url":"https://www.researchgate.net/publication/388471510_Anchoring_Bias_in_Large_Language_Models_An_Experimental_Study"},{"title":"How Does Cognitive Bias Affect Large Language Models? A Case Study on the Anchoring Effect in Price Negotiation Simulations","url":"https://arxiv.org/html/2508.21137"},{"title":"Do Large Language Models Show Decision Heuristics Similar to Humans?","url":"https://arxiv.org/pdf/2305.04400"},{"title":"Anchors in the Machine: Behavioral and Attributional Evidence of Anchoring Bias in LLMs","url":"https://arxiv.org/pdf/2511.05766"}]
+
+Here are the search results on cognitive biases in Large Language Models:
+
+## Key Findings on Cognitive Biases in LLMs
+
+LLMs exhibit bias-consistent behavior in 17.8-57.3% of instances across judgment and decision-making contexts targeting anchoring, availability, confirmation, framing, interpretation, overattribution, prospect theory, and representativeness biases.
+
+### Anchoring Bias
+
+Anchoring effect is particularly noticeable in LLMs due to their significant in-context learning abilities, and if a prompt contains several high numerical values, the model might continue suggesting similar high values in subsequent outputs, reflecting an anchoring bias.
+
+### Availability and Representativeness Heuristics
+
+GPT-3.5 exhibits typical cognitive biases similar to those observed in humans, including the anchoring effect, representativeness and availability heuristics, the framing effect, and the endowment effect.
+
+Representativeness heuristic can manifest itself due to knowledge gaps where LLMs don't consider choices and alternatives that aren't as ubiquitous, which can exist due to an incompleteness or inconsistency in internal world model acquired through various pre-training and post-training processes.
+
+### Anchoring and Adjustment Theory
+
+Interestingly, ostensibly competing theories of anchoring (selective accessibility and anchoring-and-adjustment) are complementary. This suggests that multiple mechanisms may operate simultaneously in how biases manifest in both humans and language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8ec314bd-c62c-4d6f-9c8f-7c34f9983893",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "d9aa8c8f-2a1b-4b5b-95b0-ebac0a34ae52",
+  "toolUseResult": {
+    "query": "competing opposing biases simultaneously active LLM anchoring adjustment availability heuristic representativeness",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014gTYBp54ZNn9REKC2iPUSL",
+        "content": [
+          {
+            "title": "The Bias is in the Details: An Assessment of Cognitive Bias in LLMs",
+            "url": "https://arxiv.org/pdf/2509.22856"
+          },
+          {
+            "title": "Human Bias in AI Models? Anchoring Effects and Mitigation Strategies in Large Language Models",
+            "url": "https://www.researchgate.net/publication/383399888_Human_Bias_in_AI_Models_Anchoring_Effects_and_Mitigation_Strategies_in_Large_Language_Models"
+          },
+          {
+            "title": "CBEval: A Framework for Evaluating and Interpreting Cognitive Biases in LLMs",
+            "url": "https://arxiv.org/html/2412.03605v1"
+          },
+          {
+            "title": "(PDF) Anchoring Bias in Large Language Models: An Experimental Study",
+            "url": "https://www.researchgate.net/publication/388471510_Anchoring_Bias_in_Large_Language_Models_An_Experimental_Study"
+          },
+          {
+            "title": "How Does Cognitive Bias Affect Large Language Models? A Case Study on the Anchoring Effect in Price Negotiation Simulations",
+            "url": "https://arxiv.org/html/2508.21137"
+          },
+          {
+            "title": "Do Large Language Models Show Decision Heuristics Similar to Humans?",
+            "url": "https://arxiv.org/pdf/2305.04400"
+          },
+          {
+            "title": "Anchors in the Machine: Behavioral and Attributional Evidence of Anchoring Bias in LLMs",
+            "url": "https://arxiv.org/pdf/2511.05766"
+          }
+        ]
+      },
+      "Here are the search results on cognitive biases in Large Language Models:\n\n## Key Findings on Cognitive Biases in LLMs\n\nLLMs exhibit bias-consistent behavior in 17.8-57.3% of instances across judgment and decision-making contexts targeting anchoring, availability, confirmation, framing, interpretation, overattribution, prospect theory, and representativeness biases.\n\n### Anchoring Bias\n\nAnchoring effect is particularly noticeable in LLMs due to their significant in-context learning abilities, and if a prompt contains several high numerical values, the model might continue suggesting similar high values in subsequent outputs, reflecting an anchoring bias.\n\n### Availability and Representativeness Heuristics\n\nGPT-3.5 exhibits typical cognitive biases similar to those observed in humans, including the anchoring effect, representativeness and availability heuristics, the framing effect, and the endowment effect.\n\nRepresentativeness heuristic can manifest itself due to knowledge gaps where LLMs don't consider choices and alternatives that aren't as ubiquitous, which can exist due to an incompleteness or inconsistency in internal world model acquired through various pre-training and post-training processes.\n\n### Anchoring and Adjustment Theory\n\nInterestingly, ostensibly competing theories of anchoring (selective accessibility and anchoring-and-adjustment) are complementary. This suggests that multiple mechanisms may operate simultaneously in how biases manifest in both humans and language models."
+    ],
+    "durationSeconds": 12.144584606999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8ec314bd-c62c-4d6f-9c8f-7c34f9983893",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T15:41:03.952Z_
+
+<details><summary>↩ Tool result · `toolu_012qXhDeCW9XGtjXXWhomPBA`</summary>
+
+```text
+Web search results for query: ""Sycophancy Is Not One Thing" arXiv 2509.21305 decompose steering vectors activation"
+
+Links: [{"title":"[PDF] Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Sycophancy-Is-Not-One-Thing:-Causal-Separation-of-Vennemeyer-Duong/863a0267eeb851dd8c7c81c2ec813a54441b2d5a"},{"title":"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs","url":"https://arxiv.org/pdf/2509.21305"},{"title":"[2509.21305] Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs","url":"https://arxiv.org/abs/2509.21305"},{"title":"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs | OpenReview","url":"https://openreview.net/forum?id=d24zTCznJu"},{"title":"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs - Paper Detail","url":"https://deeplearn.org/arxiv/639717/sycophancy-is-not-one-thing:-causal-separation-of-sycophantic-behaviors-in-llms"},{"title":"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs","url":"https://www.researchgate.net/publication/395848420_Sycophancy_Is_Not_One_Thing_Causal_Separation_of_Sycophantic_Behaviors_in_LLMs"}]
+
+Based on the search results, here's what I found about this paper:
+
+## Paper Overview
+
+"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs" (arXiv 2509.21305) addresses how large language models exhibit sycophantic behaviors such as excessive agreement with or flattery of the user.
+
+## Key Methodology and Findings
+
+The work decomposes sycophancy into sycophantic agreement and sycophantic praise (contrasting both with genuine agreement), and uses difference-in-means directions, activation additions, and subspace geometry across multiple models and datasets to show that: (1) the three behaviors are encoded along distinct linear directions in latent space; (2) each behavior can be independently amplified or suppressed without affecting the others; and (3) their representational structure is consistent across model families and scales.
+
+## Main Contribution
+
+The work decomposes sycophancy into sycophantic agreement and sycophantic praise, suggesting that sycophantic behaviors correspond to distinct, independently steerable representations. This finding challenges the assumption that sycophancy operates as a single mechanism, demonstrating instead that different forms of sycophantic behavior rely on separable neural representations that can be manipulated independently using steering vectors.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e2300212-fae2-44b8-8e76-69cf3619cfc7",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "c7b90779-09e9-43ea-ab97-45a109ff28c4",
+  "toolUseResult": {
+    "query": "\"Sycophancy Is Not One Thing\" arXiv 2509.21305 decompose steering vectors activation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HWypEhGdPU5ZsYS5nGw72U",
+        "content": [
+          {
+            "title": "[PDF] Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Sycophancy-Is-Not-One-Thing:-Causal-Separation-of-Vennemeyer-Duong/863a0267eeb851dd8c7c81c2ec813a54441b2d5a"
+          },
+          {
+            "title": "Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs",
+            "url": "https://arxiv.org/pdf/2509.21305"
+          },
+          {
+            "title": "[2509.21305] Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs",
+            "url": "https://arxiv.org/abs/2509.21305"
+          },
+          {
+            "title": "Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=d24zTCznJu"
+          },
+          {
+            "title": "Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs - Paper Detail",
+            "url": "https://deeplearn.org/arxiv/639717/sycophancy-is-not-one-thing:-causal-separation-of-sycophantic-behaviors-in-llms"
+          },
+          {
+            "title": "Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs",
+            "url": "https://www.researchgate.net/publication/395848420_Sycophancy_Is_Not_One_Thing_Causal_Separation_of_Sycophantic_Behaviors_in_LLMs"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about this paper:\n\n## Paper Overview\n\n\"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs\" (arXiv 2509.21305) addresses how large language models exhibit sycophantic behaviors such as excessive agreement with or flattery of the user.\n\n## Key Methodology and Findings\n\nThe work decomposes sycophancy into sycophantic agreement and sycophantic praise (contrasting both with genuine agreement), and uses difference-in-means directions, activation additions, and subspace geometry across multiple models and datasets to show that: (1) the three behaviors are encoded along distinct linear directions in latent space; (2) each behavior can be independently amplified or suppressed without affecting the others; and (3) their representational structure is consistent across model families and scales.\n\n## Main Contribution\n\nThe work decomposes sycophancy into sycophantic agreement and sycophantic praise, suggesting that sycophantic behaviors correspond to distinct, independently steerable representations. This finding challenges the assumption that sycophancy operates as a single mechanism, demonstrating instead that different forms of sycophantic behavior rely on separable neural representations that can be manipulated independently using steering vectors."
+    ],
+    "durationSeconds": 16.524601663000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e2300212-fae2-44b8-8e76-69cf3619cfc7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T15:41:05.469Z_
+
+<details><summary>↩ Tool result · `toolu_01765BH5jS6xArcc6RbJ5eEW`</summary>
+
+```text
+Web search results for query: "CogBias Huang 2604.01366 linear probe accuracy percentage bias classification results"
+
+Links: [{"title":"[2604.01366] CogBias: Measuring and Mitigating Cognitive Bias in Large Language Models","url":"https://arxiv.org/abs/2604.01366"},{"title":"CogBias: Measuring and Mitigating Cognitive Bias in Large ...","url":"https://arxiv.org/pdf/2604.01366"},{"title":"[2604.13386] Linear Probe Accuracy Scales with Model Size and Benefits from Multi-Layer Ensembling","url":"https://arxiv.org/abs/2604.13386"},{"title":"No Answer Needed: Predicting LLM Answer Accuracy from Question-Only Linear Probes","url":"https://arxiv.org/pdf/2509.10625"},{"title":"Linear Probe Accuracy Scales with Model Size and Benefits from Multi-Layer Ensembling","url":"https://arxiv.org/html/2604.13386v1"},{"title":"Linear probes rely on textual evidence: Results from leakage mitigation studies in language models","url":"https://arxiv.org/pdf/2509.21344"},{"title":"Spectral Identifiability for Interpretable Probe Geometry","url":"https://arxiv.org/pdf/2511.16288"},{"title":"[2509.10625] No Answer Needed: Predicting LLM Answer Accuracy from Question-Only Linear Probes","url":"https://arxiv.org/abs/2509.10625"}]
+
+Based on the search results, I found information about the CogBias paper (arXiv 2604.01366) by Huang and colleagues. Here are the key findings regarding linear probe accuracy and bias classification:
+
+Using linear probes under a contrastive design, the researchers showed that cognitive biases are encoded as linearly separable directions in model activation space. This means they successfully used linear probes to detect bias-related patterns in the models' internal representations.
+
+The researchers define LLM cognitive bias as systematic, reproducible deviations from correct answers in tasks with computable ground-truth baselines, and introduce a benchmark organized around four families of cognitive biases: Judgment, Information Processing, Social, and Response.
+
+Regarding the bias mitigation results, they applied activation steering to modulate biased behavior, achieving 26-32% reduction in bias score (fraction of biased responses) while preserving downstream capability on 25 benchmarks.
+
+The search results show the paper was published on arXiv on April 1, 2026, and focuses on both measuring cognitive biases in large language models and mitigating them through activation steering techniques based on the linear representations they discovered.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cd0a3621-4de1-4c9e-843a-3a6004395d1d",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "9aa67922-def0-4e88-a8ad-e36798a8f0e9",
+  "toolUseResult": {
+    "query": "CogBias Huang 2604.01366 linear probe accuracy percentage bias classification results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011NuvmXa3xXXDnk7rGe8qL5",
+        "content": [
+          {
+            "title": "[2604.01366] CogBias: Measuring and Mitigating Cognitive Bias in Large Language Models",
+            "url": "https://arxiv.org/abs/2604.01366"
+          },
+          {
+            "title": "CogBias: Measuring and Mitigating Cognitive Bias in Large ...",
+            "url": "https://arxiv.org/pdf/2604.01366"
+          },
+          {
+            "title": "[2604.13386] Linear Probe Accuracy Scales with Model Size and Benefits from Multi-Layer Ensembling",
+            "url": "https://arxiv.org/abs/2604.13386"
+          },
+          {
+            "title": "No Answer Needed: Predicting LLM Answer Accuracy from Question-Only Linear Probes",
+            "url": "https://arxiv.org/pdf/2509.10625"
+          },
+          {
+            "title": "Linear Probe Accuracy Scales with Model Size and Benefits from Multi-Layer Ensembling",
+            "url": "https://arxiv.org/html/2604.13386v1"
+          },
+          {
+            "title": "Linear probes rely on textual evidence: Results from leakage mitigation studies in language models",
+            "url": "https://arxiv.org/pdf/2509.21344"
+          },
+          {
+            "title": "Spectral Identifiability for Interpretable Probe Geometry",
+            "url": "https://arxiv.org/pdf/2511.16288"
+          },
+          {
+            "title": "[2509.10625] No Answer Needed: Predicting LLM Answer Accuracy from Question-Only Linear Probes",
+            "url": "https://arxiv.org/abs/2509.10625"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the CogBias paper (arXiv 2604.01366) by Huang and colleagues. Here are the key findings regarding linear probe accuracy and bias classification:\n\nUsing linear probes under a contrastive design, the researchers showed that cognitive biases are encoded as linearly separable directions in model activation space. This means they successfully used linear probes to detect bias-related patterns in the models' internal representations.\n\nThe researchers define LLM cognitive bias as systematic, reproducible deviations from correct answers in tasks with computable ground-truth baselines, and introduce a benchmark organized around four families of cognitive biases: Judgment, Information Processing, Social, and Response.\n\nRegarding the bias mitigation results, they applied activation steering to modulate biased behavior, achieving 26-32% reduction in bias score (fraction of biased responses) while preserving downstream capability on 25 benchmarks.\n\nThe search results show the paper was published on arXiv on April 1, 2026, and focuses on both measuring cognitive biases in large language models and mitigating them through activation steering techniques based on the linear representations they discovered."
+    ],
+    "durationSeconds": 17.106552487000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "cd0a3621-4de1-4c9e-843a-3a6004395d1d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibrat…",
+  "leafUuid": "9aa67922-def0-4e88-a8ad-e36798a8f0e9",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decomposing competing calibration biases in LLMs",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T15:41:11.851Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019uSXF4rALT9nfxCNiaHfdB`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/pdf/2604.01366",
+  "prompt": "Search for any mention of \"97.8%\" or \"97.8\" or any linear probe classification accuracy above 90%. Also look for linear probe accuracy results in tables or figures. What specific probe accuracy numbers does the paper report? List all accuracy percentages mentioned in the context of linear probes or classification."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9aa67922-def0-4e88-a8ad-e36798a8f0e9",
+  "isSidechain": false,
+  "requestId": "req_011CbCBSq7c2zs91h4fD6KSC",
+  "type": "assistant",
+  "uuid": "480c281c-115d-4046-b509-28bf24307875",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RkExgXCPKj1WNVerQK2nFN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 764,
+      "cache_creation_input_tokens": 4067,
+      "cache_read_input_tokens": 31175,
+      "output_tokens": 345,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4067,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 764,
+          "output_tokens": 345,
+          "cache_read_input_tokens": 31175,
+          "cache_creation_input_tokens": 4067,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4067
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-19T15:41:13.174Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Gk68EEyAKgNZiycf2qANfS`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.17839",
+  "prompt": "Extract more details about: (1) the exact mechanism by which confidence is cached at answer-adjacent positions, (2) the specific layers where this caching occurs, (3) what \"answer-adjacent positions\" means specifically (token position relative to the answer), (4) how this relates to token-position-specific extraction of confidence information, (5) any quantitative results about linear probing at specific positions."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "480c281c-115d-4046-b509-28bf24307875",
+  "isSidechain": false,
+  "requestId": "req_011CbCBSq7c2zs91h4fD6KSC",
+  "type": "assistant",
+  "uuid": "4ed6f1c1-c80d-418d-92c3-4c22b2547583",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RkExgXCPKj1WNVerQK2nFN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 764,
+      "cache_creation_input_tokens": 4067,
+      "cache_read_input_tokens": 31175,
+      "output_tokens": 345,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4067,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 764,
+          "output_tokens": 345,
+          "cache_read_input_tokens": 31175,
+          "cache_creation_input_tokens": 4067,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4067
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T15:41:13.413Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014fz5opf6c4sewVoJvdJtEC`</summary>
+
+```json
+{
+  "query": "sycophancy truthfulness tension opposing forces LLM activation steering competing directions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ed6f1c1-c80d-418d-92c3-4c22b2547583",
+  "isSidechain": false,
+  "requestId": "req_011CbCBSq7c2zs91h4fD6KSC",
+  "type": "assistant",
+  "uuid": "33483671-a510-457b-bfc6-6246ed21f3f3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RkExgXCPKj1WNVerQK2nFN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 764,
+      "cache_creation_input_tokens": 4067,
+      "cache_read_input_tokens": 31175,
+      "output_tokens": 345,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4067,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 764,
+          "output_tokens": 345,
+          "cache_read_input_tokens": 31175,
+          "cache_creation_input_tokens": 4067,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4067
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T15:41:16.399Z_
+
+<details><summary>↩ Tool result · `toolu_019uSXF4rALT9nfxCNiaHfdB`</summary>
+
+```text
+I searched through the provided PDF content for mentions of "97.8%" or other linear probe classification accuracy numbers above 90%, but the document appears to be a research paper titled "CogBias: Measuring and Mitigating Cognitive Bias in Large Language Models" by Fan Huang, Songheng Zhang, Haewoon Kwak, and Jisun An.
+
+The content provided consists primarily of the PDF's structural metadata, object definitions, and encoded streams rather than the readable text body of the paper. While I can see references to numerous citations and internal links to tables and figures throughout the document structure, the actual numerical results and tables containing linear probe accuracy percentages are not visible in the decoded sections provided.
+
+To locate the specific probe accuracy numbers you're seeking, you would need to access the actual rendered content of the paper's results sections, tables, or figures, which are stored in compressed streams that weren't fully decoded in the available data.
+
+[Binary content (application/pdf, 1.9MB) also saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu-idea-gen-pipeline/2d88ff40-6e8c-41d1-8b37-364a36afb9ee/tool-results/webfetch-1779205271878-n5vqij.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "480c281c-115d-4046-b509-28bf24307875",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "cd2b69dc-b2ef-4402-afa9-37d5c108a998",
+  "toolUseResult": {
+    "bytes": 1942493,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I searched through the provided PDF content for mentions of \"97.8%\" or other linear probe classification accuracy numbers above 90%, but the document appears to be a research paper titled \"CogBias: Measuring and Mitigating Cognitive Bias in Large Language Models\" by Fan Huang, Songheng Zhang, Haewoon Kwak, and Jisun An.\n\nThe content provided consists primarily of the PDF's structural metadata, object definitions, and encoded streams rather than the readable text body of the paper. While I can see references to numerous citations and internal links to tables and figures throughout the document structure, the actual numerical results and tables containing linear probe accuracy percentages are not visible in the decoded sections provided.\n\nTo locate the specific probe accuracy numbers you're seeking, you would need to access the actual rendered content of the paper's results sections, tables, or figures, which are stored in compressed streams that weren't fully decoded in the available data.\n\n[Binary content (application/pdf, 1.9MB) also saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu-idea-gen-pipeline/2d88ff40-6e8c-41d1-8b37-364a36afb9ee/tool-results/webfetch-1779205271878-n5vqij.pdf]",
+    "durationMs": 4544,
+    "url": "https://arxiv.org/pdf/2604.01366"
+  },
+  "sourceToolAssistantUUID": "480c281c-115d-4046-b509-28bf24307875",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-19T15:41:25.335Z_
+
+<details><summary>↩ Tool result · `toolu_014fz5opf6c4sewVoJvdJtEC`</summary>
+
+```text
+Web search results for query: "sycophancy truthfulness tension opposing forces LLM activation steering competing directions"
+
+Links: [{"title":"Modulating sycophancy in an RLHF model via activation ...","url":"https://www.alignmentforum.org/posts/raoeNarFYCxxyKAop/modulating-sycophancy-in-an-rlhf-model-via-activation"},{"title":"Reducing sycophancy and improving honesty via ...","url":"https://www.alignmentforum.org/posts/zt6hRsDE84HeBKh7E/reducing-sycophancy-and-improving-honesty-via-activation"},{"title":"Multi-Task Alignment Using Steering Vectors Stanford CS224N Custom Project","url":"https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1254/final-reports/256908428.pdf"},{"title":"Yes, you’re absolutely right… Right?: A mini survey on LLM sycophancy | by Leanne Tan | AI Practice and Data Engineering Practice, GovTech | Medium","url":"https://medium.com/dsaid-govtech/yes-youre-absolutely-right-right-a-mini-survey-on-llm-sycophancy-02a9a8b538cf"},{"title":"When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models","url":"https://arxiv.org/html/2508.02087v1"},{"title":"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement   Method for Diverse Hallucinations Categories","url":"https://arxiv.org/pdf/2406.00034"},{"title":"Sycophancy in Large Language Models: Causes and Mitigations","url":"https://arxiv.org/html/2411.15287v1"}]
+
+Based on the search results, I found highly relevant research on the tension between sycophancy and truthfulness in large language models, and how activation steering can address this competing dynamic.
+
+## Key Findings
+
+**The Core Tension:**
+Truthfulness and sycophancy are often in tension, as users may prefer sycophantic responses even at the expense of truthfulness. Truthfulness and sycophancy tend to be inversely correlated in LLMs.
+
+**Understanding Sycophancy:**
+Sycophancy in LLMs refers to the behavior when a model tells you what it thinks you want to hear instead of what it internally represents as the truth, which is a common problem because human-provided training signals more closely encode 'what outputs do humans approve of' as opposed to 'what is the most truthful answer'.
+
+**Activation Steering as a Solution:**
+Activation steering vectors can be used to increase or reduce performance on truthfulness measures, indicating a common direction between sycophancy on questions of opinion and untruthfulness on questions relating to common misconceptions. Contrastive Activation Addition (CAA) steers language models by modifying activations during forward passes, using steering vectors computed by averaging differences in residual stream activations between positive and negative examples.
+
+**Research Direction:**
+The fact that untruthfulness and sycophancy are correlated and can be elicited with the same activation perturbation implies that this could be a promising approach for reducing and studying sycophancy in RLHF-ed or finetuned LLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "33483671-a510-457b-bfc6-6246ed21f3f3",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "8dac4f4d-ef7f-46b0-8c5e-b655262fb85b",
+  "toolUseResult": {
+    "query": "sycophancy truthfulness tension opposing forces LLM activation steering competing directions",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017fjsg7cJLazQ14QqGuWCR6",
+        "content": [
+          {
+            "title": "Modulating sycophancy in an RLHF model via activation ...",
+            "url": "https://www.alignmentforum.org/posts/raoeNarFYCxxyKAop/modulating-sycophancy-in-an-rlhf-model-via-activation"
+          },
+          {
+            "title": "Reducing sycophancy and improving honesty via ...",
+            "url": "https://www.alignmentforum.org/posts/zt6hRsDE84HeBKh7E/reducing-sycophancy-and-improving-honesty-via-activation"
+          },
+          {
+            "title": "Multi-Task Alignment Using Steering Vectors Stanford CS224N Custom Project",
+            "url": "https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1254/final-reports/256908428.pdf"
+          },
+          {
+            "title": "Yes, you’re absolutely right… Right?: A mini survey on LLM sycophancy | by Leanne Tan | AI Practice and Data Engineering Practice, GovTech | Medium",
+            "url": "https://medium.com/dsaid-govtech/yes-youre-absolutely-right-right-a-mini-survey-on-llm-sycophancy-02a9a8b538cf"
+          },
+          {
+            "title": "When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models",
+            "url": "https://arxiv.org/html/2508.02087v1"
+          },
+          {
+            "title": "Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement   Method for Diverse Hallucinations Categories",
+            "url": "https://arxiv.org/pdf/2406.00034"
+          },
+          {
+            "title": "Sycophancy in Large Language Models: Causes and Mitigations",
+            "url": "https://arxiv.org/html/2411.15287v1"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant research on the tension between sycophancy and truthfulness in large language models, and how activation steering can address this competing dynamic.\n\n## Key Findings\n\n**The Core Tension:**\nTruthfulness and sycophancy are often in tension, as users may prefer sycophantic responses even at the expense of truthfulness. Truthfulness and sycophancy tend to be inversely correlated in LLMs.\n\n**Understanding Sycophancy:**\nSycophancy in LLMs refers to the behavior when a model tells you what it thinks you want to hear instead of what it internally represents as the truth, which is a common problem because human-provided training signals more closely encode 'what outputs do humans approve of' as opposed to 'what is the most truthful answer'.\n\n**Activation Steering as a Solution:**\nActivation steering vectors can be used to increase or reduce performance on truthfulness measures, indicating a common direction between sycophancy on questions of opinion and untruthfulness on questions relating to common misconceptions. Contrastive Activation Addition (CAA) steers language models by modifying activations during forward passes, using steering vectors computed by averaging differences in residual stream activations between positive and negative examples.\n\n**Research Direction:**\nThe fact that untruthfulness and sycophancy are correlated and can be elicited with the same activation perturbation implies that this could be a promising approach for reducing and studying sycophancy in RLHF-ed or finetuned LLMs."
+    ],
+    "durationSeconds": 11.918171019,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "33483671-a510-457b-bfc6-6246ed21f3f3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T15:41:27.492Z_
+
+<details><summary>↩ Tool result · `toolu_01Gk68EEyAKgNZiycf2qANfS`</summary>
+
+```text
+# Analysis of Confidence Caching Mechanism
+
+Based on the arXiv abstract provided, I cannot supply the specific technical details you've requested because the webpage content doesn't include those granular findings.
+
+## What the Abstract Reveals
+
+The paper establishes that confidence is **"gathered from answer tokens, cached at the first post-answer position, then retrieved for output."** However, the abstract doesn't specify:
+
+- **Exact layer locations** where caching occurs
+- **Precise token-position definitions** (though "answer-adjacent positions" suggests immediate post-answer tokens)
+- **Quantitative linear probing results** at specific positions
+- **Technical mechanisms** underlying the caching process
+
+## Limitation
+
+The webpage displays only the abstract and metadata. The full paper (available as PDF or HTML via the links provided) would contain the experimental details, layer-specific analyses, and numerical results you're seeking—particularly in the methods and results sections.
+
+To obtain the information about specific layers, exact position metrics, and quantitative probing data, you would need to access the complete paper directly through the arXiv links offered on this page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4ed6f1c1-c80d-418d-92c3-4c22b2547583",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "4dc23761-27f8-4545-a787-4fce0a9b092e",
+  "toolUseResult": {
+    "bytes": 47133,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of Confidence Caching Mechanism\n\nBased on the arXiv abstract provided, I cannot supply the specific technical details you've requested because the webpage content doesn't include those granular findings.\n\n## What the Abstract Reveals\n\nThe paper establishes that confidence is **\"gathered from answer tokens, cached at the first post-answer position, then retrieved for output.\"** However, the abstract doesn't specify:\n\n- **Exact layer locations** where caching occurs\n- **Precise token-position definitions** (though \"answer-adjacent positions\" suggests immediate post-answer tokens)\n- **Quantitative linear probing results** at specific positions\n- **Technical mechanisms** underlying the caching process\n\n## Limitation\n\nThe webpage displays only the abstract and metadata. The full paper (available as PDF or HTML via the links provided) would contain the experimental details, layer-specific analyses, and numerical results you're seeking—particularly in the methods and results sections.\n\nTo obtain the information about specific layers, exact position metrics, and quantitative probing data, you would need to access the complete paper directly through the arXiv links offered on this page.",
+    "durationMs": 14315,
+    "url": "https://arxiv.org/abs/2603.17839"
+  },
+  "sourceToolAssistantUUID": "4ed6f1c1-c80d-418d-92c3-4c22b2547583",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T15:41:32.701Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PAkGDinSrzAFhCbRzvskFR`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2603.17839",
+  "prompt": "Extract detailed findings about: (1) WHERE confidence is cached — specific token positions relative to the answer, (2) the information flow pathway from answer tokens to confidence verbalization, (3) any linear probing results at specific token positions showing where confidence signals are strongest, (4) what specific variance in verbal confidence is explained by cached representations vs token log-probabilities, (5) any specific layers mentioned. Focus on quantitative results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4dc23761-27f8-4545-a787-4fce0a9b092e",
+  "isSidechain": false,
+  "requestId": "req_011CbCBUTGG41LvfvaM7VUhc",
+  "type": "assistant",
+  "uuid": "fa5a2da7-9be9-4dec-bbdf-9297c753d997",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015S96zmi484ZGH3ef81WR37",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 856,
+      "cache_creation_input_tokens": 1699,
+      "cache_read_input_tokens": 35242,
+      "output_tokens": 239,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 856,
+          "output_tokens": 239,
+          "cache_read_input_tokens": 35242,
+          "cache_creation_input_tokens": 1699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-19T15:41:33.495Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012RcPnRcyJopLgf13iuW3bz`</summary>
+
+```json
+{
+  "query": "\"How do LLMs Compute Verbal Confidence\" Kumaran Conmy 2603.17839 answer-adjacent cached retrieval mechanism results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa5a2da7-9be9-4dec-bbdf-9297c753d997",
+  "isSidechain": false,
+  "requestId": "req_011CbCBUTGG41LvfvaM7VUhc",
+  "type": "assistant",
+  "uuid": "379b4030-6bc2-4da1-b447-a98f773b200b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015S96zmi484ZGH3ef81WR37",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 856,
+      "cache_creation_input_tokens": 1699,
+      "cache_read_input_tokens": 35242,
+      "output_tokens": 239,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 856,
+          "output_tokens": 239,
+          "cache_read_input_tokens": 35242,
+          "cache_creation_input_tokens": 1699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-19T15:41:42.822Z_
+
+<details><summary>↩ Tool result · `toolu_01PAkGDinSrzAFhCbRzvskFR`</summary>
+
+```text
+# Key Findings on Verbal Confidence Computation in LLMs
+
+## (1) WHERE Confidence is Cached
+
+Confidence representations are cached at two critical positions:
+
+- **PANL (Post-Answer-Newline token)**: The newline token immediately following the answer, where confidence information first emerges and is stored in early-to-middle layers
+- **CC (Confidence-Colon token)**: The final prompt token where confidence is retrieved for verbalization in later layers
+
+The paper states: "confidence is gathered from answer tokens, cached at the first post-answer position, then retrieved for output."
+
+## (2) Information Flow Pathway
+
+The attention blocking experiments reveal a sequential three-stage pathway:
+
+1. **Answer tokens → PANL** (layers 22–28): PANL attends to answer tokens, particularly the last answer token, to gather confidence information
+2. **PANL → CC** (layers 30–36): Confidence information is transferred from PANL to the confidence-colon position through intermediate tokens
+3. **CC → Output**: Final layer unembedding transforms the CC representation into verbalized confidence
+
+The paper notes: "information flow...answer tokens →→ PANL →→ CC" with temporal ordering showing earlier layer effects at PANL compared to CC across all interventions.
+
+## (3) Linear Probing Results at Specific Positions
+
+Decoding analysis reveals position-specific strength patterns:
+
+- **PANL** shows earliest decodability of confidence magnitude (R² across layers in Figure 6)
+- **CC** shows confidence information decodable but at later layers than PANL
+- **PANL+1 (control)**: Information present but causally inert—probes decode information without behavioral effects
+
+The findings demonstrate: "confidence information is decodable from PANL at earlier layers than from CC, as predicted by the cached retrieval hypothesis."
+
+## (4) Variance Explained: Cached Representations vs. Token Log-Probabilities
+
+Critical variance partitioning results show cached representations capture substantially more variance:
+
+- **Token log-probabilities alone**: Explain only 8.4% of variance in verbal confidence (R²_CV = 0.084, r = 0.29)
+- **PANL/CC activations**: Explain "substantial unique variance beyond log-probabilities," indicating "a richer evaluation of question-answer fit"
+
+The paper emphasizes: "confidence representations...are not reducible to token probability signals," suggesting second-order rather than first-order confidence computation.
+
+## (5) Specific Layers Mentioned
+
+Layer effects show systematic patterns:
+
+- **Activation Steering**: Peak efficacy at PANL in layers 21–25; CC efficacy peaks layers 30–35
+- **Activation Patching**: PANL recovery peaks layer 25; CC recovery rises sharply after layer 30
+- **Attention Blocking**: PANL disruption peaks layers 22–28; CC disruption peaks 30–36
+- **Model architecture**: Gemma 3 27B has 62 total layers; effects concentrated in middle layers (20–35)
+
+These layer offsets reinforce the cached retrieval mechanism, with approximately 6–8 layer separation between PANL and CC effects indicating sequential information routing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa5a2da7-9be9-4dec-bbdf-9297c753d997",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "d0c9732f-7dcb-4e0f-b12d-e6327a9f2af2",
+  "toolUseResult": {
+    "bytes": 224534,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Key Findings on Verbal Confidence Computation in LLMs\n\n## (1) WHERE Confidence is Cached\n\nConfidence representations are cached at two critical positions:\n\n- **PANL (Post-Answer-Newline token)**: The newline token immediately following the answer, where confidence information first emerges and is stored in early-to-middle layers\n- **CC (Confidence-Colon token)**: The final prompt token where confidence is retrieved for verbalization in later layers\n\nThe paper states: \"confidence is gathered from answer tokens, cached at the first post-answer position, then retrieved for output.\"\n\n## (2) Information Flow Pathway\n\nThe attention blocking experiments reveal a sequential three-stage pathway:\n\n1. **Answer tokens → PANL** (layers 22–28): PANL attends to answer tokens, particularly the last answer token, to gather confidence information\n2. **PANL → CC** (layers 30–36): Confidence information is transferred from PANL to the confidence-colon position through intermediate tokens\n3. **CC → Output**: Final layer unembedding transforms the CC representation into verbalized confidence\n\nThe paper notes: \"information flow...answer tokens →→ PANL →→ CC\" with temporal ordering showing earlier layer effects at PANL compared to CC across all interventions.\n\n## (3) Linear Probing Results at Specific Positions\n\nDecoding analysis reveals position-specific strength patterns:\n\n- **PANL** shows earliest decodability of confidence magnitude (R² across layers in Figure 6)\n- **CC** shows confidence information decodable but at later layers than PANL\n- **PANL+1 (control)**: Information present but causally inert—probes decode information without behavioral effects\n\nThe findings demonstrate: \"confidence information is decodable from PANL at earlier layers than from CC, as predicted by the cached retrieval hypothesis.\"\n\n## (4) Variance Explained: Cached Representations vs. Token Log-Probabilities\n\nCritical variance partitioning results show cached representations capture substantially more variance:\n\n- **Token log-probabilities alone**: Explain only 8.4% of variance in verbal confidence (R²_CV = 0.084, r = 0.29)\n- **PANL/CC activations**: Explain \"substantial unique variance beyond log-probabilities,\" indicating \"a richer evaluation of question-answer fit\"\n\nThe paper emphasizes: \"confidence representations...are not reducible to token probability signals,\" suggesting second-order rather than first-order confidence computation.\n\n## (5) Specific Layers Mentioned\n\nLayer effects show systematic patterns:\n\n- **Activation Steering**: Peak efficacy at PANL in layers 21–25; CC efficacy peaks layers 30–35\n- **Activation Patching**: PANL recovery peaks layer 25; CC recovery rises sharply after layer 30\n- **Attention Blocking**: PANL disruption peaks layers 22–28; CC disruption peaks 30–36\n- **Model architecture**: Gemma 3 27B has 62 total layers; effects concentrated in middle layers (20–35)\n\nThese layer offsets reinforce the cached retrieval mechanism, with approximately 6–8 layer separation between PANL and CC effects indicating sequential information routing.",
+    "durationMs": 10117,
+    "url": "https://arxiv.org/html/2603.17839"
+  },
+  "sourceToolAssistantUUID": "fa5a2da7-9be9-4dec-bbdf-9297c753d997",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T15:41:43.861Z_
+
+<details><summary>↩ Tool result · `toolu_012RcPnRcyJopLgf13iuW3bz`</summary>
+
+```text
+Web search results for query: ""How do LLMs Compute Verbal Confidence" Kumaran Conmy 2603.17839 answer-adjacent cached retrieval mechanism results"
+
+Links: [{"title":"[2603.17839] How do LLMs Compute Verbal Confidence","url":"https://arxiv.org/abs/2603.17839"},{"title":"How do LLMs Compute Verbal Confidence","url":"https://arxiv.org/pdf/2603.17839"},{"title":"How do LLMs Compute Verbal Confidence?","url":"https://arxiv.org/html/2603.17839v1"},{"title":"fly51fly on X: \"[CL] How do LLMs Compute Verbal Confidence D Kumaran, A Conmy, F Barbero, S Osindero… [Google DeepMind] (2026) https://t.co/Eg3MbRks7u https://t.co/efitBcG7EK\" / X","url":"https://x.com/fly51fly/status/2034742652735037708"},{"title":"Verbal Confidence Saturation in 3–9B Open-Weight Instruction-Tuned LLMs: A Pre-Registered Psychometric Validity Screen","url":"https://arxiv.org/html/2604.22215"},{"title":"How do LLMs Compute Verbal Confidence | Computing Research Repository | DeepDyve","url":"https://www.deepdyve.com/lp/arxiv/how-do-llms-compute-verbal-confidence-gRipbFraNC"}]
+
+Based on the search results, here's what the research paper "How do LLMs Compute Verbal Confidence" (arXiv:2603.17839) by Kumaran, Conmy, and colleagues reveals:
+
+## Key Findings
+
+**Cached Retrieval Mechanism:**
+The researchers provide convergent evidence for cached retrieval, finding that confidence representations emerge at answer-adjacent positions before appearing at the verbalization site. Attention blocking pinpoints the information flow: confidence is gathered from answer tokens, cached at the first post-answer position, then retrieved for output.
+
+**Research Questions:**
+The paper addresses two questions: first, when confidence is computed - just-in-time when requested, or automatically during answer generation and cached for later retrieval; and second, what verbal confidence represents – token log-probabilities, or a richer evaluation of answer quality.
+
+**Beyond Token Log-Probabilities:**
+Linear probing and variance partitioning reveal that these cached representations explain substantial variance in verbal confidence beyond token log-probabilities, suggesting a richer answer quality evaluation rather than a simple fluency readout.
+
+**Study Models:**
+The research focused on Gemma 3 27B and Qwen 2.5 7B.
+
+**Implications:**
+These findings demonstrate that verbal confidence reflects automatic, sophisticated self-evaluation—not post-hoc reconstruction—with implications for understanding metacognition in LLMs and improving calibration.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "379b4030-6bc2-4da1-b447-a98f773b200b",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "fb86a68b-75c5-465a-8946-398aa06249d8",
+  "toolUseResult": {
+    "query": "\"How do LLMs Compute Verbal Confidence\" Kumaran Conmy 2603.17839 answer-adjacent cached retrieval mechanism results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Wvn49yN7BYr1FBzBQZyQpC",
+        "content": [
+          {
+            "title": "[2603.17839] How do LLMs Compute Verbal Confidence",
+            "url": "https://arxiv.org/abs/2603.17839"
+          },
+          {
+            "title": "How do LLMs Compute Verbal Confidence",
+            "url": "https://arxiv.org/pdf/2603.17839"
+          },
+          {
+            "title": "How do LLMs Compute Verbal Confidence?",
+            "url": "https://arxiv.org/html/2603.17839v1"
+          },
+          {
+            "title": "fly51fly on X: \"[CL] How do LLMs Compute Verbal Confidence D Kumaran, A Conmy, F Barbero, S Osindero… [Google DeepMind] (2026) https://t.co/Eg3MbRks7u https://t.co/efitBcG7EK\" / X",
+            "url": "https://x.com/fly51fly/status/2034742652735037708"
+          },
+          {
+            "title": "Verbal Confidence Saturation in 3–9B Open-Weight Instruction-Tuned LLMs: A Pre-Registered Psychometric Validity Screen",
+            "url": "https://arxiv.org/html/2604.22215"
+          },
+          {
+            "title": "How do LLMs Compute Verbal Confidence | Computing Research Repository | DeepDyve",
+            "url": "https://www.deepdyve.com/lp/arxiv/how-do-llms-compute-verbal-confidence-gRipbFraNC"
+          }
+        ]
+      },
+      "Based on the search results, here's what the research paper \"How do LLMs Compute Verbal Confidence\" (arXiv:2603.17839) by Kumaran, Conmy, and colleagues reveals:\n\n## Key Findings\n\n**Cached Retrieval Mechanism:**\nThe researchers provide convergent evidence for cached retrieval, finding that confidence representations emerge at answer-adjacent positions before appearing at the verbalization site. Attention blocking pinpoints the information flow: confidence is gathered from answer tokens, cached at the first post-answer position, then retrieved for output.\n\n**Research Questions:**\nThe paper addresses two questions: first, when confidence is computed - just-in-time when requested, or automatically during answer generation and cached for later retrieval; and second, what verbal confidence represents – token log-probabilities, or a richer evaluation of answer quality.\n\n**Beyond Token Log-Probabilities:**\nLinear probing and variance partitioning reveal that these cached representations explain substantial variance in verbal confidence beyond token log-probabilities, suggesting a richer answer quality evaluation rather than a simple fluency readout.\n\n**Study Models:**\nThe research focused on Gemma 3 27B and Qwen 2.5 7B.\n\n**Implications:**\nThese findings demonstrate that verbal confidence reflects automatic, sophisticated self-evaluation—not post-hoc reconstruction—with implications for understanding metacognition in LLMs and improving calibration."
+    ],
+    "durationSeconds": 10.360936835,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "379b4030-6bc2-4da1-b447-a98f773b200b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibrat…",
+  "leafUuid": "fb86a68b-75c5-465a-8946-398aa06249d8",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decomposing competing calibration biases in LLMs",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T15:41:46.814Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JzuUJtHqEMQ5YFnaTYdH4i`</summary>
+
+```json
+{
+  "query": "speed accuracy tradeoff fluency factual accuracy competing pressures language models generation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fb86a68b-75c5-465a-8946-398aa06249d8",
+  "isSidechain": false,
+  "requestId": "req_011CbCBVfJq5BHY9aYR2aPR6",
+  "type": "assistant",
+  "uuid": "89bfde12-6712-4197-ad0f-37b77e9e4e1b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014uEPxgNMCR86pXaoBYquZ2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2611,
+      "cache_read_input_tokens": 36941,
+      "output_tokens": 115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2611,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 115,
+          "cache_read_input_tokens": 36941,
+          "cache_creation_input_tokens": 2611,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2611
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-19T15:41:47.369Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TZfo8GgzpSkcMGTo3Jr9g4`</summary>
+
+```json
+{
+  "query": "recency bias primacy bias opposing LLM context window competing effects"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89bfde12-6712-4197-ad0f-37b77e9e4e1b",
+  "isSidechain": false,
+  "requestId": "req_011CbCBVfJq5BHY9aYR2aPR6",
+  "type": "assistant",
+  "uuid": "1f98e11e-72e0-45ba-8f24-e808b13b25c6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014uEPxgNMCR86pXaoBYquZ2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2611,
+      "cache_read_input_tokens": 36941,
+      "output_tokens": 115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2611,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 115,
+          "cache_read_input_tokens": 36941,
+          "cache_creation_input_tokens": 2611,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2611
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-19T15:41:54.952Z_
+
+<details><summary>↩ Tool result · `toolu_01JzuUJtHqEMQ5YFnaTYdH4i`</summary>
+
+```text
+Web search results for query: "speed accuracy tradeoff fluency factual accuracy competing pressures language models generation"
+
+Links: [{"title":"Quantifying the speed-accuracy trade-off of large language models on oral and maxillofacial surgery multiple-choice questions","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12630698/"},{"title":"Speed-accuracy tradeoffs in human speech production","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6128466/"},{"title":"Simpson's Paradox and the Accuracy-Fluency Tradeoff in Translation","url":"https://arxiv.org/pdf/2402.12690"},{"title":"Simpson's Paradox and the Accuracy-Fluency Tradeoff in ...","url":"https://aclanthology.org/2024.acl-short.9.pdf"},{"title":"The speed-accuracy tradeoff: history, physiology, methodology, and behavior - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC4052662/"}]
+
+Based on the search results, I found relevant information about speed-accuracy tradeoffs in various contexts:
+
+## Speed-Accuracy Tradeoff: General Concept
+
+Speed-accuracy tradeoffs are common across task domains and in creatures ranging from house-hunting ants and bumblebees to humans and monkeys.
+
+## Accuracy-Fluency Tradeoff in Language Models
+
+Regarding language models specifically, some parts of the literature argue that accuracy trades off with fluency, where translators choosing between alternatives cannot simultaneously maximize accuracy and fluency, because the most accurate translations are not the most fluent, and vice versa.
+
+Research suggests that accuracy and fluency should trade off, and models like noisy-channel translation models include weights for the two components that can be interpreted as the extent to which accuracy is prioritized over fluency, or vice versa.
+
+## Speed-Accuracy in Language Models
+
+The search results also revealed practical metrics such as response latency have been largely unexplored in evaluations of language model reliability, suggesting this is an emerging area of research interest.
+
+The search results provide information about accuracy-fluency tradeoffs in translation and language generation, though they don't extensively cover the broader competing pressures between speed, accuracy, and factual correctness in general language model generation. The results focus more on translation-specific analyses rather than comprehensive language model generation challenges.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "89bfde12-6712-4197-ad0f-37b77e9e4e1b",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "497ded27-d303-481a-9d79-e6da066613ad",
+  "toolUseResult": {
+    "query": "speed accuracy tradeoff fluency factual accuracy competing pressures language models generation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CCoad41Y9B4VsXmjhUn4KR",
+        "content": [
+          {
+            "title": "Quantifying the speed-accuracy trade-off of large language models on oral and maxillofacial surgery multiple-choice questions",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12630698/"
+          },
+          {
+            "title": "Speed-accuracy tradeoffs in human speech production",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6128466/"
+          },
+          {
+            "title": "Simpson's Paradox and the Accuracy-Fluency Tradeoff in Translation",
+            "url": "https://arxiv.org/pdf/2402.12690"
+          },
+          {
+            "title": "Simpson's Paradox and the Accuracy-Fluency Tradeoff in ...",
+            "url": "https://aclanthology.org/2024.acl-short.9.pdf"
+          },
+          {
+            "title": "The speed-accuracy tradeoff: history, physiology, methodology, and behavior - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4052662/"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about speed-accuracy tradeoffs in various contexts:\n\n## Speed-Accuracy Tradeoff: General Concept\n\nSpeed-accuracy tradeoffs are common across task domains and in creatures ranging from house-hunting ants and bumblebees to humans and monkeys.\n\n## Accuracy-Fluency Tradeoff in Language Models\n\nRegarding language models specifically, some parts of the literature argue that accuracy trades off with fluency, where translators choosing between alternatives cannot simultaneously maximize accuracy and fluency, because the most accurate translations are not the most fluent, and vice versa.\n\nResearch suggests that accuracy and fluency should trade off, and models like noisy-channel translation models include weights for the two components that can be interpreted as the extent to which accuracy is prioritized over fluency, or vice versa.\n\n## Speed-Accuracy in Language Models\n\nThe search results also revealed practical metrics such as response latency have been largely unexplored in evaluations of language model reliability, suggesting this is an emerging area of research interest.\n\nThe search results provide information about accuracy-fluency tradeoffs in translation and language generation, though they don't extensively cover the broader competing pressures between speed, accuracy, and factual correctness in general language model generation. The results focus more on translation-specific analyses rather than comprehensive language model generation challenges."
+    ],
+    "durationSeconds": 8.132597414999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "89bfde12-6712-4197-ad0f-37b77e9e4e1b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T15:41:54.957Z_
+
+<details><summary>↩ Tool result · `toolu_01TZfo8GgzpSkcMGTo3Jr9g4`</summary>
+
+```text
+Web search results for query: "recency bias primacy bias opposing LLM context window competing effects"
+
+Links: [{"title":"Positional Biases Shift as Inputs Approach Context Window Limits","url":"https://arxiv.org/html/2508.07479v1"},{"title":"[2508.07479] Positional Biases Shift as Inputs Approach Context Window Limits","url":"https://arxiv.org/abs/2508.07479"},{"title":"Positional Biases Shift as Inputs Approach Context Window ...","url":"https://arxiv.org/pdf/2508.07479"},{"title":"ATTENTION SORTING COMBATS RECENCY BIAS IN LONG CONTEXT LANGUAGE MODELS","url":"https://arxiv.org/pdf/2310.01427"},{"title":"The Context Window Paradox: Why Bigger Isn't Always Better in AI - DEV Community","url":"https://dev.to/suryadeepsinh_gohil/the-context-window-paradox-why-bigger-isnt-always-better-in-ai-1clj"},{"title":"Lost in the Middle: An Emergent Property from Information Retrieval Demands in LLMs","url":"https://arxiv.org/pdf/2510.10276"},{"title":"LLM Position Bias: Primacy and Recency Effects in Prompts | IntuitionLabs","url":"https://intuitionlabs.ai/articles/llm-position-bias-primacy-recency-effects"}]
+
+Based on the search results, here's what research has found about how recency and primacy bias interact as competing effects in LLM context windows:
+
+## Key Findings on Opposing Biases
+
+Prior work has identified positional biases, such as the Lost in the Middle (LiM) effect, where models perform better when information appears at the beginning (primacy bias) or end (recency bias) of the input, rather than in the middle.
+
+However, the relationship between these competing biases is more nuanced than a simple balance. The LiM effect is strongest when inputs occupy up to 50% of a model's context window. Beyond that, the primacy bias weakens, while recency bias remains relatively stable.
+
+## How Context Window Size Affects the Competition
+
+As inputs approach the context window limits, the dynamics shift significantly. As inputs reach a model's context window size, the primacy bias drops and the LiM effect disappears. This suggests that recency bias becomes the dominant positional bias at longer context lengths, while primacy bias fades.
+
+As context gets longer, the primacy bias towards early documents becomes smaller and we see mostly the recency bias. The mechanism behind this appears to be that the most informative tokens for predicting a particular token are typically the most recent ones, and during pre-training, this induces a learned bias to attend to recent tokens.
+
+In summary, primacy and recency bias operate as opposing effects that shift in relative strength depending on context window usage—with recency bias winning out as inputs grow longer.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f98e11e-72e0-45ba-8f24-e808b13b25c6",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "581a44b1-13c1-477a-b786-8284a38fa8e7",
+  "toolUseResult": {
+    "query": "recency bias primacy bias opposing LLM context window competing effects",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CUfyATEPgDJegFSGVjNMyH",
+        "content": [
+          {
+            "title": "Positional Biases Shift as Inputs Approach Context Window Limits",
+            "url": "https://arxiv.org/html/2508.07479v1"
+          },
+          {
+            "title": "[2508.07479] Positional Biases Shift as Inputs Approach Context Window Limits",
+            "url": "https://arxiv.org/abs/2508.07479"
+          },
+          {
+            "title": "Positional Biases Shift as Inputs Approach Context Window ...",
+            "url": "https://arxiv.org/pdf/2508.07479"
+          },
+          {
+            "title": "ATTENTION SORTING COMBATS RECENCY BIAS IN LONG CONTEXT LANGUAGE MODELS",
+            "url": "https://arxiv.org/pdf/2310.01427"
+          },
+          {
+            "title": "The Context Window Paradox: Why Bigger Isn't Always Better in AI - DEV Community",
+            "url": "https://dev.to/suryadeepsinh_gohil/the-context-window-paradox-why-bigger-isnt-always-better-in-ai-1clj"
+          },
+          {
+            "title": "Lost in the Middle: An Emergent Property from Information Retrieval Demands in LLMs",
+            "url": "https://arxiv.org/pdf/2510.10276"
+          },
+          {
+            "title": "LLM Position Bias: Primacy and Recency Effects in Prompts | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/llm-position-bias-primacy-recency-effects"
+          }
+        ]
+      },
+      "Based on the search results, here's what research has found about how recency and primacy bias interact as competing effects in LLM context windows:\n\n## Key Findings on Opposing Biases\n\nPrior work has identified positional biases, such as the Lost in the Middle (LiM) effect, where models perform better when information appears at the beginning (primacy bias) or end (recency bias) of the input, rather than in the middle.\n\nHowever, the relationship between these competing biases is more nuanced than a simple balance. The LiM effect is strongest when inputs occupy up to 50% of a model's context window. Beyond that, the primacy bias weakens, while recency bias remains relatively stable.\n\n## How Context Window Size Affects the Competition\n\nAs inputs approach the context window limits, the dynamics shift significantly. As inputs reach a model's context window size, the primacy bias drops and the LiM effect disappears. This suggests that recency bias becomes the dominant positional bias at longer context lengths, while primacy bias fades.\n\nAs context gets longer, the primacy bias towards early documents becomes smaller and we see mostly the recency bias. The mechanism behind this appears to be that the most informative tokens for predicting a particular token are typically the most recent ones, and during pre-training, this induces a learned bias to attend to recent tokens.\n\nIn summary, primacy and recency bias operate as opposing effects that shift in relative strength depending on context window usage—with recency bias winning out as inputs grow longer."
+    ],
+    "durationSeconds": 7.584869298000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1f98e11e-72e0-45ba-8f24-e808b13b25c6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55 · 2026-05-19T15:41:54.962Z_
+
+```json
+{
+  "parentUuid": "581a44b1-13c1-477a-b786-8284a38fa8e7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "4544a833-886e-4ad2-aae7-6f3271c3606c",
+  "timestamp": "2026-05-19T15:41:54.962Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-19T15:43:01.479Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to address all 7 reviewer issues. Let me synthesize:
+
+1. **"How do LLMs Compute Verbal Confidence" (2603.17839)**: Kumaran, Conmy et al. show confidence is cached at the post-answer-newline (PANL) token position, with information flowing answer tokens → PANL (layers 22-28) → CC/confidence-colon (layers 30-36). Token log-probs explain only 8.4% of variance. This directly validates Phase 0B's token-position-specific extraction strategy. 
+
+2. I'm testing with Gemma 3 27B and Qwen 2.5 7B to ensure the findings generalize across model families.
+
+3. For the source attribution confound, I need to add a control where the model sees its own answer but attributed to another LLM—this isolates whether the model responds differently to its own content versus external content with identical information.
+
+4. **CCPS (2505.21772)** achieves ~55% ECE reduction and 21% Brier reduction on Llama/Qwen/Mistral 8B models by calibrating confidence through probing perturbed representation stability.
+
+5. For generalizability, I should identify 2-3 other competing-bias pairs like sycophantic agreement versus truthfulness (shown to be separable in "Sycophancy Is Not One Thing"), primacy versus recency bias (opposing positional biases that shift dominance with context length), and anchoring versus adjustment mechanisms.
+
+6. The sycophancy paper decomposes the phenomenon into distinct components—sycophantic agreement, sycophantic praise, and genuine agreement—each independently steerable through difference-in-means, activation additions, and subspace geometry analysis.
+
+7. Looking at related work on uncertainty and correctness encoding, pure incorrectness features appear functionally inert despite being statistically distinguishable, but suppressing confounded features yields meaningful improvements in accuracy and entropy reduction with high AUROC from just a few features—this aligns with the classification-correction gap I'm exploring.
+
+8. The CogBias 97.8% figure I cited isn't directly verifiable from the abstract, which mentions linearly separable directions and steering reduction but not that specific accuracy claim, so I need to add a caveat there.
+
+Now I'm weighing whether this needs a minor fix, major revision, or a fundamental pivot in approach.
+
+The reviewer acknowledges the core architecture is sound and frames these as small, focused additions, but the stagnation pattern across three rounds—only moving from 3.2 to 3.5—suggests something deeper might be off. Looking at the feedback holistically, the consistent thread is that I keep missing relevant references and methodological controls that would strengthen the proposal. The conceptual foundation is solid, but the execution has systematic gaps. The fact that all four issues from round 6 went unaddressed points to a process failure rather than a flawed idea.
+
+This feels like a major revision in terms of thoroughness—I need to systematically address seven distinct issues with real depth—but not a conceptual pivot. The architecture holds. What's missing are the five papers I should integrate, a methodological control for CSB attribution, a discussion of generalizability, and verification of that CogBias claim. Now I'm ready to write the complete revised version.
+
+I need to weave in all five new references throughout the JSON structure, making sure each one lands where it adds the most value rather than just listing them. The core problem section gets "Sycophancy Is Not One Thing" plus Patel et al. and CCPS. The opportunity section validates Phase 0B with the Kumaran & Conmy work on verbal confidence extraction, adds the same references, and fixes that CogBias percentage with appropriate caveats. The landscape section distributes all five references strategically and adds a generalizability paragraph that identifies competing-bias pairs beyond sycophancy. The approach section needs to strengthen Phase 0B with the new extraction validation work.
+
+For the CogBias 97.8% figure, I'm going to be more precise about what that number actually represents—it's about linear separability rather than a raw accuracy claim—and note where in the paper that specific figure appears so readers can verify it themselves.
+
+On the CSB attribution control, the reviewer's pointing out a real gap: my current design conflates content changes with attribution changes. I need to add a condition where the model's own answer gets attributed to another LLM, which gives me a proper 2×2 design. This way I can isolate the attribution effect from the content effect—comparing self-attributed versus other-attributed versions of the same answer shows whether CSB is really about ownership, while comparing different answers under self-attribution shows the content contribution.
+
+For generalizability, I'm thinking about pairs of opposing biases that could both be active simultaneously: sycophantic agreement versus truthfulness commitment (these are documented as separable components with known tension), primacy versus recency bias (they shift dominance depending on context length), and anchoring versus base-rate neglect in probability tasks (they pull in opposite directions when the anchor conflicts with the base rate). The key insight is that CSB and CEO are interesting precisely because they're simultaneously active and opposing. the same instances. Good candidate pairs should share this property:
+
+1. **Sycophantic agreement vs. factual accuracy commitment**: When a user states something incorrect and asks the model to evaluate it, sycophancy pulls toward agreement while truthfulness training pulls toward correction. These are simultaneously active on the same instance. "Sycophancy Is Not One Thing" shows sycophancy sub-components are separable.
+
+2. **Primacy bias vs. recency bias**: In multi-document QA or list-based tasks, these opposing positional biases are simultaneously active and can partially cancel or one can dominate, creating heterogeneous attention patterns.
+
+3. **Anchoring to prior output vs. evidence updating**: In multi-turn reasoning, models may anchor to their initial answer while also being influenced by new evidence, which generalizes the CSB/CEO framework beyond the specific Kumaran paradigm.
+
+Now I'm thinking through how "Sycophancy Is Not One Thing" serves as a methodological precedent. The key difference is that their sub-components pull behavior in similar directions with different flavors, whereas CSB and CEO are genuinely opposing forces creating interference on the same instances—that's what makes our setting distinct.
+
+I have enough material now. Let me write the full revision incorporating all five new papers, the 2×2 CSB attribution control, the generalizability section, and systematic responses to all seven issues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4544a833-886e-4ad2-aae7-6f3271c3606c",
+  "isSidechain": false,
+  "requestId": "req_011CbCBWUjNasaCsQ7965roK",
+  "type": "assistant",
+  "uuid": "e8e2dce3-cd12-44d1-a17e-3cff654bfb6b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TGUGwadTNNmuJyrgL15LMM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1577,
+      "cache_read_input_tokens": 39552,
+      "output_tokens": 18621,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1577,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 18621,
+          "cache_read_input_tokens": 39552,
+          "cache_creation_input_tokens": 1577,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1577
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-19T15:43:04.385Z_
+
+Now I have thorough research on all 7 issues. Let me compile the findings and draft the complete revision.
+
+Key research findings:
+- **"How do LLMs Compute Verbal Confidence" (2603.17839)**: Confidence is cached at the Post-Answer-Newline (PANL) position, flowing answer tokens → PANL (layers 22-28) → CC (layers 30-36). Token log-probs explain only 8.4% of variance. Studied on Gemma 3 27B and Qwen 2.5 7B.
+- **"Sycophancy Is Not One Thing" (2509.21305)**: Decomposes sycophancy into sycophantic agreement, sycophantic praise, and genuine agreement using difference-in-means. Each independently steerable. Co-existing but NOT opposing.
+- **Patel et al. (2604.19974)**: Pure incorrectness features are "functionally inert" — near-zero impact when suppressed despite being statistically decodable. AUROC ~0.79 from 3 features. Independent SAE-based confirmation of classification-correction gap.
+- **CCPS (2505.21772)**: ~55% ECE reduction, 21% Brier reduction via perturbation-stability probing on Llama/Qwen/Mistral 8B-32B.
+- **CogBias 97.8%**: NOT verifiable from abstract or accessible content. Abstract mentions "linearly separable" and 26-32% steering reduction but not this specific number.
+
+Now I'll produce the complete revised JSON:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8e2dce3-cd12-44d1-a17e-3cff654bfb6b",
+  "isSidechain": false,
+  "requestId": "req_011CbCBWUjNasaCsQ7965roK",
+  "type": "assistant",
+  "uuid": "b505dc08-a03a-4e66-91e3-3402a1082260",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TGUGwadTNNmuJyrgL15LMM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1577,
+      "cache_read_input_tokens": 39552,
+      "output_tokens": 18621,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1577,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 18621,
+          "cache_read_input_tokens": 39552,
+          "cache_creation_input_tokens": 1577,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1577
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-19T15:49:29.584Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01ADVhga4LcqMKnt2etEeKZY`</summary>
+
+```json
+{
+  "description": "Draft complete revised JSON",
+  "prompt": "I need you to help me write a complete, valid JSON object. I will provide the full content for each field. Your job is to assemble it into proper JSON with correct escaping. Output ONLY the JSON object, nothing else.\n\nHere are the fields and their content. Please produce the complete JSON:\n\n**title**: \"Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibration for Targeted Activation Correction\"\n\n**core_problem**: LLM miscalibration arises from at least two competing biases — choice-supportive bias (CSB, inflating confidence in initial answers) and contradictory-evidence overweighting (CEO, causing excessive confidence revision under criticism) — that are simultaneously active and pull confidence in opposite directions on the same instances (Kumaran et al., Nature MI 2026). This creates a bias interference problem: competing biases can partially cancel (producing illusory calibration where global metrics look good but localized failures persist) or one can dominate instance-by-instance (producing heterogeneous over/under-confidence patterns). Recent work on hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) independently confirms that global reliability diagrams 'hide rather than reveal calibration failures' because 'opposing errors cancel when aggregated by confidence' — but provides no mechanistic explanation for WHY opposing errors exist. Five lines of related work address parts of this problem but not the whole: (1) CogBias (Huang et al., 2604.01366) demonstrates that different cognitive bias families (Judgment, Information Processing, Social, Response) need different interventions — prompt debiasing 'substantially reduces Response biases but backfires for Judgment biases' — establishing the principle of family-dependent mitigation. However, CogBias addresses independently-active biases on different task types, not simultaneously competing biases on the same instances. (2) Billa (2604.15557) proposes a three-regime steerability framework (concept not represented / nonlinear encoding / output-aligned) with Linear Accessibility Profile (LAP) as a training-free diagnostic (ρ=0.86–0.91 correlation with steering effectiveness), establishing the routing-by-steerability paradigm — but operates per-concept with synthetic binary features, not per-instance with naturalistic competing biases. (3) MERA (Hedström et al., ICML 2025) provides adaptive steering strength and abstention with non-degradation guarantees — but treats errors monolithically with a single probe. (4) SteerConf (Zhou et al., NeurIPS 2025) achieves 29% AUROC increase and 16% ECE reduction via prompt-level confidence steering with multi-prompt aggregation — demonstrating that calibration is steerable, but operating entirely at the prompt level without mechanistic decomposition or bias-specific intervention. (5) 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) demonstrates that a complex behavioral phenomenon (sycophancy) can be decomposed into independently steerable sub-components (sycophantic agreement vs. sycophantic praise vs. genuine agreement) using difference-in-means and activation additions — establishing the decompose-then-steer paradigm. However, their sub-components are co-existing behaviors pulling in similar directions, not opposing biases creating interference effects. The classification-correction gap (Liu, 2605.05715; independently confirmed via SAE analysis by Patel et al., 2604.19974, who showed that 'pure incorrectness features' are 'functionally inert' despite being statistically decodable) adds a further obstacle: linearly decodable bias directions may not be linearly steerable due to entanglement with task-critical computation. Can we move from behavioral evidence of competing biases to activation-level characterization, measure their asymmetric steerability profiles, and demonstrate that decomposed correction outperforms monolithic methods specifically because it resolves bias interference?\n\n**opportunity**: Kumaran et al. (Nature Machine Intelligence, 2026; arXiv 2507.03120) established behavioral evidence that LLM miscalibration results from two mechanistically distinct biases: choice-supportive bias inflates confidence in selected answers (+0.21 confidence boost, p<0.001), while contradictory-advice overweighting causes models to over-react to opposing evidence (overweighting ratio 2.58 for opposing vs. 1.095 for supporting advice). Critically, both biases are simultaneously active in the 'Answer Shown + Opposite Advice' condition, demonstrating they are distinct mechanisms rather than a single unified bias. However, Kumaran et al. provided only behavioral evidence with no activation-level analysis, and their study covered Gemma 3 (12B/27B), GPT-4o, o1-preview, and DeepSeek R1 7B — but not the Llama or Qwen families that are widely used for mechanistic interpretability research.\n\nKumaran, Conmy et al. ('How do LLMs Compute Verbal Confidence,' arXiv 2603.17839, March 2026) provided the mechanistic foundation for confidence computation: verbal confidence is not computed just-in-time but cached at the Post-Answer-Newline (PANL) token position, with information flowing from answer tokens → PANL (layers 22–28) → Confidence-Colon position (layers 30–36) in Gemma 3 27B. Critically, token log-probabilities explain only 8.4% of variance in verbal confidence (R²_CV = 0.084), while PANL-cached representations explain substantial additional variance — demonstrating that confidence reflects 'automatic, sophisticated self-evaluation' rather than simple fluency readout. This directly validates our Phase 0B token-position-specific extraction strategy: extracting at the PANL and confidence-bearing positions targets where bias-relevant confidence signals are mechanistically concentrated, rather than averaging across all positions where prompt-content confounds dominate. Studied on Gemma 3 27B and Qwen 2.5 7B — overlapping with our target model families.\n\nCogBias (Huang et al., arXiv 2604.01366, April 2026) independently demonstrated that cognitive biases are encoded as linearly separable directions in LLM activation space, and that bias-family-specific intervention is both viable and necessary: activation steering achieves 26–32% bias reduction overall, but effectiveness varies dramatically by family (up to 19pp improvement for Judgment biases on Qwen vs. minimal effect for others). Importantly, CogBias found that despite near-orthogonal bias representations across model architectures, steering reduced bias at similar rates, suggesting shared functional organization — which is encouraging for cross-model generalization. This establishes a crucial principle — different biases need different interventions — but CogBias addresses biases that are independently active on different task types, not biases that compete simultaneously on the same calibration task. (Note: CogBias reports high linear separability of bias directions; the specific probe accuracy figures are drawn from the paper body rather than the abstract, and we cite the abstract-reported 26–32% steering reduction as the primary quantitative result.)\n\n'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) provides the closest methodological precedent for our decompose-then-steer approach. Using difference-in-means directions, activation additions, and subspace geometry across multiple models, they decomposed sycophancy into distinct sub-components (sycophantic agreement, sycophantic praise, genuine agreement) and demonstrated that each can be independently amplified or suppressed without affecting the others, with representational structure consistent across model families and scales. This establishes the feasibility of the core methodological approach — decomposing a complex behavioral phenomenon into independently steerable activation-level sub-components. The critical distinction from our setting: sycophancy sub-components are co-existing behaviors pulling in broadly similar directions (toward user-pleasing outputs), whereas CSB and CEO are opposing biases creating destructive interference. Independent steerability of co-aligned components does not guarantee successful decomposition of opposing components, where partial cancellation in activation space may make individual directions harder to isolate.\n\nBilla (arXiv 2604.15557, April 2026) proposed a three-regime framework for steerability prediction: (1) concept not represented (no method works), (2) nonlinear encoding (nonlinear methods needed), (3) output-aligned (linear steering works). The Linear Accessibility Profile (LAP) — a training-free logit-lens diagnostic — predicts steering effectiveness at ρ=0.86–0.91 across 24 binary concept families and 5 models. This establishes the routing-by-steerability paradigm that informs our intervention strategy — but LAP operates per-concept with synthetic binary features, not per-instance with naturalistic biases, and does not address bias decomposition.\n\nSteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) demonstrated that prompt-level confidence steering — using systematically varied steering prompts spanning 'very cautious' to 'very confident,' with multi-prompt consistency aggregation — achieves 29% AUROC increase and 16% ECE reduction across seven benchmarks on GPT-3.5, LLaMA 3, and GPT-4 without training. SteerConf establishes that calibration is steerable at the behavioral level and provides a strong prompt-level baseline, but operates without mechanistic decomposition and cannot distinguish between or independently address competing bias sources.\n\nMiao & Ungar (arXiv 2603.25052, 2026) showed that calibration and verbalized confidence are linearly encoded but orthogonal in the residual stream (cosine similarity <0.04 across layers in three 7–8B models), achieving 4–7× ECE improvement via adaptive steering. Liu (arXiv 2605.05715, May 2026) demonstrated the classification-correction gap: linearly decodable failure directions (71.6% balanced accuracy) yield Δ≈0 under 29 linear steering configurations due to 85–88% overlap with task-critical computation (specificity ratio ≤0.152), but a learned nonlinear bottleneck MLP achieves Δ=+2.8pp where all linear methods fail. Patel et al. ('Are LLM Uncertainty and Correctness Encoded by the Same Features?', arXiv 2604.19974, April 2026) independently confirmed the classification-correction gap via sparse autoencoder (SAE) analysis on Llama-3.1-8B and Gemma-2-9B: they found that 'pure incorrectness features' are 'functionally inert' — statistically decodable but producing near-zero accuracy change when suppressed — while confounded features encoding both uncertainty and correctness yield 1.1% accuracy improvement and 75% entropy reduction upon suppression, with just 3 mid-layer features achieving AUROC ~0.79. This SAE-based functional dissociation reinforces that Phase 1A's separability success does NOT guarantee Phase 3's intervention success — our Phase 1B steerability assessment is essential precisely because decodable directions may be functionally inert. MERA (Hedström et al., ICML 2025; arXiv 2510.13290) established adaptive steering with non-degradation guarantees via constrained optimization — but operates with a single monolithic error probe.\n\nKobalczyk & van der Schaar (arXiv 2605.13484, May 2026) independently confirmed that global calibration metrics mask input-dependent heterogeneity: across 48 model–dataset pairs, they discovered hidden miscalibration regimes where 'opposing errors cancel when aggregated by confidence,' with local correction outperforming confidence-only methods. This provides independent evidence for our bias interference hypothesis — the hidden regimes may correspond to regions where CSB vs. CEO dominance shifts.\n\nCCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) achieves ~55% ECE reduction and 21% Brier score reduction via perturbation-stability probing — applying targeted adversarial perturbations to final hidden states and training a lightweight classifier on response features — across Llama, Qwen, and Mistral models at 8B–32B scale. CCPS represents a strong representation-based calibration baseline operating on overlapping model families and scales, though it uses monolithic perturbation without bias decomposition.\n\nThe 'Confidence Manifold' study (arXiv 2602.08159) found correctness signals occupy only 3–8 dimensions with simple mean-shift geometry across 9 models, suggesting calibration-related directions may have more favorable specificity profiles than Liu's entangled overthinking directions. The nonlinear steering landscape (ODESteer, ICLR 2026; Curveball Steering, 2026; FLAS, 2026) provides powerful alternatives when linear steering fails. Spherical Steering (ICML 2026) preserves activation norms via geodesic rotation, and COAST (2605.01167) minimizes collateral damage along non-target directions.\n\nThe convergence of (a) behavioral evidence of competing biases with quantitative effect sizes, (b) mechanistic understanding of where confidence is computed and cached in the residual stream, (c) CogBias's demonstration that bias-family-specific intervention works, (d) 'Sycophancy Is Not One Thing's proof that complex behaviors can be decomposed into independently steerable sub-components, (e) Billa's steerability-based routing paradigm with a training-free diagnostic, (f) SteerConf's demonstration that calibration is steerable even at the prompt level, (g) the decodable–steerable distinction with quantitative diagnostics from both linear (Liu) and SAE-based (Patel et al.) analyses, (h) hidden miscalibration regimes suggesting opposing errors cancel, and (i) adaptive frameworks with non-degradation guarantees creates an opportunity for the next step: extending from independently-active bias families and co-existing behavioral sub-components to simultaneously competing calibration biases with per-instance diagnosis and correction.\n\n**landscape**: Kumaran et al. (Nature MI, 2026) identified competing biases (CSB and CEO) via behavioral experiments on Gemma 3 12B/27B, GPT-4o, o1-preview, and DeepSeek R1 7B but proposed no correction framework and provided no mechanistic (activation-level) evidence. Importantly, the qualitative pattern — overconfidence from CSB and underconfidence from CEO — held across all tested models, but effect magnitudes varied substantially (GPT-4o and Gemma 27B showed the strongest CEO effects; DeepSeek R1 7B failed to follow the advice paradigm entirely), and no Llama or Qwen models were tested. Kumaran, Conmy et al. ('How do LLMs Compute Verbal Confidence,' arXiv 2603.17839, March 2026) subsequently provided the mechanistic foundation for confidence computation, showing that verbal confidence is cached at the Post-Answer-Newline (PANL) token position rather than computed just-in-time: information flows from answer tokens → PANL (layers 22–28 in Gemma 3 27B) → Confidence-Colon position (layers 30–36), with PANL-cached representations explaining substantial variance beyond token log-probabilities (which account for only R²=0.084). This mechanistic map directly informs our extraction strategy — we target PANL and confidence-bearing positions rather than averaging across all tokens. Miao & Ungar (arXiv 2603.25052, 2026) demonstrated that calibration accuracy and verbalized confidence are linearly encoded but orthogonal in 7–8B models (cosine similarity <0.04 across layers), and introduced adaptive steering achieving 4–7× ECE improvement — but they target the confidence–accuracy misalignment gap, not the competing bias structure.\n\nCogBias (Huang et al., arXiv 2604.01366, April 2026) is the closest work on bias decomposition. It organizes cognitive biases into four families (Judgment, Information Processing, Social, Response), demonstrates that biases are encoded as linearly separable directions in LLM activation space via linear probes under a contrastive design, and shows family-dependent mitigation: activation steering achieves 26–32% overall bias reduction, but prompt-level debiasing 'substantially reduces Response biases but backfires for Judgment biases,' with up to 19pp improvement for Judgment biases via steering on Qwen. Despite near-orthogonal bias representations across model architectures (Llama and Qwen), steering reduced bias at similar rates — suggesting shared functional organization that is encouraging for cross-architecture generalization. (Note: the abstract reports linear separability and 26–32% steering reduction; specific probe classification accuracy figures are from the paper body and are not independently verifiable from the abstract alone.) CogBias establishes two principles that directly motivate our work: (a) cognitive biases are linearly encoded and separable, and (b) different bias families require different interventions. However, CogBias addresses biases that are independently active on different task types — each task primarily involves one bias family. Our setting involves two biases simultaneously active and competing on the same instances, creating interference effects that CogBias's framework does not model. CogBias also does not assess steerability before intervention or route between intervention types.\n\n'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) is the closest methodological precedent for decomposing a complex behavioral phenomenon into independently steerable activation-level components. Using difference-in-means directions, activation additions, and subspace geometry, they decomposed sycophancy into sycophantic agreement, sycophantic praise, and genuine agreement — demonstrating that each can be independently amplified or suppressed without affecting the others, with consistent representational structure across model families and scales. The key distinction from our proposal: their sub-components are co-existing behaviors that pull in broadly similar directions (various forms of user-pleasing output), while our target biases (CSB and CEO) are simultaneously OPPOSING — pulling confidence in opposite directions on the same instances. This distinction matters methodologically: co-aligned sub-components may be easier to isolate via difference-in-means because they do not create destructive interference in activation space. Opposing biases may partially cancel, making individual directions harder to extract — which is precisely why our Phase 0B confound controls and Phase 1A separability validation are essential. If our decomposition succeeds, it would extend the decompose-then-steer paradigm from co-existing to opposing sub-components, a strictly harder problem.\n\nBilla (arXiv 2604.15557, April 2026) proposes the most direct methodological precedent for our routing logic. The three-regime framework — (1) concept not represented (no method works), (2) nonlinear encoding (nonlinear methods needed), (3) output-aligned (linear steering works) — directly parallels our Route C/B/A structure. LAP (Linear Accessibility Profile), computed as logit-lens accuracy at each layer without training, predicts steering effectiveness at ρ=0.86–0.91 across 24 binary concept families on 5 models (Pythia-2.8B to Llama-8B). Key distinctions from our work: (a) Billa operates per-concept with synthetic binary features (e.g., gender, sentiment, parity), while we operate per-instance with naturalistic competing calibration biases; (b) Billa's three regimes assume a single concept direction per analysis, while we must decompose competing bias directions that are simultaneously active; (c) LAP's above-floor correlation weakens on smaller models (ρ=0.50–0.52 on Pythia-2.8B), and its applicability to non-binary, continuous calibration constructs is untested. We incorporate LAP as a complementary diagnostic alongside Liu's specificity ratio, adapting it to assess per-layer output-alignment of each decomposed bias direction.\n\nSteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) demonstrated prompt-level confidence steering achieving 29% AUROC increase and 16% ECE reduction across seven benchmarks on GPT-3.5, LLaMA 3, and GPT-4. SteerConf uses systematically varied steering prompts (spanning 'very cautious' to 'very confident'), measures consistency across multiple steered confidence outputs, and aggregates via linear quantization — all without training. SteerConf represents the state-of-the-art in training-free prompt-level calibration steering and serves as an important baseline: activation-level methods should demonstrate clear advantages over this prompt-level approach. However, SteerConf operates entirely at the behavioral level without mechanistic decomposition, cannot distinguish between competing bias sources, and cannot apply bias-specific corrections.\n\nCCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) achieves ~55% ECE reduction and 21% Brier score reduction by probing perturbation stability — applying targeted adversarial perturbations to final hidden states and training a lightweight correctness classifier on the model's response features. Evaluated on Llama, Qwen, and Mistral at 8B–32B scale across MMLU and MMLU-Pro, CCPS represents a strong representation-based calibration method operating on overlapping model families. However, CCPS uses monolithic perturbation without bias decomposition and does not distinguish between different sources of miscalibration.\n\nLiu (arXiv 2605.05715, May 2026) is the most directly relevant advance on the decodable–steerable gap: linearly decodable failure directions (71.6% balanced accuracy on Llama-3.1-8B) yield Δ≈0 across five families of linear steering (29 configurations) because the failure direction has 85–88% overlap with task-critical computation (specificity ratio ≤0.152). A learned nonlinear bottleneck MLP (4096→64→4096) achieves Δ=+2.8pp (p=0.025) where linear methods fail. Patel et al. ('Are LLM Uncertainty and Correctness Encoded by the Same Features?', arXiv 2604.19974, April 2026) independently confirmed this classification-correction gap via sparse autoencoder (SAE) analysis on Llama-3.1-8B and Gemma-2-9B: they found a functional dissociation between uncertainty and correctness features, with 'pure incorrectness features' being 'functionally inert' — statistically decodable yet producing near-zero accuracy change when suppressed. Only confounded features (encoding both signals) yielded meaningful behavioral effects (1.1% accuracy improvement, 75% entropy reduction). This SAE-based evidence complements Liu's linear-steering analysis: even when features are identifiable at the individual neuron/SAE-feature level, their functional role may be null — reinforcing that Phase 1A separability is necessary but insufficient, and Phase 1B steerability assessment is the critical gate. However, both Liu and Patel et al. studied single failure modes, not decomposed competing biases.\n\nTsujimura & Tagade (arXiv 2508.17182, Aug 2025) decomposed LLM assertiveness into emotional and logical sub-components via unsupervised clustering on Llama-3.2-1B-Instruct (645 samples) — methodologically adjacent but critically different: their decomposition is descriptive (post-hoc ChatGPT-labeled clusters) rather than causally grounded in identified cognitive biases, uses a single 1B model, reports no calibration metrics, and addresses assertiveness rather than calibration.\n\nHedström et al. (MERA, ICML 2025; arXiv 2510.13290) established the most principled framework for selective steering: MERA solves min ‖v‖² s.t. p̂(h+v) ≤ α with Hoeffding-based non-degradation guarantees via Bonferroni correction. However, MERA operates with a single monolithic error probe — it cannot decompose calibration errors into opposing sources or route to different intervention types based on per-direction steerability.\n\nKobalczyk & van der Schaar (arXiv 2605.13484, May 2026) discovered hidden miscalibration regimes where input-dependent calibration heterogeneity is prevalent across 48 model–dataset pairs: global reliability diagrams hide opposing over/under-confidence errors that cancel when aggregated. This provides independent empirical support for our bias interference hypothesis but offers no mechanistic explanation for WHY opposing errors exist and no bias decomposition.\n\nThe nonlinear steering landscape has matured rapidly. ODESteer (Chen et al., ICLR 2026; arXiv 2602.17560) formulated a unified ODE-based framework via barrier functions. Curveball Steering (Raval et al., arXiv 2603.09313, Mar 2026) introduced polynomial kernel PCA for curved activation geometry (+47% over linear in high-curvature regimes). FLAS (arXiv 2605.05892, May 2026) learned concept-conditioned velocity fields, first outperforming prompting on AxBench. These address geometric limitations of linear steering but provide neither bias decomposition nor steerability diagnosis.\n\nThe 'Wired for Overconfidence' paper (2604.01457, April 2026) identifies overconfidence circuits in 3B models via monolithic activation steering (96.9% ECE reduction on PopQA) but treats overconfidence as a single phenomenon. Ji et al. (EMNLP 2025) modulates a single Verbal Uncertainty Feature. CORAL (arXiv 2602.06022) achieves 49% ECE improvement via a single MLP probe. The 'Confidence Manifold' study (arXiv 2602.08159) found correctness signals in 3–8 dimensions with simple mean-shift geometry across 9 models.\n\nOn steering methodology: Spherical Steering (arXiv 2602.08169, ICML 2026) performs norm-preserving geodesic rotation. Selective Steering (Dang & Ngo, arXiv 2601.19375) developed norm-preserving rotation with discriminative layer selection. COAST (Nguyen et al., arXiv 2605.01167, May 2026) formalizes collateral damage. W2S (Gadgil et al., arXiv 2604.03867, April 2026) learns input-dependent layer selection for steering. 'Steered LLM Activations are Non-Surjective' (2604.09839) proved additive steering pushes activations off-manifold.\n\nNo existing method addresses the specific challenge of simultaneously competing calibration biases: CogBias decomposes independently-active bias families; 'Sycophancy Is Not One Thing' decomposes co-existing but co-aligned behavioral sub-components; Billa routes by per-concept steerability; SteerConf steers confidence at the prompt level without decomposition; CCPS probes perturbation stability without bias decomposition; MERA adapts steering strength monolithically; Patel et al. show that decodable features may be functionally inert. Our work uniquely targets biases that are concurrently active and opposing on the same instances, requiring joint decomposition and per-direction steerability assessment to resolve interference effects that these approaches cannot address individually.\n\n**inspired_by**: Gap: Competing biases create interference patterns — partially canceling on some instances (illusory calibration) and producing heterogeneous over/under-confidence on others (hidden miscalibration regimes, Kobalczyk 2605.13484) — that even CogBias's family-dependent mitigation cannot address because it targets independently-active biases, not simultaneously competing ones, and that 'Sycophancy Is Not One Thing's decompose-then-steer paradigm has not been tested on because their sub-components are co-aligned rather than opposing. Pattern: CogBias (2604.01366) proves bias-family-specific intervention works (linear separability, family-dependent steering) → 'Sycophancy Is Not One Thing' (2509.21305) proves complex behaviors decompose into independently steerable sub-components → Billa (2604.15557) proves steerability-based routing works (three regimes, LAP diagnostic, ρ=0.86–0.91) → SteerConf (2503.02863, NeurIPS 2025) proves calibration is steerable at the prompt level (29% AUROC, 16% ECE) → Liu (2605.05715) + Patel et al. (2604.19974) prove decodable ≠ steerable/functional and nonlinear fallback works → MERA proves adaptive strength + abstention works → Kumaran & Conmy (2603.17839) map the mechanistic pathway of confidence computation (PANL caching). Untried combination: Extend these established principles from independent/co-aligned biases to simultaneously competing and opposing calibration biases, measuring asymmetric steerability profiles as the empirical core, with bias-specific correction as the practical application. Key hypothesis: CSB and CEO have asymmetric LAP and specificity profiles because they involve different cognitive processes (self-evaluation vs. evidence integration), which would provide a mechanistic explanation for inconsistent monolithic calibration steering results and the hidden miscalibration regimes observed by Kobalczyk & van der Schaar.\n\n**approach**: We investigate whether competing calibration biases (CSB and CEO) are distinguishable in activation space, whether they exhibit asymmetric steerability, and whether decomposed correction resolves bias interference that monolithic methods cannot. We structure the investigation in four phases, beginning with behavioral replication and a confound-controlled de-risking pilot. Evaluated on 3 models × 3 datasets with 7 core baselines.\n\n**Phase 0A — Behavioral Replication (Week 1):**\n\nKumaran et al.'s competing biases were characterized on Gemma 3 (12B/27B), GPT-4o, o1-preview, and DeepSeek R1 7B — none of which are our target models. Before any activation extraction, we must verify that each target model (Llama-3.1-8B-Instruct, Qwen3-8B, Gemma 4 31B Dense) exhibits both CSB and CEO in the behavioral paradigm.\n\nWe replicate Kumaran et al.'s exact 2-turn experimental design on each target model with 500 questions per condition: the 2×3 factorial (Answer Shown/Hidden × Same/Opposite/Neutral Advice) at 70% stated advice accuracy. We measure: (a) CSB magnitude — confidence difference between Answer Shown-Neutral and Answer Hidden-Neutral conditions; (b) CEO magnitude — the overweighting ratio (observed confidence change / Bayesian-optimal change) for opposing vs. supporting advice; (c) change-of-mind rates across conditions.\n\nGo/no-go criteria: If a model shows CSB magnitude ≥50% of Kumaran's reported +0.21 (i.e., ≥+0.105) AND CEO overweighting ratio ≥50% of Kumaran's 2.58 (i.e., ≥1.29), it proceeds to Phase 0B. If a model shows one bias but not the other, it is retained with a note that only the detected bias can be studied (reducing to single-bias characterization for that model). If a model shows neither bias at ≥50% threshold, it is replaced — candidate replacements are Gemma 3 27B (directly validated by Kumaran) or Mistral-8B. We report all behavioral replication results regardless, as cross-architecture replication data for Kumaran et al.'s findings is itself a contribution.\n\n**Phase 0B — Confound-Controlled De-Risking Pilot (Weeks 2–3):**\n\nThe translation from Kumaran et al.'s behavioral paradigm to contrastive activation extraction faces a critical confound identified in prior revisions: the contrastive pairs differ not only in bias activation but in prompt information content. For CSB, 'answer shown' prompts literally contain the model's answer text while 'answer hidden' prompts contain 'xx.' For CEO, 'contradictory advice present' prompts contain advisory text that 'advice absent' prompts lack. Extracted directions may thus capture 'prompt contains additional evaluative content' rather than 'bias is active.'\n\nWe address this with a four-pronged confound mitigation strategy:\n\n*(1) Matched-content contrastive pairs:* Rather than using Kumaran et al.'s original 'xx' placeholder (which differs in length and semantic content), we design matched controls:\n- **CSB pairs:** The CSB-active condition shows the model's own prior answer attributed to itself ('You previously answered [X]'). The CSB-control condition replaces the model's answer with a plausible but randomly-selected alternative answer of matched token length attributed to 'another LLM' (e.g., 'Another LLM answered [Y]'). Both conditions contain an answer of equal length and format; only the self-generated attribution differs. An additional 'scrambled-answer' control replaces the answer with token-length-matched semantically neutral text (e.g., '[REDACTED]' padded to matched length) to verify that information content per se is not driving the extracted direction.\n- **CEO pairs:** The CEO-active condition presents contradictory advice ('This LLM answered [opposite option]'). The CEO-control condition presents irrelevant neutral advice of matched token length ('This LLM was also asked a different question about [unrelated topic]'), preserving the presence of additional advisory text while removing the bias-inducing contradictory content. An additional 'supporting-advice' condition (same format, same length, but agreeing rather than contradicting) enables directional validation — the CEO direction should separate contradictory from both neutral and supporting conditions, while a pure information-content confound would not distinguish contradictory from supporting.\n\n*(2) Same-content-different-attribution CSB control (source attribution isolation):* To isolate the ownership/self-generated component of CSB from information content, we add a critical additional condition: the model's OWN answer text, but attributed to 'another LLM' ('Another LLM answered [X]' where X is the model's actual prior answer). Combined with the self-attributed condition ('You previously answered [X]'), this creates a 2×2 factorial for CSB extraction: {own answer text, other answer text} × {self-attributed, other-attributed}. The self-attributed-own vs. other-attributed-own contrast isolates pure ownership/attribution effects (the CSB core mechanism — confidence inflation from recognizing one's own prior commitment) while holding information content exactly constant. The other-attributed-own vs. other-attributed-other contrast isolates pure information-content effects. If the CSB direction extracted from the full contrast (self-own vs. other-other) is primarily aligned with the attribution contrast (self-own vs. other-own) rather than the content contrast (own-text vs. other-text), this provides strong evidence that we are capturing genuine choice-supportive bias rather than a content confound.\n\n*(3) Token-position-specific extraction informed by mechanistic evidence:* Rather than extracting mean activations across all token positions (which would be dominated by the differing prompt content), we extract activations at three specific positions informed by Kumaran & Conmy's (2603.17839) mechanistic findings on confidence computation: (a) the Post-Answer-Newline (PANL) token — where Kumaran & Conmy showed confidence information is first cached (layers 22–28 in Gemma 3 27B), making it the earliest site where bias-relevant confidence signals concentrate; (b) the Confidence-Colon (CC) position — where confidence is retrieved for verbalization (layers 30–36); (c) the first generated token of the confidence response. Extracting at PANL is particularly informative because it is a structurally fixed position (always immediately after the answer) that is identical in format across all conditions, minimizing sensitivity to prompt-content differences upstream. If the extracted direction is robust across extraction positions — particularly at PANL, which precedes the confidence verbalization — it is unlikely to reflect prompt-content confounds.\n\n*(4) Confound diagnostic tests:* For each extracted candidate direction, we verify: (a) correlation with prompt token count is <0.1 (Pearson r across the contrastive dataset); (b) a 'prompt-structure probe' — a linear probe trained to classify prompt conditions by surface features (presence/absence of answer text, advice text length) — produces directions with cosine similarity <0.2 to our candidate bias directions; (c) the candidate direction generalizes to held-out question types not seen during extraction; (d) for CSB specifically, the extracted direction aligns more strongly with the attribution contrast (self vs. other attribution of same content) than with the content contrast (same vs. different answer text with same attribution), as described in prong (2).\n\nWe conduct the pilot on the single model showing strongest behavioral CSB+CEO effects in Phase 0A, with ~500 contrastive pairs per bias type per control condition (totaling ~4000 pairs across the full factorial design for both biases, including the same-content-different-attribution CSB conditions).\n\nGo/no-go criteria: If a linear probe on matched-content pairs achieves ≥60% balanced accuracy for distinguishing bias-active vs. bias-control conditions, AND confound diagnostics pass (prompt-structure cosine <0.2, token-count correlation <0.1, attribution-alignment > content-alignment for CSB), we proceed to full Phase 1. If probing accuracy is 60%+ but confound diagnostics partially fail (e.g., cosine similarity 0.2–0.35), we expand to additional extraction positions and apply mean-centering (subtracting the global mean activation to decorrelate from background prompt structure). If probing accuracy is 55–60% with clean confound diagnostics, we expand to 1000 pairs. If probing accuracy is <55% across all extraction positions, or if confound diagnostics consistently fail (cosine >0.35 to prompt-structure direction), we activate the behavioral-signal fallback.\n\n**Phase 0 Fallback — Behavioral-Signal-Guided Probing (explicit scope reduction):**\n\nWe are explicit that the fallback path — using behavioral output changes (confidence shift patterns matching CSB vs. CEO signatures) to label instances post-hoc, then probing for internal signatures correlated with these behavioral labels — fundamentally changes the paper's contribution. The fallback trades causal contrastive evidence (where we experimentally control bias activation) for correlational association (where we observe behavioral patterns and search for corresponding activation correlates). This weakens contribution (1) from 'first causal activation-level characterization of competing calibration biases' to 'statistical association between behaviorally-identified bias patterns and activation geometry.' The resulting paper would still be informative — establishing that behavioral CSB/CEO patterns have detectable activation correlates, even if not causally isolated — but would be repositioned as a solid empirical contribution appropriate for EMNLP/NAACL rather than a top-tier mechanistic result at ICLR. The remaining contributions (2)–(4) on steerability measurement, interference analysis, and bias-specific correction would be weakened proportionally, as the activation directions being steered/analyzed would have weaker causal grounding.\n\n**Phase 1 — Separability Validation & Steerability Assessment (Weeks 4–8):**\n\n*Phase 1A — Separability (Weeks 4–6):* Building on the pilot's validated extraction methodology with matched-content controls and same-content-different-attribution factorial, we scale confound-controlled contrastive activation extraction to all three models that passed Phase 0A behavioral replication, with 2000+ matched-content contrastive pairs per bias type per model. We extract candidate CSB and CEO directions via difference-in-means on the matched-content contrastive pairs (using the extraction position validated in Phase 0B, prioritizing PANL following Kumaran & Conmy's mechanistic evidence) and validate separability via: (a) cosine similarity between candidate directions (threshold: <0.3 for separability), (b) principal angle analysis between CSB and CEO subspaces following Miao & Ungar's methodology, (c) PCA dimensionality assessment (whether 2 directions capture sufficient variance or higher-dimensional subspaces are needed), (d) cross-prediction ablations confirming that removing one bias subspace does not collapse the other, and (e) confound diagnostic replication at scale — verifying that the scaled directions maintain low cosine similarity to prompt-structure probes (<0.2) across all models. If cosine similarity >0.3 or shared variance >15%, we activate the separability fallback: extracting a joint multi-direction bias subspace and training a subspace projection classifier to separate components.\n\nImportant caveat informed by Patel et al. (2604.19974): Phase 1A separability — even if successful — does NOT guarantee that the identified directions are functionally relevant for intervention. Patel et al.'s SAE analysis showed that statistically decodable 'pure incorrectness features' can be functionally inert. Phase 1B steerability assessment is therefore not merely complementary but essential: it determines whether our separable directions are the kind that actually drive behavior (like Patel et al.'s 'confounded features') or mere correlates (like their 'pure incorrectness features').\n\n*Phase 1B — Steerability Diagnostics (Weeks 6–8):* For each identified bias direction, we compute: (a) the **specificity ratio** — the proportion of mode-specific variance vs. shared variance with the correct-vs-incorrect subspace, following Liu's shared-specific decomposition methodology; (b) **adapted LAP** — applying the logit lens at each layer to measure how strongly each bias direction projects onto confidence-related output tokens, adapting Billa's (2604.15557) per-concept diagnostic to per-direction analysis for calibration biases, with extraction focused on the PANL→CC pathway identified by Kumaran & Conmy (2603.17839); (c) **LEACE concept erasure test** — applying concept erasure to each bias direction and measuring accuracy damage as causal evidence of entanglement; (d) **pilot linear steering test** — applying small-magnitude Spherical Steering along each direction and measuring both calibration improvement and accuracy impact; (e) **functional inertness test** — following Patel et al.'s methodology, we suppress each bias direction and measure whether the effect on confidence output is non-trivial (distinguishing functionally active from inert directions).\n\nWe do NOT pre-commit to fixed routing thresholds. Following Billa's three-regime framework as a conceptual guide, we LEARN optimal thresholds via validation-set sweeps over LAP and specificity cutoffs, reporting the full diagnostic-vs-effectiveness curves as primary empirical contributions. The core empirical hypothesis — that CSB and CEO have asymmetric steerability profiles — would provide a mechanistic explanation for why monolithic calibration steering shows inconsistent results and why hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) exhibit spatially heterogeneous over/under-confidence.\n\nPhase 1 results constitute an independent contribution regardless of Phase 3 outcomes: the first activation-level characterization of behaviorally-identified competing calibration biases, with joint separability and steerability measurements using complementary diagnostics (specificity ratio + adapted LAP + functional inertness test), obtained via a confound-controlled extraction methodology grounded in mechanistic evidence of confidence computation pathways.\n\n**Phase 2 — Per-Instance Bias Diagnosis (Weeks 7–10):** A lightweight logistic probe (or small MLP in the fallback case) trained on per-instance projection magnitudes onto each bias direction classifies which bias dominates for a given query, providing a continuous dominance score. We stratify by difficulty and validate against behavioral predictions: on easy questions where models are already confident, CSB should dominate; on hard questions under criticism, CEO should dominate. We additionally test whether bias interference patterns — instances where CSB and CEO partially cancel to produce deceptive near-zero net error — can be identified, which would directly explain hidden miscalibration regimes.\n\n**Phase 3 — Bias-Specific Intervention (Weeks 9–15):** Building on Billa's established routing-by-steerability paradigm (2604.15557), extended from per-concept to per-instance competing biases, and informed by 'Sycophancy Is Not One Thing's demonstration that decomposed sub-components can be independently steered, Phase 3 implements three intervention routes informed by Phase 1B's empirically-learned steerability thresholds:\n\n*Route A — Adaptive Spherical Steering (for steerable directions):* When a bias direction falls in Billa's 'output-aligned' regime (high adapted LAP + high specificity + non-inert per Patel et al. criteria), we apply Spherical Steering (You et al., ICML 2026) with MERA-inspired per-instance adaptive strength: rotation magnitude optimized to minimize ‖v‖² subject to the bias probe's predicted error falling below a calibrated threshold α*, following MERA's constrained optimization framework. Unlike MERA applied monolithically, our adaptation operates per-bias-direction, potentially applying different strengths for CSB vs. CEO corrections on the same instance. Layer selection is informed by adapted LAP profiles and the PANL→CC pathway (Kumaran & Conmy 2603.17839), and optionally by W2S-style (Gadgil et al., 2604.03867) input-dependent layer mapping.\n\n*Route B — Learned Nonlinear Residual Correction (for entangled directions):* When a bias direction falls in Billa's 'nonlinear encoding' regime (high A_mlp but low A_lin, or low specificity ratio, or functionally inert under linear suppression but non-inert under nonlinear intervention), linear steering is expected to fail. Following Liu's finding that a bottleneck residual MLP (d→64→d) achieves Δ=+2.8pp where 29 linear configurations yield Δ≈0, we train a small nonlinear residual adapter per bias type (<0.1% of model parameters), with COAST-informed training (Nguyen et al., 2605.01167) weighting the loss to minimize collateral damage along non-target feature directions.\n\n*Route C — Selective Abstention (for uncorrectable instances):* When neither Route A nor Route B improves calibration without excessive accuracy damage (>3% degradation on validation), following Billa's 'not represented' regime, we abstain and output a reliability score using MERA's Hoeffding-based statistical framework.\n\nFor intermediate-steerability directions, Route A is applied with a conservative strength cap (rotation magnitude ≤50% of high-steerability coefficient), falling back to Route C per-instance if collateral damage exceeds the threshold.\n\n**Generalizability — Beyond CSB vs. CEO:**\n\nWhile this paper focuses on CSB and CEO as the primary competing-bias pair — chosen because Kumaran et al. provide quantitative behavioral characterization with effect sizes that enable principled experimental design — the Phase 0→3 pipeline is designed to be reusable for other plausible competing-bias pairs where simultaneously active, opposing biases create interference. We identify three candidates for future work: (1) **Sycophantic agreement vs. truthfulness commitment** — when a user states something incorrect and requests evaluation, sycophancy training pulls toward agreement while truthfulness training pulls toward correction; 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) already demonstrates that sycophancy sub-components are separable and independently steerable, and the sycophancy–truthfulness tension is well-documented (e.g., Alignment Forum, Sharma et al. 2024), though the opposing-direction interference structure has not been characterized. (2) **Primacy bias vs. recency bias** — in multi-document QA and list-based tasks, these opposing positional biases are simultaneously active and shift in relative dominance based on context window usage (primacy weakens as inputs approach context limits while recency remains stable; arXiv 2508.07479), potentially creating hidden miscalibration-like heterogeneity in retrieval confidence. (3) **Anchoring to prior reasoning vs. evidence updating** — in multi-turn reasoning tasks, models may anchor to initial chain-of-thought conclusions while simultaneously being influenced by new contradictory evidence, a generalization of the CSB/CEO dynamic to reasoning contexts. The matched-content contrastive extraction (Phase 0B), steerability diagnostics (Phase 1B), and bias-specific routing (Phase 3) are all applicable to these settings with appropriate stimulus design.\n\nWe evaluate on TriviaQA, MMLU, and PopQA across Gemma 4 31B Dense, Qwen3-8B, and Llama-3.1-8B-Instruct (subject to Phase 0A behavioral replication; models that fail replication are replaced as described). Metrics: ECE, Brier score, AUROC, difficulty-stratified ECE (easy/medium/hard), per-direction specificity ratios and LAP profiles, bias interference measurements (instances where CSB+CEO partially cancel), collateral damage, and route-distribution analysis. Core baselines: (1) temperature scaling, (2) CORAL, (3) Miao & Ungar adaptive steering, (4) MERA applied monolithically, (5) monolithic Spherical Steering (single direction, no bias decomposition), (6) monolithic nonlinear MLP (single direction, no bias decomposition), (7) SteerConf prompt-level steering. Extended baselines in supplementary: CogBias-style family-level steering (treating CSB/CEO as independent families), CCPS perturbation-stability probing (Khanmohammadi et al., 2505.21772), DINCO, 'Wired for Overconfidence' replication.\n\n**resource_estimate** should be:\nmanual: gpu_hours \"650-900 H100\", timeline \"16-20 weeks (includes 1-week behavioral replication + 2-week pilot with expanded CSB factorial)\", estimated_gpu_cost \"$1,625-$2,250 (H100 @ ~$2.50/hr)\"\nhuman_in_loop: gpu_hours \"550-750 H100\", timeline \"12-16 weeks (includes 1-week behavioral replication + 2-week pilot with expanded CSB factorial)\", claude_api_cost \"$375-$575 (Sonnet 4.6 for matched-content and attribution-factorial contrastive dataset generation, confound diagnostics, probing, LAP computation, adapter training, analysis)\", estimated_gpu_cost \"$1,375-$1,875\"\nauto_research: gpu_hours \"850-1150 H100\", timeline \"7-11 weeks (includes behavioral replication + pilot)\", claude_api_cost \"$725-$1,250 (Opus 4.7 for experiment orchestration, matched-content and attribution-factorial pair generation, confound analysis, validation analysis, steerability diagnostics, adapter training sweeps)\", estimated_gpu_cost \"$2,125-$2,875\", speed_bottleneck \"Phase 0A behavioral replication (1 week, parallelizable across 3 models) → Phase 0B pilot is sequential gate (2 weeks, expanded for CSB attribution factorial). Phase 1A→1B is sequential. Evaluation across 3 models × 3 datasets × 3 routes + 7 baselines is parallelizable.\"\n\n**target_venues**: same as before\n\n**level**: \"top-tier\"\n\n**description**: (I'll provide this separately - it's long)\n\n**key_references**: Add all new papers\n\n**revision_notes**: Add entries for all 7 round 7 issues plus the round 6 carry-forward\n\n**change_type**: \"major\"\n\n**project_name**: \"competing_bias_steer\"\n**source**: \"web_research\"\n\nPlease output the complete JSON. I'll provide the description field content next - for now use a placeholder \"[DESCRIPTION_PLACEHOLDER]\" that I'll fill in.\n\nActually wait - let me just write the whole thing out as a single JSON. Given the length, please format it properly with all fields included. The JSON should have these top-level fields: title, core_problem, opportunity, landscape, inspired_by, approach, resource_estimate, target_venues, level, key_references, description, project_name, source, revision_notes, change_type.\n\nFor description, use this text:\n\nWe investigate whether two competing sources of LLM miscalibration — choice-supportive bias (CSB) and contradictory-evidence overweighting (CEO), identified behaviorally by Kumaran et al. (Nature MI 2026) — produce distinguishable activation signatures, exhibit asymmetric steerability profiles, and can be corrected through bias-specific intervention that outperforms monolithic approaches.\n\nOur work is motivated by a bias interference problem unique to the competing-bias setting: CSB and CEO are simultaneously active on the same instances, pulling confidence in opposite directions. This creates (a) illusory calibration where competing biases partially cancel, making global metrics deceptively good while localized failures persist — consistent with the hidden miscalibration regimes independently observed by Kobalczyk & van der Schaar (2605.13484) — and (b) heterogeneous over/under-confidence patterns where one bias dominates instance-by-instance. Monolithic methods cannot resolve this interference because they target the net error direction, which conflates opposing bias contributions.\n\nCogBias (Huang et al., 2604.01366) established that cognitive bias families are linearly separable and require family-dependent intervention — but addresses independently-active biases on different tasks, not simultaneously competing biases. 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) demonstrated that complex behavioral phenomena can be decomposed into independently steerable activation-level sub-components via difference-in-means — but their sub-components (sycophantic agreement, praise, genuine agreement) are co-existing and co-aligned, not opposing. Our work extends this decompose-then-steer paradigm to the strictly harder case of opposing biases creating destructive interference. Billa (2604.15557) established the routing-by-steerability paradigm with a three-regime framework and LAP diagnostic — but operates per-concept with synthetic binary features, not per-instance with naturalistic competing biases. SteerConf (Zhou et al., NeurIPS 2025) achieves 29% AUROC increase via prompt-level confidence steering — demonstrating calibration is steerable but operating without mechanistic decomposition. MERA (Hedström et al., ICML 2025) provides adaptive steering with non-degradation guarantees — but treats errors monolithically. Liu (2605.05715) and Patel et al. (2604.19974) independently established the classification-correction gap — decodable directions may be functionally inert — reinforcing that our Phase 1B steerability assessment is essential.\n\nOur approach proceeds in four phases with rigorous confound control. Phase 0A (Behavioral Replication) verifies that each target model — Llama-3.1-8B-Instruct, Qwen3-8B, and Gemma 4 31B Dense, none of which were in Kumaran et al.'s original study — exhibits both CSB and CEO at ≥50% of Kumaran's reported effect sizes; models failing replication are replaced. Phase 0B (Confound-Controlled Pilot) addresses a critical methodological challenge: standard contrastive extraction would conflate bias activation with prompt information-content differences. We design a four-pronged confound mitigation strategy: (1) matched-content contrastive pairs equated for token length, format, and information presence; (2) a same-content-different-attribution CSB control — presenting the model's OWN answer text but attributed to 'another LLM' — to isolate the ownership/self-generated component of CSB from information content via a 2×2 factorial ({own text, other text} × {self-attributed, other-attributed}); (3) token-position-specific extraction at the Post-Answer-Newline (PANL) and Confidence-Colon positions, grounded in Kumaran & Conmy's (2603.17839) mechanistic finding that confidence is cached at answer-adjacent positions rather than computed just-in-time; (4) explicit confound diagnostic tests including attribution-alignment verification for CSB.\n\nPhase 1A (Separability) tests whether CSB and CEO produce geometrically distinct directions using confound-controlled contrastive activation probing, validated via cosine similarity, principal angles, PCA, and cross-prediction ablations — with the explicit caveat (informed by Patel et al., 2604.19974) that separability does NOT guarantee functional relevance. Phase 1B (Steerability Assessment) measures each direction's specificity ratio (Liu 2605.05715), adapted LAP (Billa 2604.15557), and functional inertness (Patel et al. 2604.19974) as complementary diagnostics, learning routing thresholds empirically rather than pre-committing to fixed values. Phase 2 trains a per-instance bias dominance classifier.\n\nPhase 3 implements intervention routing, building on Billa's established three-regime paradigm extended from per-concept to per-instance competing biases, and informed by 'Sycophancy Is Not One Thing's demonstration that decomposed sub-components can be independently steered: (Route A) Spherical Steering with MERA-inspired per-direction adaptive strength for steerable, functionally active directions; (Route B) lightweight bottleneck MLP for entangled directions, trained with COAST-informed collateral-damage-aware loss; (Route C) selective abstention via MERA's statistical framework.\n\nWe evaluate on TriviaQA, MMLU, and PopQA across three models (subject to Phase 0A behavioral replication). Core baselines: temperature scaling, CORAL, Miao & Ungar, MERA (monolithic), monolithic Spherical Steering, monolithic nonlinear MLP, and SteerConf (prompt-level steering). Extended baselines include CCPS perturbation-stability probing (Khanmohammadi et al., EMNLP 2025) and CogBias-style family-level steering.\n\nWe discuss generalizability beyond CSB/CEO, identifying three other plausible competing-bias pairs — sycophantic agreement vs. truthfulness commitment, primacy vs. recency bias, and anchoring vs. evidence updating — for which the Phase 0→3 pipeline is reusable with appropriate stimulus design.\n\nWe are explicit about the fallback path: if Phase 0B fails (extracted directions reflect prompt confounds rather than bias activation, despite matched-content controls and the attribution factorial), the behavioral-signal-guided probing fallback produces correlational rather than causal evidence, fundamentally repositioning the paper from a mechanistic contribution to an empirical observation study — still informative, but appropriate for EMNLP/NAACL rather than ICLR.\n\nThe contributions are: (1) first causal activation-level characterization of simultaneously competing calibration biases (CSB vs. CEO), extending CogBias's independently-active bias decomposition and 'Sycophancy Is Not One Thing's co-aligned decomposition to the opposing-bias setting, with confound-controlled extraction methodology including source-attribution factorial and mechanistically-grounded token-position targeting; (2) empirical measurement of asymmetric steerability profiles with complementary diagnostics (specificity ratio + adapted LAP + functional inertness test), extending Billa's per-concept steerability analysis to per-direction competing biases; (3) bias interference analysis connecting competing bias dynamics to hidden miscalibration regimes; (4) bias-specific adaptive correction extending MERA's monolithic framework to the multi-bias setting with steerability-informed routing; (5) cross-architecture behavioral replication of Kumaran et al.'s competing biases on Llama and Qwen families; (6) generalizability framework identifying additional competing-bias pairs amenable to the same pipeline.\n\nFor key_references, use the same list as before but ADD these new entries:\n- \"How do LLMs Compute Verbal Confidence (Kumaran, Conmy et al., arXiv 2603.17839, March 2026) — confidence cached at PANL position, answer→PANL→CC information flow, token log-probs explain only 8.4% of variance\"\n- \"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) — decomposition of sycophancy into independently steerable sub-components via difference-in-means\"\n- \"Are LLM Uncertainty and Correctness Encoded by the Same Features? A Functional Dissociation via Sparse Autoencoders (Patel et al., arXiv 2604.19974, April 2026) — pure incorrectness features functionally inert, SAE-based classification-correction gap confirmation\"\n- \"Calibrating LLM Confidence by Probing Perturbed Representation Stability (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) — CCPS, ~55% ECE reduction via perturbation-stability probing on Llama/Qwen/Mistral 8B-32B\"\n\nFor revision_notes, keep ALL existing entries and add:\nround7_issue_1_verbal_confidence_mechanism: \"ADDRESSED: Integrated Kumaran & Conmy 'How do LLMs Compute Verbal Confidence' (2603.17839) throughout. Added to opportunity as mechanistic foundation for confidence computation. Used to ground Phase 0B's token-position-specific extraction strategy — now specifically targeting PANL (Post-Answer-Newline) and CC (Confidence-Colon) positions based on their finding that confidence is cached at answer-adjacent positions with information flowing answer tokens → PANL (layers 22-28) → CC (layers 30-36), and that token log-probs explain only 8.4% of variance. Added to landscape alongside Kumaran et al.'s behavioral work. Referenced in Phase 1B for LAP computation along the PANL→CC pathway.\"\nround7_issue_2_source_attribution_confound: \"ADDRESSED: Added same-content-different-attribution CSB control as a dedicated fourth prong of confound mitigation (prong 2 in revised Phase 0B). The model's OWN answer text is presented attributed to 'another LLM,' creating a 2×2 factorial: {own answer text, other answer text} × {self-attributed, other-attributed}. The self-own vs. other-own contrast isolates pure ownership/attribution effects (the CSB core mechanism) while holding information content exactly constant. Added attribution-alignment verification to confound diagnostics: the CSB direction must align more with the attribution contrast than the content contrast. This isolates choice-supportive confidence inflation from content recognition. ~500 additional pairs per condition.\"\nround7_issue_3_CCPS_missing: \"ADDRESSED: CCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) integrated into opportunity as a strong representation-based calibration baseline (~55% ECE reduction, 21% Brier reduction via perturbation-stability probing on Llama/Qwen/Mistral 8B-32B). Added to landscape with methodological description and positioning (monolithic perturbation without bias decomposition). Added to extended baselines in evaluation. Added to key_references.\"\nround7_issue_4_generalizability: \"ADDRESSED: Added dedicated 'Generalizability — Beyond CSB vs. CEO' subsection in approach identifying three plausible competing-bias pairs: (1) sycophantic agreement vs. truthfulness commitment (well-documented tension, sycophancy sub-components already shown separable by Vennemeyer et al.), (2) primacy bias vs. recency bias (opposing positional biases that shift in dominance based on context window usage, per arXiv 2508.07479), (3) anchoring to prior reasoning vs. evidence updating in multi-turn contexts. Noted that the Phase 0→3 pipeline is designed to be reusable for these settings with appropriate stimulus design.\"\nround7_issue_5_sycophancy_decomposition: \"ADDRESSED: 'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305) integrated as the closest methodological precedent throughout. Added to core_problem as fifth line of related work. Added to opportunity with key findings (independently steerable sub-components, consistent across model families). Added to landscape with detailed comparison — key distinction: co-existing co-aligned sub-components vs. our opposing biases creating interference. Referenced in Phase 3 as methodological support. Critical nuance articulated: independent steerability of co-aligned components does not guarantee success for opposing components where destructive interference complicates extraction.\"\nround7_issue_6_SAE_functional_dissociation: \"ADDRESSED: Patel et al. 'Are LLM Uncertainty and Correctness Encoded by the Same Features?' (arXiv 2604.19974) integrated alongside Liu throughout. Added to core_problem alongside Liu for classification-correction gap. Added to opportunity with key quantitative results (functionally inert pure incorrectness features, 1.1% accuracy improvement from confounded features, AUROC ~0.79 from 3 features). Added to landscape with detailed SAE-based evidence. Added explicit caveat after Phase 1A that separability does NOT guarantee functional relevance (citing Patel et al.). Added functional inertness test to Phase 1B diagnostics. Added to key_references.\"\nround7_issue_7_cogbias_accuracy_verification: \"ADDRESSED: The '97.8% mean classification accuracy' claim attributed to CogBias could not be independently verified from the abstract or accessible content. The abstract reports linear separability and 26-32% steering reduction but does not surface this specific accuracy figure. Revised ALL references to CogBias probe accuracy: replaced '97.8% mean classification accuracy' with 'high linear separability' or 'linearly separable directions,' noting that the abstract-reported 26-32% steering reduction is cited as the primary quantitative result. Added parenthetical caveat: 'specific probe classification accuracy figures are from the paper body rather than the abstract alone.'\"\n\nchange_type: \"major\"\n\nPlease output the complete, valid JSON object with all these fields. Make sure all strings are properly escaped for JSON (especially quotes within strings).\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b505dc08-a03a-4e66-91e3-3402a1082260",
+  "isSidechain": false,
+  "requestId": "req_011CbCBWUjNasaCsQ7965roK",
+  "type": "assistant",
+  "uuid": "7932e180-7aa8-4f8f-8e3f-f0d14ff78a0b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TGUGwadTNNmuJyrgL15LMM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1577,
+      "cache_read_input_tokens": 39552,
+      "output_tokens": 18621,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1577,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 18621,
+          "cache_read_input_tokens": 39552,
+          "cache_creation_input_tokens": 1577,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1577
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibrat…",
+  "leafUuid": "7932e180-7aa8-4f8f-8e3f-f0d14ff78a0b",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decomposing competing calibration biases in LLMs",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-19T16:05:32.207Z_
+
+<details><summary>↩ Tool result · `toolu_01ADVhga4LcqMKnt2etEeKZY`</summary>
+
+````text
+&lt;persisted-output>
+Output too large (69.2KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu-idea-gen-pipeline/2d88ff40-6e8c-41d1-8b37-364a36afb9ee/tool-results/toolu_01ADVhga4LcqMKnt2etEeKZY.json
+
+Preview (first 2KB):
+[
+  {
+    "type": "text",
+    "text": "Let me construct and output the JSON directly. Given the massive size of the content, I'll produce the complete JSON object. Let me carefully assemble it ensuring proper escaping.\n\nHere is the complete, valid JSON object:\n\n```json\n{\n  \"title\": \"Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibration for Targeted Activation Correction\",\n  \"core_problem\": \"LLM miscalibration arises from at least two competing biases \\u2014 choice-supportive bias (CSB, inflating confidence in initial answers) and contradictory-evidence overweighting (CEO, causing excessive confidence revision under criticism) \\u2014 that are simultaneously active and pull confidence in opposite directions on the same instances (Kumaran et al., Nature MI 2026). This creates a bias interference problem: competing biases can partially cancel (producing illusory calibration where global metrics look good but localized failures persist) or one can dominate instance-by-instance (producing heterogeneous over/under-confidence patterns). Recent work on hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) independently confirms that global reliability diagrams 'hide rather than reveal calibration failures' because 'opposing errors cancel when aggregated by confidence' \\u2014 but provides no mechanistic explanation for WHY opposing errors exist. Five lines of related work address parts of this problem but not the whole: (1) CogBias (Huang et al., 2604.01366) demonstrates that different cognitive bias families (Judgment, Information Processing, Social, Response) need different interventions \\u2014 prompt debiasing 'substantially reduces Response biases but backfires for Judgment biases' \\u2014 establishing the principle of family-dependent mitigation. However, CogBias addresses independently-active biases on different task types, not simultaneously competing biases on the same instances. (2) Billa (2604.15557) proposes a 
+...
+&lt;/persisted-output>
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "7932e180-7aa8-4f8f-8e3f-f0d14ff78a0b",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "8e201c06-f437-40c2-bbb5-6fd93a9e394c",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need you to help me write a complete, valid JSON object. I will provide the full content for each field. Your job is to assemble it into proper JSON with correct escaping. Output ONLY the JSON object, nothing else.\n\nHere are the fields and their content. Please produce the complete JSON:\n\n**title**: \"Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibration for Targeted Activation Correction\"\n\n**core_problem**: LLM miscalibration arises from at least two competing biases — choice-supportive bias (CSB, inflating confidence in initial answers) and contradictory-evidence overweighting (CEO, causing excessive confidence revision under criticism) — that are simultaneously active and pull confidence in opposite directions on the same instances (Kumaran et al., Nature MI 2026). This creates a bias interference problem: competing biases can partially cancel (producing illusory calibration where global metrics look good but localized failures persist) or one can dominate instance-by-instance (producing heterogeneous over/under-confidence patterns). Recent work on hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) independently confirms that global reliability diagrams 'hide rather than reveal calibration failures' because 'opposing errors cancel when aggregated by confidence' — but provides no mechanistic explanation for WHY opposing errors exist. Five lines of related work address parts of this problem but not the whole: (1) CogBias (Huang et al., 2604.01366) demonstrates that different cognitive bias families (Judgment, Information Processing, Social, Response) need different interventions — prompt debiasing 'substantially reduces Response biases but backfires for Judgment biases' — establishing the principle of family-dependent mitigation. However, CogBias addresses independently-active biases on different task types, not simultaneously competing biases on the same instances. (2) Billa (2604.15557) proposes a three-regime steerability framework (concept not represented / nonlinear encoding / output-aligned) with Linear Accessibility Profile (LAP) as a training-free diagnostic (ρ=0.86–0.91 correlation with steering effectiveness), establishing the routing-by-steerability paradigm — but operates per-concept with synthetic binary features, not per-instance with naturalistic competing biases. (3) MERA (Hedström et al., ICML 2025) provides adaptive steering strength and abstention with non-degradation guarantees — but treats errors monolithically with a single probe. (4) SteerConf (Zhou et al., NeurIPS 2025) achieves 29% AUROC increase and 16% ECE reduction via prompt-level confidence steering with multi-prompt aggregation — demonstrating that calibration is steerable, but operating entirely at the prompt level without mechanistic decomposition or bias-specific intervention. (5) 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) demonstrates that a complex behavioral phenomenon (sycophancy) can be decomposed into independently steerable sub-components (sycophantic agreement vs. sycophantic praise vs. genuine agreement) using difference-in-means and activation additions — establishing the decompose-then-steer paradigm. However, their sub-components are co-existing behaviors pulling in similar directions, not opposing biases creating interference effects. The classification-correction gap (Liu, 2605.05715; independently confirmed via SAE analysis by Patel et al., 2604.19974, who showed that 'pure incorrectness features' are 'functionally inert' despite being statistically decodable) adds a further obstacle: linearly decodable bias directions may not be linearly steerable due to entanglement with task-critical computation. Can we move from behavioral evidence of competing biases to activation-level characterization, measure their asymmetric steerability profiles, and demonstrate that decomposed correction outperforms monolithic methods specifically because it resolves bias interference?\n\n**opportunity**: Kumaran et al. (Nature Machine Intelligence, 2026; arXiv 2507.03120) established behavioral evidence that LLM miscalibration results from two mechanistically distinct biases: choice-supportive bias inflates confidence in selected answers (+0.21 confidence boost, p<0.001), while contradictory-advice overweighting causes models to over-react to opposing evidence (overweighting ratio 2.58 for opposing vs. 1.095 for supporting advice). Critically, both biases are simultaneously active in the 'Answer Shown + Opposite Advice' condition, demonstrating they are distinct mechanisms rather than a single unified bias. However, Kumaran et al. provided only behavioral evidence with no activation-level analysis, and their study covered Gemma 3 (12B/27B), GPT-4o, o1-preview, and DeepSeek R1 7B — but not the Llama or Qwen families that are widely used for mechanistic interpretability research.\n\nKumaran, Conmy et al. ('How do LLMs Compute Verbal Confidence,' arXiv 2603.17839, March 2026) provided the mechanistic foundation for confidence computation: verbal confidence is not computed just-in-time but cached at the Post-Answer-Newline (PANL) token position, with information flowing from answer tokens → PANL (layers 22–28) → Confidence-Colon position (layers 30–36) in Gemma 3 27B. Critically, token log-probabilities explain only 8.4% of variance in verbal confidence (R²_CV = 0.084), while PANL-cached representations explain substantial additional variance — demonstrating that confidence reflects 'automatic, sophisticated self-evaluation' rather than simple fluency readout. This directly validates our Phase 0B token-position-specific extraction strategy: extracting at the PANL and confidence-bearing positions targets where bias-relevant confidence signals are mechanistically concentrated, rather than averaging across all positions where prompt-content confounds dominate. Studied on Gemma 3 27B and Qwen 2.5 7B — overlapping with our target model families.\n\nCogBias (Huang et al., arXiv 2604.01366, April 2026) independently demonstrated that cognitive biases are encoded as linearly separable directions in LLM activation space, and that bias-family-specific intervention is both viable and necessary: activation steering achieves 26–32% bias reduction overall, but effectiveness varies dramatically by family (up to 19pp improvement for Judgment biases on Qwen vs. minimal effect for others). Importantly, CogBias found that despite near-orthogonal bias representations across model architectures, steering reduced bias at similar rates, suggesting shared functional organization — which is encouraging for cross-model generalization. This establishes a crucial principle — different biases need different interventions — but CogBias addresses biases that are independently active on different task types, not biases that compete simultaneously on the same calibration task. (Note: CogBias reports high linear separability of bias directions; the specific probe accuracy figures are drawn from the paper body rather than the abstract, and we cite the abstract-reported 26–32% steering reduction as the primary quantitative result.)\n\n'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) provides the closest methodological precedent for our decompose-then-steer approach. Using difference-in-means directions, activation additions, and subspace geometry across multiple models, they decomposed sycophancy into distinct sub-components (sycophantic agreement, sycophantic praise, genuine agreement) and demonstrated that each can be independently amplified or suppressed without affecting the others, with representational structure consistent across model families and scales. This establishes the feasibility of the core methodological approach — decomposing a complex behavioral phenomenon into independently steerable activation-level sub-components. The critical distinction from our setting: sycophancy sub-components are co-existing behaviors pulling in broadly similar directions (toward user-pleasing outputs), whereas CSB and CEO are opposing biases creating destructive interference. Independent steerability of co-aligned components does not guarantee successful decomposition of opposing components, where partial cancellation in activation space may make individual directions harder to isolate.\n\nBilla (arXiv 2604.15557, April 2026) proposed a three-regime framework for steerability prediction: (1) concept not represented (no method works), (2) nonlinear encoding (nonlinear methods needed), (3) output-aligned (linear steering works). The Linear Accessibility Profile (LAP) — a training-free logit-lens diagnostic — predicts steering effectiveness at ρ=0.86–0.91 across 24 binary concept families and 5 models. This establishes the routing-by-steerability paradigm that informs our intervention strategy — but LAP operates per-concept with synthetic binary features, not per-instance with naturalistic biases, and does not address bias decomposition.\n\nSteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) demonstrated that prompt-level confidence steering — using systematically varied steering prompts spanning 'very cautious' to 'very confident,' with multi-prompt consistency aggregation — achieves 29% AUROC increase and 16% ECE reduction across seven benchmarks on GPT-3.5, LLaMA 3, and GPT-4 without training. SteerConf establishes that calibration is steerable at the behavioral level and provides a strong prompt-level baseline, but operates without mechanistic decomposition and cannot distinguish between or independently address competing bias sources.\n\nMiao & Ungar (arXiv 2603.25052, 2026) showed that calibration and verbalized confidence are linearly encoded but orthogonal in the residual stream (cosine similarity <0.04 across layers in three 7–8B models), achieving 4–7× ECE improvement via adaptive steering. Liu (arXiv 2605.05715, May 2026) demonstrated the classification-correction gap: linearly decodable failure directions (71.6% balanced accuracy) yield Δ≈0 under 29 linear steering configurations due to 85–88% overlap with task-critical computation (specificity ratio ≤0.152), but a learned nonlinear bottleneck MLP achieves Δ=+2.8pp where all linear methods fail. Patel et al. ('Are LLM Uncertainty and Correctness Encoded by the Same Features?', arXiv 2604.19974, April 2026) independently confirmed the classification-correction gap via sparse autoencoder (SAE) analysis on Llama-3.1-8B and Gemma-2-9B: they found that 'pure incorrectness features' are 'functionally inert' — statistically decodable but producing near-zero accuracy change when suppressed — while confounded features encoding both uncertainty and correctness yield 1.1% accuracy improvement and 75% entropy reduction upon suppression, with just 3 mid-layer features achieving AUROC ~0.79. This SAE-based functional dissociation reinforces that Phase 1A's separability success does NOT guarantee Phase 3's intervention success — our Phase 1B steerability assessment is essential precisely because decodable directions may be functionally inert. MERA (Hedström et al., ICML 2025; arXiv 2510.13290) established adaptive steering with non-degradation guarantees via constrained optimization — but operates with a single monolithic error probe.\n\nKobalczyk & van der Schaar (arXiv 2605.13484, May 2026) independently confirmed that global calibration metrics mask input-dependent heterogeneity: across 48 model–dataset pairs, they discovered hidden miscalibration regimes where 'opposing errors cancel when aggregated by confidence,' with local correction outperforming confidence-only methods. This provides independent evidence for our bias interference hypothesis — the hidden regimes may correspond to regions where CSB vs. CEO dominance shifts.\n\nCCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) achieves ~55% ECE reduction and 21% Brier score reduction via perturbation-stability probing — applying targeted adversarial perturbations to final hidden states and training a lightweight classifier on response features — across Llama, Qwen, and Mistral models at 8B–32B scale. CCPS represents a strong representation-based calibration baseline operating on overlapping model families and scales, though it uses monolithic perturbation without bias decomposition.\n\nThe 'Confidence Manifold' study (arXiv 2602.08159) found correctness signals occupy only 3–8 dimensions with simple mean-shift geometry across 9 models, suggesting calibration-related directions may have more favorable specificity profiles than Liu's entangled overthinking directions. The nonlinear steering landscape (ODESteer, ICLR 2026; Curveball Steering, 2026; FLAS, 2026) provides powerful alternatives when linear steering fails. Spherical Steering (ICML 2026) preserves activation norms via geodesic rotation, and COAST (2605.01167) minimizes collateral damage along non-target directions.\n\nThe convergence of (a) behavioral evidence of competing biases with quantitative effect sizes, (b) mechanistic understanding of where confidence is computed and cached in the residual stream, (c) CogBias's demonstration that bias-family-specific intervention works, (d) 'Sycophancy Is Not One Thing's proof that complex behaviors can be decomposed into independently steerable sub-components, (e) Billa's steerability-based routing paradigm with a training-free diagnostic, (f) SteerConf's demonstration that calibration is steerable even at the prompt level, (g) the decodable–steerable distinction with quantitative diagnostics from both linear (Liu) and SAE-based (Patel et al.) analyses, (h) hidden miscalibration regimes suggesting opposing errors cancel, and (i) adaptive frameworks with non-degradation guarantees creates an opportunity for the next step: extending from independently-active bias families and co-existing behavioral sub-components to simultaneously competing calibration biases with per-instance diagnosis and correction.\n\n**landscape**: Kumaran et al. (Nature MI, 2026) identified competing biases (CSB and CEO) via behavioral experiments on Gemma 3 12B/27B, GPT-4o, o1-preview, and DeepSeek R1 7B but proposed no correction framework and provided no mechanistic (activation-level) evidence. Importantly, the qualitative pattern — overconfidence from CSB and underconfidence from CEO — held across all tested models, but effect magnitudes varied substantially (GPT-4o and Gemma 27B showed the strongest CEO effects; DeepSeek R1 7B failed to follow the advice paradigm entirely), and no Llama or Qwen models were tested. Kumaran, Conmy et al. ('How do LLMs Compute Verbal Confidence,' arXiv 2603.17839, March 2026) subsequently provided the mechanistic foundation for confidence computation, showing that verbal confidence is cached at the Post-Answer-Newline (PANL) token position rather than computed just-in-time: information flows from answer tokens → PANL (layers 22–28 in Gemma 3 27B) → Confidence-Colon position (layers 30–36), with PANL-cached representations explaining substantial variance beyond token log-probabilities (which account for only R²=0.084). This mechanistic map directly informs our extraction strategy — we target PANL and confidence-bearing positions rather than averaging across all tokens. Miao & Ungar (arXiv 2603.25052, 2026) demonstrated that calibration accuracy and verbalized confidence are linearly encoded but orthogonal in 7–8B models (cosine similarity <0.04 across layers), and introduced adaptive steering achieving 4–7× ECE improvement — but they target the confidence–accuracy misalignment gap, not the competing bias structure.\n\nCogBias (Huang et al., arXiv 2604.01366, April 2026) is the closest work on bias decomposition. It organizes cognitive biases into four families (Judgment, Information Processing, Social, Response), demonstrates that biases are encoded as linearly separable directions in LLM activation space via linear probes under a contrastive design, and shows family-dependent mitigation: activation steering achieves 26–32% overall bias reduction, but prompt-level debiasing 'substantially reduces Response biases but backfires for Judgment biases,' with up to 19pp improvement for Judgment biases via steering on Qwen. Despite near-orthogonal bias representations across model architectures (Llama and Qwen), steering reduced bias at similar rates — suggesting shared functional organization that is encouraging for cross-architecture generalization. (Note: the abstract reports linear separability and 26–32% steering reduction; specific probe classification accuracy figures are from the paper body and are not independently verifiable from the abstract alone.) CogBias establishes two principles that directly motivate our work: (a) cognitive biases are linearly encoded and separable, and (b) different bias families require different interventions. However, CogBias addresses biases that are independently active on different task types — each task primarily involves one bias family. Our setting involves two biases simultaneously active and competing on the same instances, creating interference effects that CogBias's framework does not model. CogBias also does not assess steerability before intervention or route between intervention types.\n\n'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) is the closest methodological precedent for decomposing a complex behavioral phenomenon into independently steerable activation-level components. Using difference-in-means directions, activation additions, and subspace geometry, they decomposed sycophancy into sycophantic agreement, sycophantic praise, and genuine agreement — demonstrating that each can be independently amplified or suppressed without affecting the others, with consistent representational structure across model families and scales. The key distinction from our proposal: their sub-components are co-existing behaviors that pull in broadly similar directions (various forms of user-pleasing output), while our target biases (CSB and CEO) are simultaneously OPPOSING — pulling confidence in opposite directions on the same instances. This distinction matters methodologically: co-aligned sub-components may be easier to isolate via difference-in-means because they do not create destructive interference in activation space. Opposing biases may partially cancel, making individual directions harder to extract — which is precisely why our Phase 0B confound controls and Phase 1A separability validation are essential. If our decomposition succeeds, it would extend the decompose-then-steer paradigm from co-existing to opposing sub-components, a strictly harder problem.\n\nBilla (arXiv 2604.15557, April 2026) proposes the most direct methodological precedent for our routing logic. The three-regime framework — (1) concept not represented (no method works), (2) nonlinear encoding (nonlinear methods needed), (3) output-aligned (linear steering works) — directly parallels our Route C/B/A structure. LAP (Linear Accessibility Profile), computed as logit-lens accuracy at each layer without training, predicts steering effectiveness at ρ=0.86–0.91 across 24 binary concept families on 5 models (Pythia-2.8B to Llama-8B). Key distinctions from our work: (a) Billa operates per-concept with synthetic binary features (e.g., gender, sentiment, parity), while we operate per-instance with naturalistic competing calibration biases; (b) Billa's three regimes assume a single concept direction per analysis, while we must decompose competing bias directions that are simultaneously active; (c) LAP's above-floor correlation weakens on smaller models (ρ=0.50–0.52 on Pythia-2.8B), and its applicability to non-binary, continuous calibration constructs is untested. We incorporate LAP as a complementary diagnostic alongside Liu's specificity ratio, adapting it to assess per-layer output-alignment of each decomposed bias direction.\n\nSteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) demonstrated prompt-level confidence steering achieving 29% AUROC increase and 16% ECE reduction across seven benchmarks on GPT-3.5, LLaMA 3, and GPT-4. SteerConf uses systematically varied steering prompts (spanning 'very cautious' to 'very confident'), measures consistency across multiple steered confidence outputs, and aggregates via linear quantization — all without training. SteerConf represents the state-of-the-art in training-free prompt-level calibration steering and serves as an important baseline: activation-level methods should demonstrate clear advantages over this prompt-level approach. However, SteerConf operates entirely at the behavioral level without mechanistic decomposition, cannot distinguish between competing bias sources, and cannot apply bias-specific corrections.\n\nCCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) achieves ~55% ECE reduction and 21% Brier score reduction by probing perturbation stability — applying targeted adversarial perturbations to final hidden states and training a lightweight correctness classifier on the model's response features. Evaluated on Llama, Qwen, and Mistral at 8B–32B scale across MMLU and MMLU-Pro, CCPS represents a strong representation-based calibration method operating on overlapping model families. However, CCPS uses monolithic perturbation without bias decomposition and does not distinguish between different sources of miscalibration.\n\nLiu (arXiv 2605.05715, May 2026) is the most directly relevant advance on the decodable–steerable gap: linearly decodable failure directions (71.6% balanced accuracy on Llama-3.1-8B) yield Δ≈0 across five families of linear steering (29 configurations) because the failure direction has 85–88% overlap with task-critical computation (specificity ratio ≤0.152). A learned nonlinear bottleneck MLP (4096→64→4096) achieves Δ=+2.8pp (p=0.025) where linear methods fail. Patel et al. ('Are LLM Uncertainty and Correctness Encoded by the Same Features?', arXiv 2604.19974, April 2026) independently confirmed this classification-correction gap via sparse autoencoder (SAE) analysis on Llama-3.1-8B and Gemma-2-9B: they found a functional dissociation between uncertainty and correctness features, with 'pure incorrectness features' being 'functionally inert' — statistically decodable yet producing near-zero accuracy change when suppressed. Only confounded features (encoding both signals) yielded meaningful behavioral effects (1.1% accuracy improvement, 75% entropy reduction). This SAE-based evidence complements Liu's linear-steering analysis: even when features are identifiable at the individual neuron/SAE-feature level, their functional role may be null — reinforcing that Phase 1A separability is necessary but insufficient, and Phase 1B steerability assessment is the critical gate. However, both Liu and Patel et al. studied single failure modes, not decomposed competing biases.\n\nTsujimura & Tagade (arXiv 2508.17182, Aug 2025) decomposed LLM assertiveness into emotional and logical sub-components via unsupervised clustering on Llama-3.2-1B-Instruct (645 samples) — methodologically adjacent but critically different: their decomposition is descriptive (post-hoc ChatGPT-labeled clusters) rather than causally grounded in identified cognitive biases, uses a single 1B model, reports no calibration metrics, and addresses assertiveness rather than calibration.\n\nHedström et al. (MERA, ICML 2025; arXiv 2510.13290) established the most principled framework for selective steering: MERA solves min ‖v‖² s.t. p̂(h+v) ≤ α with Hoeffding-based non-degradation guarantees via Bonferroni correction. However, MERA operates with a single monolithic error probe — it cannot decompose calibration errors into opposing sources or route to different intervention types based on per-direction steerability.\n\nKobalczyk & van der Schaar (arXiv 2605.13484, May 2026) discovered hidden miscalibration regimes where input-dependent calibration heterogeneity is prevalent across 48 model–dataset pairs: global reliability diagrams hide opposing over/under-confidence errors that cancel when aggregated. This provides independent empirical support for our bias interference hypothesis but offers no mechanistic explanation for WHY opposing errors exist and no bias decomposition.\n\nThe nonlinear steering landscape has matured rapidly. ODESteer (Chen et al., ICLR 2026; arXiv 2602.17560) formulated a unified ODE-based framework via barrier functions. Curveball Steering (Raval et al., arXiv 2603.09313, Mar 2026) introduced polynomial kernel PCA for curved activation geometry (+47% over linear in high-curvature regimes). FLAS (arXiv 2605.05892, May 2026) learned concept-conditioned velocity fields, first outperforming prompting on AxBench. These address geometric limitations of linear steering but provide neither bias decomposition nor steerability diagnosis.\n\nThe 'Wired for Overconfidence' paper (2604.01457, April 2026) identifies overconfidence circuits in 3B models via monolithic activation steering (96.9% ECE reduction on PopQA) but treats overconfidence as a single phenomenon. Ji et al. (EMNLP 2025) modulates a single Verbal Uncertainty Feature. CORAL (arXiv 2602.06022) achieves 49% ECE improvement via a single MLP probe. The 'Confidence Manifold' study (arXiv 2602.08159) found correctness signals in 3–8 dimensions with simple mean-shift geometry across 9 models.\n\nOn steering methodology: Spherical Steering (arXiv 2602.08169, ICML 2026) performs norm-preserving geodesic rotation. Selective Steering (Dang & Ngo, arXiv 2601.19375) developed norm-preserving rotation with discriminative layer selection. COAST (Nguyen et al., arXiv 2605.01167, May 2026) formalizes collateral damage. W2S (Gadgil et al., arXiv 2604.03867, April 2026) learns input-dependent layer selection for steering. 'Steered LLM Activations are Non-Surjective' (2604.09839) proved additive steering pushes activations off-manifold.\n\nNo existing method addresses the specific challenge of simultaneously competing calibration biases: CogBias decomposes independently-active bias families; 'Sycophancy Is Not One Thing' decomposes co-existing but co-aligned behavioral sub-components; Billa routes by per-concept steerability; SteerConf steers confidence at the prompt level without decomposition; CCPS probes perturbation stability without bias decomposition; MERA adapts steering strength monolithically; Patel et al. show that decodable features may be functionally inert. Our work uniquely targets biases that are concurrently active and opposing on the same instances, requiring joint decomposition and per-direction steerability assessment to resolve interference effects that these approaches cannot address individually.\n\n**inspired_by**: Gap: Competing biases create interference patterns — partially canceling on some instances (illusory calibration) and producing heterogeneous over/under-confidence on others (hidden miscalibration regimes, Kobalczyk 2605.13484) — that even CogBias's family-dependent mitigation cannot address because it targets independently-active biases, not simultaneously competing ones, and that 'Sycophancy Is Not One Thing's decompose-then-steer paradigm has not been tested on because their sub-components are co-aligned rather than opposing. Pattern: CogBias (2604.01366) proves bias-family-specific intervention works (linear separability, family-dependent steering) → 'Sycophancy Is Not One Thing' (2509.21305) proves complex behaviors decompose into independently steerable sub-components → Billa (2604.15557) proves steerability-based routing works (three regimes, LAP diagnostic, ρ=0.86–0.91) → SteerConf (2503.02863, NeurIPS 2025) proves calibration is steerable at the prompt level (29% AUROC, 16% ECE) → Liu (2605.05715) + Patel et al. (2604.19974) prove decodable ≠ steerable/functional and nonlinear fallback works → MERA proves adaptive strength + abstention works → Kumaran & Conmy (2603.17839) map the mechanistic pathway of confidence computation (PANL caching). Untried combination: Extend these established principles from independent/co-aligned biases to simultaneously competing and opposing calibration biases, measuring asymmetric steerability profiles as the empirical core, with bias-specific correction as the practical application. Key hypothesis: CSB and CEO have asymmetric LAP and specificity profiles because they involve different cognitive processes (self-evaluation vs. evidence integration), which would provide a mechanistic explanation for inconsistent monolithic calibration steering results and the hidden miscalibration regimes observed by Kobalczyk & van der Schaar.\n\n**approach**: We investigate whether competing calibration biases (CSB and CEO) are distinguishable in activation space, whether they exhibit asymmetric steerability, and whether decomposed correction resolves bias interference that monolithic methods cannot. We structure the investigation in four phases, beginning with behavioral replication and a confound-controlled de-risking pilot. Evaluated on 3 models × 3 datasets with 7 core baselines.\n\n**Phase 0A — Behavioral Replication (Week 1):**\n\nKumaran et al.'s competing biases were characterized on Gemma 3 (12B/27B), GPT-4o, o1-preview, and DeepSeek R1 7B — none of which are our target models. Before any activation extraction, we must verify that each target model (Llama-3.1-8B-Instruct, Qwen3-8B, Gemma 4 31B Dense) exhibits both CSB and CEO in the behavioral paradigm.\n\nWe replicate Kumaran et al.'s exact 2-turn experimental design on each target model with 500 questions per condition: the 2×3 factorial (Answer Shown/Hidden × Same/Opposite/Neutral Advice) at 70% stated advice accuracy. We measure: (a) CSB magnitude — confidence difference between Answer Shown-Neutral and Answer Hidden-Neutral conditions; (b) CEO magnitude — the overweighting ratio (observed confidence change / Bayesian-optimal change) for opposing vs. supporting advice; (c) change-of-mind rates across conditions.\n\nGo/no-go criteria: If a model shows CSB magnitude ≥50% of Kumaran's reported +0.21 (i.e., ≥+0.105) AND CEO overweighting ratio ≥50% of Kumaran's 2.58 (i.e., ≥1.29), it proceeds to Phase 0B. If a model shows one bias but not the other, it is retained with a note that only the detected bias can be studied (reducing to single-bias characterization for that model). If a model shows neither bias at ≥50% threshold, it is replaced — candidate replacements are Gemma 3 27B (directly validated by Kumaran) or Mistral-8B. We report all behavioral replication results regardless, as cross-architecture replication data for Kumaran et al.'s findings is itself a contribution.\n\n**Phase 0B — Confound-Controlled De-Risking Pilot (Weeks 2–3):**\n\nThe translation from Kumaran et al.'s behavioral paradigm to contrastive activation extraction faces a critical confound identified in prior revisions: the contrastive pairs differ not only in bias activation but in prompt information content. For CSB, 'answer shown' prompts literally contain the model's answer text while 'answer hidden' prompts contain 'xx.' For CEO, 'contradictory advice present' prompts contain advisory text that 'advice absent' prompts lack. Extracted directions may thus capture 'prompt contains additional evaluative content' rather than 'bias is active.'\n\nWe address this with a four-pronged confound mitigation strategy:\n\n*(1) Matched-content contrastive pairs:* Rather than using Kumaran et al.'s original 'xx' placeholder (which differs in length and semantic content), we design matched controls:\n- **CSB pairs:** The CSB-active condition shows the model's own prior answer attributed to itself ('You previously answered [X]'). The CSB-control condition replaces the model's answer with a plausible but randomly-selected alternative answer of matched token length attributed to 'another LLM' (e.g., 'Another LLM answered [Y]'). Both conditions contain an answer of equal length and format; only the self-generated attribution differs. An additional 'scrambled-answer' control replaces the answer with token-length-matched semantically neutral text (e.g., '[REDACTED]' padded to matched length) to verify that information content per se is not driving the extracted direction.\n- **CEO pairs:** The CEO-active condition presents contradictory advice ('This LLM answered [opposite option]'). The CEO-control condition presents irrelevant neutral advice of matched token length ('This LLM was also asked a different question about [unrelated topic]'), preserving the presence of additional advisory text while removing the bias-inducing contradictory content. An additional 'supporting-advice' condition (same format, same length, but agreeing rather than contradicting) enables directional validation — the CEO direction should separate contradictory from both neutral and supporting conditions, while a pure information-content confound would not distinguish contradictory from supporting.\n\n*(2) Same-content-different-attribution CSB control (source attribution isolation):* To isolate the ownership/self-generated component of CSB from information content, we add a critical additional condition: the model's OWN answer text, but attributed to 'another LLM' ('Another LLM answered [X]' where X is the model's actual prior answer). Combined with the self-attributed condition ('You previously answered [X]'), this creates a 2×2 factorial for CSB extraction: {own answer text, other answer text} × {self-attributed, other-attributed}. The self-attributed-own vs. other-attributed-own contrast isolates pure ownership/attribution effects (the CSB core mechanism — confidence inflation from recognizing one's own prior commitment) while holding information content exactly constant. The other-attributed-own vs. other-attributed-other contrast isolates pure information-content effects. If the CSB direction extracted from the full contrast (self-own vs. other-other) is primarily aligned with the attribution contrast (self-own vs. other-own) rather than the content contrast (own-text vs. other-text), this provides strong evidence that we are capturing genuine choice-supportive bias rather than a content confound.\n\n*(3) Token-position-specific extraction informed by mechanistic evidence:* Rather than extracting mean activations across all token positions (which would be dominated by the differing prompt content), we extract activations at three specific positions informed by Kumaran & Conmy's (2603.17839) mechanistic findings on confidence computation: (a) the Post-Answer-Newline (PANL) token — where Kumaran & Conmy showed confidence information is first cached (layers 22–28 in Gemma 3 27B), making it the earliest site where bias-relevant confidence signals concentrate; (b) the Confidence-Colon (CC) position — where confidence is retrieved for verbalization (layers 30–36); (c) the first generated token of the confidence response. Extracting at PANL is particularly informative because it is a structurally fixed position (always immediately after the answer) that is identical in format across all conditions, minimizing sensitivity to prompt-content differences upstream. If the extracted direction is robust across extraction positions — particularly at PANL, which precedes the confidence verbalization — it is unlikely to reflect prompt-content confounds.\n\n*(4) Confound diagnostic tests:* For each extracted candidate direction, we verify: (a) correlation with prompt token count is <0.1 (Pearson r across the contrastive dataset); (b) a 'prompt-structure probe' — a linear probe trained to classify prompt conditions by surface features (presence/absence of answer text, advice text length) — produces directions with cosine similarity <0.2 to our candidate bias directions; (c) the candidate direction generalizes to held-out question types not seen during extraction; (d) for CSB specifically, the extracted direction aligns more strongly with the attribution contrast (self vs. other attribution of same content) than with the content contrast (same vs. different answer text with same attribution), as described in prong (2).\n\nWe conduct the pilot on the single model showing strongest behavioral CSB+CEO effects in Phase 0A, with ~500 contrastive pairs per bias type per control condition (totaling ~4000 pairs across the full factorial design for both biases, including the same-content-different-attribution CSB conditions).\n\nGo/no-go criteria: If a linear probe on matched-content pairs achieves ≥60% balanced accuracy for distinguishing bias-active vs. bias-control conditions, AND confound diagnostics pass (prompt-structure cosine <0.2, token-count correlation <0.1, attribution-alignment > content-alignment for CSB), we proceed to full Phase 1. If probing accuracy is 60%+ but confound diagnostics partially fail (e.g., cosine similarity 0.2–0.35), we expand to additional extraction positions and apply mean-centering (subtracting the global mean activation to decorrelate from background prompt structure). If probing accuracy is 55–60% with clean confound diagnostics, we expand to 1000 pairs. If probing accuracy is <55% across all extraction positions, or if confound diagnostics consistently fail (cosine >0.35 to prompt-structure direction), we activate the behavioral-signal fallback.\n\n**Phase 0 Fallback — Behavioral-Signal-Guided Probing (explicit scope reduction):**\n\nWe are explicit that the fallback path — using behavioral output changes (confidence shift patterns matching CSB vs. CEO signatures) to label instances post-hoc, then probing for internal signatures correlated with these behavioral labels — fundamentally changes the paper's contribution. The fallback trades causal contrastive evidence (where we experimentally control bias activation) for correlational association (where we observe behavioral patterns and search for corresponding activation correlates). This weakens contribution (1) from 'first causal activation-level characterization of competing calibration biases' to 'statistical association between behaviorally-identified bias patterns and activation geometry.' The resulting paper would still be informative — establishing that behavioral CSB/CEO patterns have detectable activation correlates, even if not causally isolated — but would be repositioned as a solid empirical contribution appropriate for EMNLP/NAACL rather than a top-tier mechanistic result at ICLR. The remaining contributions (2)–(4) on steerability measurement, interference analysis, and bias-specific correction would be weakened proportionally, as the activation directions being steered/analyzed would have weaker causal grounding.\n\n**Phase 1 — Separability Validation & Steerability Assessment (Weeks 4–8):**\n\n*Phase 1A — Separability (Weeks 4–6):* Building on the pilot's validated extraction methodology with matched-content controls and same-content-different-attribution factorial, we scale confound-controlled contrastive activation extraction to all three models that passed Phase 0A behavioral replication, with 2000+ matched-content contrastive pairs per bias type per model. We extract candidate CSB and CEO directions via difference-in-means on the matched-content contrastive pairs (using the extraction position validated in Phase 0B, prioritizing PANL following Kumaran & Conmy's mechanistic evidence) and validate separability via: (a) cosine similarity between candidate directions (threshold: <0.3 for separability), (b) principal angle analysis between CSB and CEO subspaces following Miao & Ungar's methodology, (c) PCA dimensionality assessment (whether 2 directions capture sufficient variance or higher-dimensional subspaces are needed), (d) cross-prediction ablations confirming that removing one bias subspace does not collapse the other, and (e) confound diagnostic replication at scale — verifying that the scaled directions maintain low cosine similarity to prompt-structure probes (<0.2) across all models. If cosine similarity >0.3 or shared variance >15%, we activate the separability fallback: extracting a joint multi-direction bias subspace and training a subspace projection classifier to separate components.\n\nImportant caveat informed by Patel et al. (2604.19974): Phase 1A separability — even if successful — does NOT guarantee that the identified directions are functionally relevant for intervention. Patel et al.'s SAE analysis showed that statistically decodable 'pure incorrectness features' can be functionally inert. Phase 1B steerability assessment is therefore not merely complementary but essential: it determines whether our separable directions are the kind that actually drive behavior (like Patel et al.'s 'confounded features') or mere correlates (like their 'pure incorrectness features').\n\n*Phase 1B — Steerability Diagnostics (Weeks 6–8):* For each identified bias direction, we compute: (a) the **specificity ratio** — the proportion of mode-specific variance vs. shared variance with the correct-vs-incorrect subspace, following Liu's shared-specific decomposition methodology; (b) **adapted LAP** — applying the logit lens at each layer to measure how strongly each bias direction projects onto confidence-related output tokens, adapting Billa's (2604.15557) per-concept diagnostic to per-direction analysis for calibration biases, with extraction focused on the PANL→CC pathway identified by Kumaran & Conmy (2603.17839); (c) **LEACE concept erasure test** — applying concept erasure to each bias direction and measuring accuracy damage as causal evidence of entanglement; (d) **pilot linear steering test** — applying small-magnitude Spherical Steering along each direction and measuring both calibration improvement and accuracy impact; (e) **functional inertness test** — following Patel et al.'s methodology, we suppress each bias direction and measure whether the effect on confidence output is non-trivial (distinguishing functionally active from inert directions).\n\nWe do NOT pre-commit to fixed routing thresholds. Following Billa's three-regime framework as a conceptual guide, we LEARN optimal thresholds via validation-set sweeps over LAP and specificity cutoffs, reporting the full diagnostic-vs-effectiveness curves as primary empirical contributions. The core empirical hypothesis — that CSB and CEO have asymmetric steerability profiles — would provide a mechanistic explanation for why monolithic calibration steering shows inconsistent results and why hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) exhibit spatially heterogeneous over/under-confidence.\n\nPhase 1 results constitute an independent contribution regardless of Phase 3 outcomes: the first activation-level characterization of behaviorally-identified competing calibration biases, with joint separability and steerability measurements using complementary diagnostics (specificity ratio + adapted LAP + functional inertness test), obtained via a confound-controlled extraction methodology grounded in mechanistic evidence of confidence computation pathways.\n\n**Phase 2 — Per-Instance Bias Diagnosis (Weeks 7–10):** A lightweight logistic probe (or small MLP in the fallback case) trained on per-instance projection magnitudes onto each bias direction classifies which bias dominates for a given query, providing a continuous dominance score. We stratify by difficulty and validate against behavioral predictions: on easy questions where models are already confident, CSB should dominate; on hard questions under criticism, CEO should dominate. We additionally test whether bias interference patterns — instances where CSB and CEO partially cancel to produce deceptive near-zero net error — can be identified, which would directly explain hidden miscalibration regimes.\n\n**Phase 3 — Bias-Specific Intervention (Weeks 9–15):** Building on Billa's established routing-by-steerability paradigm (2604.15557), extended from per-concept to per-instance competing biases, and informed by 'Sycophancy Is Not One Thing's demonstration that decomposed sub-components can be independently steered, Phase 3 implements three intervention routes informed by Phase 1B's empirically-learned steerability thresholds:\n\n*Route A — Adaptive Spherical Steering (for steerable directions):* When a bias direction falls in Billa's 'output-aligned' regime (high adapted LAP + high specificity + non-inert per Patel et al. criteria), we apply Spherical Steering (You et al., ICML 2026) with MERA-inspired per-instance adaptive strength: rotation magnitude optimized to minimize ‖v‖² subject to the bias probe's predicted error falling below a calibrated threshold α*, following MERA's constrained optimization framework. Unlike MERA applied monolithically, our adaptation operates per-bias-direction, potentially applying different strengths for CSB vs. CEO corrections on the same instance. Layer selection is informed by adapted LAP profiles and the PANL→CC pathway (Kumaran & Conmy 2603.17839), and optionally by W2S-style (Gadgil et al., 2604.03867) input-dependent layer mapping.\n\n*Route B — Learned Nonlinear Residual Correction (for entangled directions):* When a bias direction falls in Billa's 'nonlinear encoding' regime (high A_mlp but low A_lin, or low specificity ratio, or functionally inert under linear suppression but non-inert under nonlinear intervention), linear steering is expected to fail. Following Liu's finding that a bottleneck residual MLP (d→64→d) achieves Δ=+2.8pp where 29 linear configurations yield Δ≈0, we train a small nonlinear residual adapter per bias type (<0.1% of model parameters), with COAST-informed training (Nguyen et al., 2605.01167) weighting the loss to minimize collateral damage along non-target feature directions.\n\n*Route C — Selective Abstention (for uncorrectable instances):* When neither Route A nor Route B improves calibration without excessive accuracy damage (>3% degradation on validation), following Billa's 'not represented' regime, we abstain and output a reliability score using MERA's Hoeffding-based statistical framework.\n\nFor intermediate-steerability directions, Route A is applied with a conservative strength cap (rotation magnitude ≤50% of high-steerability coefficient), falling back to Route C per-instance if collateral damage exceeds the threshold.\n\n**Generalizability — Beyond CSB vs. CEO:**\n\nWhile this paper focuses on CSB and CEO as the primary competing-bias pair — chosen because Kumaran et al. provide quantitative behavioral characterization with effect sizes that enable principled experimental design — the Phase 0→3 pipeline is designed to be reusable for other plausible competing-bias pairs where simultaneously active, opposing biases create interference. We identify three candidates for future work: (1) **Sycophantic agreement vs. truthfulness commitment** — when a user states something incorrect and requests evaluation, sycophancy training pulls toward agreement while truthfulness training pulls toward correction; 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) already demonstrates that sycophancy sub-components are separable and independently steerable, and the sycophancy–truthfulness tension is well-documented (e.g., Alignment Forum, Sharma et al. 2024), though the opposing-direction interference structure has not been characterized. (2) **Primacy bias vs. recency bias** — in multi-document QA and list-based tasks, these opposing positional biases are simultaneously active and shift in relative dominance based on context window usage (primacy weakens as inputs approach context limits while recency remains stable; arXiv 2508.07479), potentially creating hidden miscalibration-like heterogeneity in retrieval confidence. (3) **Anchoring to prior reasoning vs. evidence updating** — in multi-turn reasoning tasks, models may anchor to initial chain-of-thought conclusions while simultaneously being influenced by new contradictory evidence, a generalization of the CSB/CEO dynamic to reasoning contexts. The matched-content contrastive extraction (Phase 0B), steerability diagnostics (Phase 1B), and bias-specific routing (Phase 3) are all applicable to these settings with appropriate stimulus design.\n\nWe evaluate on TriviaQA, MMLU, and PopQA across Gemma 4 31B Dense, Qwen3-8B, and Llama-3.1-8B-Instruct (subject to Phase 0A behavioral replication; models that fail replication are replaced as described). Metrics: ECE, Brier score, AUROC, difficulty-stratified ECE (easy/medium/hard), per-direction specificity ratios and LAP profiles, bias interference measurements (instances where CSB+CEO partially cancel), collateral damage, and route-distribution analysis. Core baselines: (1) temperature scaling, (2) CORAL, (3) Miao & Ungar adaptive steering, (4) MERA applied monolithically, (5) monolithic Spherical Steering (single direction, no bias decomposition), (6) monolithic nonlinear MLP (single direction, no bias decomposition), (7) SteerConf prompt-level steering. Extended baselines in supplementary: CogBias-style family-level steering (treating CSB/CEO as independent families), CCPS perturbation-stability probing (Khanmohammadi et al., 2505.21772), DINCO, 'Wired for Overconfidence' replication.\n\n**resource_estimate** should be:\nmanual: gpu_hours \"650-900 H100\", timeline \"16-20 weeks (includes 1-week behavioral replication + 2-week pilot with expanded CSB factorial)\", estimated_gpu_cost \"$1,625-$2,250 (H100 @ ~$2.50/hr)\"\nhuman_in_loop: gpu_hours \"550-750 H100\", timeline \"12-16 weeks (includes 1-week behavioral replication + 2-week pilot with expanded CSB factorial)\", claude_api_cost \"$375-$575 (Sonnet 4.6 for matched-content and attribution-factorial contrastive dataset generation, confound diagnostics, probing, LAP computation, adapter training, analysis)\", estimated_gpu_cost \"$1,375-$1,875\"\nauto_research: gpu_hours \"850-1150 H100\", timeline \"7-11 weeks (includes behavioral replication + pilot)\", claude_api_cost \"$725-$1,250 (Opus 4.7 for experiment orchestration, matched-content and attribution-factorial pair generation, confound analysis, validation analysis, steerability diagnostics, adapter training sweeps)\", estimated_gpu_cost \"$2,125-$2,875\", speed_bottleneck \"Phase 0A behavioral replication (1 week, parallelizable across 3 models) → Phase 0B pilot is sequential gate (2 weeks, expanded for CSB attribution factorial). Phase 1A→1B is sequential. Evaluation across 3 models × 3 datasets × 3 routes + 7 baselines is parallelizable.\"\n\n**target_venues**: same as before\n\n**level**: \"top-tier\"\n\n**description**: (I'll provide this separately - it's long)\n\n**key_references**: Add all new papers\n\n**revision_notes**: Add entries for all 7 round 7 issues plus the round 6 carry-forward\n\n**change_type**: \"major\"\n\n**project_name**: \"competing_bias_steer\"\n**source**: \"web_research\"\n\nPlease output the complete JSON. I'll provide the description field content next - for now use a placeholder \"[DESCRIPTION_PLACEHOLDER]\" that I'll fill in.\n\nActually wait - let me just write the whole thing out as a single JSON. Given the length, please format it properly with all fields included. The JSON should have these top-level fields: title, core_problem, opportunity, landscape, inspired_by, approach, resource_estimate, target_venues, level, key_references, description, project_name, source, revision_notes, change_type.\n\nFor description, use this text:\n\nWe investigate whether two competing sources of LLM miscalibration — choice-supportive bias (CSB) and contradictory-evidence overweighting (CEO), identified behaviorally by Kumaran et al. (Nature MI 2026) — produce distinguishable activation signatures, exhibit asymmetric steerability profiles, and can be corrected through bias-specific intervention that outperforms monolithic approaches.\n\nOur work is motivated by a bias interference problem unique to the competing-bias setting: CSB and CEO are simultaneously active on the same instances, pulling confidence in opposite directions. This creates (a) illusory calibration where competing biases partially cancel, making global metrics deceptively good while localized failures persist — consistent with the hidden miscalibration regimes independently observed by Kobalczyk & van der Schaar (2605.13484) — and (b) heterogeneous over/under-confidence patterns where one bias dominates instance-by-instance. Monolithic methods cannot resolve this interference because they target the net error direction, which conflates opposing bias contributions.\n\nCogBias (Huang et al., 2604.01366) established that cognitive bias families are linearly separable and require family-dependent intervention — but addresses independently-active biases on different tasks, not simultaneously competing biases. 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) demonstrated that complex behavioral phenomena can be decomposed into independently steerable activation-level sub-components via difference-in-means — but their sub-components (sycophantic agreement, praise, genuine agreement) are co-existing and co-aligned, not opposing. Our work extends this decompose-then-steer paradigm to the strictly harder case of opposing biases creating destructive interference. Billa (2604.15557) established the routing-by-steerability paradigm with a three-regime framework and LAP diagnostic — but operates per-concept with synthetic binary features, not per-instance with naturalistic competing biases. SteerConf (Zhou et al., NeurIPS 2025) achieves 29% AUROC increase via prompt-level confidence steering — demonstrating calibration is steerable but operating without mechanistic decomposition. MERA (Hedström et al., ICML 2025) provides adaptive steering with non-degradation guarantees — but treats errors monolithically. Liu (2605.05715) and Patel et al. (2604.19974) independently established the classification-correction gap — decodable directions may be functionally inert — reinforcing that our Phase 1B steerability assessment is essential.\n\nOur approach proceeds in four phases with rigorous confound control. Phase 0A (Behavioral Replication) verifies that each target model — Llama-3.1-8B-Instruct, Qwen3-8B, and Gemma 4 31B Dense, none of which were in Kumaran et al.'s original study — exhibits both CSB and CEO at ≥50% of Kumaran's reported effect sizes; models failing replication are replaced. Phase 0B (Confound-Controlled Pilot) addresses a critical methodological challenge: standard contrastive extraction would conflate bias activation with prompt information-content differences. We design a four-pronged confound mitigation strategy: (1) matched-content contrastive pairs equated for token length, format, and information presence; (2) a same-content-different-attribution CSB control — presenting the model's OWN answer text but attributed to 'another LLM' — to isolate the ownership/self-generated component of CSB from information content via a 2×2 factorial ({own text, other text} × {self-attributed, other-attributed}); (3) token-position-specific extraction at the Post-Answer-Newline (PANL) and Confidence-Colon positions, grounded in Kumaran & Conmy's (2603.17839) mechanistic finding that confidence is cached at answer-adjacent positions rather than computed just-in-time; (4) explicit confound diagnostic tests including attribution-alignment verification for CSB.\n\nPhase 1A (Separability) tests whether CSB and CEO produce geometrically distinct directions using confound-controlled contrastive activation probing, validated via cosine similarity, principal angles, PCA, and cross-prediction ablations — with the explicit caveat (informed by Patel et al., 2604.19974) that separability does NOT guarantee functional relevance. Phase 1B (Steerability Assessment) measures each direction's specificity ratio (Liu 2605.05715), adapted LAP (Billa 2604.15557), and functional inertness (Patel et al. 2604.19974) as complementary diagnostics, learning routing thresholds empirically rather than pre-committing to fixed values. Phase 2 trains a per-instance bias dominance classifier.\n\nPhase 3 implements intervention routing, building on Billa's established three-regime paradigm extended from per-concept to per-instance competing biases, and informed by 'Sycophancy Is Not One Thing's demonstration that decomposed sub-components can be independently steered: (Route A) Spherical Steering with MERA-inspired per-direction adaptive strength for steerable, functionally active directions; (Route B) lightweight bottleneck MLP for entangled directions, trained with COAST-informed collateral-damage-aware loss; (Route C) selective abstention via MERA's statistical framework.\n\nWe evaluate on TriviaQA, MMLU, and PopQA across three models (subject to Phase 0A behavioral replication). Core baselines: temperature scaling, CORAL, Miao & Ungar, MERA (monolithic), monolithic Spherical Steering, monolithic nonlinear MLP, and SteerConf (prompt-level steering). Extended baselines include CCPS perturbation-stability probing (Khanmohammadi et al., EMNLP 2025) and CogBias-style family-level steering.\n\nWe discuss generalizability beyond CSB/CEO, identifying three other plausible competing-bias pairs — sycophantic agreement vs. truthfulness commitment, primacy vs. recency bias, and anchoring vs. evidence updating — for which the Phase 0→3 pipeline is reusable with appropriate stimulus design.\n\nWe are explicit about the fallback path: if Phase 0B fails (extracted directions reflect prompt confounds rather than bias activation, despite matched-content controls and the attribution factorial), the behavioral-signal-guided probing fallback produces correlational rather than causal evidence, fundamentally repositioning the paper from a mechanistic contribution to an empirical observation study — still informative, but appropriate for EMNLP/NAACL rather than ICLR.\n\nThe contributions are: (1) first causal activation-level characterization of simultaneously competing calibration biases (CSB vs. CEO), extending CogBias's independently-active bias decomposition and 'Sycophancy Is Not One Thing's co-aligned decomposition to the opposing-bias setting, with confound-controlled extraction methodology including source-attribution factorial and mechanistically-grounded token-position targeting; (2) empirical measurement of asymmetric steerability profiles with complementary diagnostics (specificity ratio + adapted LAP + functional inertness test), extending Billa's per-concept steerability analysis to per-direction competing biases; (3) bias interference analysis connecting competing bias dynamics to hidden miscalibration regimes; (4) bias-specific adaptive correction extending MERA's monolithic framework to the multi-bias setting with steerability-informed routing; (5) cross-architecture behavioral replication of Kumaran et al.'s competing biases on Llama and Qwen families; (6) generalizability framework identifying additional competing-bias pairs amenable to the same pipeline.\n\nFor key_references, use the same list as before but ADD these new entries:\n- \"How do LLMs Compute Verbal Confidence (Kumaran, Conmy et al., arXiv 2603.17839, March 2026) — confidence cached at PANL position, answer→PANL→CC information flow, token log-probs explain only 8.4% of variance\"\n- \"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) — decomposition of sycophancy into independently steerable sub-components via difference-in-means\"\n- \"Are LLM Uncertainty and Correctness Encoded by the Same Features? A Functional Dissociation via Sparse Autoencoders (Patel et al., arXiv 2604.19974, April 2026) — pure incorrectness features functionally inert, SAE-based classification-correction gap confirmation\"\n- \"Calibrating LLM Confidence by Probing Perturbed Representation Stability (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) — CCPS, ~55% ECE reduction via perturbation-stability probing on Llama/Qwen/Mistral 8B-32B\"\n\nFor revision_notes, keep ALL existing entries and add:\nround7_issue_1_verbal_confidence_mechanism: \"ADDRESSED: Integrated Kumaran & Conmy 'How do LLMs Compute Verbal Confidence' (2603.17839) throughout. Added to opportunity as mechanistic foundation for confidence computation. Used to ground Phase 0B's token-position-specific extraction strategy — now specifically targeting PANL (Post-Answer-Newline) and CC (Confidence-Colon) positions based on their finding that confidence is cached at answer-adjacent positions with information flowing answer tokens → PANL (layers 22-28) → CC (layers 30-36), and that token log-probs explain only 8.4% of variance. Added to landscape alongside Kumaran et al.'s behavioral work. Referenced in Phase 1B for LAP computation along the PANL→CC pathway.\"\nround7_issue_2_source_attribution_confound: \"ADDRESSED: Added same-content-different-attribution CSB control as a dedicated fourth prong of confound mitigation (prong 2 in revised Phase 0B). The model's OWN answer text is presented attributed to 'another LLM,' creating a 2×2 factorial: {own answer text, other answer text} × {self-attributed, other-attributed}. The self-own vs. other-own contrast isolates pure ownership/attribution effects (the CSB core mechanism) while holding information content exactly constant. Added attribution-alignment verification to confound diagnostics: the CSB direction must align more with the attribution contrast than the content contrast. This isolates choice-supportive confidence inflation from content recognition. ~500 additional pairs per condition.\"\nround7_issue_3_CCPS_missing: \"ADDRESSED: CCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) integrated into opportunity as a strong representation-based calibration baseline (~55% ECE reduction, 21% Brier reduction via perturbation-stability probing on Llama/Qwen/Mistral 8B-32B). Added to landscape with methodological description and positioning (monolithic perturbation without bias decomposition). Added to extended baselines in evaluation. Added to key_references.\"\nround7_issue_4_generalizability: \"ADDRESSED: Added dedicated 'Generalizability — Beyond CSB vs. CEO' subsection in approach identifying three plausible competing-bias pairs: (1) sycophantic agreement vs. truthfulness commitment (well-documented tension, sycophancy sub-components already shown separable by Vennemeyer et al.), (2) primacy bias vs. recency bias (opposing positional biases that shift in dominance based on context window usage, per arXiv 2508.07479), (3) anchoring to prior reasoning vs. evidence updating in multi-turn contexts. Noted that the Phase 0→3 pipeline is designed to be reusable for these settings with appropriate stimulus design.\"\nround7_issue_5_sycophancy_decomposition: \"ADDRESSED: 'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305) integrated as the closest methodological precedent throughout. Added to core_problem as fifth line of related work. Added to opportunity with key findings (independently steerable sub-components, consistent across model families). Added to landscape with detailed comparison — key distinction: co-existing co-aligned sub-components vs. our opposing biases creating interference. Referenced in Phase 3 as methodological support. Critical nuance articulated: independent steerability of co-aligned components does not guarantee success for opposing components where destructive interference complicates extraction.\"\nround7_issue_6_SAE_functional_dissociation: \"ADDRESSED: Patel et al. 'Are LLM Uncertainty and Correctness Encoded by the Same Features?' (arXiv 2604.19974) integrated alongside Liu throughout. Added to core_problem alongside Liu for classification-correction gap. Added to opportunity with key quantitative results (functionally inert pure incorrectness features, 1.1% accuracy improvement from confounded features, AUROC ~0.79 from 3 features). Added to landscape with detailed SAE-based evidence. Added explicit caveat after Phase 1A that separability does NOT guarantee functional relevance (citing Patel et al.). Added functional inertness test to Phase 1B diagnostics. Added to key_references.\"\nround7_issue_7_cogbias_accuracy_verification: \"ADDRESSED: The '97.8% mean classification accuracy' claim attributed to CogBias could not be independently verified from the abstract or accessible content. The abstract reports linear separability and 26-32% steering reduction but does not surface this specific accuracy figure. Revised ALL references to CogBias probe accuracy: replaced '97.8% mean classification accuracy' with 'high linear separability' or 'linearly separable directions,' noting that the abstract-reported 26-32% steering reduction is cited as the primary quantitative result. Added parenthetical caveat: 'specific probe classification accuracy figures are from the paper body rather than the abstract alone.'\"\n\nchange_type: \"major\"\n\nPlease output the complete, valid JSON object with all these fields. Make sure all strings are properly escaped for JSON (especially quotes within strings).\n",
+    "agentId": "a3c82c5b98465838b",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Let me construct and output the JSON directly. Given the massive size of the content, I'll produce the complete JSON object. Let me carefully assemble it ensuring proper escaping.\n\nHere is the complete, valid JSON object:\n\n```json\n{\n  \"title\": \"Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibration for Targeted Activation Correction\",\n  \"core_problem\": \"LLM miscalibration arises from at least two competing biases \\u2014 choice-supportive bias (CSB, inflating confidence in initial answers) and contradictory-evidence overweighting (CEO, causing excessive confidence revision under criticism) \\u2014 that are simultaneously active and pull confidence in opposite directions on the same instances (Kumaran et al., Nature MI 2026). This creates a bias interference problem: competing biases can partially cancel (producing illusory calibration where global metrics look good but localized failures persist) or one can dominate instance-by-instance (producing heterogeneous over/under-confidence patterns). Recent work on hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) independently confirms that global reliability diagrams 'hide rather than reveal calibration failures' because 'opposing errors cancel when aggregated by confidence' \\u2014 but provides no mechanistic explanation for WHY opposing errors exist. Five lines of related work address parts of this problem but not the whole: (1) CogBias (Huang et al., 2604.01366) demonstrates that different cognitive bias families (Judgment, Information Processing, Social, Response) need different interventions \\u2014 prompt debiasing 'substantially reduces Response biases but backfires for Judgment biases' \\u2014 establishing the principle of family-dependent mitigation. However, CogBias addresses independently-active biases on different task types, not simultaneously competing biases on the same instances. (2) Billa (2604.15557) proposes a three-regime steerability framework (concept not represented / nonlinear encoding / output-aligned) with Linear Accessibility Profile (LAP) as a training-free diagnostic (\\u03c1=0.86\\u20130.91 correlation with steering effectiveness), establishing the routing-by-steerability paradigm \\u2014 but operates per-concept with synthetic binary features, not per-instance with naturalistic competing biases. (3) MERA (Hedstr\\u00f6m et al., ICML 2025) provides adaptive steering strength and abstention with non-degradation guarantees \\u2014 but treats errors monolithically with a single probe. (4) SteerConf (Zhou et al., NeurIPS 2025) achieves 29% AUROC increase and 16% ECE reduction via prompt-level confidence steering with multi-prompt aggregation \\u2014 demonstrating that calibration is steerable, but operating entirely at the prompt level without mechanistic decomposition or bias-specific intervention. (5) 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) demonstrates that a complex behavioral phenomenon (sycophancy) can be decomposed into independently steerable sub-components (sycophantic agreement vs. sycophantic praise vs. genuine agreement) using difference-in-means and activation additions \\u2014 establishing the decompose-then-steer paradigm. However, their sub-components are co-existing behaviors pulling in similar directions, not opposing biases creating interference effects. The classification-correction gap (Liu, 2605.05715; independently confirmed via SAE analysis by Patel et al., 2604.19974, who showed that 'pure incorrectness features' are 'functionally inert' despite being statistically decodable) adds a further obstacle: linearly decodable bias directions may not be linearly steerable due to entanglement with task-critical computation. Can we move from behavioral evidence of competing biases to activation-level characterization, measure their asymmetric steerability profiles, and demonstrate that decomposed correction outperforms monolithic methods specifically because it resolves bias interference?\",\n  \"opportunity\": \"Kumaran et al. (Nature Machine Intelligence, 2026; arXiv 2507.03120) established behavioral evidence that LLM miscalibration results from two mechanistically distinct biases: choice-supportive bias inflates confidence in selected answers (+0.21 confidence boost, p<0.001), while contradictory-advice overweighting causes models to over-react to opposing evidence (overweighting ratio 2.58 for opposing vs. 1.095 for supporting advice). Critically, both biases are simultaneously active in the 'Answer Shown + Opposite Advice' condition, demonstrating they are distinct mechanisms rather than a single unified bias. However, Kumaran et al. provided only behavioral evidence with no activation-level analysis, and their study covered Gemma 3 (12B/27B), GPT-4o, o1-preview, and DeepSeek R1 7B \\u2014 but not the Llama or Qwen families that are widely used for mechanistic interpretability research.\\n\\nKumaran, Conmy et al. ('How do LLMs Compute Verbal Confidence,' arXiv 2603.17839, March 2026) provided the mechanistic foundation for confidence computation: verbal confidence is not computed just-in-time but cached at the Post-Answer-Newline (PANL) token position, with information flowing from answer tokens \\u2192 PANL (layers 22\\u201328) \\u2192 Confidence-Colon position (layers 30\\u201336) in Gemma 3 27B. Critically, token log-probabilities explain only 8.4% of variance in verbal confidence (R\\u00b2_CV = 0.084), while PANL-cached representations explain substantial additional variance \\u2014 demonstrating that confidence reflects 'automatic, sophisticated self-evaluation' rather than simple fluency readout. This directly validates our Phase 0B token-position-specific extraction strategy: extracting at the PANL and confidence-bearing positions targets where bias-relevant confidence signals are mechanistically concentrated, rather than averaging across all positions where prompt-content confounds dominate. Studied on Gemma 3 27B and Qwen 2.5 7B \\u2014 overlapping with our target model families.\\n\\nCogBias (Huang et al., arXiv 2604.01366, April 2026) independently demonstrated that cognitive biases are encoded as linearly separable directions in LLM activation space, and that bias-family-specific intervention is both viable and necessary: activation steering achieves 26\\u201332% bias reduction overall, but effectiveness varies dramatically by family (up to 19pp improvement for Judgment biases on Qwen vs. minimal effect for others). Importantly, CogBias found that despite near-orthogonal bias representations across model architectures, steering reduced bias at similar rates, suggesting shared functional organization \\u2014 which is encouraging for cross-model generalization. This establishes a crucial principle \\u2014 different biases need different interventions \\u2014 but CogBias addresses biases that are independently active on different task types, not biases that compete simultaneously on the same calibration task. (Note: CogBias reports high linear separability of bias directions; the specific probe accuracy figures are drawn from the paper body rather than the abstract, and we cite the abstract-reported 26\\u201332% steering reduction as the primary quantitative result.)\\n\\n'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) provides the closest methodological precedent for our decompose-then-steer approach. Using difference-in-means directions, activation additions, and subspace geometry across multiple models, they decomposed sycophancy into distinct sub-components (sycophantic agreement, sycophantic praise, genuine agreement) and demonstrated that each can be independently amplified or suppressed without affecting the others, with representational structure consistent across model families and scales. This establishes the feasibility of the core methodological approach \\u2014 decomposing a complex behavioral phenomenon into independently steerable activation-level sub-components. The critical distinction from our setting: sycophancy sub-components are co-existing behaviors pulling in broadly similar directions (toward user-pleasing outputs), whereas CSB and CEO are opposing biases creating destructive interference. Independent steerability of co-aligned components does not guarantee successful decomposition of opposing components, where partial cancellation in activation space may make individual directions harder to isolate.\\n\\nBilla (arXiv 2604.15557, April 2026) proposed a three-regime framework for steerability prediction: (1) concept not represented (no method works), (2) nonlinear encoding (nonlinear methods needed), (3) output-aligned (linear steering works). The Linear Accessibility Profile (LAP) \\u2014 a training-free logit-lens diagnostic \\u2014 predicts steering effectiveness at \\u03c1=0.86\\u20130.91 across 24 binary concept families and 5 models. This establishes the routing-by-steerability paradigm that informs our intervention strategy \\u2014 but LAP operates per-concept with synthetic binary features, not per-instance with naturalistic biases, and does not address bias decomposition.\\n\\nSteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) demonstrated that prompt-level confidence steering \\u2014 using systematically varied steering prompts spanning 'very cautious' to 'very confident,' with multi-prompt consistency aggregation \\u2014 achieves 29% AUROC increase and 16% ECE reduction across seven benchmarks on GPT-3.5, LLaMA 3, and GPT-4 without training. SteerConf establishes that calibration is steerable at the behavioral level and provides a strong prompt-level baseline, but operates without mechanistic decomposition and cannot distinguish between or independently address competing bias sources.\\n\\nMiao & Ungar (arXiv 2603.25052, 2026) showed that calibration and verbalized confidence are linearly encoded but orthogonal in the residual stream (cosine similarity <0.04 across layers in three 7\\u20138B models), achieving 4\\u20137\\u00d7 ECE improvement via adaptive steering. Liu (arXiv 2605.05715, May 2026) demonstrated the classification-correction gap: linearly decodable failure directions (71.6% balanced accuracy) yield \\u0394\\u22480 under 29 linear steering configurations due to 85\\u201388% overlap with task-critical computation (specificity ratio \\u22640.152), but a learned nonlinear bottleneck MLP achieves \\u0394=+2.8pp where all linear methods fail. Patel et al. ('Are LLM Uncertainty and Correctness Encoded by the Same Features?', arXiv 2604.19974, April 2026) independently confirmed the classification-correction gap via sparse autoencoder (SAE) analysis on Llama-3.1-8B and Gemma-2-9B: they found that 'pure incorrectness features' are 'functionally inert' \\u2014 statistically decodable but producing near-zero accuracy change when suppressed \\u2014 while confounded features encoding both uncertainty and correctness yield 1.1% accuracy improvement and 75% entropy reduction upon suppression, with just 3 mid-layer features achieving AUROC ~0.79. This SAE-based functional dissociation reinforces that Phase 1A's separability success does NOT guarantee Phase 3's intervention success \\u2014 our Phase 1B steerability assessment is essential precisely because decodable directions may be functionally inert. MERA (Hedstr\\u00f6m et al., ICML 2025; arXiv 2510.13290) established adaptive steering with non-degradation guarantees via constrained optimization \\u2014 but operates with a single monolithic error probe.\\n\\nKobalczyk & van der Schaar (arXiv 2605.13484, May 2026) independently confirmed that global calibration metrics mask input-dependent heterogeneity: across 48 model\\u2013dataset pairs, they discovered hidden miscalibration regimes where 'opposing errors cancel when aggregated by confidence,' with local correction outperforming confidence-only methods. This provides independent evidence for our bias interference hypothesis \\u2014 the hidden regimes may correspond to regions where CSB vs. CEO dominance shifts.\\n\\nCCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) achieves ~55% ECE reduction and 21% Brier score reduction via perturbation-stability probing \\u2014 applying targeted adversarial perturbations to final hidden states and training a lightweight classifier on response features \\u2014 across Llama, Qwen, and Mistral models at 8B\\u201332B scale. CCPS represents a strong representation-based calibration baseline operating on overlapping model families and scales, though it uses monolithic perturbation without bias decomposition.\\n\\nThe 'Confidence Manifold' study (arXiv 2602.08159) found correctness signals occupy only 3\\u20138 dimensions with simple mean-shift geometry across 9 models, suggesting calibration-related directions may have more favorable specificity profiles than Liu's entangled overthinking directions. The nonlinear steering landscape (ODESteer, ICLR 2026; Curveball Steering, 2026; FLAS, 2026) provides powerful alternatives when linear steering fails. Spherical Steering (ICML 2026) preserves activation norms via geodesic rotation, and COAST (2605.01167) minimizes collateral damage along non-target directions.\\n\\nThe convergence of (a) behavioral evidence of competing biases with quantitative effect sizes, (b) mechanistic understanding of where confidence is computed and cached in the residual stream, (c) CogBias's demonstration that bias-family-specific intervention works, (d) 'Sycophancy Is Not One Thing's proof that complex behaviors can be decomposed into independently steerable sub-components, (e) Billa's steerability-based routing paradigm with a training-free diagnostic, (f) SteerConf's demonstration that calibration is steerable even at the prompt level, (g) the decodable\\u2013steerable distinction with quantitative diagnostics from both linear (Liu) and SAE-based (Patel et al.) analyses, (h) hidden miscalibration regimes suggesting opposing errors cancel, and (i) adaptive frameworks with non-degradation guarantees creates an opportunity for the next step: extending from independently-active bias families and co-existing behavioral sub-components to simultaneously competing calibration biases with per-instance diagnosis and correction.\",\n  \"landscape\": \"Kumaran et al. (Nature MI, 2026) identified competing biases (CSB and CEO) via behavioral experiments on Gemma 3 12B/27B, GPT-4o, o1-preview, and DeepSeek R1 7B but proposed no correction framework and provided no mechanistic (activation-level) evidence. Importantly, the qualitative pattern \\u2014 overconfidence from CSB and underconfidence from CEO \\u2014 held across all tested models, but effect magnitudes varied substantially (GPT-4o and Gemma 27B showed the strongest CEO effects; DeepSeek R1 7B failed to follow the advice paradigm entirely), and no Llama or Qwen models were tested. Kumaran, Conmy et al. ('How do LLMs Compute Verbal Confidence,' arXiv 2603.17839, March 2026) subsequently provided the mechanistic foundation for confidence computation, showing that verbal confidence is cached at the Post-Answer-Newline (PANL) token position rather than computed just-in-time: information flows from answer tokens \\u2192 PANL (layers 22\\u201328 in Gemma 3 27B) \\u2192 Confidence-Colon position (layers 30\\u201336), with PANL-cached representations explaining substantial variance beyond token log-probabilities (which account for only R\\u00b2=0.084). This mechanistic map directly informs our extraction strategy \\u2014 we target PANL and confidence-bearing positions rather than averaging across all tokens. Miao & Ungar (arXiv 2603.25052, 2026) demonstrated that calibration accuracy and verbalized confidence are linearly encoded but orthogonal in 7\\u20138B models (cosine similarity <0.04 across layers), and introduced adaptive steering achieving 4\\u20137\\u00d7 ECE improvement \\u2014 but they target the confidence\\u2013accuracy misalignment gap, not the competing bias structure.\\n\\nCogBias (Huang et al., arXiv 2604.01366, April 2026) is the closest work on bias decomposition. It organizes cognitive biases into four families (Judgment, Information Processing, Social, Response), demonstrates that biases are encoded as linearly separable directions in LLM activation space via linear probes under a contrastive design, and shows family-dependent mitigation: activation steering achieves 26\\u201332% overall bias reduction, but prompt-level debiasing 'substantially reduces Response biases but backfires for Judgment biases,' with up to 19pp improvement for Judgment biases via steering on Qwen. Despite near-orthogonal bias representations across model architectures (Llama and Qwen), steering reduced bias at similar rates \\u2014 suggesting shared functional organization that is encouraging for cross-architecture generalization. (Note: the abstract reports linear separability and 26\\u201332% steering reduction; specific probe classification accuracy figures are from the paper body and are not independently verifiable from the abstract alone.) CogBias establishes two principles that directly motivate our work: (a) cognitive biases are linearly encoded and separable, and (b) different bias families require different interventions. However, CogBias addresses biases that are independently active on different task types \\u2014 each task primarily involves one bias family. Our setting involves two biases simultaneously active and competing on the same instances, creating interference effects that CogBias's framework does not model. CogBias also does not assess steerability before intervention or route between intervention types.\\n\\n'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) is the closest methodological precedent for decomposing a complex behavioral phenomenon into independently steerable activation-level components. Using difference-in-means directions, activation additions, and subspace geometry, they decomposed sycophancy into sycophantic agreement, sycophantic praise, and genuine agreement \\u2014 demonstrating that each can be independently amplified or suppressed without affecting the others, with consistent representational structure across model families and scales. The key distinction from our proposal: their sub-components are co-existing behaviors that pull in broadly similar directions (various forms of user-pleasing output), while our target biases (CSB and CEO) are simultaneously OPPOSING \\u2014 pulling confidence in opposite directions on the same instances. This distinction matters methodologically: co-aligned sub-components may be easier to isolate via difference-in-means because they do not create destructive interference in activation space. Opposing biases may partially cancel, making individual directions harder to extract \\u2014 which is precisely why our Phase 0B confound controls and Phase 1A separability validation are essential. If our decomposition succeeds, it would extend the decompose-then-steer paradigm from co-existing to opposing sub-components, a strictly harder problem.\\n\\nBilla (arXiv 2604.15557, April 2026) proposes the most direct methodological precedent for our routing logic. The three-regime framework \\u2014 (1) concept not represented (no method works), (2) nonlinear encoding (nonlinear methods needed), (3) output-aligned (linear steering works) \\u2014 directly parallels our Route C/B/A structure. LAP (Linear Accessibility Profile), computed as logit-lens accuracy at each layer without training, predicts steering effectiveness at \\u03c1=0.86\\u20130.91 across 24 binary concept families on 5 models (Pythia-2.8B to Llama-8B). Key distinctions from our work: (a) Billa operates per-concept with synthetic binary features (e.g., gender, sentiment, parity), while we operate per-instance with naturalistic competing calibration biases; (b) Billa's three regimes assume a single concept direction per analysis, while we must decompose competing bias directions that are simultaneously active; (c) LAP's above-floor correlation weakens on smaller models (\\u03c1=0.50\\u20130.52 on Pythia-2.8B), and its applicability to non-binary, continuous calibration constructs is untested. We incorporate LAP as a complementary diagnostic alongside Liu's specificity ratio, adapting it to assess per-layer output-alignment of each decomposed bias direction.\\n\\nSteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) demonstrated prompt-level confidence steering achieving 29% AUROC increase and 16% ECE reduction across seven benchmarks on GPT-3.5, LLaMA 3, and GPT-4. SteerConf uses systematically varied steering prompts (spanning 'very cautious' to 'very confident'), measures consistency across multiple steered confidence outputs, and aggregates via linear quantization \\u2014 all without training. SteerConf represents the state-of-the-art in training-free prompt-level calibration steering and serves as an important baseline: activation-level methods should demonstrate clear advantages over this prompt-level approach. However, SteerConf operates entirely at the behavioral level without mechanistic decomposition, cannot distinguish between competing bias sources, and cannot apply bias-specific corrections.\\n\\nCCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) achieves ~55% ECE reduction and 21% Brier score reduction by probing perturbation stability \\u2014 applying targeted adversarial perturbations to final hidden states and training a lightweight correctness classifier on the model's response features. Evaluated on Llama, Qwen, and Mistral at 8B\\u201332B scale across MMLU and MMLU-Pro, CCPS represents a strong representation-based calibration method operating on overlapping model families. However, CCPS uses monolithic perturbation without bias decomposition and does not distinguish between different sources of miscalibration.\\n\\nLiu (arXiv 2605.05715, May 2026) is the most directly relevant advance on the decodable\\u2013steerable gap: linearly decodable failure directions (71.6% balanced accuracy on Llama-3.1-8B) yield \\u0394\\u22480 across five families of linear steering (29 configurations) because the failure direction has 85\\u201388% overlap with task-critical computation (specificity ratio \\u22640.152). A learned nonlinear bottleneck MLP (4096\\u219264\\u21924096) achieves \\u0394=+2.8pp (p=0.025) where linear methods fail. Patel et al. ('Are LLM Uncertainty and Correctness Encoded by the Same Features?', arXiv 2604.19974, April 2026) independently confirmed this classification-correction gap via sparse autoencoder (SAE) analysis on Llama-3.1-8B and Gemma-2-9B: they found a functional dissociation between uncertainty and correctness features, with 'pure incorrectness features' being 'functionally inert' \\u2014 statistically decodable yet producing near-zero accuracy change when suppressed. Only confounded features (encoding both signals) yielded meaningful behavioral effects (1.1% accuracy improvement, 75% entropy reduction). This SAE-based evidence complements Liu's linear-steering analysis: even when features are identifiable at the individual neuron/SAE-feature level, their functional role may be null \\u2014 reinforcing that Phase 1A separability is necessary but insufficient, and Phase 1B steerability assessment is the critical gate. However, both Liu and Patel et al. studied single failure modes, not decomposed competing biases.\\n\\nTsujimura & Tagade (arXiv 2508.17182, Aug 2025) decomposed LLM assertiveness into emotional and logical sub-components via unsupervised clustering on Llama-3.2-1B-Instruct (645 samples) \\u2014 methodologically adjacent but critically different: their decomposition is descriptive (post-hoc ChatGPT-labeled clusters) rather than causally grounded in identified cognitive biases, uses a single 1B model, reports no calibration metrics, and addresses assertiveness rather than calibration.\\n\\nHedstr\\u00f6m et al. (MERA, ICML 2025; arXiv 2510.13290) established the most principled framework for selective steering: MERA solves min \\u2016v\\u2016\\u00b2 s.t. p\\u0302(h+v) \\u2264 \\u03b1 with Hoeffding-based non-degradation guarantees via Bonferroni correction. However, MERA operates with a single monolithic error probe \\u2014 it cannot decompose calibration errors into opposing sources or route to different intervention types based on per-direction steerability.\\n\\nKobalczyk & van der Schaar (arXiv 2605.13484, May 2026) discovered hidden miscalibration regimes where input-dependent calibration heterogeneity is prevalent across 48 model\\u2013dataset pairs: global reliability diagrams hide opposing over/under-confidence errors that cancel when aggregated. This provides independent empirical support for our bias interference hypothesis but offers no mechanistic explanation for WHY opposing errors exist and no bias decomposition.\\n\\nThe nonlinear steering landscape has matured rapidly. ODESteer (Chen et al., ICLR 2026; arXiv 2602.17560) formulated a unified ODE-based framework via barrier functions. Curveball Steering (Raval et al., arXiv 2603.09313, Mar 2026) introduced polynomial kernel PCA for curved activation geometry (+47% over linear in high-curvature regimes). FLAS (arXiv 2605.05892, May 2026) learned concept-conditioned velocity fields, first outperforming prompting on AxBench. These address geometric limitations of linear steering but provide neither bias decomposition nor steerability diagnosis.\\n\\nThe 'Wired for Overconfidence' paper (2604.01457, April 2026) identifies overconfidence circuits in 3B models via monolithic activation steering (96.9% ECE reduction on PopQA) but treats overconfidence as a single phenomenon. Ji et al. (EMNLP 2025) modulates a single Verbal Uncertainty Feature. CORAL (arXiv 2602.06022) achieves 49% ECE improvement via a single MLP probe. The 'Confidence Manifold' study (arXiv 2602.08159) found correctness signals in 3\\u20138 dimensions with simple mean-shift geometry across 9 models.\\n\\nOn steering methodology: Spherical Steering (arXiv 2602.08169, ICML 2026) performs norm-preserving geodesic rotation. Selective Steering (Dang & Ngo, arXiv 2601.19375) developed norm-preserving rotation with discriminative layer selection. COAST (Nguyen et al., arXiv 2605.01167, May 2026) formalizes collateral damage. W2S (Gadgil et al., arXiv 2604.03867, April 2026) learns input-dependent layer selection for steering. 'Steered LLM Activations are Non-Surjective' (2604.09839) proved additive steering pushes activations off-manifold.\\n\\nNo existing method addresses the specific challenge of simultaneously competing calibration biases: CogBias decomposes independently-active bias families; 'Sycophancy Is Not One Thing' decomposes co-existing but co-aligned behavioral sub-components; Billa routes by per-concept steerability; SteerConf steers confidence at the prompt level without decomposition; CCPS probes perturbation stability without bias decomposition; MERA adapts steering strength monolithically; Patel et al. show that decodable features may be functionally inert. Our work uniquely targets biases that are concurrently active and opposing on the same instances, requiring joint decomposition and per-direction steerability assessment to resolve interference effects that these approaches cannot address individually.\",\n  \"inspired_by\": \"Gap: Competing biases create interference patterns \\u2014 partially canceling on some instances (illusory calibration) and producing heterogeneous over/under-confidence on others (hidden miscalibration regimes, Kobalczyk 2605.13484) \\u2014 that even CogBias's family-dependent mitigation cannot address because it targets independently-active biases, not simultaneously competing ones, and that 'Sycophancy Is Not One Thing's decompose-then-steer paradigm has not been tested on because their sub-components are co-aligned rather than opposing. Pattern: CogBias (2604.01366) proves bias-family-specific intervention works (linear separability, family-dependent steering) \\u2192 'Sycophancy Is Not One Thing' (2509.21305) proves complex behaviors decompose into independently steerable sub-components \\u2192 Billa (2604.15557) proves steerability-based routing works (three regimes, LAP diagnostic, \\u03c1=0.86\\u20130.91) \\u2192 SteerConf (2503.02863, NeurIPS 2025) proves calibration is steerable at the prompt level (29% AUROC, 16% ECE) \\u2192 Liu (2605.05715) + Patel et al. (2604.19974) prove decodable \\u2260 steerable/functional and nonlinear fallback works \\u2192 MERA proves adaptive strength + abstention works \\u2192 Kumaran & Conmy (2603.17839) map the mechanistic pathway of confidence computation (PANL caching). Untried combination: Extend these established principles from independent/co-aligned biases to simultaneously competing and opposing calibration biases, measuring asymmetric steerability profiles as the empirical core, with bias-specific correction as the practical application. Key hypothesis: CSB and CEO have asymmetric LAP and specificity profiles because they involve different cognitive processes (self-evaluation vs. evidence integration), which would provide a mechanistic explanation for inconsistent monolithic calibration steering results and the hidden miscalibration regimes observed by Kobalczyk & van der Schaar.\",\n  \"approach\": \"We investigate whether competing calibration biases (CSB and CEO) are distinguishable in activation space, whether they exhibit asymmetric steerability, and whether decomposed correction resolves bias interference that monolithic methods cannot. We structure the investigation in four phases, beginning with behavioral replication and a confound-controlled de-risking pilot. Evaluated on 3 models \\u00d7 3 datasets with 7 core baselines.\\n\\n**Phase 0A \\u2014 Behavioral Replication (Week 1):**\\n\\nKumaran et al.'s competing biases were characterized on Gemma 3 (12B/27B), GPT-4o, o1-preview, and DeepSeek R1 7B \\u2014 none of which are our target models. Before any activation extraction, we must verify that each target model (Llama-3.1-8B-Instruct, Qwen3-8B, Gemma 4 31B Dense) exhibits both CSB and CEO in the behavioral paradigm.\\n\\nWe replicate Kumaran et al.'s exact 2-turn experimental design on each target model with 500 questions per condition: the 2\\u00d73 factorial (Answer Shown/Hidden \\u00d7 Same/Opposite/Neutral Advice) at 70% stated advice accuracy. We measure: (a) CSB magnitude \\u2014 confidence difference between Answer Shown-Neutral and Answer Hidden-Neutral conditions; (b) CEO magnitude \\u2014 the overweighting ratio (observed confidence change / Bayesian-optimal change) for opposing vs. supporting advice; (c) change-of-mind rates across conditions.\\n\\nGo/no-go criteria: If a model shows CSB magnitude \\u226550% of Kumaran's reported +0.21 (i.e., \\u2265+0.105) AND CEO overweighting ratio \\u226550% of Kumaran's 2.58 (i.e., \\u22651.29), it proceeds to Phase 0B. If a model shows one bias but not the other, it is retained with a note that only the detected bias can be studied (reducing to single-bias characterization for that model). If a model shows neither bias at \\u226550% threshold, it is replaced \\u2014 candidate replacements are Gemma 3 27B (directly validated by Kumaran) or Mistral-8B. We report all behavioral replication results regardless, as cross-architecture replication data for Kumaran et al.'s findings is itself a contribution.\\n\\n**Phase 0B \\u2014 Confound-Controlled De-Risking Pilot (Weeks 2\\u20133):**\\n\\nThe translation from Kumaran et al.'s behavioral paradigm to contrastive activation extraction faces a critical confound identified in prior revisions: the contrastive pairs differ not only in bias activation but in prompt information content. For CSB, 'answer shown' prompts literally contain the model's answer text while 'answer hidden' prompts contain 'xx.' For CEO, 'contradictory advice present' prompts contain advisory text that 'advice absent' prompts lack. Extracted directions may thus capture 'prompt contains additional evaluative content' rather than 'bias is active.'\\n\\nWe address this with a four-pronged confound mitigation strategy:\\n\\n*(1) Matched-content contrastive pairs:* Rather than using Kumaran et al.'s original 'xx' placeholder (which differs in length and semantic content), we design matched controls:\\n- **CSB pairs:** The CSB-active condition shows the model's own prior answer attributed to itself ('You previously answered [X]'). The CSB-control condition replaces the model's answer with a plausible but randomly-selected alternative answer of matched token length attributed to 'another LLM' (e.g., 'Another LLM answered [Y]'). Both conditions contain an answer of equal length and format; only the self-generated attribution differs. An additional 'scrambled-answer' control replaces the answer with token-length-matched semantically neutral text (e.g., '[REDACTED]' padded to matched length) to verify that information content per se is not driving the extracted direction.\\n- **CEO pairs:** The CEO-active condition presents contradictory advice ('This LLM answered [opposite option]'). The CEO-control condition presents irrelevant neutral advice of matched token length ('This LLM was also asked a different question about [unrelated topic]'), preserving the presence of additional advisory text while removing the bias-inducing contradictory content. An additional 'supporting-advice' condition (same format, same length, but agreeing rather than contradicting) enables directional validation \\u2014 the CEO direction should separate contradictory from both neutral and supporting conditions, while a pure information-content confound would not distinguish contradictory from supporting.\\n\\n*(2) Same-content-different-attribution CSB control (source attribution isolation):* To isolate the ownership/self-generated component of CSB from information content, we add a critical additional condition: the model's OWN answer text, but attributed to 'another LLM' ('Another LLM answered [X]' where X is the model's actual prior answer). Combined with the self-attributed condition ('You previously answered [X]'), this creates a 2\\u00d72 factorial for CSB extraction: {own answer text, other answer text} \\u00d7 {self-attributed, other-attributed}. The self-attributed-own vs. other-attributed-own contrast isolates pure ownership/attribution effects (the CSB core mechanism \\u2014 confidence inflation from recognizing one's own prior commitment) while holding information content exactly constant. The other-attributed-own vs. other-attributed-other contrast isolates pure information-content effects. If the CSB direction extracted from the full contrast (self-own vs. other-other) is primarily aligned with the attribution contrast (self-own vs. other-own) rather than the content contrast (own-text vs. other-text), this provides strong evidence that we are capturing genuine choice-supportive bias rather than a content confound.\\n\\n*(3) Token-position-specific extraction informed by mechanistic evidence:* Rather than extracting mean activations across all token positions (which would be dominated by the differing prompt content), we extract activations at three specific positions informed by Kumaran & Conmy's (2603.17839) mechanistic findings on confidence computation: (a) the Post-Answer-Newline (PANL) token \\u2014 where Kumaran & Conmy showed confidence information is first cached (layers 22\\u201328 in Gemma 3 27B), making it the earliest site where bias-relevant confidence signals concentrate; (b) the Confidence-Colon (CC) position \\u2014 where confidence is retrieved for verbalization (layers 30\\u201336); (c) the first generated token of the confidence response. Extracting at PANL is particularly informative because it is a structurally fixed position (always immediately after the answer) that is identical in format across all conditions, minimizing sensitivity to prompt-content differences upstream. If the extracted direction is robust across extraction positions \\u2014 particularly at PANL, which precedes the confidence verbalization \\u2014 it is unlikely to reflect prompt-content confounds.\\n\\n*(4) Confound diagnostic tests:* For each extracted candidate direction, we verify: (a) correlation with prompt token count is <0.1 (Pearson r across the contrastive dataset); (b) a 'prompt-structure probe' \\u2014 a linear probe trained to classify prompt conditions by surface features (presence/absence of answer text, advice text length) \\u2014 produces directions with cosine similarity <0.2 to our candidate bias directions; (c) the candidate direction generalizes to held-out question types not seen during extraction; (d) for CSB specifically, the extracted direction aligns more strongly with the attribution contrast (self vs. other attribution of same content) than with the content contrast (same vs. different answer text with same attribution), as described in prong (2).\\n\\nWe conduct the pilot on the single model showing strongest behavioral CSB+CEO effects in Phase 0A, with ~500 contrastive pairs per bias type per control condition (totaling ~4000 pairs across the full factorial design for both biases, including the same-content-different-attribution CSB conditions).\\n\\nGo/no-go criteria: If a linear probe on matched-content pairs achieves \\u226560% balanced accuracy for distinguishing bias-active vs. bias-control conditions, AND confound diagnostics pass (prompt-structure cosine <0.2, token-count correlation <0.1, attribution-alignment > content-alignment for CSB), we proceed to full Phase 1. If probing accuracy is 60%+ but confound diagnostics partially fail (e.g., cosine similarity 0.2\\u20130.35), we expand to additional extraction positions and apply mean-centering (subtracting the global mean activation to decorrelate from background prompt structure). If probing accuracy is 55\\u201360% with clean confound diagnostics, we expand to 1000 pairs. If probing accuracy is <55% across all extraction positions, or if confound diagnostics consistently fail (cosine >0.35 to prompt-structure direction), we activate the behavioral-signal fallback.\\n\\n**Phase 0 Fallback \\u2014 Behavioral-Signal-Guided Probing (explicit scope reduction):**\\n\\nWe are explicit that the fallback path \\u2014 using behavioral output changes (confidence shift patterns matching CSB vs. CEO signatures) to label instances post-hoc, then probing for internal signatures correlated with these behavioral labels \\u2014 fundamentally changes the paper's contribution. The fallback trades causal contrastive evidence (where we experimentally control bias activation) for correlational association (where we observe behavioral patterns and search for corresponding activation correlates). This weakens contribution (1) from 'first causal activation-level characterization of competing calibration biases' to 'statistical association between behaviorally-identified bias patterns and activation geometry.' The resulting paper would still be informative \\u2014 establishing that behavioral CSB/CEO patterns have detectable activation correlates, even if not causally isolated \\u2014 but would be repositioned as a solid empirical contribution appropriate for EMNLP/NAACL rather than a top-tier mechanistic result at ICLR. The remaining contributions (2)\\u2013(4) on steerability measurement, interference analysis, and bias-specific correction would be weakened proportionally, as the activation directions being steered/analyzed would have weaker causal grounding.\\n\\n**Phase 1 \\u2014 Separability Validation & Steerability Assessment (Weeks 4\\u20138):**\\n\\n*Phase 1A \\u2014 Separability (Weeks 4\\u20136):* Building on the pilot's validated extraction methodology with matched-content controls and same-content-different-attribution factorial, we scale confound-controlled contrastive activation extraction to all three models that passed Phase 0A behavioral replication, with 2000+ matched-content contrastive pairs per bias type per model. We extract candidate CSB and CEO directions via difference-in-means on the matched-content contrastive pairs (using the extraction position validated in Phase 0B, prioritizing PANL following Kumaran & Conmy's mechanistic evidence) and validate separability via: (a) cosine similarity between candidate directions (threshold: <0.3 for separability), (b) principal angle analysis between CSB and CEO subspaces following Miao & Ungar's methodology, (c) PCA dimensionality assessment (whether 2 directions capture sufficient variance or higher-dimensional subspaces are needed), (d) cross-prediction ablations confirming that removing one bias subspace does not collapse the other, and (e) confound diagnostic replication at scale \\u2014 verifying that the scaled directions maintain low cosine similarity to prompt-structure probes (<0.2) across all models. If cosine similarity >0.3 or shared variance >15%, we activate the separability fallback: extracting a joint multi-direction bias subspace and training a subspace projection classifier to separate components.\\n\\nImportant caveat informed by Patel et al. (2604.19974): Phase 1A separability \\u2014 even if successful \\u2014 does NOT guarantee that the identified directions are functionally relevant for intervention. Patel et al.'s SAE analysis showed that statistically decodable 'pure incorrectness features' can be functionally inert. Phase 1B steerability assessment is therefore not merely complementary but essential: it determines whether our separable directions are the kind that actually drive behavior (like Patel et al.'s 'confounded features') or mere correlates (like their 'pure incorrectness features').\\n\\n*Phase 1B \\u2014 Steerability Diagnostics (Weeks 6\\u20138):* For each identified bias direction, we compute: (a) the **specificity ratio** \\u2014 the proportion of mode-specific variance vs. shared variance with the correct-vs-incorrect subspace, following Liu's shared-specific decomposition methodology; (b) **adapted LAP** \\u2014 applying the logit lens at each layer to measure how strongly each bias direction projects onto confidence-related output tokens, adapting Billa's (2604.15557) per-concept diagnostic to per-direction analysis for calibration biases, with extraction focused on the PANL\\u2192CC pathway identified by Kumaran & Conmy (2603.17839); (c) **LEACE concept erasure test** \\u2014 applying concept erasure to each bias direction and measuring accuracy damage as causal evidence of entanglement; (d) **pilot linear steering test** \\u2014 applying small-magnitude Spherical Steering along each direction and measuring both calibration improvement and accuracy impact; (e) **functional inertness test** \\u2014 following Patel et al.'s methodology, we suppress each bias direction and measure whether the effect on confidence output is non-trivial (distinguishing functionally active from inert directions).\\n\\nWe do NOT pre-commit to fixed routing thresholds. Following Billa's three-regime framework as a conceptual guide, we LEARN optimal thresholds via validation-set sweeps over LAP and specificity cutoffs, reporting the full diagnostic-vs-effectiveness curves as primary empirical contributions. The core empirical hypothesis \\u2014 that CSB and CEO have asymmetric steerability profiles \\u2014 would provide a mechanistic explanation for why monolithic calibration steering shows inconsistent results and why hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) exhibit spatially heterogeneous over/under-confidence.\\n\\nPhase 1 results constitute an independent contribution regardless of Phase 3 outcomes: the first activation-level characterization of behaviorally-identified competing calibration biases, with joint separability and steerability measurements using complementary diagnostics (specificity ratio + adapted LAP + functional inertness test), obtained via a confound-controlled extraction methodology grounded in mechanistic evidence of confidence computation pathways.\\n\\n**Phase 2 \\u2014 Per-Instance Bias Diagnosis (Weeks 7\\u201310):** A lightweight logistic probe (or small MLP in the fallback case) trained on per-instance projection magnitudes onto each bias direction classifies which bias dominates for a given query, providing a continuous dominance score. We stratify by difficulty and validate against behavioral predictions: on easy questions where models are already confident, CSB should dominate; on hard questions under criticism, CEO should dominate. We additionally test whether bias interference patterns \\u2014 instances where CSB and CEO partially cancel to produce deceptive near-zero net error \\u2014 can be identified, which would directly explain hidden miscalibration regimes.\\n\\n**Phase 3 \\u2014 Bias-Specific Intervention (Weeks 9\\u201315):** Building on Billa's established routing-by-steerability paradigm (2604.15557), extended from per-concept to per-instance competing biases, and informed by 'Sycophancy Is Not One Thing's demonstration that decomposed sub-components can be independently steered, Phase 3 implements three intervention routes informed by Phase 1B's empirically-learned steerability thresholds:\\n\\n*Route A \\u2014 Adaptive Spherical Steering (for steerable directions):* When a bias direction falls in Billa's 'output-aligned' regime (high adapted LAP + high specificity + non-inert per Patel et al. criteria), we apply Spherical Steering (You et al., ICML 2026) with MERA-inspired per-instance adaptive strength: rotation magnitude optimized to minimize \\u2016v\\u2016\\u00b2 subject to the bias probe's predicted error falling below a calibrated threshold \\u03b1*, following MERA's constrained optimization framework. Unlike MERA applied monolithically, our adaptation operates per-bias-direction, potentially applying different strengths for CSB vs. CEO corrections on the same instance. Layer selection is informed by adapted LAP profiles and the PANL\\u2192CC pathway (Kumaran & Conmy 2603.17839), and optionally by W2S-style (Gadgil et al., 2604.03867) input-dependent layer mapping.\\n\\n*Route B \\u2014 Learned Nonlinear Residual Correction (for entangled directions):* When a bias direction falls in Billa's 'nonlinear encoding' regime (high A_mlp but low A_lin, or low specificity ratio, or functionally inert under linear suppression but non-inert under nonlinear intervention), linear steering is expected to fail. Following Liu's finding that a bottleneck residual MLP (d\\u219264\\u2192d) achieves \\u0394=+2.8pp where 29 linear configurations yield \\u0394\\u22480, we train a small nonlinear residual adapter per bias type (<0.1% of model parameters), with COAST-informed training (Nguyen et al., 2605.01167) weighting the loss to minimize collateral damage along non-target feature directions.\\n\\n*Route C \\u2014 Selective Abstention (for uncorrectable instances):* When neither Route A nor Route B improves calibration without excessive accuracy damage (>3% degradation on validation), following Billa's 'not represented' regime, we abstain and output a reliability score using MERA's Hoeffding-based statistical framework.\\n\\nFor intermediate-steerability directions, Route A is applied with a conservative strength cap (rotation magnitude \\u226450% of high-steerability coefficient), falling back to Route C per-instance if collateral damage exceeds the threshold.\\n\\n**Generalizability \\u2014 Beyond CSB vs. CEO:**\\n\\nWhile this paper focuses on CSB and CEO as the primary competing-bias pair \\u2014 chosen because Kumaran et al. provide quantitative behavioral characterization with effect sizes that enable principled experimental design \\u2014 the Phase 0\\u21923 pipeline is designed to be reusable for other plausible competing-bias pairs where simultaneously active, opposing biases create interference. We identify three candidates for future work: (1) **Sycophantic agreement vs. truthfulness commitment** \\u2014 when a user states something incorrect and requests evaluation, sycophancy training pulls toward agreement while truthfulness training pulls toward correction; 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) already demonstrates that sycophancy sub-components are separable and independently steerable, and the sycophancy\\u2013truthfulness tension is well-documented (e.g., Alignment Forum, Sharma et al. 2024), though the opposing-direction interference structure has not been characterized. (2) **Primacy bias vs. recency bias** \\u2014 in multi-document QA and list-based tasks, these opposing positional biases are simultaneously active and shift in relative dominance based on context window usage (primacy weakens as inputs approach context limits while recency remains stable; arXiv 2508.07479), potentially creating hidden miscalibration-like heterogeneity in retrieval confidence. (3) **Anchoring to prior reasoning vs. evidence updating** \\u2014 in multi-turn reasoning tasks, models may anchor to initial chain-of-thought conclusions while simultaneously being influenced by new contradictory evidence, a generalization of the CSB/CEO dynamic to reasoning contexts. The matched-content contrastive extraction (Phase 0B), steerability diagnostics (Phase 1B), and bias-specific routing (Phase 3) are all applicable to these settings with appropriate stimulus design.\\n\\nWe evaluate on TriviaQA, MMLU, and PopQA across Gemma 4 31B Dense, Qwen3-8B, and Llama-3.1-8B-Instruct (subject to Phase 0A behavioral replication; models that fail replication are replaced as described). Metrics: ECE, Brier score, AUROC, difficulty-stratified ECE (easy/medium/hard), per-direction specificity ratios and LAP profiles, bias interference measurements (instances where CSB+CEO partially cancel), collateral damage, and route-distribution analysis. Core baselines: (1) temperature scaling, (2) CORAL, (3) Miao & Ungar adaptive steering, (4) MERA applied monolithically, (5) monolithic Spherical Steering (single direction, no bias decomposition), (6) monolithic nonlinear MLP (single direction, no bias decomposition), (7) SteerConf prompt-level steering. Extended baselines in supplementary: CogBias-style family-level steering (treating CSB/CEO as independent families), CCPS perturbation-stability probing (Khanmohammadi et al., 2505.21772), DINCO, 'Wired for Overconfidence' replication.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"650-900 H100\",\n      \"timeline\": \"16-20 weeks (includes 1-week behavioral replication + 2-week pilot with expanded CSB factorial)\",\n      \"estimated_gpu_cost\": \"$1,625-$2,250 (H100 @ ~$2.50/hr)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"550-750 H100\",\n      \"timeline\": \"12-16 weeks (includes 1-week behavioral replication + 2-week pilot with expanded CSB factorial)\",\n      \"claude_api_cost\": \"$375-$575 (Sonnet 4.6 for matched-content and attribution-factorial contrastive dataset generation, confound diagnostics, probing, LAP computation, adapter training, analysis)\",\n      \"estimated_gpu_cost\": \"$1,375-$1,875\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"850-1150 H100\",\n      \"timeline\": \"7-11 weeks (includes behavioral replication + pilot)\",\n      \"claude_api_cost\": \"$725-$1,250 (Opus 4.7 for experiment orchestration, matched-content and attribution-factorial pair generation, confound analysis, validation analysis, steerability diagnostics, adapter training sweeps)\",\n      \"estimated_gpu_cost\": \"$2,125-$2,875\",\n      \"speed_bottleneck\": \"Phase 0A behavioral replication (1 week, parallelizable across 3 models) \\u2192 Phase 0B pilot is sequential gate (2 weeks, expanded for CSB attribution factorial). Phase 1A\\u21921B is sequential. Evaluation across 3 models \\u00d7 3 datasets \\u00d7 3 routes + 7 baselines is parallelizable.\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027\",\n    \"NeurIPS 2026\",\n    \"ICML 2027\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Competing Biases in LLM Confidence (Kumaran et al., Nature Machine Intelligence 2026; arXiv 2507.03120) \\u2014 behavioral evidence of CSB and CEO as competing calibration biases\",\n    \"How do LLMs Compute Verbal Confidence (Kumaran, Conmy et al., arXiv 2603.17839, March 2026) \\u2014 confidence cached at PANL position, answer\\u2192PANL\\u2192CC information flow, token log-probs explain only 8.4% of variance\",\n    \"CogBias: Cognitive Bias in LLMs (Huang et al., arXiv 2604.01366, April 2026) \\u2014 linearly separable bias directions, family-dependent mitigation, 26-32% steering reduction\",\n    \"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) \\u2014 decomposition of sycophancy into independently steerable sub-components via difference-in-means\",\n    \"Billa: Predicting Steerability (arXiv 2604.15557, April 2026) \\u2014 three-regime steerability framework, LAP diagnostic, \\u03c1=0.86-0.91\",\n    \"SteerConf: Prompt-Level Confidence Steering (Zhou et al., arXiv 2503.02863, NeurIPS 2025) \\u2014 29% AUROC increase, 16% ECE reduction via prompt-level steering\",\n    \"Calibration and Verbalized Confidence Are Linearly Encoded but Orthogonal (Miao & Ungar, arXiv 2603.25052, 2026) \\u2014 orthogonal calibration/confidence encoding, 4-7\\u00d7 ECE improvement\",\n    \"Classification-Correction Gap in LLM Steering (Liu, arXiv 2605.05715, May 2026) \\u2014 decodable \\u2260 steerable, specificity ratio \\u22640.152, nonlinear bottleneck MLP achieves \\u0394=+2.8pp\",\n    \"Are LLM Uncertainty and Correctness Encoded by the Same Features? A Functional Dissociation via Sparse Autoencoders (Patel et al., arXiv 2604.19974, April 2026) \\u2014 pure incorrectness features functionally inert, SAE-based classification-correction gap confirmation\",\n    \"Calibrating LLM Confidence by Probing Perturbed Representation Stability (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) \\u2014 CCPS, ~55% ECE reduction via perturbation-stability probing on Llama/Qwen/Mistral 8B-32B\",\n    \"MERA: Adaptive Steering with Non-Degradation Guarantees (Hedstr\\u00f6m et al., ICML 2025; arXiv 2510.13290) \\u2014 constrained optimization, Hoeffding-based guarantees\",\n    \"Hidden Miscalibration Regimes (Kobalczyk & van der Schaar, arXiv 2605.13484, May 2026) \\u2014 opposing errors cancel when aggregated, 48 model-dataset pairs\",\n    \"ODESteer: Unified ODE-Based Steering (Chen et al., ICLR 2026; arXiv 2602.17560) \\u2014 barrier function framework for nonlinear steering\",\n    \"Curveball Steering (Raval et al., arXiv 2603.09313, March 2026) \\u2014 polynomial kernel PCA, +47% over linear in high-curvature regimes\",\n    \"FLAS: Learned Concept-Conditioned Velocity Fields (arXiv 2605.05892, May 2026) \\u2014 first nonlinear steering to outperform prompting on AxBench\",\n    \"Spherical Steering (arXiv 2602.08169, ICML 2026) \\u2014 norm-preserving geodesic rotation\",\n    \"COAST: Collateral-Damage-Aware Steering (Nguyen et al., arXiv 2605.01167, May 2026) \\u2014 formalization of collateral damage in activation steering\",\n    \"W2S: Input-Dependent Layer Selection for Steering (Gadgil et al., arXiv 2604.03867, April 2026) \\u2014 learned per-instance layer routing\",\n    \"Confidence Manifold (arXiv 2602.08159) \\u2014 correctness signals in 3-8 dimensions with mean-shift geometry across 9 models\",\n    \"CORAL: Calibration via MLP Probe (arXiv 2602.06022) \\u2014 49% ECE improvement\",\n    \"Wired for Overconfidence (arXiv 2604.01457, April 2026) \\u2014 overconfidence circuits, 96.9% ECE reduction on PopQA\",\n    \"Selective Steering with Discriminative Layer Selection (Dang & Ngo, arXiv 2601.19375) \\u2014 norm-preserving rotation\",\n    \"Steered LLM Activations are Non-Surjective (arXiv 2604.09839) \\u2014 additive steering pushes activations off-manifold\",\n    \"LLM Assertiveness Decomposition (Tsujimura & Tagade, arXiv 2508.17182, Aug 2025) \\u2014 emotional/logical sub-components via unsupervised clustering\",\n    \"Verbal Uncertainty Feature Modulation (Ji et al., EMNLP 2025) \\u2014 single-feature confidence modulation\"\n  ],\n  \"description\": \"We investigate whether two competing sources of LLM miscalibration \\u2014 choice-supportive bias (CSB) and contradictory-evidence overweighting (CEO), identified behaviorally by Kumaran et al. (Nature MI 2026) \\u2014 produce distinguishable activation signatures, exhibit asymmetric steerability profiles, and can be corrected through bias-specific intervention that outperforms monolithic approaches.\\n\\nOur work is motivated by a bias interference problem unique to the competing-bias setting: CSB and CEO are simultaneously active on the same instances, pulling confidence in opposite directions. This creates (a) illusory calibration where competing biases partially cancel, making global metrics deceptively good while localized failures persist \\u2014 consistent with the hidden miscalibration regimes independently observed by Kobalczyk & van der Schaar (2605.13484) \\u2014 and (b) heterogeneous over/under-confidence patterns where one bias dominates instance-by-instance. Monolithic methods cannot resolve this interference because they target the net error direction, which conflates opposing bias contributions.\\n\\nCogBias (Huang et al., 2604.01366) established that cognitive bias families are linearly separable and require family-dependent intervention \\u2014 but addresses independently-active biases on different tasks, not simultaneously competing biases. 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) demonstrated that complex behavioral phenomena can be decomposed into independently steerable activation-level sub-components via difference-in-means \\u2014 but their sub-components (sycophantic agreement, praise, genuine agreement) are co-existing and co-aligned, not opposing. Our work extends this decompose-then-steer paradigm to the strictly harder case of opposing biases creating destructive interference. Billa (2604.15557) established the routing-by-steerability paradigm with a three-regime framework and LAP diagnostic \\u2014 but operates per-concept with synthetic binary features, not per-instance with naturalistic competing biases. SteerConf (Zhou et al., NeurIPS 2025) achieves 29% AUROC increase via prompt-level confidence steering \\u2014 demonstrating calibration is steerable but operating without mechanistic decomposition. MERA (Hedstr\\u00f6m et al., ICML 2025) provides adaptive steering with non-degradation guarantees \\u2014 but treats errors monolithically. Liu (2605.05715) and Patel et al. (2604.19974) independently established the classification-correction gap \\u2014 decodable directions may be functionally inert \\u2014 reinforcing that our Phase 1B steerability assessment is essential.\\n\\nOur approach proceeds in four phases with rigorous confound control. Phase 0A (Behavioral Replication) verifies that each target model \\u2014 Llama-3.1-8B-Instruct, Qwen3-8B, and Gemma 4 31B Dense, none of which were in Kumaran et al.'s original study \\u2014 exhibits both CSB and CEO at \\u226550% of Kumaran's reported effect sizes; models failing replication are replaced. Phase 0B (Confound-Controlled Pilot) addresses a critical methodological challenge: standard contrastive extraction would conflate bias activation with prompt information-content differences. We design a four-pronged confound mitigation strategy: (1) matched-content contrastive pairs equated for token length, format, and information presence; (2) a same-content-different-attribution CSB control \\u2014 presenting the model's OWN answer text but attributed to 'another LLM' \\u2014 to isolate the ownership/self-generated component of CSB from information content via a 2\\u00d72 factorial ({own text, other text} \\u00d7 {self-attributed, other-attributed}); (3) token-position-specific extraction at the Post-Answer-Newline (PANL) and Confidence-Colon positions, grounded in Kumaran & Conmy's (2603.17839) mechanistic finding that confidence is cached at answer-adjacent positions rather than computed just-in-time; (4) explicit confound diagnostic tests including attribution-alignment verification for CSB.\\n\\nPhase 1A (Separability) tests whether CSB and CEO produce geometrically distinct directions using confound-controlled contrastive activation probing, validated via cosine similarity, principal angles, PCA, and cross-prediction ablations \\u2014 with the explicit caveat (informed by Patel et al., 2604.19974) that separability does NOT guarantee functional relevance. Phase 1B (Steerability Assessment) measures each direction's specificity ratio (Liu 2605.05715), adapted LAP (Billa 2604.15557), and functional inertness (Patel et al. 2604.19974) as complementary diagnostics, learning routing thresholds empirically rather than pre-committing to fixed values. Phase 2 trains a per-instance bias dominance classifier.\\n\\nPhase 3 implements intervention routing, building on Billa's established three-regime paradigm extended from per-concept to per-instance competing biases, and informed by 'Sycophancy Is Not One Thing's demonstration that decomposed sub-components can be independently steered: (Route A) Spherical Steering with MERA-inspired per-direction adaptive strength for steerable, functionally active directions; (Route B) lightweight bottleneck MLP for entangled directions, trained with COAST-informed collateral-damage-aware loss; (Route C) selective abstention via MERA's statistical framework.\\n\\nWe evaluate on TriviaQA, MMLU, and PopQA across three models (subject to Phase 0A behavioral replication). Core baselines: temperature scaling, CORAL, Miao & Ungar, MERA (monolithic), monolithic Spherical Steering, monolithic nonlinear MLP, and SteerConf (prompt-level steering). Extended baselines include CCPS perturbation-stability probing (Khanmohammadi et al., EMNLP 2025) and CogBias-style family-level steering.\\n\\nWe discuss generalizability beyond CSB/CEO, identifying three other plausible competing-bias pairs \\u2014 sycophantic agreement vs. truthfulness commitment, primacy vs. recency bias, and anchoring vs. evidence updating \\u2014 for which the Phase 0\\u21923 pipeline is reusable with appropriate stimulus design.\\n\\nWe are explicit about the fallback path: if Phase 0B fails (extracted directions reflect prompt confounds rather than bias activation, despite matched-content controls and the attribution factorial), the behavioral-signal-guided probing fallback produces correlational rather than causal evidence, fundamentally repositioning the paper from a mechanistic contribution to an empirical observation study \\u2014 still informative, but appropriate for EMNLP/NAACL rather than ICLR.\\n\\nThe contributions are: (1) first causal activation-level characterization of simultaneously competing calibration biases (CSB vs. CEO), extending CogBias's independently-active bias decomposition and 'Sycophancy Is Not One Thing's co-aligned decomposition to the opposing-bias setting, with confound-controlled extraction methodology including source-attribution factorial and mechanistically-grounded token-position targeting; (2) empirical measurement of asymmetric steerability profiles with complementary diagnostics (specificity ratio + adapted LAP + functional inertness test), extending Billa's per-concept steerability analysis to per-direction competing biases; (3) bias interference analysis connecting competing bias dynamics to hidden miscalibration regimes; (4) bias-specific adaptive correction extending MERA's monolithic framework to the multi-bias setting with steerability-informed routing; (5) cross-architecture behavioral replication of Kumaran et al.'s competing biases on Llama and Qwen families; (6) generalizability framework identifying additional competing-bias pairs amenable to the same pipeline.\",\n  \"project_name\": \"competing_bias_steer\",\n  \"source\": \"web_research\",\n  \"revision_notes\": {\n    \"round7_issue_1_verbal_confidence_mechanism\": \"ADDRESSED: Integrated Kumaran & Conmy 'How do LLMs Compute Verbal Confidence' (2603.17839) throughout. Added to opportunity as mechanistic foundation for confidence computation. Used to ground Phase 0B's token-position-specific extraction strategy \\u2014 now specifically targeting PANL (Post-Answer-Newline) and CC (Confidence-Colon) positions based on their finding that confidence is cached at answer-adjacent positions with information flowing answer tokens \\u2192 PANL (layers 22-28) \\u2192 CC (layers 30-36), and that token log-probs explain only 8.4% of variance. Added to landscape alongside Kumaran et al.'s behavioral work. Referenced in Phase 1B for LAP computation along the PANL\\u2192CC pathway.\",\n    \"round7_issue_2_source_attribution_confound\": \"ADDRESSED: Added same-content-different-attribution CSB control as a dedicated fourth prong of confound mitigation (prong 2 in revised Phase 0B). The model's OWN answer text is presented attributed to 'another LLM,' creating a 2\\u00d72 factorial: {own answer text, other answer text} \\u00d7 {self-attributed, other-attributed}. The self-own vs. other-own contrast isolates pure ownership/attribution effects (the CSB core mechanism) while holding information content exactly constant. Added attribution-alignment verification to confound diagnostics: the CSB direction must align more with the attribution contrast than the content contrast. This isolates choice-supportive confidence inflation from content recognition. ~500 additional pairs per condition.\",\n    \"round7_issue_3_CCPS_missing\": \"ADDRESSED: CCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) integrated into opportunity as a strong representation-based calibration baseline (~55% ECE reduction, 21% Brier reduction via perturbation-stability probing on Llama/Qwen/Mistral 8B-32B). Added to landscape with methodological description and positioning (monolithic perturbation without bias decomposition). Added to extended baselines in evaluation. Added to key_references.\",\n    \"round7_issue_4_generalizability\": \"ADDRESSED: Added dedicated 'Generalizability \\u2014 Beyond CSB vs. CEO' subsection in approach identifying three plausible competing-bias pairs: (1) sycophantic agreement vs. truthfulness commitment (well-documented tension, sycophancy sub-components already shown separable by Vennemeyer et al.), (2) primacy bias vs. recency bias (opposing positional biases that shift in dominance based on context window usage, per arXiv 2508.07479), (3) anchoring to prior reasoning vs. evidence updating in multi-turn contexts. Noted that the Phase 0\\u21923 pipeline is designed to be reusable for these settings with appropriate stimulus design.\",\n    \"round7_issue_5_sycophancy_decomposition\": \"ADDRESSED: 'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305) integrated as the closest methodological precedent throughout. Added to core_problem as fifth line of related work. Added to opportunity with key findings (independently steerable sub-components, consistent across model families). Added to landscape with detailed comparison \\u2014 key distinction: co-existing co-aligned sub-components vs. our opposing biases creating interference. Referenced in Phase 3 as methodological support. Critical nuance articulated: independent steerability of co-aligned components does not guarantee success for opposing components where destructive interference complicates extraction.\",\n    \"round7_issue_6_SAE_functional_dissociation\": \"ADDRESSED: Patel et al. 'Are LLM Uncertainty and Correctness Encoded by the Same Features?' (arXiv 2604.19974) integrated alongside Liu throughout. Added to core_problem alongside Liu for classification-correction gap. Added to opportunity with key quantitative results (functionally inert pure incorrectness features, 1.1% accuracy improvement from confounded features, AUROC ~0.79 from 3 features). Added to landscape with detailed SAE-based evidence. Added explicit caveat after Phase 1A that separability does NOT guarantee functional relevance (citing Patel et al.). Added functional inertness test to Phase 1B diagnostics. Added to key_references.\",\n    \"round7_issue_7_cogbias_accuracy_verification\": \"ADDRESSED: The '97.8% mean classification accuracy' claim attributed to CogBias could not be independently verified from the abstract or accessible content. The abstract reports linear separability and 26-32% steering reduction but does not surface this specific accuracy figure. Revised ALL references to CogBias probe accuracy: replaced '97.8% mean classification accuracy' with 'high linear separability' or 'linearly separable directions,' noting that the abstract-reported 26-32% steering reduction is cited as the primary quantitative result. Added parenthetical caveat: 'specific probe classification accuracy figures are from the paper body rather than the abstract alone.'\"\n  },\n  \"change_type\": \"major\"\n}\n```\n\nThis is a complete, valid JSON object with all 15 top-level fields: `title`, `core_problem`, `opportunity`, `landscape`, `inspired_by`, `approach`, `resource_estimate`, `target_venues`, `level`, `key_references`, `description`, `project_name`, `source`, `revision_notes`, and `change_type`.\n\nKey notes:\n- All special characters (em dashes, arrows, rho, multiplication signs, etc.) are represented as Unicode escape sequences where needed for JSON safety, though literal UTF-8 is also valid JSON.\n- Single quotes within strings are unescaped (valid in JSON, only double quotes need escaping).\n- Newlines within string values use `\\n`.\n- The `target_venues` field uses `[\"ICLR 2027\", \"NeurIPS 2026\", \"ICML 2027\"]` -- you mentioned \"same as before\" but I didn't have access to the prior version, so I used the most likely top-tier ML venues. Please adjust if needed.\n- The `revision_notes` contains all 7 round-7 issue entries. You mentioned \"keep ALL existing entries\" from prior rounds, but since I don't have the previous JSON file, only the round-7 entries are included. If you have prior round entries to add, they can be merged in.\n- 25 key references are included, incorporating all 4 new entries you specified."
+      }
+    ],
+    "totalDurationMs": 962612,
+    "totalTokens": 66108,
+    "totalToolUseCount": 15,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 105,
+      "cache_read_input_tokens": 47873,
+      "output_tokens": 18129,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 105
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 18129,
+          "cache_read_input_tokens": 47873,
+          "cache_creation_input_tokens": 105,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 105,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 2,
+      "searchCount": 7,
+      "bashCount": 5,
+      "editFileCount": 1,
+      "linesAdded": 75,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "7932e180-7aa8-4f8f-8e3f-f0d14ff78a0b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibrat…",
+  "leafUuid": "8e201c06-f437-40c2-bbb5-6fd93a9e394c",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decomposing competing calibration biases in LLMs",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-19T16:05:37.621Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The agent output is too large and was saved to a file. Let me read it to verify the JSON is properly formatted.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e201c06-f437-40c2-bbb5-6fd93a9e394c",
+  "isSidechain": false,
+  "requestId": "req_011CbCDJx8Hqc6yUzMUvdsvn",
+  "type": "assistant",
+  "uuid": "10b203ed-a96c-405e-be63-72a4aebcd2f1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Er8SmDLofWeX2aMyEtq3ck",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19236,
+      "cache_read_input_tokens": 41129,
+      "output_tokens": 187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19236,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 187,
+          "cache_read_input_tokens": 41129,
+          "cache_creation_input_tokens": 19236,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19236
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-19T16:05:38.338Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016zgr1CXTBEMMea1VTB1Hw2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu-idea-gen-pipeline/2d88ff40-6e8c-41d1-8b37-364a36afb9ee/tool-results/toolu_01ADVhga4LcqMKnt2etEeKZY.json",
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10b203ed-a96c-405e-be63-72a4aebcd2f1",
+  "isSidechain": false,
+  "requestId": "req_011CbCDJx8Hqc6yUzMUvdsvn",
+  "type": "assistant",
+  "uuid": "f41f97d5-0f51-4ba1-aaf5-0b8c6788b5ec",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Er8SmDLofWeX2aMyEtq3ck",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19236,
+      "cache_read_input_tokens": 41129,
+      "output_tokens": 187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19236,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 187,
+          "cache_read_input_tokens": 41129,
+          "cache_creation_input_tokens": 19236,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19236
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-19T16:05:38.681Z_
+
+<details><summary>↩ Tool result · `toolu_016zgr1CXTBEMMea1VTB1Hw2`</summary>
+
+````text
+1	[
+2	  {
+3	    "type": "text",
+4	    "text": "Let me construct and output the JSON directly. Given the massive size of the content, I'll produce the complete JSON object. Let me carefully assemble it ensuring proper escaping.\n\nHere is the complete, valid JSON object:\n\n```json\n{\n  \"title\": \"Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibration for Targeted Activation Correction\",\n  \"core_problem\": \"LLM miscalibration arises from at least two competing biases \\u2014 choice-supportive bias (CSB, inflating confidence in initial answers) and contradictory-evidence overweighting (CEO, causing excessive confidence revision under criticism) \\u2014 that are simultaneously active and pull confidence in opposite directions on the same instances (Kumaran et al., Nature MI 2026). This creates a bias interference problem: competing biases can partially cancel (producing illusory calibration where global metrics look good but localized failures persist) or one can dominate instance-by-instance (producing heterogeneous over/under-confidence patterns). Recent work on hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) independently confirms that global reliability diagrams 'hide rather than reveal calibration failures' because 'opposing errors cancel when aggregated by confidence' \\u2014 but provides no mechanistic explanation for WHY opposing errors exist. Five lines of related work address parts of this problem but not the whole: (1) CogBias (Huang et al., 2604.01366) demonstrates that different cognitive bias families (Judgment, Information Processing, Social, Response) need different interventions \\u2014 prompt debiasing 'substantially reduces Response biases but backfires for Judgment biases' \\u2014 establishing the principle of family-dependent mitigation. However, CogBias addresses independently-active biases on different task types, not simultaneously competing biases on the same instances. (2) Billa (2604.15557) proposes a three-regime steerability framework (concept not represented / nonlinear encoding / output-aligned) with Linear Accessibility Profile (LAP) as a training-free diagnostic (\\u03c1=0.86\\u20130.91 correlation with steering effectiveness), establishing the routing-by-steerability paradigm \\u2014 but operates per-concept with synthetic binary features, not per-instance with naturalistic competing biases. (3) MERA (Hedstr\\u00f6m et al., ICML 2025) provides adaptive steering strength and abstention with non-degradation guarantees \\u2014 but treats errors monolithically with a single probe. (4) SteerConf (Zhou et al., NeurIPS 2025) achieves 29% AUROC increase and 16% ECE reduction via prompt-level confidence steering with multi-prompt aggregation \\u2014 demonstrating that calibration is steerable, but operating entirely at the prompt level without mechanistic decomposition or bias-specific intervention. (5) 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) demonstrates that a complex behavioral phenomenon (sycophancy) can be decomposed into independently steerable sub-components (sycophantic agreement vs. sycophantic praise vs. genuine agreement) using difference-in-means and activation additions \\u2014 establishing the decompose-then-steer paradigm. However, their sub-components are co-existing behaviors pulling in similar directions, not opposing biases creating interference effects. The classification-correction gap (Liu, 2605.05715; independently confirmed via SAE analysis by Patel et al., 2604.19974, who showed that 'pure incorrectness features' are 'functionally inert' despite being statistically decodable) adds a further obstacle: linearly decodable bias directions may not be linearly steerable due to entanglement with task-critical computation. Can we move from behavioral evidence of competing biases to activation-level characterization, measure their asymmetric steerability profiles, and demonstrate that decomposed correction outperforms monolithic methods specifically because it resolves bias interference?\",\n  \"opportunity\": \"Kumaran et al. (Nature Machine Intelligence, 2026; arXiv 2507.03120) established behavioral evidence that LLM miscalibration results from two mechanistically distinct biases: choice-supportive bias inflates confidence in selected answers (+0.21 confidence boost, p<0.001), while contradictory-advice overweighting causes models to over-react to opposing evidence (overweighting ratio 2.58 for opposing vs. 1.095 for supporting advice). Critically, both biases are simultaneously active in the 'Answer Shown + Opposite Advice' condition, demonstrating they are distinct mechanisms rather than a single unified bias. However, Kumaran et al. provided only behavioral evidence with no activation-level analysis, and their study covered Gemma 3 (12B/27B), GPT-4o, o1-preview, and DeepSeek R1 7B \\u2014 but not the Llama or Qwen families that are widely used for mechanistic interpretability research.\\n\\nKumaran, Conmy et al. ('How do LLMs Compute Verbal Confidence,' arXiv 2603.17839, March 2026) provided the mechanistic foundation for confidence computation: verbal confidence is not computed just-in-time but cached at the Post-Answer-Newline (PANL) token position, with information flowing from answer tokens \\u2192 PANL (layers 22\\u201328) \\u2192 Confidence-Colon position (layers 30\\u201336) in Gemma 3 27B. Critically, token log-probabilities explain only 8.4% of variance in verbal confidence (R\\u00b2_CV = 0.084), while PANL-cached representations explain substantial additional variance \\u2014 demonstrating that confidence reflects 'automatic, sophisticated self-evaluation' rather than simple fluency readout. This directly validates our Phase 0B token-position-specific extraction strategy: extracting at the PANL and confidence-bearing positions targets where bias-relevant confidence signals are mechanistically concentrated, rather than averaging across all positions where prompt-content confounds dominate. Studied on Gemma 3 27B and Qwen 2.5 7B \\u2014 overlapping with our target model families.\\n\\nCogBias (Huang et al., arXiv 2604.01366, April 2026) independently demonstrated that cognitive biases are encoded as linearly separable directions in LLM activation space, and that bias-family-specific intervention is both viable and necessary: activation steering achieves 26\\u201332% bias reduction overall, but effectiveness varies dramatically by family (up to 19pp improvement for Judgment biases on Qwen vs. minimal effect for others). Importantly, CogBias found that despite near-orthogonal bias representations across model architectures, steering reduced bias at similar rates, suggesting shared functional organization \\u2014 which is encouraging for cross-model generalization. This establishes a crucial principle \\u2014 different biases need different interventions \\u2014 but CogBias addresses biases that are independently active on different task types, not biases that compete simultaneously on the same calibration task. (Note: CogBias reports high linear separability of bias directions; the specific probe accuracy figures are drawn from the paper body rather than the abstract, and we cite the abstract-reported 26\\u201332% steering reduction as the primary quantitative result.)\\n\\n'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) provides the closest methodological precedent for our decompose-then-steer approach. Using difference-in-means directions, activation additions, and subspace geometry across multiple models, they decomposed sycophancy into distinct sub-components (sycophantic agreement, sycophantic praise, genuine agreement) and demonstrated that each can be independently amplified or suppressed without affecting the others, with representational structure consistent across model families and scales. This establishes the feasibility of the core methodological approach \\u2014 decomposing a complex behavioral phenomenon into independently steerable activation-level sub-components. The critical distinction from our setting: sycophancy sub-components are co-existing behaviors pulling in broadly similar directions (toward user-pleasing outputs), whereas CSB and CEO are opposing biases creating destructive interference. Independent steerability of co-aligned components does not guarantee successful decomposition of opposing components, where partial cancellation in activation space may make individual directions harder to isolate.\\n\\nBilla (arXiv 2604.15557, April 2026) proposed a three-regime framework for steerability prediction: (1) concept not represented (no method works), (2) nonlinear encoding (nonlinear methods needed), (3) output-aligned (linear steering works). The Linear Accessibility Profile (LAP) \\u2014 a training-free logit-lens diagnostic \\u2014 predicts steering effectiveness at \\u03c1=0.86\\u20130.91 across 24 binary concept families and 5 models. This establishes the routing-by-steerability paradigm that informs our intervention strategy \\u2014 but LAP operates per-concept with synthetic binary features, not per-instance with naturalistic biases, and does not address bias decomposition.\\n\\nSteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) demonstrated that prompt-level confidence steering \\u2014 using systematically varied steering prompts spanning 'very cautious' to 'very confident,' with multi-prompt consistency aggregation \\u2014 achieves 29% AUROC increase and 16% ECE reduction across seven benchmarks on GPT-3.5, LLaMA 3, and GPT-4 without training. SteerConf establishes that calibration is steerable at the behavioral level and provides a strong prompt-level baseline, but operates without mechanistic decomposition and cannot distinguish between or independently address competing bias sources.\\n\\nMiao & Ungar (arXiv 2603.25052, 2026) showed that calibration and verbalized confidence are linearly encoded but orthogonal in the residual stream (cosine similarity <0.04 across layers in three 7\\u20138B models), achieving 4\\u20137\\u00d7 ECE improvement via adaptive steering. Liu (arXiv 2605.05715, May 2026) demonstrated the classification-correction gap: linearly decodable failure directions (71.6% balanced accuracy) yield \\u0394\\u22480 under 29 linear steering configurations due to 85\\u201388% overlap with task-critical computation (specificity ratio \\u22640.152), but a learned nonlinear bottleneck MLP achieves \\u0394=+2.8pp where all linear methods fail. Patel et al. ('Are LLM Uncertainty and Correctness Encoded by the Same Features?', arXiv 2604.19974, April 2026) independently confirmed the classification-correction gap via sparse autoencoder (SAE) analysis on Llama-3.1-8B and Gemma-2-9B: they found that 'pure incorrectness features' are 'functionally inert' \\u2014 statistically decodable but producing near-zero accuracy change when suppressed \\u2014 while confounded features encoding both uncertainty and correctness yield 1.1% accuracy improvement and 75% entropy reduction upon suppression, with just 3 mid-layer features achieving AUROC ~0.79. This SAE-based functional dissociation reinforces that Phase 1A's separability success does NOT guarantee Phase 3's intervention success \\u2014 our Phase 1B steerability assessment is essential precisely because decodable directions may be functionally inert. MERA (Hedstr\\u00f6m et al., ICML 2025; arXiv 2510.13290) established adaptive steering with non-degradation guarantees via constrained optimization \\u2014 but operates with a single monolithic error probe.\\n\\nKobalczyk & van der Schaar (arXiv 2605.13484, May 2026) independently confirmed that global calibration metrics mask input-dependent heterogeneity: across 48 model\\u2013dataset pairs, they discovered hidden miscalibration regimes where 'opposing errors cancel when aggregated by confidence,' with local correction outperforming confidence-only methods. This provides independent evidence for our bias interference hypothesis \\u2014 the hidden regimes may correspond to regions where CSB vs. CEO dominance shifts.\\n\\nCCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) achieves ~55% ECE reduction and 21% Brier score reduction via perturbation-stability probing \\u2014 applying targeted adversarial perturbations to final hidden states and training a lightweight classifier on response features \\u2014 across Llama, Qwen, and Mistral models at 8B\\u201332B scale. CCPS represents a strong representation-based calibration baseline operating on overlapping model families and scales, though it uses monolithic perturbation without bias decomposition.\\n\\nThe 'Confidence Manifold' study (arXiv 2602.08159) found correctness signals occupy only 3\\u20138 dimensions with simple mean-shift geometry across 9 models, suggesting calibration-related directions may have more favorable specificity profiles than Liu's entangled overthinking directions. The nonlinear steering landscape (ODESteer, ICLR 2026; Curveball Steering, 2026; FLAS, 2026) provides powerful alternatives when linear steering fails. Spherical Steering (ICML 2026) preserves activation norms via geodesic rotation, and COAST (2605.01167) minimizes collateral damage along non-target directions.\\n\\nThe convergence of (a) behavioral evidence of competing biases with quantitative effect sizes, (b) mechanistic understanding of where confidence is computed and cached in the residual stream, (c) CogBias's demonstration that bias-family-specific intervention works, (d) 'Sycophancy Is Not One Thing's proof that complex behaviors can be decomposed into independently steerable sub-components, (e) Billa's steerability-based routing paradigm with a training-free diagnostic, (f) SteerConf's demonstration that calibration is steerable even at the prompt level, (g) the decodable\\u2013steerable distinction with quantitative diagnostics from both linear (Liu) and SAE-based (Patel et al.) analyses, (h) hidden miscalibration regimes suggesting opposing errors cancel, and (i) adaptive frameworks with non-degradation guarantees creates an opportunity for the next step: extending from independently-active bias families and co-existing behavioral sub-components to simultaneously competing calibration biases with per-instance diagnosis and correction.\",\n  \"landscape\": \"Kumaran et al. (Nature MI, 2026) identified competing biases (CSB and CEO) via behavioral experiments on Gemma 3 12B/27B, GPT-4o, o1-preview, and DeepSeek R1 7B but proposed no correction framework and provided no mechanistic (activation-level) evidence. Importantly, the qualitative pattern \\u2014 overconfidence from CSB and underconfidence from CEO \\u2014 held across all tested models, but effect magnitudes varied substantially (GPT-4o and Gemma 27B showed the strongest CEO effects; DeepSeek R1 7B failed to follow the advice paradigm entirely), and no Llama or Qwen models were tested. Kumaran, Conmy et al. ('How do LLMs Compute Verbal Confidence,' arXiv 2603.17839, March 2026) subsequently provided the mechanistic foundation for confidence computation, showing that verbal confidence is cached at the Post-Answer-Newline (PANL) token position rather than computed just-in-time: information flows from answer tokens \\u2192 PANL (layers 22\\u201328 in Gemma 3 27B) \\u2192 Confidence-Colon position (layers 30\\u201336), with PANL-cached representations explaining substantial variance beyond token log-probabilities (which account for only R\\u00b2=0.084). This mechanistic map directly informs our extraction strategy \\u2014 we target PANL and confidence-bearing positions rather than averaging across all tokens. Miao & Ungar (arXiv 2603.25052, 2026) demonstrated that calibration accuracy and verbalized confidence are linearly encoded but orthogonal in 7\\u20138B models (cosine similarity <0.04 across layers), and introduced adaptive steering achieving 4\\u20137\\u00d7 ECE improvement \\u2014 but they target the confidence\\u2013accuracy misalignment gap, not the competing bias structure.\\n\\nCogBias (Huang et al., arXiv 2604.01366, April 2026) is the closest work on bias decomposition. It organizes cognitive biases into four families (Judgment, Information Processing, Social, Response), demonstrates that biases are encoded as linearly separable directions in LLM activation space via linear probes under a contrastive design, and shows family-dependent mitigation: activation steering achieves 26\\u201332% overall bias reduction, but prompt-level debiasing 'substantially reduces Response biases but backfires for Judgment biases,' with up to 19pp improvement for Judgment biases via steering on Qwen. Despite near-orthogonal bias representations across model architectures (Llama and Qwen), steering reduced bias at similar rates \\u2014 suggesting shared functional organization that is encouraging for cross-architecture generalization. (Note: the abstract reports linear separability and 26\\u201332% steering reduction; specific probe classification accuracy figures are from the paper body and are not independently verifiable from the abstract alone.) CogBias establishes two principles that directly motivate our work: (a) cognitive biases are linearly encoded and separable, and (b) different bias families require different interventions. However, CogBias addresses biases that are independently active on different task types \\u2014 each task primarily involves one bias family. Our setting involves two biases simultaneously active and competing on the same instances, creating interference effects that CogBias's framework does not model. CogBias also does not assess steerability before intervention or route between intervention types.\\n\\n'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) is the closest methodological precedent for decomposing a complex behavioral phenomenon into independently steerable activation-level components. Using difference-in-means directions, activation additions, and subspace geometry, they decomposed sycophancy into sycophantic agreement, sycophantic praise, and genuine agreement \\u2014 demonstrating that each can be independently amplified or suppressed without affecting the others, with consistent representational structure across model families and scales. The key distinction from our proposal: their sub-components are co-existing behaviors that pull in broadly similar directions (various forms of user-pleasing output), while our target biases (CSB and CEO) are simultaneously OPPOSING \\u2014 pulling confidence in opposite directions on the same instances. This distinction matters methodologically: co-aligned sub-components may be easier to isolate via difference-in-means because they do not create destructive interference in activation space. Opposing biases may partially cancel, making individual directions harder to extract \\u2014 which is precisely why our Phase 0B confound controls and Phase 1A separability validation are essential. If our decomposition succeeds, it would extend the decompose-then-steer paradigm from co-existing to opposing sub-components, a strictly harder problem.\\n\\nBilla (arXiv 2604.15557, April 2026) proposes the most direct methodological precedent for our routing logic. The three-regime framework \\u2014 (1) concept not represented (no method works), (2) nonlinear encoding (nonlinear methods needed), (3) output-aligned (linear steering works) \\u2014 directly parallels our Route C/B/A structure. LAP (Linear Accessibility Profile), computed as logit-lens accuracy at each layer without training, predicts steering effectiveness at \\u03c1=0.86\\u20130.91 across 24 binary concept families on 5 models (Pythia-2.8B to Llama-8B). Key distinctions from our work: (a) Billa operates per-concept with synthetic binary features (e.g., gender, sentiment, parity), while we operate per-instance with naturalistic competing calibration biases; (b) Billa's three regimes assume a single concept direction per analysis, while we must decompose competing bias directions that are simultaneously active; (c) LAP's above-floor correlation weakens on smaller models (\\u03c1=0.50\\u20130.52 on Pythia-2.8B), and its applicability to non-binary, continuous calibration constructs is untested. We incorporate LAP as a complementary diagnostic alongside Liu's specificity ratio, adapting it to assess per-layer output-alignment of each decomposed bias direction.\\n\\nSteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) demonstrated prompt-level confidence steering achieving 29% AUROC increase and 16% ECE reduction across seven benchmarks on GPT-3.5, LLaMA 3, and GPT-4. SteerConf uses systematically varied steering prompts (spanning 'very cautious' to 'very confident'), measures consistency across multiple steered confidence outputs, and aggregates via linear quantization \\u2014 all without training. SteerConf represents the state-of-the-art in training-free prompt-level calibration steering and serves as an important baseline: activation-level methods should demonstrate clear advantages over this prompt-level approach. However, SteerConf operates entirely at the behavioral level without mechanistic decomposition, cannot distinguish between competing bias sources, and cannot apply bias-specific corrections.\\n\\nCCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) achieves ~55% ECE reduction and 21% Brier score reduction by probing perturbation stability \\u2014 applying targeted adversarial perturbations to final hidden states and training a lightweight correctness classifier on the model's response features. Evaluated on Llama, Qwen, and Mistral at 8B\\u201332B scale across MMLU and MMLU-Pro, CCPS represents a strong representation-based calibration method operating on overlapping model families. However, CCPS uses monolithic perturbation without bias decomposition and does not distinguish between different sources of miscalibration.\\n\\nLiu (arXiv 2605.05715, May 2026) is the most directly relevant advance on the decodable\\u2013steerable gap: linearly decodable failure directions (71.6% balanced accuracy on Llama-3.1-8B) yield \\u0394\\u22480 across five families of linear steering (29 configurations) because the failure direction has 85\\u201388% overlap with task-critical computation (specificity ratio \\u22640.152). A learned nonlinear bottleneck MLP (4096\\u219264\\u21924096) achieves \\u0394=+2.8pp (p=0.025) where linear methods fail. Patel et al. ('Are LLM Uncertainty and Correctness Encoded by the Same Features?', arXiv 2604.19974, April 2026) independently confirmed this classification-correction gap via sparse autoencoder (SAE) analysis on Llama-3.1-8B and Gemma-2-9B: they found a functional dissociation between uncertainty and correctness features, with 'pure incorrectness features' being 'functionally inert' \\u2014 statistically decodable yet producing near-zero accuracy change when suppressed. Only confounded features (encoding both signals) yielded meaningful behavioral effects (1.1% accuracy improvement, 75% entropy reduction). This SAE-based evidence complements Liu's linear-steering analysis: even when features are identifiable at the individual neuron/SAE-feature level, their functional role may be null \\u2014 reinforcing that Phase 1A separability is necessary but insufficient, and Phase 1B steerability assessment is the critical gate. However, both Liu and Patel et al. studied single failure modes, not decomposed competing biases.\\n\\nTsujimura & Tagade (arXiv 2508.17182, Aug 2025) decomposed LLM assertiveness into emotional and logical sub-components via unsupervised clustering on Llama-3.2-1B-Instruct (645 samples) \\u2014 methodologically adjacent but critically different: their decomposition is descriptive (post-hoc ChatGPT-labeled clusters) rather than causally grounded in identified cognitive biases, uses a single 1B model, reports no calibration metrics, and addresses assertiveness rather than calibration.\\n\\nHedstr\\u00f6m et al. (MERA, ICML 2025; arXiv 2510.13290) established the most principled framework for selective steering: MERA solves min \\u2016v\\u2016\\u00b2 s.t. p\\u0302(h+v) \\u2264 \\u03b1 with Hoeffding-based non-degradation guarantees via Bonferroni correction. However, MERA operates with a single monolithic error probe \\u2014 it cannot decompose calibration errors into opposing sources or route to different intervention types based on per-direction steerability.\\n\\nKobalczyk & van der Schaar (arXiv 2605.13484, May 2026) discovered hidden miscalibration regimes where input-dependent calibration heterogeneity is prevalent across 48 model\\u2013dataset pairs: global reliability diagrams hide opposing over/under-confidence errors that cancel when aggregated. This provides independent empirical support for our bias interference hypothesis but offers no mechanistic explanation for WHY opposing errors exist and no bias decomposition.\\n\\nThe nonlinear steering landscape has matured rapidly. ODESteer (Chen et al., ICLR 2026; arXiv 2602.17560) formulated a unified ODE-based framework via barrier functions. Curveball Steering (Raval et al., arXiv 2603.09313, Mar 2026) introduced polynomial kernel PCA for curved activation geometry (+47% over linear in high-curvature regimes). FLAS (arXiv 2605.05892, May 2026) learned concept-conditioned velocity fields, first outperforming prompting on AxBench. These address geometric limitations of linear steering but provide neither bias decomposition nor steerability diagnosis.\\n\\nThe 'Wired for Overconfidence' paper (2604.01457, April 2026) identifies overconfidence circuits in 3B models via monolithic activation steering (96.9% ECE reduction on PopQA) but treats overconfidence as a single phenomenon. Ji et al. (EMNLP 2025) modulates a single Verbal Uncertainty Feature. CORAL (arXiv 2602.06022) achieves 49% ECE improvement via a single MLP probe. The 'Confidence Manifold' study (arXiv 2602.08159) found correctness signals in 3\\u20138 dimensions with simple mean-shift geometry across 9 models.\\n\\nOn steering methodology: Spherical Steering (arXiv 2602.08169, ICML 2026) performs norm-preserving geodesic rotation. Selective Steering (Dang & Ngo, arXiv 2601.19375) developed norm-preserving rotation with discriminative layer selection. COAST (Nguyen et al., arXiv 2605.01167, May 2026) formalizes collateral damage. W2S (Gadgil et al., arXiv 2604.03867, April 2026) learns input-dependent layer selection for steering. 'Steered LLM Activations are Non-Surjective' (2604.09839) proved additive steering pushes activations off-manifold.\\n\\nNo existing method addresses the specific challenge of simultaneously competing calibration biases: CogBias decomposes independently-active bias families; 'Sycophancy Is Not One Thing' decomposes co-existing but co-aligned behavioral sub-components; Billa routes by per-concept steerability; SteerConf steers confidence at the prompt level without decomposition; CCPS probes perturbation stability without bias decomposition; MERA adapts steering strength monolithically; Patel et al. show that decodable features may be functionally inert. Our work uniquely targets biases that are concurrently active and opposing on the same instances, requiring joint decomposition and per-direction steerability assessment to resolve interference effects that these approaches cannot address individually.\",\n  \"inspired_by\": \"Gap: Competing biases create interference patterns \\u2014 partially canceling on some instances (illusory calibration) and producing heterogeneous over/under-confidence on others (hidden miscalibration regimes, Kobalczyk 2605.13484) \\u2014 that even CogBias's family-dependent mitigation cannot address because it targets independently-active biases, not simultaneously competing ones, and that 'Sycophancy Is Not One Thing's decompose-then-steer paradigm has not been tested on because their sub-components are co-aligned rather than opposing. Pattern: CogBias (2604.01366) proves bias-family-specific intervention works (linear separability, family-dependent steering) \\u2192 'Sycophancy Is Not One Thing' (2509.21305) proves complex behaviors decompose into independently steerable sub-components \\u2192 Billa (2604.15557) proves steerability-based routing works (three regimes, LAP diagnostic, \\u03c1=0.86\\u20130.91) \\u2192 SteerConf (2503.02863, NeurIPS 2025) proves calibration is steerable at the prompt level (29% AUROC, 16% ECE) \\u2192 Liu (2605.05715) + Patel et al. (2604.19974) prove decodable \\u2260 steerable/functional and nonlinear fallback works \\u2192 MERA proves adaptive strength + abstention works \\u2192 Kumaran & Conmy (2603.17839) map the mechanistic pathway of confidence computation (PANL caching). Untried combination: Extend these established principles from independent/co-aligned biases to simultaneously competing and opposing calibration biases, measuring asymmetric steerability profiles as the empirical core, with bias-specific correction as the practical application. Key hypothesis: CSB and CEO have asymmetric LAP and specificity profiles because they involve different cognitive processes (self-evaluation vs. evidence integration), which would provide a mechanistic explanation for inconsistent monolithic calibration steering results and the hidden miscalibration regimes observed by Kobalczyk & van der Schaar.\",\n  \"approach\": \"We investigate whether competing calibration biases (CSB and CEO) are distinguishable in activation space, whether they exhibit asymmetric steerability, and whether decomposed correction resolves bias interference that monolithic methods cannot. We structure the investigation in four phases, beginning with behavioral replication and a confound-controlled de-risking pilot. Evaluated on 3 models \\u00d7 3 datasets with 7 core baselines.\\n\\n**Phase 0A \\u2014 Behavioral Replication (Week 1):**\\n\\nKumaran et al.'s competing biases were characterized on Gemma 3 (12B/27B), GPT-4o, o1-preview, and DeepSeek R1 7B \\u2014 none of which are our target models. Before any activation extraction, we must verify that each target model (Llama-3.1-8B-Instruct, Qwen3-8B, Gemma 4 31B Dense) exhibits both CSB and CEO in the behavioral paradigm.\\n\\nWe replicate Kumaran et al.'s exact 2-turn experimental design on each target model with 500 questions per condition: the 2\\u00d73 factorial (Answer Shown/Hidden \\u00d7 Same/Opposite/Neutral Advice) at 70% stated advice accuracy. We measure: (a) CSB magnitude \\u2014 confidence difference between Answer Shown-Neutral and Answer Hidden-Neutral conditions; (b) CEO magnitude \\u2014 the overweighting ratio (observed confidence change / Bayesian-optimal change) for opposing vs. supporting advice; (c) change-of-mind rates across conditions.\\n\\nGo/no-go criteria: If a model shows CSB magnitude \\u226550% of Kumaran's reported +0.21 (i.e., \\u2265+0.105) AND CEO overweighting ratio \\u226550% of Kumaran's 2.58 (i.e., \\u22651.29), it proceeds to Phase 0B. If a model shows one bias but not the other, it is retained with a note that only the detected bias can be studied (reducing to single-bias characterization for that model). If a model shows neither bias at \\u226550% threshold, it is replaced \\u2014 candidate replacements are Gemma 3 27B (directly validated by Kumaran) or Mistral-8B. We report all behavioral replication results regardless, as cross-architecture replication data for Kumaran et al.'s findings is itself a contribution.\\n\\n**Phase 0B \\u2014 Confound-Controlled De-Risking Pilot (Weeks 2\\u20133):**\\n\\nThe translation from Kumaran et al.'s behavioral paradigm to contrastive activation extraction faces a critical confound identified in prior revisions: the contrastive pairs differ not only in bias activation but in prompt information content. For CSB, 'answer shown' prompts literally contain the model's answer text while 'answer hidden' prompts contain 'xx.' For CEO, 'contradictory advice present' prompts contain advisory text that 'advice absent' prompts lack. Extracted directions may thus capture 'prompt contains additional evaluative content' rather than 'bias is active.'\\n\\nWe address this with a four-pronged confound mitigation strategy:\\n\\n*(1) Matched-content contrastive pairs:* Rather than using Kumaran et al.'s original 'xx' placeholder (which differs in length and semantic content), we design matched controls:\\n- **CSB pairs:** The CSB-active condition shows the model's own prior answer attributed to itself ('You previously answered [X]'). The CSB-control condition replaces the model's answer with a plausible but randomly-selected alternative answer of matched token length attributed to 'another LLM' (e.g., 'Another LLM answered [Y]'). Both conditions contain an answer of equal length and format; only the self-generated attribution differs. An additional 'scrambled-answer' control replaces the answer with token-length-matched semantically neutral text (e.g., '[REDACTED]' padded to matched length) to verify that information content per se is not driving the extracted direction.\\n- **CEO pairs:** The CEO-active condition presents contradictory advice ('This LLM answered [opposite option]'). The CEO-control condition presents irrelevant neutral advice of matched token length ('This LLM was also asked a different question about [unrelated topic]'), preserving the presence of additional advisory text while removing the bias-inducing contradictory content. An additional 'supporting-advice' condition (same format, same length, but agreeing rather than contradicting) enables directional validation \\u2014 the CEO direction should separate contradictory from both neutral and supporting conditions, while a pure information-content confound would not distinguish contradictory from supporting.\\n\\n*(2) Same-content-different-attribution CSB control (source attribution isolation):* To isolate the ownership/self-generated component of CSB from information content, we add a critical additional condition: the model's OWN answer text, but attributed to 'another LLM' ('Another LLM answered [X]' where X is the model's actual prior answer). Combined with the self-attributed condition ('You previously answered [X]'), this creates a 2\\u00d72 factorial for CSB extraction: {own answer text, other answer text} \\u00d7 {self-attributed, other-attributed}. The self-attributed-own vs. other-attributed-own contrast isolates pure ownership/attribution effects (the CSB core mechanism \\u2014 confidence inflation from recognizing one's own prior commitment) while holding information content exactly constant. The other-attributed-own vs. other-attributed-other contrast isolates pure information-content effects. If the CSB direction extracted from the full contrast (self-own vs. other-other) is primarily aligned with the attribution contrast (self-own vs. other-own) rather than the content contrast (own-text vs. other-text), this provides strong evidence that we are capturing genuine choice-supportive bias rather than a content confound.\\n\\n*(3) Token-position-specific extraction informed by mechanistic evidence:* Rather than extracting mean activations across all token positions (which would be dominated by the differing prompt content), we extract activations at three specific positions informed by Kumaran & Conmy's (2603.17839) mechanistic findings on confidence computation: (a) the Post-Answer-Newline (PANL) token \\u2014 where Kumaran & Conmy showed confidence information is first cached (layers 22\\u201328 in Gemma 3 27B), making it the earliest site where bias-relevant confidence signals concentrate; (b) the Confidence-Colon (CC) position \\u2014 where confidence is retrieved for verbalization (layers 30\\u201336); (c) the first generated token of the confidence response. Extracting at PANL is particularly informative because it is a structurally fixed position (always immediately after the answer) that is identical in format across all conditions, minimizing sensitivity to prompt-content differences upstream. If the extracted direction is robust across extraction positions \\u2014 particularly at PANL, which precedes the confidence verbalization \\u2014 it is unlikely to reflect prompt-content confounds.\\n\\n*(4) Confound diagnostic tests:* For each extracted candidate direction, we verify: (a) correlation with prompt token count is <0.1 (Pearson r across the contrastive dataset); (b) a 'prompt-structure probe' \\u2014 a linear probe trained to classify prompt conditions by surface features (presence/absence of answer text, advice text length) \\u2014 produces directions with cosine similarity <0.2 to our candidate bias directions; (c) the candidate direction generalizes to held-out question types not seen during extraction; (d) for CSB specifically, the extracted direction aligns more strongly with the attribution contrast (self vs. other attribution of same content) than with the content contrast (same vs. different answer text with same attribution), as described in prong (2).\\n\\nWe conduct the pilot on the single model showing strongest behavioral CSB+CEO effects in Phase 0A, with ~500 contrastive pairs per bias type per control condition (totaling ~4000 pairs across the full factorial design for both biases, including the same-content-different-attribution CSB conditions).\\n\\nGo/no-go criteria: If a linear probe on matched-content pairs achieves \\u226560% balanced accuracy for distinguishing bias-active vs. bias-control conditions, AND confound diagnostics pass (prompt-structure cosine <0.2, token-count correlation <0.1, attribution-alignment > content-alignment for CSB), we proceed to full Phase 1. If probing accuracy is 60%+ but confound diagnostics partially fail (e.g., cosine similarity 0.2\\u20130.35), we expand to additional extraction positions and apply mean-centering (subtracting the global mean activation to decorrelate from background prompt structure). If probing accuracy is 55\\u201360% with clean confound diagnostics, we expand to 1000 pairs. If probing accuracy is <55% across all extraction positions, or if confound diagnostics consistently fail (cosine >0.35 to prompt-structure direction), we activate the behavioral-signal fallback.\\n\\n**Phase 0 Fallback \\u2014 Behavioral-Signal-Guided Probing (explicit scope reduction):**\\n\\nWe are explicit that the fallback path \\u2014 using behavioral output changes (confidence shift patterns matching CSB vs. CEO signatures) to label instances post-hoc, then probing for internal signatures correlated with these behavioral labels \\u2014 fundamentally changes the paper's contribution. The fallback trades causal contrastive evidence (where we experimentally control bias activation) for correlational association (where we observe behavioral patterns and search for corresponding activation correlates). This weakens contribution (1) from 'first causal activation-level characterization of competing calibration biases' to 'statistical association between behaviorally-identified bias patterns and activation geometry.' The resulting paper would still be informative \\u2014 establishing that behavioral CSB/CEO patterns have detectable activation correlates, even if not causally isolated \\u2014 but would be repositioned as a solid empirical contribution appropriate for EMNLP/NAACL rather than a top-tier mechanistic result at ICLR. The remaining contributions (2)\\u2013(4) on steerability measurement, interference analysis, and bias-specific correction would be weakened proportionally, as the activation directions being steered/analyzed would have weaker causal grounding.\\n\\n**Phase 1 \\u2014 Separability Validation & Steerability Assessment (Weeks 4\\u20138):**\\n\\n*Phase 1A \\u2014 Separability (Weeks 4\\u20136):* Building on the pilot's validated extraction methodology with matched-content controls and same-content-different-attribution factorial, we scale confound-controlled contrastive activation extraction to all three models that passed Phase 0A behavioral replication, with 2000+ matched-content contrastive pairs per bias type per model. We extract candidate CSB and CEO directions via difference-in-means on the matched-content contrastive pairs (using the extraction position validated in Phase 0B, prioritizing PANL following Kumaran & Conmy's mechanistic evidence) and validate separability via: (a) cosine similarity between candidate directions (threshold: <0.3 for separability), (b) principal angle analysis between CSB and CEO subspaces following Miao & Ungar's methodology, (c) PCA dimensionality assessment (whether 2 directions capture sufficient variance or higher-dimensional subspaces are needed), (d) cross-prediction ablations confirming that removing one bias subspace does not collapse the other, and (e) confound diagnostic replication at scale \\u2014 verifying that the scaled directions maintain low cosine similarity to prompt-structure probes (<0.2) across all models. If cosine similarity >0.3 or shared variance >15%, we activate the separability fallback: extracting a joint multi-direction bias subspace and training a subspace projection classifier to separate components.\\n\\nImportant caveat informed by Patel et al. (2604.19974): Phase 1A separability \\u2014 even if successful \\u2014 does NOT guarantee that the identified directions are functionally relevant for intervention. Patel et al.'s SAE analysis showed that statistically decodable 'pure incorrectness features' can be functionally inert. Phase 1B steerability assessment is therefore not merely complementary but essential: it determines whether our separable directions are the kind that actually drive behavior (like Patel et al.'s 'confounded features') or mere correlates (like their 'pure incorrectness features').\\n\\n*Phase 1B \\u2014 Steerability Diagnostics (Weeks 6\\u20138):* For each identified bias direction, we compute: (a) the **specificity ratio** \\u2014 the proportion of mode-specific variance vs. shared variance with the correct-vs-incorrect subspace, following Liu's shared-specific decomposition methodology; (b) **adapted LAP** \\u2014 applying the logit lens at each layer to measure how strongly each bias direction projects onto confidence-related output tokens, adapting Billa's (2604.15557) per-concept diagnostic to per-direction analysis for calibration biases, with extraction focused on the PANL\\u2192CC pathway identified by Kumaran & Conmy (2603.17839); (c) **LEACE concept erasure test** \\u2014 applying concept erasure to each bias direction and measuring accuracy damage as causal evidence of entanglement; (d) **pilot linear steering test** \\u2014 applying small-magnitude Spherical Steering along each direction and measuring both calibration improvement and accuracy impact; (e) **functional inertness test** \\u2014 following Patel et al.'s methodology, we suppress each bias direction and measure whether the effect on confidence output is non-trivial (distinguishing functionally active from inert directions).\\n\\nWe do NOT pre-commit to fixed routing thresholds. Following Billa's three-regime framework as a conceptual guide, we LEARN optimal thresholds via validation-set sweeps over LAP and specificity cutoffs, reporting the full diagnostic-vs-effectiveness curves as primary empirical contributions. The core empirical hypothesis \\u2014 that CSB and CEO have asymmetric steerability profiles \\u2014 would provide a mechanistic explanation for why monolithic calibration steering shows inconsistent results and why hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) exhibit spatially heterogeneous over/under-confidence.\\n\\nPhase 1 results constitute an independent contribution regardless of Phase 3 outcomes: the first activation-level characterization of behaviorally-identified competing calibration biases, with joint separability and steerability measurements using complementary diagnostics (specificity ratio + adapted LAP + functional inertness test), obtained via a confound-controlled extraction methodology grounded in mechanistic evidence of confidence computation pathways.\\n\\n**Phase 2 \\u2014 Per-Instance Bias Diagnosis (Weeks 7\\u201310):** A lightweight logistic probe (or small MLP in the fallback case) trained on per-instance projection magnitudes onto each bias direction classifies which bias dominates for a given query, providing a continuous dominance score. We stratify by difficulty and validate against behavioral predictions: on easy questions where models are already confident, CSB should dominate; on hard questions under criticism, CEO should dominate. We additionally test whether bias interference patterns \\u2014 instances where CSB and CEO partially cancel to produce deceptive near-zero net error \\u2014 can be identified, which would directly explain hidden miscalibration regimes.\\n\\n**Phase 3 \\u2014 Bias-Specific Intervention (Weeks 9\\u201315):** Building on Billa's established routing-by-steerability paradigm (2604.15557), extended from per-concept to per-instance competing biases, and informed by 'Sycophancy Is Not One Thing's demonstration that decomposed sub-components can be independently steered, Phase 3 implements three intervention routes informed by Phase 1B's empirically-learned steerability thresholds:\\n\\n*Route A \\u2014 Adaptive Spherical Steering (for steerable directions):* When a bias direction falls in Billa's 'output-aligned' regime (high adapted LAP + high specificity + non-inert per Patel et al. criteria), we apply Spherical Steering (You et al., ICML 2026) with MERA-inspired per-instance adaptive strength: rotation magnitude optimized to minimize \\u2016v\\u2016\\u00b2 subject to the bias probe's predicted error falling below a calibrated threshold \\u03b1*, following MERA's constrained optimization framework. Unlike MERA applied monolithically, our adaptation operates per-bias-direction, potentially applying different strengths for CSB vs. CEO corrections on the same instance. Layer selection is informed by adapted LAP profiles and the PANL\\u2192CC pathway (Kumaran & Conmy 2603.17839), and optionally by W2S-style (Gadgil et al., 2604.03867) input-dependent layer mapping.\\n\\n*Route B \\u2014 Learned Nonlinear Residual Correction (for entangled directions):* When a bias direction falls in Billa's 'nonlinear encoding' regime (high A_mlp but low A_lin, or low specificity ratio, or functionally inert under linear suppression but non-inert under nonlinear intervention), linear steering is expected to fail. Following Liu's finding that a bottleneck residual MLP (d\\u219264\\u2192d) achieves \\u0394=+2.8pp where 29 linear configurations yield \\u0394\\u22480, we train a small nonlinear residual adapter per bias type (<0.1% of model parameters), with COAST-informed training (Nguyen et al., 2605.01167) weighting the loss to minimize collateral damage along non-target feature directions.\\n\\n*Route C \\u2014 Selective Abstention (for uncorrectable instances):* When neither Route A nor Route B improves calibration without excessive accuracy damage (>3% degradation on validation), following Billa's 'not represented' regime, we abstain and output a reliability score using MERA's Hoeffding-based statistical framework.\\n\\nFor intermediate-steerability directions, Route A is applied with a conservative strength cap (rotation magnitude \\u226450% of high-steerability coefficient), falling back to Route C per-instance if collateral damage exceeds the threshold.\\n\\n**Generalizability \\u2014 Beyond CSB vs. CEO:**\\n\\nWhile this paper focuses on CSB and CEO as the primary competing-bias pair \\u2014 chosen because Kumaran et al. provide quantitative behavioral characterization with effect sizes that enable principled experimental design \\u2014 the Phase 0\\u21923 pipeline is designed to be reusable for other plausible competing-bias pairs where simultaneously active, opposing biases create interference. We identify three candidates for future work: (1) **Sycophantic agreement vs. truthfulness commitment** \\u2014 when a user states something incorrect and requests evaluation, sycophancy training pulls toward agreement while truthfulness training pulls toward correction; 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) already demonstrates that sycophancy sub-components are separable and independently steerable, and the sycophancy\\u2013truthfulness tension is well-documented (e.g., Alignment Forum, Sharma et al. 2024), though the opposing-direction interference structure has not been characterized. (2) **Primacy bias vs. recency bias** \\u2014 in multi-document QA and list-based tasks, these opposing positional biases are simultaneously active and shift in relative dominance based on context window usage (primacy weakens as inputs approach context limits while recency remains stable; arXiv 2508.07479), potentially creating hidden miscalibration-like heterogeneity in retrieval confidence. (3) **Anchoring to prior reasoning vs. evidence updating** \\u2014 in multi-turn reasoning tasks, models may anchor to initial chain-of-thought conclusions while simultaneously being influenced by new contradictory evidence, a generalization of the CSB/CEO dynamic to reasoning contexts. The matched-content contrastive extraction (Phase 0B), steerability diagnostics (Phase 1B), and bias-specific routing (Phase 3) are all applicable to these settings with appropriate stimulus design.\\n\\nWe evaluate on TriviaQA, MMLU, and PopQA across Gemma 4 31B Dense, Qwen3-8B, and Llama-3.1-8B-Instruct (subject to Phase 0A behavioral replication; models that fail replication are replaced as described). Metrics: ECE, Brier score, AUROC, difficulty-stratified ECE (easy/medium/hard), per-direction specificity ratios and LAP profiles, bias interference measurements (instances where CSB+CEO partially cancel), collateral damage, and route-distribution analysis. Core baselines: (1) temperature scaling, (2) CORAL, (3) Miao & Ungar adaptive steering, (4) MERA applied monolithically, (5) monolithic Spherical Steering (single direction, no bias decomposition), (6) monolithic nonlinear MLP (single direction, no bias decomposition), (7) SteerConf prompt-level steering. Extended baselines in supplementary: CogBias-style family-level steering (treating CSB/CEO as independent families), CCPS perturbation-stability probing (Khanmohammadi et al., 2505.21772), DINCO, 'Wired for Overconfidence' replication.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"650-900 H100\",\n      \"timeline\": \"16-20 weeks (includes 1-week behavioral replication + 2-week pilot with expanded CSB factorial)\",\n      \"estimated_gpu_cost\": \"$1,625-$2,250 (H100 @ ~$2.50/hr)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"550-750 H100\",\n      \"timeline\": \"12-16 weeks (includes 1-week behavioral replication + 2-week pilot with expanded CSB factorial)\",\n      \"claude_api_cost\": \"$375-$575 (Sonnet 4.6 for matched-content and attribution-factorial contrastive dataset generation, confound diagnostics, probing, LAP computation, adapter training, analysis)\",\n      \"estimated_gpu_cost\": \"$1,375-$1,875\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"850-1150 H100\",\n      \"timeline\": \"7-11 weeks (includes behavioral replication + pilot)\",\n      \"claude_api_cost\": \"$725-$1,250 (Opus 4.7 for experiment orchestration, matched-content and attribution-factorial pair generation, confound analysis, validation analysis, steerability diagnostics, adapter training sweeps)\",\n      \"estimated_gpu_cost\": \"$2,125-$2,875\",\n      \"speed_bottleneck\": \"Phase 0A behavioral replication (1 week, parallelizable across 3 models) \\u2192 Phase 0B pilot is sequential gate (2 weeks, expanded for CSB attribution factorial). Phase 1A\\u21921B is sequential. Evaluation across 3 models \\u00d7 3 datasets \\u00d7 3 routes + 7 baselines is parallelizable.\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027\",\n    \"NeurIPS 2026\",\n    \"ICML 2027\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Competing Biases in LLM Confidence (Kumaran et al., Nature Machine Intelligence 2026; arXiv 2507.03120) \\u2014 behavioral evidence of CSB and CEO as competing calibration biases\",\n    \"How do LLMs Compute Verbal Confidence (Kumaran, Conmy et al., arXiv 2603.17839, March 2026) \\u2014 confidence cached at PANL position, answer\\u2192PANL\\u2192CC information flow, token log-probs explain only 8.4% of variance\",\n    \"CogBias: Cognitive Bias in LLMs (Huang et al., arXiv 2604.01366, April 2026) \\u2014 linearly separable bias directions, family-dependent mitigation, 26-32% steering reduction\",\n    \"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) \\u2014 decomposition of sycophancy into independently steerable sub-components via difference-in-means\",\n    \"Billa: Predicting Steerability (arXiv 2604.15557, April 2026) \\u2014 three-regime steerability framework, LAP diagnostic, \\u03c1=0.86-0.91\",\n    \"SteerConf: Prompt-Level Confidence Steering (Zhou et al., arXiv 2503.02863, NeurIPS 2025) \\u2014 29% AUROC increase, 16% ECE reduction via prompt-level steering\",\n    \"Calibration and Verbalized Confidence Are Linearly Encoded but Orthogonal (Miao & Ungar, arXiv 2603.25052, 2026) \\u2014 orthogonal calibration/confidence encoding, 4-7\\u00d7 ECE improvement\",\n    \"Classification-Correction Gap in LLM Steering (Liu, arXiv 2605.05715, May 2026) \\u2014 decodable \\u2260 steerable, specificity ratio \\u22640.152, nonlinear bottleneck MLP achieves \\u0394=+2.8pp\",\n    \"Are LLM Uncertainty and Correctness Encoded by the Same Features? A Functional Dissociation via Sparse Autoencoders (Patel et al., arXiv 2604.19974, April 2026) \\u2014 pure incorrectness features functionally inert, SAE-based classification-correction gap confirmation\",\n    \"Calibrating LLM Confidence by Probing Perturbed Representation Stability (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) \\u2014 CCPS, ~55% ECE reduction via perturbation-stability probing on Llama/Qwen/Mistral 8B-32B\",\n    \"MERA: Adaptive Steering with Non-Degradation Guarantees (Hedstr\\u00f6m et al., ICML 2025; arXiv 2510.13290) \\u2014 constrained optimization, Hoeffding-based guarantees\",\n    \"Hidden Miscalibration Regimes (Kobalczyk & van der Schaar, arXiv 2605.13484, May 2026) \\u2014 opposing errors cancel when aggregated, 48 model-dataset pairs\",\n    \"ODESteer: Unified ODE-Based Steering (Chen et al., ICLR 2026; arXiv 2602.17560) \\u2014 barrier function framework for nonlinear steering\",\n    \"Curveball Steering (Raval et al., arXiv 2603.09313, March 2026) \\u2014 polynomial kernel PCA, +47% over linear in high-curvature regimes\",\n    \"FLAS: Learned Concept-Conditioned Velocity Fields (arXiv 2605.05892, May 2026) \\u2014 first nonlinear steering to outperform prompting on AxBench\",\n    \"Spherical Steering (arXiv 2602.08169, ICML 2026) \\u2014 norm-preserving geodesic rotation\",\n    \"COAST: Collateral-Damage-Aware Steering (Nguyen et al., arXiv 2605.01167, May 2026) \\u2014 formalization of collateral damage in activation steering\",\n    \"W2S: Input-Dependent Layer Selection for Steering (Gadgil et al., arXiv 2604.03867, April 2026) \\u2014 learned per-instance layer routing\",\n    \"Confidence Manifold (arXiv 2602.08159) \\u2014 correctness signals in 3-8 dimensions with mean-shift geometry across 9 models\",\n    \"CORAL: Calibration via MLP Probe (arXiv 2602.06022) \\u2014 49% ECE improvement\",\n    \"Wired for Overconfidence (arXiv 2604.01457, April 2026) \\u2014 overconfidence circuits, 96.9% ECE reduction on PopQA\",\n    \"Selective Steering with Discriminative Layer Selection (Dang & Ngo, arXiv 2601.19375) \\u2014 norm-preserving rotation\",\n    \"Steered LLM Activations are Non-Surjective (arXiv 2604.09839) \\u2014 additive steering pushes activations off-manifold\",\n    \"LLM Assertiveness Decomposition (Tsujimura & Tagade, arXiv 2508.17182, Aug 2025) \\u2014 emotional/logical sub-components via unsupervised clustering\",\n    \"Verbal Uncertainty Feature Modulation (Ji et al., EMNLP 2025) \\u2014 single-feature confidence modulation\"\n  ],\n  \"description\": \"We investigate whether two competing sources of LLM miscalibration \\u2014 choice-supportive bias (CSB) and contradictory-evidence overweighting (CEO), identified behaviorally by Kumaran et al. (Nature MI 2026) \\u2014 produce distinguishable activation signatures, exhibit asymmetric steerability profiles, and can be corrected through bias-specific intervention that outperforms monolithic approaches.\\n\\nOur work is motivated by a bias interference problem unique to the competing-bias setting: CSB and CEO are simultaneously active on the same instances, pulling confidence in opposite directions. This creates (a) illusory calibration where competing biases partially cancel, making global metrics deceptively good while localized failures persist \\u2014 consistent with the hidden miscalibration regimes independently observed by Kobalczyk & van der Schaar (2605.13484) \\u2014 and (b) heterogeneous over/under-confidence patterns where one bias dominates instance-by-instance. Monolithic methods cannot resolve this interference because they target the net error direction, which conflates opposing bias contributions.\\n\\nCogBias (Huang et al., 2604.01366) established that cognitive bias families are linearly separable and require family-dependent intervention \\u2014 but addresses independently-active biases on different tasks, not simultaneously competing biases. 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) demonstrated that complex behavioral phenomena can be decomposed into independently steerable activation-level sub-components via difference-in-means \\u2014 but their sub-components (sycophantic agreement, praise, genuine agreement) are co-existing and co-aligned, not opposing. Our work extends this decompose-then-steer paradigm to the strictly harder case of opposing biases creating destructive interference. Billa (2604.15557) established the routing-by-steerability paradigm with a three-regime framework and LAP diagnostic \\u2014 but operates per-concept with synthetic binary features, not per-instance with naturalistic competing biases. SteerConf (Zhou et al., NeurIPS 2025) achieves 29% AUROC increase via prompt-level confidence steering \\u2014 demonstrating calibration is steerable but operating without mechanistic decomposition. MERA (Hedstr\\u00f6m et al., ICML 2025) provides adaptive steering with non-degradation guarantees \\u2014 but treats errors monolithically. Liu (2605.05715) and Patel et al. (2604.19974) independently established the classification-correction gap \\u2014 decodable directions may be functionally inert \\u2014 reinforcing that our Phase 1B steerability assessment is essential.\\n\\nOur approach proceeds in four phases with rigorous confound control. Phase 0A (Behavioral Replication) verifies that each target model \\u2014 Llama-3.1-8B-Instruct, Qwen3-8B, and Gemma 4 31B Dense, none of which were in Kumaran et al.'s original study \\u2014 exhibits both CSB and CEO at \\u226550% of Kumaran's reported effect sizes; models failing replication are replaced. Phase 0B (Confound-Controlled Pilot) addresses a critical methodological challenge: standard contrastive extraction would conflate bias activation with prompt information-content differences. We design a four-pronged confound mitigation strategy: (1) matched-content contrastive pairs equated for token length, format, and information presence; (2) a same-content-different-attribution CSB control \\u2014 presenting the model's OWN answer text but attributed to 'another LLM' \\u2014 to isolate the ownership/self-generated component of CSB from information content via a 2\\u00d72 factorial ({own text, other text} \\u00d7 {self-attributed, other-attributed}); (3) token-position-specific extraction at the Post-Answer-Newline (PANL) and Confidence-Colon positions, grounded in Kumaran & Conmy's (2603.17839) mechanistic finding that confidence is cached at answer-adjacent positions rather than computed just-in-time; (4) explicit confound diagnostic tests including attribution-alignment verification for CSB.\\n\\nPhase 1A (Separability) tests whether CSB and CEO produce geometrically distinct directions using confound-controlled contrastive activation probing, validated via cosine similarity, principal angles, PCA, and cross-prediction ablations \\u2014 with the explicit caveat (informed by Patel et al., 2604.19974) that separability does NOT guarantee functional relevance. Phase 1B (Steerability Assessment) measures each direction's specificity ratio (Liu 2605.05715), adapted LAP (Billa 2604.15557), and functional inertness (Patel et al. 2604.19974) as complementary diagnostics, learning routing thresholds empirically rather than pre-committing to fixed values. Phase 2 trains a per-instance bias dominance classifier.\\n\\nPhase 3 implements intervention routing, building on Billa's established three-regime paradigm extended from per-concept to per-instance competing biases, and informed by 'Sycophancy Is Not One Thing's demonstration that decomposed sub-components can be independently steered: (Route A) Spherical Steering with MERA-inspired per-direction adaptive strength for steerable, functionally active directions; (Route B) lightweight bottleneck MLP for entangled directions, trained with COAST-informed collateral-damage-aware loss; (Route C) selective abstention via MERA's statistical framework.\\n\\nWe evaluate on TriviaQA, MMLU, and PopQA across three models (subject to Phase 0A behavioral replication). Core baselines: temperature scaling, CORAL, Miao & Ungar, MERA (monolithic), monolithic Spherical Steering, monolithic nonlinear MLP, and SteerConf (prompt-level steering). Extended baselines include CCPS perturbation-stability probing (Khanmohammadi et al., EMNLP 2025) and CogBias-style family-level steering.\\n\\nWe discuss generalizability beyond CSB/CEO, identifying three other plausible competing-bias pairs \\u2014 sycophantic agreement vs. truthfulness commitment, primacy vs. recency bias, and anchoring vs. evidence updating \\u2014 for which the Phase 0\\u21923 pipeline is reusable with appropriate stimulus design.\\n\\nWe are explicit about the fallback path: if Phase 0B fails (extracted directions reflect prompt confounds rather than bias activation, despite matched-content controls and the attribution factorial), the behavioral-signal-guided probing fallback produces correlational rather than causal evidence, fundamentally repositioning the paper from a mechanistic contribution to an empirical observation study \\u2014 still informative, but appropriate for EMNLP/NAACL rather than ICLR.\\n\\nThe contributions are: (1) first causal activation-level characterization of simultaneously competing calibration biases (CSB vs. CEO), extending CogBias's independently-active bias decomposition and 'Sycophancy Is Not One Thing's co-aligned decomposition to the opposing-bias setting, with confound-controlled extraction methodology including source-attribution factorial and mechanistically-grounded token-position targeting; (2) empirical measurement of asymmetric steerability profiles with complementary diagnostics (specificity ratio + adapted LAP + functional inertness test), extending Billa's per-concept steerability analysis to per-direction competing biases; (3) bias interference analysis connecting competing bias dynamics to hidden miscalibration regimes; (4) bias-specific adaptive correction extending MERA's monolithic framework to the multi-bias setting with steerability-informed routing; (5) cross-architecture behavioral replication of Kumaran et al.'s competing biases on Llama and Qwen families; (6) generalizability framework identifying additional competing-bias pairs amenable to the same pipeline.\",\n  \"project_name\": \"competing_bias_steer\",\n  \"source\": \"web_research\",\n  \"revision_notes\": {\n    \"round7_issue_1_verbal_confidence_mechanism\": \"ADDRESSED: Integrated Kumaran & Conmy 'How do LLMs Compute Verbal Confidence' (2603.17839) throughout. Added to opportunity as mechanistic foundation for confidence computation. Used to ground Phase 0B's token-position-specific extraction strategy \\u2014 now specifically targeting PANL (Post-Answer-Newline) and CC (Confidence-Colon) positions based on their finding that confidence is cached at answer-adjacent positions with information flowing answer tokens \\u2192 PANL (layers 22-28) \\u2192 CC (layers 30-36), and that token log-probs explain only 8.4% of variance. Added to landscape alongside Kumaran et al.'s behavioral work. Referenced in Phase 1B for LAP computation along the PANL\\u2192CC pathway.\",\n    \"round7_issue_2_source_attribution_confound\": \"ADDRESSED: Added same-content-different-attribution CSB control as a dedicated fourth prong of confound mitigation (prong 2 in revised Phase 0B). The model's OWN answer text is presented attributed to 'another LLM,' creating a 2\\u00d72 factorial: {own answer text, other answer text} \\u00d7 {self-attributed, other-attributed}. The self-own vs. other-own contrast isolates pure ownership/attribution effects (the CSB core mechanism) while holding information content exactly constant. Added attribution-alignment verification to confound diagnostics: the CSB direction must align more with the attribution contrast than the content contrast. This isolates choice-supportive confidence inflation from content recognition. ~500 additional pairs per condition.\",\n    \"round7_issue_3_CCPS_missing\": \"ADDRESSED: CCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) integrated into opportunity as a strong representation-based calibration baseline (~55% ECE reduction, 21% Brier reduction via perturbation-stability probing on Llama/Qwen/Mistral 8B-32B). Added to landscape with methodological description and positioning (monolithic perturbation without bias decomposition). Added to extended baselines in evaluation. Added to key_references.\",\n    \"round7_issue_4_generalizability\": \"ADDRESSED: Added dedicated 'Generalizability \\u2014 Beyond CSB vs. CEO' subsection in approach identifying three plausible competing-bias pairs: (1) sycophantic agreement vs. truthfulness commitment (well-documented tension, sycophancy sub-components already shown separable by Vennemeyer et al.), (2) primacy bias vs. recency bias (opposing positional biases that shift in dominance based on context window usage, per arXiv 2508.07479), (3) anchoring to prior reasoning vs. evidence updating in multi-turn contexts. Noted that the Phase 0\\u21923 pipeline is designed to be reusable for these settings with appropriate stimulus design.\",\n    \"round7_issue_5_sycophancy_decomposition\": \"ADDRESSED: 'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305) integrated as the closest methodological precedent throughout. Added to core_problem as fifth line of related work. Added to opportunity with key findings (independently steerable sub-components, consistent across model families). Added to landscape with detailed comparison \\u2014 key distinction: co-existing co-aligned sub-components vs. our opposing biases creating interference. Referenced in Phase 3 as methodological support. Critical nuance articulated: independent steerability of co-aligned components does not guarantee success for opposing components where destructive interference complicates extraction.\",\n    \"round7_issue_6_SAE_functional_dissociation\": \"ADDRESSED: Patel et al. 'Are LLM Uncertainty and Correctness Encoded by the Same Features?' (arXiv 2604.19974) integrated alongside Liu throughout. Added to core_problem alongside Liu for classification-correction gap. Added to opportunity with key quantitative results (functionally inert pure incorrectness features, 1.1% accuracy improvement from confounded features, AUROC ~0.79 from 3 features). Added to landscape with detailed SAE-based evidence. Added explicit caveat after Phase 1A that separability does NOT guarantee functional relevance (citing Patel et al.). Added functional inertness test to Phase 1B diagnostics. Added to key_references.\",\n    \"round7_issue_7_cogbias_accuracy_verification\": \"ADDRESSED: The '97.8% mean classification accuracy' claim attributed to CogBias could not be independently verified from the abstract or accessible content. The abstract reports linear separability and 26-32% steering reduction but does not surface this specific accuracy figure. Revised ALL references to CogBias probe accuracy: replaced '97.8% mean classification accuracy' with 'high linear separability' or 'linearly separable directions,' noting that the abstract-reported 26-32% steering reduction is cited as the primary quantitative result. Added parenthetical caveat: 'specific probe classification accuracy figures are from the paper body rather than the abstract alone.'\"\n  },\n  \"change_type\": \"major\"\n}\n```\n\nThis is a complete, valid JSON object with all 15 top-level fields: `title`, `core_problem`, `opportunity`, `landscape`, `inspired_by`, `approach`, `resource_estimate`, `target_venues`, `level`, `key_references`, `description`, `project_name`, `source`, `revision_notes`, and `change_type`.\n\nKey notes:\n- All special characters (em dashes, arrows, rho, multiplication signs, etc.) are represented as Unicode escape sequences where needed for JSON safety, though literal UTF-8 is also valid JSON.\n- Single quotes within strings are unescaped (valid in JSON, only double quotes need escaping).\n- Newlines within string values use `\\n`.\n- The `target_venues` field uses `[\"ICLR 2027\", \"NeurIPS 2026\", \"ICML 2027\"]` -- you mentioned \"same as before\" but I didn't have access to the prior version, so I used the most likely top-tier ML venues. Please adjust if needed.\n- The `revision_notes` contains all 7 round-7 issue entries. You mentioned \"keep ALL existing entries\" from prior rounds, but since I don't have the previous JSON file, only the round-7 entries are included. If you have prior round entries to add, they can be merged in.\n- 25 key references are included, incorporating all 4 new entries you specified."
+5	  },
+6	  {
+7	    "type": "text",
+8	    "text": "agentId: a3c82c5b98465838b (use SendMessage with to: 'a3c82c5b98465838b' to continue this agent)\n&lt;usage>total_tokens: 66108\ntool_uses: 15\nduration_ms: 962612&lt;/usage>"
+9	  }
+10	]
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "f41f97d5-0f51-4ba1-aaf5-0b8c6788b5ec",
+  "isSidechain": false,
+  "promptId": "671472a7-22a0-4225-9807-426591c0d523",
+  "type": "user",
+  "uuid": "58322948-cfd6-4c53-ad88-b496740797a0",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu-idea-gen-pipeline/2d88ff40-6e8c-41d1-8b37-364a36afb9ee/tool-results/toolu_01ADVhga4LcqMKnt2etEeKZY.json",
+      "content": "[\n  {\n    \"type\": \"text\",\n    \"text\": \"Let me construct and output the JSON directly. Given the massive size of the content, I'll produce the complete JSON object. Let me carefully assemble it ensuring proper escaping.\\n\\nHere is the complete, valid JSON object:\\n\\n```json\\n{\\n  \\\"title\\\": \\\"Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibration for Targeted Activation Correction\\\",\\n  \\\"core_problem\\\": \\\"LLM miscalibration arises from at least two competing biases \\\\u2014 choice-supportive bias (CSB, inflating confidence in initial answers) and contradictory-evidence overweighting (CEO, causing excessive confidence revision under criticism) \\\\u2014 that are simultaneously active and pull confidence in opposite directions on the same instances (Kumaran et al., Nature MI 2026). This creates a bias interference problem: competing biases can partially cancel (producing illusory calibration where global metrics look good but localized failures persist) or one can dominate instance-by-instance (producing heterogeneous over/under-confidence patterns). Recent work on hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) independently confirms that global reliability diagrams 'hide rather than reveal calibration failures' because 'opposing errors cancel when aggregated by confidence' \\\\u2014 but provides no mechanistic explanation for WHY opposing errors exist. Five lines of related work address parts of this problem but not the whole: (1) CogBias (Huang et al., 2604.01366) demonstrates that different cognitive bias families (Judgment, Information Processing, Social, Response) need different interventions \\\\u2014 prompt debiasing 'substantially reduces Response biases but backfires for Judgment biases' \\\\u2014 establishing the principle of family-dependent mitigation. However, CogBias addresses independently-active biases on different task types, not simultaneously competing biases on the same instances. (2) Billa (2604.15557) proposes a three-regime steerability framework (concept not represented / nonlinear encoding / output-aligned) with Linear Accessibility Profile (LAP) as a training-free diagnostic (\\\\u03c1=0.86\\\\u20130.91 correlation with steering effectiveness), establishing the routing-by-steerability paradigm \\\\u2014 but operates per-concept with synthetic binary features, not per-instance with naturalistic competing biases. (3) MERA (Hedstr\\\\u00f6m et al., ICML 2025) provides adaptive steering strength and abstention with non-degradation guarantees \\\\u2014 but treats errors monolithically with a single probe. (4) SteerConf (Zhou et al., NeurIPS 2025) achieves 29% AUROC increase and 16% ECE reduction via prompt-level confidence steering with multi-prompt aggregation \\\\u2014 demonstrating that calibration is steerable, but operating entirely at the prompt level without mechanistic decomposition or bias-specific intervention. (5) 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) demonstrates that a complex behavioral phenomenon (sycophancy) can be decomposed into independently steerable sub-components (sycophantic agreement vs. sycophantic praise vs. genuine agreement) using difference-in-means and activation additions \\\\u2014 establishing the decompose-then-steer paradigm. However, their sub-components are co-existing behaviors pulling in similar directions, not opposing biases creating interference effects. The classification-correction gap (Liu, 2605.05715; independently confirmed via SAE analysis by Patel et al., 2604.19974, who showed that 'pure incorrectness features' are 'functionally inert' despite being statistically decodable) adds a further obstacle: linearly decodable bias directions may not be linearly steerable due to entanglement with task-critical computation. Can we move from behavioral evidence of competing biases to activation-level characterization, measure their asymmetric steerability profiles, and demonstrate that decomposed correction outperforms monolithic methods specifically because it resolves bias interference?\\\",\\n  \\\"opportunity\\\": \\\"Kumaran et al. (Nature Machine Intelligence, 2026; arXiv 2507.03120) established behavioral evidence that LLM miscalibration results from two mechanistically distinct biases: choice-supportive bias inflates confidence in selected answers (+0.21 confidence boost, p<0.001), while contradictory-advice overweighting causes models to over-react to opposing evidence (overweighting ratio 2.58 for opposing vs. 1.095 for supporting advice). Critically, both biases are simultaneously active in the 'Answer Shown + Opposite Advice' condition, demonstrating they are distinct mechanisms rather than a single unified bias. However, Kumaran et al. provided only behavioral evidence with no activation-level analysis, and their study covered Gemma 3 (12B/27B), GPT-4o, o1-preview, and DeepSeek R1 7B \\\\u2014 but not the Llama or Qwen families that are widely used for mechanistic interpretability research.\\\\n\\\\nKumaran, Conmy et al. ('How do LLMs Compute Verbal Confidence,' arXiv 2603.17839, March 2026) provided the mechanistic foundation for confidence computation: verbal confidence is not computed just-in-time but cached at the Post-Answer-Newline (PANL) token position, with information flowing from answer tokens \\\\u2192 PANL (layers 22\\\\u201328) \\\\u2192 Confidence-Colon position (layers 30\\\\u201336) in Gemma 3 27B. Critically, token log-probabilities explain only 8.4% of variance in verbal confidence (R\\\\u00b2_CV = 0.084), while PANL-cached representations explain substantial additional variance \\\\u2014 demonstrating that confidence reflects 'automatic, sophisticated self-evaluation' rather than simple fluency readout. This directly validates our Phase 0B token-position-specific extraction strategy: extracting at the PANL and confidence-bearing positions targets where bias-relevant confidence signals are mechanistically concentrated, rather than averaging across all positions where prompt-content confounds dominate. Studied on Gemma 3 27B and Qwen 2.5 7B \\\\u2014 overlapping with our target model families.\\\\n\\\\nCogBias (Huang et al., arXiv 2604.01366, April 2026) independently demonstrated that cognitive biases are encoded as linearly separable directions in LLM activation space, and that bias-family-specific intervention is both viable and necessary: activation steering achieves 26\\\\u201332% bias reduction overall, but effectiveness varies dramatically by family (up to 19pp improvement for Judgment biases on Qwen vs. minimal effect for others). Importantly, CogBias found that despite near-orthogonal bias representations across model architectures, steering reduced bias at similar rates, suggesting shared functional organization \\\\u2014 which is encouraging for cross-model generalization. This establishes a crucial principle \\\\u2014 different biases need different interventions \\\\u2014 but CogBias addresses biases that are independently active on different task types, not biases that compete simultaneously on the same calibration task. (Note: CogBias reports high linear separability of bias directions; the specific probe accuracy figures are drawn from the paper body rather than the abstract, and we cite the abstract-reported 26\\\\u201332% steering reduction as the primary quantitative result.)\\\\n\\\\n'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) provides the closest methodological precedent for our decompose-then-steer approach. Using difference-in-means directions, activation additions, and subspace geometry across multiple models, they decomposed sycophancy into distinct sub-components (sycophantic agreement, sycophantic praise, genuine agreement) and demonstrated that each can be independently amplified or suppressed without affecting the others, with representational structure consistent across model families and scales. This establishes the feasibility of the core methodological approach \\\\u2014 decomposing a complex behavioral phenomenon into independently steerable activation-level sub-components. The critical distinction from our setting: sycophancy sub-components are co-existing behaviors pulling in broadly similar directions (toward user-pleasing outputs), whereas CSB and CEO are opposing biases creating destructive interference. Independent steerability of co-aligned components does not guarantee successful decomposition of opposing components, where partial cancellation in activation space may make individual directions harder to isolate.\\\\n\\\\nBilla (arXiv 2604.15557, April 2026) proposed a three-regime framework for steerability prediction: (1) concept not represented (no method works), (2) nonlinear encoding (nonlinear methods needed), (3) output-aligned (linear steering works). The Linear Accessibility Profile (LAP) \\\\u2014 a training-free logit-lens diagnostic \\\\u2014 predicts steering effectiveness at \\\\u03c1=0.86\\\\u20130.91 across 24 binary concept families and 5 models. This establishes the routing-by-steerability paradigm that informs our intervention strategy \\\\u2014 but LAP operates per-concept with synthetic binary features, not per-instance with naturalistic biases, and does not address bias decomposition.\\\\n\\\\nSteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) demonstrated that prompt-level confidence steering \\\\u2014 using systematically varied steering prompts spanning 'very cautious' to 'very confident,' with multi-prompt consistency aggregation \\\\u2014 achieves 29% AUROC increase and 16% ECE reduction across seven benchmarks on GPT-3.5, LLaMA 3, and GPT-4 without training. SteerConf establishes that calibration is steerable at the behavioral level and provides a strong prompt-level baseline, but operates without mechanistic decomposition and cannot distinguish between or independently address competing bias sources.\\\\n\\\\nMiao & Ungar (arXiv 2603.25052, 2026) showed that calibration and verbalized confidence are linearly encoded but orthogonal in the residual stream (cosine similarity <0.04 across layers in three 7\\\\u20138B models), achieving 4\\\\u20137\\\\u00d7 ECE improvement via adaptive steering. Liu (arXiv 2605.05715, May 2026) demonstrated the classification-correction gap: linearly decodable failure directions (71.6% balanced accuracy) yield \\\\u0394\\\\u22480 under 29 linear steering configurations due to 85\\\\u201388% overlap with task-critical computation (specificity ratio \\\\u22640.152), but a learned nonlinear bottleneck MLP achieves \\\\u0394=+2.8pp where all linear methods fail. Patel et al. ('Are LLM Uncertainty and Correctness Encoded by the Same Features?', arXiv 2604.19974, April 2026) independently confirmed the classification-correction gap via sparse autoencoder (SAE) analysis on Llama-3.1-8B and Gemma-2-9B: they found that 'pure incorrectness features' are 'functionally inert' \\\\u2014 statistically decodable but producing near-zero accuracy change when suppressed \\\\u2014 while confounded features encoding both uncertainty and correctness yield 1.1% accuracy improvement and 75% entropy reduction upon suppression, with just 3 mid-layer features achieving AUROC ~0.79. This SAE-based functional dissociation reinforces that Phase 1A's separability success does NOT guarantee Phase 3's intervention success \\\\u2014 our Phase 1B steerability assessment is essential precisely because decodable directions may be functionally inert. MERA (Hedstr\\\\u00f6m et al., ICML 2025; arXiv 2510.13290) established adaptive steering with non-degradation guarantees via constrained optimization \\\\u2014 but operates with a single monolithic error probe.\\\\n\\\\nKobalczyk & van der Schaar (arXiv 2605.13484, May 2026) independently confirmed that global calibration metrics mask input-dependent heterogeneity: across 48 model\\\\u2013dataset pairs, they discovered hidden miscalibration regimes where 'opposing errors cancel when aggregated by confidence,' with local correction outperforming confidence-only methods. This provides independent evidence for our bias interference hypothesis \\\\u2014 the hidden regimes may correspond to regions where CSB vs. CEO dominance shifts.\\\\n\\\\nCCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) achieves ~55% ECE reduction and 21% Brier score reduction via perturbation-stability probing \\\\u2014 applying targeted adversarial perturbations to final hidden states and training a lightweight classifier on response features \\\\u2014 across Llama, Qwen, and Mistral models at 8B\\\\u201332B scale. CCPS represents a strong representation-based calibration baseline operating on overlapping model families and scales, though it uses monolithic perturbation without bias decomposition.\\\\n\\\\nThe 'Confidence Manifold' study (arXiv 2602.08159) found correctness signals occupy only 3\\\\u20138 dimensions with simple mean-shift geometry across 9 models, suggesting calibration-related directions may have more favorable specificity profiles than Liu's entangled overthinking directions. The nonlinear steering landscape (ODESteer, ICLR 2026; Curveball Steering, 2026; FLAS, 2026) provides powerful alternatives when linear steering fails. Spherical Steering (ICML 2026) preserves activation norms via geodesic rotation, and COAST (2605.01167) minimizes collateral damage along non-target directions.\\\\n\\\\nThe convergence of (a) behavioral evidence of competing biases with quantitative effect sizes, (b) mechanistic understanding of where confidence is computed and cached in the residual stream, (c) CogBias's demonstration that bias-family-specific intervention works, (d) 'Sycophancy Is Not One Thing's proof that complex behaviors can be decomposed into independently steerable sub-components, (e) Billa's steerability-based routing paradigm with a training-free diagnostic, (f) SteerConf's demonstration that calibration is steerable even at the prompt level, (g) the decodable\\\\u2013steerable distinction with quantitative diagnostics from both linear (Liu) and SAE-based (Patel et al.) analyses, (h) hidden miscalibration regimes suggesting opposing errors cancel, and (i) adaptive frameworks with non-degradation guarantees creates an opportunity for the next step: extending from independently-active bias families and co-existing behavioral sub-components to simultaneously competing calibration biases with per-instance diagnosis and correction.\\\",\\n  \\\"landscape\\\": \\\"Kumaran et al. (Nature MI, 2026) identified competing biases (CSB and CEO) via behavioral experiments on Gemma 3 12B/27B, GPT-4o, o1-preview, and DeepSeek R1 7B but proposed no correction framework and provided no mechanistic (activation-level) evidence. Importantly, the qualitative pattern \\\\u2014 overconfidence from CSB and underconfidence from CEO \\\\u2014 held across all tested models, but effect magnitudes varied substantially (GPT-4o and Gemma 27B showed the strongest CEO effects; DeepSeek R1 7B failed to follow the advice paradigm entirely), and no Llama or Qwen models were tested. Kumaran, Conmy et al. ('How do LLMs Compute Verbal Confidence,' arXiv 2603.17839, March 2026) subsequently provided the mechanistic foundation for confidence computation, showing that verbal confidence is cached at the Post-Answer-Newline (PANL) token position rather than computed just-in-time: information flows from answer tokens \\\\u2192 PANL (layers 22\\\\u201328 in Gemma 3 27B) \\\\u2192 Confidence-Colon position (layers 30\\\\u201336), with PANL-cached representations explaining substantial variance beyond token log-probabilities (which account for only R\\\\u00b2=0.084). This mechanistic map directly informs our extraction strategy \\\\u2014 we target PANL and confidence-bearing positions rather than averaging across all tokens. Miao & Ungar (arXiv 2603.25052, 2026) demonstrated that calibration accuracy and verbalized confidence are linearly encoded but orthogonal in 7\\\\u20138B models (cosine similarity <0.04 across layers), and introduced adaptive steering achieving 4\\\\u20137\\\\u00d7 ECE improvement \\\\u2014 but they target the confidence\\\\u2013accuracy misalignment gap, not the competing bias structure.\\\\n\\\\nCogBias (Huang et al., arXiv 2604.01366, April 2026) is the closest work on bias decomposition. It organizes cognitive biases into four families (Judgment, Information Processing, Social, Response), demonstrates that biases are encoded as linearly separable directions in LLM activation space via linear probes under a contrastive design, and shows family-dependent mitigation: activation steering achieves 26\\\\u201332% overall bias reduction, but prompt-level debiasing 'substantially reduces Response biases but backfires for Judgment biases,' with up to 19pp improvement for Judgment biases via steering on Qwen. Despite near-orthogonal bias representations across model architectures (Llama and Qwen), steering reduced bias at similar rates \\\\u2014 suggesting shared functional organization that is encouraging for cross-architecture generalization. (Note: the abstract reports linear separability and 26\\\\u201332% steering reduction; specific probe classification accuracy figures are from the paper body and are not independently verifiable from the abstract alone.) CogBias establishes two principles that directly motivate our work: (a) cognitive biases are linearly encoded and separable, and (b) different bias families require different interventions. However, CogBias addresses biases that are independently active on different task types \\\\u2014 each task primarily involves one bias family. Our setting involves two biases simultaneously active and competing on the same instances, creating interference effects that CogBias's framework does not model. CogBias also does not assess steerability before intervention or route between intervention types.\\\\n\\\\n'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) is the closest methodological precedent for decomposing a complex behavioral phenomenon into independently steerable activation-level components. Using difference-in-means directions, activation additions, and subspace geometry, they decomposed sycophancy into sycophantic agreement, sycophantic praise, and genuine agreement \\\\u2014 demonstrating that each can be independently amplified or suppressed without affecting the others, with consistent representational structure across model families and scales. The key distinction from our proposal: their sub-components are co-existing behaviors that pull in broadly similar directions (various forms of user-pleasing output), while our target biases (CSB and CEO) are simultaneously OPPOSING \\\\u2014 pulling confidence in opposite directions on the same instances. This distinction matters methodologically: co-aligned sub-components may be easier to isolate via difference-in-means because they do not create destructive interference in activation space. Opposing biases may partially cancel, making individual directions harder to extract \\\\u2014 which is precisely why our Phase 0B confound controls and Phase 1A separability validation are essential. If our decomposition succeeds, it would extend the decompose-then-steer paradigm from co-existing to opposing sub-components, a strictly harder problem.\\\\n\\\\nBilla (arXiv 2604.15557, April 2026) proposes the most direct methodological precedent for our routing logic. The three-regime framework \\\\u2014 (1) concept not represented (no method works), (2) nonlinear encoding (nonlinear methods needed), (3) output-aligned (linear steering works) \\\\u2014 directly parallels our Route C/B/A structure. LAP (Linear Accessibility Profile), computed as logit-lens accuracy at each layer without training, predicts steering effectiveness at \\\\u03c1=0.86\\\\u20130.91 across 24 binary concept families on 5 models (Pythia-2.8B to Llama-8B). Key distinctions from our work: (a) Billa operates per-concept with synthetic binary features (e.g., gender, sentiment, parity), while we operate per-instance with naturalistic competing calibration biases; (b) Billa's three regimes assume a single concept direction per analysis, while we must decompose competing bias directions that are simultaneously active; (c) LAP's above-floor correlation weakens on smaller models (\\\\u03c1=0.50\\\\u20130.52 on Pythia-2.8B), and its applicability to non-binary, continuous calibration constructs is untested. We incorporate LAP as a complementary diagnostic alongside Liu's specificity ratio, adapting it to assess per-layer output-alignment of each decomposed bias direction.\\\\n\\\\nSteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) demonstrated prompt-level confidence steering achieving 29% AUROC increase and 16% ECE reduction across seven benchmarks on GPT-3.5, LLaMA 3, and GPT-4. SteerConf uses systematically varied steering prompts (spanning 'very cautious' to 'very confident'), measures consistency across multiple steered confidence outputs, and aggregates via linear quantization \\\\u2014 all without training. SteerConf represents the state-of-the-art in training-free prompt-level calibration steering and serves as an important baseline: activation-level methods should demonstrate clear advantages over this prompt-level approach. However, SteerConf operates entirely at the behavioral level without mechanistic decomposition, cannot distinguish between competing bias sources, and cannot apply bias-specific corrections.\\\\n\\\\nCCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) achieves ~55% ECE reduction and 21% Brier score reduction by probing perturbation stability \\\\u2014 applying targeted adversarial perturbations to final hidden states and training a lightweight correctness classifier on the model's response features. Evaluated on Llama, Qwen, and Mistral at 8B\\\\u201332B scale across MMLU and MMLU-Pro, CCPS represents a strong representation-based calibration method operating on overlapping model families. However, CCPS uses monolithic perturbation without bias decomposition and does not distinguish between different sources of miscalibration.\\\\n\\\\nLiu (arXiv 2605.05715, May 2026) is the most directly relevant advance on the decodable\\\\u2013steerable gap: linearly decodable failure directions (71.6% balanced accuracy on Llama-3.1-8B) yield \\\\u0394\\\\u22480 across five families of linear steering (29 configurations) because the failure direction has 85\\\\u201388% overlap with task-critical computation (specificity ratio \\\\u22640.152). A learned nonlinear bottleneck MLP (4096\\\\u219264\\\\u21924096) achieves \\\\u0394=+2.8pp (p=0.025) where linear methods fail. Patel et al. ('Are LLM Uncertainty and Correctness Encoded by the Same Features?', arXiv 2604.19974, April 2026) independently confirmed this classification-correction gap via sparse autoencoder (SAE) analysis on Llama-3.1-8B and Gemma-2-9B: they found a functional dissociation between uncertainty and correctness features, with 'pure incorrectness features' being 'functionally inert' \\\\u2014 statistically decodable yet producing near-zero accuracy change when suppressed. Only confounded features (encoding both signals) yielded meaningful behavioral effects (1.1% accuracy improvement, 75% entropy reduction). This SAE-based evidence complements Liu's linear-steering analysis: even when features are identifiable at the individual neuron/SAE-feature level, their functional role may be null \\\\u2014 reinforcing that Phase 1A separability is necessary but insufficient, and Phase 1B steerability assessment is the critical gate. However, both Liu and Patel et al. studied single failure modes, not decomposed competing biases.\\\\n\\\\nTsujimura & Tagade (arXiv 2508.17182, Aug 2025) decomposed LLM assertiveness into emotional and logical sub-components via unsupervised clustering on Llama-3.2-1B-Instruct (645 samples) \\\\u2014 methodologically adjacent but critically different: their decomposition is descriptive (post-hoc ChatGPT-labeled clusters) rather than causally grounded in identified cognitive biases, uses a single 1B model, reports no calibration metrics, and addresses assertiveness rather than calibration.\\\\n\\\\nHedstr\\\\u00f6m et al. (MERA, ICML 2025; arXiv 2510.13290) established the most principled framework for selective steering: MERA solves min \\\\u2016v\\\\u2016\\\\u00b2 s.t. p\\\\u0302(h+v) \\\\u2264 \\\\u03b1 with Hoeffding-based non-degradation guarantees via Bonferroni correction. However, MERA operates with a single monolithic error probe \\\\u2014 it cannot decompose calibration errors into opposing sources or route to different intervention types based on per-direction steerability.\\\\n\\\\nKobalczyk & van der Schaar (arXiv 2605.13484, May 2026) discovered hidden miscalibration regimes where input-dependent calibration heterogeneity is prevalent across 48 model\\\\u2013dataset pairs: global reliability diagrams hide opposing over/under-confidence errors that cancel when aggregated. This provides independent empirical support for our bias interference hypothesis but offers no mechanistic explanation for WHY opposing errors exist and no bias decomposition.\\\\n\\\\nThe nonlinear steering landscape has matured rapidly. ODESteer (Chen et al., ICLR 2026; arXiv 2602.17560) formulated a unified ODE-based framework via barrier functions. Curveball Steering (Raval et al., arXiv 2603.09313, Mar 2026) introduced polynomial kernel PCA for curved activation geometry (+47% over linear in high-curvature regimes). FLAS (arXiv 2605.05892, May 2026) learned concept-conditioned velocity fields, first outperforming prompting on AxBench. These address geometric limitations of linear steering but provide neither bias decomposition nor steerability diagnosis.\\\\n\\\\nThe 'Wired for Overconfidence' paper (2604.01457, April 2026) identifies overconfidence circuits in 3B models via monolithic activation steering (96.9% ECE reduction on PopQA) but treats overconfidence as a single phenomenon. Ji et al. (EMNLP 2025) modulates a single Verbal Uncertainty Feature. CORAL (arXiv 2602.06022) achieves 49% ECE improvement via a single MLP probe. The 'Confidence Manifold' study (arXiv 2602.08159) found correctness signals in 3\\\\u20138 dimensions with simple mean-shift geometry across 9 models.\\\\n\\\\nOn steering methodology: Spherical Steering (arXiv 2602.08169, ICML 2026) performs norm-preserving geodesic rotation. Selective Steering (Dang & Ngo, arXiv 2601.19375) developed norm-preserving rotation with discriminative layer selection. COAST (Nguyen et al., arXiv 2605.01167, May 2026) formalizes collateral damage. W2S (Gadgil et al., arXiv 2604.03867, April 2026) learns input-dependent layer selection for steering. 'Steered LLM Activations are Non-Surjective' (2604.09839) proved additive steering pushes activations off-manifold.\\\\n\\\\nNo existing method addresses the specific challenge of simultaneously competing calibration biases: CogBias decomposes independently-active bias families; 'Sycophancy Is Not One Thing' decomposes co-existing but co-aligned behavioral sub-components; Billa routes by per-concept steerability; SteerConf steers confidence at the prompt level without decomposition; CCPS probes perturbation stability without bias decomposition; MERA adapts steering strength monolithically; Patel et al. show that decodable features may be functionally inert. Our work uniquely targets biases that are concurrently active and opposing on the same instances, requiring joint decomposition and per-direction steerability assessment to resolve interference effects that these approaches cannot address individually.\\\",\\n  \\\"inspired_by\\\": \\\"Gap: Competing biases create interference patterns \\\\u2014 partially canceling on some instances (illusory calibration) and producing heterogeneous over/under-confidence on others (hidden miscalibration regimes, Kobalczyk 2605.13484) \\\\u2014 that even CogBias's family-dependent mitigation cannot address because it targets independently-active biases, not simultaneously competing ones, and that 'Sycophancy Is Not One Thing's decompose-then-steer paradigm has not been tested on because their sub-components are co-aligned rather than opposing. Pattern: CogBias (2604.01366) proves bias-family-specific intervention works (linear separability, family-dependent steering) \\\\u2192 'Sycophancy Is Not One Thing' (2509.21305) proves complex behaviors decompose into independently steerable sub-components \\\\u2192 Billa (2604.15557) proves steerability-based routing works (three regimes, LAP diagnostic, \\\\u03c1=0.86\\\\u20130.91) \\\\u2192 SteerConf (2503.02863, NeurIPS 2025) proves calibration is steerable at the prompt level (29% AUROC, 16% ECE) \\\\u2192 Liu (2605.05715) + Patel et al. (2604.19974) prove decodable \\\\u2260 steerable/functional and nonlinear fallback works \\\\u2192 MERA proves adaptive strength + abstention works \\\\u2192 Kumaran & Conmy (2603.17839) map the mechanistic pathway of confidence computation (PANL caching). Untried combination: Extend these established principles from independent/co-aligned biases to simultaneously competing and opposing calibration biases, measuring asymmetric steerability profiles as the empirical core, with bias-specific correction as the practical application. Key hypothesis: CSB and CEO have asymmetric LAP and specificity profiles because they involve different cognitive processes (self-evaluation vs. evidence integration), which would provide a mechanistic explanation for inconsistent monolithic calibration steering results and the hidden miscalibration regimes observed by Kobalczyk & van der Schaar.\\\",\\n  \\\"approach\\\": \\\"We investigate whether competing calibration biases (CSB and CEO) are distinguishable in activation space, whether they exhibit asymmetric steerability, and whether decomposed correction resolves bias interference that monolithic methods cannot. We structure the investigation in four phases, beginning with behavioral replication and a confound-controlled de-risking pilot. Evaluated on 3 models \\\\u00d7 3 datasets with 7 core baselines.\\\\n\\\\n**Phase 0A \\\\u2014 Behavioral Replication (Week 1):**\\\\n\\\\nKumaran et al.'s competing biases were characterized on Gemma 3 (12B/27B), GPT-4o, o1-preview, and DeepSeek R1 7B \\\\u2014 none of which are our target models. Before any activation extraction, we must verify that each target model (Llama-3.1-8B-Instruct, Qwen3-8B, Gemma 4 31B Dense) exhibits both CSB and CEO in the behavioral paradigm.\\\\n\\\\nWe replicate Kumaran et al.'s exact 2-turn experimental design on each target model with 500 questions per condition: the 2\\\\u00d73 factorial (Answer Shown/Hidden \\\\u00d7 Same/Opposite/Neutral Advice) at 70% stated advice accuracy. We measure: (a) CSB magnitude \\\\u2014 confidence difference between Answer Shown-Neutral and Answer Hidden-Neutral conditions; (b) CEO magnitude \\\\u2014 the overweighting ratio (observed confidence change / Bayesian-optimal change) for opposing vs. supporting advice; (c) change-of-mind rates across conditions.\\\\n\\\\nGo/no-go criteria: If a model shows CSB magnitude \\\\u226550% of Kumaran's reported +0.21 (i.e., \\\\u2265+0.105) AND CEO overweighting ratio \\\\u226550% of Kumaran's 2.58 (i.e., \\\\u22651.29), it proceeds to Phase 0B. If a model shows one bias but not the other, it is retained with a note that only the detected bias can be studied (reducing to single-bias characterization for that model). If a model shows neither bias at \\\\u226550% threshold, it is replaced \\\\u2014 candidate replacements are Gemma 3 27B (directly validated by Kumaran) or Mistral-8B. We report all behavioral replication results regardless, as cross-architecture replication data for Kumaran et al.'s findings is itself a contribution.\\\\n\\\\n**Phase 0B \\\\u2014 Confound-Controlled De-Risking Pilot (Weeks 2\\\\u20133):**\\\\n\\\\nThe translation from Kumaran et al.'s behavioral paradigm to contrastive activation extraction faces a critical confound identified in prior revisions: the contrastive pairs differ not only in bias activation but in prompt information content. For CSB, 'answer shown' prompts literally contain the model's answer text while 'answer hidden' prompts contain 'xx.' For CEO, 'contradictory advice present' prompts contain advisory text that 'advice absent' prompts lack. Extracted directions may thus capture 'prompt contains additional evaluative content' rather than 'bias is active.'\\\\n\\\\nWe address this with a four-pronged confound mitigation strategy:\\\\n\\\\n*(1) Matched-content contrastive pairs:* Rather than using Kumaran et al.'s original 'xx' placeholder (which differs in length and semantic content), we design matched controls:\\\\n- **CSB pairs:** The CSB-active condition shows the model's own prior answer attributed to itself ('You previously answered [X]'). The CSB-control condition replaces the model's answer with a plausible but randomly-selected alternative answer of matched token length attributed to 'another LLM' (e.g., 'Another LLM answered [Y]'). Both conditions contain an answer of equal length and format; only the self-generated attribution differs. An additional 'scrambled-answer' control replaces the answer with token-length-matched semantically neutral text (e.g., '[REDACTED]' padded to matched length) to verify that information content per se is not driving the extracted direction.\\\\n- **CEO pairs:** The CEO-active condition presents contradictory advice ('This LLM answered [opposite option]'). The CEO-control condition presents irrelevant neutral advice of matched token length ('This LLM was also asked a different question about [unrelated topic]'), preserving the presence of additional advisory text while removing the bias-inducing contradictory content. An additional 'supporting-advice' condition (same format, same length, but agreeing rather than contradicting) enables directional validation \\\\u2014 the CEO direction should separate contradictory from both neutral and supporting conditions, while a pure information-content confound would not distinguish contradictory from supporting.\\\\n\\\\n*(2) Same-content-different-attribution CSB control (source attribution isolation):* To isolate the ownership/self-generated component of CSB from information content, we add a critical additional condition: the model's OWN answer text, but attributed to 'another LLM' ('Another LLM answered [X]' where X is the model's actual prior answer). Combined with the self-attributed condition ('You previously answered [X]'), this creates a 2\\\\u00d72 factorial for CSB extraction: {own answer text, other answer text} \\\\u00d7 {self-attributed, other-attributed}. The self-attributed-own vs. other-attributed-own contrast isolates pure ownership/attribution effects (the CSB core mechanism \\\\u2014 confidence inflation from recognizing one's own prior commitment) while holding information content exactly constant. The other-attributed-own vs. other-attributed-other contrast isolates pure information-content effects. If the CSB direction extracted from the full contrast (self-own vs. other-other) is primarily aligned with the attribution contrast (self-own vs. other-own) rather than the content contrast (own-text vs. other-text), this provides strong evidence that we are capturing genuine choice-supportive bias rather than a content confound.\\\\n\\\\n*(3) Token-position-specific extraction informed by mechanistic evidence:* Rather than extracting mean activations across all token positions (which would be dominated by the differing prompt content), we extract activations at three specific positions informed by Kumaran & Conmy's (2603.17839) mechanistic findings on confidence computation: (a) the Post-Answer-Newline (PANL) token \\\\u2014 where Kumaran & Conmy showed confidence information is first cached (layers 22\\\\u201328 in Gemma 3 27B), making it the earliest site where bias-relevant confidence signals concentrate; (b) the Confidence-Colon (CC) position \\\\u2014 where confidence is retrieved for verbalization (layers 30\\\\u201336); (c) the first generated token of the confidence response. Extracting at PANL is particularly informative because it is a structurally fixed position (always immediately after the answer) that is identical in format across all conditions, minimizing sensitivity to prompt-content differences upstream. If the extracted direction is robust across extraction positions \\\\u2014 particularly at PANL, which precedes the confidence verbalization \\\\u2014 it is unlikely to reflect prompt-content confounds.\\\\n\\\\n*(4) Confound diagnostic tests:* For each extracted candidate direction, we verify: (a) correlation with prompt token count is <0.1 (Pearson r across the contrastive dataset); (b) a 'prompt-structure probe' \\\\u2014 a linear probe trained to classify prompt conditions by surface features (presence/absence of answer text, advice text length) \\\\u2014 produces directions with cosine similarity <0.2 to our candidate bias directions; (c) the candidate direction generalizes to held-out question types not seen during extraction; (d) for CSB specifically, the extracted direction aligns more strongly with the attribution contrast (self vs. other attribution of same content) than with the content contrast (same vs. different answer text with same attribution), as described in prong (2).\\\\n\\\\nWe conduct the pilot on the single model showing strongest behavioral CSB+CEO effects in Phase 0A, with ~500 contrastive pairs per bias type per control condition (totaling ~4000 pairs across the full factorial design for both biases, including the same-content-different-attribution CSB conditions).\\\\n\\\\nGo/no-go criteria: If a linear probe on matched-content pairs achieves \\\\u226560% balanced accuracy for distinguishing bias-active vs. bias-control conditions, AND confound diagnostics pass (prompt-structure cosine <0.2, token-count correlation <0.1, attribution-alignment > content-alignment for CSB), we proceed to full Phase 1. If probing accuracy is 60%+ but confound diagnostics partially fail (e.g., cosine similarity 0.2\\\\u20130.35), we expand to additional extraction positions and apply mean-centering (subtracting the global mean activation to decorrelate from background prompt structure). If probing accuracy is 55\\\\u201360% with clean confound diagnostics, we expand to 1000 pairs. If probing accuracy is <55% across all extraction positions, or if confound diagnostics consistently fail (cosine >0.35 to prompt-structure direction), we activate the behavioral-signal fallback.\\\\n\\\\n**Phase 0 Fallback \\\\u2014 Behavioral-Signal-Guided Probing (explicit scope reduction):**\\\\n\\\\nWe are explicit that the fallback path \\\\u2014 using behavioral output changes (confidence shift patterns matching CSB vs. CEO signatures) to label instances post-hoc, then probing for internal signatures correlated with these behavioral labels \\\\u2014 fundamentally changes the paper's contribution. The fallback trades causal contrastive evidence (where we experimentally control bias activation) for correlational association (where we observe behavioral patterns and search for corresponding activation correlates). This weakens contribution (1) from 'first causal activation-level characterization of competing calibration biases' to 'statistical association between behaviorally-identified bias patterns and activation geometry.' The resulting paper would still be informative \\\\u2014 establishing that behavioral CSB/CEO patterns have detectable activation correlates, even if not causally isolated \\\\u2014 but would be repositioned as a solid empirical contribution appropriate for EMNLP/NAACL rather than a top-tier mechanistic result at ICLR. The remaining contributions (2)\\\\u2013(4) on steerability measurement, interference analysis, and bias-specific correction would be weakened proportionally, as the activation directions being steered/analyzed would have weaker causal grounding.\\\\n\\\\n**Phase 1 \\\\u2014 Separability Validation & Steerability Assessment (Weeks 4\\\\u20138):**\\\\n\\\\n*Phase 1A \\\\u2014 Separability (Weeks 4\\\\u20136):* Building on the pilot's validated extraction methodology with matched-content controls and same-content-different-attribution factorial, we scale confound-controlled contrastive activation extraction to all three models that passed Phase 0A behavioral replication, with 2000+ matched-content contrastive pairs per bias type per model. We extract candidate CSB and CEO directions via difference-in-means on the matched-content contrastive pairs (using the extraction position validated in Phase 0B, prioritizing PANL following Kumaran & Conmy's mechanistic evidence) and validate separability via: (a) cosine similarity between candidate directions (threshold: <0.3 for separability), (b) principal angle analysis between CSB and CEO subspaces following Miao & Ungar's methodology, (c) PCA dimensionality assessment (whether 2 directions capture sufficient variance or higher-dimensional subspaces are needed), (d) cross-prediction ablations confirming that removing one bias subspace does not collapse the other, and (e) confound diagnostic replication at scale \\\\u2014 verifying that the scaled directions maintain low cosine similarity to prompt-structure probes (<0.2) across all models. If cosine similarity >0.3 or shared variance >15%, we activate the separability fallback: extracting a joint multi-direction bias subspace and training a subspace projection classifier to separate components.\\\\n\\\\nImportant caveat informed by Patel et al. (2604.19974): Phase 1A separability \\\\u2014 even if successful \\\\u2014 does NOT guarantee that the identified directions are functionally relevant for intervention. Patel et al.'s SAE analysis showed that statistically decodable 'pure incorrectness features' can be functionally inert. Phase 1B steerability assessment is therefore not merely complementary but essential: it determines whether our separable directions are the kind that actually drive behavior (like Patel et al.'s 'confounded features') or mere correlates (like their 'pure incorrectness features').\\\\n\\\\n*Phase 1B \\\\u2014 Steerability Diagnostics (Weeks 6\\\\u20138):* For each identified bias direction, we compute: (a) the **specificity ratio** \\\\u2014 the proportion of mode-specific variance vs. shared variance with the correct-vs-incorrect subspace, following Liu's shared-specific decomposition methodology; (b) **adapted LAP** \\\\u2014 applying the logit lens at each layer to measure how strongly each bias direction projects onto confidence-related output tokens, adapting Billa's (2604.15557) per-concept diagnostic to per-direction analysis for calibration biases, with extraction focused on the PANL\\\\u2192CC pathway identified by Kumaran & Conmy (2603.17839); (c) **LEACE concept erasure test** \\\\u2014 applying concept erasure to each bias direction and measuring accuracy damage as causal evidence of entanglement; (d) **pilot linear steering test** \\\\u2014 applying small-magnitude Spherical Steering along each direction and measuring both calibration improvement and accuracy impact; (e) **functional inertness test** \\\\u2014 following Patel et al.'s methodology, we suppress each bias direction and measure whether the effect on confidence output is non-trivial (distinguishing functionally active from inert directions).\\\\n\\\\nWe do NOT pre-commit to fixed routing thresholds. Following Billa's three-regime framework as a conceptual guide, we LEARN optimal thresholds via validation-set sweeps over LAP and specificity cutoffs, reporting the full diagnostic-vs-effectiveness curves as primary empirical contributions. The core empirical hypothesis \\\\u2014 that CSB and CEO have asymmetric steerability profiles \\\\u2014 would provide a mechanistic explanation for why monolithic calibration steering shows inconsistent results and why hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) exhibit spatially heterogeneous over/under-confidence.\\\\n\\\\nPhase 1 results constitute an independent contribution regardless of Phase 3 outcomes: the first activation-level characterization of behaviorally-identified competing calibration biases, with joint separability and steerability measurements using complementary diagnostics (specificity ratio + adapted LAP + functional inertness test), obtained via a confound-controlled extraction methodology grounded in mechanistic evidence of confidence computation pathways.\\\\n\\\\n**Phase 2 \\\\u2014 Per-Instance Bias Diagnosis (Weeks 7\\\\u201310):** A lightweight logistic probe (or small MLP in the fallback case) trained on per-instance projection magnitudes onto each bias direction classifies which bias dominates for a given query, providing a continuous dominance score. We stratify by difficulty and validate against behavioral predictions: on easy questions where models are already confident, CSB should dominate; on hard questions under criticism, CEO should dominate. We additionally test whether bias interference patterns \\\\u2014 instances where CSB and CEO partially cancel to produce deceptive near-zero net error \\\\u2014 can be identified, which would directly explain hidden miscalibration regimes.\\\\n\\\\n**Phase 3 \\\\u2014 Bias-Specific Intervention (Weeks 9\\\\u201315):** Building on Billa's established routing-by-steerability paradigm (2604.15557), extended from per-concept to per-instance competing biases, and informed by 'Sycophancy Is Not One Thing's demonstration that decomposed sub-components can be independently steered, Phase 3 implements three intervention routes informed by Phase 1B's empirically-learned steerability thresholds:\\\\n\\\\n*Route A \\\\u2014 Adaptive Spherical Steering (for steerable directions):* When a bias direction falls in Billa's 'output-aligned' regime (high adapted LAP + high specificity + non-inert per Patel et al. criteria), we apply Spherical Steering (You et al., ICML 2026) with MERA-inspired per-instance adaptive strength: rotation magnitude optimized to minimize \\\\u2016v\\\\u2016\\\\u00b2 subject to the bias probe's predicted error falling below a calibrated threshold \\\\u03b1*, following MERA's constrained optimization framework. Unlike MERA applied monolithically, our adaptation operates per-bias-direction, potentially applying different strengths for CSB vs. CEO corrections on the same instance. Layer selection is informed by adapted LAP profiles and the PANL\\\\u2192CC pathway (Kumaran & Conmy 2603.17839), and optionally by W2S-style (Gadgil et al., 2604.03867) input-dependent layer mapping.\\\\n\\\\n*Route B \\\\u2014 Learned Nonlinear Residual Correction (for entangled directions):* When a bias direction falls in Billa's 'nonlinear encoding' regime (high A_mlp but low A_lin, or low specificity ratio, or functionally inert under linear suppression but non-inert under nonlinear intervention), linear steering is expected to fail. Following Liu's finding that a bottleneck residual MLP (d\\\\u219264\\\\u2192d) achieves \\\\u0394=+2.8pp where 29 linear configurations yield \\\\u0394\\\\u22480, we train a small nonlinear residual adapter per bias type (<0.1% of model parameters), with COAST-informed training (Nguyen et al., 2605.01167) weighting the loss to minimize collateral damage along non-target feature directions.\\\\n\\\\n*Route C \\\\u2014 Selective Abstention (for uncorrectable instances):* When neither Route A nor Route B improves calibration without excessive accuracy damage (>3% degradation on validation), following Billa's 'not represented' regime, we abstain and output a reliability score using MERA's Hoeffding-based statistical framework.\\\\n\\\\nFor intermediate-steerability directions, Route A is applied with a conservative strength cap (rotation magnitude \\\\u226450% of high-steerability coefficient), falling back to Route C per-instance if collateral damage exceeds the threshold.\\\\n\\\\n**Generalizability \\\\u2014 Beyond CSB vs. CEO:**\\\\n\\\\nWhile this paper focuses on CSB and CEO as the primary competing-bias pair \\\\u2014 chosen because Kumaran et al. provide quantitative behavioral characterization with effect sizes that enable principled experimental design \\\\u2014 the Phase 0\\\\u21923 pipeline is designed to be reusable for other plausible competing-bias pairs where simultaneously active, opposing biases create interference. We identify three candidates for future work: (1) **Sycophantic agreement vs. truthfulness commitment** \\\\u2014 when a user states something incorrect and requests evaluation, sycophancy training pulls toward agreement while truthfulness training pulls toward correction; 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) already demonstrates that sycophancy sub-components are separable and independently steerable, and the sycophancy\\\\u2013truthfulness tension is well-documented (e.g., Alignment Forum, Sharma et al. 2024), though the opposing-direction interference structure has not been characterized. (2) **Primacy bias vs. recency bias** \\\\u2014 in multi-document QA and list-based tasks, these opposing positional biases are simultaneously active and shift in relative dominance based on context window usage (primacy weakens as inputs approach context limits while recency remains stable; arXiv 2508.07479), potentially creating hidden miscalibration-like heterogeneity in retrieval confidence. (3) **Anchoring to prior reasoning vs. evidence updating** \\\\u2014 in multi-turn reasoning tasks, models may anchor to initial chain-of-thought conclusions while simultaneously being influenced by new contradictory evidence, a generalization of the CSB/CEO dynamic to reasoning contexts. The matched-content contrastive extraction (Phase 0B), steerability diagnostics (Phase 1B), and bias-specific routing (Phase 3) are all applicable to these settings with appropriate stimulus design.\\\\n\\\\nWe evaluate on TriviaQA, MMLU, and PopQA across Gemma 4 31B Dense, Qwen3-8B, and Llama-3.1-8B-Instruct (subject to Phase 0A behavioral replication; models that fail replication are replaced as described). Metrics: ECE, Brier score, AUROC, difficulty-stratified ECE (easy/medium/hard), per-direction specificity ratios and LAP profiles, bias interference measurements (instances where CSB+CEO partially cancel), collateral damage, and route-distribution analysis. Core baselines: (1) temperature scaling, (2) CORAL, (3) Miao & Ungar adaptive steering, (4) MERA applied monolithically, (5) monolithic Spherical Steering (single direction, no bias decomposition), (6) monolithic nonlinear MLP (single direction, no bias decomposition), (7) SteerConf prompt-level steering. Extended baselines in supplementary: CogBias-style family-level steering (treating CSB/CEO as independent families), CCPS perturbation-stability probing (Khanmohammadi et al., 2505.21772), DINCO, 'Wired for Overconfidence' replication.\\\",\\n  \\\"resource_estimate\\\": {\\n    \\\"manual\\\": {\\n      \\\"gpu_hours\\\": \\\"650-900 H100\\\",\\n      \\\"timeline\\\": \\\"16-20 weeks (includes 1-week behavioral replication + 2-week pilot with expanded CSB factorial)\\\",\\n      \\\"estimated_gpu_cost\\\": \\\"$1,625-$2,250 (H100 @ ~$2.50/hr)\\\"\\n    },\\n    \\\"human_in_loop\\\": {\\n      \\\"gpu_hours\\\": \\\"550-750 H100\\\",\\n      \\\"timeline\\\": \\\"12-16 weeks (includes 1-week behavioral replication + 2-week pilot with expanded CSB factorial)\\\",\\n      \\\"claude_api_cost\\\": \\\"$375-$575 (Sonnet 4.6 for matched-content and attribution-factorial contrastive dataset generation, confound diagnostics, probing, LAP computation, adapter training, analysis)\\\",\\n      \\\"estimated_gpu_cost\\\": \\\"$1,375-$1,875\\\"\\n    },\\n    \\\"auto_research\\\": {\\n      \\\"gpu_hours\\\": \\\"850-1150 H100\\\",\\n      \\\"timeline\\\": \\\"7-11 weeks (includes behavioral replication + pilot)\\\",\\n      \\\"claude_api_cost\\\": \\\"$725-$1,250 (Opus 4.7 for experiment orchestration, matched-content and attribution-factorial pair generation, confound analysis, validation analysis, steerability diagnostics, adapter training sweeps)\\\",\\n      \\\"estimated_gpu_cost\\\": \\\"$2,125-$2,875\\\",\\n      \\\"speed_bottleneck\\\": \\\"Phase 0A behavioral replication (1 week, parallelizable across 3 models) \\\\u2192 Phase 0B pilot is sequential gate (2 weeks, expanded for CSB attribution factorial). Phase 1A\\\\u21921B is sequential. Evaluation across 3 models \\\\u00d7 3 datasets \\\\u00d7 3 routes + 7 baselines is parallelizable.\\\"\\n    }\\n  },\\n  \\\"target_venues\\\": [\\n    \\\"ICLR 2027\\\",\\n    \\\"NeurIPS 2026\\\",\\n    \\\"ICML 2027\\\"\\n  ],\\n  \\\"level\\\": \\\"top-tier\\\",\\n  \\\"key_references\\\": [\\n    \\\"Competing Biases in LLM Confidence (Kumaran et al., Nature Machine Intelligence 2026; arXiv 2507.03120) \\\\u2014 behavioral evidence of CSB and CEO as competing calibration biases\\\",\\n    \\\"How do LLMs Compute Verbal Confidence (Kumaran, Conmy et al., arXiv 2603.17839, March 2026) \\\\u2014 confidence cached at PANL position, answer\\\\u2192PANL\\\\u2192CC information flow, token log-probs explain only 8.4% of variance\\\",\\n    \\\"CogBias: Cognitive Bias in LLMs (Huang et al., arXiv 2604.01366, April 2026) \\\\u2014 linearly separable bias directions, family-dependent mitigation, 26-32% steering reduction\\\",\\n    \\\"Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) \\\\u2014 decomposition of sycophancy into independently steerable sub-components via difference-in-means\\\",\\n    \\\"Billa: Predicting Steerability (arXiv 2604.15557, April 2026) \\\\u2014 three-regime steerability framework, LAP diagnostic, \\\\u03c1=0.86-0.91\\\",\\n    \\\"SteerConf: Prompt-Level Confidence Steering (Zhou et al., arXiv 2503.02863, NeurIPS 2025) \\\\u2014 29% AUROC increase, 16% ECE reduction via prompt-level steering\\\",\\n    \\\"Calibration and Verbalized Confidence Are Linearly Encoded but Orthogonal (Miao & Ungar, arXiv 2603.25052, 2026) \\\\u2014 orthogonal calibration/confidence encoding, 4-7\\\\u00d7 ECE improvement\\\",\\n    \\\"Classification-Correction Gap in LLM Steering (Liu, arXiv 2605.05715, May 2026) \\\\u2014 decodable \\\\u2260 steerable, specificity ratio \\\\u22640.152, nonlinear bottleneck MLP achieves \\\\u0394=+2.8pp\\\",\\n    \\\"Are LLM Uncertainty and Correctness Encoded by the Same Features? A Functional Dissociation via Sparse Autoencoders (Patel et al., arXiv 2604.19974, April 2026) \\\\u2014 pure incorrectness features functionally inert, SAE-based classification-correction gap confirmation\\\",\\n    \\\"Calibrating LLM Confidence by Probing Perturbed Representation Stability (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) \\\\u2014 CCPS, ~55% ECE reduction via perturbation-stability probing on Llama/Qwen/Mistral 8B-32B\\\",\\n    \\\"MERA: Adaptive Steering with Non-Degradation Guarantees (Hedstr\\\\u00f6m et al., ICML 2025; arXiv 2510.13290) \\\\u2014 constrained optimization, Hoeffding-based guarantees\\\",\\n    \\\"Hidden Miscalibration Regimes (Kobalczyk & van der Schaar, arXiv 2605.13484, May 2026) \\\\u2014 opposing errors cancel when aggregated, 48 model-dataset pairs\\\",\\n    \\\"ODESteer: Unified ODE-Based Steering (Chen et al., ICLR 2026; arXiv 2602.17560) \\\\u2014 barrier function framework for nonlinear steering\\\",\\n    \\\"Curveball Steering (Raval et al., arXiv 2603.09313, March 2026) \\\\u2014 polynomial kernel PCA, +47% over linear in high-curvature regimes\\\",\\n    \\\"FLAS: Learned Concept-Conditioned Velocity Fields (arXiv 2605.05892, May 2026) \\\\u2014 first nonlinear steering to outperform prompting on AxBench\\\",\\n    \\\"Spherical Steering (arXiv 2602.08169, ICML 2026) \\\\u2014 norm-preserving geodesic rotation\\\",\\n    \\\"COAST: Collateral-Damage-Aware Steering (Nguyen et al., arXiv 2605.01167, May 2026) \\\\u2014 formalization of collateral damage in activation steering\\\",\\n    \\\"W2S: Input-Dependent Layer Selection for Steering (Gadgil et al., arXiv 2604.03867, April 2026) \\\\u2014 learned per-instance layer routing\\\",\\n    \\\"Confidence Manifold (arXiv 2602.08159) \\\\u2014 correctness signals in 3-8 dimensions with mean-shift geometry across 9 models\\\",\\n    \\\"CORAL: Calibration via MLP Probe (arXiv 2602.06022) \\\\u2014 49% ECE improvement\\\",\\n    \\\"Wired for Overconfidence (arXiv 2604.01457, April 2026) \\\\u2014 overconfidence circuits, 96.9% ECE reduction on PopQA\\\",\\n    \\\"Selective Steering with Discriminative Layer Selection (Dang & Ngo, arXiv 2601.19375) \\\\u2014 norm-preserving rotation\\\",\\n    \\\"Steered LLM Activations are Non-Surjective (arXiv 2604.09839) \\\\u2014 additive steering pushes activations off-manifold\\\",\\n    \\\"LLM Assertiveness Decomposition (Tsujimura & Tagade, arXiv 2508.17182, Aug 2025) \\\\u2014 emotional/logical sub-components via unsupervised clustering\\\",\\n    \\\"Verbal Uncertainty Feature Modulation (Ji et al., EMNLP 2025) \\\\u2014 single-feature confidence modulation\\\"\\n  ],\\n  \\\"description\\\": \\\"We investigate whether two competing sources of LLM miscalibration \\\\u2014 choice-supportive bias (CSB) and contradictory-evidence overweighting (CEO), identified behaviorally by Kumaran et al. (Nature MI 2026) \\\\u2014 produce distinguishable activation signatures, exhibit asymmetric steerability profiles, and can be corrected through bias-specific intervention that outperforms monolithic approaches.\\\\n\\\\nOur work is motivated by a bias interference problem unique to the competing-bias setting: CSB and CEO are simultaneously active on the same instances, pulling confidence in opposite directions. This creates (a) illusory calibration where competing biases partially cancel, making global metrics deceptively good while localized failures persist \\\\u2014 consistent with the hidden miscalibration regimes independently observed by Kobalczyk & van der Schaar (2605.13484) \\\\u2014 and (b) heterogeneous over/under-confidence patterns where one bias dominates instance-by-instance. Monolithic methods cannot resolve this interference because they target the net error direction, which conflates opposing bias contributions.\\\\n\\\\nCogBias (Huang et al., 2604.01366) established that cognitive bias families are linearly separable and require family-dependent intervention \\\\u2014 but addresses independently-active biases on different tasks, not simultaneously competing biases. 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) demonstrated that complex behavioral phenomena can be decomposed into independently steerable activation-level sub-components via difference-in-means \\\\u2014 but their sub-components (sycophantic agreement, praise, genuine agreement) are co-existing and co-aligned, not opposing. Our work extends this decompose-then-steer paradigm to the strictly harder case of opposing biases creating destructive interference. Billa (2604.15557) established the routing-by-steerability paradigm with a three-regime framework and LAP diagnostic \\\\u2014 but operates per-concept with synthetic binary features, not per-instance with naturalistic competing biases. SteerConf (Zhou et al., NeurIPS 2025) achieves 29% AUROC increase via prompt-level confidence steering \\\\u2014 demonstrating calibration is steerable but operating without mechanistic decomposition. MERA (Hedstr\\\\u00f6m et al., ICML 2025) provides adaptive steering with non-degradation guarantees \\\\u2014 but treats errors monolithically. Liu (2605.05715) and Patel et al. (2604.19974) independently established the classification-correction gap \\\\u2014 decodable directions may be functionally inert \\\\u2014 reinforcing that our Phase 1B steerability assessment is essential.\\\\n\\\\nOur approach proceeds in four phases with rigorous confound control. Phase 0A (Behavioral Replication) verifies that each target model \\\\u2014 Llama-3.1-8B-Instruct, Qwen3-8B, and Gemma 4 31B Dense, none of which were in Kumaran et al.'s original study \\\\u2014 exhibits both CSB and CEO at \\\\u226550% of Kumaran's reported effect sizes; models failing replication are replaced. Phase 0B (Confound-Controlled Pilot) addresses a critical methodological challenge: standard contrastive extraction would conflate bias activation with prompt information-content differences. We design a four-pronged confound mitigation strategy: (1) matched-content contrastive pairs equated for token length, format, and information presence; (2) a same-content-different-attribution CSB control \\\\u2014 presenting the model's OWN answer text but attributed to 'another LLM' \\\\u2014 to isolate the ownership/self-generated component of CSB from information content via a 2\\\\u00d72 factorial ({own text, other text} \\\\u00d7 {self-attributed, other-attributed}); (3) token-position-specific extraction at the Post-Answer-Newline (PANL) and Confidence-Colon positions, grounded in Kumaran & Conmy's (2603.17839) mechanistic finding that confidence is cached at answer-adjacent positions rather than computed just-in-time; (4) explicit confound diagnostic tests including attribution-alignment verification for CSB.\\\\n\\\\nPhase 1A (Separability) tests whether CSB and CEO produce geometrically distinct directions using confound-controlled contrastive activation probing, validated via cosine similarity, principal angles, PCA, and cross-prediction ablations \\\\u2014 with the explicit caveat (informed by Patel et al., 2604.19974) that separability does NOT guarantee functional relevance. Phase 1B (Steerability Assessment) measures each direction's specificity ratio (Liu 2605.05715), adapted LAP (Billa 2604.15557), and functional inertness (Patel et al. 2604.19974) as complementary diagnostics, learning routing thresholds empirically rather than pre-committing to fixed values. Phase 2 trains a per-instance bias dominance classifier.\\\\n\\\\nPhase 3 implements intervention routing, building on Billa's established three-regime paradigm extended from per-concept to per-instance competing biases, and informed by 'Sycophancy Is Not One Thing's demonstration that decomposed sub-components can be independently steered: (Route A) Spherical Steering with MERA-inspired per-direction adaptive strength for steerable, functionally active directions; (Route B) lightweight bottleneck MLP for entangled directions, trained with COAST-informed collateral-damage-aware loss; (Route C) selective abstention via MERA's statistical framework.\\\\n\\\\nWe evaluate on TriviaQA, MMLU, and PopQA across three models (subject to Phase 0A behavioral replication). Core baselines: temperature scaling, CORAL, Miao & Ungar, MERA (monolithic), monolithic Spherical Steering, monolithic nonlinear MLP, and SteerConf (prompt-level steering). Extended baselines include CCPS perturbation-stability probing (Khanmohammadi et al., EMNLP 2025) and CogBias-style family-level steering.\\\\n\\\\nWe discuss generalizability beyond CSB/CEO, identifying three other plausible competing-bias pairs \\\\u2014 sycophantic agreement vs. truthfulness commitment, primacy vs. recency bias, and anchoring vs. evidence updating \\\\u2014 for which the Phase 0\\\\u21923 pipeline is reusable with appropriate stimulus design.\\\\n\\\\nWe are explicit about the fallback path: if Phase 0B fails (extracted directions reflect prompt confounds rather than bias activation, despite matched-content controls and the attribution factorial), the behavioral-signal-guided probing fallback produces correlational rather than causal evidence, fundamentally repositioning the paper from a mechanistic contribution to an empirical observation study \\\\u2014 still informative, but appropriate for EMNLP/NAACL rather than ICLR.\\\\n\\\\nThe contributions are: (1) first causal activation-level characterization of simultaneously competing calibration biases (CSB vs. CEO), extending CogBias's independently-active bias decomposition and 'Sycophancy Is Not One Thing's co-aligned decomposition to the opposing-bias setting, with confound-controlled extraction methodology including source-attribution factorial and mechanistically-grounded token-position targeting; (2) empirical measurement of asymmetric steerability profiles with complementary diagnostics (specificity ratio + adapted LAP + functional inertness test), extending Billa's per-concept steerability analysis to per-direction competing biases; (3) bias interference analysis connecting competing bias dynamics to hidden miscalibration regimes; (4) bias-specific adaptive correction extending MERA's monolithic framework to the multi-bias setting with steerability-informed routing; (5) cross-architecture behavioral replication of Kumaran et al.'s competing biases on Llama and Qwen families; (6) generalizability framework identifying additional competing-bias pairs amenable to the same pipeline.\\\",\\n  \\\"project_name\\\": \\\"competing_bias_steer\\\",\\n  \\\"source\\\": \\\"web_research\\\",\\n  \\\"revision_notes\\\": {\\n    \\\"round7_issue_1_verbal_confidence_mechanism\\\": \\\"ADDRESSED: Integrated Kumaran & Conmy 'How do LLMs Compute Verbal Confidence' (2603.17839) throughout. Added to opportunity as mechanistic foundation for confidence computation. Used to ground Phase 0B's token-position-specific extraction strategy \\\\u2014 now specifically targeting PANL (Post-Answer-Newline) and CC (Confidence-Colon) positions based on their finding that confidence is cached at answer-adjacent positions with information flowing answer tokens \\\\u2192 PANL (layers 22-28) \\\\u2192 CC (layers 30-36), and that token log-probs explain only 8.4% of variance. Added to landscape alongside Kumaran et al.'s behavioral work. Referenced in Phase 1B for LAP computation along the PANL\\\\u2192CC pathway.\\\",\\n    \\\"round7_issue_2_source_attribution_confound\\\": \\\"ADDRESSED: Added same-content-different-attribution CSB control as a dedicated fourth prong of confound mitigation (prong 2 in revised Phase 0B). The model's OWN answer text is presented attributed to 'another LLM,' creating a 2\\\\u00d72 factorial: {own answer text, other answer text} \\\\u00d7 {self-attributed, other-attributed}. The self-own vs. other-own contrast isolates pure ownership/attribution effects (the CSB core mechanism) while holding information content exactly constant. Added attribution-alignment verification to confound diagnostics: the CSB direction must align more with the attribution contrast than the content contrast. This isolates choice-supportive confidence inflation from content recognition. ~500 additional pairs per condition.\\\",\\n    \\\"round7_issue_3_CCPS_missing\\\": \\\"ADDRESSED: CCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) integrated into opportunity as a strong representation-based calibration baseline (~55% ECE reduction, 21% Brier reduction via perturbation-stability probing on Llama/Qwen/Mistral 8B-32B). Added to landscape with methodological description and positioning (monolithic perturbation without bias decomposition). Added to extended baselines in evaluation. Added to key_references.\\\",\\n    \\\"round7_issue_4_generalizability\\\": \\\"ADDRESSED: Added dedicated 'Generalizability \\\\u2014 Beyond CSB vs. CEO' subsection in approach identifying three plausible competing-bias pairs: (1) sycophantic agreement vs. truthfulness commitment (well-documented tension, sycophancy sub-components already shown separable by Vennemeyer et al.), (2) primacy bias vs. recency bias (opposing positional biases that shift in dominance based on context window usage, per arXiv 2508.07479), (3) anchoring to prior reasoning vs. evidence updating in multi-turn contexts. Noted that the Phase 0\\\\u21923 pipeline is designed to be reusable for these settings with appropriate stimulus design.\\\",\\n    \\\"round7_issue_5_sycophancy_decomposition\\\": \\\"ADDRESSED: 'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305) integrated as the closest methodological precedent throughout. Added to core_problem as fifth line of related work. Added to opportunity with key findings (independently steerable sub-components, consistent across model families). Added to landscape with detailed comparison \\\\u2014 key distinction: co-existing co-aligned sub-components vs. our opposing biases creating interference. Referenced in Phase 3 as methodological support. Critical nuance articulated: independent steerability of co-aligned components does not guarantee success for opposing components where destructive interference complicates extraction.\\\",\\n    \\\"round7_issue_6_SAE_functional_dissociation\\\": \\\"ADDRESSED: Patel et al. 'Are LLM Uncertainty and Correctness Encoded by the Same Features?' (arXiv 2604.19974) integrated alongside Liu throughout. Added to core_problem alongside Liu for classification-correction gap. Added to opportunity with key quantitative results (functionally inert pure incorrectness features, 1.1% accuracy improvement from confounded features, AUROC ~0.79 from 3 features). Added to landscape with detailed SAE-based evidence. Added explicit caveat after Phase 1A that separability does NOT guarantee functional relevance (citing Patel et al.). Added functional inertness test to Phase 1B diagnostics. Added to key_references.\\\",\\n    \\\"round7_issue_7_cogbias_accuracy_verification\\\": \\\"ADDRESSED: The '97.8% mean classification accuracy' claim attributed to CogBias could not be independently verified from the abstract or accessible content. The abstract reports linear separability and 26-32% steering reduction but does not surface this specific accuracy figure. Revised ALL references to CogBias probe accuracy: replaced '97.8% mean classification accuracy' with 'high linear separability' or 'linearly separable directions,' noting that the abstract-reported 26-32% steering reduction is cited as the primary quantitative result. Added parenthetical caveat: 'specific probe classification accuracy figures are from the paper body rather than the abstract alone.'\\\"\\n  },\\n  \\\"change_type\\\": \\\"major\\\"\\n}\\n```\\n\\nThis is a complete, valid JSON object with all 15 top-level fields: `title`, `core_problem`, `opportunity`, `landscape`, `inspired_by`, `approach`, `resource_estimate`, `target_venues`, `level`, `key_references`, `description`, `project_name`, `source`, `revision_notes`, and `change_type`.\\n\\nKey notes:\\n- All special characters (em dashes, arrows, rho, multiplication signs, etc.) are represented as Unicode escape sequences where needed for JSON safety, though literal UTF-8 is also valid JSON.\\n- Single quotes within strings are unescaped (valid in JSON, only double quotes need escaping).\\n- Newlines within string values use `\\\\n`.\\n- The `target_venues` field uses `[\\\"ICLR 2027\\\", \\\"NeurIPS 2026\\\", \\\"ICML 2027\\\"]` -- you mentioned \\\"same as before\\\" but I didn't have access to the prior version, so I used the most likely top-tier ML venues. Please adjust if needed.\\n- The `revision_notes` contains all 7 round-7 issue entries. You mentioned \\\"keep ALL existing entries\\\" from prior rounds, but since I don't have the previous JSON file, only the round-7 entries are included. If you have prior round entries to add, they can be merged in.\\n- 25 key references are included, incorporating all 4 new entries you specified.\"\n  },\n  {\n    \"type\": \"text\",\n    \"text\": \"agentId: a3c82c5b98465838b (use SendMessage with to: 'a3c82c5b98465838b' to continue this agent)\\n&lt;usage>total_tokens: 66108\\ntool_uses: 15\\nduration_ms: 962612&lt;/usage>\"\n  }\n]",
+      "numLines": 10,
+      "startLine": 1,
+      "totalLines": 10
+    }
+  },
+  "sourceToolAssistantUUID": "f41f97d5-0f51-4ba1-aaf5-0b8c6788b5ec",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibrat…",
+  "leafUuid": "58322948-cfd6-4c53-ad88-b496740797a0",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decomposing competing calibration biases in LLMs",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-19T16:05:51.202Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The agent generated the JSON but it's wrapped in markdown code blocks and the agent's response text. I need to extract the actual JSON and also make sure to include all the previous revision_notes entries and the correct target_venues. Let me construct the final JSON myself, incorporating the complete content. The agent's output was too large and is in a file, but it has the JSON inside a markdown code block. Let me build the final output properly.
+
+Actually, I realize I should just construct the final JSON output directly myself rather than trying to parse the agent's output. I have all the content ready. Let me write it directly.
+
+But wait - this output is enormous. 
+
+I need to just output the complete JSON object directly in my response with all the fields properly updated: the title stays the same, the core_problem gets the new related work entries including Sycophancy and Patel et al., the opportunity section incorporates Kumaran & Conmy, Sycophancy, Patel et al., and CCPS with the corrected CogBias reference, the landscape section includes all the new references, inspired_by is updated, and the approach section reflects the four-pronged confound mitigation strategy and generalizability discussion.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58322948-cfd6-4c53-ad88-b496740797a0",
+  "isSidechain": false,
+  "requestId": "req_011CbCDKRkxF9tgTMu9Cji1e",
+  "type": "assistant",
+  "uuid": "f6325bcd-c0c1-4f41-8229-fe0d28dddce8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AD5eAMmKVshJe896oRFuRm",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18881,
+      "cache_read_input_tokens": 60365,
+      "output_tokens": 19539,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18881,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 19539,
+          "cache_read_input_tokens": 60365,
+          "cache_creation_input_tokens": 18881,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18881
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-19T16:13:15.579Z_
+
+Now I have all the research and the draft. Let me verify the key changes are correct, then output the complete revised JSON. Let me check the agent's output had the right target_venues (it didn't preserve the originals) and that all prior revision_notes were included (they weren't). I'll construct the final complete output myself.
+
+```json
+{
+  "title": "Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibration for Targeted Activation Correction",
+  "core_problem": "LLM miscalibration arises from at least two competing biases — choice-supportive bias (CSB, inflating confidence in initial answers) and contradictory-evidence overweighting (CEO, causing excessive confidence revision under criticism) — that are simultaneously active and pull confidence in opposite directions on the same instances (Kumaran et al., Nature MI 2026). This creates a bias interference problem: competing biases can partially cancel (producing illusory calibration where global metrics look good but localized failures persist) or one can dominate instance-by-instance (producing heterogeneous over/under-confidence patterns). Recent work on hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) independently confirms that global reliability diagrams 'hide rather than reveal calibration failures' because 'opposing errors cancel when aggregated by confidence' — but provides no mechanistic explanation for WHY opposing errors exist. Five lines of related work address parts of this problem but not the whole: (1) CogBias (Huang et al., 2604.01366) demonstrates that different cognitive bias families (Judgment, Information Processing, Social, Response) need different interventions — prompt debiasing 'substantially reduces Response biases but backfires for Judgment biases' — establishing the principle of family-dependent mitigation. However, CogBias addresses independently-active biases on different task types, not simultaneously competing biases on the same instances. (2) Billa (2604.15557) proposes a three-regime steerability framework (concept not represented / nonlinear encoding / output-aligned) with Linear Accessibility Profile (LAP) as a training-free diagnostic (ρ=0.86–0.91 correlation with steering effectiveness), establishing the routing-by-steerability paradigm — but operates per-concept with synthetic binary features, not per-instance with naturalistic competing biases. (3) MERA (Hedström et al., ICML 2025) provides adaptive steering strength and abstention with non-degradation guarantees — but treats errors monolithically with a single probe. (4) SteerConf (Zhou et al., NeurIPS 2025) achieves 29% AUROC increase and 16% ECE reduction via prompt-level confidence steering with multi-prompt aggregation — demonstrating that calibration is steerable, but operating entirely at the prompt level without mechanistic decomposition or bias-specific intervention. (5) 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) demonstrates that a complex behavioral phenomenon (sycophancy) can be decomposed into independently steerable sub-components (sycophantic agreement vs. sycophantic praise vs. genuine agreement) using difference-in-means and activation additions — establishing the decompose-then-steer paradigm. However, their sub-components are co-existing behaviors pulling in similar directions, not opposing biases creating interference effects. The classification-correction gap (Liu, 2605.05715; independently confirmed via SAE analysis by Patel et al., 2604.19974, who showed that 'pure incorrectness features' are 'functionally inert' despite being statistically decodable) adds a further obstacle: linearly decodable bias directions may not be linearly steerable due to entanglement with task-critical computation. Can we move from behavioral evidence of competing biases to activation-level characterization, measure their asymmetric steerability profiles, and demonstrate that decomposed correction outperforms monolithic methods specifically because it resolves bias interference?",
+  "opportunity": "Kumaran et al. (Nature Machine Intelligence, 2026; arXiv 2507.03120) established behavioral evidence that LLM miscalibration results from two mechanistically distinct biases: choice-supportive bias inflates confidence in selected answers (+0.21 confidence boost, p<0.001), while contradictory-advice overweighting causes models to over-react to opposing evidence (overweighting ratio 2.58 for opposing vs. 1.095 for supporting advice). Critically, both biases are simultaneously active in the 'Answer Shown + Opposite Advice' condition, demonstrating they are distinct mechanisms rather than a single unified bias. However, Kumaran et al. provided only behavioral evidence with no activation-level analysis, and their study covered Gemma 3 (12B/27B), GPT-4o, o1-preview, and DeepSeek R1 7B — but not the Llama or Qwen families that are widely used for mechanistic interpretability research.\n\nKumaran, Conmy et al. ('How do LLMs Compute Verbal Confidence,' arXiv 2603.17839, March 2026) provided the mechanistic foundation for confidence computation: verbal confidence is not computed just-in-time but cached at the Post-Answer-Newline (PANL) token position, with information flowing from answer tokens → PANL (layers 22–28) → Confidence-Colon position (layers 30–36) in Gemma 3 27B. Critically, token log-probabilities explain only 8.4% of variance in verbal confidence (R²_CV = 0.084), while PANL-cached representations explain substantial additional variance — demonstrating that confidence reflects 'automatic, sophisticated self-evaluation' rather than simple fluency readout. This directly validates our Phase 0B token-position-specific extraction strategy: extracting at the PANL and confidence-bearing positions targets where bias-relevant confidence signals are mechanistically concentrated, rather than averaging across all positions where prompt-content confounds dominate. Studied on Gemma 3 27B and Qwen 2.5 7B — overlapping with our target model families.\n\nCogBias (Huang et al., arXiv 2604.01366, April 2026) independently demonstrated that cognitive biases are encoded as linearly separable directions in LLM activation space, and that bias-family-specific intervention is both viable and necessary: activation steering achieves 26–32% bias reduction overall, but effectiveness varies dramatically by family (up to 19pp improvement for Judgment biases on Qwen vs. minimal effect for others). Importantly, CogBias found that despite near-orthogonal bias representations across model architectures, steering reduced bias at similar rates, suggesting shared functional organization — which is encouraging for cross-model generalization. This establishes a crucial principle — different biases need different interventions — but CogBias addresses biases that are independently active on different task types, not biases that compete simultaneously on the same calibration task. (Note: CogBias reports high linear separability of bias directions; the specific probe accuracy figures are drawn from the paper body rather than the abstract, and we cite the abstract-reported 26–32% steering reduction as the primary quantitative result.)\n\n'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) provides the closest methodological precedent for our decompose-then-steer approach. Using difference-in-means directions, activation additions, and subspace geometry across multiple models, they decomposed sycophancy into distinct sub-components (sycophantic agreement, sycophantic praise, genuine agreement) and demonstrated that each can be independently amplified or suppressed without affecting the others, with representational structure consistent across model families and scales. This establishes the feasibility of the core methodological approach — decomposing a complex behavioral phenomenon into independently steerable activation-level sub-components. The critical distinction from our setting: sycophancy sub-components are co-existing behaviors pulling in broadly similar directions (toward user-pleasing outputs), whereas CSB and CEO are opposing biases creating destructive interference. Independent steerability of co-aligned components does not guarantee successful decomposition of opposing components, where partial cancellation in activation space may make individual directions harder to isolate.\n\nBilla (arXiv 2604.15557, April 2026) proposed a three-regime framework for steerability prediction: (1) concept not represented (no method works), (2) nonlinear encoding (nonlinear methods needed), (3) output-aligned (linear steering works). The Linear Accessibility Profile (LAP) — a training-free logit-lens diagnostic — predicts steering effectiveness at ρ=0.86–0.91 across 24 binary concept families and 5 models. This establishes the routing-by-steerability paradigm that informs our intervention strategy — but LAP operates per-concept with synthetic binary features, not per-instance with naturalistic biases, and does not address bias decomposition.\n\nSteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) demonstrated that prompt-level confidence steering — using systematically varied steering prompts spanning 'very cautious' to 'very confident,' with multi-prompt consistency aggregation — achieves 29% AUROC increase and 16% ECE reduction across seven benchmarks on GPT-3.5, LLaMA 3, and GPT-4 without training. SteerConf establishes that calibration is steerable at the behavioral level and provides a strong prompt-level baseline, but operates without mechanistic decomposition and cannot distinguish between or independently address competing bias sources.\n\nMiao & Ungar (arXiv 2603.25052, 2026) showed that calibration and verbalized confidence are linearly encoded but orthogonal in the residual stream (cosine similarity <0.04 across layers in three 7–8B models), achieving 4–7× ECE improvement via adaptive steering. Liu (arXiv 2605.05715, May 2026) demonstrated the classification-correction gap: linearly decodable failure directions (71.6% balanced accuracy) yield Δ≈0 under 29 linear steering configurations due to 85–88% overlap with task-critical computation (specificity ratio ≤0.152), but a learned nonlinear bottleneck MLP achieves Δ=+2.8pp where all linear methods fail. Patel et al. ('Are LLM Uncertainty and Correctness Encoded by the Same Features?', arXiv 2604.19974, April 2026) independently confirmed the classification-correction gap via sparse autoencoder (SAE) analysis on Llama-3.1-8B and Gemma-2-9B: they found that 'pure incorrectness features' are 'functionally inert' — statistically decodable but producing near-zero accuracy change when suppressed — while confounded features encoding both uncertainty and correctness yield 1.1% accuracy improvement and 75% entropy reduction upon suppression, with just 3 mid-layer features achieving AUROC ~0.79. This SAE-based functional dissociation reinforces that Phase 1A's separability success does NOT guarantee Phase 3's intervention success — our Phase 1B steerability assessment is essential precisely because decodable directions may be functionally inert. MERA (Hedström et al., ICML 2025; arXiv 2510.13290) established adaptive steering with non-degradation guarantees via constrained optimization — but operates with a single monolithic error probe.\n\nKobalczyk & van der Schaar (arXiv 2605.13484, May 2026) independently confirmed that global calibration metrics mask input-dependent heterogeneity: across 48 model–dataset pairs, they discovered hidden miscalibration regimes where 'opposing errors cancel when aggregated by confidence,' with local correction outperforming confidence-only methods. This provides independent evidence for our bias interference hypothesis — the hidden regimes may correspond to regions where CSB vs. CEO dominance shifts.\n\nCCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) achieves ~55% ECE reduction and 21% Brier score reduction via perturbation-stability probing — applying targeted adversarial perturbations to final hidden states and training a lightweight classifier on response features — across Llama, Qwen, and Mistral models at 8B–32B scale. CCPS represents a strong representation-based calibration baseline operating on overlapping model families and scales, though it uses monolithic perturbation without bias decomposition.\n\nThe 'Confidence Manifold' study (arXiv 2602.08159) found correctness signals occupy only 3–8 dimensions with simple mean-shift geometry across 9 models, suggesting calibration-related directions may have more favorable specificity profiles than Liu's entangled overthinking directions. The nonlinear steering landscape (ODESteer, ICLR 2026; Curveball Steering, 2026; FLAS, 2026) provides powerful alternatives when linear steering fails. Spherical Steering (ICML 2026) preserves activation norms via geodesic rotation, and COAST (2605.01167) minimizes collateral damage along non-target directions.\n\nThe convergence of (a) behavioral evidence of competing biases with quantitative effect sizes, (b) mechanistic understanding of where confidence is computed and cached in the residual stream, (c) CogBias's demonstration that bias-family-specific intervention works, (d) 'Sycophancy Is Not One Thing's proof that complex behaviors can be decomposed into independently steerable sub-components, (e) Billa's steerability-based routing paradigm with a training-free diagnostic, (f) SteerConf's demonstration that calibration is steerable even at the prompt level, (g) the decodable–steerable distinction with quantitative diagnostics from both linear (Liu) and SAE-based (Patel et al.) analyses, (h) hidden miscalibration regimes suggesting opposing errors cancel, and (i) adaptive frameworks with non-degradation guarantees creates an opportunity for the next step: extending from independently-active bias families and co-existing behavioral sub-components to simultaneously competing calibration biases with per-instance diagnosis and correction.",
+  "landscape": "Kumaran et al. (Nature MI, 2026) identified competing biases (CSB and CEO) via behavioral experiments on Gemma 3 12B/27B, GPT-4o, o1-preview, and DeepSeek R1 7B but proposed no correction framework and provided no mechanistic (activation-level) evidence. Importantly, the qualitative pattern — overconfidence from CSB and underconfidence from CEO — held across all tested models, but effect magnitudes varied substantially (GPT-4o and Gemma 27B showed the strongest CEO effects; DeepSeek R1 7B failed to follow the advice paradigm entirely), and no Llama or Qwen models were tested. Kumaran, Conmy et al. ('How do LLMs Compute Verbal Confidence,' arXiv 2603.17839, March 2026) subsequently provided the mechanistic foundation for confidence computation, showing that verbal confidence is cached at the Post-Answer-Newline (PANL) token position rather than computed just-in-time: information flows from answer tokens → PANL (layers 22–28 in Gemma 3 27B) → Confidence-Colon position (layers 30–36), with PANL-cached representations explaining substantial variance beyond token log-probabilities (which account for only R²=0.084). This mechanistic map directly informs our extraction strategy — we target PANL and confidence-bearing positions rather than averaging across all tokens. Miao & Ungar (arXiv 2603.25052, 2026) demonstrated that calibration accuracy and verbalized confidence are linearly encoded but orthogonal in 7–8B models (cosine similarity <0.04 across layers), and introduced adaptive steering achieving 4–7× ECE improvement — but they target the confidence–accuracy misalignment gap, not the competing bias structure.\n\nCogBias (Huang et al., arXiv 2604.01366, April 2026) is the closest work on bias decomposition. It organizes cognitive biases into four families (Judgment, Information Processing, Social, Response), demonstrates that biases are encoded as linearly separable directions in LLM activation space via linear probes under a contrastive design, and shows family-dependent mitigation: activation steering achieves 26–32% overall bias reduction, but prompt-level debiasing 'substantially reduces Response biases but backfires for Judgment biases,' with up to 19pp improvement for Judgment biases via steering on Qwen. Despite near-orthogonal bias representations across model architectures (Llama and Qwen), steering reduced bias at similar rates — suggesting shared functional organization that is encouraging for cross-architecture generalization. (Note: the abstract reports linear separability and 26–32% steering reduction; specific probe classification accuracy figures are from the paper body and are not independently verifiable from the abstract alone.) CogBias establishes two principles that directly motivate our work: (a) cognitive biases are linearly encoded and separable, and (b) different bias families require different interventions. However, CogBias addresses biases that are independently active on different task types — each task primarily involves one bias family. Our setting involves two biases simultaneously active and competing on the same instances, creating interference effects that CogBias's framework does not model. CogBias also does not assess steerability before intervention or route between intervention types.\n\n'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) is the closest methodological precedent for decomposing a complex behavioral phenomenon into independently steerable activation-level components. Using difference-in-means directions, activation additions, and subspace geometry, they decomposed sycophancy into sycophantic agreement, sycophantic praise, and genuine agreement — demonstrating that each can be independently amplified or suppressed without affecting the others, with consistent representational structure across model families and scales. The key distinction from our proposal: their sub-components are co-existing behaviors that pull in broadly similar directions (various forms of user-pleasing output), while our target biases (CSB and CEO) are simultaneously OPPOSING — pulling confidence in opposite directions on the same instances. This distinction matters methodologically: co-aligned sub-components may be easier to isolate via difference-in-means because they do not create destructive interference in activation space. Opposing biases may partially cancel, making individual directions harder to extract — which is precisely why our Phase 0B confound controls and Phase 1A separability validation are essential. If our decomposition succeeds, it would extend the decompose-then-steer paradigm from co-existing to opposing sub-components, a strictly harder problem.\n\nBilla (arXiv 2604.15557, April 2026) proposes the most direct methodological precedent for our routing logic. The three-regime framework — (1) concept not represented (no method works), (2) nonlinear encoding (nonlinear methods needed), (3) output-aligned (linear steering works) — directly parallels our Route C/B/A structure. LAP (Linear Accessibility Profile), computed as logit-lens accuracy at each layer without training, predicts steering effectiveness at ρ=0.86–0.91 across 24 binary concept families on 5 models (Pythia-2.8B to Llama-8B). Key distinctions from our work: (a) Billa operates per-concept with synthetic binary features (e.g., gender, sentiment, parity), while we operate per-instance with naturalistic competing calibration biases; (b) Billa's three regimes assume a single concept direction per analysis, while we must decompose competing bias directions that are simultaneously active; (c) LAP's above-floor correlation weakens on smaller models (ρ=0.50–0.52 on Pythia-2.8B), and its applicability to non-binary, continuous calibration constructs is untested. We incorporate LAP as a complementary diagnostic alongside Liu's specificity ratio, adapting it to assess per-layer output-alignment of each decomposed bias direction.\n\nSteerConf (Zhou et al., arXiv 2503.02863, NeurIPS 2025) demonstrated prompt-level confidence steering achieving 29% AUROC increase and 16% ECE reduction across seven benchmarks on GPT-3.5, LLaMA 3, and GPT-4. SteerConf uses systematically varied steering prompts (spanning 'very cautious' to 'very confident'), measures consistency across multiple steered confidence outputs, and aggregates via linear quantization — all without training. SteerConf represents the state-of-the-art in training-free prompt-level calibration steering and serves as an important baseline: activation-level methods should demonstrate clear advantages over this prompt-level approach. However, SteerConf operates entirely at the behavioral level without mechanistic decomposition, cannot distinguish between competing bias sources, and cannot apply bias-specific corrections.\n\nCCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) achieves ~55% ECE reduction and 21% Brier score reduction by probing perturbation stability — applying targeted adversarial perturbations to final hidden states and training a lightweight correctness classifier on the model's response features. Evaluated on Llama, Qwen, and Mistral at 8B–32B scale across MMLU and MMLU-Pro, CCPS represents a strong representation-based calibration method operating on overlapping model families. However, CCPS uses monolithic perturbation without bias decomposition and does not distinguish between different sources of miscalibration.\n\nLiu (arXiv 2605.05715, May 2026) is the most directly relevant advance on the decodable–steerable gap: linearly decodable failure directions (71.6% balanced accuracy on Llama-3.1-8B) yield Δ≈0 across five families of linear steering (29 configurations) because the failure direction has 85–88% overlap with task-critical computation (specificity ratio ≤0.152). A learned nonlinear bottleneck MLP (4096→64→4096) achieves Δ=+2.8pp (p=0.025) where linear methods fail. Patel et al. ('Are LLM Uncertainty and Correctness Encoded by the Same Features?', arXiv 2604.19974, April 2026) independently confirmed this classification-correction gap via sparse autoencoder (SAE) analysis on Llama-3.1-8B and Gemma-2-9B: they found a functional dissociation between uncertainty and correctness features, with 'pure incorrectness features' being 'functionally inert' — statistically decodable yet producing near-zero accuracy change when suppressed. Only confounded features (encoding both signals) yielded meaningful behavioral effects (1.1% accuracy improvement, 75% entropy reduction). This SAE-based evidence complements Liu's linear-steering analysis: even when features are identifiable at the individual neuron/SAE-feature level, their functional role may be null — reinforcing that Phase 1A separability is necessary but insufficient, and Phase 1B steerability assessment is the critical gate. However, both Liu and Patel et al. studied single failure modes, not decomposed competing biases.\n\nTsujimura & Tagade (arXiv 2508.17182, Aug 2025) decomposed LLM assertiveness into emotional and logical sub-components via unsupervised clustering on Llama-3.2-1B-Instruct (645 samples) — methodologically adjacent but critically different: their decomposition is descriptive (post-hoc ChatGPT-labeled clusters) rather than causally grounded in identified cognitive biases, uses a single 1B model, reports no calibration metrics, and addresses assertiveness rather than calibration.\n\nHedström et al. (MERA, ICML 2025; arXiv 2510.13290) established the most principled framework for selective steering: MERA solves min ‖v‖² s.t. p̂(h+v) ≤ α with Hoeffding-based non-degradation guarantees via Bonferroni correction. However, MERA operates with a single monolithic error probe — it cannot decompose calibration errors into opposing sources or route to different intervention types based on per-direction steerability.\n\nKobalczyk & van der Schaar (arXiv 2605.13484, May 2026) discovered hidden miscalibration regimes where input-dependent calibration heterogeneity is prevalent across 48 model–dataset pairs: global reliability diagrams hide opposing over/under-confidence errors that cancel when aggregated. This provides independent empirical support for our bias interference hypothesis but offers no mechanistic explanation for WHY opposing errors exist and no bias decomposition.\n\nThe nonlinear steering landscape has matured rapidly. ODESteer (Chen et al., ICLR 2026; arXiv 2602.17560) formulated a unified ODE-based framework via barrier functions. Curveball Steering (Raval et al., arXiv 2603.09313, Mar 2026) introduced polynomial kernel PCA for curved activation geometry (+47% over linear in high-curvature regimes). FLAS (arXiv 2605.05892, May 2026) learned concept-conditioned velocity fields, first outperforming prompting on AxBench. These address geometric limitations of linear steering but provide neither bias decomposition nor steerability diagnosis.\n\nThe 'Wired for Overconfidence' paper (2604.01457, April 2026) identifies overconfidence circuits in 3B models via monolithic activation steering (96.9% ECE reduction on PopQA) but treats overconfidence as a single phenomenon. Ji et al. (EMNLP 2025) modulates a single Verbal Uncertainty Feature. CORAL (arXiv 2602.06022) achieves 49% ECE improvement via a single MLP probe. The 'Confidence Manifold' study (arXiv 2602.08159) found correctness signals in 3–8 dimensions with simple mean-shift geometry across 9 models.\n\nOn steering methodology: Spherical Steering (arXiv 2602.08169, ICML 2026) performs norm-preserving geodesic rotation. Selective Steering (Dang & Ngo, arXiv 2601.19375) developed norm-preserving rotation with discriminative layer selection. COAST (Nguyen et al., arXiv 2605.01167, May 2026) formalizes collateral damage. W2S (Gadgil et al., arXiv 2604.03867, April 2026) learns input-dependent layer selection for steering. 'Steered LLM Activations are Non-Surjective' (2604.09839) proved additive steering pushes activations off-manifold.\n\nNo existing method addresses the specific challenge of simultaneously competing calibration biases: CogBias decomposes independently-active bias families; 'Sycophancy Is Not One Thing' decomposes co-existing but co-aligned behavioral sub-components; Billa routes by per-concept steerability; SteerConf steers confidence at the prompt level without decomposition; CCPS probes perturbation stability without bias decomposition; MERA adapts steering strength monolithically; Patel et al. show that decodable features may be functionally inert. Our work uniquely targets biases that are concurrently active and opposing on the same instances, requiring joint decomposition and per-direction steerability assessment to resolve interference effects that these approaches cannot address individually.",
+  "inspired_by": "Gap: Competing biases create interference patterns — partially canceling on some instances (illusory calibration) and producing heterogeneous over/under-confidence on others (hidden miscalibration regimes, Kobalczyk 2605.13484) — that even CogBias's family-dependent mitigation cannot address because it targets independently-active biases, not simultaneously competing ones, and that 'Sycophancy Is Not One Thing's decompose-then-steer paradigm has not been tested on because their sub-components are co-aligned rather than opposing. Pattern: CogBias (2604.01366) proves bias-family-specific intervention works (linear separability, family-dependent steering) → 'Sycophancy Is Not One Thing' (2509.21305) proves complex behaviors decompose into independently steerable sub-components → Billa (2604.15557) proves steerability-based routing works (three regimes, LAP diagnostic, ρ=0.86–0.91) → SteerConf (2503.02863, NeurIPS 2025) proves calibration is steerable at the prompt level (29% AUROC, 16% ECE) → Liu (2605.05715) + Patel et al. (2604.19974) prove decodable ≠ steerable/functional and nonlinear fallback works → MERA proves adaptive strength + abstention works → Kumaran & Conmy (2603.17839) map the mechanistic pathway of confidence computation (PANL caching). Untried combination: Extend these established principles from independent/co-aligned biases to simultaneously competing and opposing calibration biases, measuring asymmetric steerability profiles as the empirical core, with bias-specific correction as the practical application. Key hypothesis: CSB and CEO have asymmetric LAP and specificity profiles because they involve different cognitive processes (self-evaluation vs. evidence integration), which would provide a mechanistic explanation for inconsistent monolithic calibration steering results and the hidden miscalibration regimes observed by Kobalczyk & van der Schaar.",
+  "approach": "We investigate whether competing calibration biases (CSB and CEO) are distinguishable in activation space, whether they exhibit asymmetric steerability, and whether decomposed correction resolves bias interference that monolithic methods cannot. We structure the investigation in four phases, beginning with behavioral replication and a confound-controlled de-risking pilot. Evaluated on 3 models × 3 datasets with 7 core baselines.\n\n**Phase 0A — Behavioral Replication (Week 1):**\n\nKumaran et al.'s competing biases were characterized on Gemma 3 (12B/27B), GPT-4o, o1-preview, and DeepSeek R1 7B — none of which are our target models. Before any activation extraction, we must verify that each target model (Llama-3.1-8B-Instruct, Qwen3-8B, Gemma 4 31B Dense) exhibits both CSB and CEO in the behavioral paradigm.\n\nWe replicate Kumaran et al.'s exact 2-turn experimental design on each target model with 500 questions per condition: the 2×3 factorial (Answer Shown/Hidden × Same/Opposite/Neutral Advice) at 70% stated advice accuracy. We measure: (a) CSB magnitude — confidence difference between Answer Shown-Neutral and Answer Hidden-Neutral conditions; (b) CEO magnitude — the overweighting ratio (observed confidence change / Bayesian-optimal change) for opposing vs. supporting advice; (c) change-of-mind rates across conditions.\n\nGo/no-go criteria: If a model shows CSB magnitude ≥50% of Kumaran's reported +0.21 (i.e., ≥+0.105) AND CEO overweighting ratio ≥50% of Kumaran's 2.58 (i.e., ≥1.29), it proceeds to Phase 0B. If a model shows one bias but not the other, it is retained with a note that only the detected bias can be studied (reducing to single-bias characterization for that model). If a model shows neither bias at ≥50% threshold, it is replaced — candidate replacements are Gemma 3 27B (directly validated by Kumaran) or Mistral-8B. We report all behavioral replication results regardless, as cross-architecture replication data for Kumaran et al.'s findings is itself a contribution.\n\n**Phase 0B — Confound-Controlled De-Risking Pilot (Weeks 2–3):**\n\nThe translation from Kumaran et al.'s behavioral paradigm to contrastive activation extraction faces a critical confound identified in prior revisions: the contrastive pairs differ not only in bias activation but in prompt information content. For CSB, 'answer shown' prompts literally contain the model's answer text while 'answer hidden' prompts contain 'xx.' For CEO, 'contradictory advice present' prompts contain advisory text that 'advice absent' prompts lack. Extracted directions may thus capture 'prompt contains additional evaluative content' rather than 'bias is active.'\n\nWe address this with a four-pronged confound mitigation strategy:\n\n*(1) Matched-content contrastive pairs:* Rather than using Kumaran et al.'s original 'xx' placeholder (which differs in length and semantic content), we design matched controls:\n- **CSB pairs:** The CSB-active condition shows the model's own prior answer attributed to itself ('You previously answered [X]'). The CSB-control condition replaces the model's answer with a plausible but randomly-selected alternative answer of matched token length attributed to 'another LLM' (e.g., 'Another LLM answered [Y]'). Both conditions contain an answer of equal length and format; only the self-generated attribution differs. An additional 'scrambled-answer' control replaces the answer with token-length-matched semantically neutral text (e.g., '[REDACTED]' padded to matched length) to verify that information content per se is not driving the extracted direction.\n- **CEO pairs:** The CEO-active condition presents contradictory advice ('This LLM answered [opposite option]'). The CEO-control condition presents irrelevant neutral advice of matched token length ('This LLM was also asked a different question about [unrelated topic]'), preserving the presence of additional advisory text while removing the bias-inducing contradictory content. An additional 'supporting-advice' condition (same format, same length, but agreeing rather than contradicting) enables directional validation — the CEO direction should separate contradictory from both neutral and supporting conditions, while a pure information-content confound would not distinguish contradictory from supporting.\n\n*(2) Same-content-different-attribution CSB control (source attribution isolation):* To isolate the ownership/self-generated component of CSB from information content, we add a critical additional condition: the model's OWN answer text, but attributed to 'another LLM' ('Another LLM answered [X]' where X is the model's actual prior answer). Combined with the self-attributed condition ('You previously answered [X]'), this creates a 2×2 factorial for CSB extraction: {own answer text, other answer text} × {self-attributed, other-attributed}. The self-attributed-own vs. other-attributed-own contrast isolates pure ownership/attribution effects (the CSB core mechanism — confidence inflation from recognizing one's own prior commitment) while holding information content exactly constant. The other-attributed-own vs. other-attributed-other contrast isolates pure information-content effects. If the CSB direction extracted from the full contrast (self-own vs. other-other) is primarily aligned with the attribution contrast (self-own vs. other-own) rather than the content contrast (own-text vs. other-text), this provides strong evidence that we are capturing genuine choice-supportive bias rather than a content confound.\n\n*(3) Token-position-specific extraction informed by mechanistic evidence:* Rather than extracting mean activations across all token positions (which would be dominated by the differing prompt content), we extract activations at three specific positions informed by Kumaran & Conmy's (2603.17839) mechanistic findings on confidence computation: (a) the Post-Answer-Newline (PANL) token — where Kumaran & Conmy showed confidence information is first cached (layers 22–28 in Gemma 3 27B), making it the earliest site where bias-relevant confidence signals concentrate; (b) the Confidence-Colon (CC) position — where confidence is retrieved for verbalization (layers 30–36); (c) the first generated token of the confidence response. Extracting at PANL is particularly informative because it is a structurally fixed position (always immediately after the answer) that is identical in format across all conditions, minimizing sensitivity to prompt-content differences upstream. If the extracted direction is robust across extraction positions — particularly at PANL, which precedes the confidence verbalization — it is unlikely to reflect prompt-content confounds.\n\n*(4) Confound diagnostic tests:* For each extracted candidate direction, we verify: (a) correlation with prompt token count is <0.1 (Pearson r across the contrastive dataset); (b) a 'prompt-structure probe' — a linear probe trained to classify prompt conditions by surface features (presence/absence of answer text, advice text length) — produces directions with cosine similarity <0.2 to our candidate bias directions; (c) the candidate direction generalizes to held-out question types not seen during extraction; (d) for CSB specifically, the extracted direction aligns more strongly with the attribution contrast (self vs. other attribution of same content) than with the content contrast (same vs. different answer text with same attribution), as described in prong (2).\n\nWe conduct the pilot on the single model showing strongest behavioral CSB+CEO effects in Phase 0A, with ~500 contrastive pairs per bias type per control condition (totaling ~4000 pairs across the full factorial design for both biases, including the same-content-different-attribution CSB conditions).\n\nGo/no-go criteria: If a linear probe on matched-content pairs achieves ≥60% balanced accuracy for distinguishing bias-active vs. bias-control conditions, AND confound diagnostics pass (prompt-structure cosine <0.2, token-count correlation <0.1, attribution-alignment > content-alignment for CSB), we proceed to full Phase 1. If probing accuracy is 60%+ but confound diagnostics partially fail (e.g., cosine similarity 0.2–0.35), we expand to additional extraction positions and apply mean-centering (subtracting the global mean activation to decorrelate from background prompt structure). If probing accuracy is 55–60% with clean confound diagnostics, we expand to 1000 pairs. If probing accuracy is <55% across all extraction positions, or if confound diagnostics consistently fail (cosine >0.35 to prompt-structure direction), we activate the behavioral-signal fallback.\n\n**Phase 0 Fallback — Behavioral-Signal-Guided Probing (explicit scope reduction):**\n\nWe are explicit that the fallback path — using behavioral output changes (confidence shift patterns matching CSB vs. CEO signatures) to label instances post-hoc, then probing for internal signatures correlated with these behavioral labels — fundamentally changes the paper's contribution. The fallback trades causal contrastive evidence (where we experimentally control bias activation) for correlational association (where we observe behavioral patterns and search for corresponding activation correlates). This weakens contribution (1) from 'first causal activation-level characterization of competing calibration biases' to 'statistical association between behaviorally-identified bias patterns and activation geometry.' The resulting paper would still be informative — establishing that behavioral CSB/CEO patterns have detectable activation correlates, even if not causally isolated — but would be repositioned as a solid empirical contribution appropriate for EMNLP/NAACL rather than a top-tier mechanistic result at ICLR. The remaining contributions (2)–(4) on steerability measurement, interference analysis, and bias-specific correction would be weakened proportionally, as the activation directions being steered/analyzed would have weaker causal grounding.\n\n**Phase 1 — Separability Validation & Steerability Assessment (Weeks 4–8):**\n\n*Phase 1A — Separability (Weeks 4–6):* Building on the pilot's validated extraction methodology with matched-content controls and same-content-different-attribution factorial, we scale confound-controlled contrastive activation extraction to all three models that passed Phase 0A behavioral replication, with 2000+ matched-content contrastive pairs per bias type per model. We extract candidate CSB and CEO directions via difference-in-means on the matched-content contrastive pairs (using the extraction position validated in Phase 0B, prioritizing PANL following Kumaran & Conmy's mechanistic evidence) and validate separability via: (a) cosine similarity between candidate directions (threshold: <0.3 for separability), (b) principal angle analysis between CSB and CEO subspaces following Miao & Ungar's methodology, (c) PCA dimensionality assessment (whether 2 directions capture sufficient variance or higher-dimensional subspaces are needed), (d) cross-prediction ablations confirming that removing one bias subspace does not collapse the other, and (e) confound diagnostic replication at scale — verifying that the scaled directions maintain low cosine similarity to prompt-structure probes (<0.2) across all models. If cosine similarity >0.3 or shared variance >15%, we activate the separability fallback: extracting a joint multi-direction bias subspace and training a subspace projection classifier to separate components.\n\nImportant caveat informed by Patel et al. (2604.19974): Phase 1A separability — even if successful — does NOT guarantee that the identified directions are functionally relevant for intervention. Patel et al.'s SAE analysis showed that statistically decodable 'pure incorrectness features' can be functionally inert. Phase 1B steerability assessment is therefore not merely complementary but essential: it determines whether our separable directions are the kind that actually drive behavior (like Patel et al.'s 'confounded features') or mere correlates (like their 'pure incorrectness features').\n\n*Phase 1B — Steerability Diagnostics (Weeks 6–8):* For each identified bias direction, we compute: (a) the **specificity ratio** — the proportion of mode-specific variance vs. shared variance with the correct-vs-incorrect subspace, following Liu's shared-specific decomposition methodology; (b) **adapted LAP** — applying the logit lens at each layer to measure how strongly each bias direction projects onto confidence-related output tokens, adapting Billa's (2604.15557) per-concept diagnostic to per-direction analysis for calibration biases, with extraction focused on the PANL→CC pathway identified by Kumaran & Conmy (2603.17839); (c) **LEACE concept erasure test** — applying concept erasure to each bias direction and measuring accuracy damage as causal evidence of entanglement; (d) **pilot linear steering test** — applying small-magnitude Spherical Steering along each direction and measuring both calibration improvement and accuracy impact; (e) **functional inertness test** — following Patel et al.'s methodology, we suppress each bias direction and measure whether the effect on confidence output is non-trivial (distinguishing functionally active from inert directions).\n\nWe do NOT pre-commit to fixed routing thresholds. Following Billa's three-regime framework as a conceptual guide, we LEARN optimal thresholds via validation-set sweeps over LAP and specificity cutoffs, reporting the full diagnostic-vs-effectiveness curves as primary empirical contributions. The core empirical hypothesis — that CSB and CEO have asymmetric steerability profiles — would provide a mechanistic explanation for why monolithic calibration steering shows inconsistent results and why hidden miscalibration regimes (Kobalczyk & van der Schaar, 2605.13484) exhibit spatially heterogeneous over/under-confidence.\n\nPhase 1 results constitute an independent contribution regardless of Phase 3 outcomes: the first activation-level characterization of behaviorally-identified competing calibration biases, with joint separability and steerability measurements using complementary diagnostics (specificity ratio + adapted LAP + functional inertness test), obtained via a confound-controlled extraction methodology grounded in mechanistic evidence of confidence computation pathways.\n\n**Phase 2 — Per-Instance Bias Diagnosis (Weeks 7–10):** A lightweight logistic probe (or small MLP in the fallback case) trained on per-instance projection magnitudes onto each bias direction classifies which bias dominates for a given query, providing a continuous dominance score. We stratify by difficulty and validate against behavioral predictions: on easy questions where models are already confident, CSB should dominate; on hard questions under criticism, CEO should dominate. We additionally test whether bias interference patterns — instances where CSB and CEO partially cancel to produce deceptive near-zero net error — can be identified, which would directly explain hidden miscalibration regimes.\n\n**Phase 3 — Bias-Specific Intervention (Weeks 9–15):** Building on Billa's established routing-by-steerability paradigm (2604.15557), extended from per-concept to per-instance competing biases, and informed by 'Sycophancy Is Not One Thing's demonstration that decomposed sub-components can be independently steered, Phase 3 implements three intervention routes informed by Phase 1B's empirically-learned steerability thresholds:\n\n*Route A — Adaptive Spherical Steering (for steerable directions):* When a bias direction falls in Billa's 'output-aligned' regime (high adapted LAP + high specificity + non-inert per Patel et al. criteria), we apply Spherical Steering (You et al., ICML 2026) with MERA-inspired per-instance adaptive strength: rotation magnitude optimized to minimize ‖v‖² subject to the bias probe's predicted error falling below a calibrated threshold α*, following MERA's constrained optimization framework. Unlike MERA applied monolithically, our adaptation operates per-bias-direction, potentially applying different strengths for CSB vs. CEO corrections on the same instance. Layer selection is informed by adapted LAP profiles and the PANL→CC pathway (Kumaran & Conmy 2603.17839), and optionally by W2S-style (Gadgil et al., 2604.03867) input-dependent layer mapping.\n\n*Route B — Learned Nonlinear Residual Correction (for entangled directions):* When a bias direction falls in Billa's 'nonlinear encoding' regime (high A_mlp but low A_lin, or low specificity ratio, or functionally inert under linear suppression but non-inert under nonlinear intervention), linear steering is expected to fail. Following Liu's finding that a bottleneck residual MLP (d→64→d) achieves Δ=+2.8pp where 29 linear configurations yield Δ≈0, we train a small nonlinear residual adapter per bias type (<0.1% of model parameters), with COAST-informed training (Nguyen et al., 2605.01167) weighting the loss to minimize collateral damage along non-target feature directions.\n\n*Route C — Selective Abstention (for uncorrectable instances):* When neither Route A nor Route B improves calibration without excessive accuracy damage (>3% degradation on validation), following Billa's 'not represented' regime, we abstain and output a reliability score using MERA's Hoeffding-based statistical framework.\n\nFor intermediate-steerability directions, Route A is applied with a conservative strength cap (rotation magnitude ≤50% of high-steerability coefficient), falling back to Route C per-instance if collateral damage exceeds the threshold.\n\n**Generalizability — Beyond CSB vs. CEO:**\n\nWhile this paper focuses on CSB and CEO as the primary competing-bias pair — chosen because Kumaran et al. provide quantitative behavioral characterization with effect sizes that enable principled experimental design — the Phase 0→3 pipeline is designed to be reusable for other plausible competing-bias pairs where simultaneously active, opposing biases create interference. We identify three candidates for future work: (1) **Sycophantic agreement vs. truthfulness commitment** — when a user states something incorrect and requests evaluation, sycophancy training pulls toward agreement while truthfulness training pulls toward correction; 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) already demonstrates that sycophancy sub-components are separable and independently steerable, and the sycophancy–truthfulness tension is well-documented (e.g., Alignment Forum, Sharma et al. 2024), though the opposing-direction interference structure has not been characterized. (2) **Primacy bias vs. recency bias** — in multi-document QA and list-based tasks, these opposing positional biases are simultaneously active and shift in relative dominance based on context window usage (primacy weakens as inputs approach context limits while recency remains stable; arXiv 2508.07479), potentially creating hidden miscalibration-like heterogeneity in retrieval confidence. (3) **Anchoring to prior reasoning vs. evidence updating** — in multi-turn reasoning tasks, models may anchor to initial chain-of-thought conclusions while simultaneously being influenced by new contradictory evidence, a generalization of the CSB/CEO dynamic to reasoning contexts. The matched-content contrastive extraction (Phase 0B), steerability diagnostics (Phase 1B), and bias-specific routing (Phase 3) are all applicable to these settings with appropriate stimulus design.\n\nWe evaluate on TriviaQA, MMLU, and PopQA across Gemma 4 31B Dense, Qwen3-8B, and Llama-3.1-8B-Instruct (subject to Phase 0A behavioral replication; models that fail replication are replaced as described). Metrics: ECE, Brier score, AUROC, difficulty-stratified ECE (easy/medium/hard), per-direction specificity ratios and LAP profiles, bias interference measurements (instances where CSB+CEO partially cancel), collateral damage, and route-distribution analysis. Core baselines: (1) temperature scaling, (2) CORAL, (3) Miao & Ungar adaptive steering, (4) MERA applied monolithically, (5) monolithic Spherical Steering (single direction, no bias decomposition), (6) monolithic nonlinear MLP (single direction, no bias decomposition), (7) SteerConf prompt-level steering. Extended baselines in supplementary: CogBias-style family-level steering (treating CSB/CEO as independent families), CCPS perturbation-stability probing (Khanmohammadi et al., 2505.21772), DINCO, 'Wired for Overconfidence' replication.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "650-900 H100",
+      "timeline": "16-20 weeks (includes 1-week behavioral replication + 2-week pilot with expanded CSB attribution factorial)",
+      "estimated_gpu_cost": "$1,625-$2,250 (H100 @ ~$2.50/hr)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "550-750 H100",
+      "timeline": "12-16 weeks (includes 1-week behavioral replication + 2-week pilot with expanded CSB attribution factorial)",
+      "claude_api_cost": "$375-$575 (Sonnet 4.6 for matched-content and attribution-factorial contrastive dataset generation, confound diagnostics, probing, LAP computation, adapter training, analysis)",
+      "estimated_gpu_cost": "$1,375-$1,875"
+    },
+    "auto_research": {
+      "gpu_hours": "850-1150 H100",
+      "timeline": "7-11 weeks (includes behavioral replication + pilot)",
+      "claude_api_cost": "$725-$1,250 (Opus 4.7 for experiment orchestration, matched-content and attribution-factorial pair generation, confound analysis, validation analysis, steerability diagnostics, adapter training sweeps)",
+      "estimated_gpu_cost": "$2,125-$2,875",
+      "speed_bottleneck": "Phase 0A behavioral replication (1 week, parallelizable across 3 models) → Phase 0B pilot is sequential gate (2 weeks, expanded for CSB attribution factorial). Phase 1A→1B is sequential. Evaluation across 3 models × 3 datasets × 3 routes + 7 baselines is parallelizable."
+    }
+  },
+  "target_venues": [
+    "ICLR 2027 (estimated abstract ~Sep 2026, full paper ~Sep 2026 — primary target, ~17–19 weeks from start; behavioral replication + pilot de-risk early, human-in-loop timeline of 12-16 weeks leaves 1-7 weeks for writing)",
+    "NeurIPS 2026 Workshops (~Aug 29, 2026 — Phase 0 + Phase 1 results as standalone empirical contribution on competing bias geometry with confound-controlled methodology)",
+    "ARR October 2026 cycle (Oct 12, 2026 — backup full paper targeting NAACL 2027 or EACL 2027)",
+    "EMNLP 2027 (if Phase 0 fallback is activated — correlational contribution repositioned for strong empirical venue)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Competing Biases underlie Overconfidence and Underconfidence in LLMs (Kumaran et al., Nature Machine Intelligence 2026; arXiv 2507.03120)",
+    "How do LLMs Compute Verbal Confidence (Kumaran, Conmy et al., arXiv 2603.17839, March 2026) — confidence cached at PANL position, answer→PANL→CC information flow, token log-probs explain only 8.4% of variance",
+    "CogBias: Measuring and Mitigating Cognitive Bias in Large Language Models (Huang et al., arXiv 2604.01366, April 2026) — linearly separable bias directions, family-dependent mitigation, 26-32% steering reduction",
+    "Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs (Vennemeyer et al., arXiv 2509.21305, submitted ICLR 2026) — decomposition of sycophancy into independently steerable sub-components via difference-in-means",
+    "Are LLM Uncertainty and Correctness Encoded by the Same Features? A Functional Dissociation via Sparse Autoencoders (Patel et al., arXiv 2604.19974, April 2026) — pure incorrectness features functionally inert, SAE-based classification-correction gap confirmation",
+    "Calibrating LLM Confidence by Probing Perturbed Representation Stability (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) — CCPS, ~55% ECE reduction via perturbation-stability probing on Llama/Qwen/Mistral 8B-32B",
+    "Predicting Where Steering Vectors Succeed (Billa, arXiv 2604.15557, April 2026) — three-regime steerability framework, LAP diagnostic, routing-by-steerability paradigm",
+    "SteerConf: Steering LLMs for Confidence Elicitation (Zhou et al., arXiv 2503.02863, NeurIPS 2025) — prompt-level confidence steering, 29% AUROC increase, 16% ECE reduction, multi-prompt aggregation",
+    "Closing the Confidence-Faithfulness Gap in Large Language Models (Miao & Ungar, arXiv 2603.25052, 2026) — orthogonal calibration/confidence encoding, adaptive steering",
+    "Decodable but Not Corrected by Fixed Residual-Stream Linear Steering: Evidence from Medical LLM Failure Regimes (Liu, arXiv 2605.05715, May 2026) — classification-correction gap, specificity ratio diagnostic",
+    "To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models (Hedström et al., ICML 2025; arXiv 2510.13290) — MERA: adaptive strength, provable non-degradation, selective abstention",
+    "Discovery of Hidden Miscalibration Regimes (Kobalczyk & van der Schaar, arXiv 2605.13484, May 2026) — input-dependent calibration heterogeneity, opposing errors cancel when aggregated",
+    "ODESteer: A Unified ODE-Based Steering Framework for LLM Alignment (Chen et al., ICLR 2026; arXiv 2602.17560)",
+    "Curveball Steering: The Right Direction To Steer Isn't Always Linear (Raval et al., arXiv 2603.09313, Mar 2026)",
+    "Beyond Steering Vector: Flow-based Activation Steering for Inference-Time Intervention (arXiv 2605.05892, May 2026) — FLAS",
+    "Wired for Overconfidence: A Mechanistic Perspective on Inflated Verbalized Confidence in LLMs (arXiv 2604.01457, 2026)",
+    "Spherical Steering: Geometry-Aware Activation Rotation for Language Models (You et al., ICML 2026; arXiv 2602.08169)",
+    "Selective Steering: Norm-Preserving Control Through Discriminative Layer Selection (Dang & Ngo, arXiv 2601.19375, Jan 2026)",
+    "Minimizing Collateral Damage in Activation Steering (Nguyen et al., arXiv 2605.01167, May 2026) — COAST framework",
+    "Where to Steer: Input-Dependent Layer Selection for Steering Improves LLM Alignment (Gadgil et al., arXiv 2604.03867, April 2026)",
+    "Steered LLM Activations are Non-Surjective (Mishra et al., arXiv 2604.09839, 2026)",
+    "The Confidence Manifold: Geometric Structure of Correctness Representations in Language Models (arXiv 2602.08159, 2026)",
+    "LLM Assertiveness can be Mechanistically Decomposed into Emotional and Logical Components (Tsujimura & Tagade, arXiv 2508.17182, 2025)",
+    "A Sober Look at Steering Vectors for LLMs (Tan et al., NeurIPS 2024)",
+    "Patterns and Mechanisms of Contrastive Activation Engineering (Hao et al., arXiv 2505.03189, 2025)",
+    "CORAL: Correctness-Optimized Residual Activation Lens (arXiv 2602.06022, 2026)",
+    "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (Ji et al., EMNLP 2025)",
+    "Calibrating Verbalized Confidence with Self-Generated Distractors (Wang & Stengel-Eskin, ICLR 2026)",
+    "Breaking the Mirror: Activation-Based Mitigation of Self-Preference in LLM Evaluators (arXiv 2509.03647, 2025)",
+    "Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation (Zhuang et al., arXiv 2512.03082, 2025)",
+    "Fine-Grained Activation Steering: Steering Less, Achieving More (arXiv 2602.04428, 2026)",
+    "Contextual Linear Activation Steering of Language Models (arXiv 2604.24693, 2026)",
+    "Positional Biases Shift as Inputs Approach Context Window Limits (arXiv 2508.07479, 2025) — primacy vs. recency bias dynamics"
+  ],
+  "description": "We investigate whether two competing sources of LLM miscalibration — choice-supportive bias (CSB) and contradictory-evidence overweighting (CEO), identified behaviorally by Kumaran et al. (Nature MI 2026) — produce distinguishable activation signatures, exhibit asymmetric steerability profiles, and can be corrected through bias-specific intervention that outperforms monolithic approaches.\n\nOur work is motivated by a bias interference problem unique to the competing-bias setting: CSB and CEO are simultaneously active on the same instances, pulling confidence in opposite directions. This creates (a) illusory calibration where competing biases partially cancel, making global metrics deceptively good while localized failures persist — consistent with the hidden miscalibration regimes independently observed by Kobalczyk & van der Schaar (2605.13484) — and (b) heterogeneous over/under-confidence patterns where one bias dominates instance-by-instance. Monolithic methods cannot resolve this interference because they target the net error direction, which conflates opposing bias contributions.\n\nCogBias (Huang et al., 2604.01366) established that cognitive bias families are linearly separable and require family-dependent intervention — but addresses independently-active biases on different tasks, not simultaneously competing biases. 'Sycophancy Is Not One Thing' (Vennemeyer et al., 2509.21305) demonstrated that complex behavioral phenomena can be decomposed into independently steerable activation-level sub-components via difference-in-means — but their sub-components (sycophantic agreement, praise, genuine agreement) are co-existing and co-aligned, not opposing. Our work extends this decompose-then-steer paradigm to the strictly harder case of opposing biases creating destructive interference. Billa (2604.15557) established the routing-by-steerability paradigm with a three-regime framework and LAP diagnostic — but operates per-concept with synthetic binary features, not per-instance with naturalistic competing biases. SteerConf (Zhou et al., NeurIPS 2025) achieves 29% AUROC increase via prompt-level confidence steering — demonstrating calibration is steerable but operating without mechanistic decomposition. MERA (Hedström et al., ICML 2025) provides adaptive steering with non-degradation guarantees — but treats errors monolithically. Liu (2605.05715) and Patel et al. (2604.19974) independently established the classification-correction gap — decodable directions may be functionally inert — reinforcing that our Phase 1B steerability assessment is essential.\n\nOur approach proceeds in four phases with rigorous confound control. Phase 0A (Behavioral Replication) verifies that each target model — Llama-3.1-8B-Instruct, Qwen3-8B, and Gemma 4 31B Dense, none of which were in Kumaran et al.'s original study — exhibits both CSB and CEO at ≥50% of Kumaran's reported effect sizes; models failing replication are replaced. Phase 0B (Confound-Controlled Pilot) addresses a critical methodological challenge: standard contrastive extraction would conflate bias activation with prompt information-content differences. We design a four-pronged confound mitigation strategy: (1) matched-content contrastive pairs equated for token length, format, and information presence; (2) a same-content-different-attribution CSB control — presenting the model's OWN answer text but attributed to 'another LLM' — to isolate the ownership/self-generated component of CSB from information content via a 2×2 factorial ({own text, other text} × {self-attributed, other-attributed}); (3) token-position-specific extraction at the Post-Answer-Newline (PANL) and Confidence-Colon positions, grounded in Kumaran & Conmy's (2603.17839) mechanistic finding that confidence is cached at answer-adjacent positions rather than computed just-in-time; (4) explicit confound diagnostic tests including attribution-alignment verification for CSB.\n\nPhase 1A (Separability) tests whether CSB and CEO produce geometrically distinct directions using confound-controlled contrastive activation probing, validated via cosine similarity, principal angles, PCA, and cross-prediction ablations — with the explicit caveat (informed by Patel et al., 2604.19974) that separability does NOT guarantee functional relevance. Phase 1B (Steerability Assessment) measures each direction's specificity ratio (Liu 2605.05715), adapted LAP (Billa 2604.15557), and functional inertness (Patel et al. 2604.19974) as complementary diagnostics, learning routing thresholds empirically rather than pre-committing to fixed values. Phase 2 trains a per-instance bias dominance classifier.\n\nPhase 3 implements intervention routing, building on Billa's established three-regime paradigm extended from per-concept to per-instance competing biases, and informed by 'Sycophancy Is Not One Thing's demonstration that decomposed sub-components can be independently steered: (Route A) Spherical Steering with MERA-inspired per-direction adaptive strength for steerable, functionally active directions; (Route B) lightweight bottleneck MLP for entangled directions, trained with COAST-informed collateral-damage-aware loss; (Route C) selective abstention via MERA's statistical framework.\n\nWe evaluate on TriviaQA, MMLU, and PopQA across three models (subject to Phase 0A behavioral replication). Core baselines: temperature scaling, CORAL, Miao & Ungar, MERA (monolithic), monolithic Spherical Steering, monolithic nonlinear MLP, and SteerConf (prompt-level steering). Extended baselines include CCPS perturbation-stability probing (Khanmohammadi et al., EMNLP 2025) and CogBias-style family-level steering.\n\nWe discuss generalizability beyond CSB/CEO, identifying three other plausible competing-bias pairs — sycophantic agreement vs. truthfulness commitment, primacy vs. recency bias, and anchoring vs. evidence updating — for which the Phase 0→3 pipeline is reusable with appropriate stimulus design.\n\nWe are explicit about the fallback path: if Phase 0B fails (extracted directions reflect prompt confounds rather than bias activation, despite matched-content controls and the attribution factorial), the behavioral-signal-guided probing fallback produces correlational rather than causal evidence, fundamentally repositioning the paper from a mechanistic contribution to an empirical observation study — still informative, but appropriate for EMNLP/NAACL rather than ICLR.\n\nThe contributions are: (1) first causal activation-level characterization of simultaneously competing calibration biases (CSB vs. CEO), extending CogBias's independently-active bias decomposition and 'Sycophancy Is Not One Thing's co-aligned decomposition to the opposing-bias setting, with confound-controlled extraction methodology including source-attribution factorial and mechanistically-grounded token-position targeting; (2) empirical measurement of asymmetric steerability profiles with complementary diagnostics (specificity ratio + adapted LAP + functional inertness test), extending Billa's per-concept steerability analysis to per-direction competing biases; (3) bias interference analysis connecting competing bias dynamics to hidden miscalibration regimes; (4) bias-specific adaptive correction extending MERA's monolithic framework to the multi-bias setting with steerability-informed routing; (5) cross-architecture behavioral replication of Kumaran et al.'s competing biases on Llama and Qwen families; (6) generalizability framework identifying additional competing-bias pairs amenable to the same pipeline.",
+  "project_name": "competing_bias_steer",
+  "source": "web_research",
+  "revision_notes": {
+    "round1_issue_1_missing_competitor": "Tsujimura & Tagade (2508.17182) cited as methodological precedent, differentiated on four axes. [Carried from R1]",
+    "round1_issue_2_model_names": "Fixed. [Carried from R1]",
+    "round1_issue_3_untested_assumption": "Phase 1A separability tests retained with quantitative thresholds; now preceded by Phase 0A+0B. [Extended from R1]",
+    "round1_issue_4_steering_reliability": "Spherical Steering + MERA adaptive strength retained. [Carried from R1]",
+    "round1_issue_5_baseline_comparison": "MERA as critical baseline retained. [Carried from R1]",
+    "round1_issue_6_behavioral_mechanistic_leap": "Phase 0B pilot explicitly addresses this risk with confound controls. [Extended from R1]",
+    "round2_issue_1_critical_missing_competitor": "Liu (2605.05715) thoroughly integrated. [Carried from R2]",
+    "round2_issue_2_separability_steerability_gap": "Phase 1A + 1B retained. [Carried from R2]",
+    "round2_issue_3_minor_missing_references": "All retained. [Carried from R2]",
+    "round2_issue_4_nonlinear_steering_fallback": "Routes A/B/C retained. [Carried from R2]",
+    "round3_issue_1_MERA_baseline": "MERA integration retained. [Carried from R3]",
+    "round3_issue_2_nonlinear_steering_competitors": "ODESteer, Curveball, FLAS retained. [Carried from R3]",
+    "round3_issue_3_venue_targeting": "ICLR 2027 primary, with Phase 0 providing early go/no-go. [Carried from R3]",
+    "round3_issue_4_specificity_thresholds": "Empirically-learned thresholds retained. [Carried from R3]",
+    "round3_issue_5_overcomplexity": "Streamlined 3×3×3 + 7 baselines retained. [Carried from R3]",
+    "round4_issue_1_missing_steerability_routing": "Billa (2604.15557) thoroughly integrated. [Carried from R4]",
+    "round4_issue_2_missing_cogbias": "CogBias (Huang et al., 2604.01366) thoroughly integrated. [Carried from R4]",
+    "round4_issue_3_novelty_overstated": "Novelty claims properly scoped. [Carried from R4]",
+    "round4_issue_4_phase1a_risk": "Phase 0 pilot retained with substantially enhanced confound controls. [Extended in R5]",
+    "round4_additional_hidden_miscalibration": "Kobalczyk & van der Schaar, W2S retained. [Carried from R4]",
+    "round5_issue_1_prompt_content_confound": "MAJOR METHODOLOGICAL REVISION: Redesigned Phase 0B with matched-content contrastive pairs, token-position-specific extraction, and confound diagnostic tests. Now further strengthened with same-content-different-attribution factorial (R7) and mechanistic grounding via Kumaran & Conmy (R7). [Extended in R5, R7]",
+    "round5_issue_2_cross_model_behavioral_generalization": "Phase 0A behavioral replication retained with explicit go/no-go criteria. [Carried from R5]",
+    "round5_issue_3_fallback_is_weaker_project": "Explicit scope reduction for fallback path retained. [Carried from R5]",
+    "round5_issue_4_missing_baseline_steerconf": "SteerConf integrated throughout as 7th core baseline. [Carried from R5]",
+    "round5_issue_5_arr_date_correction": "ARR October 2026 deadline corrected to Oct 12. [Carried from R5]",
+    "round7_issue_1_verbal_confidence_mechanism": "ADDRESSED: Integrated Kumaran & Conmy 'How do LLMs Compute Verbal Confidence' (2603.17839) throughout. Added to opportunity as mechanistic foundation for confidence computation. Used to ground Phase 0B's token-position-specific extraction strategy — now specifically targeting PANL (Post-Answer-Newline) and CC (Confidence-Colon) positions based on their finding that confidence is cached at answer-adjacent positions with information flowing answer tokens → PANL (layers 22-28) → CC (layers 30-36), and that token log-probs explain only 8.4% of variance. Added to landscape alongside Kumaran et al.'s behavioral work. Referenced in Phase 1B for LAP computation along the PANL→CC pathway.",
+    "round7_issue_2_source_attribution_confound": "ADDRESSED: Added same-content-different-attribution CSB control as a dedicated second prong of confound mitigation in Phase 0B. The model's OWN answer text is presented attributed to 'another LLM,' creating a 2×2 factorial: {own answer text, other answer text} × {self-attributed, other-attributed}. The self-own vs. other-own contrast isolates pure ownership/attribution effects (the CSB core mechanism) while holding information content exactly constant. Added attribution-alignment verification to confound diagnostics: the CSB direction must align more with the attribution contrast than the content contrast. ~500 additional pairs per condition, expanding Phase 0B total to ~4000 pairs.",
+    "round7_issue_3_CCPS_missing": "ADDRESSED: CCPS (Khanmohammadi et al., arXiv 2505.21772, EMNLP 2025) integrated into opportunity as a strong representation-based calibration baseline (~55% ECE reduction, 21% Brier reduction via perturbation-stability probing on Llama/Qwen/Mistral 8B-32B). Added to landscape with methodological description and positioning (monolithic perturbation without bias decomposition). Added to extended baselines in evaluation. Added to key_references.",
+    "round7_issue_4_generalizability": "ADDRESSED: Added dedicated 'Generalizability — Beyond CSB vs. CEO' subsection in approach identifying three plausible competing-bias pairs: (1) sycophantic agreement vs. truthfulness commitment (well-documented tension, sycophancy sub-components already shown separable by Vennemeyer et al.), (2) primacy bias vs. recency bias (opposing positional biases that shift in dominance based on context window usage, per arXiv 2508.07479), (3) anchoring to prior reasoning vs. evidence updating in multi-turn contexts. Noted that the Phase 0→3 pipeline is designed to be reusable for these settings with appropriate stimulus design.",
+    "round7_issue_5_sycophancy_decomposition": "ADDRESSED: 'Sycophancy Is Not One Thing' (Vennemeyer et al., arXiv 2509.21305) integrated as the closest methodological precedent throughout. Added to core_problem as fifth line of related work establishing the decompose-then-steer paradigm. Added to opportunity with key findings (independently steerable sub-components, consistent across model families). Added to landscape with detailed comparison — key distinction explicitly articulated: co-existing co-aligned sub-components vs. our opposing biases creating destructive interference; co-aligned components may be easier to isolate because they do not create destructive interference; extending to opposing components is a strictly harder problem. Referenced in Phase 3 as methodological support. Contribution (1) now explicitly framed as extending both CogBias's independent-bias and Sycophancy's co-aligned decomposition to the opposing-bias setting.",
+    "round7_issue_6_SAE_functional_dissociation": "ADDRESSED: Patel et al. 'Are LLM Uncertainty and Correctness Encoded by the Same Features?' (arXiv 2604.19974) integrated alongside Liu throughout. Added to core_problem alongside Liu for classification-correction gap with note that pure incorrectness features are functionally inert. Added to opportunity with key quantitative results (1.1% accuracy improvement from confounded features, 75% entropy reduction, AUROC ~0.79 from 3 features). Added to landscape with detailed SAE-based evidence complementing Liu's linear analysis. Added explicit caveat after Phase 1A that separability does NOT guarantee functional relevance (citing Patel et al.'s distinction between inert and confounded features). Added functional inertness test as fifth diagnostic in Phase 1B. Added to key_references.",
+    "round7_issue_7_cogbias_accuracy_verification": "ADDRESSED: The '97.8% mean classification accuracy' claim attributed to CogBias could not be independently verified from the abstract or accessible content. The abstract reports linear separability and 26-32% steering reduction but does not surface this specific accuracy figure. Revised ALL references to CogBias throughout: replaced '97.8% mean classification accuracy via linear probes' with 'linearly separable directions in LLM activation space' (opportunity, landscape) and 'high linear separability' (core_problem), citing the abstract-reported 26-32% steering reduction as the primary quantitative result. Added parenthetical caveat in both opportunity and landscape: 'specific probe classification accuracy figures are from the paper body and are not independently verifiable from the abstract alone.'"
+  },
+  "change_type": "major"
+}
+```
+
+## Summary of Changes (Round 7 → Round 8)
+
+**Change type: MAJOR** — All 7 reviewer issues systematically addressed with deep research, plus structural improvements.
+
+### Issue-by-issue resolution:
+
+1. **"How do LLMs Compute Verbal Confidence" (2603.17839)** — Integrated throughout as mechanistic foundation. Phase 0B's token-position extraction now explicitly targets the PANL (Post-Answer-Newline) and CC (Confidence-Colon) positions based on Kumaran & Conmy's finding that confidence is cached at answer-adjacent positions (layers 22–28 → 30–36), with token log-probs explaining only 8.4% of variance.
+
+2. **Source attribution confound in CSB pairs** — Added as dedicated Prong 2 of Phase 0B: a 2×2 factorial {own answer text, other answer text} × {self-attributed, other-attributed}. The self-own vs. other-own contrast isolates pure ownership/attribution effects while holding content exactly constant. Added attribution-alignment verification to go/no-go diagnostics.
+
+3. **CCPS (2505.21772)** — Integrated into opportunity, landscape, extended baselines, and key_references. Positioned as strong representation-based calibration baseline (~55% ECE, 21% Brier) using monolithic perturbation without bias decomposition.
+
+4. **Generalizability** — Added dedicated subsection identifying three competing-bias pairs: (a) sycophantic agreement vs. truthfulness, (b) primacy vs. recency bias, (c) anchoring vs. evidence updating. Noted pipeline reusability.
+
+5. **"Sycophancy Is Not One Thing" (2509.21305)** — Integrated as closest methodological precedent. Key distinction explicitly articulated: co-existing co-aligned sub-components vs. opposing biases creating destructive interference. Extending to opposing components is a strictly harder problem.
+
+6. **Patel et al. SAE functional dissociation (2604.19974)** — Integrated alongside Liu throughout. Added functional inertness test as 5th diagnostic in Phase 1B. Added explicit caveat after Phase 1A that separability ≠ functional relevance.
+
+7. **CogBias 97.8% verification** — All instances of "97.8%" replaced with "linearly separable directions" + abstract-reported 26–32% steering reduction. Added parenthetical caveat about paper-body-only figures.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f6325bcd-c0c1-4f41-8229-fe0d28dddce8",
+  "isSidechain": false,
+  "requestId": "req_011CbCDKRkxF9tgTMu9Cji1e",
+  "type": "assistant",
+  "uuid": "0daece90-2f91-4ba1-8c40-da524061904d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AD5eAMmKVshJe896oRFuRm",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18881,
+      "cache_read_input_tokens": 60365,
+      "output_tokens": 19539,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18881,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 19539,
+          "cache_read_input_tokens": 60365,
+          "cache_creation_input_tokens": 18881,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18881
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibrat…",
+  "leafUuid": "0daece90-2f91-4ba1-8c40-da524061904d",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decomposing competing calibration biases in LLMs",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Competing Biases, Asymmetric Steerability: Decomposing LLM Miscalibrat…",
+  "leafUuid": "0daece90-2f91-4ba1-8c40-da524061904d",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Decomposing competing calibration biases in LLMs",
+  "sessionId": "2d88ff40-6e8c-41d1-8b37-364a36afb9ee"
+}
+```
+
+---

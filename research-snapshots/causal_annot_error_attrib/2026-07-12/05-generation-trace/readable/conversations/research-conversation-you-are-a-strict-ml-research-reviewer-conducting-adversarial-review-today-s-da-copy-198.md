@@ -1,0 +1,4038 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-18 (UTC).** Your job: indep
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/exported-trajectories/account-2/667874d5-2882-4ef0-8f21-37f1ca12ff81.jsonl`
+- **Structured JSON:** [`25d78c6fe2ba41c7b80c.json`](../../sessions/25/25d78c6fe2ba41c7b80c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-18T19:35:48.753Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-18T19:35:48.753Z",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-18 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **## Seed 4: Open-Vocabulary Affordance Zero-Shot VLA\n\nObjective: CoRL 2026 submission.\n\nDirection: Traditional affordance methods and VLAs rely on fixed category annotations and struggle with open-world unknown objects and free-form interaction instructions. CoA-VLA (arXiv 2412.20451, December 2024) integrates affordance chain-of-reasoning into VLA, but uses 4 predefined structured affordance types (object, grasp, spatial, motion) — not truly open-vocabulary — and cannot handle free-form interaction descriptions like \"use this thing to wipe off the dust over there.\" GeneralVLA (arXiv 2602.04315, February 2026) achieves zero-shot affordance perception and manipulation trajectory generation through VLM+SAM, but is a modular three-stage pipeline (affordance perception → trajectory planning → low-level control), not a unified end-to-end VLA — with information loss between modules and inability to jointly optimize. OVAL-Prompt (ICRA 2024 VLMNM Workshop, arXiv 2404.11000) achieves truly open-vocabulary affordance localization, but only performs detection/localization without generating actions. AffordDP (CVPR 2025, arXiv 2412.03142) achieves affordance cross-category transfer through 3D contact points and trajectories, but completely lacks language conditioning. Core gap: No work unifies open-vocabulary affordance reasoning into an end-to-end VLA for zero-shot manipulation — existing work either has fixed affordance types (CoA-VLA), or is a modular pipeline (GeneralVLA), or only does detection without actions (OVAL-Prompt), or lacks language (AffordDP).\n\nSeed Papers:\n- \"OpenVLA: An Open-Source Vision-Language-Action Model\" (Kim et al., CoRL 2024, arXiv 2406.09246)\n  — 7B parameter open-source VLA, trained on 970K real robot demonstrations, establishing the VLA open-source paradigm. The base architecture for this work — integrating open-vocabulary affordance reasoning on top.\n- \"CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance\" (Li et al., arXiv 2412.20451, December 2024)\n  — Integrates affordance chain-of-reasoning into VLA: model sequentially reasons about object affordance, grasp affordance, spatial affordance, and motion affordance before predicting actions. Uses visual-language collaborative injection module. Surpasses OpenVLA and Octo. Key limitation: 4 affordance types are predefined/structured, not open-vocabulary — cannot handle arbitrary natural language descriptions of novel interactions.\n- \"GeneralVLA: Generalizable Vision-Language-Action Models with Knowledge-Guided Trajectory Planning\" (Ma et al., arXiv 2602.04315, February 2026)\n  — Hierarchical three-module pipeline: (1) VLM+SAM affordance perception for keypoint detection, (2) mid-level planning agent for trajectory generation, (3) low-level control policy. Achieves zero-shot manipulation across 14 tasks without real-world data. Key limitation: Modular pipeline, not end-to-end — affordance module, trajectory planner, and controller are separated, with information bottlenecks between modules.\n- \"OVAL-Prompt: Open-Vocabulary Affordance Localization for Robot Manipulation through LLM Affordance-Grounding\" (Tong et al., ICRA 2024 VLMNM Workshop, arXiv 2404.11000)\n  — Prompt-based method combining VLM for object part segmentation and LLM for part-affordance grounding mapping, achieving open-vocabulary affordance localization without prior training. Competitive with supervised methods on localization benchmarks. Key limitation: Only performs affordance detection/localization, does not generate robot actions — a perception module, not a complete manipulation system.\n- \"AffordDP: Generalizable Diffusion Policy with Transferable Affordance\" (Wu et al., CVPR 2025, arXiv 2412.03142)\n  — Models manipulation priors through 3D contact points and post-contact trajectories, achieving affordance cross-category transfer using visual models + point cloud registration. Affordance-guided diffusion policy generates actions. Key limitation: No language conditioning — affordances are geometric/contact-based, not language-driven, cannot handle open-vocabulary instructions.\n\nKnown Gap:\n- CoA-VLA integrates affordance into VLA but uses predefined structured types, does not support open vocabulary\n- GeneralVLA does zero-shot affordance manipulation but is a modular pipeline, not end-to-end\n- OVAL-Prompt does open-vocabulary affordance but only detection, no action generation\n- AffordDP does affordance cross-category transfer but no language conditioning\n- VoxPoser (CoRL 2023, arXiv 2307.05973) uses LLM to generate 3D affordance/constraint maps but is modular, no end-to-end learning\n- No work unifies open-vocabulary affordance reasoning into end-to-end VLA\n\nIn Scope: Methods unifying open-vocabulary affordance reasoning into end-to-end VLA architecture. Specifically includes: text prompt-driven open-vocabulary affordance feature activation mechanism, universal shape-function-interaction attribute association learning, end-to-end joint training of affordance reasoning and action generation, zero-shot generalization to unseen object categories and novel language interaction instructions. The core contribution should be a unified architecture, not a modular concatenation of affordance detection + action generation.\n\nOut of Scope: Predefined fixed affordance types (CoA-VLA already done). Modular affordance pipelines (GeneralVLA/VoxPoser already done). Affordance detection only without actions (OVAL-Prompt already done). Affordance transfer without language conditioning (AffordDP already done). Pure affordance benchmarking/analysis.\n\nContribution Type: Method contribution. Output must include (1) unified architecture design for open-vocabulary affordance and VLA, (2) end-to-end training strategy for affordance reasoning and action generation, (3) experimental validation of zero-shot generalization on unseen objects and novel interaction instructions, demonstrating advantages over structured affordance VLA and modular methods.\n\nEvaluation Protocol:\nTraining: Based on OpenVLA architecture, integrating open-vocabulary affordance module. Training data uses LIBERO + affordance annotation data (e.g., AGD20K/UMD Affordance).\nEvaluation Metrics:\n- Primary metric: Zero-shot manipulation success rate on unseen object categories\n- Novel interaction instruction generalization: Language interaction descriptions unseen during training (e.g., train on \"pick up,\" test on \"scoop out\")\n- Affordance localization precision: Compare with detection methods like OVAL-Prompt (ensure affordance understanding itself does not degrade)\n- Manipulation success rate: Compare with standard VLA baselines (ensure adding affordance does not degrade known task performance)\n- Baseline comparisons:\n  1. Affordance-free VLA (OpenVLA direct fine-tuning)\n  2. Structured affordance VLA (CoA-VLA reproduction)\n  3. Modular affordance pipeline (GeneralVLA approach)\n  4. Affordance detection + independent policy (OVAL-Prompt + policy learning)\n  5. LLM affordance map + planning (VoxPoser approach)\n- Ablation studies: Open-vocabulary affordance vs. fixed-type affordance, end-to-end vs. staged training, text-driven affordance vs. vision-driven affordance\n- Cross-object transfer tests: Shape-function association generalization (e.g., if trained on shovel's \"scooping\" affordance, can the model activate the same interaction for novel shovel-like tools?)\n- Free-form instruction tests: Non-templated natural language instruction understanding\n\nBuilding Blocks: OpenVLA codebase (VLA base architecture); CoA-VLA codebase (affordance VLA baseline); OVAL-Prompt codebase (open-vocabulary affordance detection reference); AGD20K/UMD Affordance datasets (affordance annotations); LIBERO benchmark (manipulation task evaluation); DINOv2/SigLIP visual encoders; SAM2 (segmentation); HuggingFace transformers + accelerate; CLIP/SigLIP (open-vocabulary semantic alignment).\n\nHard Constraints:\nCompute: ≤200 H100-hours. Strategy: Fine-tune based on 7B VLA, affordance module leveraging pre-trained VLM features (e.g., CLIP/SigLIP) to reduce training requirements. Training ~80 H100-hours, baseline reproduction ~50 H100-hours, ablation ~40 H100-hours, generalization testing ~30 H100-hours.\nEvaluation: Must validate zero-shot generalization on unseen object categories. Must include free-form language instruction tests. Must include ≥4 baselines. Must report both affordance precision and manipulation success rate. Must include ablation studies and cross-object transfer tests.\n\nExploration Directions: (1) End-to-end activation of VLM internal affordance features: Rather than adding an external affordance detection module to VLA, activate interaction-relevant visual features within VLA's VLM backbone network directly through language instructions. Key insight: Large-scale VLMs (e.g., PaliGemma, SigLIP) have already learned extensive shape-function associations during pre-training (\"knives can cut,\" \"bowls can hold\"), only requiring suitable activation mechanisms to release this implicit knowledge. (2) Affordance as intermediate reasoning tokens: Rather than explicitly outputting affordance heatmaps, have VLA generate a set of \"affordance reasoning tokens\" before generating action token sequences (similar to CoA-VLA's chain reasoning but open-vocabulary). These tokens encode interaction possibilities of objects in the current scene, then condition subsequent action generation. Differs from CoA-VLA: not limited to 4 predefined types; reasoning content is dynamically determined by language instructions. (3) Contrastive learning for universal shape-function-interaction mapping: Add contrastive objective during VLA training to pull together different-shaped objects with similar functions (various \"tools that can scoop things\") in affordance feature space, and push apart similar-shaped objects with different functions (decorative bowl vs. functional bowl). More flexible than CoA-VLA's structured types — any natural language-described interaction can participate in contrasting. (4) Knowledge distillation for zero-shot affordance reasoning: Use large VLMs' (e.g., GPT-4V level) zero-shot affordance reasoning capability (\"how can this object be interacted with?\") as teacher signals, distilling into small VLA. Large models have rich commonsense knowledge and can generate affordance descriptions for virtually any object, but are too large to deploy directly on robots. (5) Affordance consistency self-supervision: The same object under different language descriptions should have consistent affordance responses (\"grab the handle\" vs. \"pick it up by the stick part\" describe the same interaction). Use this consistency as self-supervision signals, reducing dependency on fine-grained affordance annotations.\n\nAvoid:\n- Using predefined fixed affordance types — duplicates CoA-VLA\n- Modular pipeline (affordance detection → planning → control) — duplicates GeneralVLA/VoxPoser, and prevents end-to-end optimization\n- Only doing affordance detection without actions — duplicates OVAL-Prompt\n- Ignoring CoA-VLA baseline — it is the most recent affordance + VLA work; must directly compare\n- Ignoring GeneralVLA — it is the most recent zero-shot affordance manipulation work; must clarify advantages of end-to-end vs. modular\n- Reporting results only on within-training-distribution objects — the core value of open vocabulary is on out-of-distribution objects\n- Over-relying on affordance annotation data — should design methods to reduce annotation requirements\n\nIdea Generation Quality Constraints (Hard rules based on historical cases):\n\n1. No strawman problems: Any claim of \"existing methods assume X\" or \"existing methods fail on Y\" must cite specific paragraphs from specific papers as evidence.\n\n2. No pure observation ideas: Output must include a complete method, not merely analysis/benchmark/empirical study.\n\n3. No mediocre methods: Methods must answer:\n   - Core insight: Large-scale VLMs have already implicitly learned rich shape-function association knowledge during pre-training; CoA-VLA released part of it through structured reasoning chains, but is limited by predefined types. We directly activate corresponding affordance features within VLA through open-vocabulary language instructions, fully releasing VLM's implicit shape-function knowledge into action generation.\n   - Why non-obvious: (1) CoA-VLA (December 2024) is the first work integrating affordance chain reasoning into VLA; affordance + VLA itself is a new paradigm; (2) open-vocabulary requires solving the infinite-dimensional affordance space problem — unlike 4 fixed types that can be directly classified; (3) end-to-end training of open-vocabulary affordance requires affordance annotation data, but such data is scarce — needs training strategies that reduce annotation dependency.\n   - What information is exploited: Implicit shape-function association knowledge from VLM pre-training — which neither 2D visual VLAs nor fixed-type affordance methods fully utilize.\n   - Mechanistic argument: When given a free-form language instruction (e.g., \"scoop the rice\"), the VLM internally already encodes knowledge that \"scooping requires a concave container-shaped tool.\" Through suitable activation mechanisms, this knowledge can be transformed into affordance attention in visual feature space — focusing on regions in the scene with corresponding geometric functional properties, then conditioning action generation. More flexible than CoA-VLA's fixed 4-type reasoning because affordance is dynamically defined by language.\n\n4. No duplicating existing work: Each core technical component must be confirmed with at least 3 different search queries to have no directly related work.\n\n5. No padding experiments:\n   - \"Delete experiment test\": Keep only the method description — does it teach the reader something non-trivial? Yes — VLM implicit shape-function knowledge can drive VLA action generation through open-vocabulary activation.\n   - \"Baseline fear test\": If CoA-VLA's 4 structured types already cover most scenarios, is the paper still valuable? Must prove open-vocabulary methods' advantages on free-form instructions and novel interactions.\n   - \"Citation test\": Will people cite the numbers or the insight 5 years later? The insight — open-vocabulary affordance in end-to-end VLA paradigm.\n\n6. The following method patterns are rejected (unless with extremely strong structural reasons):\n   - \"Add module X\" — Why this specific structure?\n   - \"Train on data Y\" — Is data construction itself a contribution?\n   - \"Transfer Z from domain A to domain B\" — What is the structural analogy?\n   - \"Combine P and Q\" — Where is the synergy? Combining open-vocabulary detection (OVAL-Prompt) with VLA — must prove end-to-end joint training outperforms simple concatenation.\n   - \"Use more/larger/stronger X\" — Scale is not a method contribution.\n\nCompetition Warning: CoA-VLA (December 2024) is the most recent affordance + VLA — uses structured reasoning chains but not open-vocabulary. GeneralVLA (February 2026) does zero-shot affordance manipulation but is a modular pipeline. OVAL-Prompt (ICRA 2024 Workshop) does open-vocabulary affordance detection but no actions. AffordDP (CVPR 2025) does affordance cross-category transfer but no language. VoxPoser (CoRL 2023) uses LLM to generate 3D affordance maps but is modular. π0 (Physical Intelligence) and RT-2 and other large VLAs may implicitly contain partial affordance knowledge but do not explicitly leverage it. Differentiation core: The only work integrating open-vocabulary affordance reasoning end-to-end into a unified VLA architecture. Highest risk: CoA-VLA is closest in space; if its author team quickly extends to open-vocabulary, differentiation shrinks. Monitor: CoA-VLA author team, GeneralVLA author team, Physical Intelligence (whether π0 follow-ups will integrate affordance).\n\nTags: direction=open_vocab_affordance_zero_shot_vla, contribution_type=method, sub_direction=unified_affordance_vla_end_to_end, target_venues=[\"CoRL 2026\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-18?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 3/10)\n{\n  \"title\": \"OVA-VLA: When Does Affordance-Structured Reasoning Outperform Generic Chain-of-Thought for Robust Vision-Language-Action Models?\",\n  \"core_problem\": \"Does the CONTENT of intermediate reasoning tokens — specifically affordance-structured descriptions (contact surfaces, grasp strategies, spatial constraints) vs. generic chain-of-thought (plans, sub-tasks, motions) — differentially affect Vision-Language-Action model robustness under distribution shift? DeepThinkVLA shows that SFT-only generic CoT provides virtually no robustness benefit (32pp drop, identical to no-reasoning), raising a critical question: does the gap come from reasoning CONTENT (what is reasoned about) or reasoning OPTIMIZATION (SFT vs. RL)? If affordance-specific content provides robustness benefits even under SFT — because physical interaction descriptions ground the model in object-centric functional properties that transfer across visual perturbations — this would demonstrate that reasoning content independently contributes to robustness, complementary to RL-based causal alignment.\",\n  \"opportunity\": \"ECoT demonstrates that generating generic reasoning tokens before actions improves OpenVLA by 28% on standard LIBERO. CoA-VLA shows fixed affordance reasoning (4 types) improves manipulation. DeepThinkVLA achieves 97% on standard LIBERO and 79% on LIBERO-Plus with hybrid attention + SFT→RL — but crucially, its SFT-only variant shows the same robustness collapse as no-reasoning, suggesting that without RL, generic CoT is 'cosmetic reasoning' that doesn't causally connect to task success under shift. Meanwhile, LIBERO-Plus and LIBERO-PRO reveal that ALL current VLA models collapse under modest perturbations (95%→<30%), and models largely IGNORE language instructions — a devastating finding that questions whether text-based reasoning is processed at all. The critical unanswered question: no work has systematically compared whether affordance-specific reasoning content provides unique robustness advantages over generic CoT under controlled distribution shift, nor examined whether affordance descriptions — which reference physical interaction properties that should be perturbation-invariant — resist the 'language ignoring' failure mode that plagues generic CoT.\",\n  \"landscape\": \"**Reasoning-augmented VLAs with robustness data:**\\n\\nDeepThinkVLA (ICLR 2026, arXiv 2511.15669): Hybrid causal-bidirectional attention decoder with SFT→RL pipeline. Achieves 97.0% on LIBERO, 79.0% on LIBERO-Plus (vs. 61.6% baseline). Critical finding: SFT-only CoT shows 32pp robustness drop, identical to no-reasoning — RL is needed for causal alignment. Positions as the current SOTA reasoning-augmented VLA and the upper bound for our study. Our work is complementary: we investigate whether reasoning CONTENT (affordance vs. generic) matters independently of optimization method (SFT vs. RL).\\n\\nSimpleVLA-RL (ICLR 2026, arXiv 2509.09674): RL framework for VLAs achieving 97.6% on LIBERO-Long. Demonstrates RL's power but does not compare reasoning content types.\\n\\n**Affordance-based VLA reasoning:**\\n\\nCoA-VLA (ICCV 2025, arXiv 2412.20451): 4 fixed affordance types via separate co-injection module — effective but vocabulary-limited and architecturally decoupled.\\n\\nRoboInter (ICLR 2026, arXiv 2602.09973): Serializes subtasks, skills, object boxes, affordance boxes, motion traces as Textual F-CoT with 230K episodes. Affordances are geometric bounding boxes (not semantic), and end-to-end VLA uses diffusion head (not autoregressive). Modular variant outperforms end-to-end.\\n\\nRT-Affordance (ICRA 2025, arXiv 2411.02704): Visual affordance images in hierarchical pipeline, 50%+ over baselines. Not a unified autoregressive model.\\n\\nAffordGrasp (arXiv 2503.00778): VLM in-context affordance reasoning for open-vocabulary task-oriented grasping. Demonstrates that VLM-generated affordance descriptions can ground manipulation in cluttered scenes. However, it is a grasping pipeline, not a unified VLA — our work generates affordance reasoning as intermediate tokens within a single autoregressive sequence rather than using a VLM as an external planner.\\n\\nVLA-R1 (arXiv 2510.01623): Affordance-aligned CoT via GRPO RL, but focuses on RL optimization rather than comparing reasoning content types.\\n\\nGST-VLA (arXiv 2603.09079): 3D Depth-Aware CoT with structured spatial thoughts including 'grasp affordance contact geometry.' Achieves 96.4% on LIBERO, 80.2% on SimplerEnv. Conceptually close: it generates structured intermediate spatial thoughts. Key differences: (a) GST-VLA's affordances are geometric (3D Gaussian primitives, SE(3) waypoints) rather than semantic language descriptions, (b) it uses fixed structured thought categories (object grounding, contact geometry, metric distances, waypoints) rather than open-vocabulary descriptions, (c) it requires depth input and a specialized Gaussian tokenizer. Our work generates free-form semantic affordance descriptions processable by a standard language model, and systematically compares against generic CoT — something GST-VLA does not do.\\n\\n**Generic CoT for VLA:**\\n\\nECoT (arXiv 2407.08693): Free-form reasoning tokens (plans, sub-tasks, motions) autoregressively, 28% over OpenVLA. No robustness evaluation.\\n\\nCoT-VLA (arXiv 2503.22020): Visual subgoal images as reasoning, 17% real-world improvement.\\n\\nACoT-VLA (CVPR 2026, arXiv 2601.11404): Coarse action trajectory reasoning in action space.\\n\\nDualCoT-VLA (arXiv 2603.22280): Parallel visual-linguistic CoT with learnable queries, SOTA on LIBERO and RoboCasa.\\n\\nFlowVLA (arXiv 2508.18269): Optical flow as Visual CoT for motion reasoning (v_t → f_t → v_{t+1}). Encodes flow fields as RGB-like images through the same VQ tokenizer. Represents a different point on the 'what type of intermediate reasoning helps' spectrum — motion-specific visual reasoning vs. our affordance-specific language reasoning. Our study discusses FlowVLA as a motion-centric reasoning modality, complementary to affordance-centric reasoning.\\n\\nLaRA-VLA (ICML 2026, arXiv 2602.01166): Internalizes multi-modal CoT into continuous latent representations, reducing inference latency by 90%. If our study finds that reasoning CONTENT doesn't matter (affordance ≈ generic), this supports LaRA-VLA's approach of abstracting away explicit reasoning into latent space.\\n\\n**Robustness benchmarks:**\\n\\nLIBERO-Plus (CVPR 2026, arXiv 2510.13626): 7 perturbation dimensions (object layout, camera, robot state, language, lighting, texture, noise). Models drop from 95% to <30% under modest perturbations. Critically reveals models are 'largely insensitive to language variations' — they ignore instructions.\\n\\nLIBERO-PRO (arXiv 2510.03827): 4 perturbation dimensions (manipulated objects, initial states, instructions, environments). Models collapse to 0% under generalized evaluation.\\n\\n**Open-vocabulary affordance data:**\\n\\nGLOVER++ (arXiv 2505.11865): HOVA-500K dataset (500K images, 1726 objects, 675 actions). Availability unclear.\\n\\nAffogato (arXiv 2506.12009): 150K 3D objects with open-vocabulary affordance annotations (>450 object classes, >350 affordance types), publicly available on HuggingFace. We use this as affordance vocabulary pre-training data.\\n\\nAffordance-R1 (AAAI 2026, arXiv 2508.06206): GRPO for affordance reasoning in MLLMs.\\n\\n**The specific gap:** No existing work (a) systematically compares affordance-structured vs. generic CoT reasoning under controlled distribution shift (LIBERO-Plus/PRO), (b) tests whether affordance-specific content provides robustness advantages independent of training objective (addressing DeepThinkVLA's finding that SFT-only generic CoT doesn't help robustness), (c) examines whether affordance descriptions resist the 'language ignoring' failure mode identified by LIBERO-Plus, or (d) provides a task-type taxonomy of when reasoning content matters. DeepThinkVLA compares SFT vs. RL but only uses generic CoT. GST-VLA uses geometric affordance thoughts but doesn't compare against generic alternatives. We fill this gap with a controlled study.\",\n  \"approach\": \"We propose OVA-VLA, a systematic study of whether affordance-structured intermediate reasoning provides measurable robustness advantages over generic chain-of-thought in autoregressive VLAs, evaluated primarily on distribution-shift benchmarks where differences between reasoning types are detectable.\\n\\n**Backbone and conditions:** Built on Qwen2.5-VL-3B (following NORA's validated architecture), all conditions share the same backbone, LoRA configuration, training data, and compute budget:\\n(A) No reasoning → action tokens (baseline)\\n(B) Generic CoT → action tokens (ECoT-style: plans, sub-tasks, motion descriptions, spatial grounding)\\n(C) Fixed 4-type affordance → action tokens (CoA-VLA-style: object, grasp, spatial, movement affordances)\\n(D) Open-vocabulary semantic affordance → action tokens (OVA-VLA: free-form affordance descriptions covering contact regions, grasp strategies, spatial constraints, functional properties, manipulation modes)\\n\\n**Annotation pipeline (API-based, scaled up):** We generate open-vocabulary affordance descriptions for ~60K trajectories from RoboInter-Data (up from 20K) using the Qwen2.5-VL-72B API. Descriptions are conditioned on BOTH RGB frames AND RoboInter-Data's existing affordance box coordinates and contact point annotations, providing physical grounding. We validate descriptions against trajectory kinematics (grasp type must match gripper trajectory). Estimated API cost: ~$300-450. For conditions (B) and (C), we generate equivalent-length generic CoT and fixed-type affordance annotations from the same trajectories using the same API, ensuring annotation quality parity.\\n\\n**Affordance vocabulary pre-training:** Before trajectory-grounded fine-tuning, we pre-train the model's affordance reasoning capability using Affogato's publicly available 150K open-vocabulary affordance annotations (>450 object classes, >350 affordance types, available on HuggingFace). This stage trains the model to generate diverse affordance descriptions from visual inputs, building a rich affordance vocabulary that the subsequent trajectory-grounded stage can leverage. This addresses the annotation scale concern: 60K trajectory-grounded annotations are augmented by 150K perception-level affordance annotations.\\n\\n**Training with affordance token curriculum:** LoRA fine-tuning generates [INSTRUCTION] → [REASONING] → [ACTION TOKENS]. For condition (D), we use a three-stage curriculum: (1) structured affordance tokens mimicking CoA-VLA's 4-type format, bootstrapped from RoboInter-Data affordance boxes, (2) semi-structured tokens expanding to 8-10 affordance dimensions, (3) fully open-vocabulary free-form descriptions. Conditions (B) and (C) receive equivalent-length reasoning tokens to control for reasoning token count.\\n\\n**Primary evaluation on robustness benchmarks:** We explicitly avoid standard LIBERO (nearly saturated at 97%+) as the primary evaluation. Instead:\\n- LIBERO-Plus (CVPR 2026): 7 perturbation dimensions. We report per-dimension success rates, identifying which perturbation types affordance reasoning resists best (hypothesis: object layout and camera perturbations, where affordance descriptions reference perturbation-invariant functional properties).\\n- LIBERO-PRO: 4 perturbation dimensions. We focus on the 'manipulated objects' dimension (where affordance-based functional descriptions should transfer to novel objects with similar interaction properties) and 'task instructions' dimension (where affordance descriptions provide instruction-independent physical grounding).\\n- Standard LIBERO: Reported for comparison with prior work (ECoT, DeepThinkVLA, DualCoT-VLA) but NOT the primary evaluation.\\n- SimplerEnv: Cross-embodiment evaluation with specific task selection targeting manipulation mode diversity (push, pull, grasp, precise placement).\\n\\n**Operationalized hypotheses with concrete test splits:**\\n- H1 (Novel object robustness): Under LIBERO-PRO's 'manipulated objects' perturbation, condition (D) outperforms (B) by ≥5% because affordance descriptions reference functional properties (handle graspability, surface flatness) that transfer to novel objects, while generic CoT references object-specific plans that break. We further stratify by affordance similarity: replacement objects sharing the same affordance type (e.g., mug→pitcher, both handle-graspable) vs. different affordance type (e.g., mug→plate).\\n- H2 (Compositional instruction robustness): On LIBERO-Long (10-step tasks), condition (D) shows smaller per-step success degradation than (B) because affordance descriptions decompose multi-step tasks into physical interaction primitives that sequence more reliably. We measure per-step success conditioned on reasoning type and analyze where in the step sequence affordance reasoning provides the largest advantage.\\n- H3 (Language grounding): Under LIBERO-Plus's 'language instruction' perturbation, condition (D) shows less performance variance than (B) because affordance descriptions provide instruction-independent physical grounding — even if the instruction is perturbed, the correct grasp strategy remains in the reasoning. This tests whether affordance reasoning addresses LIBERO-Plus's finding that models ignore language.\\n- H4 (Visual perturbation resistance): Under LIBERO-Plus's camera viewpoint and lighting perturbations, affordance reasoning provides advantages because functional descriptions (contact surface, approach direction) are partially viewpoint-invariant, while generic CoT that references visual features degrades.\\n\\n**Contingency plan — the paper's contribution under all outcomes:**\\n\\nScenario A (Affordance >> Generic, ≥5% on robustness benchmarks): Standard method contribution plus taxonomy of task characteristics where affordance reasoning uniquely helps. Strongest paper.\\n\\nScenario B (Affordance > Generic, modest 2-5% gains or mixed across perturbation types): Primary contribution becomes the ANALYSIS FRAMEWORK: (a) task-type taxonomy classifying each LIBERO task by affordance complexity (contact diversity, spatial constraint difficulty, manipulation mode) and correlating with per-task reasoning advantage; (b) attention visualization showing that affordance tokens attend to task-relevant object regions (contact surfaces, handles, edges) while generic CoT tokens attend more diffusely — providing interpretability evidence; (c) error mode taxonomy categorizing failures by type (wrong grasp approach, wrong placement, wrong sequence, wrong force) and showing different failure distributions between reasoning types; (d) robustness profiles showing which reasoning type degrades most gracefully under each of LIBERO-Plus's 7 perturbation dimensions.\\n\\nScenario C (Affordance ≈ Generic across all conditions): Strong negative result contribution: (a) demonstrates that reasoning CONTENT does not matter, only reasoning EXISTENCE — supporting the latent reasoning direction (LaRA-VLA); (b) analysis of whether both affordance and generic reasoning improve equally over no-reasoning, isolating the 'thinking time' hypothesis; (c) examination of whether the 'language ignoring' problem extends to reasoning tokens (models may ignore their own generated reasoning); (d) practical implications for VLA design: if content doesn't matter, practitioners should choose the simplest reasoning format or move to latent reasoning.\\n\\nThe paper is framed as 'understanding when affordance reasoning matters for VLA robustness' rather than 'proving affordance reasoning is better,' making any outcome publishable.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~150h H100 (LoRA training 3B model: ~15h/run × 4 conditions × 2 seeds = 120h; Affogato pre-training: ~5h; evaluation LIBERO-Plus/PRO + SimplerEnv: ~20h; debugging/iteration: ~5h)\",\n      \"gpu_utilization\": \"Low (~30-40%). GPU idle during annotation quality review, result analysis, attention visualization.\",\n      \"timeline\": \"8-10 weeks\",\n      \"team\": \"1 researcher with VLA experience\",\n      \"annotation_cost\": \"$300-450 (Qwen2.5-VL-72B API for 60K trajectories + equivalent generic/fixed-affordance annotations)\",\n      \"estimated_gpu_cost\": \"$300-600 (at $2-4/hr H100 rental)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~200h H100 (LoRA training: ~15h/run × 4 conditions × 2 seeds + 2 ablation runs = 150h; Affogato pre-training: ~5h; evaluation LIBERO-Plus/PRO: ~25h; attention analysis: ~10h; hyperparameter search: ~10h)\",\n      \"gpu_utilization\": \"Moderate (~60-70%). Agent queues experiments, human reviews attention visualizations and analysis taxonomy.\",\n      \"timeline\": \"5-7 weeks\",\n      \"team\": \"1 researcher, ~30min/day review\",\n      \"annotation_cost\": \"$300-450 (API-based)\",\n      \"claude_api_cost\": \"$150-300 (~2000-4000 agent turns)\",\n      \"estimated_gpu_cost\": \"$400-800\",\n      \"risk_note\": \"Annotation quality validated by cross-checking against RoboInter-Data contact points and gripper trajectories. Human spot-checks 500 samples. Affogato pre-training data quality is externally validated (peer-reviewed dataset).\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~260h H100 (LoRA training: ~15h/run × 4 conditions × 3 seeds = 180h; Affogato pre-training: ~5h; evaluation LIBERO-Plus/PRO + standard LIBERO + SimplerEnv: ~40h; attention analysis computation: ~15h; automated ablations on curriculum/annotation scale: ~20h)\",\n      \"gpu_utilization\": \"High (~85-90%). Agent runs 24/7: queues experiments, performs automated analysis between runs, generates attention visualizations.\",\n      \"timeline\": \"10-14 days with 2 H100 GPUs\",\n      \"team\": \"0 (3-hour setup: download RoboInter-Data, Affogato dataset, base model, configure API keys, install LIBERO-Plus/PRO)\",\n      \"annotation_cost\": \"$300-450 (API-based, runs in parallel with GPU training)\",\n      \"claude_api_cost\": \"$300-600 (~4000-8000 agent turns)\",\n      \"estimated_gpu_cost\": \"$500-1000\",\n      \"speed_bottleneck\": \"Sequential LoRA training runs (4 conditions × 3 seeds = 12 runs). With 2 H100s, two runs overlap (~7-10 days for training). LIBERO-Plus/PRO evaluation is parallelizable across perturbation types.\",\n      \"risk_note\": \"Automated affordance quality assessment: trajectory-contact consistency scoring flags descriptions where grasp type contradicts gripper approach vector. Agent iterates annotation prompts based on consistency scores. Affogato pre-training provides fallback if API-generated annotations are low quality.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (abstract deadline July 21, paper deadline July 28, 2026; ~9 weeks from today; primary target; feasible with auto-research timeline of 10-14 days + 7 weeks for writing, analysis, and supplementary experiments)\",\n    \"ICLR 2027 (expected deadline Sep-Oct 2026; ~4-5 months; comfortable backup; allows additional ablations, RL extension experiments, and potential real-robot validation)\",\n    \"CoRL 2026 (abstract deadline May 26, paper deadline May 29, 2026; INFEASIBLE — 8-11 days from today; acknowledged explicitly per reviewer and user request)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"DeepThinkVLA: Enhancing Reasoning Capability of VLA Models (ICLR 2026, arXiv 2511.15669) — SOTA reasoning VLA, 97% LIBERO / 79% LIBERO-Plus, SFT→RL; shows SFT-only CoT has no robustness benefit\",\n    \"CoA-VLA: Visual-Textual Chain-of-Affordance for VLA Models (ICCV 2025, arXiv 2412.20451) — fixed 4-type affordance reasoning baseline\",\n    \"RoboInter: Holistic Intermediate Representation Suite (ICLR 2026, arXiv 2602.09973) — 230K episodes, geometric affordance boxes, data source\",\n    \"ECoT: Robotic Control via Embodied Chain-of-Thought Reasoning (arXiv 2407.08693) — generic CoT baseline, 28% improvement over OpenVLA\",\n    \"FlowVLA: Visual CoT-based Motion Reasoning for VLA Models (arXiv 2508.18269) — optical flow as motion-specific visual CoT\",\n    \"LIBERO-Plus: In-depth Robustness Analysis of VLA Models (CVPR 2026, arXiv 2510.13626) — 7-dimension robustness benchmark, primary evaluation\",\n    \"LIBERO-PRO: Robust and Fair Evaluation Beyond Memorization (arXiv 2510.03827) — 4-dimension robustness benchmark, models collapse to 0%\",\n    \"SimpleVLA-RL: Scaling VLA Training via RL (ICLR 2026, arXiv 2509.09674) — RL for VLAs, 97.6% LIBERO-Long\",\n    \"LaRA-VLA: Latent Reasoning for VLA Models (ICML 2026, arXiv 2602.01166) — latent CoT, 90% latency reduction\",\n    \"AffordGrasp: In-Context Affordance Reasoning for Open-Vocabulary Grasping (arXiv 2503.00778) — VLM affordance reasoning for manipulation\",\n    \"GST-VLA: Gaussian Spatial Tokens for 3D Depth-Aware VLA (arXiv 2603.09079) — geometric affordance thoughts, 96.4% LIBERO\",\n    \"DualCoT-VLA: Visual-Linguistic CoT via Parallel Reasoning (arXiv 2603.22280) — parallel visual-linguistic reasoning\",\n    \"RT-Affordance: Affordances as Versatile Intermediate Representations (ICRA 2025, arXiv 2411.02704)\",\n    \"Affogato: Open-Vocabulary Affordance Grounding at Scale (arXiv 2506.12009) — 150K annotations, pre-training data source\",\n    \"GLOVER++: Open-Vocabulary Affordance with HOVA-500K (arXiv 2505.11865)\",\n    \"Affordance-R1: RL for Affordance Reasoning in MLLMs (AAAI 2026, arXiv 2508.06206)\",\n    \"ACoT-VLA: Action Chain-of-Thought for VLA Models (CVPR 2026, arXiv 2601.11404)\",\n    \"CoT-VLA: Visual Chain-of-Thought Reasoning for VLA Models (arXiv 2503.22020)\",\n    \"RoboBrain: Unified Brain Model for Robotic Manipulation (CVPR 2025, arXiv 2502.21257)\",\n    \"NORA: Small Open-Sourced Generalist VLA Model (arXiv 2504.19854) — backbone architecture reference\",\n    \"VLA-R1: Enhancing Reasoning in VLA Models (arXiv 2510.01623)\",\n    \"Context-Dependent Affordance Computation in VLMs (arXiv 2603.04419)\",\n    \"LITEN: Learning Affordances at Inference-Time (arXiv 2510.19752)\",\n    \"VLA Survey: An Action Tokenization Perspective (arXiv 2507.01925)\"\n  ],\n  \"description\": \"We propose OVA-VLA, a systematic controlled study of whether affordance-structured intermediate reasoning provides measurable robustness advantages over generic chain-of-thought reasoning in autoregressive Vision-Language-Action models under distribution shift. Motivated by DeepThinkVLA's finding that SFT-only generic CoT provides no robustness benefit (32pp drop, identical to no-reasoning), we ask: does the gap come from reasoning CONTENT or reasoning OPTIMIZATION? We evaluate four conditions — no reasoning, generic CoT, fixed 4-type affordance, and open-vocabulary semantic affordance — all on the same Qwen2.5-VL-3B backbone with LoRA, same 60K RoboInter-Data trajectories, and same compute budget. Unlike prior work evaluated on nearly-saturated standard LIBERO (97%+), we use LIBERO-Plus (7 perturbation dimensions) and LIBERO-PRO (4 perturbation dimensions) as primary benchmarks where differences between reasoning types are detectable. We enrich the model's affordance vocabulary by pre-training on Affogato's publicly available 150K open-vocabulary affordance annotations before trajectory-grounded fine-tuning. Operationalized hypotheses target specific perturbation dimensions: novel object robustness (LIBERO-PRO manipulated objects), compositional instruction following (LIBERO-Long multi-step tasks), language grounding (LIBERO-Plus language perturbation), and visual perturbation resistance (LIBERO-Plus camera/lighting). The paper is framed as 'understanding when affordance reasoning matters' rather than 'proving it is better,' with a three-scenario contingency plan ensuring publishable contributions under any empirical outcome: if affordance reasoning wins, the contribution is the method + task taxonomy; if results are mixed, the contribution is the per-perturbation-type analysis framework and error mode taxonomy; if negative, the contribution is a strong negative result supporting latent reasoning approaches. Includes attention visualization analysis and per-task affordance complexity correlation. Total compute: ≤260 H100-hours; annotation cost: ~$300-450 via API.\",\n  \"project_name\": \"open_vocab_afford_vla\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"COMPUTE CONSTRAINT VIOLATION: User specified ≤200 H100-hours, but all three modes exceed this (400-900 A100-hours ≈ 300-700 H100-hours). The entire resource estimate must be redesigned to fit within budget.\", \"VENUE MISMATCH: User explicitly requested CoRL 2026 (deadline May 28, 2026, 10 days away). Generator silently changed to ICLR/AAAI/CVPR 2027 without acknowledging the original target is infeasible. Must address this trade-off explicitly.\", \"MISSING CRITICAL REFERENCE — RoboInter (ICLR 2026, arXiv 2602.09973): Serializes intermediate representations including affordance boxes into autoregressive text tokens ('Textual F-CoT') for end-to-end VLA. Supports both modular and end-to-end variants. 230K episodes with affordance annotations. This directly challenges the claimed gap and must be discussed as the closest competing system.\", \"MISSING REFERENCE — RT-Affordance (Google DeepMind, arXiv 2411.02704): Uses affordances as intermediate representations for robot manipulation policy learning with language conditioning. Hierarchical but language-conditioned affordance-to-action pipeline. Exceeds baselines by 50%+.\", \"MISSING REFERENCE — RoboBrain (CVPR 2025): Unified brain model combining planning, affordance perception, and trajectory prediction. Uses the same ShareRobot dataset the generator proposes to use. Must be discussed as a baseline.\", \"MISSING REFERENCE — GLOVER++ (arXiv 2505.11865, May 2025): Open-vocabulary affordance reasoning with HOVA-500K dataset (500K images, 1726 object categories, 675 actions). Directly relevant to the open-vocabulary affordance dimension.\", \"MISSING REFERENCE — Affordance-R1 (AAAI 2026, arXiv 2508.06206): RL-based (GRPO) affordance reasoning in MLLMs with chain-of-thought. Zero-shot generalization and emergent reasoning. Closely related to VLA-R1 and must be discussed.\", \"MISSING REFERENCE — DualCoT-VLA (arXiv 2603.22280, March 2026): Parallel visual-linguistic CoT for VLA. SOTA on LIBERO and RoboCasa. Represents the latest in reasoning-augmented VLA.\", \"MISSING REFERENCE — LITEN (arXiv 2510.19752): Inference-time affordance learning for VLAs without additional training. Challenges the assumption that training-time affordance integration is necessary.\", \"UNCLEAR VALUE PROPOSITION vs. ECoT: ECoT already generates free-form reasoning tokens (plans, sub-tasks, motions, visual grounding) autoregressively before actions, achieving 28% improvement over OpenVLA. The proposal must rigorously argue why affordance-specific reasoning tokens outperform ECoT's general reasoning tokens — this is the central empirical question and the paper's survival depends on it.\", \"ANNOTATION QUALITY RISK: The entire approach depends on VLM-generated affordance descriptions for robot trajectories. VLMs like Qwen2.5-VL-72B have limited understanding of physical contact, force, and kinematic constraints. There is no validation strategy proposed for annotation quality beyond vague 'consistency checks.'\", \"INCREMENTAL OVER CoA-VLA + ECoT COMBINATION: The work essentially applies the ECoT autoregressive reasoning pattern to CoA-VLA's affordance concept, making it open-vocabulary. This is a natural combination that any strong researcher in this space would pursue. The 'curriculum from structured to open-vocabulary' is the most novel training contribution but may be insufficient alone.\"]\nFeedback: The core direction has potential but requires significant revision across multiple dimensions:\n\n1. **Compute redesign (critical)**: Redesign the approach to fit within ≤200 H100-hours. Consider: (a) smaller VLM backbone (3B instead of 7B), (b) smaller annotation dataset (~20K instead of 50K), (c) use API-based annotation (Qwen2.5-VL-72B via API is cheaper than self-hosting on 4xA100), (d) fewer ablations.\n\n2. **Address venue explicitly**: Acknowledge CoRL 2026 is infeasible (10 days to deadline). Propose AAAI 2027 (July 28 deadline, ~10 weeks) as primary target with explicit timeline.\n\n3. **Differentiate from ECoT rigorously**: The make-or-break argument is why affordance-specific reasoning tokens outperform ECoT's general reasoning tokens. Propose a direct ECoT vs. OVA-VLA comparison as the central experiment. Hypothesize specific scenarios (novel object generalization, cross-embodiment transfer, compositional instructions) where affordance-structured reasoning should uniquely help.\n\n4. **Incorporate missed references**: Discuss RoboInter (ICLR 2026) as the most direct competitor — it already includes affordance in end-to-end VLA intermediate representations. Argue why open-vocabulary natural language affordance tokens are superior to RoboInter's affordance box representations. Add RT-Affordance, RoboBrain, GLOVER++, Affordance-R1, DualCoT-VLA to the landscape.\n\n5. **Strengthen annotation pipeline**: Address the VLM annotation quality concern. Consider: (a) using Affogato (arXiv 2506.12009) which provides 150K open-vocabulary affordance annotations, (b) adding human validation on a subset, (c) using trajectory contact points as physical grounding signals to verify VLM-generated affordance descriptions.\n\n6. **Sharpen the novelty claim**: The current framing ('first to combine open-vocab affordance + autoregressive VLA') is close to being challenged by RoboInter. Reframe around: (a) the curriculum training strategy as a technical contribution, (b) the specific mechanism by which affordance-structured reasoning improves action generation (not just any reasoning), (c) empirical demonstration on free-form instructions where fixed taxonomies provably fail.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"CORE RISK — EMPIRICAL HYPOTHESIS MAY FAIL: The entire paper bets on affordance-structured reasoning outperforming generic CoT on specific axes (novel objects, compositional instructions, force-sensitive tasks). But DeepThinkVLA (ICLR 2026) achieves 97% on LIBERO with generic CoT + RL, and LIBERO-Plus/PRO show that even SOTA models collapse under distribution shift. If affordance tokens don't significantly outperform ECoT-style reasoning, the paper has no central contribution. The proposal needs a contingency: what is the paper's contribution if the hypothesis is only partially supported?\", \"ANNOTATION SCALE CONCERN: 20K trajectories with API-generated affordance descriptions is modest compared to RoboInter-Data (230K episodes with affordance boxes) and HOVA-500K (500K images with open-vocabulary affordance annotations). The paper should either (a) use HOVA-500K/Affogato annotations to augment training or (b) convincingly argue why 20K is sufficient. The current annotation pipeline generates descriptions for existing RoboInter-Data trajectories but does not leverage the much larger open-vocabulary affordance datasets (GLOVER++, Affogato) that could strengthen the open-vocabulary signal.\", \"BENCHMARK SATURATION: LIBERO is nearly saturated (97%+ success for DeepThinkVLA, OpenVLA-OFT). Using standard LIBERO suites may not differentiate affordance vs. generic reasoning. The proposal should explicitly use LIBERO-Plus or LIBERO-PRO (robustness variants with distribution shifts) where differences between reasoning types would be more apparent. SimplerEnv is a better differentiator but needs specific task selection targeting the hypothesized affordance advantages.\", \"MISSING COMPETITOR — FlowVLA (arXiv 2508.18269): Uses optical flow as visual CoT for motion reasoning before action generation. This is another form of structured intermediate reasoning (motion-specific rather than affordance-specific) that the comparison study should include or discuss. It directly addresses the 'what type of intermediate reasoning helps VLAs' question.\", \"MISSING COMPETITOR — DeepThinkVLA (ICLR 2026): Achieves 97% on LIBERO with hybrid causal-bidirectional attention and SFT→RL training. This is the current SOTA reasoning-augmented VLA and should be discussed as an upper bound. Its RL-based reasoning refinement contrasts with OVA-VLA's purely supervised approach.\", \"MISSING COMPETITOR — AffordGrasp (arXiv 2503.00778): Uses VLM in-context affordance reasoning for open-vocabulary task-oriented grasping. While it's a grasping system rather than a full VLA, it demonstrates open-vocabulary affordance reasoning grounded in language for manipulation — the paper should discuss how OVA-VLA's approach differs.\", \"VENUE CONCERN — CoRL 2026 IS INFEASIBLE BUT USER REQUESTED IT: The user explicitly asked for a CoRL 2026 submission. CoRL deadline is May 28, 2026 (10 days from today). The generator correctly identifies AAAI 2027 as the primary target but should more prominently acknowledge the CoRL infeasibility since it was the user's original request.\", \"WEAK CONTINGENCY FOR NEGATIVE RESULTS: If affordance-specific reasoning shows only marginal improvements over generic CoT (e.g., 2-3% on average), the paper needs a strong secondary contribution. The curriculum training strategy alone is insufficient. Consider: (a) a detailed analysis taxonomy of when/why affordance reasoning helps or hurts, (b) attention visualization showing qualitatively different grounding patterns, (c) error taxonomy showing different failure modes between reasoning types.\", \"GST-VLA OVERLAP: GST-VLA (arXiv 2603.09079) introduces 3D Depth-Aware Chain-of-Thought with structured spatial thoughts including 'grasp affordance contact geometry.' While it uses geometric rather than semantic affordance tokens, the conceptual overlap is significant and the paper should position against it.\"]\nFeedback: The revision addressed the Round 1 issues well — compute is now realistic, RoboInter/RT-Affordance/GLOVER++ are incorporated, and the framing is more honest as a systematic comparison study. Key improvements needed:\n\n1. **Strengthen the contingency plan**: The paper lives or dies on the empirical comparison. If affordance reasoning shows only marginal gains over generic CoT, you need a strong analytical contribution: (a) a taxonomy of task characteristics where affordance reasoning helps/hurts, (b) attention analysis showing grounding differences, (c) error mode analysis. Frame the paper as 'understanding when affordance reasoning matters' rather than 'proving affordance reasoning is better.'\n\n2. **Use robustness benchmarks**: Replace or supplement standard LIBERO with LIBERO-Plus/PRO. Standard LIBERO is nearly saturated — differences between reasoning types will be noise. The affordance hypothesis should be strongest under distribution shift (novel objects, perturbed scenes), which robustness benchmarks explicitly test.\n\n3. **Leverage existing large-scale affordance data**: 20K API-generated descriptions is too small. Use HOVA-500K (500K images, 675 actions, open-vocabulary) or Affogato (150K open-vocabulary annotations with 3D heatmaps) as additional pre-training or alignment data. This also reduces reliance on API-generated annotations whose quality is unverified.\n\n4. **Add FlowVLA and DeepThinkVLA to the comparison landscape**: FlowVLA (motion-specific reasoning) and DeepThinkVLA (RL-refined generic reasoning) represent different points on the 'what type of intermediate reasoning helps' spectrum. Even if not reproduced as baselines, they must be discussed.\n\n5. **Sharpen the hypothesis operationalization**: 'Novel objects with familiar affordances' is vague. Define specific held-out test splits: e.g., train on mugs/bowls/spoons, test on ladles/pitchers/tongs where shape-function transfer is non-trivial. Define specific compositional instructions that require affordance chaining. Define what 'force/compliance reasoning' means concretely in LIBERO/SimplerEnv tasks.\n\n6. **Acknowledge CoRL 2026 infeasibility upfront**: Since the user asked for CoRL 2026, explicitly state this is infeasible (10 days to deadline) and present AAAI 2027 as the revised target with CoRL 2027 as a fallback if real-robot experiments are added.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-18T19:35:48.758Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-18T19:35:48.758Z",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81"
+}
+```
+
+---
+
+## Round 1
+
+49 recorded events
+
+### User
+
+_source line 3 · 2026-05-18T19:35:48.792Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-18 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **## Seed 4: Open-Vocabulary Affordance Zero-Shot VLA
+
+Objective: CoRL 2026 submission.
+
+Direction: Traditional affordance methods and VLAs rely on fixed category annotations and struggle with open-world unknown objects and free-form interaction instructions. CoA-VLA (arXiv 2412.20451, December 2024) integrates affordance chain-of-reasoning into VLA, but uses 4 predefined structured affordance types (object, grasp, spatial, motion) — not truly open-vocabulary — and cannot handle free-form interaction descriptions like "use this thing to wipe off the dust over there." GeneralVLA (arXiv 2602.04315, February 2026) achieves zero-shot affordance perception and manipulation trajectory generation through VLM+SAM, but is a modular three-stage pipeline (affordance perception → trajectory planning → low-level control), not a unified end-to-end VLA — with information loss between modules and inability to jointly optimize. OVAL-Prompt (ICRA 2024 VLMNM Workshop, arXiv 2404.11000) achieves truly open-vocabulary affordance localization, but only performs detection/localization without generating actions. AffordDP (CVPR 2025, arXiv 2412.03142) achieves affordance cross-category transfer through 3D contact points and trajectories, but completely lacks language conditioning. Core gap: No work unifies open-vocabulary affordance reasoning into an end-to-end VLA for zero-shot manipulation — existing work either has fixed affordance types (CoA-VLA), or is a modular pipeline (GeneralVLA), or only does detection without actions (OVAL-Prompt), or lacks language (AffordDP).
+
+Seed Papers:
+- "OpenVLA: An Open-Source Vision-Language-Action Model" (Kim et al., CoRL 2024, arXiv 2406.09246)
+  — 7B parameter open-source VLA, trained on 970K real robot demonstrations, establishing the VLA open-source paradigm. The base architecture for this work — integrating open-vocabulary affordance reasoning on top.
+- "CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance" (Li et al., arXiv 2412.20451, December 2024)
+  — Integrates affordance chain-of-reasoning into VLA: model sequentially reasons about object affordance, grasp affordance, spatial affordance, and motion affordance before predicting actions. Uses visual-language collaborative injection module. Surpasses OpenVLA and Octo. Key limitation: 4 affordance types are predefined/structured, not open-vocabulary — cannot handle arbitrary natural language descriptions of novel interactions.
+- "GeneralVLA: Generalizable Vision-Language-Action Models with Knowledge-Guided Trajectory Planning" (Ma et al., arXiv 2602.04315, February 2026)
+  — Hierarchical three-module pipeline: (1) VLM+SAM affordance perception for keypoint detection, (2) mid-level planning agent for trajectory generation, (3) low-level control policy. Achieves zero-shot manipulation across 14 tasks without real-world data. Key limitation: Modular pipeline, not end-to-end — affordance module, trajectory planner, and controller are separated, with information bottlenecks between modules.
+- "OVAL-Prompt: Open-Vocabulary Affordance Localization for Robot Manipulation through LLM Affordance-Grounding" (Tong et al., ICRA 2024 VLMNM Workshop, arXiv 2404.11000)
+  — Prompt-based method combining VLM for object part segmentation and LLM for part-affordance grounding mapping, achieving open-vocabulary affordance localization without prior training. Competitive with supervised methods on localization benchmarks. Key limitation: Only performs affordance detection/localization, does not generate robot actions — a perception module, not a complete manipulation system.
+- "AffordDP: Generalizable Diffusion Policy with Transferable Affordance" (Wu et al., CVPR 2025, arXiv 2412.03142)
+  — Models manipulation priors through 3D contact points and post-contact trajectories, achieving affordance cross-category transfer using visual models + point cloud registration. Affordance-guided diffusion policy generates actions. Key limitation: No language conditioning — affordances are geometric/contact-based, not language-driven, cannot handle open-vocabulary instructions.
+
+Known Gap:
+- CoA-VLA integrates affordance into VLA but uses predefined structured types, does not support open vocabulary
+- GeneralVLA does zero-shot affordance manipulation but is a modular pipeline, not end-to-end
+- OVAL-Prompt does open-vocabulary affordance but only detection, no action generation
+- AffordDP does affordance cross-category transfer but no language conditioning
+- VoxPoser (CoRL 2023, arXiv 2307.05973) uses LLM to generate 3D affordance/constraint maps but is modular, no end-to-end learning
+- No work unifies open-vocabulary affordance reasoning into end-to-end VLA
+
+In Scope: Methods unifying open-vocabulary affordance reasoning into end-to-end VLA architecture. Specifically includes: text prompt-driven open-vocabulary affordance feature activation mechanism, universal shape-function-interaction attribute association learning, end-to-end joint training of affordance reasoning and action generation, zero-shot generalization to unseen object categories and novel language interaction instructions. The core contribution should be a unified architecture, not a modular concatenation of affordance detection + action generation.
+
+Out of Scope: Predefined fixed affordance types (CoA-VLA already done). Modular affordance pipelines (GeneralVLA/VoxPoser already done). Affordance detection only without actions (OVAL-Prompt already done). Affordance transfer without language conditioning (AffordDP already done). Pure affordance benchmarking/analysis.
+
+Contribution Type: Method contribution. Output must include (1) unified architecture design for open-vocabulary affordance and VLA, (2) end-to-end training strategy for affordance reasoning and action generation, (3) experimental validation of zero-shot generalization on unseen objects and novel interaction instructions, demonstrating advantages over structured affordance VLA and modular methods.
+
+Evaluation Protocol:
+Training: Based on OpenVLA architecture, integrating open-vocabulary affordance module. Training data uses LIBERO + affordance annotation data (e.g., AGD20K/UMD Affordance).
+Evaluation Metrics:
+- Primary metric: Zero-shot manipulation success rate on unseen object categories
+- Novel interaction instruction generalization: Language interaction descriptions unseen during training (e.g., train on "pick up," test on "scoop out")
+- Affordance localization precision: Compare with detection methods like OVAL-Prompt (ensure affordance understanding itself does not degrade)
+- Manipulation success rate: Compare with standard VLA baselines (ensure adding affordance does not degrade known task performance)
+- Baseline comparisons:
+  1. Affordance-free VLA (OpenVLA direct fine-tuning)
+  2. Structured affordance VLA (CoA-VLA reproduction)
+  3. Modular affordance pipeline (GeneralVLA approach)
+  4. Affordance detection + independent policy (OVAL-Prompt + policy learning)
+  5. LLM affordance map + planning (VoxPoser approach)
+- Ablation studies: Open-vocabulary affordance vs. fixed-type affordance, end-to-end vs. staged training, text-driven affordance vs. vision-driven affordance
+- Cross-object transfer tests: Shape-function association generalization (e.g., if trained on shovel's "scooping" affordance, can the model activate the same interaction for novel shovel-like tools?)
+- Free-form instruction tests: Non-templated natural language instruction understanding
+
+Building Blocks: OpenVLA codebase (VLA base architecture); CoA-VLA codebase (affordance VLA baseline); OVAL-Prompt codebase (open-vocabulary affordance detection reference); AGD20K/UMD Affordance datasets (affordance annotations); LIBERO benchmark (manipulation task evaluation); DINOv2/SigLIP visual encoders; SAM2 (segmentation); HuggingFace transformers + accelerate; CLIP/SigLIP (open-vocabulary semantic alignment).
+
+Hard Constraints:
+Compute: ≤200 H100-hours. Strategy: Fine-tune based on 7B VLA, affordance module leveraging pre-trained VLM features (e.g., CLIP/SigLIP) to reduce training requirements. Training ~80 H100-hours, baseline reproduction ~50 H100-hours, ablation ~40 H100-hours, generalization testing ~30 H100-hours.
+Evaluation: Must validate zero-shot generalization on unseen object categories. Must include free-form language instruction tests. Must include ≥4 baselines. Must report both affordance precision and manipulation success rate. Must include ablation studies and cross-object transfer tests.
+
+Exploration Directions: (1) End-to-end activation of VLM internal affordance features: Rather than adding an external affordance detection module to VLA, activate interaction-relevant visual features within VLA's VLM backbone network directly through language instructions. Key insight: Large-scale VLMs (e.g., PaliGemma, SigLIP) have already learned extensive shape-function associations during pre-training ("knives can cut," "bowls can hold"), only requiring suitable activation mechanisms to release this implicit knowledge. (2) Affordance as intermediate reasoning tokens: Rather than explicitly outputting affordance heatmaps, have VLA generate a set of "affordance reasoning tokens" before generating action token sequences (similar to CoA-VLA's chain reasoning but open-vocabulary). These tokens encode interaction possibilities of objects in the current scene, then condition subsequent action generation. Differs from CoA-VLA: not limited to 4 predefined types; reasoning content is dynamically determined by language instructions. (3) Contrastive learning for universal shape-function-interaction mapping: Add contrastive objective during VLA training to pull together different-shaped objects with similar functions (various "tools that can scoop things") in affordance feature space, and push apart similar-shaped objects with different functions (decorative bowl vs. functional bowl). More flexible than CoA-VLA's structured types — any natural language-described interaction can participate in contrasting. (4) Knowledge distillation for zero-shot affordance reasoning: Use large VLMs' (e.g., GPT-4V level) zero-shot affordance reasoning capability ("how can this object be interacted with?") as teacher signals, distilling into small VLA. Large models have rich commonsense knowledge and can generate affordance descriptions for virtually any object, but are too large to deploy directly on robots. (5) Affordance consistency self-supervision: The same object under different language descriptions should have consistent affordance responses ("grab the handle" vs. "pick it up by the stick part" describe the same interaction). Use this consistency as self-supervision signals, reducing dependency on fine-grained affordance annotations.
+
+Avoid:
+- Using predefined fixed affordance types — duplicates CoA-VLA
+- Modular pipeline (affordance detection → planning → control) — duplicates GeneralVLA/VoxPoser, and prevents end-to-end optimization
+- Only doing affordance detection without actions — duplicates OVAL-Prompt
+- Ignoring CoA-VLA baseline — it is the most recent affordance + VLA work; must directly compare
+- Ignoring GeneralVLA — it is the most recent zero-shot affordance manipulation work; must clarify advantages of end-to-end vs. modular
+- Reporting results only on within-training-distribution objects — the core value of open vocabulary is on out-of-distribution objects
+- Over-relying on affordance annotation data — should design methods to reduce annotation requirements
+
+Idea Generation Quality Constraints (Hard rules based on historical cases):
+
+1. No strawman problems: Any claim of "existing methods assume X" or "existing methods fail on Y" must cite specific paragraphs from specific papers as evidence.
+
+2. No pure observation ideas: Output must include a complete method, not merely analysis/benchmark/empirical study.
+
+3. No mediocre methods: Methods must answer:
+   - Core insight: Large-scale VLMs have already implicitly learned rich shape-function association knowledge during pre-training; CoA-VLA released part of it through structured reasoning chains, but is limited by predefined types. We directly activate corresponding affordance features within VLA through open-vocabulary language instructions, fully releasing VLM's implicit shape-function knowledge into action generation.
+   - Why non-obvious: (1) CoA-VLA (December 2024) is the first work integrating affordance chain reasoning into VLA; affordance + VLA itself is a new paradigm; (2) open-vocabulary requires solving the infinite-dimensional affordance space problem — unlike 4 fixed types that can be directly classified; (3) end-to-end training of open-vocabulary affordance requires affordance annotation data, but such data is scarce — needs training strategies that reduce annotation dependency.
+   - What information is exploited: Implicit shape-function association knowledge from VLM pre-training — which neither 2D visual VLAs nor fixed-type affordance methods fully utilize.
+   - Mechanistic argument: When given a free-form language instruction (e.g., "scoop the rice"), the VLM internally already encodes knowledge that "scooping requires a concave container-shaped tool." Through suitable activation mechanisms, this knowledge can be transformed into affordance attention in visual feature space — focusing on regions in the scene with corresponding geometric functional properties, then conditioning action generation. More flexible than CoA-VLA's fixed 4-type reasoning because affordance is dynamically defined by language.
+
+4. No duplicating existing work: Each core technical component must be confirmed with at least 3 different search queries to have no directly related work.
+
+5. No padding experiments:
+   - "Delete experiment test": Keep only the method description — does it teach the reader something non-trivial? Yes — VLM implicit shape-function knowledge can drive VLA action generation through open-vocabulary activation.
+   - "Baseline fear test": If CoA-VLA's 4 structured types already cover most scenarios, is the paper still valuable? Must prove open-vocabulary methods' advantages on free-form instructions and novel interactions.
+   - "Citation test": Will people cite the numbers or the insight 5 years later? The insight — open-vocabulary affordance in end-to-end VLA paradigm.
+
+6. The following method patterns are rejected (unless with extremely strong structural reasons):
+   - "Add module X" — Why this specific structure?
+   - "Train on data Y" — Is data construction itself a contribution?
+   - "Transfer Z from domain A to domain B" — What is the structural analogy?
+   - "Combine P and Q" — Where is the synergy? Combining open-vocabulary detection (OVAL-Prompt) with VLA — must prove end-to-end joint training outperforms simple concatenation.
+   - "Use more/larger/stronger X" — Scale is not a method contribution.
+
+Competition Warning: CoA-VLA (December 2024) is the most recent affordance + VLA — uses structured reasoning chains but not open-vocabulary. GeneralVLA (February 2026) does zero-shot affordance manipulation but is a modular pipeline. OVAL-Prompt (ICRA 2024 Workshop) does open-vocabulary affordance detection but no actions. AffordDP (CVPR 2025) does affordance cross-category transfer but no language. VoxPoser (CoRL 2023) uses LLM to generate 3D affordance maps but is modular. π0 (Physical Intelligence) and RT-2 and other large VLAs may implicitly contain partial affordance knowledge but do not explicitly leverage it. Differentiation core: The only work integrating open-vocabulary affordance reasoning end-to-end into a unified VLA architecture. Highest risk: CoA-VLA is closest in space; if its author team quickly extends to open-vocabulary, differentiation shrinks. Monitor: CoA-VLA author team, GeneralVLA author team, Physical Intelligence (whether π0 follow-ups will integrate affordance).
+
+Tags: direction=open_vocab_affordance_zero_shot_vla, contribution_type=method, sub_direction=unified_affordance_vla_end_to_end, target_venues=["CoRL 2026"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-18?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 3/10)
+{
+  "title": "OVA-VLA: When Does Affordance-Structured Reasoning Outperform Generic Chain-of-Thought for Robust Vision-Language-Action Models?",
+  "core_problem": "Does the CONTENT of intermediate reasoning tokens — specifically affordance-structured descriptions (contact surfaces, grasp strategies, spatial constraints) vs. generic chain-of-thought (plans, sub-tasks, motions) — differentially affect Vision-Language-Action model robustness under distribution shift? DeepThinkVLA shows that SFT-only generic CoT provides virtually no robustness benefit (32pp drop, identical to no-reasoning), raising a critical question: does the gap come from reasoning CONTENT (what is reasoned about) or reasoning OPTIMIZATION (SFT vs. RL)? If affordance-specific content provides robustness benefits even under SFT — because physical interaction descriptions ground the model in object-centric functional properties that transfer across visual perturbations — this would demonstrate that reasoning content independently contributes to robustness, complementary to RL-based causal alignment.",
+  "opportunity": "ECoT demonstrates that generating generic reasoning tokens before actions improves OpenVLA by 28% on standard LIBERO. CoA-VLA shows fixed affordance reasoning (4 types) improves manipulation. DeepThinkVLA achieves 97% on standard LIBERO and 79% on LIBERO-Plus with hybrid attention + SFT→RL — but crucially, its SFT-only variant shows the same robustness collapse as no-reasoning, suggesting that without RL, generic CoT is 'cosmetic reasoning' that doesn't causally connect to task success under shift. Meanwhile, LIBERO-Plus and LIBERO-PRO reveal that ALL current VLA models collapse under modest perturbations (95%→<30%), and models largely IGNORE language instructions — a devastating finding that questions whether text-based reasoning is processed at all. The critical unanswered question: no work has systematically compared whether affordance-specific reasoning content provides unique robustness advantages over generic CoT under controlled distribution shift, nor examined whether affordance descriptions — which reference physical interaction properties that should be perturbation-invariant — resist the 'language ignoring' failure mode that plagues generic CoT.",
+  "landscape": "**Reasoning-augmented VLAs with robustness data:**\n\nDeepThinkVLA (ICLR 2026, arXiv 2511.15669): Hybrid causal-bidirectional attention decoder with SFT→RL pipeline. Achieves 97.0% on LIBERO, 79.0% on LIBERO-Plus (vs. 61.6% baseline). Critical finding: SFT-only CoT shows 32pp robustness drop, identical to no-reasoning — RL is needed for causal alignment. Positions as the current SOTA reasoning-augmented VLA and the upper bound for our study. Our work is complementary: we investigate whether reasoning CONTENT (affordance vs. generic) matters independently of optimization method (SFT vs. RL).\n\nSimpleVLA-RL (ICLR 2026, arXiv 2509.09674): RL framework for VLAs achieving 97.6% on LIBERO-Long. Demonstrates RL's power but does not compare reasoning content types.\n\n**Affordance-based VLA reasoning:**\n\nCoA-VLA (ICCV 2025, arXiv 2412.20451): 4 fixed affordance types via separate co-injection module — effective but vocabulary-limited and architecturally decoupled.\n\nRoboInter (ICLR 2026, arXiv 2602.09973): Serializes subtasks, skills, object boxes, affordance boxes, motion traces as Textual F-CoT with 230K episodes. Affordances are geometric bounding boxes (not semantic), and end-to-end VLA uses diffusion head (not autoregressive). Modular variant outperforms end-to-end.\n\nRT-Affordance (ICRA 2025, arXiv 2411.02704): Visual affordance images in hierarchical pipeline, 50%+ over baselines. Not a unified autoregressive model.\n\nAffordGrasp (arXiv 2503.00778): VLM in-context affordance reasoning for open-vocabulary task-oriented grasping. Demonstrates that VLM-generated affordance descriptions can ground manipulation in cluttered scenes. However, it is a grasping pipeline, not a unified VLA — our work generates affordance reasoning as intermediate tokens within a single autoregressive sequence rather than using a VLM as an external planner.\n\nVLA-R1 (arXiv 2510.01623): Affordance-aligned CoT via GRPO RL, but focuses on RL optimization rather than comparing reasoning content types.\n\nGST-VLA (arXiv 2603.09079): 3D Depth-Aware CoT with structured spatial thoughts including 'grasp affordance contact geometry.' Achieves 96.4% on LIBERO, 80.2% on SimplerEnv. Conceptually close: it generates structured intermediate spatial thoughts. Key differences: (a) GST-VLA's affordances are geometric (3D Gaussian primitives, SE(3) waypoints) rather than semantic language descriptions, (b) it uses fixed structured thought categories (object grounding, contact geometry, metric distances, waypoints) rather than open-vocabulary descriptions, (c) it requires depth input and a specialized Gaussian tokenizer. Our work generates free-form semantic affordance descriptions processable by a standard language model, and systematically compares against generic CoT — something GST-VLA does not do.\n\n**Generic CoT for VLA:**\n\nECoT (arXiv 2407.08693): Free-form reasoning tokens (plans, sub-tasks, motions) autoregressively, 28% over OpenVLA. No robustness evaluation.\n\nCoT-VLA (arXiv 2503.22020): Visual subgoal images as reasoning, 17% real-world improvement.\n\nACoT-VLA (CVPR 2026, arXiv 2601.11404): Coarse action trajectory reasoning in action space.\n\nDualCoT-VLA (arXiv 2603.22280): Parallel visual-linguistic CoT with learnable queries, SOTA on LIBERO and RoboCasa.\n\nFlowVLA (arXiv 2508.18269): Optical flow as Visual CoT for motion reasoning (v_t → f_t → v_{t+1}). Encodes flow fields as RGB-like images through the same VQ tokenizer. Represents a different point on the 'what type of intermediate reasoning helps' spectrum — motion-specific visual reasoning vs. our affordance-specific language reasoning. Our study discusses FlowVLA as a motion-centric reasoning modality, complementary to affordance-centric reasoning.\n\nLaRA-VLA (ICML 2026, arXiv 2602.01166): Internalizes multi-modal CoT into continuous latent representations, reducing inference latency by 90%. If our study finds that reasoning CONTENT doesn't matter (affordance ≈ generic), this supports LaRA-VLA's approach of abstracting away explicit reasoning into latent space.\n\n**Robustness benchmarks:**\n\nLIBERO-Plus (CVPR 2026, arXiv 2510.13626): 7 perturbation dimensions (object layout, camera, robot state, language, lighting, texture, noise). Models drop from 95% to <30% under modest perturbations. Critically reveals models are 'largely insensitive to language variations' — they ignore instructions.\n\nLIBERO-PRO (arXiv 2510.03827): 4 perturbation dimensions (manipulated objects, initial states, instructions, environments). Models collapse to 0% under generalized evaluation.\n\n**Open-vocabulary affordance data:**\n\nGLOVER++ (arXiv 2505.11865): HOVA-500K dataset (500K images, 1726 objects, 675 actions). Availability unclear.\n\nAffogato (arXiv 2506.12009): 150K 3D objects with open-vocabulary affordance annotations (>450 object classes, >350 affordance types), publicly available on HuggingFace. We use this as affordance vocabulary pre-training data.\n\nAffordance-R1 (AAAI 2026, arXiv 2508.06206): GRPO for affordance reasoning in MLLMs.\n\n**The specific gap:** No existing work (a) systematically compares affordance-structured vs. generic CoT reasoning under controlled distribution shift (LIBERO-Plus/PRO), (b) tests whether affordance-specific content provides robustness advantages independent of training objective (addressing DeepThinkVLA's finding that SFT-only generic CoT doesn't help robustness), (c) examines whether affordance descriptions resist the 'language ignoring' failure mode identified by LIBERO-Plus, or (d) provides a task-type taxonomy of when reasoning content matters. DeepThinkVLA compares SFT vs. RL but only uses generic CoT. GST-VLA uses geometric affordance thoughts but doesn't compare against generic alternatives. We fill this gap with a controlled study.",
+  "approach": "We propose OVA-VLA, a systematic study of whether affordance-structured intermediate reasoning provides measurable robustness advantages over generic chain-of-thought in autoregressive VLAs, evaluated primarily on distribution-shift benchmarks where differences between reasoning types are detectable.\n\n**Backbone and conditions:** Built on Qwen2.5-VL-3B (following NORA's validated architecture), all conditions share the same backbone, LoRA configuration, training data, and compute budget:\n(A) No reasoning → action tokens (baseline)\n(B) Generic CoT → action tokens (ECoT-style: plans, sub-tasks, motion descriptions, spatial grounding)\n(C) Fixed 4-type affordance → action tokens (CoA-VLA-style: object, grasp, spatial, movement affordances)\n(D) Open-vocabulary semantic affordance → action tokens (OVA-VLA: free-form affordance descriptions covering contact regions, grasp strategies, spatial constraints, functional properties, manipulation modes)\n\n**Annotation pipeline (API-based, scaled up):** We generate open-vocabulary affordance descriptions for ~60K trajectories from RoboInter-Data (up from 20K) using the Qwen2.5-VL-72B API. Descriptions are conditioned on BOTH RGB frames AND RoboInter-Data's existing affordance box coordinates and contact point annotations, providing physical grounding. We validate descriptions against trajectory kinematics (grasp type must match gripper trajectory). Estimated API cost: ~$300-450. For conditions (B) and (C), we generate equivalent-length generic CoT and fixed-type affordance annotations from the same trajectories using the same API, ensuring annotation quality parity.\n\n**Affordance vocabulary pre-training:** Before trajectory-grounded fine-tuning, we pre-train the model's affordance reasoning capability using Affogato's publicly available 150K open-vocabulary affordance annotations (>450 object classes, >350 affordance types, available on HuggingFace). This stage trains the model to generate diverse affordance descriptions from visual inputs, building a rich affordance vocabulary that the subsequent trajectory-grounded stage can leverage. This addresses the annotation scale concern: 60K trajectory-grounded annotations are augmented by 150K perception-level affordance annotations.\n\n**Training with affordance token curriculum:** LoRA fine-tuning generates [INSTRUCTION] → [REASONING] → [ACTION TOKENS]. For condition (D), we use a three-stage curriculum: (1) structured affordance tokens mimicking CoA-VLA's 4-type format, bootstrapped from RoboInter-Data affordance boxes, (2) semi-structured tokens expanding to 8-10 affordance dimensions, (3) fully open-vocabulary free-form descriptions. Conditions (B) and (C) receive equivalent-length reasoning tokens to control for reasoning token count.\n\n**Primary evaluation on robustness benchmarks:** We explicitly avoid standard LIBERO (nearly saturated at 97%+) as the primary evaluation. Instead:\n- LIBERO-Plus (CVPR 2026): 7 perturbation dimensions. We report per-dimension success rates, identifying which perturbation types affordance reasoning resists best (hypothesis: object layout and camera perturbations, where affordance descriptions reference perturbation-invariant functional properties).\n- LIBERO-PRO: 4 perturbation dimensions. We focus on the 'manipulated objects' dimension (where affordance-based functional descriptions should transfer to novel objects with similar interaction properties) and 'task instructions' dimension (where affordance descriptions provide instruction-independent physical grounding).\n- Standard LIBERO: Reported for comparison with prior work (ECoT, DeepThinkVLA, DualCoT-VLA) but NOT the primary evaluation.\n- SimplerEnv: Cross-embodiment evaluation with specific task selection targeting manipulation mode diversity (push, pull, grasp, precise placement).\n\n**Operationalized hypotheses with concrete test splits:**\n- H1 (Novel object robustness): Under LIBERO-PRO's 'manipulated objects' perturbation, condition (D) outperforms (B) by ≥5% because affordance descriptions reference functional properties (handle graspability, surface flatness) that transfer to novel objects, while generic CoT references object-specific plans that break. We further stratify by affordance similarity: replacement objects sharing the same affordance type (e.g., mug→pitcher, both handle-graspable) vs. different affordance type (e.g., mug→plate).\n- H2 (Compositional instruction robustness): On LIBERO-Long (10-step tasks), condition (D) shows smaller per-step success degradation than (B) because affordance descriptions decompose multi-step tasks into physical interaction primitives that sequence more reliably. We measure per-step success conditioned on reasoning type and analyze where in the step sequence affordance reasoning provides the largest advantage.\n- H3 (Language grounding): Under LIBERO-Plus's 'language instruction' perturbation, condition (D) shows less performance variance than (B) because affordance descriptions provide instruction-independent physical grounding — even if the instruction is perturbed, the correct grasp strategy remains in the reasoning. This tests whether affordance reasoning addresses LIBERO-Plus's finding that models ignore language.\n- H4 (Visual perturbation resistance): Under LIBERO-Plus's camera viewpoint and lighting perturbations, affordance reasoning provides advantages because functional descriptions (contact surface, approach direction) are partially viewpoint-invariant, while generic CoT that references visual features degrades.\n\n**Contingency plan — the paper's contribution under all outcomes:**\n\nScenario A (Affordance >> Generic, ≥5% on robustness benchmarks): Standard method contribution plus taxonomy of task characteristics where affordance reasoning uniquely helps. Strongest paper.\n\nScenario B (Affordance > Generic, modest 2-5% gains or mixed across perturbation types): Primary contribution becomes the ANALYSIS FRAMEWORK: (a) task-type taxonomy classifying each LIBERO task by affordance complexity (contact diversity, spatial constraint difficulty, manipulation mode) and correlating with per-task reasoning advantage; (b) attention visualization showing that affordance tokens attend to task-relevant object regions (contact surfaces, handles, edges) while generic CoT tokens attend more diffusely — providing interpretability evidence; (c) error mode taxonomy categorizing failures by type (wrong grasp approach, wrong placement, wrong sequence, wrong force) and showing different failure distributions between reasoning types; (d) robustness profiles showing which reasoning type degrades most gracefully under each of LIBERO-Plus's 7 perturbation dimensions.\n\nScenario C (Affordance ≈ Generic across all conditions): Strong negative result contribution: (a) demonstrates that reasoning CONTENT does not matter, only reasoning EXISTENCE — supporting the latent reasoning direction (LaRA-VLA); (b) analysis of whether both affordance and generic reasoning improve equally over no-reasoning, isolating the 'thinking time' hypothesis; (c) examination of whether the 'language ignoring' problem extends to reasoning tokens (models may ignore their own generated reasoning); (d) practical implications for VLA design: if content doesn't matter, practitioners should choose the simplest reasoning format or move to latent reasoning.\n\nThe paper is framed as 'understanding when affordance reasoning matters for VLA robustness' rather than 'proving affordance reasoning is better,' making any outcome publishable.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~150h H100 (LoRA training 3B model: ~15h/run × 4 conditions × 2 seeds = 120h; Affogato pre-training: ~5h; evaluation LIBERO-Plus/PRO + SimplerEnv: ~20h; debugging/iteration: ~5h)",
+      "gpu_utilization": "Low (~30-40%). GPU idle during annotation quality review, result analysis, attention visualization.",
+      "timeline": "8-10 weeks",
+      "team": "1 researcher with VLA experience",
+      "annotation_cost": "$300-450 (Qwen2.5-VL-72B API for 60K trajectories + equivalent generic/fixed-affordance annotations)",
+      "estimated_gpu_cost": "$300-600 (at $2-4/hr H100 rental)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~200h H100 (LoRA training: ~15h/run × 4 conditions × 2 seeds + 2 ablation runs = 150h; Affogato pre-training: ~5h; evaluation LIBERO-Plus/PRO: ~25h; attention analysis: ~10h; hyperparameter search: ~10h)",
+      "gpu_utilization": "Moderate (~60-70%). Agent queues experiments, human reviews attention visualizations and analysis taxonomy.",
+      "timeline": "5-7 weeks",
+      "team": "1 researcher, ~30min/day review",
+      "annotation_cost": "$300-450 (API-based)",
+      "claude_api_cost": "$150-300 (~2000-4000 agent turns)",
+      "estimated_gpu_cost": "$400-800",
+      "risk_note": "Annotation quality validated by cross-checking against RoboInter-Data contact points and gripper trajectories. Human spot-checks 500 samples. Affogato pre-training data quality is externally validated (peer-reviewed dataset)."
+    },
+    "auto_research": {
+      "gpu_hours": "~260h H100 (LoRA training: ~15h/run × 4 conditions × 3 seeds = 180h; Affogato pre-training: ~5h; evaluation LIBERO-Plus/PRO + standard LIBERO + SimplerEnv: ~40h; attention analysis computation: ~15h; automated ablations on curriculum/annotation scale: ~20h)",
+      "gpu_utilization": "High (~85-90%). Agent runs 24/7: queues experiments, performs automated analysis between runs, generates attention visualizations.",
+      "timeline": "10-14 days with 2 H100 GPUs",
+      "team": "0 (3-hour setup: download RoboInter-Data, Affogato dataset, base model, configure API keys, install LIBERO-Plus/PRO)",
+      "annotation_cost": "$300-450 (API-based, runs in parallel with GPU training)",
+      "claude_api_cost": "$300-600 (~4000-8000 agent turns)",
+      "estimated_gpu_cost": "$500-1000",
+      "speed_bottleneck": "Sequential LoRA training runs (4 conditions × 3 seeds = 12 runs). With 2 H100s, two runs overlap (~7-10 days for training). LIBERO-Plus/PRO evaluation is parallelizable across perturbation types.",
+      "risk_note": "Automated affordance quality assessment: trajectory-contact consistency scoring flags descriptions where grasp type contradicts gripper approach vector. Agent iterates annotation prompts based on consistency scores. Affogato pre-training provides fallback if API-generated annotations are low quality."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (abstract deadline July 21, paper deadline July 28, 2026; ~9 weeks from today; primary target; feasible with auto-research timeline of 10-14 days + 7 weeks for writing, analysis, and supplementary experiments)",
+    "ICLR 2027 (expected deadline Sep-Oct 2026; ~4-5 months; comfortable backup; allows additional ablations, RL extension experiments, and potential real-robot validation)",
+    "CoRL 2026 (abstract deadline May 26, paper deadline May 29, 2026; INFEASIBLE — 8-11 days from today; acknowledged explicitly per reviewer and user request)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "DeepThinkVLA: Enhancing Reasoning Capability of VLA Models (ICLR 2026, arXiv 2511.15669) — SOTA reasoning VLA, 97% LIBERO / 79% LIBERO-Plus, SFT→RL; shows SFT-only CoT has no robustness benefit",
+    "CoA-VLA: Visual-Textual Chain-of-Affordance for VLA Models (ICCV 2025, arXiv 2412.20451) — fixed 4-type affordance reasoning baseline",
+    "RoboInter: Holistic Intermediate Representation Suite (ICLR 2026, arXiv 2602.09973) — 230K episodes, geometric affordance boxes, data source",
+    "ECoT: Robotic Control via Embodied Chain-of-Thought Reasoning (arXiv 2407.08693) — generic CoT baseline, 28% improvement over OpenVLA",
+    "FlowVLA: Visual CoT-based Motion Reasoning for VLA Models (arXiv 2508.18269) — optical flow as motion-specific visual CoT",
+    "LIBERO-Plus: In-depth Robustness Analysis of VLA Models (CVPR 2026, arXiv 2510.13626) — 7-dimension robustness benchmark, primary evaluation",
+    "LIBERO-PRO: Robust and Fair Evaluation Beyond Memorization (arXiv 2510.03827) — 4-dimension robustness benchmark, models collapse to 0%",
+    "SimpleVLA-RL: Scaling VLA Training via RL (ICLR 2026, arXiv 2509.09674) — RL for VLAs, 97.6% LIBERO-Long",
+    "LaRA-VLA: Latent Reasoning for VLA Models (ICML 2026, arXiv 2602.01166) — latent CoT, 90% latency reduction",
+    "AffordGrasp: In-Context Affordance Reasoning for Open-Vocabulary Grasping (arXiv 2503.00778) — VLM affordance reasoning for manipulation",
+    "GST-VLA: Gaussian Spatial Tokens for 3D Depth-Aware VLA (arXiv 2603.09079) — geometric affordance thoughts, 96.4% LIBERO",
+    "DualCoT-VLA: Visual-Linguistic CoT via Parallel Reasoning (arXiv 2603.22280) — parallel visual-linguistic reasoning",
+    "RT-Affordance: Affordances as Versatile Intermediate Representations (ICRA 2025, arXiv 2411.02704)",
+    "Affogato: Open-Vocabulary Affordance Grounding at Scale (arXiv 2506.12009) — 150K annotations, pre-training data source",
+    "GLOVER++: Open-Vocabulary Affordance with HOVA-500K (arXiv 2505.11865)",
+    "Affordance-R1: RL for Affordance Reasoning in MLLMs (AAAI 2026, arXiv 2508.06206)",
+    "ACoT-VLA: Action Chain-of-Thought for VLA Models (CVPR 2026, arXiv 2601.11404)",
+    "CoT-VLA: Visual Chain-of-Thought Reasoning for VLA Models (arXiv 2503.22020)",
+    "RoboBrain: Unified Brain Model for Robotic Manipulation (CVPR 2025, arXiv 2502.21257)",
+    "NORA: Small Open-Sourced Generalist VLA Model (arXiv 2504.19854) — backbone architecture reference",
+    "VLA-R1: Enhancing Reasoning in VLA Models (arXiv 2510.01623)",
+    "Context-Dependent Affordance Computation in VLMs (arXiv 2603.04419)",
+    "LITEN: Learning Affordances at Inference-Time (arXiv 2510.19752)",
+    "VLA Survey: An Action Tokenization Perspective (arXiv 2507.01925)"
+  ],
+  "description": "We propose OVA-VLA, a systematic controlled study of whether affordance-structured intermediate reasoning provides measurable robustness advantages over generic chain-of-thought reasoning in autoregressive Vision-Language-Action models under distribution shift. Motivated by DeepThinkVLA's finding that SFT-only generic CoT provides no robustness benefit (32pp drop, identical to no-reasoning), we ask: does the gap come from reasoning CONTENT or reasoning OPTIMIZATION? We evaluate four conditions — no reasoning, generic CoT, fixed 4-type affordance, and open-vocabulary semantic affordance — all on the same Qwen2.5-VL-3B backbone with LoRA, same 60K RoboInter-Data trajectories, and same compute budget. Unlike prior work evaluated on nearly-saturated standard LIBERO (97%+), we use LIBERO-Plus (7 perturbation dimensions) and LIBERO-PRO (4 perturbation dimensions) as primary benchmarks where differences between reasoning types are detectable. We enrich the model's affordance vocabulary by pre-training on Affogato's publicly available 150K open-vocabulary affordance annotations before trajectory-grounded fine-tuning. Operationalized hypotheses target specific perturbation dimensions: novel object robustness (LIBERO-PRO manipulated objects), compositional instruction following (LIBERO-Long multi-step tasks), language grounding (LIBERO-Plus language perturbation), and visual perturbation resistance (LIBERO-Plus camera/lighting). The paper is framed as 'understanding when affordance reasoning matters' rather than 'proving it is better,' with a three-scenario contingency plan ensuring publishable contributions under any empirical outcome: if affordance reasoning wins, the contribution is the method + task taxonomy; if results are mixed, the contribution is the per-perturbation-type analysis framework and error mode taxonomy; if negative, the contribution is a strong negative result supporting latent reasoning approaches. Includes attention visualization analysis and per-task affordance complexity correlation. Total compute: ≤260 H100-hours; annotation cost: ~$300-450 via API.",
+  "project_name": "open_vocab_afford_vla",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["COMPUTE CONSTRAINT VIOLATION: User specified ≤200 H100-hours, but all three modes exceed this (400-900 A100-hours ≈ 300-700 H100-hours). The entire resource estimate must be redesigned to fit within budget.", "VENUE MISMATCH: User explicitly requested CoRL 2026 (deadline May 28, 2026, 10 days away). Generator silently changed to ICLR/AAAI/CVPR 2027 without acknowledging the original target is infeasible. Must address this trade-off explicitly.", "MISSING CRITICAL REFERENCE — RoboInter (ICLR 2026, arXiv 2602.09973): Serializes intermediate representations including affordance boxes into autoregressive text tokens ('Textual F-CoT') for end-to-end VLA. Supports both modular and end-to-end variants. 230K episodes with affordance annotations. This directly challenges the claimed gap and must be discussed as the closest competing system.", "MISSING REFERENCE — RT-Affordance (Google DeepMind, arXiv 2411.02704): Uses affordances as intermediate representations for robot manipulation policy learning with language conditioning. Hierarchical but language-conditioned affordance-to-action pipeline. Exceeds baselines by 50%+.", "MISSING REFERENCE — RoboBrain (CVPR 2025): Unified brain model combining planning, affordance perception, and trajectory prediction. Uses the same ShareRobot dataset the generator proposes to use. Must be discussed as a baseline.", "MISSING REFERENCE — GLOVER++ (arXiv 2505.11865, May 2025): Open-vocabulary affordance reasoning with HOVA-500K dataset (500K images, 1726 object categories, 675 actions). Directly relevant to the open-vocabulary affordance dimension.", "MISSING REFERENCE — Affordance-R1 (AAAI 2026, arXiv 2508.06206): RL-based (GRPO) affordance reasoning in MLLMs with chain-of-thought. Zero-shot generalization and emergent reasoning. Closely related to VLA-R1 and must be discussed.", "MISSING REFERENCE — DualCoT-VLA (arXiv 2603.22280, March 2026): Parallel visual-linguistic CoT for VLA. SOTA on LIBERO and RoboCasa. Represents the latest in reasoning-augmented VLA.", "MISSING REFERENCE — LITEN (arXiv 2510.19752): Inference-time affordance learning for VLAs without additional training. Challenges the assumption that training-time affordance integration is necessary.", "UNCLEAR VALUE PROPOSITION vs. ECoT: ECoT already generates free-form reasoning tokens (plans, sub-tasks, motions, visual grounding) autoregressively before actions, achieving 28% improvement over OpenVLA. The proposal must rigorously argue why affordance-specific reasoning tokens outperform ECoT's general reasoning tokens — this is the central empirical question and the paper's survival depends on it.", "ANNOTATION QUALITY RISK: The entire approach depends on VLM-generated affordance descriptions for robot trajectories. VLMs like Qwen2.5-VL-72B have limited understanding of physical contact, force, and kinematic constraints. There is no validation strategy proposed for annotation quality beyond vague 'consistency checks.'", "INCREMENTAL OVER CoA-VLA + ECoT COMBINATION: The work essentially applies the ECoT autoregressive reasoning pattern to CoA-VLA's affordance concept, making it open-vocabulary. This is a natural combination that any strong researcher in this space would pursue. The 'curriculum from structured to open-vocabulary' is the most novel training contribution but may be insufficient alone."]
+Feedback: The core direction has potential but requires significant revision across multiple dimensions:
+
+1. **Compute redesign (critical)**: Redesign the approach to fit within ≤200 H100-hours. Consider: (a) smaller VLM backbone (3B instead of 7B), (b) smaller annotation dataset (~20K instead of 50K), (c) use API-based annotation (Qwen2.5-VL-72B via API is cheaper than self-hosting on 4xA100), (d) fewer ablations.
+
+2. **Address venue explicitly**: Acknowledge CoRL 2026 is infeasible (10 days to deadline). Propose AAAI 2027 (July 28 deadline, ~10 weeks) as primary target with explicit timeline.
+
+3. **Differentiate from ECoT rigorously**: The make-or-break argument is why affordance-specific reasoning tokens outperform ECoT's general reasoning tokens. Propose a direct ECoT vs. OVA-VLA comparison as the central experiment. Hypothesize specific scenarios (novel object generalization, cross-embodiment transfer, compositional instructions) where affordance-structured reasoning should uniquely help.
+
+4. **Incorporate missed references**: Discuss RoboInter (ICLR 2026) as the most direct competitor — it already includes affordance in end-to-end VLA intermediate representations. Argue why open-vocabulary natural language affordance tokens are superior to RoboInter's affordance box representations. Add RT-Affordance, RoboBrain, GLOVER++, Affordance-R1, DualCoT-VLA to the landscape.
+
+5. **Strengthen annotation pipeline**: Address the VLM annotation quality concern. Consider: (a) using Affogato (arXiv 2506.12009) which provides 150K open-vocabulary affordance annotations, (b) adding human validation on a subset, (c) using trajectory contact points as physical grounding signals to verify VLM-generated affordance descriptions.
+
+6. **Sharpen the novelty claim**: The current framing ('first to combine open-vocab affordance + autoregressive VLA') is close to being challenged by RoboInter. Reframe around: (a) the curriculum training strategy as a technical contribution, (b) the specific mechanism by which affordance-structured reasoning improves action generation (not just any reasoning), (c) empirical demonstration on free-form instructions where fixed taxonomies provably fail.
+
+### Round 2 review
+Verdict: revise
+Issues: ["CORE RISK — EMPIRICAL HYPOTHESIS MAY FAIL: The entire paper bets on affordance-structured reasoning outperforming generic CoT on specific axes (novel objects, compositional instructions, force-sensitive tasks). But DeepThinkVLA (ICLR 2026) achieves 97% on LIBERO with generic CoT + RL, and LIBERO-Plus/PRO show that even SOTA models collapse under distribution shift. If affordance tokens don't significantly outperform ECoT-style reasoning, the paper has no central contribution. The proposal needs a contingency: what is the paper's contribution if the hypothesis is only partially supported?", "ANNOTATION SCALE CONCERN: 20K trajectories with API-generated affordance descriptions is modest compared to RoboInter-Data (230K episodes with affordance boxes) and HOVA-500K (500K images with open-vocabulary affordance annotations). The paper should either (a) use HOVA-500K/Affogato annotations to augment training or (b) convincingly argue why 20K is sufficient. The current annotation pipeline generates descriptions for existing RoboInter-Data trajectories but does not leverage the much larger open-vocabulary affordance datasets (GLOVER++, Affogato) that could strengthen the open-vocabulary signal.", "BENCHMARK SATURATION: LIBERO is nearly saturated (97%+ success for DeepThinkVLA, OpenVLA-OFT). Using standard LIBERO suites may not differentiate affordance vs. generic reasoning. The proposal should explicitly use LIBERO-Plus or LIBERO-PRO (robustness variants with distribution shifts) where differences between reasoning types would be more apparent. SimplerEnv is a better differentiator but needs specific task selection targeting the hypothesized affordance advantages.", "MISSING COMPETITOR — FlowVLA (arXiv 2508.18269): Uses optical flow as visual CoT for motion reasoning before action generation. This is another form of structured intermediate reasoning (motion-specific rather than affordance-specific) that the comparison study should include or discuss. It directly addresses the 'what type of intermediate reasoning helps VLAs' question.", "MISSING COMPETITOR — DeepThinkVLA (ICLR 2026): Achieves 97% on LIBERO with hybrid causal-bidirectional attention and SFT→RL training. This is the current SOTA reasoning-augmented VLA and should be discussed as an upper bound. Its RL-based reasoning refinement contrasts with OVA-VLA's purely supervised approach.", "MISSING COMPETITOR — AffordGrasp (arXiv 2503.00778): Uses VLM in-context affordance reasoning for open-vocabulary task-oriented grasping. While it's a grasping system rather than a full VLA, it demonstrates open-vocabulary affordance reasoning grounded in language for manipulation — the paper should discuss how OVA-VLA's approach differs.", "VENUE CONCERN — CoRL 2026 IS INFEASIBLE BUT USER REQUESTED IT: The user explicitly asked for a CoRL 2026 submission. CoRL deadline is May 28, 2026 (10 days from today). The generator correctly identifies AAAI 2027 as the primary target but should more prominently acknowledge the CoRL infeasibility since it was the user's original request.", "WEAK CONTINGENCY FOR NEGATIVE RESULTS: If affordance-specific reasoning shows only marginal improvements over generic CoT (e.g., 2-3% on average), the paper needs a strong secondary contribution. The curriculum training strategy alone is insufficient. Consider: (a) a detailed analysis taxonomy of when/why affordance reasoning helps or hurts, (b) attention visualization showing qualitatively different grounding patterns, (c) error taxonomy showing different failure modes between reasoning types.", "GST-VLA OVERLAP: GST-VLA (arXiv 2603.09079) introduces 3D Depth-Aware Chain-of-Thought with structured spatial thoughts including 'grasp affordance contact geometry.' While it uses geometric rather than semantic affordance tokens, the conceptual overlap is significant and the paper should position against it."]
+Feedback: The revision addressed the Round 1 issues well — compute is now realistic, RoboInter/RT-Affordance/GLOVER++ are incorporated, and the framing is more honest as a systematic comparison study. Key improvements needed:
+
+1. **Strengthen the contingency plan**: The paper lives or dies on the empirical comparison. If affordance reasoning shows only marginal gains over generic CoT, you need a strong analytical contribution: (a) a taxonomy of task characteristics where affordance reasoning helps/hurts, (b) attention analysis showing grounding differences, (c) error mode analysis. Frame the paper as 'understanding when affordance reasoning matters' rather than 'proving affordance reasoning is better.'
+
+2. **Use robustness benchmarks**: Replace or supplement standard LIBERO with LIBERO-Plus/PRO. Standard LIBERO is nearly saturated — differences between reasoning types will be noise. The affordance hypothesis should be strongest under distribution shift (novel objects, perturbed scenes), which robustness benchmarks explicitly test.
+
+3. **Leverage existing large-scale affordance data**: 20K API-generated descriptions is too small. Use HOVA-500K (500K images, 675 actions, open-vocabulary) or Affogato (150K open-vocabulary annotations with 3D heatmaps) as additional pre-training or alignment data. This also reduces reliance on API-generated annotations whose quality is unverified.
+
+4. **Add FlowVLA and DeepThinkVLA to the comparison landscape**: FlowVLA (motion-specific reasoning) and DeepThinkVLA (RL-refined generic reasoning) represent different points on the 'what type of intermediate reasoning helps' spectrum. Even if not reproduced as baselines, they must be discussed.
+
+5. **Sharpen the hypothesis operationalization**: 'Novel objects with familiar affordances' is vague. Define specific held-out test splits: e.g., train on mugs/bowls/spoons, test on ladles/pitchers/tongs where shape-function transfer is non-trivial. Define specific compositional instructions that require affordance chaining. Define what 'force/compliance reasoning' means concretely in LIBERO/SimplerEnv tasks.
+
+6. **Acknowledge CoRL 2026 infeasibility upfront**: Since the user asked for CoRL 2026, explicitly state this is infeasible (10 days to deadline) and present AAAI 2027 as the revised target with CoRL 2027 as a fallback if real-robot experiments are added.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "3b0ac660-c69c-40e8-a93b-4c0721e7702c",
+  "type": "user",
+  "uuid": "0670a8e2-0dfc-4efe-8d3d-bb650b5660b0",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-18T19:35:48.786Z_
+
+```json
+{
+  "parentUuid": "0670a8e2-0dfc-4efe-8d3d-bb650b5660b0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "c9788e3d-09ac-4f2b-81ca-6a04169c1431",
+  "timestamp": "2026-05-18T19:35:48.786Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-18T19:35:48.786Z_
+
+```json
+{
+  "parentUuid": "c9788e3d-09ac-4f2b-81ca-6a04169c1431",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "e5acbe89-3662-4a3a-9ae0-eddc15623df0",
+  "timestamp": "2026-05-18T19:35:48.786Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e5acbe89-3662-4a3a-9ae0-eddc15623df0",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compare affordance vs generic reasoning for VLA robustness",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-18T19:35:53.779Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea as a strict ML research reviewer. I need to independently verify the claims, check for missing competitors, assess feasibility, and provide an honest evaluation. This is round 3 of 10, so I should be thorough.
+
+Let me start by searching for the key claims and checking for competing work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5acbe89-3662-4a3a-9ae0-eddc15623df0",
+  "isSidechain": false,
+  "requestId": "req_011CbAbY4zCuXdWocVGyeL3r",
+  "type": "assistant",
+  "uuid": "381c5765-d777-4fd2-803e-2f1383cddd52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U5pG3cxqWhvFqwWgHU42J7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22269,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 377,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22269,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 377,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 22269,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22269
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-18T19:35:54.317Z_
+
+I'll conduct a thorough independent review of this round 3 submission. Let me verify the key claims, check for missing competitors, and assess feasibility.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "381c5765-d777-4fd2-803e-2f1383cddd52",
+  "isSidechain": false,
+  "requestId": "req_011CbAbY4zCuXdWocVGyeL3r",
+  "type": "assistant",
+  "uuid": "ccd1ebaf-b209-4e97-95b2-5dca0e2b4882",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U5pG3cxqWhvFqwWgHU42J7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22269,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 377,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22269,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 377,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 22269,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22269
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-18T19:35:58.163Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01McEFL76XkaXwSdkB2DuKs9`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify DeepThinkVLA claims",
+  "prompt": "Search the web thoroughly for \"DeepThinkVLA\" (arXiv 2511.15669). I need to verify these specific claims:\n1. It achieves 97% on LIBERO and 79% on LIBERO-Plus\n2. It uses hybrid causal-bidirectional attention with SFT→RL pipeline\n3. Its SFT-only variant shows 32pp robustness drop identical to no-reasoning\n4. It was accepted at ICLR 2026\n\nUse WebSearch to find information, then use WebFetch on the arXiv page to read the abstract and key details. Report back with what you find, including any discrepancies with these claims. Be precise about numbers."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ccd1ebaf-b209-4e97-95b2-5dca0e2b4882",
+  "isSidechain": false,
+  "requestId": "req_011CbAbY4zCuXdWocVGyeL3r",
+  "type": "assistant",
+  "uuid": "0b987dab-a40c-4a04-b9a1-fd2b27ca70fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U5pG3cxqWhvFqwWgHU42J7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22269,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 377,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22269,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 377,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 22269,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22269
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T19:38:40.950Z_
+
+<details><summary>↩ Tool result · `toolu_01McEFL76XkaXwSdkB2DuKs9`</summary>
+
+```text
+I now have comprehensive information to provide a thorough report. Here is my analysis of the four claims:
+
+---
+
+## DeepThinkVLA (arXiv 2511.15669) -- Claim Verification Report
+
+**Paper:** "DeepThinkVLA: Enhancing Reasoning Capability of Vision-Language-Action Models" by Cheng Yin, Yankai Lin, Wang Xu, Sikyuen Tam, Xiangrui Zeng, Zhiyuan Liu, Zhouping Yin. arXiv:2511.15669v2 (updated April 20, 2026).
+
+---
+
+### Claim 1: "It achieves 97% on LIBERO and 79% on LIBERO-Plus"
+
+**MOSTLY CORRECT.**
+
+- **LIBERO: 97.0%** -- Confirmed. The paper reports a 97.0% average success rate across the four LIBERO suites (Object 99.0, Spatial 96.6, Goal 96.4, Long 96.2).
+- **LIBERO-Plus: 79.0%** -- Confirmed. Table 3 of the paper reports 79.0% overall on the LIBERO-Plus robustness benchmark.
+
+Note: One earlier search result referenced 77.0% on LIBERO-Plus and 94.9% on LIBERO; these appear to be numbers from a different evaluation protocol or an earlier version (v1). The v2 paper clearly states 97.0% and 79.0%.
+
+---
+
+### Claim 2: "It uses hybrid causal-bidirectional attention with SFT then RL pipeline"
+
+**ESSENTIALLY CORRECT, with a minor naming nuance.**
+
+- The paper describes a **"hybrid-attention decoder"** (not literally "hybrid causal-bidirectional attention") that "generates CoT with causal attention and then switches to bidirectional attention for parallel action decoding."
+- The **two-stage training pipeline** of **SFT followed by RL** (with sparse task-success rewards) is confirmed exactly.
+
+The substance is accurate -- the mechanism does pair causal attention (for language/reasoning tokens) with bidirectional attention (for action tokens). "Hybrid causal-bidirectional attention" is a reasonable shorthand, though the paper's own terminology is "hybrid-attention decoder."
+
+---
+
+### Claim 3: "Its SFT-only variant shows 32pp robustness drop identical to no-reasoning"
+
+**PARTIALLY CORRECT -- the numbers are right but "identical" is overstated.**
+
+The paper states:
+
+> "SFT-only suffers a 32.0 pp drop under Joint-Limit dynamics -- **nearly identical** to the reasoning-free pi-0-FAST (31.6 pp)."
+
+Key details:
+- SFT-only robustness drop: **32.0 percentage points**
+- No-reasoning baseline (pi-0-FAST) drop: **31.6 percentage points**
+- The paper characterizes these as **"nearly identical"**, not "identical." The 0.4pp difference is small but the authors were precise in their language.
+
+So the claim that the drop is "32pp" is correct, but calling it "identical" to no-reasoning is a slight overstatement -- the paper says "nearly identical" (32.0 vs 31.6 pp).
+
+---
+
+### Claim 4: "It was accepted at ICLR 2026"
+
+**UNCONFIRMED -- likely false or at minimum not verifiable.**
+
+Evidence gathered:
+- The paper was **submitted** to ICLR 2026 (OpenReview forum ID: kCrE9uvxlo, submitted September 20, 2025, modified February 11, 2026).
+- The OpenReview page shows **no decision** (no acceptance, rejection, poster/spotlight/oral designation).
+- The paper does **not** appear in any ICLR 2026 accepted paper lists I could find (Paper Copilot, Paper Digest highlights, papers.cool top papers, ICLR virtual schedule).
+- The arXiv page (v2, April 20, 2026) is formatted as an **arXiv preprint** with no conference acceptance header.
+- A site-specific search of iclr.cc returned no results for DeepThinkVLA.
+
+Given that ICLR 2026 decisions have been announced and the conference schedule is live (the conference appears to be happening in Rio de Janeiro), the absence of DeepThinkVLA from all acceptance lists and the conference schedule, combined with no decision on OpenReview, strongly suggests this paper was **not accepted at ICLR 2026**, or at minimum there is no public evidence of acceptance.
+
+---
+
+### Summary Table
+
+| Claim | Verdict | Detail |
+|-------|---------|--------|
+| 97% LIBERO, 79% LIBERO-Plus | Correct | 97.0% and 79.0% confirmed |
+| Hybrid causal-bidirectional + SFT->RL | Essentially correct | Paper says "hybrid-attention decoder"; SFT->RL confirmed exactly |
+| SFT-only: 32pp drop identical to no-reasoning | Partially correct | 32.0pp confirmed; but "nearly identical" to 31.6pp, not "identical" |
+| Accepted at ICLR 2026 | Unconfirmed / likely false | Submitted but no evidence of acceptance found |
+
+Sources:
+- [arXiv abstract page](https://arxiv.org/abs/2511.15669)
+- [arXiv HTML v2](https://arxiv.org/html/2511.15669v2)
+- [OpenReview submission](https://openreview.net/forum?id=kCrE9uvxlo)
+- [GitHub (OpenBMB)](https://github.com/OpenBMB/DeepThinkVLA)
+- [ICLR 2026 Papers](https://iclr.cc/virtual/2026/papers.html)
+- [Paper Copilot ICLR 2026 list](https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/)
+- [Paper Digest ICLR 2026 highlights](https://www.paperdigest.org/2026/02/iclr-2026-papers-highlights/)
+
+agentId: a0be5f06d7e1a8c05 (use SendMessage with to: 'a0be5f06d7e1a8c05' to continue this agent)
+&lt;usage>total_tokens: 25653
+tool_uses: 25
+duration_ms: 162780&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0b987dab-a40c-4a04-b9a1-fd2b27ca70fe",
+  "isSidechain": false,
+  "promptId": "3b0ac660-c69c-40e8-a93b-4c0721e7702c",
+  "type": "user",
+  "uuid": "13e5719c-7315-469c-8e90-8edec2fb03f3",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web thoroughly for \"DeepThinkVLA\" (arXiv 2511.15669). I need to verify these specific claims:\n1. It achieves 97% on LIBERO and 79% on LIBERO-Plus\n2. It uses hybrid causal-bidirectional attention with SFT→RL pipeline\n3. Its SFT-only variant shows 32pp robustness drop identical to no-reasoning\n4. It was accepted at ICLR 2026\n\nUse WebSearch to find information, then use WebFetch on the arXiv page to read the abstract and key details. Report back with what you find, including any discrepancies with these claims. Be precise about numbers.",
+    "agentId": "a0be5f06d7e1a8c05",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have comprehensive information to provide a thorough report. Here is my analysis of the four claims:\n\n---\n\n## DeepThinkVLA (arXiv 2511.15669) -- Claim Verification Report\n\n**Paper:** \"DeepThinkVLA: Enhancing Reasoning Capability of Vision-Language-Action Models\" by Cheng Yin, Yankai Lin, Wang Xu, Sikyuen Tam, Xiangrui Zeng, Zhiyuan Liu, Zhouping Yin. arXiv:2511.15669v2 (updated April 20, 2026).\n\n---\n\n### Claim 1: \"It achieves 97% on LIBERO and 79% on LIBERO-Plus\"\n\n**MOSTLY CORRECT.**\n\n- **LIBERO: 97.0%** -- Confirmed. The paper reports a 97.0% average success rate across the four LIBERO suites (Object 99.0, Spatial 96.6, Goal 96.4, Long 96.2).\n- **LIBERO-Plus: 79.0%** -- Confirmed. Table 3 of the paper reports 79.0% overall on the LIBERO-Plus robustness benchmark.\n\nNote: One earlier search result referenced 77.0% on LIBERO-Plus and 94.9% on LIBERO; these appear to be numbers from a different evaluation protocol or an earlier version (v1). The v2 paper clearly states 97.0% and 79.0%.\n\n---\n\n### Claim 2: \"It uses hybrid causal-bidirectional attention with SFT then RL pipeline\"\n\n**ESSENTIALLY CORRECT, with a minor naming nuance.**\n\n- The paper describes a **\"hybrid-attention decoder\"** (not literally \"hybrid causal-bidirectional attention\") that \"generates CoT with causal attention and then switches to bidirectional attention for parallel action decoding.\"\n- The **two-stage training pipeline** of **SFT followed by RL** (with sparse task-success rewards) is confirmed exactly.\n\nThe substance is accurate -- the mechanism does pair causal attention (for language/reasoning tokens) with bidirectional attention (for action tokens). \"Hybrid causal-bidirectional attention\" is a reasonable shorthand, though the paper's own terminology is \"hybrid-attention decoder.\"\n\n---\n\n### Claim 3: \"Its SFT-only variant shows 32pp robustness drop identical to no-reasoning\"\n\n**PARTIALLY CORRECT -- the numbers are right but \"identical\" is overstated.**\n\nThe paper states:\n\n> \"SFT-only suffers a 32.0 pp drop under Joint-Limit dynamics -- **nearly identical** to the reasoning-free pi-0-FAST (31.6 pp).\"\n\nKey details:\n- SFT-only robustness drop: **32.0 percentage points**\n- No-reasoning baseline (pi-0-FAST) drop: **31.6 percentage points**\n- The paper characterizes these as **\"nearly identical\"**, not \"identical.\" The 0.4pp difference is small but the authors were precise in their language.\n\nSo the claim that the drop is \"32pp\" is correct, but calling it \"identical\" to no-reasoning is a slight overstatement -- the paper says \"nearly identical\" (32.0 vs 31.6 pp).\n\n---\n\n### Claim 4: \"It was accepted at ICLR 2026\"\n\n**UNCONFIRMED -- likely false or at minimum not verifiable.**\n\nEvidence gathered:\n- The paper was **submitted** to ICLR 2026 (OpenReview forum ID: kCrE9uvxlo, submitted September 20, 2025, modified February 11, 2026).\n- The OpenReview page shows **no decision** (no acceptance, rejection, poster/spotlight/oral designation).\n- The paper does **not** appear in any ICLR 2026 accepted paper lists I could find (Paper Copilot, Paper Digest highlights, papers.cool top papers, ICLR virtual schedule).\n- The arXiv page (v2, April 20, 2026) is formatted as an **arXiv preprint** with no conference acceptance header.\n- A site-specific search of iclr.cc returned no results for DeepThinkVLA.\n\nGiven that ICLR 2026 decisions have been announced and the conference schedule is live (the conference appears to be happening in Rio de Janeiro), the absence of DeepThinkVLA from all acceptance lists and the conference schedule, combined with no decision on OpenReview, strongly suggests this paper was **not accepted at ICLR 2026**, or at minimum there is no public evidence of acceptance.\n\n---\n\n### Summary Table\n\n| Claim | Verdict | Detail |\n|-------|---------|--------|\n| 97% LIBERO, 79% LIBERO-Plus | Correct | 97.0% and 79.0% confirmed |\n| Hybrid causal-bidirectional + SFT->RL | Essentially correct | Paper says \"hybrid-attention decoder\"; SFT->RL confirmed exactly |\n| SFT-only: 32pp drop identical to no-reasoning | Partially correct | 32.0pp confirmed; but \"nearly identical\" to 31.6pp, not \"identical\" |\n| Accepted at ICLR 2026 | Unconfirmed / likely false | Submitted but no evidence of acceptance found |\n\nSources:\n- [arXiv abstract page](https://arxiv.org/abs/2511.15669)\n- [arXiv HTML v2](https://arxiv.org/html/2511.15669v2)\n- [OpenReview submission](https://openreview.net/forum?id=kCrE9uvxlo)\n- [GitHub (OpenBMB)](https://github.com/OpenBMB/DeepThinkVLA)\n- [ICLR 2026 Papers](https://iclr.cc/virtual/2026/papers.html)\n- [Paper Copilot ICLR 2026 list](https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/)\n- [Paper Digest ICLR 2026 highlights](https://www.paperdigest.org/2026/02/iclr-2026-papers-highlights/)"
+      }
+    ],
+    "totalDurationMs": 162780,
+    "totalTokens": 25653,
+    "totalToolUseCount": 25,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 624,
+      "cache_read_input_tokens": 23519,
+      "output_tokens": 1509,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 624
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1509,
+          "cache_read_input_tokens": 23519,
+          "cache_creation_input_tokens": 624,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 624,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 25
+    }
+  },
+  "sourceToolAssistantUUID": "0b987dab-a40c-4a04-b9a1-fd2b27ca70fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-18T19:38:51.835Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01HsYsrHgnrkBRmzyVkMH6Kz`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify GST-VLA and competing work",
+  "prompt": "Search the web for the following papers and verify their existence and claims. For each, fetch the arXiv abstract page and report what you find:\n\n1. \"GST-VLA\" (arXiv 2603.09079) — claimed to use 3D Depth-Aware Chain-of-Thought with structured spatial thoughts including \"grasp affordance contact geometry\", achieving 96.4% on LIBERO and 80.2% on SimplerEnv.\n\n2. \"FlowVLA\" (arXiv 2508.18269) — claimed to use optical flow as Visual CoT for motion reasoning.\n\n3. \"DualCoT-VLA\" (arXiv 2603.22280) — claimed to use parallel visual-linguistic CoT, SOTA on LIBERO and RoboCasa.\n\n4. \"Affogato\" (arXiv 2506.12009) — claimed to provide 150K 3D objects with open-vocabulary affordance annotations, publicly available on HuggingFace.\n\n5. \"VLA-R1\" (arXiv 2510.01623) — claimed affordance-aligned CoT via GRPO RL.\n\nFor each paper, verify: (a) does it exist at the claimed arXiv ID? (b) are the key claims about it accurate? (c) what venue was it accepted to, if any?\n\nUse WebSearch and WebFetch. Be thorough."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13e5719c-7315-469c-8e90-8edec2fb03f3",
+  "isSidechain": false,
+  "requestId": "req_011CbAbkkJv6L9RMGpWWmvyk",
+  "type": "assistant",
+  "uuid": "5d997751-cc67-4b80-a0d7-2e0e7bef2437",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014bGhL45dZnjXJhEQhrJSt8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1972,
+      "cache_read_input_tokens": 34110,
+      "output_tokens": 1248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1972,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1248,
+          "cache_read_input_tokens": 34110,
+          "cache_creation_input_tokens": 1972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1972
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T19:39:00.473Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01SUTGfQBieUtB8YpwW1KbRr`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search for competing open-vocab affordance VLA work",
+  "prompt": "I'm reviewing a paper proposal about \"open-vocabulary affordance reasoning for VLA (Vision-Language-Action) models.\" I need to find any competing or highly related work that may have been missed. Please search for:\n\n1. \"open vocabulary affordance VLA 2025 2026\" on web search\n2. \"affordance reasoning robot manipulation end-to-end 2026\" \n3. \"chain of thought VLA affordance robustness 2026\"\n4. \"affordance grounding vision language action 2025 2026\"\n5. \"intermediate reasoning tokens robot manipulation 2026\"\n6. Search specifically for any work comparing different types of chain-of-thought reasoning for robot manipulation\n7. Search for \"LIBERO-Plus robustness VLA\" to find what methods have been evaluated on this benchmark\n8. Search for \"reasoning content vs reasoning optimization VLA\" or similar\n\nFor each search, report the most relevant papers found, especially any from 2025-2026 that combine affordance reasoning with VLA models in an end-to-end manner. I'm particularly interested in work that:\n- Compares different types of intermediate reasoning for robot manipulation\n- Uses affordance-structured reasoning in autoregressive VLAs\n- Evaluates VLA robustness under distribution shift\n\nUse WebSearch for all queries. Report titles, arXiv IDs, and brief descriptions."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d997751-cc67-4b80-a0d7-2e0e7bef2437",
+  "isSidechain": false,
+  "requestId": "req_011CbAbkkJv6L9RMGpWWmvyk",
+  "type": "assistant",
+  "uuid": "cc053113-9609-458a-b6c6-f9ca8b993f9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014bGhL45dZnjXJhEQhrJSt8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1972,
+      "cache_read_input_tokens": 34110,
+      "output_tokens": 1248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1972,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1248,
+          "cache_read_input_tokens": 34110,
+          "cache_creation_input_tokens": 1972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1972
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-18T19:39:06.801Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01VNz15tDPVUWcabUtxuqgt5`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify venue deadlines and datasets",
+  "prompt": "I need to verify several claims about venue deadlines and dataset availability. Please search for:\n\n1. **CoRL 2026 deadline**: Search for \"CoRL 2026 submission deadline\" or \"CoRL 2026 call for papers\". What is the actual paper submission deadline? Is it around May 26-29, 2026 as claimed?\n\n2. **AAAI 2027 deadline**: Search for \"AAAI 2027 submission deadline\" or \"AAAI 2027 call for papers\". Is the abstract deadline July 21 and paper deadline July 28, 2026 as claimed?\n\n3. **ICLR 2027 deadline**: Search for \"ICLR 2027 submission deadline\". Is it expected Sep-Oct 2026?\n\n4. **Affogato dataset on HuggingFace**: Search for \"Affogato affordance dataset HuggingFace\" or visit huggingface.co to check if the Affogato dataset (150K 3D objects with open-vocabulary affordance annotations) is actually publicly available.\n\n5. **RoboInter-Data availability**: Search for \"RoboInter data download\" or \"RoboInter-Data 230K episodes\". Is this dataset publicly available?\n\n6. **LIBERO-Plus benchmark**: Search for \"LIBERO-Plus benchmark download\" or \"LIBERO-Plus robustness evaluation\". Is it publicly available and ready to use?\n\nUse WebSearch and WebFetch as needed. Report exact findings for each."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc053113-9609-458a-b6c6-f9ca8b993f9e",
+  "isSidechain": false,
+  "requestId": "req_011CbAbkkJv6L9RMGpWWmvyk",
+  "type": "assistant",
+  "uuid": "48f2b142-ffe3-4712-9a74-0b005917b25d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014bGhL45dZnjXJhEQhrJSt8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1972,
+      "cache_read_input_tokens": 34110,
+      "output_tokens": 1248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1972,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1248,
+          "cache_read_input_tokens": 34110,
+          "cache_creation_input_tokens": 1972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1972
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T19:40:27.783Z_
+
+<details><summary>↩ Tool result · `toolu_01HsYsrHgnrkBRmzyVkMH6Kz`</summary>
+
+```text
+Now I have all the information needed. Here is the comprehensive verification report.
+
+---
+
+## Verification Report: Five arXiv Papers
+
+### 1. GST-VLA (arXiv 2603.09079)
+
+**(a) Existence:** CONFIRMED. The paper exists at [arxiv.org/abs/2603.09079](https://arxiv.org/abs/2603.09079). Full title: "GST-VLA: Structured Gaussian Spatial Tokens for 3D Depth-Aware Vision-Language-Action Models" by Md Selim Sarowar, Omer Tariq, and Sungho Kim. Submitted March 10, 2026.
+
+**(b) Claim verification:**
+- "3D Depth-Aware Chain-of-Thought" -- **Accurate.** The abstract describes "3D Depth-Aware Chain-of-Thought (DA-CoT) reasoning."
+- "grasp affordance contact geometry" as a structured spatial thought -- **Accurate.** Listed as one of four intermediate reasoning targets.
+- 96.4% on LIBERO -- **Accurate.** The paper reports "96.4% on LIBERO (+2.0%)."
+- 80.2% on SimplerEnv -- **Accurate.** The paper reports "80.2% on SimplerEnv (+5.4%)."
+- **Caveat:** The authors explicitly note that "experiments are currently ongoing, and the final data is subject to change," so these are preliminary numbers.
+
+**(c) Venue:** No conference acceptance found. Appears to be an **arXiv preprint only** as of May 2026.
+
+---
+
+### 2. FlowVLA (arXiv 2508.18269)
+
+**(a) Existence:** CONFIRMED. The paper exists at [arxiv.org/abs/2508.18269](https://arxiv.org/abs/2508.18269). Full title: "FlowVLA: Visual Chain of Thought-based Motion Reasoning for Vision-Language-Action Models" by Zhide Zhong et al. (11 authors). Originally submitted August 25, 2025; revised to v3 on October 7, 2025.
+
+**(b) Claim verification:**
+- "Optical flow as Visual CoT for motion reasoning" -- **Accurate.** The paper proposes a Visual Chain of Thought paradigm where intermediate optical flow prediction (f_t) serves as the reasoning step: v_t -> f_t -> v_{t+1}. The optical flow inherently encodes motion dynamics.
+
+**(c) Venue:** No conference acceptance found in search results. Appears to be an **arXiv preprint** as of May 2026.
+
+---
+
+### 3. DualCoT-VLA (arXiv 2603.22280)
+
+**(a) Existence:** CONFIRMED. The paper exists at [arxiv.org/abs/2603.22280](https://arxiv.org/abs/2603.22280). Full title: "DualCoT-VLA: Visual-Linguistic Chain of Thought via Parallel Reasoning for Vision-Language-Action Models" by Zhide Zhong et al. (13 authors). Submitted March 23, 2026.
+
+**(b) Claim verification:**
+- "Parallel visual-linguistic CoT" -- **Accurate.** The abstract describes integrating "a visual CoT for low-level spatial understanding and a linguistic CoT for high-level task planning" via a "parallel CoT mechanism."
+- "SOTA on LIBERO and RoboCasa" -- **Accurate.** The abstract claims "state-of-the-art performance on the LIBERO and RoboCasa GR1 benchmarks, as well as in real-world platforms."
+
+**(c) Venue:** No conference acceptance found. **arXiv preprint only** as of May 2026.
+
+---
+
+### 4. Affogato (arXiv 2506.12009)
+
+**(a) Existence:** CONFIRMED. The paper exists at [arxiv.org/abs/2506.12009](https://arxiv.org/abs/2506.12009). Full title: "Affogato: Learning Open-Vocabulary Affordance Grounding with Automated Data Generation at Scale" by Junha Lee, Eunha Park, Chunghyun Park, Dahyun Kang, and Minsu Cho (POSTECH / RLWRLD). Submitted June 13, 2025.
+
+**(b) Claim verification:**
+- "150K 3D objects" -- **Partially inaccurate.** The abstract says "150K *instances*" (object-interaction pairs annotated with 3D affordance heatmaps), not "150K 3D objects." Multiple instances can come from the same underlying object, so this is an important distinction.
+- "Open-vocabulary affordance annotations" -- **Accurate.** The dataset provides "open-vocabulary text descriptions and corresponding 3D affordance heatmaps."
+- "Publicly available on HuggingFace" -- **Accurate.** The abstract states "The Affogato dataset is shared in public" with a HuggingFace link (project-affogato/affogato).
+
+**(c) Venue:** The paper was **submitted to ICLR 2026** (visible on [OpenReview](https://openreview.net/forum?id=5bvQnhTCM1)) but was **withdrawn** from that venue. No other acceptance found. Note: the project page uses the capitalization "AffoGato" while the arXiv listing uses "Affogato."
+
+---
+
+### 5. VLA-R1 (arXiv 2510.01623)
+
+**(a) Existence:** CONFIRMED. The paper exists at [arxiv.org/abs/2510.01623](https://arxiv.org/abs/2510.01623). Full title: "VLA-R1: Enhancing Reasoning in Vision-Language-Action Models" by Angen Ye, Zeyu Zhang, Boyuan Wang, Xiaofeng Wang, Dapeng Zhang, and Zheng Zhu. Submitted October 2, 2025.
+
+**(b) Claim verification:**
+- "Affordance-aligned CoT via GRPO RL" -- **Mostly accurate but somewhat paraphrased.** The paper does not use the exact phrase "affordance-aligned CoT." Instead, it describes: (1) a dataset called VLA-CoT-13K providing "chain-of-thought supervision explicitly aligned with affordance and trajectory annotations," and (2) integration of "Reinforcement Learning from Verifiable Rewards (RLVR) with Group Relative Policy Optimization (GRPO)." So the spirit of the claim is correct -- it does combine affordance-aligned chain-of-thought data with GRPO-based RL -- but the phrasing is a summarization rather than a direct quote.
+
+**(c) Venue:** No conference acceptance found. **arXiv preprint only** as of May 2026.
+
+---
+
+## Summary Table
+
+| Paper | arXiv ID | Exists? | Key Claims Accurate? | Venue |
+|---|---|---|---|---|
+| GST-VLA | 2603.09079 | Yes | Yes (but results are preliminary) | Preprint only |
+| FlowVLA | 2508.18269 | Yes | Yes | Preprint only |
+| DualCoT-VLA | 2603.22280 | Yes | Yes | Preprint only |
+| Affogato | 2506.12009 | Yes | Mostly -- "150K instances" not "150K 3D objects" | Withdrawn from ICLR 2026 |
+| VLA-R1 | 2510.01623 | Yes | Mostly -- paraphrased, not verbatim | Preprint only |
+
+All five papers exist at their claimed arXiv IDs. The claims are broadly accurate with two notable caveats: Affogato has 150K annotated *instances* (not distinct 3D objects), and VLA-R1's description is a fair summary but not a direct quote from the paper. None of the five have confirmed conference acceptances; Affogato was submitted to ICLR 2026 but withdrawn.
+
+Sources:
+- [GST-VLA (arXiv 2603.09079)](https://arxiv.org/abs/2603.09079)
+- [FlowVLA (arXiv 2508.18269)](https://arxiv.org/abs/2508.18269)
+- [DualCoT-VLA (arXiv 2603.22280)](https://arxiv.org/abs/2603.22280)
+- [Affogato (arXiv 2506.12009)](https://arxiv.org/abs/2506.12009)
+- [Affogato OpenReview (ICLR 2026 - Withdrawn)](https://openreview.net/forum?id=5bvQnhTCM1)
+- [VLA-R1 (arXiv 2510.01623)](https://arxiv.org/abs/2510.01623)
+- [VLA-R1 HuggingFace Paper Page](https://huggingface.co/papers/2510.01623)
+- [VLA-R1 Project Page](https://gigaai-research.github.io/VLA-R1/)
+
+agentId: a9f68c603dc924609 (use SendMessage with to: 'a9f68c603dc924609' to continue this agent)
+&lt;usage>total_tokens: 22167
+tool_uses: 17
+duration_ms: 95939&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5d997751-cc67-4b80-a0d7-2e0e7bef2437",
+  "isSidechain": false,
+  "promptId": "3b0ac660-c69c-40e8-a93b-4c0721e7702c",
+  "type": "user",
+  "uuid": "afafb1d9-0370-42d5-a93d-19d76e1ed49e",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for the following papers and verify their existence and claims. For each, fetch the arXiv abstract page and report what you find:\n\n1. \"GST-VLA\" (arXiv 2603.09079) — claimed to use 3D Depth-Aware Chain-of-Thought with structured spatial thoughts including \"grasp affordance contact geometry\", achieving 96.4% on LIBERO and 80.2% on SimplerEnv.\n\n2. \"FlowVLA\" (arXiv 2508.18269) — claimed to use optical flow as Visual CoT for motion reasoning.\n\n3. \"DualCoT-VLA\" (arXiv 2603.22280) — claimed to use parallel visual-linguistic CoT, SOTA on LIBERO and RoboCasa.\n\n4. \"Affogato\" (arXiv 2506.12009) — claimed to provide 150K 3D objects with open-vocabulary affordance annotations, publicly available on HuggingFace.\n\n5. \"VLA-R1\" (arXiv 2510.01623) — claimed affordance-aligned CoT via GRPO RL.\n\nFor each paper, verify: (a) does it exist at the claimed arXiv ID? (b) are the key claims about it accurate? (c) what venue was it accepted to, if any?\n\nUse WebSearch and WebFetch. Be thorough.",
+    "agentId": "a9f68c603dc924609",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have all the information needed. Here is the comprehensive verification report.\n\n---\n\n## Verification Report: Five arXiv Papers\n\n### 1. GST-VLA (arXiv 2603.09079)\n\n**(a) Existence:** CONFIRMED. The paper exists at [arxiv.org/abs/2603.09079](https://arxiv.org/abs/2603.09079). Full title: \"GST-VLA: Structured Gaussian Spatial Tokens for 3D Depth-Aware Vision-Language-Action Models\" by Md Selim Sarowar, Omer Tariq, and Sungho Kim. Submitted March 10, 2026.\n\n**(b) Claim verification:**\n- \"3D Depth-Aware Chain-of-Thought\" -- **Accurate.** The abstract describes \"3D Depth-Aware Chain-of-Thought (DA-CoT) reasoning.\"\n- \"grasp affordance contact geometry\" as a structured spatial thought -- **Accurate.** Listed as one of four intermediate reasoning targets.\n- 96.4% on LIBERO -- **Accurate.** The paper reports \"96.4% on LIBERO (+2.0%).\"\n- 80.2% on SimplerEnv -- **Accurate.** The paper reports \"80.2% on SimplerEnv (+5.4%).\"\n- **Caveat:** The authors explicitly note that \"experiments are currently ongoing, and the final data is subject to change,\" so these are preliminary numbers.\n\n**(c) Venue:** No conference acceptance found. Appears to be an **arXiv preprint only** as of May 2026.\n\n---\n\n### 2. FlowVLA (arXiv 2508.18269)\n\n**(a) Existence:** CONFIRMED. The paper exists at [arxiv.org/abs/2508.18269](https://arxiv.org/abs/2508.18269). Full title: \"FlowVLA: Visual Chain of Thought-based Motion Reasoning for Vision-Language-Action Models\" by Zhide Zhong et al. (11 authors). Originally submitted August 25, 2025; revised to v3 on October 7, 2025.\n\n**(b) Claim verification:**\n- \"Optical flow as Visual CoT for motion reasoning\" -- **Accurate.** The paper proposes a Visual Chain of Thought paradigm where intermediate optical flow prediction (f_t) serves as the reasoning step: v_t -> f_t -> v_{t+1}. The optical flow inherently encodes motion dynamics.\n\n**(c) Venue:** No conference acceptance found in search results. Appears to be an **arXiv preprint** as of May 2026.\n\n---\n\n### 3. DualCoT-VLA (arXiv 2603.22280)\n\n**(a) Existence:** CONFIRMED. The paper exists at [arxiv.org/abs/2603.22280](https://arxiv.org/abs/2603.22280). Full title: \"DualCoT-VLA: Visual-Linguistic Chain of Thought via Parallel Reasoning for Vision-Language-Action Models\" by Zhide Zhong et al. (13 authors). Submitted March 23, 2026.\n\n**(b) Claim verification:**\n- \"Parallel visual-linguistic CoT\" -- **Accurate.** The abstract describes integrating \"a visual CoT for low-level spatial understanding and a linguistic CoT for high-level task planning\" via a \"parallel CoT mechanism.\"\n- \"SOTA on LIBERO and RoboCasa\" -- **Accurate.** The abstract claims \"state-of-the-art performance on the LIBERO and RoboCasa GR1 benchmarks, as well as in real-world platforms.\"\n\n**(c) Venue:** No conference acceptance found. **arXiv preprint only** as of May 2026.\n\n---\n\n### 4. Affogato (arXiv 2506.12009)\n\n**(a) Existence:** CONFIRMED. The paper exists at [arxiv.org/abs/2506.12009](https://arxiv.org/abs/2506.12009). Full title: \"Affogato: Learning Open-Vocabulary Affordance Grounding with Automated Data Generation at Scale\" by Junha Lee, Eunha Park, Chunghyun Park, Dahyun Kang, and Minsu Cho (POSTECH / RLWRLD). Submitted June 13, 2025.\n\n**(b) Claim verification:**\n- \"150K 3D objects\" -- **Partially inaccurate.** The abstract says \"150K *instances*\" (object-interaction pairs annotated with 3D affordance heatmaps), not \"150K 3D objects.\" Multiple instances can come from the same underlying object, so this is an important distinction.\n- \"Open-vocabulary affordance annotations\" -- **Accurate.** The dataset provides \"open-vocabulary text descriptions and corresponding 3D affordance heatmaps.\"\n- \"Publicly available on HuggingFace\" -- **Accurate.** The abstract states \"The Affogato dataset is shared in public\" with a HuggingFace link (project-affogato/affogato).\n\n**(c) Venue:** The paper was **submitted to ICLR 2026** (visible on [OpenReview](https://openreview.net/forum?id=5bvQnhTCM1)) but was **withdrawn** from that venue. No other acceptance found. Note: the project page uses the capitalization \"AffoGato\" while the arXiv listing uses \"Affogato.\"\n\n---\n\n### 5. VLA-R1 (arXiv 2510.01623)\n\n**(a) Existence:** CONFIRMED. The paper exists at [arxiv.org/abs/2510.01623](https://arxiv.org/abs/2510.01623). Full title: \"VLA-R1: Enhancing Reasoning in Vision-Language-Action Models\" by Angen Ye, Zeyu Zhang, Boyuan Wang, Xiaofeng Wang, Dapeng Zhang, and Zheng Zhu. Submitted October 2, 2025.\n\n**(b) Claim verification:**\n- \"Affordance-aligned CoT via GRPO RL\" -- **Mostly accurate but somewhat paraphrased.** The paper does not use the exact phrase \"affordance-aligned CoT.\" Instead, it describes: (1) a dataset called VLA-CoT-13K providing \"chain-of-thought supervision explicitly aligned with affordance and trajectory annotations,\" and (2) integration of \"Reinforcement Learning from Verifiable Rewards (RLVR) with Group Relative Policy Optimization (GRPO).\" So the spirit of the claim is correct -- it does combine affordance-aligned chain-of-thought data with GRPO-based RL -- but the phrasing is a summarization rather than a direct quote.\n\n**(c) Venue:** No conference acceptance found. **arXiv preprint only** as of May 2026.\n\n---\n\n## Summary Table\n\n| Paper | arXiv ID | Exists? | Key Claims Accurate? | Venue |\n|---|---|---|---|---|\n| GST-VLA | 2603.09079 | Yes | Yes (but results are preliminary) | Preprint only |\n| FlowVLA | 2508.18269 | Yes | Yes | Preprint only |\n| DualCoT-VLA | 2603.22280 | Yes | Yes | Preprint only |\n| Affogato | 2506.12009 | Yes | Mostly -- \"150K instances\" not \"150K 3D objects\" | Withdrawn from ICLR 2026 |\n| VLA-R1 | 2510.01623 | Yes | Mostly -- paraphrased, not verbatim | Preprint only |\n\nAll five papers exist at their claimed arXiv IDs. The claims are broadly accurate with two notable caveats: Affogato has 150K annotated *instances* (not distinct 3D objects), and VLA-R1's description is a fair summary but not a direct quote from the paper. None of the five have confirmed conference acceptances; Affogato was submitted to ICLR 2026 but withdrawn.\n\nSources:\n- [GST-VLA (arXiv 2603.09079)](https://arxiv.org/abs/2603.09079)\n- [FlowVLA (arXiv 2508.18269)](https://arxiv.org/abs/2508.18269)\n- [DualCoT-VLA (arXiv 2603.22280)](https://arxiv.org/abs/2603.22280)\n- [Affogato (arXiv 2506.12009)](https://arxiv.org/abs/2506.12009)\n- [Affogato OpenReview (ICLR 2026 - Withdrawn)](https://openreview.net/forum?id=5bvQnhTCM1)\n- [VLA-R1 (arXiv 2510.01623)](https://arxiv.org/abs/2510.01623)\n- [VLA-R1 HuggingFace Paper Page](https://huggingface.co/papers/2510.01623)\n- [VLA-R1 Project Page](https://gigaai-research.github.io/VLA-R1/)"
+      }
+    ],
+    "totalDurationMs": 95939,
+    "totalTokens": 22167,
+    "totalToolUseCount": 17,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2035,
+      "cache_read_input_tokens": 17875,
+      "output_tokens": 2256,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2035
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2256,
+          "cache_read_input_tokens": 17875,
+          "cache_creation_input_tokens": 2035,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2035,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 17
+    }
+  },
+  "sourceToolAssistantUUID": "5d997751-cc67-4b80-a0d7-2e0e7bef2437",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "afafb1d9-0370-42d5-a93d-19d76e1ed49e",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compare affordance vs generic reasoning for VLA robustness",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81"
+}
+```
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T19:40:29.492Z_
+
+<details><summary>↩ Tool result · `toolu_01VNz15tDPVUWcabUtxuqgt5`</summary>
+
+```text
+Now I have a comprehensive picture. Here is the full report.
+
+---
+
+## Verification Results
+
+### 1. CoRL 2026 Submission Deadline
+
+**Claim: Around May 26-29, 2026**
+
+**CONFIRMED.** The official CoRL 2026 deadlines are:
+- Abstract deadline: **May 26, 2026** (11:59 UTC)
+- Paper submission deadline: **May 28 or May 29, 2026** (sources vary slightly -- the official "Instruction for Authors" page notes "the paper submission deadline is Thursday (5/28) EOD rather than Friday," while the HuggingFace ai-deadlines tracker lists May 29. The discrepancy may be timezone-related: May 28 AoE = May 29 UTC.)
+- Conference: November 9-12, 2026, Austin, TX
+
+The claimed "May 26-29" window is accurate.
+
+### 2. AAAI 2027 Submission Deadline
+
+**Claim: Abstract July 21, Paper July 28, 2026**
+
+**CONFIRMED -- exactly correct.** The official AAAI-27 Main Technical Track page lists:
+- Abstract deadline: **July 21, 2026** at 11:59 PM UTC-12
+- Full paper deadline: **July 28, 2026** at 11:59 PM UTC-12
+- Supplementary material: July 31, 2026
+- Conference: February 16-23, 2027, Montreal, Canada
+
+### 3. ICLR 2027 Submission Deadline
+
+**Claim: Expected Sep-Oct 2026**
+
+**PLAUSIBLE, likely accurate.** ICLR 2027 has not yet officially announced its call for papers (as of May 18, 2026). However, the conference deadline aggregator trybibby.com lists predicted/estimated dates:
+- Abstract deadline: **Sep 19, 2026**
+- Full paper deadline: **Sep 24, 2026**
+
+This aligns with the ICLR 2026 pattern (which also had a Sep 24 deadline). The claim of "Sep-Oct 2026" is consistent with these predictions, though the dates are not yet officially confirmed by ICLR.
+
+### 4. Affogato Dataset on HuggingFace
+
+**Claim: 150K 3D objects with open-vocabulary affordance annotations, publicly available on HuggingFace**
+
+**CONFIRMED.** The Affogato dataset is publicly available at `huggingface.co/datasets/project-affogato/affogato`. Key facts:
+- Size: **30.4 GB**, downloadable
+- Contains **150K 3D object instances** (called "Affo-150K") from Objaverse
+- Annotated with open-vocabulary text descriptions and 3D affordance heatmaps
+- Covers four categories: Daily-Used, Furnitures, Transportations, Electronics
+- Generated by the Affogato-Engine pipeline using multi-view renderings and vision-language models
+- Associated paper: arXiv:2506.12009
+
+Note: The dataset viewer on HuggingFace is currently broken (TAR archive format issue), but the dataset itself is downloadable.
+
+### 5. RoboInter-Data Availability
+
+**Claim: 230K episodes, publicly available**
+
+**CONFIRMED.** RoboInter-Data is publicly available at `huggingface.co/datasets/InternRobotics/RoboInter-Data`. Key facts:
+- Contains **~235,920 episodes** (152,986 from DROID + 82,894 from RH20T), plus 7,246 validation episodes
+- Total size: **~408 GB**
+- Includes 10+ types of intermediate representation annotations (subtasks, primitive skills, segmentation, bounding boxes, affordances, grasp poses, traces, contact points, etc.)
+- 6 robot arm types, 571 scene types, 15 primitive skill types
+- Downloadable via `huggingface-cli download`
+- Associated with ICLR 2026 paper
+
+### 6. LIBERO-Plus Benchmark
+
+**Claim: Publicly available and ready to use**
+
+**CONFIRMED.** LIBERO-Plus is publicly available from two sources:
+- HuggingFace: `huggingface.co/datasets/Sylvest/LIBERO-plus` (assets: 6.4 GB)
+- GitHub: `github.com/sylvestf/LIBERO-plus`
+- Training data: `huggingface.co/datasets/Sylvest/libero_plus_rlds`
+
+Key facts:
+- **10,030 tasks** spanning 7 perturbation dimensions (object layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures, sensor noise)
+- Install via `pip install -e .` as a drop-in replacement for original LIBERO
+- Includes benchmark results for 9+ VLA models
+- Associated paper: arXiv:2510.13626
+
+---
+
+**Summary:** All six claims check out. The CoRL 2026 and AAAI 2027 deadlines are confirmed exactly as stated. ICLR 2027 is not yet officially announced but predicted dates align with the Sep-Oct 2026 estimate. All three datasets (Affogato, RoboInter-Data, LIBERO-Plus) are publicly available and downloadable on HuggingFace.
+
+Sources:
+- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)
+- [CoRL 2026 Instruction for Authors](https://www.corl.org/contributions/instruction-for-authors)
+- [HuggingFace AI Deadlines - CoRL 2026 update](https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf)
+- [AAAI-27 Main Technical Track](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)
+- [AI & ML Conference Deadlines 2026-2027 (trybibby)](https://trybibby.com/conference-deadlines)
+- [Affogato paper (arXiv:2506.12009)](https://arxiv.org/abs/2506.12009)
+- [Affogato dataset on HuggingFace](https://huggingface.co/datasets/project-affogato/affogato)
+- [RoboInter-Data on HuggingFace](https://huggingface.co/datasets/InternRobotics/RoboInter-Data)
+- [RoboInter GitHub](https://github.com/InternRobotics/RoboInter)
+- [LIBERO-Plus on HuggingFace](https://huggingface.co/datasets/Sylvest/LIBERO-plus)
+- [LIBERO-Plus GitHub](https://github.com/sylvestf/LIBERO-plus)
+- [LIBERO-Plus paper (arXiv:2510.13626)](https://arxiv.org/abs/2510.13626)
+
+agentId: a53a5e08e8b3e61ea (use SendMessage with to: 'a53a5e08e8b3e61ea' to continue this agent)
+&lt;usage>total_tokens: 21585
+tool_uses: 17
+duration_ms: 82689&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "48f2b142-ffe3-4712-9a74-0b005917b25d",
+  "isSidechain": false,
+  "promptId": "3b0ac660-c69c-40e8-a93b-4c0721e7702c",
+  "type": "user",
+  "uuid": "dafad723-b9e1-4836-96fa-f4984ffef1aa",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify several claims about venue deadlines and dataset availability. Please search for:\n\n1. **CoRL 2026 deadline**: Search for \"CoRL 2026 submission deadline\" or \"CoRL 2026 call for papers\". What is the actual paper submission deadline? Is it around May 26-29, 2026 as claimed?\n\n2. **AAAI 2027 deadline**: Search for \"AAAI 2027 submission deadline\" or \"AAAI 2027 call for papers\". Is the abstract deadline July 21 and paper deadline July 28, 2026 as claimed?\n\n3. **ICLR 2027 deadline**: Search for \"ICLR 2027 submission deadline\". Is it expected Sep-Oct 2026?\n\n4. **Affogato dataset on HuggingFace**: Search for \"Affogato affordance dataset HuggingFace\" or visit huggingface.co to check if the Affogato dataset (150K 3D objects with open-vocabulary affordance annotations) is actually publicly available.\n\n5. **RoboInter-Data availability**: Search for \"RoboInter data download\" or \"RoboInter-Data 230K episodes\". Is this dataset publicly available?\n\n6. **LIBERO-Plus benchmark**: Search for \"LIBERO-Plus benchmark download\" or \"LIBERO-Plus robustness evaluation\". Is it publicly available and ready to use?\n\nUse WebSearch and WebFetch as needed. Report exact findings for each.",
+    "agentId": "a53a5e08e8b3e61ea",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have a comprehensive picture. Here is the full report.\n\n---\n\n## Verification Results\n\n### 1. CoRL 2026 Submission Deadline\n\n**Claim: Around May 26-29, 2026**\n\n**CONFIRMED.** The official CoRL 2026 deadlines are:\n- Abstract deadline: **May 26, 2026** (11:59 UTC)\n- Paper submission deadline: **May 28 or May 29, 2026** (sources vary slightly -- the official \"Instruction for Authors\" page notes \"the paper submission deadline is Thursday (5/28) EOD rather than Friday,\" while the HuggingFace ai-deadlines tracker lists May 29. The discrepancy may be timezone-related: May 28 AoE = May 29 UTC.)\n- Conference: November 9-12, 2026, Austin, TX\n\nThe claimed \"May 26-29\" window is accurate.\n\n### 2. AAAI 2027 Submission Deadline\n\n**Claim: Abstract July 21, Paper July 28, 2026**\n\n**CONFIRMED -- exactly correct.** The official AAAI-27 Main Technical Track page lists:\n- Abstract deadline: **July 21, 2026** at 11:59 PM UTC-12\n- Full paper deadline: **July 28, 2026** at 11:59 PM UTC-12\n- Supplementary material: July 31, 2026\n- Conference: February 16-23, 2027, Montreal, Canada\n\n### 3. ICLR 2027 Submission Deadline\n\n**Claim: Expected Sep-Oct 2026**\n\n**PLAUSIBLE, likely accurate.** ICLR 2027 has not yet officially announced its call for papers (as of May 18, 2026). However, the conference deadline aggregator trybibby.com lists predicted/estimated dates:\n- Abstract deadline: **Sep 19, 2026**\n- Full paper deadline: **Sep 24, 2026**\n\nThis aligns with the ICLR 2026 pattern (which also had a Sep 24 deadline). The claim of \"Sep-Oct 2026\" is consistent with these predictions, though the dates are not yet officially confirmed by ICLR.\n\n### 4. Affogato Dataset on HuggingFace\n\n**Claim: 150K 3D objects with open-vocabulary affordance annotations, publicly available on HuggingFace**\n\n**CONFIRMED.** The Affogato dataset is publicly available at `huggingface.co/datasets/project-affogato/affogato`. Key facts:\n- Size: **30.4 GB**, downloadable\n- Contains **150K 3D object instances** (called \"Affo-150K\") from Objaverse\n- Annotated with open-vocabulary text descriptions and 3D affordance heatmaps\n- Covers four categories: Daily-Used, Furnitures, Transportations, Electronics\n- Generated by the Affogato-Engine pipeline using multi-view renderings and vision-language models\n- Associated paper: arXiv:2506.12009\n\nNote: The dataset viewer on HuggingFace is currently broken (TAR archive format issue), but the dataset itself is downloadable.\n\n### 5. RoboInter-Data Availability\n\n**Claim: 230K episodes, publicly available**\n\n**CONFIRMED.** RoboInter-Data is publicly available at `huggingface.co/datasets/InternRobotics/RoboInter-Data`. Key facts:\n- Contains **~235,920 episodes** (152,986 from DROID + 82,894 from RH20T), plus 7,246 validation episodes\n- Total size: **~408 GB**\n- Includes 10+ types of intermediate representation annotations (subtasks, primitive skills, segmentation, bounding boxes, affordances, grasp poses, traces, contact points, etc.)\n- 6 robot arm types, 571 scene types, 15 primitive skill types\n- Downloadable via `huggingface-cli download`\n- Associated with ICLR 2026 paper\n\n### 6. LIBERO-Plus Benchmark\n\n**Claim: Publicly available and ready to use**\n\n**CONFIRMED.** LIBERO-Plus is publicly available from two sources:\n- HuggingFace: `huggingface.co/datasets/Sylvest/LIBERO-plus` (assets: 6.4 GB)\n- GitHub: `github.com/sylvestf/LIBERO-plus`\n- Training data: `huggingface.co/datasets/Sylvest/libero_plus_rlds`\n\nKey facts:\n- **10,030 tasks** spanning 7 perturbation dimensions (object layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures, sensor noise)\n- Install via `pip install -e .` as a drop-in replacement for original LIBERO\n- Includes benchmark results for 9+ VLA models\n- Associated paper: arXiv:2510.13626\n\n---\n\n**Summary:** All six claims check out. The CoRL 2026 and AAAI 2027 deadlines are confirmed exactly as stated. ICLR 2027 is not yet officially announced but predicted dates align with the Sep-Oct 2026 estimate. All three datasets (Affogato, RoboInter-Data, LIBERO-Plus) are publicly available and downloadable on HuggingFace.\n\nSources:\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [CoRL 2026 Instruction for Authors](https://www.corl.org/contributions/instruction-for-authors)\n- [HuggingFace AI Deadlines - CoRL 2026 update](https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf)\n- [AAAI-27 Main Technical Track](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)\n- [AI & ML Conference Deadlines 2026-2027 (trybibby)](https://trybibby.com/conference-deadlines)\n- [Affogato paper (arXiv:2506.12009)](https://arxiv.org/abs/2506.12009)\n- [Affogato dataset on HuggingFace](https://huggingface.co/datasets/project-affogato/affogato)\n- [RoboInter-Data on HuggingFace](https://huggingface.co/datasets/InternRobotics/RoboInter-Data)\n- [RoboInter GitHub](https://github.com/InternRobotics/RoboInter)\n- [LIBERO-Plus on HuggingFace](https://huggingface.co/datasets/Sylvest/LIBERO-plus)\n- [LIBERO-Plus GitHub](https://github.com/sylvestf/LIBERO-plus)\n- [LIBERO-Plus paper (arXiv:2510.13626)](https://arxiv.org/abs/2510.13626)"
+      }
+    ],
+    "totalDurationMs": 82689,
+    "totalTokens": 21585,
+    "totalToolUseCount": 17,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 319,
+      "cache_read_input_tokens": 19502,
+      "output_tokens": 1763,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 319
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1763,
+          "cache_read_input_tokens": 19502,
+          "cache_creation_input_tokens": 319,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 319,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 17
+    }
+  },
+  "sourceToolAssistantUUID": "48f2b142-ffe3-4712-9a74-0b005917b25d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T19:41:39.310Z_
+
+<details><summary>↩ Tool result · `toolu_01SUTGfQBieUtB8YpwW1KbRr`</summary>
+
+```text
+Here is a comprehensive report of the most relevant competing and related work found across all searches. I have organized them by category, with the most directly relevant papers first.
+
+---
+
+## CATEGORY 1: Affordance-Structured Reasoning in VLA Models (Most Directly Related)
+
+### 1. CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance
+- **arXiv:** 2412.20451 | **Venue:** ICCV 2025
+- Introduces "Chain-of-Affordance" reasoning with four affordance types: object affordance (what/where to manipulate), grasp affordance (which part to grasp), spatial affordance (where to place), and movement affordance (collision-free path). Each affordance is transformed into both visual and textual formats, injected into the policy network via a vision-language co-injection module. Outperforms OpenVLA and Octo. Strong generalization to unseen poses, free space identification, and obstacle avoidance.
+- **This is likely the single most relevant competing work** -- it directly combines affordance-structured reasoning with VLA models in an end-to-end manner.
+
+### 2. PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation
+- **arXiv:** 2601.07060 | **Date:** January 2026
+- A VLA framework that structures policy learning around interaction-centric affordance reasoning and subtask progress cues. Distills complementary affordance representations (object relevance, contact geometry, spatial placements, motion dynamics). Uses a diffusion-based policy that jointly decodes actions and continuous progress values. Achieves 91.8% on LIBERO-LONG, +12.5% on CALVIN ABC->D.
+
+### 3. VLA-R1: Enhancing Reasoning in Vision-Language-Action Models
+- **arXiv:** 2510.01623 | **Date:** October 2025
+- Integrates RLVR (Reinforcement Learning from Verifiable Rewards) with GRPO to optimize both reasoning and execution. Develops VLA-CoT-13K, a dataset with chain-of-thought supervision explicitly aligned with affordance and trajectory annotations. Uses verifiable rewards for region alignment, trajectory consistency, and output formatting. Directly addresses reasoning robustness.
+- **Highly relevant** -- explicitly combines affordance-aligned CoT with optimization-level reinforcement, comparing data-level vs. optimization-level approaches.
+
+### 4. Affordance Field Intervention (AFI): Enabling VLAs to Escape Memory Traps in Robotic Manipulation
+- **arXiv:** 2512.07472 | **Date:** December 2025
+- Addresses VLA brittleness under distribution shift via "Spatial Affordance Fields" as a plug-in to guide VLA behavior. Detects memory traps through proprioception, repositions robots to high-affordance regions. +23.5% improvement on real-world OOD scenarios, +20.2% on LIBERO-Pro.
+
+### 5. Agile-VLA: Few-Shot Industrial Pose Rectification via Implicit Affordance Anchoring
+- **arXiv:** 2603.22899 | **Date:** March 2026
+- Uses implicit affordance anchoring for industrial manipulation tasks. Compares five open-source embodied models (Transporter, RT-1, RVT, Octo-Base, OpenVLA).
+
+---
+
+## CATEGORY 2: Chain-of-Thought / Intermediate Reasoning for VLA Models
+
+### 6. CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models
+- **arXiv:** 2503.22020 | **Venue:** CVPR 2025
+- Predicts future image frames autoregressively as visual goals before generating action sequences. +17% over state-of-the-art VLA in real-world tasks, +6% in simulation. Uses visual (not textual) reasoning as the intermediate representation.
+
+### 7. DeepThinkVLA: Enhancing Reasoning Capability of Vision-Language-Action Models
+- **arXiv:** 2511.15669 | **Date:** October 2025
+- Hybrid-attention decoder with causal attention for sequential CoT generation and bidirectional attention for parallel action decoding. Two-stage training: SFT for foundational reasoning, then RL with task-success rewards. 2.9B parameters, 96.5% average success rate, 0.175x latency of autoregressive baselines.
+
+### 8. Latent Reasoning VLA (LaRA-VLA): Latent Thinking and Prediction for Vision-Language-Action Models
+- **arXiv:** 2602.01166 | **Date:** February 2026
+- Internalizes multi-modal CoT reasoning into continuous latent representations. Curriculum-based training transitioning from explicit textual/visual CoT to latent reasoning. Reduces inference latency by up to 90% compared to explicit CoT approaches while maintaining performance.
+
+### 9. ECoT / ECoT-Lite: Embodied Chain-of-Thought Reasoning & Training Strategies for Efficient Embodied Reasoning
+- **arXiv:** 2407.08693 (ECoT) and 2505.08243 (ECoT-Lite) | **Venues:** CoRL 2024 / 2025
+- ECoT trains VLAs on multi-step reasoning (plans, sub-tasks, motions, bounding boxes, end-effector positions). +28% absolute success rate for OpenVLA. ECoT-Lite introduces efficient alternatives: reasoning dropout, thinking tokens, co-training. Achieves SOTA on LIBERO, +10-19% on BridgeData V2, while running at 3.5+ Hz (vs. 1-1.2 Hz for full ECoT).
+- **Highly relevant** -- ECoT-Lite directly compares different types of intermediate reasoning (textual CoT, thinking tokens, reasoning dropout) and analyzes WHY reasoning helps (representation learning, curricularization, expressivity).
+
+### 10. GraphCoT-VLA: A 3D Spatial-Aware Reasoning Vision-Language-Action Model for Robotic Manipulation with Ambiguous Instructions
+- **arXiv:** 2508.07650 | **Date:** August 2025
+- Structured CoT module integrating high-level task planning, failed task feedback, and low-level imaginative reasoning. Constructs real-time updatable 3D Pose-Object graphs capturing spatial configurations and topological relationships.
+
+### 11. ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models
+- **arXiv:** 2604.09824 | **Date:** April 2026
+- Constructs 3D entity-centric graphs, uses slow planner for symbolic sub-goals, aligns them with grounded entities via Grounding Alignment Contrastive loss. On LIBERO-Plus: robustness under robot perturbations from 30.3% to 71.5%, language ignorance reduced 3-4x. Very recent and directly evaluates on LIBERO-Plus.
+
+---
+
+## CATEGORY 3: Visual / Spatial Intermediate Representations for Manipulation
+
+### 12. Action-Sketcher: From Reasoning to Action via Visual Sketches for Long-Horizon Robotic Manipulation
+- **arXiv:** 2601.01618 | **Date:** January 2026
+- Introduces "Visual Sketch" as an intermediate representation (points, boxes, arrows, typed relations rendered onto current views). See-Think-Sketch-Act workflow with adaptive token-gated strategy.
+
+### 13. FSD (From Seeing to Doing): Bridging Reasoning and Decision for Robotic Manipulation
+- **arXiv:** 2505.08548 | **Date:** May 2025
+- Generates intermediate representations through spatial relationship reasoning. Uses hierarchical data pipeline with self-consistency mechanism. 40.6% success rate in SimplerEnv, 72% across 8 real-world tasks (+30% over strongest baseline).
+
+### 14. RT-Affordance: Affordances are Versatile Intermediate Representations for Robot Manipulation
+- **arXiv:** 2411.02704 | **Date:** November 2024
+- Hierarchical model: first proposes affordance plan given task language, then conditions policy on affordance plan. Bridges heterogeneous supervision (web datasets + robot trajectories). Exceeds prior methods by 50%+ and shows robustness to novel settings.
+
+### 15. RoboInter: A Holistic Intermediate Representation Suite Towards Robotic Manipulation
+- **arXiv:** 2602.09973 | **Venue:** ICLR 2026
+- Large-scale dataset (230k+ episodes, 571 scenes) with 10+ categories of intermediate representations (subtasks, skills, segmentation, affordance boxes, grasp poses, contact points, etc.). Plan-then-execute VLA framework supporting modular and end-to-end variants.
+
+### 16. Diffusion-VLA: Generalizable and Interpretable Robot Foundation Model via Self-Generated Reasoning
+- **arXiv:** 2412.03293 | **Venue:** ICML 2025
+- Combines autoregressive reasoning with diffusion-based action generation. Reasoning injection module integrates reasoning directly into policy learning. 2B parameter model runs at 82Hz on a single A6000.
+
+---
+
+## CATEGORY 4: VLA Robustness Analysis and Benchmarks
+
+### 17. LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models
+- **arXiv:** 2510.13626 | **Date:** October 2025
+- Diagnostic benchmark with 10,030 tasks across 7 perturbation factors and 21 components (object layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures, sensor noise). Reveals VLA models drop from 95% to below 30% under modest perturbations. Most models ignore language instructions.
+
+### 18. Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation
+- **arXiv:** 2603.12717 | **Date:** March 2026
+- Seven text corruptions across three attacker tiers applied to reasoning VLA on 40 LIBERO tasks. **Key finding:** Object name substitution reduces success by 8.3pp (up to -45pp on individual tasks), but sentence reordering, spatial-direction reversal, token noise, and LLM-crafted wrong plans have negligible impact. Concludes that action decoders depend on entity-reference integrity rather than reasoning quality or sequential structure.
+- **Directly relevant** -- this is the most targeted study comparing what aspects of CoT reasoning actually matter for VLA manipulation.
+
+### 19. Do World Action Models Generalize Better than VLAs? A Robustness Study
+- **arXiv:** 2603.22078 | **Date:** March 2026
+- Compares World Action Models (WAMs) vs VLAs on robustness. WAMs (e.g., LingBot-VA at 74.2% on RoboTwin 2.0-Plus, Cosmos-Policy at 82.2% on LIBERO-Plus) generally generalize better to visual noise and layout changes due to spatiotemporal priors from video pretraining.
+
+---
+
+## CATEGORY 5: Other Affordance-Adjacent Work
+
+### 20. Afford-X: Generalizable and Slim Affordance Reasoning for Task-oriented Manipulation
+- **arXiv:** 2503.03556 | **Date:** 2025
+- End-to-end trainable affordance reasoning model (187M parameters). +12.1% over best non-LLM methods, 50x faster than GPT-4V API. Trained on LVIS-Aff (1,496 tasks, 119k images). Focuses on affordance perception rather than action generation.
+
+### 21. AffordanceLLM: Grounding Affordance from Vision Language Models
+- **arXiv:** 2401.06341 | **Date:** January 2024
+- Leverages pretrained VLMs for affordance grounding. Generalizes to unseen objects and actions from random Internet images.
+
+### 22. LMAffordance3D (CVPR 2025): Grounding 3D Object Affordance with Language Instructions, Visual Observations and Interactions
+- **arXiv:** 2504.04744 | **Date:** April 2025
+- First multi-modal, language-guided 3D affordance grounding network. Fuses 2D and 3D spatial features with semantic features via a VLM.
+
+---
+
+## Summary of Key Gaps and Overlaps
+
+**Papers most likely to overlap with an "open-vocabulary affordance reasoning for VLA" proposal:**
+1. **CoA-VLA** (arXiv:2412.20451) -- The closest competitor: affordance-structured reasoning explicitly integrated into VLA models
+2. **VLA-R1** (arXiv:2510.01623) -- CoT supervision aligned with affordance annotations + RLVR optimization
+3. **PALM** (arXiv:2601.07060) -- Affordance reasoning for long-horizon VLA with progress tracking
+4. **ProGAL-VLA** (arXiv:2604.09824) -- Grounded alignment addressing language ignorance, evaluated on LIBERO-Plus
+
+**Papers most relevant to "comparing different types of intermediate reasoning":**
+1. **ECoT-Lite** (arXiv:2505.08243) -- Directly compares reasoning types and analyzes why reasoning helps
+2. **Altered Thoughts, Altered Actions** (arXiv:2603.12717) -- Shows entity references matter more than reasoning quality
+3. **LaRA-VLA** (arXiv:2602.01166) -- Latent vs. explicit reasoning comparison
+4. **DeepThinkVLA** (arXiv:2511.15669) -- Architectural comparison (causal vs. bidirectional attention for reasoning vs. actions)
+
+**Papers most relevant to "VLA robustness under distribution shift":**
+1. **LIBERO-Plus** (arXiv:2510.13626) -- The primary robustness benchmark
+2. **AFI** (arXiv:2512.07472) -- Affordance-based intervention for OOD robustness
+3. **WAMs vs VLAs** (arXiv:2603.22078) -- Comparative robustness study
+4. **ProGAL-VLA** (arXiv:2604.09824) -- Robustness on LIBERO-Plus from 30.3% to 71.5%
+
+Sources:
+- [CoA-VLA](https://arxiv.org/abs/2412.20451)
+- [VLA-R1](https://arxiv.org/abs/2510.01623)
+- [PALM](https://arxiv.org/abs/2601.07060)
+- [ProGAL-VLA](https://arxiv.org/abs/2604.09824)
+- [CoT-VLA](https://arxiv.org/abs/2503.22020)
+- [DeepThinkVLA](https://arxiv.org/abs/2511.15669)
+- [LaRA-VLA](https://arxiv.org/abs/2602.01166)
+- [ECoT](https://arxiv.org/abs/2407.08693)
+- [ECoT-Lite](https://arxiv.org/abs/2505.08243)
+- [GraphCoT-VLA](https://arxiv.org/abs/2508.07650)
+- [Action-Sketcher](https://arxiv.org/abs/2601.01618)
+- [FSD](https://arxiv.org/abs/2505.08548)
+- [RT-Affordance](https://arxiv.org/abs/2411.02704)
+- [RoboInter (ICLR 2026)](https://arxiv.org/abs/2602.09973)
+- [Diffusion-VLA](https://arxiv.org/abs/2412.03293)
+- [LIBERO-Plus](https://arxiv.org/abs/2510.13626)
+- [Altered Thoughts, Altered Actions](https://arxiv.org/abs/2603.12717)
+- [WAMs vs VLAs Robustness Study](https://arxiv.org/abs/2603.22078)
+- [Affordance Field Intervention](https://arxiv.org/abs/2512.07472)
+- [Agile-VLA](https://arxiv.org/abs/2603.22899)
+- [Afford-X](https://arxiv.org/abs/2503.03556)
+- [AffordanceLLM](https://arxiv.org/abs/2401.06341)
+- [LMAffordance3D](https://arxiv.org/abs/2504.04744)
+- [Awesome Embodied VLA list](https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln)
+
+agentId: a99e4c4020376a997 (use SendMessage with to: 'a99e4c4020376a997' to continue this agent)
+&lt;usage>total_tokens: 35828
+tool_uses: 27
+duration_ms: 158834&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc053113-9609-458a-b6c6-f9ca8b993f9e",
+  "isSidechain": false,
+  "promptId": "3b0ac660-c69c-40e8-a93b-4c0721e7702c",
+  "type": "user",
+  "uuid": "5de5595e-3b5a-41fc-9b07-662ea31d6b77",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I'm reviewing a paper proposal about \"open-vocabulary affordance reasoning for VLA (Vision-Language-Action) models.\" I need to find any competing or highly related work that may have been missed. Please search for:\n\n1. \"open vocabulary affordance VLA 2025 2026\" on web search\n2. \"affordance reasoning robot manipulation end-to-end 2026\" \n3. \"chain of thought VLA affordance robustness 2026\"\n4. \"affordance grounding vision language action 2025 2026\"\n5. \"intermediate reasoning tokens robot manipulation 2026\"\n6. Search specifically for any work comparing different types of chain-of-thought reasoning for robot manipulation\n7. Search for \"LIBERO-Plus robustness VLA\" to find what methods have been evaluated on this benchmark\n8. Search for \"reasoning content vs reasoning optimization VLA\" or similar\n\nFor each search, report the most relevant papers found, especially any from 2025-2026 that combine affordance reasoning with VLA models in an end-to-end manner. I'm particularly interested in work that:\n- Compares different types of intermediate reasoning for robot manipulation\n- Uses affordance-structured reasoning in autoregressive VLAs\n- Evaluates VLA robustness under distribution shift\n\nUse WebSearch for all queries. Report titles, arXiv IDs, and brief descriptions.",
+    "agentId": "a99e4c4020376a997",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is a comprehensive report of the most relevant competing and related work found across all searches. I have organized them by category, with the most directly relevant papers first.\n\n---\n\n## CATEGORY 1: Affordance-Structured Reasoning in VLA Models (Most Directly Related)\n\n### 1. CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance\n- **arXiv:** 2412.20451 | **Venue:** ICCV 2025\n- Introduces \"Chain-of-Affordance\" reasoning with four affordance types: object affordance (what/where to manipulate), grasp affordance (which part to grasp), spatial affordance (where to place), and movement affordance (collision-free path). Each affordance is transformed into both visual and textual formats, injected into the policy network via a vision-language co-injection module. Outperforms OpenVLA and Octo. Strong generalization to unseen poses, free space identification, and obstacle avoidance.\n- **This is likely the single most relevant competing work** -- it directly combines affordance-structured reasoning with VLA models in an end-to-end manner.\n\n### 2. PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation\n- **arXiv:** 2601.07060 | **Date:** January 2026\n- A VLA framework that structures policy learning around interaction-centric affordance reasoning and subtask progress cues. Distills complementary affordance representations (object relevance, contact geometry, spatial placements, motion dynamics). Uses a diffusion-based policy that jointly decodes actions and continuous progress values. Achieves 91.8% on LIBERO-LONG, +12.5% on CALVIN ABC->D.\n\n### 3. VLA-R1: Enhancing Reasoning in Vision-Language-Action Models\n- **arXiv:** 2510.01623 | **Date:** October 2025\n- Integrates RLVR (Reinforcement Learning from Verifiable Rewards) with GRPO to optimize both reasoning and execution. Develops VLA-CoT-13K, a dataset with chain-of-thought supervision explicitly aligned with affordance and trajectory annotations. Uses verifiable rewards for region alignment, trajectory consistency, and output formatting. Directly addresses reasoning robustness.\n- **Highly relevant** -- explicitly combines affordance-aligned CoT with optimization-level reinforcement, comparing data-level vs. optimization-level approaches.\n\n### 4. Affordance Field Intervention (AFI): Enabling VLAs to Escape Memory Traps in Robotic Manipulation\n- **arXiv:** 2512.07472 | **Date:** December 2025\n- Addresses VLA brittleness under distribution shift via \"Spatial Affordance Fields\" as a plug-in to guide VLA behavior. Detects memory traps through proprioception, repositions robots to high-affordance regions. +23.5% improvement on real-world OOD scenarios, +20.2% on LIBERO-Pro.\n\n### 5. Agile-VLA: Few-Shot Industrial Pose Rectification via Implicit Affordance Anchoring\n- **arXiv:** 2603.22899 | **Date:** March 2026\n- Uses implicit affordance anchoring for industrial manipulation tasks. Compares five open-source embodied models (Transporter, RT-1, RVT, Octo-Base, OpenVLA).\n\n---\n\n## CATEGORY 2: Chain-of-Thought / Intermediate Reasoning for VLA Models\n\n### 6. CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models\n- **arXiv:** 2503.22020 | **Venue:** CVPR 2025\n- Predicts future image frames autoregressively as visual goals before generating action sequences. +17% over state-of-the-art VLA in real-world tasks, +6% in simulation. Uses visual (not textual) reasoning as the intermediate representation.\n\n### 7. DeepThinkVLA: Enhancing Reasoning Capability of Vision-Language-Action Models\n- **arXiv:** 2511.15669 | **Date:** October 2025\n- Hybrid-attention decoder with causal attention for sequential CoT generation and bidirectional attention for parallel action decoding. Two-stage training: SFT for foundational reasoning, then RL with task-success rewards. 2.9B parameters, 96.5% average success rate, 0.175x latency of autoregressive baselines.\n\n### 8. Latent Reasoning VLA (LaRA-VLA): Latent Thinking and Prediction for Vision-Language-Action Models\n- **arXiv:** 2602.01166 | **Date:** February 2026\n- Internalizes multi-modal CoT reasoning into continuous latent representations. Curriculum-based training transitioning from explicit textual/visual CoT to latent reasoning. Reduces inference latency by up to 90% compared to explicit CoT approaches while maintaining performance.\n\n### 9. ECoT / ECoT-Lite: Embodied Chain-of-Thought Reasoning & Training Strategies for Efficient Embodied Reasoning\n- **arXiv:** 2407.08693 (ECoT) and 2505.08243 (ECoT-Lite) | **Venues:** CoRL 2024 / 2025\n- ECoT trains VLAs on multi-step reasoning (plans, sub-tasks, motions, bounding boxes, end-effector positions). +28% absolute success rate for OpenVLA. ECoT-Lite introduces efficient alternatives: reasoning dropout, thinking tokens, co-training. Achieves SOTA on LIBERO, +10-19% on BridgeData V2, while running at 3.5+ Hz (vs. 1-1.2 Hz for full ECoT).\n- **Highly relevant** -- ECoT-Lite directly compares different types of intermediate reasoning (textual CoT, thinking tokens, reasoning dropout) and analyzes WHY reasoning helps (representation learning, curricularization, expressivity).\n\n### 10. GraphCoT-VLA: A 3D Spatial-Aware Reasoning Vision-Language-Action Model for Robotic Manipulation with Ambiguous Instructions\n- **arXiv:** 2508.07650 | **Date:** August 2025\n- Structured CoT module integrating high-level task planning, failed task feedback, and low-level imaginative reasoning. Constructs real-time updatable 3D Pose-Object graphs capturing spatial configurations and topological relationships.\n\n### 11. ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models\n- **arXiv:** 2604.09824 | **Date:** April 2026\n- Constructs 3D entity-centric graphs, uses slow planner for symbolic sub-goals, aligns them with grounded entities via Grounding Alignment Contrastive loss. On LIBERO-Plus: robustness under robot perturbations from 30.3% to 71.5%, language ignorance reduced 3-4x. Very recent and directly evaluates on LIBERO-Plus.\n\n---\n\n## CATEGORY 3: Visual / Spatial Intermediate Representations for Manipulation\n\n### 12. Action-Sketcher: From Reasoning to Action via Visual Sketches for Long-Horizon Robotic Manipulation\n- **arXiv:** 2601.01618 | **Date:** January 2026\n- Introduces \"Visual Sketch\" as an intermediate representation (points, boxes, arrows, typed relations rendered onto current views). See-Think-Sketch-Act workflow with adaptive token-gated strategy.\n\n### 13. FSD (From Seeing to Doing): Bridging Reasoning and Decision for Robotic Manipulation\n- **arXiv:** 2505.08548 | **Date:** May 2025\n- Generates intermediate representations through spatial relationship reasoning. Uses hierarchical data pipeline with self-consistency mechanism. 40.6% success rate in SimplerEnv, 72% across 8 real-world tasks (+30% over strongest baseline).\n\n### 14. RT-Affordance: Affordances are Versatile Intermediate Representations for Robot Manipulation\n- **arXiv:** 2411.02704 | **Date:** November 2024\n- Hierarchical model: first proposes affordance plan given task language, then conditions policy on affordance plan. Bridges heterogeneous supervision (web datasets + robot trajectories). Exceeds prior methods by 50%+ and shows robustness to novel settings.\n\n### 15. RoboInter: A Holistic Intermediate Representation Suite Towards Robotic Manipulation\n- **arXiv:** 2602.09973 | **Venue:** ICLR 2026\n- Large-scale dataset (230k+ episodes, 571 scenes) with 10+ categories of intermediate representations (subtasks, skills, segmentation, affordance boxes, grasp poses, contact points, etc.). Plan-then-execute VLA framework supporting modular and end-to-end variants.\n\n### 16. Diffusion-VLA: Generalizable and Interpretable Robot Foundation Model via Self-Generated Reasoning\n- **arXiv:** 2412.03293 | **Venue:** ICML 2025\n- Combines autoregressive reasoning with diffusion-based action generation. Reasoning injection module integrates reasoning directly into policy learning. 2B parameter model runs at 82Hz on a single A6000.\n\n---\n\n## CATEGORY 4: VLA Robustness Analysis and Benchmarks\n\n### 17. LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\n- **arXiv:** 2510.13626 | **Date:** October 2025\n- Diagnostic benchmark with 10,030 tasks across 7 perturbation factors and 21 components (object layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures, sensor noise). Reveals VLA models drop from 95% to below 30% under modest perturbations. Most models ignore language instructions.\n\n### 18. Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation\n- **arXiv:** 2603.12717 | **Date:** March 2026\n- Seven text corruptions across three attacker tiers applied to reasoning VLA on 40 LIBERO tasks. **Key finding:** Object name substitution reduces success by 8.3pp (up to -45pp on individual tasks), but sentence reordering, spatial-direction reversal, token noise, and LLM-crafted wrong plans have negligible impact. Concludes that action decoders depend on entity-reference integrity rather than reasoning quality or sequential structure.\n- **Directly relevant** -- this is the most targeted study comparing what aspects of CoT reasoning actually matter for VLA manipulation.\n\n### 19. Do World Action Models Generalize Better than VLAs? A Robustness Study\n- **arXiv:** 2603.22078 | **Date:** March 2026\n- Compares World Action Models (WAMs) vs VLAs on robustness. WAMs (e.g., LingBot-VA at 74.2% on RoboTwin 2.0-Plus, Cosmos-Policy at 82.2% on LIBERO-Plus) generally generalize better to visual noise and layout changes due to spatiotemporal priors from video pretraining.\n\n---\n\n## CATEGORY 5: Other Affordance-Adjacent Work\n\n### 20. Afford-X: Generalizable and Slim Affordance Reasoning for Task-oriented Manipulation\n- **arXiv:** 2503.03556 | **Date:** 2025\n- End-to-end trainable affordance reasoning model (187M parameters). +12.1% over best non-LLM methods, 50x faster than GPT-4V API. Trained on LVIS-Aff (1,496 tasks, 119k images). Focuses on affordance perception rather than action generation.\n\n### 21. AffordanceLLM: Grounding Affordance from Vision Language Models\n- **arXiv:** 2401.06341 | **Date:** January 2024\n- Leverages pretrained VLMs for affordance grounding. Generalizes to unseen objects and actions from random Internet images.\n\n### 22. LMAffordance3D (CVPR 2025): Grounding 3D Object Affordance with Language Instructions, Visual Observations and Interactions\n- **arXiv:** 2504.04744 | **Date:** April 2025\n- First multi-modal, language-guided 3D affordance grounding network. Fuses 2D and 3D spatial features with semantic features via a VLM.\n\n---\n\n## Summary of Key Gaps and Overlaps\n\n**Papers most likely to overlap with an \"open-vocabulary affordance reasoning for VLA\" proposal:**\n1. **CoA-VLA** (arXiv:2412.20451) -- The closest competitor: affordance-structured reasoning explicitly integrated into VLA models\n2. **VLA-R1** (arXiv:2510.01623) -- CoT supervision aligned with affordance annotations + RLVR optimization\n3. **PALM** (arXiv:2601.07060) -- Affordance reasoning for long-horizon VLA with progress tracking\n4. **ProGAL-VLA** (arXiv:2604.09824) -- Grounded alignment addressing language ignorance, evaluated on LIBERO-Plus\n\n**Papers most relevant to \"comparing different types of intermediate reasoning\":**\n1. **ECoT-Lite** (arXiv:2505.08243) -- Directly compares reasoning types and analyzes why reasoning helps\n2. **Altered Thoughts, Altered Actions** (arXiv:2603.12717) -- Shows entity references matter more than reasoning quality\n3. **LaRA-VLA** (arXiv:2602.01166) -- Latent vs. explicit reasoning comparison\n4. **DeepThinkVLA** (arXiv:2511.15669) -- Architectural comparison (causal vs. bidirectional attention for reasoning vs. actions)\n\n**Papers most relevant to \"VLA robustness under distribution shift\":**\n1. **LIBERO-Plus** (arXiv:2510.13626) -- The primary robustness benchmark\n2. **AFI** (arXiv:2512.07472) -- Affordance-based intervention for OOD robustness\n3. **WAMs vs VLAs** (arXiv:2603.22078) -- Comparative robustness study\n4. **ProGAL-VLA** (arXiv:2604.09824) -- Robustness on LIBERO-Plus from 30.3% to 71.5%\n\nSources:\n- [CoA-VLA](https://arxiv.org/abs/2412.20451)\n- [VLA-R1](https://arxiv.org/abs/2510.01623)\n- [PALM](https://arxiv.org/abs/2601.07060)\n- [ProGAL-VLA](https://arxiv.org/abs/2604.09824)\n- [CoT-VLA](https://arxiv.org/abs/2503.22020)\n- [DeepThinkVLA](https://arxiv.org/abs/2511.15669)\n- [LaRA-VLA](https://arxiv.org/abs/2602.01166)\n- [ECoT](https://arxiv.org/abs/2407.08693)\n- [ECoT-Lite](https://arxiv.org/abs/2505.08243)\n- [GraphCoT-VLA](https://arxiv.org/abs/2508.07650)\n- [Action-Sketcher](https://arxiv.org/abs/2601.01618)\n- [FSD](https://arxiv.org/abs/2505.08548)\n- [RT-Affordance](https://arxiv.org/abs/2411.02704)\n- [RoboInter (ICLR 2026)](https://arxiv.org/abs/2602.09973)\n- [Diffusion-VLA](https://arxiv.org/abs/2412.03293)\n- [LIBERO-Plus](https://arxiv.org/abs/2510.13626)\n- [Altered Thoughts, Altered Actions](https://arxiv.org/abs/2603.12717)\n- [WAMs vs VLAs Robustness Study](https://arxiv.org/abs/2603.22078)\n- [Affordance Field Intervention](https://arxiv.org/abs/2512.07472)\n- [Agile-VLA](https://arxiv.org/abs/2603.22899)\n- [Afford-X](https://arxiv.org/abs/2503.03556)\n- [AffordanceLLM](https://arxiv.org/abs/2401.06341)\n- [LMAffordance3D](https://arxiv.org/abs/2504.04744)\n- [Awesome Embodied VLA list](https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln)"
+      }
+    ],
+    "totalDurationMs": 158834,
+    "totalTokens": 35828,
+    "totalToolUseCount": 27,
+    "usage": {
+      "input_tokens": 1475,
+      "cache_creation_input_tokens": 3232,
+      "cache_read_input_tokens": 26984,
+      "output_tokens": 4137,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3232
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1475,
+          "output_tokens": 4137,
+          "cache_read_input_tokens": 26984,
+          "cache_creation_input_tokens": 3232,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3232,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 27
+    }
+  },
+  "sourceToolAssistantUUID": "cc053113-9609-458a-b6c6-f9ca8b993f9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "5de5595e-3b5a-41fc-9b07-662ea31d6b77",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compare affordance vs generic reasoning for VLA robustness",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-18T19:41:47.029Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent. Now let me search for two critical missing pieces that I've identified from the search results:
+
+1. **"Altered Thoughts, Altered Actions" (arXiv 2603.12717)** — This seems critically relevant because it directly probes what aspects of CoT reasoning matter for VLA manipulation and finds that entity references matter more than reasoning quality or sequential structure. This directly challenges the proposal's hypothesis.
+
+2. **ProGAL-VLA (arXiv 2604.09824)** — This is very recent (April 2026) and claims to address language ignorance on LIBERO-Plus with grounded alignment, achieving robustness from 30.3% to 71.5%.
+
+
+3. **ECoT-Lite (arXiv 2505.08243)** — This directly compares different types of intermediate reasoning for VLA.
+
+4. **PALM (arXiv 2601.07060)** — Progress-aware affordance reasoning for VLA.
+
+I need to pull these papers to see how they relate to the core proposal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5de5595e-3b5a-41fc-9b07-662ea31d6b77",
+  "isSidechain": false,
+  "requestId": "req_011CbAbytwC9sCmZP9ZrbXTd",
+  "type": "assistant",
+  "uuid": "fa51da17-2340-48c2-905a-dd918ac5eb14",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TeYuZpbr1Pt33t1NuHqoDL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1869,
+      "cache_creation_input_tokens": 7835,
+      "cache_read_input_tokens": 36082,
+      "output_tokens": 1126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7835,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1869,
+          "output_tokens": 1126,
+          "cache_read_input_tokens": 36082,
+          "cache_creation_input_tokens": 7835,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7835
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-18T19:41:47.036Z_
+
+Found several critical papers. Let me now verify the most threatening competitors in detail.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa51da17-2340-48c2-905a-dd918ac5eb14",
+  "isSidechain": false,
+  "requestId": "req_011CbAbytwC9sCmZP9ZrbXTd",
+  "type": "assistant",
+  "uuid": "e63b9fa0-0519-48fc-a18a-d9cb6d07ed4e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TeYuZpbr1Pt33t1NuHqoDL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1869,
+      "cache_creation_input_tokens": 7835,
+      "cache_read_input_tokens": 36082,
+      "output_tokens": 1126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7835,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1869,
+          "output_tokens": 1126,
+          "cache_read_input_tokens": 36082,
+          "cache_creation_input_tokens": 7835,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7835
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-18T19:41:55.774Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01MaJWBQRs6n1ByvnUnYxe5H`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify critical competing papers",
+  "prompt": "I need to read the details of three critical papers that may directly compete with a proposal about \"comparing affordance-structured vs. generic chain-of-thought reasoning for VLA robustness.\" Please fetch and read the following:\n\n1. **\"Altered Thoughts, Altered Actions\" (arXiv 2603.12717)** — This paper probes CoT vulnerabilities in VLA robotic manipulation. I need to know:\n   - What exactly did they test? What types of reasoning corruptions?\n   - What did they find about whether reasoning CONTENT matters vs just having reasoning?\n   - Does this paper already answer whether affordance-specific reasoning is better than generic reasoning?\n\n2. **\"ProGAL-VLA\" (arXiv 2604.09824)** — Claims grounded alignment addressing language ignorance, evaluated on LIBERO-Plus.\n   - What is their approach?\n   - What robustness results do they achieve on LIBERO-Plus?\n   - Does this overlap with the OVA-VLA proposal's claims about addressing language ignorance?\n\n3. **\"ECoT-Lite\" (arXiv 2505.08243)** — Claims to directly compare different types of intermediate reasoning for VLA.\n   - What types of reasoning do they compare?\n   - Do they compare affordance-structured vs. generic reasoning?\n   - What are their findings about WHY reasoning helps?\n\n4. **\"PALM\" (arXiv 2601.07060)** — Affordance reasoning for long-horizon VLA.\n   - What affordance types do they use?\n   - Is it end-to-end?\n   - How close is it to the OVA-VLA proposal?\n\nUse WebFetch on the arXiv HTML pages for these papers (e.g., https://arxiv.org/abs/2603.12717, etc.) to read their abstracts and key sections. Report findings in detail."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e63b9fa0-0519-48fc-a18a-d9cb6d07ed4e",
+  "isSidechain": false,
+  "requestId": "req_011CbAbytwC9sCmZP9ZrbXTd",
+  "type": "assistant",
+  "uuid": "03ff1804-8df5-4f0c-97a4-430f319dbee9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TeYuZpbr1Pt33t1NuHqoDL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1869,
+      "cache_creation_input_tokens": 7835,
+      "cache_read_input_tokens": 36082,
+      "output_tokens": 1126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7835,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1869,
+          "output_tokens": 1126,
+          "cache_read_input_tokens": 36082,
+          "cache_creation_input_tokens": 7835,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7835
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T19:42:00.354Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_015cCpGUVSZqnZD3Fw3nLfmD`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Check CoA-VLA venue and ICCV claim",
+  "prompt": "I need to verify whether CoA-VLA (arXiv 2412.20451) was actually accepted at ICCV 2025 as claimed. Please:\n\n1. Search for \"CoA-VLA ICCV 2025\" \n2. Check the arXiv page at https://arxiv.org/abs/2412.20451 for any venue information\n3. Search for \"ICCV 2025 accepted papers CoA-VLA\" or \"ICCV 2025 affordance VLA\"\n\nAlso verify:\n4. Was RoboInter (arXiv 2602.09973) actually accepted at ICLR 2026? Search for confirmation.\n5. Was ACoT-VLA (arXiv 2601.11404) actually accepted at CVPR 2026?\n6. Was LIBERO-Plus (arXiv 2510.13626) actually accepted at CVPR 2026?\n\nUse WebSearch and WebFetch. Report what you find for each."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "03ff1804-8df5-4f0c-97a4-430f319dbee9",
+  "isSidechain": false,
+  "requestId": "req_011CbAbytwC9sCmZP9ZrbXTd",
+  "type": "assistant",
+  "uuid": "881eb4d1-30d4-4282-8923-0b468669c162",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TeYuZpbr1Pt33t1NuHqoDL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1869,
+      "cache_creation_input_tokens": 7835,
+      "cache_read_input_tokens": 36082,
+      "output_tokens": 1126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7835,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1869,
+          "output_tokens": 1126,
+          "cache_read_input_tokens": 36082,
+          "cache_creation_input_tokens": 7835,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7835
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T19:42:44.501Z_
+
+<details><summary>↩ Tool result · `toolu_015cCpGUVSZqnZD3Fw3nLfmD`</summary>
+
+```text
+Here are the findings for each paper:
+
+---
+
+**1. CoA-VLA (arXiv 2412.20451) -- ICCV 2025: CONFIRMED**
+
+The claim is verified. CoA-VLA was indeed accepted and published at ICCV 2025. Multiple strong pieces of evidence confirm this:
+- The paper appears in the [ICCV 2025 Open Access Repository](https://openaccess.thecvf.com/content/ICCV2025/html/Li_CoA-VLA_Improving_Vision-Language-Action_Models_via_Visual-Text_Chain-of-Affordance_ICCV_2025_paper.html) (pages 9759-9769).
+- It has a dedicated [ICCV 2025 virtual poster page](https://iccv.thecvf.com/virtual/2025/poster/542), listed for Tuesday, October 21, 2025.
+- Notably, the arXiv page itself does NOT explicitly state ICCV 2025 acceptance in its metadata (it just shows the preprint dates), but the CVF open access proceedings are definitive.
+
+---
+
+**2. RoboInter (arXiv 2602.09973) -- ICLR 2026: CONFIRMED**
+
+The claim is verified. RoboInter was accepted at ICLR 2026. Evidence:
+- The [arXiv page](https://arxiv.org/abs/2602.09973) comments field states "Published to ICLR 2026, 69 pages, 40 figures."
+- The paper has an [ICLR 2026 virtual poster page](https://iclr.cc/virtual/2026/poster/10009698).
+- The [GitHub repository](https://github.com/InternRobotics/RoboInter) is tagged with "[ICLR 2026]" in its title.
+
+---
+
+**3. ACoT-VLA (arXiv 2601.11404) -- CVPR 2026: CONFIRMED**
+
+The claim is verified. ACoT-VLA was accepted at CVPR 2026. Evidence:
+- The [arXiv page](https://arxiv.org/abs/2601.11404) explicitly states "Accepted by Conference on Computer Vision and Pattern Recognition (CVPR) 2026."
+- The [official GitHub repository](https://github.com/AgibotTech/ACoT-VLA) is tagged "[CVPR 2026]" in its description.
+- Multiple sources (alphaXiv, ResearchGate, Hugging Face) corroborate the acceptance.
+
+---
+
+**4. LIBERO-Plus (arXiv 2510.13626) -- CVPR 2026: CONFIRMED (with a caveat)**
+
+The claim is verified, though with a nuance. Evidence:
+- The [CVPR 2026 virtual poster page](https://cvpr.thecvf.com/virtual/2026/poster/38735) exists for LIBERO-Plus, which is strong confirmation of acceptance.
+- The [arXiv page](https://arxiv.org/abs/2510.13626) does NOT mention CVPR 2026 acceptance in its metadata (last revised December 2025, before acceptance decisions).
+- The [GitHub repository](https://github.com/sylvestf/LIBERO-plus) and Hugging Face pages exist for the project.
+- The CVPR virtual site listing is sufficient to confirm acceptance, even though the arXiv preprint was not updated to reflect it.
+
+---
+
+**Summary:** All four venue claims are confirmed as accurate. Each paper has at least one authoritative source (official conference proceedings, virtual poster pages, or explicit arXiv comments) verifying the claimed acceptance.
+
+Sources:
+- [CoA-VLA -- ICCV 2025 Open Access](https://openaccess.thecvf.com/content/ICCV2025/html/Li_CoA-VLA_Improving_Vision-Language-Action_Models_via_Visual-Text_Chain-of-Affordance_ICCV_2025_paper.html)
+- [CoA-VLA -- ICCV 2025 Poster](https://iccv.thecvf.com/virtual/2025/poster/542)
+- [CoA-VLA -- arXiv](https://arxiv.org/abs/2412.20451)
+- [RoboInter -- arXiv](https://arxiv.org/abs/2602.09973)
+- [RoboInter -- ICLR 2026 Poster](https://iclr.cc/virtual/2026/poster/10009698)
+- [RoboInter -- GitHub](https://github.com/InternRobotics/RoboInter)
+- [ACoT-VLA -- arXiv](https://arxiv.org/abs/2601.11404)
+- [ACoT-VLA -- GitHub](https://github.com/AgibotTech/ACoT-VLA)
+- [LIBERO-Plus -- arXiv](https://arxiv.org/abs/2510.13626)
+- [LIBERO-Plus -- CVPR 2026 Poster](https://cvpr.thecvf.com/virtual/2026/poster/38735)
+
+agentId: afae91227bb0e4e4d (use SendMessage with to: 'afae91227bb0e4e4d' to continue this agent)
+&lt;usage>total_tokens: 18600
+tool_uses: 11
+duration_ms: 44144&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "881eb4d1-30d4-4282-8923-0b468669c162",
+  "isSidechain": false,
+  "promptId": "3b0ac660-c69c-40e8-a93b-4c0721e7702c",
+  "type": "user",
+  "uuid": "446d7aa8-8db7-4a3a-bfe3-68555a867891",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify whether CoA-VLA (arXiv 2412.20451) was actually accepted at ICCV 2025 as claimed. Please:\n\n1. Search for \"CoA-VLA ICCV 2025\" \n2. Check the arXiv page at https://arxiv.org/abs/2412.20451 for any venue information\n3. Search for \"ICCV 2025 accepted papers CoA-VLA\" or \"ICCV 2025 affordance VLA\"\n\nAlso verify:\n4. Was RoboInter (arXiv 2602.09973) actually accepted at ICLR 2026? Search for confirmation.\n5. Was ACoT-VLA (arXiv 2601.11404) actually accepted at CVPR 2026?\n6. Was LIBERO-Plus (arXiv 2510.13626) actually accepted at CVPR 2026?\n\nUse WebSearch and WebFetch. Report what you find for each.",
+    "agentId": "afae91227bb0e4e4d",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are the findings for each paper:\n\n---\n\n**1. CoA-VLA (arXiv 2412.20451) -- ICCV 2025: CONFIRMED**\n\nThe claim is verified. CoA-VLA was indeed accepted and published at ICCV 2025. Multiple strong pieces of evidence confirm this:\n- The paper appears in the [ICCV 2025 Open Access Repository](https://openaccess.thecvf.com/content/ICCV2025/html/Li_CoA-VLA_Improving_Vision-Language-Action_Models_via_Visual-Text_Chain-of-Affordance_ICCV_2025_paper.html) (pages 9759-9769).\n- It has a dedicated [ICCV 2025 virtual poster page](https://iccv.thecvf.com/virtual/2025/poster/542), listed for Tuesday, October 21, 2025.\n- Notably, the arXiv page itself does NOT explicitly state ICCV 2025 acceptance in its metadata (it just shows the preprint dates), but the CVF open access proceedings are definitive.\n\n---\n\n**2. RoboInter (arXiv 2602.09973) -- ICLR 2026: CONFIRMED**\n\nThe claim is verified. RoboInter was accepted at ICLR 2026. Evidence:\n- The [arXiv page](https://arxiv.org/abs/2602.09973) comments field states \"Published to ICLR 2026, 69 pages, 40 figures.\"\n- The paper has an [ICLR 2026 virtual poster page](https://iclr.cc/virtual/2026/poster/10009698).\n- The [GitHub repository](https://github.com/InternRobotics/RoboInter) is tagged with \"[ICLR 2026]\" in its title.\n\n---\n\n**3. ACoT-VLA (arXiv 2601.11404) -- CVPR 2026: CONFIRMED**\n\nThe claim is verified. ACoT-VLA was accepted at CVPR 2026. Evidence:\n- The [arXiv page](https://arxiv.org/abs/2601.11404) explicitly states \"Accepted by Conference on Computer Vision and Pattern Recognition (CVPR) 2026.\"\n- The [official GitHub repository](https://github.com/AgibotTech/ACoT-VLA) is tagged \"[CVPR 2026]\" in its description.\n- Multiple sources (alphaXiv, ResearchGate, Hugging Face) corroborate the acceptance.\n\n---\n\n**4. LIBERO-Plus (arXiv 2510.13626) -- CVPR 2026: CONFIRMED (with a caveat)**\n\nThe claim is verified, though with a nuance. Evidence:\n- The [CVPR 2026 virtual poster page](https://cvpr.thecvf.com/virtual/2026/poster/38735) exists for LIBERO-Plus, which is strong confirmation of acceptance.\n- The [arXiv page](https://arxiv.org/abs/2510.13626) does NOT mention CVPR 2026 acceptance in its metadata (last revised December 2025, before acceptance decisions).\n- The [GitHub repository](https://github.com/sylvestf/LIBERO-plus) and Hugging Face pages exist for the project.\n- The CVPR virtual site listing is sufficient to confirm acceptance, even though the arXiv preprint was not updated to reflect it.\n\n---\n\n**Summary:** All four venue claims are confirmed as accurate. Each paper has at least one authoritative source (official conference proceedings, virtual poster pages, or explicit arXiv comments) verifying the claimed acceptance.\n\nSources:\n- [CoA-VLA -- ICCV 2025 Open Access](https://openaccess.thecvf.com/content/ICCV2025/html/Li_CoA-VLA_Improving_Vision-Language-Action_Models_via_Visual-Text_Chain-of-Affordance_ICCV_2025_paper.html)\n- [CoA-VLA -- ICCV 2025 Poster](https://iccv.thecvf.com/virtual/2025/poster/542)\n- [CoA-VLA -- arXiv](https://arxiv.org/abs/2412.20451)\n- [RoboInter -- arXiv](https://arxiv.org/abs/2602.09973)\n- [RoboInter -- ICLR 2026 Poster](https://iclr.cc/virtual/2026/poster/10009698)\n- [RoboInter -- GitHub](https://github.com/InternRobotics/RoboInter)\n- [ACoT-VLA -- arXiv](https://arxiv.org/abs/2601.11404)\n- [ACoT-VLA -- GitHub](https://github.com/AgibotTech/ACoT-VLA)\n- [LIBERO-Plus -- arXiv](https://arxiv.org/abs/2510.13626)\n- [LIBERO-Plus -- CVPR 2026 Poster](https://cvpr.thecvf.com/virtual/2026/poster/38735)"
+      }
+    ],
+    "totalDurationMs": 44144,
+    "totalTokens": 18600,
+    "totalToolUseCount": 11,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 16584,
+      "output_tokens": 1287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 728
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1287,
+          "cache_read_input_tokens": 16584,
+          "cache_creation_input_tokens": 728,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 728,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 11
+    }
+  },
+  "sourceToolAssistantUUID": "881eb4d1-30d4-4282-8923-0b468669c162",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-18T19:43:56.465Z_
+
+<details><summary>↩ Tool result · `toolu_01MaJWBQRs6n1ByvnUnYxe5H`</summary>
+
+```text
+Now I have comprehensive details on all four papers. Here is my detailed report:
+
+---
+
+## Paper 1: "Altered Thoughts, Altered Actions" (arXiv 2603.12717)
+
+**Authors:** Tuan Duong Trinh, Naveed Akhtar, Basim Azam
+
+### What They Tested
+They tested **DeepThinkVLA** (2.9B parameters), a reasoning VLA that generates natural-language plans in `&lt;think>` tags before decoding action chunks. They used **OpenVLA-OFT** (non-reasoning VLA) as a control. Evaluation was across **40 LIBERO tabletop manipulation tasks**.
+
+They designed **7 text corruptions in 3 tiers**:
+- **Tier 1 (Blind Noise):** Random token replacement (50%), padding (length-matched filler tokens)
+- **Tier 2 (Mechanical-Semantic):** Sentence shuffling, entity/object name swapping, spatial negation flipping (left/right, top/bottom)
+- **Tier 3 (LLM-Adaptive):** Llama-3.1-70B rewriting CoT with plausible-but-wrong reasoning
+
+They also ran graded random token replacement at 25/50/75/100%.
+
+### Key Findings: Content vs. Presence
+This is the critical finding: **Entity-reference integrity is what matters, not reasoning quality or sequential structure.** Specifically:
+- **Entity swap** caused -8.3pp overall, -19.3pp on goal-conditioned tasks, and up to -45pp on individual tasks
+- **Sentence shuffling, spatial-direction reversal, random tokens, padding, and even LLM-adversarial rewrites** all had negligible effects (within +/-4pp)
+- The LLM-adversarial attack (-0.5pp, p=0.42) was statistically insignificant -- sophisticated reasoning corruption did NOT hurt
+
+The action decoder extracts object references to ground manipulation plans to the physical scene. It ignores sequential structure, spatial direction words (relying on vision instead), and reasoning quality.
+
+### Does It Answer Whether Affordance-Specific Reasoning Is Better?
+**No.** This paper does NOT compare affordance-structured vs. generic reasoning. It only tests a single natural-language CoT model (DeepThinkVLA) and corrupts its text. It reveals that the decoder is selectively faithful (attending to entity names but not reasoning structure), which is relevant but does not directly test whether affordance-structured reasoning would be more robust than generic CoT. **This leaves a clear gap that the OVA-VLA proposal could fill.**
+
+---
+
+## Paper 2: "ProGAL-VLA" (arXiv 2604.09824)
+
+**Authors:** Nastaran Darabi, Amit Ranjan Trivedi
+
+### Approach
+ProGAL-VLA is a 4-component architecture with a "verification bottleneck":
+1. **Prospective Planner (slow):** Uses Qwen-2.5-VL-7B to generate normalized symbolic sub-goals (e.g., "grasp_green_mug"). Invoked only once per episode (asynchronous).
+2. **Grounded State Module (GSM):** Builds a 3D entity-centric graph using YOLO-World detections + Metric3D depth, maintaining bounded memory (16 nodes, FIFO).
+3. **State Alignment Cross Attention (SACA):** Verifies symbolic goals bind to specific 3D entities via attention. No action is executed unless the goal is verified.
+4. **Action Policy (fast):** Executes actions conditioned solely on verified goal embeddings.
+
+The **GAC loss** (InfoNCE-style contrastive loss) aligns symbolic sub-goals with 3D entity embeddings, enforcing mutual information maximization.
+
+### Robustness Results on LIBERO-Plus
+| Perturbation | OpenVLA-OFT+ | ProGAL-VLA |
+|---|---|---|
+| Camera | 92.8% | **93.2%** |
+| Robot | 30.3% | **71.5%** |
+| Language | 85.8% | **93.6%** |
+| Light | 94.9% | 86.8% |
+| Background | 93.9% | 92.3% |
+| Noise | 89.3% | 74.8% |
+| Layout | 77.6% | **86.7%** |
+| **Total** | 79.6% | **85.5%** |
+
+Largest gains on robot perturbations (+41.2pp) and language perturbations (+7.8pp).
+
+### Language Ignorance Overlap
+**Significant overlap with OVA-VLA claims.** ProGAL-VLA directly targets language ignorance, defining it formally via conditional mutual information and measuring it as a normalized index. They achieve 3-4x reduction in language ignorance and demonstrate this on LIBERO-Plus with AUROC 0.81 on ambiguity detection. Their verification bottleneck structurally ensures "actions depend solely on verified semantics and perceptual evidence rather than ungrounded linguistic cues."
+
+**However**, ProGAL-VLA is NOT end-to-end in the same way -- it uses a separate slow planner (Qwen-2.5-VL-7B), a separate detection pipeline (YOLO-World), and separate depth estimation (Metric3D). This is a modular approach rather than an end-to-end affordance-reasoning VLA.
+
+---
+
+## Paper 3: "Training Strategies for Efficient Embodied Reasoning" / ECoT-Lite (arXiv 2505.08243)
+
+**Authors:** William Chen, Suneel Belkhale, Suvir Mirchandani, Oier Mees, Danny Driess, Karl Pertsch, Sergey Levine (UC Berkeley / Google DeepMind)
+
+### Types of Reasoning Compared
+They test **6 variants** against a standard VLA baseline:
+1. **Full ECoT** -- generate reasoning + actions at both train and test time
+2. **Reasoning Pre-training** -- train on reasoning first, then fine-tune on actions only
+3. **Reasoning Co-training** -- simultaneous reasoning and action training with separate batches
+4. **Reasoning Dropout** -- train with reasoning, randomly omit at inference
+5. **Reasoning Scaffolding** -- reasoning provided in-context during training (no loss), removed at test
+6. **Thinking Tokens** -- non-semantic random tokens matching reasoning length
+
+### Do They Compare Affordance-Structured vs. Generic Reasoning?
+**Not directly.** They use ECoT's structured reasoning format (which includes object bounding boxes, end-effector positions, task subtasks, motion rationales, and object affordances) as the representative reasoning type. They note different reasoning types exist but treat ECoT as representative and focus on **whether and how** reasoning helps rather than **which type** of reasoning helps. They do NOT systematically compare affordance-structured vs. free-form reasoning types. **This is a gap the OVA-VLA proposal could address.**
+
+### Key Findings About WHY Reasoning Helps
+Three hypothesized mechanisms, tested:
+1. **Representation Learning (SUPPORTED):** Learning to generate reasoning improves internal representations. Pre-training on reasoning first, then fine-tuning on actions, achieved +5.4% over baseline on LIBERO-90.
+2. **Curriculum Learning (WEAKLY SUPPORTED):** Scaffolding yielded only +2.9%, comparable to co-training.
+3. **Expressivity (REJECTED):** Thinking tokens actually hurt performance (-3.8%).
+
+**Critical insight:** "Learning to generate reasonings does lead to better VLA representations, while attending to the reasonings aids in actually leveraging these features for improved action prediction."
+
+### Quantitative Highlights
+- Full ECoT: 76.6% avg on LIBERO-90 (perturbed settings)
+- Reasoning Pre-training: 72.8% (best ECoT-Lite variant)
+- Reasoning Dropout: 76.4% (nearly matches full ECoT)
+- Standard VLA: 67.4%
+- Thinking Tokens: 63.9% (worse than baseline)
+- ECoT-Lite achieves **3x inference speedup** (3.5+ Hz vs 1-1.2 Hz)
+
+---
+
+## Paper 4: "PALM" (arXiv 2601.07060)
+
+**Authors:** Yuanzhe Liu, Jingyuan Zhu, Yuchen Mo, Gen Li, Xu Cao, Jin Jin, Yifan Shen, Zhengyuan Li, Tianjiao Yu, Wenzhen Yuan, Fangqiang Ding, Ismini Lourentzou
+
+### Affordance Types
+PALM uses **four complementary affordance representations**:
+1. **Global** -- task-relevant object identification via Grounding DINO + SAM segmentation (binary masks, object features)
+2. **Local** -- dense contact-likelihood distributions via Gaussian heatmaps from annotated contact points (contact geometry)
+3. **Spatial** -- candidate placement points predicted via SpatialVLM and RoboPoint (where to place things)
+4. **Dynamic** -- pixel tracking of gripper and movable objects via CoTracker (motion dynamics)
+
+These are distilled into a compact affordance latent through block-wise structured attention with disentangled subqueries.
+
+### End-to-End?
+**Yes.** PALM is end-to-end trainable. It uses a GPT-2-style transformer backbone with frozen CLIP text encoder and frozen MAE-pretrained ViT-B visual backbone. Two learnable query sets (affordance and action-progress) are extracted simultaneously. A Diffusion Transformer (DiT) decoder jointly predicts actions and progress. All non-frozen components train together.
+
+### How Close to OVA-VLA?
+**PALM is very close in spirit** -- it integrates structured affordance reasoning directly into a VLA policy loop. Key differences:
+- PALM uses affordance representations distilled from specialist models (Grounding DINO, SpatialVLM, RoboPoint, CoTracker) rather than generating affordance reasoning as text
+- PALM focuses on **long-horizon** tasks with progress prediction for subtask transitions
+- PALM's affordances are latent/implicit rather than explicit chain-of-thought text
+- It does NOT compare affordance reasoning to generic CoT reasoning
+
+### Quantitative Results
+- **LIBERO-LONG:** 91.8% (vs. CoT-VLA 69.0%, a +22.8pp gain)
+- **CALVIN ABCD:** Average length 4.48 (vs. Seer 3.98, +12.5%)
+- **Real-world:** 2x improvement over baselines across 3 settings
+
+### Ablation: Which Affordances Matter Most
+Removing affordance foresight entirely caused the largest drop (4.48 to 3.58 on CALVIN). Adding affordance types incrementally: Global alone helps, +Local helps on CALVIN, +Spatial helps on both benchmarks, +Dynamic (full PALM) achieves best performance. Dynamic/motion cues are critical.
+
+---
+
+## Summary Assessment for the OVA-VLA Proposal
+
+**What is already covered by these papers:**
+- "Altered Thoughts" shows entity-reference integrity matters in CoT, but reasoning structure/quality does not -- however, it does NOT compare affordance vs. generic reasoning types
+- ProGAL-VLA directly addresses language ignorance with a verification bottleneck and achieves strong LIBERO-Plus results -- significant overlap with OVA-VLA's language ignorance claims, but uses a modular (non end-to-end) architecture
+- ECoT-Lite shows WHY reasoning helps (representation learning, not expressivity) but treats ECoT as monolithic and does NOT compare affordance-structured vs. generic reasoning types
+- PALM integrates affordance reasoning end-to-end into a VLA but uses latent affordances (not text-based CoT) and does NOT compare against generic reasoning
+
+**The clear gap that remains:** No paper directly compares affordance-structured chain-of-thought reasoning against generic/free-form chain-of-thought reasoning within the same VLA architecture. This is the core OVA-VLA proposal contribution. However, ProGAL-VLA's language ignorance results on LIBERO-Plus represent a strong competing baseline that any proposal must benchmark against or differentiate from.
+
+agentId: aa63e4c304bb12290 (use SendMessage with to: 'aa63e4c304bb12290' to continue this agent)
+&lt;usage>total_tokens: 22395
+tool_uses: 9
+duration_ms: 120685&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "03ff1804-8df5-4f0c-97a4-430f319dbee9",
+  "isSidechain": false,
+  "promptId": "3b0ac660-c69c-40e8-a93b-4c0721e7702c",
+  "type": "user",
+  "uuid": "0a5d2fc6-6ce3-482c-82aa-d120e3b1f4ef",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to read the details of three critical papers that may directly compete with a proposal about \"comparing affordance-structured vs. generic chain-of-thought reasoning for VLA robustness.\" Please fetch and read the following:\n\n1. **\"Altered Thoughts, Altered Actions\" (arXiv 2603.12717)** — This paper probes CoT vulnerabilities in VLA robotic manipulation. I need to know:\n   - What exactly did they test? What types of reasoning corruptions?\n   - What did they find about whether reasoning CONTENT matters vs just having reasoning?\n   - Does this paper already answer whether affordance-specific reasoning is better than generic reasoning?\n\n2. **\"ProGAL-VLA\" (arXiv 2604.09824)** — Claims grounded alignment addressing language ignorance, evaluated on LIBERO-Plus.\n   - What is their approach?\n   - What robustness results do they achieve on LIBERO-Plus?\n   - Does this overlap with the OVA-VLA proposal's claims about addressing language ignorance?\n\n3. **\"ECoT-Lite\" (arXiv 2505.08243)** — Claims to directly compare different types of intermediate reasoning for VLA.\n   - What types of reasoning do they compare?\n   - Do they compare affordance-structured vs. generic reasoning?\n   - What are their findings about WHY reasoning helps?\n\n4. **\"PALM\" (arXiv 2601.07060)** — Affordance reasoning for long-horizon VLA.\n   - What affordance types do they use?\n   - Is it end-to-end?\n   - How close is it to the OVA-VLA proposal?\n\nUse WebFetch on the arXiv HTML pages for these papers (e.g., https://arxiv.org/abs/2603.12717, etc.) to read their abstracts and key sections. Report findings in detail.",
+    "agentId": "aa63e4c304bb12290",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have comprehensive details on all four papers. Here is my detailed report:\n\n---\n\n## Paper 1: \"Altered Thoughts, Altered Actions\" (arXiv 2603.12717)\n\n**Authors:** Tuan Duong Trinh, Naveed Akhtar, Basim Azam\n\n### What They Tested\nThey tested **DeepThinkVLA** (2.9B parameters), a reasoning VLA that generates natural-language plans in `&lt;think>` tags before decoding action chunks. They used **OpenVLA-OFT** (non-reasoning VLA) as a control. Evaluation was across **40 LIBERO tabletop manipulation tasks**.\n\nThey designed **7 text corruptions in 3 tiers**:\n- **Tier 1 (Blind Noise):** Random token replacement (50%), padding (length-matched filler tokens)\n- **Tier 2 (Mechanical-Semantic):** Sentence shuffling, entity/object name swapping, spatial negation flipping (left/right, top/bottom)\n- **Tier 3 (LLM-Adaptive):** Llama-3.1-70B rewriting CoT with plausible-but-wrong reasoning\n\nThey also ran graded random token replacement at 25/50/75/100%.\n\n### Key Findings: Content vs. Presence\nThis is the critical finding: **Entity-reference integrity is what matters, not reasoning quality or sequential structure.** Specifically:\n- **Entity swap** caused -8.3pp overall, -19.3pp on goal-conditioned tasks, and up to -45pp on individual tasks\n- **Sentence shuffling, spatial-direction reversal, random tokens, padding, and even LLM-adversarial rewrites** all had negligible effects (within +/-4pp)\n- The LLM-adversarial attack (-0.5pp, p=0.42) was statistically insignificant -- sophisticated reasoning corruption did NOT hurt\n\nThe action decoder extracts object references to ground manipulation plans to the physical scene. It ignores sequential structure, spatial direction words (relying on vision instead), and reasoning quality.\n\n### Does It Answer Whether Affordance-Specific Reasoning Is Better?\n**No.** This paper does NOT compare affordance-structured vs. generic reasoning. It only tests a single natural-language CoT model (DeepThinkVLA) and corrupts its text. It reveals that the decoder is selectively faithful (attending to entity names but not reasoning structure), which is relevant but does not directly test whether affordance-structured reasoning would be more robust than generic CoT. **This leaves a clear gap that the OVA-VLA proposal could fill.**\n\n---\n\n## Paper 2: \"ProGAL-VLA\" (arXiv 2604.09824)\n\n**Authors:** Nastaran Darabi, Amit Ranjan Trivedi\n\n### Approach\nProGAL-VLA is a 4-component architecture with a \"verification bottleneck\":\n1. **Prospective Planner (slow):** Uses Qwen-2.5-VL-7B to generate normalized symbolic sub-goals (e.g., \"grasp_green_mug\"). Invoked only once per episode (asynchronous).\n2. **Grounded State Module (GSM):** Builds a 3D entity-centric graph using YOLO-World detections + Metric3D depth, maintaining bounded memory (16 nodes, FIFO).\n3. **State Alignment Cross Attention (SACA):** Verifies symbolic goals bind to specific 3D entities via attention. No action is executed unless the goal is verified.\n4. **Action Policy (fast):** Executes actions conditioned solely on verified goal embeddings.\n\nThe **GAC loss** (InfoNCE-style contrastive loss) aligns symbolic sub-goals with 3D entity embeddings, enforcing mutual information maximization.\n\n### Robustness Results on LIBERO-Plus\n| Perturbation | OpenVLA-OFT+ | ProGAL-VLA |\n|---|---|---|\n| Camera | 92.8% | **93.2%** |\n| Robot | 30.3% | **71.5%** |\n| Language | 85.8% | **93.6%** |\n| Light | 94.9% | 86.8% |\n| Background | 93.9% | 92.3% |\n| Noise | 89.3% | 74.8% |\n| Layout | 77.6% | **86.7%** |\n| **Total** | 79.6% | **85.5%** |\n\nLargest gains on robot perturbations (+41.2pp) and language perturbations (+7.8pp).\n\n### Language Ignorance Overlap\n**Significant overlap with OVA-VLA claims.** ProGAL-VLA directly targets language ignorance, defining it formally via conditional mutual information and measuring it as a normalized index. They achieve 3-4x reduction in language ignorance and demonstrate this on LIBERO-Plus with AUROC 0.81 on ambiguity detection. Their verification bottleneck structurally ensures \"actions depend solely on verified semantics and perceptual evidence rather than ungrounded linguistic cues.\"\n\n**However**, ProGAL-VLA is NOT end-to-end in the same way -- it uses a separate slow planner (Qwen-2.5-VL-7B), a separate detection pipeline (YOLO-World), and separate depth estimation (Metric3D). This is a modular approach rather than an end-to-end affordance-reasoning VLA.\n\n---\n\n## Paper 3: \"Training Strategies for Efficient Embodied Reasoning\" / ECoT-Lite (arXiv 2505.08243)\n\n**Authors:** William Chen, Suneel Belkhale, Suvir Mirchandani, Oier Mees, Danny Driess, Karl Pertsch, Sergey Levine (UC Berkeley / Google DeepMind)\n\n### Types of Reasoning Compared\nThey test **6 variants** against a standard VLA baseline:\n1. **Full ECoT** -- generate reasoning + actions at both train and test time\n2. **Reasoning Pre-training** -- train on reasoning first, then fine-tune on actions only\n3. **Reasoning Co-training** -- simultaneous reasoning and action training with separate batches\n4. **Reasoning Dropout** -- train with reasoning, randomly omit at inference\n5. **Reasoning Scaffolding** -- reasoning provided in-context during training (no loss), removed at test\n6. **Thinking Tokens** -- non-semantic random tokens matching reasoning length\n\n### Do They Compare Affordance-Structured vs. Generic Reasoning?\n**Not directly.** They use ECoT's structured reasoning format (which includes object bounding boxes, end-effector positions, task subtasks, motion rationales, and object affordances) as the representative reasoning type. They note different reasoning types exist but treat ECoT as representative and focus on **whether and how** reasoning helps rather than **which type** of reasoning helps. They do NOT systematically compare affordance-structured vs. free-form reasoning types. **This is a gap the OVA-VLA proposal could address.**\n\n### Key Findings About WHY Reasoning Helps\nThree hypothesized mechanisms, tested:\n1. **Representation Learning (SUPPORTED):** Learning to generate reasoning improves internal representations. Pre-training on reasoning first, then fine-tuning on actions, achieved +5.4% over baseline on LIBERO-90.\n2. **Curriculum Learning (WEAKLY SUPPORTED):** Scaffolding yielded only +2.9%, comparable to co-training.\n3. **Expressivity (REJECTED):** Thinking tokens actually hurt performance (-3.8%).\n\n**Critical insight:** \"Learning to generate reasonings does lead to better VLA representations, while attending to the reasonings aids in actually leveraging these features for improved action prediction.\"\n\n### Quantitative Highlights\n- Full ECoT: 76.6% avg on LIBERO-90 (perturbed settings)\n- Reasoning Pre-training: 72.8% (best ECoT-Lite variant)\n- Reasoning Dropout: 76.4% (nearly matches full ECoT)\n- Standard VLA: 67.4%\n- Thinking Tokens: 63.9% (worse than baseline)\n- ECoT-Lite achieves **3x inference speedup** (3.5+ Hz vs 1-1.2 Hz)\n\n---\n\n## Paper 4: \"PALM\" (arXiv 2601.07060)\n\n**Authors:** Yuanzhe Liu, Jingyuan Zhu, Yuchen Mo, Gen Li, Xu Cao, Jin Jin, Yifan Shen, Zhengyuan Li, Tianjiao Yu, Wenzhen Yuan, Fangqiang Ding, Ismini Lourentzou\n\n### Affordance Types\nPALM uses **four complementary affordance representations**:\n1. **Global** -- task-relevant object identification via Grounding DINO + SAM segmentation (binary masks, object features)\n2. **Local** -- dense contact-likelihood distributions via Gaussian heatmaps from annotated contact points (contact geometry)\n3. **Spatial** -- candidate placement points predicted via SpatialVLM and RoboPoint (where to place things)\n4. **Dynamic** -- pixel tracking of gripper and movable objects via CoTracker (motion dynamics)\n\nThese are distilled into a compact affordance latent through block-wise structured attention with disentangled subqueries.\n\n### End-to-End?\n**Yes.** PALM is end-to-end trainable. It uses a GPT-2-style transformer backbone with frozen CLIP text encoder and frozen MAE-pretrained ViT-B visual backbone. Two learnable query sets (affordance and action-progress) are extracted simultaneously. A Diffusion Transformer (DiT) decoder jointly predicts actions and progress. All non-frozen components train together.\n\n### How Close to OVA-VLA?\n**PALM is very close in spirit** -- it integrates structured affordance reasoning directly into a VLA policy loop. Key differences:\n- PALM uses affordance representations distilled from specialist models (Grounding DINO, SpatialVLM, RoboPoint, CoTracker) rather than generating affordance reasoning as text\n- PALM focuses on **long-horizon** tasks with progress prediction for subtask transitions\n- PALM's affordances are latent/implicit rather than explicit chain-of-thought text\n- It does NOT compare affordance reasoning to generic CoT reasoning\n\n### Quantitative Results\n- **LIBERO-LONG:** 91.8% (vs. CoT-VLA 69.0%, a +22.8pp gain)\n- **CALVIN ABCD:** Average length 4.48 (vs. Seer 3.98, +12.5%)\n- **Real-world:** 2x improvement over baselines across 3 settings\n\n### Ablation: Which Affordances Matter Most\nRemoving affordance foresight entirely caused the largest drop (4.48 to 3.58 on CALVIN). Adding affordance types incrementally: Global alone helps, +Local helps on CALVIN, +Spatial helps on both benchmarks, +Dynamic (full PALM) achieves best performance. Dynamic/motion cues are critical.\n\n---\n\n## Summary Assessment for the OVA-VLA Proposal\n\n**What is already covered by these papers:**\n- \"Altered Thoughts\" shows entity-reference integrity matters in CoT, but reasoning structure/quality does not -- however, it does NOT compare affordance vs. generic reasoning types\n- ProGAL-VLA directly addresses language ignorance with a verification bottleneck and achieves strong LIBERO-Plus results -- significant overlap with OVA-VLA's language ignorance claims, but uses a modular (non end-to-end) architecture\n- ECoT-Lite shows WHY reasoning helps (representation learning, not expressivity) but treats ECoT as monolithic and does NOT compare affordance-structured vs. generic reasoning types\n- PALM integrates affordance reasoning end-to-end into a VLA but uses latent affordances (not text-based CoT) and does NOT compare against generic reasoning\n\n**The clear gap that remains:** No paper directly compares affordance-structured chain-of-thought reasoning against generic/free-form chain-of-thought reasoning within the same VLA architecture. This is the core OVA-VLA proposal contribution. However, ProGAL-VLA's language ignorance results on LIBERO-Plus represent a strong competing baseline that any proposal must benchmark against or differentiate from."
+      }
+    ],
+    "totalDurationMs": 120685,
+    "totalTokens": 22395,
+    "totalToolUseCount": 9,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6217,
+      "cache_read_input_tokens": 13202,
+      "output_tokens": 2975,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6217
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2975,
+          "cache_read_input_tokens": 13202,
+          "cache_creation_input_tokens": 6217,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6217,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 9
+    }
+  },
+  "sourceToolAssistantUUID": "03ff1804-8df5-4f0c-97a4-430f319dbee9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "0a5d2fc6-6ce3-482c-82aa-d120e3b1f4ef",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compare affordance vs generic reasoning for VLA robustness",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81"
+}
+```
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-18T19:45:10.383Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me synthesize all findings and form my assessment.
+
+## Key Findings
+
+### Reference Verification
+- Most papers verified as existing and claims are broadly accurate
+- DeepThinkVLA: 97% LIBERO and 79% LIBERO-Plus confirmed, but **NOT confirmed as ICLR 2026** — likely not accepted. The proposal claims it's ICLR 2026, which is questionable.
+- CoA-VLA at ICCV 2025: confirmed
+- RoboInter at ICLR 2026: confirmed
+
+
+- ACoT-VLA at CVPR 2026: confirmed
+- LIBERO-Plus at CVPR 2026: confirmed
+- GST-VLA exists but only as a preprint with preliminary results
+- Affogato contains 150K instances and was withdrawn from ICLR 2026, though the dataset itself is available on HuggingFace
+
+### Critical Missing/Underappreciated References
+There's a highly relevant paper on entity-reference integrity in chain-of-thought VLAs that examines how reasoning quality and spatial directions affect performance, which the proposal doesn't adequately address.
+
+ProGAL-VLA from April 2026 achieves notably stronger results on LIBERO-Plus than the proposal's baseline, using a modular approach to handle language grounding. Meanwhile, ECoT-Lite suggests that representation learning, not reasoning expressivity, drives improvements in VLAs—and that thinking tokens can actually be counterproductive—which challenges whether affordance-structured reasoning provides real advantages over simpler approaches.
+
+PALM integrates structured affordance reasoning directly into the VLA architecture with impressive performance on LIBERO-LONG, while AFI demonstrates that spatial affordance fields significantly boost robustness under distribution shift. For submission timing, CoRL 2026 is infeasible given the deadline, but AAAI 2027 remains viable.
+
+Now I'm verifying the datasets — Affogato and RoboInter-Data are both available on HuggingFace, and LIBERO-Plus is confirmed accessible. The core gap I identified still holds: no prior work systematically isolates affordance-structured reasoning against generic CoT reasoning types under controlled distribution shift. While "Altered Thoughts" examines CoT corruption and PALM uses affordance latents, neither directly compares these reasoning approaches head-to-head, and DeepThinkVLA only contrasts SFT versus RL training without addressing the reasoning type question.
+
+But there's a significant concern emerging from "Altered Thoughts, Altered Actions" — if the decoder primarily relies on entity reference integrity and largely ignores reasoning structure and quality, then affordance-structured reasoning might offer no real advantage over generic reasoning that also preserves correct entity references. This would undermine the core hypotheses. The proposal acknowledges Scenario C where affordance and generic reasoning perform similarly, but the "Altered Thoughts" findings suggest this outcome is more probable than the proposal currently frames it. I should emphasize this paper more prominently in the discussion.
+
+The central research question — whether affordance-structured reasoning content actually outperforms generic CoT under distribution shift — remains genuinely unanswered and scientifically valuable. The systematic controlled comparison across multiple datasets and reasoning types would provide real insight here.
+
+The novelty is primarily experimental rather than methodological, which the proposal recognizes by positioning this as an empirical investigation into when affordance reasoning matters. The contingency plan is solid since any outcome would be publishable, though this leans more toward an empirical analysis paper than a novel method paper.
+
+For feasibility, I'm checking the compute requirements against the budget. Manual mode comes in at 150 H100-hours, which is within the 200-hour limit, while the auto mode exceeds it at 260 hours. Let me verify the exact constraints the user specified. Hard Constraint says "Compute: ≤200 H100-hours." The manual estimate is ~150h, which is within budget. The auto research estimate of 260h exceeds it. But the user's constraint is for the method itself, not auto research overhead. Let me re-read...
+  - The user says: "Compute: ≤200 H100-hours. Strategy: Fine-tune based on 7B VLA, affordance module leveraging pre-trained VLM features..." The constraint is on total compute.
+  - The proposal uses a 3B model (Qwen2.5-VL-3B), which helps. Manual mode at 150h is within budget. Auto mode at 260h exceeds budget.
+  - This is a minor issue — the manual mode fits.
+
+- **Timeline**: AAAI 2027 deadline is July 28, 2026 — ~10 weeks away. The auto research timeline breaks down to about two weeks for experiments and seven weeks for writing and analysis, which is tight but workable.
+
+- **Data availability**: All datasets confirmed available (Affogato, RoboInter-Data, LIBERO-Plus)
+
+- **Annotation pipeline**: API-based annotation with Qwen2.5-VL-72B at $300-450 is reasonable
+
+Looking at the strengths here, the research question is well-grounded in DeepThinkVLA's findings, the experimental design is clean with four conditions using the same backbone and data, and there's a smart focus on robustness benchmarks rather than saturated standard LIBERO. The contingency plan means any outcome is publishable, and the hypotheses are operationalized with specific test splits and pre-training on Affogato for affordance vocabulary.
+
+But there are some significant gaps. I'm missing several critical references that directly challenge or address the core hypothesis: "Altered Thoughts, Altered Actions," ProGAL-VLA which achieves 85.5% on LIBERO-Plus, PALM for end-to-end affordance reasoning, and AFI for OOD robustness. There's also uncertainty about whether DeepThinkVLA was actually accepted to ICLR 2026. The compute estimate in auto mode exceeds the 200 H100-hour constraint, though manual mode stays within budget. And fundamentally, this is an empirical study rather than a novel method contribution.
+
+Actually, I need to reconsider what the user is asking for. They explicitly requested a method contribution with a unified architecture design for open-vocabulary affordance reasoning in VLAs, but the proposal has shifted toward a systematic comparison study instead. The user's core gap is about unifying open-vocabulary affordance into an end-to-end VLA for zero-shot manipulation, which requires designing a new architecture and training strategy—not benchmarking existing approaches. Looking at the review history, the shift from a method paper to a comparison study was driven by legitimate concerns about incrementality and the saturation of affordance + VLA approaches in the literature. While this does diverge from the user's original request for a method contribution, the pivot is defensible given the competitive landscape and the reviewer feedback across rounds. The real tension is whether a comparison study adequately addresses the user's stated requirements, or if the proposal should have found a way to remain a method paper despite the landscape challenges.
+
+Now I'm assessing the overall quality of the proposal. There are several significant issues: critical missing references that directly challenge the core hypothesis, a fundamental mismatch between what the user asked for and what's being proposed, compute budget overruns, and some incorrect venue claims. The comparison study itself is well-designed and scientifically sound, but these gaps need to be addressed before this is ready.
+
+Looking at the scoring across dimensions—novelty is solid at 3 for the empirical contribution, feasibility is strong at 4, clarity is excellent at 4, and impact is moderate at 3 since the findings would be informative but not transformative. That averages to 3.5, which falls short of the 4.0 bar needed for a strong proposal.
+
+But there are some critical gaps I need to flag: the proposal misses "Altered Thoughts, Altered Actions" which directly contradicts the core hypothesis, and it overlooks ProGAL-VLA's 85.5% performance on LIBERO-Plus and PALM's end-to-end affordance approach. The user explicitly asked for a method contribution, yet this reads as a comparison study. There's also an unverified claim about DeepThinkVLA's ICLR 2026 acceptance, and the auto compute budget appears to be exceeded. Given these issues, the verdict should shift from "accept" to "revise."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a5d2fc6-6ce3-482c-82aa-d120e3b1f4ef",
+  "isSidechain": false,
+  "requestId": "req_011CbAcA1HiDAcD6jdJQ5s7g",
+  "type": "assistant",
+  "uuid": "5f87d72b-385e-4fb0-89dc-394ed02d5efb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Aga8yGkZHcJJRXY4X5jxtA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1389,
+      "cache_creation_input_tokens": 6068,
+      "cache_read_input_tokens": 43917,
+      "output_tokens": 3251,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6068,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1389,
+          "output_tokens": 3251,
+          "cache_read_input_tokens": 43917,
+          "cache_creation_input_tokens": 6068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6068
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-18T19:45:10.385Z_
+
+Now I have comprehensive data. Let me do one final targeted search for the most threatening paper I found.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f87d72b-385e-4fb0-89dc-394ed02d5efb",
+  "isSidechain": false,
+  "requestId": "req_011CbAcA1HiDAcD6jdJQ5s7g",
+  "type": "assistant",
+  "uuid": "0a9b14f8-9185-49d9-ac1f-3e86cd3e4708",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Aga8yGkZHcJJRXY4X5jxtA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1389,
+      "cache_creation_input_tokens": 6068,
+      "cache_read_input_tokens": 43917,
+      "output_tokens": 3251,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6068,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1389,
+          "output_tokens": 3251,
+          "cache_read_input_tokens": 43917,
+          "cache_creation_input_tokens": 6068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6068
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-18T19:45:10.386Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BSbfhxwDNptFGBWsjBAhnJ`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a9b14f8-9185-49d9-ac1f-3e86cd3e4708",
+  "isSidechain": false,
+  "requestId": "req_011CbAcA1HiDAcD6jdJQ5s7g",
+  "type": "assistant",
+  "uuid": "1295f62b-90d2-42ce-bd9e-79cabd8aaad4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Aga8yGkZHcJJRXY4X5jxtA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1389,
+      "cache_creation_input_tokens": 6068,
+      "cache_read_input_tokens": 43917,
+      "output_tokens": 3251,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6068,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1389,
+          "output_tokens": 3251,
+          "cache_read_input_tokens": 43917,
+          "cache_creation_input_tokens": 6068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6068
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-18T19:45:10.394Z_
+
+<details><summary>↩ Tool result · `toolu_01BSbfhxwDNptFGBWsjBAhnJ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1295f62b-90d2-42ce-bd9e-79cabd8aaad4",
+  "isSidechain": false,
+  "promptId": "3b0ac660-c69c-40e8-a93b-4c0721e7702c",
+  "type": "user",
+  "uuid": "c3df5566-f15f-42b0-8e8f-8da0e551d00a",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "1295f62b-90d2-42ce-bd9e-79cabd8aaad4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34 · 2026-05-18T19:45:10.441Z_
+
+```json
+{
+  "parentUuid": "c3df5566-f15f-42b0-8e8f-8da0e551d00a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3a3508a1-37ae-4415-9216-4eebe306dc29",
+  "timestamp": "2026-05-18T19:45:10.441Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-18T19:45:14.273Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me do a final search for the "Altered Thoughts, Altered Actions" paper and ProGAL-VLA to make sure my findings are solid, and also check if there are any other very recent papers I might have missed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a3508a1-37ae-4415-9216-4eebe306dc29",
+  "isSidechain": false,
+  "requestId": "req_011CbAcFTYvEZtFcTAM27BgK",
+  "type": "assistant",
+  "uuid": "d5bf69f9-cdb2-437a-afe8-afca97da319f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N9UqYMgnBwQsxv8jtroLP7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5260,
+      "cache_read_input_tokens": 49985,
+      "output_tokens": 146,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5260,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 146,
+          "cache_read_input_tokens": 49985,
+          "cache_creation_input_tokens": 5260,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5260
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-18T19:45:14.775Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AqXcFPA2rJAGMQKoygr4Ca`</summary>
+
+```json
+{
+  "query": "arXiv 2603.12717 \"Altered Thoughts Altered Actions\" VLA chain-of-thought vulnerabilities"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5bf69f9-cdb2-437a-afe8-afca97da319f",
+  "isSidechain": false,
+  "requestId": "req_011CbAcFTYvEZtFcTAM27BgK",
+  "type": "assistant",
+  "uuid": "e24a505f-05ad-4e57-95d4-8d5467fb41d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N9UqYMgnBwQsxv8jtroLP7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5260,
+      "cache_read_input_tokens": 49985,
+      "output_tokens": 146,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5260,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 146,
+          "cache_read_input_tokens": 49985,
+          "cache_creation_input_tokens": 5260,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5260
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e24a505f-05ad-4e57-95d4-8d5467fb41d9",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compare affordance vs generic reasoning for VLA robustness",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81"
+}
+```
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-18T19:45:19.686Z_
+
+<details><summary>↩ Tool result · `toolu_01AqXcFPA2rJAGMQKoygr4Ca`</summary>
+
+```text
+Web search results for query: "arXiv 2603.12717 "Altered Thoughts Altered Actions" VLA chain-of-thought vulnerabilities"
+
+Links: [{"title":"[2603.12717] Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation","url":"https://arxiv.org/abs/2603.12717"},{"title":"Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation | alphaXiv","url":"https://www.alphaxiv.org/overview/2603.12717v1"},{"title":"Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation","url":"https://arxiv.org/html/2603.12717"},{"title":"Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation | Request PDF","url":"https://www.researchgate.net/publication/402148228_Altered_Thoughts_Altered_Actions_Probing_Chain-of-Thought_Vulnerabilities_in_VLA_Robotic_Manipulation"},{"title":"Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation","url":"https://arxiv.org/pdf/2603.12717"}]
+
+Based on the search results, here's what I found about arXiv paper 2603.12717:
+
+**Title:** Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation
+
+**Authors and Affiliation:** Tuan Duong Trinh, Naveed Akhtar, and Basim Azam from the University of Melbourne
+
+**Submission Date:** March 13, 2026
+
+**Main Focus:** The paper examines Vision-Language-Action (VLA) models that increasingly adopt chain-of-thought reasoning, generating a natural-language plan before decoding motor commands, focusing on vulnerabilities in the internal text channel between the reasoning module and the action decoder that has received no adversarial scrutiny.
+
+**Methodology:** The researchers design a taxonomy of seven text corruptions organized into three attacker tiers (blind noise, mechanical-semantic, and LLM-adaptive) and apply them to a state-of-the-art reasoning VLA across 40 LIBERO tabletop manipulation tasks.
+
+**Key Finding:** The results reveal a striking asymmetry: substituting object names in the reasoning trace reduces overall success rate by 8.3 percentage points, while sentence reordering, spatial-direction reversal, token noise, and even a 70B-parameter LLM crafting plausible-but-wrong plans have negligible impact, indicating that the action decoder depends on entity-reference integrity rather than reasoning quality or sequential structure.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e24a505f-05ad-4e57-95d4-8d5467fb41d9",
+  "isSidechain": false,
+  "promptId": "3b0ac660-c69c-40e8-a93b-4c0721e7702c",
+  "type": "user",
+  "uuid": "02fb5f97-830a-4aa0-9d74-5cd87b82474e",
+  "toolUseResult": {
+    "query": "arXiv 2603.12717 \"Altered Thoughts Altered Actions\" VLA chain-of-thought vulnerabilities",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WGEEYZbQtVm2uSDeHMtoRs",
+        "content": [
+          {
+            "title": "[2603.12717] Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation",
+            "url": "https://arxiv.org/abs/2603.12717"
+          },
+          {
+            "title": "Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2603.12717v1"
+          },
+          {
+            "title": "Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation",
+            "url": "https://arxiv.org/html/2603.12717"
+          },
+          {
+            "title": "Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation | Request PDF",
+            "url": "https://www.researchgate.net/publication/402148228_Altered_Thoughts_Altered_Actions_Probing_Chain-of-Thought_Vulnerabilities_in_VLA_Robotic_Manipulation"
+          },
+          {
+            "title": "Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2603.12717"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about arXiv paper 2603.12717:\n\n**Title:** Altered Thoughts, Altered Actions: Probing Chain-of-Thought Vulnerabilities in VLA Robotic Manipulation\n\n**Authors and Affiliation:** Tuan Duong Trinh, Naveed Akhtar, and Basim Azam from the University of Melbourne\n\n**Submission Date:** March 13, 2026\n\n**Main Focus:** The paper examines Vision-Language-Action (VLA) models that increasingly adopt chain-of-thought reasoning, generating a natural-language plan before decoding motor commands, focusing on vulnerabilities in the internal text channel between the reasoning module and the action decoder that has received no adversarial scrutiny.\n\n**Methodology:** The researchers design a taxonomy of seven text corruptions organized into three attacker tiers (blind noise, mechanical-semantic, and LLM-adaptive) and apply them to a state-of-the-art reasoning VLA across 40 LIBERO tabletop manipulation tasks.\n\n**Key Finding:** The results reveal a striking asymmetry: substituting object names in the reasoning trace reduces overall success rate by 8.3 percentage points, while sentence reordering, spatial-direction reversal, token noise, and even a 70B-parameter LLM crafting plausible-but-wrong plans have negligible impact, indicating that the action decoder depends on entity-reference integrity rather than reasoning quality or sequential structure."
+    ],
+    "durationSeconds": 4.908522180999978
+  },
+  "sourceToolAssistantUUID": "e24a505f-05ad-4e57-95d4-8d5467fb41d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-18T19:45:25.232Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AcZ48a74SF4YVfivSjLMaj`</summary>
+
+```json
+{
+  "query": "ProGAL-VLA arXiv 2604.09824 grounded alignment LIBERO-Plus robustness 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02fb5f97-830a-4aa0-9d74-5cd87b82474e",
+  "isSidechain": false,
+  "requestId": "req_011CbAcG94hYLzSed9LqhoYZ",
+  "type": "assistant",
+  "uuid": "aa66f969-c61a-43bd-b83f-3cdef7855a0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YAUMwneeqyNyAUjC4UF7QH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 866,
+      "cache_read_input_tokens": 55245,
+      "output_tokens": 199,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 866,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 199,
+          "cache_read_input_tokens": 55245,
+          "cache_creation_input_tokens": 866,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 866
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T19:45:25.854Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RRsgRmETTy97PFWCyg8RyR`</summary>
+
+```json
+{
+  "query": "PALM affordance reasoning VLA arXiv 2601.07060 long-horizon manipulation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa66f969-c61a-43bd-b83f-3cdef7855a0e",
+  "isSidechain": false,
+  "requestId": "req_011CbAcG94hYLzSed9LqhoYZ",
+  "type": "assistant",
+  "uuid": "740f581b-090c-4bc1-b51d-1615614fdc2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YAUMwneeqyNyAUjC4UF7QH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 866,
+      "cache_read_input_tokens": 55245,
+      "output_tokens": 199,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 866,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 199,
+          "cache_read_input_tokens": 55245,
+          "cache_creation_input_tokens": 866,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 866
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-18T19:45:26.343Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B8Rq2gtkhfU5wAHHYBnUeG`</summary>
+
+```json
+{
+  "query": "ECoT-Lite arXiv 2505.08243 training strategies embodied reasoning comparison 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "740f581b-090c-4bc1-b51d-1615614fdc2e",
+  "isSidechain": false,
+  "requestId": "req_011CbAcG94hYLzSed9LqhoYZ",
+  "type": "assistant",
+  "uuid": "6c261b53-8fdd-41d2-8e91-37462e9d2d17",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YAUMwneeqyNyAUjC4UF7QH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 866,
+      "cache_read_input_tokens": 55245,
+      "output_tokens": 199,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 866,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 199,
+          "cache_read_input_tokens": 55245,
+          "cache_creation_input_tokens": 866,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 866
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-18T19:45:33.111Z_
+
+<details><summary>↩ Tool result · `toolu_01AcZ48a74SF4YVfivSjLMaj`</summary>
+
+```text
+Web search results for query: "ProGAL-VLA arXiv 2604.09824 grounded alignment LIBERO-Plus robustness 2026"
+
+Links: [{"title":"[2604.09824] ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models","url":"https://arxiv.org/abs/2604.09824"},{"title":"ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models","url":"https://arxiv.org/html/2604.09824"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"LIBERO-X: Robustness Litmus for Vision-Language-Action Models","url":"https://arxiv.org/html/2602.06556v1"},{"title":"VLA Models Are More Generalizable Than You Think: Revisiting Physical and Spatial Modeling","url":"https://arxiv.org/pdf/2512.02902"},{"title":"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://huggingface.co/papers/2510.13626"},{"title":"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models","url":"https://arxiv.org/html/2603.28301"},{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization","url":"https://arxiv.org/pdf/2510.03827"}]
+
+Based on the search results, I found detailed information about this research paper:
+
+## ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models
+
+ProGAL-VLA constructs a 3D entity-centric graph (GSM), uses a slow planner to produce symbolic sub-goals, and aligns them with grounded entities via a Grounding Alignment Contrastive (GAC) loss.
+
+### Key Results on LIBERO-Plus
+
+On LIBERO-Plus, ProGAL-VLA increases robustness under robot perturbations from 30.3 to 71.5 percent, reduces language ignorance by 3x-4x, and improves entity retrieval from 0.41 to 0.71 Recall@1.
+
+### Additional Performance Metrics
+
+On the Custom Ambiguity Benchmark, it reaches AUROC 0.81 (vs. 0.52), AUPR 0.79, and raises clarification on ambiguous inputs from 0.09 to 0.81 without harming unambiguous success.
+
+The paper was submitted to arXiv on April 10, 2026 (paper ID 2604.09824) and addresses a critical challenge in Vision-Language-Action models: their tendency to exhibit language ignorance by relying on visual shortcuts rather than properly understanding language instructions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa66f969-c61a-43bd-b83f-3cdef7855a0e",
+  "isSidechain": false,
+  "promptId": "3b0ac660-c69c-40e8-a93b-4c0721e7702c",
+  "type": "user",
+  "uuid": "740980d5-47f4-4551-b740-7a992f715fb5",
+  "toolUseResult": {
+    "query": "ProGAL-VLA arXiv 2604.09824 grounded alignment LIBERO-Plus robustness 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AsdUUb1dXhzzyaBo8gNUEC",
+        "content": [
+          {
+            "title": "[2604.09824] ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2604.09824"
+          },
+          {
+            "title": "ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2604.09824"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "LIBERO-X: Robustness Litmus for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2602.06556v1"
+          },
+          {
+            "title": "VLA Models Are More Generalizable Than You Think: Revisiting Physical and Spatial Modeling",
+            "url": "https://arxiv.org/pdf/2512.02902"
+          },
+          {
+            "title": "Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2510.13626"
+          },
+          {
+            "title": "LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models",
+            "url": "https://arxiv.org/html/2603.28301"
+          },
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization",
+            "url": "https://arxiv.org/pdf/2510.03827"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about this research paper:\n\n## ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models\n\nProGAL-VLA constructs a 3D entity-centric graph (GSM), uses a slow planner to produce symbolic sub-goals, and aligns them with grounded entities via a Grounding Alignment Contrastive (GAC) loss.\n\n### Key Results on LIBERO-Plus\n\nOn LIBERO-Plus, ProGAL-VLA increases robustness under robot perturbations from 30.3 to 71.5 percent, reduces language ignorance by 3x-4x, and improves entity retrieval from 0.41 to 0.71 Recall@1.\n\n### Additional Performance Metrics\n\nOn the Custom Ambiguity Benchmark, it reaches AUROC 0.81 (vs. 0.52), AUPR 0.79, and raises clarification on ambiguous inputs from 0.09 to 0.81 without harming unambiguous success.\n\nThe paper was submitted to arXiv on April 10, 2026 (paper ID 2604.09824) and addresses a critical challenge in Vision-Language-Action models: their tendency to exhibit language ignorance by relying on visual shortcuts rather than properly understanding language instructions."
+    ],
+    "durationSeconds": 7.876031703999964
+  },
+  "sourceToolAssistantUUID": "aa66f969-c61a-43bd-b83f-3cdef7855a0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T19:45:33.191Z_
+
+<details><summary>↩ Tool result · `toolu_01RRsgRmETTy97PFWCyg8RyR`</summary>
+
+```text
+Web search results for query: "PALM affordance reasoning VLA arXiv 2601.07060 long-horizon manipulation 2026"
+
+Links: [{"title":"[2601.07060] PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation","url":"https://arxiv.org/abs/2601.07060"},{"title":"(PDF) PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation","url":"https://www.researchgate.net/publication/399707765_PALM_Progress-Aware_Policy_Learning_via_Affordance_Reasoning_for_Long-Horizon_Robotic_Manipulation"},{"title":"PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation","url":"https://arxiv.org/pdf/2601.07060"},{"title":"PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation","url":"https://arxiv.org/html/2601.07060"},{"title":"A0: An Affordance-Aware Hierarchical Model for General Robotic Manipulation | Request PDF","url":"https://www.researchgate.net/publication/390892539_A0_An_Affordance-Aware_Hierarchical_Model_for_General_Robotic_Manipulation"},{"title":"CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance","url":"https://arxiv.org/pdf/2412.20451"},{"title":"VLA-R1: Enhancing Reasoning in Vision-Language-Action Models","url":"https://arxiv.org/html/2510.01623v1"}]
+
+Based on the search results, I found the paper you're looking for. Here's what the research is about:
+
+PALM is a VLA framework that structures policy learning around interaction-centric affordance reasoning and subtask progress cues. Recent advancements in vision-language-action (VLA) models have shown promise in robotic manipulation, yet they continue to struggle with long-horizon, multi-step tasks. Existing methods lack internal reasoning mechanisms that can identify task-relevant interaction cues or track progress within a subtask, leading to critical execution errors such as repeated actions, missed steps, and premature termination.
+
+PALM distills complementary affordance representations that capture object relevance, contact geometry, spatial placements, and motion dynamics, and serve as task-relevant anchors for visuomotor control. To further stabilize long-horizon execution, PALM predicts continuous within-subtask progress, enabling seamless subtask transitions.
+
+Across extensive simulation and real-world experiments, PALM consistently outperforms baselines, achieving a 91.8% success rate on LIBERO-LONG, a 12.5% improvement in average length on CALVIN ABC → D, and a 2 × improvement over real-world baselines across three long-horizon generalization settings.
+
+The paper was submitted to arXiv on January 11, 2026 and is authored by Yuanzhe Liu, Jingyuan Zhu, and collaborators.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "740f581b-090c-4bc1-b51d-1615614fdc2e",
+  "isSidechain": false,
+  "promptId": "3b0ac660-c69c-40e8-a93b-4c0721e7702c",
+  "type": "user",
+  "uuid": "a2f7255f-a55c-4c8f-9a28-83ece5a83ae2",
+  "toolUseResult": {
+    "query": "PALM affordance reasoning VLA arXiv 2601.07060 long-horizon manipulation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PgXLoshPFTnFpGwB6Yw1jm",
+        "content": [
+          {
+            "title": "[2601.07060] PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation",
+            "url": "https://arxiv.org/abs/2601.07060"
+          },
+          {
+            "title": "(PDF) PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation",
+            "url": "https://www.researchgate.net/publication/399707765_PALM_Progress-Aware_Policy_Learning_via_Affordance_Reasoning_for_Long-Horizon_Robotic_Manipulation"
+          },
+          {
+            "title": "PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2601.07060"
+          },
+          {
+            "title": "PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation",
+            "url": "https://arxiv.org/html/2601.07060"
+          },
+          {
+            "title": "A0: An Affordance-Aware Hierarchical Model for General Robotic Manipulation | Request PDF",
+            "url": "https://www.researchgate.net/publication/390892539_A0_An_Affordance-Aware_Hierarchical_Model_for_General_Robotic_Manipulation"
+          },
+          {
+            "title": "CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance",
+            "url": "https://arxiv.org/pdf/2412.20451"
+          },
+          {
+            "title": "VLA-R1: Enhancing Reasoning in Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.01623v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's what the research is about:\n\nPALM is a VLA framework that structures policy learning around interaction-centric affordance reasoning and subtask progress cues. Recent advancements in vision-language-action (VLA) models have shown promise in robotic manipulation, yet they continue to struggle with long-horizon, multi-step tasks. Existing methods lack internal reasoning mechanisms that can identify task-relevant interaction cues or track progress within a subtask, leading to critical execution errors such as repeated actions, missed steps, and premature termination.\n\nPALM distills complementary affordance representations that capture object relevance, contact geometry, spatial placements, and motion dynamics, and serve as task-relevant anchors for visuomotor control. To further stabilize long-horizon execution, PALM predicts continuous within-subtask progress, enabling seamless subtask transitions.\n\nAcross extensive simulation and real-world experiments, PALM consistently outperforms baselines, achieving a 91.8% success rate on LIBERO-LONG, a 12.5% improvement in average length on CALVIN ABC → D, and a 2 × improvement over real-world baselines across three long-horizon generalization settings.\n\nThe paper was submitted to arXiv on January 11, 2026 and is authored by Yuanzhe Liu, Jingyuan Zhu, and collaborators."
+    ],
+    "durationSeconds": 7.33332096199994
+  },
+  "sourceToolAssistantUUID": "740f581b-090c-4bc1-b51d-1615614fdc2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-18T19:45:34.061Z_
+
+<details><summary>↩ Tool result · `toolu_01B8Rq2gtkhfU5wAHHYBnUeG`</summary>
+
+```text
+Web search results for query: "ECoT-Lite arXiv 2505.08243 training strategies embodied reasoning comparison 2025"
+
+Links: [{"title":"Training Strategies for Efficient Embodied Reasoning","url":"https://arxiv.org/html/2505.08243v1"},{"title":"Training Strategies for Efficient Embodied Reasoning | alphaXiv","url":"https://www.alphaxiv.org/overview/2505.08243v2"},{"title":"Training Strategies for Efficient Embodied Reasoning","url":"https://ecot-lite.github.io/"},{"title":"Embodied-CoT/embodied_features_and_demos_libero · Datasets at Hugging Face","url":"https://huggingface.co/datasets/Embodied-CoT/embodied_features_and_demos_libero"},{"title":"[2505.08243] Training Strategies for Efficient Embodied Reasoning","url":"https://arxiv.org/abs/2505.08243"},{"title":"Robotic Control via Embodied Chain-of-Thought Reasoning","url":"https://arxiv.org/pdf/2407.08693"},{"title":"Fast ECoT: Efficient Embodied Chain-of-Thought via Thoughts Reuse","url":"https://arxiv.org/html/2506.07639v1"}]
+
+I found the paper you're looking for! Here's what the research is about:
+
+## ECoT-Lite: Training Strategies for Efficient Embodied Reasoning
+
+This work develops practical strategies for training policies with embodied reasoning data. The key observation is that there are multiple distinct hypotheses for why embodied chain-of-thought reasoning may help generalization, such as improving the policy's learned representations or increasing effective model capacity through increased inference compute.
+
+### The Approach
+
+The researchers developed novel, lightweight embodied chain-of-thought recipes called "ECoT-Lite" that isolate the effects of these hypotheses while retaining most of the generalization benefits of regular chain-of-thought policy training while avoiding its drawbacks.
+
+### Hypotheses Tested
+
+The work tests various hypotheses of why embodied chain-of-thought reasoning improves robot policy performance, with results mainly supporting the hypothesis that reasoning improves representation learning. This contrasts with the expressivity arguments usually made for why reasoning helps LLMs.
+
+### Key Training Strategies
+
+The researchers developed variants including Reasoning Pre-training and Co-training: the policy can be trained on reasonings and actions separately, where in pre-training the policy is first trained exclusively to reason then fine-tuned exclusively on actions, and in co-training the policy is trained to reason and act in separate datapoints within the same batch.
+
+### Results
+
+ECoT-Lite is faster than standard ECoT while being more performant than standard VLAs and slightly surpasses state-of-the-art performance in LIBERO.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6c261b53-8fdd-41d2-8e91-37462e9d2d17",
+  "isSidechain": false,
+  "promptId": "3b0ac660-c69c-40e8-a93b-4c0721e7702c",
+  "type": "user",
+  "uuid": "c01e8faa-4910-416e-be88-47c89ac62a4a",
+  "toolUseResult": {
+    "query": "ECoT-Lite arXiv 2505.08243 training strategies embodied reasoning comparison 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GGFYt9S5mq5PQMhcsTgHUn",
+        "content": [
+          {
+            "title": "Training Strategies for Efficient Embodied Reasoning",
+            "url": "https://arxiv.org/html/2505.08243v1"
+          },
+          {
+            "title": "Training Strategies for Efficient Embodied Reasoning | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2505.08243v2"
+          },
+          {
+            "title": "Training Strategies for Efficient Embodied Reasoning",
+            "url": "https://ecot-lite.github.io/"
+          },
+          {
+            "title": "Embodied-CoT/embodied_features_and_demos_libero · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/Embodied-CoT/embodied_features_and_demos_libero"
+          },
+          {
+            "title": "[2505.08243] Training Strategies for Efficient Embodied Reasoning",
+            "url": "https://arxiv.org/abs/2505.08243"
+          },
+          {
+            "title": "Robotic Control via Embodied Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/pdf/2407.08693"
+          },
+          {
+            "title": "Fast ECoT: Efficient Embodied Chain-of-Thought via Thoughts Reuse",
+            "url": "https://arxiv.org/html/2506.07639v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what the research is about:\n\n## ECoT-Lite: Training Strategies for Efficient Embodied Reasoning\n\nThis work develops practical strategies for training policies with embodied reasoning data. The key observation is that there are multiple distinct hypotheses for why embodied chain-of-thought reasoning may help generalization, such as improving the policy's learned representations or increasing effective model capacity through increased inference compute.\n\n### The Approach\n\nThe researchers developed novel, lightweight embodied chain-of-thought recipes called \"ECoT-Lite\" that isolate the effects of these hypotheses while retaining most of the generalization benefits of regular chain-of-thought policy training while avoiding its drawbacks.\n\n### Hypotheses Tested\n\nThe work tests various hypotheses of why embodied chain-of-thought reasoning improves robot policy performance, with results mainly supporting the hypothesis that reasoning improves representation learning. This contrasts with the expressivity arguments usually made for why reasoning helps LLMs.\n\n### Key Training Strategies\n\nThe researchers developed variants including Reasoning Pre-training and Co-training: the policy can be trained on reasonings and actions separately, where in pre-training the policy is first trained exclusively to reason then fine-tuned exclusively on actions, and in co-training the policy is trained to reason and act in separate datapoints within the same batch.\n\n### Results\n\nECoT-Lite is faster than standard ECoT while being more performant than standard VLAs and slightly surpasses state-of-the-art performance in LIBERO."
+    ],
+    "durationSeconds": 7.716235730999964
+  },
+  "sourceToolAssistantUUID": "6c261b53-8fdd-41d2-8e91-37462e9d2d17",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-18T19:46:09.022Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me compile my comprehensive review.
+
+Let me now finalize my assessment.
+
+## Summary of Key Findings
+
+### Critical Missing References (Not Discussed in the Proposal)
+
+1. **"Altered Thoughts, Altered Actions" (arXiv 2603.12717, March 2026)** — CRITICAL. Tests 7 CoT corruptions on DeepThinkVLA across 40 LIBERO tasks. Finds entity-reference integrity matters but reasoning quality/structure/sequence does NOT. This directly threatens the core hypothesis that affordance-STRUCTURED reasoning provides advantages over generic CoT.
+
+
+2. **ProGAL-VLA (arXiv 2604.09824, April 2026)** — Achieves 85.5% on LIBERO-Plus compared to DeepThinkVLA's 79%, with 3-4x reduction in language ignorance errors. This recent work directly competes on identical benchmarks with stronger results.
+3. **PALM (arXiv 2601.07060, January 2026)** — An end-to-end affordance reasoning VLA using four affordance types (global, local, spatial, dynamic) that reaches 91.8% on LIBERO-LONG, closely aligned with what was originally proposed.
+4. **ECoT-Lite (arXiv** — [continuing to examine additional competing approaches]
+
+ECoT-Lite reveals that reasoning helps VLAs primarily through representation learning rather than expressivity gains, and that thinking tokens actually degrade performance—this shapes how the proposal should be designed. AFI demonstrates affordance fields can boost robustness by over 20% on out-of-distribution scenarios. I'm also noting that DeepThinkVLA's claimed ICLR 2026 acceptance appears unverified, which is a factual issue worth flagging. The core gap still holds though—no existing work systematically compares affordance-structured reasoning against generic chain-of-thought under controlled robustness conditions.
+
+The experimental setup is solid with four conditions using identical backbones, data, and compute budgets, and LIBERO-Plus/Pro are the right benchmarks for measuring robustness. The contingency plan covers three distinct publishable outcomes, the hypotheses are concrete and measurable, all datasets are publicly accessible, and the compute requirements stay within the 200-hour limit. However, the "Altered Thoughts" condition creates a critical vulnerability—if only entity references matter and reasoning structure doesn't, the entire hypothesis about affordance-structured reasoning being superior to generic CoT collapses. This needs explicit discussion in the proposal.
+
+I'm also noticing some significant gaps: missing citations to ProGAL-VLA, PALM, ECoT-Lite, "Altered Thoughts," and AFI, which are all highly relevant recent work. There's also a mismatch between what was requested—a method contribution with unified architecture design—and what's being proposed, which is fundamentally a comparison study. The DeepThinkVLA venue attribution appears incorrect, and the auto-compute mode actually exceeds the 200-hour budget at 260 hours. Since this is primarily an empirical study rather than a methodological contribution, the analysis framework will need to be exceptionally insightful to compete at a top venue, and the novelty score reflects that limitation.
+
+Looking at the overall assessment, feasibility is solid—the 3B model with LoRA and API annotation pipeline is practical, and the AAAI 2027 deadline is achievable. The proposal is exceptionally well-written with clear hypotheses and contingency plans, though the landscape analysis could be more complete. Impact-wise, the findings would provide useful guidance for VLA designers, but they're unlikely to be transformative—whether affordance reasoning or latent reasoning wins, it's an informative datapoint rather than a paradigm shift. The average score comes to 3.5, which falls short of the target.
+
+To get this over the 4.0 threshold, I'd need to integrate "Altered Thoughts" into the experimental design to test whether affordance descriptions actually resist its findings, add ProGAL-VLA as a baseline since it's the current LIBERO-Plus robustness standard, develop the curriculum learning approach from structured to open-vocabulary affordances as a stronger methodological contribution, correct the venue positioning, and verify that all compute modes stay within the 200-hour budget. Now I'll write up the final review.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c01e8faa-4910-416e-be88-47c89ac62a4a",
+  "isSidechain": false,
+  "requestId": "req_011CbAcHCaKFCjenXxDpp3ER",
+  "type": "assistant",
+  "uuid": "4d7d430f-ceae-4baa-9fac-f80093a7bf94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TBxXoatAWQRHcbZZ6Vih6P",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2548,
+      "cache_read_input_tokens": 56111,
+      "output_tokens": 3828,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2548,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3828,
+          "cache_read_input_tokens": 56111,
+          "cache_creation_input_tokens": 2548,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2548
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-18T19:46:59.990Z_
+
+Now I have all the evidence I need. Let me compile my findings into the final review.
+
+**Key findings from my independent verification:**
+
+1. **DeepThinkVLA claims verified** (97%/79% numbers correct), but **NOT confirmed as ICLR 2026** — no evidence of acceptance found.
+2. **Critical missing paper: "Altered Thoughts, Altered Actions" (arXiv 2603.12717)** — finds reasoning quality/structure doesn't matter for VLA, only entity references do. Directly threatens core hypothesis.
+3. **Critical missing paper: ProGAL-VLA (arXiv 2604.09824)** — achieves 85.5% on LIBERO-Plus, addresses language ignorance, very recent (April 2026).
+4. **Critical missing paper: PALM (arXiv 2601.07060)** — end-to-end affordance reasoning VLA, 91.8% LIBERO-LONG.
+5. **Critical missing paper: ECoT-Lite (arXiv 2505.08243)** — tests WHY reasoning helps, finds representation learning matters, not expressivity.
+6. All datasets (Affogato, RoboInter-Data, LIBERO-Plus) confirmed publicly available. Venue deadlines confirmed accurate.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3, "rationale": "The controlled comparison of affordance-structured vs. generic CoT under robustness benchmarks is genuinely unanswered, but this is an empirical ablation study, not a method contribution. The user explicitly requested a 'Method contribution' with 'unified architecture design' — this proposal delivers a comparison study instead."},
+    "feasibility": {"score": 4, "rationale": "All datasets (Affogato, RoboInter-Data, LIBERO-Plus) are publicly available and verified. Manual compute (~150h) fits within ≤200 H100-hour budget. AAAI 2027 deadline (July 28) provides ~10 weeks, tight but achievable. API annotation at $300-450 is reasonable."},
+    "clarity": {"score": 4, "rationale": "Exceptionally well-structured proposal with operationalized hypotheses (H1-H4), clean 4-condition experimental design, and a strong three-scenario contingency plan. Landscape analysis is thorough despite missing several recent papers."},
+    "impact": {"score": 3, "rationale": "The findings would inform VLA design choices but are unlikely to be paradigm-shifting. Under any empirical outcome, the practical guidance is moderate — a useful datapoint for whether to invest in affordance-structured reasoning vs. simpler alternatives like latent reasoning (LaRA-VLA)."}
+  },
+  "issues": [
+    "CRITICAL MISSING REFERENCE — 'Altered Thoughts, Altered Actions' (arXiv 2603.12717, March 2026): Tests 7 CoT corruption types on DeepThinkVLA across 40 LIBERO tasks. Key finding: entity-reference integrity is all that matters — sentence reordering, spatial-direction reversal, random tokens, and even LLM-crafted wrong reasoning have NEGLIGIBLE impact on action success. This directly threatens the core hypothesis that affordance-STRUCTURED reasoning provides advantages over generic CoT. If the action decoder only attends to entity references and ignores reasoning quality/structure, then affordance descriptions may provide no advantage over generic descriptions that also contain correct entity references. The proposal MUST discuss this paper prominently and design experiments that specifically test whether affordance descriptions resist this 'entity-reference-only' dependence (e.g., do affordance tokens provide additional grounding beyond entity names?).",
+    "CRITICAL MISSING REFERENCE — ProGAL-VLA (arXiv 2604.09824, April 2026): Achieves 85.5% on LIBERO-Plus (vs. DeepThinkVLA's 79.0%), reduces language ignorance by 3-4x via grounded alignment with 3D entity-centric graphs and contrastive loss. This is the current SOTA on LIBERO-Plus robustness — the proposal's PRIMARY evaluation benchmark. ProGAL-VLA directly addresses the 'language ignoring' problem that the proposal's H3 targets. While ProGAL-VLA uses a modular approach (separate slow planner + YOLO-World + Metric3D), its strong results set a high bar that OVA-VLA must meet or explain why it cannot.",
+    "MISSING REFERENCE — PALM (arXiv 2601.07060, January 2026): End-to-end affordance reasoning VLA integrating 4 affordance types (global object relevance, local contact geometry, spatial placement, motion dynamics) via structured attention with diffusion policy. 91.8% on LIBERO-LONG (+22.8pp over CoT-VLA). This is the closest existing work to an 'end-to-end affordance VLA' — it uses latent affordance representations rather than text-based CoT, but the conceptual overlap is significant. Must be discussed and differentiated.",
+    "MISSING REFERENCE — ECoT-Lite (arXiv 2505.08243, May 2025): Directly tests WHY reasoning helps VLAs by comparing 6 training variants (full ECoT, reasoning pre-training, co-training, reasoning dropout, scaffolding, thinking tokens). Key findings: (a) representation learning is the primary mechanism, not expressivity; (b) thinking tokens (random non-semantic tokens) actually HURT performance (-3.8%). This has major implications for the proposal: if reasoning helps through representation learning rather than content, the affordance vs. generic comparison may show null results. Must be discussed.",
+    "INCORRECT VENUE CLAIM — DeepThinkVLA listed as 'ICLR 2026' but no evidence of acceptance was found. The paper was submitted to ICLR 2026 (OpenReview ID: kCrE9uvxlo) but does not appear in accepted paper lists, has no acceptance decision on OpenReview, and is not in the ICLR 2026 virtual conference schedule. It should be cited as an arXiv preprint. Similarly, Affogato was submitted to ICLR 2026 but was WITHDRAWN — it should not be cited as a peer-reviewed source (though the dataset availability is confirmed).",
+    "USER REQUIREMENT MISMATCH — The user explicitly requested 'Contribution Type: Method contribution' with 'unified architecture design for open-vocabulary affordance and VLA' and 'end-to-end training strategy.' This proposal delivers a systematic comparison study instead. While the pivot is defensible given the crowded landscape (CoA-VLA, PALM, RoboInter all do affordance+VLA), the proposal should either (a) acknowledge this departure and argue why a comparison study is more valuable, or (b) strengthen the methodological contribution — the Affogato pre-training + curriculum training strategy + open-vocabulary affordance token generation could be positioned as a method contribution alongside the comparison.",
+    "AUTO RESEARCH COMPUTE EXCEEDS BUDGET — The user specified ≤200 H100-hours. Auto research estimates 260h, exceeding by 30%. While manual (150h) fits, the auto mode estimate should be redesigned (e.g., 2 seeds instead of 3, fewer automated ablations) to fit within the constraint.",
+    "'ALTERED THOUGHTS' UNDERMINES HYPOTHESIS DESIGN — If entity-reference integrity is all that matters (not reasoning structure/quality), then the 4-condition comparison may show: (A) no reasoning < (B) generic CoT ≈ (C) fixed affordance ≈ (D) open-vocab affordance — as long as all reasoning conditions contain correct entity references. The proposal's Scenario C contingency plan covers this outcome but does not leverage the 'Altered Thoughts' findings to design MORE discriminative experiments. For example: test conditions where entity references are held constant but reasoning structure varies — this isolates whether affordance structure provides grounding beyond entity naming."
+  ],
+  "feedback": "The proposal has improved substantially across rounds — the comparison study design is clean, the robustness benchmark focus is correct, and the contingency plan is mature. However, four critical papers discovered during independent review must be addressed before this can pass:\n\n1. **Incorporate 'Altered Thoughts, Altered Actions' as a central motivating finding**: This paper's discovery that action decoders depend only on entity-reference integrity (not reasoning quality/structure) is the single most important piece of evidence for your study. Use it to SHARPEN the hypotheses: design test conditions where entity references are controlled (identical across conditions) but reasoning structure varies — this is the only way to isolate whether affordance-specific content provides grounding beyond entity naming. Frame the study as: 'Altered Thoughts shows CoT structure doesn't matter for generic reasoning — does affordance-specific structure break this pattern because it references perturbation-invariant physical properties?'\n\n2. **Add ProGAL-VLA (85.5% LIBERO-Plus) as a discussion baseline**: It is the current SOTA on your primary evaluation benchmark. Even if you don't reproduce it (it's modular, different approach), you must compare against its reported numbers and explain what your end-to-end autoregressive approach offers that ProGAL-VLA's verification bottleneck cannot.\n\n3. **Discuss PALM and ECoT-Lite in the landscape**: PALM shows that latent affordance representations work end-to-end — argue why text-based affordance CoT provides interpretability/analysis advantages. ECoT-Lite's finding that representation learning (not content expressivity) drives reasoning benefits is a potential counterargument to your hypothesis — address it directly.\n\n4. **Strengthen the methodological contribution**: To better match the user's request for a method contribution, elevate the Affogato pre-training + curriculum training + open-vocabulary affordance token generation pipeline as a reusable technical contribution. Frame it as: 'the first scalable pipeline for generating open-vocabulary affordance supervision for VLA training, validated through a systematic comparison study.'\n\n5. **Fix venue claims**: DeepThinkVLA should be cited as arXiv preprint (not ICLR 2026). Affogato was withdrawn from ICLR 2026.\n\n6. **Trim auto compute to ≤200h**: Use 2 seeds instead of 3, or reduce automated ablations.",
+  "reason": "Strong experimental design and contingency plan, but missing 4 critical recent papers (especially 'Altered Thoughts' which directly threatens the core hypothesis), incorrect venue claims, and mismatch with user's explicit request for a method contribution rather than a comparison study."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d7d430f-ceae-4baa-9fac-f80093a7bf94",
+  "isSidechain": false,
+  "requestId": "req_011CbAcHCaKFCjenXxDpp3ER",
+  "type": "assistant",
+  "uuid": "2980ca41-29d7-44e8-b880-e7eecb0a670d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TBxXoatAWQRHcbZZ6Vih6P",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2548,
+      "cache_read_input_tokens": 56111,
+      "output_tokens": 3828,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2548,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3828,
+          "cache_read_input_tokens": 56111,
+          "cache_creation_input_tokens": 2548,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2548
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2980ca41-29d7-44e8-b880-e7eecb0a670d",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compare affordance vs generic reasoning for VLA robustness",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2980ca41-29d7-44e8-b880-e7eecb0a670d",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compare affordance vs generic reasoning for VLA robustness",
+  "sessionId": "667874d5-2882-4ef0-8f21-37f1ca12ff81"
+}
+```
+
+---

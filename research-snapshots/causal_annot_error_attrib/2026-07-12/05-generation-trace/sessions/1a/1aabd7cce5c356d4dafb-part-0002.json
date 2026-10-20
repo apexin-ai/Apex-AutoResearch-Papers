@@ -1,0 +1,2426 @@
+{
+  "schema_version": "1.0",
+  "session_id": "1aabd7cce5c356d4dafb",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-27T09:32:53.003Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015KB448JH4vjg79hQaQoLKL",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"LC-ERD\" \"consistency-regulated reward decomposition\" reasoning latent logic 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9577f9af-38b2-43eb-8277-20e1ba1dd6aa",
+            "isSidechain": false,
+            "requestId": "req_011CbSqqPVMuanrn8XeQrUdS",
+            "type": "assistant",
+            "uuid": "76e716c9-e773-4a1d-8dd0-66e97dbb5788",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DYAxbDZKw4S6BUpdfDzU1u",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 862,
+                "cache_read_input_tokens": 79274,
+                "output_tokens": 72,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 862,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 72,
+                    "cache_read_input_tokens": 79274,
+                    "cache_creation_input_tokens": 862,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 862
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-27T09:33:13.683Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015KB448JH4vjg79hQaQoLKL",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"LC-ERD\" \"consistency-regulated reward decomposition\" reasoning latent logic 2026\"\n\nLinks: [{\"title\":\"Information-Theoretic Reward Decomposition for Generalizable RLHF\",\"url\":\"https://arxiv.org/html/2504.06020\"},{\"title\":\"Explainable Reinforcement Learning via Reward Decomposition\",\"url\":\"https://web.engr.oregonstate.edu/~erwig/papers/ExplainableRL_XAI19.pdf\"},{\"title\":\"Intra-Trajectory Consistency for Reward Modeling\",\"url\":\"https://arxiv.org/pdf/2506.09096\"},{\"title\":\"Problem decomposition guided by reasoning utility for complex reasoning in LLMs - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0306457325004509\"},{\"title\":\"Episodic Return Decomposition by Difference of Implicitly Assigned   Sub-Trajectory Reward\",\"url\":\"https://arxiv.org/pdf/2312.10642\"},{\"title\":\"Explaining an Agent's Future Beliefs through Temporally Decomposing   Future Reward Estimators\",\"url\":\"https://arxiv.org/pdf/2408.08230\"}]\n\nLet me search more specifically for \"LC-ERD\" to find information about this particular method:\n\nLinks: [{\"title\":\"Latent Self-Consistency for Reliable Majority-Set Selection in Short- and Long-Answer Reasoning\",\"url\":\"https://arxiv.org/pdf/2508.18395\"},{\"title\":\"Interpreting latent reasoning: methods for understanding continuous chain-of-thought - SPAR Project\",\"url\":\"https://sparai.org/projects/sp26/recip3J5fnlBXUyFB/\"},{\"title\":\"Published as a conference paper at ICLR 2026 RETHINKING LLM REASONING:\",\"url\":\"https://openreview.net/pdf?id=CbK7lYbmv8\"},{\"title\":\"Think Consistently, Reason Efficiently: Energy-Based Calibration for Implicit Chain-of-Thought\",\"url\":\"https://arxiv.org/pdf/2511.07124\"},{\"title\":\"Published at Latent & Implicit Thinking Workshop @ ICLR 2026\",\"url\":\"https://openreview.net/attachment?id=frSSQ7fWFX&name=pdf\"},{\"title\":\"Latent Consistency Models: Synthesizing High-Resolution Images with Few-step Inference\",\"url\":\"https://latent-consistency-models.github.io/\"},{\"title\":\"When Shallow Wins: Silent Failures and the Depth-Accuracy Paradox in Latent Reasoning\",\"url\":\"https://arxiv.org/pdf/2603.03475\"}]\n\nGreat! I found a reference to LC-R1 in the ICLR 2026 paper. Let me search more specifically for this paper:\n\nLinks: [{\"title\":\"Published as a conference paper at ICLR 2026 RETHINKING LLM REASONING:\",\"url\":\"https://openreview.net/pdf?id=CbK7lYbmv8\"},{\"title\":\"A Survey on Latent Reasoning\",\"url\":\"https://arxiv.org/pdf/2507.06203\"},{\"title\":\"Reasoning Beyond Chain-of-Thought: A Latent Computational Mode in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2601.08058\"},{\"title\":\"Latent Thoughts Tuning: Bridging Context and Reasoning with Fused Information in Latent Tokens\",\"url\":\"https://arxiv.org/pdf/2602.10229\"},{\"title\":\"Emergent Search and Backtracking in Latent Reasoning Models\",\"url\":\"https://arxiv.org/pdf/2602.08100\"},{\"title\":\"Latent Reasoning with Supervised Thinking States\",\"url\":\"https://arxiv.org/pdf/2602.08332\"}]\n\nLet me search more directly for the LC-ERD paper with a different search approach:\n\nLinks: [{\"title\":\"LC-ERD: Mining Latent Logic for Self-Evolving Reasoning via Consistency-Regulated Reward Decomposition\",\"url\":\"https://arxiv.org/html/2605.24005\"},{\"title\":\"[2605.24005] LC-ERD: Mining Latent Logic for Self-Evolving Reasoning via Consistency-Regulated Reward Decomposition\",\"url\":\"https://arxiv.org/abs/2605.24005\"},{\"title\":\"Consistent Paths Lead to Truth: Self-Rewarding Reinforcement Learning for LLM Reasoning\",\"url\":\"https://arxiv.org/pdf/2506.08745\"},{\"title\":\"CC-LEARN: Cohort-based Consistency Learning\",\"url\":\"https://arxiv.org/pdf/2506.15662\"},{\"title\":\"Aligning Dialogue Agents with Global Feedback via Large Language Model Multimodal Reward Decomposition\",\"url\":\"https://arxiv.org/pdf/2505.15922\"},{\"title\":\"Intra-Trajectory Consistency for Reward Modeling\",\"url\":\"https://arxiv.org/pdf/2506.09096\"},{\"title\":\"Outcome Accuracy is Not Enough: Aligning the Reasoning Process of Reward Models\",\"url\":\"https://arxiv.org/pdf/2602.04649\"}]\n\nPerfect! I found the LC-ERD paper. Let me get a bit more detail about it:\n\nLinks: [{\"title\":\"Latent Logic 2026 Company Profile: Valuation, Investors, Acquisition | PitchBook\",\"url\":\"https://pitchbook.com/profiles/company/183316-60\"},{\"title\":\"Published as a conference paper at ICLR 2026 RETHINKING LLM REASONING:\",\"url\":\"https://openreview.net/pdf?id=CbK7lYbmv8\"},{\"title\":\"ICLR 2026 Schedule\",\"url\":\"https://iclr.cc/virtual/2026/calendar\"},{\"title\":\"Published as a conference paper at ICLR 2026 LATENT THINKING OPTIMIZATION:\",\"url\":\"https://openreview.net/pdf?id=2jkAk3EP0v\"},{\"title\":\"Latent AI joins Apex Defense 2026, shares AI expertise\",\"url\":\"https://www.linkedin.com/posts/apex-defense_were-thrilled-to-announce-latent-ai-as-activity-7392540335874363392-G7C2\"},{\"title\":\"LACL: Logical Aspects of Computational Linguistics 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=1927\"},{\"title\":\"ICLR 2026: 12 papers on making AI systems reliable, efficient, and secure\",\"url\":\"https://lambda.ai/blog/iclr-2026-12-papers\"},{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://openreview.net/pdf?id=UOzxviKVFO\"},{\"title\":\"Testing for Measurement Invariance With Latent Class Analysis | 14 | v\",\"url\":\"https://www.taylorfrancis.com/chapters/edit/10.4324/9781315537078-14/testing-measurement-invariance-latent-class-analysis-milo%C5%A1-kankara%C5%A1-guy-moors-jeroen-vermunt\"},{\"title\":\"[2404.00417] Orchestrate Latent Expertise: Advancing Online Continual Learning with Multi-Level Supervision and Reverse Self-Distillation\",\"url\":\"https://arxiv.org/abs/2404.00417\"}]\n\nBased on my search results, I found the paper you were asking about! Here's what I found:\n\n## LC-ERD: Logic-Consistent Endogenous Reward Decomposition\n\nLC-ERD (Logic-Consistent Endogenous Reward Decomposition) is a framework that models the reasoning trajectory as a sequence of discrete agentic decisions driven by a continuous logic potential.\n\n### Key Components and Purpose\n\nThe framework reformulates the self-alignment process into a collaborative game among sequential \"step-agents,\" governed by the Individual-Global-Max (IGM) principle. The framework samples logic-consistent reward signals from a latent expert manifold, delivering high-fidelity feedback tailored to the cognitive difficulty of each reasoning step, and decomposes the global terminal reward into dense, consistency-regulated intrinsic potentials to effectively resolve the credit assignment bottleneck that plagues traditional endogenous alignment.\n\n### Technical Approach\n\nLC-ERD frames self-alignment as latent structure mining by deriving a Variational Logic Potential by aggregating consensus from the model's Latent Logic Expertise (LLE) to denoise the reasoning manifold, and introduces a Multi-Agent Value Decomposition protocol based on the IGM principle to quantify individual step utility.\n\n### Empirical Results\n\nExperiments show LC-ERD delivers a robust self-evolution path, uncovering trade-offs between logic consistency and accuracy while identifying high-value reasoning patterns missed by standard rewards.\n\nThe paper appears to be a recent contribution (from May 2026 based on the arxiv timestamp) addressing the challenge of improving LLM reasoning through more sophisticated reward decomposition strategies that consider both logical consistency and computational efficiency.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76e716c9-e773-4a1d-8dd0-66e97dbb5788",
+            "isSidechain": false,
+            "promptId": "7fcf9e9d-c8d4-427d-befd-bac563556186",
+            "type": "user",
+            "uuid": "673885df-78f3-494f-87e5-e6d43bd665d7",
+            "toolUseResult": {
+              "query": "\"LC-ERD\" \"consistency-regulated reward decomposition\" reasoning latent logic 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01SB6GvosK8AqoodoSKQ9TVo",
+                  "content": [
+                    {
+                      "title": "Information-Theoretic Reward Decomposition for Generalizable RLHF",
+                      "url": "https://arxiv.org/html/2504.06020"
+                    },
+                    {
+                      "title": "Explainable Reinforcement Learning via Reward Decomposition",
+                      "url": "https://web.engr.oregonstate.edu/~erwig/papers/ExplainableRL_XAI19.pdf"
+                    },
+                    {
+                      "title": "Intra-Trajectory Consistency for Reward Modeling",
+                      "url": "https://arxiv.org/pdf/2506.09096"
+                    },
+                    {
+                      "title": "Problem decomposition guided by reasoning utility for complex reasoning in LLMs - ScienceDirect",
+                      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0306457325004509"
+                    },
+                    {
+                      "title": "Episodic Return Decomposition by Difference of Implicitly Assigned   Sub-Trajectory Reward",
+                      "url": "https://arxiv.org/pdf/2312.10642"
+                    },
+                    {
+                      "title": "Explaining an Agent's Future Beliefs through Temporally Decomposing   Future Reward Estimators",
+                      "url": "https://arxiv.org/pdf/2408.08230"
+                    }
+                  ]
+                },
+                "Let me search more specifically for \"LC-ERD\" to find information about this particular method:",
+                {
+                  "tool_use_id": "srvtoolu_01Set4RyHMP1TiU2ZHyxtUzc",
+                  "content": [
+                    {
+                      "title": "Latent Self-Consistency for Reliable Majority-Set Selection in Short- and Long-Answer Reasoning",
+                      "url": "https://arxiv.org/pdf/2508.18395"
+                    },
+                    {
+                      "title": "Interpreting latent reasoning: methods for understanding continuous chain-of-thought - SPAR Project",
+                      "url": "https://sparai.org/projects/sp26/recip3J5fnlBXUyFB/"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2026 RETHINKING LLM REASONING:",
+                      "url": "https://openreview.net/pdf?id=CbK7lYbmv8"
+                    },
+                    {
+                      "title": "Think Consistently, Reason Efficiently: Energy-Based Calibration for Implicit Chain-of-Thought",
+                      "url": "https://arxiv.org/pdf/2511.07124"
+                    },
+                    {
+                      "title": "Published at Latent & Implicit Thinking Workshop @ ICLR 2026",
+                      "url": "https://openreview.net/attachment?id=frSSQ7fWFX&name=pdf"
+                    },
+                    {
+                      "title": "Latent Consistency Models: Synthesizing High-Resolution Images with Few-step Inference",
+                      "url": "https://latent-consistency-models.github.io/"
+                    },
+                    {
+                      "title": "When Shallow Wins: Silent Failures and the Depth-Accuracy Paradox in Latent Reasoning",
+                      "url": "https://arxiv.org/pdf/2603.03475"
+                    }
+                  ]
+                },
+                "Great! I found a reference to LC-R1 in the ICLR 2026 paper. Let me search more specifically for this paper:",
+                {
+                  "tool_use_id": "srvtoolu_014sTUWpKpYGR3opbY1fnSxQ",
+                  "content": [
+                    {
+                      "title": "Published as a conference paper at ICLR 2026 RETHINKING LLM REASONING:",
+                      "url": "https://openreview.net/pdf?id=CbK7lYbmv8"
+                    },
+                    {
+                      "title": "A Survey on Latent Reasoning",
+                      "url": "https://arxiv.org/pdf/2507.06203"
+                    },
+                    {
+                      "title": "Reasoning Beyond Chain-of-Thought: A Latent Computational Mode in Large Language Models",
+                      "url": "https://arxiv.org/pdf/2601.08058"
+                    },
+                    {
+                      "title": "Latent Thoughts Tuning: Bridging Context and Reasoning with Fused Information in Latent Tokens",
+                      "url": "https://arxiv.org/pdf/2602.10229"
+                    },
+                    {
+                      "title": "Emergent Search and Backtracking in Latent Reasoning Models",
+                      "url": "https://arxiv.org/pdf/2602.08100"
+                    },
+                    {
+                      "title": "Latent Reasoning with Supervised Thinking States",
+                      "url": "https://arxiv.org/pdf/2602.08332"
+                    }
+                  ]
+                },
+                "Let me search more directly for the LC-ERD paper with a different search approach:",
+                {
+                  "tool_use_id": "srvtoolu_01Wr4ju7dDeWsJz5qKj2Kqg5",
+                  "content": [
+                    {
+                      "title": "LC-ERD: Mining Latent Logic for Self-Evolving Reasoning via Consistency-Regulated Reward Decomposition",
+                      "url": "https://arxiv.org/html/2605.24005"
+                    },
+                    {
+                      "title": "[2605.24005] LC-ERD: Mining Latent Logic for Self-Evolving Reasoning via Consistency-Regulated Reward Decomposition",
+                      "url": "https://arxiv.org/abs/2605.24005"
+                    },
+                    {
+                      "title": "Consistent Paths Lead to Truth: Self-Rewarding Reinforcement Learning for LLM Reasoning",
+                      "url": "https://arxiv.org/pdf/2506.08745"
+                    },
+                    {
+                      "title": "CC-LEARN: Cohort-based Consistency Learning",
+                      "url": "https://arxiv.org/pdf/2506.15662"
+                    },
+                    {
+                      "title": "Aligning Dialogue Agents with Global Feedback via Large Language Model Multimodal Reward Decomposition",
+                      "url": "https://arxiv.org/pdf/2505.15922"
+                    },
+                    {
+                      "title": "Intra-Trajectory Consistency for Reward Modeling",
+                      "url": "https://arxiv.org/pdf/2506.09096"
+                    },
+                    {
+                      "title": "Outcome Accuracy is Not Enough: Aligning the Reasoning Process of Reward Models",
+                      "url": "https://arxiv.org/pdf/2602.04649"
+                    }
+                  ]
+                },
+                "Perfect! I found the LC-ERD paper. Let me get a bit more detail about it:",
+                {
+                  "tool_use_id": "srvtoolu_01XdcYS6UMzaiQFvWGxuZyjK",
+                  "content": [
+                    {
+                      "title": "Latent Logic 2026 Company Profile: Valuation, Investors, Acquisition | PitchBook",
+                      "url": "https://pitchbook.com/profiles/company/183316-60"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2026 RETHINKING LLM REASONING:",
+                      "url": "https://openreview.net/pdf?id=CbK7lYbmv8"
+                    },
+                    {
+                      "title": "ICLR 2026 Schedule",
+                      "url": "https://iclr.cc/virtual/2026/calendar"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2026 LATENT THINKING OPTIMIZATION:",
+                      "url": "https://openreview.net/pdf?id=2jkAk3EP0v"
+                    },
+                    {
+                      "title": "Latent AI joins Apex Defense 2026, shares AI expertise",
+                      "url": "https://www.linkedin.com/posts/apex-defense_were-thrilled-to-announce-latent-ai-as-activity-7392540335874363392-G7C2"
+                    },
+                    {
+                      "title": "LACL: Logical Aspects of Computational Linguistics 2027 2026 2025 ...",
+                      "url": "http://www.wikicfp.com/cfp/program?id=1927"
+                    },
+                    {
+                      "title": "ICLR 2026: 12 papers on making AI systems reliable, efficient, and secure",
+                      "url": "https://lambda.ai/blog/iclr-2026-12-papers"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2026",
+                      "url": "https://openreview.net/pdf?id=UOzxviKVFO"
+                    },
+                    {
+                      "title": "Testing for Measurement Invariance With Latent Class Analysis | 14 | v",
+                      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781315537078-14/testing-measurement-invariance-latent-class-analysis-milo%C5%A1-kankara%C5%A1-guy-moors-jeroen-vermunt"
+                    },
+                    {
+                      "title": "[2404.00417] Orchestrate Latent Expertise: Advancing Online Continual Learning with Multi-Level Supervision and Reverse Self-Distillation",
+                      "url": "https://arxiv.org/abs/2404.00417"
+                    }
+                  ]
+                },
+                "Based on my search results, I found the paper you were asking about! Here's what I found:\n\n## LC-ERD: Logic-Consistent Endogenous Reward Decomposition\n\nLC-ERD (Logic-Consistent Endogenous Reward Decomposition) is a framework that models the reasoning trajectory as a sequence of discrete agentic decisions driven by a continuous logic potential.\n\n### Key Components and Purpose\n\nThe framework reformulates the self-alignment process into a collaborative game among sequential \"step-agents,\" governed by the Individual-Global-Max (IGM) principle. The framework samples logic-consistent reward signals from a latent expert manifold, delivering high-fidelity feedback tailored to the cognitive difficulty of each reasoning step, and decomposes the global terminal reward into dense, consistency-regulated intrinsic potentials to effectively resolve the credit assignment bottleneck that plagues traditional endogenous alignment.\n\n### Technical Approach\n\nLC-ERD frames self-alignment as latent structure mining by deriving a Variational Logic Potential by aggregating consensus from the model's Latent Logic Expertise (LLE) to denoise the reasoning manifold, and introduces a Multi-Agent Value Decomposition protocol based on the IGM principle to quantify individual step utility.\n\n### Empirical Results\n\nExperiments show LC-ERD delivers a robust self-evolution path, uncovering trade-offs between logic consistency and accuracy while identifying high-value reasoning patterns missed by standard rewards.\n\nThe paper appears to be a recent contribution (from May 2026 based on the arxiv timestamp) addressing the challenge of improving LLM reasoning through more sophisticated reward decomposition strategies that consider both logical consistency and computational efficiency."
+              ],
+              "durationSeconds": 20.674391688000178,
+              "searchCount": 5
+            },
+            "sourceToolAssistantUUID": "76e716c9-e773-4a1d-8dd0-66e97dbb5788",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-27T09:35:52.929Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "This is very interesting! LC-ERD (May 2026) applies multi-agent value decomposition (specifically IGM/QMIX-style) to LLM reasoning credit assignment! This is EXACTLY the direction I was considering.\n\nLet me understand what LC-ERD does:\n1. Models reasoning as a collaborative game among \"step-agents\" (each step is an agent)\n2. Uses the Individual-Global-Max (IGM) principle (from QMIX) for credit assignment\n3. Decomposes global terminal reward into dense, consistency-regulated intrinsic potentials\n\n\n4. Appears to focus on self-alignment through RL rather than PRM training specifically\n\nSo the key distinction is that LC-ERD uses value decomposition for the RL objective itself, whereas I could apply the same decomposition approach specifically to generating PRM training data—that's where the novelty might lie. Looking at this inventory of existing work, I'm seeing that the core credit assignment and verification problems are largely covered—but there's a critical blind spot around how PRM quality actually impacts downstream RL training. The gap isn't in individual techniques anymore, it's in understanding the systemic failure modes when these components interact, particularly why reward hacking persists even with debiasing and why PRMs plateau on genuinely hard reasoning problems.\n\nWhat strikes me is that nobody's systematically mapped which PRM architecture pairs well with which credit assignment strategy. Discriminative classifiers are fast but fragile, generative verification is robust but computationally expensive, and implicit rewards are free but coarse-grained—but there's no empirical study showing which combination actually works best for different problem classes or RL objectives. That feels like a concrete empirical investigation worth doing, though I'm uncertain if it reads as a strong enough contribution for top venues that typically want novel methods rather than systematic comparisons.\n\nLet me pivot and look at what the recent methods are actually struggling with. TCRM treats reward models as value functions but only hits 44.9% F1 on ProcessBench with outcome-only training, while the supervised 72B PRM reaches 78.3%—that's a massive 33-point gap. The real question becomes whether we can close that gap using only outcome labels through smarter training methodology, since FreePRM's 53% still relies on pseudo step labels rather than being truly outcome-only.\n\nMy hypothesis is that outcome-only training fails because it can't identify which intermediate steps matter. I'm thinking we could use a self-training loop: start with TCRM-style outcome-only training, then have the model generate its own pseudo step labels through temporal decomposition, filter for high-confidence predictions, and retrain using both outcome and those confident pseudo labels iteratively. This essentially bootstraps step-level supervision from the model's own learned value function.\n\nFreePRM already does pseudo-labeling with Buffer Probability, but it doesn't iterate—and combining TCRM with iterative self-training might be novel, though it's hard to claim novelty just from mixing existing techniques. I need to find something more fundamentally new.\n\nLet me focus on one clear, defensible idea: **Monotonic Value Decomposition for Process Reward Models**. This borrows from VDN/QMIX but applies it directly to PRM training rather than RL optimization, emphasizing how step-level values should monotonically contribute to the final outcome prediction.\n\nActually, LC-ERD already uses IGM with monotonicity constraints, so there's too much conceptual overlap. But here's the key distinction: LC-ERD uses value decomposition for RL training, while I'd be training a standalone PRM using these principles for data synthesis. The standalone PRM can be reused across policies and applied at test time for search, whereas LC-ERD's decomposition is locked to its specific policy—that's a meaningful difference worth exploring. trained\n- A decomposition-trained PRM would generalize across policies\n\nOK so the idea becomes:\n\n**Value Decomposition-Guided PRM Training: Step-Level Credit Synthesis via Monotonic Factorization of Outcome Rewards**\n\nMethod:\n1. Collect outcome-labeled reasoning trajectories\n2. For correct trajectories: decompose R=1 into step credits c_1, ..., c_n using a learned monotonic mixing network (à la QMIX), where each c_i depends on the step content and the mixing network ensures Σ monotonically combines c_i\n3. For incorrect trajectories: identify the \"responsible\" steps via the decomposition (steps with lowest c_i)\n4. Train a PRM on these decomposition-derived labels\n\nThe monotonicity constraint ensures:\n- If individual step quality improves, overall quality improves (no reward hacking)\n- Steps can't compensate for each other (unlike sum-form)\n- Credits are meaningful (not arbitrary)\n\nTraining the decomposition network uses three complementary objectives: end-to-end approximation of outcome rewards, temporal coherence where cumulative credits match value estimates at each step, and monotonic constraints on the mixing weights to prevent gaming. This approach synthesizes ideas from value decomposition methods in multi-agent RL, temporal credit assignment, and PRM training into a unified framework that produces interpretable step-level supervision without requiring manual annotations.\n\nThe core novelty is applying value decomposition specifically to PRM training with monotonicity constraints, rather than treating it as a standalone model or using it only for advantage estimation.\n\nBut wait, I'm realizing PAV already does something similar—it trains on advantages as targets. So I need to find what's actually different here. The real gap might be in how to improve outcome-only PRM training itself, without relying on a separate value model.\n\nThe core problem is that outcome-only PRMs (44.9% accuracy) lag far behind supervised ones (78.3%), and I'm thinking about using temporal consistency as a self-refinement mechanism. The idea is to iteratively extract pseudo-labels from the trained model, check them for consistency across the trajectory, and correct any that violate temporal coherence before retraining. This way, the model's own learned patterns become the supervision signal for improving itself.\n\nLooking at what's already out there, FreePRM uses pseudo-labels with a different denoising approach, and TCRM enforces temporal coherence during training but doesn't leverage it for label correction. The novelty here is combining temporal consistency-based denoising with iterative label refinement specifically for PRMs. If this could push performance from 44.9% toward 60-65%, that would be meaningful progress—though I'm realizing FreePRM already hits 53.0%, so I need to think about whether this approach would actually exceed that baseline.\n\nThe temporal consistency structure we're adding is something FreePRM doesn't have, which could plausibly get us past 60%, but I'm concerned this might just look like combining two existing methods. What would actually move the needle is solving the real bottleneck: PRMs work well for test-time search but fail during RL training due to reward hacking. If I could design a PRM that's provably robust to reward hacking, that would be a genuinely impactful contribution—much more so than incremental label refinement.\n\nThe core insight is that reward hacking is fundamentally an adversarial robustness problem. The policy finds solutions that fool the PRM into giving high scores even though they're wrong. What if I trained the PRM adversarially by having a policy deliberately exploit it, collecting the cases where the PRM gets fooled, and then retraining on those adversarial examples? This would be a principled approach to making PRMs actually safe for RL training.\n\nI'm checking whether this has been done before — there's some related work on adversarial reward auditing, but applying it specifically to process reward models for math reasoning might still be novel. Though honestly, the general principle of adversarial training for robustness is well-established, so the novelty might be limited.\n\nLet me step back and commit to what I think is actually the strongest direction: combining value decomposition techniques from multi-agent RL with PRM training, adding monotonicity constraints to prevent reward hacking. This takes ideas from existing work but applies them in a way that hasn't been done for process reward models yet.\n\nThe real challenge is differentiating this from LC-ERD, which just came out in May 2026. My approach would be a standalone PRM using simpler monotonic mixing rather than their variational logic framework, and I'd focus on step-level verification quality rather than self-evolving reasoning. position for PRM training.\n\nThese are meaningful differences, but the conceptual overlap (value decomposition for LLM reasoning credit) is significant. A reviewer might ask \"how is this different from LC-ERD?\"\n\nTo make the differentiation clearer, I could focus on what LC-ERD doesn't do:\n- LC-ERD doesn't produce a standalone PRM model (it's embedded in RL)\n- LC-ERD doesn't evaluate on PRM benchmarks (ProcessBench)\n- LC-ERD doesn't demonstrate test-time search (best-of-N, beam search)\n\nOur paper would:\n- Train a standalone PRM using decomposition principles\n- Achieve SOTA on ProcessBench\n- Demonstrate superior test-time search performance\n- Show RL integration as an additional benefit\n\nThis is a viable paper. But I'm still not 100% confident it's the strongest possible idea.\n\nNow I'm weighing my top candidates against each other on novelty, impact, feasibility, and how well they differentiate from existing work. Looking at the tradeoffs, the monotonic credit decomposition approach stands out as the most defensible because it's genuinely novel compared to LC-ERD while being highly impactful and achievable, whereas the other candidates either have closer precedents or lower novelty scores. The core insight is that existing approaches like PURE and CoLD only patch the problem at the RL stage or address specific failure modes, but nobody's tackled reward hacking by redesigning the PRM training objective itself. My idea is to use monotonic value decomposition as the training objective—the monotonicity constraint ensures that no step can be individually \"correct\" while the overall solution is bad, making the PRM inherently robust to hacking. It's elegant and directly targets the root cause.\n\nBut I'm second-guessing myself on whether this constraint actually works for math proofs. The monotonicity requirement means improving any single step should improve the total score, but in practice, steps can be redundant or interdependent in ways that violate this assumption. This might be too restrictive.\n\nA better approach could be using a min-aggregation instead: the overall solution score is capped by the weakest step. This borrows from PURE's insight but applies it directly to how the PRM combines step scores rather than to RL credit assignment. It naturally prevents reward hacking since you can't compensate for a bad step with many good ones, and it forces the model to identify bottlenecks. The question is whether this is actually novel or just a straightforward application of existing ideas.\n\nNow I'm looking at how different aggregation functions work in practice—product-based (like in PRM800K), minimum-based (PURE's approach), mean-based, and last-token-based—and wondering which one PRMs should actually be trained with rather than just evaluated with. Training with min-aggregation would make the model focus on finding the weakest step and resist the temptation to hack the reward signal, which seems like a clean practical contribution if no one's studied it yet.\n\nBut I realize this might be too narrow for a major venue—just changing the aggregation function isn't quite enough. So I'm pivoting to a broader framing: the real problem is that step-level labels from Monte Carlo rollouts or pseudo-labeling are inherently noisy and don't capture each step's true causal contribution to the final outcome.\n\nMy solution is a self-supervised framework that decomposes outcome rewards into step-level credits using monotonic value decomposition, paired with temporal coherence constraints. This trains a standalone PRM end-to-end using only outcome labels, and the monotonicity guarantees built into the mixing function naturally resist reward hacking—unlike existing approaches like PAV or TCRM that require separate training procedures.\n\nThe core method models the PRM as a credit decomposition network where each step gets a local credit that combines through a monotonic mixing function to predict the final outcome, with temporal coherence regularization ensuring intermediate cumulative credits stay consistent.\n\nBut I'm realizing this might be overengineered with too many moving parts. Let me step back and try a much simpler approach: just train PRMs using a min-aggregated loss function instead of the standard training objective to improve robustness.\n\nActually, that's too minimal for a strong paper—it's essentially a one-line change. I need something more substantial.\n\nLet me commit to my final direction: **Counterfactual Step Perturbation for Self-Supervised Process Reward Model Training**. The core insight is that I can generate step-level labels by replacing individual reasoning steps with alternatives and measuring how they affect the final outcome, which sidesteps the bottleneck of expensive MC rollouts or human annotation.\n\nThe method works by masking each step, sampling alternative continuations from the LLM, completing those trajectories, and labeling steps as critical if replacing them flips correctness while alternatives mostly fail. This differs fundamentally from existing MC rollout approaches—instead of measuring reachability from a step onward, I'm directly measuring the step's necessity by substitution.\n\nThe key advantage is that this produces richer labels capturing which steps genuinely matter rather than just whether recovery is possible, naturally surfacing pivotal versus routine reasoning. To handle the computational cost of generating and completing K alternatives, I'd train a value function first to estimate outcome probability without full rollouts, then use that for efficient counterfactual evaluation. I'll evaluate on ProcessBench F1, MATH-500, AIME, and downstream tasks.\n\nLooking at related work, this approach differs from OmegaPRM's step-wise rollouts, PAV's advantage estimation, CoLD's length debiasing, SCAR's Shapley values, LC-ERD's value decomposition, and FoVer's formal verification—so there's a clear novelty gap here. I'm confident this passes the novelty check and ready to move forward with the final formulation.\n\nActually, let me verify whether step perturbation or step replacement for PRM label generation is already established in the literature.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "673885df-78f3-494f-87e5-e6d43bd665d7",
+            "isSidechain": false,
+            "requestId": "req_011CbSqs9igyrbcxnK1ZftKD",
+            "type": "assistant",
+            "uuid": "f011efee-2425-4580-b3dd-64d7ccf6ebd4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TWqkRtNRqBvQTS9dd5dXpL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2315,
+                "cache_read_input_tokens": 80136,
+                "output_tokens": 7069,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2315,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7069,
+                    "cache_read_input_tokens": 80136,
+                    "cache_creation_input_tokens": 2315,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2315
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-27T09:35:52.931Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify one more critical angle and check for the specific novelty of my emerging idea."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f011efee-2425-4580-b3dd-64d7ccf6ebd4",
+            "isSidechain": false,
+            "requestId": "req_011CbSqs9igyrbcxnK1ZftKD",
+            "type": "assistant",
+            "uuid": "f5e61697-bb15-4e38-9c44-b8650624e938",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TWqkRtNRqBvQTS9dd5dXpL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2315,
+                "cache_read_input_tokens": 80136,
+                "output_tokens": 7069,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2315,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7069,
+                    "cache_read_input_tokens": 80136,
+                    "cache_creation_input_tokens": 2315,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2315
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-27T09:35:52.934Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MVkzUUREJESgscR1qrC4DV",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"step perturbation\" OR \"step replacement\" OR \"step ablation\" reasoning PRM label training counterfactual outcome 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f5e61697-bb15-4e38-9c44-b8650624e938",
+            "isSidechain": false,
+            "requestId": "req_011CbSqs9igyrbcxnK1ZftKD",
+            "type": "assistant",
+            "uuid": "1313c93b-04ef-4442-a2ae-272a1244368a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TWqkRtNRqBvQTS9dd5dXpL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2315,
+                "cache_read_input_tokens": 80136,
+                "output_tokens": 7069,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2315,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7069,
+                    "cache_read_input_tokens": 80136,
+                    "cache_creation_input_tokens": 2315,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2315
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-27 (UTC).** Use this when reasoni…",
+                "leafUuid": "1313c93b-04ef-4442-a2ae-272a1244368a",
+                "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31"
+              }
+            }
+          ],
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate research ideas on process reward models",
+                "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31"
+              }
+            }
+          ],
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-27T09:36:11.613Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MVkzUUREJESgscR1qrC4DV",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"step perturbation\" OR \"step replacement\" OR \"step ablation\" reasoning PRM label training counterfactual outcome 2025 2026\"\n\nLinks: [{\"title\":\"Adaptation of the Compensatory Stepping Response Following Predictable and Unpredictable Perturbation Training\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8319606/\"},{\"title\":\"Published as a conference paper at ICLR 2025\",\"url\":\"https://arxiv.org/pdf/2410.11287\"},{\"title\":\"CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models\",\"url\":\"https://arxiv.org/pdf/2507.15698\"},{\"title\":\"Adversarial Training for Process Reward Models\",\"url\":\"https://arxiv.org/pdf/2511.22888\"},{\"title\":\"Perturbation Training for Fall-Risk Reduction in Healthy Older Adults: Interference and Generalization to Opposing Novel Perturbations Post Intervention\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8418084/\"},{\"title\":\"Efficient PRM Training Data Synthesis via Formal Verification\",\"url\":\"https://arxiv.org/pdf/2505.15960\"},{\"title\":\"Free Process Rewards without Process Labels\",\"url\":\"https://arxiv.org/pdf/2412.01981\"}]\n\nLet me search more specifically for research on step perturbation, step replacement, or step ablation techniques in PRM training:\n\nLinks: [{\"title\":\"Adversarial Training for Process Reward Models\",\"url\":\"https://arxiv.org/pdf/2511.22888\"},{\"title\":\"FreePRM: Training Process Reward Models Without Ground Truth Process Labels\",\"url\":\"https://arxiv.org/pdf/2506.03570\"},{\"title\":\"Efficient Process Reward Model Training via Active Learning\",\"url\":\"https://arxiv.org/pdf/2504.10559\"},{\"title\":\"What Are Step-Level Reward Models Rewarding? Counterintuitive Findings from MCTS-boosted Mathematical Reasoning\",\"url\":\"https://arxiv.org/html/2412.15904\"},{\"title\":\"SPARK: Stepwise Process-Aware Rewards for Reference-Free Reinforcement Learning\",\"url\":\"https://arxiv.org/pdf/2512.03244\"},{\"title\":\"Generalizable Process Reward Models via Formally Verified Training Data\",\"url\":\"https://arxiv.org/pdf/2505.15960\"},{\"title\":\"Self-Guided Process Reward Optimization with Redefined Step-wise Advantage for Process Reinforcement Learning\",\"url\":\"https://arxiv.org/pdf/2507.01551\"}]\n\nLet me search for more specific research on step perturbation techniques:\n\nLinks: [{\"title\":\"Counterfactual Sensitivity for Faithful Reasoning in ...\",\"url\":\"https://arxiv.org/pdf/2509.01544\"},{\"title\":\"arXiv:2506.05188v1 [cs.CL] 5 Jun 2025 Counterfactual reasoning:\",\"url\":\"https://arxiv.org/pdf/2506.05188\"},{\"title\":\"Analyzing Reasoning Consistency in Large Multimodal Models under Cross-Modal Conflicts\",\"url\":\"https://arxiv.org/html/2601.04073v1\"},{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://openreview.net/pdf?id=Lm46gJA0q8\"},{\"title\":\"Cradle-VAE: Enhancing Single-Cell Gene Perturbation Modeling with Counterfactual Reasoning-based Artifact Disentanglement | Proceedings of the AAAI Conference on Artificial Intelligence\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/view/33695\"},{\"title\":\"Towards Generalizable Reasoning: Group Causal Counterfactual Policy Optimization for LLM Reasoning\",\"url\":\"https://arxiv.org/pdf/2602.06475\"},{\"title\":\"Accepted papers | FoRLM @ NeurIPS'25\",\"url\":\"https://reasoning-workshop.github.io/accepted/\"},{\"title\":\"A Survey on the Mechanisms of Multi-Step Reasoning in ...\",\"url\":\"https://www.preprints.org/frontend/manuscript/11cab45ab0d578f7080de19423eb6ffe/download_pub\"}]\n\nBased on my web search results, here are the key findings related to step perturbation, step replacement, and step ablation techniques in Process Reward Model (PRM) training:\n\n## Key Research Areas\n\n### 1. **Counterfactual Step Interventions**\n\nOne approach generates a reasoning trace and then creates a minimally perturbed counterfactual trace by swapping a single, critical operator (e.g., changing '+' to '-' in a mathematical proof). This technique is part of the broader effort to improve reasoning faithfulness through training-time interventions.\n\nAnother method constructs synthetic counterfactual training data by systematically intervening on individual steps in generated chain-of-thought (CoT) outputs, producing faithful/unfaithful pairs without human supervision.\n\n### 2. **Counterfactual Robustness in PRM Training**\n\nRecent work on generalizable reasoning incorporates an episodic causal counterfactual reward that jointly captures robustness (encouraging the answer distribution induced by a reasoning step to remain stable under counterfactual perturbations) and effectiveness.\n\n### 3. **Perturbation-Based Training Data Synthesis**\n\nRecent studies explore synthetic annotations, such as perturbations and Monte Carlo roll-outs for generating PRM training data, though they can produce unnatural or inaccurate error labels, resulting in noisy training data.\n\n### 4. **Ablation Studies in PRM Research**\n\nAblation studies investigate different reward models by taking different inputs to evaluate the ongoing reasoning process, with different reward models defined for ablation study purposes. The ablation studies are conducted by selectively removing different parts from the inputs of the step-level reward models.\n\n## Overall Context\n\nThese techniques represent recent advances (2025-2026) in making PRM training more robust and efficient by using counterfactual reasoning and systematic perturbation of reasoning steps to generate better training signals, rather than relying solely on manual annotation or simple outcome-based labels.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1313c93b-04ef-4442-a2ae-272a1244368a",
+            "isSidechain": false,
+            "promptId": "7fcf9e9d-c8d4-427d-befd-bac563556186",
+            "type": "user",
+            "uuid": "a46e322c-e7ff-4710-b81d-2b15356823d7",
+            "toolUseResult": {
+              "query": "\"step perturbation\" OR \"step replacement\" OR \"step ablation\" reasoning PRM label training counterfactual outcome 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01MA1GrDHBZvJTziQoxsMpDR",
+                  "content": [
+                    {
+                      "title": "Adaptation of the Compensatory Stepping Response Following Predictable and Unpredictable Perturbation Training",
+                      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8319606/"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2025",
+                      "url": "https://arxiv.org/pdf/2410.11287"
+                    },
+                    {
+                      "title": "CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models",
+                      "url": "https://arxiv.org/pdf/2507.15698"
+                    },
+                    {
+                      "title": "Adversarial Training for Process Reward Models",
+                      "url": "https://arxiv.org/pdf/2511.22888"
+                    },
+                    {
+                      "title": "Perturbation Training for Fall-Risk Reduction in Healthy Older Adults: Interference and Generalization to Opposing Novel Perturbations Post Intervention",
+                      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8418084/"
+                    },
+                    {
+                      "title": "Efficient PRM Training Data Synthesis via Formal Verification",
+                      "url": "https://arxiv.org/pdf/2505.15960"
+                    },
+                    {
+                      "title": "Free Process Rewards without Process Labels",
+                      "url": "https://arxiv.org/pdf/2412.01981"
+                    }
+                  ]
+                },
+                "Let me search more specifically for research on step perturbation, step replacement, or step ablation techniques in PRM training:",
+                {
+                  "tool_use_id": "srvtoolu_01Lp1HdiPgrdGkSCqWJ1YTnK",
+                  "content": [
+                    {
+                      "title": "Adversarial Training for Process Reward Models",
+                      "url": "https://arxiv.org/pdf/2511.22888"
+                    },
+                    {
+                      "title": "FreePRM: Training Process Reward Models Without Ground Truth Process Labels",
+                      "url": "https://arxiv.org/pdf/2506.03570"
+                    },
+                    {
+                      "title": "Efficient Process Reward Model Training via Active Learning",
+                      "url": "https://arxiv.org/pdf/2504.10559"
+                    },
+                    {
+                      "title": "What Are Step-Level Reward Models Rewarding? Counterintuitive Findings from MCTS-boosted Mathematical Reasoning",
+                      "url": "https://arxiv.org/html/2412.15904"
+                    },
+                    {
+                      "title": "SPARK: Stepwise Process-Aware Rewards for Reference-Free Reinforcement Learning",
+                      "url": "https://arxiv.org/pdf/2512.03244"
+                    },
+                    {
+                      "title": "Generalizable Process Reward Models via Formally Verified Training Data",
+                      "url": "https://arxiv.org/pdf/2505.15960"
+                    },
+                    {
+                      "title": "Self-Guided Process Reward Optimization with Redefined Step-wise Advantage for Process Reinforcement Learning",
+                      "url": "https://arxiv.org/pdf/2507.01551"
+                    }
+                  ]
+                },
+                "Let me search for more specific research on step perturbation techniques:",
+                {
+                  "tool_use_id": "srvtoolu_01MQXx2wqS5jweyeKfpp1B37",
+                  "content": [
+                    {
+                      "title": "Counterfactual Sensitivity for Faithful Reasoning in ...",
+                      "url": "https://arxiv.org/pdf/2509.01544"
+                    },
+                    {
+                      "title": "arXiv:2506.05188v1 [cs.CL] 5 Jun 2025 Counterfactual reasoning:",
+                      "url": "https://arxiv.org/pdf/2506.05188"
+                    },
+                    {
+                      "title": "Analyzing Reasoning Consistency in Large Multimodal Models under Cross-Modal Conflicts",
+                      "url": "https://arxiv.org/html/2601.04073v1"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2026",
+                      "url": "https://openreview.net/pdf?id=Lm46gJA0q8"
+                    },
+                    {
+                      "title": "Cradle-VAE: Enhancing Single-Cell Gene Perturbation Modeling with Counterfactual Reasoning-based Artifact Disentanglement | Proceedings of the AAAI Conference on Artificial Intelligence",
+                      "url": "https://ojs.aaai.org/index.php/AAAI/article/view/33695"
+                    },
+                    {
+                      "title": "Towards Generalizable Reasoning: Group Causal Counterfactual Policy Optimization for LLM Reasoning",
+                      "url": "https://arxiv.org/pdf/2602.06475"
+                    },
+                    {
+                      "title": "Accepted papers | FoRLM @ NeurIPS'25",
+                      "url": "https://reasoning-workshop.github.io/accepted/"
+                    },
+                    {
+                      "title": "A Survey on the Mechanisms of Multi-Step Reasoning in ...",
+                      "url": "https://www.preprints.org/frontend/manuscript/11cab45ab0d578f7080de19423eb6ffe/download_pub"
+                    }
+                  ]
+                },
+                "Based on my web search results, here are the key findings related to step perturbation, step replacement, and step ablation techniques in Process Reward Model (PRM) training:\n\n## Key Research Areas\n\n### 1. **Counterfactual Step Interventions**\n\nOne approach generates a reasoning trace and then creates a minimally perturbed counterfactual trace by swapping a single, critical operator (e.g., changing '+' to '-' in a mathematical proof). This technique is part of the broader effort to improve reasoning faithfulness through training-time interventions.\n\nAnother method constructs synthetic counterfactual training data by systematically intervening on individual steps in generated chain-of-thought (CoT) outputs, producing faithful/unfaithful pairs without human supervision.\n\n### 2. **Counterfactual Robustness in PRM Training**\n\nRecent work on generalizable reasoning incorporates an episodic causal counterfactual reward that jointly captures robustness (encouraging the answer distribution induced by a reasoning step to remain stable under counterfactual perturbations) and effectiveness.\n\n### 3. **Perturbation-Based Training Data Synthesis**\n\nRecent studies explore synthetic annotations, such as perturbations and Monte Carlo roll-outs for generating PRM training data, though they can produce unnatural or inaccurate error labels, resulting in noisy training data.\n\n### 4. **Ablation Studies in PRM Research**\n\nAblation studies investigate different reward models by taking different inputs to evaluate the ongoing reasoning process, with different reward models defined for ablation study purposes. The ablation studies are conducted by selectively removing different parts from the inputs of the step-level reward models.\n\n## Overall Context\n\nThese techniques represent recent advances (2025-2026) in making PRM training more robust and efficient by using counterfactual reasoning and systematic perturbation of reasoning steps to generate better training signals, rather than relying solely on manual annotation or simple outcome-based labels."
+              ],
+              "durationSeconds": 18.673549919999903,
+              "searchCount": 3
+            },
+            "sourceToolAssistantUUID": "1313c93b-04ef-4442-a2ae-272a1244368a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-27T09:36:11.619Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "a46e322c-e7ff-4710-b81d-2b15356823d7",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "task_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "790cd686-034e-4628-9fad-6d87ee0e34a4",
+                "timestamp": "2026-05-27T09:36:11.619Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-27T09:36:17.625Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U3xcRhy6tgxfY1nu4MersP",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"adversarial training for process reward models\" 2025 arxiv methodology results"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "790cd686-034e-4628-9fad-6d87ee0e34a4",
+            "isSidechain": false,
+            "requestId": "req_011CbSr6GPPuipJt89TVoztp",
+            "type": "assistant",
+            "uuid": "019690e5-e261-4d66-bbde-6315bd3cf252",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ltx3sB66KYXxwfxHBJUTr6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8692,
+                "cache_read_input_tokens": 82451,
+                "output_tokens": 69,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8692,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 69,
+                    "cache_read_input_tokens": 82451,
+                    "cache_creation_input_tokens": 8692,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8692
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": "2026-05-27T09:36:24.799Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U3xcRhy6tgxfY1nu4MersP",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"adversarial training for process reward models\" 2025 arxiv methodology results\"\n\nLinks: [{\"title\":\"[2511.22888] Adversarial Training for Process Reward Models\",\"url\":\"https://arxiv.org/abs/2511.22888\"},{\"title\":\"[2504.06141] Adversarial Training of Reward Models\",\"url\":\"https://arxiv.org/abs/2504.06141\"},{\"title\":\"Adversarial Training for Process Reward Models\",\"url\":\"https://arxiv.org/pdf/2511.22888\"},{\"title\":\"Flattery, Fluff, and Fog: Diagnosing and Mitigating Idiosyncratic Biases in Preference Models\",\"url\":\"https://arxiv.org/html/2506.05339v2\"},{\"title\":\"Two Minds Better Than One: Collaborative Reward Modeling for LLM Alignment\",\"url\":\"https://arxiv.org/html/2505.10597v2\"},{\"title\":\"Preprint. Under review. Adversarial Training of Reward Models\",\"url\":\"https://arxiv.org/pdf/2504.06141\"},{\"title\":\"Automatically Finding Reward Model Biases\",\"url\":\"https://arxiv.org/html/2602.15222v1\"},{\"title\":\"Computer Science Apr 2025\",\"url\":\"https://www.arxiv.org/list/cs/2025-04?skip=2850&show=25\"},{\"title\":\"Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models\",\"url\":\"https://arxiv.org/pdf/2603.06621\"}]\n\nI found relevant research on adversarial training for process reward models. Here are the key findings:\n\n## Overview\n\nProcess Reward Models (PRMs) enhance reasoning ability of LLMs by providing step-level supervision. However, their widespread adoption is limited due to expensive manual step-level annotation and poor generalization of static training data to novel errors.\n\n## Methodology\n\nThe approach introduces Adversarially Trained PRMs (APRM), where a Generator (G) learns to produce reasoning errors to deceive a PRM (R), while R concurrently learns to detect them. This interaction yields progressively harder negatives for R, improving its robustness and generalization to novel errors without requiring manual step-level labels.\n\n## Results\n\nThe results are promising:\n- Averaged across diverse mathematical reasoning benchmarks, APRM improves solver accuracy by +3.4 percentage points (pp) over the strong baseline.\n- APRM achieves gains of +5.3 pp on out-of-distribution tasks.\n\nThis 2025 arXiv paper (2511.22888) addresses a critical limitation of current PRM training by introducing an adversarial framework that dynamically generates harder error examples, improving both robustness and generalization capabilities.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "019690e5-e261-4d66-bbde-6315bd3cf252",
+            "isSidechain": false,
+            "promptId": "7fcf9e9d-c8d4-427d-befd-bac563556186",
+            "type": "user",
+            "uuid": "1c7b2bb0-9d70-46bd-8e14-a2094ba2a0ba",
+            "toolUseResult": {
+              "query": "\"adversarial training for process reward models\" 2025 arxiv methodology results",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01BggspUCpJWoUqZkppLQKBP",
+                  "content": [
+                    {
+                      "title": "[2511.22888] Adversarial Training for Process Reward Models",
+                      "url": "https://arxiv.org/abs/2511.22888"
+                    },
+                    {
+                      "title": "[2504.06141] Adversarial Training of Reward Models",
+                      "url": "https://arxiv.org/abs/2504.06141"
+                    },
+                    {
+                      "title": "Adversarial Training for Process Reward Models",
+                      "url": "https://arxiv.org/pdf/2511.22888"
+                    },
+                    {
+                      "title": "Flattery, Fluff, and Fog: Diagnosing and Mitigating Idiosyncratic Biases in Preference Models",
+                      "url": "https://arxiv.org/html/2506.05339v2"
+                    },
+                    {
+                      "title": "Two Minds Better Than One: Collaborative Reward Modeling for LLM Alignment",
+                      "url": "https://arxiv.org/html/2505.10597v2"
+                    },
+                    {
+                      "title": "Preprint. Under review. Adversarial Training of Reward Models",
+                      "url": "https://arxiv.org/pdf/2504.06141"
+                    },
+                    {
+                      "title": "Automatically Finding Reward Model Biases",
+                      "url": "https://arxiv.org/html/2602.15222v1"
+                    },
+                    {
+                      "title": "Computer Science Apr 2025",
+                      "url": "https://www.arxiv.org/list/cs/2025-04?skip=2850&show=25"
+                    },
+                    {
+                      "title": "Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models",
+                      "url": "https://arxiv.org/pdf/2603.06621"
+                    }
+                  ]
+                },
+                "I found relevant research on adversarial training for process reward models. Here are the key findings:\n\n## Overview\n\nProcess Reward Models (PRMs) enhance reasoning ability of LLMs by providing step-level supervision. However, their widespread adoption is limited due to expensive manual step-level annotation and poor generalization of static training data to novel errors.\n\n## Methodology\n\nThe approach introduces Adversarially Trained PRMs (APRM), where a Generator (G) learns to produce reasoning errors to deceive a PRM (R), while R concurrently learns to detect them. This interaction yields progressively harder negatives for R, improving its robustness and generalization to novel errors without requiring manual step-level labels.\n\n## Results\n\nThe results are promising:\n- Averaged across diverse mathematical reasoning benchmarks, APRM improves solver accuracy by +3.4 percentage points (pp) over the strong baseline.\n- APRM achieves gains of +5.3 pp on out-of-distribution tasks.\n\nThis 2025 arXiv paper (2511.22888) addresses a critical limitation of current PRM training by introducing an adversarial framework that dynamically generates harder error examples, improving both robustness and generalization capabilities."
+              ],
+              "durationSeconds": 7.168629917999962,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "019690e5-e261-4d66-bbde-6315bd3cf252",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-27T09:36:37.691Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "OK, so APRM (Adversarial Training for Process Reward Models) exists. It uses a generator-discriminator framework where the generator creates reasoning errors and the PRM learns to detect them. This is adversarial training, not counterfactual perturbation.\n\nMy idea (counterfactual step perturbation for label generation) is different:\n- APRM: generates adversarial errors to train PRM to detect novel errors → improves PRM robustness\n- My idea: replaces individual steps with alternatives to measure causal importance → produces importance-aware labels\n\n\nThese are fundamentally different approaches—one focuses on robustness while the other tackles credit assignment. Let me look into the specific LC-ERD paper that uses value decomposition to see how it relates.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1c7b2bb0-9d70-46bd-8e14-a2094ba2a0ba",
+            "isSidechain": false,
+            "requestId": "req_011CbSr7Eu8NjPfxXzmurYab",
+            "type": "assistant",
+            "uuid": "8cfcad13-849b-4d52-84b5-68d36888117b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CuhgyAimxpBJdmRLJkH27r",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 758,
+                "cache_read_input_tokens": 91143,
+                "output_tokens": 315,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 758,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 315,
+                    "cache_read_input_tokens": 91143,
+                    "cache_creation_input_tokens": 758,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 758
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": "2026-05-27T09:36:38.250Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013yyrCju4b6Z3gKqJKiG8bG",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2605.24005",
+                "prompt": "Extract the key methodology, specific results (with numbers), and acknowledged limitations of LC-ERD. How does it decompose rewards? What is the IGM principle used here? What benchmarks are evaluated? How does it compare to baselines?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8cfcad13-849b-4d52-84b5-68d36888117b",
+            "isSidechain": false,
+            "requestId": "req_011CbSr7Eu8NjPfxXzmurYab",
+            "type": "assistant",
+            "uuid": "b0ffa280-c6d6-410c-9d8a-b081e5da1f56",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CuhgyAimxpBJdmRLJkH27r",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 758,
+                "cache_read_input_tokens": 91143,
+                "output_tokens": 315,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 758,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 315,
+                    "cache_read_input_tokens": 91143,
+                    "cache_creation_input_tokens": 758,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 758
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-27T09:36:43.919Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013yyrCju4b6Z3gKqJKiG8bG",
+              "type": "tool_result",
+              "content": "# LC-ERD Paper Analysis\n\n## Key Methodology\n\nThe framework addresses three core challenges in LLM reasoning:\n\n1. **Label Noise via Mimetic Bias** - rewards prioritizing statistical likelihood over logical truth\n2. **Coarse-Grained Supervision** - sparse global outcomes lacking step-level guidance\n3. **Distributional Collapse** - signals failing to generalize without amplifying biases\n\nThe solution employs a \"Variational Logic Potential\" that aggregates consensus from the model's Latent Logic Expertise (LLE) to denoise reasoning patterns. A \"Multi-Agent Value Decomposition protocol based on the IGM principle\" quantifies individual step utility.\n\n## Reward Decomposition\n\nThe paper uses an \"Independent Global-Local Mixing (IGM)\" principle to decompose rewards at the step level rather than treating entire reasoning chains as monolithic units. This enables fine-grained guidance on individual reasoning steps.\n\n## Results & Benchmarks\n\nThe abstract states LC-ERD \"delivers a robust self-evolution path\" and identifies \"high-value reasoning patterns missed by standard rewards.\" However, **specific quantitative results, benchmark datasets, and comparative performance numbers are not provided in this abstract**.\n\n## Limitations\n\nThe document acknowledges trade-offs: \"uncovering trade-offs between logic consistency and accuracy,\" suggesting the framework involves balancing competing objectives rather than universally improving all metrics.\n\n**Note:** Detailed experimental results, baseline comparisons, and benchmark specifications require accessing the full PDF."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0ffa280-c6d6-410c-9d8a-b081e5da1f56",
+            "isSidechain": false,
+            "promptId": "7fcf9e9d-c8d4-427d-befd-bac563556186",
+            "type": "user",
+            "uuid": "a7cd5f7e-228d-4cb6-badb-3fd1fcb97264",
+            "toolUseResult": {
+              "bytes": 48014,
+              "code": 200,
+              "codeText": "OK",
+              "result": "# LC-ERD Paper Analysis\n\n## Key Methodology\n\nThe framework addresses three core challenges in LLM reasoning:\n\n1. **Label Noise via Mimetic Bias** - rewards prioritizing statistical likelihood over logical truth\n2. **Coarse-Grained Supervision** - sparse global outcomes lacking step-level guidance\n3. **Distributional Collapse** - signals failing to generalize without amplifying biases\n\nThe solution employs a \"Variational Logic Potential\" that aggregates consensus from the model's Latent Logic Expertise (LLE) to denoise reasoning patterns. A \"Multi-Agent Value Decomposition protocol based on the IGM principle\" quantifies individual step utility.\n\n## Reward Decomposition\n\nThe paper uses an \"Independent Global-Local Mixing (IGM)\" principle to decompose rewards at the step level rather than treating entire reasoning chains as monolithic units. This enables fine-grained guidance on individual reasoning steps.\n\n## Results & Benchmarks\n\nThe abstract states LC-ERD \"delivers a robust self-evolution path\" and identifies \"high-value reasoning patterns missed by standard rewards.\" However, **specific quantitative results, benchmark datasets, and comparative performance numbers are not provided in this abstract**.\n\n## Limitations\n\nThe document acknowledges trade-offs: \"uncovering trade-offs between logic consistency and accuracy,\" suggesting the framework involves balancing competing objectives rather than universally improving all metrics.\n\n**Note:** Detailed experimental results, baseline comparisons, and benchmark specifications require accessing the full PDF.",
+              "durationMs": 5663,
+              "url": "https://arxiv.org/abs/2605.24005"
+            },
+            "sourceToolAssistantUUID": "b0ffa280-c6d6-410c-9d8a-b081e5da1f56",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-27T09:36:47.389Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BeTdZAbgHs5PjKSKaSu4dt",
+              "name": "WebSearch",
+              "input": {
+                "query": "LC-ERD \"consistency-regulated reward decomposition\" results benchmark MATH AMC AIME 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a7cd5f7e-228d-4cb6-badb-3fd1fcb97264",
+            "isSidechain": false,
+            "requestId": "req_011CbSr8eVEYXTkU9pGKJXtf",
+            "type": "assistant",
+            "uuid": "d958887d-6931-4f61-8a6d-450b48c1102e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017uYAU55H7yoAS2mVk7fLqE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 656,
+                "cache_read_input_tokens": 91901,
+                "output_tokens": 75,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 656,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 75,
+                    "cache_read_input_tokens": 91901,
+                    "cache_creation_input_tokens": 656,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 656
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-27T09:36:53.043Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BeTdZAbgHs5PjKSKaSu4dt",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LC-ERD \"consistency-regulated reward decomposition\" results benchmark MATH AMC AIME 2026\"\n\nLinks: [{\"title\":\"MAA Invitational Competitions – Mathematical Association of America\",\"url\":\"https://maa.org/maa-invitational-competitions/\"},{\"title\":\"Intra-Trajectory Consistency for Reward Modeling\",\"url\":\"https://arxiv.org/pdf/2506.09096\"},{\"title\":\"math-conpetition – Ivy League Education Center\",\"url\":\"https://ivyleaguecenter.org/tag/math-conpetition/\"},{\"title\":\"2026 AMC Math Competition Guide. Love Math? Score Better! - IMACS - Making Better Thinkers for Life\",\"url\":\"https://www.imacs.org/2021-amc-math-competition-guide-love-math-score-better-2/\"},{\"title\":\"LLM Reasoning with Process Rewards for Outcome-Guided Steps\",\"url\":\"https://arxiv.org/pdf/2604.02341\"},{\"title\":\"Preprint CAPO: TOWARDS ENHANCING LLM REASONING\",\"url\":\"https://arxiv.org/pdf/2508.02298\"},{\"title\":\"The Trickle-down Impact of Reward (In-)consistency on RLHF\",\"url\":\"https://arxiv.org/pdf/2309.16155\"},{\"title\":\"American Mathematics Competitions – Mathematical Association of America\",\"url\":\"https://maa.org/student-programs/amc/\"}]\n\nI found some results related to reward decomposition and mathematical benchmarks, but I didn't find specific information about \"LC-ERD\" (consistency-regulated reward decomposition) benchmarks for MATH, AMC, and AIME 2026.\n\nThe search results show:\n\n1. Several research papers on reward modeling and reinforcement learning for LLM mathematical reasoning (like PROGRS and CAPO) that evaluate on MATH, AMC, and AIME benchmarks\n2. Information about the 2026 AIME and AMC competition dates and structure\n3. A paper on reward inconsistency in RLHF\n\nHowever, I did not find any papers or resources specifically about \"LC-ERD\" or \"consistency-regulated reward decomposition\" with benchmark results. It's possible that:\n- This is very recent research not yet indexed by search engines\n- The acronym or terminology might be slightly different\n- This could be proprietary or unpublished work\n\nIf you have more specific details about where this research is from (such as an author name, institution, or publication venue), I could perform a more targeted search.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d958887d-6931-4f61-8a6d-450b48c1102e",
+            "isSidechain": false,
+            "promptId": "7fcf9e9d-c8d4-427d-befd-bac563556186",
+            "type": "user",
+            "uuid": "dc04a16a-3f76-4d6e-b638-bef60c248325",
+            "toolUseResult": {
+              "query": "LC-ERD \"consistency-regulated reward decomposition\" results benchmark MATH AMC AIME 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01V32hjA2igp6cSifBzZ9APY",
+                  "content": [
+                    {
+                      "title": "MAA Invitational Competitions – Mathematical Association of America",
+                      "url": "https://maa.org/maa-invitational-competitions/"
+                    },
+                    {
+                      "title": "Intra-Trajectory Consistency for Reward Modeling",
+                      "url": "https://arxiv.org/pdf/2506.09096"
+                    },
+                    {
+                      "title": "math-conpetition – Ivy League Education Center",
+                      "url": "https://ivyleaguecenter.org/tag/math-conpetition/"
+                    },
+                    {
+                      "title": "2026 AMC Math Competition Guide. Love Math? Score Better! - IMACS - Making Better Thinkers for Life",
+                      "url": "https://www.imacs.org/2021-amc-math-competition-guide-love-math-score-better-2/"
+                    },
+                    {
+                      "title": "LLM Reasoning with Process Rewards for Outcome-Guided Steps",
+                      "url": "https://arxiv.org/pdf/2604.02341"
+                    },
+                    {
+                      "title": "Preprint CAPO: TOWARDS ENHANCING LLM REASONING",
+                      "url": "https://arxiv.org/pdf/2508.02298"
+                    },
+                    {
+                      "title": "The Trickle-down Impact of Reward (In-)consistency on RLHF",
+                      "url": "https://arxiv.org/pdf/2309.16155"
+                    },
+                    {
+                      "title": "American Mathematics Competitions – Mathematical Association of America",
+                      "url": "https://maa.org/student-programs/amc/"
+                    }
+                  ]
+                },
+                "I found some results related to reward decomposition and mathematical benchmarks, but I didn't find specific information about \"LC-ERD\" (consistency-regulated reward decomposition) benchmarks for MATH, AMC, and AIME 2026.\n\nThe search results show:\n\n1. Several research papers on reward modeling and reinforcement learning for LLM mathematical reasoning (like PROGRS and CAPO) that evaluate on MATH, AMC, and AIME benchmarks\n2. Information about the 2026 AIME and AMC competition dates and structure\n3. A paper on reward inconsistency in RLHF\n\nHowever, I did not find any papers or resources specifically about \"LC-ERD\" or \"consistency-regulated reward decomposition\" with benchmark results. It's possible that:\n- This is very recent research not yet indexed by search engines\n- The acronym or terminology might be slightly different\n- This could be proprietary or unpublished work\n\nIf you have more specific details about where this research is from (such as an author name, institution, or publication venue), I could perform a more targeted search."
+              ],
+              "durationSeconds": 5.650082790999906,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "d958887d-6931-4f61-8a6d-450b48c1102e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-27 (UTC).** Use this when reasoni…",
+                "leafUuid": "dc04a16a-3f76-4d6e-b638-bef60c248325",
+                "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31"
+              }
+            }
+          ],
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate research ideas on process reward models",
+                "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31"
+              }
+            }
+          ],
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": "2026-05-27T09:37:29.532Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "OK, LC-ERD is very recent (May 2026) and detailed results aren't widely indexed yet. Given it's a preprint, there may be limitations in its evaluation.\n\nNow let me finalize my idea. I've done extensive research. Let me write up the final output.\n\nMy final idea after all this research:\n\n**Title: \"Counterfactual Step Attribution for Process Reward Model Training via Value-Bootstrapped Perturbation\"**\n\nThis idea is inspired by:\n1. The gap identified in the credit assignment survey (April 2026) that reasoning RL credit assignment needs to distinguish step correctness from step importance\n\n\n2. The TCRM framework (April 2026) that enables efficient value estimation at intermediate tokens\n3. The PAV framework (ICLR 2025) that shows advantage-based step rewards improve over binary labels\n4. The observation that no existing method combines explicit counterfactual step perturbation with trained value functions for PRM label generation\n\nLet me now write the final output carefully.\n\nActually, let me reconsider the framing one more time. I want to make sure the idea is clearly differentiated from all existing work, addresses a fundamental problem, and has a clear experimental evaluation plan. The core issue is that PRM training labels don't distinguish between a step that is correct and the only path forward versus a step that's correct but not necessary.\n\nThe key insight is measuring step importance through counterfactual perturbation—replacing each step with alternatives and seeing how much the outcome probability changes. I can implement this efficiently using a value function in the TCRM style rather than running full rollouts. Then I'd train the PRM with importance-weighted loss or a dual-headed architecture where one head predicts correctness and another predicts importance. Let me verify whether anyone's actually combined these pieces before.\n\nLooking through the literature, I see active learning approaches for PRMs, noise-reduction techniques like FreePRM, multi-dimensional error labeling in PathFinder-PRM, and step-wise critiques in CAPO—but none of them use importance-weighted training. This seems genuinely novel, though a skeptical reviewer would rightfully push back asking whether importance weighting actually improves performance. The argument would be that it helps the PRM allocate learning capacity to critical steps, reduces noise sensitivity on trivial steps, and produces better calibration for search procedures that need to know which steps warrant careful verification.\n\nI can test this empirically using ProcessBench, MATH-500, AIME with best-of-N and beam search evaluation. I'm settling on the framing: \"Counterfactual Step Importance for Process Reward Models: Beyond Binary Correctness Labels.\" The core insight is that standard PRM labels miss step importance entirely, creating credit assignment problems and reward hacking vulnerabilities. TCRM from 2026 gives me efficient value estimation at any token position, which means I can run fast counterfactual evaluations without expensive rollouts. Combined with policy-based step generation, this lets me measure each step's causal importance efficiently. Recent work like PAV shows 8%+ accuracy gains from advantage-based verification, and TCRM itself achieves 44.9% F1 on process reward modeling, so the foundation is there.\n\nLooking at the broader landscape—PURE's min-form credit assignment at 82.5% on AMC23, FreePRM's 53.0% F1 without step labels, LC-ERD's value decomposition approach, PathFinder-PRM's error typing at 67.7 PRMScore—none of them actually measure and leverage counterfactual step importance for generating PRM labels. The gap is clear from the credit assignment survey identifying that reasoning RL needs better step-level attribution beyond binary correctness. I'm borrowing the counterfactual reasoning framework from causal inference and combining it with TCRM's value function capabilities plus importance-weighted PRM training. This feels like the right synthesis.\n\nNow I'm checking the venue timeline—AAAI 2026 has already passed, so I need to pivot to AAAI 2027 with an August 2nd deadline, which gives me about two months from now to finalize everything.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dc04a16a-3f76-4d6e-b638-bef60c248325",
+            "isSidechain": false,
+            "requestId": "req_011CbSr9KSnEj8gUTngtw72C",
+            "type": "assistant",
+            "uuid": "e66f572f-1c29-4e62-b7a6-73dfd22ffed0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0198ff6VbB5f1H7hDkAj47Yk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 92557,
+                "output_tokens": 1462,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 713,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1462,
+                    "cache_read_input_tokens": 92557,
+                    "cache_creation_input_tokens": 713,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 713
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": "2026-05-27T09:37:29.534Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me do final verification searches on the most critical aspects of my emerging idea."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e66f572f-1c29-4e62-b7a6-73dfd22ffed0",
+            "isSidechain": false,
+            "requestId": "req_011CbSr9KSnEj8gUTngtw72C",
+            "type": "assistant",
+            "uuid": "46af799f-2335-4b8b-9149-87f5afafa479",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0198ff6VbB5f1H7hDkAj47Yk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 92557,
+                "output_tokens": 1462,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 713,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1462,
+                    "cache_read_input_tokens": 92557,
+                    "cache_creation_input_tokens": 713,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 713
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": "2026-05-27T09:37:29.543Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TDxse6RjB38NCv8EJGDxKA",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"importance weighted\" OR \"importance-aware\" process reward model PRM training label step weight 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46af799f-2335-4b8b-9149-87f5afafa479",
+            "isSidechain": false,
+            "requestId": "req_011CbSr9KSnEj8gUTngtw72C",
+            "type": "assistant",
+            "uuid": "59c4ef79-61b2-4edc-a01a-091c51992acc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0198ff6VbB5f1H7hDkAj47Yk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 92557,
+                "output_tokens": 1462,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 713,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1462,
+                    "cache_read_input_tokens": 92557,
+                    "cache_creation_input_tokens": 713,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 713
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": "2026-05-27T09:37:36.174Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TDxse6RjB38NCv8EJGDxKA",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"importance weighted\" OR \"importance-aware\" process reward model PRM training label step weight 2025 2026\"\n\nLinks: [{\"title\":\"A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models\",\"url\":\"https://arxiv.org/html/2510.08049v3\"},{\"title\":\"Process Reward Models That Think | OpenReview\",\"url\":\"https://openreview.net/forum?id=V727xqBYIW\"},{\"title\":\"Efficient Process Reward Model Training via Active Learning\",\"url\":\"https://arxiv.org/pdf/2504.10559\"},{\"title\":\"Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis\",\"url\":\"https://arxiv.org/html/2604.24198v1\"},{\"title\":\"Process-supervised Reward Models (PRMs)\",\"url\":\"https://www.emergentmind.com/topics/process-supervised-reward-models-prm\"},{\"title\":\"Process Reward Models: Step-Level Feedback for LLMs\",\"url\":\"https://www.emergentmind.com/topics/process-reward-models-prm\"}]\n\nBased on the search results, here are the key findings related to importance-weighted and importance-aware approaches in PRM training from 2025-2026:\n\n## Importance-Aware Training Methods\n\nEDU-PRM (Cao et al., 2025a) uses entropy-based uncertainty sampling and weighting to focus training on ambiguous or difficult reasoning steps, which represents an importance-aware approach to weighting samples during training.\n\nDG-PRM exhibits robust out-of-distribution performance by dynamically selecting or weighting reward signals and using Pareto dominance for positive/negative pair discovery (Yin et al., 23 Jul 2025).\n\nDomain-reweighted and active filtering strategies (DreamPRM, Athena-PRM) are crucial to preserve PRM effectiveness as model scale and input diversity grow (Cao et al., 26 May 2025, Wang et al., 11 Jun 2025).\n\n## Step-Level Weighting and Labeling\n\nAggregation schemes use softmax attention, weighting, and (for trajectory scores) high-level template extraction and external verification, indicating sophisticated weighting mechanisms for step-level supervision.\n\nError-Aware and Hierarchical Labeling involves decoupled error detection (math/logic/consistency) before reward computation yields better interpretability and sample efficiency (Pala et al., 26 May 2025).\n\nFuture work is expected to explore instance-level weighting, finer uncertainty modeling, hybrid generative-discriminative PRMs, and reinforcement learning pipelines that make deeper use of the process reward signal.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "59c4ef79-61b2-4edc-a01a-091c51992acc",
+            "isSidechain": false,
+            "promptId": "7fcf9e9d-c8d4-427d-befd-bac563556186",
+            "type": "user",
+            "uuid": "19a670d9-9562-47ec-8da0-e9b3f2b64372",
+            "toolUseResult": {
+              "query": "\"importance weighted\" OR \"importance-aware\" process reward model PRM training label step weight 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_014mkv4zzkUVEAYPbwUBif42",
+                  "content": [
+                    {
+                      "title": "A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models",
+                      "url": "https://arxiv.org/html/2510.08049v3"
+                    },
+                    {
+                      "title": "Process Reward Models That Think | OpenReview",
+                      "url": "https://openreview.net/forum?id=V727xqBYIW"
+                    },
+                    {
+                      "title": "Efficient Process Reward Model Training via Active Learning",
+                      "url": "https://arxiv.org/pdf/2504.10559"
+                    },
+                    {
+                      "title": "Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis",
+                      "url": "https://arxiv.org/html/2604.24198v1"
+                    },
+                    {
+                      "title": "Process-supervised Reward Models (PRMs)",
+                      "url": "https://www.emergentmind.com/topics/process-supervised-reward-models-prm"
+                    },
+                    {
+                      "title": "Process Reward Models: Step-Level Feedback for LLMs",
+                      "url": "https://www.emergentmind.com/topics/process-reward-models-prm"
+                    }
+                  ]
+                },
+                "Based on the search results, here are the key findings related to importance-weighted and importance-aware approaches in PRM training from 2025-2026:\n\n## Importance-Aware Training Methods\n\nEDU-PRM (Cao et al., 2025a) uses entropy-based uncertainty sampling and weighting to focus training on ambiguous or difficult reasoning steps, which represents an importance-aware approach to weighting samples during training.\n\nDG-PRM exhibits robust out-of-distribution performance by dynamically selecting or weighting reward signals and using Pareto dominance for positive/negative pair discovery (Yin et al., 23 Jul 2025).\n\nDomain-reweighted and active filtering strategies (DreamPRM, Athena-PRM) are crucial to preserve PRM effectiveness as model scale and input diversity grow (Cao et al., 26 May 2025, Wang et al., 11 Jun 2025).\n\n## Step-Level Weighting and Labeling\n\nAggregation schemes use softmax attention, weighting, and (for trajectory scores) high-level template extraction and external verification, indicating sophisticated weighting mechanisms for step-level supervision.\n\nError-Aware and Hierarchical Labeling involves decoupled error detection (math/logic/consistency) before reward computation yields better interpretability and sample efficiency (Pala et al., 26 May 2025).\n\nFuture work is expected to explore instance-level weighting, finer uncertainty modeling, hybrid generative-discriminative PRMs, and reinforcement learning pipelines that make deeper use of the process reward signal."
+              ],
+              "durationSeconds": 6.6257002179999835,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "59c4ef79-61b2-4edc-a01a-091c51992acc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": "2026-05-27T09:37:39.130Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01262h74cQ6Jyjkt5aCpR1vA",
+              "name": "WebSearch",
+              "input": {
+                "query": "counterfactual step replacement causal importance PRM process reward label generation value function efficient 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "19a670d9-9562-47ec-8da0-e9b3f2b64372",
+            "isSidechain": false,
+            "requestId": "req_011CbSrCVtAgCWtpVz3tEGs5",
+            "type": "assistant",
+            "uuid": "6f6adc30-4a2c-4d0e-9412-8fe9fe62a0cc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TwUxPdhjoSMumvrdnjFTKw",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2123,
+                "cache_read_input_tokens": 93270,
+                "output_tokens": 75,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2123,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 75,
+                    "cache_read_input_tokens": 93270,
+                    "cache_creation_input_tokens": 2123,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2123
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": "2026-05-27T09:37:47.090Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01262h74cQ6Jyjkt5aCpR1vA",
+              "type": "tool_result",
+              "content": "Web search results for query: \"counterfactual step replacement causal importance PRM process reward label generation value function efficient 2025 2026\"\n\nLinks: [{\"title\":\"Efficient Process Reward Model Training via Active Learning\",\"url\":\"https://arxiv.org/html/2504.10559v1\"},{\"title\":\"Efficient Process Reward Model Training via Active Learning\",\"url\":\"https://arxiv.org/pdf/2504.10559\"},{\"title\":\"Process-supervised Reward Models (PRMs)\",\"url\":\"https://www.emergentmind.com/topics/process-supervised-reward-models-prm\"},{\"title\":\"FunPRM: Function-as-Step Process Reward Model with Meta Reward Correction for Code Generation\",\"url\":\"https://arxiv.org/html/2601.22249v1\"},{\"title\":\"CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models\",\"url\":\"https://arxiv.org/pdf/2507.15698\"},{\"title\":\"Athena: Enhancing Multimodal Reasoning with Data-efficient Process Reward Models\",\"url\":\"https://arxiv.org/pdf/2506.09532\"},{\"title\":\"Process Reward Model with Q-Value Rankings\",\"url\":\"https://arxiv.org/pdf/2410.11287\"},{\"title\":\"Process Reward Model with Q-Value Rankings\",\"url\":\"https://arxiv.org/html/2410.11287v2\"}]\n\nBased on the web search results, I found several highly relevant recent papers and resources related to your query about counterfactual analysis, process reward models (PRMs), and efficient label generation:\n\n## Key Findings:\n\n**Counterfactual Analysis in PRMs:**\nA recent paper constructs a causal graph that captures relationships among key variables involved in the scoring process, including the input step, its length, logical correctness, latent noise factors, and the PRM prediction. The analysis reveals that PRM predictions should depend solely on correctness, but an alternative path shows where length exerts a direct influence on predicted reward.\n\n**Efficient Label Generation:**\nThe main challenge in training Process Reward Models lies in obtaining fine-grained step-level annotations, but by annotating only uncertain data and training exclusively on this subset, significant labeling costs can be reduced while maintaining PRM performance. One approach leverages prediction consistency between weak and strong completers as a criterion for identifying reliable process labels.\n\n**Value Function Approaches:**\nPQM optimizes Q-value rankings based on a novel comparative loss function, providing a more granular and theoretically grounded methodology for process rewards.\n\n**Recent Papers (2025-2026):**\n- Efficient Process Reward Model Training via Active Learning (April 2025)\n- FunPRM: Function-as-Step Process Reward Model (January 2026)\n- Athena: Enhancing Multimodal Reasoning with Data-efficient PRMs (June 2025)\n- CoLD: Counterfactually-Guided Length Debiasing for PRMs\n\nThese papers address efficiency in PRM training through active learning, data-efficient labeling, and causal analysis approaches.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6f6adc30-4a2c-4d0e-9412-8fe9fe62a0cc",
+            "isSidechain": false,
+            "promptId": "7fcf9e9d-c8d4-427d-befd-bac563556186",
+            "type": "user",
+            "uuid": "1745097a-60c0-45be-ba87-a577e3e08b52",
+            "toolUseResult": {
+              "query": "counterfactual step replacement causal importance PRM process reward label generation value function efficient 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_013xWJ1D1wCL4wSSFFp7kRbd",
+                  "content": [
+                    {
+                      "title": "Efficient Process Reward Model Training via Active Learning",
+                      "url": "https://arxiv.org/html/2504.10559v1"
+                    },
+                    {
+                      "title": "Efficient Process Reward Model Training via Active Learning",
+                      "url": "https://arxiv.org/pdf/2504.10559"
+                    },
+                    {
+                      "title": "Process-supervised Reward Models (PRMs)",
+                      "url": "https://www.emergentmind.com/topics/process-supervised-reward-models-prm"
+                    },
+                    {
+                      "title": "FunPRM: Function-as-Step Process Reward Model with Meta Reward Correction for Code Generation",
+                      "url": "https://arxiv.org/html/2601.22249v1"
+                    },
+                    {
+                      "title": "CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models",
+                      "url": "https://arxiv.org/pdf/2507.15698"
+                    },
+                    {
+                      "title": "Athena: Enhancing Multimodal Reasoning with Data-efficient Process Reward Models",
+                      "url": "https://arxiv.org/pdf/2506.09532"
+                    },
+                    {
+                      "title": "Process Reward Model with Q-Value Rankings",
+                      "url": "https://arxiv.org/pdf/2410.11287"
+                    },
+                    {
+                      "title": "Process Reward Model with Q-Value Rankings",
+                      "url": "https://arxiv.org/html/2410.11287v2"
+                    }
+                  ]
+                },
+                "Based on the web search results, I found several highly relevant recent papers and resources related to your query about counterfactual analysis, process reward models (PRMs), and efficient label generation:\n\n## Key Findings:\n\n**Counterfactual Analysis in PRMs:**\nA recent paper constructs a causal graph that captures relationships among key variables involved in the scoring process, including the input step, its length, logical correctness, latent noise factors, and the PRM prediction. The analysis reveals that PRM predictions should depend solely on correctness, but an alternative path shows where length exerts a direct influence on predicted reward.\n\n**Efficient Label Generation:**\nThe main challenge in training Process Reward Models lies in obtaining fine-grained step-level annotations, but by annotating only uncertain data and training exclusively on this subset, significant labeling costs can be reduced while maintaining PRM performance. One approach leverages prediction consistency between weak and strong completers as a criterion for identifying reliable process labels.\n\n**Value Function Approaches:**\nPQM optimizes Q-value rankings based on a novel comparative loss function, providing a more granular and theoretically grounded methodology for process rewards.\n\n**Recent Papers (2025-2026):**\n- Efficient Process Reward Model Training via Active Learning (April 2025)\n- FunPRM: Function-as-Step Process Reward Model (January 2026)\n- Athena: Enhancing Multimodal Reasoning with Data-efficient PRMs (June 2025)\n- CoLD: Counterfactually-Guided Length Debiasing for PRMs\n\nThese papers address efficiency in PRM training through active learning, data-efficient labeling, and causal analysis approaches."
+              ],
+              "durationSeconds": 7.956820540999994,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "6f6adc30-4a2c-4d0e-9412-8fe9fe62a0cc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": "2026-05-27T09:37:59.920Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good. No one has combined counterfactual step replacement with value function estimation for PRM label generation. My idea is confirmed as novel.\n\nLet me also check one more thing about the AAAI 2027 deadline and ensure my venue recommendation is correct.\n\nNow let me compose the final output. I need to generate 1 research direction in the specified JSON format.\n\nLet me think carefully about the framing:\n\n**Title**: \"Counterfactual Step Attribution for Process Reward Model Training\" (10 words max → \"Counterfactual Step Attribution for Process Reward Models\" = 7 words ✓)\n\n**Core problem**: PRM training labels capture step correctness but not causal step importance, leading to suboptimal credit assignment.\n \n**Opportunity**: TCRM's efficient intermediate-token value estimation combined with policy-based step perturbation would let me measure each step's counterfactual importance efficiently—a capability that didn't exist before. **Landscape**: Recent work like PAV improved PRM labels with advantage-based formulations, TCRM connected reward models to value functions, and PURE showed credit assignment form affects hacking resistance, yet no one has tackled measuring counterfactual step importance for PRM data synthesis. **Inspired by**: The gap between step correctness and step importance runs through the PRM literature, and I'm adapting counterfactual reasoning from other domains to address this specific problem.\n\nThe combination of TCRM value estimation and step perturbation for data synthesis hasn't been explored yet. I should target ICLR 2027 (Sep 24, 2026) or AAAI 2027 (Aug 2, 2026) since the AAAI 2026 deadline has already passed.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1745097a-60c0-45be-ba87-a577e3e08b52",
+            "isSidechain": false,
+            "requestId": "req_011CbSrDJb3XroTBVqvmzr1B",
+            "type": "assistant",
+            "uuid": "63e70fda-adfa-402b-a977-9352bb95d10a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0187WNw6GhMTPgUzoAfGYXQb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 816,
+                "cache_read_input_tokens": 95393,
+                "output_tokens": 548,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 816,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 548,
+                    "cache_read_input_tokens": 95393,
+                    "cache_creation_input_tokens": 816,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 816
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": "2026-05-27T09:37:59.922Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a comprehensive picture of the landscape. Let me do one final search to validate my idea's novelty."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "63e70fda-adfa-402b-a977-9352bb95d10a",
+            "isSidechain": false,
+            "requestId": "req_011CbSrDJb3XroTBVqvmzr1B",
+            "type": "assistant",
+            "uuid": "1fa043b5-0cec-4a04-98de-aa84166c67ef",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0187WNw6GhMTPgUzoAfGYXQb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 816,
+                "cache_read_input_tokens": 95393,
+                "output_tokens": 548,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 816,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 548,
+                    "cache_read_input_tokens": 95393,
+                    "cache_creation_input_tokens": 816,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 816
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": "2026-05-27T09:38:00.200Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F8fVGfDBk5MZVCVARmr6nH",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"step importance\" OR \"causal attribution\" reward model training math reasoning counterfactual perturbation value estimation 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1fa043b5-0cec-4a04-98de-aa84166c67ef",
+            "isSidechain": false,
+            "requestId": "req_011CbSrDJb3XroTBVqvmzr1B",
+            "type": "assistant",
+            "uuid": "557fb40f-ad15-4a8b-85b4-c2b83b2ef608",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0187WNw6GhMTPgUzoAfGYXQb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 816,
+                "cache_read_input_tokens": 95393,
+                "output_tokens": 548,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 816,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 548,
+                    "cache_read_input_tokens": 95393,
+                    "cache_creation_input_tokens": 816,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 816
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-27 (UTC).** Use this when reasoni…",
+                "leafUuid": "557fb40f-ad15-4a8b-85b4-c2b83b2ef608",
+                "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31"
+              }
+            }
+          ],
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate research ideas on process reward models",
+                "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31"
+              }
+            }
+          ],
+          "id": "event-000209"
+        },
+        {
+          "source_line": 210,
+          "timestamp": "2026-05-27T09:38:11.452Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F8fVGfDBk5MZVCVARmr6nH",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"step importance\" OR \"causal attribution\" reward model training math reasoning counterfactual perturbation value estimation 2026\"\n\nLinks: [{\"title\":\"Towards Generalizable Reasoning: Group Causal Counterfactual Policy Optimization for LLM Reasoning\",\"url\":\"https://arxiv.org/pdf/2602.06475\"},{\"title\":\"Step Potential Advantage Estimation: Harnessing Intermediate Confidence and Correctness for Efficient Mathematical Reasoning\",\"url\":\"https://arxiv.org/pdf/2601.03823\"},{\"title\":\"Causal Inference Is Eating Machine Learning | Towards Data Science\",\"url\":\"https://towardsdatascience.com/causal-inference-is-eating-machine-learning/\"},{\"title\":\"Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning\",\"url\":\"https://arxiv.org/pdf/2509.26578\"},{\"title\":\"Counterfactual Reward Model Training for Bias Mitigation in Multimodal Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2508.19567v1\"},{\"title\":\"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards\",\"url\":\"https://arxiv.org/pdf/2510.07774\"},{\"title\":\"Beyond Uniform Credit: Causal Credit Assignment for Policy Optimization\",\"url\":\"https://arxiv.org/pdf/2602.09331\"}]\n\nThe search has returned several highly relevant results from 2025-2026 focused on reward model training, mathematical reasoning, and causal/counterfactual approaches. Here are the key findings:\n\n## Recent Research on Step Importance and Causal Attribution in Reasoning (2025-2026)\n\n**Counterfactual Importance for Credit Assignment:**\nRecent work proposes using the model's intrinsic signals to determine which parts of the reasoning trace matter most by masking candidate reasoning spans and measuring the resulting drop in answer probability.\n\n**Causal Counterfactual Reward Models:**\nOne approach proposes an episodic causal counterfactual reward that captures robustness (encouraging answer distributions to remain stable under counterfactual perturbations) and effectiveness (enforcing sufficient variability for transfer across questions).\n\n**Conditional Reward Modeling:**\nProcess rewards can be treated as conditional probabilities dependent on preceding steps to capture causal structure in sequential reasoning, enabling precise attribution of final results to individual reasoning steps by linking each process reward to the final outcome.\n\n**Step Potential Advantage Estimation:**\nReinforcement learning with verifiable rewards has become central for eliciting long chain-of-thought reasoning, though it provides sparse supervision since reward arrives only after full generation is complete.\n\n**Counterfactual Reward Models for Bias Mitigation:**\nCounterfactual reward models introduce causal inference to provide bias-resilient reward signals, using components like counterfactual shifts and reconstruction uncertainty during counterfactual perturbations.\n\nThese results show an active research direction combining causal attribution, counterfactual analysis, and value estimation for improving mathematical reasoning in language models.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "557fb40f-ad15-4a8b-85b4-c2b83b2ef608",
+            "isSidechain": false,
+            "promptId": "7fcf9e9d-c8d4-427d-befd-bac563556186",
+            "type": "user",
+            "uuid": "c0a1148b-cfd7-496c-a2bd-3697c28df157",
+            "toolUseResult": {
+              "query": "\"step importance\" OR \"causal attribution\" reward model training math reasoning counterfactual perturbation value estimation 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01AsazDFeKLJYzQuj8Wonxro",
+                  "content": [
+                    {
+                      "title": "Towards Generalizable Reasoning: Group Causal Counterfactual Policy Optimization for LLM Reasoning",
+                      "url": "https://arxiv.org/pdf/2602.06475"
+                    },
+                    {
+                      "title": "Step Potential Advantage Estimation: Harnessing Intermediate Confidence and Correctness for Efficient Mathematical Reasoning",
+                      "url": "https://arxiv.org/pdf/2601.03823"
+                    },
+                    {
+                      "title": "Causal Inference Is Eating Machine Learning | Towards Data Science",
+                      "url": "https://towardsdatascience.com/causal-inference-is-eating-machine-learning/"
+                    },
+                    {
+                      "title": "Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning",
+                      "url": "https://arxiv.org/pdf/2509.26578"
+                    },
+                    {
+                      "title": "Counterfactual Reward Model Training for Bias Mitigation in Multimodal Reinforcement Learning",
+                      "url": "https://arxiv.org/html/2508.19567v1"
+                    },
+                    {
+                      "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+                      "url": "https://arxiv.org/pdf/2510.07774"
+                    },
+                    {
+                      "title": "Beyond Uniform Credit: Causal Credit Assignment for Policy Optimization",
+                      "url": "https://arxiv.org/pdf/2602.09331"
+                    }
+                  ]
+                },
+                "The search has returned several highly relevant results from 2025-2026 focused on reward model training, mathematical reasoning, and causal/counterfactual approaches. Here are the key findings:\n\n## Recent Research on Step Importance and Causal Attribution in Reasoning (2025-2026)\n\n**Counterfactual Importance for Credit Assignment:**\nRecent work proposes using the model's intrinsic signals to determine which parts of the reasoning trace matter most by masking candidate reasoning spans and measuring the resulting drop in answer probability.\n\n**Causal Counterfactual Reward Models:**\nOne approach proposes an episodic causal counterfactual reward that captures robustness (encouraging answer distributions to remain stable under counterfactual perturbations) and effectiveness (enforcing sufficient variability for transfer across questions).\n\n**Conditional Reward Modeling:**\nProcess rewards can be treated as conditional probabilities dependent on preceding steps to capture causal structure in sequential reasoning, enabling precise attribution of final results to individual reasoning steps by linking each process reward to the final outcome.\n\n**Step Potential Advantage Estimation:**\nReinforcement learning with verifiable rewards has become central for eliciting long chain-of-thought reasoning, though it provides sparse supervision since reward arrives only after full generation is complete.\n\n**Counterfactual Reward Models for Bias Mitigation:**\nCounterfactual reward models introduce causal inference to provide bias-resilient reward signals, using components like counterfactual shifts and reconstruction uncertainty during counterfactual perturbations.\n\nThese results show an active research direction combining causal attribution, counterfactual analysis, and value estimation for improving mathematical reasoning in language models."
+              ],
+              "durationSeconds": 11.248068290999857,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "557fb40f-ad15-4a8b-85b4-c2b83b2ef608",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000210"
+        },
+        {
+          "source_line": 211,
+          "timestamp": "2026-05-27T09:38:15.160Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Cn4k87A9P5QmnN1aH1m5on",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"step potential advantage estimation\" SPAE confidence correctness mathematical reasoning 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c0a1148b-cfd7-496c-a2bd-3697c28df157",
+            "isSidechain": false,
+            "requestId": "req_011CbSrF6kTJtM1DX1iUhjH9",
+            "type": "assistant",
+            "uuid": "47cda27d-6e8f-483e-9ef8-df9013a2e949",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RnUuG6J72PazeZ2ASriWLZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1291,
+                "cache_read_input_tokens": 96209,
+                "output_tokens": 68,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1291,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 68,
+                    "cache_read_input_tokens": 96209,
+                    "cache_creation_input_tokens": 1291,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1291
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000211"
+        },
+        {
+          "source_line": 212,
+          "timestamp": "2026-05-27T09:38:22.141Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Cn4k87A9P5QmnN1aH1m5on",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"step potential advantage estimation\" SPAE confidence correctness mathematical reasoning 2026\"\n\nLinks: [{\"title\":\"[2601.03823] Step Potential Advantage Estimation: Harnessing Intermediate Confidence and Correctness for Efficient Mathematical Reasoning\",\"url\":\"https://arxiv.org/abs/2601.03823\"},{\"title\":\"Step Potential Advantage Estimation: Harnessing Intermediate Confidence and Correctness for Efficient Mathematical Reasoning\",\"url\":\"https://arxiv.org/html/2601.03823\"},{\"title\":\"SHAPE: Stage-aware Hierarchical Advantage via Potential Estimation for LLM Reasoning\",\"url\":\"https://arxiv.org/html/2604.06636\"},{\"title\":\"[2604.06636v1] SHAPE: Stage-aware Hierarchical Advantage via Potential Estimation for LLM Reasoning\",\"url\":\"https://arxiv.org/abs/2604.06636v1\"},{\"title\":\"[2604.06636] SHAPE: Stage-aware Hierarchical Advantage via Potential Estimation for LLM Reasoning\",\"url\":\"https://arxiv.org/abs/2604.06636\"},{\"title\":\"[2506.17533] DuaShepherd: Integrating Stepwise Correctness and Potential Rewards for Mathematical Reasoning\",\"url\":\"https://arxiv.org/abs/2506.17533\"},{\"title\":\"DuaShepherd: Integrating Stepwise Correctness and Potential Rewards for Mathematical Reasoning\",\"url\":\"https://arxiv.org/html/2506.17533\"},{\"title\":\"Confidence over Time: Confidence Calibration with Temporal Logic for Large Language Model Reasoning\",\"url\":\"https://arxiv.org/pdf/2601.13387\"},{\"title\":\"Temporalizing Confidence: Evaluation of Chain-of-Thought Reasoning with Signal Temporal Logic\",\"url\":\"https://arxiv.org/pdf/2506.08243\"}]\n\nBased on the search results, I found relevant information about Step Potential Advantage Estimation (SPAE):\n\n## Step Potential Advantage Estimation (SPAE)\n\nSPAE uses a training-free probing mechanism that extracts intermediate confidence and correctness and combines them into a Step Potential signal that explicitly estimates the reasoning state at each step.\n\n### Core Methodology\n\nSPAE is a fine-grained credit assignment method that amplifies potential gains, penalizes potential drops, and applies penalty after potential saturates to encourage timely termination.\n\n### Problem It Addresses\n\nExisting approaches lack a semantically grounded, step-level measure of reasoning progress, causing LLMs to fail to distinguish necessary deduction from redundant verification—they may continue checking after reaching a correct solution and, in extreme cases, overturn a correct trajectory into an incorrect final answer.\n\n### Performance\n\nSPAE consistently outperforms strong RL baselines and closely related efficient reasoning and token-level advantage estimation methods.\n\nThe research was published in January 2026 as an arXiv paper addressing reinforcement learning with verifiable rewards for improving mathematical reasoning in large language models.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "47cda27d-6e8f-483e-9ef8-df9013a2e949",
+            "isSidechain": false,
+            "promptId": "7fcf9e9d-c8d4-427d-befd-bac563556186",
+            "type": "user",
+            "uuid": "664c0fd2-d713-45e8-b10b-80a9eb337410",
+            "toolUseResult": {
+              "query": "\"step potential advantage estimation\" SPAE confidence correctness mathematical reasoning 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01TG1qdUSnLjujGyPSDd9zwk",
+                  "content": [
+                    {
+                      "title": "[2601.03823] Step Potential Advantage Estimation: Harnessing Intermediate Confidence and Correctness for Efficient Mathematical Reasoning",
+                      "url": "https://arxiv.org/abs/2601.03823"
+                    },
+                    {
+                      "title": "Step Potential Advantage Estimation: Harnessing Intermediate Confidence and Correctness for Efficient Mathematical Reasoning",
+                      "url": "https://arxiv.org/html/2601.03823"
+                    },
+                    {
+                      "title": "SHAPE: Stage-aware Hierarchical Advantage via Potential Estimation for LLM Reasoning",
+                      "url": "https://arxiv.org/html/2604.06636"
+                    },
+                    {
+                      "title": "[2604.06636v1] SHAPE: Stage-aware Hierarchical Advantage via Potential Estimation for LLM Reasoning",
+                      "url": "https://arxiv.org/abs/2604.06636v1"
+                    },
+                    {
+                      "title": "[2604.06636] SHAPE: Stage-aware Hierarchical Advantage via Potential Estimation for LLM Reasoning",
+                      "url": "https://arxiv.org/abs/2604.06636"
+                    },
+                    {
+                      "title": "[2506.17533] DuaShepherd: Integrating Stepwise Correctness and Potential Rewards for Mathematical Reasoning",
+                      "url": "https://arxiv.org/abs/2506.17533"
+                    },
+                    {
+                      "title": "DuaShepherd: Integrating Stepwise Correctness and Potential Rewards for Mathematical Reasoning",
+                      "url": "https://arxiv.org/html/2506.17533"
+                    },
+                    {
+                      "title": "Confidence over Time: Confidence Calibration with Temporal Logic for Large Language Model Reasoning",
+                      "url": "https://arxiv.org/pdf/2601.13387"
+                    },
+                    {
+                      "title": "Temporalizing Confidence: Evaluation of Chain-of-Thought Reasoning with Signal Temporal Logic",
+                      "url": "https://arxiv.org/pdf/2506.08243"
+                    }
+                  ]
+                },
+                "Based on the search results, I found relevant information about Step Potential Advantage Estimation (SPAE):\n\n## Step Potential Advantage Estimation (SPAE)\n\nSPAE uses a training-free probing mechanism that extracts intermediate confidence and correctness and combines them into a Step Potential signal that explicitly estimates the reasoning state at each step.\n\n### Core Methodology\n\nSPAE is a fine-grained credit assignment method that amplifies potential gains, penalizes potential drops, and applies penalty after potential saturates to encourage timely termination.\n\n### Problem It Addresses\n\nExisting approaches lack a semantically grounded, step-level measure of reasoning progress, causing LLMs to fail to distinguish necessary deduction from redundant verification—they may continue checking after reaching a correct solution and, in extreme cases, overturn a correct trajectory into an incorrect final answer.\n\n### Performance\n\nSPAE consistently outperforms strong RL baselines and closely related efficient reasoning and token-level advantage estimation methods.\n\nThe research was published in January 2026 as an arXiv paper addressing reinforcement learning with verifiable rewards for improving mathematical reasoning in large language models."
+              ],
+              "durationSeconds": 6.975807982000057,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "47cda27d-6e8f-483e-9ef8-df9013a2e949",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000212"
+        },
+        {
+          "source_line": 213,
+          "timestamp": "2026-05-27T09:38:24.777Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G9DCyo7JiF3oqYctsg5xCB",
+              "name": "WebSearch",
+              "input": {
+                "query": "DuaShepherd integrating stepwise correctness potential rewards mathematical reasoning 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "664c0fd2-d713-45e8-b10b-80a9eb337410",
+            "isSidechain": false,
+            "requestId": "req_011CbSrFtRpd4iAraSD58haB",
+            "type": "assistant",
+            "uuid": "3182d81a-db0e-4aa5-bea6-f765530c6371",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RERPRMZ4JKQsN5Xz7TXNdu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 813,
+                "cache_read_input_tokens": 97500,
+                "output_tokens": 70,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 813,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 70,
+                    "cache_read_input_tokens": 97500,
+                    "cache_creation_input_tokens": 813,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 813
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000213"
+        },
+        {
+          "source_line": 214,
+          "timestamp": "2026-05-27T09:38:30.200Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G9DCyo7JiF3oqYctsg5xCB",
+              "type": "tool_result",
+              "content": "Web search results for query: \"DuaShepherd integrating stepwise correctness potential rewards mathematical reasoning 2025\"\n\nLinks: [{\"title\":\"[2506.17533] DuaShepherd: Integrating Stepwise Correctness and Potential Rewards for Mathematical Reasoning\",\"url\":\"https://arxiv.org/abs/2506.17533\"},{\"title\":\"DuaShepherd: Integrating Stepwise Correctness and Potential Rewards for Mathematical Reasoning\",\"url\":\"https://arxiv.org/pdf/2506.17533\"},{\"title\":\"DuaShepherd: Integrating Stepwise Correctness and Potential Rewards for Mathematical Reasoning\",\"url\":\"https://arxiv.org/html/2506.17533\"},{\"title\":\"DuaShepherd: Integrating Stepwise Correctness and Potential Rewards for Mathematical Reasoning - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/arXiv:2506.17533\"},{\"title\":\"[Quick Review] Step-KTO: Optimizing Mathematical Reasoning through Stepwise Binary\\\\n Feedback\",\"url\":\"https://liner.com/review/stepkto-optimizing-mathematical-reasoning-through-stepwise-binary-feedback\"}]\n\nBased on the search results, here's what I found:\n\nDuaShepherd is a novel reward modeling framework that integrates two complementary reward signals, correctness and potential, to enhance the mathematical reasoning capabilities of Large Language Models (LLMs).\n\nWhile correctness-based signals emphasize identification of stepwise errors, potential-based signals focus on the likelihood of reaching the correct final answer. The framework includes an automated pipeline for constructing large-scale reward modeling datasets with both signals, and uses a unified, multi-head architecture to train the two reward models in a multi-task setup.\n\nBy combining these two signals into a compound probability, the model achieves consistent performance improvements across multiple benchmarks, with empirical evaluations on MATH500 and ProcessBench confirming that this combined reward significantly outperforms models trained on either reward type alone.\n\nThe paper was submitted on June 21, 2025, with authors including Yuanhao Wu, Juntong Song, Hanning Zhang, Tong Zhang, and Cheng Niu.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3182d81a-db0e-4aa5-bea6-f765530c6371",
+            "isSidechain": false,
+            "promptId": "7fcf9e9d-c8d4-427d-befd-bac563556186",
+            "type": "user",
+            "uuid": "43e9c297-ea0f-45c1-ba22-ed83a4dd0566",
+            "toolUseResult": {
+              "query": "DuaShepherd integrating stepwise correctness potential rewards mathematical reasoning 2025",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01SSGd6AywQPn27bua2Haa5E",
+                  "content": [
+                    {
+                      "title": "[2506.17533] DuaShepherd: Integrating Stepwise Correctness and Potential Rewards for Mathematical Reasoning",
+                      "url": "https://arxiv.org/abs/2506.17533"
+                    },
+                    {
+                      "title": "DuaShepherd: Integrating Stepwise Correctness and Potential Rewards for Mathematical Reasoning",
+                      "url": "https://arxiv.org/pdf/2506.17533"
+                    },
+                    {
+                      "title": "DuaShepherd: Integrating Stepwise Correctness and Potential Rewards for Mathematical Reasoning",
+                      "url": "https://arxiv.org/html/2506.17533"
+                    },
+                    {
+                      "title": "DuaShepherd: Integrating Stepwise Correctness and Potential Rewards for Mathematical Reasoning - ADS",
+                      "url": "https://ui.adsabs.harvard.edu/abs/arXiv:2506.17533"
+                    },
+                    {
+                      "title": "[Quick Review] Step-KTO: Optimizing Mathematical Reasoning through Stepwise Binary\\n Feedback",
+                      "url": "https://liner.com/review/stepkto-optimizing-mathematical-reasoning-through-stepwise-binary-feedback"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found:\n\nDuaShepherd is a novel reward modeling framework that integrates two complementary reward signals, correctness and potential, to enhance the mathematical reasoning capabilities of Large Language Models (LLMs).\n\nWhile correctness-based signals emphasize identification of stepwise errors, potential-based signals focus on the likelihood of reaching the correct final answer. The framework includes an automated pipeline for constructing large-scale reward modeling datasets with both signals, and uses a unified, multi-head architecture to train the two reward models in a multi-task setup.\n\nBy combining these two signals into a compound probability, the model achieves consistent performance improvements across multiple benchmarks, with empirical evaluations on MATH500 and ProcessBench confirming that this combined reward significantly outperforms models trained on either reward type alone.\n\nThe paper was submitted on June 21, 2025, with authors including Yuanhao Wu, Juntong Song, Hanning Zhang, Tong Zhang, and Cheng Niu."
+              ],
+              "durationSeconds": 5.419356056999881,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "3182d81a-db0e-4aa5-bea6-f765530c6371",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000214"
+        },
+        {
+          "source_line": 215,
+          "timestamp": "2026-05-27T09:38:30.202Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "43e9c297-ea0f-45c1-ba22-ed83a4dd0566",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "task_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "31844a65-5b58-4fea-9d2f-cdd5240b6ec2",
+                "timestamp": "2026-05-27T09:38:30.202Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000215"
+        },
+        {
+          "source_line": 216,
+          "timestamp": "2026-05-27T09:39:14.517Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "DuaShepherd is VERY relevant! It combines correctness and potential (which is similar to importance) in a multi-head architecture. Published June 2025.\n\nThis is close to what I was proposing (combining correctness with importance). The key difference:\n- DuaShepherd: correctness (is the step right?) + potential (can you still solve from here? = V(s_i))\n- My proposal: correctness + **counterfactual importance** (how much does this specific step matter?)\n\n\"Potential\" (V(s_i)) is not the same as \"importance\" (A(s,a) = V(s') - E[V(s'|alternative)]). \n\n\nPotential measures reachability from a state, while importance captures how much a particular step matters relative to alternatives—a step can look promising but be interchangeable with others, or be the only viable option despite moderate potential. Since DuaShepherd already demonstrates the multi-head correctness-plus-auxiliary-signal architecture, my contribution would need to prove that counterfactual importance outperforms potential, provide an efficient computation method, and show empirical gains.\n\nThe key differentiation is the mechanism: DuaShepherd uses Monte Carlo completion probability to estimate potential, whereas I'd use counterfactual perturbation to measure importance. With this research grounding the landscape, I'm settling on a final framing around counterfactual step importance for process reward models—the core insight being that standard PRM labels capture correctness and reachability but miss the distinction between pivotal reasoning steps and routine operations, and TCRM's efficient intermediate token valuation makes this counterfactual evaluation tractable. The key insight is that existing methods haven't applied counterfactual analysis to PRM training — measuring how outcomes would shift if a step were swapped with an alternative — even though the credit assignment literature identifies this as the natural paradigm. Building on DuaShepherd's success with multi-signal PRMs, adding counterfactual importance as a third signal alongside correctness and potential seems like a promising direction, especially since TCRM's value function approach provides a foundation for this extension.\n\nI'm settling on \"Counterfactual Step Importance for Process Reward Model Training\" as the title and focusing the paper on the label generation method itself rather than architectural changes — that's where the novelty lies. The core contribution is defining counterfactual step importance as the expected outcome change when replacing a step with a policy-sampled alternative, then computing it efficiently using value bootstrapping.\n\nNow I'm weighing the timeline constraints: AAAI 2027 with a deadline in about two months is tight given the implementation and evaluation work needed, so ICLR 2027 in September would be more realistic.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31844a65-5b58-4fea-9d2f-cdd5240b6ec2",
+            "isSidechain": false,
+            "requestId": "req_011CbSrGUr2C5ScrVfq2a9Jd",
+            "type": "assistant",
+            "uuid": "08f19463-7718-4f1a-a28b-7413c1078e76",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S2pGVk69gboFZr2DLKazTz",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 723,
+                "cache_read_input_tokens": 98313,
+                "output_tokens": 3614,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 723,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3614,
+                    "cache_read_input_tokens": 98313,
+                    "cache_creation_input_tokens": 723,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 723
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000216"
+        },
+        {
+          "source_line": 217,
+          "timestamp": "2026-05-27T09:39:44.373Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have a comprehensive understanding of the landscape. Let me synthesize everything into a well-grounded research direction.\n\n---\n\n## Research Synthesis\n\nAfter conducting 20+ targeted searches and reading key papers across the PRM landscape, here is my analysis:\n\n**Note on venue**: The AAAI 2026 deadline (Aug 1, 2025) has passed. The nearest matching venue is **AAAI 2027** (paper deadline: **Aug 2, 2026**) or **ICLR 2027** (paper deadline: **Sep 24, 2026**).\n\n### Key Landscape Findings\n\nThe PRM field has seen explosive growth (47+ credit assignment methods catalogued in 2024–2026). The critical methods are:\n\n- **PAV** (ICLR 2025): Defined step reward as *advantage* (progress), yielding 8%+ accuracy gains and 5× compute efficiency over ORMs\n- **TCRM** (April 2026): Proved reward models are secretly value functions; TD/MC regularization achieves 44.9% F1 on ProcessBench (outcome-only SOTA) vs. 78.3% for supervised 72B PRM\n- **DuaShepherd** (June 2025): Combined *correctness* + *potential* signals in a multi-head PRM; outperforms either alone on MATH500 and ProcessBench\n- **PURE** (NeurIPS 2025): Min-form credit assignment prevents reward hacking; 82.5% on AMC23\n- **PathFinder-PRM** (May 2025): Error-typed PRM (math + consistency errors); 67.7 PRMScore on PRMBench\n- **LC-ERD** (May 2026): Multi-agent value decomposition (IGM principle) for self-alignment RL credit assignment\n- **SPAE** (Jan 2026): Training-free step potential advantage for RL credit assignment\n- **Credit assignment survey** (April 2026): Identifies counterfactual analysis as the \"natural paradigm\" for credit assignment, with three independent papers (HCAPO, C3, CCPO) converging on this in March 2026 — but all for **agentic** RL, not reasoning PRM training\n\n**Critical gap identified**: Every existing PRM label captures some form of *step quality* (correctness, potential/reachability, progress/advantage), but **none captures counterfactual step importance** — how would the outcome change if *this specific step's content* were replaced with a plausible alternative? This distinction matters because:\n- A step can be correct AND have high potential but be *unimportant* (any reasonable step works equally well from this state)\n- A step can appear routine but be a *pivotal choice point* where only this specific content leads to the solution\n- Current labels conflate pivotal reasoning insights with routine algebraic manipulations\n\n```json\n[\n  {\n    \"title\": \"Counterfactual Step Importance Labels for Process Reward Models\",\n    \"core_problem\": \"PRM training labels (binary correctness, MC completion probability, advantage-as-progress) fail to capture the counterfactual causal importance of each reasoning step — i.e., how much the outcome depends on the specific content of that step versus plausible alternatives — leading to PRMs that cannot distinguish pivotal reasoning choices from routine operations.\",\n    \"opportunity\": \"TCRM (April 2026) enables efficient value estimation at any intermediate token via TD/MC-regularized reward models, making counterfactual evaluation computationally feasible without expensive full MC rollouts. DuaShepherd (June 2025) demonstrated that multi-signal PRMs (correctness + potential) outperform single-signal models, validating the principle that richer step-level signals improve PRM quality. Meanwhile, the April 2026 credit assignment survey identified counterfactual analysis as the emerging paradigm for agentic RL credit (HCAPO, CCPO, C3 — all March 2026), but this paradigm has not been transferred to reasoning PRM label generation.\",\n    \"landscape\": \"PAV (ICLR 2025) trains PRMs on advantage labels (V(s_i) - V(s_{i-1})) measuring progress, achieving 8%+ accuracy gains over ORMs. DuaShepherd (June 2025) combines correctness and potential in a multi-head architecture outperforming either signal alone on ProcessBench and MATH500. TCRM (April 2026) achieves 44.9% F1 on ProcessBench via temporal coherence regularization (outcome-only SOTA), but a 33-point gap to supervised PRMs (78.3% at 72B) remains. PURE (NeurIPS 2025) addresses reward hacking via min-form credit assignment. CoLD (July 2025) uses counterfactual reasoning but only for length debiasing, not label generation. No existing method generates PRM training labels via counterfactual step replacement — measuring the outcome delta when a step is replaced by policy-sampled alternatives and evaluated with a trained value function — which would produce importance scores orthogonal to existing correctness/potential signals.\",\n    \"inspired_by\": \"Gap: The April 2026 credit assignment survey identifies counterfactual analysis as the natural paradigm for credit, but only for agentic RL — not transferred to reasoning PRM label synthesis. Pattern: DuaShepherd proved multi-signal PRMs outperform single-signal, suggesting a third signal (counterfactual importance) would further improve quality. Untried combination: TCRM's efficient intermediate value estimation + policy-based step perturbation for scalable counterfactual importance computation applied to PRM data synthesis.\"\n  }\n]\n```\n\nSources:\n- [Survey of Process Reward Models (Oct 2025)](https://arxiv.org/abs/2510.08049)\n- [Credit Assignment in RL for LLMs (April 2026)](https://arxiv.org/abs/2604.09459)\n- [TCRM: Temporally Coherent Reward Modeling (April 2026)](https://arxiv.org/abs/2604.22981)\n- [PAV: Rewarding Progress (ICLR 2025)](https://arxiv.org/abs/2410.08146)\n- [DuaShepherd: Correctness + Potential Rewards (June 2025)](https://arxiv.org/abs/2506.17533)\n- [PURE: Min-Form Credit Assignment (NeurIPS 2025)](https://arxiv.org/abs/2504.15275)\n- [ThinkPRM: Process Reward Models That Think (ICLR 2026)](https://arxiv.org/abs/2504.16828)\n- [CRM: Conditional Reward Modeling (Sept 2025)](https://arxiv.org/abs/2509.26578)\n- [GRPO is Secretly a PRM (Sept 2025)](https://arxiv.org/abs/2509.21154)\n- [GRPO-λ: Credit Assignment (Oct 2025)](https://arxiv.org/abs/2510.00194)\n- [SCAR: Shapley Credit Assignment (May 2025)](https://arxiv.org/abs/2505.20417)\n- [CAPO: Generative Credit Assignment (Oct 2025)](https://arxiv.org/abs/2508.02298)\n- [FreePRM: Training Without Ground Truth Labels (June 2025)](https://arxiv.org/abs/2506.03570)\n- [PRIME: Implicit Process Rewards (Feb 2025)](https://arxiv.org/abs/2502.01456)\n- [CoLD: Counterfactual Length Debiasing (July 2025)](https://arxiv.org/abs/2507.15698)\n- [PathFinder-PRM: Error-Aware Hierarchical PRM (May 2025)](https://arxiv.org/abs/2505.19706)\n- [LC-ERD: Value Decomposition for Self-Alignment (May 2026)](https://arxiv.org/abs/2605.24005)\n- [SPAE: Step Potential Advantage (Jan 2026)](https://arxiv.org/abs/2601.03823)\n- [APRM: Adversarial Training for PRMs (Nov 2025)](https://arxiv.org/abs/2511.22888)\n- [FoVer: Formal Verification for PRM Data (ACL 2026)](https://arxiv.org/abs/2505.15960)\n- [HRM: Hierarchical Multi-Step Reward Models (March 2025)](https://arxiv.org/abs/2503.13551)\n- [AAAI 2027 Submission Deadlines](https://aaai.org/conference/aaai/aaai-26/)\n- [AI Conference Deadlines Tracker](https://trybibby.com/conference-deadlines)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08f19463-7718-4f1a-a28b-7413c1078e76",
+            "isSidechain": false,
+            "requestId": "req_011CbSrGUr2C5ScrVfq2a9Jd",
+            "type": "assistant",
+            "uuid": "bf5fa551-dbe0-463a-b363-605c05d8b4fd",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S2pGVk69gboFZr2DLKazTz",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 723,
+                "cache_read_input_tokens": 98313,
+                "output_tokens": 3614,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 723,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3614,
+                    "cache_read_input_tokens": 98313,
+                    "cache_creation_input_tokens": 723,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 723
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000217"
+        },
+        {
+          "source_line": 218,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-27 (UTC).** Use this when reasoni…",
+                "leafUuid": "bf5fa551-dbe0-463a-b363-605c05d8b4fd",
+                "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31"
+              }
+            }
+          ],
+          "id": "event-000218"
+        },
+        {
+          "source_line": 219,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate research ideas on process reward models",
+                "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31"
+              }
+            }
+          ],
+          "id": "event-000219"
+        },
+        {
+          "source_line": 220,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-27 (UTC).** Use this when reasoni…",
+                "leafUuid": "bf5fa551-dbe0-463a-b363-605c05d8b4fd",
+                "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31"
+              }
+            }
+          ],
+          "id": "event-000220"
+        },
+        {
+          "source_line": 221,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate research ideas on process reward models",
+                "sessionId": "ff95087e-7870-415b-b872-ec60a99cef31"
+              }
+            }
+          ],
+          "id": "event-000221"
+        }
+      ]
+    }
+  ]
+}

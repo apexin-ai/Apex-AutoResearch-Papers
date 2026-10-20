@@ -1,0 +1,409 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-18 (UTC).** ## Original idea { "tit
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 8
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-1/3c193ebf-d449-4103-ad39-a8b3e765570b.jsonl`
+- **Structured JSON:** [`5d32bab5236ef5ca3a0e.json`](../../sessions/5d/5d32bab5236ef5ca3a0e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-18T04:12:57.254Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-18T04:12:57.254Z",
+  "sessionId": "3c193ebf-d449-4103-ad39-a8b3e765570b",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-18 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Escaping the Verifier Ceiling: Formal Convergence Guarantees for Co-Evolutionary Synthetic Data Curation\",\n  \"core_problem\": \"Yi et al. (ICLR 2025; extended in arXiv 2510.16657) prove that iterative synthetic data retraining with a fixed verifier converges to the verifier's knowledge center θ_c — not the true parameter θ*. This creates a verifier ceiling: generator quality is fundamentally bounded by verifier quality, with the gap Δ = ||θ* − θ_c|| setting an irreducible performance limit. The Solver-Verifier Gap framework (ICLR 2026) independently confirms this: the ultimate solver capability U_{s,∞} is determined by the initial verifier quality U_{v,0}. Both analyses assume a static verifier. Can generator-verifier co-evolution — where the verifier itself improves over training — escape this ceiling? Under what formal conditions does co-evolution converge to θ* rather than θ_c?\",\n  \"opportunity\": \"Every existing theoretical analysis of verified synthetic data assumes a fixed verifier: Yi et al. (ICLR 2025, arXiv 2510.16657), the Solver-Verifier Gap (ICLR 2026), and Self-Verification Prevents Collapse (NeurIPS 2025) all prove convergence under static verification. Meanwhile, empirical co-evolution methods (RL Tango, NeurIPS 2025; GAR, ICLR 2026; Code-A1, arXiv 2603.15611) show that jointly training generator and verifier improves performance, but provide no formal analysis of whether this escapes the ceiling or merely operates within it. Convergence Dynamics of Co-Evolving Models (arXiv 2503.08117) provides formal co-evolution analysis but for text↔image feedback loops, not synthetic data curation. Self-Play Only Evolves (arXiv 2603.02218) identifies 'learnable information gain' as a necessary condition for self-play but without convergence proofs. The theoretical gap is precise: no formal analysis exists for how a co-evolving verifier affects the convergence target in synthetic data curation. This gap is practically important because language generation verification — unlike math verification with binary correctness — is inherently multi-dimensional (fluency, faithfulness, diversity), making verifier quality the binding constraint. Note: DCPO (arXiv 2603.09117) and RLCR (arXiv 2507.16806) address calibration during single-model RL training for math reasoning — a related but fundamentally different setting from co-evolutionary synthetic data curation for language generation.\",\n  \"landscape\": \"The theoretical landscape has four pillars, none of which address co-evolutionary ceiling escape for synthetic data curation:\\n\\n(1) FIXED-VERIFIER THEORY: Yi et al. (ICLR 2025) prove a phase transition at p★ = 1/(1+ψ/ϕ) for verified synthetic data. Their extended analysis (arXiv 2510.16657) proves convergence to verifier knowledge center: E[||θ̂^k − θ_c||²] ≤ ρ^{2k}·E[||θ̂^0 − θ_c||²] + C, with contraction rate ρ < 1 and bias toward θ_c (Theorem 4.1). The Solver-Verifier Gap (arXiv 2507.00075, ICLR 2026) derives U_{s,∞} = (αU_{v,0} − βU_{s,0} + αb/k)/(α−β), showing the ceiling is determined by initial verifier quality U_{v,0}. Self-Verification Prevents Collapse (NeurIPS 2025) proves finite-sample error bounds for self-verification but still under a static verification function.\\n\\n(2) EMPIRICAL CO-EVOLUTION: RL Tango (NeurIPS 2025) co-trains generator and verifier via RL for math reasoning, showing SOTA on competition math. GAR (ICLR 2026) uses adversarial RL between reasoner and discriminator. Code-A1 (arXiv 2603.15611) adversarially co-evolves code and test LLMs. All operate in the math/code RL setting with binary correctness signals and provide no ceiling escape theory.\\n\\n(3) CO-EVOLUTION THEORY: Convergence Dynamics (arXiv 2503.08117) formally analyzes co-evolving text and image models, proving collapse without external stabilization (Theorem 4.2) and bounding diversity loss. This models a different interaction (text↔image mutual influence) rather than generator→verifier→filtered_data→generator. Self-Play Only Evolves (arXiv 2603.02218) provides design principles (asymmetric co-evolution, capacity growth, proactive information seeking) but no convergence proofs.\\n\\n(4) CALIBRATION IN RL (related but different setting): DCPO (arXiv 2603.09117) decouples calibration from accuracy in GRPO, reducing ECE 71.6% on Qwen3-8B mathematical reasoning. RLCR (arXiv 2507.16806) uses Brier score as calibration reward during RL. Rewarding Doubt (ICLR 2026) uses proper scoring rules for verbalized confidence. Calibration Collapse (arXiv 2604.10585) shows reward-based fine-tuning degrades calibration. All address single-model calibration in RL for reasoning tasks — none address verifier convergence in co-evolutionary synthetic data curation for language generation.\\n\\nThe gap we fill: formal convergence theory for co-evolutionary synthetic data curation with a time-varying verifier, applied to language generation where verifier quality is the binding constraint.\",\n  \"approach\": \"We propose CoEvolve, a co-evolutionary synthetic data curation framework with formal ceiling escape guarantees. The framework has three components:\\n\\n(1) FORMAL THEOREM — CEILING ESCAPE UNDER CO-EVOLUTION: We extend Yi et al.'s convergence analysis (Theorem 4.1, arXiv 2510.16657) from fixed verifiers to time-varying verifiers. In Yi et al.'s framework, the verifier defines a knowledge ball B_r(θ_c) with center θ_c and radius r. With a fixed verifier, the generator converges to θ_c. We prove: if the verifier co-evolves such that its bias Δ_t = ||θ_c(t) − θ*|| satisfies Δ_t ≤ Δ_0·q^t for contraction rate q < 1, and the generator tracks the current verifier center at rate ρ < 1 per round, then E[||θ̂_T − θ*||²] = O(Δ_0²·q^{2T} + ρ^{2T} + σ²), where σ² captures irreducible verification noise. As T → ∞, the generator converges to a neighborhood of θ* whose size is determined by verification noise σ², not by the initial verifier bias Δ_0 — this is ceiling escape. We then state a sufficient mutual reinforcement condition under which the generator-as-curriculum mechanism ensures monotonic Δ_t contraction.\\n\\n(2) GENERATOR-AS-CURRICULUM MECHANISM: As the generator improves, its outputs become harder to distinguish from real data, forcing the verifier to learn finer-grained quality signals. We formalize this: let D_t be the generator's output distribution at round t and D* the true data distribution. As D_t approaches D* (generator improves), the verifier's optimal decision boundary must become more precise, which — under standard regularity conditions on the verifier's learning algorithm and sufficient real-data anchoring — decreases the verifier's bias Δ_t. This creates a positive feedback loop: better generation → harder verification task → more precise verifier → better data filtering → better generation. We provide a formal contractivity condition under which this loop converges (rather than oscillates or diverges), connecting to the 'learnable information gain' principle from Self-Play Only Evolves (arXiv 2603.02218) and the external stabilization requirement from Convergence Dynamics (arXiv 2503.08117).\\n\\n(3) EMPIRICAL VALIDATION ON LANGUAGE GENERATION: We train SmolLM2-135M/360M/1.7B as generators and separate SmolLM2 instances as verifiers on XSUM and CNN/DailyMail. The verifier is trained as a quality discriminator (real vs. generated) that also scores multi-dimensional quality (fluency, faithfulness, informativeness). Co-evolution alternates: (a) generator fine-tunes on verifier-filtered synthetic data mixed with real data, (b) verifier retrains on the generator's current outputs plus real data. Baselines: (i) Fixed verifier — same verifier throughout (Yi et al.'s setting, demonstrates the ceiling), (ii) Self-training without verification (model collapse baseline), (iii) Oracle verifier — Llama-3.1-8B as a fixed high-quality verifier (upper bound on fixed-verifier performance), (iv) Naive alternating training without curriculum-aware scheduling. Metrics: MAUVE (distribution quality), perplexity, Self-BLEU (diversity), ROUGE (content overlap), FactScore (factual accuracy). We additionally track verifier bias Δ_t (measured via held-out calibration set) and verifier selectivity r_t over training rounds. The key experimental prediction: co-evolutionary generator quality surpasses the fixed-verifier asymptote — a direct demonstration of ceiling escape.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~400h A100 80GB (SmolLM2-135M main experiments: ~50h; 360M scale: ~100h; 1.7B scale: ~200h; baselines and ablations: ~50h. Each 10-round co-evolution run with SmolLM2-135M takes ~5h on 1 A100.)\",\n      \"gpu_utilization\": \"~30-40% utilization; GPUs idle while researchers develop the formal proof, design co-evolution scheduling, debug generator-as-curriculum mechanism, and analyze convergence curves\",\n      \"timeline\": \"2-3 months (1 month theory/proof, 1-2 months experiments and writing)\",\n      \"team\": \"2 researchers (1 learning theory specialist for convergence analysis extending Yi et al., 1 NLP experimentalist for SmolLM2 training and evaluation pipeline)\",\n      \"estimated_gpu_cost\": \"~$600 (at ~$1.50/hr A100 80GB on RunPod/Jarvislabs)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~800h A100 80GB (broader hyperparameter search over co-evolution scheduling frequency, verifier training ratio, filtering threshold, model size combinations, and real-data mixing ratio)\",\n      \"gpu_utilization\": \"~60-70% utilization; agent autonomously queues experiments but blocks on human review of convergence plots, ceiling escape evidence, and proof verification\",\n      \"timeline\": \"3-5 weeks\",\n      \"team\": \"1 researcher, ~1hr/day for experiment approval, theory review, and verifier bias Δ_t curve analysis\",\n      \"claude_api_cost\": \"$200-400 (~3000-6000 Opus turns for code generation, evaluation analysis, proof LaTeX drafting, paper writing)\",\n      \"estimated_gpu_cost\": \"~$1,200 (at ~$1.50/hr)\",\n      \"risk_note\": \"Co-evolutionary training may exhibit oscillatory convergence or verifier stagnation in some configurations; human must monitor Δ_t curves and redirect when mutual reinforcement stalls\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~2000h A100 80GB (exhaustive grid: 3 model sizes × 2 datasets × 4 co-evolution schedules × 3 filtering thresholds × 3 seeds, plus all baselines. SmolLM2-135M experiments dominate run count but are cheap per run; 1.7B experiments dominate GPU-hours.)\",\n      \"gpu_utilization\": \"~85-90% utilization; agent pipelines SmolLM2-135M experiments in parallel while 1.7B runs occupy remaining GPUs; evaluation overlaps with next run's warm-up\",\n      \"timeline\": \"5-8 days with 8 A100s; 3-4 days with 16 A100s\",\n      \"team\": \"0 (initial setup: ~3hrs for dataset preparation, evaluation harness configuration, and co-evolution loop implementation)\",\n      \"claude_api_cost\": \"$400-700 (~5000-10000 Opus turns for iterative experiment design, convergence analysis, ablation planning, proof refinement, and paper writing)\",\n      \"estimated_gpu_cost\": \"~$3,000 (at ~$1.50/hr)\",\n      \"speed_bottleneck\": \"SmolLM2-1.7B co-evolution runs (each ~20h on 2 A100s); SmolLM2-135M runs complete in hours and can be massively parallelized on single GPUs\",\n      \"risk_note\": \"Agent may over-explore co-evolution schedules without converging on optimal configuration; ~20% wasted compute estimated on configurations that human intuition would prune early\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline: May 25, 2026 — 7 days; tight but feasible with auto_research on SmolLM2-135M for initial ceiling escape demonstration plus proof sketch; theory-first short or long paper; primary target per user specification)\",\n    \"EACL 2027 (ARR submission deadline: August 3, 2026 — 2.5 months; comfortable timeline for full experiments across all SmolLM2 sizes and complete formal proof; strong fallback)\",\n    \"ICLR 2027 (estimated submission deadline: ~October 2026 — 5 months; ample time for comprehensive evaluation, extended theoretical results, and additional domains; best fit for the formal contribution)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification (Yi et al., ICLR 2025) — core framework: verified synthetic data phase transition at p★\",\n    \"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence (Yi et al., arXiv 2510.16657, 2025) — extended framework: convergence to verifier knowledge center θ_c (Theorem 4.1), the fixed-verifier ceiling we escape\",\n    \"Theoretical Modeling of LLM Self-Improvement Training Dynamics Through Solver-Verifier Gap (Sun et al., arXiv 2507.00075, ICLR 2026) — confirms ceiling: U_{s,∞} determined by initial verifier quality\",\n    \"RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning (Zha et al., NeurIPS 2025) — empirical generator-verifier co-training for math reasoning\",\n    \"Generative Adversarial Reasoner (ICLR 2026) — adversarial co-training for reasoning\",\n    \"Convergence Dynamics and Stabilization Strategies of Co-Evolving Generative Models (Gao & Li, arXiv 2503.08117, 2025) — formal co-evolution analysis showing collapse without stabilization\",\n    \"Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain (arXiv 2603.02218, 2026) — design principles for self-play; 'learnable information gain' connects to our mutual reinforcement condition\",\n    \"Self-Verification Provably Prevents Model Collapse in Recursive Synthetic Training (NeurIPS 2025) — fixed self-verification prevents collapse but does not escape ceiling\",\n    \"Decoupling Reasoning and Confidence: Resurrecting Calibration in RLVR (DCPO, arXiv 2603.09117, 2026) — calibration in single-model GRPO for math; different setting from co-evolutionary data curation\",\n    \"Beyond Binary Rewards: Training LMs to Reason About Their Uncertainty (RLCR, arXiv 2507.16806, 2025) — Brier score calibration reward in RL; different setting\",\n    \"Rewarding Doubt: RL Approach to Calibrated Confidence in LLMs (ICLR 2026) — proper scoring rules for single-model confidence\",\n    \"Calibration Collapse Under Sycophancy Fine-Tuning (arXiv 2604.10585, 2026) — RL degrades calibration; motivates monitoring verifier quality during co-evolution\",\n    \"Code-A1: Adversarial Evolving of Code LLM and Test LLM (arXiv 2603.15611, 2026) — adversarial co-evolution in code without formal ceiling analysis\",\n    \"Verification Limits Code LLM Training (arXiv 2509.20837, 2025) — empirical evidence of verifier ceiling in code\",\n    \"SmolLM2: When Smol Goes Big (HuggingFace, 2024) — generator model family (135M/360M/1.7B)\"\n  ],\n  \"description\": \"We propose CoEvolve, a framework for co-evolutionary synthetic data curation with formal convergence guarantees that escape the verifier ceiling identified by Yi et al. (ICLR 2025). Existing theory proves that verified synthetic data retraining converges to the verifier's knowledge center θ_c — not the true parameter θ* — imposing a ceiling proportional to verifier bias Δ = ||θ* − θ_c||. All analyses (Yi et al., Solver-Verifier Gap at ICLR 2026, Self-Verification at NeurIPS 2025) assume a fixed verifier, while empirical co-evolution methods (RL Tango, GAR, Code-A1) show joint improvement but without formal ceiling escape analysis. We provide the missing theory: extending Yi et al.'s convergence framework to time-varying verifiers, we prove that if verifier bias Δ_t contracts geometrically, the generator converges to a neighborhood of θ* rather than θ_c. We introduce the generator-as-curriculum mechanism — where the generator's improving outputs naturally create an adaptive curriculum that drives verifier improvement — and prove it satisfies the Δ_t contraction requirement under a mutual reinforcement condition. This is a formal contribution distinct from calibration-in-RL work (DCPO, RLCR) which addresses single-model confidence in math reasoning, and from co-evolution theory (arXiv 2503.08117) which analyzes text↔image feedback loops. Empirically, we validate on SmolLM2-135M/360M/1.7B generator-verifier pairs on XSUM and CNN/DailyMail, measuring MAUVE, perplexity, Self-BLEU, ROUGE, and FactScore, demonstrating that co-evolution surpasses the fixed-verifier asymptote. Building blocks: HuggingFace Transformers/SmolLM2, OpenRLHF, standard NLG evaluation libraries.\",\n  \"project_name\": \"coevol_ceiling_escape\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 2)\nIssues: [\"MISSED CRITICAL COMPETING WORK — G-Zero (arXiv 2605.09959, May 2026): Proposes verifier-free co-evolutionary self-play that explicitly targets escaping capability ceilings in open-ended generation. Has best-iterate suboptimality guarantees. While it takes a different approach (eliminating verifiers rather than co-evolving them), it addresses the same problem and must be discussed as an alternative paradigm. Its existence weakens the claim that co-evolving the verifier is the only path to ceiling escape.\", \"MISSED CRITICAL RELATED WORK — Chen et al. 'Learning to Self-Verify' (arXiv 2602.07594, Feb 2026): Demonstrates a fundamental asymmetry: improving generation does NOT lead to improved self-verification, but improving verification DOES improve generation. This directly challenges the 'generator-as-curriculum' mechanism which assumes improving generator outputs create harder verification tasks that force verifier improvement. If this asymmetry holds in the co-evolution setting, the mutual reinforcement condition may not be satisfiable.\", \"MISSED RELATED WORK — Chojecki 'Self-Improving AI Agents through Self-Play' (arXiv 2512.02731, Dec 2025): Formalizes generator-verifier-updater (GVU) dynamics and derives a 'Variance Inequality' — a spectral stability condition for self-improving systems. The proposed formal contribution must relate to or improve upon this existing framework.\", \"NAME COLLISION: 'CoEvolve' is already used by arXiv 2604.15840 (April 2026) — 'CoEvolve: Training LLM Agents via Agent-Data Mutual Evolution.' Must rename to avoid confusion in the literature.\", \"AUTHOR ATTRIBUTION ERROR: First key reference cites 'Beyond Model Collapse' (ICLR 2025) as 'Yi et al.' but actual authors are Feng, Dohmatob, Yang, Charton, and Kempe. Yi et al. authored the separate paper arXiv 2510.16657.\", \"VENUE STATUS ERROR: Yi et al. (arXiv 2510.16657) is listed as an arXiv preprint but was actually accepted at ICLR 2026 — this is a stronger citation than presented.\", \"GENERATOR-AS-CURRICULUM MECHANISM CHALLENGED: The formal argument relies on a 'mutual reinforcement condition' where improving generator outputs force the verifier to improve. Chen et al. (2602.07594) empirically demonstrate the opposite direction: generation improvement does not drive verification improvement. The paper must either (1) provide formal conditions under which the asymmetry is resolved in the co-evolution setting, or (2) modify the mechanism to account for one-directional coupling.\", \"EMNLP 2026 PRIMARY TARGET INFEASIBLE: The deadline (May 25, 2026) is 7 days away. A formal convergence proof plus SmolLM2 experiments at three scales on two datasets with five baselines cannot be completed in this timeframe. The idea acknowledges EACL 2027 and ICLR 2027 as fallbacks, but the primary target should be realistic.\", \"POTENTIAL COUNTEREVIDENCE: 'Data Recipes for Reasoning Models' (ICLR 2026) shows that verification filtering does not improve over no filtering in single-pass SFT regimes. While this applies to a different setting (single-pass vs. iterative), the idea should discuss why iterative co-evolutionary verification is valuable when single-pass verification may not be.\", \"PROOF RISK: The formal theorem requires proving Δ_t ≤ Δ_0·q^t (geometric contraction of verifier bias). The sketch assumes the generator-as-curriculum creates 'increasingly challenging examples' that force verifier improvement, but the conditions under which this holds in language generation (where quality is multi-dimensional and subjective) are much harder to formalize than in the linear regression setting of Yi et al.\"]\nFeedback: The idea has improved substantially from Round 1 — it now follows the user's specification, provides a concrete theorem statement, and covers extensive related work. The core formal contribution (time-varying verifier convergence) is confirmed as genuinely novel by my independent search. However, several critical issues remain:\n\n1. **Address the Chen et al. asymmetry**: The most serious theoretical challenge. Chen et al. (arXiv 2602.07594) show improving generation does NOT improve verification. Your 'generator-as-curriculum' mechanism assumes the opposite. You must either: (a) argue why co-evolutionary training (where the verifier explicitly retrains on generator outputs) differs from self-verification improvement, or (b) weaken the mutual reinforcement condition to only require that explicit verifier retraining on harder generator outputs improves the verifier (not that generation improvement automatically implies verification improvement). Option (b) is more defensible — the claim should be that *retraining the verifier on the generator's current distribution* (which is closer to real data) improves it, not that 'harder examples' are created.\n\n2. **Cite and differentiate from G-Zero (arXiv 2605.09959)**: This is a May 2026 paper that escapes capability ceilings via verifier-free co-evolution. Your differentiation: CoEvolve provides formal guarantees specifically for the *verified synthetic data* setting, maintaining a calibrated verifier for multi-dimensional quality assessment (fluency, faithfulness, diversity) where binary correctness signals are unavailable. G-Zero's verifier-free approach sacrifices quality verification.\n\n3. **Cite and position against Chojecki (arXiv 2512.02731)**: The GVU framework and Variance Inequality provide abstract stability conditions. Your contribution is more specific: a constructive convergence proof in the synthetic data curation setting with concrete bounds on ceiling escape rate.\n\n4. **Rename from 'CoEvolve'** — the name is taken (arXiv 2604.15840). Suggestions: 'CeilBreak', 'CoVerge' (co-evolution + convergence), or 'DynVer' (dynamic verification).\n\n5. **Fix author attributions**: Feng et al. for ICLR 2025; Yi et al. for ICLR 2026 (not just arXiv).\n\n6. **Be realistic about timeline**: Drop EMNLP 2026 as primary target. Make EACL 2027 (ARR August 2026) the primary target with 2.5 months of runway.\n\n7. **Discuss Data Recipes counterevidence**: Explain why iterative self-training (where error compounds) differs from single-pass SFT (where data volume dominates quality).\n\n8. **Strengthen the formal conditions**: The proof sketch is promising but the mutual reinforcement condition needs more precise formalization. Consider: instead of requiring generator improvement to drive verifier improvement, require only that (a) the verifier retrains on the generator's current distribution (which is measurably closer to real data), and (b) retraining on data closer to the true distribution improves verifier reliability under standard learning-theoretic assumptions (PAC-Bayes or similar). This avoids the Chen et al. objection entirely.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-18T04:12:57.261Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-18T04:12:57.261Z",
+  "sessionId": "3c193ebf-d449-4103-ad39-a8b3e765570b"
+}
+```
+
+---
+
+## Round 1
+
+6 recorded events
+
+### User
+
+_source line 3 · 2026-05-18T04:12:57.320Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-18 (UTC).**
+
+## Original idea
+{
+  "title": "Escaping the Verifier Ceiling: Formal Convergence Guarantees for Co-Evolutionary Synthetic Data Curation",
+  "core_problem": "Yi et al. (ICLR 2025; extended in arXiv 2510.16657) prove that iterative synthetic data retraining with a fixed verifier converges to the verifier's knowledge center θ_c — not the true parameter θ*. This creates a verifier ceiling: generator quality is fundamentally bounded by verifier quality, with the gap Δ = ||θ* − θ_c|| setting an irreducible performance limit. The Solver-Verifier Gap framework (ICLR 2026) independently confirms this: the ultimate solver capability U_{s,∞} is determined by the initial verifier quality U_{v,0}. Both analyses assume a static verifier. Can generator-verifier co-evolution — where the verifier itself improves over training — escape this ceiling? Under what formal conditions does co-evolution converge to θ* rather than θ_c?",
+  "opportunity": "Every existing theoretical analysis of verified synthetic data assumes a fixed verifier: Yi et al. (ICLR 2025, arXiv 2510.16657), the Solver-Verifier Gap (ICLR 2026), and Self-Verification Prevents Collapse (NeurIPS 2025) all prove convergence under static verification. Meanwhile, empirical co-evolution methods (RL Tango, NeurIPS 2025; GAR, ICLR 2026; Code-A1, arXiv 2603.15611) show that jointly training generator and verifier improves performance, but provide no formal analysis of whether this escapes the ceiling or merely operates within it. Convergence Dynamics of Co-Evolving Models (arXiv 2503.08117) provides formal co-evolution analysis but for text↔image feedback loops, not synthetic data curation. Self-Play Only Evolves (arXiv 2603.02218) identifies 'learnable information gain' as a necessary condition for self-play but without convergence proofs. The theoretical gap is precise: no formal analysis exists for how a co-evolving verifier affects the convergence target in synthetic data curation. This gap is practically important because language generation verification — unlike math verification with binary correctness — is inherently multi-dimensional (fluency, faithfulness, diversity), making verifier quality the binding constraint. Note: DCPO (arXiv 2603.09117) and RLCR (arXiv 2507.16806) address calibration during single-model RL training for math reasoning — a related but fundamentally different setting from co-evolutionary synthetic data curation for language generation.",
+  "landscape": "The theoretical landscape has four pillars, none of which address co-evolutionary ceiling escape for synthetic data curation:\n\n(1) FIXED-VERIFIER THEORY: Yi et al. (ICLR 2025) prove a phase transition at p★ = 1/(1+ψ/ϕ) for verified synthetic data. Their extended analysis (arXiv 2510.16657) proves convergence to verifier knowledge center: E[||θ̂^k − θ_c||²] ≤ ρ^{2k}·E[||θ̂^0 − θ_c||²] + C, with contraction rate ρ < 1 and bias toward θ_c (Theorem 4.1). The Solver-Verifier Gap (arXiv 2507.00075, ICLR 2026) derives U_{s,∞} = (αU_{v,0} − βU_{s,0} + αb/k)/(α−β), showing the ceiling is determined by initial verifier quality U_{v,0}. Self-Verification Prevents Collapse (NeurIPS 2025) proves finite-sample error bounds for self-verification but still under a static verification function.\n\n(2) EMPIRICAL CO-EVOLUTION: RL Tango (NeurIPS 2025) co-trains generator and verifier via RL for math reasoning, showing SOTA on competition math. GAR (ICLR 2026) uses adversarial RL between reasoner and discriminator. Code-A1 (arXiv 2603.15611) adversarially co-evolves code and test LLMs. All operate in the math/code RL setting with binary correctness signals and provide no ceiling escape theory.\n\n(3) CO-EVOLUTION THEORY: Convergence Dynamics (arXiv 2503.08117) formally analyzes co-evolving text and image models, proving collapse without external stabilization (Theorem 4.2) and bounding diversity loss. This models a different interaction (text↔image mutual influence) rather than generator→verifier→filtered_data→generator. Self-Play Only Evolves (arXiv 2603.02218) provides design principles (asymmetric co-evolution, capacity growth, proactive information seeking) but no convergence proofs.\n\n(4) CALIBRATION IN RL (related but different setting): DCPO (arXiv 2603.09117) decouples calibration from accuracy in GRPO, reducing ECE 71.6% on Qwen3-8B mathematical reasoning. RLCR (arXiv 2507.16806) uses Brier score as calibration reward during RL. Rewarding Doubt (ICLR 2026) uses proper scoring rules for verbalized confidence. Calibration Collapse (arXiv 2604.10585) shows reward-based fine-tuning degrades calibration. All address single-model calibration in RL for reasoning tasks — none address verifier convergence in co-evolutionary synthetic data curation for language generation.\n\nThe gap we fill: formal convergence theory for co-evolutionary synthetic data curation with a time-varying verifier, applied to language generation where verifier quality is the binding constraint.",
+  "approach": "We propose CoEvolve, a co-evolutionary synthetic data curation framework with formal ceiling escape guarantees. The framework has three components:\n\n(1) FORMAL THEOREM — CEILING ESCAPE UNDER CO-EVOLUTION: We extend Yi et al.'s convergence analysis (Theorem 4.1, arXiv 2510.16657) from fixed verifiers to time-varying verifiers. In Yi et al.'s framework, the verifier defines a knowledge ball B_r(θ_c) with center θ_c and radius r. With a fixed verifier, the generator converges to θ_c. We prove: if the verifier co-evolves such that its bias Δ_t = ||θ_c(t) − θ*|| satisfies Δ_t ≤ Δ_0·q^t for contraction rate q < 1, and the generator tracks the current verifier center at rate ρ < 1 per round, then E[||θ̂_T − θ*||²] = O(Δ_0²·q^{2T} + ρ^{2T} + σ²), where σ² captures irreducible verification noise. As T → ∞, the generator converges to a neighborhood of θ* whose size is determined by verification noise σ², not by the initial verifier bias Δ_0 — this is ceiling escape. We then state a sufficient mutual reinforcement condition under which the generator-as-curriculum mechanism ensures monotonic Δ_t contraction.\n\n(2) GENERATOR-AS-CURRICULUM MECHANISM: As the generator improves, its outputs become harder to distinguish from real data, forcing the verifier to learn finer-grained quality signals. We formalize this: let D_t be the generator's output distribution at round t and D* the true data distribution. As D_t approaches D* (generator improves), the verifier's optimal decision boundary must become more precise, which — under standard regularity conditions on the verifier's learning algorithm and sufficient real-data anchoring — decreases the verifier's bias Δ_t. This creates a positive feedback loop: better generation → harder verification task → more precise verifier → better data filtering → better generation. We provide a formal contractivity condition under which this loop converges (rather than oscillates or diverges), connecting to the 'learnable information gain' principle from Self-Play Only Evolves (arXiv 2603.02218) and the external stabilization requirement from Convergence Dynamics (arXiv 2503.08117).\n\n(3) EMPIRICAL VALIDATION ON LANGUAGE GENERATION: We train SmolLM2-135M/360M/1.7B as generators and separate SmolLM2 instances as verifiers on XSUM and CNN/DailyMail. The verifier is trained as a quality discriminator (real vs. generated) that also scores multi-dimensional quality (fluency, faithfulness, informativeness). Co-evolution alternates: (a) generator fine-tunes on verifier-filtered synthetic data mixed with real data, (b) verifier retrains on the generator's current outputs plus real data. Baselines: (i) Fixed verifier — same verifier throughout (Yi et al.'s setting, demonstrates the ceiling), (ii) Self-training without verification (model collapse baseline), (iii) Oracle verifier — Llama-3.1-8B as a fixed high-quality verifier (upper bound on fixed-verifier performance), (iv) Naive alternating training without curriculum-aware scheduling. Metrics: MAUVE (distribution quality), perplexity, Self-BLEU (diversity), ROUGE (content overlap), FactScore (factual accuracy). We additionally track verifier bias Δ_t (measured via held-out calibration set) and verifier selectivity r_t over training rounds. The key experimental prediction: co-evolutionary generator quality surpasses the fixed-verifier asymptote — a direct demonstration of ceiling escape.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~400h A100 80GB (SmolLM2-135M main experiments: ~50h; 360M scale: ~100h; 1.7B scale: ~200h; baselines and ablations: ~50h. Each 10-round co-evolution run with SmolLM2-135M takes ~5h on 1 A100.)",
+      "gpu_utilization": "~30-40% utilization; GPUs idle while researchers develop the formal proof, design co-evolution scheduling, debug generator-as-curriculum mechanism, and analyze convergence curves",
+      "timeline": "2-3 months (1 month theory/proof, 1-2 months experiments and writing)",
+      "team": "2 researchers (1 learning theory specialist for convergence analysis extending Yi et al., 1 NLP experimentalist for SmolLM2 training and evaluation pipeline)",
+      "estimated_gpu_cost": "~$600 (at ~$1.50/hr A100 80GB on RunPod/Jarvislabs)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~800h A100 80GB (broader hyperparameter search over co-evolution scheduling frequency, verifier training ratio, filtering threshold, model size combinations, and real-data mixing ratio)",
+      "gpu_utilization": "~60-70% utilization; agent autonomously queues experiments but blocks on human review of convergence plots, ceiling escape evidence, and proof verification",
+      "timeline": "3-5 weeks",
+      "team": "1 researcher, ~1hr/day for experiment approval, theory review, and verifier bias Δ_t curve analysis",
+      "claude_api_cost": "$200-400 (~3000-6000 Opus turns for code generation, evaluation analysis, proof LaTeX drafting, paper writing)",
+      "estimated_gpu_cost": "~$1,200 (at ~$1.50/hr)",
+      "risk_note": "Co-evolutionary training may exhibit oscillatory convergence or verifier stagnation in some configurations; human must monitor Δ_t curves and redirect when mutual reinforcement stalls"
+    },
+    "auto_research": {
+      "gpu_hours": "~2000h A100 80GB (exhaustive grid: 3 model sizes × 2 datasets × 4 co-evolution schedules × 3 filtering thresholds × 3 seeds, plus all baselines. SmolLM2-135M experiments dominate run count but are cheap per run; 1.7B experiments dominate GPU-hours.)",
+      "gpu_utilization": "~85-90% utilization; agent pipelines SmolLM2-135M experiments in parallel while 1.7B runs occupy remaining GPUs; evaluation overlaps with next run's warm-up",
+      "timeline": "5-8 days with 8 A100s; 3-4 days with 16 A100s",
+      "team": "0 (initial setup: ~3hrs for dataset preparation, evaluation harness configuration, and co-evolution loop implementation)",
+      "claude_api_cost": "$400-700 (~5000-10000 Opus turns for iterative experiment design, convergence analysis, ablation planning, proof refinement, and paper writing)",
+      "estimated_gpu_cost": "~$3,000 (at ~$1.50/hr)",
+      "speed_bottleneck": "SmolLM2-1.7B co-evolution runs (each ~20h on 2 A100s); SmolLM2-135M runs complete in hours and can be massively parallelized on single GPUs",
+      "risk_note": "Agent may over-explore co-evolution schedules without converging on optimal configuration; ~20% wasted compute estimated on configurations that human intuition would prune early"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline: May 25, 2026 — 7 days; tight but feasible with auto_research on SmolLM2-135M for initial ceiling escape demonstration plus proof sketch; theory-first short or long paper; primary target per user specification)",
+    "EACL 2027 (ARR submission deadline: August 3, 2026 — 2.5 months; comfortable timeline for full experiments across all SmolLM2 sizes and complete formal proof; strong fallback)",
+    "ICLR 2027 (estimated submission deadline: ~October 2026 — 5 months; ample time for comprehensive evaluation, extended theoretical results, and additional domains; best fit for the formal contribution)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification (Yi et al., ICLR 2025) — core framework: verified synthetic data phase transition at p★",
+    "Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence (Yi et al., arXiv 2510.16657, 2025) — extended framework: convergence to verifier knowledge center θ_c (Theorem 4.1), the fixed-verifier ceiling we escape",
+    "Theoretical Modeling of LLM Self-Improvement Training Dynamics Through Solver-Verifier Gap (Sun et al., arXiv 2507.00075, ICLR 2026) — confirms ceiling: U_{s,∞} determined by initial verifier quality",
+    "RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning (Zha et al., NeurIPS 2025) — empirical generator-verifier co-training for math reasoning",
+    "Generative Adversarial Reasoner (ICLR 2026) — adversarial co-training for reasoning",
+    "Convergence Dynamics and Stabilization Strategies of Co-Evolving Generative Models (Gao & Li, arXiv 2503.08117, 2025) — formal co-evolution analysis showing collapse without stabilization",
+    "Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain (arXiv 2603.02218, 2026) — design principles for self-play; 'learnable information gain' connects to our mutual reinforcement condition",
+    "Self-Verification Provably Prevents Model Collapse in Recursive Synthetic Training (NeurIPS 2025) — fixed self-verification prevents collapse but does not escape ceiling",
+    "Decoupling Reasoning and Confidence: Resurrecting Calibration in RLVR (DCPO, arXiv 2603.09117, 2026) — calibration in single-model GRPO for math; different setting from co-evolutionary data curation",
+    "Beyond Binary Rewards: Training LMs to Reason About Their Uncertainty (RLCR, arXiv 2507.16806, 2025) — Brier score calibration reward in RL; different setting",
+    "Rewarding Doubt: RL Approach to Calibrated Confidence in LLMs (ICLR 2026) — proper scoring rules for single-model confidence",
+    "Calibration Collapse Under Sycophancy Fine-Tuning (arXiv 2604.10585, 2026) — RL degrades calibration; motivates monitoring verifier quality during co-evolution",
+    "Code-A1: Adversarial Evolving of Code LLM and Test LLM (arXiv 2603.15611, 2026) — adversarial co-evolution in code without formal ceiling analysis",
+    "Verification Limits Code LLM Training (arXiv 2509.20837, 2025) — empirical evidence of verifier ceiling in code",
+    "SmolLM2: When Smol Goes Big (HuggingFace, 2024) — generator model family (135M/360M/1.7B)"
+  ],
+  "description": "We propose CoEvolve, a framework for co-evolutionary synthetic data curation with formal convergence guarantees that escape the verifier ceiling identified by Yi et al. (ICLR 2025). Existing theory proves that verified synthetic data retraining converges to the verifier's knowledge center θ_c — not the true parameter θ* — imposing a ceiling proportional to verifier bias Δ = ||θ* − θ_c||. All analyses (Yi et al., Solver-Verifier Gap at ICLR 2026, Self-Verification at NeurIPS 2025) assume a fixed verifier, while empirical co-evolution methods (RL Tango, GAR, Code-A1) show joint improvement but without formal ceiling escape analysis. We provide the missing theory: extending Yi et al.'s convergence framework to time-varying verifiers, we prove that if verifier bias Δ_t contracts geometrically, the generator converges to a neighborhood of θ* rather than θ_c. We introduce the generator-as-curriculum mechanism — where the generator's improving outputs naturally create an adaptive curriculum that drives verifier improvement — and prove it satisfies the Δ_t contraction requirement under a mutual reinforcement condition. This is a formal contribution distinct from calibration-in-RL work (DCPO, RLCR) which addresses single-model confidence in math reasoning, and from co-evolution theory (arXiv 2503.08117) which analyzes text↔image feedback loops. Empirically, we validate on SmolLM2-135M/360M/1.7B generator-verifier pairs on XSUM and CNN/DailyMail, measuring MAUVE, perplexity, Self-BLEU, ROUGE, and FactScore, demonstrating that co-evolution surpasses the fixed-verifier asymptote. Building blocks: HuggingFace Transformers/SmolLM2, OpenRLHF, standard NLG evaluation libraries.",
+  "project_name": "coevol_ceiling_escape",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 2)
+Issues: ["MISSED CRITICAL COMPETING WORK — G-Zero (arXiv 2605.09959, May 2026): Proposes verifier-free co-evolutionary self-play that explicitly targets escaping capability ceilings in open-ended generation. Has best-iterate suboptimality guarantees. While it takes a different approach (eliminating verifiers rather than co-evolving them), it addresses the same problem and must be discussed as an alternative paradigm. Its existence weakens the claim that co-evolving the verifier is the only path to ceiling escape.", "MISSED CRITICAL RELATED WORK — Chen et al. 'Learning to Self-Verify' (arXiv 2602.07594, Feb 2026): Demonstrates a fundamental asymmetry: improving generation does NOT lead to improved self-verification, but improving verification DOES improve generation. This directly challenges the 'generator-as-curriculum' mechanism which assumes improving generator outputs create harder verification tasks that force verifier improvement. If this asymmetry holds in the co-evolution setting, the mutual reinforcement condition may not be satisfiable.", "MISSED RELATED WORK — Chojecki 'Self-Improving AI Agents through Self-Play' (arXiv 2512.02731, Dec 2025): Formalizes generator-verifier-updater (GVU) dynamics and derives a 'Variance Inequality' — a spectral stability condition for self-improving systems. The proposed formal contribution must relate to or improve upon this existing framework.", "NAME COLLISION: 'CoEvolve' is already used by arXiv 2604.15840 (April 2026) — 'CoEvolve: Training LLM Agents via Agent-Data Mutual Evolution.' Must rename to avoid confusion in the literature.", "AUTHOR ATTRIBUTION ERROR: First key reference cites 'Beyond Model Collapse' (ICLR 2025) as 'Yi et al.' but actual authors are Feng, Dohmatob, Yang, Charton, and Kempe. Yi et al. authored the separate paper arXiv 2510.16657.", "VENUE STATUS ERROR: Yi et al. (arXiv 2510.16657) is listed as an arXiv preprint but was actually accepted at ICLR 2026 — this is a stronger citation than presented.", "GENERATOR-AS-CURRICULUM MECHANISM CHALLENGED: The formal argument relies on a 'mutual reinforcement condition' where improving generator outputs force the verifier to improve. Chen et al. (2602.07594) empirically demonstrate the opposite direction: generation improvement does not drive verification improvement. The paper must either (1) provide formal conditions under which the asymmetry is resolved in the co-evolution setting, or (2) modify the mechanism to account for one-directional coupling.", "EMNLP 2026 PRIMARY TARGET INFEASIBLE: The deadline (May 25, 2026) is 7 days away. A formal convergence proof plus SmolLM2 experiments at three scales on two datasets with five baselines cannot be completed in this timeframe. The idea acknowledges EACL 2027 and ICLR 2027 as fallbacks, but the primary target should be realistic.", "POTENTIAL COUNTEREVIDENCE: 'Data Recipes for Reasoning Models' (ICLR 2026) shows that verification filtering does not improve over no filtering in single-pass SFT regimes. While this applies to a different setting (single-pass vs. iterative), the idea should discuss why iterative co-evolutionary verification is valuable when single-pass verification may not be.", "PROOF RISK: The formal theorem requires proving Δ_t ≤ Δ_0·q^t (geometric contraction of verifier bias). The sketch assumes the generator-as-curriculum creates 'increasingly challenging examples' that force verifier improvement, but the conditions under which this holds in language generation (where quality is multi-dimensional and subjective) are much harder to formalize than in the linear regression setting of Yi et al."]
+Feedback: The idea has improved substantially from Round 1 — it now follows the user's specification, provides a concrete theorem statement, and covers extensive related work. The core formal contribution (time-varying verifier convergence) is confirmed as genuinely novel by my independent search. However, several critical issues remain:
+
+1. **Address the Chen et al. asymmetry**: The most serious theoretical challenge. Chen et al. (arXiv 2602.07594) show improving generation does NOT improve verification. Your 'generator-as-curriculum' mechanism assumes the opposite. You must either: (a) argue why co-evolutionary training (where the verifier explicitly retrains on generator outputs) differs from self-verification improvement, or (b) weaken the mutual reinforcement condition to only require that explicit verifier retraining on harder generator outputs improves the verifier (not that generation improvement automatically implies verification improvement). Option (b) is more defensible — the claim should be that *retraining the verifier on the generator's current distribution* (which is closer to real data) improves it, not that 'harder examples' are created.
+
+2. **Cite and differentiate from G-Zero (arXiv 2605.09959)**: This is a May 2026 paper that escapes capability ceilings via verifier-free co-evolution. Your differentiation: CoEvolve provides formal guarantees specifically for the *verified synthetic data* setting, maintaining a calibrated verifier for multi-dimensional quality assessment (fluency, faithfulness, diversity) where binary correctness signals are unavailable. G-Zero's verifier-free approach sacrifices quality verification.
+
+3. **Cite and position against Chojecki (arXiv 2512.02731)**: The GVU framework and Variance Inequality provide abstract stability conditions. Your contribution is more specific: a constructive convergence proof in the synthetic data curation setting with concrete bounds on ceiling escape rate.
+
+4. **Rename from 'CoEvolve'** — the name is taken (arXiv 2604.15840). Suggestions: 'CeilBreak', 'CoVerge' (co-evolution + convergence), or 'DynVer' (dynamic verification).
+
+5. **Fix author attributions**: Feng et al. for ICLR 2025; Yi et al. for ICLR 2026 (not just arXiv).
+
+6. **Be realistic about timeline**: Drop EMNLP 2026 as primary target. Make EACL 2027 (ARR August 2026) the primary target with 2.5 months of runway.
+
+7. **Discuss Data Recipes counterevidence**: Explain why iterative self-training (where error compounds) differs from single-pass SFT (where data volume dominates quality).
+
+8. **Strengthen the formal conditions**: The proof sketch is promising but the mutual reinforcement condition needs more precise formalization. Consider: instead of requiring generator improvement to drive verifier improvement, require only that (a) the verifier retrains on the generator's current distribution (which is measurably closer to real data), and (b) retraining on data closer to the true distribution improves verifier reliability under standard learning-theoretic assumptions (PAC-Bayes or similar). This avoids the Chen et al. objection entirely.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "23f55bd6-a9c1-4aee-9087-307089d13d3c",
+  "type": "user",
+  "uuid": "c5a2884f-3f78-49c9-88a5-f91a439f6cf5",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3c193ebf-d449-4103-ad39-a8b3e765570b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-18T04:12:57.317Z_
+
+```json
+{
+  "parentUuid": "c5a2884f-3f78-49c9-88a5-f91a439f6cf5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "02484e40-dbe9-4a6f-a915-2882edf4f76c",
+  "timestamp": "2026-05-18T04:12:57.317Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3c193ebf-d449-4103-ad39-a8b3e765570b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-18T04:12:57.317Z_
+
+```json
+{
+  "parentUuid": "02484e40-dbe9-4a6f-a915-2882edf4f76c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "b4cd2784-5d1f-4777-acd6-dcbbc42f7c6d",
+  "timestamp": "2026-05-18T04:12:57.317Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3c193ebf-d449-4103-ad39-a8b3e765570b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-18 (UTC).**  ## Original idea {   \"title\": \"Escaping the Verifier Ceiling: Formal Convergence Guarantees for Co-Ev…",
+  "leafUuid": "b4cd2784-5d1f-4777-acd6-dcbbc42f7c6d",
+  "sessionId": "3c193ebf-d449-4103-ad39-a8b3e765570b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-18T04:12:59.703Z_
+
+Failed to authenticate. API Error: 401 {"type":"error","error":{"type":"authentication_error","message":"Invalid authentication credentials"},"request_id":"req_011Cb9PATm9vAtbPnH5nWfvR"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4cd2784-5d1f-4777-acd6-dcbbc42f7c6d",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "87ba4b33-53ff-4e9a-a537-0c1c12596e52",
+  "error": "authentication_failed",
+  "isApiErrorMessage": true,
+  "apiErrorStatus": 401,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3c193ebf-d449-4103-ad39-a8b3e765570b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "bbeecaec-f31e-4f3b-b1f3-aab75ae6e689",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-18 (UTC).**  ## Original idea {   \"title\": \"Escaping the Verifier Ceiling: Formal Convergence Guarantees for Co-Ev…",
+  "leafUuid": "87ba4b33-53ff-4e9a-a537-0c1c12596e52",
+  "sessionId": "3c193ebf-d449-4103-ad39-a8b3e765570b"
+}
+```
+
+---

@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "2408d657681e43063479",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: causal_annot_error_attrib ## 运行环境 - 服务器名: home-1x5090 - SSH 账户: sonny（调用 ssh_execute / submit_tr",
+  "task_key": "4677c6ce-9b3d-424b-8575-b900cee212b6",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/4677c6ce-9b3d-424b-8575-b900cee212b6.jsonl",
+    "occurrence": 1,
+    "bytes": 706956,
+    "sha256": "5b8dfe4337b6e7b8248edce7cd5258c44a979cc699b00a9d2fe5bf9f1e49df1e"
+  },
+  "statistics": {
+    "messages": 193,
+    "user_turns": 3,
+    "tool_calls": 41,
+    "roles": {
+      "record": 62,
+      "user": 3,
+      "assistant": 44,
+      "tool_call": 41,
+      "tool_result": 41,
+      "system": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2408d657681e43063479-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 88,
+      "chunks": [
+        {
+          "path": "2408d657681e43063479-part-0001.json",
+          "message_count": 88
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 95,
+      "chunks": [
+        {
+          "path": "2408d657681e43063479-part-0001.json",
+          "message_count": 66
+        },
+        {
+          "path": "2408d657681e43063479-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 8,
+      "chunks": [
+        {
+          "path": "2408d657681e43063479-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-causal-annot-error-attrib-home-1x5090-ssh-sonny-ssh-execute-su-copy-180.md"
+}

@@ -1,0 +1,3656 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-16 (UTC).** ## Original idea { "tit
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 56
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-3/9cd9ec62-d581-4075-91fc-d50735452382.jsonl`
+- **Structured JSON:** [`97f0f491e0e7a8393fe7.json`](../../sessions/97/97f0f491e0e7a8393fe7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T08:54:29.070Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T08:54:29.070Z",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-16 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Geometry-Triggered Sentence-Level Activation Steering for Factual Hallucination Suppression\",\n  \"core_problem\": \"Recent work (Attractor Geometry of Transformer Memory, May 2026) demonstrates that factual hallucination corresponds to 'basin absence'—the hidden state drifts freely when no memorized attractor basin exists—and that geometric margin separates correct recall from hallucination substantially better than entropy (AUROC 0.858 vs. 0.656 on TruthfulQA; up to 0.993 on controlled factoid tasks). Yet translating geometric margin into targeted activation interventions remains unsolved at the right granularity. Hallucination Basins (April 2026) proposes geometry-aware steering but operates at per-sequence granularity—applying uniform corrections across all claims in a response. Spherical Steering (ICML 2026) introduces geometry-aware rotation with an input-adaptive vMF confidence gate, achieving strong TruthfulQA gains, but applies steering per-token without claim-level selectivity: every token gets steered with some intensity, even in correct sub-claims, causing subtle quality degradation on already-accurate content. COAST (May 2026) addresses utility preservation via constrained optimization of the steering vector itself but does not address when to steer. Existing methods either steer everything (Spherical Steering, FLAS, ODESteer), steer the whole sequence (Hallucination Basins), or refine how to steer (COAST)—none selectively gate intervention at the natural unit of factual claims.\",\n  \"opportunity\": \"The critical gap is between detection granularity and intervention granularity. Current geometry-aware steering methods couple 'where to steer' with 'how to steer' at mismatched granularities: Spherical Steering's per-token vMF gate modulates intensity continuously but cannot make a binary 'this claim needs correction / this claim is fine' decision; Hallucination Basins' per-sequence decision cannot distinguish correct from incorrect claims within a response; COAST optimizes the steering vector but applies it uniformly. The unexploited sweet spot is sentence-level gating: sentences are the natural unit of factual claims (the granularity FActScore evaluates, the granularity humans judge, and the granularity at which LLMs perform context integration before next-sentence planning). The combination of (1) Mahalanobis-distance-based basin absence detection as a binary trigger at sentence boundaries, (2) sentence-level gating enabling within-sequence selectivity (steer only flagged claims), and (3) per-layer MLP controller provides a principled 'when + where + how much' framework that is complementary to advances in 'how to steer' (rotation, flow, constrained optimization). Importantly, the trigger mechanism uses basin distance (measuring knowledge absence) rather than directional alignment to a pre-computed truthfulness axis (as in Spherical Steering's vMF gate), providing a more principled signal for detecting hallucination-prone states.\",\n  \"landscape\": \"**Geometry-aware steering (closest competitors):** Spherical Steering (arXiv 2602.08169, ICML 2026) uses geodesic rotation with a von Mises-Fisher confidence gate that dynamically modulates per-token steering strength based on cosine alignment to truthful/hallucinated directions. Achieves MC1 +15.80% on TruthfulQA (Llama-3.1-8B) while preserving generation quality. Operates per-token with a single-layer intervention (layer 24). GTS differs in three ways: (a) sentence-level binary gating vs. per-token continuous modulation—enabling selective skip of entire correct claims rather than low-intensity steering through them; (b) Mahalanobis basin-distance trigger (measuring knowledge absence from attractor geometry) vs. vMF directional alignment to a fixed truthfulness axis (measuring surface-level direction); (c) per-layer MLP controller vs. single-layer intervention. Hallucination Basins (arXiv 2604.04743, April 2026) proposes Adaptive Geometry-Aware Steering using centroid-difference vectors, Euclidean distance trigger, and scalar logistic-regression controller at per-sequence granularity on 1B–3B models. GTS advances beyond it via sentence-level gating, Mahalanobis distance, and per-layer controller.\\n\\n**Utility-preservation approaches:** Minimizing Collateral Damage / COAST (arXiv 2605.01167, May 2026) formalizes collateral damage as unintended feature-direction shifts and solves steering as constrained optimization weighted by the empirical second-moment matrix. Achieves 30% ASR improvement over Angular Steering with preserved benchmarks. COAST is complementary to GTS: it optimizes the steering vector, while GTS optimizes when to apply it. These could be combined (sentence-gated COAST steering). FLAS (arXiv 2605.05892, May 2026) learns a concept-conditioned velocity field for multi-step token-level activation transport, first learned method to outperform prompting on AxBench. Operates per-token with 97.6M–255M trainable parameters. Not hallucination-specific and does not use geometric triggers.\\n\\n**Hallucination detection (analysis-only):** Attractor Geometry of Transformer Memory (arXiv 2605.05686, May 2026) demonstrates hallucination = basin absence with geometric margin achieving AUROC 0.858 on TruthfulQA (vs. entropy 0.656), and AUROC 0.993 on controlled factoid tasks. Authors note 'transfer to open-domain settings requires further study' and margin 'degrades on adversarial reasoning probes.' PCNet (arXiv 2605.05953, May 2026) detects hallucinations as geometric anomalies and applies contrastive decoding at token level. Where Does Reasoning Break? (arXiv 2605.13772, May 2026) detects step-level hallucination via transport geometry but proposes no intervention. DRIFT (arXiv 2601.14210, Jan 2026) detects representational instability at <0.1% overhead.\\n\\n**Calibration/expression approaches:** Calibrating Verbal Uncertainty as a Linear Feature (Ji et al., EMNLP 2025 Outstanding Paper, arXiv 2503.14477) achieves ~31.9% reduction in confident hallucinations via linear-feature intervention on Llama3.1-8B/Mistral-7B/Qwen2.5-7B. Calibrates uncertainty expression without correcting underlying generation—complementary to GTS which detects knowledge absence and redirects toward factual representations.\\n\\n**Other steering methods:** ACT (WWW 2025) uses K-means clustered corpus-averaged vectors. ODESteer (ICLR 2026) achieves 5.7% over ACT via ODE-based multi-step steering but remains input-oblivious. Guiding Giants/WAS (arXiv 2505.20309, May 2025) trains lightweight controllers for layer-aware weighted activation steering. SADI (arXiv 2410.12299, 2024) constructs input-specific dynamic steering vectors. HELIX/Tethered Reasoning (arXiv 2602.17691, Feb 2026) uses Mahalanobis distance + graduated steering for structural coherence in quantized models.\\n\\n**Supporting evidence:** Hallucination as Trajectory Commitment (arXiv 2604.15400, April 2026) provides causal evidence for early commitment with asymmetric attractor dynamics, supporting timely intervention at sentence boundaries before commitment propagates. Think in Sentences (arXiv 2604.10135, April 2026) demonstrates that sentence boundary tokens show attention concentration patterns consistent with context integration cycles, motivating the sentence-as-planning-unit hypothesis (though it does not analyze hidden-state geometry directly).\",\n  \"approach\": \"We propose Geometry-Triggered Steering (GTS), a method that bridges the detection-to-intervention gap by introducing sentence-level selective gating to geometry-aware activation steering. The key insight is that the 'when to steer' decision should operate at claim granularity (sentences), even if the 'how to steer' step operates at token/layer granularity.\\n\\n**Stage 1: TRIGGER (PCA-Regularized Geometric Margin at Sentence Boundaries)**\\nDuring generation, at each sentence boundary (detected via period/newline tokens), extract hidden-state activations at the boundary token across layers using nnsight intervention hooks. Compute geometric margin using class-conditional PCA-regularized Mahalanobis distance:\\n(a) Offline: From a calibration set (~2K examples from TruthfulQA + FELM correct-answer forward passes), collect hidden states at factual completion positions. Apply PCA to project from full hidden dimension (d=4096) to top-k principal components (k=256), reducing covariance estimation to a well-conditioned 256×256 matrix.\\n(b) Online: Project the boundary token's activation into the PCA subspace, compute Mahalanobis distance to nearest factual cluster centroid: δ(x) = √((h_pca - μ_pca)ᵀ Σ_pca⁻¹ (h_pca - μ_pca)).\\n(c) When δ exceeds a calibrated threshold (set via precision-recall analysis on validation split targeting high precision to minimize false interventions), flag the upcoming sentence for intervention.\\n\\n**Trigger reliability note:** Geometric margin achieves AUROC 0.858 on TruthfulQA (vs. entropy 0.656)—sufficient for selective intervention with appropriate thresholding, though far from the 0.993 achieved on synthetic factoid tasks. This motivates operating at high-precision thresholds (accepting lower recall) so that when GTS intervenes, it is likely correct. The precision-recall tradeoff is explicitly studied in ablations.\\n\\n**Stage 2: DIRECTION (Centroid-Directed Steering Vector)**\\nCompute the steering direction as the unit vector from the current activation toward the factual cluster centroid at each layer in the PCA subspace, then project back to full space: v_steer = (μ_pca - h_pca) / ||μ_pca - h_pca||, lifted back to full dimensionality via PCA inverse transform. This yields an input-specific correction direction toward regions of successful fact recall. We additionally experiment with a COAST-style constrained refinement of this vector to minimize collateral damage.\\n\\n**Stage 3: INTENSITY (Per-Layer MLP Controller)**\\nA lightweight 2-layer MLP controller (hidden dim 64, inspired by Guiding Giants/WAS) takes [geometric_margin, layer_index/L, margin_velocity] as input (3D feature vector) and predicts per-layer steering weight λ_ℓ. The controller is trained on a calibration set (~2K examples) via a combined objective: maximize FActScore on steered outputs while minimizing perplexity increase on outputs where margin is below threshold. Steering is applied: h_steered(ℓ) = h(ℓ) + λ_ℓ · v_steer(ℓ) at the residual stream of layers where λ_ℓ > ε.\\n\\n**Timing Hypothesis Validation:**\\nWe explicitly frame the following as a testable hypothesis: geometric margin at sentence boundary N is predictive of factual accuracy in sentence N+1. This is a non-trivial extrapolation from the Attractor Geometry results (which validated margin on first-token factoid completion only). Validation protocol: (1) Generate 500 multi-sentence responses on LongFact/FActScore prompts. (2) Compute margin at every sentence boundary. (3) Annotate each subsequent sentence with FActScore. (4) Measure Spearman correlation between boundary margin and next-sentence factuality. If correlation ρ < 0.3, we fall back to a look-ahead variant: extract margin from the first 3 generated tokens of the new sentence (before committing via speculative-style buffering). The look-ahead variant adds ~15% latency overhead (3 extra forward passes per sentence boundary with rollback capability), which is accounted for in the resource estimate.\\n\\n**Ablation Design (isolating each contribution):**\\n- GTS-full vs. GTS-sequence (ablate sentence gating: single decision per sequence, matching Hallucination Basins)\\n- GTS-full vs. GTS-Euclidean (replace Mahalanobis with Euclidean, matching Hallucination Basins and Attractor Geometry)\\n- GTS-full vs. GTS-scalar (replace per-layer MLP with single scalar, matching Hallucination Basins' controller)\\n- GTS-full vs. GTS-pertoken (apply continuous steering every token, matching Spherical Steering's granularity but with our trigger signal)\\n- GTS-full vs. Spherical Steering (direct comparison using their released code)\\n- GTS-full vs. Verbal-Uncertainty-Feature (Ji et al. baseline)\\n- GTS-full + COAST refinement (combining selective gating with constrained optimization)\\n\\n**Novelty acknowledgment:** If Mahalanobis does not significantly outperform Euclidean in ablations (a known risk given that both Attractor Geometry and Hallucination Basins succeed with Euclidean), the primary novelty contribution shifts to sentence-level gating + per-layer controller as the mechanism enabling within-sequence selectivity—which remains differentiated from all baselines.\\n\\nImplementation uses nnsight 0.6 on Qwen3-8B and Llama-3.1-8B-Instruct. Evaluation on TruthfulQA, HaluEval, FaithBench, FActScore, FELM, SimpleQA, LongFact, MT-Bench, MMLU, plus ECE/Brier calibration metrics. Spherical Steering (released code) serves as primary baseline on identical benchmarks.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~200h H100 80GB\",\n      \"gpu_utilization\": \"Low (~15-20%). GPU idles during code/debug/analysis cycles.\",\n      \"timeline\": \"3-4 months\",\n      \"team\": \"1-2 researchers with mechanistic interpretability + geometric ML experience\",\n      \"estimated_gpu_cost\": \"$600-700 (H100 at ~$3/hr spot)\",\n      \"factScore_api_cost\": \"$200-400 (GPT-4 entailment checks: ~150 checks/biography × 2 models × ~8 conditions × 200 examples)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~230h H100 80GB\",\n      \"gpu_utilization\": \"Moderate (45-55%). Agent queues batches but blocks on geometric design decisions and timing validation analysis.\",\n      \"timeline\": \"3-4 weeks\",\n      \"team\": \"1 researcher, ~30min/day reviewing agent proposals\",\n      \"claude_api_cost\": \"$200-350\",\n      \"estimated_gpu_cost\": \"$690-800\",\n      \"factScore_api_cost\": \"$200-400\",\n      \"risk_note\": \"Timing hypothesis validation and precision-recall threshold calibration benefit from human intuition. If timing hypothesis fails (ρ < 0.3), implementing look-ahead fallback adds ~1 week.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~240-270h H100 80GB (expanded: PCA-k ablations, Mahalanobis vs. Euclidean, timing validation, Spherical Steering comparison, Hallucination Basins ablations, per-token vs sentence-level ablation, COAST combination, layer weight ablations, two-model validation, 10 benchmarks)\",\n      \"gpu_utilization\": \"High (~85-90%). Well-defined pipeline with clear ablation structure.\",\n      \"timeline\": \"10-14 days with 2-4 H100 GPUs running in parallel\",\n      \"team\": \"0 (initial setup: provision GPUs, configure nnsight, define eval harness, clone Spherical Steering repo)\",\n      \"claude_api_cost\": \"$350-550 (est. 5000-7000 turns)\",\n      \"estimated_gpu_cost\": \"$720-810\",\n      \"factScore_api_cost\": \"$300-500 (higher due to more ablation conditions)\",\n      \"speed_bottleneck\": \"GPU count for parallel ablation sweeps. Secondary: FActScore GPT-4 API calls (~100s per response). Spherical Steering baseline reproduction requires their codebase setup.\",\n      \"risk_note\": \"Primary risk: timing hypothesis may fail for multi-sentence generation (Attractor Geometry validated only on factoid completion, authors note 'transfer to open-domain settings requires further study'). Mitigation: look-ahead variant. Secondary risk: Mahalanobis may not beat Euclidean—novelty then rests on sentence-level gating + per-layer controller. Tertiary risk: Spherical Steering's per-token vMF gate may approximate sentence-level selectivity well enough that the explicit gating advantage is marginal.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Spherical Steering: Geometry-Aware Activation Rotation for Language Models (arXiv 2602.08169, ICML 2026)\",\n    \"Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (arXiv 2605.05686, May 2026)\",\n    \"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (arXiv 2604.04743, April 2026)\",\n    \"Minimizing Collateral Damage in Activation Steering (arXiv 2605.01167, May 2026)\",\n    \"Beyond Steering Vector: Flow-based Activation Steering for Inference-Time Intervention (FLAS, arXiv 2605.05892, May 2026)\",\n    \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (Ji et al., EMNLP 2025 Outstanding Paper, arXiv 2503.14477)\",\n    \"Tethered Reasoning (HELIX): Decoupling Entropy from Hallucination in Quantized LLMs via Manifold Steering (arXiv 2602.17691, Feb 2026)\",\n    \"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method (ACT, WWW 2025)\",\n    \"ODESteer: A Unified ODE-Based Steering Framework for LLM Alignment (ICLR 2026, arXiv 2602.17560)\",\n    \"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arXiv 2605.13772, May 2026)\",\n    \"DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness (arXiv 2601.14210, Jan 2026)\",\n    \"Guiding Giants: Lightweight Controllers for Weighted Activation Steering in LLMs (arXiv 2505.20309, May 2025)\",\n    \"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits (PCNet, arXiv 2605.05953, May 2026)\",\n    \"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics (arXiv 2604.15400, April 2026)\",\n    \"Think in Sentences: Explicit Sentence Boundaries Enhance Language Model's Capabilities (arXiv 2604.10135, April 2026)\",\n    \"A Simple Unified Framework for Detecting Out-of-Distribution Samples and Adversarial Attacks (Lee et al., NeurIPS 2018)\",\n    \"Semantics-Adaptive Activation Intervention for LLMs via Dynamic Steering Vectors (SADI, arXiv 2410.12299, 2024)\",\n    \"Dynamic Multimodal Activation Steering for Hallucination Mitigation in Large Vision-Language Models (ICLR 2026)\",\n    \"Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation (ACL Findings 2025)\"\n  ],\n  \"description\": \"We propose Geometry-Triggered Steering (GTS), a method that introduces sentence-level selective gating to geometry-aware activation steering for factual hallucination suppression. The key insight is that the 'when to steer' decision should operate at claim granularity (sentences), even when 'how to steer' operates at token/layer granularity.\\n\\nBuilding on the finding that geometric margin separates correct recall from hallucination (AUROC 0.858 on TruthfulQA vs. entropy's 0.656; Liang et al., May 2026), GTS monitors PCA-regularized Mahalanobis distance from residual stream activations to factual cluster centroids at sentence boundaries during generation. When geometric margin indicates basin absence—suggesting the model lacks a memorized attractor for the upcoming content—GTS computes an input-specific steering vector directed toward the factual centroid and applies it with per-layer weights predicted by a lightweight MLP controller. Crucially, sentences where the model is within a factual basin are left untouched.\\n\\nGTS addresses the granularity mismatch in prior work: (1) vs. Spherical Steering (ICML 2026), which applies per-token rotation with continuous vMF-gated intensity (achieving +15% TruthfulQA MC1), GTS makes binary claim-level steer/skip decisions—enabling complete preservation of correct sub-claims within multi-sentence responses, rather than applying low-intensity steering through all tokens including correct ones. The trigger signals also differ fundamentally: Spherical Steering's vMF gate measures alignment to a fixed truthfulness axis, while GTS's Mahalanobis trigger measures distance from factual attractor basins (knowledge absence vs. directional alignment). (2) vs. Hallucination Basins (April 2026), which uses per-sequence Euclidean distance with a scalar controller on 1B–3B models, GTS introduces within-sequence selectivity, directional covariance, and per-layer control. (3) vs. COAST (May 2026), which optimizes the steering vector via constrained optimization to minimize collateral damage, GTS is complementary—it optimizes when to steer rather than how to steer, and we include a GTS+COAST combination experiment.\\n\\nWe explicitly validate the timing hypothesis (margin at boundary N predicts factuality of sentence N+1)—a non-trivial extrapolation from factoid completion settings—with a correlation study and provide a look-ahead fallback if the hypothesis fails. Ablations isolate each design choice against matched baselines (sentence-gating ablated, Euclidean substituted, scalar controller substituted, per-token granularity substituted, direct Spherical Steering comparison). We acknowledge that if Mahalanobis does not significantly outperform Euclidean, the primary novelty shifts to sentence-level gating + per-layer controller.\\n\\nImplementation uses nnsight 0.6 on Qwen3-8B and Llama-3.1-8B-Instruct with Spherical Steering's released code as primary baseline. Evaluation on TruthfulQA, HaluEval, FaithBench, FActScore, FELM, SimpleQA, LongFact, MT-Bench, MMLU, plus ECE/Brier calibration metrics.\",\n  \"project_name\": \"geometry_triggered_steering\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 4)\nIssues: [\"CRITICAL MISSING COMPETITOR: FASB ('Steering When Necessary: Flexible Steering Large Language Models with Backtracking', arXiv 2508.17621, NeurIPS 2025) directly addresses the 'when to steer' problem using a probe-based trigger on attention heads with token-level adaptive steering + backtracking. It achieves MC1 48.71% on TruthfulQA (LLaMA2-7B-CHAT) and is published at a top venue. This is the most direct competitor to GTS's core contribution and is NOT cited.\", \"MISSING COMPETITOR: Steering Vector Fields (arXiv 2602.01654, Feb 2026) learns a differentiable concept scoring function whose local gradient defines context-aware steering directions, refreshing every K steps during generation. It uses geometric features (concept boundary normals via MLP) and evaluates on TruthfulQA + hallucination benchmarks. This is geometry-aware context-dependent steering — directly relevant and NOT cited.\", \"NOVELTY ARGUMENT INCOMPLETE: The proposal argues 'no existing method selectively gates at claim granularity' but FASB effectively achieves sub-sequence selectivity via token-level probe + backtracking (undo last 10 tokens and regenerate with steering). The proposal must argue why sentence-level binary gating is BETTER than FASB's mechanism — e.g., lower computational overhead (no rollback), cleaner intervention boundaries, better FActScore because claims are preserved/rejected atomically rather than partially regenerated.\", \"RESOURCE ESTIMATE EXCEEDS BUDGET: Auto estimate is 240-270 H100-hours, exceeding the user's hard constraint of ≤200 H100-hours. The ablation matrix (8+ conditions × 2 models × 10 benchmarks) needs trimming or the estimate needs to explain how it fits within budget.\", \"HALLUCINATION BASINS TECHNICAL CLAIMS UNVERIFIED: The proposal claims Hallucination Basins uses 'Euclidean distance trigger' and 'scalar logistic-regression controller' but my independent search could not confirm these specific technical details from the paper. The proposal should only claim what can be verified from the paper's content.\", \"CURVEBALL STEERING UNCITED: Curveball Steering (arXiv 2603.09313, March 2026) uses nonlinear steering via polynomial kernel PCA that explicitly addresses geometric distortions in activation space — relevant as a geometry-aware steering baseline not discussed.\"]\nFeedback: The proposal has matured significantly over four rounds and the core pipeline is well-designed. Three targeted fixes would bring it to passing quality:\n\n1. **Cite and position against FASB (NeurIPS 2025)**: FASB's probe-based trigger + backtracking is the most direct competitor for 'when to steer.' Position GTS's advantage as: (a) sentence-level binary decisions are computationally cheaper than FASB's per-token monitoring + rollback (no speculative computation wasted); (b) GTS preserves entire correct sentences untouched rather than partially regenerating them; (c) GTS's Mahalanobis trigger detects knowledge absence (a geometric property) while FASB's linear probe detects directional alignment (a surface-level feature that may not generalize). Add FASB as an ablation baseline: GTS-full vs. FASB-style per-token probe trigger (matching their mechanism but with your steering vector).\n\n2. **Cite Steering Vector Fields (2602.01654)**: Position as: SVF learns input-dependent steering DIRECTIONS (the 'how to steer' varies), while GTS learns input-dependent steering DECISIONS (the 'whether to steer' varies). SVF still steers at every K-step; GTS can skip entire sentences. These are complementary insights.\n\n3. **Trim resource estimate to ≤200 H100-hours**: Either reduce ablation conditions (e.g., combine Euclidean vs. Mahalanobis ablation with the scalar-vs-MLP ablation rather than running them separately) or reduce evaluation benchmarks for non-primary ablations (full 10-benchmark evaluation on GTS-full and top-2 baselines only, 4-benchmark subset for ablation variants). The user's hard constraint is 200h — present a plan that respects it.\n\nMinor: (a) Remove or soften the specific 'scalar logistic-regression controller' claim about Hallucination Basins unless you can verify it from the paper text. (b) Cite Curveball Steering as another geometry-aware approach in the broader landscape.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\").\n\n## 停滞提醒\n这个 idea 已经经过 4 轮修订，近 3 轮的平均分从 3.2 到 3.2，没有明显改善。\n\n请认真思考：\n- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？\n- 如果你认为问题出在 approach 而非 framing，可以做 major revision。\n- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。\n- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。\n\n最终由你判断——做你认为最能提升 idea 质量的选择。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T08:54:29.076Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T08:54:29.076Z",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382"
+}
+```
+
+---
+
+## Round 1
+
+54 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T08:54:29.109Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-16 (UTC).**
+
+## Original idea
+{
+  "title": "Geometry-Triggered Sentence-Level Activation Steering for Factual Hallucination Suppression",
+  "core_problem": "Recent work (Attractor Geometry of Transformer Memory, May 2026) demonstrates that factual hallucination corresponds to 'basin absence'—the hidden state drifts freely when no memorized attractor basin exists—and that geometric margin separates correct recall from hallucination substantially better than entropy (AUROC 0.858 vs. 0.656 on TruthfulQA; up to 0.993 on controlled factoid tasks). Yet translating geometric margin into targeted activation interventions remains unsolved at the right granularity. Hallucination Basins (April 2026) proposes geometry-aware steering but operates at per-sequence granularity—applying uniform corrections across all claims in a response. Spherical Steering (ICML 2026) introduces geometry-aware rotation with an input-adaptive vMF confidence gate, achieving strong TruthfulQA gains, but applies steering per-token without claim-level selectivity: every token gets steered with some intensity, even in correct sub-claims, causing subtle quality degradation on already-accurate content. COAST (May 2026) addresses utility preservation via constrained optimization of the steering vector itself but does not address when to steer. Existing methods either steer everything (Spherical Steering, FLAS, ODESteer), steer the whole sequence (Hallucination Basins), or refine how to steer (COAST)—none selectively gate intervention at the natural unit of factual claims.",
+  "opportunity": "The critical gap is between detection granularity and intervention granularity. Current geometry-aware steering methods couple 'where to steer' with 'how to steer' at mismatched granularities: Spherical Steering's per-token vMF gate modulates intensity continuously but cannot make a binary 'this claim needs correction / this claim is fine' decision; Hallucination Basins' per-sequence decision cannot distinguish correct from incorrect claims within a response; COAST optimizes the steering vector but applies it uniformly. The unexploited sweet spot is sentence-level gating: sentences are the natural unit of factual claims (the granularity FActScore evaluates, the granularity humans judge, and the granularity at which LLMs perform context integration before next-sentence planning). The combination of (1) Mahalanobis-distance-based basin absence detection as a binary trigger at sentence boundaries, (2) sentence-level gating enabling within-sequence selectivity (steer only flagged claims), and (3) per-layer MLP controller provides a principled 'when + where + how much' framework that is complementary to advances in 'how to steer' (rotation, flow, constrained optimization). Importantly, the trigger mechanism uses basin distance (measuring knowledge absence) rather than directional alignment to a pre-computed truthfulness axis (as in Spherical Steering's vMF gate), providing a more principled signal for detecting hallucination-prone states.",
+  "landscape": "**Geometry-aware steering (closest competitors):** Spherical Steering (arXiv 2602.08169, ICML 2026) uses geodesic rotation with a von Mises-Fisher confidence gate that dynamically modulates per-token steering strength based on cosine alignment to truthful/hallucinated directions. Achieves MC1 +15.80% on TruthfulQA (Llama-3.1-8B) while preserving generation quality. Operates per-token with a single-layer intervention (layer 24). GTS differs in three ways: (a) sentence-level binary gating vs. per-token continuous modulation—enabling selective skip of entire correct claims rather than low-intensity steering through them; (b) Mahalanobis basin-distance trigger (measuring knowledge absence from attractor geometry) vs. vMF directional alignment to a fixed truthfulness axis (measuring surface-level direction); (c) per-layer MLP controller vs. single-layer intervention. Hallucination Basins (arXiv 2604.04743, April 2026) proposes Adaptive Geometry-Aware Steering using centroid-difference vectors, Euclidean distance trigger, and scalar logistic-regression controller at per-sequence granularity on 1B–3B models. GTS advances beyond it via sentence-level gating, Mahalanobis distance, and per-layer controller.\n\n**Utility-preservation approaches:** Minimizing Collateral Damage / COAST (arXiv 2605.01167, May 2026) formalizes collateral damage as unintended feature-direction shifts and solves steering as constrained optimization weighted by the empirical second-moment matrix. Achieves 30% ASR improvement over Angular Steering with preserved benchmarks. COAST is complementary to GTS: it optimizes the steering vector, while GTS optimizes when to apply it. These could be combined (sentence-gated COAST steering). FLAS (arXiv 2605.05892, May 2026) learns a concept-conditioned velocity field for multi-step token-level activation transport, first learned method to outperform prompting on AxBench. Operates per-token with 97.6M–255M trainable parameters. Not hallucination-specific and does not use geometric triggers.\n\n**Hallucination detection (analysis-only):** Attractor Geometry of Transformer Memory (arXiv 2605.05686, May 2026) demonstrates hallucination = basin absence with geometric margin achieving AUROC 0.858 on TruthfulQA (vs. entropy 0.656), and AUROC 0.993 on controlled factoid tasks. Authors note 'transfer to open-domain settings requires further study' and margin 'degrades on adversarial reasoning probes.' PCNet (arXiv 2605.05953, May 2026) detects hallucinations as geometric anomalies and applies contrastive decoding at token level. Where Does Reasoning Break? (arXiv 2605.13772, May 2026) detects step-level hallucination via transport geometry but proposes no intervention. DRIFT (arXiv 2601.14210, Jan 2026) detects representational instability at <0.1% overhead.\n\n**Calibration/expression approaches:** Calibrating Verbal Uncertainty as a Linear Feature (Ji et al., EMNLP 2025 Outstanding Paper, arXiv 2503.14477) achieves ~31.9% reduction in confident hallucinations via linear-feature intervention on Llama3.1-8B/Mistral-7B/Qwen2.5-7B. Calibrates uncertainty expression without correcting underlying generation—complementary to GTS which detects knowledge absence and redirects toward factual representations.\n\n**Other steering methods:** ACT (WWW 2025) uses K-means clustered corpus-averaged vectors. ODESteer (ICLR 2026) achieves 5.7% over ACT via ODE-based multi-step steering but remains input-oblivious. Guiding Giants/WAS (arXiv 2505.20309, May 2025) trains lightweight controllers for layer-aware weighted activation steering. SADI (arXiv 2410.12299, 2024) constructs input-specific dynamic steering vectors. HELIX/Tethered Reasoning (arXiv 2602.17691, Feb 2026) uses Mahalanobis distance + graduated steering for structural coherence in quantized models.\n\n**Supporting evidence:** Hallucination as Trajectory Commitment (arXiv 2604.15400, April 2026) provides causal evidence for early commitment with asymmetric attractor dynamics, supporting timely intervention at sentence boundaries before commitment propagates. Think in Sentences (arXiv 2604.10135, April 2026) demonstrates that sentence boundary tokens show attention concentration patterns consistent with context integration cycles, motivating the sentence-as-planning-unit hypothesis (though it does not analyze hidden-state geometry directly).",
+  "approach": "We propose Geometry-Triggered Steering (GTS), a method that bridges the detection-to-intervention gap by introducing sentence-level selective gating to geometry-aware activation steering. The key insight is that the 'when to steer' decision should operate at claim granularity (sentences), even if the 'how to steer' step operates at token/layer granularity.\n\n**Stage 1: TRIGGER (PCA-Regularized Geometric Margin at Sentence Boundaries)**\nDuring generation, at each sentence boundary (detected via period/newline tokens), extract hidden-state activations at the boundary token across layers using nnsight intervention hooks. Compute geometric margin using class-conditional PCA-regularized Mahalanobis distance:\n(a) Offline: From a calibration set (~2K examples from TruthfulQA + FELM correct-answer forward passes), collect hidden states at factual completion positions. Apply PCA to project from full hidden dimension (d=4096) to top-k principal components (k=256), reducing covariance estimation to a well-conditioned 256×256 matrix.\n(b) Online: Project the boundary token's activation into the PCA subspace, compute Mahalanobis distance to nearest factual cluster centroid: δ(x) = √((h_pca - μ_pca)ᵀ Σ_pca⁻¹ (h_pca - μ_pca)).\n(c) When δ exceeds a calibrated threshold (set via precision-recall analysis on validation split targeting high precision to minimize false interventions), flag the upcoming sentence for intervention.\n\n**Trigger reliability note:** Geometric margin achieves AUROC 0.858 on TruthfulQA (vs. entropy 0.656)—sufficient for selective intervention with appropriate thresholding, though far from the 0.993 achieved on synthetic factoid tasks. This motivates operating at high-precision thresholds (accepting lower recall) so that when GTS intervenes, it is likely correct. The precision-recall tradeoff is explicitly studied in ablations.\n\n**Stage 2: DIRECTION (Centroid-Directed Steering Vector)**\nCompute the steering direction as the unit vector from the current activation toward the factual cluster centroid at each layer in the PCA subspace, then project back to full space: v_steer = (μ_pca - h_pca) / ||μ_pca - h_pca||, lifted back to full dimensionality via PCA inverse transform. This yields an input-specific correction direction toward regions of successful fact recall. We additionally experiment with a COAST-style constrained refinement of this vector to minimize collateral damage.\n\n**Stage 3: INTENSITY (Per-Layer MLP Controller)**\nA lightweight 2-layer MLP controller (hidden dim 64, inspired by Guiding Giants/WAS) takes [geometric_margin, layer_index/L, margin_velocity] as input (3D feature vector) and predicts per-layer steering weight λ_ℓ. The controller is trained on a calibration set (~2K examples) via a combined objective: maximize FActScore on steered outputs while minimizing perplexity increase on outputs where margin is below threshold. Steering is applied: h_steered(ℓ) = h(ℓ) + λ_ℓ · v_steer(ℓ) at the residual stream of layers where λ_ℓ > ε.\n\n**Timing Hypothesis Validation:**\nWe explicitly frame the following as a testable hypothesis: geometric margin at sentence boundary N is predictive of factual accuracy in sentence N+1. This is a non-trivial extrapolation from the Attractor Geometry results (which validated margin on first-token factoid completion only). Validation protocol: (1) Generate 500 multi-sentence responses on LongFact/FActScore prompts. (2) Compute margin at every sentence boundary. (3) Annotate each subsequent sentence with FActScore. (4) Measure Spearman correlation between boundary margin and next-sentence factuality. If correlation ρ < 0.3, we fall back to a look-ahead variant: extract margin from the first 3 generated tokens of the new sentence (before committing via speculative-style buffering). The look-ahead variant adds ~15% latency overhead (3 extra forward passes per sentence boundary with rollback capability), which is accounted for in the resource estimate.\n\n**Ablation Design (isolating each contribution):**\n- GTS-full vs. GTS-sequence (ablate sentence gating: single decision per sequence, matching Hallucination Basins)\n- GTS-full vs. GTS-Euclidean (replace Mahalanobis with Euclidean, matching Hallucination Basins and Attractor Geometry)\n- GTS-full vs. GTS-scalar (replace per-layer MLP with single scalar, matching Hallucination Basins' controller)\n- GTS-full vs. GTS-pertoken (apply continuous steering every token, matching Spherical Steering's granularity but with our trigger signal)\n- GTS-full vs. Spherical Steering (direct comparison using their released code)\n- GTS-full vs. Verbal-Uncertainty-Feature (Ji et al. baseline)\n- GTS-full + COAST refinement (combining selective gating with constrained optimization)\n\n**Novelty acknowledgment:** If Mahalanobis does not significantly outperform Euclidean in ablations (a known risk given that both Attractor Geometry and Hallucination Basins succeed with Euclidean), the primary novelty contribution shifts to sentence-level gating + per-layer controller as the mechanism enabling within-sequence selectivity—which remains differentiated from all baselines.\n\nImplementation uses nnsight 0.6 on Qwen3-8B and Llama-3.1-8B-Instruct. Evaluation on TruthfulQA, HaluEval, FaithBench, FActScore, FELM, SimpleQA, LongFact, MT-Bench, MMLU, plus ECE/Brier calibration metrics. Spherical Steering (released code) serves as primary baseline on identical benchmarks.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200h H100 80GB",
+      "gpu_utilization": "Low (~15-20%). GPU idles during code/debug/analysis cycles.",
+      "timeline": "3-4 months",
+      "team": "1-2 researchers with mechanistic interpretability + geometric ML experience",
+      "estimated_gpu_cost": "$600-700 (H100 at ~$3/hr spot)",
+      "factScore_api_cost": "$200-400 (GPT-4 entailment checks: ~150 checks/biography × 2 models × ~8 conditions × 200 examples)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~230h H100 80GB",
+      "gpu_utilization": "Moderate (45-55%). Agent queues batches but blocks on geometric design decisions and timing validation analysis.",
+      "timeline": "3-4 weeks",
+      "team": "1 researcher, ~30min/day reviewing agent proposals",
+      "claude_api_cost": "$200-350",
+      "estimated_gpu_cost": "$690-800",
+      "factScore_api_cost": "$200-400",
+      "risk_note": "Timing hypothesis validation and precision-recall threshold calibration benefit from human intuition. If timing hypothesis fails (ρ < 0.3), implementing look-ahead fallback adds ~1 week."
+    },
+    "auto_research": {
+      "gpu_hours": "~240-270h H100 80GB (expanded: PCA-k ablations, Mahalanobis vs. Euclidean, timing validation, Spherical Steering comparison, Hallucination Basins ablations, per-token vs sentence-level ablation, COAST combination, layer weight ablations, two-model validation, 10 benchmarks)",
+      "gpu_utilization": "High (~85-90%). Well-defined pipeline with clear ablation structure.",
+      "timeline": "10-14 days with 2-4 H100 GPUs running in parallel",
+      "team": "0 (initial setup: provision GPUs, configure nnsight, define eval harness, clone Spherical Steering repo)",
+      "claude_api_cost": "$350-550 (est. 5000-7000 turns)",
+      "estimated_gpu_cost": "$720-810",
+      "factScore_api_cost": "$300-500 (higher due to more ablation conditions)",
+      "speed_bottleneck": "GPU count for parallel ablation sweeps. Secondary: FActScore GPT-4 API calls (~100s per response). Spherical Steering baseline reproduction requires their codebase setup.",
+      "risk_note": "Primary risk: timing hypothesis may fail for multi-sentence generation (Attractor Geometry validated only on factoid completion, authors note 'transfer to open-domain settings requires further study'). Mitigation: look-ahead variant. Secondary risk: Mahalanobis may not beat Euclidean—novelty then rests on sentence-level gating + per-layer controller. Tertiary risk: Spherical Steering's per-token vMF gate may approximate sentence-level selectivity well enough that the explicit gating advantage is marginal."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Spherical Steering: Geometry-Aware Activation Rotation for Language Models (arXiv 2602.08169, ICML 2026)",
+    "Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (arXiv 2605.05686, May 2026)",
+    "Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (arXiv 2604.04743, April 2026)",
+    "Minimizing Collateral Damage in Activation Steering (arXiv 2605.01167, May 2026)",
+    "Beyond Steering Vector: Flow-based Activation Steering for Inference-Time Intervention (FLAS, arXiv 2605.05892, May 2026)",
+    "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (Ji et al., EMNLP 2025 Outstanding Paper, arXiv 2503.14477)",
+    "Tethered Reasoning (HELIX): Decoupling Entropy from Hallucination in Quantized LLMs via Manifold Steering (arXiv 2602.17691, Feb 2026)",
+    "Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method (ACT, WWW 2025)",
+    "ODESteer: A Unified ODE-Based Steering Framework for LLM Alignment (ICLR 2026, arXiv 2602.17560)",
+    "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arXiv 2605.13772, May 2026)",
+    "DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness (arXiv 2601.14210, Jan 2026)",
+    "Guiding Giants: Lightweight Controllers for Weighted Activation Steering in LLMs (arXiv 2505.20309, May 2025)",
+    "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits (PCNet, arXiv 2605.05953, May 2026)",
+    "Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics (arXiv 2604.15400, April 2026)",
+    "Think in Sentences: Explicit Sentence Boundaries Enhance Language Model's Capabilities (arXiv 2604.10135, April 2026)",
+    "A Simple Unified Framework for Detecting Out-of-Distribution Samples and Adversarial Attacks (Lee et al., NeurIPS 2018)",
+    "Semantics-Adaptive Activation Intervention for LLMs via Dynamic Steering Vectors (SADI, arXiv 2410.12299, 2024)",
+    "Dynamic Multimodal Activation Steering for Hallucination Mitigation in Large Vision-Language Models (ICLR 2026)",
+    "Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation (ACL Findings 2025)"
+  ],
+  "description": "We propose Geometry-Triggered Steering (GTS), a method that introduces sentence-level selective gating to geometry-aware activation steering for factual hallucination suppression. The key insight is that the 'when to steer' decision should operate at claim granularity (sentences), even when 'how to steer' operates at token/layer granularity.\n\nBuilding on the finding that geometric margin separates correct recall from hallucination (AUROC 0.858 on TruthfulQA vs. entropy's 0.656; Liang et al., May 2026), GTS monitors PCA-regularized Mahalanobis distance from residual stream activations to factual cluster centroids at sentence boundaries during generation. When geometric margin indicates basin absence—suggesting the model lacks a memorized attractor for the upcoming content—GTS computes an input-specific steering vector directed toward the factual centroid and applies it with per-layer weights predicted by a lightweight MLP controller. Crucially, sentences where the model is within a factual basin are left untouched.\n\nGTS addresses the granularity mismatch in prior work: (1) vs. Spherical Steering (ICML 2026), which applies per-token rotation with continuous vMF-gated intensity (achieving +15% TruthfulQA MC1), GTS makes binary claim-level steer/skip decisions—enabling complete preservation of correct sub-claims within multi-sentence responses, rather than applying low-intensity steering through all tokens including correct ones. The trigger signals also differ fundamentally: Spherical Steering's vMF gate measures alignment to a fixed truthfulness axis, while GTS's Mahalanobis trigger measures distance from factual attractor basins (knowledge absence vs. directional alignment). (2) vs. Hallucination Basins (April 2026), which uses per-sequence Euclidean distance with a scalar controller on 1B–3B models, GTS introduces within-sequence selectivity, directional covariance, and per-layer control. (3) vs. COAST (May 2026), which optimizes the steering vector via constrained optimization to minimize collateral damage, GTS is complementary—it optimizes when to steer rather than how to steer, and we include a GTS+COAST combination experiment.\n\nWe explicitly validate the timing hypothesis (margin at boundary N predicts factuality of sentence N+1)—a non-trivial extrapolation from factoid completion settings—with a correlation study and provide a look-ahead fallback if the hypothesis fails. Ablations isolate each design choice against matched baselines (sentence-gating ablated, Euclidean substituted, scalar controller substituted, per-token granularity substituted, direct Spherical Steering comparison). We acknowledge that if Mahalanobis does not significantly outperform Euclidean, the primary novelty shifts to sentence-level gating + per-layer controller.\n\nImplementation uses nnsight 0.6 on Qwen3-8B and Llama-3.1-8B-Instruct with Spherical Steering's released code as primary baseline. Evaluation on TruthfulQA, HaluEval, FaithBench, FActScore, FELM, SimpleQA, LongFact, MT-Bench, MMLU, plus ECE/Brier calibration metrics.",
+  "project_name": "geometry_triggered_steering",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 4)
+Issues: ["CRITICAL MISSING COMPETITOR: FASB ('Steering When Necessary: Flexible Steering Large Language Models with Backtracking', arXiv 2508.17621, NeurIPS 2025) directly addresses the 'when to steer' problem using a probe-based trigger on attention heads with token-level adaptive steering + backtracking. It achieves MC1 48.71% on TruthfulQA (LLaMA2-7B-CHAT) and is published at a top venue. This is the most direct competitor to GTS's core contribution and is NOT cited.", "MISSING COMPETITOR: Steering Vector Fields (arXiv 2602.01654, Feb 2026) learns a differentiable concept scoring function whose local gradient defines context-aware steering directions, refreshing every K steps during generation. It uses geometric features (concept boundary normals via MLP) and evaluates on TruthfulQA + hallucination benchmarks. This is geometry-aware context-dependent steering — directly relevant and NOT cited.", "NOVELTY ARGUMENT INCOMPLETE: The proposal argues 'no existing method selectively gates at claim granularity' but FASB effectively achieves sub-sequence selectivity via token-level probe + backtracking (undo last 10 tokens and regenerate with steering). The proposal must argue why sentence-level binary gating is BETTER than FASB's mechanism — e.g., lower computational overhead (no rollback), cleaner intervention boundaries, better FActScore because claims are preserved/rejected atomically rather than partially regenerated.", "RESOURCE ESTIMATE EXCEEDS BUDGET: Auto estimate is 240-270 H100-hours, exceeding the user's hard constraint of ≤200 H100-hours. The ablation matrix (8+ conditions × 2 models × 10 benchmarks) needs trimming or the estimate needs to explain how it fits within budget.", "HALLUCINATION BASINS TECHNICAL CLAIMS UNVERIFIED: The proposal claims Hallucination Basins uses 'Euclidean distance trigger' and 'scalar logistic-regression controller' but my independent search could not confirm these specific technical details from the paper. The proposal should only claim what can be verified from the paper's content.", "CURVEBALL STEERING UNCITED: Curveball Steering (arXiv 2603.09313, March 2026) uses nonlinear steering via polynomial kernel PCA that explicitly addresses geometric distortions in activation space — relevant as a geometry-aware steering baseline not discussed."]
+Feedback: The proposal has matured significantly over four rounds and the core pipeline is well-designed. Three targeted fixes would bring it to passing quality:
+
+1. **Cite and position against FASB (NeurIPS 2025)**: FASB's probe-based trigger + backtracking is the most direct competitor for 'when to steer.' Position GTS's advantage as: (a) sentence-level binary decisions are computationally cheaper than FASB's per-token monitoring + rollback (no speculative computation wasted); (b) GTS preserves entire correct sentences untouched rather than partially regenerating them; (c) GTS's Mahalanobis trigger detects knowledge absence (a geometric property) while FASB's linear probe detects directional alignment (a surface-level feature that may not generalize). Add FASB as an ablation baseline: GTS-full vs. FASB-style per-token probe trigger (matching their mechanism but with your steering vector).
+
+2. **Cite Steering Vector Fields (2602.01654)**: Position as: SVF learns input-dependent steering DIRECTIONS (the 'how to steer' varies), while GTS learns input-dependent steering DECISIONS (the 'whether to steer' varies). SVF still steers at every K-step; GTS can skip entire sentences. These are complementary insights.
+
+3. **Trim resource estimate to ≤200 H100-hours**: Either reduce ablation conditions (e.g., combine Euclidean vs. Mahalanobis ablation with the scalar-vs-MLP ablation rather than running them separately) or reduce evaluation benchmarks for non-primary ablations (full 10-benchmark evaluation on GTS-full and top-2 baselines only, 4-benchmark subset for ablation variants). The user's hard constraint is 200h — present a plan that respects it.
+
+Minor: (a) Remove or soften the specific 'scalar logistic-regression controller' claim about Hallucination Basins unless you can verify it from the paper text. (b) Cite Curveball Steering as another geometry-aware approach in the broader landscape.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+## 停滞提醒
+这个 idea 已经经过 4 轮修订，近 3 轮的平均分从 3.2 到 3.2，没有明显改善。
+
+请认真思考：
+- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？
+- 如果你认为问题出在 approach 而非 framing，可以做 major revision。
+- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。
+- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。
+
+最终由你判断——做你认为最能提升 idea 质量的选择。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "12d080ed-eeea-4732-8b70-401fa8be4a0e",
+  "type": "user",
+  "uuid": "9fcfba73-1cbe-4b75-b0fa-0e41a364b501",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T08:54:29.107Z_
+
+```json
+{
+  "parentUuid": "9fcfba73-1cbe-4b75-b0fa-0e41a364b501",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "6e6903f8-bb38-454c-ae10-9127dba86042",
+  "timestamp": "2026-05-16T08:54:29.107Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T08:54:29.107Z_
+
+```json
+{
+  "parentUuid": "6e6903f8-bb38-454c-ae10-9127dba86042",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "b77c48a3-5264-49af-a671-3815b3eb9401",
+  "timestamp": "2026-05-16T08:54:29.107Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Geometry-Triggered Sentence-Level Activation Steering for Factual Hall…",
+  "leafUuid": "b77c48a3-5264-49af-a671-3815b3eb9401",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise hallucination steering idea based on reviewer feedback",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T08:54:39.434Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully and plan my research strategy.
+
+The reviewer has identified several critical issues:
+1. **FASB (NeurIPS 2025)** - A direct competitor that addresses "when to steer" using probe-based triggers with backtracking
+2. **Steering Vector Fields (Feb 2026)** - Geometry-aware context-dependent steering
+3. **Novelty argument incomplete** - Need to argue why sentence-level gating is better than FASB
+4. **Resource estimate exceeds budget** - Need to trim to ≤200 H100-hours
+
+
+5. **Hallucination Basins technical claims unverified** - Need to soften unverifiable claims
+6. **Curveball Steering uncited** - Another geometry-aware baseline
+
+The stagnation warning is concerning—four rounds with no improvement suggests I need to decide whether targeted fixes can address the core issues or if a major revision is necessary. The key question is whether GTS's sentence-level gating mechanism genuinely differentiates from FASB's token-level probes with backtracking, so I need to dig into these papers to understand what each approach actually does.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b77c48a3-5264-49af-a671-3815b3eb9401",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y1jdLHPpYe1EEpo28k",
+  "type": "assistant",
+  "uuid": "01fedeca-eb89-4f70-9690-82a6eedb710e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HF2VYfhnj9ipJmsBtA8fe6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13425,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 422,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13425,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 422,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13425,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13425
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T08:54:39.451Z_
+
+I'll research the critical missing competitors and then revise the idea. Let me start by searching for FASB, Steering Vector Fields, and Curveball Steering.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "01fedeca-eb89-4f70-9690-82a6eedb710e",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y1jdLHPpYe1EEpo28k",
+  "type": "assistant",
+  "uuid": "b0b66415-826a-40fe-a892-43fc871112d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HF2VYfhnj9ipJmsBtA8fe6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13425,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 422,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13425,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 422,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13425,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13425
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T08:54:39.472Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UCvMfehCx3zLpKJAS2myM7`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0b66415-826a-40fe-a892-43fc871112d5",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y1jdLHPpYe1EEpo28k",
+  "type": "assistant",
+  "uuid": "baf941dd-b8a3-4e1a-b0df-49899a357cc5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HF2VYfhnj9ipJmsBtA8fe6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13425,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 422,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13425,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 422,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13425,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13425
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T08:54:39.477Z_
+
+<details><summary>↩ Tool result · `toolu_01UCvMfehCx3zLpKJAS2myM7`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "baf941dd-b8a3-4e1a-b0df-49899a357cc5",
+  "isSidechain": false,
+  "promptId": "12d080ed-eeea-4732-8b70-401fa8be4a0e",
+  "type": "user",
+  "uuid": "8237d01a-3142-4af3-835f-ea92dd6078e6",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "baf941dd-b8a3-4e1a-b0df-49899a357cc5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-16T08:54:42.430Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for the critical missing papers: FASB, Steering Vector Fields, and Curveball Steering.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8237d01a-3142-4af3-835f-ea92dd6078e6",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y2VXncfD3pPdDodaXx",
+  "type": "assistant",
+  "uuid": "c9a2cd24-9af4-46cc-8b0f-90f633d5a957",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M4M9ysq79KfxVZqY2Jc14F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1442,
+      "cache_read_input_tokens": 25266,
+      "output_tokens": 261,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1442,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 261,
+          "cache_read_input_tokens": 25266,
+          "cache_creation_input_tokens": 1442,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1442
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-16T08:54:42.432Z_
+
+Let me search for all three critical missing competitors in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9a2cd24-9af4-46cc-8b0f-90f633d5a957",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y2VXncfD3pPdDodaXx",
+  "type": "assistant",
+  "uuid": "46109ab2-4272-4869-b86f-17f87e175402",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M4M9ysq79KfxVZqY2Jc14F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1442,
+      "cache_read_input_tokens": 25266,
+      "output_tokens": 261,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1442,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 261,
+          "cache_read_input_tokens": 25266,
+          "cache_creation_input_tokens": 1442,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1442
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T08:54:43.384Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Hg6kpSwbZwnvZAcBS3pwgX`</summary>
+
+```json
+{
+  "query": "FASB \"Steering When Necessary\" flexible steering backtracking LLM arXiv 2508.17621 NeurIPS 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46109ab2-4272-4869-b86f-17f87e175402",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y2VXncfD3pPdDodaXx",
+  "type": "assistant",
+  "uuid": "a5c1fee0-d8db-4bb9-8955-3f6f043357c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M4M9ysq79KfxVZqY2Jc14F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1442,
+      "cache_read_input_tokens": 25266,
+      "output_tokens": 261,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1442,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 261,
+          "cache_read_input_tokens": 25266,
+          "cache_creation_input_tokens": 1442,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1442
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T08:54:44.483Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TCxhsphL7aw1HUkrYjYUum`</summary>
+
+```json
+{
+  "query": "Steering Vector Fields arXiv 2602.01654 differentiable concept scoring steering directions 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a5c1fee0-d8db-4bb9-8955-3f6f043357c0",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y2VXncfD3pPdDodaXx",
+  "type": "assistant",
+  "uuid": "5c815363-1df9-49f7-be6a-2558810f0baa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M4M9ysq79KfxVZqY2Jc14F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1442,
+      "cache_read_input_tokens": 25266,
+      "output_tokens": 261,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1442,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 261,
+          "cache_read_input_tokens": 25266,
+          "cache_creation_input_tokens": 1442,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1442
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T08:54:44.572Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017HeEVG5kui77TShcJGTZgy`</summary>
+
+```json
+{
+  "query": "Curveball Steering arXiv 2603.09313 nonlinear polynomial kernel PCA activation steering 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c815363-1df9-49f7-be6a-2558810f0baa",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y2VXncfD3pPdDodaXx",
+  "type": "assistant",
+  "uuid": "d1172959-2c6a-4315-be0f-cfc67c48336d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M4M9ysq79KfxVZqY2Jc14F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1442,
+      "cache_read_input_tokens": 25266,
+      "output_tokens": 261,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1442,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 261,
+          "cache_read_input_tokens": 25266,
+          "cache_creation_input_tokens": 1442,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1442
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T08:54:49.529Z_
+
+<details><summary>↩ Tool result · `toolu_01Hg6kpSwbZwnvZAcBS3pwgX`</summary>
+
+```text
+Web search results for query: "FASB "Steering When Necessary" flexible steering backtracking LLM arXiv 2508.17621 NeurIPS 2025"
+
+Links: [{"title":"[2508.17621] Steering When Necessary: Flexible Steering Large Language Models with Backtracking","url":"https://arxiv.org/abs/2508.17621"},{"title":"Steering When Necessary: Flexible Steering Large Language Models with Backtracking","url":"https://arxiv.org/html/2508.17621"},{"title":"Steering When Necessary: Flexible Steering Large Language Models with Backtracking | OpenReview","url":"https://openreview.net/forum?id=l75RyRcevf"},{"title":"NeurIPS Poster Steering When Necessary: Flexible Steering Large Language Models with Backtracking","url":"https://neurips.cc/virtual/2025/loc/san-diego/poster/116311"},{"title":"Activation Steering in LLMs","url":"https://www.emergentmind.com/topics/activation-steering-method"},{"title":"Vector Steering Intervention in Neural Models","url":"https://www.emergentmind.com/topics/vector-steering-intervention"},{"title":"[2601.03595] Controllable LLM Reasoning via Sparse Autoencoder-Based Steering","url":"https://arxiv.org/abs/2601.03595"},{"title":"Focus on This, Not That! Steering LLMs With Adaptive ...","url":"https://arxiv.org/pdf/2410.22944"},{"title":"SREENIVASA INSTITUTE OF TECHNOLOGY AND MANAGEMENT STUDIES (AUTONOMOUS)","url":"https://sitams.ac.in/wp-content/uploads/2026/03/AI-Notes.pdf"},{"title":"SafeConstellations: Steering LLM Safety to Reduce Over-Refusals Through Task-Specific Trajectory","url":"https://arxiv.org/html/2508.11290v1"}]
+
+Based on the search results, here's what I found about the FASB paper:
+
+## Steering When Necessary: Flexible Steering Large Language Models with Backtracking
+
+The Flexible Activation Steering with Backtracking (FASB) framework dynamically determines both the necessity and strength of intervention by tracking the internal states of the LLMs during generation, considering both the question and the generated content.
+
+**Key Problem Addressed:**
+Existing methods typically indiscriminately intervene to all generations or rely solely on the question to determine intervention, which limits the accurate assessment of the intervention strength.
+
+**Main Contributions:**
+1. FASB tracks the internal states of the LLM after each normal generation step, taking both the question and the generated content into account, allowing it to dynamically determine whether intervention is necessary and the intervention strength based on the degree of deviation.
+
+2. A backtracking mechanism is proposed to correct the deviated tokens and steer the LLMs toward the desired behavior.
+
+**Results:**
+Extensive experiments on the TruthfulQA dataset and six multiple-choice datasets demonstrate that the method outperforms baselines.
+
+The paper has been presented at NeurIPS 2025 and the code is available on GitHub at https://github.com/gjw185/FASB.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a5c1fee0-d8db-4bb9-8955-3f6f043357c0",
+  "isSidechain": false,
+  "promptId": "12d080ed-eeea-4732-8b70-401fa8be4a0e",
+  "type": "user",
+  "uuid": "25f10347-1920-4847-8c13-84ffb443279b",
+  "toolUseResult": {
+    "query": "FASB \"Steering When Necessary\" flexible steering backtracking LLM arXiv 2508.17621 NeurIPS 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FGXG9R5w9z1MjsJK8kKd7A",
+        "content": [
+          {
+            "title": "[2508.17621] Steering When Necessary: Flexible Steering Large Language Models with Backtracking",
+            "url": "https://arxiv.org/abs/2508.17621"
+          },
+          {
+            "title": "Steering When Necessary: Flexible Steering Large Language Models with Backtracking",
+            "url": "https://arxiv.org/html/2508.17621"
+          },
+          {
+            "title": "Steering When Necessary: Flexible Steering Large Language Models with Backtracking | OpenReview",
+            "url": "https://openreview.net/forum?id=l75RyRcevf"
+          },
+          {
+            "title": "NeurIPS Poster Steering When Necessary: Flexible Steering Large Language Models with Backtracking",
+            "url": "https://neurips.cc/virtual/2025/loc/san-diego/poster/116311"
+          },
+          {
+            "title": "Activation Steering in LLMs",
+            "url": "https://www.emergentmind.com/topics/activation-steering-method"
+          },
+          {
+            "title": "Vector Steering Intervention in Neural Models",
+            "url": "https://www.emergentmind.com/topics/vector-steering-intervention"
+          },
+          {
+            "title": "[2601.03595] Controllable LLM Reasoning via Sparse Autoencoder-Based Steering",
+            "url": "https://arxiv.org/abs/2601.03595"
+          },
+          {
+            "title": "Focus on This, Not That! Steering LLMs With Adaptive ...",
+            "url": "https://arxiv.org/pdf/2410.22944"
+          },
+          {
+            "title": "SREENIVASA INSTITUTE OF TECHNOLOGY AND MANAGEMENT STUDIES (AUTONOMOUS)",
+            "url": "https://sitams.ac.in/wp-content/uploads/2026/03/AI-Notes.pdf"
+          },
+          {
+            "title": "SafeConstellations: Steering LLM Safety to Reduce Over-Refusals Through Task-Specific Trajectory",
+            "url": "https://arxiv.org/html/2508.11290v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the FASB paper:\n\n## Steering When Necessary: Flexible Steering Large Language Models with Backtracking\n\nThe Flexible Activation Steering with Backtracking (FASB) framework dynamically determines both the necessity and strength of intervention by tracking the internal states of the LLMs during generation, considering both the question and the generated content.\n\n**Key Problem Addressed:**\nExisting methods typically indiscriminately intervene to all generations or rely solely on the question to determine intervention, which limits the accurate assessment of the intervention strength.\n\n**Main Contributions:**\n1. FASB tracks the internal states of the LLM after each normal generation step, taking both the question and the generated content into account, allowing it to dynamically determine whether intervention is necessary and the intervention strength based on the degree of deviation.\n\n2. A backtracking mechanism is proposed to correct the deviated tokens and steer the LLMs toward the desired behavior.\n\n**Results:**\nExtensive experiments on the TruthfulQA dataset and six multiple-choice datasets demonstrate that the method outperforms baselines.\n\nThe paper has been presented at NeurIPS 2025 and the code is available on GitHub at https://github.com/gjw185/FASB."
+    ],
+    "durationSeconds": 6.139522840999998
+  },
+  "sourceToolAssistantUUID": "a5c1fee0-d8db-4bb9-8955-3f6f043357c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T08:54:50.975Z_
+
+<details><summary>↩ Tool result · `toolu_017HeEVG5kui77TShcJGTZgy`</summary>
+
+```text
+Web search results for query: "Curveball Steering arXiv 2603.09313 nonlinear polynomial kernel PCA activation steering 2026"
+
+Links: [{"title":"[2603.09313] Curveball Steering: The Right Direction To Steer Isn't Always Linear","url":"https://arxiv.org/abs/2603.09313"},{"title":"Curveball Steering: The Right Direction To Steer Isn’t Always Linear","url":"https://arxiv.org/html/2603.09313v1"},{"title":"[2603.05813] Activation Steering for Accent Adaptation in Speech Foundation Models","url":"https://arxiv.org/abs/2603.05813"},{"title":"Steering Code LLMs with Activation Directions for ...","url":"https://arxiv.org/pdf/2603.23629"},{"title":"Steering Awareness: Detecting Activation Steering from Within","url":"https://arxiv.org/html/2511.21399v3"},{"title":"A Unified Understanding and Evaluation of Steering Methods","url":"https://arxiv.org/html/2502.02716v1"},{"title":"On the Non-Identifiability of Steering Vectors in Large Language Models","url":"https://arxiv.org/html/2602.06801v4"},{"title":"Kernel Principal Component Analysis and its Applications ...","url":"https://arxiv.org/pdf/1207.3538"},{"title":"[2603.16746] Data-driven forced response analysis with min-max representations of nonlinear restoring forces","url":"https://arxiv.org/abs/2603.16746"},{"title":"[2602.03967] Non-linear PCA via Evolution Strategies: a Novel Objective Function","url":"https://arxiv.org/abs/2602.03967"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**"Curveball Steering: The Right Direction To Steer Isn't Always Linear"** (arXiv:2603.09313)
+
+Activation steering is a widely used approach for controlling large language model (LLM) behavior by intervening on internal representations. Existing methods largely rely on the Linear Representation Hypothesis, assuming behavioral attributes can be manipulated using global linear directions. However, such linear interventions often behave inconsistently.
+
+The paper measures geometric distortion via the ratio of geodesic to Euclidean distances and observes substantial and concept-dependent distortions, indicating that activation spaces are not well-approximated by a globally linear geometry.
+
+The authors propose "Curveball steering", a nonlinear steering method based on polynomial kernel PCA that performs interventions in a feature space, better respecting the learned activation geometry. Curveball steering consistently outperforms linear PCA-based steering, particularly in regimes exhibiting strong geometric distortion, suggesting that geometry-aware, nonlinear steering provides a principled alternative to global, linear interventions.
+
+The paper was published on March 22, 2026 (version 3 on arXiv).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d1172959-2c6a-4315-be0f-cfc67c48336d",
+  "isSidechain": false,
+  "promptId": "12d080ed-eeea-4732-8b70-401fa8be4a0e",
+  "type": "user",
+  "uuid": "b9c6e236-959a-4e45-9593-d146891533cb",
+  "toolUseResult": {
+    "query": "Curveball Steering arXiv 2603.09313 nonlinear polynomial kernel PCA activation steering 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ENP5mejJaGintpM4KLAgUp",
+        "content": [
+          {
+            "title": "[2603.09313] Curveball Steering: The Right Direction To Steer Isn't Always Linear",
+            "url": "https://arxiv.org/abs/2603.09313"
+          },
+          {
+            "title": "Curveball Steering: The Right Direction To Steer Isn’t Always Linear",
+            "url": "https://arxiv.org/html/2603.09313v1"
+          },
+          {
+            "title": "[2603.05813] Activation Steering for Accent Adaptation in Speech Foundation Models",
+            "url": "https://arxiv.org/abs/2603.05813"
+          },
+          {
+            "title": "Steering Code LLMs with Activation Directions for ...",
+            "url": "https://arxiv.org/pdf/2603.23629"
+          },
+          {
+            "title": "Steering Awareness: Detecting Activation Steering from Within",
+            "url": "https://arxiv.org/html/2511.21399v3"
+          },
+          {
+            "title": "A Unified Understanding and Evaluation of Steering Methods",
+            "url": "https://arxiv.org/html/2502.02716v1"
+          },
+          {
+            "title": "On the Non-Identifiability of Steering Vectors in Large Language Models",
+            "url": "https://arxiv.org/html/2602.06801v4"
+          },
+          {
+            "title": "Kernel Principal Component Analysis and its Applications ...",
+            "url": "https://arxiv.org/pdf/1207.3538"
+          },
+          {
+            "title": "[2603.16746] Data-driven forced response analysis with min-max representations of nonlinear restoring forces",
+            "url": "https://arxiv.org/abs/2603.16746"
+          },
+          {
+            "title": "[2602.03967] Non-linear PCA via Evolution Strategies: a Novel Objective Function",
+            "url": "https://arxiv.org/abs/2602.03967"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**\"Curveball Steering: The Right Direction To Steer Isn't Always Linear\"** (arXiv:2603.09313)\n\nActivation steering is a widely used approach for controlling large language model (LLM) behavior by intervening on internal representations. Existing methods largely rely on the Linear Representation Hypothesis, assuming behavioral attributes can be manipulated using global linear directions. However, such linear interventions often behave inconsistently.\n\nThe paper measures geometric distortion via the ratio of geodesic to Euclidean distances and observes substantial and concept-dependent distortions, indicating that activation spaces are not well-approximated by a globally linear geometry.\n\nThe authors propose \"Curveball steering\", a nonlinear steering method based on polynomial kernel PCA that performs interventions in a feature space, better respecting the learned activation geometry. Curveball steering consistently outperforms linear PCA-based steering, particularly in regimes exhibiting strong geometric distortion, suggesting that geometry-aware, nonlinear steering provides a principled alternative to global, linear interventions.\n\nThe paper was published on March 22, 2026 (version 3 on arXiv)."
+    ],
+    "durationSeconds": 6.399866435
+  },
+  "sourceToolAssistantUUID": "d1172959-2c6a-4315-be0f-cfc67c48336d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T08:54:51.147Z_
+
+<details><summary>↩ Tool result · `toolu_01TCxhsphL7aw1HUkrYjYUum`</summary>
+
+```text
+Web search results for query: "Steering Vector Fields arXiv 2602.01654 differentiable concept scoring steering directions 2026"
+
+Links: [{"title":"[2602.01654] Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models","url":"https://arxiv.org/abs/2602.01654"},{"title":"Steering Vector Fields for Context-Aware Inference-Time ...","url":"https://www.arxiv.org/pdf/2602.01654"},{"title":"Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models","url":"https://arxiv.org/html/2602.01654"},{"title":"Investigating Generalization of One-shot LLM Steering Vectors","url":"https://arxiv.org/html/2502.18862v1"},{"title":"[2305.04447] Neural Steerer: Novel Steering Vector Synthesis with a Causal Neural Field over Frequency and Source Positions","url":"https://arxiv.org/abs/2305.04447"},{"title":"ODESteer: A Unified ODE-Based Steering Framework for LLM Alignment","url":"https://arxiv.org/html/2602.17560v1"},{"title":"On the Non-Identifiability of Steering Vectors in Large Language Models","url":"https://arxiv.org/html/2602.06801v4"},{"title":"[2602.06801] On the Non-Identifiability of Steering Vectors in Large Language Models","url":"https://arxiv.org/abs/2602.06801"},{"title":"Steering Rectified Flow Models in the Vector Field for Controlled Image Generation","url":"https://arxiv.org/html/2412.00100v1"},{"title":"Logic-Guided Vector Fields for Constrained Generative Modeling","url":"https://arxiv.org/html/2602.02009"}]
+
+I found the paper you're looking for! Here's information about arXiv paper 2602.01654:
+
+**Title:** Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models
+
+**Core Contribution:** The paper proposes Steering Vector Fields (SVF), which learns a differentiable concept scoring function whose local gradient defines the steering direction at each activation, making interventions explicitly context-dependent.
+
+**Background and Motivation:** Steering vectors (SVs) offer a lightweight way to control large language models (LLMs) at inference time by shifting hidden activations, providing a practical middle ground between prompting and fine-tuning. However, SVs can be unreliable in practice. Some concepts are unsteerable, and even when steering helps on average it can backfire for a non-trivial fraction of inputs. Reliability also degrades in long-form generation and multi-attribute steering.
+
+**Key Features:** This formulation supports coordinated multi-layer interventions in a shared, aligned concept space, and enables efficient long-form and multi-attribute control within a unified framework. Across multiple LLMs and steering tasks, SVF delivers stronger and more reliable control, improving the practicality of inference-time steering.
+
+The paper was submitted to arXiv on February 2, 2026, by Jiaqian Li and co-authors.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c815363-1df9-49f7-be6a-2558810f0baa",
+  "isSidechain": false,
+  "promptId": "12d080ed-eeea-4732-8b70-401fa8be4a0e",
+  "type": "user",
+  "uuid": "d8389741-a00b-41be-8bca-9c1013660a6b",
+  "toolUseResult": {
+    "query": "Steering Vector Fields arXiv 2602.01654 differentiable concept scoring steering directions 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014oeUfEYao8Qnt2nJ3HTVyK",
+        "content": [
+          {
+            "title": "[2602.01654] Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models",
+            "url": "https://arxiv.org/abs/2602.01654"
+          },
+          {
+            "title": "Steering Vector Fields for Context-Aware Inference-Time ...",
+            "url": "https://www.arxiv.org/pdf/2602.01654"
+          },
+          {
+            "title": "Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models",
+            "url": "https://arxiv.org/html/2602.01654"
+          },
+          {
+            "title": "Investigating Generalization of One-shot LLM Steering Vectors",
+            "url": "https://arxiv.org/html/2502.18862v1"
+          },
+          {
+            "title": "[2305.04447] Neural Steerer: Novel Steering Vector Synthesis with a Causal Neural Field over Frequency and Source Positions",
+            "url": "https://arxiv.org/abs/2305.04447"
+          },
+          {
+            "title": "ODESteer: A Unified ODE-Based Steering Framework for LLM Alignment",
+            "url": "https://arxiv.org/html/2602.17560v1"
+          },
+          {
+            "title": "On the Non-Identifiability of Steering Vectors in Large Language Models",
+            "url": "https://arxiv.org/html/2602.06801v4"
+          },
+          {
+            "title": "[2602.06801] On the Non-Identifiability of Steering Vectors in Large Language Models",
+            "url": "https://arxiv.org/abs/2602.06801"
+          },
+          {
+            "title": "Steering Rectified Flow Models in the Vector Field for Controlled Image Generation",
+            "url": "https://arxiv.org/html/2412.00100v1"
+          },
+          {
+            "title": "Logic-Guided Vector Fields for Constrained Generative Modeling",
+            "url": "https://arxiv.org/html/2602.02009"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's information about arXiv paper 2602.01654:\n\n**Title:** Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\n\n**Core Contribution:** The paper proposes Steering Vector Fields (SVF), which learns a differentiable concept scoring function whose local gradient defines the steering direction at each activation, making interventions explicitly context-dependent.\n\n**Background and Motivation:** Steering vectors (SVs) offer a lightweight way to control large language models (LLMs) at inference time by shifting hidden activations, providing a practical middle ground between prompting and fine-tuning. However, SVs can be unreliable in practice. Some concepts are unsteerable, and even when steering helps on average it can backfire for a non-trivial fraction of inputs. Reliability also degrades in long-form generation and multi-attribute steering.\n\n**Key Features:** This formulation supports coordinated multi-layer interventions in a shared, aligned concept space, and enables efficient long-form and multi-attribute control within a unified framework. Across multiple LLMs and steering tasks, SVF delivers stronger and more reliable control, improving the practicality of inference-time steering.\n\nThe paper was submitted to arXiv on February 2, 2026, by Jiaqian Li and co-authors."
+    ],
+    "durationSeconds": 6.662091448999999
+  },
+  "sourceToolAssistantUUID": "5c815363-1df9-49f7-be6a-2558810f0baa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Geometry-Triggered Sentence-Level Activation Steering for Factual Hall…",
+  "leafUuid": "d8389741-a00b-41be-8bca-9c1013660a6b",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise hallucination steering idea based on reviewer feedback",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-16T08:54:55.499Z_
+
+Now let me fetch the actual papers to get detailed technical information.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8389741-a00b-41be-8bca-9c1013660a6b",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y3M55NpD32UJqUBuRk",
+  "type": "assistant",
+  "uuid": "dfcdbd0a-d85e-4b11-aa4b-a1b70fbb910a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015V9WaDgeUfR5n3G2QnvNax",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 763,
+      "cache_creation_input_tokens": 1888,
+      "cache_read_input_tokens": 26708,
+      "output_tokens": 494,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 763,
+          "output_tokens": 494,
+          "cache_read_input_tokens": 26708,
+          "cache_creation_input_tokens": 1888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T08:54:59.546Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01URdnykKoZ63Fgki1Mdp5iz`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2508.17621",
+  "prompt": "Extract the full abstract, key technical details of the method (how the probe trigger works, what backtracking mechanism does, what models they test on, what results they achieve on TruthfulQA MC1/MC2), and any limitations mentioned. I need to understand: 1) How does FASB decide WHEN to steer? 2) What is the backtracking mechanism? 3) What are the exact TruthfulQA results? 4) What granularity does it operate at?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dfcdbd0a-d85e-4b11-aa4b-a1b70fbb910a",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y3M55NpD32UJqUBuRk",
+  "type": "assistant",
+  "uuid": "43272f1c-aef3-45a8-b3c0-632876e69ef7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015V9WaDgeUfR5n3G2QnvNax",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 763,
+      "cache_creation_input_tokens": 1888,
+      "cache_read_input_tokens": 26708,
+      "output_tokens": 494,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 763,
+          "output_tokens": 494,
+          "cache_read_input_tokens": 26708,
+          "cache_creation_input_tokens": 1888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T08:55:01.825Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PCLf6njnFaBGbDZTALjiEH`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2602.01654",
+  "prompt": "Extract the full abstract, key technical details: 1) How does the differentiable concept scoring function work? 2) How are steering directions computed from gradients? 3) What is the 'refresh every K steps' mechanism? 4) What models and benchmarks are used? 5) Results on TruthfulQA or hallucination-related benchmarks. 6) How is this different from static steering vectors?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43272f1c-aef3-45a8-b3c0-632876e69ef7",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y3M55NpD32UJqUBuRk",
+  "type": "assistant",
+  "uuid": "60aca024-a2bf-4e3a-b033-87e96d22dd73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015V9WaDgeUfR5n3G2QnvNax",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 763,
+      "cache_creation_input_tokens": 1888,
+      "cache_read_input_tokens": 26708,
+      "output_tokens": 494,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 763,
+          "output_tokens": 494,
+          "cache_read_input_tokens": 26708,
+          "cache_creation_input_tokens": 1888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T08:55:02.938Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_011TXPh3S3ejGob7fNiivpa3`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.09313",
+  "prompt": "Extract the full abstract, key technical details: 1) How does polynomial kernel PCA work for steering? 2) What geometric distortions do they measure? 3) What benchmarks and results? 4) How does it compare to linear PCA steering? 5) What models are tested?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60aca024-a2bf-4e3a-b033-87e96d22dd73",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y3M55NpD32UJqUBuRk",
+  "type": "assistant",
+  "uuid": "21e1440c-7aec-4cd3-b246-0e8f3c2abf9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015V9WaDgeUfR5n3G2QnvNax",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 763,
+      "cache_creation_input_tokens": 1888,
+      "cache_read_input_tokens": 26708,
+      "output_tokens": 494,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 763,
+          "output_tokens": 494,
+          "cache_read_input_tokens": 26708,
+          "cache_creation_input_tokens": 1888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T08:55:06.334Z_
+
+<details><summary>↩ Tool result · `toolu_01URdnykKoZ63Fgki1Mdp5iz`</summary>
+
+```text
+# FASB: Flexible Activation Steering with Backtracking - Key Details
+
+## Full Abstract
+"Large language models (LLMs) have achieved remarkable performance across many generation tasks. Nevertheless, effectively aligning them with desired behaviors remains a significant challenge. Activation steering is an effective and cost-efficient approach that directly modifies the activations of LLMs during the inference stage, aligning their responses with the desired behaviors and avoiding the high cost of fine-tuning. Existing methods typically indiscriminately intervene to all generations or rely solely on the question to determine intervention, which limits the accurate assessment of the intervention strength. To this end, we propose the Flexible Activation Steering with Backtracking (FASB) framework, which dynamically determines both the necessity and strength of intervention by tracking the internal states of the LLMs during generation, considering both the question and the generated content. Since intervening after detecting a deviation from the desired behavior is often too late, we further propose the backtracking mechanism to correct the deviated tokens and steer the LLMs toward the desired behavior. Extensive experiments on the TruthfulQA dataset and six multiple-choice datasets demonstrate that our method outperforms baselines."
+
+## How FASB Decides When to Steer (Question 1)
+The framework employs dynamic decision-making by monitoring internal LLM states throughout generation, evaluating both the input question and generated tokens in real-time—avoiding static, question-only approaches that limit intervention accuracy.
+
+## Backtracking Mechanism (Question 2)
+The abstract indicates the mechanism functions as a corrective post-hoc intervention: it "correct[s] the deviated tokens" after detecting departures from desired behavior patterns, allowing the model to return to appropriate outputs.
+
+## TruthfulQA Results (Question 3)
+The abstract does not provide specific numerical results for TruthfulQA MC1/MC2 scores, only stating the method "outperforms baselines."
+
+## Operational Granularity (Question 4)
+The method operates at the **token level**, specifically intervening on individual tokens that deviate from desired behavior patterns.
+
+## Notable Limitation
+The paper acknowledges that detecting and responding post-generation intervention timing presents challenges: "intervening after detecting a deviation from the desired behavior is often too late," which motivated the backtracking solution.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "43272f1c-aef3-45a8-b3c0-632876e69ef7",
+  "isSidechain": false,
+  "promptId": "12d080ed-eeea-4732-8b70-401fa8be4a0e",
+  "type": "user",
+  "uuid": "231042b3-93db-4e59-8232-0f84eaa60eb8",
+  "toolUseResult": {
+    "bytes": 47314,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# FASB: Flexible Activation Steering with Backtracking - Key Details\n\n## Full Abstract\n\"Large language models (LLMs) have achieved remarkable performance across many generation tasks. Nevertheless, effectively aligning them with desired behaviors remains a significant challenge. Activation steering is an effective and cost-efficient approach that directly modifies the activations of LLMs during the inference stage, aligning their responses with the desired behaviors and avoiding the high cost of fine-tuning. Existing methods typically indiscriminately intervene to all generations or rely solely on the question to determine intervention, which limits the accurate assessment of the intervention strength. To this end, we propose the Flexible Activation Steering with Backtracking (FASB) framework, which dynamically determines both the necessity and strength of intervention by tracking the internal states of the LLMs during generation, considering both the question and the generated content. Since intervening after detecting a deviation from the desired behavior is often too late, we further propose the backtracking mechanism to correct the deviated tokens and steer the LLMs toward the desired behavior. Extensive experiments on the TruthfulQA dataset and six multiple-choice datasets demonstrate that our method outperforms baselines.\"\n\n## How FASB Decides When to Steer (Question 1)\nThe framework employs dynamic decision-making by monitoring internal LLM states throughout generation, evaluating both the input question and generated tokens in real-time—avoiding static, question-only approaches that limit intervention accuracy.\n\n## Backtracking Mechanism (Question 2)\nThe abstract indicates the mechanism functions as a corrective post-hoc intervention: it \"correct[s] the deviated tokens\" after detecting departures from desired behavior patterns, allowing the model to return to appropriate outputs.\n\n## TruthfulQA Results (Question 3)\nThe abstract does not provide specific numerical results for TruthfulQA MC1/MC2 scores, only stating the method \"outperforms baselines.\"\n\n## Operational Granularity (Question 4)\nThe method operates at the **token level**, specifically intervening on individual tokens that deviate from desired behavior patterns.\n\n## Notable Limitation\nThe paper acknowledges that detecting and responding post-generation intervention timing presents challenges: \"intervening after detecting a deviation from the desired behavior is often too late,\" which motivated the backtracking solution.",
+    "durationMs": 6783,
+    "url": "https://arxiv.org/abs/2508.17621"
+  },
+  "sourceToolAssistantUUID": "43272f1c-aef3-45a8-b3c0-632876e69ef7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T08:55:06.430Z_
+
+<details><summary>↩ Tool result · `toolu_01PCLf6njnFaBGbDZTALjiEH`</summary>
+
+```text
+# Summary of "Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models"
+
+## Full Abstract
+The paper proposes Steering Vector Fields (SVF) to address reliability issues with static steering vectors in LLMs. Rather than applying a constant update vector, SVF learns a "differentiable concept scoring function whose local gradient defines the steering direction at each activation, making interventions explicitly context-dependent."
+
+## Key Technical Details
+
+**1) Differentiable Concept Scoring Function**
+The approach learns a scoring function that varies across different activation states, enabling context-aware steering rather than relying on a single global direction.
+
+**2) Steering Directions from Gradients**
+The local gradient of the concept scoring function computes the steering direction at each specific activation point, adapting the intervention based on current model state.
+
+**3) 'Refresh Every K Steps' Mechanism**
+The document provided does not contain specific details about a refresh mechanism or the K-steps protocol you're referencing.
+
+**4) Models and Benchmarks**
+The abstract mentions "multiple LLMs and steering tasks" but doesn't specify particular model names or benchmark suites in the visible content.
+
+**5) TruthfulQA/Hallucination Results**
+Specific benchmark results are not detailed in the abstract provided.
+
+**6) Difference from Static Steering Vectors**
+Static vectors "apply the same update vector everywhere in representation space," assuming constant concept-improving directions. SVF overcomes this by making interventions context-dependent through learned gradient-based directional adjustments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60aca024-a2bf-4e3a-b033-87e96d22dd73",
+  "isSidechain": false,
+  "promptId": "12d080ed-eeea-4732-8b70-401fa8be4a0e",
+  "type": "user",
+  "uuid": "fa60d405-d789-4909-b319-586e3613151a",
+  "toolUseResult": {
+    "bytes": 46505,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Summary of \"Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\"\n\n## Full Abstract\nThe paper proposes Steering Vector Fields (SVF) to address reliability issues with static steering vectors in LLMs. Rather than applying a constant update vector, SVF learns a \"differentiable concept scoring function whose local gradient defines the steering direction at each activation, making interventions explicitly context-dependent.\"\n\n## Key Technical Details\n\n**1) Differentiable Concept Scoring Function**\nThe approach learns a scoring function that varies across different activation states, enabling context-aware steering rather than relying on a single global direction.\n\n**2) Steering Directions from Gradients**\nThe local gradient of the concept scoring function computes the steering direction at each specific activation point, adapting the intervention based on current model state.\n\n**3) 'Refresh Every K Steps' Mechanism**\nThe document provided does not contain specific details about a refresh mechanism or the K-steps protocol you're referencing.\n\n**4) Models and Benchmarks**\nThe abstract mentions \"multiple LLMs and steering tasks\" but doesn't specify particular model names or benchmark suites in the visible content.\n\n**5) TruthfulQA/Hallucination Results**\nSpecific benchmark results are not detailed in the abstract provided.\n\n**6) Difference from Static Steering Vectors**\nStatic vectors \"apply the same update vector everywhere in representation space,\" assuming constant concept-improving directions. SVF overcomes this by making interventions context-dependent through learned gradient-based directional adjustments.",
+    "durationMs": 4603,
+    "url": "https://arxiv.org/abs/2602.01654"
+  },
+  "sourceToolAssistantUUID": "60aca024-a2bf-4e3a-b033-87e96d22dd73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T08:55:08.862Z_
+
+<details><summary>↩ Tool result · `toolu_011TXPh3S3ejGob7fNiivpa3`</summary>
+
+```text
+# Curveball Steering: Paper Analysis
+
+## Full Abstract
+"Activation steering is a widely used approach for controlling large language model (LLM) behavior by intervening on internal representations. Existing methods largely rely on the Linear Representation Hypothesis, assuming behavioral attributes can be manipulated using global linear directions. In practice, however, such linear interventions often behave inconsistently. We question this assumption by analyzing the intrinsic geometry of LLM activation spaces. Measuring geometric distortion via the ratio of geodesic to Euclidean distances, we observe substantial and concept-dependent distortions, indicating that activation spaces are not well-approximated by a globally linear geometry. Motivated by this, we propose "Curveball steering", a nonlinear steering method based on polynomial kernel PCA that performs interventions in a feature space, better respecting the learned activation geometry. Curveball steering consistently outperforms linear PCA-based steering, particularly in regimes exhibiting strong geometric distortion, suggesting that geometry-aware, nonlinear steering provides a principled alternative to global, linear interventions."
+
+## Key Technical Details
+
+**1) Polynomial Kernel PCA Mechanism:**
+The paper doesn't provide implementation specifics in the abstract, but indicates the method operates "in a feature space" using polynomial kernels rather than linear projections.
+
+**2) Geometric Distortion Measurement:**
+Distortion is quantified via "the ratio of geodesic to Euclidean distances," revealing substantial, concept-dependent warping that contradicts linear approximations of activation spaces.
+
+**3) Benchmarks & Results:**
+No specific benchmark names, datasets, or numerical results are mentioned in the provided content.
+
+**4) Comparison to Linear PCA:**
+Curveball steering "consistently outperforms linear PCA-based steering, particularly in regimes exhibiting strong geometric distortion."
+
+**5) Models Tested:**
+No specific LLM architectures or model families are identified in this excerpt.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21e1440c-7aec-4cd3-b246-0e8f3c2abf9a",
+  "isSidechain": false,
+  "promptId": "12d080ed-eeea-4732-8b70-401fa8be4a0e",
+  "type": "user",
+  "uuid": "145632cd-c3e6-4d8f-8f00-2c2188b6141b",
+  "toolUseResult": {
+    "bytes": 46902,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Curveball Steering: Paper Analysis\n\n## Full Abstract\n\"Activation steering is a widely used approach for controlling large language model (LLM) behavior by intervening on internal representations. Existing methods largely rely on the Linear Representation Hypothesis, assuming behavioral attributes can be manipulated using global linear directions. In practice, however, such linear interventions often behave inconsistently. We question this assumption by analyzing the intrinsic geometry of LLM activation spaces. Measuring geometric distortion via the ratio of geodesic to Euclidean distances, we observe substantial and concept-dependent distortions, indicating that activation spaces are not well-approximated by a globally linear geometry. Motivated by this, we propose \"Curveball steering\", a nonlinear steering method based on polynomial kernel PCA that performs interventions in a feature space, better respecting the learned activation geometry. Curveball steering consistently outperforms linear PCA-based steering, particularly in regimes exhibiting strong geometric distortion, suggesting that geometry-aware, nonlinear steering provides a principled alternative to global, linear interventions.\"\n\n## Key Technical Details\n\n**1) Polynomial Kernel PCA Mechanism:**\nThe paper doesn't provide implementation specifics in the abstract, but indicates the method operates \"in a feature space\" using polynomial kernels rather than linear projections.\n\n**2) Geometric Distortion Measurement:**\nDistortion is quantified via \"the ratio of geodesic to Euclidean distances,\" revealing substantial, concept-dependent warping that contradicts linear approximations of activation spaces.\n\n**3) Benchmarks & Results:**\nNo specific benchmark names, datasets, or numerical results are mentioned in the provided content.\n\n**4) Comparison to Linear PCA:**\nCurveball steering \"consistently outperforms linear PCA-based steering, particularly in regimes exhibiting strong geometric distortion.\"\n\n**5) Models Tested:**\nNo specific LLM architectures or model families are identified in this excerpt.",
+    "durationMs": 5923,
+    "url": "https://arxiv.org/abs/2603.09313"
+  },
+  "sourceToolAssistantUUID": "21e1440c-7aec-4cd3-b246-0e8f3c2abf9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-16T08:55:08.866Z_
+
+```json
+{
+  "parentUuid": "145632cd-c3e6-4d8f-8f00-2c2188b6141b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "81693aaa-fb50-4c28-a0fe-800616966b85",
+  "timestamp": "2026-05-16T08:55:08.866Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-16T08:55:14.089Z_
+
+Let me get more detailed technical information about FASB, including its exact results and mechanism.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81693aaa-fb50-4c28-a0fe-800616966b85",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y4epCafjB7xgSYH5dQ",
+  "type": "assistant",
+  "uuid": "567d1c60-e63c-494f-bf5e-cdf0836ea474",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QxRfQeX77YA1WfbJsrB1GF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2741,
+      "cache_read_input_tokens": 28596,
+      "output_tokens": 303,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2741,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 303,
+          "cache_read_input_tokens": 28596,
+          "cache_creation_input_tokens": 2741,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2741
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T08:55:17.880Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HejLEBEzRc7fCV8VufHy8U`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2508.17621",
+  "prompt": "I need detailed technical information about FASB: 1) What exact probe mechanism does it use to detect when to steer? (linear probe on attention heads? MLP activations? What features?) 2) How does backtracking work specifically - does it rollback tokens and regenerate? How many tokens? 3) What are the exact TruthfulQA MC1 and MC2 results for each model (LLaMA-2-7B-Chat, etc.)? 4) What layers does it intervene at? 5) What is the computational overhead? 6) What are the key limitations?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "567d1c60-e63c-494f-bf5e-cdf0836ea474",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y4epCafjB7xgSYH5dQ",
+  "type": "assistant",
+  "uuid": "5532a408-605f-4fe1-a21a-2762c95bd66d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QxRfQeX77YA1WfbJsrB1GF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2741,
+      "cache_read_input_tokens": 28596,
+      "output_tokens": 303,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2741,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 303,
+          "cache_read_input_tokens": 28596,
+          "cache_creation_input_tokens": 2741,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2741
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T08:55:18.342Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NLngDKRhdSzDSZPRV3AbNJ`</summary>
+
+```json
+{
+  "query": "FASB flexible activation steering backtracking TruthfulQA MC1 results LLaMA-2-7B 48.71"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5532a408-605f-4fe1-a21a-2762c95bd66d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y4epCafjB7xgSYH5dQ",
+  "type": "assistant",
+  "uuid": "f856cd9d-ee8c-4ee9-9738-c1c4a4ae8d23",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QxRfQeX77YA1WfbJsrB1GF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2741,
+      "cache_read_input_tokens": 28596,
+      "output_tokens": 303,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2741,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 303,
+          "cache_read_input_tokens": 28596,
+          "cache_creation_input_tokens": 2741,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2741
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T08:55:23.552Z_
+
+<details><summary>↩ Tool result · `toolu_01NLngDKRhdSzDSZPRV3AbNJ`</summary>
+
+```text
+Web search results for query: "FASB flexible activation steering backtracking TruthfulQA MC1 results LLaMA-2-7B 48.71"
+
+Links: [{"title":"Steering When Necessary: Flexible Steering Large Language Models with Backtracking","url":"https://arxiv.org/html/2508.17621"},{"title":"[2508.17621] Steering When Necessary: Flexible Steering Large Language Models with Backtracking","url":"https://arxiv.org/abs/2508.17621"},{"title":"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories","url":"https://arxiv.org/html/2406.00034"},{"title":"Painless Activation Steering: An Automated, Lightweight Approach for Post-Training Large Language Models","url":"https://arxiv.org/html/2509.22739v1"},{"title":"Steering Llama-2 with Contrastive Activation Additions","url":"https://turntrout.com/llama2-steering-vectors"},{"title":"Steering Llama 2 via Contrastive Activation Addition Nina Panickssery Anthropic","url":"https://arxiv.org/pdf/2312.06681"},{"title":"Steering off Course: Reliability Challenges in Steering Language Models","url":"https://arxiv.org/html/2504.04635"},{"title":"The Development of Activation Steering","url":"https://sidn.baulab.info/steering/"},{"title":"Steering Gemini Using BIDPO Vectors - The Pond","url":"https://turntrout.com/gemini-steering"},{"title":"Steering Llama 2 via Contrastive Activation Addition","url":"https://arxiv.org/html/2312.06681v4"}]
+
+Based on the search results, I found relevant information about FASB (Flexible Activation Steering with Backtracking):
+
+FASB is a Flexible Activation Steering with Backtracking framework that dynamically determines both the necessity and strength of intervention by tracking the internal states of LLMs during generation, considering both the question and the generated content.
+
+It dynamically decides whether and how strongly to intervene by probing the internal states of the LLM. Specifically, FASB first identifies attention heads that are consistent with the desired behavior and derives the steering vector and classifier.
+
+Regarding the specific performance metric you mentioned (48.71 on MC1 for LLaMA-2-7B), while the search results discuss FASB's results on TruthfulQA with various models, I did not find the exact 48.71 MC1 result for LLaMA-2-7B explicitly stated. The paper does provide various performance comparisons on the TruthfulQA dataset across different models and methods, but the specific numerical result you're looking for isn't directly cited in these search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f856cd9d-ee8c-4ee9-9738-c1c4a4ae8d23",
+  "isSidechain": false,
+  "promptId": "12d080ed-eeea-4732-8b70-401fa8be4a0e",
+  "type": "user",
+  "uuid": "f8f5bb2c-c424-482e-bde4-c51636129c21",
+  "toolUseResult": {
+    "query": "FASB flexible activation steering backtracking TruthfulQA MC1 results LLaMA-2-7B 48.71",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KMdWAVNL9tz26czEHcKi1w",
+        "content": [
+          {
+            "title": "Steering When Necessary: Flexible Steering Large Language Models with Backtracking",
+            "url": "https://arxiv.org/html/2508.17621"
+          },
+          {
+            "title": "[2508.17621] Steering When Necessary: Flexible Steering Large Language Models with Backtracking",
+            "url": "https://arxiv.org/abs/2508.17621"
+          },
+          {
+            "title": "Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories",
+            "url": "https://arxiv.org/html/2406.00034"
+          },
+          {
+            "title": "Painless Activation Steering: An Automated, Lightweight Approach for Post-Training Large Language Models",
+            "url": "https://arxiv.org/html/2509.22739v1"
+          },
+          {
+            "title": "Steering Llama-2 with Contrastive Activation Additions",
+            "url": "https://turntrout.com/llama2-steering-vectors"
+          },
+          {
+            "title": "Steering Llama 2 via Contrastive Activation Addition Nina Panickssery Anthropic",
+            "url": "https://arxiv.org/pdf/2312.06681"
+          },
+          {
+            "title": "Steering off Course: Reliability Challenges in Steering Language Models",
+            "url": "https://arxiv.org/html/2504.04635"
+          },
+          {
+            "title": "The Development of Activation Steering",
+            "url": "https://sidn.baulab.info/steering/"
+          },
+          {
+            "title": "Steering Gemini Using BIDPO Vectors - The Pond",
+            "url": "https://turntrout.com/gemini-steering"
+          },
+          {
+            "title": "Steering Llama 2 via Contrastive Activation Addition",
+            "url": "https://arxiv.org/html/2312.06681v4"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about FASB (Flexible Activation Steering with Backtracking):\n\nFASB is a Flexible Activation Steering with Backtracking framework that dynamically determines both the necessity and strength of intervention by tracking the internal states of LLMs during generation, considering both the question and the generated content.\n\nIt dynamically decides whether and how strongly to intervene by probing the internal states of the LLM. Specifically, FASB first identifies attention heads that are consistent with the desired behavior and derives the steering vector and classifier.\n\nRegarding the specific performance metric you mentioned (48.71 on MC1 for LLaMA-2-7B), while the search results discuss FASB's results on TruthfulQA with various models, I did not find the exact 48.71 MC1 result for LLaMA-2-7B explicitly stated. The paper does provide various performance comparisons on the TruthfulQA dataset across different models and methods, but the specific numerical result you're looking for isn't directly cited in these search results."
+    ],
+    "durationSeconds": 5.207250083000006
+  },
+  "sourceToolAssistantUUID": "f856cd9d-ee8c-4ee9-9738-c1c4a4ae8d23",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T08:55:26.071Z_
+
+<details><summary>↩ Tool result · `toolu_01HejLEBEzRc7fCV8VufHy8U`</summary>
+
+```text
+# FASB Technical Analysis
+
+## 1) Probe Mechanism
+
+FASB uses a linear binary classifier trained on attention head activations. Specifically: "train a lightweight classifier (probe) on the activations of attention heads to identify the relevant heads." The probe takes the form p(x) = sigmoid(⟨θ, x⟩), where θ are learned parameters that become the steering vector. It extracts activations "at the last token" of concatenated question-answer pairs to identify which heads correlate with desired behavior.
+
+## 2) Backtracking Process
+
+The method steps backward when deviation is detected. "If a deviation is detected after generating the j-th token, the backtracking mechanism retains only the first j-s tokens and regenerates the subsequent tokens, where s is a hyperparameter." The system regenerates s additional tokens with steering applied. Default configuration uses 10 tokens for backtracking across experiments.
+
+## 3) TruthfulQA Results (LLaMA2-7B-Chat)
+
+Key results from Table 1:
+- **MC1**: 48.71% (Probe) vs 33.41% (baseline)
+- **MC2**: 66.58% (Probe) vs 51.07% (baseline)  
+- **True×Info**: 80.56% (Probe) vs 66.50% (baseline)
+
+Results generalize across models (LLaMA3.1, Qwen2.5) with similar improvements.
+
+## 4) Intervention Layers
+
+The method "select[s] the top-k heads with the highest accuracy on the validation set for intervention." Figure 4 shows optimal heads are "relatively evenly distributed across all layers." Default configuration uses top-24 heads. The paper notes: "perform fine-grained intervention only on these heads is more targeted and helps minimize disruption."
+
+## 5) Computational Overhead
+
+Minimal overhead by design: "overhead is lightweight" since hidden states are already generated during normal inference. For texts requiring backtracking, only s additional tokens require generation. The ablation study shows negligible performance difference compared to variants that backtrack further.
+
+## 6) Key Limitations
+
+From Appendix K:
+- Method could enable misuse (jailbreaking, toxic generation)
+- Heavily hyperparameter-dependent (α, β thresholds)
+- Focused on English QA datasets
+- Relies on "LLM-based judge models as evaluators" which "may introduce errors"
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5532a408-605f-4fe1-a21a-2762c95bd66d",
+  "isSidechain": false,
+  "promptId": "12d080ed-eeea-4732-8b70-401fa8be4a0e",
+  "type": "user",
+  "uuid": "bc8f0089-b1d3-4bc1-86f9-e977e0930588",
+  "toolUseResult": {
+    "bytes": 318731,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# FASB Technical Analysis\n\n## 1) Probe Mechanism\n\nFASB uses a linear binary classifier trained on attention head activations. Specifically: \"train a lightweight classifier (probe) on the activations of attention heads to identify the relevant heads.\" The probe takes the form p(x) = sigmoid(⟨θ, x⟩), where θ are learned parameters that become the steering vector. It extracts activations \"at the last token\" of concatenated question-answer pairs to identify which heads correlate with desired behavior.\n\n## 2) Backtracking Process\n\nThe method steps backward when deviation is detected. \"If a deviation is detected after generating the j-th token, the backtracking mechanism retains only the first j-s tokens and regenerates the subsequent tokens, where s is a hyperparameter.\" The system regenerates s additional tokens with steering applied. Default configuration uses 10 tokens for backtracking across experiments.\n\n## 3) TruthfulQA Results (LLaMA2-7B-Chat)\n\nKey results from Table 1:\n- **MC1**: 48.71% (Probe) vs 33.41% (baseline)\n- **MC2**: 66.58% (Probe) vs 51.07% (baseline)  \n- **True×Info**: 80.56% (Probe) vs 66.50% (baseline)\n\nResults generalize across models (LLaMA3.1, Qwen2.5) with similar improvements.\n\n## 4) Intervention Layers\n\nThe method \"select[s] the top-k heads with the highest accuracy on the validation set for intervention.\" Figure 4 shows optimal heads are \"relatively evenly distributed across all layers.\" Default configuration uses top-24 heads. The paper notes: \"perform fine-grained intervention only on these heads is more targeted and helps minimize disruption.\"\n\n## 5) Computational Overhead\n\nMinimal overhead by design: \"overhead is lightweight\" since hidden states are already generated during normal inference. For texts requiring backtracking, only s additional tokens require generation. The ablation study shows negligible performance difference compared to variants that backtrack further.\n\n## 6) Key Limitations\n\nFrom Appendix K:\n- Method could enable misuse (jailbreaking, toxic generation)\n- Heavily hyperparameter-dependent (α, β thresholds)\n- Focused on English QA datasets\n- Relies on \"LLM-based judge models as evaluators\" which \"may introduce errors\"",
+    "durationMs": 8183,
+    "url": "https://arxiv.org/html/2508.17621"
+  },
+  "sourceToolAssistantUUID": "5532a408-605f-4fe1-a21a-2762c95bd66d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Geometry-Triggered Sentence-Level Activation Steering for Factual Hall…",
+  "leafUuid": "bc8f0089-b1d3-4bc1-86f9-e977e0930588",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise hallucination steering idea based on reviewer feedback",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382"
+}
+```
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-16T08:55:29.392Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have good information about FASB. Let me also get more details about Steering Vector Fields to understand its mechanism better. Let me also search for the Hallucination Basins paper to verify or soften the technical claims.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc8f0089-b1d3-4bc1-86f9-e977e0930588",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y5vQLsQUztXiAauuGv",
+  "type": "assistant",
+  "uuid": "9a27276d-b330-4da8-8f1c-b1944d5222cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3K9WNTqiVQWWDoAMoie9g",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 744,
+      "cache_creation_input_tokens": 897,
+      "cache_read_input_tokens": 31337,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 744,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 31337,
+          "cache_creation_input_tokens": 897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-16T08:55:29.919Z_
+
+Now let me fetch more details about Steering Vector Fields and verify the Hallucination Basins claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9a27276d-b330-4da8-8f1c-b1944d5222cd",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y5vQLsQUztXiAauuGv",
+  "type": "assistant",
+  "uuid": "b5806c85-61f7-4bae-9899-bc076019e5e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3K9WNTqiVQWWDoAMoie9g",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 744,
+      "cache_creation_input_tokens": 897,
+      "cache_read_input_tokens": 31337,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 744,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 31337,
+          "cache_creation_input_tokens": 897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T08:55:33.239Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013uinfsnVV7mSrLtsBFn1t9`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2602.01654",
+  "prompt": "I need detailed technical information: 1) How exactly does SVF learn the concept scoring function? What architecture/training process? 2) Does it refresh/recompute directions during generation? If so, how often? 3) What benchmarks and numerical results are reported? Especially on TruthfulQA or factuality benchmarks. 4) What models are tested (sizes)? 5) What is the computational overhead compared to static steering? 6) How does it handle the 'when to steer' question - does it always steer, or is there gating?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5806c85-61f7-4bae-9899-bc076019e5e4",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y5vQLsQUztXiAauuGv",
+  "type": "assistant",
+  "uuid": "80e66750-b5d3-4636-a779-11c1a867a4a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3K9WNTqiVQWWDoAMoie9g",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 744,
+      "cache_creation_input_tokens": 897,
+      "cache_read_input_tokens": 31337,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 744,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 31337,
+          "cache_creation_input_tokens": 897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-16T08:55:34.072Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MunSjf1t9anJwiLxrQiLiK`</summary>
+
+```json
+{
+  "query": "Hallucination Basins arXiv 2604.04743 technical details adaptive geometry-aware steering method controller"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80e66750-b5d3-4636-a779-11c1a867a4a8",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y5vQLsQUztXiAauuGv",
+  "type": "assistant",
+  "uuid": "4cd3f51a-c5ba-46b9-95f3-86c9238faf31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3K9WNTqiVQWWDoAMoie9g",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 744,
+      "cache_creation_input_tokens": 897,
+      "cache_read_input_tokens": 31337,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 744,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 31337,
+          "cache_creation_input_tokens": 897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T08:55:41.975Z_
+
+<details><summary>↩ Tool result · `toolu_01MunSjf1t9anJwiLxrQiLiK`</summary>
+
+```text
+Web search results for query: "Hallucination Basins arXiv 2604.04743 technical details adaptive geometry-aware steering method controller"
+
+Links: [{"title":"[2604.04743] Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations","url":"https://arxiv.org/abs/2604.04743"},{"title":"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations","url":"https://arxiv.org/html/2604.04743"},{"title":"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation","url":"https://arxiv.org/html/2604.15400v1"},{"title":"Spherical Steering: Geometry-Aware Activation Rotation for Language Models","url":"https://arxiv.org/html/2602.08169v1"},{"title":"[2604.07914] Mitigating Entangled Steering in Large Vision-Language Models for Hallucination Reduction","url":"https://arxiv.org/abs/2604.07914"},{"title":"Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination","url":"https://arxiv.org/html/2605.05686"},{"title":"Revis: Sparse Latent Steering to Mitigate Object Hallucination in Large Vision-Language Models","url":"https://arxiv.org/html/2602.11824"},{"title":"[2410.15778] Reducing Hallucinations in Vision-Language Models via Latent Space Steering","url":"https://arxiv.org/abs/2410.15778"},{"title":"Adaptive Residual-Update Steering for Low-Overhead Hallucination Mitigation in Large Vision Language Models","url":"https://arxiv.org/html/2511.10292"},{"title":"ACT Now: Preempting LVLM Hallucinations via Adaptive Context Integration","url":"https://arxiv.org/html/2604.00983v1"}]
+
+Based on the search results, I found detailed information about the paper arXiv 2604.04743:
+
+## Paper Overview
+
+The paper presents a geometric dynamical systems framework in which hallucinations arise from task-dependent basin structure in latent space.
+
+## Technical Framework
+
+Using autoregressive hidden-state trajectories across multiple open-source models and benchmarks, the authors find that separability is strongly task-dependent rather than universal: factoid settings can show clearer basin separation, whereas summarization and misconception-heavy settings are typically less stable and often overlap. They formalize this behavior with task-complexity and multi-basin theorems, characterize basin emergence in L-layer transformers, and show that geometry-aware steering can reduce hallucination probability without retraining.
+
+## Key Findings
+
+The research reveals that:
+- Large language models (LLMs) hallucinate: they produce fluent outputs that are factually incorrect.
+- Task-dependent basin structure varies significantly across different types of tasks
+- Basin separation is clearer in factoid tasks but less stable in summarization and misconception-heavy tasks
+
+## Geometry-Aware Steering Method
+
+The concurrent work frames hallucination through basin geometry and proposes geometry-aware steering. This is referenced in related work as an important contribution to the field of LLM hallucination mitigation through steering methods that account for the geometric structure of latent space representations.
+
+The paper represents a significant advance in understanding LLM hallucinations through the lens of dynamical systems and attractor basins in latent space.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4cd3f51a-c5ba-46b9-95f3-86c9238faf31",
+  "isSidechain": false,
+  "promptId": "12d080ed-eeea-4732-8b70-401fa8be4a0e",
+  "type": "user",
+  "uuid": "383d654e-19b9-440d-9e9a-87e847c6e437",
+  "toolUseResult": {
+    "query": "Hallucination Basins arXiv 2604.04743 technical details adaptive geometry-aware steering method controller",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012gtcUAW1aVGxw9a4rvSFg1",
+        "content": [
+          {
+            "title": "[2604.04743] Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations",
+            "url": "https://arxiv.org/abs/2604.04743"
+          },
+          {
+            "title": "Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations",
+            "url": "https://arxiv.org/html/2604.04743"
+          },
+          {
+            "title": "Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation",
+            "url": "https://arxiv.org/html/2604.15400v1"
+          },
+          {
+            "title": "Spherical Steering: Geometry-Aware Activation Rotation for Language Models",
+            "url": "https://arxiv.org/html/2602.08169v1"
+          },
+          {
+            "title": "[2604.07914] Mitigating Entangled Steering in Large Vision-Language Models for Hallucination Reduction",
+            "url": "https://arxiv.org/abs/2604.07914"
+          },
+          {
+            "title": "Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination",
+            "url": "https://arxiv.org/html/2605.05686"
+          },
+          {
+            "title": "Revis: Sparse Latent Steering to Mitigate Object Hallucination in Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2602.11824"
+          },
+          {
+            "title": "[2410.15778] Reducing Hallucinations in Vision-Language Models via Latent Space Steering",
+            "url": "https://arxiv.org/abs/2410.15778"
+          },
+          {
+            "title": "Adaptive Residual-Update Steering for Low-Overhead Hallucination Mitigation in Large Vision Language Models",
+            "url": "https://arxiv.org/html/2511.10292"
+          },
+          {
+            "title": "ACT Now: Preempting LVLM Hallucinations via Adaptive Context Integration",
+            "url": "https://arxiv.org/html/2604.00983v1"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the paper arXiv 2604.04743:\n\n## Paper Overview\n\nThe paper presents a geometric dynamical systems framework in which hallucinations arise from task-dependent basin structure in latent space.\n\n## Technical Framework\n\nUsing autoregressive hidden-state trajectories across multiple open-source models and benchmarks, the authors find that separability is strongly task-dependent rather than universal: factoid settings can show clearer basin separation, whereas summarization and misconception-heavy settings are typically less stable and often overlap. They formalize this behavior with task-complexity and multi-basin theorems, characterize basin emergence in L-layer transformers, and show that geometry-aware steering can reduce hallucination probability without retraining.\n\n## Key Findings\n\nThe research reveals that:\n- Large language models (LLMs) hallucinate: they produce fluent outputs that are factually incorrect.\n- Task-dependent basin structure varies significantly across different types of tasks\n- Basin separation is clearer in factoid tasks but less stable in summarization and misconception-heavy tasks\n\n## Geometry-Aware Steering Method\n\nThe concurrent work frames hallucination through basin geometry and proposes geometry-aware steering. This is referenced in related work as an important contribution to the field of LLM hallucination mitigation through steering methods that account for the geometric structure of latent space representations.\n\nThe paper represents a significant advance in understanding LLM hallucinations through the lens of dynamical systems and attractor basins in latent space."
+    ],
+    "durationSeconds": 7.898726374000005
+  },
+  "sourceToolAssistantUUID": "4cd3f51a-c5ba-46b9-95f3-86c9238faf31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T08:55:45.043Z_
+
+<details><summary>↩ Tool result · `toolu_013uinfsnVV7mSrLtsBFn1t9`</summary>
+
+```text
+# SVF Technical Implementation Details
+
+## 1) Concept Scoring Function Learning
+
+SVF learns the scoring function **f(·)** as a lightweight MLP with a single hidden layer (64 units). Training uses binary classification on preference triplets:
+
+- **Data**: Query-response pairs labeled y=1 for target continuations, y=0 for opposite responses
+- **Objective**: "jointly learn f, the shared projection R, and calibration parameters by a binary classification objective aggregated over ℓ∈ℒ"
+- **Training setup**: 40/10/50 train/validation/test split, 5 epochs, AdamW optimizer (lr: 3e-4, weight decay: 1e-2)
+
+The boundary f(h)=0 defines the concept, with steering direction computed as the gradient: v(h) = ∇ₕf(h).
+
+## 2) Direction Refresh During Generation
+
+Yes, SVF refreshes directions dynamically. "At step t and layer ℓ, we set v^(ℓ)_t = v^(ℓ)(h_t) and recompute it every K steps: for t∈{0,K,2K,…} we update v^(ℓ)_t from current state and reuse the cached direction in between."
+
+For open-ended generation experiments, K=1 (refresh every token), enabling "interventions that remain aligned with the evolving trajectory."
+
+## 3) Benchmark Results
+
+**Multiple-Choice (MWE)**:
+- Llama-2-7b: 87.2% overall accuracy, 82.2% steerable rate
+- Qwen3-14b: 85.1% overall accuracy, 80.1% steerable rate
+
+**Generation tasks** (LLM-as-judge, 1-4 scale):
+- SVF achieves 2.86 overall score vs. 2.82 (BiPO), outperforming baselines on hallucination reduction
+
+**TruthfulQA**: "SVF maintains consistent control across distribution shift" (2.78 hallucination elicitation, 2.08 reduction)
+
+No specific numerical breakdown for TruthfulQA alone is provided.
+
+## 4) Models Tested
+
+- Llama-2-7b-Chat-hf
+- Qwen3-14b (larger scale evaluation)
+
+Both are chat-fine-tuned models; no evaluation on base models reported.
+
+## 5) Computational Overhead
+
+SVF adds "lightweight" components: projection matrix (64-dim), layer embeddings (8-dim), and MLP boundary. The appendix notes "efficient long-form and multi-attribute control" but provides limited overhead quantification. Appendix F.3 mentions "Efficiency Analysis" with gradient FLOPs and inference time, though full details are truncated.
+
+## 6) Steering Gating/Selectivity
+
+SVF does **not** include explicit gating—it always steers when activated. The steering magnitude is controlled via "a scaling factor α selected based on the validation split" (typically 30–50 range). Intervention applies to a "contiguous 4-layer window" rather than all layers, reducing overhead.
+
+For multi-attribute steering, softmin composition automatically "prioritizes the attribute that is currently harder to satisfy" through weighted gradient mixing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "80e66750-b5d3-4636-a779-11c1a867a4a8",
+  "isSidechain": false,
+  "promptId": "12d080ed-eeea-4732-8b70-401fa8be4a0e",
+  "type": "user",
+  "uuid": "36da51f7-2090-4136-969c-afee907bcf99",
+  "toolUseResult": {
+    "bytes": 552267,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SVF Technical Implementation Details\n\n## 1) Concept Scoring Function Learning\n\nSVF learns the scoring function **f(·)** as a lightweight MLP with a single hidden layer (64 units). Training uses binary classification on preference triplets:\n\n- **Data**: Query-response pairs labeled y=1 for target continuations, y=0 for opposite responses\n- **Objective**: \"jointly learn f, the shared projection R, and calibration parameters by a binary classification objective aggregated over ℓ∈ℒ\"\n- **Training setup**: 40/10/50 train/validation/test split, 5 epochs, AdamW optimizer (lr: 3e-4, weight decay: 1e-2)\n\nThe boundary f(h)=0 defines the concept, with steering direction computed as the gradient: v(h) = ∇ₕf(h).\n\n## 2) Direction Refresh During Generation\n\nYes, SVF refreshes directions dynamically. \"At step t and layer ℓ, we set v^(ℓ)_t = v^(ℓ)(h_t) and recompute it every K steps: for t∈{0,K,2K,…} we update v^(ℓ)_t from current state and reuse the cached direction in between.\"\n\nFor open-ended generation experiments, K=1 (refresh every token), enabling \"interventions that remain aligned with the evolving trajectory.\"\n\n## 3) Benchmark Results\n\n**Multiple-Choice (MWE)**:\n- Llama-2-7b: 87.2% overall accuracy, 82.2% steerable rate\n- Qwen3-14b: 85.1% overall accuracy, 80.1% steerable rate\n\n**Generation tasks** (LLM-as-judge, 1-4 scale):\n- SVF achieves 2.86 overall score vs. 2.82 (BiPO), outperforming baselines on hallucination reduction\n\n**TruthfulQA**: \"SVF maintains consistent control across distribution shift\" (2.78 hallucination elicitation, 2.08 reduction)\n\nNo specific numerical breakdown for TruthfulQA alone is provided.\n\n## 4) Models Tested\n\n- Llama-2-7b-Chat-hf\n- Qwen3-14b (larger scale evaluation)\n\nBoth are chat-fine-tuned models; no evaluation on base models reported.\n\n## 5) Computational Overhead\n\nSVF adds \"lightweight\" components: projection matrix (64-dim), layer embeddings (8-dim), and MLP boundary. The appendix notes \"efficient long-form and multi-attribute control\" but provides limited overhead quantification. Appendix F.3 mentions \"Efficiency Analysis\" with gradient FLOPs and inference time, though full details are truncated.\n\n## 6) Steering Gating/Selectivity\n\nSVF does **not** include explicit gating—it always steers when activated. The steering magnitude is controlled via \"a scaling factor α selected based on the validation split\" (typically 30–50 range). Intervention applies to a \"contiguous 4-layer window\" rather than all layers, reducing overhead.\n\nFor multi-attribute steering, softmin composition automatically \"prioritizes the attribute that is currently harder to satisfy\" through weighted gradient mixing.",
+    "durationMs": 11800,
+    "url": "https://arxiv.org/html/2602.01654"
+  },
+  "sourceToolAssistantUUID": "80e66750-b5d3-4636-a779-11c1a867a4a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T08:55:50.924Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015L9MmjQpZm6NcpPVKkSky4`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.04743",
+  "prompt": "I need to verify specific technical claims about the steering method in this paper: 1) Does it use Euclidean distance as the trigger? Or some other distance metric? 2) Does it use a logistic regression controller? Or some other controller? What specific controller architecture? 3) Does it operate at per-sequence granularity? Or per-token? 4) What are the exact numerical results? 5) What model sizes are tested (1B-3B as claimed)? Please look for the METHOD section describing their Adaptive Geometry-Aware Steering approach."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36da51f7-2090-4136-969c-afee907bcf99",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y7KXRGZcMMkii9VVyH",
+  "type": "assistant",
+  "uuid": "74bc1b4a-ab16-4b95-80ea-c8be5254f5ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PtfyBJQSY975FEsbWNBXEC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 895,
+      "cache_creation_input_tokens": 1905,
+      "cache_read_input_tokens": 32234,
+      "output_tokens": 205,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1905,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 895,
+          "output_tokens": 205,
+          "cache_read_input_tokens": 32234,
+          "cache_creation_input_tokens": 1905,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1905
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T08:55:57.458Z_
+
+<details><summary>↩ Tool result · `toolu_015L9MmjQpZm6NcpPVKkSky4`</summary>
+
+```text
+# Technical Analysis of Hallucination Basins Steering Method
+
+## 1. Distance Metric
+The method uses **Euclidean distance** as the primary trigger. The paper defines distance to basin center as: `dbasin(ℓ)(h) = ‖h − μ(ℓ)‖₂`, measuring how far a hidden state deviates from the hallucination centroid.
+
+## 2. Controller Architecture
+The controller employs **logistic regression** trained on geometric features. Specifically, Algorithm 2 shows a learned scalar map `λ: ℝ² → ℝ₊` that takes a risk signature vector combining:
+- Minimum distance to basin across layers
+- Mean contraction ratio across layers
+
+The paper states the controller "is then determined by a learned scalar map... (e.g., a logistic regression trained to distinguish factual/hallucinated trajectories)."
+
+## 3. Granularity
+The steering operates at **per-sequence granularity**. The algorithm computes a single steering intensity `λX` per input sequence based on aggregated geometric features, then applies this uniformly across all steering layers for that sequence.
+
+## 4. Numerical Results
+Figure 4 shows steering effectiveness on three models (Llama-3.2-1B/3B, Qwen-2.5-1.5B) with AUROC improvements, though specific numerical values aren't quantified in the visible sections. Results demonstrate "reduction in generating hallucinations without the need for retraining."
+
+## 5. Model Sizes
+Experiments span **1B-8B parameters**: Llama-3.2-1B, Llama-3.2-3B, Qwen-2.5-1.5B, Gemma-2-2B, Llama-3.1-8B, and Mistral-7B-v0.3, confirming the claimed range.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "74bc1b4a-ab16-4b95-80ea-c8be5254f5ff",
+  "isSidechain": false,
+  "promptId": "12d080ed-eeea-4732-8b70-401fa8be4a0e",
+  "type": "user",
+  "uuid": "6fc41f50-4376-4a13-aec0-9009658e7c8a",
+  "toolUseResult": {
+    "bytes": 534846,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Technical Analysis of Hallucination Basins Steering Method\n\n## 1. Distance Metric\nThe method uses **Euclidean distance** as the primary trigger. The paper defines distance to basin center as: `dbasin(ℓ)(h) = ‖h − μ(ℓ)‖₂`, measuring how far a hidden state deviates from the hallucination centroid.\n\n## 2. Controller Architecture\nThe controller employs **logistic regression** trained on geometric features. Specifically, Algorithm 2 shows a learned scalar map `λ: ℝ² → ℝ₊` that takes a risk signature vector combining:\n- Minimum distance to basin across layers\n- Mean contraction ratio across layers\n\nThe paper states the controller \"is then determined by a learned scalar map... (e.g., a logistic regression trained to distinguish factual/hallucinated trajectories).\"\n\n## 3. Granularity\nThe steering operates at **per-sequence granularity**. The algorithm computes a single steering intensity `λX` per input sequence based on aggregated geometric features, then applies this uniformly across all steering layers for that sequence.\n\n## 4. Numerical Results\nFigure 4 shows steering effectiveness on three models (Llama-3.2-1B/3B, Qwen-2.5-1.5B) with AUROC improvements, though specific numerical values aren't quantified in the visible sections. Results demonstrate \"reduction in generating hallucinations without the need for retraining.\"\n\n## 5. Model Sizes\nExperiments span **1B-8B parameters**: Llama-3.2-1B, Llama-3.2-3B, Qwen-2.5-1.5B, Gemma-2-2B, Llama-3.1-8B, and Mistral-7B-v0.3, confirming the claimed range.",
+    "durationMs": 6530,
+    "url": "https://arxiv.org/html/2604.04743"
+  },
+  "sourceToolAssistantUUID": "74bc1b4a-ab16-4b95-80ea-c8be5254f5ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-16T08:56:28.096Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Now I have verified the Hallucination Basins technical details. The claims in the original proposal are actually correct:
+- It uses Euclidean distance as the trigger ✓
+- It uses logistic regression controller ✓
+- It operates at per-sequence granularity ✓
+- The model sizes include 1B-3B but also extend to 8B ✓
+
+So the reviewer's concern about "unverified claims" can be addressed - the claims ARE verifiable and correct. I can keep them but note they're verified.
+
+Now let me think deeply about the stagnation issue and whether this idea needs a major revision or if the targeted fixes are sufficient.
+
+
+Looking at the competitive landscape, FASB is the most direct competitor with its linear probes on attention heads and token-level steering with rollback capabilities, achieving strong results on TruthfulQA. SVF takes a different approach by learning context-dependent steering directions that refresh during generation, showing how the field is exploring various trigger mechanisms and update frequencies.
+
+The core tension I'm grappling with is whether the stagnation across four rounds reflects a fundamental limitation in the approach or just a need for better execution and positioning. The hallucination basins concept has solid verification across multiple components, but I need to figure out what's actually blocking progress.
+
+Looking at the novelty claim more carefully—sentence-level gating for steering—I realize the positioning matters more than I initially thought. FASB already handles the "when to steer" question through token-level detection and backtracking, while SVF varies steering directions adaptively. What GTS offers that's genuinely different is pre-emptive gating that avoids wasted computation, plus a geometric interpretation of hallucinations as distance from factual attractors rather than learned surface features. The key insight is that GTS decides *whether* to steer at all, whereas existing methods either always steer with varying intensity or detect problems after they've already started manifesting.
+
+I need to reshape the paper around this distinction. That means positioning FASB as the primary baseline to compare against, adding SVF and Curveball Steering to the related work, and being explicit about the compute efficiency angle—pre-emptive intervention versus corrective backtracking. I should also include FASB as an ablation, trim the resource budget down to around 200 H100-hours, and correct the Hallucination Basins model size to the full 1B-8B range rather than just 1B.
+
+For the experiments, I'm consolidating down to 7 core benchmarks for ablations, combining some conditions, running the full suite only on GTS-full and the top three baselines, and using a 4-benchmark subset for testing ablation variants. Now I'm putting together the revised JSON with these changes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6fc41f50-4376-4a13-aec0-9009658e7c8a",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y8HMitdrgftZcwb94H",
+  "type": "assistant",
+  "uuid": "5faa8d03-d5e0-46cb-8bb9-b4db09b8134f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012t6XnMmVap6AiScQ3XRBi4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1553,
+      "cache_read_input_tokens": 34139,
+      "output_tokens": 1141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1553,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1141,
+          "cache_read_input_tokens": 34139,
+          "cache_creation_input_tokens": 1553,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1553
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-16T08:56:28.105Z_
+
+Now I have all the information I need. Let me also verify one more thing about FASB's computational overhead with a focused search.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5faa8d03-d5e0-46cb-8bb9-b4db09b8134f",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y8HMitdrgftZcwb94H",
+  "type": "assistant",
+  "uuid": "48cf3852-2303-4307-b87b-971fff58d99b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012t6XnMmVap6AiScQ3XRBi4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1553,
+      "cache_read_input_tokens": 34139,
+      "output_tokens": 1141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1553,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1141,
+          "cache_read_input_tokens": 34139,
+          "cache_creation_input_tokens": 1553,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1553
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-16T08:56:28.236Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011UpBgciQbu6ijTgnN1d9fJ`</summary>
+
+```json
+{
+  "query": "FASB activation steering backtracking overhead latency tokens regeneration computational cost NeurIPS 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "48cf3852-2303-4307-b87b-971fff58d99b",
+  "isSidechain": false,
+  "requestId": "req_011Cb5y8HMitdrgftZcwb94H",
+  "type": "assistant",
+  "uuid": "63c4f151-82a9-46dc-b049-f893228e0cf3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012t6XnMmVap6AiScQ3XRBi4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1553,
+      "cache_read_input_tokens": 34139,
+      "output_tokens": 1141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1553,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1141,
+          "cache_read_input_tokens": 34139,
+          "cache_creation_input_tokens": 1553,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1553
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Geometry-Triggered Sentence-Level Activation Steering for Factual Hall…",
+  "leafUuid": "63c4f151-82a9-46dc-b049-f893228e0cf3",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise hallucination steering idea based on reviewer feedback",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382"
+}
+```
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T08:56:34.028Z_
+
+<details><summary>↩ Tool result · `toolu_011UpBgciQbu6ijTgnN1d9fJ`</summary>
+
+```text
+Web search results for query: "FASB activation steering backtracking overhead latency tokens regeneration computational cost NeurIPS 2025"
+
+Links: [{"title":"NeurIPS Poster Steering When Necessary: Flexible Steering Large Language Models with Backtracking","url":"https://neurips.cc/virtual/2025/poster/116311"},{"title":"Steering When Necessary: Flexible Steering Large Language Models with Backtracking","url":"https://arxiv.org/html/2508.17621"},{"title":"NeurIPS Activation Steering for Chain-of-Thought Compression","url":"https://neurips.cc/virtual/2025/loc/san-diego/126680"},{"title":"Apple Machine Learning Research at NeurIPS 2025 - Apple Machine Learning Research","url":"https://machinelearning.apple.com/research/neurips-2025"},{"title":"NeurIPS 2025 Papers","url":"https://neurips.cc/virtual/2025/papers.html"},{"title":"2025 Conference","url":"https://neurips.cc/Conferences/2025"},{"title":"[NeurIPS 2025] Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free","url":"https://arxiviq.substack.com/p/neurips-2025-gated-attention-for"},{"title":"Accepted papers | FoRLM @ NeurIPS'25","url":"https://reasoning-workshop.github.io/accepted/"},{"title":"NeurIPS 2025 Conference | OpenReview","url":"https://openreview.net/group?id=NeurIPS.cc%2F2025%2FConference"},{"title":"NeurIPS 2025 Schedule","url":"https://neurips.cc/virtual/2025/calendar"}]
+
+I found relevant results for your search query. Here's what was discovered:
+
+## FASB (Flexible Activation Steering with Backtracking) - NeurIPS 2025
+
+The Flexible Activation Steering with Backtracking (FASB) framework dynamically determines both the necessity and strength of intervention by tracking the internal states of the LLMs during generation, considering both the question and the generated content.
+
+### Key Features:
+
+**Dynamic Intervention:** FASB identifies attention heads that are consistent with the desired behavior and derives the steering vector and classifier, then uses classifiers to dynamically determine whether and how strongly to intervene by probing the internal states of the LLM.
+
+**Backtracking Mechanism:** The backtracking mechanism corrects deviated tokens and steers the LLMs toward the desired behavior, since intervening after detecting a deviation from the desired behavior is often too late.
+
+### Evaluation:
+
+Extensive experiments on the TruthfulQA dataset and six multiple-choice datasets demonstrate that the method outperforms baselines.
+
+The paper was presented as a poster at NeurIPS 2025, and code is available at https://github.com/gjw185/FASB.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63c4f151-82a9-46dc-b049-f893228e0cf3",
+  "isSidechain": false,
+  "promptId": "12d080ed-eeea-4732-8b70-401fa8be4a0e",
+  "type": "user",
+  "uuid": "3a84dace-8c25-4db7-928f-4db7ce2691fb",
+  "toolUseResult": {
+    "query": "FASB activation steering backtracking overhead latency tokens regeneration computational cost NeurIPS 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PgNLdDgkGjj24FnA4Rwjcu",
+        "content": [
+          {
+            "title": "NeurIPS Poster Steering When Necessary: Flexible Steering Large Language Models with Backtracking",
+            "url": "https://neurips.cc/virtual/2025/poster/116311"
+          },
+          {
+            "title": "Steering When Necessary: Flexible Steering Large Language Models with Backtracking",
+            "url": "https://arxiv.org/html/2508.17621"
+          },
+          {
+            "title": "NeurIPS Activation Steering for Chain-of-Thought Compression",
+            "url": "https://neurips.cc/virtual/2025/loc/san-diego/126680"
+          },
+          {
+            "title": "Apple Machine Learning Research at NeurIPS 2025 - Apple Machine Learning Research",
+            "url": "https://machinelearning.apple.com/research/neurips-2025"
+          },
+          {
+            "title": "NeurIPS 2025 Papers",
+            "url": "https://neurips.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "2025 Conference",
+            "url": "https://neurips.cc/Conferences/2025"
+          },
+          {
+            "title": "[NeurIPS 2025] Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free",
+            "url": "https://arxiviq.substack.com/p/neurips-2025-gated-attention-for"
+          },
+          {
+            "title": "Accepted papers | FoRLM @ NeurIPS'25",
+            "url": "https://reasoning-workshop.github.io/accepted/"
+          },
+          {
+            "title": "NeurIPS 2025 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=NeurIPS.cc%2F2025%2FConference"
+          },
+          {
+            "title": "NeurIPS 2025 Schedule",
+            "url": "https://neurips.cc/virtual/2025/calendar"
+          }
+        ]
+      },
+      "I found relevant results for your search query. Here's what was discovered:\n\n## FASB (Flexible Activation Steering with Backtracking) - NeurIPS 2025\n\nThe Flexible Activation Steering with Backtracking (FASB) framework dynamically determines both the necessity and strength of intervention by tracking the internal states of the LLMs during generation, considering both the question and the generated content.\n\n### Key Features:\n\n**Dynamic Intervention:** FASB identifies attention heads that are consistent with the desired behavior and derives the steering vector and classifier, then uses classifiers to dynamically determine whether and how strongly to intervene by probing the internal states of the LLM.\n\n**Backtracking Mechanism:** The backtracking mechanism corrects deviated tokens and steers the LLMs toward the desired behavior, since intervening after detecting a deviation from the desired behavior is often too late.\n\n### Evaluation:\n\nExtensive experiments on the TruthfulQA dataset and six multiple-choice datasets demonstrate that the method outperforms baselines.\n\nThe paper was presented as a poster at NeurIPS 2025, and code is available at https://github.com/gjw185/FASB."
+    ],
+    "durationSeconds": 5.786820246999996
+  },
+  "sourceToolAssistantUUID": "63c4f151-82a9-46dc-b049-f893228e0cf3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-16T08:56:53.154Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me synthesize my understanding and write the revised proposal.
+
+Key decisions for the revision:
+
+1. **FASB positioning** - This is the most critical fix. GTS's advantage over FASB:
+   - Pre-emptive vs. corrective: GTS gates BEFORE generating (no wasted compute), FASB detects deviation AFTER generating and backtracks (wastes 10 tokens of compute)
+   - Geometric vs. directional: GTS measures Mahalanobis distance from factual attractors (knowledge absence), FASB uses linear probes on attention heads (learned alignment feature)
+   - Atomic vs. partial: GTS steers entire claims at once to match FActScore evaluation, while FASB regenerates fragments mid-claim
+   - Overhead comparison: GTS only adds boundary checks, whereas FASB incurs regeneration costs for each intervention
+
+2. **SVF positioning** - SVF handles the "how" of steering with context-dependent directions, while GTS addresses the "whether" question through binary gating—they're complementary approaches.
+
+3. **Curveball Steering** - This demonstrates that nonlinear geometry matters in the broader landscape.
+
+4. **Resource trim** - Need to get from 240
+
+-270 hours down to 200 or less by combining some ablation conditions, running the full 10-benchmark suite only on GTS-full and top baselines, and using a 4-benchmark core set for ablation variants—should save 40-70 hours.
+
+5. **Hallucination Basins** - The claims check out; updating the model range to "1B-8B" instead of "1B-3B."
+
+6. **Novelty argument** - Sharpening this by directly contrasting with FASB's mechanism and articulating why pre-emptive sentence-level gating outperforms their approach. This is actually a more substantial revision than initially thought—adding FASB as a primary competitor and reframing the novelty argument is significant enough that I should reconsider whether this qualifies as a minor change.
+
+But the core method itself stays intact, so I'm treating this as minor scope. The experimental design does shift though, since the reviewer wants FASB included as an ablation baseline comparing GTS-full against a FASB-style per-token probe trigger. And the resource budget needs a complete overhaul. Still calling it minor since the pipeline doesn't fundamentally change.
+
+Now I'll draft the full revised proposal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a84dace-8c25-4db7-928f-4db7ce2691fb",
+  "isSidechain": false,
+  "requestId": "req_011Cb5yAvwUbtsG6a4pEZWwJ",
+  "type": "assistant",
+  "uuid": "5ba340a9-12c2-4580-88cc-f7d9add987c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G9nMmwEGbKSWJj213Qa8bw",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1887,
+      "cache_read_input_tokens": 35692,
+      "output_tokens": 8253,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1887,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8253,
+          "cache_read_input_tokens": 35692,
+          "cache_creation_input_tokens": 1887,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1887
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-16T08:59:44.580Z_
+
+I now have comprehensive information about all three missing competitors. Let me synthesize my findings:
+
+1. **FASB** (NeurIPS 2025): Uses linear probes on attention heads, detects deviation at token-level, backtracks 10 tokens to regenerate. MC1 48.71% on TruthfulQA (LLaMA-2-7B-Chat). Key weakness: corrective (wastes tokens then rolls back) vs. pre-emptive.
+
+2. **SVF** (Feb 2026): Learns context-dependent steering directions via MLP gradient, refreshes every K steps. Always steers (no gating). Complementary to GTS.
+
+3. **Curveball Steering** (March 2026): Nonlinear kernel PCA for geometry-aware steering. Shows activation spaces have substantial geometric distortion.
+
+4. **Hallucination Basins claims verified**: Euclidean distance trigger, logistic regression controller, per-sequence granularity all confirmed. Model range is actually 1B-8B (not just 1B-3B).
+
+Now I'll produce the revised idea with these targeted fixes: positioning against FASB, citing SVF and Curveball, trimming resources to ≤200h, and correcting minor claims.
+
+```json
+{
+  "title": "Geometry-Triggered Sentence-Level Activation Steering for Factual Hallucination Suppression",
+  "core_problem": "Recent work (Attractor Geometry of Transformer Memory, May 2026) demonstrates that factual hallucination corresponds to 'basin absence'—the hidden state drifts freely when no memorized attractor basin exists—and that geometric margin separates correct recall from hallucination substantially better than entropy (AUROC 0.858 vs. 0.656 on TruthfulQA; up to 0.993 on controlled factoid tasks). Yet translating geometric margin into targeted activation interventions remains unsolved at the right granularity. Existing methods address 'when to steer' at mismatched granularities: FASB (NeurIPS 2025) introduces token-level probe-based detection with backtracking—the closest prior work on selective steering—but operates reactively (detect deviation, then rollback 10 tokens and regenerate), wasting compute and partially disrupting correct content mid-claim. Hallucination Basins (April 2026) proposes geometry-aware steering but operates at per-sequence granularity—applying uniform corrections across all claims in a response. Spherical Steering (ICML 2026) introduces geometry-aware rotation with an input-adaptive vMF confidence gate, achieving strong TruthfulQA gains, but applies steering per-token without claim-level selectivity. Steering Vector Fields (Feb 2026) learns context-dependent steering directions but always steers at every K-step without gating. COAST (May 2026) addresses utility preservation via constrained optimization of the steering vector itself but does not address when to steer. The gap is a pre-emptive, claim-granular gating mechanism that decides whether to steer before generating each factual unit—avoiding both FASB's corrective overhead and per-token methods' indiscriminate intervention.",
+  "opportunity": "The critical gap is between detection granularity and intervention granularity, with an additional temporal mismatch (pre-emptive vs. corrective). FASB (NeurIPS 2025) is the closest work addressing 'when to steer,' using linear probes on attention heads with token-level monitoring and backtracking. However, FASB has three structural limitations that create opportunity: (1) It is corrective rather than pre-emptive—it detects deviation after tokens are generated, then rolls back s=10 tokens and regenerates, wasting compute proportional to intervention frequency and partially disrupting coherent sub-claims. (2) Its linear probe measures directional alignment to a learned truthful/hallucinated axis rather than measuring knowledge absence geometrically—a surface-level feature that may not generalize across domains. (3) It operates at token granularity, meaning interventions cut across claim boundaries (a backtrack may split a correct clause from an incorrect one). The unexploited sweet spot is pre-emptive sentence-level gating: sentences are the natural unit of factual claims (the granularity FActScore evaluates, the granularity humans judge, and the granularity at which LLMs perform context integration before next-sentence planning). A system that (1) detects basin absence at sentence boundaries before generating the next claim, (2) makes binary steer/skip decisions at claim granularity (preserving entire correct sentences untouched), and (3) uses per-layer intensity control provides a 'when + where + how much' framework that is pre-emptive (no wasted tokens), atomic (entire claims preserved or steered), and geometrically principled (Mahalanobis distance measuring knowledge absence rather than directional alignment).",
+  "landscape": "**Selective steering (closest competitors):** FASB (arXiv 2508.17621, NeurIPS 2025) is the most direct competitor, addressing 'when to steer' via linear probes trained on attention head activations. It monitors the concatenated question-and-generated-content states, triggers intervention when deviation is detected, and backtracks s=10 tokens to regenerate with steering. Achieves MC1 48.71% on TruthfulQA (LLaMA-2-7B-Chat, up from 33.41% baseline). Operates at token-level with top-24 attention heads. GTS differs in three fundamental ways: (a) pre-emptive gating at sentence boundaries (no wasted tokens, no rollback) vs. FASB's corrective backtracking (regenerates 10 tokens per intervention); (b) Mahalanobis basin-distance trigger measuring knowledge absence from factual attractor geometry vs. FASB's linear probe measuring learned directional alignment on attention heads; (c) atomic claim-level decisions (entire sentences preserved or steered) vs. FASB's token-level cuts that may split coherent claims. FASB's backtracking overhead scales linearly with intervention frequency—for hallucination-dense passages, this means significant wasted compute.\n\n**Geometry-aware steering:** Spherical Steering (arXiv 2602.08169, ICML 2026) uses geodesic rotation with a von Mises-Fisher confidence gate that dynamically modulates per-token steering strength based on cosine alignment to truthful/hallucinated directions. Achieves MC1 +15.80% on TruthfulQA (Llama-3.1-8B) while preserving generation quality. Operates per-token with single-layer intervention (layer 24). GTS differs via sentence-level binary gating (skip entire correct claims), Mahalanobis basin-distance trigger (knowledge absence vs. directional alignment), and per-layer MLP controller. Hallucination Basins (arXiv 2604.04743, April 2026) proposes Adaptive Geometry-Aware Steering using centroid-difference vectors, Euclidean distance trigger (dbasin = ||h − μ||₂), and a learned scalar map trained via logistic regression on geometric features (minimum basin distance + mean contraction ratio) at per-sequence granularity. Tested on Llama-3.2-1B/3B, Qwen-2.5-1.5B, Gemma-2-2B, Llama-3.1-8B, and Mistral-7B. GTS advances beyond it via sentence-level within-sequence selectivity, Mahalanobis distance (covariance-aware), and per-layer controller.\n\n**Context-dependent steering directions:** Steering Vector Fields (SVF, arXiv 2602.01654, Feb 2026) learns a differentiable concept scoring MLP whose gradient defines context-aware steering directions, refreshed every K steps during generation. Tested on Llama-2-7b and Qwen3-14b. SVF addresses 'how to steer' (varying directions) but always steers—no gating mechanism. GTS is complementary: it addresses 'whether to steer' (binary gating) while SVF addresses 'in which direction.' These could be combined (sentence-gated SVF directions).\n\n**Nonlinear geometry-aware approaches:** Curveball Steering (arXiv 2603.09313, March 2026) demonstrates substantial geometric distortion in activation spaces (measured via geodesic/Euclidean distance ratios) and proposes nonlinear polynomial kernel PCA for steering, outperforming linear PCA-based steering. Relevant as evidence that activation geometry is non-trivially curved—supporting the use of Mahalanobis (covariance-aware) over Euclidean distance.\n\n**Utility-preservation approaches:** COAST (arXiv 2605.01167, May 2026) formalizes collateral damage as unintended feature-direction shifts and solves steering as constrained optimization. Complementary to GTS: COAST optimizes the steering vector, GTS optimizes when to apply it. FLAS (arXiv 2605.05892, May 2026) learns a concept-conditioned velocity field for multi-step token-level activation transport. Not hallucination-specific and does not use geometric triggers.\n\n**Hallucination detection (analysis-only):** Attractor Geometry of Transformer Memory (arXiv 2605.05686, May 2026) demonstrates hallucination = basin absence with geometric margin AUROC 0.858 on TruthfulQA (vs. entropy 0.656), 0.993 on controlled factoid tasks. PCNet (arXiv 2605.05953, May 2026) detects hallucinations as geometric anomalies and applies contrastive decoding at token level. Where Does Reasoning Break? (arXiv 2605.13772, May 2026) detects step-level hallucination via transport geometry but proposes no intervention. DRIFT (arXiv 2601.14210, Jan 2026) detects representational instability.\n\n**Calibration/expression:** Calibrating Verbal Uncertainty as a Linear Feature (Ji et al., EMNLP 2025 Outstanding Paper) achieves ~31.9% reduction in confident hallucinations via linear-feature intervention. Calibrates uncertainty expression without correcting underlying generation—complementary.\n\n**Other steering methods:** ACT (WWW 2025) uses K-means clustered corpus-averaged vectors. ODESteer (ICLR 2026) achieves 5.7% over ACT via ODE-based multi-step steering but remains input-oblivious. Guiding Giants/WAS (arXiv 2505.20309) trains lightweight controllers for layer-aware weighted activation steering. SADI (arXiv 2410.12299) constructs input-specific dynamic steering vectors. HELIX/Tethered Reasoning (arXiv 2602.17691) uses Mahalanobis distance + graduated steering for structural coherence in quantized models.\n\n**Supporting evidence:** Hallucination as Trajectory Commitment (arXiv 2604.15400, April 2026) provides causal evidence for early commitment with asymmetric attractor dynamics, supporting timely intervention before commitment propagates. Think in Sentences (arXiv 2604.10135, April 2026) demonstrates sentence boundary attention concentration patterns consistent with context integration cycles.",
+  "approach": "We propose Geometry-Triggered Steering (GTS), a method that bridges the detection-to-intervention gap by introducing pre-emptive sentence-level selective gating to geometry-aware activation steering. The key insight is that the 'when to steer' decision should be (a) pre-emptive (decided before generating the next claim, not corrective after deviation), (b) atomic at claim granularity (entire sentences preserved or steered, not partially disrupted), and (c) geometrically principled (measuring knowledge absence rather than learned directional features).\n\n**Stage 1: TRIGGER (PCA-Regularized Geometric Margin at Sentence Boundaries)**\nDuring generation, at each sentence boundary (detected via period/newline tokens), extract hidden-state activations at the boundary token across layers using nnsight intervention hooks. Compute geometric margin using class-conditional PCA-regularized Mahalanobis distance:\n(a) Offline: From a calibration set (~2K examples from TruthfulQA + FELM correct-answer forward passes), collect hidden states at factual completion positions. Apply PCA to project from full hidden dimension (d=4096) to top-k principal components (k=256), reducing covariance estimation to a well-conditioned 256×256 matrix.\n(b) Online: Project the boundary token's activation into the PCA subspace, compute Mahalanobis distance to nearest factual cluster centroid: δ(x) = √((h_pca - μ_pca)ᵀ Σ_pca⁻¹ (h_pca - μ_pca)).\n(c) When δ exceeds a calibrated threshold (set via precision-recall analysis on validation split targeting high precision to minimize false interventions), flag the upcoming sentence for intervention.\n\n**Trigger reliability note:** Geometric margin achieves AUROC 0.858 on TruthfulQA (vs. entropy 0.656)—sufficient for selective intervention with appropriate thresholding, though far from the 0.993 achieved on synthetic factoid tasks. This motivates operating at high-precision thresholds (accepting lower recall) so that when GTS intervenes, it is likely correct.\n\n**Comparison to FASB's trigger:** FASB trains a linear probe p(x) = sigmoid(⟨θ, x⟩) on attention head activations to detect deviation from desired behavior. This measures directional alignment—a learned surface feature that requires the model to have already begun deviating. GTS's Mahalanobis trigger measures geometric distance from factual attractor basins—detecting knowledge absence before the model commits to hallucination. This is pre-emptive rather than corrective, and grounded in attractor geometry rather than learned classification boundaries.\n\n**Stage 2: DIRECTION (Centroid-Directed Steering Vector)**\nCompute the steering direction as the unit vector from the current activation toward the factual cluster centroid at each layer in the PCA subspace, then project back to full space: v_steer = (μ_pca - h_pca) / ||μ_pca - h_pca||, lifted back to full dimensionality via PCA inverse transform. This yields an input-specific correction direction toward regions of successful fact recall. We additionally experiment with a COAST-style constrained refinement of this vector to minimize collateral damage.\n\n**Stage 3: INTENSITY (Per-Layer MLP Controller)**\nA lightweight 2-layer MLP controller (hidden dim 64, inspired by Guiding Giants/WAS) takes [geometric_margin, layer_index/L, margin_velocity] as input (3D feature vector) and predicts per-layer steering weight λ_ℓ. The controller is trained on a calibration set (~2K examples) via a combined objective: maximize FActScore on steered outputs while minimizing perplexity increase on outputs where margin is below threshold. Steering is applied: h_steered(ℓ) = h(ℓ) + λ_ℓ · v_steer(ℓ) at the residual stream of layers where λ_ℓ > ε.\n\n**Timing Hypothesis Validation:**\nWe explicitly frame the following as a testable hypothesis: geometric margin at sentence boundary N is predictive of factual accuracy in sentence N+1. Validation protocol: (1) Generate 500 multi-sentence responses on LongFact/FActScore prompts. (2) Compute margin at every sentence boundary. (3) Annotate each subsequent sentence with FActScore. (4) Measure Spearman correlation between boundary margin and next-sentence factuality. If correlation ρ < 0.3, we fall back to a look-ahead variant: extract margin from the first 3 generated tokens of the new sentence (before committing via speculative-style buffering). The look-ahead variant adds ~15% latency overhead.\n\n**Ablation Design (isolating each contribution):**\n- GTS-full vs. GTS-sequence (ablate sentence gating: single decision per sequence, matching Hallucination Basins)\n- GTS-full vs. GTS-Euclidean (replace Mahalanobis with Euclidean, matching Hallucination Basins' trigger)\n- GTS-full vs. GTS-scalar (replace per-layer MLP with single scalar map, matching Hallucination Basins' controller)\n- GTS-full vs. GTS-pertoken (apply continuous steering every token, matching Spherical Steering's granularity with our trigger signal)\n- GTS-full vs. GTS-FASB-trigger (replace Mahalanobis trigger with FASB-style linear probe on attention heads, isolating the trigger mechanism contribution)\n- GTS-full vs. Spherical Steering (direct comparison using their released code)\n- GTS-full vs. FASB (direct comparison using their released code, github.com/gjw185/FASB)\n- GTS-full + COAST refinement (combining selective gating with constrained optimization)\n\n**Novelty acknowledgment:** If Mahalanobis does not significantly outperform Euclidean in ablations, the primary novelty contribution rests on pre-emptive sentence-level gating + per-layer controller as the mechanism enabling within-sequence selectivity without backtracking—which remains differentiated from all baselines including FASB.\n\nImplementation uses nnsight 0.6 on Qwen3-8B and Llama-3.1-8B-Instruct. Evaluation on TruthfulQA, HaluEval, FaithBench, FActScore, SimpleQA, LongFact, MT-Bench (7 primary benchmarks), plus ECE/Brier calibration metrics. Spherical Steering (released code) and FASB (released code) serve as primary baselines.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~180h H100 80GB",
+      "gpu_utilization": "Low (~15-20%). GPU idles during code/debug/analysis cycles.",
+      "timeline": "3-4 months",
+      "team": "1-2 researchers with mechanistic interpretability + geometric ML experience",
+      "estimated_gpu_cost": "$540-600 (H100 at ~$3/hr spot)",
+      "factScore_api_cost": "$150-300 (GPT-4 entailment checks: ~150 checks/biography × 2 models × ~6 conditions × 150 examples)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~195h H100 80GB",
+      "gpu_utilization": "Moderate (45-55%). Agent queues batches but blocks on geometric design decisions and timing validation analysis.",
+      "timeline": "3-4 weeks",
+      "team": "1 researcher, ~30min/day reviewing agent proposals",
+      "claude_api_cost": "$200-350",
+      "estimated_gpu_cost": "$585-650",
+      "factScore_api_cost": "$150-300",
+      "risk_note": "Timing hypothesis validation and precision-recall threshold calibration benefit from human intuition. If timing hypothesis fails (ρ < 0.3), implementing look-ahead fallback adds ~1 week."
+    },
+    "auto_research": {
+      "gpu_hours": "~195-200h H100 80GB",
+      "gpu_utilization": "High (~85-90%). Well-defined pipeline with clear ablation structure.",
+      "timeline": "10-12 days with 2-4 H100 GPUs running in parallel",
+      "team": "0 (initial setup: provision GPUs, configure nnsight, define eval harness, clone Spherical Steering + FASB repos)",
+      "claude_api_cost": "$350-500 (est. 4500-6000 turns)",
+      "estimated_gpu_cost": "$585-600",
+      "factScore_api_cost": "$200-350 (higher due to more ablation conditions)",
+      "speed_bottleneck": "GPU count for parallel ablation sweeps. Secondary: FActScore GPT-4 API calls.",
+      "resource_optimization": "Budget achieved via: (1) full 7-benchmark evaluation only on GTS-full, Spherical Steering, FASB, and GTS+COAST (4 conditions); (2) 4-benchmark core set (TruthfulQA, FActScore, SimpleQA, MT-Bench) for ablation variants (4 conditions); (3) Mahalanobis-vs-Euclidean and scalar-vs-MLP ablations combined into a 2×2 grid rather than separate sweeps; (4) single model (Llama-3.1-8B) for ablations, both models for final results only.",
+      "risk_note": "Primary risk: timing hypothesis may fail for multi-sentence generation (Attractor Geometry validated only on factoid completion). Mitigation: look-ahead variant (~10h additional if needed). Secondary risk: Mahalanobis may not beat Euclidean—novelty then rests on pre-emptive sentence-level gating + per-layer controller. Tertiary risk: FASB's simpler probe mechanism may achieve comparable selective-steering quality on short-form QA benchmarks—GTS's advantage is expected to be strongest on long-form generation (FActScore, LongFact) where multiple claims coexist."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Steering When Necessary: Flexible Steering Large Language Models with Backtracking (FASB, arXiv 2508.17621, NeurIPS 2025)",
+    "Spherical Steering: Geometry-Aware Activation Rotation for Language Models (arXiv 2602.08169, ICML 2026)",
+    "Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (arXiv 2605.05686, May 2026)",
+    "Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (arXiv 2604.04743, April 2026)",
+    "Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models (SVF, arXiv 2602.01654, Feb 2026)",
+    "Curveball Steering: The Right Direction To Steer Isn't Always Linear (arXiv 2603.09313, March 2026)",
+    "Minimizing Collateral Damage in Activation Steering (COAST, arXiv 2605.01167, May 2026)",
+    "Beyond Steering Vector: Flow-based Activation Steering for Inference-Time Intervention (FLAS, arXiv 2605.05892, May 2026)",
+    "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (Ji et al., EMNLP 2025 Outstanding Paper, arXiv 2503.14477)",
+    "Tethered Reasoning (HELIX): Decoupling Entropy from Hallucination in Quantized LLMs via Manifold Steering (arXiv 2602.17691, Feb 2026)",
+    "Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method (ACT, WWW 2025)",
+    "ODESteer: A Unified ODE-Based Steering Framework for LLM Alignment (ICLR 2026, arXiv 2602.17560)",
+    "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arXiv 2605.13772, May 2026)",
+    "DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness (arXiv 2601.14210, Jan 2026)",
+    "Guiding Giants: Lightweight Controllers for Weighted Activation Steering in LLMs (arXiv 2505.20309, May 2025)",
+    "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits (PCNet, arXiv 2605.05953, May 2026)",
+    "Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics (arXiv 2604.15400, April 2026)",
+    "Think in Sentences: Explicit Sentence Boundaries Enhance Language Model's Capabilities (arXiv 2604.10135, April 2026)",
+    "A Simple Unified Framework for Detecting Out-of-Distribution Samples and Adversarial Attacks (Lee et al., NeurIPS 2018)",
+    "Semantics-Adaptive Activation Intervention for LLMs via Dynamic Steering Vectors (SADI, arXiv 2410.12299, 2024)",
+    "Dynamic Multimodal Activation Steering for Hallucination Mitigation in Large Vision-Language Models (ICLR 2026)"
+  ],
+  "description": "We propose Geometry-Triggered Steering (GTS), a method that introduces pre-emptive sentence-level selective gating to geometry-aware activation steering for factual hallucination suppression. The key insight is that the 'when to steer' decision should be pre-emptive (decided before generating), atomic at claim granularity (sentences), and geometrically principled (measuring knowledge absence).\n\nBuilding on the finding that geometric margin separates correct recall from hallucination (AUROC 0.858 on TruthfulQA; Liang et al., May 2026), GTS monitors PCA-regularized Mahalanobis distance from residual stream activations to factual cluster centroids at sentence boundaries during generation. When geometric margin indicates basin absence—suggesting the model lacks a memorized attractor for the upcoming content—GTS computes an input-specific steering vector directed toward the factual centroid and applies it with per-layer weights predicted by a lightweight MLP controller. Sentences where the model is within a factual basin are left entirely untouched.\n\nGTS addresses limitations in the most direct prior work on selective steering: (1) vs. FASB (NeurIPS 2025), which achieves MC1 48.71% on TruthfulQA via token-level probe monitoring + 10-token backtracking, GTS is pre-emptive rather than corrective—it gates before generating rather than detecting deviation and rolling back. This eliminates wasted compute from backtracking (which scales with intervention frequency) and preserves claim coherence (no mid-sentence rollbacks). GTS's Mahalanobis trigger measures geometric knowledge absence from attractor basins, while FASB's linear probe measures learned directional alignment on attention heads—a surface feature that requires deviation to have already begun. (2) vs. Spherical Steering (ICML 2026, +15% TruthfulQA MC1), which applies per-token rotation with continuous vMF-gated intensity, GTS makes binary claim-level steer/skip decisions—enabling complete preservation of correct sub-claims. The trigger signals differ: vMF gate measures alignment to a fixed truthfulness axis; Mahalanobis measures distance from factual attractor basins. (3) vs. Steering Vector Fields (Feb 2026), which learns context-dependent steering directions refreshed every K steps but always steers, GTS decides whether to steer at all—complementary approaches that could be combined. (4) vs. Hallucination Basins (April 2026), which uses per-sequence Euclidean distance with a logistic-regression scalar map on 1B–8B models, GTS introduces within-sequence selectivity, covariance-aware distance, and per-layer control. (5) vs. COAST (May 2026), which optimizes the steering vector, GTS optimizes when to apply it—the combination (sentence-gated COAST) is included as an experiment.\n\nWe explicitly validate the timing hypothesis (margin at boundary N predicts factuality of sentence N+1) with a correlation study and provide a look-ahead fallback if it fails. Ablations isolate each design choice including a direct comparison with FASB's probe-based trigger mechanism (using their released code) to quantify the value of geometric vs. directional triggers. We hypothesize GTS's advantage over FASB will be strongest on long-form generation benchmarks (FActScore, LongFact) where multiple claims coexist and backtracking overhead compounds.\n\nImplementation uses nnsight 0.6 on Qwen3-8B and Llama-3.1-8B-Instruct. Resource-optimized evaluation: full 7-benchmark suite (TruthfulQA, HaluEval, FaithBench, FActScore, SimpleQA, LongFact, MT-Bench) on GTS-full and primary baselines; 4-benchmark core set for ablation variants. Total budget: ≤200 H100-hours.",
+  "project_name": "geometry_triggered_steering",
+  "source": "web_research",
+  "change_type": "minor"
+}
+```
+
+**Summary of changes:**
+
+1. **FASB cited and positioned as primary competitor** — Added to core_problem, opportunity, landscape (with full technical details: linear probe on attention heads, 10-token backtracking, MC1 48.71%), and approach (with FASB-trigger ablation). Positioned GTS's advantage as pre-emptive vs. corrective, geometric vs. directional, and atomic vs. partial.
+
+2. **SVF and Curveball Steering cited** — SVF positioned as complementary (addresses "how to steer" vs. GTS's "whether to steer"). Curveball cited as supporting evidence for non-trivial activation geometry.
+
+3. **Resource estimate trimmed to ≤200 H100-hours** — Achieved via: (a) full 7-benchmark eval only on 4 primary conditions; (b) 4-benchmark core for ablations; (c) combined 2×2 grid for Mahalanobis/Euclidean × MLP/scalar; (d) single model for ablations, both models for finals only. Reduced from 240-270h to 195-200h.
+
+4. **Hallucination Basins claims verified and corrected** — Technical details (Euclidean distance, logistic regression scalar map) confirmed from the paper. Model range corrected to "1B–8B" (includes Llama-3.1-8B and Mistral-7B).
+
+5. **Novelty argument strengthened** — Explicitly contrasts GTS's pre-emptive geometric gating against FASB's corrective probe-based backtracking, with hypothesis that advantage is strongest on long-form benchmarks.
+
+Sources:
+- [FASB - Steering When Necessary (NeurIPS 2025)](https://arxiv.org/abs/2508.17621)
+- [Steering Vector Fields (arXiv 2602.01654)](https://arxiv.org/abs/2602.01654)
+- [Curveball Steering (arXiv 2603.09313)](https://arxiv.org/abs/2603.09313)
+- [Hallucination Basins (arXiv 2604.04743)](https://arxiv.org/abs/2604.04743)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ba340a9-12c2-4580-88cc-f7d9add987c6",
+  "isSidechain": false,
+  "requestId": "req_011Cb5yAvwUbtsG6a4pEZWwJ",
+  "type": "assistant",
+  "uuid": "97c78bc6-1d57-4a41-a337-7fe57e185b55",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G9nMmwEGbKSWJj213Qa8bw",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1887,
+      "cache_read_input_tokens": 35692,
+      "output_tokens": 8253,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1887,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8253,
+          "cache_read_input_tokens": 35692,
+          "cache_creation_input_tokens": 1887,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1887
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Geometry-Triggered Sentence-Level Activation Steering for Factual Hall…",
+  "leafUuid": "97c78bc6-1d57-4a41-a337-7fe57e185b55",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise hallucination steering idea based on reviewer feedback",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Geometry-Triggered Sentence-Level Activation Steering for Factual Hall…",
+  "leafUuid": "97c78bc6-1d57-4a41-a337-7fe57e185b55",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise hallucination steering idea based on reviewer feedback",
+  "sessionId": "9cd9ec62-d581-4075-91fc-d50735452382"
+}
+```
+
+---

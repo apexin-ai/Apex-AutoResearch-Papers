@@ -1,0 +1,7527 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-16 (UTC).** Your job: indep
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 107
+- **Recorded user turns:** 1
+- **Tool calls:** 27
+- **Original source:** `logs/chats/exported-trajectories/account-2/7ed4cfe0-f7a3-4534-8042-9ad54b9d2528.jsonl`
+- **Structured JSON:** [`b4500edf6f1b0f2ca0ee.json`](../../sessions/b4/b4500edf6f1b0f2ca0ee.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T10:28:55.321Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T10:28:55.321Z",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-16 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (11 days from today 2026-05-14). Track: Generation.\n\nDirection: Faithfulness, hallucination reduction, and calibrated uncertainty in LLM generation. In-scope: hallucination detection via internal representations (linear probes on hidden states, attention patterns, logit signatures), decoding-time interventions that suppress hallucinated content, calibration of verbalized confidence so model uncertainty matches actual accuracy, faithful chain-of-thought (CoT reflects actual computation, not post-hoc rationalization), attribution-aware generation with provenance to source spans, fine-grained atomic-claim verification during or after generation. Cross-cutting with Interpretability and Language Modeling tracks — the contribution must improve GENERATION quality, not just analyze model internals.\n\nContribution type: METHOD ONLY. Must propose a concrete detection algorithm, decoding-time intervention, training recipe, or calibration method. Pure analysis (\"we found models hallucinate when X\") is out of scope. Method + faithfulness analysis OK if analysis validates the method.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Hallucination work is mostly inference + lightweight probe training — budget for forward passes across many prompts + small classifier heads (linear probes, MLPs on hidden states). Avoid full SFT of large models.\n2. Time: ≤11 days. Use existing open models (Llama-3, Qwen3, DeepSeek-R1 distills, Mistral) + existing hallucination/faithfulness benchmarks. Build on interpretability toolkits (TransformerLens, nnsight) for hidden-state extraction if needed.\n3. Eval: TruthfulQA, HaluEval, FaithBench, FActScore, FELM, SimpleQA, LongFact for hallucination detection/reduction; ECE / Brier score / selective accuracy for calibration; faithfulness metrics on CoT (causal interventions, unlearning probes); attribution precision/recall on ELI5-attributed, ExpertQA. Must report both hallucination reduction AND utility preservation (MT-Bench, MMLU) — don't kill helpfulness while suppressing hallucinations.\n\nWhy this matters now: EMNLP 2025 awarded TWO Outstanding Papers in this space (\"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations\", \"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps\"), and the second annual Uncertainty Quantification workshop was held alongside. Hallucination is THE blocking issue for LLM deployment in high-stakes domains, and methods that exploit internal representations (rather than external retrieval or RLHF) are an emerging frontier. Look for: representation-level hallucination detectors that generalize across model families, decoding-time refusal/abstention mechanisms triggered by uncertainty features, calibration methods that work without holdout data, faithful-by-construction reasoning architectures (vs. post-hoc rationalization), atomic-fact-level verification integrated into generation. Avoid: yet another hallucination benchmark, RLHF-from-scratch calibration training, prompt-only \"say I don't know\" tricks, retrieval-augmented faithfulness (covered by Seed 2). Distinguish from existing Interpretability seed: that seed focuses on interpretability METHODS (circuits, probes as tools); this seed uses interpretability TECHNIQUES as means to improve generation faithfulness — output-quality contribution must be primary.**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-16?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 5/10)\n{\n  \"title\": \"Geometric Margin by Perturbation: Training-Free CHOKE Detection and Selective Abstention via Intermediate-Layer Sensitivity\",\n  \"core_problem\": \"High-confidence hallucinations—termed CHOKE (Simhi et al., EMNLP 2025 Findings) or Certainty Misalignment (HACK, Simhi et al., 2025)—are factual errors where models confidently produce incorrect answers despite possessing correct internal knowledge. These affect 9-43% of hallucinations across models (HACK) and resist all published mitigation methods: uncertainty-based detection fails because entropy is low, probing achieves only 15-30% CM-specific mitigation despite 60-75% overall (HACK), and noise-injection approaches (Liu et al., ICLR 2026) rely on answer-level diversity that stays flat when the argmax is stable. Recent theoretical work establishes WHY these errors resist detection: Attractor Geometry (Liang et al., 2026) proves that the LM head, being a fixed linear map, produces identical high-confidence outputs whether the hidden state occupies a memorized attractor basin (correct recall) or drifts freely outside any basin (CHOKE)—static output signals are fundamentally blind. Corroborating evidence comes from Hallucination Basins (Chen et al., 2026) showing task-dependent basin structure governs hallucination, and Trajectory Commitment (2026) demonstrating asymmetric attractor dynamics with step-0 residuals predicting hallucination at r=0.776. The gap: while geometric margin (hidden-state distance to basin center) is now established as the theoretically correct monitoring signal, no inference-compatible, training-free method provides a practical forward-only proxy for geometric margin to detect and abstain on CHOKE without requiring explicit basin localization, gradient computation, or trained classifiers.\",\n  \"opportunity\": \"Five converging results create a precise opportunity: (1) Attractor Geometry (Liang et al., 2026) establishes that correct recall = attractor basin convergence, hallucination = basin absence/boundary, with geometric margin as the theoretically correct signal. (2) Hallucination Basins (Chen et al., 2026) and Trajectory Commitment (2026) independently corroborate this framework with empirical evidence that hidden-state geometry predicts hallucination reliably. (3) EPGS (ICML 2026) showed that sharp output minima correlate with high-confidence hallucinations, detectable via gradient magnitude—but requires backpropagation. (4) Knowledge localization (Meng et al. 2022; Geva et al. 2023) established that factual recall occurs at specific intermediate MLP layers where attractor dynamics operate. (5) The mathematical bridge: the LM head being a fixed LINEAR map means it PRESERVES the curvature structure of the hidden-state landscape. At an attractor basin center, small perturbations keep the hidden state in-basin (small output KL). At a basin boundary or outside any basin, perturbations cause basin-crossing or free drift (large output KL). Therefore: output KL under intermediate-layer perturbation is a forward-only, training-free PROXY for geometric margin. The key insight: Liang et al.'s 'blindness' result applies to STATIC point estimates (entropy, argmax), not to PERTURBATION-INDUCED sensitivity, which probes local topology that the linear head faithfully transmits. This proxy, combined with a calibrated abstention threshold, transforms detection into a deployable safety mechanism.\",\n  \"landscape\": \"**Perturbation-based hallucination methods:** Liu et al. (ICLR 2026, arxiv 2502.03799): inject noise into upper-third MLP activations, sample K outputs, compute answer/semantic entropy—73-80% AUROC generally but limited on CHOKE because answer entropy stays low when argmax is stable. SHINE (Lee et al., arxiv 2411.09689): perturbs entity embeddings at INPUT layer, measures output KL—operates before attractor dynamics begin. CCPS (Khanmohammadi et al., EMNLP 2025, arxiv 2505.21772): adversarial perturbation to FINAL hidden states with a trained classifier—achieves ~55% ECE reduction; requires training. SSP/Shaking to Reveal (Luo et al., arxiv 2506.02696): perturbs intermediate layers but requires trained encoders, measures representation cosine shift (not output KL), targets general hallucinations where factual content is MORE sensitive—the opposite pattern from CHOKE.\\n\\n**Gradient-based methods:** EPGS (ICML 2026, arxiv 2605.00939): perturbs input embeddings and measures gradient magnitude as Hessian proxy—requires backpropagation. LLM-CAS (arxiv 2512.18623, AAAI): uses neuron-level causal tracing via Integrated Gradients to generate perturbation masks, trains RL agents (PPO) for dynamic neuron perturbation—targets hallucination CORRECTION, requires both gradients AND training.\\n\\n**Adaptive layer selection:** Neural Probe-Based Detection (arxiv 2512.20949): uses Bayesian optimization for probe layer selection with trained MLP probes—achieves adaptive placement but requires probe training.\\n\\n**Causal tracing validity:** 'Does Localization Inform Editing?' (Hase et al., NeurIPS 2023, arxiv 2301.04213) demonstrates that causal tracing results are uncorrelated with knowledge EDITING success. Critical distinction: editing modifies the model's output mapping (a write operation requiring the intervention to override competing computations), while detection measures sensitivity (a read operation where the localized layer need only exhibit differential response, not successfully change output). We address this directly via ablation.\\n\\n**Attractor geometry framework:** Liang et al. (arxiv 2605.05686, May 2026): proves attractor basin structure, proposes geometric margin. Hallucination Basins (Chen et al., arxiv 2604.04743, April 2026): formalizes task-dependent basin structure, achieves geometry-aware steering without retraining. Trajectory Commitment (arxiv 2604.15400, April 2026): demonstrates asymmetric attractor dynamics with causal evidence, step-0 residuals predict hallucination.\\n\\n**Abstention methods:** I-CALM (arxiv 2604.03904, April 2026): prompt-based confidence-aware abstention—no mechanism for high-confidence hallucinations where self-reported confidence is unreliable. Know Your Limits survey (TACL 2025): comprehensive taxonomy of abstention approaches.\\n\\n**Gap:** No existing method combines: (a) forward-only computation, (b) perturbation at intermediate factual-recall layers, (c) output KL as a training-free geometric margin proxy, (d) CHOKE-specific detection, AND (e) selective abstention. LLM-CAS is closest in spirit but requires RL training + gradients and targets correction rather than detection.\",\n  \"approach\": \"We propose Logit Sensitivity Probing (LSP), a training-free, forward-only method that detects CHOKE and enables selective abstention by measuring output logit KL sensitivity to residual-stream perturbation at intermediate layers—providing a practical proxy for the geometric margin signal that Attractor Geometry (Liang et al. 2026) identified as theoretically correct.\\n\\n**Theoretical Contribution (Geometric Margin Proxy):** Liang et al. prove that correct factual recall converges to attractor basin centers while hallucination corresponds to basin absence/boundary, and identify geometric margin as the correct monitoring signal. They note the LM head is a fixed linear map 'blind' to the distinction via static output. We formalize the observation that this linearity is precisely why PERTURBATION works as a proxy: a linear map preserves local curvature. At a basin center, the residual stream occupies a locally stable region—perturbation stays in-basin, producing small output KL. Outside basins or at boundaries (hallucination), perturbation causes drift or basin-crossing, producing large output KL. Formally: for linear head W, KL(softmax(Wh) || softmax(W(h+ε))) is controlled by ||Wε||₂ weighted by the local Jacobian of softmax—which amplifies sensitivity when h is at a distribution boundary. This establishes output KL under perturbation as a training-free, forward-only proxy for geometric margin, bridging the theoretical framework (Liang et al.) to practical detection. Corroborating evidence from Trajectory Commitment (2026)—showing step-0 residual geometry predicts hallucination at r=0.776—supports that hidden-state perturbation sensitivity carries a genuine geometric signal.\\n\\n**Addressing the Localization-Editing Disconnect (Hase et al., NeurIPS 2023):** This paper shows causal tracing does not predict optimal EDITING layers. We argue this does not transfer to detection because: (a) Editing requires the intervention to override competing computations—success depends on downstream propagation strength, not just local information content. Detection via sensitivity measurement requires only that the layer exhibits differential perturbation response between in-basin and out-of-basin states—a weaker requirement. (b) Geva et al. (2023) confirm that factual-recall layers DO show distinctive activation patterns for known vs. unknown facts. (c) We empirically test this assumption: our mandatory ablation compares causal-tracing-selected layers vs. empirical-sweep-selected layers vs. uniform-random layers, directly measuring whether localization provides detection benefit.\\n\\n**Stage 0 (Layer Identification—offline, per-model, two strategies):** (A) Causal tracing (Meng et al. 2022 protocol) on ~200 calibration examples to identify 2-4 layers with maximal causal effect on factual recall. (B) Empirical sweep: measure KL_sensitivity at all layers on 50 calibration examples, select layers with maximum CHOKE/correct separation. Strategy comparison is a mandatory ablation. One-time cost: ~4h per model.\\n\\n**Stage 1 (Pre-filter—near-zero cost):** Conjunction filter: (a) top-1 probability > 0.9 AND (b) factual-position classifier (frozen linear probe on last-layer residual stream). ~15-20% of tokens pass to Stage 2.\\n\\n**Stage 2 (Logit Sensitivity Measurement):** For each flagged position, inject calibrated isotropic Gaussian noise into the residual stream at 2-3 identified layers. Use 3 noise scales (σ ∈ {0.5, 1.0, 2.0} × layer-norm baseline). Run 3 perturbed forward passes per scale from injection point. Compute: KL_sensitivity = (1/N) Σ D_KL(p_clean || p_noisy_i).\\n\\n**Stage 3 (Selective Abstention):** Apply calibrated threshold τ on KL_sensitivity. When KL_sensitivity > τ, abstain (refuse to answer or flag as uncertain). Report: (a) Selective Accuracy = accuracy on non-abstained questions, (b) Coverage = fraction of questions answered, (c) CHOKE-Score on the full set. Threshold τ is set on calibration data to achieve target coverage (e.g., 90%, 95%) and evaluated out-of-distribution.\\n\\n**Differentiation from Related Methods:**\\n- vs. SHINE: SHINE perturbs specific entity embeddings at INPUT layer (before attractor dynamics). LSP perturbs the FULL residual stream with isotropic noise at intermediate layers (where attractor dynamics operate). Signals are fundamentally different: entity corruption vs. basin proximity.\\n- vs. CCPS: CCPS uses adversarial perturbation at final layer with a trained classifier. LSP uses random Gaussian at intermediate layers with a training-free threshold. Different perturbation philosophy (worst-case vs. average-case geometry).\\n- vs. LLM-CAS: LLM-CAS requires RL-trained policy agents + Integrated Gradients (gradients + training). LSP is entirely gradient-free and training-free. LLM-CAS targets correction; LSP targets detection + abstention.\\n- vs. SSP: SSP trains encoders, measures representation cosine shift, and finds factual content MORE sensitive to perturbation in general hallucination. LSP predicts the OPPOSITE pattern for CHOKE (correct recall = stable basin = LOW sensitivity), uses untrained KL measurement, and specifically targets high-confidence errors.\\n- vs. Neural Probe (arxiv 2512.20949): Requires trained MLP probes. LSP's detection signal (raw output KL) requires no learned components.\\n\\n**Pilot Validation Plan (Week 1, ~6h H100):** 100-example pilot on Qwen3.6-27B: 50 CHOKE (HACK protocol) + 50 correct high-confidence. Measure KL_sensitivity at: (a) causal-tracing layers, (b) empirical-sweep layers, (c) input layer, (d) final layer. If best intermediate-layer AUROC > 0.65 (vs. ≤0.55 for input/final), proceed. If not, abort.\\n\\n**Full Evaluation:** (1) CHOKE subsets of TriviaQA and Natural Questions (HACK CM protocol). (2) TruthfulQA. (3) General hallucination AUROC. Models: Qwen3.6-27B (dense, 27B, Apache 2.0) and Qwen3-32B (dense, 32B, Apache 2.0)—two dense architectures of different sizes from the same family, enabling controlled size-scaling analysis. Baselines: Liu et al. (noise+entropy), SHINE (input KL), CCPS (adversarial+trained), EPGS (gradient, upper-bound reference), I-CALM (prompt-based abstention), standard semantic entropy, token probability. Primary metrics: CHOKE-Score (CM-d), Selective Accuracy @ 90%/95% coverage, general AUROC.\\n\\n**Mandatory Ablations:** (1) Layer placement: input vs. causal-tracing-selected vs. empirical-sweep-selected vs. final-layer vs. random layers—directly testing whether localization informs detection (contra Hase et al.'s editing result). (2) Causal-tracing vs. empirical-sweep for layer selection. (3) Per-layer sensitivity curves across all layers. (4) Noise scale sensitivity (σ sweep). (5) Abstention threshold sensitivity (τ sweep with coverage-accuracy Pareto curves).\\n\\n**Contributions:** (1) THEORETICAL: Formalizing output KL under intermediate perturbation as a training-free, forward-only proxy for geometric margin—connecting Attractor Geometry theory to practical detection and providing a testable bridge between basin structure and observable sensitivity. (2) PRACTICAL: Selective abstention mechanism that transforms CHOKE detection into a deployable safety tool, reporting selective accuracy and coverage. (3) EMPIRICAL: First training-free, gradient-free detector specifically targeting CHOKE, with comprehensive ablations testing whether causal localization informs detection (addressing Hase et al. 2023).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~140h H100\",\n      \"gpu_utilization\": \"~25-35% effective utilization\",\n      \"timeline\": \"2.5 months\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"$350 (140h × ~$2.50/h)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~160h H100\",\n      \"gpu_utilization\": \"~55-65% effective utilization\",\n      \"timeline\": \"5-6 weeks\",\n      \"team\": \"1 researcher with ~30min/day steering\",\n      \"claude_api_cost\": \"$80-120\",\n      \"estimated_gpu_cost\": \"$400 (160h × ~$2.50/h)\",\n      \"risk_note\": \"Pilot validation (6h) de-risks before full compute. Layer identification adds ~8h total (both strategies for 2 models) but provides the critical ablation data.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~185h H100\",\n      \"gpu_utilization\": \"~85-90% effective utilization; 24/7 autonomous operation\",\n      \"timeline\": \"13-15 days with 2× H100 GPUs\",\n      \"team\": \"0 after initial setup\",\n      \"claude_api_cost\": \"$200-280\",\n      \"estimated_gpu_cost\": \"$462 (185h × ~$2.50/h)\",\n      \"compute_breakdown\": \"Layer identification (causal tracing + empirical sweep, 2 models): ~12h. CHOKE subset construction using HACK protocol (2 models × 2 datasets): ~28h. Pilot validation (100 examples, 4 layer conditions × 3 scales): ~6h. Main experiments (2 models × 2 datasets × 3 σ × 3 layer-selection-strategies = 36 configs): ~58h. Baselines (7 methods × 2 models × 2 datasets): ~42h. Ablations (layer placement, selection method, per-layer curves, σ sweep, τ sweep): ~24h. Selective abstention analysis (Pareto curves, coverage-accuracy tradeoffs): ~8h. Buffer: ~7h.\",\n      \"speed_bottleneck\": \"CHOKE subset construction requires 6× generation per question. Both layer identification strategies require multiple forward passes but are one-time per model.\",\n      \"risk_note\": \"185h within ≤200h constraint. Pilot at ~46h provides early stop signal. If hypothesis fails (intermediate ≤ input/final), remaining compute redirected to analysis paper explaining null result + comparison of layer-selection methods.\"\n    }\n  },\n  \"target_venues\": [\n    \"EACL 2027 (ARR August 3, 2026 deadline; 79-day runway from today enables thorough pilot-driven experimentation; commitment deadline October 11, 2026)\",\n    \"ACL 2027 (ARR ~January 2027; fallback if results warrant extended analysis or if EACL reviews suggest revisions)\"\n  ],\n  \"venue_note\": \"EMNLP 2026 (ARR May 25, 2026) is infeasible: 9 days is insufficient for pilot validation + full experiments. EACL 2027 (ARR August 3, 2026) is the next feasible *CL venue with 79 days—sufficient for pilot (week 1), full experiments (weeks 2-6), and writing (weeks 7-10). The extended timeline also enables the comprehensive ablation study (causal-tracing vs. empirical-sweep layer selection) that directly addresses the Hase et al. (2023) challenge.\",\n  \"level\": \"solid-to-strong\",\n  \"key_references\": [\n    \"Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (Liang et al., MIT, arxiv 2605.05686, May 2026)\",\n    \"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (Chen et al., arxiv 2604.04743, April 2026)\",\n    \"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation (arxiv 2604.15400, April 2026)\",\n    \"From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity (EPGS, ICML 2026, arxiv 2605.00939)\",\n    \"Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models (Hase et al., NeurIPS 2023, arxiv 2301.04213)\",\n    \"LLM-CAS: Dynamic Neuron Perturbation for Real-Time Hallucination Correction (arxiv 2512.18623, AAAI 2025)\",\n    \"Neural Probe-Based Hallucination Detection with Bayesian Layer Optimization (arxiv 2512.20949)\",\n    \"Trust Me, I'm Wrong: LLMs Hallucinate with Certainty Despite Knowing the Answer (Simhi et al., Findings of EMNLP 2025, arxiv 2502.12964)\",\n    \"HACK: Hallucinations Along Certainty and Knowledge Axes (Simhi et al., arxiv 2510.24222)\",\n    \"Enhancing Hallucination Detection through Noise Injection (Liu et al., ICLR 2026, arxiv 2502.03799)\",\n    \"Calibrating LLM Confidence by Probing Perturbed Representation Stability (CCPS, Khanmohammadi et al., EMNLP 2025, arxiv 2505.21772)\",\n    \"Probing LLM Hallucination from Within: Perturbation-Driven Approach via Internal Knowledge (SHINE, Lee et al., arxiv 2411.09689)\",\n    \"Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations (SSP, Luo et al., arxiv 2506.02696)\",\n    \"I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation (arxiv 2604.03904, April 2026)\",\n    \"Know Your Limits: A Survey of Abstention in Large Language Models (TACL 2025)\",\n    \"Locating and Editing Factual Associations in GPT (Meng et al., ROME, NeurIPS 2022, arxiv 2202.05262)\",\n    \"Dissecting Recall of Factual Associations in Auto-Regressive Language Models (Geva et al., 2023)\",\n    \"Optimal Stability of KL Divergence under Gaussian Perturbations (Pan et al., arxiv 2604.11026, April 2026)\",\n    \"Detecting hallucinations in large language models using semantic entropy (Nature 2024)\",\n    \"In-Context Sharpness as Alerts: An Inner Representation Perspective for Hallucination Mitigation (ICML 2024, arxiv 2403.01548)\"\n  ],\n  \"description\": \"We propose Logit Sensitivity Probing (LSP), a training-free, forward-only method that detects CHOKE (Certain Hallucinations Overriding Known Evidence) and enables selective abstention by measuring output logit KL sensitivity to residual-stream perturbation at intermediate layers. Our primary contribution is THEORETICAL: we formalize output KL under intermediate-layer Gaussian perturbation as a training-free proxy for geometric margin—the signal that Attractor Geometry (Liang et al. 2026) identifies as theoretically correct for distinguishing attractor basin convergence (correct recall) from basin absence (hallucination). The LM head's linearity, which makes static outputs 'blind' (Liang et al.), is precisely what makes perturbation sensitivity INFORMATIVE: linearity preserves local curvature, so perturbation-induced KL probes basin geometry that point estimates cannot access. This theoretical bridge is corroborated by concurrent work: Hallucination Basins (2026) confirms task-dependent basin structure governs hallucination, and Trajectory Commitment (2026) shows hidden-state geometry predicts hallucination at r=0.776. We explicitly address the localization-editing disconnect (Hase et al., NeurIPS 2023): their finding that causal tracing ≠ optimal editing layers does not transfer to detection, because detection measures sensitivity (a read operation) while editing overrides output (a write operation with stricter requirements). A mandatory ablation comparing causal-tracing-selected vs. empirical-sweep-selected vs. random layers directly tests this. Our practical contribution adds selective abstention: when KL_sensitivity exceeds a calibrated threshold, LSP refuses to answer, transforming detection into a deployable safety mechanism reporting selective accuracy at controlled coverage levels. Unlike LLM-CAS (RL-trained + gradients, targets correction), CCPS (adversarial + trained classifier), SSP (trained encoders + opposite sensitivity pattern), and Neural Probe (trained MLP probes + Bayesian optimization), LSP requires NO training and NO gradients. Evaluated on CHOKE subsets (TriviaQA, NQ) with Qwen3.6-27B and Qwen3-32B (both dense architectures) against seven baselines. A 100-example pilot (~6h) validates the core hypothesis before full compute commitment (~185h H100 total).\",\n  \"project_name\": \"sharpness_selective_gen\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL VENUE MISMATCH: User requires EMNLP 2026 (ARR deadline May 25, 2026) but the idea targets ICLR 2027 and AAAI 2027. This directly violates user requirements.\", \"MAJOR UNCITED WORK: 'Enhancing Hallucination Detection through Noise Injection' (Liu et al., ICLR 2026, arxiv 2502.03799) already performs gradient-free noise injection into hidden unit activations at inference time for hallucination detection with selective prediction support. The claim of being 'the first gradient-free sharpness estimator' is invalidated.\", \"UNCITED WORK: 'Trust Me, I'm Wrong: LLMs Hallucinate with Certainty Despite Knowing the Answer' (Simhi et al., Findings of EMNLP 2025) already identifies and names the phenomenon of high-confidence hallucinations (CHOKE) and proposes probing-based mitigation—precisely the 'stubborn hallucination' problem this paper claims as its motivation.\", \"UNCITED WORK: SHINE (Lee et al., arxiv 2411.09689) uses perturbation-driven approach measuring KL divergence to detect hallucinations without external knowledge or gradient computation.\", \"The theoretical justification for why residual-stream noise at layers L/3, L/2, 2L/3 approximates the Hessian trace better than the ICLR 2026 approach of targeting upper-third MLP activations is not established. EPGS perturbs input embeddings—the connection to intermediate residual stream perturbation needs separate validation.\", \"The 'retrieval-augmented constrained decoding' fallback is underspecified—this is essentially a separate system that adds major complexity but receives no technical detail or resource allocation.\", \"The EPGS AUROC claim of 0.737 on SQuAD could not be independently verified from the abstract alone (paper just posted May 2026); the specific numbers should be double-checked against the camera-ready.\"]\nFeedback: This idea has a solid technical skeleton but faces a critical novelty deficit due to the uncited ICLR 2026 noise injection paper (arxiv 2502.03799). To salvage this direction:\n\n1. **Fix venue targeting**: Must target EMNLP 2026 (ARR May 25 deadline) per user requirements.\n\n2. **Differentiate from ICLR 2026 noise injection paper**: The key potential differentiator is the sharpness/flatness geometric interpretation and the specific focus on 'stubborn' (high-confidence) hallucinations where entropy-based methods fail. Reframe the contribution as: (a) providing theoretical grounding for WHY noise injection works (connecting to loss landscape geometry/sharpness), (b) showing that existing noise injection (ICLR 2026) fails specifically on stubborn hallucinations because answer entropy is already low, and (c) proposing token-level KL sensitivity as a superior metric for this subset. You must empirically demonstrate that the ICLR 2026 method fails on stubborn hallucinations while yours succeeds.\n\n3. **Cite and position against CHOKE (EMNLP 2025 Findings)**: Acknowledge the phenomenon is known. Your contribution is a different detection mechanism (perturbation-based sharpness vs. probing).\n\n4. **Drop the 'first gradient-free' claim**: It's false. Reframe as 'first sharpness-aware gradient-free method that specifically targets stubborn/CHOKE hallucinations.'\n\n5. **Simplify**: Drop the underspecified retrieval-augmented fallback. Focus on the detection + simple abstention, which is enough for a solid paper.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"COMPUTE BUDGET VIOLATION: Auto_research estimate of 350h H100 exceeds the user's hard constraint of ≤200 H100-hours. The 50h CHOKE subset construction plus noise calibration grid search drives this over budget.\", \"EXTREMELY TIGHT TIMELINE: 9 days (May 16→25) is infeasible for a quality EMNLP submission. The proposal acknowledges this with a fallback to ACL 2027, effectively conceding the primary target is unrealistic.\", \"NARROW NOVELTY VS SHINE: SHINE (arxiv 2411.09689) already does 'perturb embeddings → measure output KL divergence' without training. LSP's differentiation reduces to perturbing at intermediate layers instead of input—a layer-choice ablation, not a fundamentally new method. A reviewer will ask: 'Why not just run SHINE at intermediate layers?'\", \"THEORETICAL CONTRIBUTION OVERSTATED: The KL ≈ (σ²/2)·Tr(H) relationship is standard second-order Taylor expansion / information geometry (Camuto et al. NeurIPS 2020, Fisher-SAM ICML 2022, Noise Stability Optimization 2023). Framing this as a 'key contribution' will be challenged by reviewers familiar with sharpness-aware minimization literature.\", \"UNVALIDATED CORE HYPOTHESIS: No pilot data or formal proof that residual-stream perturbation produces high logit-KL specifically for CHOKE while producing low logit-KL for correct high-confidence answers. EPGS's gradient-magnitude result does not directly transfer to forward-only KL measurement—the sharpness landscape may look different when measured via KL vs. gradient norms.\", \"CHOKE SUBSET PREVALENCE IS LOW: At 0.3-2.1% of all hallucinations, a CHOKE-only detector has limited standalone value unless utility on general hallucinations is also demonstrated. The paper should report general AUROC alongside CHOKE-Score.\", \"MISSING COMPARISON: HACK (arxiv 2510.24222, Oct 2025) and Aletheia (arxiv 2601.01532, Jan 2026) both build on CHOKE and propose detection/mitigation. These should be cited and compared.\"]\nFeedback: The revision addressed Round 1 issues well (venue, citations, positioning), but fundamental problems remain:\n\n1. **Compute**: Cut the grid search. Fix σ calibration to 2-3 values per layer based on EPGS's noise schedule rather than exhaustive search. Target ≤180h total by limiting to 2 models × 2 datasets × 3 noise scales × 3 layers = 36 configurations instead of a full grid.\n\n2. **Strengthen novelty beyond SHINE**: The paper MUST include a direct ablation: SHINE-style input perturbation → KL vs. LSP-style intermediate perturbation → KL, on the SAME CHOKE subset. The contribution is only valid if intermediate perturbation is empirically superior for CHOKE detection. Provide a theoretical argument: intermediate layers encode factual recall (cite knowledge localization literature: Meng et al. ROME, Geva et al.); perturbing at the locus of factual computation should produce stronger sharpness signals than perturbing distal input embeddings.\n\n3. **Reframe theory**: Don't claim the KL-Hessian connection as a contribution. Instead, frame it as *motivation*: 'Following established results connecting noise-injection to Hessian trace estimation [cite Camuto 2020, CR-SAM 2024], we propose using logit KL as a practical, forward-only sharpness proxy specifically for detecting CHOKE hallucinations.' The contribution is empirical, not theoretical.\n\n4. **Broaden evaluation**: Report both CHOKE-Score AND general AUROC. If LSP also helps on non-CHOKE hallucinations (even modestly), the impact argument is much stronger.\n\n5. **Timeline honesty**: Either commit to May 25 with a drastically scoped version (1 model, 2 benchmarks, 3 baselines) or acknowledge ACL 2027 as the realistic target. A half-finished paper at EMNLP is worse than a complete one at ACL.\n\n6. **Cite HACK and Aletheia**: These are direct follow-ups to CHOKE and must be acknowledged in the landscape section.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"FACTUAL ERROR — HACK AUTHORSHIP: HACK (arxiv 2510.24222) is cited as 'Uehara et al., 2025' throughout, but the actual lead author is Adi Simhi. There is no author named 'Uehara' among the 10 co-authors. This error appears in the core_problem, landscape, and approach sections.\", \"VENUE ERROR: 'EMNLP 2026 ARR October cycle' does not exist. EMNLP 2026 exclusively accepts papers from the ARR May 2026 cycle (deadline May 25, 2026). The October ARR cycle would target EACL 2027 or similar. This makes the stated fallback venue fictional.\", \"CRITICAL MISSING COMPETING WORK — ATTRACTOR GEOMETRY (arxiv 2605.05686, May 2026, MIT): This paper directly argues that the frozen LM head is 'blind by design' to high-confidence hallucinations because it 'systematically erases' epistemic information from hidden states. Since LSP measures output logit KL (which passes through the LM head), this is a direct theoretical objection. The proposal must address why perturbation-based KL divergence escapes this limitation when static confidence does not.\", \"MISSING COMPETING WORK — CCPS (arxiv 2505.21772, EMNLP 2025 main): 'Calibrating LLM Confidence by Probing Perturbed Representation Stability' perturbs hidden states and measures stability for confidence calibration — the same high-level idea as LSP. Must be cited and differentiated (CCPS: adversarial perturbation at final layers + trained classifier; LSP: Gaussian noise at intermediate layers + direct KL).\", \"NOVELTY CONCERN — COMBINATION VS. CONTRIBUTION: LSP = output KL measurement (from SHINE) + intermediate-layer perturbation (from SSP/Liu et al.) + sharpness motivation (from EPGS). An EMNLP reviewer will ask: 'Why not just run SHINE at intermediate layers?' The mandatory input-vs-intermediate ablation is necessary but not sufficient — the paper needs a theoretical or empirical argument for why this combination yields a qualitatively different signal, not just a quantitative improvement.\", \"UNVALIDATED CORE HYPOTHESIS: The claim that intermediate-layer perturbation → high output logit KL for CHOKE but NOT for correct high-confidence answers is the entire paper's thesis, yet there is no pilot data, formal proof, or even a toy demonstration. EPGS's gradient-magnitude result does not directly transfer to forward-only KL — the relationship KL ≈ (σ²/2)·Tr(H) is an approximation that may not hold in the highly non-linear regime of CHOKE-vs-correct discrimination.\", \"CONFLATION OF CHOKE AND STUBBORN HALLUCINATIONS: The proposal uses CHOKE (from Simhi et al. 2025) and 'stubborn hallucinations' (from EPGS 2026) interchangeably, but these are defined in different papers with different operationalizations. EPGS does not use the CHOKE acronym. The proposal should clarify whether these concepts are formally equivalent or merely overlapping.\", \"USER REQUIREMENT MISMATCH — PRIMARY VENUE: User requires EMNLP 2026 (May 25 ARR deadline). The proposal targets ACL 2027 as primary. While Round 2 feedback permitted this timeline honesty, the idea still fails to meet the user's stated target. If ACL 2027 is truly the realistic target, the experimental plan should be designed for thoroughness rather than speed.\"]\nFeedback: The proposal has improved substantially from Rounds 1-2 (compute now within budget, broader evaluation, reframed theoretical claims), but critical issues remain:\n\n1. **Fix the HACK authorship error immediately**: Replace 'Uehara et al.' with 'Simhi et al.' throughout. This is a basic factual error that damages credibility.\n\n2. **Fix the venue**: Remove 'EMNLP 2026 ARR October cycle' — it does not exist. If targeting ACL 2027, say so clearly. If aiming for EMNLP 2026 (May 25 deadline), scope down to 1 model + 2 datasets + 3 baselines with a clear 9-day execution plan. Otherwise, EACL 2027 (ARR August 3, 2026) is a credible intermediate fallback.\n\n3. **Address the Attractor Geometry objection head-on**: arxiv 2605.05686 argues the LM head is fundamentally blind to high-confidence hallucinations. Your counter-argument should be: static output entropy (what they critique) is different from PERTURBATION-INDUCED output KL divergence. When you perturb at the intermediate layer, you're probing the local curvature of the input→output mapping, not reading the static output. The LM head may erase epistemic state in its static output, but it cannot erase the fact that the mapping is sharp (high-curvature) vs. flat (low-curvature). Formalize this distinction.\n\n4. **Cite CCPS (EMNLP 2025)**: Differentiate as: CCPS uses adversarial perturbation at final layers with a trained classifier; LSP uses random Gaussian noise at factual-recall layers with no training. The training-free + layer-targeted combination is your differentiator.\n\n5. **Boost novelty beyond 'SHINE at intermediate layers'**: The paper needs a conceptual contribution beyond recombination. Consider: (a) provide a formal analysis showing that KL sensitivity at intermediate layers decomposes into a factual-recall-specific component (via knowledge localization) that is absent at input layers — not just 'intermediate is empirically better'; (b) introduce a layer-selection criterion based on factual recall signatures (e.g., use the causal tracing signal from ROME to automatically identify which layers to perturb), making the method adaptive rather than using fixed layers 12-18.\n\n6. **Get pilot data**: The strongest revision would include a small-scale pilot (1 model, 100 CHOKE examples) showing the core signal exists. Even a 2-hour experiment demonstrating that KL_sensitivity is higher for CHOKE than for correct high-confidence answers would dramatically strengthen the proposal. Without this, the entire paper is a bet on an unvalidated hypothesis.\n\n7. **Clarify CHOKE vs. stubborn hallucinations**: State explicitly whether Simhi et al.'s CHOKE and EPGS's 'stubborn hallucinations' have the same operational definition or merely overlap. If they differ, specify which definition your evaluation uses.\n\n### Round 4 review\nVerdict: revise\nIssues: [\"VENUE MISMATCH: User requires EMNLP 2026 (ARR May 25, 2026). Proposal targets EACL 2027 (ARR August 3, 2026). While Round 3 feedback permitted this pivot, the proposal still does not meet the user's stated requirement.\", \"CRITICAL UNCITED WORK — LLM-CAS (arXiv 2512.18623, AAAI): Uses a 'Neuron-level Causal Trace module' (Integrated Gradients) to produce dynamic perturbation masks for hallucination correction. This DIRECTLY anticipates LSP's claimed contribution of 'adaptive layer selection via causal tracing for perturbation-based hallucination methods.' The step from correction→detection is incremental.\", \"CRITICAL THEORETICAL CHALLENGE — 'Does Localization Inform Editing?' (NeurIPS 2023, arXiv 2301.04213): Demonstrates that causal tracing results are statistically UNCORRELATED with the success of knowledge editing interventions. If causal tracing does not reliably identify where to intervene for editing, the assumption that it identifies optimal perturbation layers for detection needs explicit justification. This paper must be cited and addressed.\", \"UNCITED WORK — Neural Probe-Based Hallucination Detection (arXiv 2512.20949): Uses Bayesian optimization for adaptive probe layer selection with KL-divergence constraints—directly anticipating the adaptive layer selection contribution.\", \"MOE ARCHITECTURE CONCERN: DeepSeek-V4-Flash is a 284B MoE model (13B activated). Standard Meng et al. causal tracing protocol was designed for dense transformers. The proposal does not acknowledge how causal tracing (activation patching across all positions) works when different experts are activated per input. This may require substantial methodological adaptation.\", \"UNVALIDATED CORE HYPOTHESIS (persistent from Round 3): Still no empirical evidence that intermediate-layer perturbation → high KL for CHOKE but low KL for correct high-confidence answers. The pilot plan is good but remains a plan. After 4 rounds of revision, even a toy experiment (10 examples, 1 hour) showing the signal exists would dramatically strengthen credibility.\", \"NARROW NOVELTY WINDOW: The proposal's unique position is the intersection of (training-free) ∩ (output KL metric) ∩ (causal-tracing-selected intermediate layers) ∩ (CHOKE-specific). But with LLM-CAS doing causal-tracing + perturbation + hallucination, SSP doing intermediate-layer perturbation + hallucination detection, and CCPS doing perturbation-stability + KL features + hallucination, an EACL reviewer will view this as an engineering recombination, not a conceptual advance.\"]\nFeedback: The proposal has improved significantly over 4 rounds—venue, authorship, and differentiation issues from Rounds 1-3 are resolved. But two newly discovered papers substantially erode the claimed contributions:\n\n1. **Address 'Does Localization Inform Editing?' (NeurIPS 2023)**: This is your biggest vulnerability. It shows causal tracing ≠ best intervention layers for editing. Your counter-argument should be: (a) detection ≠ editing—you're not changing the model's output, you're measuring sensitivity, which is a fundamentally different use of the localization signal; (b) cite Geva et al. 2023 showing that factual recall layers DO have distinctive perturbation sensitivity even if editing there is unreliable; (c) your pilot ablation (causal-tracing-selected vs. fixed vs. random layers) directly tests this empirically. But you MUST cite and engage with this paper.\n\n2. **Cite and differentiate from LLM-CAS**: Acknowledge it does causal tracing + perturbation for hallucination. Differentiate as: (a) LLM-CAS requires RL training of a policy agent—not training-free; (b) it targets correction via steering—fundamentally different from detection via sensitivity measurement; (c) it uses Integrated Gradients—not forward-only. Your training-free, forward-only constraint is the differentiator.\n\n3. **MoE model issue**: Either (a) replace DeepSeek-V4-Flash with a dense model (e.g., DeepSeek-V3-Base 37B if available, or Mistral-Large), or (b) describe how you'll adapt causal tracing for MoE (trace only through activated experts per input).\n\n4. **Boost impact beyond detection-only**: Add a simple abstention mechanism (refuse to answer when KL_sensitivity > threshold) and report selective accuracy (accuracy on non-abstained questions). This transforms LSP from a diagnostic tool to a deployable safety mechanism, substantially increasing practical impact.\n\n5. **Reframe contribution hierarchy**: Given LLM-CAS and the Neural Probe paper, your adaptive-layer-selection contribution is less novel than claimed. Reframe: primary contribution = theoretical (geometric margin proxy formalization connecting Attractor Geometry to practical detection); secondary = empirical (first training-free CHOKE-specific detector without gradient computation); the adaptive layer selection is a methodological detail, not a standalone contribution.\n\n6. **On venue**: If you truly cannot submit to EMNLP 2026 (May 25), at minimum acknowledge this limitation and explain why EACL 2027 is the next feasible target. The 79-day runway to August 3 is generous—use it for thorough experiments including the pilot validation.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T10:28:55.327Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T10:28:55.327Z",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+## Round 1
+
+105 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T10:28:55.358Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-16 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (11 days from today 2026-05-14). Track: Generation.
+
+Direction: Faithfulness, hallucination reduction, and calibrated uncertainty in LLM generation. In-scope: hallucination detection via internal representations (linear probes on hidden states, attention patterns, logit signatures), decoding-time interventions that suppress hallucinated content, calibration of verbalized confidence so model uncertainty matches actual accuracy, faithful chain-of-thought (CoT reflects actual computation, not post-hoc rationalization), attribution-aware generation with provenance to source spans, fine-grained atomic-claim verification during or after generation. Cross-cutting with Interpretability and Language Modeling tracks — the contribution must improve GENERATION quality, not just analyze model internals.
+
+Contribution type: METHOD ONLY. Must propose a concrete detection algorithm, decoding-time intervention, training recipe, or calibration method. Pure analysis ("we found models hallucinate when X") is out of scope. Method + faithfulness analysis OK if analysis validates the method.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Hallucination work is mostly inference + lightweight probe training — budget for forward passes across many prompts + small classifier heads (linear probes, MLPs on hidden states). Avoid full SFT of large models.
+2. Time: ≤11 days. Use existing open models (Llama-3, Qwen3, DeepSeek-R1 distills, Mistral) + existing hallucination/faithfulness benchmarks. Build on interpretability toolkits (TransformerLens, nnsight) for hidden-state extraction if needed.
+3. Eval: TruthfulQA, HaluEval, FaithBench, FActScore, FELM, SimpleQA, LongFact for hallucination detection/reduction; ECE / Brier score / selective accuracy for calibration; faithfulness metrics on CoT (causal interventions, unlearning probes); attribution precision/recall on ELI5-attributed, ExpertQA. Must report both hallucination reduction AND utility preservation (MT-Bench, MMLU) — don't kill helpfulness while suppressing hallucinations.
+
+Why this matters now: EMNLP 2025 awarded TWO Outstanding Papers in this space ("Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations", "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps"), and the second annual Uncertainty Quantification workshop was held alongside. Hallucination is THE blocking issue for LLM deployment in high-stakes domains, and methods that exploit internal representations (rather than external retrieval or RLHF) are an emerging frontier. Look for: representation-level hallucination detectors that generalize across model families, decoding-time refusal/abstention mechanisms triggered by uncertainty features, calibration methods that work without holdout data, faithful-by-construction reasoning architectures (vs. post-hoc rationalization), atomic-fact-level verification integrated into generation. Avoid: yet another hallucination benchmark, RLHF-from-scratch calibration training, prompt-only "say I don't know" tricks, retrieval-augmented faithfulness (covered by Seed 2). Distinguish from existing Interpretability seed: that seed focuses on interpretability METHODS (circuits, probes as tools); this seed uses interpretability TECHNIQUES as means to improve generation faithfulness — output-quality contribution must be primary.**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-16?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 5/10)
+{
+  "title": "Geometric Margin by Perturbation: Training-Free CHOKE Detection and Selective Abstention via Intermediate-Layer Sensitivity",
+  "core_problem": "High-confidence hallucinations—termed CHOKE (Simhi et al., EMNLP 2025 Findings) or Certainty Misalignment (HACK, Simhi et al., 2025)—are factual errors where models confidently produce incorrect answers despite possessing correct internal knowledge. These affect 9-43% of hallucinations across models (HACK) and resist all published mitigation methods: uncertainty-based detection fails because entropy is low, probing achieves only 15-30% CM-specific mitigation despite 60-75% overall (HACK), and noise-injection approaches (Liu et al., ICLR 2026) rely on answer-level diversity that stays flat when the argmax is stable. Recent theoretical work establishes WHY these errors resist detection: Attractor Geometry (Liang et al., 2026) proves that the LM head, being a fixed linear map, produces identical high-confidence outputs whether the hidden state occupies a memorized attractor basin (correct recall) or drifts freely outside any basin (CHOKE)—static output signals are fundamentally blind. Corroborating evidence comes from Hallucination Basins (Chen et al., 2026) showing task-dependent basin structure governs hallucination, and Trajectory Commitment (2026) demonstrating asymmetric attractor dynamics with step-0 residuals predicting hallucination at r=0.776. The gap: while geometric margin (hidden-state distance to basin center) is now established as the theoretically correct monitoring signal, no inference-compatible, training-free method provides a practical forward-only proxy for geometric margin to detect and abstain on CHOKE without requiring explicit basin localization, gradient computation, or trained classifiers.",
+  "opportunity": "Five converging results create a precise opportunity: (1) Attractor Geometry (Liang et al., 2026) establishes that correct recall = attractor basin convergence, hallucination = basin absence/boundary, with geometric margin as the theoretically correct signal. (2) Hallucination Basins (Chen et al., 2026) and Trajectory Commitment (2026) independently corroborate this framework with empirical evidence that hidden-state geometry predicts hallucination reliably. (3) EPGS (ICML 2026) showed that sharp output minima correlate with high-confidence hallucinations, detectable via gradient magnitude—but requires backpropagation. (4) Knowledge localization (Meng et al. 2022; Geva et al. 2023) established that factual recall occurs at specific intermediate MLP layers where attractor dynamics operate. (5) The mathematical bridge: the LM head being a fixed LINEAR map means it PRESERVES the curvature structure of the hidden-state landscape. At an attractor basin center, small perturbations keep the hidden state in-basin (small output KL). At a basin boundary or outside any basin, perturbations cause basin-crossing or free drift (large output KL). Therefore: output KL under intermediate-layer perturbation is a forward-only, training-free PROXY for geometric margin. The key insight: Liang et al.'s 'blindness' result applies to STATIC point estimates (entropy, argmax), not to PERTURBATION-INDUCED sensitivity, which probes local topology that the linear head faithfully transmits. This proxy, combined with a calibrated abstention threshold, transforms detection into a deployable safety mechanism.",
+  "landscape": "**Perturbation-based hallucination methods:** Liu et al. (ICLR 2026, arxiv 2502.03799): inject noise into upper-third MLP activations, sample K outputs, compute answer/semantic entropy—73-80% AUROC generally but limited on CHOKE because answer entropy stays low when argmax is stable. SHINE (Lee et al., arxiv 2411.09689): perturbs entity embeddings at INPUT layer, measures output KL—operates before attractor dynamics begin. CCPS (Khanmohammadi et al., EMNLP 2025, arxiv 2505.21772): adversarial perturbation to FINAL hidden states with a trained classifier—achieves ~55% ECE reduction; requires training. SSP/Shaking to Reveal (Luo et al., arxiv 2506.02696): perturbs intermediate layers but requires trained encoders, measures representation cosine shift (not output KL), targets general hallucinations where factual content is MORE sensitive—the opposite pattern from CHOKE.\n\n**Gradient-based methods:** EPGS (ICML 2026, arxiv 2605.00939): perturbs input embeddings and measures gradient magnitude as Hessian proxy—requires backpropagation. LLM-CAS (arxiv 2512.18623, AAAI): uses neuron-level causal tracing via Integrated Gradients to generate perturbation masks, trains RL agents (PPO) for dynamic neuron perturbation—targets hallucination CORRECTION, requires both gradients AND training.\n\n**Adaptive layer selection:** Neural Probe-Based Detection (arxiv 2512.20949): uses Bayesian optimization for probe layer selection with trained MLP probes—achieves adaptive placement but requires probe training.\n\n**Causal tracing validity:** 'Does Localization Inform Editing?' (Hase et al., NeurIPS 2023, arxiv 2301.04213) demonstrates that causal tracing results are uncorrelated with knowledge EDITING success. Critical distinction: editing modifies the model's output mapping (a write operation requiring the intervention to override competing computations), while detection measures sensitivity (a read operation where the localized layer need only exhibit differential response, not successfully change output). We address this directly via ablation.\n\n**Attractor geometry framework:** Liang et al. (arxiv 2605.05686, May 2026): proves attractor basin structure, proposes geometric margin. Hallucination Basins (Chen et al., arxiv 2604.04743, April 2026): formalizes task-dependent basin structure, achieves geometry-aware steering without retraining. Trajectory Commitment (arxiv 2604.15400, April 2026): demonstrates asymmetric attractor dynamics with causal evidence, step-0 residuals predict hallucination.\n\n**Abstention methods:** I-CALM (arxiv 2604.03904, April 2026): prompt-based confidence-aware abstention—no mechanism for high-confidence hallucinations where self-reported confidence is unreliable. Know Your Limits survey (TACL 2025): comprehensive taxonomy of abstention approaches.\n\n**Gap:** No existing method combines: (a) forward-only computation, (b) perturbation at intermediate factual-recall layers, (c) output KL as a training-free geometric margin proxy, (d) CHOKE-specific detection, AND (e) selective abstention. LLM-CAS is closest in spirit but requires RL training + gradients and targets correction rather than detection.",
+  "approach": "We propose Logit Sensitivity Probing (LSP), a training-free, forward-only method that detects CHOKE and enables selective abstention by measuring output logit KL sensitivity to residual-stream perturbation at intermediate layers—providing a practical proxy for the geometric margin signal that Attractor Geometry (Liang et al. 2026) identified as theoretically correct.\n\n**Theoretical Contribution (Geometric Margin Proxy):** Liang et al. prove that correct factual recall converges to attractor basin centers while hallucination corresponds to basin absence/boundary, and identify geometric margin as the correct monitoring signal. They note the LM head is a fixed linear map 'blind' to the distinction via static output. We formalize the observation that this linearity is precisely why PERTURBATION works as a proxy: a linear map preserves local curvature. At a basin center, the residual stream occupies a locally stable region—perturbation stays in-basin, producing small output KL. Outside basins or at boundaries (hallucination), perturbation causes drift or basin-crossing, producing large output KL. Formally: for linear head W, KL(softmax(Wh) || softmax(W(h+ε))) is controlled by ||Wε||₂ weighted by the local Jacobian of softmax—which amplifies sensitivity when h is at a distribution boundary. This establishes output KL under perturbation as a training-free, forward-only proxy for geometric margin, bridging the theoretical framework (Liang et al.) to practical detection. Corroborating evidence from Trajectory Commitment (2026)—showing step-0 residual geometry predicts hallucination at r=0.776—supports that hidden-state perturbation sensitivity carries a genuine geometric signal.\n\n**Addressing the Localization-Editing Disconnect (Hase et al., NeurIPS 2023):** This paper shows causal tracing does not predict optimal EDITING layers. We argue this does not transfer to detection because: (a) Editing requires the intervention to override competing computations—success depends on downstream propagation strength, not just local information content. Detection via sensitivity measurement requires only that the layer exhibits differential perturbation response between in-basin and out-of-basin states—a weaker requirement. (b) Geva et al. (2023) confirm that factual-recall layers DO show distinctive activation patterns for known vs. unknown facts. (c) We empirically test this assumption: our mandatory ablation compares causal-tracing-selected layers vs. empirical-sweep-selected layers vs. uniform-random layers, directly measuring whether localization provides detection benefit.\n\n**Stage 0 (Layer Identification—offline, per-model, two strategies):** (A) Causal tracing (Meng et al. 2022 protocol) on ~200 calibration examples to identify 2-4 layers with maximal causal effect on factual recall. (B) Empirical sweep: measure KL_sensitivity at all layers on 50 calibration examples, select layers with maximum CHOKE/correct separation. Strategy comparison is a mandatory ablation. One-time cost: ~4h per model.\n\n**Stage 1 (Pre-filter—near-zero cost):** Conjunction filter: (a) top-1 probability > 0.9 AND (b) factual-position classifier (frozen linear probe on last-layer residual stream). ~15-20% of tokens pass to Stage 2.\n\n**Stage 2 (Logit Sensitivity Measurement):** For each flagged position, inject calibrated isotropic Gaussian noise into the residual stream at 2-3 identified layers. Use 3 noise scales (σ ∈ {0.5, 1.0, 2.0} × layer-norm baseline). Run 3 perturbed forward passes per scale from injection point. Compute: KL_sensitivity = (1/N) Σ D_KL(p_clean || p_noisy_i).\n\n**Stage 3 (Selective Abstention):** Apply calibrated threshold τ on KL_sensitivity. When KL_sensitivity > τ, abstain (refuse to answer or flag as uncertain). Report: (a) Selective Accuracy = accuracy on non-abstained questions, (b) Coverage = fraction of questions answered, (c) CHOKE-Score on the full set. Threshold τ is set on calibration data to achieve target coverage (e.g., 90%, 95%) and evaluated out-of-distribution.\n\n**Differentiation from Related Methods:**\n- vs. SHINE: SHINE perturbs specific entity embeddings at INPUT layer (before attractor dynamics). LSP perturbs the FULL residual stream with isotropic noise at intermediate layers (where attractor dynamics operate). Signals are fundamentally different: entity corruption vs. basin proximity.\n- vs. CCPS: CCPS uses adversarial perturbation at final layer with a trained classifier. LSP uses random Gaussian at intermediate layers with a training-free threshold. Different perturbation philosophy (worst-case vs. average-case geometry).\n- vs. LLM-CAS: LLM-CAS requires RL-trained policy agents + Integrated Gradients (gradients + training). LSP is entirely gradient-free and training-free. LLM-CAS targets correction; LSP targets detection + abstention.\n- vs. SSP: SSP trains encoders, measures representation cosine shift, and finds factual content MORE sensitive to perturbation in general hallucination. LSP predicts the OPPOSITE pattern for CHOKE (correct recall = stable basin = LOW sensitivity), uses untrained KL measurement, and specifically targets high-confidence errors.\n- vs. Neural Probe (arxiv 2512.20949): Requires trained MLP probes. LSP's detection signal (raw output KL) requires no learned components.\n\n**Pilot Validation Plan (Week 1, ~6h H100):** 100-example pilot on Qwen3.6-27B: 50 CHOKE (HACK protocol) + 50 correct high-confidence. Measure KL_sensitivity at: (a) causal-tracing layers, (b) empirical-sweep layers, (c) input layer, (d) final layer. If best intermediate-layer AUROC > 0.65 (vs. ≤0.55 for input/final), proceed. If not, abort.\n\n**Full Evaluation:** (1) CHOKE subsets of TriviaQA and Natural Questions (HACK CM protocol). (2) TruthfulQA. (3) General hallucination AUROC. Models: Qwen3.6-27B (dense, 27B, Apache 2.0) and Qwen3-32B (dense, 32B, Apache 2.0)—two dense architectures of different sizes from the same family, enabling controlled size-scaling analysis. Baselines: Liu et al. (noise+entropy), SHINE (input KL), CCPS (adversarial+trained), EPGS (gradient, upper-bound reference), I-CALM (prompt-based abstention), standard semantic entropy, token probability. Primary metrics: CHOKE-Score (CM-d), Selective Accuracy @ 90%/95% coverage, general AUROC.\n\n**Mandatory Ablations:** (1) Layer placement: input vs. causal-tracing-selected vs. empirical-sweep-selected vs. final-layer vs. random layers—directly testing whether localization informs detection (contra Hase et al.'s editing result). (2) Causal-tracing vs. empirical-sweep for layer selection. (3) Per-layer sensitivity curves across all layers. (4) Noise scale sensitivity (σ sweep). (5) Abstention threshold sensitivity (τ sweep with coverage-accuracy Pareto curves).\n\n**Contributions:** (1) THEORETICAL: Formalizing output KL under intermediate perturbation as a training-free, forward-only proxy for geometric margin—connecting Attractor Geometry theory to practical detection and providing a testable bridge between basin structure and observable sensitivity. (2) PRACTICAL: Selective abstention mechanism that transforms CHOKE detection into a deployable safety tool, reporting selective accuracy and coverage. (3) EMPIRICAL: First training-free, gradient-free detector specifically targeting CHOKE, with comprehensive ablations testing whether causal localization informs detection (addressing Hase et al. 2023).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~140h H100",
+      "gpu_utilization": "~25-35% effective utilization",
+      "timeline": "2.5 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$350 (140h × ~$2.50/h)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~160h H100",
+      "gpu_utilization": "~55-65% effective utilization",
+      "timeline": "5-6 weeks",
+      "team": "1 researcher with ~30min/day steering",
+      "claude_api_cost": "$80-120",
+      "estimated_gpu_cost": "$400 (160h × ~$2.50/h)",
+      "risk_note": "Pilot validation (6h) de-risks before full compute. Layer identification adds ~8h total (both strategies for 2 models) but provides the critical ablation data."
+    },
+    "auto_research": {
+      "gpu_hours": "~185h H100",
+      "gpu_utilization": "~85-90% effective utilization; 24/7 autonomous operation",
+      "timeline": "13-15 days with 2× H100 GPUs",
+      "team": "0 after initial setup",
+      "claude_api_cost": "$200-280",
+      "estimated_gpu_cost": "$462 (185h × ~$2.50/h)",
+      "compute_breakdown": "Layer identification (causal tracing + empirical sweep, 2 models): ~12h. CHOKE subset construction using HACK protocol (2 models × 2 datasets): ~28h. Pilot validation (100 examples, 4 layer conditions × 3 scales): ~6h. Main experiments (2 models × 2 datasets × 3 σ × 3 layer-selection-strategies = 36 configs): ~58h. Baselines (7 methods × 2 models × 2 datasets): ~42h. Ablations (layer placement, selection method, per-layer curves, σ sweep, τ sweep): ~24h. Selective abstention analysis (Pareto curves, coverage-accuracy tradeoffs): ~8h. Buffer: ~7h.",
+      "speed_bottleneck": "CHOKE subset construction requires 6× generation per question. Both layer identification strategies require multiple forward passes but are one-time per model.",
+      "risk_note": "185h within ≤200h constraint. Pilot at ~46h provides early stop signal. If hypothesis fails (intermediate ≤ input/final), remaining compute redirected to analysis paper explaining null result + comparison of layer-selection methods."
+    }
+  },
+  "target_venues": [
+    "EACL 2027 (ARR August 3, 2026 deadline; 79-day runway from today enables thorough pilot-driven experimentation; commitment deadline October 11, 2026)",
+    "ACL 2027 (ARR ~January 2027; fallback if results warrant extended analysis or if EACL reviews suggest revisions)"
+  ],
+  "venue_note": "EMNLP 2026 (ARR May 25, 2026) is infeasible: 9 days is insufficient for pilot validation + full experiments. EACL 2027 (ARR August 3, 2026) is the next feasible *CL venue with 79 days—sufficient for pilot (week 1), full experiments (weeks 2-6), and writing (weeks 7-10). The extended timeline also enables the comprehensive ablation study (causal-tracing vs. empirical-sweep layer selection) that directly addresses the Hase et al. (2023) challenge.",
+  "level": "solid-to-strong",
+  "key_references": [
+    "Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (Liang et al., MIT, arxiv 2605.05686, May 2026)",
+    "Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (Chen et al., arxiv 2604.04743, April 2026)",
+    "Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation (arxiv 2604.15400, April 2026)",
+    "From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity (EPGS, ICML 2026, arxiv 2605.00939)",
+    "Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models (Hase et al., NeurIPS 2023, arxiv 2301.04213)",
+    "LLM-CAS: Dynamic Neuron Perturbation for Real-Time Hallucination Correction (arxiv 2512.18623, AAAI 2025)",
+    "Neural Probe-Based Hallucination Detection with Bayesian Layer Optimization (arxiv 2512.20949)",
+    "Trust Me, I'm Wrong: LLMs Hallucinate with Certainty Despite Knowing the Answer (Simhi et al., Findings of EMNLP 2025, arxiv 2502.12964)",
+    "HACK: Hallucinations Along Certainty and Knowledge Axes (Simhi et al., arxiv 2510.24222)",
+    "Enhancing Hallucination Detection through Noise Injection (Liu et al., ICLR 2026, arxiv 2502.03799)",
+    "Calibrating LLM Confidence by Probing Perturbed Representation Stability (CCPS, Khanmohammadi et al., EMNLP 2025, arxiv 2505.21772)",
+    "Probing LLM Hallucination from Within: Perturbation-Driven Approach via Internal Knowledge (SHINE, Lee et al., arxiv 2411.09689)",
+    "Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations (SSP, Luo et al., arxiv 2506.02696)",
+    "I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation (arxiv 2604.03904, April 2026)",
+    "Know Your Limits: A Survey of Abstention in Large Language Models (TACL 2025)",
+    "Locating and Editing Factual Associations in GPT (Meng et al., ROME, NeurIPS 2022, arxiv 2202.05262)",
+    "Dissecting Recall of Factual Associations in Auto-Regressive Language Models (Geva et al., 2023)",
+    "Optimal Stability of KL Divergence under Gaussian Perturbations (Pan et al., arxiv 2604.11026, April 2026)",
+    "Detecting hallucinations in large language models using semantic entropy (Nature 2024)",
+    "In-Context Sharpness as Alerts: An Inner Representation Perspective for Hallucination Mitigation (ICML 2024, arxiv 2403.01548)"
+  ],
+  "description": "We propose Logit Sensitivity Probing (LSP), a training-free, forward-only method that detects CHOKE (Certain Hallucinations Overriding Known Evidence) and enables selective abstention by measuring output logit KL sensitivity to residual-stream perturbation at intermediate layers. Our primary contribution is THEORETICAL: we formalize output KL under intermediate-layer Gaussian perturbation as a training-free proxy for geometric margin—the signal that Attractor Geometry (Liang et al. 2026) identifies as theoretically correct for distinguishing attractor basin convergence (correct recall) from basin absence (hallucination). The LM head's linearity, which makes static outputs 'blind' (Liang et al.), is precisely what makes perturbation sensitivity INFORMATIVE: linearity preserves local curvature, so perturbation-induced KL probes basin geometry that point estimates cannot access. This theoretical bridge is corroborated by concurrent work: Hallucination Basins (2026) confirms task-dependent basin structure governs hallucination, and Trajectory Commitment (2026) shows hidden-state geometry predicts hallucination at r=0.776. We explicitly address the localization-editing disconnect (Hase et al., NeurIPS 2023): their finding that causal tracing ≠ optimal editing layers does not transfer to detection, because detection measures sensitivity (a read operation) while editing overrides output (a write operation with stricter requirements). A mandatory ablation comparing causal-tracing-selected vs. empirical-sweep-selected vs. random layers directly tests this. Our practical contribution adds selective abstention: when KL_sensitivity exceeds a calibrated threshold, LSP refuses to answer, transforming detection into a deployable safety mechanism reporting selective accuracy at controlled coverage levels. Unlike LLM-CAS (RL-trained + gradients, targets correction), CCPS (adversarial + trained classifier), SSP (trained encoders + opposite sensitivity pattern), and Neural Probe (trained MLP probes + Bayesian optimization), LSP requires NO training and NO gradients. Evaluated on CHOKE subsets (TriviaQA, NQ) with Qwen3.6-27B and Qwen3-32B (both dense architectures) against seven baselines. A 100-example pilot (~6h) validates the core hypothesis before full compute commitment (~185h H100 total).",
+  "project_name": "sharpness_selective_gen",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL VENUE MISMATCH: User requires EMNLP 2026 (ARR deadline May 25, 2026) but the idea targets ICLR 2027 and AAAI 2027. This directly violates user requirements.", "MAJOR UNCITED WORK: 'Enhancing Hallucination Detection through Noise Injection' (Liu et al., ICLR 2026, arxiv 2502.03799) already performs gradient-free noise injection into hidden unit activations at inference time for hallucination detection with selective prediction support. The claim of being 'the first gradient-free sharpness estimator' is invalidated.", "UNCITED WORK: 'Trust Me, I'm Wrong: LLMs Hallucinate with Certainty Despite Knowing the Answer' (Simhi et al., Findings of EMNLP 2025) already identifies and names the phenomenon of high-confidence hallucinations (CHOKE) and proposes probing-based mitigation—precisely the 'stubborn hallucination' problem this paper claims as its motivation.", "UNCITED WORK: SHINE (Lee et al., arxiv 2411.09689) uses perturbation-driven approach measuring KL divergence to detect hallucinations without external knowledge or gradient computation.", "The theoretical justification for why residual-stream noise at layers L/3, L/2, 2L/3 approximates the Hessian trace better than the ICLR 2026 approach of targeting upper-third MLP activations is not established. EPGS perturbs input embeddings—the connection to intermediate residual stream perturbation needs separate validation.", "The 'retrieval-augmented constrained decoding' fallback is underspecified—this is essentially a separate system that adds major complexity but receives no technical detail or resource allocation.", "The EPGS AUROC claim of 0.737 on SQuAD could not be independently verified from the abstract alone (paper just posted May 2026); the specific numbers should be double-checked against the camera-ready."]
+Feedback: This idea has a solid technical skeleton but faces a critical novelty deficit due to the uncited ICLR 2026 noise injection paper (arxiv 2502.03799). To salvage this direction:
+
+1. **Fix venue targeting**: Must target EMNLP 2026 (ARR May 25 deadline) per user requirements.
+
+2. **Differentiate from ICLR 2026 noise injection paper**: The key potential differentiator is the sharpness/flatness geometric interpretation and the specific focus on 'stubborn' (high-confidence) hallucinations where entropy-based methods fail. Reframe the contribution as: (a) providing theoretical grounding for WHY noise injection works (connecting to loss landscape geometry/sharpness), (b) showing that existing noise injection (ICLR 2026) fails specifically on stubborn hallucinations because answer entropy is already low, and (c) proposing token-level KL sensitivity as a superior metric for this subset. You must empirically demonstrate that the ICLR 2026 method fails on stubborn hallucinations while yours succeeds.
+
+3. **Cite and position against CHOKE (EMNLP 2025 Findings)**: Acknowledge the phenomenon is known. Your contribution is a different detection mechanism (perturbation-based sharpness vs. probing).
+
+4. **Drop the 'first gradient-free' claim**: It's false. Reframe as 'first sharpness-aware gradient-free method that specifically targets stubborn/CHOKE hallucinations.'
+
+5. **Simplify**: Drop the underspecified retrieval-augmented fallback. Focus on the detection + simple abstention, which is enough for a solid paper.
+
+### Round 2 review
+Verdict: revise
+Issues: ["COMPUTE BUDGET VIOLATION: Auto_research estimate of 350h H100 exceeds the user's hard constraint of ≤200 H100-hours. The 50h CHOKE subset construction plus noise calibration grid search drives this over budget.", "EXTREMELY TIGHT TIMELINE: 9 days (May 16→25) is infeasible for a quality EMNLP submission. The proposal acknowledges this with a fallback to ACL 2027, effectively conceding the primary target is unrealistic.", "NARROW NOVELTY VS SHINE: SHINE (arxiv 2411.09689) already does 'perturb embeddings → measure output KL divergence' without training. LSP's differentiation reduces to perturbing at intermediate layers instead of input—a layer-choice ablation, not a fundamentally new method. A reviewer will ask: 'Why not just run SHINE at intermediate layers?'", "THEORETICAL CONTRIBUTION OVERSTATED: The KL ≈ (σ²/2)·Tr(H) relationship is standard second-order Taylor expansion / information geometry (Camuto et al. NeurIPS 2020, Fisher-SAM ICML 2022, Noise Stability Optimization 2023). Framing this as a 'key contribution' will be challenged by reviewers familiar with sharpness-aware minimization literature.", "UNVALIDATED CORE HYPOTHESIS: No pilot data or formal proof that residual-stream perturbation produces high logit-KL specifically for CHOKE while producing low logit-KL for correct high-confidence answers. EPGS's gradient-magnitude result does not directly transfer to forward-only KL measurement—the sharpness landscape may look different when measured via KL vs. gradient norms.", "CHOKE SUBSET PREVALENCE IS LOW: At 0.3-2.1% of all hallucinations, a CHOKE-only detector has limited standalone value unless utility on general hallucinations is also demonstrated. The paper should report general AUROC alongside CHOKE-Score.", "MISSING COMPARISON: HACK (arxiv 2510.24222, Oct 2025) and Aletheia (arxiv 2601.01532, Jan 2026) both build on CHOKE and propose detection/mitigation. These should be cited and compared."]
+Feedback: The revision addressed Round 1 issues well (venue, citations, positioning), but fundamental problems remain:
+
+1. **Compute**: Cut the grid search. Fix σ calibration to 2-3 values per layer based on EPGS's noise schedule rather than exhaustive search. Target ≤180h total by limiting to 2 models × 2 datasets × 3 noise scales × 3 layers = 36 configurations instead of a full grid.
+
+2. **Strengthen novelty beyond SHINE**: The paper MUST include a direct ablation: SHINE-style input perturbation → KL vs. LSP-style intermediate perturbation → KL, on the SAME CHOKE subset. The contribution is only valid if intermediate perturbation is empirically superior for CHOKE detection. Provide a theoretical argument: intermediate layers encode factual recall (cite knowledge localization literature: Meng et al. ROME, Geva et al.); perturbing at the locus of factual computation should produce stronger sharpness signals than perturbing distal input embeddings.
+
+3. **Reframe theory**: Don't claim the KL-Hessian connection as a contribution. Instead, frame it as *motivation*: 'Following established results connecting noise-injection to Hessian trace estimation [cite Camuto 2020, CR-SAM 2024], we propose using logit KL as a practical, forward-only sharpness proxy specifically for detecting CHOKE hallucinations.' The contribution is empirical, not theoretical.
+
+4. **Broaden evaluation**: Report both CHOKE-Score AND general AUROC. If LSP also helps on non-CHOKE hallucinations (even modestly), the impact argument is much stronger.
+
+5. **Timeline honesty**: Either commit to May 25 with a drastically scoped version (1 model, 2 benchmarks, 3 baselines) or acknowledge ACL 2027 as the realistic target. A half-finished paper at EMNLP is worse than a complete one at ACL.
+
+6. **Cite HACK and Aletheia**: These are direct follow-ups to CHOKE and must be acknowledged in the landscape section.
+
+### Round 3 review
+Verdict: revise
+Issues: ["FACTUAL ERROR — HACK AUTHORSHIP: HACK (arxiv 2510.24222) is cited as 'Uehara et al., 2025' throughout, but the actual lead author is Adi Simhi. There is no author named 'Uehara' among the 10 co-authors. This error appears in the core_problem, landscape, and approach sections.", "VENUE ERROR: 'EMNLP 2026 ARR October cycle' does not exist. EMNLP 2026 exclusively accepts papers from the ARR May 2026 cycle (deadline May 25, 2026). The October ARR cycle would target EACL 2027 or similar. This makes the stated fallback venue fictional.", "CRITICAL MISSING COMPETING WORK — ATTRACTOR GEOMETRY (arxiv 2605.05686, May 2026, MIT): This paper directly argues that the frozen LM head is 'blind by design' to high-confidence hallucinations because it 'systematically erases' epistemic information from hidden states. Since LSP measures output logit KL (which passes through the LM head), this is a direct theoretical objection. The proposal must address why perturbation-based KL divergence escapes this limitation when static confidence does not.", "MISSING COMPETING WORK — CCPS (arxiv 2505.21772, EMNLP 2025 main): 'Calibrating LLM Confidence by Probing Perturbed Representation Stability' perturbs hidden states and measures stability for confidence calibration — the same high-level idea as LSP. Must be cited and differentiated (CCPS: adversarial perturbation at final layers + trained classifier; LSP: Gaussian noise at intermediate layers + direct KL).", "NOVELTY CONCERN — COMBINATION VS. CONTRIBUTION: LSP = output KL measurement (from SHINE) + intermediate-layer perturbation (from SSP/Liu et al.) + sharpness motivation (from EPGS). An EMNLP reviewer will ask: 'Why not just run SHINE at intermediate layers?' The mandatory input-vs-intermediate ablation is necessary but not sufficient — the paper needs a theoretical or empirical argument for why this combination yields a qualitatively different signal, not just a quantitative improvement.", "UNVALIDATED CORE HYPOTHESIS: The claim that intermediate-layer perturbation → high output logit KL for CHOKE but NOT for correct high-confidence answers is the entire paper's thesis, yet there is no pilot data, formal proof, or even a toy demonstration. EPGS's gradient-magnitude result does not directly transfer to forward-only KL — the relationship KL ≈ (σ²/2)·Tr(H) is an approximation that may not hold in the highly non-linear regime of CHOKE-vs-correct discrimination.", "CONFLATION OF CHOKE AND STUBBORN HALLUCINATIONS: The proposal uses CHOKE (from Simhi et al. 2025) and 'stubborn hallucinations' (from EPGS 2026) interchangeably, but these are defined in different papers with different operationalizations. EPGS does not use the CHOKE acronym. The proposal should clarify whether these concepts are formally equivalent or merely overlapping.", "USER REQUIREMENT MISMATCH — PRIMARY VENUE: User requires EMNLP 2026 (May 25 ARR deadline). The proposal targets ACL 2027 as primary. While Round 2 feedback permitted this timeline honesty, the idea still fails to meet the user's stated target. If ACL 2027 is truly the realistic target, the experimental plan should be designed for thoroughness rather than speed."]
+Feedback: The proposal has improved substantially from Rounds 1-2 (compute now within budget, broader evaluation, reframed theoretical claims), but critical issues remain:
+
+1. **Fix the HACK authorship error immediately**: Replace 'Uehara et al.' with 'Simhi et al.' throughout. This is a basic factual error that damages credibility.
+
+2. **Fix the venue**: Remove 'EMNLP 2026 ARR October cycle' — it does not exist. If targeting ACL 2027, say so clearly. If aiming for EMNLP 2026 (May 25 deadline), scope down to 1 model + 2 datasets + 3 baselines with a clear 9-day execution plan. Otherwise, EACL 2027 (ARR August 3, 2026) is a credible intermediate fallback.
+
+3. **Address the Attractor Geometry objection head-on**: arxiv 2605.05686 argues the LM head is fundamentally blind to high-confidence hallucinations. Your counter-argument should be: static output entropy (what they critique) is different from PERTURBATION-INDUCED output KL divergence. When you perturb at the intermediate layer, you're probing the local curvature of the input→output mapping, not reading the static output. The LM head may erase epistemic state in its static output, but it cannot erase the fact that the mapping is sharp (high-curvature) vs. flat (low-curvature). Formalize this distinction.
+
+4. **Cite CCPS (EMNLP 2025)**: Differentiate as: CCPS uses adversarial perturbation at final layers with a trained classifier; LSP uses random Gaussian noise at factual-recall layers with no training. The training-free + layer-targeted combination is your differentiator.
+
+5. **Boost novelty beyond 'SHINE at intermediate layers'**: The paper needs a conceptual contribution beyond recombination. Consider: (a) provide a formal analysis showing that KL sensitivity at intermediate layers decomposes into a factual-recall-specific component (via knowledge localization) that is absent at input layers — not just 'intermediate is empirically better'; (b) introduce a layer-selection criterion based on factual recall signatures (e.g., use the causal tracing signal from ROME to automatically identify which layers to perturb), making the method adaptive rather than using fixed layers 12-18.
+
+6. **Get pilot data**: The strongest revision would include a small-scale pilot (1 model, 100 CHOKE examples) showing the core signal exists. Even a 2-hour experiment demonstrating that KL_sensitivity is higher for CHOKE than for correct high-confidence answers would dramatically strengthen the proposal. Without this, the entire paper is a bet on an unvalidated hypothesis.
+
+7. **Clarify CHOKE vs. stubborn hallucinations**: State explicitly whether Simhi et al.'s CHOKE and EPGS's 'stubborn hallucinations' have the same operational definition or merely overlap. If they differ, specify which definition your evaluation uses.
+
+### Round 4 review
+Verdict: revise
+Issues: ["VENUE MISMATCH: User requires EMNLP 2026 (ARR May 25, 2026). Proposal targets EACL 2027 (ARR August 3, 2026). While Round 3 feedback permitted this pivot, the proposal still does not meet the user's stated requirement.", "CRITICAL UNCITED WORK — LLM-CAS (arXiv 2512.18623, AAAI): Uses a 'Neuron-level Causal Trace module' (Integrated Gradients) to produce dynamic perturbation masks for hallucination correction. This DIRECTLY anticipates LSP's claimed contribution of 'adaptive layer selection via causal tracing for perturbation-based hallucination methods.' The step from correction→detection is incremental.", "CRITICAL THEORETICAL CHALLENGE — 'Does Localization Inform Editing?' (NeurIPS 2023, arXiv 2301.04213): Demonstrates that causal tracing results are statistically UNCORRELATED with the success of knowledge editing interventions. If causal tracing does not reliably identify where to intervene for editing, the assumption that it identifies optimal perturbation layers for detection needs explicit justification. This paper must be cited and addressed.", "UNCITED WORK — Neural Probe-Based Hallucination Detection (arXiv 2512.20949): Uses Bayesian optimization for adaptive probe layer selection with KL-divergence constraints—directly anticipating the adaptive layer selection contribution.", "MOE ARCHITECTURE CONCERN: DeepSeek-V4-Flash is a 284B MoE model (13B activated). Standard Meng et al. causal tracing protocol was designed for dense transformers. The proposal does not acknowledge how causal tracing (activation patching across all positions) works when different experts are activated per input. This may require substantial methodological adaptation.", "UNVALIDATED CORE HYPOTHESIS (persistent from Round 3): Still no empirical evidence that intermediate-layer perturbation → high KL for CHOKE but low KL for correct high-confidence answers. The pilot plan is good but remains a plan. After 4 rounds of revision, even a toy experiment (10 examples, 1 hour) showing the signal exists would dramatically strengthen credibility.", "NARROW NOVELTY WINDOW: The proposal's unique position is the intersection of (training-free) ∩ (output KL metric) ∩ (causal-tracing-selected intermediate layers) ∩ (CHOKE-specific). But with LLM-CAS doing causal-tracing + perturbation + hallucination, SSP doing intermediate-layer perturbation + hallucination detection, and CCPS doing perturbation-stability + KL features + hallucination, an EACL reviewer will view this as an engineering recombination, not a conceptual advance."]
+Feedback: The proposal has improved significantly over 4 rounds—venue, authorship, and differentiation issues from Rounds 1-3 are resolved. But two newly discovered papers substantially erode the claimed contributions:
+
+1. **Address 'Does Localization Inform Editing?' (NeurIPS 2023)**: This is your biggest vulnerability. It shows causal tracing ≠ best intervention layers for editing. Your counter-argument should be: (a) detection ≠ editing—you're not changing the model's output, you're measuring sensitivity, which is a fundamentally different use of the localization signal; (b) cite Geva et al. 2023 showing that factual recall layers DO have distinctive perturbation sensitivity even if editing there is unreliable; (c) your pilot ablation (causal-tracing-selected vs. fixed vs. random layers) directly tests this empirically. But you MUST cite and engage with this paper.
+
+2. **Cite and differentiate from LLM-CAS**: Acknowledge it does causal tracing + perturbation for hallucination. Differentiate as: (a) LLM-CAS requires RL training of a policy agent—not training-free; (b) it targets correction via steering—fundamentally different from detection via sensitivity measurement; (c) it uses Integrated Gradients—not forward-only. Your training-free, forward-only constraint is the differentiator.
+
+3. **MoE model issue**: Either (a) replace DeepSeek-V4-Flash with a dense model (e.g., DeepSeek-V3-Base 37B if available, or Mistral-Large), or (b) describe how you'll adapt causal tracing for MoE (trace only through activated experts per input).
+
+4. **Boost impact beyond detection-only**: Add a simple abstention mechanism (refuse to answer when KL_sensitivity > threshold) and report selective accuracy (accuracy on non-abstained questions). This transforms LSP from a diagnostic tool to a deployable safety mechanism, substantially increasing practical impact.
+
+5. **Reframe contribution hierarchy**: Given LLM-CAS and the Neural Probe paper, your adaptive-layer-selection contribution is less novel than claimed. Reframe: primary contribution = theoretical (geometric margin proxy formalization connecting Attractor Geometry to practical detection); secondary = empirical (first training-free CHOKE-specific detector without gradient computation); the adaptive layer selection is a methodological detail, not a standalone contribution.
+
+6. **On venue**: If you truly cannot submit to EMNLP 2026 (May 25), at minimum acknowledge this limitation and explain why EACL 2027 is the next feasible target. The 79-day runway to August 3 is generous—use it for thorough experiments including the pilot validation.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "100afc0a-2631-4515-a0f3-2f60e97aa279",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T10:28:55.355Z_
+
+```json
+{
+  "parentUuid": "100afc0a-2631-4515-a0f3-2f60e97aa279",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "17bc8ca0-745a-4ebd-9b38-c7b508f1b794",
+  "timestamp": "2026-05-16T10:28:55.355Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T10:28:55.356Z_
+
+```json
+{
+  "parentUuid": "17bc8ca0-745a-4ebd-9b38-c7b508f1b794",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "4cf7dea2-3af7-460a-83c3-5e123c9b5ce5",
+  "timestamp": "2026-05-16T10:28:55.356Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "4cf7dea2-3af7-460a-83c3-5e123c9b5ce5",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "CHOKE Detection via Intermediate-Layer Perturbation Sensitivity",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T10:29:10.183Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea (Round 5/10) as a strict ML research reviewer. I need to independently verify claims, check for competing work, assess novelty, feasibility, and overall quality.
+
+Let me organize my review around the key dimensions:
+
+1. **Venue compliance** - User requires EMNLP 2026 (ARR May 25, 2026). The proposal now targets EACL 2027 (ARR August 3, 2026). This is still a mismatch but was acknowledged in previous rounds.
+
+2. **Key references verification** - I need to verify the existence and claims of cited papers, especially the newer ones (2026).
+
+
+3. **Novelty assessment** - I need to understand how LSP compares against the existing landscape of perturbation-based methods like SHINE, CCPS, LLM-CAS, SSP, and Liu et al.'s ICLR 2026 work.
+4. **Theoretical soundness** - I should examine whether the geometric margin proxy argument holds up under scrutiny.
+5. **Feasibility** - I need to assess whether the 200 H100-hour budget and proposed timeline are realistic.
+
+Now I'm searching through the key papers and competing work to ground my evaluation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4cf7dea2-3af7-460a-83c3-5e123c9b5ce5",
+  "isSidechain": false,
+  "requestId": "req_011Cb66DQss62iBeE5fNao5x",
+  "type": "assistant",
+  "uuid": "f1505993-cd98-4b58-bc31-40b47ebd7a71",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LLaYBNA569QMuyzxF4tqrV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20442,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 377,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20442,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 377,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20442,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20442
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T10:29:10.191Z_
+
+I'll conduct an independent verification of this proposal's claims, checking key references, competing work, and the theoretical foundation.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1505993-cd98-4b58-bc31-40b47ebd7a71",
+  "isSidechain": false,
+  "requestId": "req_011Cb66DQss62iBeE5fNao5x",
+  "type": "assistant",
+  "uuid": "58c769c9-484c-49f0-b9e7-f5ccef5f98c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LLaYBNA569QMuyzxF4tqrV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20442,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 377,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20442,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 377,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20442,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20442
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T10:29:10.331Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013HtUxNjeinRWAdq2kxwtSk`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58c769c9-484c-49f0-b9e7-f5ccef5f98c3",
+  "isSidechain": false,
+  "requestId": "req_011Cb66DQss62iBeE5fNao5x",
+  "type": "assistant",
+  "uuid": "e0127ce7-dd74-42af-a98d-36d2b1d1f72a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LLaYBNA569QMuyzxF4tqrV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20442,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 377,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20442,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 377,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20442,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20442
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T10:29:10.337Z_
+
+<details><summary>↩ Tool result · `toolu_013HtUxNjeinRWAdq2kxwtSk`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e0127ce7-dd74-42af-a98d-36d2b1d1f72a",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "63bef23b-8eb6-4b56-9c56-ad428e5bad8d",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "e0127ce7-dd74-42af-a98d-36d2b1d1f72a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-16T10:29:16.969Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start my independent verification. I need to check:
+
+1. Key references - especially the newer 2026 papers (Attractor Geometry, Hallucination Basins, Trajectory Commitment, EPGS)
+2. Competing work that may have been missed
+3. The theoretical claims about linearity preserving curvature
+4. Whether the venue (EACL 2027, ARR August 3) is correct
+5. Whether the CHOKE/HACK papers are correctly attributed
+
+Let me search for these in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63bef23b-8eb6-4b56-9c56-ad428e5bad8d",
+  "isSidechain": false,
+  "requestId": "req_011Cb66EWnr5isLgtir4Pbhq",
+  "type": "assistant",
+  "uuid": "80b7ec18-2249-4ea9-a94c-d400e47db018",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G57hKCWSBgAviQksGZCGsa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1397,
+      "cache_read_input_tokens": 32283,
+      "output_tokens": 395,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1397,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 395,
+          "cache_read_input_tokens": 32283,
+          "cache_creation_input_tokens": 1397,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1397
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-16T10:29:17.458Z_
+
+Starting my independent verification of this proposal's key claims and references.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80b7ec18-2249-4ea9-a94c-d400e47db018",
+  "isSidechain": false,
+  "requestId": "req_011Cb66EWnr5isLgtir4Pbhq",
+  "type": "assistant",
+  "uuid": "c8bdab81-7271-45db-8ddf-0735ac71578c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G57hKCWSBgAviQksGZCGsa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1397,
+      "cache_read_input_tokens": 32283,
+      "output_tokens": 395,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1397,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 395,
+          "cache_read_input_tokens": 32283,
+          "cache_creation_input_tokens": 1397,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1397
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T10:29:18.021Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QBcb7GNfD7i2SkA3QbBR77`</summary>
+
+```json
+{
+  "query": "arxiv 2605.05686 \"Attractor Geometry\" transformer hallucination 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8bdab81-7271-45db-8ddf-0735ac71578c",
+  "isSidechain": false,
+  "requestId": "req_011Cb66EWnr5isLgtir4Pbhq",
+  "type": "assistant",
+  "uuid": "ed4354ca-1db3-4c20-9dc8-8249fcae0af6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G57hKCWSBgAviQksGZCGsa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1397,
+      "cache_read_input_tokens": 32283,
+      "output_tokens": 395,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1397,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 395,
+          "cache_read_input_tokens": 32283,
+          "cache_creation_input_tokens": 1397,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1397
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T10:29:19.068Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013mtTgiNBr3WNCC5NpDQcNF`</summary>
+
+```json
+{
+  "query": "arxiv 2604.04743 \"Hallucination Basins\" dynamic framework 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed4354ca-1db3-4c20-9dc8-8249fcae0af6",
+  "isSidechain": false,
+  "requestId": "req_011Cb66EWnr5isLgtir4Pbhq",
+  "type": "assistant",
+  "uuid": "ef128949-4fb8-47d9-a10b-c905ccb3b52c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G57hKCWSBgAviQksGZCGsa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1397,
+      "cache_read_input_tokens": 32283,
+      "output_tokens": 395,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1397,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 395,
+          "cache_read_input_tokens": 32283,
+          "cache_creation_input_tokens": 1397,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1397
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T10:29:19.538Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YXT3Tk7Knmkd6Lx9sShDsB`</summary>
+
+```json
+{
+  "query": "arxiv 2604.15400 \"Trajectory Commitment\" attractor dynamics transformer 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef128949-4fb8-47d9-a10b-c905ccb3b52c",
+  "isSidechain": false,
+  "requestId": "req_011Cb66EWnr5isLgtir4Pbhq",
+  "type": "assistant",
+  "uuid": "c2dfa9a1-85c5-46f6-9ff6-88d31f7ac569",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G57hKCWSBgAviQksGZCGsa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1397,
+      "cache_read_input_tokens": 32283,
+      "output_tokens": 395,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1397,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 395,
+          "cache_read_input_tokens": 32283,
+          "cache_creation_input_tokens": 1397,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1397
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T10:29:20.144Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A3VGVZQSF8mBnCZgeUKLEH`</summary>
+
+```json
+{
+  "query": "arxiv 2605.00939 EPGS gradient sensitivity hallucination ICML 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2dfa9a1-85c5-46f6-9ff6-88d31f7ac569",
+  "isSidechain": false,
+  "requestId": "req_011Cb66EWnr5isLgtir4Pbhq",
+  "type": "assistant",
+  "uuid": "d8dfc91b-f62a-4980-b888-dc14e2f6a387",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G57hKCWSBgAviQksGZCGsa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1397,
+      "cache_read_input_tokens": 32283,
+      "output_tokens": 395,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1397,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 395,
+          "cache_read_input_tokens": 32283,
+          "cache_creation_input_tokens": 1397,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1397
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T10:29:25.217Z_
+
+<details><summary>↩ Tool result · `toolu_01A3VGVZQSF8mBnCZgeUKLEH`</summary>
+
+```text
+Web search results for query: "arxiv 2605.00939 EPGS gradient sensitivity hallucination ICML 2026"
+
+Links: [{"title":"From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity","url":"https://arxiv.org/html/2605.00939"},{"title":"[2605.00939] From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity","url":"https://arxiv.org/abs/2605.00939"},{"title":"Next-Token Gradient Sensitivity Probing for LLM Hallucination Detection | OpenReview","url":"https://openreview.net/forum?id=yzWGQNTbHQ"},{"title":"Logical Consistency as a Bridge: Improving LLM Hallucination Detection via Label Constraint Modeling between Responses and Self-Judgments","url":"https://arxiv.org/html/2605.03971v1"},{"title":"CAST: Mitigating Object Hallucination in Large Vision-Language Models via Caption-Guided Visual Attention Steering","url":"https://arxiv.org/html/2605.04641"},{"title":"[2601.20279] Hallucination Begins Where Saliency Drops","url":"https://arxiv.org/abs/2601.20279"},{"title":"Mitigating Multimodal Hallucinations via Gradient-based Self-Reflection","url":"https://arxiv.org/html/2509.03113"},{"title":"Sparse Tokens Suffice: Jailbreaking Audio Language Models via Token-Aware Gradient Optimization","url":"https://arxiv.org/html/2605.04700v1"},{"title":"GPTZero finds 100 new hallucinations in NeurIPS 2025 accepted papers","url":"https://gptzero.me/news/neurips/"},{"title":"Seeing Far and Clearly: Mitigating Hallucinations in MLLMs with Attention Causal Decoding","url":"https://arxiv.org/html/2505.16652v1"}]
+
+I found the paper you're searching for. The paper proposes a method called Embedding-Perturbed Gradient Sensitivity (EPGS). 
+
+The paper addresses the problem of "Stubborn Hallucinations"—errors where LLMs are confidently wrong. The key hypothesis is that while robust facts reside in flat minima, stubborn hallucinations sit in sharp minima, supported by brittle memorization.
+
+EPGS detects this sharpness by perturbing input embeddings with Gaussian noise and measuring the resulting spike in gradient magnitude, which acts as an efficient proxy for the Hessian spectrum, differentiating stable knowledge from unstable memorization. The experiments show that EPGS significantly outperforms entropy-based and representation-based baselines, providing a robust signal for detecting high-confidence factual errors.
+
+The paper was published on arXiv on May 1, 2026, and is associated with ICML (Machine Learning).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d8dfc91b-f62a-4980-b888-dc14e2f6a387",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "b7868952-8624-4639-b9b5-3bf6c6a48915",
+  "toolUseResult": {
+    "query": "arxiv 2605.00939 EPGS gradient sensitivity hallucination ICML 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NKEJqUPwA7xc33U6pMwpKu",
+        "content": [
+          {
+            "title": "From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity",
+            "url": "https://arxiv.org/html/2605.00939"
+          },
+          {
+            "title": "[2605.00939] From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity",
+            "url": "https://arxiv.org/abs/2605.00939"
+          },
+          {
+            "title": "Next-Token Gradient Sensitivity Probing for LLM Hallucination Detection | OpenReview",
+            "url": "https://openreview.net/forum?id=yzWGQNTbHQ"
+          },
+          {
+            "title": "Logical Consistency as a Bridge: Improving LLM Hallucination Detection via Label Constraint Modeling between Responses and Self-Judgments",
+            "url": "https://arxiv.org/html/2605.03971v1"
+          },
+          {
+            "title": "CAST: Mitigating Object Hallucination in Large Vision-Language Models via Caption-Guided Visual Attention Steering",
+            "url": "https://arxiv.org/html/2605.04641"
+          },
+          {
+            "title": "[2601.20279] Hallucination Begins Where Saliency Drops",
+            "url": "https://arxiv.org/abs/2601.20279"
+          },
+          {
+            "title": "Mitigating Multimodal Hallucinations via Gradient-based Self-Reflection",
+            "url": "https://arxiv.org/html/2509.03113"
+          },
+          {
+            "title": "Sparse Tokens Suffice: Jailbreaking Audio Language Models via Token-Aware Gradient Optimization",
+            "url": "https://arxiv.org/html/2605.04700v1"
+          },
+          {
+            "title": "GPTZero finds 100 new hallucinations in NeurIPS 2025 accepted papers",
+            "url": "https://gptzero.me/news/neurips/"
+          },
+          {
+            "title": "Seeing Far and Clearly: Mitigating Hallucinations in MLLMs with Attention Causal Decoding",
+            "url": "https://arxiv.org/html/2505.16652v1"
+          }
+        ]
+      },
+      "I found the paper you're searching for. The paper proposes a method called Embedding-Perturbed Gradient Sensitivity (EPGS). \n\nThe paper addresses the problem of \"Stubborn Hallucinations\"—errors where LLMs are confidently wrong. The key hypothesis is that while robust facts reside in flat minima, stubborn hallucinations sit in sharp minima, supported by brittle memorization.\n\nEPGS detects this sharpness by perturbing input embeddings with Gaussian noise and measuring the resulting spike in gradient magnitude, which acts as an efficient proxy for the Hessian spectrum, differentiating stable knowledge from unstable memorization. The experiments show that EPGS significantly outperforms entropy-based and representation-based baselines, providing a robust signal for detecting high-confidence factual errors.\n\nThe paper was published on arXiv on May 1, 2026, and is associated with ICML (Machine Learning)."
+    ],
+    "durationSeconds": 5.069012978999999
+  },
+  "sourceToolAssistantUUID": "d8dfc91b-f62a-4980-b888-dc14e2f6a387",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T10:29:25.624Z_
+
+<details><summary>↩ Tool result · `toolu_01YXT3Tk7Knmkd6Lx9sShDsB`</summary>
+
+```text
+Web search results for query: "arxiv 2604.15400 "Trajectory Commitment" attractor dynamics transformer 2026"
+
+Links: [{"title":"[2604.15400] Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation","url":"https://arxiv.org/abs/2604.15400"},{"title":"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation","url":"https://arxiv.org/html/2604.15400"},{"title":"Transformer Dynamics: A neuroscientific approach to interpretability of large","url":"https://arxiv.org/pdf/2502.12131"},{"title":"Transformer Dynamics: A neuroscientific approach to interpretability of large language models","url":"https://arxiv.org/html/2502.12131v1"},{"title":"AI-Driven Control of Chaos: A Transformer-Based Approach for Dynamical Systems","url":"https://arxiv.org/html/2412.17357v1"},{"title":"Tensorized Transformer for Dynamical Systems Modeling Anna Shalova","url":"https://arxiv.org/pdf/2006.03445"},{"title":"Latent Trajectory Dynamics in Large Language Models: A Manifold Evolution Framework with Empirical Validation","url":"https://arxiv.org/html/2505.20340"},{"title":"Back to the Continuous Attractor","url":"https://arxiv.org/html/2408.00109v2"},{"title":"Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination","url":"https://arxiv.org/html/2605.05686"},{"title":"Transformers for dynamical systems learn transfer operators in-context","url":"https://arxiv.org/html/2602.18679v1"}]
+
+Based on the search results, I found the paper you're looking for:
+
+"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation" by G. Aytug Akarlar, which is arxiv paper 2604.15400.
+
+The paper presents causal evidence that hallucination in autoregressive language models is an early trajectory commitment governed by asymmetric attractor dynamics. 
+
+The researchers use a methodology called "same-prompt bifurcation," in which they repeatedly sample identical inputs to observe spontaneous divergence, isolating trajectory dynamics from prompt-level confounds. On the Qwen2.5-1.5B model across 61 prompts spanning six categories, 27 prompts (44.3%) bifurcate with factual and hallucinated trajectories diverging at the first generated token.
+
+Activation patching across 28 layers reveals a pronounced causal asymmetry: injecting a hallucinated activation into a correct trajectory corrupts output in 87.5% of trials (layer 20), while the reverse recovers only 33.3% (layer 24).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c2dfa9a1-85c5-46f6-9ff6-88d31f7ac569",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "53c82d77-4938-4fb9-b01d-b2846035005c",
+  "toolUseResult": {
+    "query": "arxiv 2604.15400 \"Trajectory Commitment\" attractor dynamics transformer 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MzcVduijWg7DX9uWaSvKkK",
+        "content": [
+          {
+            "title": "[2604.15400] Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation",
+            "url": "https://arxiv.org/abs/2604.15400"
+          },
+          {
+            "title": "Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation",
+            "url": "https://arxiv.org/html/2604.15400"
+          },
+          {
+            "title": "Transformer Dynamics: A neuroscientific approach to interpretability of large",
+            "url": "https://arxiv.org/pdf/2502.12131"
+          },
+          {
+            "title": "Transformer Dynamics: A neuroscientific approach to interpretability of large language models",
+            "url": "https://arxiv.org/html/2502.12131v1"
+          },
+          {
+            "title": "AI-Driven Control of Chaos: A Transformer-Based Approach for Dynamical Systems",
+            "url": "https://arxiv.org/html/2412.17357v1"
+          },
+          {
+            "title": "Tensorized Transformer for Dynamical Systems Modeling Anna Shalova",
+            "url": "https://arxiv.org/pdf/2006.03445"
+          },
+          {
+            "title": "Latent Trajectory Dynamics in Large Language Models: A Manifold Evolution Framework with Empirical Validation",
+            "url": "https://arxiv.org/html/2505.20340"
+          },
+          {
+            "title": "Back to the Continuous Attractor",
+            "url": "https://arxiv.org/html/2408.00109v2"
+          },
+          {
+            "title": "Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination",
+            "url": "https://arxiv.org/html/2605.05686"
+          },
+          {
+            "title": "Transformers for dynamical systems learn transfer operators in-context",
+            "url": "https://arxiv.org/html/2602.18679v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n\"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation\" by G. Aytug Akarlar, which is arxiv paper 2604.15400.\n\nThe paper presents causal evidence that hallucination in autoregressive language models is an early trajectory commitment governed by asymmetric attractor dynamics. \n\nThe researchers use a methodology called \"same-prompt bifurcation,\" in which they repeatedly sample identical inputs to observe spontaneous divergence, isolating trajectory dynamics from prompt-level confounds. On the Qwen2.5-1.5B model across 61 prompts spanning six categories, 27 prompts (44.3%) bifurcate with factual and hallucinated trajectories diverging at the first generated token.\n\nActivation patching across 28 layers reveals a pronounced causal asymmetry: injecting a hallucinated activation into a correct trajectory corrupts output in 87.5% of trials (layer 20), while the reverse recovers only 33.3% (layer 24)."
+    ],
+    "durationSeconds": 6.081156858000002
+  },
+  "sourceToolAssistantUUID": "c2dfa9a1-85c5-46f6-9ff6-88d31f7ac569",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T10:29:25.743Z_
+
+<details><summary>↩ Tool result · `toolu_013mtTgiNBr3WNCC5NpDQcNF`</summary>
+
+```text
+Web search results for query: "arxiv 2604.04743 "Hallucination Basins" dynamic framework 2026"
+
+Links: [{"title":"[2604.04743] Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations","url":"https://arxiv.org/abs/2604.04743"},{"title":"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations","url":"https://arxiv.org/html/2604.04743v1"},{"title":"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation","url":"https://arxiv.org/html/2604.15400v1"},{"title":"[2604.00983] ACT Now: Preempting LVLM Hallucinations via Adaptive Context Integration","url":"https://arxiv.org/abs/2604.00983"},{"title":"[2604.17982] Mitigating Multimodal Hallucination via Phase-wise Self-reward","url":"https://arxiv.org/abs/2604.17982"},{"title":"[2604.15400] Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation","url":"https://arxiv.org/abs/2604.15400"},{"title":"ACT Now: Preempting LVLM Hallucinations via Adaptive Context Integration","url":"https://arxiv.org/html/2604.00983v1"},{"title":"Anatomy of a Lie: A Multi-Stage Diagnostic Framework for Tracing Hallucinations in Vision-Language Models","url":"https://arxiv.org/html/2603.15557"},{"title":"Mitigating Multimodal Hallucination via Phase-wise Self-reward","url":"https://arxiv.org/html/2604.17982"},{"title":"Hallucination, Abstention, and Recursive Inseparability","url":"https://arxiv.org/html/2604.28067v1"}]
+
+Based on the search results, here's what I found about arxiv 2604.04743:
+
+## "Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations"
+
+The paper was submitted on April 6, 2026, by authors Kalyan Cherukuri and Lav R. Varshney.
+
+### Core Framework
+The paper presents a geometric dynamical systems framework in which hallucinations arise from task-dependent basin structure in latent space.
+
+### Key Findings
+Using autoregressive hidden-state trajectories across multiple open-source models and benchmarks, the researchers found that separability is strongly task-dependent rather than universal: factoid settings can show clearer basin separation, whereas summarization and misconception-heavy settings are typically less stable and often overlap.
+
+### Theoretical Contributions
+The authors formalize this behavior with task-complexity and multi-basin theorems and characterize basin emergence in L-layer transformers. Additionally, they show that geometry-aware steering can reduce hallucination probability without retraining.
+
+The paper provides a novel theoretical perspective on LLM hallucinations by framing them as stable attractor basins in latent space, with important implications for understanding and controlling model behavior.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef128949-4fb8-47d9-a10b-c905ccb3b52c",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "194572e3-a497-417c-a350-ec0b62ca8c9d",
+  "toolUseResult": {
+    "query": "arxiv 2604.04743 \"Hallucination Basins\" dynamic framework 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EWmeNhccFv1X2Ukzws5Nry",
+        "content": [
+          {
+            "title": "[2604.04743] Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations",
+            "url": "https://arxiv.org/abs/2604.04743"
+          },
+          {
+            "title": "Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations",
+            "url": "https://arxiv.org/html/2604.04743v1"
+          },
+          {
+            "title": "Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation",
+            "url": "https://arxiv.org/html/2604.15400v1"
+          },
+          {
+            "title": "[2604.00983] ACT Now: Preempting LVLM Hallucinations via Adaptive Context Integration",
+            "url": "https://arxiv.org/abs/2604.00983"
+          },
+          {
+            "title": "[2604.17982] Mitigating Multimodal Hallucination via Phase-wise Self-reward",
+            "url": "https://arxiv.org/abs/2604.17982"
+          },
+          {
+            "title": "[2604.15400] Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation",
+            "url": "https://arxiv.org/abs/2604.15400"
+          },
+          {
+            "title": "ACT Now: Preempting LVLM Hallucinations via Adaptive Context Integration",
+            "url": "https://arxiv.org/html/2604.00983v1"
+          },
+          {
+            "title": "Anatomy of a Lie: A Multi-Stage Diagnostic Framework for Tracing Hallucinations in Vision-Language Models",
+            "url": "https://arxiv.org/html/2603.15557"
+          },
+          {
+            "title": "Mitigating Multimodal Hallucination via Phase-wise Self-reward",
+            "url": "https://arxiv.org/html/2604.17982"
+          },
+          {
+            "title": "Hallucination, Abstention, and Recursive Inseparability",
+            "url": "https://arxiv.org/html/2604.28067v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about arxiv 2604.04743:\n\n## \"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations\"\n\nThe paper was submitted on April 6, 2026, by authors Kalyan Cherukuri and Lav R. Varshney.\n\n### Core Framework\nThe paper presents a geometric dynamical systems framework in which hallucinations arise from task-dependent basin structure in latent space.\n\n### Key Findings\nUsing autoregressive hidden-state trajectories across multiple open-source models and benchmarks, the researchers found that separability is strongly task-dependent rather than universal: factoid settings can show clearer basin separation, whereas summarization and misconception-heavy settings are typically less stable and often overlap.\n\n### Theoretical Contributions\nThe authors formalize this behavior with task-complexity and multi-basin theorems and characterize basin emergence in L-layer transformers. Additionally, they show that geometry-aware steering can reduce hallucination probability without retraining.\n\nThe paper provides a novel theoretical perspective on LLM hallucinations by framing them as stable attractor basins in latent space, with important implications for understanding and controlling model behavior."
+    ],
+    "durationSeconds": 6.668856286000002
+  },
+  "sourceToolAssistantUUID": "ef128949-4fb8-47d9-a10b-c905ccb3b52c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "194572e3-a497-417c-a350-ec0b62ca8c9d",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "CHOKE Detection via Intermediate-Layer Perturbation Sensitivity",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T10:29:28.576Z_
+
+<details><summary>↩ Tool result · `toolu_01QBcb7GNfD7i2SkA3QbBR77`</summary>
+
+```text
+Web search results for query: "arxiv 2605.05686 "Attractor Geometry" transformer hallucination 2026"
+
+Links: [{"title":"[2605.05686] Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination","url":"https://arxiv.org/abs/2605.05686"},{"title":"Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination","url":"https://arxiv.org/html/2605.05686"},{"title":"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation","url":"https://arxiv.org/html/2604.15400"},{"title":"[2604.15400] Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation","url":"https://arxiv.org/abs/2604.15400"},{"title":"From Dispersion to Attraction: Spectral Dynamics of Hallucination Across Whisper Model Scales","url":"https://arxiv.org/html/2604.08591v1"},{"title":"From Noise to Narrative: Tracing the Origins of Hallucinations in Transformers","url":"https://arxiv.org/html/2509.06938v1"},{"title":"[2507.07505] Hallucination Stations: On Some Basic Limitations of Transformer-Based Language Models","url":"https://arxiv.org/abs/2507.07505"},{"title":"[2605.13772] Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry","url":"https://arxiv.org/abs/2605.13772"},{"title":"From Prerequisites to Predictions: Validating a Geometric Hallucination Taxonomy Through Controlled Induction","url":"https://arxiv.org/html/2603.00307"},{"title":"[2507.07505v1] Hallucination Stations: On Some Basic Limitations of Transformer-Based Language Models","url":"https://arxiv.org/abs/2507.07505v1"}]
+
+I found the paper you're looking for! Here's what I found about arxiv 2605.05686:
+
+The paper is titled "Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination" by Qiyao Liang and 2 other authors, submitted in May 2026.
+
+**Main contributions:**
+
+The paper studies how language models draw on two knowledge sources—facts baked into weights (parametric memory, PM) and information in context (working memory, WM)—examining two mechanistically distinct failure modes: conflict, when PM and WM disagree and interfere, and hallucination, when the queried fact was never learned.
+
+**The geometric framework:**
+
+In the hidden-state space of autoregressive generation, learned facts form attractor basins. Conflict is basin competition where WM disrupts convergence to the correct basin without raising output entropy. Hallucination is basin absence where the hidden state drifts freely when no memorized basin exists.
+
+**Detection method:**
+
+Geometric margin—the hidden state's distance to the nearest memorized basin—reads this geometry directly and separates correct recall from hallucination far more cleanly than output entropy, with zero false refusals where entropy-based detection cannot avoid rejecting the vast majority of correct outputs.
+
+**Scaling behavior:**
+
+The fraction of confident hallucinations follows a scaling law C = exp(-c/Δ̄), growing with scale even as overall error rates fall.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ed4354ca-1db3-4c20-9dc8-8249fcae0af6",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "03bf4092-3d8b-4cb9-8e79-e9e3237ac206",
+  "toolUseResult": {
+    "query": "arxiv 2605.05686 \"Attractor Geometry\" transformer hallucination 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QS2QYqFzEcMUeDh85LSgHi",
+        "content": [
+          {
+            "title": "[2605.05686] Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination",
+            "url": "https://arxiv.org/abs/2605.05686"
+          },
+          {
+            "title": "Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination",
+            "url": "https://arxiv.org/html/2605.05686"
+          },
+          {
+            "title": "Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation",
+            "url": "https://arxiv.org/html/2604.15400"
+          },
+          {
+            "title": "[2604.15400] Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation",
+            "url": "https://arxiv.org/abs/2604.15400"
+          },
+          {
+            "title": "From Dispersion to Attraction: Spectral Dynamics of Hallucination Across Whisper Model Scales",
+            "url": "https://arxiv.org/html/2604.08591v1"
+          },
+          {
+            "title": "From Noise to Narrative: Tracing the Origins of Hallucinations in Transformers",
+            "url": "https://arxiv.org/html/2509.06938v1"
+          },
+          {
+            "title": "[2507.07505] Hallucination Stations: On Some Basic Limitations of Transformer-Based Language Models",
+            "url": "https://arxiv.org/abs/2507.07505"
+          },
+          {
+            "title": "[2605.13772] Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry",
+            "url": "https://arxiv.org/abs/2605.13772"
+          },
+          {
+            "title": "From Prerequisites to Predictions: Validating a Geometric Hallucination Taxonomy Through Controlled Induction",
+            "url": "https://arxiv.org/html/2603.00307"
+          },
+          {
+            "title": "[2507.07505v1] Hallucination Stations: On Some Basic Limitations of Transformer-Based Language Models",
+            "url": "https://arxiv.org/abs/2507.07505v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found about arxiv 2605.05686:\n\nThe paper is titled \"Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination\" by Qiyao Liang and 2 other authors, submitted in May 2026.\n\n**Main contributions:**\n\nThe paper studies how language models draw on two knowledge sources—facts baked into weights (parametric memory, PM) and information in context (working memory, WM)—examining two mechanistically distinct failure modes: conflict, when PM and WM disagree and interfere, and hallucination, when the queried fact was never learned.\n\n**The geometric framework:**\n\nIn the hidden-state space of autoregressive generation, learned facts form attractor basins. Conflict is basin competition where WM disrupts convergence to the correct basin without raising output entropy. Hallucination is basin absence where the hidden state drifts freely when no memorized basin exists.\n\n**Detection method:**\n\nGeometric margin—the hidden state's distance to the nearest memorized basin—reads this geometry directly and separates correct recall from hallucination far more cleanly than output entropy, with zero false refusals where entropy-based detection cannot avoid rejecting the vast majority of correct outputs.\n\n**Scaling behavior:**\n\nThe fraction of confident hallucinations follows a scaling law C = exp(-c/Δ̄), growing with scale even as overall error rates fall."
+    ],
+    "durationSeconds": 10.551289110999999
+  },
+  "sourceToolAssistantUUID": "ed4354ca-1db3-4c20-9dc8-8249fcae0af6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-16T10:29:33.009Z_
+
+Good - the four key 2026 theoretical papers all exist. Now let me verify the competing work and check for additional papers the proposal may have missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "03bf4092-3d8b-4cb9-8e79-e9e3237ac206",
+  "isSidechain": false,
+  "requestId": "req_011Cb66FrYGPkfs2oyBpyeUW",
+  "type": "assistant",
+  "uuid": "f729c0e5-a220-4e1d-92c0-a1a631b0102e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNegezbbNMgpbsAvmGcUpG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2367,
+      "cache_creation_input_tokens": 1299,
+      "cache_read_input_tokens": 33680,
+      "output_tokens": 239,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1299,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2367,
+          "output_tokens": 239,
+          "cache_read_input_tokens": 33680,
+          "cache_creation_input_tokens": 1299,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1299
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T10:29:34.341Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019xBiULWiqTAeiRHBTvV9Wq`</summary>
+
+```json
+{
+  "query": "arxiv 2512.18623 LLM-CAS neuron perturbation hallucination correction AAAI"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f729c0e5-a220-4e1d-92c0-a1a631b0102e",
+  "isSidechain": false,
+  "requestId": "req_011Cb66FrYGPkfs2oyBpyeUW",
+  "type": "assistant",
+  "uuid": "b8dac165-44b9-4d00-9466-7740a0df025d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNegezbbNMgpbsAvmGcUpG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2367,
+      "cache_creation_input_tokens": 1299,
+      "cache_read_input_tokens": 33680,
+      "output_tokens": 239,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1299,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2367,
+          "output_tokens": 239,
+          "cache_read_input_tokens": 33680,
+          "cache_creation_input_tokens": 1299,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1299
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T10:29:35.468Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Xtrup4QYRnqHQb4AWzLCpC`</summary>
+
+```json
+{
+  "query": "arxiv 2505.21772 CCPS \"Calibrating LLM Confidence\" perturbed representation stability 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8dac165-44b9-4d00-9466-7740a0df025d",
+  "isSidechain": false,
+  "requestId": "req_011Cb66FrYGPkfs2oyBpyeUW",
+  "type": "assistant",
+  "uuid": "f62c63c0-2b32-492a-8f9f-1dc99885d68d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNegezbbNMgpbsAvmGcUpG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2367,
+      "cache_creation_input_tokens": 1299,
+      "cache_read_input_tokens": 33680,
+      "output_tokens": 239,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1299,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2367,
+          "output_tokens": 239,
+          "cache_read_input_tokens": 33680,
+          "cache_creation_input_tokens": 1299,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1299
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T10:29:36.227Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Mi7eodtPrsKity5rTYUVmC`</summary>
+
+```json
+{
+  "query": "arxiv 2506.02696 \"Shaking to Reveal\" perturbation hallucination detection SSP 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f62c63c0-2b32-492a-8f9f-1dc99885d68d",
+  "isSidechain": false,
+  "requestId": "req_011Cb66FrYGPkfs2oyBpyeUW",
+  "type": "assistant",
+  "uuid": "fa01bce4-ea4b-49a5-b2b8-f481db654847",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNegezbbNMgpbsAvmGcUpG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2367,
+      "cache_creation_input_tokens": 1299,
+      "cache_read_input_tokens": 33680,
+      "output_tokens": 239,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1299,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2367,
+          "output_tokens": 239,
+          "cache_read_input_tokens": 33680,
+          "cache_creation_input_tokens": 1299,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1299
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T10:29:38.995Z_
+
+<details><summary>↩ Tool result · `toolu_019xBiULWiqTAeiRHBTvV9Wq`</summary>
+
+```text
+Web search results for query: "arxiv 2512.18623 LLM-CAS neuron perturbation hallucination correction AAAI"
+
+Links: [{"title":"[2512.18623] LLM-CAS: Dynamic Neuron Perturbation for Real-Time Hallucination Correction","url":"https://arxiv.org/abs/2512.18623"},{"title":"LLM-CAS: Dynamic Neuron Perturbation for Real-Time Hallucination Correction","url":"https://arxiv.org/html/2512.18623"},{"title":"LLM-CAS: Dynamic Neuron Perturbation for Real-Time Hallucination Correction","url":"https://ojs.aaai.org/index.php/AAAI/article/download/40776/44737"},{"title":"H-Neurons: On the Existence, Impact, and Origin of Hallucination-Associated Neurons in LLMs","url":"https://arxiv.org/html/2512.01797v2"},{"title":"H-Neurons: On the Existence, Impact, and Origin of Hallucination-Associated Neurons","url":"https://arxiv.org/html/2512.01797v1"},{"title":"Probing LLM Hallucination from Within: Perturbation-Driven Approach via Internal Knowledge","url":"https://arxiv.org/html/2411.09689v4"},{"title":"H-Neurons: On the Existence, Impact, and Origin of ...","url":"https://arxiv.org/pdf/2512.01797"},{"title":"Hallucination-Associated Neurons in LLMs","url":"https://www.emergentmind.com/topics/hallucination-associated-neurons-h-neurons"},{"title":"Mitigating LLM Hallucination via Behaviorally Calibrated Reinforcement Learning","url":"https://arxiv.org/html/2512.19920v2"},{"title":"Neural Probe–Based Hallucination Detection for Large Language Models","url":"https://arxiv.org/html/2512.20949v1"}]
+
+Based on the search results, I found the paper you're looking for:
+
+LLM-CAS is a framework that formulates real-time hallucination correction as a hierarchical reinforcement learning problem. LLM-CAS trains an agent to learn a policy that dynamically selects temporary neuron perturbations during inference based on the current context.
+
+The paper appears in both the arXiv repository (arxiv 2512.18623) and has been published at AAAI. This learned, policy-driven approach provides greater adaptability than prior dynamic methods that rely on heuristic or pre-defined approaches.
+
+The research was authored by Jusheng Zhang, Ningyuan Liu, Yijia Fan, Zihao Huang, and others, and represents recent work in addressing hallucinations in large language models through neuron-level interventions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b8dac165-44b9-4d00-9466-7740a0df025d",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "5abe5d41-6c41-4128-8526-5f3708a09749",
+  "toolUseResult": {
+    "query": "arxiv 2512.18623 LLM-CAS neuron perturbation hallucination correction AAAI",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01B6dFFyUcvdN9U7K3Tk2gWC",
+        "content": [
+          {
+            "title": "[2512.18623] LLM-CAS: Dynamic Neuron Perturbation for Real-Time Hallucination Correction",
+            "url": "https://arxiv.org/abs/2512.18623"
+          },
+          {
+            "title": "LLM-CAS: Dynamic Neuron Perturbation for Real-Time Hallucination Correction",
+            "url": "https://arxiv.org/html/2512.18623"
+          },
+          {
+            "title": "LLM-CAS: Dynamic Neuron Perturbation for Real-Time Hallucination Correction",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/download/40776/44737"
+          },
+          {
+            "title": "H-Neurons: On the Existence, Impact, and Origin of Hallucination-Associated Neurons in LLMs",
+            "url": "https://arxiv.org/html/2512.01797v2"
+          },
+          {
+            "title": "H-Neurons: On the Existence, Impact, and Origin of Hallucination-Associated Neurons",
+            "url": "https://arxiv.org/html/2512.01797v1"
+          },
+          {
+            "title": "Probing LLM Hallucination from Within: Perturbation-Driven Approach via Internal Knowledge",
+            "url": "https://arxiv.org/html/2411.09689v4"
+          },
+          {
+            "title": "H-Neurons: On the Existence, Impact, and Origin of ...",
+            "url": "https://arxiv.org/pdf/2512.01797"
+          },
+          {
+            "title": "Hallucination-Associated Neurons in LLMs",
+            "url": "https://www.emergentmind.com/topics/hallucination-associated-neurons-h-neurons"
+          },
+          {
+            "title": "Mitigating LLM Hallucination via Behaviorally Calibrated Reinforcement Learning",
+            "url": "https://arxiv.org/html/2512.19920v2"
+          },
+          {
+            "title": "Neural Probe–Based Hallucination Detection for Large Language Models",
+            "url": "https://arxiv.org/html/2512.20949v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nLLM-CAS is a framework that formulates real-time hallucination correction as a hierarchical reinforcement learning problem. LLM-CAS trains an agent to learn a policy that dynamically selects temporary neuron perturbations during inference based on the current context.\n\nThe paper appears in both the arXiv repository (arxiv 2512.18623) and has been published at AAAI. This learned, policy-driven approach provides greater adaptability than prior dynamic methods that rely on heuristic or pre-defined approaches.\n\nThe research was authored by Jusheng Zhang, Ningyuan Liu, Yijia Fan, Zihao Huang, and others, and represents recent work in addressing hallucinations in large language models through neuron-level interventions."
+    ],
+    "durationSeconds": 4.649895640999995
+  },
+  "sourceToolAssistantUUID": "b8dac165-44b9-4d00-9466-7740a0df025d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T10:29:42.610Z_
+
+<details><summary>↩ Tool result · `toolu_01Mi7eodtPrsKity5rTYUVmC`</summary>
+
+```text
+Web search results for query: "arxiv 2506.02696 "Shaking to Reveal" perturbation hallucination detection SSP 2025"
+
+Links: [{"title":"[2506.02696] Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations","url":"https://arxiv.org/abs/2506.02696"},{"title":"Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations","url":"https://arxiv.org/html/2506.02696v1"},{"title":"[2506.02696v1] Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations","url":"https://arxiv.org/abs/2506.02696v1"},{"title":"arXiv:2506.02696v1 [cs.AI] 3 Jun 2025","url":"https://arxiv.org/pdf/2506.02696"},{"title":"[Literature Review] Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations","url":"https://www.themoonlight.io/en/review/shaking-to-reveal-perturbation-based-detection-of-llm-hallucinations"},{"title":"Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations","url":"https://www.researchgate.net/publication/392371301_Shaking_to_Reveal_Perturbation-Based_Detection_of_LLM_Hallucinations"},{"title":"Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations | alphaXiv","url":"https://www.alphaxiv.org/ja/overview/2506.02696v1"},{"title":"Perturbation-Based Detection of LLM Hallucinations","url":"https://seongheon-96.github.io/assets/pdf/shaking.pdf"},{"title":"Semantic Uncertainty Quantification of Hallucinations in LLMs: A Quantum Tensor Network Based Method","url":"https://arxiv.org/html/2601.20026"},{"title":"Chain-of-Thought Prompting Obscures Hallucination Cues in Large Language Models: An Empirical Evaluation","url":"https://arxiv.org/html/2506.17088v1"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## "Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations" (arXiv 2506.02696)
+
+This work proposes Sample-Specific Prompting (SSP), a new framework that improves self-assessment by analyzing perturbation sensitivity at intermediate representations.
+
+### Key Contributions:
+
+**Problem**: Hallucination remains a key obstacle to the reliable deployment of LLMs in real-world question answering tasks. Traditional self-assessment relies on the model's output confidence to estimate factual accuracy, but this assumes the model's output distribution closely reflects the true data distribution. As bias accumulates through the model's layers, the final output can diverge from the underlying reasoning process, making output-level confidence an unreliable signal for hallucination detection.
+
+**Solution**: SSP dynamically generates noise prompts for each input and employs a lightweight encoder to amplify the changes in representations caused by the perturbation. A contrastive distance metric is then used to quantify these differences and separate truthful from hallucinated responses.
+
+**Results**: Compared to state-of-the-art methods, the paper improves the hallucination detection accuracy by 4.78% (AUROC) on the challenging TruthfulQA benchmark.
+
+The paper was published on June 3, 2025, and represents a novel approach to detecting hallucinations in large language models using perturbation-based methods at the intermediate representation level.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa01bce4-ea4b-49a5-b2b8-f481db654847",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "7234ca25-2a9c-47b4-8f85-3282391ab4c3",
+  "toolUseResult": {
+    "query": "arxiv 2506.02696 \"Shaking to Reveal\" perturbation hallucination detection SSP 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014n6dheAdc4kbJDK9iFzXCM",
+        "content": [
+          {
+            "title": "[2506.02696] Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations",
+            "url": "https://arxiv.org/abs/2506.02696"
+          },
+          {
+            "title": "Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations",
+            "url": "https://arxiv.org/html/2506.02696v1"
+          },
+          {
+            "title": "[2506.02696v1] Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations",
+            "url": "https://arxiv.org/abs/2506.02696v1"
+          },
+          {
+            "title": "arXiv:2506.02696v1 [cs.AI] 3 Jun 2025",
+            "url": "https://arxiv.org/pdf/2506.02696"
+          },
+          {
+            "title": "[Literature Review] Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations",
+            "url": "https://www.themoonlight.io/en/review/shaking-to-reveal-perturbation-based-detection-of-llm-hallucinations"
+          },
+          {
+            "title": "Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations",
+            "url": "https://www.researchgate.net/publication/392371301_Shaking_to_Reveal_Perturbation-Based_Detection_of_LLM_Hallucinations"
+          },
+          {
+            "title": "Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations | alphaXiv",
+            "url": "https://www.alphaxiv.org/ja/overview/2506.02696v1"
+          },
+          {
+            "title": "Perturbation-Based Detection of LLM Hallucinations",
+            "url": "https://seongheon-96.github.io/assets/pdf/shaking.pdf"
+          },
+          {
+            "title": "Semantic Uncertainty Quantification of Hallucinations in LLMs: A Quantum Tensor Network Based Method",
+            "url": "https://arxiv.org/html/2601.20026"
+          },
+          {
+            "title": "Chain-of-Thought Prompting Obscures Hallucination Cues in Large Language Models: An Empirical Evaluation",
+            "url": "https://arxiv.org/html/2506.17088v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## \"Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations\" (arXiv 2506.02696)\n\nThis work proposes Sample-Specific Prompting (SSP), a new framework that improves self-assessment by analyzing perturbation sensitivity at intermediate representations.\n\n### Key Contributions:\n\n**Problem**: Hallucination remains a key obstacle to the reliable deployment of LLMs in real-world question answering tasks. Traditional self-assessment relies on the model's output confidence to estimate factual accuracy, but this assumes the model's output distribution closely reflects the true data distribution. As bias accumulates through the model's layers, the final output can diverge from the underlying reasoning process, making output-level confidence an unreliable signal for hallucination detection.\n\n**Solution**: SSP dynamically generates noise prompts for each input and employs a lightweight encoder to amplify the changes in representations caused by the perturbation. A contrastive distance metric is then used to quantify these differences and separate truthful from hallucinated responses.\n\n**Results**: Compared to state-of-the-art methods, the paper improves the hallucination detection accuracy by 4.78% (AUROC) on the challenging TruthfulQA benchmark.\n\nThe paper was published on June 3, 2025, and represents a novel approach to detecting hallucinations in large language models using perturbation-based methods at the intermediate representation level."
+    ],
+    "durationSeconds": 6.380118884999996
+  },
+  "sourceToolAssistantUUID": "fa01bce4-ea4b-49a5-b2b8-f481db654847",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T10:29:43.428Z_
+
+<details><summary>↩ Tool result · `toolu_01Xtrup4QYRnqHQb4AWzLCpC`</summary>
+
+```text
+Web search results for query: "arxiv 2505.21772 CCPS "Calibrating LLM Confidence" perturbed representation stability 2025"
+
+Links: [{"title":"[2505.21772] Calibrating LLM Confidence by Probing Perturbed Representation Stability","url":"https://arxiv.org/abs/2505.21772"},{"title":"(PDF) Calibrating LLM Confidence by Probing Perturbed Representation Stability","url":"https://www.researchgate.net/publication/392168633_Calibrating_LLM_Confidence_by_Probing_Perturbed_Representation_Stability"},{"title":"Calibrating LLM Confidence by Probing Perturbed Representation Stability - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250521772K/abstract"},{"title":"GitHub - Ledengary/CCPS: Calibrating LLM Confidence by Probing Perturbed Representation Stability","url":"https://github.com/ledengary/CCPS"},{"title":"Calibrating LLM Confidence by Probing Perturbed Representation Stability","url":"https://arxiv.org/html/2505.21772"},{"title":"Calibrating LLM Confidence by Probing Perturbed Representation Stability - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.530/"},{"title":"CCPS: Calibrating LLM Confidence via Perturbation Stability – EMNLP 2025 | Hacker News","url":"https://news.ycombinator.com/item?id=45055315"},{"title":"Calibrating LLM Confidence by Probing Perturbed Representation Stability | alphaXiv","url":"https://www.alphaxiv.org/abs/2505.21772"},{"title":"Calibrating LLM Confidence by Probing Perturbed ...","url":"https://bytez.com/docs/arxiv/2505.21772/paper"},{"title":"Calibrating LLM Confidence by Probing Perturbed Representation Stability | Request PDF","url":"https://www.researchgate.net/publication/397423860_Calibrating_LLM_Confidence_by_Probing_Perturbed_Representation_Stability"}]
+
+I found the paper you're looking for! Here's an overview of the research on arxiv 2505.21772:
+
+## Summary of CCPS Research
+
+CCPS (Calibrating LLM Confidence by Probing Perturbed Representation Stability) is a novel method analyzing internal representational stability in LLMs. CCPS applies targeted adversarial perturbations to final hidden states, extracts features reflecting the model's response to these perturbations, and uses a lightweight classifier to predict answer correctness.
+
+### Key Methodology
+
+The premise is that if an LLM is truly confident, its internal decision-making process for a token should remain stable under small, targeted perturbations. Features derived from this stability serve as effective proxies for confidence.
+
+### Experimental Scope
+
+CCPS was evaluated on LLMs from 8B to 32B parameters (covering Llama, Qwen, and Mistral architectures) using MMLU and MMLU-Pro benchmarks in both multiple-choice and open-ended formats.
+
+### Results
+
+Across four LLMs and three MMLU variants, CCPS reduces Expected Calibration Error by approximately 55% and Brier score by 21%, while increasing accuracy by 5 percentage points, Area Under the Precision-Recall Curve by 4 percentage points, and Area Under the Receiver Operating Characteristic Curve by 6 percentage points, all relative to the strongest prior method.
+
+The paper was originally submitted on May 27, 2025, and has been accepted to EMNLP 2025. A GitHub repository with the source code is also available.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f62c63c0-2b32-492a-8f9f-1dc99885d68d",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "5af5a1b3-388b-40ec-9a19-9c49604b685c",
+  "toolUseResult": {
+    "query": "arxiv 2505.21772 CCPS \"Calibrating LLM Confidence\" perturbed representation stability 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BN5p12FsrSGLRC3poJa6dZ",
+        "content": [
+          {
+            "title": "[2505.21772] Calibrating LLM Confidence by Probing Perturbed Representation Stability",
+            "url": "https://arxiv.org/abs/2505.21772"
+          },
+          {
+            "title": "(PDF) Calibrating LLM Confidence by Probing Perturbed Representation Stability",
+            "url": "https://www.researchgate.net/publication/392168633_Calibrating_LLM_Confidence_by_Probing_Perturbed_Representation_Stability"
+          },
+          {
+            "title": "Calibrating LLM Confidence by Probing Perturbed Representation Stability - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250521772K/abstract"
+          },
+          {
+            "title": "GitHub - Ledengary/CCPS: Calibrating LLM Confidence by Probing Perturbed Representation Stability",
+            "url": "https://github.com/ledengary/CCPS"
+          },
+          {
+            "title": "Calibrating LLM Confidence by Probing Perturbed Representation Stability",
+            "url": "https://arxiv.org/html/2505.21772"
+          },
+          {
+            "title": "Calibrating LLM Confidence by Probing Perturbed Representation Stability - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.530/"
+          },
+          {
+            "title": "CCPS: Calibrating LLM Confidence via Perturbation Stability – EMNLP 2025 | Hacker News",
+            "url": "https://news.ycombinator.com/item?id=45055315"
+          },
+          {
+            "title": "Calibrating LLM Confidence by Probing Perturbed Representation Stability | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2505.21772"
+          },
+          {
+            "title": "Calibrating LLM Confidence by Probing Perturbed ...",
+            "url": "https://bytez.com/docs/arxiv/2505.21772/paper"
+          },
+          {
+            "title": "Calibrating LLM Confidence by Probing Perturbed Representation Stability | Request PDF",
+            "url": "https://www.researchgate.net/publication/397423860_Calibrating_LLM_Confidence_by_Probing_Perturbed_Representation_Stability"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's an overview of the research on arxiv 2505.21772:\n\n## Summary of CCPS Research\n\nCCPS (Calibrating LLM Confidence by Probing Perturbed Representation Stability) is a novel method analyzing internal representational stability in LLMs. CCPS applies targeted adversarial perturbations to final hidden states, extracts features reflecting the model's response to these perturbations, and uses a lightweight classifier to predict answer correctness.\n\n### Key Methodology\n\nThe premise is that if an LLM is truly confident, its internal decision-making process for a token should remain stable under small, targeted perturbations. Features derived from this stability serve as effective proxies for confidence.\n\n### Experimental Scope\n\nCCPS was evaluated on LLMs from 8B to 32B parameters (covering Llama, Qwen, and Mistral architectures) using MMLU and MMLU-Pro benchmarks in both multiple-choice and open-ended formats.\n\n### Results\n\nAcross four LLMs and three MMLU variants, CCPS reduces Expected Calibration Error by approximately 55% and Brier score by 21%, while increasing accuracy by 5 percentage points, Area Under the Precision-Recall Curve by 4 percentage points, and Area Under the Receiver Operating Characteristic Curve by 6 percentage points, all relative to the strongest prior method.\n\nThe paper was originally submitted on May 27, 2025, and has been accepted to EMNLP 2025. A GitHub repository with the source code is also available."
+    ],
+    "durationSeconds": 7.957422118000002
+  },
+  "sourceToolAssistantUUID": "f62c63c0-2b32-492a-8f9f-1dc99885d68d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-16T10:29:43.434Z_
+
+```json
+{
+  "parentUuid": "5af5a1b3-388b-40ec-9a19-9c49604b685c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b24583c6-1038-4c4e-9592-c472541cbd96",
+  "timestamp": "2026-05-16T10:29:43.434Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b24583c6-1038-4c4e-9592-c472541cbd96",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "CHOKE Detection via Intermediate-Layer Perturbation Sensitivity",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-16T10:29:55.529Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now I've verified:
+1. LLM-CAS (arxiv 2512.18623) - confirmed real, AAAI paper. Uses RL to learn neuron perturbation policy.
+2. CCPS (arxiv 2505.21772) - confirmed real, EMNLP 2025 main. Perturbs final hidden states with adversarial perturbation + trained classifier.
+3. SSP/Shaking to Reveal (arxiv 2506.02696) - confirmed real. Uses intermediate representation perturbation with trained encoder + contrastive distance.
+
+
+4. Now I need to dig deeper into SSP's findings - specifically whether it shows factual content as more or less sensitive to perturbations, and verify a few other details like the Hase et al. NeurIPS 2023 work and the EACL 2027 timeline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b24583c6-1038-4c4e-9592-c472541cbd96",
+  "isSidechain": false,
+  "requestId": "req_011Cb66Gx4Rm4XE4qy5iQ5eh",
+  "type": "assistant",
+  "uuid": "27c90d9c-0641-4c10-b608-84eef1407a8d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ALmjfCLx82fQL38VdvdRy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 969,
+      "cache_creation_input_tokens": 4458,
+      "cache_read_input_tokens": 34979,
+      "output_tokens": 489,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 969,
+          "output_tokens": 489,
+          "cache_read_input_tokens": 34979,
+          "cache_creation_input_tokens": 4458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-16T10:29:55.560Z_
+
+Now let me check the EACL 2027 deadline claim and search for additional competing work that may have been missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "27c90d9c-0641-4c10-b608-84eef1407a8d",
+  "isSidechain": false,
+  "requestId": "req_011Cb66Gx4Rm4XE4qy5iQ5eh",
+  "type": "assistant",
+  "uuid": "7743b13c-432e-4cd7-aa99-0d0e64435fdd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ALmjfCLx82fQL38VdvdRy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 969,
+      "cache_creation_input_tokens": 4458,
+      "cache_read_input_tokens": 34979,
+      "output_tokens": 489,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 969,
+          "output_tokens": 489,
+          "cache_read_input_tokens": 34979,
+          "cache_creation_input_tokens": 4458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-16T10:29:55.596Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BYzF53TNgv1Ts2enAPNuNw`</summary>
+
+```json
+{
+  "query": "EACL 2027 ARR submission deadline August 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7743b13c-432e-4cd7-aa99-0d0e64435fdd",
+  "isSidechain": false,
+  "requestId": "req_011Cb66Gx4Rm4XE4qy5iQ5eh",
+  "type": "assistant",
+  "uuid": "798fd9d7-4836-49e4-b3b5-87a7349058b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ALmjfCLx82fQL38VdvdRy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 969,
+      "cache_creation_input_tokens": 4458,
+      "cache_read_input_tokens": 34979,
+      "output_tokens": 489,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 969,
+          "output_tokens": 489,
+          "cache_read_input_tokens": 34979,
+          "cache_creation_input_tokens": 4458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T10:29:55.618Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FAoKFsTF7mQdQETs9QJY7N`</summary>
+
+```json
+{
+  "query": "intermediate layer perturbation hallucination detection KL divergence 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "798fd9d7-4836-49e4-b3b5-87a7349058b8",
+  "isSidechain": false,
+  "requestId": "req_011Cb66Gx4Rm4XE4qy5iQ5eh",
+  "type": "assistant",
+  "uuid": "7d04a0d4-e1e9-41a8-ad44-8929301a43d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ALmjfCLx82fQL38VdvdRy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 969,
+      "cache_creation_input_tokens": 4458,
+      "cache_read_input_tokens": 34979,
+      "output_tokens": 489,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 969,
+          "output_tokens": 489,
+          "cache_read_input_tokens": 34979,
+          "cache_creation_input_tokens": 4458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-16T10:29:57.323Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SJpmMFvyWv8z43azWozSep`</summary>
+
+```json
+{
+  "query": "\"Does Localization Inform Editing\" Hase NeurIPS 2023 arxiv 2301.04213"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d04a0d4-e1e9-41a8-ad44-8929301a43d6",
+  "isSidechain": false,
+  "requestId": "req_011Cb66Gx4Rm4XE4qy5iQ5eh",
+  "type": "assistant",
+  "uuid": "2c0f8bdc-74d9-4c71-b9ae-59630a83e5e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ALmjfCLx82fQL38VdvdRy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 969,
+      "cache_creation_input_tokens": 4458,
+      "cache_read_input_tokens": 34979,
+      "output_tokens": 489,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 969,
+          "output_tokens": 489,
+          "cache_read_input_tokens": 34979,
+          "cache_creation_input_tokens": 4458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T10:29:59.272Z_
+
+<details><summary>↩ Tool result · `toolu_01BYzF53TNgv1Ts2enAPNuNw`</summary>
+
+```text
+Web search results for query: "EACL 2027 ARR submission deadline August 2026"
+
+Links: [{"title":"The 20th Conference of the European Chapter of the Association for Computational LinguisticsAthens, GreeceMarch 9-14, 2027 -","url":"https://2027.eacl.org/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EACL 2027 Call for Main Conference Papers","url":"https://2027.eacl.org/calls/papers/"},{"title":"eaclmeeting on X: \"📢⚠️ IMPORTANT DATE CORRECTION: the ARR deadline for EACL 2027 is Aug 3, 2026 (not Aug 6 as previously announced). EACL is earlier than usual in '27, so this is the only viable ARR cycle! 📚 All areas of CL/NLP + related fields welcome. Full CfP coming soon. #NLProc #EACL2027\" / X","url":"https://x.com/eaclmeeting/status/2051971432171688436"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"Where's Dan: Conference and Grant Deadlines","url":"https://web.stanford.edu/~jurafsky/deadlines.html"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Call for Student Research Workshop Papers -","url":"https://2026.eacl.org/calls/srw/"}]
+
+Based on the search results, I found the information about EACL 2027 ARR submission deadline:
+
+The ARR submission deadline for EACL 2027 (for both long and short papers) is August 3, 2026. All deadlines are 11:59PM UTC-12:00 ("anywhere on Earth").
+
+Additionally, the deadline was corrected from August 6 to August 3, 2026, as EACL is earlier than usual in 2027, making this the only viable ARR cycle.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "798fd9d7-4836-49e4-b3b5-87a7349058b8",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "86b605c3-bc75-4aa5-b88e-6e778a109e04",
+  "toolUseResult": {
+    "query": "EACL 2027 ARR submission deadline August 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XvCpy4ijjuSRx32r4bSDCZ",
+        "content": [
+          {
+            "title": "The 20th Conference of the European Chapter of the Association for Computational LinguisticsAthens, GreeceMarch 9-14, 2027 -",
+            "url": "https://2027.eacl.org/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EACL 2027 Call for Main Conference Papers",
+            "url": "https://2027.eacl.org/calls/papers/"
+          },
+          {
+            "title": "eaclmeeting on X: \"📢⚠️ IMPORTANT DATE CORRECTION: the ARR deadline for EACL 2027 is Aug 3, 2026 (not Aug 6 as previously announced). EACL is earlier than usual in '27, so this is the only viable ARR cycle! 📚 All areas of CL/NLP + related fields welcome. Full CfP coming soon. #NLProc #EACL2027\" / X",
+            "url": "https://x.com/eaclmeeting/status/2051971432171688436"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Where's Dan: Conference and Grant Deadlines",
+            "url": "https://web.stanford.edu/~jurafsky/deadlines.html"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Call for Student Research Workshop Papers -",
+            "url": "https://2026.eacl.org/calls/srw/"
+          }
+        ]
+      },
+      "Based on the search results, I found the information about EACL 2027 ARR submission deadline:\n\nThe ARR submission deadline for EACL 2027 (for both long and short papers) is August 3, 2026. All deadlines are 11:59PM UTC-12:00 (\"anywhere on Earth\").\n\nAdditionally, the deadline was corrected from August 6 to August 3, 2026, as EACL is earlier than usual in 2027, making this the only viable ARR cycle."
+    ],
+    "durationSeconds": 3.671585966999999
+  },
+  "sourceToolAssistantUUID": "798fd9d7-4836-49e4-b3b5-87a7349058b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T10:30:02.728Z_
+
+<details><summary>↩ Tool result · `toolu_01SJpmMFvyWv8z43azWozSep`</summary>
+
+```text
+Web search results for query: ""Does Localization Inform Editing" Hase NeurIPS 2023 arxiv 2301.04213"
+
+Links: [{"title":"[2301.04213] Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models","url":"https://arxiv.org/abs/2301.04213"},{"title":"Does Localization Inform Editing? Surprising","url":"https://arxiv.org/pdf/2301.04213"},{"title":"(PDF) Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models","url":"https://www.researchgate.net/publication/367049699_Does_Localization_Inform_Editing_Surprising_Differences_in_Causality-Based_Localization_vs_Knowledge_Editing_in_Language_Models"},{"title":"Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230104213H/abstract"},{"title":"[PDF] Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Does-Localization-Inform-Editing-Surprising-in-vs.-Hase-Bansal/0155712e4cbad42b8f8d4400485c4dd0fa4b2fad"},{"title":"Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models","url":"https://papers.nips.cc/paper_files/paper/2023/hash/3927bbdcf0e8d1fa8aa23c26f358a281-Abstract-Conference.html"},{"title":"Figure 2 from Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Does-Localization-Inform-Editing-Surprising-in-vs.-Hase-Bansal/9c0a434b240299cec0029a1be93ab263d7ec9963/figure/1"},{"title":"NeurIPS Poster Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models","url":"https://neurips.cc/virtual/2023/poster/72296"},{"title":"Does Localization Inform Editing? Surprising Differences in ...","url":"https://asmadotgh.github.io/assets/pdf/13353_does_localization_inform_editi.pdf"},{"title":"[Quick Review] Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models","url":"https://liner.com/review/does-localization-inform-editing-surprising-differences-in-causalitybased-localization-vs"}]
+
+I found the paper! Here's information about "Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models":
+
+## Overview
+
+This paper was authored by Peter Hase, Mohit Bansal, Been Kim, and Asma Ghandeharioun, and was presented at the 37th Conference on Neural Information Processing Systems (NeurIPS 2023).
+
+## Key Findings
+
+The paper's central surprising finding is that you can change how a fact is stored in a model by editing weights that are in a different location than where existing methods suggest that the fact is stored.
+
+More specifically, localization results from Causal Tracing are statistically uncorrelated with the success of an edit injecting a new fact into MLP weights.
+
+## Main Contribution
+
+The paper shows that localization conclusions from representation denoising (also known as Causal Tracing) do not provide any insight into which model MLP layer would be best to edit in order to override an existing stored fact with a new one.
+
+The arxiv identifier is **2301.04213**, and the paper PDF is available at https://arxiv.org/abs/2301.04213.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2c0f8bdc-74d9-4c71-b9ae-59630a83e5e4",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "70999f53-eeda-4f31-babc-376cdf7550be",
+  "toolUseResult": {
+    "query": "\"Does Localization Inform Editing\" Hase NeurIPS 2023 arxiv 2301.04213",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014V6HyeLBFDuarcYk9fwqew",
+        "content": [
+          {
+            "title": "[2301.04213] Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models",
+            "url": "https://arxiv.org/abs/2301.04213"
+          },
+          {
+            "title": "Does Localization Inform Editing? Surprising",
+            "url": "https://arxiv.org/pdf/2301.04213"
+          },
+          {
+            "title": "(PDF) Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models",
+            "url": "https://www.researchgate.net/publication/367049699_Does_Localization_Inform_Editing_Surprising_Differences_in_Causality-Based_Localization_vs_Knowledge_Editing_in_Language_Models"
+          },
+          {
+            "title": "Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2023arXiv230104213H/abstract"
+          },
+          {
+            "title": "[PDF] Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Does-Localization-Inform-Editing-Surprising-in-vs.-Hase-Bansal/0155712e4cbad42b8f8d4400485c4dd0fa4b2fad"
+          },
+          {
+            "title": "Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models",
+            "url": "https://papers.nips.cc/paper_files/paper/2023/hash/3927bbdcf0e8d1fa8aa23c26f358a281-Abstract-Conference.html"
+          },
+          {
+            "title": "Figure 2 from Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Does-Localization-Inform-Editing-Surprising-in-vs.-Hase-Bansal/9c0a434b240299cec0029a1be93ab263d7ec9963/figure/1"
+          },
+          {
+            "title": "NeurIPS Poster Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models",
+            "url": "https://neurips.cc/virtual/2023/poster/72296"
+          },
+          {
+            "title": "Does Localization Inform Editing? Surprising Differences in ...",
+            "url": "https://asmadotgh.github.io/assets/pdf/13353_does_localization_inform_editi.pdf"
+          },
+          {
+            "title": "[Quick Review] Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models",
+            "url": "https://liner.com/review/does-localization-inform-editing-surprising-differences-in-causalitybased-localization-vs"
+          }
+        ]
+      },
+      "I found the paper! Here's information about \"Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models\":\n\n## Overview\n\nThis paper was authored by Peter Hase, Mohit Bansal, Been Kim, and Asma Ghandeharioun, and was presented at the 37th Conference on Neural Information Processing Systems (NeurIPS 2023).\n\n## Key Findings\n\nThe paper's central surprising finding is that you can change how a fact is stored in a model by editing weights that are in a different location than where existing methods suggest that the fact is stored.\n\nMore specifically, localization results from Causal Tracing are statistically uncorrelated with the success of an edit injecting a new fact into MLP weights.\n\n## Main Contribution\n\nThe paper shows that localization conclusions from representation denoising (also known as Causal Tracing) do not provide any insight into which model MLP layer would be best to edit in order to override an existing stored fact with a new one.\n\nThe arxiv identifier is **2301.04213**, and the paper PDF is available at https://arxiv.org/abs/2301.04213."
+    ],
+    "durationSeconds": 5.402638285000001
+  },
+  "sourceToolAssistantUUID": "2c0f8bdc-74d9-4c71-b9ae-59630a83e5e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T10:30:03.289Z_
+
+<details><summary>↩ Tool result · `toolu_01FAoKFsTF7mQdQETs9QJY7N`</summary>
+
+```text
+Web search results for query: "intermediate layer perturbation hallucination detection KL divergence 2025 2026"
+
+Links: [{"title":"Neural Probe–Based Hallucination Detection for Large Language Models","url":"https://arxiv.org/html/2512.20949v1"},{"title":"Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals","url":"https://arxiv.org/html/2605.05025"},{"title":"Enhancing Hallucination Detection through Perturbation-Based Synthetic Data Generation in System Responses","url":"https://arxiv.org/html/2407.05474v1"},{"title":"A Survey of Multimodal Hallucination Evaluation and Detection","url":"https://arxiv.org/html/2507.19024v2"},{"title":"Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations","url":"https://arxiv.org/html/2506.02696v1"},{"title":"Diverging Towards Hallucination: Detection of Failures in Vision-Language Models via Multi-token Aggregation","url":"https://arxiv.org/html/2505.11741v1"},{"title":"Probing LLM Hallucination from Within: Perturbation-Driven Approach via Internal Knowledge","url":"https://arxiv.org/html/2411.09689"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2601.20026"},{"title":"[2605.05025] Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals","url":"https://arxiv.org/abs/2605.05025"},{"title":"Hallucination Detection and Mitigation in Large Language ...","url":"https://arxiv.org/pdf/2601.09929"}]
+
+Based on the web search results, I found several recent research papers addressing hallucination detection using intermediate layer perturbation and KL divergence methods. Here are the key findings:
+
+## Recent Research on Hallucination Detection (2025-2026)
+
+**Neural Probe-Based Approach (December 2025)**
+Recent work combines token-level focal loss, soft span aggregation, sparsity regularization, and KL-divergence constraints to enhance detection stability and semantic discrimination. This approach also establishes a layer-position–probe-performance model and introduces Bayesian optimization-based strategy that replaces heuristic probe layer selection.
+
+**Attention Divergence Signals (May 2026)**
+A lightweight method computes Kullback–Leibler (KL) divergence between each attention head's distribution and a uniform reference distribution representing maximum uncertainty. This method uses a KL-divergence-based attention measure with a lightweight probe, relying on low-dimensional, interpretable features.
+
+**Sample-Specific Prompting (June 2025)**
+A perturbation-based framework leverages the differential sensitivity of intermediate representations as a signal for hallucination detection, learning to dynamically generate controlled noise prompts tailored to each question–answer pair. The key insight is that truthful and hallucinated responses exhibit distinct representational shifts under input perturbations, with factual knowledge encoded in well-structured internal representations that exhibit greater sensitivity in intermediate layers when perturbed.
+
+**Entity Perturbation Impact Method (September 2025)**
+Low Entity Perturbation Impact measured by KL divergence strongly indicates fabricated text, as its tokens are weakly tied to key entities.
+
+These approaches collectively demonstrate the effectiveness of combining intermediate layer analysis with perturbation-based methods and KL divergence metrics for detecting hallucinations in large language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7d04a0d4-e1e9-41a8-ad44-8929301a43d6",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "bfbd85f2-d11d-47b4-8d99-e220a500380a",
+  "toolUseResult": {
+    "query": "intermediate layer perturbation hallucination detection KL divergence 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MWhHu9n3i9btPJxWW8KBpj",
+        "content": [
+          {
+            "title": "Neural Probe–Based Hallucination Detection for Large Language Models",
+            "url": "https://arxiv.org/html/2512.20949v1"
+          },
+          {
+            "title": "Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals",
+            "url": "https://arxiv.org/html/2605.05025"
+          },
+          {
+            "title": "Enhancing Hallucination Detection through Perturbation-Based Synthetic Data Generation in System Responses",
+            "url": "https://arxiv.org/html/2407.05474v1"
+          },
+          {
+            "title": "A Survey of Multimodal Hallucination Evaluation and Detection",
+            "url": "https://arxiv.org/html/2507.19024v2"
+          },
+          {
+            "title": "Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations",
+            "url": "https://arxiv.org/html/2506.02696v1"
+          },
+          {
+            "title": "Diverging Towards Hallucination: Detection of Failures in Vision-Language Models via Multi-token Aggregation",
+            "url": "https://arxiv.org/html/2505.11741v1"
+          },
+          {
+            "title": "Probing LLM Hallucination from Within: Perturbation-Driven Approach via Internal Knowledge",
+            "url": "https://arxiv.org/html/2411.09689"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2601.20026"
+          },
+          {
+            "title": "[2605.05025] Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals",
+            "url": "https://arxiv.org/abs/2605.05025"
+          },
+          {
+            "title": "Hallucination Detection and Mitigation in Large Language ...",
+            "url": "https://arxiv.org/pdf/2601.09929"
+          }
+        ]
+      },
+      "Based on the web search results, I found several recent research papers addressing hallucination detection using intermediate layer perturbation and KL divergence methods. Here are the key findings:\n\n## Recent Research on Hallucination Detection (2025-2026)\n\n**Neural Probe-Based Approach (December 2025)**\nRecent work combines token-level focal loss, soft span aggregation, sparsity regularization, and KL-divergence constraints to enhance detection stability and semantic discrimination. This approach also establishes a layer-position–probe-performance model and introduces Bayesian optimization-based strategy that replaces heuristic probe layer selection.\n\n**Attention Divergence Signals (May 2026)**\nA lightweight method computes Kullback–Leibler (KL) divergence between each attention head's distribution and a uniform reference distribution representing maximum uncertainty. This method uses a KL-divergence-based attention measure with a lightweight probe, relying on low-dimensional, interpretable features.\n\n**Sample-Specific Prompting (June 2025)**\nA perturbation-based framework leverages the differential sensitivity of intermediate representations as a signal for hallucination detection, learning to dynamically generate controlled noise prompts tailored to each question–answer pair. The key insight is that truthful and hallucinated responses exhibit distinct representational shifts under input perturbations, with factual knowledge encoded in well-structured internal representations that exhibit greater sensitivity in intermediate layers when perturbed.\n\n**Entity Perturbation Impact Method (September 2025)**\nLow Entity Perturbation Impact measured by KL divergence strongly indicates fabricated text, as its tokens are weakly tied to key entities.\n\nThese approaches collectively demonstrate the effectiveness of combining intermediate layer analysis with perturbation-based methods and KL divergence metrics for detecting hallucinations in large language models."
+    ],
+    "durationSeconds": 7.66718879
+  },
+  "sourceToolAssistantUUID": "7d04a0d4-e1e9-41a8-ad44-8929301a43d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-16T10:30:14.217Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings so far:
+1. EACL 2027 ARR deadline is indeed August 3, 2026 - CONFIRMED. The proposal's venue claim is correct.
+2. Hase et al. NeurIPS 2023 paper is real and confirms causal tracing ≠ optimal editing layers.
+3. I found a new potentially relevant paper: "Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals" (arxiv 2605.05025, May 2026) - let me check this.
+4. SSP/Shaking to Reveal finding about factual content: "truthful and hallucinated responses exhibit distinct representational shifts under input perturbations, with factual knowledge encoded in well-structured internal representations that exhibit greater sensitivity in intermediate layers when perturbed." - This is interesting. 
+
+Now I need to double-check whether the proposal correctly characterizes SSP's sensitivity direction—it claims factual content shows MORE sensitivity, which would be opposite to CHOKE's pattern. I should also track down that new attention divergence paper from May 2026, look for other recent perturbation-based detection methods, and verify the Attractor Geometry paper's claims about the LM head being "blind."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bfbd85f2-d11d-47b4-8d99-e220a500380a",
+  "isSidechain": false,
+  "requestId": "req_011Cb66JQxiNwJCUC9MbR1mT",
+  "type": "assistant",
+  "uuid": "7b81123f-df3b-4e3d-895e-0667e414bcfc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QqQKge8pKzc2t7Q2QPmkd1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1112,
+      "cache_creation_input_tokens": 3018,
+      "cache_read_input_tokens": 39437,
+      "output_tokens": 525,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3018,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1112,
+          "output_tokens": 525,
+          "cache_read_input_tokens": 39437,
+          "cache_creation_input_tokens": 3018,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3018
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-16T10:30:14.218Z_
+
+Let me check the new attention divergence paper and verify some key claims about the Attractor Geometry paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b81123f-df3b-4e3d-895e-0667e414bcfc",
+  "isSidechain": false,
+  "requestId": "req_011Cb66JQxiNwJCUC9MbR1mT",
+  "type": "assistant",
+  "uuid": "c8d3cc1b-19ab-4cf0-bb1a-e2d8e90b1c79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QqQKge8pKzc2t7Q2QPmkd1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1112,
+      "cache_creation_input_tokens": 3018,
+      "cache_read_input_tokens": 39437,
+      "output_tokens": 525,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3018,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1112,
+          "output_tokens": 525,
+          "cache_read_input_tokens": 39437,
+          "cache_creation_input_tokens": 3018,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3018
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-16T10:30:14.264Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SnBj38q4nYZmibn5tP1UVV`</summary>
+
+```json
+{
+  "query": "arxiv 2605.05025 \"Internal Attention Divergence\" hallucination detection May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8d3cc1b-19ab-4cf0-bb1a-e2d8e90b1c79",
+  "isSidechain": false,
+  "requestId": "req_011Cb66JQxiNwJCUC9MbR1mT",
+  "type": "assistant",
+  "uuid": "1ea3fb9e-ca5f-4a89-85ef-a3f419af9c6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QqQKge8pKzc2t7Q2QPmkd1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1112,
+      "cache_creation_input_tokens": 3018,
+      "cache_read_input_tokens": 39437,
+      "output_tokens": 525,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3018,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1112,
+          "output_tokens": 525,
+          "cache_read_input_tokens": 39437,
+          "cache_creation_input_tokens": 3018,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3018
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-16T10:30:16.126Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01LZjUAxLEDDESCXRZvcrSjL`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.05686",
+  "prompt": "What are the main claims about the LM head being \"blind\" to hallucinations? Does the paper propose any detection method? What specifically does it say about geometric margin as a detection signal? Does it propose or discuss perturbation-based methods?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ea3fb9e-ca5f-4a89-85ef-a3f419af9c6d",
+  "isSidechain": false,
+  "requestId": "req_011Cb66JQxiNwJCUC9MbR1mT",
+  "type": "assistant",
+  "uuid": "a939621c-60d9-4a9f-a9b7-50156cb93dcf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QqQKge8pKzc2t7Q2QPmkd1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1112,
+      "cache_creation_input_tokens": 3018,
+      "cache_read_input_tokens": 39437,
+      "output_tokens": 525,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3018,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1112,
+          "output_tokens": 525,
+          "cache_read_input_tokens": 39437,
+          "cache_creation_input_tokens": 3018,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3018
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "a939621c-60d9-4a9f-a9b7-50156cb93dcf",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "CHOKE Detection via Intermediate-Layer Perturbation Sensitivity",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T10:30:19.966Z_
+
+<details><summary>↩ Tool result · `toolu_01SnBj38q4nYZmibn5tP1UVV`</summary>
+
+```text
+Web search results for query: "arxiv 2605.05025 "Internal Attention Divergence" hallucination detection May 2026"
+
+Links: [{"title":"[2605.05025] Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals","url":"https://arxiv.org/abs/2605.05025"},{"title":"Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals","url":"https://arxiv.org/html/2605.05025"},{"title":"Hallucination Detection in LLMs with Topological Divergence on Attention Graphs","url":"https://arxiv.org/html/2504.10063"},{"title":"Hallucination Detection in LLMs via Topological Divergence on Attention Graphs","url":"https://arxiv.org/html/2504.10063v1"},{"title":"Neural Message-Passing on Attention Graphs for Hallucination Detection","url":"https://arxiv.org/html/2509.24770v1"},{"title":"Hallucination Detection in LLMs with Topological Divergence on ...","url":"https://www.semanticscholar.org/paper/1ec4be9cd511fc87e66e15233c16fa177c10aa86"},{"title":"Hallucination Detection in LLMs Using Spectral Features of Attention Maps","url":"https://arxiv.org/html/2502.17598v2"},{"title":"[2504.10063] Hallucination Detection in LLMs with Topological Divergence on Attention Graphs","url":"https://arxiv.org/abs/2504.10063"},{"title":"(PDF) Hallucination Detection in LLMs via Topological Divergence on Attention Graphs","url":"https://www.researchgate.net/publication/390772361_Hallucination_Detection_in_LLMs_via_Topological_Divergence_on_Attention_Graphs"},{"title":"Do We Really Need External Tools to Mitigate Hallucinations? Sira: Shared-Prefix Internal Reconstruction of Attribution","url":"https://arxiv.org/html/2605.14621"}]
+
+I found the paper you're looking for! Here's the information about arxiv 2605.05025:
+
+**Title:** Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals
+
+**Author:** Gijs van Dijk from Utrecht University
+
+**Submission Date:** May 6, 2026
+
+**Overview:** The paper proposes a lightweight and single-pass uncertainty quantification method for detecting hallucinations in Large Language Models that uses attention matrices to estimate uncertainty without requiring repeated sampling or external models.
+
+**Methodology:** The method measures Kullback-Leibler divergence between each attention head's distribution and a uniform reference distribution, and uses these features in a logistic regression probe.
+
+**Results:** Across multiple datasets, task types, and model families, attention divergence is highly predictive of answer correctness and performs competitively with existing uncertainty estimation methods.
+
+**Key Finding:** The signal is concentrated in middle layers and on factual tokens such as named entities and numbers, suggesting that attention dynamics provides an efficient and interpretable white-box signal of model uncertainty.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ea3fb9e-ca5f-4a89-85ef-a3f419af9c6d",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "013f675f-4ede-41b9-8af8-be1136a56c4d",
+  "toolUseResult": {
+    "query": "arxiv 2605.05025 \"Internal Attention Divergence\" hallucination detection May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018bnywGEnbJ7KBLE3BmKLiy",
+        "content": [
+          {
+            "title": "[2605.05025] Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals",
+            "url": "https://arxiv.org/abs/2605.05025"
+          },
+          {
+            "title": "Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals",
+            "url": "https://arxiv.org/html/2605.05025"
+          },
+          {
+            "title": "Hallucination Detection in LLMs with Topological Divergence on Attention Graphs",
+            "url": "https://arxiv.org/html/2504.10063"
+          },
+          {
+            "title": "Hallucination Detection in LLMs via Topological Divergence on Attention Graphs",
+            "url": "https://arxiv.org/html/2504.10063v1"
+          },
+          {
+            "title": "Neural Message-Passing on Attention Graphs for Hallucination Detection",
+            "url": "https://arxiv.org/html/2509.24770v1"
+          },
+          {
+            "title": "Hallucination Detection in LLMs with Topological Divergence on ...",
+            "url": "https://www.semanticscholar.org/paper/1ec4be9cd511fc87e66e15233c16fa177c10aa86"
+          },
+          {
+            "title": "Hallucination Detection in LLMs Using Spectral Features of Attention Maps",
+            "url": "https://arxiv.org/html/2502.17598v2"
+          },
+          {
+            "title": "[2504.10063] Hallucination Detection in LLMs with Topological Divergence on Attention Graphs",
+            "url": "https://arxiv.org/abs/2504.10063"
+          },
+          {
+            "title": "(PDF) Hallucination Detection in LLMs via Topological Divergence on Attention Graphs",
+            "url": "https://www.researchgate.net/publication/390772361_Hallucination_Detection_in_LLMs_via_Topological_Divergence_on_Attention_Graphs"
+          },
+          {
+            "title": "Do We Really Need External Tools to Mitigate Hallucinations? Sira: Shared-Prefix Internal Reconstruction of Attribution",
+            "url": "https://arxiv.org/html/2605.14621"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's the information about arxiv 2605.05025:\n\n**Title:** Detecting Hallucinations in Large Language Models via Internal Attention Divergence Signals\n\n**Author:** Gijs van Dijk from Utrecht University\n\n**Submission Date:** May 6, 2026\n\n**Overview:** The paper proposes a lightweight and single-pass uncertainty quantification method for detecting hallucinations in Large Language Models that uses attention matrices to estimate uncertainty without requiring repeated sampling or external models.\n\n**Methodology:** The method measures Kullback-Leibler divergence between each attention head's distribution and a uniform reference distribution, and uses these features in a logistic regression probe.\n\n**Results:** Across multiple datasets, task types, and model families, attention divergence is highly predictive of answer correctness and performs competitively with existing uncertainty estimation methods.\n\n**Key Finding:** The signal is concentrated in middle layers and on factual tokens such as named entities and numbers, suggesting that attention dynamics provides an efficient and interpretable white-box signal of model uncertainty."
+    ],
+    "durationSeconds": 5.697529343000002
+  },
+  "sourceToolAssistantUUID": "1ea3fb9e-ca5f-4a89-85ef-a3f419af9c6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T10:30:20.860Z_
+
+<details><summary>↩ Tool result · `toolu_01LZjUAxLEDDESCXRZvcrSjL`</summary>
+
+```text
+# Summary of Key Claims and Methods
+
+## The "Blind" LM Head
+
+The paper claims the frozen output head systematically fails to distinguish between two distinct failure modes. As stated in the abstract: "The frozen LM head, designed for next-token prediction, cannot distinguish these cases and fires confidently either way."
+
+This blindness occurs because the output head was optimized only for predicting the next token, leaving it unable to detect whether high-confidence outputs reflect genuine memory retrieval or the absence of learned facts.
+
+## Detection Method: Geometric Margin
+
+The paper proposes **geometric margin** as a detection signal. According to the abstract, this metric "reads this geometry directly and separates correct recall from hallucination far more cleanly than output entropy, with zero false refusals where entropy-based detection cannot avoid rejecting the vast majority of correct outputs."
+
+Geometric margin is defined as the hidden state's distance to the nearest memorized basin—essentially measuring how close the model's internal representation is to known factual knowledge.
+
+## Perturbation-Based Methods
+
+The provided content does not discuss or propose perturbation-based detection approaches. The focus remains on geometric properties of hidden-state space and scaling laws describing hallucination frequency.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a939621c-60d9-4a9f-a9b7-50156cb93dcf",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "e77d6538-36ca-4f08-8fd7-2f9bf4de1be7",
+  "toolUseResult": {
+    "bytes": 48434,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Summary of Key Claims and Methods\n\n## The \"Blind\" LM Head\n\nThe paper claims the frozen output head systematically fails to distinguish between two distinct failure modes. As stated in the abstract: \"The frozen LM head, designed for next-token prediction, cannot distinguish these cases and fires confidently either way.\"\n\nThis blindness occurs because the output head was optimized only for predicting the next token, leaving it unable to detect whether high-confidence outputs reflect genuine memory retrieval or the absence of learned facts.\n\n## Detection Method: Geometric Margin\n\nThe paper proposes **geometric margin** as a detection signal. According to the abstract, this metric \"reads this geometry directly and separates correct recall from hallucination far more cleanly than output entropy, with zero false refusals where entropy-based detection cannot avoid rejecting the vast majority of correct outputs.\"\n\nGeometric margin is defined as the hidden state's distance to the nearest memorized basin—essentially measuring how close the model's internal representation is to known factual knowledge.\n\n## Perturbation-Based Methods\n\nThe provided content does not discuss or propose perturbation-based detection approaches. The focus remains on geometric properties of hidden-state space and scaling laws describing hallucination frequency.",
+    "durationMs": 4731,
+    "url": "https://arxiv.org/abs/2605.05686"
+  },
+  "sourceToolAssistantUUID": "a939621c-60d9-4a9f-a9b7-50156cb93dcf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-16T10:30:33.224Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Very important finding! The Attractor Geometry paper (Liang et al., 2605.05686) proposes geometric margin as a detection signal but does NOT discuss perturbation-based methods. The proposal's claim that "output KL under perturbation is a forward-only proxy for geometric margin" is the proposal's own theoretical contribution, not something already established in Liang et al.
+
+However, there's a critical question: Liang et al. says the "frozen LM head cannot distinguish these cases and fires confidently either way." The proposal argues that while STATIC outputs are blind, PERTURBATION-induced KL is not blind because it probes local curvature. 
+
+This is a reasonable theoretical argument, but it's untested—Liang et al. never validates the perturbation approach, and the proposal is essentially making a novel theoretical bridge. I found another recent paper on attention divergence signals for hallucination detection, but it measures attention patterns at middle layers rather than perturbation sensitivity, so it's tangentially related but fundamentally different. Now I need to search more systematically for whether anyone has directly proposed using perturbation at intermediate layers with output KL as a training-free detector.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e77d6538-36ca-4f08-8fd7-2f9bf4de1be7",
+  "isSidechain": false,
+  "requestId": "req_011Cb66Ki5Pdyh4icGzuvffU",
+  "type": "assistant",
+  "uuid": "eb18dc52-c799-4f6b-af78-d71d37863c1a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Accvrb7Ka55XpmWg6BjMoi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2743,
+      "cache_read_input_tokens": 42455,
+      "output_tokens": 575,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2743,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 575,
+          "cache_read_input_tokens": 42455,
+          "cache_creation_input_tokens": 2743,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2743
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-16T10:30:33.393Z_
+
+Let me fetch more details about the SHINE paper and search for any work directly combining perturbation + geometric margin.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eb18dc52-c799-4f6b-af78-d71d37863c1a",
+  "isSidechain": false,
+  "requestId": "req_011Cb66Ki5Pdyh4icGzuvffU",
+  "type": "assistant",
+  "uuid": "5b0d3418-d682-427f-ab5c-4ab25b7cbf6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Accvrb7Ka55XpmWg6BjMoi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2743,
+      "cache_read_input_tokens": 42455,
+      "output_tokens": 575,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2743,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 575,
+          "cache_read_input_tokens": 42455,
+          "cache_creation_input_tokens": 2743,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2743
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-16T10:30:35.381Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QzipRcvhDk2Ltz77daQwsg`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2411.09689",
+  "prompt": "What exactly does SHINE perturb? At which layers? Does it measure output KL divergence? What is the exact methodology - does it perturb at input layer or intermediate layers? What are the results on high-confidence hallucinations specifically?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b0d3418-d682-427f-ab5c-4ab25b7cbf6f",
+  "isSidechain": false,
+  "requestId": "req_011Cb66Ki5Pdyh4icGzuvffU",
+  "type": "assistant",
+  "uuid": "09b47261-eb6f-4825-bdd4-684152d504e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Accvrb7Ka55XpmWg6BjMoi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2743,
+      "cache_read_input_tokens": 42455,
+      "output_tokens": 575,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2743,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 575,
+          "cache_read_input_tokens": 42455,
+          "cache_creation_input_tokens": 2743,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2743
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-16T10:30:35.733Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UK93Yjk4sNcqRsaKZaWQLi`</summary>
+
+```json
+{
+  "query": "\"geometric margin\" hidden state \"hallucination detection\" proxy perturbation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09b47261-eb6f-4825-bdd4-684152d504e9",
+  "isSidechain": false,
+  "requestId": "req_011Cb66Ki5Pdyh4icGzuvffU",
+  "type": "assistant",
+  "uuid": "8700cc9c-67f7-426e-9b64-6e93a6f75a78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Accvrb7Ka55XpmWg6BjMoi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2743,
+      "cache_read_input_tokens": 42455,
+      "output_tokens": 575,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2743,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 575,
+          "cache_read_input_tokens": 42455,
+          "cache_creation_input_tokens": 2743,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2743
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T10:30:39.325Z_
+
+<details><summary>↩ Tool result · `toolu_01QzipRcvhDk2Ltz77daQwsg`</summary>
+
+```text
+# Response Based on Available Information
+
+I cannot provide the specific technical details you're asking about based on the webpage content provided. The page only contains the abstract and metadata for the paper arXiv:2411.09689.
+
+The abstract states that the method involves "perturbing key entities in prompts" and that SHINE "does not require external knowledge, supervised training, or LLM fine-tuning," but it does not specify:
+
+- Which layers are targeted by perturbations
+- Whether KL divergence or other metrics measure output differences
+- Whether modifications occur at input versus intermediate layers
+- Performance metrics on high-confidence hallucinations
+
+To obtain these implementation details, you would need to access the full paper via the "View PDF" or "HTML (experimental)" links provided on the page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "09b47261-eb6f-4825-bdd4-684152d504e9",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "d0c85758-17b9-413e-9c63-042d3622f5f9",
+  "toolUseResult": {
+    "bytes": 45719,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Response Based on Available Information\n\nI cannot provide the specific technical details you're asking about based on the webpage content provided. The page only contains the abstract and metadata for the paper arXiv:2411.09689.\n\nThe abstract states that the method involves \"perturbing key entities in prompts\" and that SHINE \"does not require external knowledge, supervised training, or LLM fine-tuning,\" but it does not specify:\n\n- Which layers are targeted by perturbations\n- Whether KL divergence or other metrics measure output differences\n- Whether modifications occur at input versus intermediate layers\n- Performance metrics on high-confidence hallucinations\n\nTo obtain these implementation details, you would need to access the full paper via the \"View PDF\" or \"HTML (experimental)\" links provided on the page.",
+    "durationMs": 3939,
+    "url": "https://arxiv.org/abs/2411.09689"
+  },
+  "sourceToolAssistantUUID": "09b47261-eb6f-4825-bdd4-684152d504e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-16T10:30:44.589Z_
+
+<details><summary>↩ Tool result · `toolu_01UK93Yjk4sNcqRsaKZaWQLi`</summary>
+
+```text
+Web search results for query: ""geometric margin" hidden state "hallucination detection" proxy perturbation 2026"
+
+Links: [{"title":"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry","url":"https://arxiv.org/html/2605.13772"},{"title":"[2605.13772] Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry","url":"https://arxiv.org/abs/2605.13772"},{"title":"The Geometry of Truth: Layer-wise Semantic Dynamics for Hallucination Detection in Large Language Models","url":"https://arxiv.org/html/2510.04933v1"},{"title":"Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination","url":"https://arxiv.org/html/2605.05686"},{"title":"From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity","url":"https://arxiv.org/html/2605.00939"},{"title":"DADM: HALLUCINATION DETECTION IN LLMS VIA DISTANCE- ...","url":"https://openreview.net/pdf/af2bd4db6882469760e5e88485ba00e9c1d9d857.pdf"},{"title":"A Geometric Taxonomy of Hallucination in LLMs","url":"https://arxiv.org/html/2602.13224v3"},{"title":"[2510.04933] The Geometry of Truth: Layer-wise Semantic Dynamics for Hallucination Detection in Large Language Models","url":"https://arxiv.org/abs/2510.04933"},{"title":"The Geometry of Truth: Layer-wise Semantic Dynamics for Hallucination Detection","url":"https://arxiv.org/pdf/2510.04933"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=Layer+of+Truth"}]
+
+The search results reveal several recent research papers (from May 2026 and late 2025) that directly address your query terms. Here are the key findings:
+
+## Primary Research: "Where Does Reasoning Break?"
+
+The most directly relevant work is "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry", published just 3 days ago. This paper combines all of your query elements:
+
+**Geometric Margin & Hidden State:** The research proves that contrastive PCA is the optimal projection for a transport-separation objective between first error and correct states, and that single-pass first error localization holds whenever the first error creates a positive transport margin over preceding correct transitions.
+
+**Hallucination Detection:** The work frames hallucination as a property of the hidden-state trajectory produced during a single forward pass, where correct reasoning moves through a stable manifold of locally coherent transitions; a first error appears as a localized excursion in transport cost away from this manifold.
+
+**Proxy via Perturbation:** The approach operationalizes this view with a label-conditioned teacher that builds a trace-specific contrastive PCA lens and scores each step with seven geometric transition features, and a deployable BiLSTM student distilled from the teacher that operates on raw hidden states without inference-time labels.
+
+## Related Work on Geometric Approaches
+
+Additional 2026 research on similar geometric detection methods includes "Attractor Geometry of Transformer Memory," which found that hidden-state geometry encodes correctness more reliably as models grow, with two opposing trends emerging.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8700cc9c-67f7-426e-9b64-6e93a6f75a78",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "f98fe6d2-a483-47dd-96d1-505bb69a76cc",
+  "toolUseResult": {
+    "query": "\"geometric margin\" hidden state \"hallucination detection\" proxy perturbation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ECdtXEW8GFKPG2FDamFHas",
+        "content": [
+          {
+            "title": "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry",
+            "url": "https://arxiv.org/html/2605.13772"
+          },
+          {
+            "title": "[2605.13772] Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry",
+            "url": "https://arxiv.org/abs/2605.13772"
+          },
+          {
+            "title": "The Geometry of Truth: Layer-wise Semantic Dynamics for Hallucination Detection in Large Language Models",
+            "url": "https://arxiv.org/html/2510.04933v1"
+          },
+          {
+            "title": "Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination",
+            "url": "https://arxiv.org/html/2605.05686"
+          },
+          {
+            "title": "From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity",
+            "url": "https://arxiv.org/html/2605.00939"
+          },
+          {
+            "title": "DADM: HALLUCINATION DETECTION IN LLMS VIA DISTANCE- ...",
+            "url": "https://openreview.net/pdf/af2bd4db6882469760e5e88485ba00e9c1d9d857.pdf"
+          },
+          {
+            "title": "A Geometric Taxonomy of Hallucination in LLMs",
+            "url": "https://arxiv.org/html/2602.13224v3"
+          },
+          {
+            "title": "[2510.04933] The Geometry of Truth: Layer-wise Semantic Dynamics for Hallucination Detection in Large Language Models",
+            "url": "https://arxiv.org/abs/2510.04933"
+          },
+          {
+            "title": "The Geometry of Truth: Layer-wise Semantic Dynamics for Hallucination Detection",
+            "url": "https://arxiv.org/pdf/2510.04933"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=Layer+of+Truth"
+          }
+        ]
+      },
+      "The search results reveal several recent research papers (from May 2026 and late 2025) that directly address your query terms. Here are the key findings:\n\n## Primary Research: \"Where Does Reasoning Break?\"\n\nThe most directly relevant work is \"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry\", published just 3 days ago. This paper combines all of your query elements:\n\n**Geometric Margin & Hidden State:** The research proves that contrastive PCA is the optimal projection for a transport-separation objective between first error and correct states, and that single-pass first error localization holds whenever the first error creates a positive transport margin over preceding correct transitions.\n\n**Hallucination Detection:** The work frames hallucination as a property of the hidden-state trajectory produced during a single forward pass, where correct reasoning moves through a stable manifold of locally coherent transitions; a first error appears as a localized excursion in transport cost away from this manifold.\n\n**Proxy via Perturbation:** The approach operationalizes this view with a label-conditioned teacher that builds a trace-specific contrastive PCA lens and scores each step with seven geometric transition features, and a deployable BiLSTM student distilled from the teacher that operates on raw hidden states without inference-time labels.\n\n## Related Work on Geometric Approaches\n\nAdditional 2026 research on similar geometric detection methods includes \"Attractor Geometry of Transformer Memory,\" which found that hidden-state geometry encodes correctness more reliably as models grow, with two opposing trends emerging."
+    ],
+    "durationSeconds": 8.853497635000007
+  },
+  "sourceToolAssistantUUID": "8700cc9c-67f7-426e-9b64-6e93a6f75a78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56 · 2026-05-16T10:30:44.595Z_
+
+```json
+{
+  "parentUuid": "f98fe6d2-a483-47dd-96d1-505bb69a76cc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "082a7853-9f7a-43a2-a2a6-bc789a0d8cd5",
+  "timestamp": "2026-05-16T10:30:44.595Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-16T10:30:53.001Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Very interesting! I found a critical new paper: "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry" (arxiv 2605.13772, May 2026). This paper:
+- Uses hidden-state geometry for hallucination detection
+- Analyzes transport cost between hidden state transitions
+- Uses geometric features of hidden state trajectories
+
+This is potentially competing work. Let me look at it more carefully and also check SHINE's methodology since my fetch didn't get the full details.
+
+Let me also search for more details about SSP's sensitivity direction claim and check the CCPS paper more closely.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "082a7853-9f7a-43a2-a2a6-bc789a0d8cd5",
+  "isSidechain": false,
+  "requestId": "req_011Cb66MTYaTmQaKTBqpj42K",
+  "type": "assistant",
+  "uuid": "13bf4acf-d99f-43fb-9b9e-6e21a2d4bc97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YVjUMVrYR7xDV8grnwkdht",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1758,
+      "cache_read_input_tokens": 45198,
+      "output_tokens": 431,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1758,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 431,
+          "cache_read_input_tokens": 45198,
+          "cache_creation_input_tokens": 1758,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1758
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-16T10:30:53.641Z_
+
+Let me check this new "Where Does Reasoning Break?" paper and get more details on SHINE's methodology.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13bf4acf-d99f-43fb-9b9e-6e21a2d4bc97",
+  "isSidechain": false,
+  "requestId": "req_011Cb66MTYaTmQaKTBqpj42K",
+  "type": "assistant",
+  "uuid": "5b0b78e7-99b0-4548-8c40-19d4d0f51ce7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YVjUMVrYR7xDV8grnwkdht",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1758,
+      "cache_read_input_tokens": 45198,
+      "output_tokens": 431,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1758,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 431,
+          "cache_read_input_tokens": 45198,
+          "cache_creation_input_tokens": 1758,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1758
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T10:30:57.477Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0131D2oW6enVR1zLMv7vgVfG`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.13772",
+  "prompt": "What is the exact method? Does it require training? Is it training-free? Does it use perturbation? What are the key results? How does it compare to other hallucination detection methods? Does it target high-confidence hallucinations specifically?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b0b78e7-99b0-4548-8c40-19d4d0f51ce7",
+  "isSidechain": false,
+  "requestId": "req_011Cb66MTYaTmQaKTBqpj42K",
+  "type": "assistant",
+  "uuid": "0614c448-8eb7-4cda-9119-b5a99fd1174f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YVjUMVrYR7xDV8grnwkdht",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1758,
+      "cache_read_input_tokens": 45198,
+      "output_tokens": 431,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1758,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 431,
+          "cache_read_input_tokens": 45198,
+          "cache_creation_input_tokens": 1758,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1758
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-16T10:30:57.567Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QMmeiX2QcaAbsAb6qvWRui`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2411.09689",
+  "prompt": "What exactly does SHINE perturb? At which layers does it perturb - input embeddings or intermediate layers? Does it measure output KL divergence or something else? What is the specific mechanism? What about high-confidence hallucinations?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0614c448-8eb7-4cda-9119-b5a99fd1174f",
+  "isSidechain": false,
+  "requestId": "req_011Cb66MTYaTmQaKTBqpj42K",
+  "type": "assistant",
+  "uuid": "87ab4c59-f323-4f6a-993a-34171ccefdf0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YVjUMVrYR7xDV8grnwkdht",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1758,
+      "cache_read_input_tokens": 45198,
+      "output_tokens": 431,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1758,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 431,
+          "cache_read_input_tokens": 45198,
+          "cache_creation_input_tokens": 1758,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1758
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "87ab4c59-f323-4f6a-993a-34171ccefdf0",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "CHOKE Detection via Intermediate-Layer Perturbation Sensitivity",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-16T10:31:02.622Z_
+
+<details><summary>↩ Tool result · `toolu_0131D2oW6enVR1zLMv7vgVfG`</summary>
+
+```text
+# Analysis of the Hallucination Detection Method
+
+## Method Overview
+The approach frames hallucination detection as analyzing hidden-state trajectories during a single forward pass. It identifies errors as "localized excursions in transport cost" departing from a stable manifold of coherent transitions.
+
+## Training Requirements
+**Yes, it requires training.** The method uses two models:
+- A "label-conditioned teacher" that builds trace-specific contrastive PCA lenses
+- A "deployable BiLSTM student distilled from the teacher" operating on raw hidden states
+
+## Key Technical Features
+The approach uses "seven geometric transition features" and proves that "contrastive PCA is the optimal projection for a transport-separation objective between first error and correct states."
+
+## Performance Results
+On four benchmarks (ProcessBench, PRM800K, HaluEval, TruthfulQA), both models "outperform entropy-based, probing-based, and attention-based baselines." However, there's a significant limitation: the student model "collapses under shift," while the teacher "transfers stably across language models and datasets."
+
+## Comparison to Other Methods
+The paper positions itself against entropy-based, probing-based, and attention-based approaches, claiming superior performance in-domain, though deployment remains challenging.
+
+## High-Confidence Hallucinations
+The abstract doesn't specifically address whether the method targets high-confidence hallucinations, focusing instead on step-level localization of first errors.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0614c448-8eb7-4cda-9119-b5a99fd1174f",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "68b2d9ce-736f-4025-8947-fb22135a2458",
+  "toolUseResult": {
+    "bytes": 47297,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of the Hallucination Detection Method\n\n## Method Overview\nThe approach frames hallucination detection as analyzing hidden-state trajectories during a single forward pass. It identifies errors as \"localized excursions in transport cost\" departing from a stable manifold of coherent transitions.\n\n## Training Requirements\n**Yes, it requires training.** The method uses two models:\n- A \"label-conditioned teacher\" that builds trace-specific contrastive PCA lenses\n- A \"deployable BiLSTM student distilled from the teacher\" operating on raw hidden states\n\n## Key Technical Features\nThe approach uses \"seven geometric transition features\" and proves that \"contrastive PCA is the optimal projection for a transport-separation objective between first error and correct states.\"\n\n## Performance Results\nOn four benchmarks (ProcessBench, PRM800K, HaluEval, TruthfulQA), both models \"outperform entropy-based, probing-based, and attention-based baselines.\" However, there's a significant limitation: the student model \"collapses under shift,\" while the teacher \"transfers stably across language models and datasets.\"\n\n## Comparison to Other Methods\nThe paper positions itself against entropy-based, probing-based, and attention-based approaches, claiming superior performance in-domain, though deployment remains challenging.\n\n## High-Confidence Hallucinations\nThe abstract doesn't specifically address whether the method targets high-confidence hallucinations, focusing instead on step-level localization of first errors.",
+    "durationMs": 5141,
+    "url": "https://arxiv.org/abs/2605.13772"
+  },
+  "sourceToolAssistantUUID": "0614c448-8eb7-4cda-9119-b5a99fd1174f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T10:31:03.306Z_
+
+<details><summary>↩ Tool result · `toolu_01QMmeiX2QcaAbsAb6qvWRui`</summary>
+
+```text
+# SHINE's Perturbation Mechanism
+
+## What SHINE Perturbs
+
+SHINE perturbs **token embeddings of key entities** identified in prompts. The system uses SpaCy to extract named entities and noun chunks, then adds Gaussian noise to their embedding vectors.
+
+## Layer of Perturbation
+
+The perturbations occur at the **input embedding layer**. As stated: "we add Gaussian noise...to all occurrences of S...while leaving other token embeddings unchanged."
+
+## Measurement Approach
+
+SHINE measures **KL divergence between probability distributions**:
+- Original distribution: P_i (unperturbed)
+- Perturbed distribution: P̂_i (after entity embedding noise)
+
+Additionally, it tracks "change in the generation probability of token t_i" (ΔP_i), comparing how token probabilities shift post-perturbation.
+
+## Specific Mechanism
+
+The method involves:
+1. **Model Knowledge Test**: Perturbs all entities with varying strength (weighted by attention and generation likelihood)
+2. **Alignment Test**: Perturbs entities again to detect contradictions in generated text
+
+## Addressing High-Confidence Hallucinations
+
+SHINE handles confident fabrications through its two-stage design. The Model Knowledge Score detects when "tokens in fabricated text have near-zero KL divergence," revealing weak association with entity knowledge—even when expressed confidently. This distinguishes it from uncertainty-based methods that struggle with overconfident hallucinations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "87ab4c59-f323-4f6a-993a-34171ccefdf0",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "f274ce0a-6427-4555-9dc4-d21531700870",
+  "toolUseResult": {
+    "bytes": 324650,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SHINE's Perturbation Mechanism\n\n## What SHINE Perturbs\n\nSHINE perturbs **token embeddings of key entities** identified in prompts. The system uses SpaCy to extract named entities and noun chunks, then adds Gaussian noise to their embedding vectors.\n\n## Layer of Perturbation\n\nThe perturbations occur at the **input embedding layer**. As stated: \"we add Gaussian noise...to all occurrences of S...while leaving other token embeddings unchanged.\"\n\n## Measurement Approach\n\nSHINE measures **KL divergence between probability distributions**:\n- Original distribution: P_i (unperturbed)\n- Perturbed distribution: P̂_i (after entity embedding noise)\n\nAdditionally, it tracks \"change in the generation probability of token t_i\" (ΔP_i), comparing how token probabilities shift post-perturbation.\n\n## Specific Mechanism\n\nThe method involves:\n1. **Model Knowledge Test**: Perturbs all entities with varying strength (weighted by attention and generation likelihood)\n2. **Alignment Test**: Perturbs entities again to detect contradictions in generated text\n\n## Addressing High-Confidence Hallucinations\n\nSHINE handles confident fabrications through its two-stage design. The Model Knowledge Score detects when \"tokens in fabricated text have near-zero KL divergence,\" revealing weak association with entity knowledge—even when expressed confidently. This distinguishes it from uncertainty-based methods that struggle with overconfident hallucinations.",
+    "durationMs": 5737,
+    "url": "https://arxiv.org/html/2411.09689"
+  },
+  "sourceToolAssistantUUID": "87ab4c59-f323-4f6a-993a-34171ccefdf0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-16T10:31:27.061Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Critical findings about SHINE:
+1. SHINE perturbs **input embedding layer** token embeddings (specifically named entities)
+2. Measures output KL divergence
+3. Claims to handle confident hallucinations - fabricated text has "near-zero KL divergence" with entity knowledge
+
+Now, the proposal's differentiation from SHINE:
+- LSP perturbs the FULL residual stream with ISOTROPIC noise at INTERMEDIATE layers (where attractor dynamics operate)
+- SHINE perturbs SPECIFIC entity embeddings at INPUT layer
+- These are fundamentally different because:
+  - Different perturbation targets (isotropic vs. entity-specific)
+  - Different layer (intermediate vs. input)
+  - Different theoretical motivation (basin geometry vs. entity-knowledge association)
+
+This differentiation seems legitimate. SHINE's finding that fabricated text has "near-zero KL divergence" (weak entity association) is fundamentally different from LSP's predicted signal where CHOKE would have HIGH KL sensitivity (basin instability). I'm realizing there's a key distinction here: SHINE measures whether the model's output depends on entity embeddings, while LSP measures whether the model's output is sensitive to perturbations in the intermediate layers where the actual decision-making happens.
+
+But there's something I need to clarify about CHOKE specifically. CHOKE cases involve the model having internal knowledge of the entity but still producing incorrect outputs—so SHINE might actually show HIGH KL divergence for CHOKE since the entity knowledge is present. That would suggest SHINE could already detect CHOKE effectively, which the proposal doesn't fully address. The claim that "SHINE operates before attractor dynamics begin" seems to sidestep whether SHINE might already be catching these cases.
+
+The key distinction the proposal makes is that SHINE perturbs entity tokens directly to test output grounding, while LSP applies isotropic noise to measure geometric stability of intermediate representations. Now I need to verify a few things: whether the Qwen3.6-27B model actually exists, whether the linearity-preserves-curvature argument holds up theoretically, and if there are already recent papers doing what LSP proposes. Let me check on the Qwen models and validate that theoretical claim.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f274ce0a-6427-4555-9dc4-d21531700870",
+  "isSidechain": false,
+  "requestId": "req_011Cb66NqZRoNHDtBhXVNN2d",
+  "type": "assistant",
+  "uuid": "f753ad47-24f1-4adc-8549-eeec9c739b66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ZHJ3HvMQ7xStgXxRKHMoo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1157,
+      "cache_read_input_tokens": 46956,
+      "output_tokens": 904,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1157,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 904,
+          "cache_read_input_tokens": 46956,
+          "cache_creation_input_tokens": 1157,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1157
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-16T10:31:27.063Z_
+
+Now let me verify the model availability and check for more recent competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f753ad47-24f1-4adc-8549-eeec9c739b66",
+  "isSidechain": false,
+  "requestId": "req_011Cb66NqZRoNHDtBhXVNN2d",
+  "type": "assistant",
+  "uuid": "99972779-c015-41bd-b5bd-38e53a638a06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ZHJ3HvMQ7xStgXxRKHMoo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1157,
+      "cache_read_input_tokens": 46956,
+      "output_tokens": 904,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1157,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 904,
+          "cache_read_input_tokens": 46956,
+          "cache_creation_input_tokens": 1157,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1157
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-16T10:31:27.170Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012gzgS67J4kNRy642oMtX8d`</summary>
+
+```json
+{
+  "query": "Qwen3 27B model release dense architecture 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99972779-c015-41bd-b5bd-38e53a638a06",
+  "isSidechain": false,
+  "requestId": "req_011Cb66NqZRoNHDtBhXVNN2d",
+  "type": "assistant",
+  "uuid": "eee8e8a0-8579-4053-9bad-1d70a7e914cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ZHJ3HvMQ7xStgXxRKHMoo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1157,
+      "cache_read_input_tokens": 46956,
+      "output_tokens": 904,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1157,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 904,
+          "cache_read_input_tokens": 46956,
+          "cache_creation_input_tokens": 1157,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1157
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-16T10:31:27.615Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XsS8TAzB3iV9FVnq2V4Wsj`</summary>
+
+```json
+{
+  "query": "training-free hallucination detection perturbation residual stream output KL 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eee8e8a0-8579-4053-9bad-1d70a7e914cb",
+  "isSidechain": false,
+  "requestId": "req_011Cb66NqZRoNHDtBhXVNN2d",
+  "type": "assistant",
+  "uuid": "b4a7640a-da50-4939-a98a-f0ba6e45b2a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ZHJ3HvMQ7xStgXxRKHMoo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1157,
+      "cache_read_input_tokens": 46956,
+      "output_tokens": 904,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1157,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 904,
+          "cache_read_input_tokens": 46956,
+          "cache_creation_input_tokens": 1157,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1157
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-16T10:31:28.477Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PoZ8kcysnZRPUTVMzFiZGo`</summary>
+
+```json
+{
+  "query": "CHOKE \"certainty misalignment\" hallucination detection method Simhi 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4a7640a-da50-4939-a98a-f0ba6e45b2a5",
+  "isSidechain": false,
+  "requestId": "req_011Cb66NqZRoNHDtBhXVNN2d",
+  "type": "assistant",
+  "uuid": "3ceaccfa-ed4d-43ca-9526-007b69d5d469",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ZHJ3HvMQ7xStgXxRKHMoo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1157,
+      "cache_read_input_tokens": 46956,
+      "output_tokens": 904,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1157,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 904,
+          "cache_read_input_tokens": 46956,
+          "cache_creation_input_tokens": 1157,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1157
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-16T10:31:33.921Z_
+
+<details><summary>↩ Tool result · `toolu_01XsS8TAzB3iV9FVnq2V4Wsj`</summary>
+
+```text
+Web search results for query: "training-free hallucination detection perturbation residual stream output KL 2026 arxiv"
+
+Links: [{"title":"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation","url":"https://arxiv.org/html/2604.15400v1"},{"title":"Enhancing Hallucination Detection through Perturbation-Based Synthetic Data Generation in System Responses","url":"https://arxiv.org/html/2407.05474v1"},{"title":"Residual Decoding: Mitigating Hallucinations in Large Vision-Language Models via History-Aware Residual Guidance","url":"https://arxiv.org/html/2602.01047v1"},{"title":"[2601.02170] Streaming Hallucination Detection in Long Chain-of-Thought Reasoning","url":"https://arxiv.org/abs/2601.02170"},{"title":"A Survey of Multimodal Hallucination Evaluation and Detection","url":"https://arxiv.org/html/2507.19024v2"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/html/2509.03531v1"},{"title":"ICR Probe: Tracking Hidden State Dynamics for Reliable Hallucination Detection in LLMs","url":"https://arxiv.org/html/2507.16488"},{"title":"Sample Transform Cost-Based Training-Free Hallucination Detector for Large Language Models","url":"https://arxiv.org/html/2603.22303"},{"title":"[2603.22303] Sample Transform Cost-Based Training-Free Hallucination Detector for Large Language Models","url":"https://arxiv.org/abs/2603.22303"},{"title":"[2407.05474] Enhancing Hallucination Detection through Perturbation-Based Synthetic Data Generation in System Responses","url":"https://arxiv.org/abs/2407.05474"}]
+
+Based on the search results, I found several relevant papers related to your query about training-free hallucination detection with perturbation, residual stream, and KL divergence. Here are the key findings:
+
+## Most Relevant Papers:
+
+1. **Sample Transform Cost-Based Training-Free Hallucination Detector** - This work provides robustness guarantees for detection methods under token-level perturbations of extracted hidden states, published in March 2026.
+
+2. **ICR Probe: Tracking Hidden State Dynamics for Reliable Hallucination Detection** - This paper categorizes hallucination detection methods into training-based and training-free methods, with training-free methods calculating detection metrics directly from hidden states. It introduces the ICR Score (Information Contribution to Residual Stream), which quantifies the contribution of different modules to hidden state updates at each layer.
+
+3. **Real-Time Detection of Hallucinated Entities in Long-Form Generation** - This work measures KL divergence between original and modified output distributions and employs KL divergence regularization during training to minimize behavioral changes while preserving detection performance.
+
+4. **Hallucination as Trajectory Commitment** - This paper uses activation patching across layers to reveal causal asymmetry in hallucination mechanisms, with perturbations showing different effects at different layers.
+
+These papers collectively explore training-free approaches to hallucination detection using perturbations and residual stream analysis with KL divergence metrics as of 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b4a7640a-da50-4939-a98a-f0ba6e45b2a5",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "fe6a39f4-d129-4e8b-b545-6fcbcf3a48ef",
+  "toolUseResult": {
+    "query": "training-free hallucination detection perturbation residual stream output KL 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015ntGeWtAWEW9LNUJ75yeh6",
+        "content": [
+          {
+            "title": "Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation",
+            "url": "https://arxiv.org/html/2604.15400v1"
+          },
+          {
+            "title": "Enhancing Hallucination Detection through Perturbation-Based Synthetic Data Generation in System Responses",
+            "url": "https://arxiv.org/html/2407.05474v1"
+          },
+          {
+            "title": "Residual Decoding: Mitigating Hallucinations in Large Vision-Language Models via History-Aware Residual Guidance",
+            "url": "https://arxiv.org/html/2602.01047v1"
+          },
+          {
+            "title": "[2601.02170] Streaming Hallucination Detection in Long Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/abs/2601.02170"
+          },
+          {
+            "title": "A Survey of Multimodal Hallucination Evaluation and Detection",
+            "url": "https://arxiv.org/html/2507.19024v2"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/html/2509.03531v1"
+          },
+          {
+            "title": "ICR Probe: Tracking Hidden State Dynamics for Reliable Hallucination Detection in LLMs",
+            "url": "https://arxiv.org/html/2507.16488"
+          },
+          {
+            "title": "Sample Transform Cost-Based Training-Free Hallucination Detector for Large Language Models",
+            "url": "https://arxiv.org/html/2603.22303"
+          },
+          {
+            "title": "[2603.22303] Sample Transform Cost-Based Training-Free Hallucination Detector for Large Language Models",
+            "url": "https://arxiv.org/abs/2603.22303"
+          },
+          {
+            "title": "[2407.05474] Enhancing Hallucination Detection through Perturbation-Based Synthetic Data Generation in System Responses",
+            "url": "https://arxiv.org/abs/2407.05474"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers related to your query about training-free hallucination detection with perturbation, residual stream, and KL divergence. Here are the key findings:\n\n## Most Relevant Papers:\n\n1. **Sample Transform Cost-Based Training-Free Hallucination Detector** - This work provides robustness guarantees for detection methods under token-level perturbations of extracted hidden states, published in March 2026.\n\n2. **ICR Probe: Tracking Hidden State Dynamics for Reliable Hallucination Detection** - This paper categorizes hallucination detection methods into training-based and training-free methods, with training-free methods calculating detection metrics directly from hidden states. It introduces the ICR Score (Information Contribution to Residual Stream), which quantifies the contribution of different modules to hidden state updates at each layer.\n\n3. **Real-Time Detection of Hallucinated Entities in Long-Form Generation** - This work measures KL divergence between original and modified output distributions and employs KL divergence regularization during training to minimize behavioral changes while preserving detection performance.\n\n4. **Hallucination as Trajectory Commitment** - This paper uses activation patching across layers to reveal causal asymmetry in hallucination mechanisms, with perturbations showing different effects at different layers.\n\nThese papers collectively explore training-free approaches to hallucination detection using perturbations and residual stream analysis with KL divergence metrics as of 2026."
+    ],
+    "durationSeconds": 6.3025411160000075
+  },
+  "sourceToolAssistantUUID": "b4a7640a-da50-4939-a98a-f0ba6e45b2a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-16T10:31:36.137Z_
+
+<details><summary>↩ Tool result · `toolu_01PoZ8kcysnZRPUTVMzFiZGo`</summary>
+
+```text
+Web search results for query: "CHOKE "certainty misalignment" hallucination detection method Simhi 2025"
+
+Links: [{"title":"Trust Me, I’m Wrong: High-Certainty Hallucinations in LLMs","url":"https://arxiv.org/html/2502.12964v1"},{"title":"Trust Me, I’m Wrong: LLMs Hallucinate with Certainty Despite Knowing the Answer","url":"https://arxiv.org/html/2502.12964v2"},{"title":"LLMs Hallucinate with Certainty Despite Knowing the Answer","url":"https://aclanthology.org/2025.findings-emnlp.792.pdf"},{"title":"HACK: Hallucinations Along Certainty and Knowledge Axes","url":"https://arxiv.org/html/2510.24222"},{"title":"[2510.24222] HACK: Hallucinations Along Certainty and Knowledge Axes","url":"https://arxiv.org/abs/2510.24222"},{"title":"Hallucination Detection and Mitigation in Large Language Models","url":"https://arxiv.org/html/2601.09929v1"},{"title":"Hallucination Detection and Mitigation in Large Language ...","url":"https://arxiv.org/pdf/2601.09929"},{"title":"Hallucination Detection in Foundation Models for Decision- ...","url":"https://arxiv.org/pdf/2403.16527"},{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"HIDE and Seek: Detecting Hallucinations in Language Models via Decoupled Representations","url":"https://arxiv.org/html/2506.17748v1"}]
+
+Based on the search results, I found comprehensive information about CHOKE and related research on hallucinations with certainty misalignment:
+
+## CHOKE: High-Certainty Hallucinations Detection
+
+CHOKE is detected using a two-stage procedure that integrates frameworks for identifying hallucinations despite knowledge and estimating model certainty. The approach builds on Simhi et al. (2024), who identify cases where a model knows the correct answer but hallucinates following a prompt perturbation.
+
+### Detection Methodology
+
+To identify CHOKE examples, researchers first identify hallucinations that occur even when the model possesses the required knowledge, then use common metrics for measuring model certainty and set certainty thresholds to separate certain and uncertain generations.
+
+The process involves selecting questions where the model consistently answers correctly using a few-shot prompt across multiple temperature-based samples and greedy decoding, then rephrasing the original question with natural prompt versions to elicit hallucinations, and flagging cases where the model hallucinates under greedy decoding.
+
+### Key Findings
+
+CHOKE examples occur in 16–43% of hallucination outputs across models and certainty methods. Many hallucinations occur with high certainty, showing models can produce confident hallucination responses even when they have the correct knowledge.
+
+Researchers estimate model certainty using three widely used methods: tokens probabilities, probability difference between the top two predicted tokens, and semantic entropy.
+
+## Related Concept: Certainty Misalignment (CM)
+
+Certainty Misalignment represents hallucinations where the model's output is misaligned with its parametric knowledge, and does so with high certainty.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3ceaccfa-ed4d-43ca-9526-007b69d5d469",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "e401d5ed-e265-4989-8e69-f142b1354b7a",
+  "toolUseResult": {
+    "query": "CHOKE \"certainty misalignment\" hallucination detection method Simhi 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WH1ZTW7akkQEA4jLDhscXJ",
+        "content": [
+          {
+            "title": "Trust Me, I’m Wrong: High-Certainty Hallucinations in LLMs",
+            "url": "https://arxiv.org/html/2502.12964v1"
+          },
+          {
+            "title": "Trust Me, I’m Wrong: LLMs Hallucinate with Certainty Despite Knowing the Answer",
+            "url": "https://arxiv.org/html/2502.12964v2"
+          },
+          {
+            "title": "LLMs Hallucinate with Certainty Despite Knowing the Answer",
+            "url": "https://aclanthology.org/2025.findings-emnlp.792.pdf"
+          },
+          {
+            "title": "HACK: Hallucinations Along Certainty and Knowledge Axes",
+            "url": "https://arxiv.org/html/2510.24222"
+          },
+          {
+            "title": "[2510.24222] HACK: Hallucinations Along Certainty and Knowledge Axes",
+            "url": "https://arxiv.org/abs/2510.24222"
+          },
+          {
+            "title": "Hallucination Detection and Mitigation in Large Language Models",
+            "url": "https://arxiv.org/html/2601.09929v1"
+          },
+          {
+            "title": "Hallucination Detection and Mitigation in Large Language ...",
+            "url": "https://arxiv.org/pdf/2601.09929"
+          },
+          {
+            "title": "Hallucination Detection in Foundation Models for Decision- ...",
+            "url": "https://arxiv.org/pdf/2403.16527"
+          },
+          {
+            "title": "LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.",
+            "url": "https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"
+          },
+          {
+            "title": "HIDE and Seek: Detecting Hallucinations in Language Models via Decoupled Representations",
+            "url": "https://arxiv.org/html/2506.17748v1"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about CHOKE and related research on hallucinations with certainty misalignment:\n\n## CHOKE: High-Certainty Hallucinations Detection\n\nCHOKE is detected using a two-stage procedure that integrates frameworks for identifying hallucinations despite knowledge and estimating model certainty. The approach builds on Simhi et al. (2024), who identify cases where a model knows the correct answer but hallucinates following a prompt perturbation.\n\n### Detection Methodology\n\nTo identify CHOKE examples, researchers first identify hallucinations that occur even when the model possesses the required knowledge, then use common metrics for measuring model certainty and set certainty thresholds to separate certain and uncertain generations.\n\nThe process involves selecting questions where the model consistently answers correctly using a few-shot prompt across multiple temperature-based samples and greedy decoding, then rephrasing the original question with natural prompt versions to elicit hallucinations, and flagging cases where the model hallucinates under greedy decoding.\n\n### Key Findings\n\nCHOKE examples occur in 16–43% of hallucination outputs across models and certainty methods. Many hallucinations occur with high certainty, showing models can produce confident hallucination responses even when they have the correct knowledge.\n\nResearchers estimate model certainty using three widely used methods: tokens probabilities, probability difference between the top two predicted tokens, and semantic entropy.\n\n## Related Concept: Certainty Misalignment (CM)\n\nCertainty Misalignment represents hallucinations where the model's output is misaligned with its parametric knowledge, and does so with high certainty."
+    ],
+    "durationSeconds": 7.657445928000001
+  },
+  "sourceToolAssistantUUID": "3ceaccfa-ed4d-43ca-9526-007b69d5d469",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e401d5ed-e265-4989-8e69-f142b1354b7a",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "CHOKE Detection via Intermediate-Layer Perturbation Sensitivity",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-16T10:31:36.477Z_
+
+<details><summary>↩ Tool result · `toolu_012gzgS67J4kNRy642oMtX8d`</summary>
+
+```text
+Web search results for query: "Qwen3 27B model release dense architecture 2025 2026"
+
+Links: [{"title":"Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model","url":"https://qwen.ai/blog?id=qwen3.6-27b"},{"title":"Alibaba Qwen Team Releases Qwen3.6-27B: A Dense Open-Weight Model Outperforming 397B MoE on Agentic Coding Benchmarks - MarkTechPost","url":"https://www.marktechpost.com/2026/04/22/alibaba-qwen-team-releases-qwen3-6-27b-a-dense-open-weight-model-outperforming-397b-moe-on-agentic-coding-benchmarks/"},{"title":"GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub","url":"https://github.com/QwenLM/Qwen3.6"},{"title":"Alibaba's Qwen 3.6-27B Dense Model Matches Frontier AI at Scale | AI2Work","url":"https://ai2.work/blog/alibaba-s-qwen-3-6-27b-dense-model-matches-frontier-ai-at-scale"},{"title":"Qwen3.6-27B: A Dense 27B Model That Beats a 397B MoE on Coding","url":"https://rits.shanghai.nyu.edu/ai/qwen3-6-27b-a-dense-27b-model-that-beats-a-397b-moe-on-coding"},{"title":"Qwen/Qwen3.6-27B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.6-27B"},{"title":"Qwen3.6-27B Review: Dense 27B Beats 397B MoE (2026) | Local AI Master","url":"https://localaimaster.com/models/qwen-3-6-27b"},{"title":"Qwen3.6–27B Is The New King (April 2026) | by Andrew Zhu | Apr, 2026 | Medium","url":"https://xhinker.medium.com/qwen3-6-27b-is-the-new-king-april-2026-09467b6c6335"},{"title":"Qwen3.6-27B: 27B Model Beats 397B on Coding (2026)","url":"https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026"},{"title":"Qwen 3.6 27B: a Local Coding Model You Can Actually Run — ai.rs","url":"https://ai.rs/ai-developer/qwen-3-6-27b-local-coding-model"}]
+
+Based on the web search results, here's what I found about the Qwen3 27B model:
+
+## Qwen3.6-27B Release Overview
+
+Alibaba's Qwen team released Qwen3.6-27B on April 22, 2026 — the first dense open-weight model in the Qwen3.6 generation.
+
+## Dense Architecture
+
+As a dense architecture, it is straightforward to deploy without MoE routing complexity, making it an ideal choice for developers who need top-tier coding capabilities at a practical, widely-deployable scale. Qwen3.6-27B — a dense model with every parameter active on every token — outperforms Alibaba's own Qwen3.5-397B-A17B MoE (17B active) across major coding benchmarks.
+
+## Performance Benchmarks
+
+Still supporting both multimodal thinking and non-thinking modes, Qwen3.6-27B delivers flagship-level agentic coding performance, surpassing the previous-generation open-source flagship Qwen3.5-397B-A17B (397B total / 17B active MoE) across all major coding benchmarks. With only 27B parameters, it outperforms the Qwen3.5-397B-A17B (397B total / 17B active) on every major coding benchmark — including SWE-bench Verified (77.2 vs. 76.2), SWE-bench Pro (53.5 vs. 50.9), Terminal-Bench 2.0 (59.3 vs. 52.5), and SkillsBench (48.2 vs. 30.0).
+
+## Technical Architecture
+
+Qwen3.6-27B uses a hybrid attention stack that alternates linear and quadratic attention in a 3:1 ratio. The 64-layer network is organized as 16 repeated blocks, each containing three Gated DeltaNet sublayers followed by one Gated Attention sublayer (each paired with a feed-forward network).
+
+## Deployment
+
+Qwen3.6-27B is now live on Qwen Studio, available through their API, and released as open weights for the community. The 27-billion-parameter multimodal model fits into a 16.8 GB Q4_K_M quantization that runs on a single consumer GPU.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eee8e8a0-8579-4053-9bad-1d70a7e914cb",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "b07b15eb-e8b3-4d74-a635-bd872a47a1e7",
+  "toolUseResult": {
+    "query": "Qwen3 27B model release dense architecture 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HxBwpm2GUYPVUPUaZppgtb",
+        "content": [
+          {
+            "title": "Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model",
+            "url": "https://qwen.ai/blog?id=qwen3.6-27b"
+          },
+          {
+            "title": "Alibaba Qwen Team Releases Qwen3.6-27B: A Dense Open-Weight Model Outperforming 397B MoE on Agentic Coding Benchmarks - MarkTechPost",
+            "url": "https://www.marktechpost.com/2026/04/22/alibaba-qwen-team-releases-qwen3-6-27b-a-dense-open-weight-model-outperforming-397b-moe-on-agentic-coding-benchmarks/"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3.6"
+          },
+          {
+            "title": "Alibaba's Qwen 3.6-27B Dense Model Matches Frontier AI at Scale | AI2Work",
+            "url": "https://ai2.work/blog/alibaba-s-qwen-3-6-27b-dense-model-matches-frontier-ai-at-scale"
+          },
+          {
+            "title": "Qwen3.6-27B: A Dense 27B Model That Beats a 397B MoE on Coding",
+            "url": "https://rits.shanghai.nyu.edu/ai/qwen3-6-27b-a-dense-27b-model-that-beats-a-397b-moe-on-coding"
+          },
+          {
+            "title": "Qwen/Qwen3.6-27B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.6-27B"
+          },
+          {
+            "title": "Qwen3.6-27B Review: Dense 27B Beats 397B MoE (2026) | Local AI Master",
+            "url": "https://localaimaster.com/models/qwen-3-6-27b"
+          },
+          {
+            "title": "Qwen3.6–27B Is The New King (April 2026) | by Andrew Zhu | Apr, 2026 | Medium",
+            "url": "https://xhinker.medium.com/qwen3-6-27b-is-the-new-king-april-2026-09467b6c6335"
+          },
+          {
+            "title": "Qwen3.6-27B: 27B Model Beats 397B on Coding (2026)",
+            "url": "https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026"
+          },
+          {
+            "title": "Qwen 3.6 27B: a Local Coding Model You Can Actually Run — ai.rs",
+            "url": "https://ai.rs/ai-developer/qwen-3-6-27b-local-coding-model"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about the Qwen3 27B model:\n\n## Qwen3.6-27B Release Overview\n\nAlibaba's Qwen team released Qwen3.6-27B on April 22, 2026 — the first dense open-weight model in the Qwen3.6 generation.\n\n## Dense Architecture\n\nAs a dense architecture, it is straightforward to deploy without MoE routing complexity, making it an ideal choice for developers who need top-tier coding capabilities at a practical, widely-deployable scale. Qwen3.6-27B — a dense model with every parameter active on every token — outperforms Alibaba's own Qwen3.5-397B-A17B MoE (17B active) across major coding benchmarks.\n\n## Performance Benchmarks\n\nStill supporting both multimodal thinking and non-thinking modes, Qwen3.6-27B delivers flagship-level agentic coding performance, surpassing the previous-generation open-source flagship Qwen3.5-397B-A17B (397B total / 17B active MoE) across all major coding benchmarks. With only 27B parameters, it outperforms the Qwen3.5-397B-A17B (397B total / 17B active) on every major coding benchmark — including SWE-bench Verified (77.2 vs. 76.2), SWE-bench Pro (53.5 vs. 50.9), Terminal-Bench 2.0 (59.3 vs. 52.5), and SkillsBench (48.2 vs. 30.0).\n\n## Technical Architecture\n\nQwen3.6-27B uses a hybrid attention stack that alternates linear and quadratic attention in a 3:1 ratio. The 64-layer network is organized as 16 repeated blocks, each containing three Gated DeltaNet sublayers followed by one Gated Attention sublayer (each paired with a feed-forward network).\n\n## Deployment\n\nQwen3.6-27B is now live on Qwen Studio, available through their API, and released as open weights for the community. The 27-billion-parameter multimodal model fits into a 16.8 GB Q4_K_M quantization that runs on a single consumer GPU."
+    ],
+    "durationSeconds": 9.301977795999992
+  },
+  "sourceToolAssistantUUID": "eee8e8a0-8579-4053-9bad-1d70a7e914cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-16T10:31:50.665Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings:
+1. Qwen3.6-27B EXISTS and is a dense model released April 22, 2026 with Apache 2.0 license. BUT it has a HYBRID attention architecture (3:1 ratio of linear and quadratic attention) with 64 layers. This is NOT a standard dense transformer - it uses a novel "Gated DeltaNet" architecture. This could complicate the causal tracing methodology which was designed for standard transformers.
+
+2. I found a very relevant new paper: "Sample Transform Cost-Based Training-Free Hallucination Detector" (arxiv 2603.22303, March 2026) - this is a training-free detector using hidden state transformations. 
+
+3. The ICR Probe paper tracks hidden state dynamics through an "Information Contribution to Residual Stream" score, which connects to the residual stream analysis I'm using in LSP.
+
+4. CHOKE/HACK detection rates are confirmed at 16-43% across models using certainty estimation, though the proposal mentions 9-43% - there's a slight discrepancy there.
+
+The Qwen3.6-27B hybrid attention stack with Gated DeltaNet sublayers is a significant architectural departure from standard transformers, which could affect how causal tracing applies to this model.
+
+Now I'm checking whether the proposal's methods like causal tracing and residual stream perturbation actually work with this hybrid architecture, and whether the "attractor dynamics" framework was even designed for non-standard transformer variants. I also need to verify if Qwen3-32B actually exists as a model.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b07b15eb-e8b3-4d74-a635-bd872a47a1e7",
+  "isSidechain": false,
+  "requestId": "req_011Cb66RHPVeWuGxrP4SCekS",
+  "type": "assistant",
+  "uuid": "e9d37e1d-7387-4e15-abb9-099ee6ae48a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015EKqF6f5YdRUqyhh1VcBS3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1751,
+      "cache_creation_input_tokens": 2228,
+      "cache_read_input_tokens": 48113,
+      "output_tokens": 672,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2228,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1751,
+          "output_tokens": 672,
+          "cache_read_input_tokens": 48113,
+          "cache_creation_input_tokens": 2228,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2228
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-16T10:31:50.676Z_
+
+Let me check the Qwen3-32B model and the new training-free hallucination detector paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9d37e1d-7387-4e15-abb9-099ee6ae48a3",
+  "isSidechain": false,
+  "requestId": "req_011Cb66RHPVeWuGxrP4SCekS",
+  "type": "assistant",
+  "uuid": "71fde6fb-b39f-4a48-959c-9672d5160570",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015EKqF6f5YdRUqyhh1VcBS3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1751,
+      "cache_creation_input_tokens": 2228,
+      "cache_read_input_tokens": 48113,
+      "output_tokens": 672,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2228,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1751,
+          "output_tokens": 672,
+          "cache_read_input_tokens": 48113,
+          "cache_creation_input_tokens": 2228,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2228
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-16T10:31:50.686Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015HoRzBt8tP2MsEyT2pQWzr`</summary>
+
+```json
+{
+  "query": "Qwen3-32B dense model release 2025 huggingface"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71fde6fb-b39f-4a48-959c-9672d5160570",
+  "isSidechain": false,
+  "requestId": "req_011Cb66RHPVeWuGxrP4SCekS",
+  "type": "assistant",
+  "uuid": "c47cc552-af9e-4201-8b02-1cb9ddd14af1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015EKqF6f5YdRUqyhh1VcBS3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1751,
+      "cache_creation_input_tokens": 2228,
+      "cache_read_input_tokens": 48113,
+      "output_tokens": 672,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2228,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1751,
+          "output_tokens": 672,
+          "cache_read_input_tokens": 48113,
+          "cache_creation_input_tokens": 2228,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2228
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-16T10:31:51.766Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01THdRMB5JPTpdxz94pS3zmP`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.22303",
+  "prompt": "What is this paper's method? Is it training-free? Does it use perturbation of hidden states? What metric does it use? How does it relate to detecting hallucinations via residual stream analysis? What are the key results?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c47cc552-af9e-4201-8b02-1cb9ddd14af1",
+  "isSidechain": false,
+  "requestId": "req_011Cb66RHPVeWuGxrP4SCekS",
+  "type": "assistant",
+  "uuid": "05fb2227-d2ee-4a15-8402-46c85934e636",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015EKqF6f5YdRUqyhh1VcBS3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1751,
+      "cache_creation_input_tokens": 2228,
+      "cache_read_input_tokens": 48113,
+      "output_tokens": 672,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2228,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1751,
+          "output_tokens": 672,
+          "cache_read_input_tokens": 48113,
+          "cache_creation_input_tokens": 2228,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2228
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-16T10:31:56.225Z_
+
+<details><summary>↩ Tool result · `toolu_01THdRMB5JPTpdxz94pS3zmP`</summary>
+
+```text
+# Paper Summary: Sample Transform Cost-Based Hallucination Detector
+
+## Method
+The approach computes "optimal-transport distances between the sets of token embeddings of pairwise samples," yielding a Wasserstein distance matrix that measures transformation costs between responses. This quantifies distribution complexity as an indicator of hallucination likelihood.
+
+## Training-Free Status
+Yes, it is explicitly described as a "training-free detector for hallucinations in LLMs."
+
+## Hidden State Perturbation
+The paper does not appear to use hidden state perturbation based on the abstract provided. Instead, it analyzes token embeddings and their transport distances.
+
+## Metrics
+The method derives two signals from the Wasserstein distance matrix:
+- **AvgWD**: measures average cost
+- **EigenWD**: measures cost complexity
+
+## Relation to Residual Stream Analysis
+The abstract does not mention residual stream analysis or establish connections to that approach.
+
+## Key Results
+"AvgWD and EigenWD are competitive with strong uncertainty baselines and provide complementary behavior across models and datasets," with distribution complexity identified as an effective signal for determining LLM truthfulness. The framework extends to black-box models via teacher forcing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "05fb2227-d2ee-4a15-8402-46c85934e636",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "447b4bb2-a155-4a9a-a8b8-221443fd7cb3",
+  "toolUseResult": {
+    "bytes": 47479,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary: Sample Transform Cost-Based Hallucination Detector\n\n## Method\nThe approach computes \"optimal-transport distances between the sets of token embeddings of pairwise samples,\" yielding a Wasserstein distance matrix that measures transformation costs between responses. This quantifies distribution complexity as an indicator of hallucination likelihood.\n\n## Training-Free Status\nYes, it is explicitly described as a \"training-free detector for hallucinations in LLMs.\"\n\n## Hidden State Perturbation\nThe paper does not appear to use hidden state perturbation based on the abstract provided. Instead, it analyzes token embeddings and their transport distances.\n\n## Metrics\nThe method derives two signals from the Wasserstein distance matrix:\n- **AvgWD**: measures average cost\n- **EigenWD**: measures cost complexity\n\n## Relation to Residual Stream Analysis\nThe abstract does not mention residual stream analysis or establish connections to that approach.\n\n## Key Results\n\"AvgWD and EigenWD are competitive with strong uncertainty baselines and provide complementary behavior across models and datasets,\" with distribution complexity identified as an effective signal for determining LLM truthfulness. The framework extends to black-box models via teacher forcing.",
+    "durationMs": 4456,
+    "url": "https://arxiv.org/abs/2603.22303"
+  },
+  "sourceToolAssistantUUID": "05fb2227-d2ee-4a15-8402-46c85934e636",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-16T10:31:57.570Z_
+
+<details><summary>↩ Tool result · `toolu_015HoRzBt8tP2MsEyT2pQWzr`</summary>
+
+```text
+Web search results for query: "Qwen3-32B dense model release 2025 huggingface"
+
+Links: [{"title":"Qwen/Qwen3-32B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-32B"},{"title":"nvidia/Qwen3-32B-NVFP4 · Hugging Face","url":"https://huggingface.co/nvidia/Qwen3-32B-NVFP4"},{"title":"Qwen3 · Hugging Face","url":"https://huggingface.co/docs/transformers/en/model_doc/qwen3"},{"title":"GitHub - QwenLM/Qwen3: Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud. · GitHub","url":"https://github.com/QwenLM/qwen3"},{"title":"Qwen/Qwen3-VL-32B-Instruct · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-VL-32B-Instruct"},{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"},{"title":"@merterbak on Hugging Face: \"Qwen 3 models released🔥 It offers 2 MoE and 6 dense models with following…\"","url":"https://huggingface.co/posts/merterbak/337137510653930"},{"title":"Qwen3: Think Deeper, Act Faster | Qwen","url":"https://qwenlm.github.io/blog/qwen3/"},{"title":"Qwen/Qwen3-VL-32B-Thinking · Qwen3-32B (April 2025) is superior","url":"https://huggingface.co/Qwen/Qwen3-VL-32B-Thinking/discussions/2"},{"title":"Qwen/Qwen3-32B-FP8 · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-32B-FP8"}]
+
+Based on the search results, here's information about the Qwen3-32B dense model release in 2025:
+
+## Release Information
+
+The Qwen3-32B model was released on 2025-04-29 and added to Hugging Face Transformers on 2025-03-31. The Qwen3 series was released on 2025.04.29.
+
+## Model Details
+
+Qwen3 is the latest generation of large language models in Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models. Qwen3 is the dense model architecture in the Qwen3 family, available in sizes from 0.6B to 32B parameters.
+
+Qwen3-32B-Base is the largest dense model among the Qwen3 series and is compared to baselines of similar sizes, including Gemma-3-27B and Qwen2.5-32B.
+
+## Key Features
+
+It supports both thinking mode (multi-step reasoning) and non-thinking mode, with seamless switching between the two. Qwen3 was trained on approximately 36T tokens covering 119 languages.
+
+Context Length: 32,768 natively and 131,072 tokens with YaRN.
+
+The model is available on Hugging Face at https://huggingface.co/Qwen/Qwen3-32B and is licensed under Apache 2.0.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c47cc552-af9e-4201-8b02-1cb9ddd14af1",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "00a198e4-29a4-41e8-b917-32299164207c",
+  "toolUseResult": {
+    "query": "Qwen3-32B dense model release 2025 huggingface",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Sfans6pt4dkbKgysRk8k3o",
+        "content": [
+          {
+            "title": "Qwen/Qwen3-32B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-32B"
+          },
+          {
+            "title": "nvidia/Qwen3-32B-NVFP4 · Hugging Face",
+            "url": "https://huggingface.co/nvidia/Qwen3-32B-NVFP4"
+          },
+          {
+            "title": "Qwen3 · Hugging Face",
+            "url": "https://huggingface.co/docs/transformers/en/model_doc/qwen3"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3: Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud. · GitHub",
+            "url": "https://github.com/QwenLM/qwen3"
+          },
+          {
+            "title": "Qwen/Qwen3-VL-32B-Instruct · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-VL-32B-Instruct"
+          },
+          {
+            "title": "2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          },
+          {
+            "title": "@merterbak on Hugging Face: \"Qwen 3 models released🔥 It offers 2 MoE and 6 dense models with following…\"",
+            "url": "https://huggingface.co/posts/merterbak/337137510653930"
+          },
+          {
+            "title": "Qwen3: Think Deeper, Act Faster | Qwen",
+            "url": "https://qwenlm.github.io/blog/qwen3/"
+          },
+          {
+            "title": "Qwen/Qwen3-VL-32B-Thinking · Qwen3-32B (April 2025) is superior",
+            "url": "https://huggingface.co/Qwen/Qwen3-VL-32B-Thinking/discussions/2"
+          },
+          {
+            "title": "Qwen/Qwen3-32B-FP8 · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-32B-FP8"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the Qwen3-32B dense model release in 2025:\n\n## Release Information\n\nThe Qwen3-32B model was released on 2025-04-29 and added to Hugging Face Transformers on 2025-03-31. The Qwen3 series was released on 2025.04.29.\n\n## Model Details\n\nQwen3 is the latest generation of large language models in Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models. Qwen3 is the dense model architecture in the Qwen3 family, available in sizes from 0.6B to 32B parameters.\n\nQwen3-32B-Base is the largest dense model among the Qwen3 series and is compared to baselines of similar sizes, including Gemma-3-27B and Qwen2.5-32B.\n\n## Key Features\n\nIt supports both thinking mode (multi-step reasoning) and non-thinking mode, with seamless switching between the two. Qwen3 was trained on approximately 36T tokens covering 119 languages.\n\nContext Length: 32,768 natively and 131,072 tokens with YaRN.\n\nThe model is available on Hugging Face at https://huggingface.co/Qwen/Qwen3-32B and is licensed under Apache 2.0."
+    ],
+    "durationSeconds": 6.880580125000008
+  },
+  "sourceToolAssistantUUID": "c47cc552-af9e-4201-8b02-1cb9ddd14af1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 81 · 2026-05-16T10:31:57.574Z_
+
+```json
+{
+  "parentUuid": "00a198e4-29a4-41e8-b917-32299164207c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3f836dc7-9457-42c9-9e2c-c33ddd5dfc6b",
+  "timestamp": "2026-05-16T10:31:57.574Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 82 · 2026-05-16T10:32:08.628Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings:
+1. Qwen3-32B EXISTS - released April 29, 2025, dense architecture, 32B parameters, Apache 2.0. This is a standard dense transformer (unlike Qwen3.6-27B which has a hybrid architecture).
+
+2. The Sample Transform Cost paper (2603.22303) is not directly competing - it uses Wasserstein distances between sample sets, not perturbation of hidden states. Different methodology.
+
+3. Important architecture issue: Qwen3.6-27B has a HYBRID architecture (64 layers, 3:1 ratio of Gated DeltaNet + Gated Attention). 
+
+The hybrid architecture in Qwen3.6-27B is problematic since causal tracing was designed for standard transformers with self-attention, but Qwen3-32B being a conventional dense transformer should work fine with the method. I need to double-check the CHOKE prevalence numbers from the proposal against what I found, and see if anyone else is working on training-free, forward-only perturbation approaches at intermediate layers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f836dc7-9457-42c9-9e2c-c33ddd5dfc6b",
+  "isSidechain": false,
+  "requestId": "req_011Cb66Sqa2kXyjBfDVdNSnD",
+  "type": "assistant",
+  "uuid": "ff1de93b-549d-4cbc-8895-eb2658840333",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E3He8PceW2nwAmTUy8f8XL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 300,
+      "cache_creation_input_tokens": 3475,
+      "cache_read_input_tokens": 50341,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3475,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 300,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 50341,
+          "cache_creation_input_tokens": 3475,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3475
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-16T10:32:08.649Z_
+
+Let me check a few more critical items - the Qwen3.6-27B architecture compatibility and whether there's any work on "linearity preserves curvature" in LLMs.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff1de93b-549d-4cbc-8895-eb2658840333",
+  "isSidechain": false,
+  "requestId": "req_011Cb66Sqa2kXyjBfDVdNSnD",
+  "type": "assistant",
+  "uuid": "cd33c0a2-1d58-4025-b3e4-c89e4b0e2f36",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E3He8PceW2nwAmTUy8f8XL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 300,
+      "cache_creation_input_tokens": 3475,
+      "cache_read_input_tokens": 50341,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3475,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 300,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 50341,
+          "cache_creation_input_tokens": 3475,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3475
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-16T10:32:09.077Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019JoAoQFgtMisnySMLo1cLr`</summary>
+
+```json
+{
+  "query": "Qwen3.6-27B architecture \"Gated DeltaNet\" hybrid attention causal tracing compatibility"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd33c0a2-1d58-4025-b3e4-c89e4b0e2f36",
+  "isSidechain": false,
+  "requestId": "req_011Cb66Sqa2kXyjBfDVdNSnD",
+  "type": "assistant",
+  "uuid": "09a2797d-efd4-4a38-9678-60c469632145",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E3He8PceW2nwAmTUy8f8XL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 300,
+      "cache_creation_input_tokens": 3475,
+      "cache_read_input_tokens": 50341,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3475,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 300,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 50341,
+          "cache_creation_input_tokens": 3475,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3475
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-16T10:32:09.744Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P3tCtvfxPpBJhDkocdvM1Z`</summary>
+
+```json
+{
+  "query": "\"selective abstention\" hallucination threshold KL sensitivity LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09a2797d-efd4-4a38-9678-60c469632145",
+  "isSidechain": false,
+  "requestId": "req_011Cb66Sqa2kXyjBfDVdNSnD",
+  "type": "assistant",
+  "uuid": "1f69ef11-5a21-4bf8-9025-371176cc7e4a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E3He8PceW2nwAmTUy8f8XL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 300,
+      "cache_creation_input_tokens": 3475,
+      "cache_read_input_tokens": 50341,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3475,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 300,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 50341,
+          "cache_creation_input_tokens": 3475,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3475
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "1f69ef11-5a21-4bf8-9025-371176cc7e4a",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "CHOKE Detection via Intermediate-Layer Perturbation Sensitivity",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-16T10:32:17.208Z_
+
+<details><summary>↩ Tool result · `toolu_01P3tCtvfxPpBJhDkocdvM1Z`</summary>
+
+```text
+Web search results for query: ""selective abstention" hallucination threshold KL sensitivity LLM 2025 2026"
+
+Links: [{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"Mitigating LLM Hallucinations via Conformal Abstention","url":"https://arxiv.org/pdf/2405.01563"},{"title":"Know Your Limits: A Survey of Abstention in Large Language Models | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00754/131566/Know-Your-Limits-A-Survey-of-Abstention-in-Large"},{"title":"[2512.19920] Mitigating LLM Hallucination via Behaviorally Calibrated Reinforcement Learning","url":"https://arxiv.org/abs/2512.19920"},{"title":"Mitigating LLM Hallucination via Behaviorally Calibrated Reinforcement Learning","url":"https://arxiv.org/html/2512.19920v1"},{"title":"LLMs Hallucinate with Certainty Despite Knowing the Answer","url":"https://aclanthology.org/2025.findings-emnlp.792.pdf"},{"title":"UNCERTAINTY-BASED ABSTENTION IN LLMS IM","url":"https://openreview.net/pdf?id=1DIdt2YOPw"},{"title":"Know Your Limits: A Survey of Abstention in Large Language Models Bingbing Wen1","url":"https://aclanthology.org/2025.tacl-1.26.pdf"},{"title":"We Also Need Is ABSTAIN: Eliminating Hallucinations via a ...","url":"https://www.preprints.org/manuscript/202510.1827/v1/download"},{"title":"EFFICIENT HALLUCINATION DETECTION FOR LLMS ...","url":"https://openreview.net/pdf?id=FSOoR1ZFtf"}]
+
+I found relevant research on your query. Here's what the search results show:
+
+## Recent Advances in Selective Abstention and Hallucination Mitigation (2025-2026)
+
+Abstention, the refusal of large language models (LLMs) to provide an answer, is increasingly recognized for its potential to mitigate hallucinations and enhance safety in LLM systems.
+
+### Key Approaches Identified:
+
+**Behavioral Calibration and Confidence Thresholds:**
+Behavioral calibration incentivizes models to stochastically admit uncertainty by abstaining when not confident, aligning model behavior with accuracy. Rewarding Doubt (2025) integrates confidence calibration into reinforcement learning, penalising both over- and underconfidence so model certainty better matches correctness.
+
+**Abstention Methods:**
+New reward schemes encourage abstention when evidence is thin. Additionally, abstention with self-evaluation outperforms log-probability baselines used in the literature.
+
+**Recent Survey Work:**
+A comprehensive survey titled "Know Your Limits: A Survey of Abstention in Large Language Models" was published in Transactions of the Association for Computational Linguistics 2025.
+
+### Uncertainty Quantification:
+The search results reference various uncertainty metrics for selective abstention, though the specific KL divergence sensitivity metrics you mentioned weren't prominently featured in these results. Some approaches estimate uncertainties using semantic likelihood probabilities associated with the meanings of text, as opposed to standard sequence likelihoods.
+
+The research suggests abstention methods are moving toward reward-based training approaches that directly incentivize models to know when not to answer.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f69ef11-5a21-4bf8-9025-371176cc7e4a",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "b1efd2f4-bfa5-406f-83bf-3a2cf5a75f16",
+  "toolUseResult": {
+    "query": "\"selective abstention\" hallucination threshold KL sensitivity LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UVooftoBhGkz9LBJcjqDBi",
+        "content": [
+          {
+            "title": "LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.",
+            "url": "https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"
+          },
+          {
+            "title": "Mitigating LLM Hallucinations via Conformal Abstention",
+            "url": "https://arxiv.org/pdf/2405.01563"
+          },
+          {
+            "title": "Know Your Limits: A Survey of Abstention in Large Language Models | Transactions of the Association for Computational Linguistics | MIT Press",
+            "url": "https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00754/131566/Know-Your-Limits-A-Survey-of-Abstention-in-Large"
+          },
+          {
+            "title": "[2512.19920] Mitigating LLM Hallucination via Behaviorally Calibrated Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2512.19920"
+          },
+          {
+            "title": "Mitigating LLM Hallucination via Behaviorally Calibrated Reinforcement Learning",
+            "url": "https://arxiv.org/html/2512.19920v1"
+          },
+          {
+            "title": "LLMs Hallucinate with Certainty Despite Knowing the Answer",
+            "url": "https://aclanthology.org/2025.findings-emnlp.792.pdf"
+          },
+          {
+            "title": "UNCERTAINTY-BASED ABSTENTION IN LLMS IM",
+            "url": "https://openreview.net/pdf?id=1DIdt2YOPw"
+          },
+          {
+            "title": "Know Your Limits: A Survey of Abstention in Large Language Models Bingbing Wen1",
+            "url": "https://aclanthology.org/2025.tacl-1.26.pdf"
+          },
+          {
+            "title": "We Also Need Is ABSTAIN: Eliminating Hallucinations via a ...",
+            "url": "https://www.preprints.org/manuscript/202510.1827/v1/download"
+          },
+          {
+            "title": "EFFICIENT HALLUCINATION DETECTION FOR LLMS ...",
+            "url": "https://openreview.net/pdf?id=FSOoR1ZFtf"
+          }
+        ]
+      },
+      "I found relevant research on your query. Here's what the search results show:\n\n## Recent Advances in Selective Abstention and Hallucination Mitigation (2025-2026)\n\nAbstention, the refusal of large language models (LLMs) to provide an answer, is increasingly recognized for its potential to mitigate hallucinations and enhance safety in LLM systems.\n\n### Key Approaches Identified:\n\n**Behavioral Calibration and Confidence Thresholds:**\nBehavioral calibration incentivizes models to stochastically admit uncertainty by abstaining when not confident, aligning model behavior with accuracy. Rewarding Doubt (2025) integrates confidence calibration into reinforcement learning, penalising both over- and underconfidence so model certainty better matches correctness.\n\n**Abstention Methods:**\nNew reward schemes encourage abstention when evidence is thin. Additionally, abstention with self-evaluation outperforms log-probability baselines used in the literature.\n\n**Recent Survey Work:**\nA comprehensive survey titled \"Know Your Limits: A Survey of Abstention in Large Language Models\" was published in Transactions of the Association for Computational Linguistics 2025.\n\n### Uncertainty Quantification:\nThe search results reference various uncertainty metrics for selective abstention, though the specific KL divergence sensitivity metrics you mentioned weren't prominently featured in these results. Some approaches estimate uncertainties using semantic likelihood probabilities associated with the meanings of text, as opposed to standard sequence likelihoods.\n\nThe research suggests abstention methods are moving toward reward-based training approaches that directly incentivize models to know when not to answer."
+    ],
+    "durationSeconds": 7.459333730999991
+  },
+  "sourceToolAssistantUUID": "1f69ef11-5a21-4bf8-9025-371176cc7e4a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-16T10:32:18.279Z_
+
+<details><summary>↩ Tool result · `toolu_019JoAoQFgtMisnySMLo1cLr`</summary>
+
+```text
+Web search results for query: "Qwen3.6-27B architecture "Gated DeltaNet" hybrid attention causal tracing compatibility"
+
+Links: [{"title":"Qwen3.6-27B Explained: Agentic Coding, Hybrid Architecture, Benchmarks & API on Qubrid AI - Qubrid AI","url":"https://www.qubrid.com/blog/qwen36-27b-explained-agentic-coding-hybrid-architecture-benchmarks-api-on-qubrid-ai"},{"title":"Alibaba Qwen Team Releases Qwen3.6-27B: A Dense Open-Weight Model Outperforming 397B MoE on Agentic Coding Benchmarks - MarkTechPost","url":"https://www.marktechpost.com/2026/04/22/alibaba-qwen-team-releases-qwen3-6-27b-a-dense-open-weight-model-outperforming-397b-moe-on-agentic-coding-benchmarks/"},{"title":"Qwen3.6-27B: 27B Model Beats 397B on Coding (2026)","url":"https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026"},{"title":"Qwen/Qwen3.6-27B | vLLM Recipes","url":"https://recipes.vllm.ai/Qwen/Qwen3.6-27B"},{"title":"Qwen3.6-27B: dense hybrid attention and thinking preservation - Mervin Praison","url":"https://mer.vin/2026/04/qwen3-6-27b-dense-hybrid-attention-and-thinking-preservation/"},{"title":"AaryanK/Qwen3.6-27B-GGUF · Hugging Face","url":"https://huggingface.co/AaryanK/Qwen3.6-27B-GGUF"},{"title":"Gated DeltaNet | Sebastian Raschka, PhD","url":"https://sebastianraschka.com/llms-from-scratch/ch04/08_deltanet/"},{"title":"Qwen3.6–27B Is Here: A Practical Open-Weight Model for Agentic Coding | by Cristian Marcu | Apr, 2026 | Medium","url":"https://medium.com/@cristian-marcu/qwen3-6-27b-is-here-a-practical-open-weight-model-for-agentic-coding-433be43df637"},{"title":"Gated DeltaNet for Linear Attention - rasbt/LLMs-from-scratch","url":"https://github.com/rasbt/LLMs-from-scratch/blob/main/ch04/08_deltanet/README.md"},{"title":"How to Use Qwen3.6-27B: Complete Guide to Alibaba's New Open-Weight Coding Model | Tosea.ai","url":"https://tosea.ai/blog/qwen-3-6-27b-complete-guide"}]
+
+Based on the search results, here's comprehensive information about Qwen3.6-27B's architecture and its Gated DeltaNet hybrid attention mechanism:
+
+## Architecture Overview
+
+Qwen3.6-27B is a dense causal language model with an integrated vision encoder, released by Alibaba's Qwen team in April 2026. The model has 27B parameters distributed across 64 layers, with a hidden dimension of 5120 and a token embedding space of 248,320 (padded).
+
+## Hybrid Attention Architecture
+
+The model introduces a hybrid attention mechanism combining Gated DeltaNet linear attention with standard Gated Attention, and a Thinking Preservation feature that retains reasoning traces across multi-turn agent sessions.
+
+The hidden layout follows a distinctive repeating pattern: 16 blocks, each structured as 3 × (Gated DeltaNet → FFN) → 1 × (Gated Attention → FFN). This means three out of every four sublayers use Gated DeltaNet — a form of linear attention — with only every fourth sublayer using standard Gated Attention.
+
+## Gated DeltaNet Mechanism
+
+Gated DeltaNet adds a gating mechanism on top, essentially learning when to update or retain information, similar in spirit to LSTM gating but applied to the attention computation. In Qwen3.6-27B, Gated DeltaNet sublayers use 48 linear attention heads for values (V) and 16 for queries and keys (QK), with a head dimension of 128. The Gated Attention sublayers use 24 attention heads for queries (Q) and only 4 for keys and values (KV) — a configuration that significantly reduces KV cache memory at inference time.
+
+## Thinking Preservation and Causal Tracing
+
+The model includes a Thinking Preservation feature that retains reasoning traces across multi-turn agent sessions. The release introduces thinking preservation—an API/template flag that keeps earlier chain-of-thought blocks in the visible history so the model does not pay to re-derive the same scratch work each tool round.
+
+## Context Window Compatibility
+
+The model supports a native 262,144-token context window extensible to 1,010,000 tokens via YaRN, and is compatible with SGLang, vLLM, KTransformers, and Hugging Face Transformers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "09a2797d-efd4-4a38-9678-60c469632145",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "fb2889a2-2af9-4b3b-b4f0-a5787f99bfb4",
+  "toolUseResult": {
+    "query": "Qwen3.6-27B architecture \"Gated DeltaNet\" hybrid attention causal tracing compatibility",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HoJW9HKBC1P7nRr9SYopy6",
+        "content": [
+          {
+            "title": "Qwen3.6-27B Explained: Agentic Coding, Hybrid Architecture, Benchmarks & API on Qubrid AI - Qubrid AI",
+            "url": "https://www.qubrid.com/blog/qwen36-27b-explained-agentic-coding-hybrid-architecture-benchmarks-api-on-qubrid-ai"
+          },
+          {
+            "title": "Alibaba Qwen Team Releases Qwen3.6-27B: A Dense Open-Weight Model Outperforming 397B MoE on Agentic Coding Benchmarks - MarkTechPost",
+            "url": "https://www.marktechpost.com/2026/04/22/alibaba-qwen-team-releases-qwen3-6-27b-a-dense-open-weight-model-outperforming-397b-moe-on-agentic-coding-benchmarks/"
+          },
+          {
+            "title": "Qwen3.6-27B: 27B Model Beats 397B on Coding (2026)",
+            "url": "https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026"
+          },
+          {
+            "title": "Qwen/Qwen3.6-27B | vLLM Recipes",
+            "url": "https://recipes.vllm.ai/Qwen/Qwen3.6-27B"
+          },
+          {
+            "title": "Qwen3.6-27B: dense hybrid attention and thinking preservation - Mervin Praison",
+            "url": "https://mer.vin/2026/04/qwen3-6-27b-dense-hybrid-attention-and-thinking-preservation/"
+          },
+          {
+            "title": "AaryanK/Qwen3.6-27B-GGUF · Hugging Face",
+            "url": "https://huggingface.co/AaryanK/Qwen3.6-27B-GGUF"
+          },
+          {
+            "title": "Gated DeltaNet | Sebastian Raschka, PhD",
+            "url": "https://sebastianraschka.com/llms-from-scratch/ch04/08_deltanet/"
+          },
+          {
+            "title": "Qwen3.6–27B Is Here: A Practical Open-Weight Model for Agentic Coding | by Cristian Marcu | Apr, 2026 | Medium",
+            "url": "https://medium.com/@cristian-marcu/qwen3-6-27b-is-here-a-practical-open-weight-model-for-agentic-coding-433be43df637"
+          },
+          {
+            "title": "Gated DeltaNet for Linear Attention - rasbt/LLMs-from-scratch",
+            "url": "https://github.com/rasbt/LLMs-from-scratch/blob/main/ch04/08_deltanet/README.md"
+          },
+          {
+            "title": "How to Use Qwen3.6-27B: Complete Guide to Alibaba's New Open-Weight Coding Model | Tosea.ai",
+            "url": "https://tosea.ai/blog/qwen-3-6-27b-complete-guide"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about Qwen3.6-27B's architecture and its Gated DeltaNet hybrid attention mechanism:\n\n## Architecture Overview\n\nQwen3.6-27B is a dense causal language model with an integrated vision encoder, released by Alibaba's Qwen team in April 2026. The model has 27B parameters distributed across 64 layers, with a hidden dimension of 5120 and a token embedding space of 248,320 (padded).\n\n## Hybrid Attention Architecture\n\nThe model introduces a hybrid attention mechanism combining Gated DeltaNet linear attention with standard Gated Attention, and a Thinking Preservation feature that retains reasoning traces across multi-turn agent sessions.\n\nThe hidden layout follows a distinctive repeating pattern: 16 blocks, each structured as 3 × (Gated DeltaNet → FFN) → 1 × (Gated Attention → FFN). This means three out of every four sublayers use Gated DeltaNet — a form of linear attention — with only every fourth sublayer using standard Gated Attention.\n\n## Gated DeltaNet Mechanism\n\nGated DeltaNet adds a gating mechanism on top, essentially learning when to update or retain information, similar in spirit to LSTM gating but applied to the attention computation. In Qwen3.6-27B, Gated DeltaNet sublayers use 48 linear attention heads for values (V) and 16 for queries and keys (QK), with a head dimension of 128. The Gated Attention sublayers use 24 attention heads for queries (Q) and only 4 for keys and values (KV) — a configuration that significantly reduces KV cache memory at inference time.\n\n## Thinking Preservation and Causal Tracing\n\nThe model includes a Thinking Preservation feature that retains reasoning traces across multi-turn agent sessions. The release introduces thinking preservation—an API/template flag that keeps earlier chain-of-thought blocks in the visible history so the model does not pay to re-derive the same scratch work each tool round.\n\n## Context Window Compatibility\n\nThe model supports a native 262,144-token context window extensible to 1,010,000 tokens via YaRN, and is compatible with SGLang, vLLM, KTransformers, and Hugging Face Transformers."
+    ],
+    "durationSeconds": 9.198027334999992
+  },
+  "sourceToolAssistantUUID": "09a2797d-efd4-4a38-9678-60c469632145",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90 · 2026-05-16T10:33:46.145Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Critical finding: **Qwen3.6-27B has a HYBRID architecture** (Gated DeltaNet + standard attention), NOT a standard transformer. This is a significant concern:
+
+1. 3 out of every 4 layers use "Gated DeltaNet" (a form of linear attention), and only 1 in 4 uses standard Gated Attention.
+2. Standard causal tracing (Meng et al. 2022) was designed for vanilla transformers with standard self-attention at every layer.
+3. The residual stream perturbation behavior in a hybrid architecture may be fundamentally different from what the attractor geometry framework predicts.
+
+
+4. The linear attention mechanism could alter how information flows through the intermediate layers, even if the final LM head remains a simple linear projection.
+
+The good news is that Qwen3-32B uses a standard dense transformer architecture, so that model should be compatible with the causal tracing methodology. However, there's a complication with the proposal itself: it claims to use two models from the same family for controlled size-scaling analysis, but Qwen3.6-27B and Qwen3-32B are actually from different architectural generations released a year apart, making them less ideal for that kind of comparison.
+
+The real issue is that Qwen3.6-27B uses a hybrid Gated DeltaNet architecture with both linear and quadratic attention mechanisms, while Qwen3-32B is a standard transformer. This architectural mismatch means the attractor geometry framework and causal tracing techniques may not apply consistently across both models, which undermines the methodological foundation of the proposed analysis.
+
+Looking at the overall proposal, there are some solid elements—the research landscape is well-mapped, the theoretical motivation connecting attractor geometry to perturbation sensitivity is clear, and the ablation plan is comprehensive. The pilot validation approach and realistic timeline for EACL 2027 are also strengths. But the architecture mismatch is a significant problem that needs to be addressed before proceeding.
+
+The core issue is that Qwen3.6-27B uses a hybrid Gated DeltaNet architecture rather than a standard transformer, which means causal tracing and residual stream perturbation behavior could work fundamentally differently than expected. Beyond that, after multiple revisions there's still no pilot data validating whether the signal even exists—the entire proposal is essentially an untested bet. The theoretical argument about how linearity preserves curvature and perturbation-induced KL probes basin geometry is plausible, but the Taylor expansion approximation only holds locally, and the proposed noise scales might push beyond where that approximation remains valid.
+
+There's also a persistent venue mismatch: the user needs EMNLP 2026 in May, but the proposal targets EACL 2027 in August. Finally, the novelty concern lingers—each component of the approach (isotropic noise at intermediate layers, output KL measurement, threshold-based abstention) already appears in prior work like SHINE, CCPS, and SSP, so the combination needs to demonstrate something genuinely new.
+
+The CHOKE prevalence figure of 9-43% should be verified against the HACK paper, since my search shows 16-43% for hallucination outputs across models. There's also an uncited paper from May 2026 on step-level hallucination detection using hidden-state transport geometry that seems relevant to the approach.
+
+Now I'm noticing a critical inconsistency in the SSP versus LSP comparison: the proposal claims SSP finds factual content is MORE sensitive while LSP predicts the opposite for CHOKE, but SSP actually shows truthful content exhibits greater sensitivity at intermediate layers—which aligns with what SHINE would predict at those same layers, not the opposite of LSP as claimed. This creates a logical tension that needs clarification. ful (correct) content shows greater sensitivity at intermediate layers, then LSP's core hypothesis (correct recall = LOW sensitivity because stable basin) may be wrong!
+
+Wait, let me re-read this more carefully. The SSP/Shaking to Reveal paper says: "factual knowledge encoded in well-structured internal representations that exhibit greater sensitivity in intermediate layers when perturbed." This means CORRECT/TRUTHFUL responses show HIGHER sensitivity. But LSP predicts CORRECT responses show LOWER sensitivity (stable basin = low KL).
+
+This is a FUNDAMENTAL contradiction with existing empirical evidence! The proposal acknowledges this briefly: "SSP predicts the OPPOSITE pattern from CHOKE (correct recall = stable basin = LOW sensitivity), uses untrained KL measurement, and specifically targets high-confidence errors." But it's not just that SSP "predicts the opposite" - SSP EMPIRICALLY SHOWS that truthful responses are MORE sensitive at intermediate layers.
+
+However, there might be an important distinction: SSP uses trained encoders to amplify perturbation effects and measures cosine similarity in representation space, while LSP measures output KL directly. Also, SSP targets general hallucination where the model lacks knowledge, whereas CHOKE focuses on cases where the model knows the answer but outputs it incorrectly—potentially placing the model's state at an unstable boundary between the correct basin and the wrong output. This raises a critical empirical question that remains unresolved: the proposal's hypothesis directly contradicts SSP's findings about sensitivity patterns for correct versus incorrect responses. I'm also wondering whether the attractor basin interpretation even applies to Qwen3.6-27B's Gated DeltaNet architecture, which uses linear recurrence instead of full attention, potentially changing how these dynamical systems concepts map onto the model. or not at all to linear attention mechanisms where the state update is fundamentally different.
+
+The core hypothesis directly contradicts what SSP found empirically about sensitivity direction, and there's still no pilot data despite five rounds of iteration. The proposal scores around 3.25 overall—it's well-written with clear differentiation and honest venue assessment, but the architecture mismatch between Qwen3.6-27B's hybrid design and standard causal tracing remains unresolved, and CHOKE-specific detection with simple abstention is too narrow a contribution for high impact in this crowded space.
+
+Wait, I should reconsider the SSP contradiction more carefully. The proposal claims that for general hallucinations, correct answers have higher sensitivity because the knowledge is well-structured, but for CHOKE where the model already knows the answer, correct outputs have lower sensitivity because they're in a stable basin. That's actually a coherent distinction—when the model has the knowledge encoded but hallucinates with high confidence anyway, it's operating from a different attractor state than when it genuinely lacks the information. means the generation trajectory landed OUTSIDE the correct basin but still produced high-confidence output.
+
+The LSP theory says: when you perturb the intermediate representation in a CHOKE case, the hidden state is NOT in a stable basin (it's between basins or in a false basin), so perturbation causes drift → high output KL.
+
+When the model answers correctly, it IS in the correct basin, so perturbation stays in-basin → low output KL.
+
+The SSP finding is: for general hallucination (model doesn't know), factual knowledge is MORE sensitive. But this is a different scenario - in SSP's framing, when the model has memorized something, those representations are tightly structured and thus MORE responsive to perturbation (high sensitivity = strong encoding). When the model is hallucinating (making things up without knowledge), there's no structured representation, so perturbation has LESS effect (low sensitivity = no grounding).
+
+Actually, I think these might reconcile if I'm careful about what each framework measures. SSP tracks representation shifts in hidden space while LSP tracks output distribution changes, and those can diverge—a representation can move substantially within a basin while the output stays stable because the basin's dynamics pull things back before reaching the output layer, or conversely, a representation near a boundary might barely shift in cosine terms but produce large output changes when the linear head amplifies that boundary effect.
+
+The real issue is that the proposal doesn't explicitly articulate this distinction or provide empirical evidence that representation shift and output KL actually diverge in the predicted way.
+
+Now I'm settling on my final assessment. This is round 5 out of 10, and while the work has made real progress—better landscape coverage, proper citations, honest venue positioning, a theoretical framework, and mandatory ablations—it still faces significant obstacles: the venue doesn't quite fit, there's an unresolved architecture problem with Qwen3.6-27B, the empirical tension with SSP's findings remains unaddressed, and there's no pilot data to ground the claims. Given these improvements balanced against the remaining gaps, I'm leaning toward a moderate revise with concrete, actionable feedback. Let me double-check whether SSP's opposite sensitivity direction is actually as well-established as I'm assuming.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fb2889a2-2af9-4b3b-b4f0-a5787f99bfb4",
+  "isSidechain": false,
+  "requestId": "req_011Cb66UN8LVUnfcaNcVbpaL",
+  "type": "assistant",
+  "uuid": "0bfa3465-70ee-4821-af75-52e158312316",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0177tJfF7v9ct8g8BLhESvLE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 966,
+      "cache_creation_input_tokens": 2186,
+      "cache_read_input_tokens": 53816,
+      "output_tokens": 3635,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2186,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 966,
+          "output_tokens": 3635,
+          "cache_read_input_tokens": 53816,
+          "cache_creation_input_tokens": 2186,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2186
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91 · 2026-05-16T10:33:46.146Z_
+
+Let me verify SSP's sensitivity direction finding more carefully and check one more potential competitor.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0bfa3465-70ee-4821-af75-52e158312316",
+  "isSidechain": false,
+  "requestId": "req_011Cb66UN8LVUnfcaNcVbpaL",
+  "type": "assistant",
+  "uuid": "5dc9a6ea-4d26-4239-bf46-ffb0a67129bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0177tJfF7v9ct8g8BLhESvLE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 966,
+      "cache_creation_input_tokens": 2186,
+      "cache_read_input_tokens": 53816,
+      "output_tokens": 3635,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2186,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 966,
+          "output_tokens": 3635,
+          "cache_read_input_tokens": 53816,
+          "cache_creation_input_tokens": 2186,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2186
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-16T10:33:48.224Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01LYY7VTshRu5pcJQxeru8SG`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2506.02696v1",
+  "prompt": "What is the key finding about the DIRECTION of sensitivity? When the model gives a CORRECT/truthful answer, is the perturbation sensitivity higher or lower compared to when it hallucinates? Specifically, what does the paper find about factual content sensitivity at intermediate layers? Provide the exact findings about whether truthful or hallucinated responses show more sensitivity."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5dc9a6ea-4d26-4239-bf46-ffb0a67129bc",
+  "isSidechain": false,
+  "requestId": "req_011Cb66UN8LVUnfcaNcVbpaL",
+  "type": "assistant",
+  "uuid": "cb3b720e-1d42-422c-8d88-c7f621e9b451",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0177tJfF7v9ct8g8BLhESvLE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 966,
+      "cache_creation_input_tokens": 2186,
+      "cache_read_input_tokens": 53816,
+      "output_tokens": 3635,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2186,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 966,
+          "output_tokens": 3635,
+          "cache_read_input_tokens": 53816,
+          "cache_creation_input_tokens": 2186,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2186
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-16T10:33:48.534Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JbUB7X4t3JTiG4o7Vw4Sqr`</summary>
+
+```json
+{
+  "query": "\"Gated DeltaNet\" knowledge localization factual recall causal tracing linear attention"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb3b720e-1d42-422c-8d88-c7f621e9b451",
+  "isSidechain": false,
+  "requestId": "req_011Cb66UN8LVUnfcaNcVbpaL",
+  "type": "assistant",
+  "uuid": "154e124f-39ca-4bb4-b86c-2014a8f13316",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0177tJfF7v9ct8g8BLhESvLE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 966,
+      "cache_creation_input_tokens": 2186,
+      "cache_read_input_tokens": 53816,
+      "output_tokens": 3635,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2186,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 966,
+          "output_tokens": 3635,
+          "cache_read_input_tokens": 53816,
+          "cache_creation_input_tokens": 2186,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2186
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 94_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "154e124f-39ca-4bb4-b86c-2014a8f13316",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 95_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "CHOKE Detection via Intermediate-Layer Perturbation Sensitivity",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-16T10:33:53.068Z_
+
+<details><summary>↩ Tool result · `toolu_01LYY7VTshRu5pcJQxeru8SG`</summary>
+
+```text
+# Sensitivity Direction: Truthful vs. Hallucinated Responses
+
+According to the paper, **truthful responses exhibit GREATER sensitivity to input perturbations** compared to hallucinated ones.
+
+The key finding states: "factual knowledge is typically encoded in well-structured internal representations, which are tightly coupled with the input and exhibit greater sensitivity in intermediate layers when perturbed, while hallucinated answers remain relatively stable."
+
+## Specific Mechanism
+
+When perturbations are introduced:
+
+- **Truthful answers**: Show "larger perturbation-induced representation changes" because factual content is "tightly coupled with the input"
+- **Hallucinated answers**: Display stability or minimal changes because they lack "strong supporting evidence"
+
+The paper explains this through a concrete example: when a noise prompt disrupts the input context for a correct answer, it "may disrupt the input context and obscure the key evidence supporting the prediction, leading to a significant drop." Conversely, hallucinated responses already lack supporting evidence, so perturbations produce "limited impact on the prediction."
+
+This counterintuitive finding—that *correct* answers are *more* sensitive to noise—forms the theoretical foundation for SSP's detection mechanism, distinguishing factual from fabricated content through their differential response dynamics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb3b720e-1d42-422c-8d88-c7f621e9b451",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "45458f52-028c-4f0e-be5b-a3dd7c4a8373",
+  "toolUseResult": {
+    "bytes": 538913,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Sensitivity Direction: Truthful vs. Hallucinated Responses\n\nAccording to the paper, **truthful responses exhibit GREATER sensitivity to input perturbations** compared to hallucinated ones.\n\nThe key finding states: \"factual knowledge is typically encoded in well-structured internal representations, which are tightly coupled with the input and exhibit greater sensitivity in intermediate layers when perturbed, while hallucinated answers remain relatively stable.\"\n\n## Specific Mechanism\n\nWhen perturbations are introduced:\n\n- **Truthful answers**: Show \"larger perturbation-induced representation changes\" because factual content is \"tightly coupled with the input\"\n- **Hallucinated answers**: Display stability or minimal changes because they lack \"strong supporting evidence\"\n\nThe paper explains this through a concrete example: when a noise prompt disrupts the input context for a correct answer, it \"may disrupt the input context and obscure the key evidence supporting the prediction, leading to a significant drop.\" Conversely, hallucinated responses already lack supporting evidence, so perturbations produce \"limited impact on the prediction.\"\n\nThis counterintuitive finding—that *correct* answers are *more* sensitive to noise—forms the theoretical foundation for SSP's detection mechanism, distinguishing factual from fabricated content through their differential response dynamics.",
+    "durationMs": 4840,
+    "url": "https://arxiv.org/html/2506.02696v1"
+  },
+  "sourceToolAssistantUUID": "cb3b720e-1d42-422c-8d88-c7f621e9b451",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-16T10:34:01.032Z_
+
+<details><summary>↩ Tool result · `toolu_01JbUB7X4t3JTiG4o7Vw4Sqr`</summary>
+
+```text
+Web search results for query: ""Gated DeltaNet" knowledge localization factual recall causal tracing linear attention"
+
+Links: [{"title":"Gated DeltaNet for Linear Attention - rasbt/LLMs-from-scratch","url":"https://github.com/rasbt/LLMs-from-scratch/blob/main/ch04/08_deltanet/README.md"},{"title":"Gated DeltaNet | Sebastian Raschka, PhD","url":"https://sebastianraschka.com/llms-from-scratch/ch04/08_deltanet/"},{"title":"DeltaNet Explained (Part I) | Songlin Yang","url":"https://sustcsonglin.github.io/blog/2024/deltanet-1/"},{"title":"qwen3.5-gated-deltanet-analysis · GitHub","url":"https://gist.github.com/justinchuby/0213aa253664fb72e9adb0089816de15"},{"title":"Gated DeltaNet: Adaptive Fast-Weight Model","url":"https://www.emergentmind.com/topics/gated-deltanet"},{"title":"gated delta networks: improving mamba2 with delta rule","url":"https://arxiv.org/pdf/2412.06464"},{"title":"[2412.06464] Gated Delta Networks: Improving Mamba2 with Delta Rule","url":"https://arxiv.org/abs/2412.06464"},{"title":"Beyond Memory Accumulation: Building the Intuition for Gated DeltaNet | by Juhi Mittal | Medium","url":"https://medium.com/@juhimittal/beyond-memory-accumulation-building-the-intuition-for-gated-deltanet-02df7213f0d2"},{"title":"Gated Delta Networks: Improving Mamba2 with Delta Rule | OpenReview","url":"https://openreview.net/forum?id=r8H7xhYPwz&noteId=U0uk5A0VlT"},{"title":"Locating and Editing Factual Associations in GPT","url":"https://rome.baulab.info/"}]
+
+Based on the search results, here's what I found about Gated DeltaNet and the related concepts you queried:
+
+## Gated DeltaNet Overview
+
+Gated DeltaNet (short for Gated Delta Network) is Qwen3-Next's linear-attention layer, which is intended as an alternative to standard softmax attention. Gated DeltaNet is a linear attention variant with inspiration from recurrent neural networks, including a gating mechanism from the Gated Delta Networks: Improving Mamba2 with Delta Rule paper.
+
+## Architecture and Mechanisms
+
+Gated DeltaNet is a linear-time recurrent model that combines scalar gating with the delta rule to achieve adaptive, selective fast-weight updates. More specifically, gating enables adaptive memory control and the delta update rule provides precise memory modifications. These mechanisms are complementary: gating enables rapid memory erasure while the delta rule facilitates targeted updates.
+
+## Knowledge Retrieval and Factual Recall
+
+MQAR performance strongly correlates with "Associative-Recall-Hit" in real-world language modeling tasks, and associative recall failures are a primary source of errors in subquadratic models and largely account for their perplexity gap relative to softmax attention. Gated DeltaNet consistently outperforms both Mamba2 and DeltaNet across a comprehensive suite of benchmarks, including language modeling, commonsense reasoning, in-context retrieval, length extrapolation, and long-context understanding.
+
+## Performance and Practical Use
+
+Gated DeltaNet is part of the recent return of linear-attention hybrids: models that keep a transformer backbone but replace most full-attention layers with something cheaper. In the recent Qwen3-Next and Kimi Linear family, most layers use a Gated DeltaNet-style state update, and every few layers fall back to a heavier full-attention layer.
+
+The search results also included information about causal tracing from research on factual knowledge localization in language models, though this appears to be a separate area of research from the Gated DeltaNet architecture itself.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "154e124f-39ca-4bb4-b86c-2014a8f13316",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "72eb8bbc-2927-4064-84d8-d1dcbb723106",
+  "toolUseResult": {
+    "query": "\"Gated DeltaNet\" knowledge localization factual recall causal tracing linear attention",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011tdY52VktZ3psV15xXLbsp",
+        "content": [
+          {
+            "title": "Gated DeltaNet for Linear Attention - rasbt/LLMs-from-scratch",
+            "url": "https://github.com/rasbt/LLMs-from-scratch/blob/main/ch04/08_deltanet/README.md"
+          },
+          {
+            "title": "Gated DeltaNet | Sebastian Raschka, PhD",
+            "url": "https://sebastianraschka.com/llms-from-scratch/ch04/08_deltanet/"
+          },
+          {
+            "title": "DeltaNet Explained (Part I) | Songlin Yang",
+            "url": "https://sustcsonglin.github.io/blog/2024/deltanet-1/"
+          },
+          {
+            "title": "qwen3.5-gated-deltanet-analysis · GitHub",
+            "url": "https://gist.github.com/justinchuby/0213aa253664fb72e9adb0089816de15"
+          },
+          {
+            "title": "Gated DeltaNet: Adaptive Fast-Weight Model",
+            "url": "https://www.emergentmind.com/topics/gated-deltanet"
+          },
+          {
+            "title": "gated delta networks: improving mamba2 with delta rule",
+            "url": "https://arxiv.org/pdf/2412.06464"
+          },
+          {
+            "title": "[2412.06464] Gated Delta Networks: Improving Mamba2 with Delta Rule",
+            "url": "https://arxiv.org/abs/2412.06464"
+          },
+          {
+            "title": "Beyond Memory Accumulation: Building the Intuition for Gated DeltaNet | by Juhi Mittal | Medium",
+            "url": "https://medium.com/@juhimittal/beyond-memory-accumulation-building-the-intuition-for-gated-deltanet-02df7213f0d2"
+          },
+          {
+            "title": "Gated Delta Networks: Improving Mamba2 with Delta Rule | OpenReview",
+            "url": "https://openreview.net/forum?id=r8H7xhYPwz&noteId=U0uk5A0VlT"
+          },
+          {
+            "title": "Locating and Editing Factual Associations in GPT",
+            "url": "https://rome.baulab.info/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Gated DeltaNet and the related concepts you queried:\n\n## Gated DeltaNet Overview\n\nGated DeltaNet (short for Gated Delta Network) is Qwen3-Next's linear-attention layer, which is intended as an alternative to standard softmax attention. Gated DeltaNet is a linear attention variant with inspiration from recurrent neural networks, including a gating mechanism from the Gated Delta Networks: Improving Mamba2 with Delta Rule paper.\n\n## Architecture and Mechanisms\n\nGated DeltaNet is a linear-time recurrent model that combines scalar gating with the delta rule to achieve adaptive, selective fast-weight updates. More specifically, gating enables adaptive memory control and the delta update rule provides precise memory modifications. These mechanisms are complementary: gating enables rapid memory erasure while the delta rule facilitates targeted updates.\n\n## Knowledge Retrieval and Factual Recall\n\nMQAR performance strongly correlates with \"Associative-Recall-Hit\" in real-world language modeling tasks, and associative recall failures are a primary source of errors in subquadratic models and largely account for their perplexity gap relative to softmax attention. Gated DeltaNet consistently outperforms both Mamba2 and DeltaNet across a comprehensive suite of benchmarks, including language modeling, commonsense reasoning, in-context retrieval, length extrapolation, and long-context understanding.\n\n## Performance and Practical Use\n\nGated DeltaNet is part of the recent return of linear-attention hybrids: models that keep a transformer backbone but replace most full-attention layers with something cheaper. In the recent Qwen3-Next and Kimi Linear family, most layers use a Gated DeltaNet-style state update, and every few layers fall back to a heavier full-attention layer.\n\nThe search results also included information about causal tracing from research on factual knowledge localization in language models, though this appears to be a separate area of research from the Gated DeltaNet architecture itself."
+    ],
+    "durationSeconds": 12.495584128000017
+  },
+  "sourceToolAssistantUUID": "154e124f-39ca-4bb4-b86c-2014a8f13316",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 98 · 2026-05-16T10:34:35.468Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a CRITICAL finding. SSP (Shaking to Reveal) empirically shows that:
+- **Truthful answers** show GREATER sensitivity (larger perturbation-induced representation changes) at intermediate layers
+- **Hallucinated answers** remain relatively STABLE
+
+This is the EXACT OPPOSITE of what LSP predicts for CHOKE:
+- LSP predicts: CHOKE (hallucinated) = HIGH sensitivity (outside basin, unstable)
+- LSP predicts: Correct = LOW sensitivity (in basin, stable)
+
+The proposal acknowledges this conflict and argues the distinction is: "SSP targets general hallucinations where factual content is MORE sensitive—the opposite pattern from CHOKE." The argument is:
+
+
+- General hallucination: model lacks knowledge → no structured representation → LOW sensitivity; model has knowledge → structured representation → HIGH sensitivity
+- CHOKE: model knows but outputs wrong → at basin boundary/outside → HIGH sensitivity; model knows and outputs correctly → in basin → LOW sensitivity
+
+But there's a fundamental problem here. In CHOKE cases, both correct and hallucinated responses come from models that possess the knowledge—that's what defines CHOKE. So both should have well-structured factual representations, which means SSP's logic would predict HIGH sensitivity for both, not the opposite pattern we're seeing.
+
+The LSP counter-argument is that SSP measures internal representation shifts (cosine changes in activation space) while LSP measures output stability (KL divergence of final predictions)—these are fundamentally different things. A representation could shift internally without crossing into a different output basin, and maybe CHOKE representations sit at basin boundaries where the internal dynamics lack the tight coupling that SSP detects in correct knowledge. But this distinction is highly speculative, lacks empirical support, and requires assuming CHOKE representations differ structurally from correct-knowledge representations despite both involving known facts. It's a legitimate concern but not necessarily fatal—the hypothesis just needs stronger theoretical grounding.
+
+On the Gated DeltaNet architecture question, the search results indicate that causal tracing was originally developed for standard transformer architectures.  Qwen3.6-27B uses Gated DeltaNet (linear attention with delta rule recurrence) for 75% of its layers, which has fundamentally different dynamics than softmax attention—associative recall failures are a known issue in linear attention, and the concept of attractor basins may not map cleanly from standard transformers to linear RNNs. This is a real methodological problem since causal tracing was designed and validated specifically for standard transformers, not linear attention mechanisms. That said, the proposal includes Qwen3-32B as a standard transformer baseline, so it's not a complete blocker.
+
+The architecture mismatch does undermine the "controlled size-scaling analysis" claim though, since the two models have fundamentally different mechanisms. Looking at the overall proposal, it's substantially stronger than earlier rounds—proper citations, honest venue assessment, explicit engagement with Hase et al., comprehensive ablations, reasonable compute budget, and pilot validation. But three persistent issues remain: the Qwen3.6-27B architecture problem isn't acknowledged, the sensitivity direction contradicts existing SSP empirics (though the CHOKE vs. general hallucination distinction is theoretically plausible but unvalidated), and there's still a venue mismatch between targeting EACL 2027 and the user's EMNLP 2026 deadline.
+
+Without pilot data, the core hypothesis is still fundamentally unproven. Scoring this out: novelty is 3/5 since the combination is new but components exist and the space is crowded; feasibility is 3/5 because while budget and timeline work for EACL 2027, the architecture issues and empirical tension with SSP create real failure risk; clarity is 4/5 given the exceptional writing and clear differentiation; impact is 3/5 since CHOKE-only detection has limited practical value even if it works. That averages to 3.25/5, which means revision is needed. The blocking issue is that without pilot validation, I'm asking the community to fund a bet on an unproven hypothesis that runs counter to existing empirical patterns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72eb8bbc-2927-4064-84d8-d1dcbb723106",
+  "isSidechain": false,
+  "requestId": "req_011Cb66bwRWTTfbtkwN8hzaA",
+  "type": "assistant",
+  "uuid": "d96742e0-7161-4814-bdb7-07685ac9f860",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01THV2XN2YnJowxxdasdKzBs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5953,
+      "cache_read_input_tokens": 56002,
+      "output_tokens": 1328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5953,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1328,
+          "cache_read_input_tokens": 56002,
+          "cache_creation_input_tokens": 5953,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5953
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99 · 2026-05-16T10:34:35.552Z_
+
+I've completed my independent verification. Let me now assess the full picture.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d96742e0-7161-4814-bdb7-07685ac9f860",
+  "isSidechain": false,
+  "requestId": "req_011Cb66bwRWTTfbtkwN8hzaA",
+  "type": "assistant",
+  "uuid": "38277701-c6dc-41ac-b629-5bb1e37b7052",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01THV2XN2YnJowxxdasdKzBs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5953,
+      "cache_read_input_tokens": 56002,
+      "output_tokens": 1328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5953,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1328,
+          "cache_read_input_tokens": 56002,
+          "cache_creation_input_tokens": 5953,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5953
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-16T10:34:36.150Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SZ3sjFDCxjp6c7JM7wfxMf`</summary>
+
+```json
+{
+  "query": "EACL 2027 commitment deadline October 2026 ARR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38277701-c6dc-41ac-b629-5bb1e37b7052",
+  "isSidechain": false,
+  "requestId": "req_011Cb66bwRWTTfbtkwN8hzaA",
+  "type": "assistant",
+  "uuid": "39042abb-f8e3-4f60-96ee-88cb681e47c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01THV2XN2YnJowxxdasdKzBs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5953,
+      "cache_read_input_tokens": 56002,
+      "output_tokens": 1328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5953,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1328,
+          "cache_read_input_tokens": 56002,
+          "cache_creation_input_tokens": 5953,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5953
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-16T10:34:39.765Z_
+
+<details><summary>↩ Tool result · `toolu_01SZ3sjFDCxjp6c7JM7wfxMf`</summary>
+
+```text
+Web search results for query: "EACL 2027 commitment deadline October 2026 ARR"
+
+Links: [{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"Call for Student Research Workshop Papers -","url":"https://2026.eacl.org/calls/srw/"},{"title":"The 20th Conference of the European Chapter of the Association for Computational LinguisticsAthens, GreeceMarch 9-14, 2027 -","url":"https://2027.eacl.org/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"EACL 2026 SRW ARR Commitment | OpenReview","url":"https://openreview.net/group?id=eacl.org%2FEACL%2F2026%2FSRW_ARR_Commitment"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EACL: Conference of the European Chapter of the Association for Computational Linguistics 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=785"},{"title":"The 19th Conference of the European Chapter of the Association for Computational LinguisticsRabat, MoroccoMarch 24-29, 2026 -","url":"https://2026.eacl.org/"}]
+
+Based on the search results, I found information about the EACL 2027 ARR commitment deadline:
+
+For EACL 2027, the ARR submission deadline is August 3, 2026, and the commitment date is October 11, 2026.
+
+This means that authors who have papers reviewed through the ACL Rolling Review (ARR) system need to commit their papers to EACL 2027 by October 11, 2026 (not October 2026 more broadly, but specifically October 11).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "39042abb-f8e3-4f60-96ee-88cb681e47c6",
+  "isSidechain": false,
+  "promptId": "04c49dee-ec97-4433-af9c-1b166c8fbaca",
+  "type": "user",
+  "uuid": "f8179c38-af85-4bf5-85d4-01c1f1599294",
+  "toolUseResult": {
+    "query": "EACL 2027 commitment deadline October 2026 ARR",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XqYkjrS8wXhz9J9SYjsL2g",
+        "content": [
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "Call for Student Research Workshop Papers -",
+            "url": "https://2026.eacl.org/calls/srw/"
+          },
+          {
+            "title": "The 20th Conference of the European Chapter of the Association for Computational LinguisticsAthens, GreeceMarch 9-14, 2027 -",
+            "url": "https://2027.eacl.org/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "EACL 2026 SRW ARR Commitment | OpenReview",
+            "url": "https://openreview.net/group?id=eacl.org%2FEACL%2F2026%2FSRW_ARR_Commitment"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "EACL: Conference of the European Chapter of the Association for Computational Linguistics 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=785"
+          },
+          {
+            "title": "The 19th Conference of the European Chapter of the Association for Computational LinguisticsRabat, MoroccoMarch 24-29, 2026 -",
+            "url": "https://2026.eacl.org/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the EACL 2027 ARR commitment deadline:\n\nFor EACL 2027, the ARR submission deadline is August 3, 2026, and the commitment date is October 11, 2026.\n\nThis means that authors who have papers reviewed through the ACL Rolling Review (ARR) system need to commit their papers to EACL 2027 by October 11, 2026 (not October 2026 more broadly, but specifically October 11)."
+    ],
+    "durationSeconds": 3.609858627000009
+  },
+  "sourceToolAssistantUUID": "39042abb-f8e3-4f60-96ee-88cb681e47c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102 · 2026-05-16T10:34:57.155Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. The venue information is confirmed:
+- EACL 2027 ARR submission deadline: August 3, 2026
+- EACL 2027 commitment deadline: October 11, 2026
+
+The proposal's venue claim is accurate.
+
+Now let me finalize my review. I have all the information I need. Let me synthesize my findings into the final verdict.
+
+Key issues:
+1. **Venue mismatch** (persistent): User requires EMNLP 2026 (May 25, 2026). Proposal targets EACL 2027 (August 3, 2026). 
+
+The proposal acknowledges EMNLP isn't feasible but still falls short of what's needed.
+
+2. **Qwen3.6-27B architecture issue** (NEW): The model employs a hybrid Gated DeltaNet architecture with a 3:1 ratio of linear to quadratic attention across 64 layers—fundamentally different from standard transformers. Since causal tracing was developed for standard transformers, and the architecture differs substantially from Qwen3-32B, the claim about size-scaling consistency doesn't hold.
+
+3. **SSP sensitivity direction contradiction** (partially addressed but unresolved): The empirical SSP results show truth...
+
+The SSP data actually shows truthful content has stronger sensitivity at intermediate layers, but LSP predicts the opposite pattern for CHOKE. The proposal tries to distinguish CHOKE as "known but incorrectly output" versus general hallucination as "unknown," which is theoretically motivated but lacks empirical validation and could be incorrect.
+
+4. **No pilot data** (persistent): Even after multiple iterations, the core hypothesis remains untested.
+
+5. **Theoretical rigor**: The argument that linearity preserves curvature and therefore perturbation-induced output KL probes basin geometry is intuitive but not formally proven. The Taylor expansion approximation works locally, but the proposed noise magnitudes might exceed the regime where this approximation remains valid.
+
+That said, the work has genuine strengths—the literature review is exhaustive, the theoretical framing is clear, it properly positions itself against competing approaches, the ablation plan is thorough, the compute requirements are reasonable, and the pilot-first methodology is sound. My assessment is to revise with targeted feedback on the architectural concerns and the SSP contradiction.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8179c38-af85-4bf5-85d4-01c1f1599294",
+  "isSidechain": false,
+  "requestId": "req_011Cb66eo1pxCefP428Siquq",
+  "type": "assistant",
+  "uuid": "31d52312-9d22-4963-942b-5c6b93297bbe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D827DuqXEnwAYpRANKFrGJ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1942,
+      "cache_read_input_tokens": 61955,
+      "output_tokens": 2417,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2417,
+          "cache_read_input_tokens": 61955,
+          "cache_creation_input_tokens": 1942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103 · 2026-05-16T10:35:37.017Z_
+
+I've completed my thorough independent review. Here are my key findings:
+
+**Verified references**: All key 2026 papers exist (Attractor Geometry, Hallucination Basins, Trajectory Commitment, EPGS). LLM-CAS, CCPS, SSP, Hase et al. all confirmed.
+
+**Critical new finding**: Qwen3.6-27B uses a HYBRID Gated DeltaNet architecture (3:1 linear/quadratic attention), not a standard transformer. Additionally, SSP empirically demonstrates that truthful content shows GREATER sensitivity at intermediate layers — the exact opposite of LSP's core prediction.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3, "rationale": "The specific combination (training-free + isotropic intermediate perturbation + output KL + CHOKE-specific + abstention) is new, but each component exists in prior work (SHINE: entity perturbation + KL; CCPS: perturbation stability; SSP: intermediate-layer perturbation; EPGS: sharpness for stubborn hallucinations). The theoretical bridge (geometric margin proxy) is the main novelty, but it remains an unproven heuristic argument in an increasingly crowded space."},
+    "feasibility": {"score": 3, "rationale": "Budget (185h H100) is within constraints and the pilot-first design is sound. However: (1) Qwen3.6-27B's hybrid Gated DeltaNet architecture is incompatible with standard causal tracing — no prior work validates this methodology on linear attention layers; (2) SSP's empirical finding that truthful content shows GREATER sensitivity at intermediate layers directly contradicts LSP's core hypothesis, creating substantial risk of negative results."},
+    "clarity": {"score": 4, "rationale": "Exceptionally well-structured proposal with thorough landscape analysis, explicit differentiation from each competing method, honest venue assessment, and comprehensive ablation design. The theoretical argument, while not fully formal, is clearly articulated."},
+    "impact": {"score": 3, "rationale": "If the hypothesis holds, a training-free, forward-only CHOKE detector with selective abstention would be practically valuable for deployment. However, the space is crowded (5+ perturbation-based methods already exist), CHOKE-only detection is narrow (even if 16-43% of hallucinations), and the method's value depends on demonstrating superiority over simply running SHINE at intermediate layers."}
+  },
+  "issues": [
+    "ARCHITECTURE INCOMPATIBILITY: Qwen3.6-27B uses a hybrid Gated DeltaNet architecture (75% linear attention layers, 25% quadratic attention), NOT a standard dense transformer. Causal tracing (Meng et al. 2022) was designed for and validated on standard transformers only. No published work validates activation patching or residual-stream perturbation behavior on Gated DeltaNet layers. The claim that Qwen3.6-27B and Qwen3-32B are 'two dense architectures of different sizes from the same family, enabling controlled size-scaling analysis' is factually incorrect — they have fundamentally different attention mechanisms (Qwen3.6 = hybrid linear/quadratic from April 2026 vs. Qwen3 = standard transformer from April 2025).",
+    "CORE HYPOTHESIS CONTRADICTS EXISTING EVIDENCE: SSP (Shaking to Reveal, arxiv 2506.02696) empirically demonstrates that truthful responses show GREATER sensitivity to perturbation at intermediate layers, while hallucinated responses remain relatively STABLE. This is the exact opposite of LSP's prediction (correct recall = low sensitivity because in-basin). The proposal's distinction (CHOKE vs. general hallucination) is theoretically argued but relies on a subtle, unvalidated claim that CHOKE represents 'basin absence' while general hallucination represents 'no structured representation'. Both CHOKE and correct answers involve models that HAVE the knowledge — why would their intermediate representations differ in basin stability?",
+    "VENUE MISMATCH (persistent): User requires EMNLP 2026 (ARR May 25, 2026). Proposal targets EACL 2027 (ARR August 3, 2026). While honestly acknowledged, the idea still does not meet the user's stated requirement.",
+    "MEASUREMENT DISTINCTION UNRESOLVED: The proposal claims output KL (LSP's metric) and representation cosine shift (SSP's metric) capture different geometric properties — but this distinction is never formalized. If both methods perturb intermediate layers and measure downstream effects, the burden is on LSP to explain why output KL would show the opposite pattern from representation-level metrics for the same perturbation.",
+    "NO PILOT DATA AFTER 5 ROUNDS: The core hypothesis — that intermediate-layer perturbation produces high output KL for CHOKE but low KL for correct high-confidence answers — remains entirely unvalidated. The pilot plan is well-designed but after 5 revision rounds, even a 2-hour toy experiment would dramatically strengthen credibility."
+  ],
+  "feedback": "The proposal has reached a high level of maturity in terms of landscape coverage, theoretical framing, and experimental design. Three critical fixes are needed:\n\n1. **Replace Qwen3.6-27B**: Use Qwen3-32B + a second standard dense transformer (e.g., Llama-3.1-70B at INT4, Mistral-Large-2, or Qwen2.5-32B). The Gated DeltaNet architecture in Qwen3.6-27B is fundamentally incompatible with standard causal tracing. Linear attention layers don't form the same residual-stream dynamics that the attractor geometry framework assumes. If you want to include Qwen3.6-27B, it must be as an EXPLORATORY extension, not a primary evaluation model, with explicit methodology for handling linear attention layers.\n\n2. **Directly address the SSP sensitivity-direction contradiction**: This is your biggest theoretical vulnerability. You must explain: (a) SSP measures representation COSINE shift while LSP measures OUTPUT KL — formalize why these can diverge (e.g., perturbation within a basin causes representation movement but no output change because the mapping is locally flat in output space); (b) SSP's finding applies to general hallucination (model doesn't know → no grounded representation → low sensitivity). In CHOKE, the model HAS knowledge but generates incorrectly — argue that the hidden state is at a basin BOUNDARY (unstable equilibrium) rather than genuinely 'outside' any basin. This creates high output KL (boundary-crossing) while potentially showing moderate representation shift. (c) Most importantly: include a DIRECT head-to-head ablation measuring both SSP's metric (representation cosine) AND LSP's metric (output KL) on the SAME CHOKE examples. If both go the same direction, LSP's hypothesis is likely wrong. If they diverge, you have a genuinely novel finding.\n\n3. **Get pilot data or accept the risk explicitly**: Frame the paper as a strong theoretical contribution + comprehensive empirical TEST of a novel hypothesis derived from the attractor geometry framework. If the pilot fails (intermediate ≤ input/final), pivot to a valuable negative-result paper that: (a) tests the geometric margin proxy theory and finds it insufficient, (b) compares output KL vs. representation cosine as sensitivity metrics, (c) provides the most comprehensive ablation of perturbation-based hallucination detection across layer positions, noise types, and metrics.",
+  "reason": "Architecture incompatibility with Qwen3.6-27B and unresolved contradiction with SSP's empirical findings on sensitivity direction create substantial risk; core hypothesis remains unvalidated after 5 rounds."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31d52312-9d22-4963-942b-5c6b93297bbe",
+  "isSidechain": false,
+  "requestId": "req_011Cb66eo1pxCefP428Siquq",
+  "type": "assistant",
+  "uuid": "974764cb-e5be-45b1-851d-6a2da31d9650",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D827DuqXEnwAYpRANKFrGJ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1942,
+      "cache_read_input_tokens": 61955,
+      "output_tokens": 2417,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2417,
+          "cache_read_input_tokens": 61955,
+          "cache_creation_input_tokens": 1942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 104_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "974764cb-e5be-45b1-851d-6a2da31d9650",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "CHOKE Detection via Intermediate-Layer Perturbation Sensitivity",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 106_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "974764cb-e5be-45b1-851d-6a2da31d9650",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 107_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "CHOKE Detection via Intermediate-Layer Perturbation Sensitivity",
+  "sessionId": "7ed4cfe0-f7a3-4534-8042-9ad54b9d2528"
+}
+```
+
+---

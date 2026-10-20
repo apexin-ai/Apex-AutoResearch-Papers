@@ -1,0 +1,7302 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-27 (UTC).** ## Original idea { "tit
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 113
+- **Recorded user turns:** 1
+- **Tool calls:** 32
+- **Original source:** `logs/chats/exported-trajectories/account-2/ff298244-a509-4f08-a48a-515b357b90bb.jsonl`
+- **Structured JSON:** [`1b251ce15707e1fd6aa9.json`](../../sessions/1b/1b251ce15707e1fd6aa9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T21:23:10.624Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T21:23:10.624Z",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-27 (UTC).**\n\n## Original idea\n{\n  \"title\": \"CI-PRM: Counterfactual-Invariant Process Reward Models with Domain-Adversarial Generalization Against Reward Hacking\",\n  \"core_problem\": \"Can we train step-level process reward models that are simultaneously invariant to known surface-level spurious features AND architecturally resistant to unseen spurious features, while remaining sensitive to logical correctness — directly closing the fluency-logic dissociation that renders current PRMs systematically exploitable under RL optimization pressure?\",\n  \"opportunity\": \"'Reward Under Attack' (March 2026) demonstrated that RL-optimized policies achieve near-perfect PRM rewards (>0.9) while ground-truth accuracy remains below 4%, with 43% of reward gains from stylistic shortcuts, but proposed no defense. Since then, a wave of debiasing methods has emerged — but each has critical limitations. Inference-time methods (SteerRM, CIRM, CRA, 'One Bias After Another') operate without retraining but (a) SteerRM/CIRM/'One Bias After Another' target only outcome-level RMs, not step-level PRMs, (b) CRA operates at step-level but achieves only modest gains (+2.9pp) and has not been evaluated under RL optimization pressure, and (c) 'One Bias After Another' demonstrates that high-complexity biases (sycophancy, model-style) fundamentally resist linear inference-time interventions. Training-time methods (DIR, CoLD, CROME) can alter learned representations but (a) DIR handles only outcome-level RMs, (b) CoLD targets only length bias in PRMs, and (c) CROME operates at outcome level. The gap is clear: no existing work combines (i) training-time multi-dimensional debiasing at the step level, (ii) formal verification-backed counterfactual augmentation quality, and (iii) a domain-adversarial generalization mechanism for robustness to unseen spurious features — all validated under actual RL optimization pressure.\",\n  \"landscape\": \"(1) 'Reward Under Attack' (2603.06621, Mar 2026): Definitive diagnosis via PRM-BiasBench with 8 perturbation types in two groups (semantics-preserving: rephrasing, verbosity, within-step reordering; semantics-altering: question shuffling, numerical perturbation, reasoning hallucination, question removal). Shows PRMs exhibit <0.1 reward change to surface edits yet miss logical corruption. Proposes no defense. (2) CROME (ICLR 2026): Causal+neutral augmentation for outcome-level RMs, +5.4% on RewardBench. Outcome-level only. (3) CoLD (Jul 2025): Counterfactual length debiasing for PRMs. Single-dimension (length) only. (4) PURE (NeurIPS 2025): Min-form credit assignment reduces hacking by 10+ points on AMC23. Addresses credit assignment, not bias source. (5) SteerRM (2603.12795, Mar 2026): Training-free SAE-based debiasing, +7.3pp on RM-Bench Hard. Outcome-level only; not tested under RL pressure; limited to format/style biases empirically. (6) CIRM (2604.27495, Apr 2026): Inference-time neuron intervention editing <2% neurons, outcome-level only, tested via DPO but not adversarial RL. (7) DIR (2512.23461, Dec 2025): Training-time information-theoretic debiasing for outcome-level RMs handling length+sycophancy+format via MI minimization. Only debiasing method validated under PPO pressure. Outcome-level only. (8) CRA (2508.04216, Aug 2025): SAE-based backdoor adjustment at step-level (the only inference-time method targeting PRMs), +2.9pp on MATH. No RL pressure evaluation; modest gains. (9) 'One Bias After Another' (2603.03291, Mar 2026): Mechanistic reward shaping via null-space projection. Critically distinguishes low-complexity biases (length, uncertainty, position — amenable to linear intervention) from high-complexity biases (sycophancy, model-style — resistant to linear debiasing). Outcome-level only. (10) PathFinder-PRM: Error typing for PRMs, 67.7 PRMScore. (11) Factored Causal Representation Learning (ICML 2026): Gradient reversal for outcome-level RMs. (12) APRM (Nov 2025): Adversarial PRM training for harder negatives. (13) Adv-RM (2504.06141, Apr 2026): Adversarial training of outcome-level RMs; allows RL to run 3× longer without hacking but at 3× training cost. Outcome-level only. (14) MATH-VF (2505.20869, May 2025): Step-wise formal verification using SymPy+Z3, >90% formalization success on MATH500, 74.1% F1 on ProcessBench — provides concrete tooling for step-level equivalence verification. (15) 'Debiasing Reward Models by Representation Learning with Guarantees' (Oct 2025): Theoretical framework showing non-spurious latent variables can be identified without spurious variable surrogates. Summary: CRA is the only step-level debiasing method but is inference-time-only with modest gains and no RL pressure evaluation. DIR is the only method validated under RL pressure but is outcome-level. No method combines step-level training-time debiasing with multi-dimensional coverage and RL-pressure validation.\",\n  \"inspired_by\": \"Field gap: the convergence of (a) 'Reward Under Attack' diagnosing the problem without defense, (b) 'One Bias After Another' showing high-complexity biases resist inference-time fixes, (c) DIR showing training-time methods survive RL pressure, and (d) MATH-VF providing formal verification tooling for step-level equivalence — creating a unique opportunity for a formally-grounded, training-time, step-level, generalization-aware PRM debiasing approach.\",\n  \"approach\": \"We propose CI-PRM (Counterfactual-Invariant PRM), a training-time framework with three technical innovations addressing step-level PRM debiasing:\\n\\n**Innovation 1: Formally-Verified Counterfactual Augmentation Pipeline.** Rather than relying on underspecified LLM-based equivalence checking, we build on MATH-VF's architecture to create a two-tier verification system for step-level counterfactual pairs. Tier 1 (Symbolic): An LLM formalizer translates each step into SimpleMath, then SymPy verifies algebraic equivalence and Z3 verifies logical entailment between original and perturbed steps. MATH-VF demonstrates >90% formalization success on MATH500, providing concrete scalability evidence. Tier 2 (Soft): For steps resisting full formalization (e.g., natural-language reasoning bridges), Qwen3-235B performs chain-of-thought equivalence judgment, calibrated against a human-verified set of 500 step pairs (targeting <5% false-equivalence rate). We report formalization success rates, symbolic verification coverage, and calibrated error rates per augmentation type.\\n\\n**Innovation 2: Dimension-Agnostic Augmentation with Targeted Channels.** Rather than fixing exactly four spurious dimensions (which the reviewer correctly identified as weakly grounded), we adopt an extensible framework. We begin with the empirically-grounded perturbation categories from PRM-BiasBench — rephrasing, verbosity changes, and within-step reordering as our initial neutral augmentation channels — while making the architecture dimension-agnostic. Using Qwen3-235B, we generate: (a) Neutral augmentations varying each surface channel while preserving logic (verified by Tier 1/2 above), creating invariance training pairs; (b) Causal augmentations introducing specific logical errors (sign flips, dropped terms, invalid inferences, numerical perturbations — aligned with PRM-BiasBench's semantics-altering categories) while maintaining surface fluency, creating sensitivity training pairs. New augmentation channels can be added without architectural changes.\\n\\n**Innovation 3: Domain-Adversarial Catch-All Invariance.** To address the fundamental 'whack-a-mole' concern — that RL may discover a spurious dimension not in our training augmentations — we add a gradient-reversal domain-adversarial head inspired by Factored Causal Representation Learning. A discriminator head attempts to predict which augmentation type (or original) produced each step from the PRM's internal representations, while gradient reversal encourages the encoder to produce representations from which augmentation type is unrecoverable. This provides a principled catch-all: the PRM learns representations that are not merely invariant to known perturbation channels but architecturally resistant to encoding any surface-level variation pattern. Combined with 'One Bias After Another's finding that high-complexity biases resist linear interventions, this gradient-level approach provides fundamentally stronger invariance than inference-time methods.\\n\\nThe PRM is trained on a Qwen2.5-Math-7B backbone with a composite loss: (i) standard step-correctness cross-entropy, (ii) KL-divergence invariance regularization across verified neutral pairs per augmentation channel, (iii) contrastive sensitivity margins on causal pairs, and (iv) gradient-reversal adversarial loss from the catch-all head. We use ProcessBench-train data as the base, augmented with ~50K generated pairs verified through the two-tier system.\\n\\n**Critical Evaluation: Training-Time vs. Inference-Time Under RL Pressure.** We include a direct head-to-head comparison: CI-PRM (training-time) vs. SteerRM-adapted and CRA (inference-time baselines) when used as the reward signal during GRPO/PPO fine-tuning on MATH-500 and AIME. We measure not just reward accuracy but ground-truth solve rate over optimization steps to quantify when each method's debiasing breaks down under RL pressure. This experiment directly tests the hypothesis — supported by DIR's PPO results and 'One Bias After Another's high-complexity bias findings — that training-time representation changes provide more durable robustness than inference-time interventions.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"650-850 (200h augmentation generation via Qwen3-235B on 4×H100, 50-80h symbolic verification pipeline, 200-300h PRM training sweeps on 4×H100, 100-150h RL pressure evaluation, 100-120h ablations + baselines)\",\n      \"timeline\": \"14-18 weeks\",\n      \"estimated_gpu_cost\": \"$1,625-$2,125 at $2.50/H100-hr\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"500-650 (Claude assists with formalizer prompt engineering and augmentation QA; human verifies 500 calibration pairs for Tier 2)\",\n      \"timeline\": \"10-13 weeks\",\n      \"claude_api_cost\": \"$350-$600 (Sonnet 4.6 for formalizer prompt iteration, augmentation QA, verification calibration, ablation design; ~100M input + 40M output tokens)\",\n      \"estimated_gpu_cost\": \"$1,250-$1,625 at $2.50/H100-hr\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"500-650\",\n      \"timeline\": \"5-7 weeks\",\n      \"claude_api_cost\": \"$1,000-$1,600 (Sonnet 4.6 for end-to-end augmentation generation, Tier 2 verification, hyperparameter reasoning, RL pressure experiment management; ~300M input + 120M output tokens with batch API)\",\n      \"estimated_gpu_cost\": \"$1,250-$1,625 at $2.50/H100-hr\",\n      \"speed_bottleneck\": \"Tier 1 symbolic verification via SymPy/Z3 is deterministic and parallelizable; Tier 2 LLM-based verification requires calibration against human judgments (500 step pairs). RL pressure evaluation experiments are sequential and depend on PRM training completion.\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (paper deadline: Sep 24, 2026) — primary target\",\n    \"AISTATS 2027 (deadline: Oct 10, 2026)\",\n    \"ICML 2027 (deadline: Jan 29, 2027)\",\n    \"ACL 2027 (deadline: Feb 16, 2027)\",\n    \"NeurIPS 2027 (deadline: May 16, 2027)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models (arXiv 2603.06621, Mar 2026)\",\n    \"Robust Reward Modeling via Causal Rubrics [CROME] (ICLR 2026)\",\n    \"SteerRM: Debiasing Reward Models via Sparse Autoencoders (arXiv 2603.12795, Mar 2026)\",\n    \"Debiasing Reward Models via Causally Motivated Inference-Time Intervention [CIRM] (arXiv 2604.27495, Apr 2026)\",\n    \"One Bias After Another: Mechanistic Reward Shaping and Persistent Biases in Language Reward Models (arXiv 2603.03291, Mar 2026)\",\n    \"Eliminating Inductive Bias in Reward Models with Information-Theoretic Guidance [DIR] (arXiv 2512.23461, Dec 2025)\",\n    \"Causal Reward Adjustment: Mitigating Reward Hacking via Backdoor Correction [CRA] (arXiv 2508.04216, Aug 2025)\",\n    \"CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models (arXiv 2507.15698, Jul 2025)\",\n    \"Stop Summation: Min-Form Credit Assignment [PURE] (NeurIPS 2025)\",\n    \"Adversarial Training of Reward Models [Adv-RM] (arXiv 2504.06141, Apr 2026)\",\n    \"Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving [MATH-VF] (arXiv 2505.20869, May 2025)\",\n    \"Factored Causal Representation Learning for Robust Reward Modeling in RLHF (ICML 2026)\",\n    \"Error Typing for Smarter Rewards [PathFinder-PRM] (arXiv 2025)\",\n    \"Adversarial Training for Process Reward Models [APRM] (arXiv 2511.22888, Nov 2025)\",\n    \"Let's Verify Step by Step [PRM800K] (NeurIPS 2023)\",\n    \"Debiasing Reward Models by Representation Learning with Guarantees (arXiv 2510.23751, Oct 2025)\",\n    \"Robust Reward Modeling for LLMs via Causal Decomposition (arXiv 2026)\"\n  ],\n  \"description\": \"Process Reward Models (PRMs) are the backbone of step-level verification for LLM mathematical reasoning, yet 'Reward Under Attack' (2026) exposed a critical fluency-logic dissociation: RL-optimized policies achieve >0.9 PRM rewards while ground-truth accuracy stays below 4%, with 43% of gains from stylistic shortcuts. A wave of debiasing methods has since emerged — SteerRM, CIRM, and 'One Bias After Another' (inference-time, outcome-level), CRA (inference-time, step-level but modest +2.9pp gains), DIR (training-time, outcome-level) — but none combines step-level training-time debiasing with multi-dimensional coverage and RL-pressure validation. Critically, 'One Bias After Another' demonstrates that high-complexity biases resist inference-time linear interventions, while only DIR (training-time) has been validated under RL optimization pressure. We propose CI-PRM, which introduces three innovations: (1) a formally-verified counterfactual augmentation pipeline using MATH-VF-style SymPy+Z3 symbolic verification (>90% formalization success) supplemented by calibrated LLM-based soft verification (<5% false-equivalence target) for step-level augmentation quality assurance; (2) a dimension-agnostic augmentation framework grounded in PRM-BiasBench's empirically-validated perturbation categories (rephrasing, verbosity, reordering) rather than ad-hoc dimension selection, extensible to new channels without architectural changes; and (3) a domain-adversarial catch-all invariance head using gradient reversal that encourages representations resistant to ANY surface-level variation — not just targeted channels — directly addressing the concern that RL may discover novel spurious features. The PRM (Qwen2.5-Math-7B backbone) trains with a composite loss combining step-correctness, per-channel KL invariance, contrastive sensitivity margins, and gradient-reversal adversarial loss. Evaluation centers on a critical head-to-head: CI-PRM vs. inference-time baselines (SteerRM-adapted, CRA) under GRPO/PPO optimization pressure on MATH-500 and AIME, measuring both reward accuracy and ground-truth solve rate to directly test whether training-time debiasing provides more durable robustness than inference-time interventions.\",\n  \"project_name\": \"ci_prm_fluency_logic\",\n  \"source\": \"web_research\",\n  \"revision_notes\": {\n    \"issue_1_missing_baselines\": \"Added SteerRM, CIRM, DIR, CRA, 'One Bias After Another', and Adv-RM to landscape with detailed analysis. Key insight: mapped each method on two axes — (a) step-level vs outcome-level, (b) training-time vs inference-time — revealing that CRA is the only step-level method (inference-time, modest gains) and DIR is the only RL-pressure-validated method (training-time, outcome-level). CI-PRM uniquely occupies the step-level + training-time + RL-validated quadrant.\",\n    \"issue_2_equivalence_checker\": \"Replaced underspecified 'equivalence checker derived from PRM-BiasBench tooling' with a concrete two-tier system: Tier 1 uses MATH-VF-style formalization (LLM→SimpleMath) + SymPy/Z3 symbolic verification (>90% formalization success demonstrated on MATH500). Tier 2 uses calibrated LLM-based verification for non-formalizable steps, benchmarked against 500 human-verified step pairs targeting <5% false-equivalence rate. All error rates reported transparently.\",\n    \"issue_3_spurious_dimensions\": \"Dropped the weakly-justified four fixed dimensions. Now grounded in PRM-BiasBench's empirically-validated perturbation categories (rephrasing, verbosity changes, within-step reordering). Framework is explicitly dimension-agnostic — new channels added without architectural changes. 'Hedging language' and 'notation style' removed as they lack empirical grounding in the diagnostic paper.\",\n    \"issue_4_training_vs_inference\": \"Added explicit argument with three evidence lines: (a) 'One Bias After Another' shows high-complexity biases resist inference-time linear interventions, (b) DIR is the only method validated under RL pressure and uses training-time modification, (c) Adv-RM shows training-time adversarial methods let RL run 3× longer. Added a direct head-to-head experiment: CI-PRM vs. SteerRM-adapted and CRA under GRPO/PPO pressure measuring ground-truth solve rate over optimization steps.\",\n    \"issue_5_timeline\": \"Dropped AAAI 2027 (Aug 2 deadline = ~9 weeks, unrealistic). ICLR 2027 (Sep 24 = ~17 weeks) is now primary target. Timeline estimates adjusted upward to account for RL pressure experiments and formal verification pipeline.\",\n    \"issue_6_root_cause_overclaim\": \"Replaced 'addresses the root cause' with concrete mechanism: domain-adversarial catch-all invariance head using gradient reversal. This goes beyond targeted dimension debiasing by encouraging representations from which augmentation type is unrecoverable — providing architectural resistance to unseen spurious features. Explicitly frames approach as 'targeted channels + catch-all generalization' rather than claiming root-cause resolution. Acknowledges that complete robustness to arbitrary RL exploitation remains an open problem.\"\n  }\n}\n\n## Reviewer feedback (round 2)\nIssues: [\"CRITICAL MISSING REFERENCE: FoVer (arXiv 2505.15960, ACL 2026 Findings) uses Z3 + Isabelle for formally-verified step-level PRM training data synthesis, achieving cross-task generalization. This directly overlaps with Innovation 1's formally-verified augmentation pipeline and is not cited. The proposal must position against FoVer and explain what the debiasing-specific verification requirements add beyond general PRM training data quality.\", \"MISSING REFERENCE: 'Controllable and Verifiable Process Data Synthesis for PRMs' (arXiv 2605.02395, May 2026) constructs paired trajectories with symbolic verification for controlled error injection at the step level. Also directly relevant to the augmentation pipeline.\", \"COMPOSITE LOSS BALANCING NOT ADDRESSED: The 4-term loss (step-correctness CE, KL invariance, contrastive sensitivity margins, gradient-reversal adversarial) creates a substantial hyperparameter search space. No balancing strategy, scheduling, or progressive training scheme is discussed. With 4 interacting loss terms, training instability is a real risk — particularly the gradient-reversal component which is known to require careful tuning of the reversal coefficient λ.\", \"GRADIENT REVERSAL GENERALIZATION OVERCLAIMED: The proposal frames the domain-adversarial head as providing 'architectural resistance to encoding ANY surface-level variation pattern.' This is too strong. The gradient reversal head can only learn invariance to the distribution of augmentation types seen during training. If RL discovers truly novel exploit dimensions (e.g., specific token patterns, positional encodings) that are not variations of rephrasing/verbosity/reordering, the catch-all mechanism has no training signal for those dimensions. The claim should be tempered.\", \"TIER 2 VERIFICATION CIRCULARITY RISK: Using Qwen3-235B for soft equivalence verification introduces potential circularity — if the LLM judge shares blind spots with the PRM being debiased (both are large Qwen-family models), the verification may systematically pass flawed augmentations. The 500-pair calibration set is small and may not capture failure modes at the tails of the augmentation distribution.\", \"PERTURBATION CATEGORY MINOR INACCURACY: PRM-BiasBench defines 8 perturbation types including 'increased verbosity' and 'decreased verbosity' as separate categories, but the proposal collapses these into 'verbosity changes.' While minor, this imprecision matters when grounding augmentation channels in the diagnostic paper's empirically-validated categories.\"]\nFeedback: The revision from Round 1 is substantive and the step-level × training-time × multi-dimensional × RL-validated positioning is legitimate. To reach pass quality: (1) **Cite and position against FoVer** (ACL 2026 Findings) and the Controllable Process Data Synthesis paper — explain specifically how debiasing-specific verification (ensuring *semantic equivalence* of neutral augmentations) differs from FoVer's general error-label verification. This is the single highest-priority fix. (2) **Add a composite loss balancing section**: discuss progressive training (e.g., train base PRM first, then add invariance terms, then adversarial head), λ-scheduling for gradient reversal coefficient, or cite prior work on multi-task loss balancing. This addresses a real feasibility concern. (3) **Temper the gradient-reversal generalization claim**: frame it as 'provides additional robustness to novel augmentation-like variations beyond targeted channels' rather than 'resistant to ANY surface-level variation.' Acknowledge that truly orthogonal exploit dimensions remain a limitation. (4) **Address Tier 2 verification circularity**: consider using a non-Qwen model for soft verification, or discuss the cross-model validation strategy. (5) **Strengthen novelty argument**: the step-level application isn't just 'applying outcome-level techniques at finer granularity.' Articulate the unique technical challenges — per-step equivalence verification is harder than response-level (compositional reasoning across steps, error propagation), the augmentation must preserve step-chain coherence, and the adversarial head operates on per-step representations with much less context than full-response representations. These step-level-specific challenges justify the contribution beyond mere combination.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.\n- Address each issue specifically.\n\n## 深度调研要求\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。\n3. **深度思考**：\n   - 核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach？\n4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。\n\n## 针对 Review 意见的定向搜索\n\n1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点\n2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline\n3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现\n4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot\n\n- You have full freedom: minor fix, major revision, or pivot.\n- Include a \"change_type\" field: \"minor\", \"major\", or \"pivot\".\n- Output a COMPLETE JSON object with ALL fields."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T21:23:10.627Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T21:23:10.627Z",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+## Round 1
+
+111 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T21:23:10.675Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-27 (UTC).**
+
+## Original idea
+{
+  "title": "CI-PRM: Counterfactual-Invariant Process Reward Models with Domain-Adversarial Generalization Against Reward Hacking",
+  "core_problem": "Can we train step-level process reward models that are simultaneously invariant to known surface-level spurious features AND architecturally resistant to unseen spurious features, while remaining sensitive to logical correctness — directly closing the fluency-logic dissociation that renders current PRMs systematically exploitable under RL optimization pressure?",
+  "opportunity": "'Reward Under Attack' (March 2026) demonstrated that RL-optimized policies achieve near-perfect PRM rewards (>0.9) while ground-truth accuracy remains below 4%, with 43% of reward gains from stylistic shortcuts, but proposed no defense. Since then, a wave of debiasing methods has emerged — but each has critical limitations. Inference-time methods (SteerRM, CIRM, CRA, 'One Bias After Another') operate without retraining but (a) SteerRM/CIRM/'One Bias After Another' target only outcome-level RMs, not step-level PRMs, (b) CRA operates at step-level but achieves only modest gains (+2.9pp) and has not been evaluated under RL optimization pressure, and (c) 'One Bias After Another' demonstrates that high-complexity biases (sycophancy, model-style) fundamentally resist linear inference-time interventions. Training-time methods (DIR, CoLD, CROME) can alter learned representations but (a) DIR handles only outcome-level RMs, (b) CoLD targets only length bias in PRMs, and (c) CROME operates at outcome level. The gap is clear: no existing work combines (i) training-time multi-dimensional debiasing at the step level, (ii) formal verification-backed counterfactual augmentation quality, and (iii) a domain-adversarial generalization mechanism for robustness to unseen spurious features — all validated under actual RL optimization pressure.",
+  "landscape": "(1) 'Reward Under Attack' (2603.06621, Mar 2026): Definitive diagnosis via PRM-BiasBench with 8 perturbation types in two groups (semantics-preserving: rephrasing, verbosity, within-step reordering; semantics-altering: question shuffling, numerical perturbation, reasoning hallucination, question removal). Shows PRMs exhibit <0.1 reward change to surface edits yet miss logical corruption. Proposes no defense. (2) CROME (ICLR 2026): Causal+neutral augmentation for outcome-level RMs, +5.4% on RewardBench. Outcome-level only. (3) CoLD (Jul 2025): Counterfactual length debiasing for PRMs. Single-dimension (length) only. (4) PURE (NeurIPS 2025): Min-form credit assignment reduces hacking by 10+ points on AMC23. Addresses credit assignment, not bias source. (5) SteerRM (2603.12795, Mar 2026): Training-free SAE-based debiasing, +7.3pp on RM-Bench Hard. Outcome-level only; not tested under RL pressure; limited to format/style biases empirically. (6) CIRM (2604.27495, Apr 2026): Inference-time neuron intervention editing <2% neurons, outcome-level only, tested via DPO but not adversarial RL. (7) DIR (2512.23461, Dec 2025): Training-time information-theoretic debiasing for outcome-level RMs handling length+sycophancy+format via MI minimization. Only debiasing method validated under PPO pressure. Outcome-level only. (8) CRA (2508.04216, Aug 2025): SAE-based backdoor adjustment at step-level (the only inference-time method targeting PRMs), +2.9pp on MATH. No RL pressure evaluation; modest gains. (9) 'One Bias After Another' (2603.03291, Mar 2026): Mechanistic reward shaping via null-space projection. Critically distinguishes low-complexity biases (length, uncertainty, position — amenable to linear intervention) from high-complexity biases (sycophancy, model-style — resistant to linear debiasing). Outcome-level only. (10) PathFinder-PRM: Error typing for PRMs, 67.7 PRMScore. (11) Factored Causal Representation Learning (ICML 2026): Gradient reversal for outcome-level RMs. (12) APRM (Nov 2025): Adversarial PRM training for harder negatives. (13) Adv-RM (2504.06141, Apr 2026): Adversarial training of outcome-level RMs; allows RL to run 3× longer without hacking but at 3× training cost. Outcome-level only. (14) MATH-VF (2505.20869, May 2025): Step-wise formal verification using SymPy+Z3, >90% formalization success on MATH500, 74.1% F1 on ProcessBench — provides concrete tooling for step-level equivalence verification. (15) 'Debiasing Reward Models by Representation Learning with Guarantees' (Oct 2025): Theoretical framework showing non-spurious latent variables can be identified without spurious variable surrogates. Summary: CRA is the only step-level debiasing method but is inference-time-only with modest gains and no RL pressure evaluation. DIR is the only method validated under RL pressure but is outcome-level. No method combines step-level training-time debiasing with multi-dimensional coverage and RL-pressure validation.",
+  "inspired_by": "Field gap: the convergence of (a) 'Reward Under Attack' diagnosing the problem without defense, (b) 'One Bias After Another' showing high-complexity biases resist inference-time fixes, (c) DIR showing training-time methods survive RL pressure, and (d) MATH-VF providing formal verification tooling for step-level equivalence — creating a unique opportunity for a formally-grounded, training-time, step-level, generalization-aware PRM debiasing approach.",
+  "approach": "We propose CI-PRM (Counterfactual-Invariant PRM), a training-time framework with three technical innovations addressing step-level PRM debiasing:\n\n**Innovation 1: Formally-Verified Counterfactual Augmentation Pipeline.** Rather than relying on underspecified LLM-based equivalence checking, we build on MATH-VF's architecture to create a two-tier verification system for step-level counterfactual pairs. Tier 1 (Symbolic): An LLM formalizer translates each step into SimpleMath, then SymPy verifies algebraic equivalence and Z3 verifies logical entailment between original and perturbed steps. MATH-VF demonstrates >90% formalization success on MATH500, providing concrete scalability evidence. Tier 2 (Soft): For steps resisting full formalization (e.g., natural-language reasoning bridges), Qwen3-235B performs chain-of-thought equivalence judgment, calibrated against a human-verified set of 500 step pairs (targeting <5% false-equivalence rate). We report formalization success rates, symbolic verification coverage, and calibrated error rates per augmentation type.\n\n**Innovation 2: Dimension-Agnostic Augmentation with Targeted Channels.** Rather than fixing exactly four spurious dimensions (which the reviewer correctly identified as weakly grounded), we adopt an extensible framework. We begin with the empirically-grounded perturbation categories from PRM-BiasBench — rephrasing, verbosity changes, and within-step reordering as our initial neutral augmentation channels — while making the architecture dimension-agnostic. Using Qwen3-235B, we generate: (a) Neutral augmentations varying each surface channel while preserving logic (verified by Tier 1/2 above), creating invariance training pairs; (b) Causal augmentations introducing specific logical errors (sign flips, dropped terms, invalid inferences, numerical perturbations — aligned with PRM-BiasBench's semantics-altering categories) while maintaining surface fluency, creating sensitivity training pairs. New augmentation channels can be added without architectural changes.\n\n**Innovation 3: Domain-Adversarial Catch-All Invariance.** To address the fundamental 'whack-a-mole' concern — that RL may discover a spurious dimension not in our training augmentations — we add a gradient-reversal domain-adversarial head inspired by Factored Causal Representation Learning. A discriminator head attempts to predict which augmentation type (or original) produced each step from the PRM's internal representations, while gradient reversal encourages the encoder to produce representations from which augmentation type is unrecoverable. This provides a principled catch-all: the PRM learns representations that are not merely invariant to known perturbation channels but architecturally resistant to encoding any surface-level variation pattern. Combined with 'One Bias After Another's finding that high-complexity biases resist linear interventions, this gradient-level approach provides fundamentally stronger invariance than inference-time methods.\n\nThe PRM is trained on a Qwen2.5-Math-7B backbone with a composite loss: (i) standard step-correctness cross-entropy, (ii) KL-divergence invariance regularization across verified neutral pairs per augmentation channel, (iii) contrastive sensitivity margins on causal pairs, and (iv) gradient-reversal adversarial loss from the catch-all head. We use ProcessBench-train data as the base, augmented with ~50K generated pairs verified through the two-tier system.\n\n**Critical Evaluation: Training-Time vs. Inference-Time Under RL Pressure.** We include a direct head-to-head comparison: CI-PRM (training-time) vs. SteerRM-adapted and CRA (inference-time baselines) when used as the reward signal during GRPO/PPO fine-tuning on MATH-500 and AIME. We measure not just reward accuracy but ground-truth solve rate over optimization steps to quantify when each method's debiasing breaks down under RL pressure. This experiment directly tests the hypothesis — supported by DIR's PPO results and 'One Bias After Another's high-complexity bias findings — that training-time representation changes provide more durable robustness than inference-time interventions.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "650-850 (200h augmentation generation via Qwen3-235B on 4×H100, 50-80h symbolic verification pipeline, 200-300h PRM training sweeps on 4×H100, 100-150h RL pressure evaluation, 100-120h ablations + baselines)",
+      "timeline": "14-18 weeks",
+      "estimated_gpu_cost": "$1,625-$2,125 at $2.50/H100-hr"
+    },
+    "human_in_loop": {
+      "gpu_hours": "500-650 (Claude assists with formalizer prompt engineering and augmentation QA; human verifies 500 calibration pairs for Tier 2)",
+      "timeline": "10-13 weeks",
+      "claude_api_cost": "$350-$600 (Sonnet 4.6 for formalizer prompt iteration, augmentation QA, verification calibration, ablation design; ~100M input + 40M output tokens)",
+      "estimated_gpu_cost": "$1,250-$1,625 at $2.50/H100-hr"
+    },
+    "auto_research": {
+      "gpu_hours": "500-650",
+      "timeline": "5-7 weeks",
+      "claude_api_cost": "$1,000-$1,600 (Sonnet 4.6 for end-to-end augmentation generation, Tier 2 verification, hyperparameter reasoning, RL pressure experiment management; ~300M input + 120M output tokens with batch API)",
+      "estimated_gpu_cost": "$1,250-$1,625 at $2.50/H100-hr",
+      "speed_bottleneck": "Tier 1 symbolic verification via SymPy/Z3 is deterministic and parallelizable; Tier 2 LLM-based verification requires calibration against human judgments (500 step pairs). RL pressure evaluation experiments are sequential and depend on PRM training completion."
+    }
+  },
+  "target_venues": [
+    "ICLR 2027 (paper deadline: Sep 24, 2026) — primary target",
+    "AISTATS 2027 (deadline: Oct 10, 2026)",
+    "ICML 2027 (deadline: Jan 29, 2027)",
+    "ACL 2027 (deadline: Feb 16, 2027)",
+    "NeurIPS 2027 (deadline: May 16, 2027)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models (arXiv 2603.06621, Mar 2026)",
+    "Robust Reward Modeling via Causal Rubrics [CROME] (ICLR 2026)",
+    "SteerRM: Debiasing Reward Models via Sparse Autoencoders (arXiv 2603.12795, Mar 2026)",
+    "Debiasing Reward Models via Causally Motivated Inference-Time Intervention [CIRM] (arXiv 2604.27495, Apr 2026)",
+    "One Bias After Another: Mechanistic Reward Shaping and Persistent Biases in Language Reward Models (arXiv 2603.03291, Mar 2026)",
+    "Eliminating Inductive Bias in Reward Models with Information-Theoretic Guidance [DIR] (arXiv 2512.23461, Dec 2025)",
+    "Causal Reward Adjustment: Mitigating Reward Hacking via Backdoor Correction [CRA] (arXiv 2508.04216, Aug 2025)",
+    "CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models (arXiv 2507.15698, Jul 2025)",
+    "Stop Summation: Min-Form Credit Assignment [PURE] (NeurIPS 2025)",
+    "Adversarial Training of Reward Models [Adv-RM] (arXiv 2504.06141, Apr 2026)",
+    "Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving [MATH-VF] (arXiv 2505.20869, May 2025)",
+    "Factored Causal Representation Learning for Robust Reward Modeling in RLHF (ICML 2026)",
+    "Error Typing for Smarter Rewards [PathFinder-PRM] (arXiv 2025)",
+    "Adversarial Training for Process Reward Models [APRM] (arXiv 2511.22888, Nov 2025)",
+    "Let's Verify Step by Step [PRM800K] (NeurIPS 2023)",
+    "Debiasing Reward Models by Representation Learning with Guarantees (arXiv 2510.23751, Oct 2025)",
+    "Robust Reward Modeling for LLMs via Causal Decomposition (arXiv 2026)"
+  ],
+  "description": "Process Reward Models (PRMs) are the backbone of step-level verification for LLM mathematical reasoning, yet 'Reward Under Attack' (2026) exposed a critical fluency-logic dissociation: RL-optimized policies achieve >0.9 PRM rewards while ground-truth accuracy stays below 4%, with 43% of gains from stylistic shortcuts. A wave of debiasing methods has since emerged — SteerRM, CIRM, and 'One Bias After Another' (inference-time, outcome-level), CRA (inference-time, step-level but modest +2.9pp gains), DIR (training-time, outcome-level) — but none combines step-level training-time debiasing with multi-dimensional coverage and RL-pressure validation. Critically, 'One Bias After Another' demonstrates that high-complexity biases resist inference-time linear interventions, while only DIR (training-time) has been validated under RL optimization pressure. We propose CI-PRM, which introduces three innovations: (1) a formally-verified counterfactual augmentation pipeline using MATH-VF-style SymPy+Z3 symbolic verification (>90% formalization success) supplemented by calibrated LLM-based soft verification (<5% false-equivalence target) for step-level augmentation quality assurance; (2) a dimension-agnostic augmentation framework grounded in PRM-BiasBench's empirically-validated perturbation categories (rephrasing, verbosity, reordering) rather than ad-hoc dimension selection, extensible to new channels without architectural changes; and (3) a domain-adversarial catch-all invariance head using gradient reversal that encourages representations resistant to ANY surface-level variation — not just targeted channels — directly addressing the concern that RL may discover novel spurious features. The PRM (Qwen2.5-Math-7B backbone) trains with a composite loss combining step-correctness, per-channel KL invariance, contrastive sensitivity margins, and gradient-reversal adversarial loss. Evaluation centers on a critical head-to-head: CI-PRM vs. inference-time baselines (SteerRM-adapted, CRA) under GRPO/PPO optimization pressure on MATH-500 and AIME, measuring both reward accuracy and ground-truth solve rate to directly test whether training-time debiasing provides more durable robustness than inference-time interventions.",
+  "project_name": "ci_prm_fluency_logic",
+  "source": "web_research",
+  "revision_notes": {
+    "issue_1_missing_baselines": "Added SteerRM, CIRM, DIR, CRA, 'One Bias After Another', and Adv-RM to landscape with detailed analysis. Key insight: mapped each method on two axes — (a) step-level vs outcome-level, (b) training-time vs inference-time — revealing that CRA is the only step-level method (inference-time, modest gains) and DIR is the only RL-pressure-validated method (training-time, outcome-level). CI-PRM uniquely occupies the step-level + training-time + RL-validated quadrant.",
+    "issue_2_equivalence_checker": "Replaced underspecified 'equivalence checker derived from PRM-BiasBench tooling' with a concrete two-tier system: Tier 1 uses MATH-VF-style formalization (LLM→SimpleMath) + SymPy/Z3 symbolic verification (>90% formalization success demonstrated on MATH500). Tier 2 uses calibrated LLM-based verification for non-formalizable steps, benchmarked against 500 human-verified step pairs targeting <5% false-equivalence rate. All error rates reported transparently.",
+    "issue_3_spurious_dimensions": "Dropped the weakly-justified four fixed dimensions. Now grounded in PRM-BiasBench's empirically-validated perturbation categories (rephrasing, verbosity changes, within-step reordering). Framework is explicitly dimension-agnostic — new channels added without architectural changes. 'Hedging language' and 'notation style' removed as they lack empirical grounding in the diagnostic paper.",
+    "issue_4_training_vs_inference": "Added explicit argument with three evidence lines: (a) 'One Bias After Another' shows high-complexity biases resist inference-time linear interventions, (b) DIR is the only method validated under RL pressure and uses training-time modification, (c) Adv-RM shows training-time adversarial methods let RL run 3× longer. Added a direct head-to-head experiment: CI-PRM vs. SteerRM-adapted and CRA under GRPO/PPO pressure measuring ground-truth solve rate over optimization steps.",
+    "issue_5_timeline": "Dropped AAAI 2027 (Aug 2 deadline = ~9 weeks, unrealistic). ICLR 2027 (Sep 24 = ~17 weeks) is now primary target. Timeline estimates adjusted upward to account for RL pressure experiments and formal verification pipeline.",
+    "issue_6_root_cause_overclaim": "Replaced 'addresses the root cause' with concrete mechanism: domain-adversarial catch-all invariance head using gradient reversal. This goes beyond targeted dimension debiasing by encouraging representations from which augmentation type is unrecoverable — providing architectural resistance to unseen spurious features. Explicitly frames approach as 'targeted channels + catch-all generalization' rather than claiming root-cause resolution. Acknowledges that complete robustness to arbitrary RL exploitation remains an open problem."
+  }
+}
+
+## Reviewer feedback (round 2)
+Issues: ["CRITICAL MISSING REFERENCE: FoVer (arXiv 2505.15960, ACL 2026 Findings) uses Z3 + Isabelle for formally-verified step-level PRM training data synthesis, achieving cross-task generalization. This directly overlaps with Innovation 1's formally-verified augmentation pipeline and is not cited. The proposal must position against FoVer and explain what the debiasing-specific verification requirements add beyond general PRM training data quality.", "MISSING REFERENCE: 'Controllable and Verifiable Process Data Synthesis for PRMs' (arXiv 2605.02395, May 2026) constructs paired trajectories with symbolic verification for controlled error injection at the step level. Also directly relevant to the augmentation pipeline.", "COMPOSITE LOSS BALANCING NOT ADDRESSED: The 4-term loss (step-correctness CE, KL invariance, contrastive sensitivity margins, gradient-reversal adversarial) creates a substantial hyperparameter search space. No balancing strategy, scheduling, or progressive training scheme is discussed. With 4 interacting loss terms, training instability is a real risk — particularly the gradient-reversal component which is known to require careful tuning of the reversal coefficient λ.", "GRADIENT REVERSAL GENERALIZATION OVERCLAIMED: The proposal frames the domain-adversarial head as providing 'architectural resistance to encoding ANY surface-level variation pattern.' This is too strong. The gradient reversal head can only learn invariance to the distribution of augmentation types seen during training. If RL discovers truly novel exploit dimensions (e.g., specific token patterns, positional encodings) that are not variations of rephrasing/verbosity/reordering, the catch-all mechanism has no training signal for those dimensions. The claim should be tempered.", "TIER 2 VERIFICATION CIRCULARITY RISK: Using Qwen3-235B for soft equivalence verification introduces potential circularity — if the LLM judge shares blind spots with the PRM being debiased (both are large Qwen-family models), the verification may systematically pass flawed augmentations. The 500-pair calibration set is small and may not capture failure modes at the tails of the augmentation distribution.", "PERTURBATION CATEGORY MINOR INACCURACY: PRM-BiasBench defines 8 perturbation types including 'increased verbosity' and 'decreased verbosity' as separate categories, but the proposal collapses these into 'verbosity changes.' While minor, this imprecision matters when grounding augmentation channels in the diagnostic paper's empirically-validated categories."]
+Feedback: The revision from Round 1 is substantive and the step-level × training-time × multi-dimensional × RL-validated positioning is legitimate. To reach pass quality: (1) **Cite and position against FoVer** (ACL 2026 Findings) and the Controllable Process Data Synthesis paper — explain specifically how debiasing-specific verification (ensuring *semantic equivalence* of neutral augmentations) differs from FoVer's general error-label verification. This is the single highest-priority fix. (2) **Add a composite loss balancing section**: discuss progressive training (e.g., train base PRM first, then add invariance terms, then adversarial head), λ-scheduling for gradient reversal coefficient, or cite prior work on multi-task loss balancing. This addresses a real feasibility concern. (3) **Temper the gradient-reversal generalization claim**: frame it as 'provides additional robustness to novel augmentation-like variations beyond targeted channels' rather than 'resistant to ANY surface-level variation.' Acknowledge that truly orthogonal exploit dimensions remain a limitation. (4) **Address Tier 2 verification circularity**: consider using a non-Qwen model for soft verification, or discuss the cross-model validation strategy. (5) **Strengthen novelty argument**: the step-level application isn't just 'applying outcome-level techniques at finer granularity.' Articulate the unique technical challenges — per-step equivalence verification is harder than response-level (compositional reasoning across steps, error propagation), the augmentation must preserve step-chain coherence, and the adversarial head operates on per-step representations with much less context than full-response representations. These step-level-specific challenges justify the contribution beyond mere combination.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.
+- Address each issue specifically.
+
+## 深度调研要求
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。
+3. **深度思考**：
+   - 核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach？
+4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。
+
+## 针对 Review 意见的定向搜索
+
+1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点
+2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline
+3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现
+4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot
+
+- You have full freedom: minor fix, major revision, or pivot.
+- Include a "change_type" field: "minor", "major", or "pivot".
+- Output a COMPLETE JSON object with ALL fields.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "323a47e9-a8a7-4be5-ad61-d7d43ca8e77b",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T21:23:10.674Z_
+
+```json
+{
+  "parentUuid": "323a47e9-a8a7-4be5-ad61-d7d43ca8e77b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "619549aa-8efd-4245-9954-d7c8344885a9",
+  "timestamp": "2026-05-27T21:23:10.674Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T21:23:10.674Z_
+
+```json
+{
+  "parentUuid": "619549aa-8efd-4245-9954-d7c8344885a9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "2ffbda99-e1b4-4674-bc77-c81a2f11cac5",
+  "timestamp": "2026-05-27T21:23:10.674Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"CI-PRM: Counterfactual-Invariant Process Reward Models with Domain-Adv…",
+  "leafUuid": "2ffbda99-e1b4-4674-bc77-c81a2f11cac5",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CI-PRM with FoVer positioning and loss balancing",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T21:23:19.352Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully and plan my research strategy:
+
+1. **CRITICAL: FoVer (arXiv 2505.15960)** - Uses Z3 + Isabelle for formally-verified step-level PRM training data. Need to read this paper and position against it.
+
+2. **MISSING: Controllable Process Data Synthesis (arXiv 2605.02395)** - Paired trajectories with symbolic verification for controlled error injection.
+
+3. **Composite loss balancing** - Need to research progressive training strategies and multi-task loss balancing.
+
+
+4. **Gradient reversal overclaim** - I need to dial back the claims here.
+
+5. **Tier 2 verification circularity** - Using Qwen for verifying Qwen-family PRM is problematic.
+
+6. **Perturbation category inaccuracy** - Minor fix needed on the verbosity categories.
+
+Now I'll start digging into the key papers and concepts to address these points.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ffbda99-e1b4-4674-bc77-c81a2f11cac5",
+  "isSidechain": false,
+  "requestId": "req_011CbTn1ADxTJnb1ioUnCZCq",
+  "type": "assistant",
+  "uuid": "99dc5502-de96-4310-b708-b5c3515a0938",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LTRrAxxJvvDRZh2PuL2uyy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7910,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 338,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7910,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 338,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 7910,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7910
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-27T21:23:19.866Z_
+
+I'll start by researching the critical missing references and key technical concerns raised by the reviewers. Let me launch several research tasks in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99dc5502-de96-4310-b708-b5c3515a0938",
+  "isSidechain": false,
+  "requestId": "req_011CbTn1ADxTJnb1ioUnCZCq",
+  "type": "assistant",
+  "uuid": "366dee1a-06f0-4941-86b1-5f13a238ca00",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LTRrAxxJvvDRZh2PuL2uyy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7910,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 338,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7910,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 338,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 7910,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7910
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-27T21:23:20.161Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013XT2JXkoFCCMWmCfHVAXxk`</summary>
+
+```json
+{
+  "query": "select:WebFetch,WebSearch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "366dee1a-06f0-4941-86b1-5f13a238ca00",
+  "isSidechain": false,
+  "requestId": "req_011CbTn1ADxTJnb1ioUnCZCq",
+  "type": "assistant",
+  "uuid": "a808b06c-4e13-4a93-8ed6-ba0927b0195c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LTRrAxxJvvDRZh2PuL2uyy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7910,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 338,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7910,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 338,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 7910,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7910
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-27T21:23:20.169Z_
+
+<details><summary>↩ Tool result · `toolu_013XT2JXkoFCCMWmCfHVAXxk`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a808b06c-4e13-4a93-8ed6-ba0927b0195c",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "c6b6c01b-494a-4587-9ae0-92e7c8029b2c",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch",
+      "WebSearch"
+    ],
+    "query": "select:WebFetch,WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "a808b06c-4e13-4a93-8ed6-ba0927b0195c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-27T21:23:24.631Z_
+
+Now let me launch parallel research on all the key issues raised by the reviewers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6b6c01b-494a-4587-9ae0-92e7c8029b2c",
+  "isSidechain": false,
+  "requestId": "req_011CbTn1stEKf2bPQSjommni",
+  "type": "assistant",
+  "uuid": "0bc9873b-ccde-4373-8689-f19af0f78723",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017XrnHGzfE6JE8HbW4ABdHu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1358,
+      "cache_read_input_tokens": 18924,
+      "output_tokens": 513,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1358,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 513,
+          "cache_read_input_tokens": 18924,
+          "cache_creation_input_tokens": 1358,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1358
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-27T21:23:28.446Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Aa7iwH22XWac4jx91bzyFH`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.15960",
+  "prompt": "Extract the full details of the FoVer paper: title, authors, key method, how they use Z3 and Isabelle for formally-verified PRM training data synthesis, what kind of verification they do (error label verification vs semantic equivalence), their results, and how they handle step-level data. What is the core difference between their verification goal and verifying semantic equivalence of augmentations?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0bc9873b-ccde-4373-8689-f19af0f78723",
+  "isSidechain": false,
+  "requestId": "req_011CbTn1stEKf2bPQSjommni",
+  "type": "assistant",
+  "uuid": "cada82a1-52d8-4cbc-845f-5d1300069738",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017XrnHGzfE6JE8HbW4ABdHu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1358,
+      "cache_read_input_tokens": 18924,
+      "output_tokens": 513,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1358,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 513,
+          "cache_read_input_tokens": 18924,
+          "cache_creation_input_tokens": 1358,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1358
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-27T21:23:31.275Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01RQfwbmNnGUDVRbt35qMvpg`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.02395",
+  "prompt": "Extract the full details of this paper on 'Controllable and Verifiable Process Data Synthesis for PRMs': title, authors, key method, how they construct paired trajectories with symbolic verification, what kind of error injection they do, their results, and how this relates to step-level PRM training. How does their approach to generating contrastive pairs compare to counterfactual augmentation for debiasing?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cada82a1-52d8-4cbc-845f-5d1300069738",
+  "isSidechain": false,
+  "requestId": "req_011CbTn1stEKf2bPQSjommni",
+  "type": "assistant",
+  "uuid": "75a3e9b5-fa57-4dc3-af2e-3614714e9454",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017XrnHGzfE6JE8HbW4ABdHu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1358,
+      "cache_read_input_tokens": 18924,
+      "output_tokens": 513,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1358,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 513,
+          "cache_read_input_tokens": 18924,
+          "cache_creation_input_tokens": 1358,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1358
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-27T21:23:32.278Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HZxQoXVZaYnFvxEvep6E47`</summary>
+
+```json
+{
+  "query": "FoVer formally verified process reward model Z3 Isabelle step-level PRM training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "75a3e9b5-fa57-4dc3-af2e-3614714e9454",
+  "isSidechain": false,
+  "requestId": "req_011CbTn1stEKf2bPQSjommni",
+  "type": "assistant",
+  "uuid": "d5e02fe9-7acf-4538-959e-f627a355743b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017XrnHGzfE6JE8HbW4ABdHu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1358,
+      "cache_read_input_tokens": 18924,
+      "output_tokens": 513,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1358,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 513,
+          "cache_read_input_tokens": 18924,
+          "cache_creation_input_tokens": 1358,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1358
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-27T21:23:33.219Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013XtYvYXLqJ1FVESUpeXjze`</summary>
+
+```json
+{
+  "query": "gradient reversal domain adversarial training loss balancing progressive scheduling lambda coefficient 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5e02fe9-7acf-4538-959e-f627a355743b",
+  "isSidechain": false,
+  "requestId": "req_011CbTn1stEKf2bPQSjommni",
+  "type": "assistant",
+  "uuid": "62a3f047-8661-4a9e-9d46-c17b996229c0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017XrnHGzfE6JE8HbW4ABdHu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1358,
+      "cache_read_input_tokens": 18924,
+      "output_tokens": 513,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1358,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 513,
+          "cache_read_input_tokens": 18924,
+          "cache_creation_input_tokens": 1358,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1358
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-27T21:23:33.859Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RrWaeowSjsGa8ZevZtY22V`</summary>
+
+```json
+{
+  "query": "multi-task loss balancing composite loss hyperparameter scheduling deep learning reward model training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62a3f047-8661-4a9e-9d46-c17b996229c0",
+  "isSidechain": false,
+  "requestId": "req_011CbTn1stEKf2bPQSjommni",
+  "type": "assistant",
+  "uuid": "13acf3b0-0fa7-4dd0-955f-f85554b41c18",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017XrnHGzfE6JE8HbW4ABdHu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1358,
+      "cache_read_input_tokens": 18924,
+      "output_tokens": 513,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1358,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 513,
+          "cache_read_input_tokens": 18924,
+          "cache_creation_input_tokens": 1358,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1358
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-27T21:23:35.468Z_
+
+<details><summary>↩ Tool result · `toolu_01Aa7iwH22XWac4jx91bzyFH`</summary>
+
+```text
+# FoVer: Formal Verification for PRM Training Data
+
+## Paper Details
+**Title:** "Efficient PRM Training Data Synthesis via Formal Verification"
+
+**Authors:** Ryo Kamoi, Yusen Zhang, Nan Zhang, Sarkar Snigdha Sarathi Das, Ranran Haoran Zhang, Wenpeng Yin, Rui Zhang
+
+## Core Method
+
+FoVer synthesizes Process Reward Model training data by leveraging formal verification tools to annotate step-level labels. Rather than relying on human annotation or repeated LLM sampling, the framework uses formal reasoning tasks as source material.
+
+## Verification Approach
+
+The framework employs Z3 and Isabelle to generate accurate step-level error labels. According to the abstract, this enables "efficient and accurate PRM data construction without requiring human annotation or additional LLM calls." The verification focuses on identifying which intermediate steps in reasoning traces contain errors within formal logic and theorem-proving contexts.
+
+## Key Results
+
+Testing across 12 reasoning benchmarks demonstrated that fine-tuning on FoVer-generated data improves PRM performance on:
+- Math and logic tasks (informal variants of training domains)
+- NLI and BBH benchmarks (substantially different from source tasks)
+
+## Critical Distinction
+
+The core difference lies in their verification objective: FoVer verifies **correctness of intermediate reasoning steps** rather than validating semantic equivalence of data augmentations. Their goal is identifying where reasoning fails, not confirming alternative phrasings preserve meaning.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cada82a1-52d8-4cbc-845f-5d1300069738",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "177249f8-be04-4956-9ea5-59b414ec29c6",
+  "toolUseResult": {
+    "bytes": 47847,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# FoVer: Formal Verification for PRM Training Data\n\n## Paper Details\n**Title:** \"Efficient PRM Training Data Synthesis via Formal Verification\"\n\n**Authors:** Ryo Kamoi, Yusen Zhang, Nan Zhang, Sarkar Snigdha Sarathi Das, Ranran Haoran Zhang, Wenpeng Yin, Rui Zhang\n\n## Core Method\n\nFoVer synthesizes Process Reward Model training data by leveraging formal verification tools to annotate step-level labels. Rather than relying on human annotation or repeated LLM sampling, the framework uses formal reasoning tasks as source material.\n\n## Verification Approach\n\nThe framework employs Z3 and Isabelle to generate accurate step-level error labels. According to the abstract, this enables \"efficient and accurate PRM data construction without requiring human annotation or additional LLM calls.\" The verification focuses on identifying which intermediate steps in reasoning traces contain errors within formal logic and theorem-proving contexts.\n\n## Key Results\n\nTesting across 12 reasoning benchmarks demonstrated that fine-tuning on FoVer-generated data improves PRM performance on:\n- Math and logic tasks (informal variants of training domains)\n- NLI and BBH benchmarks (substantially different from source tasks)\n\n## Critical Distinction\n\nThe core difference lies in their verification objective: FoVer verifies **correctness of intermediate reasoning steps** rather than validating semantic equivalence of data augmentations. Their goal is identifying where reasoning fails, not confirming alternative phrasings preserve meaning.",
+    "durationMs": 7018,
+    "url": "https://arxiv.org/abs/2505.15960"
+  },
+  "sourceToolAssistantUUID": "cada82a1-52d8-4cbc-845f-5d1300069738",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-27T21:23:36.826Z_
+
+<details><summary>↩ Tool result · `toolu_01RQfwbmNnGUDVRbt35qMvpg`</summary>
+
+```text
+# Paper Details: Controllable and Verifiable Process Data Synthesis for PRMs
+
+**Title:** "Controllable and Verifiable Process Data Synthesis for Process Reward Models"
+
+**Authors:** Yinghui Chi and Lucien Wang
+
+**Submission:** arXiv:2605.02395 (May 4, 2026)
+
+## Key Method
+
+The framework constructs paired trajectories through a systematic process: establishing a correct symbolic reasoning chain, inserting a template-aware error at a designated intermediate step, recomputing downstream steps from that corrupted state, and validating that "the injected step is not derivable from its prefix."
+
+## Trajectory Construction with Symbolic Verification
+
+The resulting paired datasets feature trajectories that are "prefix-invalid at the first error while remaining trajectory-consistent after symbolic recomputation." This dual property ensures both contrastive quality and logical coherence—corrupted pathways fail verification while maintaining plausibility.
+
+## Error Injection Approach
+
+The method employs controlled, template-aware error injection rather than random perturbation. This enables granular command over error positioning, typology, and consistency across trajectory pairs.
+
+## Experimental Results
+
+Testing demonstrated that synthesized data improved Best-of-8 reranking performance on logical reasoning benchmarks with transferability to mathematical domains. Notably, "first-error localization remains substantially more challenging than overall step classification," underscoring the necessity for fine-grained process annotations.
+
+## Comparison to Counterfactual Augmentation
+
+The paper does not explicitly discuss counterfactual augmentation for debiasing. Their approach emphasizes *verifiable corruption* and symbolic consistency rather than counterfactual reasoning frameworks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "75a3e9b5-fa57-4dc3-af2e-3614714e9454",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "8a45b804-828a-497e-956b-f540a36dfb20",
+  "toolUseResult": {
+    "bytes": 45300,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Details: Controllable and Verifiable Process Data Synthesis for PRMs\n\n**Title:** \"Controllable and Verifiable Process Data Synthesis for Process Reward Models\"\n\n**Authors:** Yinghui Chi and Lucien Wang\n\n**Submission:** arXiv:2605.02395 (May 4, 2026)\n\n## Key Method\n\nThe framework constructs paired trajectories through a systematic process: establishing a correct symbolic reasoning chain, inserting a template-aware error at a designated intermediate step, recomputing downstream steps from that corrupted state, and validating that \"the injected step is not derivable from its prefix.\"\n\n## Trajectory Construction with Symbolic Verification\n\nThe resulting paired datasets feature trajectories that are \"prefix-invalid at the first error while remaining trajectory-consistent after symbolic recomputation.\" This dual property ensures both contrastive quality and logical coherence—corrupted pathways fail verification while maintaining plausibility.\n\n## Error Injection Approach\n\nThe method employs controlled, template-aware error injection rather than random perturbation. This enables granular command over error positioning, typology, and consistency across trajectory pairs.\n\n## Experimental Results\n\nTesting demonstrated that synthesized data improved Best-of-8 reranking performance on logical reasoning benchmarks with transferability to mathematical domains. Notably, \"first-error localization remains substantially more challenging than overall step classification,\" underscoring the necessity for fine-grained process annotations.\n\n## Comparison to Counterfactual Augmentation\n\nThe paper does not explicitly discuss counterfactual augmentation for debiasing. Their approach emphasizes *verifiable corruption* and symbolic consistency rather than counterfactual reasoning frameworks.",
+    "durationMs": 5545,
+    "url": "https://arxiv.org/abs/2605.02395"
+  },
+  "sourceToolAssistantUUID": "75a3e9b5-fa57-4dc3-af2e-3614714e9454",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-27T21:23:38.524Z_
+
+<details><summary>↩ Tool result · `toolu_01HZxQoXVZaYnFvxEvep6E47`</summary>
+
+```text
+Web search results for query: "FoVer formally verified process reward model Z3 Isabelle step-level PRM training 2025 2026"
+
+Links: [{"title":"FoVer: Efficient PRM Training Data Synthesis via Formal Verification","url":"https://fover-prm.github.io/"},{"title":"[2505.15960] Efficient PRM Training Data Synthesis via Formal Verification","url":"https://arxiv.org/abs/2505.15960"},{"title":"Generalizable Process Reward Models via Formally Verified Training Data | OpenReview","url":"https://openreview.net/forum?id=LAejsDitr3"},{"title":"GitHub - psunlpgroup/FoVer: This repository includes code and materials for the paper \"Efficient PRM Training Data Synthesis via Formal Verification\" (ACL 2026 Findings). · GitHub","url":"https://github.com/psunlpgroup/FoVer"},{"title":"FOVER: Training Verifiers with Formal Tools","url":"https://www.emergentmind.com/papers/2505.15960"},{"title":"Paper page - Training Step-Level Reasoning Verifiers with Formal Verification Tools","url":"https://huggingface.co/papers/2505.15960"},{"title":"(PDF) Training Step-Level Reasoning Verifiers with Formal Verification Tools","url":"https://www.researchgate.net/publication/391990893_Training_Step-Level_Reasoning_Verifiers_with_Formal_Verification_Tools"},{"title":"Generalizable Process Reward Models via Formally Verified Training Data","url":"https://arxiv.org/pdf/2505.15960"},{"title":"[Literature Review] Training Step-Level Reasoning Verifiers with Formal Verification Tools","url":"https://www.themoonlight.io/en/review/training-step-level-reasoning-verifiers-with-formal-verification-tools"}]
+
+Based on the search results, here's what I found about FoVer:
+
+## FoVer: Formally Verified Process Reward Model
+
+FoVer is a framework that synthesizes PRM training data from formal reasoning tasks by annotating step-level error labels using formal verification tools such as Z3 and Isabelle.
+
+### Background and Motivation
+
+Process Reward Models (PRMs) provide process supervision over reasoning traces to improve LLM reasoning capabilities. However, existing approaches for constructing PRM training data remain costly and noisy, as they typically rely on human annotation or sampling-based labeling methods that require repeated LLM calls.
+
+### Key Approach
+
+By leveraging formal verification, FoVer enables efficient and accurate PRM data construction without requiring human annotation or additional LLM calls. FoVer creates PRM training data by using formal verification tools to provide accurate step-level error labels on LLM responses to symbolic logic tasks like formal theorem proving.
+
+### Results and Generalization
+
+While FoVer creates training data with symbolic tasks compatible with formal verification, PRMs trained on the dataset exhibit cross-task generalization, enabling a single PRM to effectively perform verification across diverse reasoning tasks. PRMs trained with FoVer improve performance on diverse reasoning tasks, including MATH, AIME, and MMLU.
+
+### Publication Status
+
+The work was published as part of ACL 2026 Findings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d5e02fe9-7acf-4538-959e-f627a355743b",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "52e3d68c-54a1-4174-8bd5-a9da190282be",
+  "toolUseResult": {
+    "query": "FoVer formally verified process reward model Z3 Isabelle step-level PRM training 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UhwFA4AKJby8LzQQHgceXM",
+        "content": [
+          {
+            "title": "FoVer: Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://fover-prm.github.io/"
+          },
+          {
+            "title": "[2505.15960] Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://arxiv.org/abs/2505.15960"
+          },
+          {
+            "title": "Generalizable Process Reward Models via Formally Verified Training Data | OpenReview",
+            "url": "https://openreview.net/forum?id=LAejsDitr3"
+          },
+          {
+            "title": "GitHub - psunlpgroup/FoVer: This repository includes code and materials for the paper \"Efficient PRM Training Data Synthesis via Formal Verification\" (ACL 2026 Findings). · GitHub",
+            "url": "https://github.com/psunlpgroup/FoVer"
+          },
+          {
+            "title": "FOVER: Training Verifiers with Formal Tools",
+            "url": "https://www.emergentmind.com/papers/2505.15960"
+          },
+          {
+            "title": "Paper page - Training Step-Level Reasoning Verifiers with Formal Verification Tools",
+            "url": "https://huggingface.co/papers/2505.15960"
+          },
+          {
+            "title": "(PDF) Training Step-Level Reasoning Verifiers with Formal Verification Tools",
+            "url": "https://www.researchgate.net/publication/391990893_Training_Step-Level_Reasoning_Verifiers_with_Formal_Verification_Tools"
+          },
+          {
+            "title": "Generalizable Process Reward Models via Formally Verified Training Data",
+            "url": "https://arxiv.org/pdf/2505.15960"
+          },
+          {
+            "title": "[Literature Review] Training Step-Level Reasoning Verifiers with Formal Verification Tools",
+            "url": "https://www.themoonlight.io/en/review/training-step-level-reasoning-verifiers-with-formal-verification-tools"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about FoVer:\n\n## FoVer: Formally Verified Process Reward Model\n\nFoVer is a framework that synthesizes PRM training data from formal reasoning tasks by annotating step-level error labels using formal verification tools such as Z3 and Isabelle.\n\n### Background and Motivation\n\nProcess Reward Models (PRMs) provide process supervision over reasoning traces to improve LLM reasoning capabilities. However, existing approaches for constructing PRM training data remain costly and noisy, as they typically rely on human annotation or sampling-based labeling methods that require repeated LLM calls.\n\n### Key Approach\n\nBy leveraging formal verification, FoVer enables efficient and accurate PRM data construction without requiring human annotation or additional LLM calls. FoVer creates PRM training data by using formal verification tools to provide accurate step-level error labels on LLM responses to symbolic logic tasks like formal theorem proving.\n\n### Results and Generalization\n\nWhile FoVer creates training data with symbolic tasks compatible with formal verification, PRMs trained on the dataset exhibit cross-task generalization, enabling a single PRM to effectively perform verification across diverse reasoning tasks. PRMs trained with FoVer improve performance on diverse reasoning tasks, including MATH, AIME, and MMLU.\n\n### Publication Status\n\nThe work was published as part of ACL 2026 Findings."
+    ],
+    "durationSeconds": 6.242303984999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d5e02fe9-7acf-4538-959e-f627a355743b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-27T21:23:39.971Z_
+
+<details><summary>↩ Tool result · `toolu_013XtYvYXLqJ1FVESUpeXjze`</summary>
+
+```text
+Web search results for query: "gradient reversal domain adversarial training loss balancing progressive scheduling lambda coefficient 2025 2026"
+
+Links: [{"title":"Understanding and Implementing Gradient Reversal Layer in PyTorch — codegenes.net","url":"https://www.codegenes.net/blog/gradient-reversal-layer-pytorch/"},{"title":"Adversarial domain adaptation to reduce sample bias of a ...","url":"https://arxiv.org/pdf/2005.00568"},{"title":"Towards Stable and Comprehensive Domain Alignment: Max-Margin   Domain-Adversarial Training","url":"https://arxiv.org/pdf/2003.13249"},{"title":"Domain Adversarial Training: A Game Perspective","url":"https://arxiv.org/pdf/2202.05352"},{"title":"On the Loss Landscape of Adversarial Training: Identifying Challenges   and How to Overcome Them","url":"https://arxiv.org/pdf/2006.08403"},{"title":"Deep domain-adversarial anomaly detection with partial gradient reversal | Applied Soft Computing","url":"https://dl.acm.org/doi/10.1016/j.asoc.2025.113285"},{"title":"Mind the (optimality) Gap: A Gap-Aware Learning Rate Scheduler for   Adversarial Nets","url":"https://arxiv.org/pdf/2302.00089"},{"title":"Published as a conference paper at ICLR 2022 DOMAIN ADVERSARIAL TRAINING","url":"https://openreview.net/pdf?id=AwgtcUAhBq"},{"title":"GDO:Gradual Domain Osmosis","url":"https://arxiv.org/pdf/2501.19159"}]
+
+Based on the search results, here's what I found about gradient reversal domain adversarial training with focus on loss balancing, progressive scheduling, and lambda coefficient:
+
+## Key Concepts
+
+**Gradient Reversal Layer (GRL):** GRL flips the sign of the gradient during the backward pass, which has profound implications on the training dynamics and asymptotic behavior of the learning algorithm.
+
+**Lambda Coefficient:** The lambda parameter in the Gradient Reversal Layer controls the strength of the gradient reversal, with a larger lambda value resulting in a stronger adversarial effect. It is often a good idea to start with a small value and gradually increase it during training.
+
+**Loss Balancing and Monitoring:** When using a GRL, it is important to monitor both the main task loss and the adversarial loss, which helps in understanding the behavior of the model and ensuring that the adversarial training is working as expected.
+
+**Progressive Scheduling:** A periodic adversarial scheduling (PAS) strategy, corresponding to a cyclic adversarial budget scheduling scheme with warmup, addresses challenges in adversarial training.
+
+**Recent Work (2025):** Research on domain adaptation validates the impact of dynamic tuning strategy of the hyperparameter lambda on performance through ablation experiments, confirming the advantages of progressive domain adaptation.
+
+The search results indicate that progressive scheduling of the lambda coefficient is an important technique for stabilizing domain adversarial training and improving generalization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "62a3f047-8661-4a9e-9d46-c17b996229c0",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "468e6ae9-b74f-45fd-9e31-3d2119824ad7",
+  "toolUseResult": {
+    "query": "gradient reversal domain adversarial training loss balancing progressive scheduling lambda coefficient 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01V97EmMGoQT6irtZsjTayC1",
+        "content": [
+          {
+            "title": "Understanding and Implementing Gradient Reversal Layer in PyTorch — codegenes.net",
+            "url": "https://www.codegenes.net/blog/gradient-reversal-layer-pytorch/"
+          },
+          {
+            "title": "Adversarial domain adaptation to reduce sample bias of a ...",
+            "url": "https://arxiv.org/pdf/2005.00568"
+          },
+          {
+            "title": "Towards Stable and Comprehensive Domain Alignment: Max-Margin   Domain-Adversarial Training",
+            "url": "https://arxiv.org/pdf/2003.13249"
+          },
+          {
+            "title": "Domain Adversarial Training: A Game Perspective",
+            "url": "https://arxiv.org/pdf/2202.05352"
+          },
+          {
+            "title": "On the Loss Landscape of Adversarial Training: Identifying Challenges   and How to Overcome Them",
+            "url": "https://arxiv.org/pdf/2006.08403"
+          },
+          {
+            "title": "Deep domain-adversarial anomaly detection with partial gradient reversal | Applied Soft Computing",
+            "url": "https://dl.acm.org/doi/10.1016/j.asoc.2025.113285"
+          },
+          {
+            "title": "Mind the (optimality) Gap: A Gap-Aware Learning Rate Scheduler for   Adversarial Nets",
+            "url": "https://arxiv.org/pdf/2302.00089"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2022 DOMAIN ADVERSARIAL TRAINING",
+            "url": "https://openreview.net/pdf?id=AwgtcUAhBq"
+          },
+          {
+            "title": "GDO:Gradual Domain Osmosis",
+            "url": "https://arxiv.org/pdf/2501.19159"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about gradient reversal domain adversarial training with focus on loss balancing, progressive scheduling, and lambda coefficient:\n\n## Key Concepts\n\n**Gradient Reversal Layer (GRL):** GRL flips the sign of the gradient during the backward pass, which has profound implications on the training dynamics and asymptotic behavior of the learning algorithm.\n\n**Lambda Coefficient:** The lambda parameter in the Gradient Reversal Layer controls the strength of the gradient reversal, with a larger lambda value resulting in a stronger adversarial effect. It is often a good idea to start with a small value and gradually increase it during training.\n\n**Loss Balancing and Monitoring:** When using a GRL, it is important to monitor both the main task loss and the adversarial loss, which helps in understanding the behavior of the model and ensuring that the adversarial training is working as expected.\n\n**Progressive Scheduling:** A periodic adversarial scheduling (PAS) strategy, corresponding to a cyclic adversarial budget scheduling scheme with warmup, addresses challenges in adversarial training.\n\n**Recent Work (2025):** Research on domain adaptation validates the impact of dynamic tuning strategy of the hyperparameter lambda on performance through ablation experiments, confirming the advantages of progressive domain adaptation.\n\nThe search results indicate that progressive scheduling of the lambda coefficient is an important technique for stabilizing domain adversarial training and improving generalization."
+    ],
+    "durationSeconds": 6.749792850000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "62a3f047-8661-4a9e-9d46-c17b996229c0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"CI-PRM: Counterfactual-Invariant Process Reward Models with Domain-Adv…",
+  "leafUuid": "468e6ae9-b74f-45fd-9e31-3d2119824ad7",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CI-PRM with FoVer positioning and loss balancing",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-27T21:23:41.421Z_
+
+<details><summary>↩ Tool result · `toolu_01RrWaeowSjsGa8ZevZtY22V`</summary>
+
+```text
+Web search results for query: "multi-task loss balancing composite loss hyperparameter scheduling deep learning reward model training 2025 2026"
+
+Links: [{"title":"(PDF) GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks","url":"https://www.researchgate.net/publication/320920333_GradNorm_Gradient_Normalization_for_Adaptive_Loss_Balancing_in_Deep_Multitask_Networks"},{"title":"M-HOF-Opt: Multi-Objective Hierarchical Output Feedback Optimization via   Multiplier Induced Loss Landscape Scheduling","url":"https://arxiv.org/pdf/2403.13728"},{"title":"GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep   Multitask Networks","url":"https://arxiv.org/pdf/1711.02257"},{"title":"Gradient normalization systems and methods for adaptive loss balancing in deep multitask networks","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11537895"},{"title":"(PDF) A Comparison of Loss Weighting Strategies for Multi task Learning in Deep Neural Networks","url":"https://www.researchgate.net/publication/336069340_A_Comparison_of_Loss_Weighting_Strategies_for_Multi_task_Learning_in_Deep_Neural_Networks"},{"title":"Mitigating Negative Transfer in Multi-Task Learning with Exponential   Moving Average Loss Weighting Strategies","url":"https://arxiv.org/pdf/2211.12999"},{"title":"Improvable Gap Balancing for Multi-Task Learning","url":"https://arxiv.org/pdf/2307.15429"}]
+
+I've completed the web search for your query on multi-task loss balancing, composite loss, and hyperparameter scheduling in deep learning and reward model training. Here are the key findings:
+
+## Loss Balancing Methods
+
+GradNorm is a gradient normalization technique which automatically balances the multitask loss function by directly tuning the gradients to equalize task training rates. GradNorm matches or surpasses the performance of exhaustive grid search methods, despite only involving a single asymmetry hyperparameter.
+
+## Recent Approaches
+
+One simpler method scales each loss by its observed magnitude, scaling task losses by their exponential moving averages (EMAs).
+
+Multi-objective optimization on loss terms has raised attention in the deep learning community recently, as an alternative to optimizing a fixed weighted summation of many neural network loss terms using a single objective optimization algorithm which relies on heavy hyperparameter tuning of the weight multipliers.
+
+## Key Challenges
+
+The largest challenge in multi-task learning is the seesaw phenomenon where joint training often results in better performance on some tasks but worse on others, leading to loss balancing and gradient balancing optimization methods.
+
+## Reward Model Training
+
+Recent work formulates data selection as a training-aware sequential decision-making problem, with a composite reward that integrates loss-based difficulty and confidence-based uncertainty signals, along with a tuning-free adaptive weighting mechanism that balances these signals over training.
+
+The search results primarily contain research from 2017-2024, with limited specific 2025-2026 content related to your exact query.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "13acf3b0-0fa7-4dd0-955f-f85554b41c18",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "a36ee32f-fe6f-45ed-bf1d-96fcc4a18abd",
+  "toolUseResult": {
+    "query": "multi-task loss balancing composite loss hyperparameter scheduling deep learning reward model training 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EXtVyMydUDegyd6zpqQc6x",
+        "content": [
+          {
+            "title": "(PDF) GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks",
+            "url": "https://www.researchgate.net/publication/320920333_GradNorm_Gradient_Normalization_for_Adaptive_Loss_Balancing_in_Deep_Multitask_Networks"
+          },
+          {
+            "title": "M-HOF-Opt: Multi-Objective Hierarchical Output Feedback Optimization via   Multiplier Induced Loss Landscape Scheduling",
+            "url": "https://arxiv.org/pdf/2403.13728"
+          },
+          {
+            "title": "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep   Multitask Networks",
+            "url": "https://arxiv.org/pdf/1711.02257"
+          },
+          {
+            "title": "Gradient normalization systems and methods for adaptive loss balancing in deep multitask networks",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11537895"
+          },
+          {
+            "title": "(PDF) A Comparison of Loss Weighting Strategies for Multi task Learning in Deep Neural Networks",
+            "url": "https://www.researchgate.net/publication/336069340_A_Comparison_of_Loss_Weighting_Strategies_for_Multi_task_Learning_in_Deep_Neural_Networks"
+          },
+          {
+            "title": "Mitigating Negative Transfer in Multi-Task Learning with Exponential   Moving Average Loss Weighting Strategies",
+            "url": "https://arxiv.org/pdf/2211.12999"
+          },
+          {
+            "title": "Improvable Gap Balancing for Multi-Task Learning",
+            "url": "https://arxiv.org/pdf/2307.15429"
+          }
+        ]
+      },
+      "I've completed the web search for your query on multi-task loss balancing, composite loss, and hyperparameter scheduling in deep learning and reward model training. Here are the key findings:\n\n## Loss Balancing Methods\n\nGradNorm is a gradient normalization technique which automatically balances the multitask loss function by directly tuning the gradients to equalize task training rates. GradNorm matches or surpasses the performance of exhaustive grid search methods, despite only involving a single asymmetry hyperparameter.\n\n## Recent Approaches\n\nOne simpler method scales each loss by its observed magnitude, scaling task losses by their exponential moving averages (EMAs).\n\nMulti-objective optimization on loss terms has raised attention in the deep learning community recently, as an alternative to optimizing a fixed weighted summation of many neural network loss terms using a single objective optimization algorithm which relies on heavy hyperparameter tuning of the weight multipliers.\n\n## Key Challenges\n\nThe largest challenge in multi-task learning is the seesaw phenomenon where joint training often results in better performance on some tasks but worse on others, leading to loss balancing and gradient balancing optimization methods.\n\n## Reward Model Training\n\nRecent work formulates data selection as a training-aware sequential decision-making problem, with a composite reward that integrates loss-based difficulty and confidence-based uncertainty signals, along with a tuning-free adaptive weighting mechanism that balances these signals over training.\n\nThe search results primarily contain research from 2017-2024, with limited specific 2025-2026 content related to your exact query."
+    ],
+    "durationSeconds": 7.559145307999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "13acf3b0-0fa7-4dd0-955f-f85554b41c18",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-27T21:23:45.349Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have initial information. Let me now dig deeper into FoVer, the controllable process data synthesis paper, and also research the specific technical issues around Tier 2 circularity and step-level specific challenges.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a36ee32f-fe6f-45ed-bf1d-96fcc4a18abd",
+  "isSidechain": false,
+  "requestId": "req_011CbTn3RX2ALhArTbaasdQK",
+  "type": "assistant",
+  "uuid": "45afd7ac-f588-4c73-9807-a21a8fb21615",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EPzWVW2Riajuj1ZZgiEkv8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3697,
+      "cache_read_input_tokens": 20282,
+      "output_tokens": 535,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3697,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 535,
+          "cache_read_input_tokens": 20282,
+          "cache_creation_input_tokens": 3697,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3697
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-27T21:23:46.272Z_
+
+Good initial results. Let me dig deeper into FoVer's specifics and research the other key issues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45afd7ac-f588-4c73-9807-a21a8fb21615",
+  "isSidechain": false,
+  "requestId": "req_011CbTn3RX2ALhArTbaasdQK",
+  "type": "assistant",
+  "uuid": "cffbc2f6-43c9-4911-86c4-c942bfda5942",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EPzWVW2Riajuj1ZZgiEkv8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3697,
+      "cache_read_input_tokens": 20282,
+      "output_tokens": 535,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3697,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 535,
+          "cache_read_input_tokens": 20282,
+          "cache_creation_input_tokens": 3697,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3697
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-27T21:23:50.648Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KyQiumURbPuJsN9ufKyhWv`</summary>
+
+```json
+{
+  "url": "https://fover-prm.github.io/",
+  "prompt": "Extract detailed information about FoVer's method: (1) How exactly do they use Z3 and Isabelle? (2) What is the verification pipeline - do they verify correctness labels or semantic equivalence? (3) What formal reasoning tasks do they use as source data? (4) How do they handle generalization to non-formal math tasks? (5) What are their key results on MATH, AIME, ProcessBench? (6) What is the training data size and model backbone? (7) How does their step-level annotation work specifically?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cffbc2f6-43c9-4911-86c4-c942bfda5942",
+  "isSidechain": false,
+  "requestId": "req_011CbTn3RX2ALhArTbaasdQK",
+  "type": "assistant",
+  "uuid": "fc757d41-bdb6-48c4-9b1a-3a472d097d71",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EPzWVW2Riajuj1ZZgiEkv8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3697,
+      "cache_read_input_tokens": 20282,
+      "output_tokens": 535,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3697,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 535,
+          "cache_read_input_tokens": 20282,
+          "cache_creation_input_tokens": 3697,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3697
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-27T21:23:52.999Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DPEW1aG4xqeKwXLUyf1s89`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=LAejsDitr3",
+  "prompt": "Extract the OpenReview discussion for FoVer paper: reviewer comments, strengths, weaknesses, key concerns about the method, and how the authors responded. What limitations were identified? What is the relationship between formal verification of correctness labels vs semantic equivalence verification?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc757d41-bdb6-48c4-9b1a-3a472d097d71",
+  "isSidechain": false,
+  "requestId": "req_011CbTn3RX2ALhArTbaasdQK",
+  "type": "assistant",
+  "uuid": "168a16b5-0f0f-417b-8e97-3da54d49c0e8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EPzWVW2Riajuj1ZZgiEkv8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3697,
+      "cache_read_input_tokens": 20282,
+      "output_tokens": 535,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3697,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 535,
+          "cache_read_input_tokens": 20282,
+          "cache_creation_input_tokens": 3697,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3697
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-27T21:23:54.420Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0151wZECG9g7pK5EfdfNJcsU`</summary>
+
+```json
+{
+  "query": "\"Controllable and Verifiable Process Data Synthesis\" PRM symbolic verification paired trajectories error injection 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "168a16b5-0f0f-417b-8e97-3da54d49c0e8",
+  "isSidechain": false,
+  "requestId": "req_011CbTn3RX2ALhArTbaasdQK",
+  "type": "assistant",
+  "uuid": "f20eafa9-4cce-4d5a-b575-56c3b55b073d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EPzWVW2Riajuj1ZZgiEkv8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3697,
+      "cache_read_input_tokens": 20282,
+      "output_tokens": 535,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3697,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 535,
+          "cache_read_input_tokens": 20282,
+          "cache_creation_input_tokens": 3697,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3697
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-27T21:23:55.225Z_
+
+<details><summary>↩ Tool result · `toolu_01KyQiumURbPuJsN9ufKyhWv`</summary>
+
+```text
+# FoVer Method Analysis
+
+Based on the provided webpage content, here's what can be determined:
+
+## Available Information
+
+**Formal Verification Tools:**
+The framework "synthesizes PRM training data from formal reasoning tasks by annotating step-level error labels using formal verification tools such as Z3 and Isabelle." However, the specific implementation details of how each tool is utilized aren't elaborated on this page.
+
+**Verification Approach:**
+The page indicates that FoVer uses formal verification for step-level annotation, but doesn't specify whether they verify correctness labels or semantic equivalence specifically.
+
+**Source Tasks:**
+Training data comes from "formal logic and theorem proving tasks," though particular datasets aren't named in this excerpt.
+
+**Generalization Strategy:**
+The page notes that PRMs "outperform baseline PRMs on average" across benchmarks that "differ substantially from the tasks used to construct the training data," suggesting transfer learning works, but the mechanism isn't explained here.
+
+**Key Results:**
+The content references "Best-of-7 results across 5 categories of 12 reasoning benchmarks" with improvements demonstrated, but specific scores for MATH, AIME, or ProcessBench aren't provided.
+
+**Training Specifics:**
+Dataset size and model architecture details aren't included in this webpage content.
+
+## Missing Details
+
+Questions (1) detailed methodology, (2) verification pipeline specifics, (3) exact formal task sources, (5) benchmark-specific results, (6) training data scale and backbone model, and (7) annotation mechanics require consulting the arXiv paper or GitHub repository linked on the page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fc757d41-bdb6-48c4-9b1a-3a472d097d71",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "ef1f9437-4e77-4031-8bcc-9b71f702660f",
+  "toolUseResult": {
+    "bytes": 19850,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# FoVer Method Analysis\n\nBased on the provided webpage content, here's what can be determined:\n\n## Available Information\n\n**Formal Verification Tools:**\nThe framework \"synthesizes PRM training data from formal reasoning tasks by annotating step-level error labels using formal verification tools such as Z3 and Isabelle.\" However, the specific implementation details of how each tool is utilized aren't elaborated on this page.\n\n**Verification Approach:**\nThe page indicates that FoVer uses formal verification for step-level annotation, but doesn't specify whether they verify correctness labels or semantic equivalence specifically.\n\n**Source Tasks:**\nTraining data comes from \"formal logic and theorem proving tasks,\" though particular datasets aren't named in this excerpt.\n\n**Generalization Strategy:**\nThe page notes that PRMs \"outperform baseline PRMs on average\" across benchmarks that \"differ substantially from the tasks used to construct the training data,\" suggesting transfer learning works, but the mechanism isn't explained here.\n\n**Key Results:**\nThe content references \"Best-of-7 results across 5 categories of 12 reasoning benchmarks\" with improvements demonstrated, but specific scores for MATH, AIME, or ProcessBench aren't provided.\n\n**Training Specifics:**\nDataset size and model architecture details aren't included in this webpage content.\n\n## Missing Details\n\nQuestions (1) detailed methodology, (2) verification pipeline specifics, (3) exact formal task sources, (5) benchmark-specific results, (6) training data scale and backbone model, and (7) annotation mechanics require consulting the arXiv paper or GitHub repository linked on the page.",
+    "durationMs": 4572,
+    "url": "https://fover-prm.github.io/"
+  },
+  "sourceToolAssistantUUID": "fc757d41-bdb6-48c4-9b1a-3a472d097d71",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-27T21:23:55.250Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RVTy42mm7DYGZtH64ZGz5b`</summary>
+
+```json
+{
+  "query": "LLM-as-judge circularity same model family verification bias cross-model validation strategy 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef1f9437-4e77-4031-8bcc-9b71f702660f",
+  "isSidechain": false,
+  "requestId": "req_011CbTn3RX2ALhArTbaasdQK",
+  "type": "assistant",
+  "uuid": "d50df83b-b0e2-42eb-b603-08156af21f1b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EPzWVW2Riajuj1ZZgiEkv8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3697,
+      "cache_read_input_tokens": 20282,
+      "output_tokens": 535,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3697,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 535,
+          "cache_read_input_tokens": 20282,
+          "cache_creation_input_tokens": 3697,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3697
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-27T21:23:57.231Z_
+
+<details><summary>↩ Tool result · `toolu_01DPEW1aG4xqeKwXLUyf1s89`</summary>
+
+```text
+I cannot extract the OpenReview discussion details you requested because the provided content does not include reviewer comments, strengths, weaknesses, or author responses.
+
+The webpage content shows only the paper's header information from OpenReview, including:
+- Title and authors
+- A TL;DR summary
+- The abstract
+- Metadata (submission date, status as "Withdrawn Submission," keywords)
+
+**What's missing:** The actual peer review discussion section where reviewers post comments and authors provide rebuttals is not present in the provided content.
+
+**Regarding your specific questions:**
+
+I cannot address the distinctions between "formal verification of correctness labels vs semantic equivalence verification" based on this material, as these technical details aren't discussed in the excerpt provided.
+
+To obtain the information you seek, you would need to:
+1. Visit the full OpenReview page for this paper (LAejsDitr3)
+2. Navigate to the "Reviews" or "Discussion" tab
+3. Review individual reviewer comments and author responses
+
+Note: The submission status shows "Withdrawn Submission," which may affect whether discussion content is publicly visible.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "168a16b5-0f0f-417b-8e97-3da54d49c0e8",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "1b96828e-4e5d-402f-a24c-79bd9a1b7492",
+  "toolUseResult": {
+    "bytes": 88024,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot extract the OpenReview discussion details you requested because the provided content does not include reviewer comments, strengths, weaknesses, or author responses.\n\nThe webpage content shows only the paper's header information from OpenReview, including:\n- Title and authors\n- A TL;DR summary\n- The abstract\n- Metadata (submission date, status as \"Withdrawn Submission,\" keywords)\n\n**What's missing:** The actual peer review discussion section where reviewers post comments and authors provide rebuttals is not present in the provided content.\n\n**Regarding your specific questions:**\n\nI cannot address the distinctions between \"formal verification of correctness labels vs semantic equivalence verification\" based on this material, as these technical details aren't discussed in the excerpt provided.\n\nTo obtain the information you seek, you would need to:\n1. Visit the full OpenReview page for this paper (LAejsDitr3)\n2. Navigate to the \"Reviews\" or \"Discussion\" tab\n3. Review individual reviewer comments and author responses\n\nNote: The submission status shows \"Withdrawn Submission,\" which may affect whether discussion content is publicly visible.",
+    "durationMs": 4229,
+    "url": "https://openreview.net/forum?id=LAejsDitr3"
+  },
+  "sourceToolAssistantUUID": "168a16b5-0f0f-417b-8e97-3da54d49c0e8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-27T21:24:00.267Z_
+
+<details><summary>↩ Tool result · `toolu_0151wZECG9g7pK5EfdfNJcsU`</summary>
+
+```text
+Web search results for query: ""Controllable and Verifiable Process Data Synthesis" PRM symbolic verification paired trajectories error injection 2026"
+
+Links: [{"title":"[2605.02395v1] Controllable and Verifiable Process Data Synthesis for Process Reward Models","url":"https://arxiv.org/abs/2605.02395v1"},{"title":"[2605.02395] Controllable and Verifiable Process Data Synthesis for Process Reward Models","url":"https://arxiv.org/abs/2605.02395"},{"title":"Controllable and Verifiable Process Data Synthesis for Process Reward Models","url":"https://arxiv.org/html/2605.02395v1"},{"title":"Generalizable Process Reward Models via Formally Verified Training Data","url":"https://arxiv.org/pdf/2505.15960"},{"title":"Efficient PRM Training Data Synthesis via Formal Verification","url":"https://arxiv.org/html/2505.15960v3"},{"title":"FoVer: Efficient PRM Training Data Synthesis via Formal Verification","url":"https://fover-prm.github.io/"},{"title":"[2505.15960] Efficient PRM Training Data Synthesis via Formal Verification","url":"https://arxiv.org/abs/2505.15960"}]
+
+I found the research you're looking for! Here are the key findings:
+
+The paper proposes a controllable and verifiable framework for synthesizing process supervision data for Process Reward Models (PRMs) that constructs a correct symbolic reasoning chain, injects a template-aware error into an intermediate step, recomputes subsequent steps under the corrupted state, and verifies that the injected step is not derivable from its prefix.
+
+The resulting paired trajectories are prefix-invalid at the first error while remaining trajectory-consistent after symbolic recomputation, and are translated into aligned natural-language processes for PRM training and evaluation.
+
+Experiments show that the synthesized data improve Best-of-8 reranking on logical reasoning benchmarks and transfer to mathematical reasoning.
+
+The paper was published recently (arxiv 2605.02395) and directly addresses the key concepts you mentioned: controllable and verifiable process data synthesis, symbolic verification with paired trajectories, and error injection techniques for PRM training data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f20eafa9-4cce-4d5a-b575-56c3b55b073d",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "a272b1f6-dc21-43e9-85a4-d88f586ccef2",
+  "toolUseResult": {
+    "query": "\"Controllable and Verifiable Process Data Synthesis\" PRM symbolic verification paired trajectories error injection 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012ZQMatFEhefLRhDMf3SzpX",
+        "content": [
+          {
+            "title": "[2605.02395v1] Controllable and Verifiable Process Data Synthesis for Process Reward Models",
+            "url": "https://arxiv.org/abs/2605.02395v1"
+          },
+          {
+            "title": "[2605.02395] Controllable and Verifiable Process Data Synthesis for Process Reward Models",
+            "url": "https://arxiv.org/abs/2605.02395"
+          },
+          {
+            "title": "Controllable and Verifiable Process Data Synthesis for Process Reward Models",
+            "url": "https://arxiv.org/html/2605.02395v1"
+          },
+          {
+            "title": "Generalizable Process Reward Models via Formally Verified Training Data",
+            "url": "https://arxiv.org/pdf/2505.15960"
+          },
+          {
+            "title": "Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://arxiv.org/html/2505.15960v3"
+          },
+          {
+            "title": "FoVer: Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://fover-prm.github.io/"
+          },
+          {
+            "title": "[2505.15960] Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://arxiv.org/abs/2505.15960"
+          }
+        ]
+      },
+      "I found the research you're looking for! Here are the key findings:\n\nThe paper proposes a controllable and verifiable framework for synthesizing process supervision data for Process Reward Models (PRMs) that constructs a correct symbolic reasoning chain, injects a template-aware error into an intermediate step, recomputes subsequent steps under the corrupted state, and verifies that the injected step is not derivable from its prefix.\n\nThe resulting paired trajectories are prefix-invalid at the first error while remaining trajectory-consistent after symbolic recomputation, and are translated into aligned natural-language processes for PRM training and evaluation.\n\nExperiments show that the synthesized data improve Best-of-8 reranking on logical reasoning benchmarks and transfer to mathematical reasoning.\n\nThe paper was published recently (arxiv 2605.02395) and directly addresses the key concepts you mentioned: controllable and verifiable process data synthesis, symbolic verification with paired trajectories, and error injection techniques for PRM training data."
+    ],
+    "durationSeconds": 5.8435602790000045,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f20eafa9-4cce-4d5a-b575-56c3b55b073d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-27T21:24:07.757Z_
+
+<details><summary>↩ Tool result · `toolu_01RVTy42mm7DYGZtH64ZGz5b`</summary>
+
+```text
+Web search results for query: "LLM-as-judge circularity same model family verification bias cross-model validation strategy 2025 2026"
+
+Links: [{"title":"LLM-as-Judge in Fine-Tuning: Recent Findings and SOTA Methods | by Senyuan Fan | Medium","url":"https://medium.com/@senyuansamuelfan/llm-as-judge-in-fine-tuning-recent-findings-and-sota-methods-240ad28208e7"},{"title":"LLM-as-a-Judge Evaluation","url":"https://www.emergentmind.com/topics/llm-as-a-judge-evaluations"},{"title":"Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium","url":"https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"},{"title":"LLM as a Judge: A 2026 Guide to Automated Model Assessment | Label Your Data","url":"https://labelyourdata.com/articles/llm-as-a-judge"},{"title":"Preference Leakage: A Contamination Problem in LLM-as-a-judge","url":"https://arxiv.org/pdf/2502.01534"},{"title":"Bias in the Loop: Auditing LLM-as-a-Judge for Software Engineering","url":"https://arxiv.org/html/2604.16790v1"},{"title":"The Silent Judge: Unacknowledged Shortcut Bias in LLM-as-a-Judge","url":"https://arxiv.org/pdf/2509.26072"},{"title":"Play Favorites: A Statistical Method to Measure Self-Bias in LLM-as-a-Judge","url":"https://arxiv.org/pdf/2508.06709"}]
+
+Based on my search results, here's what I found regarding LLM-as-judge circularity, same model family verification bias, and cross-model validation strategies:
+
+## Self-Bias and Model Family Bias
+
+Recent research in 2025 showed that certain models systematically give higher ratings to responses generated by themselves or closely related models, a phenomenon dubbed self-bias. Empirical analysis found evidence of positive self-bias and family-bias, a tendency to favor completions from models within the same family.
+
+## Preference Leakage Problem
+
+A key concern identified in recent research is "preference leakage." Researchers define three common types of relatedness between the data generator LLM and the judge LLM: being the same model, having an inheritance relationship, and belonging to the same model family. Extensive experiments empirically confirm the bias of judges towards their related student models caused by preference leakage across multiple LLM baselines and benchmarks.
+
+## Cross-Model Validation Strategy
+
+The recommended solution is cross-evaluation: always use a judge from a different model family than the one being tested. Additionally, for self-enhancement bias (5-7% boost), using different model families as judges is recommended, and for critical evaluations, running 3-5 models (GPT-4, Claude, Llama-3) with majority vote can reduce biases 30-40%.
+
+## Recent Methodological Advances (2025-2026)
+
+Two 2025–2026 lines of work focus on calibration-based bias correction and confidence intervals that account for imperfect judge sensitivity and specificity, as well as applying item response theory to the judges themselves, framing reliability as a property of the measurement instrument.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d50df83b-b0e2-42eb-b603-08156af21f1b",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "b28a657b-2705-4aa3-8504-583647673732",
+  "toolUseResult": {
+    "query": "LLM-as-judge circularity same model family verification bias cross-model validation strategy 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NWafMjngZxDgbYYEXMH6ta",
+        "content": [
+          {
+            "title": "LLM-as-Judge in Fine-Tuning: Recent Findings and SOTA Methods | by Senyuan Fan | Medium",
+            "url": "https://medium.com/@senyuansamuelfan/llm-as-judge-in-fine-tuning-recent-findings-and-sota-methods-240ad28208e7"
+          },
+          {
+            "title": "LLM-as-a-Judge Evaluation",
+            "url": "https://www.emergentmind.com/topics/llm-as-a-judge-evaluations"
+          },
+          {
+            "title": "Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium",
+            "url": "https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"
+          },
+          {
+            "title": "LLM as a Judge: A 2026 Guide to Automated Model Assessment | Label Your Data",
+            "url": "https://labelyourdata.com/articles/llm-as-a-judge"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as-a-judge",
+            "url": "https://arxiv.org/pdf/2502.01534"
+          },
+          {
+            "title": "Bias in the Loop: Auditing LLM-as-a-Judge for Software Engineering",
+            "url": "https://arxiv.org/html/2604.16790v1"
+          },
+          {
+            "title": "The Silent Judge: Unacknowledged Shortcut Bias in LLM-as-a-Judge",
+            "url": "https://arxiv.org/pdf/2509.26072"
+          },
+          {
+            "title": "Play Favorites: A Statistical Method to Measure Self-Bias in LLM-as-a-Judge",
+            "url": "https://arxiv.org/pdf/2508.06709"
+          }
+        ]
+      },
+      "Based on my search results, here's what I found regarding LLM-as-judge circularity, same model family verification bias, and cross-model validation strategies:\n\n## Self-Bias and Model Family Bias\n\nRecent research in 2025 showed that certain models systematically give higher ratings to responses generated by themselves or closely related models, a phenomenon dubbed self-bias. Empirical analysis found evidence of positive self-bias and family-bias, a tendency to favor completions from models within the same family.\n\n## Preference Leakage Problem\n\nA key concern identified in recent research is \"preference leakage.\" Researchers define three common types of relatedness between the data generator LLM and the judge LLM: being the same model, having an inheritance relationship, and belonging to the same model family. Extensive experiments empirically confirm the bias of judges towards their related student models caused by preference leakage across multiple LLM baselines and benchmarks.\n\n## Cross-Model Validation Strategy\n\nThe recommended solution is cross-evaluation: always use a judge from a different model family than the one being tested. Additionally, for self-enhancement bias (5-7% boost), using different model families as judges is recommended, and for critical evaluations, running 3-5 models (GPT-4, Claude, Llama-3) with majority vote can reduce biases 30-40%.\n\n## Recent Methodological Advances (2025-2026)\n\nTwo 2025–2026 lines of work focus on calibration-based bias correction and confidence intervals that account for imperfect judge sensitivity and specificity, as well as applying item response theory to the judges themselves, framing reliability as a property of the measurement instrument."
+    ],
+    "durationSeconds": 12.503513141000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d50df83b-b0e2-42eb-b603-08156af21f1b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-27T21:24:07.761Z_
+
+```json
+{
+  "parentUuid": "b28a657b-2705-4aa3-8504-583647673732",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d4afa45f-acb4-4bac-b644-3cbfce2b8625",
+  "timestamp": "2026-05-27T21:24:07.761Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"CI-PRM: Counterfactual-Invariant Process Reward Models with Domain-Adv…",
+  "leafUuid": "d4afa45f-acb4-4bac-b644-3cbfce2b8625",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CI-PRM with FoVer positioning and loss balancing",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-27T21:24:11.007Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me get more details on FoVer's actual paper and also research the step-level specific challenges for the novelty argument.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4afa45f-acb4-4bac-b644-3cbfce2b8625",
+  "isSidechain": false,
+  "requestId": "req_011CbTn5N8BX9f2oHsVC8r6F",
+  "type": "assistant",
+  "uuid": "437ad703-665f-4db0-8161-d24642db529d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019gFux7uSiv9junkRGktnDz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2793,
+      "cache_read_input_tokens": 23979,
+      "output_tokens": 618,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2793,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 618,
+          "cache_read_input_tokens": 23979,
+          "cache_creation_input_tokens": 2793,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2793
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-27T21:24:12.049Z_
+
+Let me get more details from the FoVer paper and research step-level specific challenges.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "437ad703-665f-4db0-8161-d24642db529d",
+  "isSidechain": false,
+  "requestId": "req_011CbTn5N8BX9f2oHsVC8r6F",
+  "type": "assistant",
+  "uuid": "19bf9029-f00b-4fda-a387-6fc8249cc6d8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019gFux7uSiv9junkRGktnDz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2793,
+      "cache_read_input_tokens": 23979,
+      "output_tokens": 618,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2793,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 618,
+          "cache_read_input_tokens": 23979,
+          "cache_creation_input_tokens": 2793,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2793
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-27T21:24:17.287Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019wuDu6LHLrVQY33nFCVPuH`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2505.15960v3",
+  "prompt": "Extract detailed technical information: (1) What formal reasoning tasks does FoVer use (propositional logic, first-order logic, etc.)? (2) How exactly does the Z3/Isabelle verification work for step-level labels - do they verify each step's correctness by checking if the step follows from previous steps? (3) What is the training data size? (4) What model backbone do they use? (5) Key results on MATH, AIME, ProcessBench? (6) How do they handle natural language math that can't be directly formalized? (7) What are the limitations they acknowledge? (8) Do they address debiasing or spurious correlations at all? Focus on sections about method, experiments, and limitations."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "19bf9029-f00b-4fda-a387-6fc8249cc6d8",
+  "isSidechain": false,
+  "requestId": "req_011CbTn5N8BX9f2oHsVC8r6F",
+  "type": "assistant",
+  "uuid": "69baf27c-b2b3-418d-ad22-f5b3d26be7eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019gFux7uSiv9junkRGktnDz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2793,
+      "cache_read_input_tokens": 23979,
+      "output_tokens": 618,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2793,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 618,
+          "cache_read_input_tokens": 23979,
+          "cache_creation_input_tokens": 2793,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2793
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-27T21:24:20.593Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012oDwBn7yK3maU4GxmTfD5k`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.02395v1",
+  "prompt": "Extract detailed technical information about this paper: (1) How do they construct symbolic reasoning chains? (2) What types of errors do they inject (sign flips, dropped terms, etc.)? (3) How does symbolic verification ensure error validity? (4) What benchmarks do they evaluate on? (5) Key results? (6) Do they address debiasing or reward hacking? (7) How do they translate symbolic chains to natural language? (8) What is the relationship between their paired trajectory approach and counterfactual augmentation for debiasing?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69baf27c-b2b3-418d-ad22-f5b3d26be7eb",
+  "isSidechain": false,
+  "requestId": "req_011CbTn5N8BX9f2oHsVC8r6F",
+  "type": "assistant",
+  "uuid": "c2229970-c186-440d-be72-40825468822f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019gFux7uSiv9junkRGktnDz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2793,
+      "cache_read_input_tokens": 23979,
+      "output_tokens": 618,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2793,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 618,
+          "cache_read_input_tokens": 23979,
+          "cache_creation_input_tokens": 2793,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2793
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-27T21:24:21.539Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UbpMr4J18aMNRg8hgbiN1y`</summary>
+
+```json
+{
+  "query": "step-level process reward model per-step verification challenges compositional reasoning error propagation vs outcome-level 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2229970-c186-440d-be72-40825468822f",
+  "isSidechain": false,
+  "requestId": "req_011CbTn5N8BX9f2oHsVC8r6F",
+  "type": "assistant",
+  "uuid": "db83fa9c-6711-4f4b-b121-47cd3557b8a7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019gFux7uSiv9junkRGktnDz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2793,
+      "cache_read_input_tokens": 23979,
+      "output_tokens": 618,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2793,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 618,
+          "cache_read_input_tokens": 23979,
+          "cache_creation_input_tokens": 2793,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2793
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-27T21:24:22.633Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012BPHCbW7rWcs185GHbnbU6`</summary>
+
+```json
+{
+  "query": "GradNorm adaptive loss balancing multi-task training progressive training curriculum adversarial component scheduling 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db83fa9c-6711-4f4b-b121-47cd3557b8a7",
+  "isSidechain": false,
+  "requestId": "req_011CbTn5N8BX9f2oHsVC8r6F",
+  "type": "assistant",
+  "uuid": "bfcc2f2c-66e0-4cb8-9d03-f89771b2442b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019gFux7uSiv9junkRGktnDz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2793,
+      "cache_read_input_tokens": 23979,
+      "output_tokens": 618,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2793,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 618,
+          "cache_read_input_tokens": 23979,
+          "cache_creation_input_tokens": 2793,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2793
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-27T21:24:28.511Z_
+
+<details><summary>↩ Tool result · `toolu_012BPHCbW7rWcs185GHbnbU6`</summary>
+
+```text
+Web search results for query: "GradNorm adaptive loss balancing multi-task training progressive training curriculum adversarial component scheduling 2024 2025"
+
+Links: [{"title":"GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks | alphaXiv","url":"https://www.alphaxiv.org/overview/1711.02257v4"},{"title":"GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks | OpenReview","url":"https://openreview.net/forum?id=H1bM1fZCW"},{"title":"GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks | Learning-Deep-Learning","url":"https://patrick-llgc.github.io/Learning-Deep-Learning/paper_notes/gradnorm.html"},{"title":"GradNorm--Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks · Papers I Read","url":"https://shagunsodhani.com/papers-I-read/GradNorm-Gradient-Normalization-for-Adaptive-Loss-Balancing-in-Deep-Multitask-Networks"},{"title":"(PDF) GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks","url":"https://www.researchgate.net/publication/320920333_GradNorm_Gradient_Normalization_for_Adaptive_Loss_Balancing_in_Deep_Multitask_Networks"},{"title":"GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks","url":"https://proceedings.mlr.press/v80/chen18a.html"},{"title":"[1711.02257] GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks","url":"https://arxiv.org/abs/1711.02257"},{"title":"[PDF] GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks | Semantic Scholar","url":"https://www.semanticscholar.org/paper/GradNorm:-Gradient-Normalization-for-Adaptive-Loss-Chen-Badrinarayanan/582157494d72dd28dc28172f04dfd5f25fb17bff"}]
+
+Based on the search results, here's what I found about GradNorm and related topics:
+
+## GradNorm: Gradient Normalization for Adaptive Loss Balancing
+
+GradNorm is a gradient normalization algorithm that automatically balances training in deep multitask models by dynamically tuning gradient magnitudes. The technique automatically balances the multitask loss function by directly tuning the gradients to equalize task training rates.
+
+### Key Features and Approach
+
+GradNorm improves multi-task training by dynamically tuning the magnitude of gradients corresponding to different tasks. The balance is struck when tasks are training at similar rates as measured by the loss ratio L(t)/L(0).
+
+### Performance Results
+
+For various network architectures, for both regression and classification tasks, and on both synthetic and real datasets, GradNorm improves accuracy and reduces overfitting across multiple tasks when compared to single-task networks, static baselines, and other adaptive multitask loss balancing techniques. GradNorm also matches or surpasses the performance of exhaustive grid search methods, despite only involving a single asymmetry hyperparameter α.
+
+**Note:** The search results primarily cover the original GradNorm paper from 2017-2018. The search did not return specific results about progressive training, curriculum learning, adversarial component scheduling, or recent 2024-2025 extensions of GradNorm. If you're looking for more recent developments or specific applications of these techniques, a more targeted search might be helpful.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bfcc2f2c-66e0-4cb8-9d03-f89771b2442b",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "8698963f-8a8a-47ff-80ba-186dfc719868",
+  "toolUseResult": {
+    "query": "GradNorm adaptive loss balancing multi-task training progressive training curriculum adversarial component scheduling 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DxPsnxsRJkDYBnaezE2Wjg",
+        "content": [
+          {
+            "title": "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/1711.02257v4"
+          },
+          {
+            "title": "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks | OpenReview",
+            "url": "https://openreview.net/forum?id=H1bM1fZCW"
+          },
+          {
+            "title": "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks | Learning-Deep-Learning",
+            "url": "https://patrick-llgc.github.io/Learning-Deep-Learning/paper_notes/gradnorm.html"
+          },
+          {
+            "title": "GradNorm--Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks · Papers I Read",
+            "url": "https://shagunsodhani.com/papers-I-read/GradNorm-Gradient-Normalization-for-Adaptive-Loss-Balancing-in-Deep-Multitask-Networks"
+          },
+          {
+            "title": "(PDF) GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks",
+            "url": "https://www.researchgate.net/publication/320920333_GradNorm_Gradient_Normalization_for_Adaptive_Loss_Balancing_in_Deep_Multitask_Networks"
+          },
+          {
+            "title": "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks",
+            "url": "https://proceedings.mlr.press/v80/chen18a.html"
+          },
+          {
+            "title": "[1711.02257] GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks",
+            "url": "https://arxiv.org/abs/1711.02257"
+          },
+          {
+            "title": "[PDF] GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/GradNorm:-Gradient-Normalization-for-Adaptive-Loss-Chen-Badrinarayanan/582157494d72dd28dc28172f04dfd5f25fb17bff"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about GradNorm and related topics:\n\n## GradNorm: Gradient Normalization for Adaptive Loss Balancing\n\nGradNorm is a gradient normalization algorithm that automatically balances training in deep multitask models by dynamically tuning gradient magnitudes. The technique automatically balances the multitask loss function by directly tuning the gradients to equalize task training rates.\n\n### Key Features and Approach\n\nGradNorm improves multi-task training by dynamically tuning the magnitude of gradients corresponding to different tasks. The balance is struck when tasks are training at similar rates as measured by the loss ratio L(t)/L(0).\n\n### Performance Results\n\nFor various network architectures, for both regression and classification tasks, and on both synthetic and real datasets, GradNorm improves accuracy and reduces overfitting across multiple tasks when compared to single-task networks, static baselines, and other adaptive multitask loss balancing techniques. GradNorm also matches or surpasses the performance of exhaustive grid search methods, despite only involving a single asymmetry hyperparameter α.\n\n**Note:** The search results primarily cover the original GradNorm paper from 2017-2018. The search did not return specific results about progressive training, curriculum learning, adversarial component scheduling, or recent 2024-2025 extensions of GradNorm. If you're looking for more recent developments or specific applications of these techniques, a more targeted search might be helpful."
+    ],
+    "durationSeconds": 5.875272953000007,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "bfcc2f2c-66e0-4cb8-9d03-f89771b2442b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-27T21:24:29.269Z_
+
+<details><summary>↩ Tool result · `toolu_019wuDu6LHLrVQY33nFCVPuH`</summary>
+
+```text
+# Technical Analysis of FoVer
+
+## (1) Formal Reasoning Tasks
+
+FoVer utilizes two primary formal reasoning domains:
+
+- **First-order logic**: Logical entailment tasks from FLDx2, where models determine if hypotheses follow from premises using deductive reasoning
+- **Formal theorem proving**: Mathematical proof generation for GSM8K-level word problems using Isabelle/HOL
+
+## (2) Step-Level Verification Mechanism
+
+The verification approach differs by task type:
+
+**For formal logic (Z3)**: Each step is independently verified by checking satisfiability. The system "supplies Z3 with the premises and conclusion for the target step to determine logical validity." This involves converting each step into a logical formula and testing whether it's satisfiable given the context and preceding steps.
+
+**For theorem proving (Isabelle)**: The implementation "assumes that the other steps are correct when evaluating the target step," enabling step-level checking of formal proofs that Isabelle normally verifies at solution-level only.
+
+## (3) Training Data Size
+
+FoVer-40K contains **40,000 steps** distributed as:
+- Formal logic (Z3): 20,000 steps (10K each from Llama 3.1 8B and Qwen 2.5 7B)
+- Formal theorem proving (Isabelle): 20,000 steps (Qwen 2.5 7B only)
+- Error distribution: 50% error rate across both tasks
+
+## (4) Model Backbone
+
+Two LLM backbones were fine-tuned:
+- **Llama 3.1 8B** (creating FoVer-Llama3.1-8B-PRM)
+- **Qwen 2.5 7B** (creating FoVer-Qwen2.5-7B-PRM)
+
+Additionally tested: Qwen 3 4B (newer, stronger model)
+
+## (5) Key Quantitative Results
+
+**MATH benchmark (Best-of-7)**:
+- FoVer-Llama3.1-8B: 71.7% (vs. 66.1% baseline)
+- FoVer-Qwen2.5-7B: 81.1% (vs. 80.3% baseline)
+
+**AIME benchmark**:
+- FoVer-Llama3.1-8B: 5.2% (vs. 4.0% baseline)
+- FoVer-Qwen2.5-7B: 12.0% (vs. 12.4% baseline)
+
+**ProcessBench (step-level AUROC)**:
+- FoVer-Qwen2.5-7B: 85.8% average (vs. 75.9% baseline)
+- Significant improvements across GSM8K, MATH, Olympiad, and Omni-Math subsets
+
+## (6) Handling Natural Language Math
+
+The research demonstrates **formal-to-informal transfer**: PRMs trained on symbolic formal reasoning improve performance on natural language math benchmarks. However, the paper doesn't explicitly address the conversion mechanism beyond noting that "PRM training exhibits formal-to-informal transfer without these modifications" compared to direct LLM fine-tuning approaches.
+
+## (7) Acknowledged Limitations
+
+The authors identify three key constraints:
+
+- **Model scope**: "This work focuses on classification-based PRMs that generate a single score to each step," excluding newer reasoning-focused PRM variants
+- **Strictness bias**: PRMs trained on formally verified labels become "overly strict, assigning lower scores to intermediate steps that are acceptable but not strictly precise" (Table 8b example: penalizing rounding 5.444... to 5.44)
+- **Formal task constraint**: The approach only applies to reasoning tasks compatible with formal verification tools
+
+## (8) Debiasing and Spurious Correlations
+
+The paper does **not** address debiasing or spurious correlation mitigation. The focus remains on efficiency and accuracy of label generation rather than preventing model bias from formal-to-informal transfer or examining whether formal reasoning patterns introduce spurious correlations in natural language domains.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "69baf27c-b2b3-418d-ad22-f5b3d26be7eb",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "7e5ee2b9-151e-46dd-9d38-0de07a2a4c44",
+  "toolUseResult": {
+    "bytes": 544575,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Technical Analysis of FoVer\n\n## (1) Formal Reasoning Tasks\n\nFoVer utilizes two primary formal reasoning domains:\n\n- **First-order logic**: Logical entailment tasks from FLDx2, where models determine if hypotheses follow from premises using deductive reasoning\n- **Formal theorem proving**: Mathematical proof generation for GSM8K-level word problems using Isabelle/HOL\n\n## (2) Step-Level Verification Mechanism\n\nThe verification approach differs by task type:\n\n**For formal logic (Z3)**: Each step is independently verified by checking satisfiability. The system \"supplies Z3 with the premises and conclusion for the target step to determine logical validity.\" This involves converting each step into a logical formula and testing whether it's satisfiable given the context and preceding steps.\n\n**For theorem proving (Isabelle)**: The implementation \"assumes that the other steps are correct when evaluating the target step,\" enabling step-level checking of formal proofs that Isabelle normally verifies at solution-level only.\n\n## (3) Training Data Size\n\nFoVer-40K contains **40,000 steps** distributed as:\n- Formal logic (Z3): 20,000 steps (10K each from Llama 3.1 8B and Qwen 2.5 7B)\n- Formal theorem proving (Isabelle): 20,000 steps (Qwen 2.5 7B only)\n- Error distribution: 50% error rate across both tasks\n\n## (4) Model Backbone\n\nTwo LLM backbones were fine-tuned:\n- **Llama 3.1 8B** (creating FoVer-Llama3.1-8B-PRM)\n- **Qwen 2.5 7B** (creating FoVer-Qwen2.5-7B-PRM)\n\nAdditionally tested: Qwen 3 4B (newer, stronger model)\n\n## (5) Key Quantitative Results\n\n**MATH benchmark (Best-of-7)**:\n- FoVer-Llama3.1-8B: 71.7% (vs. 66.1% baseline)\n- FoVer-Qwen2.5-7B: 81.1% (vs. 80.3% baseline)\n\n**AIME benchmark**:\n- FoVer-Llama3.1-8B: 5.2% (vs. 4.0% baseline)\n- FoVer-Qwen2.5-7B: 12.0% (vs. 12.4% baseline)\n\n**ProcessBench (step-level AUROC)**:\n- FoVer-Qwen2.5-7B: 85.8% average (vs. 75.9% baseline)\n- Significant improvements across GSM8K, MATH, Olympiad, and Omni-Math subsets\n\n## (6) Handling Natural Language Math\n\nThe research demonstrates **formal-to-informal transfer**: PRMs trained on symbolic formal reasoning improve performance on natural language math benchmarks. However, the paper doesn't explicitly address the conversion mechanism beyond noting that \"PRM training exhibits formal-to-informal transfer without these modifications\" compared to direct LLM fine-tuning approaches.\n\n## (7) Acknowledged Limitations\n\nThe authors identify three key constraints:\n\n- **Model scope**: \"This work focuses on classification-based PRMs that generate a single score to each step,\" excluding newer reasoning-focused PRM variants\n- **Strictness bias**: PRMs trained on formally verified labels become \"overly strict, assigning lower scores to intermediate steps that are acceptable but not strictly precise\" (Table 8b example: penalizing rounding 5.444... to 5.44)\n- **Formal task constraint**: The approach only applies to reasoning tasks compatible with formal verification tools\n\n## (8) Debiasing and Spurious Correlations\n\nThe paper does **not** address debiasing or spurious correlation mitigation. The focus remains on efficiency and accuracy of label generation rather than preventing model bias from formal-to-informal transfer or examining whether formal reasoning patterns introduce spurious correlations in natural language domains.",
+    "durationMs": 11977,
+    "url": "https://arxiv.org/html/2505.15960v3"
+  },
+  "sourceToolAssistantUUID": "69baf27c-b2b3-418d-ad22-f5b3d26be7eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-27T21:24:29.625Z_
+
+<details><summary>↩ Tool result · `toolu_01UbpMr4J18aMNRg8hgbiN1y`</summary>
+
+```text
+Web search results for query: "step-level process reward model per-step verification challenges compositional reasoning error propagation vs outcome-level 2025 2026"
+
+Links: [{"title":"Process Reward Models That Think | OpenReview","url":"https://openreview.net/forum?id=V727xqBYIW"},{"title":"Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis","url":"https://arxiv.org/html/2604.24198v1"},{"title":"Process Reward Models: Step-Level Feedback for LLMs","url":"https://www.emergentmind.com/topics/process-reward-models-prm"},{"title":"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress | Proceedings of the ACM Web Conference 2026","url":"https://dl.acm.org/doi/10.1145/3774904.3792551"},{"title":"Process Reward Models Meet Planning: Generating Precise and Scalable Datasets for Step-Level Rewards","url":"https://arxiv.org/html/2604.17957"},{"title":"SPARK: Stepwise Process-Aware Rewards for Reference-Free Reinforcement Learning","url":"https://arxiv.org/pdf/2512.03244"},{"title":"Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/pdf/2510.13744"},{"title":"Beyond Outcome Verification: Verifiable Process Reward Models for","url":"https://www.arxiv.org/pdf/2601.17223"}]
+
+Based on the web search results, here's what I found about step-level process reward models and their challenges in 2025-2026:
+
+## Key Developments in Process Reward Models
+
+Step-by-step verifiers, also known as process reward models (PRMs), are a key ingredient for test-time scaling, but training them requires expensive step-level supervision.
+
+## Per-Step Verification Challenges
+
+Recent research has highlighted several challenges in step-level verification:
+
+1. **Generalization Issues**: State-of-the-art PRMs struggle to generalize beyond mathematics, particularly to commonsense reasoning tasks.
+
+2. **Frontier Verification Difficulty**: Hard2Verify demonstrates that verifiers must provide step-level annotations for frontier LLM responses, with analysis showing what drives poor performance in step-level verification, the impacts of scaling verifier compute, as well as fundamental questions such as self-verification and verification-generation dynamics.
+
+## Compositional Reasoning and Error Propagation
+
+The research shows that by providing step-level supervision and fine-grained verification during both training and inference time, PRMs can significantly boost the models' reasoning reliability and performance boundary. This addresses the error propagation challenge where mistakes in early steps can compound.
+
+## Step-Level vs. Outcome-Level Approaches
+
+Traditional methods rely on either discriminative verifiers that provide binary correctness signals or rule-based verifiers, both offering only sparse, outcome-level rewards, while recent advances introduce Process Reward Models that provide denser, step-level feedback to improve training stability and credit assignment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db83fa9c-6711-4f4b-b121-47cd3557b8a7",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "a147e7ec-8bc8-4dc9-9f4c-fdce6dec67c4",
+  "toolUseResult": {
+    "query": "step-level process reward model per-step verification challenges compositional reasoning error propagation vs outcome-level 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GbZMaBS4VwxpXkpkYqWGTU",
+        "content": [
+          {
+            "title": "Process Reward Models That Think | OpenReview",
+            "url": "https://openreview.net/forum?id=V727xqBYIW"
+          },
+          {
+            "title": "Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis",
+            "url": "https://arxiv.org/html/2604.24198v1"
+          },
+          {
+            "title": "Process Reward Models: Step-Level Feedback for LLMs",
+            "url": "https://www.emergentmind.com/topics/process-reward-models-prm"
+          },
+          {
+            "title": "AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress | Proceedings of the ACM Web Conference 2026",
+            "url": "https://dl.acm.org/doi/10.1145/3774904.3792551"
+          },
+          {
+            "title": "Process Reward Models Meet Planning: Generating Precise and Scalable Datasets for Step-Level Rewards",
+            "url": "https://arxiv.org/html/2604.17957"
+          },
+          {
+            "title": "SPARK: Stepwise Process-Aware Rewards for Reference-Free Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2512.03244"
+          },
+          {
+            "title": "Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/pdf/2510.13744"
+          },
+          {
+            "title": "Beyond Outcome Verification: Verifiable Process Reward Models for",
+            "url": "https://www.arxiv.org/pdf/2601.17223"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about step-level process reward models and their challenges in 2025-2026:\n\n## Key Developments in Process Reward Models\n\nStep-by-step verifiers, also known as process reward models (PRMs), are a key ingredient for test-time scaling, but training them requires expensive step-level supervision.\n\n## Per-Step Verification Challenges\n\nRecent research has highlighted several challenges in step-level verification:\n\n1. **Generalization Issues**: State-of-the-art PRMs struggle to generalize beyond mathematics, particularly to commonsense reasoning tasks.\n\n2. **Frontier Verification Difficulty**: Hard2Verify demonstrates that verifiers must provide step-level annotations for frontier LLM responses, with analysis showing what drives poor performance in step-level verification, the impacts of scaling verifier compute, as well as fundamental questions such as self-verification and verification-generation dynamics.\n\n## Compositional Reasoning and Error Propagation\n\nThe research shows that by providing step-level supervision and fine-grained verification during both training and inference time, PRMs can significantly boost the models' reasoning reliability and performance boundary. This addresses the error propagation challenge where mistakes in early steps can compound.\n\n## Step-Level vs. Outcome-Level Approaches\n\nTraditional methods rely on either discriminative verifiers that provide binary correctness signals or rule-based verifiers, both offering only sparse, outcome-level rewards, while recent advances introduce Process Reward Models that provide denser, step-level feedback to improve training stability and credit assignment."
+    ],
+    "durationSeconds": 8.083835329999987,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "db83fa9c-6711-4f4b-b121-47cd3557b8a7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-27T21:24:32.911Z_
+
+<details><summary>↩ Tool result · `toolu_012oDwBn7yK3maU4GxmTfD5k`</summary>
+
+```text
+# Technical Analysis: Controllable and Verifiable Process Data Synthesis
+
+## 1. Symbolic Reasoning Chain Construction
+
+The framework builds verified correct chains through recursive goal expansion. Starting from a target conclusion, it "recursively expand[s] intermediate goals and use[s] a symbolic prover to verify whether each step is derivable from the current premises." Only truth-consistent structures advance, yielding "a verifiable forward chain from base facts to the target."
+
+## 2. Error Injection Types
+
+The system injects template-aware errors constrained by instantiated rule patterns. Error categories include:
+
+**Truth-state errors** (violating local conditions): XOR mishandling (as OR or equivalence), AND/OR confusion, dropped conditions, implication violations, partial evaluation
+
+**Structural errors** (violating trajectory well-formedness): missing prerequisites, circular references, redundant steps, converse rule application
+
+"The perturbation type is constrained by the rule template instantiated at step k, ensuring that the injected error is structurally compatible with the local inference pattern."
+
+## 3. Symbolic Verification Mechanism
+
+After error injection at step k, the system "recompute[s] all downstream steps under this updated state with the symbolic prover." For validity checking, non-structural errors undergo "prefix non-derivability check: the corrupted conclusion is tested against the original prefix, and the sample is rejected if the conclusion is still derivable from that prefix."
+
+## 4. Evaluation Benchmarks
+
+**Logical reasoning**: FOLIO, LogicNLI, ANLI, HANS, Pro-NoMath, Temporal, Tracking (Best-of-8 reranking)
+
+**Transfer evaluation**: GSM8K, MATH, OlympiadBench, Omni-MATH (ProcessBench mathematical subsets)
+
+## 5. Key Results
+
+- **Llama-3.1-8B**: Average improvement from 0.528 (base) to 0.591
+- **Qwen-2.5-7B**: Improvement from 0.567 to 0.615
+- **First-error localization** substantially harder than overall step classification (Table 4)
+- Mathematical transfer shows "the learned process-level signal can transfer beyond the symbolic setting"
+
+## 6. Debiasing & Reward Hacking
+
+The paper does not explicitly address debiasing or reward hacking concerns. However, the prefix non-derivability verification and downstream recomputation under corrupted states inherently constrain manipulative shortcuts by enforcing trajectory consistency constraints.
+
+## 7. Symbolic-to-Natural Language Translation
+
+Translation maintains alignment between correct and erroneous chains through shared semantic grounding: "both translations are conditioned on the same background context, entity realizations, and predicate mappings." This ensures "the two processes differ primarily in their reasoning behavior rather than in unrelated surface realizations."
+
+The pipeline stages include background generation, predicate mapping, rule/expression translation, and step-level naturalization with careful avoidance of label-leaking language.
+
+## 8. Relationship to Counterfactual Augmentation
+
+The paired trajectory approach shares conceptual similarities with counterfactual debiasing—maintaining identical prefixes while introducing controlled perturbations at specific steps. However, the paper frames this as **supervised process learning** rather than explicit debiasing. The "all_after_error" training strategy (where corrupted steps and downstream steps are negative) enforces sensitivity to prefix validity, which implicitly penalizes models that ignore reasoning structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c2229970-c186-440d-be72-40825468822f",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "5b848c43-4d46-4062-ab40-47062511e9bb",
+  "toolUseResult": {
+    "bytes": 331704,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Technical Analysis: Controllable and Verifiable Process Data Synthesis\n\n## 1. Symbolic Reasoning Chain Construction\n\nThe framework builds verified correct chains through recursive goal expansion. Starting from a target conclusion, it \"recursively expand[s] intermediate goals and use[s] a symbolic prover to verify whether each step is derivable from the current premises.\" Only truth-consistent structures advance, yielding \"a verifiable forward chain from base facts to the target.\"\n\n## 2. Error Injection Types\n\nThe system injects template-aware errors constrained by instantiated rule patterns. Error categories include:\n\n**Truth-state errors** (violating local conditions): XOR mishandling (as OR or equivalence), AND/OR confusion, dropped conditions, implication violations, partial evaluation\n\n**Structural errors** (violating trajectory well-formedness): missing prerequisites, circular references, redundant steps, converse rule application\n\n\"The perturbation type is constrained by the rule template instantiated at step k, ensuring that the injected error is structurally compatible with the local inference pattern.\"\n\n## 3. Symbolic Verification Mechanism\n\nAfter error injection at step k, the system \"recompute[s] all downstream steps under this updated state with the symbolic prover.\" For validity checking, non-structural errors undergo \"prefix non-derivability check: the corrupted conclusion is tested against the original prefix, and the sample is rejected if the conclusion is still derivable from that prefix.\"\n\n## 4. Evaluation Benchmarks\n\n**Logical reasoning**: FOLIO, LogicNLI, ANLI, HANS, Pro-NoMath, Temporal, Tracking (Best-of-8 reranking)\n\n**Transfer evaluation**: GSM8K, MATH, OlympiadBench, Omni-MATH (ProcessBench mathematical subsets)\n\n## 5. Key Results\n\n- **Llama-3.1-8B**: Average improvement from 0.528 (base) to 0.591\n- **Qwen-2.5-7B**: Improvement from 0.567 to 0.615\n- **First-error localization** substantially harder than overall step classification (Table 4)\n- Mathematical transfer shows \"the learned process-level signal can transfer beyond the symbolic setting\"\n\n## 6. Debiasing & Reward Hacking\n\nThe paper does not explicitly address debiasing or reward hacking concerns. However, the prefix non-derivability verification and downstream recomputation under corrupted states inherently constrain manipulative shortcuts by enforcing trajectory consistency constraints.\n\n## 7. Symbolic-to-Natural Language Translation\n\nTranslation maintains alignment between correct and erroneous chains through shared semantic grounding: \"both translations are conditioned on the same background context, entity realizations, and predicate mappings.\" This ensures \"the two processes differ primarily in their reasoning behavior rather than in unrelated surface realizations.\"\n\nThe pipeline stages include background generation, predicate mapping, rule/expression translation, and step-level naturalization with careful avoidance of label-leaking language.\n\n## 8. Relationship to Counterfactual Augmentation\n\nThe paired trajectory approach shares conceptual similarities with counterfactual debiasing—maintaining identical prefixes while introducing controlled perturbations at specific steps. However, the paper frames this as **supervised process learning** rather than explicit debiasing. The \"all_after_error\" training strategy (where corrupted steps and downstream steps are negative) enforces sensitivity to prefix validity, which implicitly penalizes models that ignore reasoning structure.",
+    "durationMs": 12314,
+    "url": "https://arxiv.org/html/2605.02395v1"
+  },
+  "sourceToolAssistantUUID": "c2229970-c186-440d-be72-40825468822f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"CI-PRM: Counterfactual-Invariant Process Reward Models with Domain-Adv…",
+  "leafUuid": "5b848c43-4d46-4062-ab40-47062511e9bb",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CI-PRM with FoVer positioning and loss balancing",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-27T21:24:37.216Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent. Now I have substantial information. Let me also search for the specific lambda scheduling approach used in domain-adversarial neural networks (DANN) and for any recent work on step-level debiasing challenges.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b848c43-4d46-4062-ab40-47062511e9bb",
+  "isSidechain": false,
+  "requestId": "req_011CbTn7Dezy6nDP7pmvTGm6",
+  "type": "assistant",
+  "uuid": "99e9e188-4ac5-4af8-8c5e-6232971d4af5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018iBep74AEiEH6KJ2oaUpzT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1743,
+      "cache_creation_input_tokens": 2420,
+      "cache_read_input_tokens": 26772,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2420,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1743,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 26772,
+          "cache_creation_input_tokens": 2420,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2420
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-27T21:24:37.805Z_
+
+Let me do a few more targeted searches on the remaining key issues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99e9e188-4ac5-4af8-8c5e-6232971d4af5",
+  "isSidechain": false,
+  "requestId": "req_011CbTn7Dezy6nDP7pmvTGm6",
+  "type": "assistant",
+  "uuid": "81ebfb78-0e6b-4856-87c5-c1624b78db02",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018iBep74AEiEH6KJ2oaUpzT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1743,
+      "cache_creation_input_tokens": 2420,
+      "cache_read_input_tokens": 26772,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2420,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1743,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 26772,
+          "cache_creation_input_tokens": 2420,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2420
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-27T21:24:38.662Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MkjtDTq13KguKswnCi84t1`</summary>
+
+```json
+{
+  "query": "DANN domain adversarial neural networks lambda scheduling progressive annealing Ganin 2016 gradient reversal layer coefficient"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81ebfb78-0e6b-4856-87c5-c1624b78db02",
+  "isSidechain": false,
+  "requestId": "req_011CbTn7Dezy6nDP7pmvTGm6",
+  "type": "assistant",
+  "uuid": "0dc694a2-5449-4f9e-8fe3-5a171d35e7d4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018iBep74AEiEH6KJ2oaUpzT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1743,
+      "cache_creation_input_tokens": 2420,
+      "cache_read_input_tokens": 26772,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2420,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1743,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 26772,
+          "cache_creation_input_tokens": 2420,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2420
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-27T21:24:40.124Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PGPDKaZcXQi6zUU2k9cima`</summary>
+
+```json
+{
+  "query": "preference leakage LLM judge same family bias Qwen model cross-model evaluation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0dc694a2-5449-4f9e-8fe3-5a171d35e7d4",
+  "isSidechain": false,
+  "requestId": "req_011CbTn7Dezy6nDP7pmvTGm6",
+  "type": "assistant",
+  "uuid": "1fc4d553-ac37-43b2-8664-6a8687f626e3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018iBep74AEiEH6KJ2oaUpzT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1743,
+      "cache_creation_input_tokens": 2420,
+      "cache_read_input_tokens": 26772,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2420,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1743,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 26772,
+          "cache_creation_input_tokens": 2420,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2420
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-27T21:24:41.230Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MQVU4Lda4m7gGsXeFFbt3h`</summary>
+
+```json
+{
+  "query": "PRM-BiasBench perturbation types increased verbosity decreased verbosity semantics-preserving reward hacking process reward 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1fc4d553-ac37-43b2-8664-6a8687f626e3",
+  "isSidechain": false,
+  "requestId": "req_011CbTn7Dezy6nDP7pmvTGm6",
+  "type": "assistant",
+  "uuid": "6b9ba8aa-a71d-4298-931f-a45cd9f4a3e3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018iBep74AEiEH6KJ2oaUpzT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1743,
+      "cache_creation_input_tokens": 2420,
+      "cache_read_input_tokens": 26772,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2420,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1743,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 26772,
+          "cache_creation_input_tokens": 2420,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2420
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-27T21:24:45.600Z_
+
+<details><summary>↩ Tool result · `toolu_01MkjtDTq13KguKswnCi84t1`</summary>
+
+```text
+Web search results for query: "DANN domain adversarial neural networks lambda scheduling progressive annealing Ganin 2016 gradient reversal layer coefficient"
+
+Links: [{"title":"DANN: Domain Adversarial Neural Network","url":"https://www.emergentmind.com/topics/domain-adversarial-neural-network-dann-ee889db4-65bb-479f-b7ae-5a1bb99cb2d3"},{"title":"Domain-Adversarial Neural Networks (DANN) — Explained. | by Prabhdeep Singh | Medium","url":"https://medium.com/@prabhs./domain-adversarial-neural-networks-dann-explained-f73c9740ff49"},{"title":"Domain-Adversarial Training of Neural Networks","url":"https://jmlr.org/papers/v17/15-239.html"},{"title":"Domain adversarial neural networks for domain generalization: when it works and how to improve | Machine Learning | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10994-023-06324-x"},{"title":"Springer Nature 2021 LATEX template Domain Adversarial Neural Networks for","url":"https://arxiv.org/pdf/2102.03924"},{"title":"Published as a conference paper at ICLR 2022 DOMAIN ADVERSARIAL TRAINING","url":"https://openreview.net/pdf?id=AwgtcUAhBq"},{"title":"[1505.07818] Domain-Adversarial Training of Neural Networks","url":"https://arxiv.org/abs/1505.07818"},{"title":"Domain-Adversarial Training of Neural Networks","url":"https://arxiv.org/pdf/1505.07818"}]
+
+Based on the search results, here's information about DANN lambda scheduling and the gradient reversal layer:
+
+## Lambda Scheduling and Progressive Annealing
+
+The λ parameter in DANN is often annealed from 0 to 1 via a logistic or linear schedule during training. The theoretical analysis suggests the practical importance of an annealing schedule on γ (or λ) during DANN training.
+
+## Gradient Reversal Layer
+
+The gradient reversal layer (GRL) is placed between the feature extractor and domain classifier, and during backpropagation, the GRL multiplies the gradient by -λ, effectively reversing the direction of optimization for the feature extractor with respect to the domain classification task.
+
+The gradient reversal layer leaves the input unchanged during forward propagation and reverses the gradient by multiplying it by a negative scalar during the backpropagation.
+
+## DANN Framework
+
+The original approach was introduced by Yaroslav Ganin and colleagues in 2016, and implements domain adaptation in neural network architectures that are trained on labeled data from the source domain and unlabeled data from the target domain. As the training progresses, the approach promotes the emergence of features that are (i) discriminative for the main learning task on the source domain and (ii) indiscriminate with respect to the shift between the domains.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0dc694a2-5449-4f9e-8fe3-5a171d35e7d4",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "b8c83caa-a047-4cb8-91f9-15bb488c2598",
+  "toolUseResult": {
+    "query": "DANN domain adversarial neural networks lambda scheduling progressive annealing Ganin 2016 gradient reversal layer coefficient",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01G8kScsa6ctsJizCE7ZBJqD",
+        "content": [
+          {
+            "title": "DANN: Domain Adversarial Neural Network",
+            "url": "https://www.emergentmind.com/topics/domain-adversarial-neural-network-dann-ee889db4-65bb-479f-b7ae-5a1bb99cb2d3"
+          },
+          {
+            "title": "Domain-Adversarial Neural Networks (DANN) — Explained. | by Prabhdeep Singh | Medium",
+            "url": "https://medium.com/@prabhs./domain-adversarial-neural-networks-dann-explained-f73c9740ff49"
+          },
+          {
+            "title": "Domain-Adversarial Training of Neural Networks",
+            "url": "https://jmlr.org/papers/v17/15-239.html"
+          },
+          {
+            "title": "Domain adversarial neural networks for domain generalization: when it works and how to improve | Machine Learning | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10994-023-06324-x"
+          },
+          {
+            "title": "Springer Nature 2021 LATEX template Domain Adversarial Neural Networks for",
+            "url": "https://arxiv.org/pdf/2102.03924"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2022 DOMAIN ADVERSARIAL TRAINING",
+            "url": "https://openreview.net/pdf?id=AwgtcUAhBq"
+          },
+          {
+            "title": "[1505.07818] Domain-Adversarial Training of Neural Networks",
+            "url": "https://arxiv.org/abs/1505.07818"
+          },
+          {
+            "title": "Domain-Adversarial Training of Neural Networks",
+            "url": "https://arxiv.org/pdf/1505.07818"
+          }
+        ]
+      },
+      "Based on the search results, here's information about DANN lambda scheduling and the gradient reversal layer:\n\n## Lambda Scheduling and Progressive Annealing\n\nThe λ parameter in DANN is often annealed from 0 to 1 via a logistic or linear schedule during training. The theoretical analysis suggests the practical importance of an annealing schedule on γ (or λ) during DANN training.\n\n## Gradient Reversal Layer\n\nThe gradient reversal layer (GRL) is placed between the feature extractor and domain classifier, and during backpropagation, the GRL multiplies the gradient by -λ, effectively reversing the direction of optimization for the feature extractor with respect to the domain classification task.\n\nThe gradient reversal layer leaves the input unchanged during forward propagation and reverses the gradient by multiplying it by a negative scalar during the backpropagation.\n\n## DANN Framework\n\nThe original approach was introduced by Yaroslav Ganin and colleagues in 2016, and implements domain adaptation in neural network architectures that are trained on labeled data from the source domain and unlabeled data from the target domain. As the training progresses, the approach promotes the emergence of features that are (i) discriminative for the main learning task on the source domain and (ii) indiscriminate with respect to the shift between the domains."
+    ],
+    "durationSeconds": 6.933528877999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0dc694a2-5449-4f9e-8fe3-5a171d35e7d4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-27T21:24:47.746Z_
+
+<details><summary>↩ Tool result · `toolu_01PGPDKaZcXQi6zUU2k9cima`</summary>
+
+```text
+Web search results for query: "preference leakage LLM judge same family bias Qwen model cross-model evaluation 2025 2026"
+
+Links: [{"title":"Preference Leakage: A Contamination Problem in LLM-as-a-judge [Quick Review]","url":"https://liner.com/review/preference-leakage-a-contamination-problem-in-llmasajudge"},{"title":"[Paper Note] Preference Leakage: A Contamination Problem in LLM-as-a-judge - 📚 AI Paper Notes","url":"https://en.papernotes.org/ICLR2026/llm_evaluation/preference_leakage_a_contamination_problem_in_llm-as-a-judge/"},{"title":"Preference Leakage: A Contamination Problem in LLM-as-a-judge","url":"https://howiehwong.github.io/preference_leakage.pdf"},{"title":"Preference Leakage: A Contamination Problem in LLM-as-a-judge","url":"https://arxiv.org/html/2502.01534v3"},{"title":"Preference Leakage: A Contamination Problem in LLM-as- ...","url":"https://arxiv.org/pdf/2502.01534"},{"title":"(PDF) Preference Leakage: A Contamination Problem in LLM-as-a-judge","url":"https://www.researchgate.net/publication/388685541_Preference_Leakage_A_Contamination_Problem_in_LLM-as-a-judge"},{"title":"Preference Leakage: A Contamination Problem in LLM-as-a-judge | OpenReview","url":"https://openreview.net/forum?id=grIvSXVJ65"},{"title":"[2502.01534] Preference Leakage: A Contamination Problem in LLM-as-a-judge","url":"https://arxiv.org/abs/2502.01534"}]
+
+Based on the search results, here's what I found about preference leakage in LLM judges, same family bias, Qwen models, and cross-model evaluation:
+
+## Overview
+
+Preference leakage is a contamination problem in LLM-as-a-judge caused by the relatedness between synthetic data generators and LLM-based evaluators. Three common relatednesses between the data generator LLM and judge LLM are: being the same model, having an inheritance relationship, and belonging to the same model family.
+
+## Key Findings
+
+**Same Model Bias:** When the data generator and judge are the same model, the average preference leakage score is highest at 23.6%.
+
+**Family Bias:** Inheritance relationships also lead to substantial leakage (e.g., 22.3% with different instructions), as judges' preferences are inherited.
+
+**Qwen Model Findings:** The smallest models (e.g., LLaMA-3-1B, Qwen-2.5-3B) exhibited higher preference leakage scores compared to their larger counterparts, suggesting that smaller models may primarily learn spurious features like format due to their limited learning capabilities.
+
+**Severity and Scaling:** The severity of preference leakage is directly proportional to the amount of synthetic data used in training, with no clear threshold for its occurrence. Even small amounts of leaked synthetic data can lead to preference leakage, making it challenging to detect.
+
+**Mitigation:** Only Contextual Calibration (post-hoc calibration on a held-out set) effectively mitigates preference leakage, reducing Error Bias from 17.8 to 7.3.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1fc4d553-ac37-43b2-8664-6a8687f626e3",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "7d603669-0082-4bbf-a7dd-51450ce058fc",
+  "toolUseResult": {
+    "query": "preference leakage LLM judge same family bias Qwen model cross-model evaluation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Es1tQFhc6esWnxdEH6ZKBX",
+        "content": [
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as-a-judge [Quick Review]",
+            "url": "https://liner.com/review/preference-leakage-a-contamination-problem-in-llmasajudge"
+          },
+          {
+            "title": "[Paper Note] Preference Leakage: A Contamination Problem in LLM-as-a-judge - 📚 AI Paper Notes",
+            "url": "https://en.papernotes.org/ICLR2026/llm_evaluation/preference_leakage_a_contamination_problem_in_llm-as-a-judge/"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as-a-judge",
+            "url": "https://howiehwong.github.io/preference_leakage.pdf"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as-a-judge",
+            "url": "https://arxiv.org/html/2502.01534v3"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as- ...",
+            "url": "https://arxiv.org/pdf/2502.01534"
+          },
+          {
+            "title": "(PDF) Preference Leakage: A Contamination Problem in LLM-as-a-judge",
+            "url": "https://www.researchgate.net/publication/388685541_Preference_Leakage_A_Contamination_Problem_in_LLM-as-a-judge"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as-a-judge | OpenReview",
+            "url": "https://openreview.net/forum?id=grIvSXVJ65"
+          },
+          {
+            "title": "[2502.01534] Preference Leakage: A Contamination Problem in LLM-as-a-judge",
+            "url": "https://arxiv.org/abs/2502.01534"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about preference leakage in LLM judges, same family bias, Qwen models, and cross-model evaluation:\n\n## Overview\n\nPreference leakage is a contamination problem in LLM-as-a-judge caused by the relatedness between synthetic data generators and LLM-based evaluators. Three common relatednesses between the data generator LLM and judge LLM are: being the same model, having an inheritance relationship, and belonging to the same model family.\n\n## Key Findings\n\n**Same Model Bias:** When the data generator and judge are the same model, the average preference leakage score is highest at 23.6%.\n\n**Family Bias:** Inheritance relationships also lead to substantial leakage (e.g., 22.3% with different instructions), as judges' preferences are inherited.\n\n**Qwen Model Findings:** The smallest models (e.g., LLaMA-3-1B, Qwen-2.5-3B) exhibited higher preference leakage scores compared to their larger counterparts, suggesting that smaller models may primarily learn spurious features like format due to their limited learning capabilities.\n\n**Severity and Scaling:** The severity of preference leakage is directly proportional to the amount of synthetic data used in training, with no clear threshold for its occurrence. Even small amounts of leaked synthetic data can lead to preference leakage, making it challenging to detect.\n\n**Mitigation:** Only Contextual Calibration (post-hoc calibration on a held-out set) effectively mitigates preference leakage, reducing Error Bias from 17.8 to 7.3."
+    ],
+    "durationSeconds": 7.617665968000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1fc4d553-ac37-43b2-8664-6a8687f626e3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-27T21:24:48.520Z_
+
+<details><summary>↩ Tool result · `toolu_01MQVU4Lda4m7gGsXeFFbt3h`</summary>
+
+```text
+Web search results for query: "PRM-BiasBench perturbation types increased verbosity decreased verbosity semantics-preserving reward hacking process reward 2026"
+
+Links: [{"title":"[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models","url":"https://arxiv.org/abs/2603.06621"},{"title":"1 Introduction","url":"https://arxiv.org/html/2603.06621"},{"title":"Reward Under Attack: Evaluating the Sensitivity of Process Reward Models","url":"https://openreview.net/pdf?id=Hw24VOppus"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=reward+hacking"},{"title":"Reward Under Attack: Analyzing the Robustness and Hackability of","url":"https://arxiv.org/pdf/2603.06621"},{"title":"Natural Emergent Misalignment from Reward Hacking in Production RL","url":"https://arxiv.org/pdf/2511.18397"},{"title":"One Bias After Another: Mechanistic Reward Shaping and Persistent Biases in Language Reward Models","url":"https://arxiv.org/pdf/2603.03291"},{"title":"Sail into the Headwind: Alignment via Robust Rewards and Dynamic Labels   against Reward Hacking","url":"https://arxiv.org/pdf/2412.09544"}]
+
+Based on the search results, I found relevant information about PRM-BiasBench and its perturbation types:
+
+## PRM-BiasBench Overview
+
+PRM-BiasBench is a benchmark and diagnostic toolkit released to enable robustness evaluation before deployment of Process Reward Models.
+
+## Perturbation Types
+
+The benchmark includes semantics-preserving perturbations such as Rephrasing, Increased Verbosity, and Decreased Verbosity. An equivalence checker filters out semantically altered outputs, retaining only meaning-preserving transformations.
+
+## Key Findings on Reward Hacking and Process Rewards
+
+RL-induced reward hacking demonstrates a critical failure mode where policies trained on AIME problems achieve near-perfect PRM rewards (>0.9), while ground-truth accuracy remains low (below 4%), with 43% of reward gains attributable to stylistic shortcuts.
+
+Static perturbation analysis uncovers a fluency-logic dissociation with high invariance to surface-level style changes, yet inconsistent detection of logically-corrupted reasoning, with different models failing on different attack types.
+
+The research, published in February 2026, reveals that current PRMs function as fluency detectors rather than reasoning verifiers, creating systematic blind spots that undermine their use as training signals.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6b9ba8aa-a71d-4298-931f-a45cd9f4a3e3",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "62a9f274-20df-4780-9eb7-95a1fee4e6da",
+  "toolUseResult": {
+    "query": "PRM-BiasBench perturbation types increased verbosity decreased verbosity semantics-preserving reward hacking process reward 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UtJhTAouGbGmFuTUuxKh7u",
+        "content": [
+          {
+            "title": "[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models",
+            "url": "https://arxiv.org/abs/2603.06621"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2603.06621"
+          },
+          {
+            "title": "Reward Under Attack: Evaluating the Sensitivity of Process Reward Models",
+            "url": "https://openreview.net/pdf?id=Hw24VOppus"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=reward+hacking"
+          },
+          {
+            "title": "Reward Under Attack: Analyzing the Robustness and Hackability of",
+            "url": "https://arxiv.org/pdf/2603.06621"
+          },
+          {
+            "title": "Natural Emergent Misalignment from Reward Hacking in Production RL",
+            "url": "https://arxiv.org/pdf/2511.18397"
+          },
+          {
+            "title": "One Bias After Another: Mechanistic Reward Shaping and Persistent Biases in Language Reward Models",
+            "url": "https://arxiv.org/pdf/2603.03291"
+          },
+          {
+            "title": "Sail into the Headwind: Alignment via Robust Rewards and Dynamic Labels   against Reward Hacking",
+            "url": "https://arxiv.org/pdf/2412.09544"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about PRM-BiasBench and its perturbation types:\n\n## PRM-BiasBench Overview\n\nPRM-BiasBench is a benchmark and diagnostic toolkit released to enable robustness evaluation before deployment of Process Reward Models.\n\n## Perturbation Types\n\nThe benchmark includes semantics-preserving perturbations such as Rephrasing, Increased Verbosity, and Decreased Verbosity. An equivalence checker filters out semantically altered outputs, retaining only meaning-preserving transformations.\n\n## Key Findings on Reward Hacking and Process Rewards\n\nRL-induced reward hacking demonstrates a critical failure mode where policies trained on AIME problems achieve near-perfect PRM rewards (>0.9), while ground-truth accuracy remains low (below 4%), with 43% of reward gains attributable to stylistic shortcuts.\n\nStatic perturbation analysis uncovers a fluency-logic dissociation with high invariance to surface-level style changes, yet inconsistent detection of logically-corrupted reasoning, with different models failing on different attack types.\n\nThe research, published in February 2026, reveals that current PRMs function as fluency detectors rather than reasoning verifiers, creating systematic blind spots that undermine their use as training signals."
+    ],
+    "durationSeconds": 7.285425837000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6b9ba8aa-a71d-4298-931f-a45cd9f4a3e3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-27T21:24:52.741Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me get the exact verbosity perturbation details from the Reward Under Attack paper, and also check for the DANN lambda scheduling formula from Ganin et al.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62a9f274-20df-4780-9eb7-95a1fee4e6da",
+  "isSidechain": false,
+  "requestId": "req_011CbTn8NMuTidN4KPBd4ur8",
+  "type": "assistant",
+  "uuid": "ec13a475-4bc9-4687-b2a3-215f0653f2e2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EMyaAjaN5a7y18PEyUidwz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4398,
+      "cache_read_input_tokens": 29192,
+      "output_tokens": 396,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4398,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 396,
+          "cache_read_input_tokens": 29192,
+          "cache_creation_input_tokens": 4398,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4398
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-27T21:24:53.773Z_
+
+Let me get the precise details on PRM-BiasBench perturbation categories and the DANN lambda scheduling formula.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec13a475-4bc9-4687-b2a3-215f0653f2e2",
+  "isSidechain": false,
+  "requestId": "req_011CbTn8NMuTidN4KPBd4ur8",
+  "type": "assistant",
+  "uuid": "80b85190-aaeb-4b5c-b9fa-1a912eb42522",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EMyaAjaN5a7y18PEyUidwz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4398,
+      "cache_read_input_tokens": 29192,
+      "output_tokens": 396,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4398,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 396,
+          "cache_read_input_tokens": 29192,
+          "cache_creation_input_tokens": 4398,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4398
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-27T21:24:56.660Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01W9b1Ck3HoYSEKTrs4PJkRZ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2603.06621",
+  "prompt": "Extract the exact list of perturbation types in PRM-BiasBench. Specifically: (1) List all 8 perturbation types with their exact names. (2) Which are semantics-preserving vs semantics-altering? (3) Is 'increased verbosity' and 'decreased verbosity' listed as separate perturbation types or combined? (4) What does the equivalence checker do for each? (5) What are the exact results showing PRM sensitivity to each perturbation type?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80b85190-aaeb-4b5c-b9fa-1a912eb42522",
+  "isSidechain": false,
+  "requestId": "req_011CbTn8NMuTidN4KPBd4ur8",
+  "type": "assistant",
+  "uuid": "4aeefa79-0576-4a17-b0a4-aa2c2640433d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EMyaAjaN5a7y18PEyUidwz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4398,
+      "cache_read_input_tokens": 29192,
+      "output_tokens": 396,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4398,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 396,
+          "cache_read_input_tokens": 29192,
+          "cache_creation_input_tokens": 4398,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4398
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-27T21:24:58.366Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GUoJEWuXb9DCuV1tYhrhyH`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/1505.07818",
+  "prompt": "Extract the lambda scheduling formula used in DANN (Domain-Adversarial Training of Neural Networks by Ganin et al.). What is the exact formula for the progressive annealing of the λ parameter? How do they schedule the gradient reversal coefficient during training?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4aeefa79-0576-4a17-b0a4-aa2c2640433d",
+  "isSidechain": false,
+  "requestId": "req_011CbTn8NMuTidN4KPBd4ur8",
+  "type": "assistant",
+  "uuid": "a0670c73-198c-4cd0-89aa-a77809fdb435",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EMyaAjaN5a7y18PEyUidwz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4398,
+      "cache_read_input_tokens": 29192,
+      "output_tokens": 396,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4398,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 396,
+          "cache_read_input_tokens": 29192,
+          "cache_creation_input_tokens": 4398,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4398
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-27T21:25:00.879Z_
+
+<details><summary>↩ Tool result · `toolu_01GUoJEWuXb9DCuV1tYhrhyH`</summary>
+
+```text
+I cannot provide the specific lambda scheduling formula from this paper based on the content provided. The webpage excerpt only contains the abstract and metadata for the "Domain-Adversarial Training of Neural Networks" paper. 
+
+The abstract mentions "a new gradient reversal layer" but does not detail the exact mathematical formula for scheduling the λ parameter or how it progresses during training. To find this information, you would need to access the full PDF of the paper (available via the link provided on the page) where such implementation details are typically described in the methods section.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a0670c73-198c-4cd0-89aa-a77809fdb435",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "b7a661e8-f287-44e8-ad2f-7fb35406f5e0",
+  "toolUseResult": {
+    "bytes": 47874,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot provide the specific lambda scheduling formula from this paper based on the content provided. The webpage excerpt only contains the abstract and metadata for the \"Domain-Adversarial Training of Neural Networks\" paper. \n\nThe abstract mentions \"a new gradient reversal layer\" but does not detail the exact mathematical formula for scheduling the λ parameter or how it progresses during training. To find this information, you would need to access the full PDF of the paper (available via the link provided on the page) where such implementation details are typically described in the methods section.",
+    "durationMs": 2510,
+    "url": "https://arxiv.org/abs/1505.07818"
+  },
+  "sourceToolAssistantUUID": "a0670c73-198c-4cd0-89aa-a77809fdb435",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"CI-PRM: Counterfactual-Invariant Process Reward Models with Domain-Adv…",
+  "leafUuid": "b7a661e8-f287-44e8-ad2f-7fb35406f5e0",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CI-PRM with FoVer positioning and loss balancing",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-27T21:25:01.920Z_
+
+<details><summary>↩ Tool result · `toolu_01W9b1Ck3HoYSEKTrs4PJkRZ`</summary>
+
+```text
+# PRM-BiasBench Perturbation Types
+
+## 1. All 8 Perturbation Types
+
+Based on Appendix A.1, the eight perturbation types are:
+1. Rephrasing
+2. Increased Verbosity
+3. Decreased Verbosity
+4. Within-step Reordering
+5. Question Shuffling
+6. Numerical Perturbation
+7. Reasoning Hallucination
+8. Question Removal
+
+## 2. Classification by Semantic Preservation
+
+**Semantics-Preserving (4 types):**
+- Rephrasing, Increased Verbosity, Decreased Verbosity, Within-step Reordering
+
+**Semantics-Altering (4 types):**
+- Question Shuffling, Numerical Perturbation, Reasoning Hallucination, Question Removal
+
+## 3. Verbosity Treatment
+
+Increased and Decreased Verbosity are listed as separate perturbation types in the taxonomy and results tables.
+
+## 4. Equivalence Checker Behavior
+
+For semantics-preserving modifications, the automated checker verifies: "mathematical operations and results are identical," "logical flow leads to the same conclusion," and "only surface-level linguistic changes were made." For semantics-altering attacks, it confirms the corruption is present.
+
+## 5. PRM Sensitivity Results
+
+Table 3 shows mean reward changes (ΔR):
+
+**Skywork-o1-Open-PRM:** Semantics-preserving changes cluster near zero (−0.04 to −0.01). Semantics-altering changes produce larger penalties (−0.15 to −0.45).
+
+**Qwen2.5-Math-PRM:** Semantics-preserving changes also near zero (−0.03 to −0.01). Semantics-altering changes show stronger penalties (−0.32 to −0.85), particularly for numerical perturbation and hallucination.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4aeefa79-0576-4a17-b0a4-aa2c2640433d",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "9cd689c7-2d5c-4604-b8e8-d443df3211d5",
+  "toolUseResult": {
+    "bytes": 182946,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# PRM-BiasBench Perturbation Types\n\n## 1. All 8 Perturbation Types\n\nBased on Appendix A.1, the eight perturbation types are:\n1. Rephrasing\n2. Increased Verbosity\n3. Decreased Verbosity\n4. Within-step Reordering\n5. Question Shuffling\n6. Numerical Perturbation\n7. Reasoning Hallucination\n8. Question Removal\n\n## 2. Classification by Semantic Preservation\n\n**Semantics-Preserving (4 types):**\n- Rephrasing, Increased Verbosity, Decreased Verbosity, Within-step Reordering\n\n**Semantics-Altering (4 types):**\n- Question Shuffling, Numerical Perturbation, Reasoning Hallucination, Question Removal\n\n## 3. Verbosity Treatment\n\nIncreased and Decreased Verbosity are listed as separate perturbation types in the taxonomy and results tables.\n\n## 4. Equivalence Checker Behavior\n\nFor semantics-preserving modifications, the automated checker verifies: \"mathematical operations and results are identical,\" \"logical flow leads to the same conclusion,\" and \"only surface-level linguistic changes were made.\" For semantics-altering attacks, it confirms the corruption is present.\n\n## 5. PRM Sensitivity Results\n\nTable 3 shows mean reward changes (ΔR):\n\n**Skywork-o1-Open-PRM:** Semantics-preserving changes cluster near zero (−0.04 to −0.01). Semantics-altering changes produce larger penalties (−0.15 to −0.45).\n\n**Qwen2.5-Math-PRM:** Semantics-preserving changes also near zero (−0.03 to −0.01). Semantics-altering changes show stronger penalties (−0.32 to −0.85), particularly for numerical perturbation and hallucination.",
+    "durationMs": 5257,
+    "url": "https://arxiv.org/html/2603.06621"
+  },
+  "sourceToolAssistantUUID": "4aeefa79-0576-4a17-b0a4-aa2c2640433d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 66 · 2026-05-27T21:25:01.924Z_
+
+```json
+{
+  "parentUuid": "9cd689c7-2d5c-4604-b8e8-d443df3211d5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b8b97d4b-3aaf-4b4b-b9e9-97b0a9c44584",
+  "timestamp": "2026-05-27T21:25:01.924Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-27T21:25:06.511Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me get the DANN lambda scheduling formula from another source and also check for specific information on step-level debiasing challenges.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8b97d4b-3aaf-4b4b-b9e9-97b0a9c44584",
+  "isSidechain": false,
+  "requestId": "req_011CbTn9MemSYh1N41DKs3rg",
+  "type": "assistant",
+  "uuid": "a20a6482-0ee9-4574-a85f-3e48a12915bf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NmMuke9j7H1QavnypcT3bF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 146,
+      "cache_creation_input_tokens": 980,
+      "cache_read_input_tokens": 33590,
+      "output_tokens": 245,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 980,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 146,
+          "output_tokens": 245,
+          "cache_read_input_tokens": 33590,
+          "cache_creation_input_tokens": 980,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 980
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-27T21:25:08.412Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KFteNapXWb7Qn5ewAfCCTD`</summary>
+
+```json
+{
+  "url": "https://medium.com/@prabhs./domain-adversarial-neural-networks-dann-explained-f73c9740ff49",
+  "prompt": "Extract the exact lambda scheduling formula from DANN. How is the gradient reversal coefficient λ progressively annealed during training? What is the mathematical formula? What was the schedule proposed by Ganin et al.?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a20a6482-0ee9-4574-a85f-3e48a12915bf",
+  "isSidechain": false,
+  "requestId": "req_011CbTn9MemSYh1N41DKs3rg",
+  "type": "assistant",
+  "uuid": "92d9ddbf-c9f2-4d1f-9fe0-62aab82c59c5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NmMuke9j7H1QavnypcT3bF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 146,
+      "cache_creation_input_tokens": 980,
+      "cache_read_input_tokens": 33590,
+      "output_tokens": 245,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 980,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 146,
+          "output_tokens": 245,
+          "cache_read_input_tokens": 33590,
+          "cache_creation_input_tokens": 980,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 980
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-27T21:25:09.116Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CjtkSLeB13JGrnhRY9qqW5`</summary>
+
+```json
+{
+  "query": "domain adversarial training reward model debiasing representation learning gradient reversal invariant features 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "92d9ddbf-c9f2-4d1f-9fe0-62aab82c59c5",
+  "isSidechain": false,
+  "requestId": "req_011CbTn9MemSYh1N41DKs3rg",
+  "type": "assistant",
+  "uuid": "005b8de4-cf0a-4218-ba8b-5ed3c56ad3e8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NmMuke9j7H1QavnypcT3bF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 146,
+      "cache_creation_input_tokens": 980,
+      "cache_read_input_tokens": 33590,
+      "output_tokens": 245,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 980,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 146,
+          "output_tokens": 245,
+          "cache_read_input_tokens": 33590,
+          "cache_creation_input_tokens": 980,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 980
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-27T21:25:12.125Z_
+
+<details><summary>↩ Tool result · `toolu_01KFteNapXWb7Qn5ewAfCCTD`</summary>
+
+```text
+# Lambda Scheduling in DANN
+
+Based on the provided article, **no specific lambda scheduling formula or progressive annealing schedule is detailed**. 
+
+The article mentions that λ is "a hyperparameter controlling the trade-off between task performance and domain invariance" and describes how "the GRL multiplies the gradient by -λ" during backpropagation, but it does not provide:
+
+- The mathematical formula for progressive annealing
+- How λ changes throughout training
+- The specific schedule proposed by Ganin et al.
+
+To find this information, you would need to consult the original paper referenced: "[1505.07818] Domain-Adversarial Training of Neural Networks" by Ganin et al., which the article cites but whose scheduling details are not included in this summary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "92d9ddbf-c9f2-4d1f-9fe0-62aab82c59c5",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "80e04bb8-baf2-4ea0-8cab-87f6c5be7424",
+  "toolUseResult": {
+    "bytes": 142173,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Lambda Scheduling in DANN\n\nBased on the provided article, **no specific lambda scheduling formula or progressive annealing schedule is detailed**. \n\nThe article mentions that λ is \"a hyperparameter controlling the trade-off between task performance and domain invariance\" and describes how \"the GRL multiplies the gradient by -λ\" during backpropagation, but it does not provide:\n\n- The mathematical formula for progressive annealing\n- How λ changes throughout training\n- The specific schedule proposed by Ganin et al.\n\nTo find this information, you would need to consult the original paper referenced: \"[1505.07818] Domain-Adversarial Training of Neural Networks\" by Ganin et al., which the article cites but whose scheduling details are not included in this summary.",
+    "durationMs": 3708,
+    "url": "https://medium.com/@prabhs./domain-adversarial-neural-networks-dann-explained-f73c9740ff49"
+  },
+  "sourceToolAssistantUUID": "92d9ddbf-c9f2-4d1f-9fe0-62aab82c59c5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-27T21:25:17.831Z_
+
+<details><summary>↩ Tool result · `toolu_01CjtkSLeB13JGrnhRY9qqW5`</summary>
+
+```text
+Web search results for query: "domain adversarial training reward model debiasing representation learning gradient reversal invariant features 2025 2026"
+
+Links: [{"title":"Domain-Adversarial Training","url":"https://www.emergentmind.com/topics/domain-adversarial-training"},{"title":"(PDF) Domain-Adversarial Training of Neural Networks","url":"https://www.researchgate.net/publication/277333816_Domain-Adversarial_Training_of_Neural_Networks"},{"title":"Domain adversarial training for robust pathological voice classification across microphones - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0952197626001168"},{"title":"Domain-Adversarial Neural Networks (DANN) — Explained. | by Prabhdeep Singh | Medium","url":"https://medium.com/@prabhs./domain-adversarial-neural-networks-dann-explained-f73c9740ff49"},{"title":"Domain-Adversarial Training of Neural Networks","url":"https://arxiv.org/pdf/1505.07818"},{"title":"Towards Stable and Comprehensive Domain Alignment: Max-Margin   Domain-Adversarial Training","url":"https://arxiv.org/pdf/2003.13249"},{"title":"Domain Invariant Adversarial Learning","url":"https://arxiv.org/pdf/2104.00322"},{"title":"Domain Adversarial Training: A Game Perspective","url":"https://arxiv.org/pdf/2202.05352"}]
+
+Based on the web search results, here's what I found regarding domain adversarial training and related concepts:
+
+## Domain Adversarial Training Overview
+
+Domain-adversarial training (DAT) is a representation learning strategy for domain adaptation that explicitly enforces the invariance of learned feature representations with respect to domain or environment shifts. Features should be both label-discriminative and domain-invariant.
+
+## Gradient Reversal Layer
+
+The architectural innovation enabling adversarial training is the Gradient Reversal Layer (GRL), inserted between the feature extractor and domain discriminator. The gradient reversal layer leaves the input unchanged during forward propagation and reverses the gradient by multiplying it by a negative scalar during the backpropagation.
+
+## Invariant Features and Training
+
+By combining adversarial learning with a gradient reversal operator, DAT simultaneously minimizes the target classifying error and maximizes domain classifier confusion, forcing feature extractors to produce domain-invariant representations.
+
+## Recent Applications (2026)
+
+Domain Adversarial Training (DAT) offers a practical alternative for extracting domain-invariant features with relatively limited training data, addressing challenges like microphone mismatch in real-world deployment.
+
+## Training Challenges
+
+DAL is noticeably unstable and difficult to train in practice, with one major cause of instability being the adversarial nature from the introduction of the Gradient Reversal Layer.
+
+The search results focus primarily on domain adaptation and adversarial training methods rather than reward model debiasing specifically, which wasn't prominently featured in the 2025-2026 literature returned by the search.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "005b8de4-cf0a-4218-ba8b-5ed3c56ad3e8",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "fac858dc-4b4a-4c3f-b9b9-dc7bfc5c4a41",
+  "toolUseResult": {
+    "query": "domain adversarial training reward model debiasing representation learning gradient reversal invariant features 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JVfrS2wH6dZzvWBZP8dQCN",
+        "content": [
+          {
+            "title": "Domain-Adversarial Training",
+            "url": "https://www.emergentmind.com/topics/domain-adversarial-training"
+          },
+          {
+            "title": "(PDF) Domain-Adversarial Training of Neural Networks",
+            "url": "https://www.researchgate.net/publication/277333816_Domain-Adversarial_Training_of_Neural_Networks"
+          },
+          {
+            "title": "Domain adversarial training for robust pathological voice classification across microphones - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0952197626001168"
+          },
+          {
+            "title": "Domain-Adversarial Neural Networks (DANN) — Explained. | by Prabhdeep Singh | Medium",
+            "url": "https://medium.com/@prabhs./domain-adversarial-neural-networks-dann-explained-f73c9740ff49"
+          },
+          {
+            "title": "Domain-Adversarial Training of Neural Networks",
+            "url": "https://arxiv.org/pdf/1505.07818"
+          },
+          {
+            "title": "Towards Stable and Comprehensive Domain Alignment: Max-Margin   Domain-Adversarial Training",
+            "url": "https://arxiv.org/pdf/2003.13249"
+          },
+          {
+            "title": "Domain Invariant Adversarial Learning",
+            "url": "https://arxiv.org/pdf/2104.00322"
+          },
+          {
+            "title": "Domain Adversarial Training: A Game Perspective",
+            "url": "https://arxiv.org/pdf/2202.05352"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding domain adversarial training and related concepts:\n\n## Domain Adversarial Training Overview\n\nDomain-adversarial training (DAT) is a representation learning strategy for domain adaptation that explicitly enforces the invariance of learned feature representations with respect to domain or environment shifts. Features should be both label-discriminative and domain-invariant.\n\n## Gradient Reversal Layer\n\nThe architectural innovation enabling adversarial training is the Gradient Reversal Layer (GRL), inserted between the feature extractor and domain discriminator. The gradient reversal layer leaves the input unchanged during forward propagation and reverses the gradient by multiplying it by a negative scalar during the backpropagation.\n\n## Invariant Features and Training\n\nBy combining adversarial learning with a gradient reversal operator, DAT simultaneously minimizes the target classifying error and maximizes domain classifier confusion, forcing feature extractors to produce domain-invariant representations.\n\n## Recent Applications (2026)\n\nDomain Adversarial Training (DAT) offers a practical alternative for extracting domain-invariant features with relatively limited training data, addressing challenges like microphone mismatch in real-world deployment.\n\n## Training Challenges\n\nDAL is noticeably unstable and difficult to train in practice, with one major cause of instability being the adversarial nature from the introduction of the Gradient Reversal Layer.\n\nThe search results focus primarily on domain adaptation and adversarial training methods rather than reward model debiasing specifically, which wasn't prominently featured in the 2025-2026 literature returned by the search."
+    ],
+    "durationSeconds": 8.710863200000007,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "005b8de4-cf0a-4218-ba8b-5ed3c56ad3e8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72 · 2026-05-27T21:25:21.754Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for the DANN lambda scheduling formula more specifically, and also look for any recent work on Factored Causal Representation Learning for reward models (ICML 2026) which is referenced in the original idea.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fac858dc-4b4a-4c3f-b9b9-dc7bfc5c4a41",
+  "isSidechain": false,
+  "requestId": "req_011CbTnAXin28BcVoeJdV5Yy",
+  "type": "assistant",
+  "uuid": "fd8d269b-6620-486f-94f4-4e8125f1b0c5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M1QQxdpeA3wP2W3Y93DuEK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1373,
+      "cache_read_input_tokens": 34570,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1373,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 34570,
+          "cache_creation_input_tokens": 1373,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1373
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-27T21:25:24.172Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01WCqCaJ1DFZ2na3yruzMzb2`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/pdf/1505.07818",
+  "prompt": "Find the exact lambda scheduling formula used in DANN for the gradient reversal coefficient. Look for a formula involving a sigmoid/logistic function that anneals lambda from 0 to some maximum value. Also extract any guidance about how to set this parameter or schedule it during training."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd8d269b-6620-486f-94f4-4e8125f1b0c5",
+  "isSidechain": false,
+  "requestId": "req_011CbTnAXin28BcVoeJdV5Yy",
+  "type": "assistant",
+  "uuid": "904e34b9-1990-4624-a368-1596c21a4ae8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M1QQxdpeA3wP2W3Y93DuEK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1373,
+      "cache_read_input_tokens": 34570,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1373,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 34570,
+          "cache_creation_input_tokens": 1373,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1373
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-27T21:25:24.537Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RnWiBycJ214nWPo5jqzeBC`</summary>
+
+```json
+{
+  "query": "\"Factored Causal Representation Learning\" reward model RLHF gradient reversal ICML 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "904e34b9-1990-4624-a368-1596c21a4ae8",
+  "isSidechain": false,
+  "requestId": "req_011CbTnAXin28BcVoeJdV5Yy",
+  "type": "assistant",
+  "uuid": "2a71e6f3-e2bd-4b5c-9a6d-daa09cccf685",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M1QQxdpeA3wP2W3Y93DuEK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1373,
+      "cache_read_input_tokens": 34570,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1373,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 34570,
+          "cache_creation_input_tokens": 1373,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1373
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-27T21:25:29.098Z_
+
+<details><summary>↩ Tool result · `toolu_01WCqCaJ1DFZ2na3yruzMzb2`</summary>
+
+```text
+I apologize, but the content provided appears to be a corrupted or improperly extracted PDF file containing compressed binary data rather than readable text. The material shows FlateDecode-compressed PDF streams that cannot be parsed for meaningful information.
+
+To locate the DANN lambda scheduling formula you're asking about, I would need:
+
+1. A properly extracted text version of the document
+2. The original PDF file in readable format
+3. A direct link to the paper (if it's a published work)
+
+If you're looking for the DANN (Domain-Adversarial Neural Networks) gradient reversal scheduling formula, the original paper typically uses:
+
+**λ(p) = 2/(1 + exp(-γp)) - 1**
+
+where *p* is the training progress (0 to 1) and *γ* controls the scheduling speed. However, I cannot confirm this matches your specific document without readable source material.
+
+Please resubmit the content in plain text or PDF format, and I'll be happy to locate the exact formula and guidance.
+
+[Binary content (application/pdf, 5.7MB) also saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu-idea-review/ff298244-a509-4f08-a48a-515b357b90bb/tool-results/webfetch-1779917124386-dibqhr.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "904e34b9-1990-4624-a368-1596c21a4ae8",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "a0e00681-9f31-409e-87d2-ee4bab0f654c",
+  "toolUseResult": {
+    "bytes": 5925127,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I apologize, but the content provided appears to be a corrupted or improperly extracted PDF file containing compressed binary data rather than readable text. The material shows FlateDecode-compressed PDF streams that cannot be parsed for meaningful information.\n\nTo locate the DANN lambda scheduling formula you're asking about, I would need:\n\n1. A properly extracted text version of the document\n2. The original PDF file in readable format\n3. A direct link to the paper (if it's a published work)\n\nIf you're looking for the DANN (Domain-Adversarial Neural Networks) gradient reversal scheduling formula, the original paper typically uses:\n\n**λ(p) = 2/(1 + exp(-γp)) - 1**\n\nwhere *p* is the training progress (0 to 1) and *γ* controls the scheduling speed. However, I cannot confirm this matches your specific document without readable source material.\n\nPlease resubmit the content in plain text or PDF format, and I'll be happy to locate the exact formula and guidance.\n\n[Binary content (application/pdf, 5.7MB) also saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu-idea-review/ff298244-a509-4f08-a48a-515b357b90bb/tool-results/webfetch-1779917124386-dibqhr.pdf]",
+    "durationMs": 4921,
+    "url": "https://arxiv.org/pdf/1505.07818"
+  },
+  "sourceToolAssistantUUID": "904e34b9-1990-4624-a368-1596c21a4ae8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-27T21:25:30.776Z_
+
+<details><summary>↩ Tool result · `toolu_01RnWiBycJ214nWPo5jqzeBC`</summary>
+
+```text
+Web search results for query: ""Factored Causal Representation Learning" reward model RLHF gradient reversal ICML 2026"
+
+Links: [{"title":"[2601.21350] Factored Causal Representation Learning for Robust Reward Modeling in RLHF","url":"https://arxiv.org/abs/2601.21350"},{"title":"ICML Poster Factored Causal Representation Learning for Robust Reward Modeling in RLHF","url":"https://icml.cc/virtual/2026/poster/65508"},{"title":"Factored Causal Representation Learning for Robust Reward Modeling in RLHF","url":"https://www.arxiv.org/pdf/2601.21350"},{"title":"Beyond Reward Hacking: Causal Rewards for Large Language Model Alignment","url":"https://arxiv.org/pdf/2501.09620"},{"title":"Gradient Regularization Prevents Reward Hacking in Reinforcement Learning from Human Feedback and Verifiable Rewards","url":"https://arxiv.org/pdf/2602.18037"}]
+
+I found relevant results for your search. Here's what I found:
+
+## "Factored Causal Representation Learning for Robust Reward Modeling in RLHF"
+
+A reliable reward model is essential for aligning large language models with human preferences through reinforcement learning from human feedback, but standard reward models are susceptible to spurious features that are not causally related to human labels, which can lead to reward hacking where high predicted reward does not translate into better behavior.
+
+The paper proposes a solution: A factored representation learning framework that decomposes the model's contextual embedding into causal factors that are sufficient for reward prediction and non-causal factors that capture reward-irrelevant attributes such as length or sycophantic bias, with the reward head constrained to depend only on the causal component.
+
+The approach introduces an adversarial head trained to predict reward from the non-causal factors, while applying gradient reversal to discourage them from encoding reward-relevant information.
+
+The paper appears to have been posted to arXiv on January 29, 2026, and has an associated ICML 2026 poster presentation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2a71e6f3-e2bd-4b5c-9a6d-daa09cccf685",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "55e7dd52-534f-4a77-99a1-7545ae141df8",
+  "toolUseResult": {
+    "query": "\"Factored Causal Representation Learning\" reward model RLHF gradient reversal ICML 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CC8P64odtqvDsLD9mJGRWN",
+        "content": [
+          {
+            "title": "[2601.21350] Factored Causal Representation Learning for Robust Reward Modeling in RLHF",
+            "url": "https://arxiv.org/abs/2601.21350"
+          },
+          {
+            "title": "ICML Poster Factored Causal Representation Learning for Robust Reward Modeling in RLHF",
+            "url": "https://icml.cc/virtual/2026/poster/65508"
+          },
+          {
+            "title": "Factored Causal Representation Learning for Robust Reward Modeling in RLHF",
+            "url": "https://www.arxiv.org/pdf/2601.21350"
+          },
+          {
+            "title": "Beyond Reward Hacking: Causal Rewards for Large Language Model Alignment",
+            "url": "https://arxiv.org/pdf/2501.09620"
+          },
+          {
+            "title": "Gradient Regularization Prevents Reward Hacking in Reinforcement Learning from Human Feedback and Verifiable Rewards",
+            "url": "https://arxiv.org/pdf/2602.18037"
+          }
+        ]
+      },
+      "I found relevant results for your search. Here's what I found:\n\n## \"Factored Causal Representation Learning for Robust Reward Modeling in RLHF\"\n\nA reliable reward model is essential for aligning large language models with human preferences through reinforcement learning from human feedback, but standard reward models are susceptible to spurious features that are not causally related to human labels, which can lead to reward hacking where high predicted reward does not translate into better behavior.\n\nThe paper proposes a solution: A factored representation learning framework that decomposes the model's contextual embedding into causal factors that are sufficient for reward prediction and non-causal factors that capture reward-irrelevant attributes such as length or sycophantic bias, with the reward head constrained to depend only on the causal component.\n\nThe approach introduces an adversarial head trained to predict reward from the non-causal factors, while applying gradient reversal to discourage them from encoding reward-relevant information.\n\nThe paper appears to have been posted to arXiv on January 29, 2026, and has an associated ICML 2026 poster presentation."
+    ],
+    "durationSeconds": 6.232016572000022,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2a71e6f3-e2bd-4b5c-9a6d-daa09cccf685",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-27T21:25:34.723Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me get more details on the Factored Causal Representation Learning paper, since it's directly relevant to Innovation 3.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55e7dd52-534f-4a77-99a1-7545ae141df8",
+  "isSidechain": false,
+  "requestId": "req_011CbTnBUzbjb5bTuYXd8sYP",
+  "type": "assistant",
+  "uuid": "42adba06-9c02-4537-9320-97dbd1c67c0b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017JPSmjoAvnkBwGLnVDBwXk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1176,
+      "cache_read_input_tokens": 35943,
+      "output_tokens": 301,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1176,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 301,
+          "cache_read_input_tokens": 35943,
+          "cache_creation_input_tokens": 1176,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1176
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-27T21:25:38.041Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UKbBgeAVx3GJ6gvhtuudHs`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.21350",
+  "prompt": "Extract detailed information about this paper: (1) How exactly do they use gradient reversal for reward model debiasing? (2) What is the factored representation - how do they decompose causal vs non-causal factors? (3) What loss function do they use? (4) How do they handle the gradient reversal coefficient/scheduling? (5) Do they apply this at step-level or outcome-level? (6) Key results? (7) Any discussion of training instability or multi-loss balancing?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42adba06-9c02-4537-9320-97dbd1c67c0b",
+  "isSidechain": false,
+  "requestId": "req_011CbTnBUzbjb5bTuYXd8sYP",
+  "type": "assistant",
+  "uuid": "63c16ed2-b3bd-4a9b-a81b-a4c4e40d525b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017JPSmjoAvnkBwGLnVDBwXk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1176,
+      "cache_read_input_tokens": 35943,
+      "output_tokens": 301,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1176,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 301,
+          "cache_read_input_tokens": 35943,
+          "cache_creation_input_tokens": 1176,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1176
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-27T21:25:38.980Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015zY2ajtv51P64ZtqKqWFHS`</summary>
+
+```json
+{
+  "query": "step-level PRM debiasing challenges per-step equivalence verification compositional augmentation step-chain coherence 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63c16ed2-b3bd-4a9b-a81b-a4c4e40d525b",
+  "isSidechain": false,
+  "requestId": "req_011CbTnBUzbjb5bTuYXd8sYP",
+  "type": "assistant",
+  "uuid": "1a3efe84-ab77-42a1-bc40-05585fd6efd2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017JPSmjoAvnkBwGLnVDBwXk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1176,
+      "cache_read_input_tokens": 35943,
+      "output_tokens": 301,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1176,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 301,
+          "cache_read_input_tokens": 35943,
+          "cache_creation_input_tokens": 1176,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1176
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"CI-PRM: Counterfactual-Invariant Process Reward Models with Domain-Adv…",
+  "leafUuid": "1a3efe84-ab77-42a1-bc40-05585fd6efd2",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CI-PRM with FoVer positioning and loss balancing",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-27T21:25:42.749Z_
+
+<details><summary>↩ Tool result · `toolu_01UKbBgeAVx3GJ6gvhtuudHs`</summary>
+
+```text
+Based on the available webpage content, I can only provide limited information, as the page displays an abstract and metadata rather than the full paper details.
+
+**What the abstract reveals:**
+
+The paper proposes decomposing contextual embeddings into two components: "(1) causal factors that are sufficient for reward prediction and (2) non-causal factors that capture reward-irrelevant attributes such as length or sycophantic bias." The reward head depends only on the causal component.
+
+Regarding gradient reversal, the abstract states: "an adversarial head trained to predict reward from the non-causal factors, while applying gradient reversal to discourage them from encoding reward-relevant information."
+
+**What cannot be determined from this webpage:**
+
+Unfortunately, the specific implementation details you're asking about—including:
+- Exact gradient reversal coefficient scheduling
+- The complete loss function formulation
+- Step-level vs. outcome-level application
+- Training stability discussions
+- Multi-loss balancing strategies
+- Detailed numerical results
+
+—are not visible on this abstract page. To answer questions 1-7 comprehensively, you would need to access the full PDF paper (available via the "View PDF" link) or the TeX source.
+
+The page confirms the work addresses "reward hacking" through a causal representation approach and shows improvements on "mathematical and dialogue tasks," but quantitative results aren't displayed in this metadata view.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63c16ed2-b3bd-4a9b-a81b-a4c4e40d525b",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "1582df85-f976-4317-ae50-7f06e305bd3e",
+  "toolUseResult": {
+    "bytes": 47615,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the available webpage content, I can only provide limited information, as the page displays an abstract and metadata rather than the full paper details.\n\n**What the abstract reveals:**\n\nThe paper proposes decomposing contextual embeddings into two components: \"(1) causal factors that are sufficient for reward prediction and (2) non-causal factors that capture reward-irrelevant attributes such as length or sycophantic bias.\" The reward head depends only on the causal component.\n\nRegarding gradient reversal, the abstract states: \"an adversarial head trained to predict reward from the non-causal factors, while applying gradient reversal to discourage them from encoding reward-relevant information.\"\n\n**What cannot be determined from this webpage:**\n\nUnfortunately, the specific implementation details you're asking about—including:\n- Exact gradient reversal coefficient scheduling\n- The complete loss function formulation\n- Step-level vs. outcome-level application\n- Training stability discussions\n- Multi-loss balancing strategies\n- Detailed numerical results\n\n—are not visible on this abstract page. To answer questions 1-7 comprehensively, you would need to access the full PDF paper (available via the \"View PDF\" link) or the TeX source.\n\nThe page confirms the work addresses \"reward hacking\" through a causal representation approach and shows improvements on \"mathematical and dialogue tasks,\" but quantitative results aren't displayed in this metadata view.",
+    "durationMs": 4703,
+    "url": "https://arxiv.org/abs/2601.21350"
+  },
+  "sourceToolAssistantUUID": "63c16ed2-b3bd-4a9b-a81b-a4c4e40d525b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-27T21:25:47.816Z_
+
+<details><summary>↩ Tool result · `toolu_015zY2ajtv51P64ZtqKqWFHS`</summary>
+
+```text
+Web search results for query: "step-level PRM debiasing challenges per-step equivalence verification compositional augmentation step-chain coherence 2025 2026"
+
+Links: [{"title":"The Lessons of Developing Process Reward Models in Mathematical Reasoning","url":"https://arxiv.org/pdf/2501.07301"},{"title":"CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models","url":"https://arxiv.org/pdf/2507.15698"},{"title":"Grounding the Score: Explicit Visual Premise Verification for Reliable Vision-Language Process Reward Models","url":"https://arxiv.org/pdf/2603.16253"},{"title":"Process Reward Models That Think","url":"https://arxiv.org/pdf/2504.16828"},{"title":"Efficient PRM Training Data Synthesis via Formal Verification","url":"https://arxiv.org/pdf/2505.15960"},{"title":"Towards Robust Process Reward Modeling via Noise-aware Learning","url":"https://arxiv.org/pdf/2601.12748"},{"title":"[2504.16828] Process Reward Models That Think","url":"https://arxiv.org/abs/2504.16828"},{"title":"ReARTeR: Retrieval-Augmented Reasoning with Trustworthy Process   Rewarding","url":"https://arxiv.org/pdf/2501.07861"}]
+
+I've found several recent research papers on Process Reward Models (PRMs) and related challenges. Here's what the search results reveal:
+
+## Key Challenges in Step-Level PRM Development
+
+Current PRMs' reward predictions can be unduly influenced by superficial features of reasoning steps, particularly their textual length, which is addressed in recent debiasing work.
+
+Creating PRM training data remains costly and noisy, with early studies relying on human annotation that is particularly expensive for obtaining step-level error labels and suffers from low inter-annotator agreement.
+
+## Per-Step Equivalence and Verification
+
+A consensus filtering mechanism has been developed that integrates Monte Carlo estimation with LLM-as-a-judge and advocates a comprehensive evaluation framework combining response-level and step-level metrics.
+
+Recent work on visual PRMs uses explicit premise verification with reliability gating, where rewards for visually dependent steps are calibrated via attenuated or preserved signals based on reliability levels.
+
+## Compositional and Step-Chain Coherence
+
+Fine-grained filtering of synthetic data based on step supervision is crucial for training high-quality PRMs, and approaches like ThinkPRM verify every step in solutions by generating verification chain-of-thought while requiring fewer process labels than discriminative PRMs.
+
+Recent integrated approaches face challenges including lack of explanations, bias in PRM training data, and early-step bias in PRM scores.
+
+The research indicates this is an active area with papers from 2025-2026 addressing debiasing, verification, and compositional reasoning concerns.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a3efe84-ab77-42a1-bc40-05585fd6efd2",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "6d18ff0e-4b10-4f99-b33b-7727cbefd085",
+  "toolUseResult": {
+    "query": "step-level PRM debiasing challenges per-step equivalence verification compositional augmentation step-chain coherence 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01By7CT77NbLw664X7a2atbX",
+        "content": [
+          {
+            "title": "The Lessons of Developing Process Reward Models in Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2501.07301"
+          },
+          {
+            "title": "CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models",
+            "url": "https://arxiv.org/pdf/2507.15698"
+          },
+          {
+            "title": "Grounding the Score: Explicit Visual Premise Verification for Reliable Vision-Language Process Reward Models",
+            "url": "https://arxiv.org/pdf/2603.16253"
+          },
+          {
+            "title": "Process Reward Models That Think",
+            "url": "https://arxiv.org/pdf/2504.16828"
+          },
+          {
+            "title": "Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://arxiv.org/pdf/2505.15960"
+          },
+          {
+            "title": "Towards Robust Process Reward Modeling via Noise-aware Learning",
+            "url": "https://arxiv.org/pdf/2601.12748"
+          },
+          {
+            "title": "[2504.16828] Process Reward Models That Think",
+            "url": "https://arxiv.org/abs/2504.16828"
+          },
+          {
+            "title": "ReARTeR: Retrieval-Augmented Reasoning with Trustworthy Process   Rewarding",
+            "url": "https://arxiv.org/pdf/2501.07861"
+          }
+        ]
+      },
+      "I've found several recent research papers on Process Reward Models (PRMs) and related challenges. Here's what the search results reveal:\n\n## Key Challenges in Step-Level PRM Development\n\nCurrent PRMs' reward predictions can be unduly influenced by superficial features of reasoning steps, particularly their textual length, which is addressed in recent debiasing work.\n\nCreating PRM training data remains costly and noisy, with early studies relying on human annotation that is particularly expensive for obtaining step-level error labels and suffers from low inter-annotator agreement.\n\n## Per-Step Equivalence and Verification\n\nA consensus filtering mechanism has been developed that integrates Monte Carlo estimation with LLM-as-a-judge and advocates a comprehensive evaluation framework combining response-level and step-level metrics.\n\nRecent work on visual PRMs uses explicit premise verification with reliability gating, where rewards for visually dependent steps are calibrated via attenuated or preserved signals based on reliability levels.\n\n## Compositional and Step-Chain Coherence\n\nFine-grained filtering of synthetic data based on step supervision is crucial for training high-quality PRMs, and approaches like ThinkPRM verify every step in solutions by generating verification chain-of-thought while requiring fewer process labels than discriminative PRMs.\n\nRecent integrated approaches face challenges including lack of explanations, bias in PRM training data, and early-step bias in PRM scores.\n\nThe research indicates this is an active area with papers from 2025-2026 addressing debiasing, verification, and compositional reasoning concerns."
+    ],
+    "durationSeconds": 8.834063748000014,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1a3efe84-ab77-42a1-bc40-05585fd6efd2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84 · 2026-05-27T21:26:31.434Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to construct a thorough revision. Let me synthesize my findings:
+
+## Key Research Findings:
+
+### 1. FoVer (arXiv 2505.15960, ACL 2026 Findings)
+- Uses Z3 (for first-order logic) and Isabelle (for theorem proving) to generate step-level PRM training data
+- Verification focus: **correctness labels** (is this step correct given previous steps?) — NOT semantic equivalence
+- Training data: 40K steps (20K logic + 20K theorem proving)
+- Results: ProcessBench AUROC 85.8% (vs 75.9% baseline), MATH Best-of-7 improvements
+
+
+- A key limitation is that it doesn't tackle debiasing or spurious correlations, and it's fundamentally different from what CI-PRM needs—FoVer checks whether a step is logically valid, while CI-PRM requires verifying semantic equivalence between steps for augmentation quality.
+
+### 2. Controllable and Verifiable Process Data Synthesis (arXiv 2605.02395)
+- Constructs paired trajectories by taking a correct symbolic chain, injecting template-aware errors at specific steps, recomputing downstream consequences, and verifying the resulting trajectory is non-derivable
+- Covers various error types including truth-state errors like XOR mishandling and AND operations
+
+, plus structural errors like missing prerequisites and circular references
+- Focuses on logical reasoning tasks, though results transfer to math domains
+- The key difference is that their paired trajectories train PRM classifiers on correct/incorrect distinctions, whereas CI-PRM's augmentation creates surface-different but semantically equivalent pairs for invariance training alongside correct/incorrect pairs for sensitivity.
+
+### 3. PRM-BiasBench Perturbation Types
+- Four semantics-preserving perturbations: rephrasing, increased verbosity, decreased verbosity, and within-step reordering
+- Four semantics-altering perturbations: question shuffling, numerical perturbation, reasoning hallucination, and question removal
+- The reviewer's point stands—increased and decreased verbosity are indeed distinct categories.
+
+### 4. DANN
+Lambda scheduling uses a logistic annealing formula that transitions from 0 to 1 as training progresses.
+
+### 5. GradNorm for Multi-Task Loss Balancing
+This approach dynamically adjusts gradient magnitudes to keep task training rates balanced, controlled by a single hyperparameter.
+
+### 6. Factored Causal Representation Learning (ICML 2026)
+The method splits embeddings into causal factors that affect rewards and non-causal spurious factors, applying gradient reversal to the spurious components at the outcome level.
+
+### 7. LLM-as-Judge Circularity
+Same-model evaluation shows significant preference leakage around 23.6%, while family bias introduces another 22.3% when models have inheritance relationships.
+
+To mitigate this, I should use judges from different model families and apply contextual calibration, which reduces the error bias from 17.8 down to 7.3.
+
+Now I'm working through the reviewer concerns about FoVer and controllable synthesis. These approaches serve different purposes: FoVer validates whether individual steps are correct using formal verification to improve training data quality, while controllable synthesis generates paired trajectories with symbolic verification for process supervision. CI-PRM sits between them—it checks semantic equivalence between augmented steps to debias through invariance training, which is fundamentally different from just checking step correctness.
+
+For the composite loss, I need a phased training strategy: start with base PRM training on step correctness, then layer in per-channel KL invariance with warmup, add contrastive sensitivity margins, and finally introduce gradient reversal with adaptive annealing. I should also explore GradNorm-style weighting and report ablations across the introduction order.
+
+I'm also tempering the gradient reversal claim to be more precise—instead of claiming it handles any surface variation, I should scope it to augmentation-like variations within targeted channels and acknowledge where it breaks down for truly orthogonal exploit dimensions.
+
+For the tier 2 circularity issue, I need to use a non-Q approach...
+
+For soft verification, I'll use a newer model like Claude Sonnet 4.6 or GPT-4.1 and cite preference leakage literature, plus add a cross-model agreement check to strengthen the approach.
+
+The perturbation categories need to be listed explicitly as four separate types: rephrasing, increased verbosity, decreased verbosity, and within-step reordering.
+
+On step-level novelty, the core challenge is that per-step equivalence verification is fundamentally harder than response-level verification—I need to confirm a single reasoning step preserves meaning while staying coherent with the surrounding chain context. The augmentation must maintain step-chain coherence so changes to step k don't break the logical flow from k-1 to k+1, and the adversarial head operates on per-step representations with much less context, making error propagation a critical concern for step-level debiasing.
+
+Now I'm writing out the complete revised JSON with these improvements, incorporating the new references and loss balancing strategy to address the circularity issues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d18ff0e-4b10-4f99-b33b-7727cbefd085",
+  "isSidechain": false,
+  "requestId": "req_011CbTnCjtKuadgym2ianJZw",
+  "type": "assistant",
+  "uuid": "9dd250bc-6a43-4266-af0c-9817edb7351f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ACKmNzHjZP7gruGL8mYqu5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1363,
+      "cache_read_input_tokens": 37119,
+      "output_tokens": 1609,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1363,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1609,
+          "cache_read_input_tokens": 37119,
+          "cache_creation_input_tokens": 1363,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1363
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85 · 2026-05-27T21:26:31.634Z_
+
+Now I have comprehensive research on all reviewer issues. Let me synthesize my findings and produce the complete revision.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9dd250bc-6a43-4266-af0c-9817edb7351f",
+  "isSidechain": false,
+  "requestId": "req_011CbTnCjtKuadgym2ianJZw",
+  "type": "assistant",
+  "uuid": "bcb9bf9a-410a-49eb-952c-6008ef8b22f4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ACKmNzHjZP7gruGL8mYqu5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1363,
+      "cache_read_input_tokens": 37119,
+      "output_tokens": 1609,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1363,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1609,
+          "cache_read_input_tokens": 37119,
+          "cache_creation_input_tokens": 1363,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1363
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-27T21:26:32.581Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CATmNdCyFc83sSUykEdSrQ`</summary>
+
+```json
+{
+  "query": "Qwen3-235B vs GPT-4.1 vs Claude Sonnet mathematical reasoning equivalence judgment 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bcb9bf9a-410a-49eb-952c-6008ef8b22f4",
+  "isSidechain": false,
+  "requestId": "req_011CbTnCjtKuadgym2ianJZw",
+  "type": "assistant",
+  "uuid": "831a9f85-6a10-486c-8446-52e691c49d6e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ACKmNzHjZP7gruGL8mYqu5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1363,
+      "cache_read_input_tokens": 37119,
+      "output_tokens": 1609,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1363,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1609,
+          "cache_read_input_tokens": 37119,
+          "cache_creation_input_tokens": 1363,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1363
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-27T21:26:33.206Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QweyEdY3Y9TnApraj6W91K`</summary>
+
+```json
+{
+  "query": "\"process reward model\" step-level augmentation chain coherence downstream step consistency perturbation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "831a9f85-6a10-486c-8446-52e691c49d6e",
+  "isSidechain": false,
+  "requestId": "req_011CbTnCjtKuadgym2ianJZw",
+  "type": "assistant",
+  "uuid": "eacad7e9-c363-4736-a64d-38a1bbd87705",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ACKmNzHjZP7gruGL8mYqu5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1363,
+      "cache_read_input_tokens": 37119,
+      "output_tokens": 1609,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1363,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1609,
+          "cache_read_input_tokens": 37119,
+          "cache_creation_input_tokens": 1363,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1363
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-27T21:26:39.426Z_
+
+<details><summary>↩ Tool result · `toolu_01CATmNdCyFc83sSUykEdSrQ`</summary>
+
+```text
+Web search results for query: "Qwen3-235B vs GPT-4.1 vs Claude Sonnet mathematical reasoning equivalence judgment 2026"
+
+Links: [{"title":"Claude 4 Sonnet (Reasoning) vs Qwen3 235B A22B (Reasoning): Model Comparison","url":"https://artificialanalysis.ai/models/comparisons/claude-4-sonnet-thinking-vs-qwen3-235b-a22b-instruct-reasoning"},{"title":"Evaluating Large Language Models on the 2026 Korean CSAT Mathematics Exam: Measuring Mathematical Ability in a Zero-Data-Leakage Setting","url":"https://arxiv.org/pdf/2511.18649"},{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"},{"title":"Claude 4.5 Sonnet (Reasoning) vs Qwen3 235B A22B 2507 (Reasoning): Model Comparison","url":"https://artificialanalysis.ai/models/comparisons/claude-4-5-sonnet-thinking-vs-qwen3-235b-a22b-instruct-2507-reasoning"},{"title":"Claude Sonnet 4.6 (Non-reasoning, High Effort) vs Qwen3 235B A22B 2507 (Reasoning): Model Comparison","url":"https://artificialanalysis.ai/models/comparisons/claude-sonnet-4-6-vs-qwen3-235b-a22b-instruct-2507-reasoning"},{"title":"Qwen/Qwen3-235B-A22B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-235B-A22B"},{"title":"[2505.09388] Qwen3 Technical Report","url":"https://arxiv.org/abs/2505.09388"}]
+
+Based on the web search results, here's what I found regarding comparisons of these models:
+
+## Model Comparison Results
+
+Qwen3-235B-A22B (Thinking) with only 60% activated and 35% total parameters outperforms DeepSeek-R1 on 17 out of 23 benchmarks, particularly on reasoning-demanded tasks.
+
+Qwen3-235B-A22B (Thinking) is compared against other reasoning baselines, and multiple comparison resources exist on Artificial Analysis that directly compare Claude Sonnet variants and Qwen3-235B across various metrics including intelligence, price, speed, and context window.
+
+## Mathematical Reasoning Capabilities
+
+Qwen3 shows significant enhancements in reasoning capabilities, surpassing previous QwQ and Qwen2.5 instruct models on mathematics, code generation, and commonsense logical reasoning.
+
+Regarding 2026 mathematical evaluations, recent LLMs showed high performance with the GPT-5 series of models being the only ones to achieve perfect scores on the 2026 Korean CSAT mathematics exam.
+
+The search results indicate that comparison frameworks like Artificial Analysis Intelligence Index v4.0 incorporate mathematical reasoning benchmarks for evaluating these models, though the search results don't provide specific numerical equivalence judgments between GPT-4.1 and the other models you mentioned.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "831a9f85-6a10-486c-8446-52e691c49d6e",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "569cc678-77b4-4d69-b1df-70e6147046ed",
+  "toolUseResult": {
+    "query": "Qwen3-235B vs GPT-4.1 vs Claude Sonnet mathematical reasoning equivalence judgment 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GJdwKv2E9UayvxtLmc5APQ",
+        "content": [
+          {
+            "title": "Claude 4 Sonnet (Reasoning) vs Qwen3 235B A22B (Reasoning): Model Comparison",
+            "url": "https://artificialanalysis.ai/models/comparisons/claude-4-sonnet-thinking-vs-qwen3-235b-a22b-instruct-reasoning"
+          },
+          {
+            "title": "Evaluating Large Language Models on the 2026 Korean CSAT Mathematics Exam: Measuring Mathematical Ability in a Zero-Data-Leakage Setting",
+            "url": "https://arxiv.org/pdf/2511.18649"
+          },
+          {
+            "title": "2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          },
+          {
+            "title": "Claude 4.5 Sonnet (Reasoning) vs Qwen3 235B A22B 2507 (Reasoning): Model Comparison",
+            "url": "https://artificialanalysis.ai/models/comparisons/claude-4-5-sonnet-thinking-vs-qwen3-235b-a22b-instruct-2507-reasoning"
+          },
+          {
+            "title": "Claude Sonnet 4.6 (Non-reasoning, High Effort) vs Qwen3 235B A22B 2507 (Reasoning): Model Comparison",
+            "url": "https://artificialanalysis.ai/models/comparisons/claude-sonnet-4-6-vs-qwen3-235b-a22b-instruct-2507-reasoning"
+          },
+          {
+            "title": "Qwen/Qwen3-235B-A22B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-235B-A22B"
+          },
+          {
+            "title": "[2505.09388] Qwen3 Technical Report",
+            "url": "https://arxiv.org/abs/2505.09388"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding comparisons of these models:\n\n## Model Comparison Results\n\nQwen3-235B-A22B (Thinking) with only 60% activated and 35% total parameters outperforms DeepSeek-R1 on 17 out of 23 benchmarks, particularly on reasoning-demanded tasks.\n\nQwen3-235B-A22B (Thinking) is compared against other reasoning baselines, and multiple comparison resources exist on Artificial Analysis that directly compare Claude Sonnet variants and Qwen3-235B across various metrics including intelligence, price, speed, and context window.\n\n## Mathematical Reasoning Capabilities\n\nQwen3 shows significant enhancements in reasoning capabilities, surpassing previous QwQ and Qwen2.5 instruct models on mathematics, code generation, and commonsense logical reasoning.\n\nRegarding 2026 mathematical evaluations, recent LLMs showed high performance with the GPT-5 series of models being the only ones to achieve perfect scores on the 2026 Korean CSAT mathematics exam.\n\nThe search results indicate that comparison frameworks like Artificial Analysis Intelligence Index v4.0 incorporate mathematical reasoning benchmarks for evaluating these models, though the search results don't provide specific numerical equivalence judgments between GPT-4.1 and the other models you mentioned."
+    ],
+    "durationSeconds": 6.840440732999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "831a9f85-6a10-486c-8446-52e691c49d6e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"CI-PRM: Counterfactual-Invariant Process Reward Models with Domain-Adv…",
+  "leafUuid": "569cc678-77b4-4d69-b1df-70e6147046ed",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CI-PRM with FoVer positioning and loss balancing",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-27T21:26:42.511Z_
+
+<details><summary>↩ Tool result · `toolu_01QweyEdY3Y9TnApraj6W91K`</summary>
+
+```text
+Web search results for query: ""process reward model" step-level augmentation chain coherence downstream step consistency perturbation 2025 2026"
+
+Links: [{"title":"Process Reward Models in AI Systems","url":"https://www.emergentmind.com/topics/process-reward-models"},{"title":"Process Reward Models: Step-Level Feedback for LLMs","url":"https://www.emergentmind.com/topics/process-reward-models-prm"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=Process+Reward+Models+%28PRMs%29"},{"title":"SPARK: Stepwise Process-Aware Rewards for Reference-Free Reinforcement Learning","url":"https://arxiv.org/pdf/2512.03244"},{"title":"Intra-Trajectory Consistency for Reward Modeling","url":"https://arxiv.org/pdf/2506.09096"},{"title":"Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models","url":"https://arxiv.org/html/2503.13551"},{"title":"A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models","url":"https://arxiv.org/html/2510.08049v3"},{"title":"Process Reward Models - Stephen Diehl","url":"https://www.stephendiehl.com/posts/process_reward/"}]
+
+Based on the search results, here's what I found about process reward models with focus on the specific technical concepts you mentioned:
+
+## Process Reward Models Overview
+
+Process reward models are frameworks that assign fine-grained, step-level supervisory signals to intermediate actions, ensuring a coherent reasoning chain. PRMs are critical for applications where the correctness and coherence of each intermediate reasoning step—not merely the final outcome—are essential for robust performance.
+
+## Step-Level Augmentation and Chain Coherence
+
+PathFinder-PRM is a novel hierarchical, error-aware discriminative PRM that first classifies math and consistency errors at each step, then combines these fine-grained signals to estimate step correctness. This directly addresses chain coherence by detecting errors at each intermediate step.
+
+Hierarchical supervision aims to connect local correctness with global coherence by jointly evaluating individual steps and their interactions, capturing both fine-grained and coarse-grained consistency.
+
+## Downstream Step Consistency
+
+Recent work proposes leveraging generation probabilities to establish reward consistency between processes in the response trajectory, developing an intra-trajectory consistency regularization to enforce that adjacent processes with higher next-token generation probability maintain more consistent rewards.
+
+## Recent Developments (2025-2026)
+
+Multimodal PRMs such as VisualPRM, Athena-PRM, and DreamPRM generalize step-level reward modeling to settings involving both visual and textual data. Future work is expected to explore instance-level weighting, finer uncertainty modeling, hybrid generative-discriminative PRMs, and reinforcement learning pipelines that make deeper use of the process reward signal.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eacad7e9-c363-4736-a64d-38a1bbd87705",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "bbe0216c-262d-4e95-b071-1c8b8c8cef29",
+  "toolUseResult": {
+    "query": "\"process reward model\" step-level augmentation chain coherence downstream step consistency perturbation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CF1qV3Fmkvj2UKVDpPKMWW",
+        "content": [
+          {
+            "title": "Process Reward Models in AI Systems",
+            "url": "https://www.emergentmind.com/topics/process-reward-models"
+          },
+          {
+            "title": "Process Reward Models: Step-Level Feedback for LLMs",
+            "url": "https://www.emergentmind.com/topics/process-reward-models-prm"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=Process+Reward+Models+%28PRMs%29"
+          },
+          {
+            "title": "SPARK: Stepwise Process-Aware Rewards for Reference-Free Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2512.03244"
+          },
+          {
+            "title": "Intra-Trajectory Consistency for Reward Modeling",
+            "url": "https://arxiv.org/pdf/2506.09096"
+          },
+          {
+            "title": "Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models",
+            "url": "https://arxiv.org/html/2503.13551"
+          },
+          {
+            "title": "A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models",
+            "url": "https://arxiv.org/html/2510.08049v3"
+          },
+          {
+            "title": "Process Reward Models - Stephen Diehl",
+            "url": "https://www.stephendiehl.com/posts/process_reward/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about process reward models with focus on the specific technical concepts you mentioned:\n\n## Process Reward Models Overview\n\nProcess reward models are frameworks that assign fine-grained, step-level supervisory signals to intermediate actions, ensuring a coherent reasoning chain. PRMs are critical for applications where the correctness and coherence of each intermediate reasoning step—not merely the final outcome—are essential for robust performance.\n\n## Step-Level Augmentation and Chain Coherence\n\nPathFinder-PRM is a novel hierarchical, error-aware discriminative PRM that first classifies math and consistency errors at each step, then combines these fine-grained signals to estimate step correctness. This directly addresses chain coherence by detecting errors at each intermediate step.\n\nHierarchical supervision aims to connect local correctness with global coherence by jointly evaluating individual steps and their interactions, capturing both fine-grained and coarse-grained consistency.\n\n## Downstream Step Consistency\n\nRecent work proposes leveraging generation probabilities to establish reward consistency between processes in the response trajectory, developing an intra-trajectory consistency regularization to enforce that adjacent processes with higher next-token generation probability maintain more consistent rewards.\n\n## Recent Developments (2025-2026)\n\nMultimodal PRMs such as VisualPRM, Athena-PRM, and DreamPRM generalize step-level reward modeling to settings involving both visual and textual data. Future work is expected to explore instance-level weighting, finer uncertainty modeling, hybrid generative-discriminative PRMs, and reinforcement learning pipelines that make deeper use of the process reward signal."
+    ],
+    "durationSeconds": 9.301875150000008,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "eacad7e9-c363-4736-a64d-38a1bbd87705",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 92 · 2026-05-27T21:27:09.583Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me carefully craft the revised JSON. Let me think about each issue:
+
+1. **FoVer and Controllable Synthesis positioning** - Key differentiation:
+   - FoVer verifies *correctness labels* (is step k logically valid given premises?); CI-PRM verifies *semantic equivalence* (are two surface-different formulations of the same step semantically identical?)
+   - FoVer's goal: better training data for PRM classifiers; CI-PRM's goal: augmentation quality assurance for invariance training
+   - Controllable Synthesis creates correct/error trajectory pairs for PRM training; CI-PRM creates equivalent-but-surface-different pairs for invariance + correct/error pairs for sensitivity
+   - Both FoVer and Controllable Synthesis improve PRM data quality but don't address spurious feature exploitation or debiasing
+
+2. **Composite loss balancing** - I need to establish a concrete progressive training protocol that stages the different objectives: starting with base step-correctness training, then layering in KL invariance with a warmup schedule, followed by contrastive sensitivity margins, and finally adversarial debiasing with a logistic annealing schedule for the gradient-reversal coefficient.
+   - I should also explore GradNorm for dynamically balancing weights across phases and run ablations on the introduction order
+
+3. **Temper gradient reversal claim** - The robustness benefit is specifically to novel surface variations that resemble the augmentation distribution, not arbitrary variations.
+
+4. **Tier 2 circularity** - I'll use Claude Sonnet 4.6 as the soft verification model to avoid preference leakage issues, and add a cross-model agreement protocol for stronger validation.
+
+5. **Perturbation categories** - I need to explicitly list all four semantics-preserving perturbations separately: rephrasing, increased verbosity, decreased verbosity, and within-step reordering.
+
+6. **Step-level novelty argument** - The core challenge is that per-step equivalence verification requires reasoning about step-local context and constraints.
+
+The key insight is that step-level augmentation creates unique technical demands: each step's meaning depends on what comes before and after it, so augmentations can't break the logical chain. The adversarial head works with limited per-step context, which makes domain discrimination easier but gives it fewer features to work with. And since errors compound across steps, the debiasing approach needs to account for how spurious features accumulate through the chain.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bbe0216c-262d-4e95-b071-1c8b8c8cef29",
+  "isSidechain": false,
+  "requestId": "req_011CbTnGmiZdZpcCYDaC3eKv",
+  "type": "assistant",
+  "uuid": "86ed1bbc-5b17-4e77-ad7e-3c2b8b39aa58",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLgb6gtQHVsPwEHHVV1DMx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3210,
+      "cache_read_input_tokens": 38482,
+      "output_tokens": 8796,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3210,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8796,
+          "cache_read_input_tokens": 38482,
+          "cache_creation_input_tokens": 3210,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3210
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93 · 2026-05-27T21:27:09.584Z_
+
+Now I have all the research I need. Let me compose the complete revised research idea addressing all six reviewer concerns.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86ed1bbc-5b17-4e77-ad7e-3c2b8b39aa58",
+  "isSidechain": false,
+  "requestId": "req_011CbTnGmiZdZpcCYDaC3eKv",
+  "type": "assistant",
+  "uuid": "421a2e7f-ed53-4051-a1a9-42f66cc9ff71",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLgb6gtQHVsPwEHHVV1DMx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3210,
+      "cache_read_input_tokens": 38482,
+      "output_tokens": 8796,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3210,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8796,
+          "cache_read_input_tokens": 38482,
+          "cache_creation_input_tokens": 3210,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3210
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-27T21:30:17.391Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01QEm3GEHKeagXc2MUrVo6tQ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/idea-review/revised_idea_r2.json",
+  "content": "{\n  \"title\": \"CI-PRM: Counterfactual-Invariant Process Reward Models with Domain-Adversarial Generalization Against Reward Hacking\",\n  \"change_type\": \"major\",\n  \"core_problem\": \"Can we train step-level process reward models that are simultaneously invariant to known surface-level spurious features AND architecturally resistant to unseen spurious features, while remaining sensitive to logical correctness — directly closing the fluency-logic dissociation that renders current PRMs systematically exploitable under RL optimization pressure?\",\n  \"opportunity\": \"'Reward Under Attack' (March 2026) demonstrated that RL-optimized policies achieve near-perfect PRM rewards (>0.9) while ground-truth accuracy remains below 4%, with 43% of reward gains from stylistic shortcuts, but proposed no defense. Since then, a wave of debiasing methods has emerged — but each has critical limitations. Inference-time methods (SteerRM, CIRM, CRA, 'One Bias After Another') operate without retraining but (a) SteerRM/CIRM/'One Bias After Another' target only outcome-level RMs, not step-level PRMs, (b) CRA operates at step-level but achieves only modest gains (+2.9pp) and has not been evaluated under RL optimization pressure, and (c) 'One Bias After Another' demonstrates that high-complexity biases (sycophancy, model-style) fundamentally resist linear inference-time interventions. Training-time methods (DIR, CoLD, CROME) can alter learned representations but (a) DIR handles only outcome-level RMs, (b) CoLD targets only length bias in PRMs, and (c) CROME operates at outcome level. Meanwhile, formal verification methods (FoVer, Controllable Process Data Synthesis) have demonstrated that symbolic tools like Z3 and Isabelle can produce high-quality step-level PRM training data — but their verification targets *correctness labeling* (is this step valid?), not *semantic equivalence verification* (are two surface-different steps logically identical?) needed for debiasing augmentations. The gap is clear: no existing work combines (i) training-time multi-dimensional debiasing at the step level, (ii) equivalence-verified counterfactual augmentation quality assurance distinct from correctness-label verification, and (iii) a domain-adversarial generalization mechanism for robustness beyond targeted augmentation channels — all validated under actual RL optimization pressure.\",\n  \"landscape\": \"(1) 'Reward Under Attack' (2603.06621, Mar 2026): Definitive diagnosis via PRM-BiasBench with 8 perturbation types in two groups (semantics-preserving: rephrasing, increased verbosity, decreased verbosity, within-step reordering; semantics-altering: question shuffling, numerical perturbation, reasoning hallucination, question removal). Shows PRMs exhibit <0.1 reward change to surface edits yet miss logical corruption. Proposes no defense. (2) CROME (ICLR 2026): Causal+neutral augmentation for outcome-level RMs, +5.4% on RewardBench. Outcome-level only. (3) CoLD (Jul 2025): Counterfactual length debiasing for PRMs. Single-dimension (length) only. (4) PURE (NeurIPS 2025): Min-form credit assignment reduces hacking by 10+ points on AMC23. Addresses credit assignment, not bias source. (5) SteerRM (2603.12795, Mar 2026): Training-free SAE-based debiasing, +7.3pp on RM-Bench Hard. Outcome-level only; not tested under RL pressure; limited to format/style biases empirically. (6) CIRM (2604.27495, Apr 2026): Inference-time neuron intervention editing <2% neurons, outcome-level only, tested via DPO but not adversarial RL. (7) DIR (2512.23461, Dec 2025): Training-time information-theoretic debiasing for outcome-level RMs handling length+sycophancy+format via MI minimization. Only debiasing method validated under PPO pressure. Outcome-level only. (8) CRA (2508.04216, Aug 2025): SAE-based backdoor adjustment at step-level (the only inference-time method targeting PRMs), +2.9pp on MATH. No RL pressure evaluation; modest gains. (9) 'One Bias After Another' (2603.03291, Mar 2026): Mechanistic reward shaping via null-space projection. Critically distinguishes low-complexity biases (length, uncertainty, position — amenable to linear intervention) from high-complexity biases (sycophancy, model-style — resistant to linear debiasing). Outcome-level only. (10) FoVer (2505.15960, ACL 2026 Findings): Formally-verified PRM training data synthesis using Z3 (for first-order logic entailment) and Isabelle (for theorem proving). Trains on 40K formally-verified steps achieving ProcessBench AUROC 85.8% (vs 75.9% baseline) with cross-task generalization to MATH and AIME. Key distinction: FoVer verifies *step correctness labels* (is step k logically valid given premises?) for training data quality — it does not address semantic equivalence verification for augmentation pairs, nor debiasing or spurious feature mitigation. (11) 'Controllable and Verifiable Process Data Synthesis' (2605.02395, May 2026): Constructs paired correct/error trajectories via symbolic reasoning chains with template-aware error injection and prefix non-derivability verification. Creates step-level training data for PRMs with controlled error types (truth-state errors, structural errors). Key distinction: generates correct-vs-incorrect trajectory pairs for PRM classifier training — does not generate surface-different-but-semantically-equivalent augmentation pairs for invariance training, nor address debiasing. (12) PathFinder-PRM: Error typing for PRMs, 67.7 PRMScore. (13) Factored Causal Representation Learning (2601.21350, ICML 2026): Decomposes contextual embeddings into causal (reward-relevant) and non-causal (spurious) factors using gradient reversal on the non-causal component. Outcome-level RMs only. Provides direct precedent for gradient reversal in reward model debiasing, but does not address step-level representations or the unique challenges of per-step invariance. (14) APRM (Nov 2025): Adversarial PRM training for harder negatives. (15) Adv-RM (2504.06141, Apr 2026): Adversarial training of outcome-level RMs; allows RL to run 3× longer without hacking but at 3× training cost. Outcome-level only. (16) MATH-VF (2505.20869, May 2025): Step-wise formal verification using SymPy+Z3, >90% formalization success on MATH500, 74.1% F1 on ProcessBench — provides concrete tooling for step-level equivalence verification. (17) 'Debiasing Reward Models by Representation Learning with Guarantees' (Oct 2025): Theoretical framework showing non-spurious latent variables can be identified without spurious variable surrogates. (18) Preference Leakage (2502.01534, ICLR 2026): Demonstrates same-model bias (23.6% leakage) and family bias (22.3%) in LLM-as-judge settings, with only Contextual Calibration effectively mitigating leakage. Directly motivates cross-family verification in our Tier 2 pipeline. Summary: FoVer and Controllable Process Data Synthesis advance formally-verified PRM *training data quality* but target correctness labeling, not debiasing. CRA is the only step-level debiasing method but is inference-time-only with modest gains and no RL pressure evaluation. DIR is the only method validated under RL pressure but is outcome-level. No method combines step-level training-time debiasing with equivalence-verified augmentations and RL-pressure validation.\",\n  \"inspired_by\": \"Field gap: the convergence of (a) 'Reward Under Attack' diagnosing the problem without defense, (b) 'One Bias After Another' showing high-complexity biases resist inference-time fixes, (c) DIR showing training-time methods survive RL pressure, (d) MATH-VF providing formal verification tooling for step-level equivalence, (e) FoVer and Controllable Process Data Synthesis demonstrating that formal tools can scale for step-level PRM data but leaving debiasing-specific equivalence verification unaddressed, and (f) Factored Causal Representation Learning showing gradient reversal works for outcome-level RM debiasing but leaving step-level application unexplored — creating a unique opportunity for a formally-grounded, training-time, step-level, generalization-aware PRM debiasing approach.\",\n  \"approach\": \"We propose CI-PRM (Counterfactual-Invariant PRM), a training-time framework with three technical innovations addressing step-level PRM debiasing:\\n\\n**Innovation 1: Equivalence-Verified Counterfactual Augmentation Pipeline.** A critical distinction separates our verification goal from prior formally-verified PRM data work: FoVer (ACL 2026) uses Z3/Isabelle to verify *correctness labels* (is step k logically valid?), and Controllable Process Data Synthesis uses symbolic provers to verify *error injection validity* (is the corrupted step non-derivable from its prefix?). Our pipeline addresses a fundamentally different verification task — *semantic equivalence* between augmentation pairs: are two surface-different formulations of the same step logically identical? This equivalence verification is necessary for debiasing because incorrectly-verified 'neutral' augmentations that actually alter semantics would teach the PRM to ignore genuine logical differences. We build a two-tier verification system:\\n\\nTier 1 (Symbolic): An LLM formalizer translates each step into SimpleMath, then SymPy verifies algebraic equivalence and Z3 verifies logical entailment between original and augmented steps. MATH-VF demonstrates >90% formalization success on MATH500, providing scalability evidence. Unlike FoVer's binary correctness checks, our symbolic verification must establish bidirectional entailment (original ⟺ augmented), a strictly stronger requirement.\\n\\nTier 2 (Cross-Family Soft Verification): For steps resisting full formalization (e.g., natural-language reasoning bridges), we use Claude Sonnet 4.6 — deliberately chosen from a different model family than the Qwen-based PRM backbone — for chain-of-thought equivalence judgment. This cross-family design directly addresses the preference leakage problem (arXiv 2502.01534, ICLR 2026), which demonstrates 22-24% bias when judge and target share model family. We calibrate against a human-verified set of 500 step pairs (targeting <5% false-equivalence rate), and additionally compute cross-model agreement between Claude Sonnet 4.6 and GPT-4.1 on a 200-pair subset, rejecting any pair where the two judges disagree. We report formalization success rates, symbolic verification coverage, cross-model agreement rates, and calibrated error rates per augmentation type.\\n\\n**Step-Level-Specific Verification Challenges.** Per-step equivalence verification poses unique difficulties beyond response-level equivalence (as used in CROME): (a) a step's meaning is context-dependent — the same algebraic manipulation may be valid or invalid depending on prior steps, requiring verification to condition on the step's prefix chain; (b) augmentation must preserve step-chain coherence — changing step k's surface form cannot break logical dependencies with steps k-1 and k+1, which we enforce by re-verifying adjacent-step entailment after augmentation; (c) error propagation means that a false-equivalence error in step k can cascade through subsequent step evaluations during PRM training, making per-step false-equivalence rates more consequential than in outcome-level settings.\\n\\n**Innovation 2: Dimension-Agnostic Augmentation with Empirically-Grounded Channels.** We adopt an extensible framework grounded in PRM-BiasBench's empirically-validated perturbation categories. Our initial neutral augmentation channels correspond to the four semantics-preserving perturbation types from PRM-BiasBench: rephrasing, increased verbosity, decreased verbosity, and within-step reordering. The architecture is dimension-agnostic — new channels can be added without architectural changes. Using Qwen3-235B, we generate: (a) Neutral augmentations varying each surface channel while preserving logic (verified by Tier 1/2 above), creating invariance training pairs; (b) Causal augmentations introducing specific logical errors (sign flips, dropped terms, invalid inferences, numerical perturbations — aligned with PRM-BiasBench's semantics-altering categories) while maintaining surface fluency, creating sensitivity training pairs. New augmentation channels can be added by simply including them in the augmentation generation and verification pipeline.\\n\\n**Innovation 3: Domain-Adversarial Catch-All Invariance.** To address the concern that RL may discover spurious dimensions not in our training augmentations, we add a gradient-reversal domain-adversarial head inspired by Factored Causal Representation Learning (ICML 2026), which demonstrated gradient reversal's effectiveness for outcome-level RM debiasing. A discriminator head attempts to predict which augmentation type (or original) produced each step from the PRM's internal representations, while gradient reversal encourages the encoder to produce representations from which augmentation type is unrecoverable. Extending this from outcome-level to step-level introduces a distinct technical challenge: the adversarial head operates on per-step representations (~100-200 tokens of context) rather than full-response representations, providing both less context for the discriminator to exploit and fewer redundant features for the encoder to hide information in — requiring careful architectural design of the discriminator capacity.\\n\\n**Scope of generalization (tempered claim):** The gradient-reversal mechanism provides additional robustness to novel surface variations that share distributional characteristics with the augmentation channels seen during training — for example, new formatting styles that are distributional neighbors of rephrasing/verbosity variations. However, we explicitly acknowledge that truly orthogonal exploit dimensions (e.g., specific token-level patterns, positional encoding artifacts, or entirely novel stylistic features with no distributional overlap with training augmentations) may not be covered by this mechanism. The catch-all head complements, rather than replaces, targeted channel-specific invariance. Complete robustness to arbitrary RL exploitation strategies remains an open problem.\\n\\n**Progressive Training Protocol and Loss Balancing.** The 4-term composite loss creates real training stability risks, particularly from gradient reversal. We adopt a progressive training protocol inspired by curriculum learning and DANN-style λ-scheduling (Ganin et al., 2016):\\n\\n- *Phase 1 — Base PRM (steps 0 to T₁)*: Train on step-correctness cross-entropy only, establishing a competent base verifier. This provides stable gradient signals before introducing competing objectives.\\n- *Phase 2 — Invariance (steps T₁ to T₂)*: Add per-channel KL-divergence invariance regularization with linear warmup of its coefficient α from 0 to α_max over Phase 2. This teaches surface-invariance while the base task gradients remain dominant.\\n- *Phase 3 — Sensitivity (steps T₂ to T₃)*: Add contrastive sensitivity margins on causal augmentation pairs with coefficient β, also linearly warmed. At this point the PRM has learned both what to ignore (invariance) and what to attend to (sensitivity).\\n- *Phase 4 — Adversarial (steps T₃ to T_end)*: Add gradient-reversal adversarial loss with the Ganin-style logistic λ-annealing schedule: λ(p) = 2/(1 + exp(−γ·p)) − 1, where p is progress through Phase 4 (0→1) and γ = 10 (following DANN convention). This ensures the adversarial component starts with near-zero influence and gradually increases, avoiding early-training instability.\\n\\nWithin each phase, we apply GradNorm-style adaptive gradient normalization (Chen et al., ICML 2018) across active loss terms to equalize task training rates, reducing the hyperparameter search to GradNorm's single asymmetry parameter α_GN. We ablate: (a) progressive vs. simultaneous introduction, (b) GradNorm vs. fixed weights, (c) Phase 4 with/without λ-annealing, reporting training loss curves and validation metrics per phase to demonstrate stability.\\n\\nThe PRM is trained on a Qwen2.5-Math-7B backbone. We use ProcessBench-train data as the base, augmented with ~50K generated pairs verified through the two-tier system.\\n\\n**Critical Evaluation: Training-Time vs. Inference-Time Under RL Pressure.** We include a direct head-to-head comparison: CI-PRM (training-time) vs. SteerRM-adapted and CRA (inference-time baselines) when used as the reward signal during GRPO/PPO fine-tuning on MATH-500 and AIME. We measure not just reward accuracy but ground-truth solve rate over optimization steps to quantify when each method's debiasing breaks down under RL pressure. This experiment directly tests the hypothesis — supported by DIR's PPO results and 'One Bias After Another's high-complexity bias findings — that training-time representation changes provide more durable robustness than inference-time interventions.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"700-900 (200h augmentation generation via Qwen3-235B on 4×H100, 50-80h symbolic verification pipeline, 250-350h PRM training sweeps including progressive training ablations on 4×H100, 100-150h RL pressure evaluation, 100-120h ablations + baselines)\",\n      \"timeline\": \"14-18 weeks\",\n      \"estimated_gpu_cost\": \"$1,750-$2,250 at $2.50/H100-hr\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"550-700 (Claude assists with formalizer prompt engineering and augmentation QA; human verifies 500 calibration pairs for Tier 2 + 200 cross-model agreement pairs)\",\n      \"timeline\": \"10-14 weeks\",\n      \"claude_api_cost\": \"$500-$800 (Sonnet 4.6 for Tier 2 cross-family verification, formalizer prompt iteration, augmentation QA, ablation design; ~150M input + 60M output tokens)\",\n      \"estimated_gpu_cost\": \"$1,375-$1,750 at $2.50/H100-hr\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"550-700\",\n      \"timeline\": \"5-7 weeks\",\n      \"claude_api_cost\": \"$1,200-$1,800 (Sonnet 4.6 for end-to-end Tier 2 verification + cross-model agreement, augmentation generation QA, hyperparameter reasoning, progressive training schedule optimization, RL pressure experiment management; ~350M input + 140M output tokens with batch API)\",\n      \"estimated_gpu_cost\": \"$1,375-$1,750 at $2.50/H100-hr\",\n      \"speed_bottleneck\": \"Tier 1 symbolic verification via SymPy/Z3 is deterministic and parallelizable; Tier 2 cross-family LLM-based verification requires calibration against human judgments (500 step pairs) and cross-model agreement computation (200 pairs). Progressive training protocol is sequential across phases. RL pressure evaluation experiments are sequential and depend on PRM training completion.\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (paper deadline: Sep 24, 2026) — primary target\",\n    \"AISTATS 2027 (deadline: Oct 10, 2026)\",\n    \"ICML 2027 (deadline: Jan 29, 2027)\",\n    \"ACL 2027 (deadline: Feb 16, 2027)\",\n    \"NeurIPS 2027 (deadline: May 16, 2027)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models (arXiv 2603.06621, Mar 2026)\",\n    \"FoVer: Efficient PRM Training Data Synthesis via Formal Verification (arXiv 2505.15960, ACL 2026 Findings)\",\n    \"Controllable and Verifiable Process Data Synthesis for Process Reward Models (arXiv 2605.02395, May 2026)\",\n    \"Robust Reward Modeling via Causal Rubrics [CROME] (ICLR 2026)\",\n    \"SteerRM: Debiasing Reward Models via Sparse Autoencoders (arXiv 2603.12795, Mar 2026)\",\n    \"Debiasing Reward Models via Causally Motivated Inference-Time Intervention [CIRM] (arXiv 2604.27495, Apr 2026)\",\n    \"One Bias After Another: Mechanistic Reward Shaping and Persistent Biases in Language Reward Models (arXiv 2603.03291, Mar 2026)\",\n    \"Eliminating Inductive Bias in Reward Models with Information-Theoretic Guidance [DIR] (arXiv 2512.23461, Dec 2025)\",\n    \"Causal Reward Adjustment: Mitigating Reward Hacking via Backdoor Correction [CRA] (arXiv 2508.04216, Aug 2025)\",\n    \"CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models (arXiv 2507.15698, Jul 2025)\",\n    \"Stop Summation: Min-Form Credit Assignment [PURE] (NeurIPS 2025)\",\n    \"Adversarial Training of Reward Models [Adv-RM] (arXiv 2504.06141, Apr 2026)\",\n    \"Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving [MATH-VF] (arXiv 2505.20869, May 2025)\",\n    \"Factored Causal Representation Learning for Robust Reward Modeling in RLHF (arXiv 2601.21350, ICML 2026)\",\n    \"Error Typing for Smarter Rewards [PathFinder-PRM] (arXiv 2025)\",\n    \"Adversarial Training for Process Reward Models [APRM] (arXiv 2511.22888, Nov 2025)\",\n    \"Let's Verify Step by Step [PRM800K] (NeurIPS 2023)\",\n    \"Debiasing Reward Models by Representation Learning with Guarantees (arXiv 2510.23751, Oct 2025)\",\n    \"Preference Leakage: A Contamination Problem in LLM-as-a-judge (arXiv 2502.01534, ICLR 2026)\",\n    \"Domain-Adversarial Training of Neural Networks [DANN] (JMLR 2016)\",\n    \"GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks (ICML 2018)\",\n    \"Robust Reward Modeling for LLMs via Causal Decomposition (arXiv 2026)\"\n  ],\n  \"description\": \"Process Reward Models (PRMs) are the backbone of step-level verification for LLM mathematical reasoning, yet 'Reward Under Attack' (2026) exposed a critical fluency-logic dissociation: RL-optimized policies achieve >0.9 PRM rewards while ground-truth accuracy stays below 4%, with 43% of gains from stylistic shortcuts. A wave of debiasing methods has since emerged — SteerRM, CIRM, and 'One Bias After Another' (inference-time, outcome-level), CRA (inference-time, step-level but modest +2.9pp gains), DIR (training-time, outcome-level) — but none combines step-level training-time debiasing with multi-dimensional coverage and RL-pressure validation. Meanwhile, FoVer (ACL 2026) and Controllable Process Data Synthesis demonstrate that formal verification tools can produce high-quality step-level PRM training data, but their verification targets correctness labeling rather than the semantic equivalence verification needed for debiasing augmentations. We propose CI-PRM, which introduces three innovations: (1) an equivalence-verified counterfactual augmentation pipeline that addresses a fundamentally different verification task than FoVer/Controllable Synthesis — establishing bidirectional semantic equivalence between augmentation pairs rather than unidirectional correctness labels — using SymPy+Z3 symbolic verification supplemented by cross-family soft verification (Claude Sonnet 4.6, deliberately non-Qwen to avoid preference leakage) with cross-model agreement checks, calibrated against 500 human-verified step pairs; (2) a dimension-agnostic augmentation framework grounded in all four of PRM-BiasBench's semantics-preserving perturbation categories (rephrasing, increased verbosity, decreased verbosity, within-step reordering), extensible to new channels without architectural changes; and (3) a domain-adversarial catch-all invariance head using gradient reversal — extending Factored Causal Representation Learning (ICML 2026) from outcome-level to step-level representations — that provides additional robustness to novel surface variations sharing distributional characteristics with training augmentations, while explicitly acknowledging that truly orthogonal exploit dimensions remain a limitation. Unique step-level challenges — context-dependent step meaning, step-chain coherence preservation under augmentation, error propagation from false-equivalence verification errors, and per-step adversarial discrimination with limited context — justify this as a substantive contribution beyond applying outcome-level techniques at finer granularity. Training uses a progressive protocol (base PRM → invariance → sensitivity → adversarial) with Ganin-style λ-annealing and GradNorm-based adaptive loss balancing to address the 4-term composite loss stability concern. Evaluation centers on a critical head-to-head: CI-PRM vs. inference-time baselines (SteerRM-adapted, CRA) under GRPO/PPO optimization pressure on MATH-500 and AIME, measuring both reward accuracy and ground-truth solve rate over optimization steps.\",\n  \"project_name\": \"ci_prm_fluency_logic\",\n  \"source\": \"web_research\",\n  \"revision_notes\": {\n    \"round_1_issue_1_missing_baselines\": \"Added SteerRM, CIRM, DIR, CRA, 'One Bias After Another', and Adv-RM to landscape with detailed analysis. Key insight: mapped each method on two axes — (a) step-level vs outcome-level, (b) training-time vs inference-time — revealing that CRA is the only step-level method (inference-time, modest gains) and DIR is the only RL-pressure-validated method (training-time, outcome-level). CI-PRM uniquely occupies the step-level + training-time + RL-validated quadrant.\",\n    \"round_1_issue_2_equivalence_checker\": \"Replaced underspecified 'equivalence checker derived from PRM-BiasBench tooling' with a concrete two-tier system: Tier 1 uses MATH-VF-style formalization (LLM→SimpleMath) + SymPy/Z3 symbolic verification (>90% formalization success demonstrated on MATH500). Tier 2 uses calibrated LLM-based verification for non-formalizable steps, benchmarked against 500 human-verified step pairs targeting <5% false-equivalence rate.\",\n    \"round_1_issue_3_spurious_dimensions\": \"Dropped the weakly-justified four fixed dimensions. Now grounded in PRM-BiasBench's empirically-validated perturbation categories. Framework is explicitly dimension-agnostic.\",\n    \"round_1_issue_4_training_vs_inference\": \"Added explicit argument with three evidence lines and direct head-to-head experiment under RL pressure.\",\n    \"round_1_issue_5_timeline\": \"Dropped AAAI 2027. ICLR 2027 (Sep 24 = ~17 weeks) is now primary target.\",\n    \"round_1_issue_6_root_cause_overclaim\": \"Replaced 'addresses the root cause' with concrete mechanism: domain-adversarial catch-all invariance head using gradient reversal.\",\n    \"round_2_issue_1_fover_positioning\": \"CRITICAL FIX. Added FoVer (ACL 2026 Findings) and Controllable Process Data Synthesis (arXiv 2605.02395) to landscape with detailed analysis. Key differentiation: FoVer verifies *step correctness labels* (is step k logically valid given premises? — unidirectional) using Z3+Isabelle for training data quality. Controllable Synthesis verifies *error injection validity* (is corrupted step non-derivable from prefix?) for paired trajectory construction. CI-PRM's verification task is fundamentally different — *semantic equivalence* between augmentation pairs (bidirectional entailment: original ⟺ augmented), necessary for debiasing augmentation quality assurance. FoVer and Controllable Synthesis improve PRM data quality but do not address spurious feature exploitation, debiasing, or invariance training. Positioned as complementary: their tools advance correctness-label verification while CI-PRM extends formal verification to the distinct problem of equivalence verification for debiasing.\",\n    \"round_2_issue_2_composite_loss_balancing\": \"Added complete progressive training protocol with 4 phases: (1) base PRM on CE only, (2) add KL invariance with linear warmup, (3) add contrastive sensitivity with linear warmup, (4) add gradient-reversal adversarial with Ganin-style logistic λ-annealing: λ(p) = 2/(1+exp(−γ·p))−1. Applied GradNorm (Chen et al., ICML 2018) for adaptive gradient normalization across active loss terms within each phase, reducing hyperparameter search. Added ablation plan: progressive vs. simultaneous, GradNorm vs. fixed weights, λ-annealing vs. constant λ.\",\n    \"round_2_issue_3_gradient_reversal_overclaim\": \"Tempered claim from 'resistant to ANY surface-level variation pattern' to 'provides additional robustness to novel surface variations that share distributional characteristics with the augmentation channels seen during training.' Explicitly acknowledged that truly orthogonal exploit dimensions (token-level patterns, positional encoding artifacts, entirely novel stylistic features) may not be covered. Framed catch-all head as complementing, not replacing, targeted invariance. Stated that complete robustness to arbitrary RL exploitation remains an open problem.\",\n    \"round_2_issue_4_tier2_circularity\": \"Replaced Qwen3-235B for Tier 2 soft verification with Claude Sonnet 4.6 (non-Qwen family), directly addressing preference leakage concerns (arXiv 2502.01534 shows 22-24% same-family bias). Added cross-model agreement protocol: compute agreement between Claude Sonnet 4.6 and GPT-4.1 on 200-pair subset, rejecting any pair where judges disagree. Qwen3-235B retained only for augmentation *generation* (where model-family bias is less concerning since verification is done cross-family).\",\n    \"round_2_issue_5_perturbation_accuracy\": \"Fixed perturbation category listing to properly enumerate all 4 semantics-preserving types from PRM-BiasBench: rephrasing, increased verbosity, decreased verbosity, and within-step reordering (previously collapsed 'increased/decreased verbosity' into 'verbosity changes').\",\n    \"round_2_issue_6_step_level_novelty\": \"Added explicit articulation of step-level-specific technical challenges that distinguish this work from merely applying outcome-level techniques at finer granularity: (a) per-step equivalence verification is context-dependent — a step's meaning depends on its prefix chain, requiring verification to condition on preceding steps; (b) augmentation must preserve step-chain coherence — changing step k cannot break logical dependencies with steps k-1 and k+1, enforced via adjacent-step entailment re-verification; (c) error propagation makes per-step false-equivalence rates more consequential than outcome-level, since a verification error at step k cascades through subsequent PRM evaluations; (d) the adversarial head operates on per-step representations with ~100-200 tokens of context vs. full-response representations, creating a distinct discriminator capacity design problem.\"\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "421a2e7f-ed53-4051-a1a9-42f66cc9ff71",
+  "isSidechain": false,
+  "requestId": "req_011CbTnGmiZdZpcCYDaC3eKv",
+  "type": "assistant",
+  "uuid": "637c2aaf-1d27-4bc1-b91d-e3b4c53f64f7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLgb6gtQHVsPwEHHVV1DMx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3210,
+      "cache_read_input_tokens": 38482,
+      "output_tokens": 8796,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3210,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8796,
+          "cache_read_input_tokens": 38482,
+          "cache_creation_input_tokens": 3210,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3210
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-27T21:30:17.400Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01QEm3GEHKeagXc2MUrVo6tQ`</summary>
+
+```text
+Claude requested permissions to write to /home/ubuntu/idea-review/revised_idea_r2.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "637c2aaf-1d27-4bc1-b91d-e3b4c53f64f7",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "4a598b8f-8878-48cb-a82a-feed668862d9",
+  "toolUseResult": "Error: Claude requested permissions to write to /home/ubuntu/idea-review/revised_idea_r2.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "637c2aaf-1d27-4bc1-b91d-e3b4c53f64f7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 96 · 2026-05-27T21:30:17.464Z_
+
+```json
+{
+  "parentUuid": "4a598b8f-8878-48cb-a82a-feed668862d9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2f70b94c-1e51-46c5-bc5e-f628026bbd28",
+  "timestamp": "2026-05-27T21:30:17.464Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 97_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"CI-PRM: Counterfactual-Invariant Process Reward Models with Domain-Adv…",
+  "leafUuid": "2f70b94c-1e51-46c5-bc5e-f628026bbd28",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CI-PRM with FoVer positioning and loss balancing",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-27T21:30:21.194Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_015PkH9sFRXpp6gjZzMrvfHs`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/idea-review/ 2>/dev/null || echo \"Directory does not exist\"",
+  "description": "Check if idea-review directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f70b94c-1e51-46c5-bc5e-f628026bbd28",
+  "isSidechain": false,
+  "requestId": "req_011CbTnYckG2YQ7jaiWdtVYS",
+  "type": "assistant",
+  "uuid": "8e6c318d-b215-4747-92df-0a74dcdd453b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EQptNCoLY4EqeKKQqLdeCX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8946,
+      "cache_read_input_tokens": 41692,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8946,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 41692,
+          "cache_creation_input_tokens": 8946,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8946
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-27T21:30:21.210Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_015PkH9sFRXpp6gjZzMrvfHs`</summary>
+
+```text
+ls in '/home/ubuntu/idea-review/' was blocked. For security, Claude Code may only list files in the allowed working directories for this session: '/home/ubuntu/idea_review'.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8e6c318d-b215-4747-92df-0a74dcdd453b",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "e8dd940e-36a5-4e9c-8cda-9e9960583330",
+  "toolUseResult": "Error: ls in '/home/ubuntu/idea-review/' was blocked. For security, Claude Code may only list files in the allowed working directories for this session: '/home/ubuntu/idea_review'.",
+  "sourceToolAssistantUUID": "8e6c318d-b215-4747-92df-0a74dcdd453b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-27T21:30:24.083Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Y2tErpL5APPz7kXUpdZZWR`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/idea_review/ 2>/dev/null || echo \"Directory does not exist\"",
+  "description": "Check if idea_review directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8dd940e-36a5-4e9c-8cda-9e9960583330",
+  "isSidechain": false,
+  "requestId": "req_011CbTnYtxajcYkd2wdYSado",
+  "type": "assistant",
+  "uuid": "e827eea9-90f6-4961-a141-370091ee4748",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019NudphiTcCh1MVu1SetYt6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 159,
+      "cache_read_input_tokens": 50638,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 159,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 50638,
+          "cache_creation_input_tokens": 159,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 159
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-27T21:30:24.256Z_
+
+<details><summary>↩ Tool result · `toolu_01Y2tErpL5APPz7kXUpdZZWR`</summary>
+
+```text
+__pycache__
+batch_triage.py
+conference.py
+config.py
+convergence.py
+dispatch
+io_utils.py
+parsers.py
+prompts
+requirements.txt
+reviewer.py
+test_account.py
+审idea的agent
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e827eea9-90f6-4961-a141-370091ee4748",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "5c28e4ea-115b-494e-99f2-12fca838542d",
+  "toolUseResult": {
+    "stdout": "__pycache__\nbatch_triage.py\nconference.py\nconfig.py\nconvergence.py\ndispatch\nio_utils.py\nparsers.py\nprompts\nrequirements.txt\nreviewer.py\ntest_account.py\n审idea的agent",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "e827eea9-90f6-4961-a141-370091ee4748",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-27T21:33:34.909Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_017RjgS8bBJ6qetZcbU9KJ6v`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/idea_review/revised_idea_r2.json",
+  "content": "{\n  \"title\": \"CI-PRM: Counterfactual-Invariant Process Reward Models with Domain-Adversarial Generalization Against Reward Hacking\",\n  \"change_type\": \"major\",\n  \"core_problem\": \"Can we train step-level process reward models that are simultaneously invariant to known surface-level spurious features AND architecturally resistant to unseen spurious features, while remaining sensitive to logical correctness — directly closing the fluency-logic dissociation that renders current PRMs systematically exploitable under RL optimization pressure?\",\n  \"opportunity\": \"'Reward Under Attack' (March 2026) demonstrated that RL-optimized policies achieve near-perfect PRM rewards (>0.9) while ground-truth accuracy remains below 4%, with 43% of reward gains from stylistic shortcuts, but proposed no defense. Since then, a wave of debiasing methods has emerged — but each has critical limitations. Inference-time methods (SteerRM, CIRM, CRA, 'One Bias After Another') operate without retraining but (a) SteerRM/CIRM/'One Bias After Another' target only outcome-level RMs, not step-level PRMs, (b) CRA operates at step-level but achieves only modest gains (+2.9pp) and has not been evaluated under RL optimization pressure, and (c) 'One Bias After Another' demonstrates that high-complexity biases (sycophancy, model-style) fundamentally resist linear inference-time interventions. Training-time methods (DIR, CoLD, CROME) can alter learned representations but (a) DIR handles only outcome-level RMs, (b) CoLD targets only length bias in PRMs, and (c) CROME operates at outcome level. Meanwhile, formal verification methods (FoVer, Controllable Process Data Synthesis) have demonstrated that symbolic tools like Z3 and Isabelle can produce high-quality step-level PRM training data — but their verification targets *correctness labeling* (is this step valid?), not *semantic equivalence verification* (are two surface-different steps logically identical?) needed for debiasing augmentations. The gap is clear: no existing work combines (i) training-time multi-dimensional debiasing at the step level, (ii) equivalence-verified counterfactual augmentation quality assurance distinct from correctness-label verification, and (iii) a domain-adversarial generalization mechanism for robustness beyond targeted augmentation channels — all validated under actual RL optimization pressure.\",\n  \"landscape\": \"(1) 'Reward Under Attack' (2603.06621, Mar 2026): Definitive diagnosis via PRM-BiasBench with 8 perturbation types in two groups (semantics-preserving: rephrasing, increased verbosity, decreased verbosity, within-step reordering; semantics-altering: question shuffling, numerical perturbation, reasoning hallucination, question removal). Shows PRMs exhibit <0.1 reward change to surface edits yet miss logical corruption. Proposes no defense. (2) CROME (ICLR 2026): Causal+neutral augmentation for outcome-level RMs, +5.4% on RewardBench. Outcome-level only. (3) CoLD (Jul 2025): Counterfactual length debiasing for PRMs. Single-dimension (length) only. (4) PURE (NeurIPS 2025): Min-form credit assignment reduces hacking by 10+ points on AMC23. Addresses credit assignment, not bias source. (5) SteerRM (2603.12795, Mar 2026): Training-free SAE-based debiasing, +7.3pp on RM-Bench Hard. Outcome-level only; not tested under RL pressure; limited to format/style biases empirically. (6) CIRM (2604.27495, Apr 2026): Inference-time neuron intervention editing <2% neurons, outcome-level only, tested via DPO but not adversarial RL. (7) DIR (2512.23461, Dec 2025): Training-time information-theoretic debiasing for outcome-level RMs handling length+sycophancy+format via MI minimization. Only debiasing method validated under PPO pressure. Outcome-level only. (8) CRA (2508.04216, Aug 2025): SAE-based backdoor adjustment at step-level (the only inference-time method targeting PRMs), +2.9pp on MATH. No RL pressure evaluation; modest gains. (9) 'One Bias After Another' (2603.03291, Mar 2026): Mechanistic reward shaping via null-space projection. Critically distinguishes low-complexity biases (length, uncertainty, position — amenable to linear intervention) from high-complexity biases (sycophancy, model-style — resistant to linear debiasing). Outcome-level only. (10) FoVer (2505.15960, ACL 2026 Findings): Formally-verified PRM training data synthesis using Z3 (for first-order logic entailment) and Isabelle (for theorem proving). Trains on 40K formally-verified steps achieving ProcessBench AUROC 85.8% (vs 75.9% baseline) with cross-task generalization to MATH and AIME. Key distinction: FoVer verifies *step correctness labels* (is step k logically valid given premises?) for training data quality — it does not address semantic equivalence verification for augmentation pairs, nor debiasing or spurious feature mitigation. (11) 'Controllable and Verifiable Process Data Synthesis' (2605.02395, May 2026): Constructs paired correct/error trajectories via symbolic reasoning chains with template-aware error injection and prefix non-derivability verification. Creates step-level training data for PRMs with controlled error types (truth-state errors, structural errors). Key distinction: generates correct-vs-incorrect trajectory pairs for PRM classifier training — does not generate surface-different-but-semantically-equivalent augmentation pairs for invariance training, nor address debiasing. (12) PathFinder-PRM: Error typing for PRMs, 67.7 PRMScore. (13) Factored Causal Representation Learning (2601.21350, ICML 2026): Decomposes contextual embeddings into causal (reward-relevant) and non-causal (spurious) factors using gradient reversal on the non-causal component. Outcome-level RMs only. Provides direct precedent for gradient reversal in reward model debiasing, but does not address step-level representations or the unique challenges of per-step invariance. (14) APRM (Nov 2025): Adversarial PRM training for harder negatives. (15) Adv-RM (2504.06141, Apr 2026): Adversarial training of outcome-level RMs; allows RL to run 3x longer without hacking but at 3x training cost. Outcome-level only. (16) MATH-VF (2505.20869, May 2025): Step-wise formal verification using SymPy+Z3, >90% formalization success on MATH500, 74.1% F1 on ProcessBench — provides concrete tooling for step-level equivalence verification. (17) 'Debiasing Reward Models by Representation Learning with Guarantees' (Oct 2025): Theoretical framework showing non-spurious latent variables can be identified without spurious variable surrogates. (18) Preference Leakage (2502.01534, ICLR 2026): Demonstrates same-model bias (23.6% leakage) and family bias (22.3%) in LLM-as-judge settings, with only Contextual Calibration effectively mitigating leakage. Directly motivates cross-family verification in our Tier 2 pipeline. Summary: FoVer and Controllable Process Data Synthesis advance formally-verified PRM *training data quality* but target correctness labeling, not debiasing. CRA is the only step-level debiasing method but is inference-time-only with modest gains and no RL pressure evaluation. DIR is the only method validated under RL pressure but is outcome-level. No method combines step-level training-time debiasing with equivalence-verified augmentations and RL-pressure validation.\",\n  \"inspired_by\": \"Field gap: the convergence of (a) 'Reward Under Attack' diagnosing the problem without defense, (b) 'One Bias After Another' showing high-complexity biases resist inference-time fixes, (c) DIR showing training-time methods survive RL pressure, (d) MATH-VF providing formal verification tooling for step-level equivalence, (e) FoVer and Controllable Process Data Synthesis demonstrating that formal tools can scale for step-level PRM data but leaving debiasing-specific equivalence verification unaddressed, and (f) Factored Causal Representation Learning showing gradient reversal works for outcome-level RM debiasing but leaving step-level application unexplored — creating a unique opportunity for a formally-grounded, training-time, step-level, generalization-aware PRM debiasing approach.\",\n  \"approach\": \"We propose CI-PRM (Counterfactual-Invariant PRM), a training-time framework with three technical innovations addressing step-level PRM debiasing:\\n\\n**Innovation 1: Equivalence-Verified Counterfactual Augmentation Pipeline.** A critical distinction separates our verification goal from prior formally-verified PRM data work: FoVer (ACL 2026) uses Z3/Isabelle to verify *correctness labels* (is step k logically valid?), and Controllable Process Data Synthesis uses symbolic provers to verify *error injection validity* (is the corrupted step non-derivable from its prefix?). Our pipeline addresses a fundamentally different verification task — *semantic equivalence* between augmentation pairs: are two surface-different formulations of the same step logically identical? This equivalence verification is necessary for debiasing because incorrectly-verified 'neutral' augmentations that actually alter semantics would teach the PRM to ignore genuine logical differences. We build a two-tier verification system:\\n\\nTier 1 (Symbolic): An LLM formalizer translates each step into SimpleMath, then SymPy verifies algebraic equivalence and Z3 verifies logical entailment between original and augmented steps. MATH-VF demonstrates >90% formalization success on MATH500, providing scalability evidence. Unlike FoVer's binary correctness checks, our symbolic verification must establish bidirectional entailment (original ⟺ augmented), a strictly stronger requirement.\\n\\nTier 2 (Cross-Family Soft Verification): For steps resisting full formalization (e.g., natural-language reasoning bridges), we use Claude Sonnet 4.6 — deliberately chosen from a different model family than the Qwen-based PRM backbone — for chain-of-thought equivalence judgment. This cross-family design directly addresses the preference leakage problem (arXiv 2502.01534, ICLR 2026), which demonstrates 22-24% bias when judge and target share model family. We calibrate against a human-verified set of 500 step pairs (targeting <5% false-equivalence rate), and additionally compute cross-model agreement between Claude Sonnet 4.6 and GPT-4.1 on a 200-pair subset, rejecting any pair where the two judges disagree. We report formalization success rates, symbolic verification coverage, cross-model agreement rates, and calibrated error rates per augmentation type.\\n\\n**Step-Level-Specific Verification Challenges.** Per-step equivalence verification poses unique difficulties beyond response-level equivalence (as used in CROME): (a) a step's meaning is context-dependent — the same algebraic manipulation may be valid or invalid depending on prior steps, requiring verification to condition on the step's prefix chain; (b) augmentation must preserve step-chain coherence — changing step k's surface form cannot break logical dependencies with steps k-1 and k+1, which we enforce by re-verifying adjacent-step entailment after augmentation; (c) error propagation means that a false-equivalence error in step k can cascade through subsequent step evaluations during PRM training, making per-step false-equivalence rates more consequential than in outcome-level settings.\\n\\n**Innovation 2: Dimension-Agnostic Augmentation with Empirically-Grounded Channels.** We adopt an extensible framework grounded in PRM-BiasBench's empirically-validated perturbation categories. Our initial neutral augmentation channels correspond to the four semantics-preserving perturbation types from PRM-BiasBench: rephrasing, increased verbosity, decreased verbosity, and within-step reordering. The architecture is dimension-agnostic — new channels can be added without architectural changes. Using Qwen3-235B, we generate: (a) Neutral augmentations varying each surface channel while preserving logic (verified by Tier 1/2 above), creating invariance training pairs; (b) Causal augmentations introducing specific logical errors (sign flips, dropped terms, invalid inferences, numerical perturbations — aligned with PRM-BiasBench's semantics-altering categories) while maintaining surface fluency, creating sensitivity training pairs. New augmentation channels can be added by simply including them in the augmentation generation and verification pipeline.\\n\\n**Innovation 3: Domain-Adversarial Catch-All Invariance.** To address the concern that RL may discover spurious dimensions not in our training augmentations, we add a gradient-reversal domain-adversarial head inspired by Factored Causal Representation Learning (ICML 2026), which demonstrated gradient reversal's effectiveness for outcome-level RM debiasing. A discriminator head attempts to predict which augmentation type (or original) produced each step from the PRM's internal representations, while gradient reversal encourages the encoder to produce representations from which augmentation type is unrecoverable. Extending this from outcome-level to step-level introduces a distinct technical challenge: the adversarial head operates on per-step representations (~100-200 tokens of context) rather than full-response representations, providing both less context for the discriminator to exploit and fewer redundant features for the encoder to hide information in — requiring careful architectural design of the discriminator capacity.\\n\\n**Scope of generalization (tempered claim):** The gradient-reversal mechanism provides additional robustness to novel surface variations that share distributional characteristics with the augmentation channels seen during training — for example, new formatting styles that are distributional neighbors of rephrasing/verbosity variations. However, we explicitly acknowledge that truly orthogonal exploit dimensions (e.g., specific token-level patterns, positional encoding artifacts, or entirely novel stylistic features with no distributional overlap with training augmentations) may not be covered by this mechanism. The catch-all head complements, rather than replaces, targeted channel-specific invariance. Complete robustness to arbitrary RL exploitation strategies remains an open problem.\\n\\n**Progressive Training Protocol and Loss Balancing.** The 4-term composite loss creates real training stability risks, particularly from gradient reversal. We adopt a progressive training protocol inspired by curriculum learning and DANN-style lambda-scheduling (Ganin et al., JMLR 2016):\\n\\n- *Phase 1 — Base PRM (steps 0 to T1)*: Train on step-correctness cross-entropy only, establishing a competent base verifier. This provides stable gradient signals before introducing competing objectives.\\n- *Phase 2 — Invariance (steps T1 to T2)*: Add per-channel KL-divergence invariance regularization with linear warmup of its coefficient alpha from 0 to alpha_max over Phase 2. This teaches surface-invariance while the base task gradients remain dominant.\\n- *Phase 3 — Sensitivity (steps T2 to T3)*: Add contrastive sensitivity margins on causal augmentation pairs with coefficient beta, also linearly warmed. At this point the PRM has learned both what to ignore (invariance) and what to attend to (sensitivity).\\n- *Phase 4 — Adversarial (steps T3 to T_end)*: Add gradient-reversal adversarial loss with the Ganin-style logistic lambda-annealing schedule: lambda(p) = 2/(1 + exp(-gamma * p)) - 1, where p is progress through Phase 4 (0 to 1) and gamma = 10 (following DANN convention). This ensures the adversarial component starts with near-zero influence and gradually increases, avoiding early-training instability.\\n\\nWithin each phase, we apply GradNorm-style adaptive gradient normalization (Chen et al., ICML 2018) across active loss terms to equalize task training rates, reducing the hyperparameter search to GradNorm's single asymmetry parameter alpha_GN. We ablate: (a) progressive vs. simultaneous introduction, (b) GradNorm vs. fixed weights, (c) Phase 4 with/without lambda-annealing, reporting training loss curves and validation metrics per phase to demonstrate stability.\\n\\nThe PRM is trained on a Qwen2.5-Math-7B backbone. We use ProcessBench-train data as the base, augmented with ~50K generated pairs verified through the two-tier system.\\n\\n**Critical Evaluation: Training-Time vs. Inference-Time Under RL Pressure.** We include a direct head-to-head comparison: CI-PRM (training-time) vs. SteerRM-adapted and CRA (inference-time baselines) when used as the reward signal during GRPO/PPO fine-tuning on MATH-500 and AIME. We measure not just reward accuracy but ground-truth solve rate over optimization steps to quantify when each method's debiasing breaks down under RL pressure. This experiment directly tests the hypothesis — supported by DIR's PPO results and 'One Bias After Another's high-complexity bias findings — that training-time representation changes provide more durable robustness than inference-time interventions.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"700-900 (200h augmentation generation via Qwen3-235B on 4xH100, 50-80h symbolic verification pipeline, 250-350h PRM training sweeps including progressive training ablations on 4xH100, 100-150h RL pressure evaluation, 100-120h ablations + baselines)\",\n      \"timeline\": \"14-18 weeks\",\n      \"estimated_gpu_cost\": \"$1,750-$2,250 at $2.50/H100-hr\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"550-700 (Claude assists with formalizer prompt engineering and augmentation QA; human verifies 500 calibration pairs for Tier 2 + 200 cross-model agreement pairs)\",\n      \"timeline\": \"10-14 weeks\",\n      \"claude_api_cost\": \"$500-$800 (Sonnet 4.6 for Tier 2 cross-family verification, formalizer prompt iteration, augmentation QA, ablation design; ~150M input + 60M output tokens)\",\n      \"estimated_gpu_cost\": \"$1,375-$1,750 at $2.50/H100-hr\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"550-700\",\n      \"timeline\": \"5-7 weeks\",\n      \"claude_api_cost\": \"$1,200-$1,800 (Sonnet 4.6 for end-to-end Tier 2 verification + cross-model agreement, augmentation generation QA, hyperparameter reasoning, progressive training schedule optimization, RL pressure experiment management; ~350M input + 140M output tokens with batch API)\",\n      \"estimated_gpu_cost\": \"$1,375-$1,750 at $2.50/H100-hr\",\n      \"speed_bottleneck\": \"Tier 1 symbolic verification via SymPy/Z3 is deterministic and parallelizable; Tier 2 cross-family LLM-based verification requires calibration against human judgments (500 step pairs) and cross-model agreement computation (200 pairs). Progressive training protocol is sequential across phases. RL pressure evaluation experiments are sequential and depend on PRM training completion.\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (paper deadline: Sep 24, 2026) — primary target\",\n    \"AISTATS 2027 (deadline: Oct 10, 2026)\",\n    \"ICML 2027 (deadline: Jan 29, 2027)\",\n    \"ACL 2027 (deadline: Feb 16, 2027)\",\n    \"NeurIPS 2027 (deadline: May 16, 2027)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models (arXiv 2603.06621, Mar 2026)\",\n    \"FoVer: Efficient PRM Training Data Synthesis via Formal Verification (arXiv 2505.15960, ACL 2026 Findings)\",\n    \"Controllable and Verifiable Process Data Synthesis for Process Reward Models (arXiv 2605.02395, May 2026)\",\n    \"Robust Reward Modeling via Causal Rubrics [CROME] (ICLR 2026)\",\n    \"SteerRM: Debiasing Reward Models via Sparse Autoencoders (arXiv 2603.12795, Mar 2026)\",\n    \"Debiasing Reward Models via Causally Motivated Inference-Time Intervention [CIRM] (arXiv 2604.27495, Apr 2026)\",\n    \"One Bias After Another: Mechanistic Reward Shaping and Persistent Biases in Language Reward Models (arXiv 2603.03291, Mar 2026)\",\n    \"Eliminating Inductive Bias in Reward Models with Information-Theoretic Guidance [DIR] (arXiv 2512.23461, Dec 2025)\",\n    \"Causal Reward Adjustment: Mitigating Reward Hacking via Backdoor Correction [CRA] (arXiv 2508.04216, Aug 2025)\",\n    \"CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models (arXiv 2507.15698, Jul 2025)\",\n    \"Stop Summation: Min-Form Credit Assignment [PURE] (NeurIPS 2025)\",\n    \"Adversarial Training of Reward Models [Adv-RM] (arXiv 2504.06141, Apr 2026)\",\n    \"Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving [MATH-VF] (arXiv 2505.20869, May 2025)\",\n    \"Factored Causal Representation Learning for Robust Reward Modeling in RLHF (arXiv 2601.21350, ICML 2026)\",\n    \"Error Typing for Smarter Rewards [PathFinder-PRM] (arXiv 2025)\",\n    \"Adversarial Training for Process Reward Models [APRM] (arXiv 2511.22888, Nov 2025)\",\n    \"Let's Verify Step by Step [PRM800K] (NeurIPS 2023)\",\n    \"Debiasing Reward Models by Representation Learning with Guarantees (arXiv 2510.23751, Oct 2025)\",\n    \"Preference Leakage: A Contamination Problem in LLM-as-a-judge (arXiv 2502.01534, ICLR 2026)\",\n    \"Domain-Adversarial Training of Neural Networks [DANN] (JMLR 2016)\",\n    \"GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks (ICML 2018)\",\n    \"Robust Reward Modeling for LLMs via Causal Decomposition (arXiv 2026)\"\n  ],\n  \"description\": \"Process Reward Models (PRMs) are the backbone of step-level verification for LLM mathematical reasoning, yet 'Reward Under Attack' (2026) exposed a critical fluency-logic dissociation: RL-optimized policies achieve >0.9 PRM rewards while ground-truth accuracy stays below 4%, with 43% of gains from stylistic shortcuts. A wave of debiasing methods has since emerged — SteerRM, CIRM, and 'One Bias After Another' (inference-time, outcome-level), CRA (inference-time, step-level but modest +2.9pp gains), DIR (training-time, outcome-level) — but none combines step-level training-time debiasing with multi-dimensional coverage and RL-pressure validation. Meanwhile, FoVer (ACL 2026) and Controllable Process Data Synthesis demonstrate that formal verification tools can produce high-quality step-level PRM training data, but their verification targets correctness labeling rather than the semantic equivalence verification needed for debiasing augmentations. We propose CI-PRM, which introduces three innovations: (1) an equivalence-verified counterfactual augmentation pipeline that addresses a fundamentally different verification task than FoVer/Controllable Synthesis — establishing bidirectional semantic equivalence between augmentation pairs rather than unidirectional correctness labels — using SymPy+Z3 symbolic verification supplemented by cross-family soft verification (Claude Sonnet 4.6, deliberately non-Qwen to avoid preference leakage) with cross-model agreement checks, calibrated against 500 human-verified step pairs; (2) a dimension-agnostic augmentation framework grounded in all four of PRM-BiasBench's semantics-preserving perturbation categories (rephrasing, increased verbosity, decreased verbosity, within-step reordering), extensible to new channels without architectural changes; and (3) a domain-adversarial catch-all invariance head using gradient reversal — extending Factored Causal Representation Learning (ICML 2026) from outcome-level to step-level representations — that provides additional robustness to novel surface variations sharing distributional characteristics with training augmentations, while explicitly acknowledging that truly orthogonal exploit dimensions remain a limitation. Unique step-level challenges — context-dependent step meaning, step-chain coherence preservation under augmentation, error propagation from false-equivalence verification errors, and per-step adversarial discrimination with limited context — justify this as a substantive contribution beyond applying outcome-level techniques at finer granularity. Training uses a progressive protocol (base PRM then invariance then sensitivity then adversarial) with Ganin-style lambda-annealing and GradNorm-based adaptive loss balancing to address the 4-term composite loss stability concern. Evaluation centers on a critical head-to-head: CI-PRM vs. inference-time baselines (SteerRM-adapted, CRA) under GRPO/PPO optimization pressure on MATH-500 and AIME, measuring both reward accuracy and ground-truth solve rate over optimization steps.\",\n  \"project_name\": \"ci_prm_fluency_logic\",\n  \"source\": \"web_research\",\n  \"revision_notes\": {\n    \"round_1_issue_1_missing_baselines\": \"Added SteerRM, CIRM, DIR, CRA, 'One Bias After Another', and Adv-RM to landscape with detailed analysis. Key insight: mapped each method on two axes — (a) step-level vs outcome-level, (b) training-time vs inference-time — revealing that CRA is the only step-level method (inference-time, modest gains) and DIR is the only RL-pressure-validated method (training-time, outcome-level). CI-PRM uniquely occupies the step-level + training-time + RL-validated quadrant.\",\n    \"round_1_issue_2_equivalence_checker\": \"Replaced underspecified 'equivalence checker derived from PRM-BiasBench tooling' with a concrete two-tier system: Tier 1 uses MATH-VF-style formalization + SymPy/Z3 symbolic verification. Tier 2 uses calibrated LLM-based verification for non-formalizable steps.\",\n    \"round_1_issue_3_spurious_dimensions\": \"Dropped the weakly-justified four fixed dimensions. Now grounded in PRM-BiasBench's empirically-validated perturbation categories. Framework is explicitly dimension-agnostic.\",\n    \"round_1_issue_4_training_vs_inference\": \"Added explicit argument with three evidence lines and direct head-to-head experiment under RL pressure.\",\n    \"round_1_issue_5_timeline\": \"Dropped AAAI 2027. ICLR 2027 (Sep 24 = ~17 weeks) is now primary target.\",\n    \"round_1_issue_6_root_cause_overclaim\": \"Replaced 'addresses the root cause' with concrete mechanism: domain-adversarial catch-all invariance head using gradient reversal.\",\n    \"round_2_issue_1_fover_positioning\": \"CRITICAL FIX. Added FoVer (ACL 2026 Findings) and Controllable Process Data Synthesis (arXiv 2605.02395) to landscape with detailed analysis. Key differentiation: FoVer verifies *step correctness labels* (is step k logically valid given premises? — unidirectional) using Z3+Isabelle for training data quality. Controllable Synthesis verifies *error injection validity* (is corrupted step non-derivable from prefix?) for paired trajectory construction. CI-PRM's verification task is fundamentally different — *semantic equivalence* between augmentation pairs (bidirectional entailment: original ⟺ augmented), necessary for debiasing augmentation quality assurance. FoVer and Controllable Synthesis improve PRM data quality but do not address spurious feature exploitation, debiasing, or invariance training. Positioned as complementary: their tools advance correctness-label verification while CI-PRM extends formal verification to the distinct problem of equivalence verification for debiasing.\",\n    \"round_2_issue_2_composite_loss_balancing\": \"Added complete progressive training protocol with 4 phases: (1) base PRM on CE only, (2) add KL invariance with linear warmup, (3) add contrastive sensitivity with linear warmup, (4) add gradient-reversal adversarial with Ganin-style logistic lambda-annealing: lambda(p) = 2/(1+exp(-gamma*p))-1. Applied GradNorm (Chen et al., ICML 2018) for adaptive gradient normalization across active loss terms within each phase, reducing hyperparameter search. Added ablation plan: progressive vs. simultaneous, GradNorm vs. fixed weights, lambda-annealing vs. constant lambda.\",\n    \"round_2_issue_3_gradient_reversal_overclaim\": \"Tempered claim from 'resistant to ANY surface-level variation pattern' to 'provides additional robustness to novel surface variations that share distributional characteristics with the augmentation channels seen during training.' Explicitly acknowledged that truly orthogonal exploit dimensions (token-level patterns, positional encoding artifacts, entirely novel stylistic features) may not be covered. Framed catch-all head as complementing, not replacing, targeted invariance. Stated that complete robustness to arbitrary RL exploitation remains an open problem.\",\n    \"round_2_issue_4_tier2_circularity\": \"Replaced Qwen3-235B for Tier 2 soft verification with Claude Sonnet 4.6 (non-Qwen family), directly addressing preference leakage concerns (arXiv 2502.01534 shows 22-24% same-family bias). Added cross-model agreement protocol: compute agreement between Claude Sonnet 4.6 and GPT-4.1 on 200-pair subset, rejecting any pair where judges disagree. Qwen3-235B retained only for augmentation *generation* (where model-family bias is less concerning since verification is done cross-family).\",\n    \"round_2_issue_5_perturbation_accuracy\": \"Fixed perturbation category listing to properly enumerate all 4 semantics-preserving types from PRM-BiasBench: rephrasing, increased verbosity, decreased verbosity, and within-step reordering (previously collapsed 'increased/decreased verbosity' into 'verbosity changes').\",\n    \"round_2_issue_6_step_level_novelty\": \"Added explicit articulation of step-level-specific technical challenges that distinguish this work from merely applying outcome-level techniques at finer granularity: (a) per-step equivalence verification is context-dependent — a step's meaning depends on its prefix chain, requiring verification to condition on preceding steps; (b) augmentation must preserve step-chain coherence — changing step k cannot break logical dependencies with steps k-1 and k+1, enforced via adjacent-step entailment re-verification; (c) error propagation makes per-step false-equivalence rates more consequential than outcome-level, since a verification error at step k cascades through subsequent PRM evaluations; (d) the adversarial head operates on per-step representations with ~100-200 tokens of context vs. full-response representations, creating a distinct discriminator capacity design problem.\"\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c28e4ea-115b-494e-99f2-12fca838542d",
+  "isSidechain": false,
+  "requestId": "req_011CbTnZ7m2EdpxVuP8MynAx",
+  "type": "assistant",
+  "uuid": "44d42989-da25-4a4a-87e5-721e4d055a1f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SUy71Nb34nywG92WXuHDpN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 170,
+      "cache_read_input_tokens": 50797,
+      "output_tokens": 8006,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 170,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8006,
+          "cache_read_input_tokens": 50797,
+          "cache_creation_input_tokens": 170,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 170
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-27T21:33:34.915Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_017RjgS8bBJ6qetZcbU9KJ6v`</summary>
+
+```text
+Claude requested permissions to write to /home/ubuntu/idea_review/revised_idea_r2.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "44d42989-da25-4a4a-87e5-721e4d055a1f",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "762ddfc4-b63a-45ed-b6bd-0e95b2097051",
+  "toolUseResult": "Error: Claude requested permissions to write to /home/ubuntu/idea_review/revised_idea_r2.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "44d42989-da25-4a4a-87e5-721e4d055a1f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"CI-PRM: Counterfactual-Invariant Process Reward Models with Domain-Adv…",
+  "leafUuid": "762ddfc4-b63a-45ed-b6bd-0e95b2097051",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 106_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CI-PRM with FoVer positioning and loss balancing",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-27T21:33:40.025Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Th1td2pkjQrNXMGAne6aqG`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/idea_review/dispatch/",
+  "description": "List dispatch directory contents"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "762ddfc4-b63a-45ed-b6bd-0e95b2097051",
+  "isSidechain": false,
+  "requestId": "req_011CbTnoBMD3PhmfEznjWFMk",
+  "type": "assistant",
+  "uuid": "63bffd93-be51-420e-a652-6fcae0b2b301",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013LHwsQnJme7ETXX6diMR64",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8057,
+      "cache_read_input_tokens": 50967,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8057,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 50967,
+          "cache_creation_input_tokens": 8057,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8057
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-27T21:33:40.084Z_
+
+<details><summary>↩ Tool result · `toolu_01Th1td2pkjQrNXMGAne6aqG`</summary>
+
+```text
+ideas
+ideas_0517
+ideas_0517_s3
+ideas_batch5_20260519_183057
+ideas_batch5_20260519_204518
+ideas_batch6_20260520_025525
+ideas_batch7_20260520_032225
+ideas_batch_20260516_014736
+ideas_batch_20260516_pass25
+ideas_rerun
+ideas_stage23
+results
+results_0517
+results_0517_s3
+results_batch5_20260519_183057
+results_batch5_20260519_204518
+results_batch6_20260520_025525
+results_batch7_20260520_032225
+results_batch_20260516_014736
+results_batch_20260516_pass25
+results_rerun
+results_stage23
+run_full_pipeline.py
+run_multi_account.sh
+run_rerun.log
+run_rerun_v3.log
+run_s1.log
+run_s1_0517.log
+run_s1_0517_s3.log
+run_s1_stage23.log
+run_stage23_only.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63bffd93-be51-420e-a652-6fcae0b2b301",
+  "isSidechain": false,
+  "promptId": "d6d421fa-1c52-4e2f-a705-a53bc21979ce",
+  "type": "user",
+  "uuid": "bd7c741a-3693-468a-9db1-62a7b5fc76bf",
+  "toolUseResult": {
+    "stdout": "ideas\nideas_0517\nideas_0517_s3\nideas_batch5_20260519_183057\nideas_batch5_20260519_204518\nideas_batch6_20260520_025525\nideas_batch7_20260520_032225\nideas_batch_20260516_014736\nideas_batch_20260516_pass25\nideas_rerun\nideas_stage23\nresults\nresults_0517\nresults_0517_s3\nresults_batch5_20260519_183057\nresults_batch5_20260519_204518\nresults_batch6_20260520_025525\nresults_batch7_20260520_032225\nresults_batch_20260516_014736\nresults_batch_20260516_pass25\nresults_rerun\nresults_stage23\nrun_full_pipeline.py\nrun_multi_account.sh\nrun_rerun.log\nrun_rerun_v3.log\nrun_s1.log\nrun_s1_0517.log\nrun_s1_0517_s3.log\nrun_s1_stage23.log\nrun_stage23_only.py",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "63bffd93-be51-420e-a652-6fcae0b2b301",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 109 · 2026-05-27T21:36:37.228Z_
+
+The file write is being blocked by permissions. Let me output the complete revised JSON directly instead.
+
+Here is the complete revised research idea (Round 2 revision):
+
+---
+
+```json
+{
+  "title": "CI-PRM: Counterfactual-Invariant Process Reward Models with Domain-Adversarial Generalization Against Reward Hacking",
+  "change_type": "major",
+  "core_problem": "Can we train step-level process reward models that are simultaneously invariant to known surface-level spurious features AND architecturally resistant to unseen spurious features, while remaining sensitive to logical correctness — directly closing the fluency-logic dissociation that renders current PRMs systematically exploitable under RL optimization pressure?",
+  "opportunity": "'Reward Under Attack' (March 2026) demonstrated that RL-optimized policies achieve near-perfect PRM rewards (>0.9) while ground-truth accuracy remains below 4%, with 43% of reward gains from stylistic shortcuts, but proposed no defense. Since then, a wave of debiasing methods has emerged — but each has critical limitations. Inference-time methods (SteerRM, CIRM, CRA, 'One Bias After Another') operate without retraining but (a) SteerRM/CIRM/'One Bias After Another' target only outcome-level RMs, not step-level PRMs, (b) CRA operates at step-level but achieves only modest gains (+2.9pp) and has not been evaluated under RL optimization pressure, and (c) 'One Bias After Another' demonstrates that high-complexity biases (sycophancy, model-style) fundamentally resist linear inference-time interventions. Training-time methods (DIR, CoLD, CROME) can alter learned representations but (a) DIR handles only outcome-level RMs, (b) CoLD targets only length bias in PRMs, and (c) CROME operates at outcome level. Meanwhile, formal verification methods (FoVer, Controllable Process Data Synthesis) have demonstrated that symbolic tools like Z3 and Isabelle can produce high-quality step-level PRM training data — but their verification targets *correctness labeling* (is this step valid?), not *semantic equivalence verification* (are two surface-different steps logically identical?) needed for debiasing augmentations. The gap is clear: no existing work combines (i) training-time multi-dimensional debiasing at the step level, (ii) equivalence-verified counterfactual augmentation quality assurance distinct from correctness-label verification, and (iii) a domain-adversarial generalization mechanism for robustness beyond targeted augmentation channels — all validated under actual RL optimization pressure.",
+  "landscape": "(1) 'Reward Under Attack' (2603.06621, Mar 2026): Definitive diagnosis via PRM-BiasBench with 8 perturbation types in two groups (semantics-preserving: rephrasing, increased verbosity, decreased verbosity, within-step reordering; semantics-altering: question shuffling, numerical perturbation, reasoning hallucination, question removal). Shows PRMs exhibit <0.1 reward change to surface edits yet miss logical corruption. Proposes no defense. (2) CROME (ICLR 2026): Causal+neutral augmentation for outcome-level RMs, +5.4% on RewardBench. Outcome-level only. (3) CoLD (Jul 2025): Counterfactual length debiasing for PRMs. Single-dimension (length) only. (4) PURE (NeurIPS 2025): Min-form credit assignment reduces hacking by 10+ points on AMC23. Addresses credit assignment, not bias source. (5) SteerRM (2603.12795, Mar 2026): Training-free SAE-based debiasing, +7.3pp on RM-Bench Hard. Outcome-level only; not tested under RL pressure. (6) CIRM (2604.27495, Apr 2026): Inference-time neuron intervention editing <2% neurons, outcome-level only, tested via DPO but not adversarial RL. (7) DIR (2512.23461, Dec 2025): Training-time information-theoretic debiasing for outcome-level RMs handling length+sycophancy+format via MI minimization. Only debiasing method validated under PPO pressure. Outcome-level only. (8) CRA (2508.04216, Aug 2025): SAE-based backdoor adjustment at step-level (the only inference-time method targeting PRMs), +2.9pp on MATH. No RL pressure evaluation; modest gains. (9) 'One Bias After Another' (2603.03291, Mar 2026): Mechanistic reward shaping via null-space projection. Critically distinguishes low-complexity biases (length, uncertainty, position — amenable to linear intervention) from high-complexity biases (sycophancy, model-style — resistant to linear debiasing). Outcome-level only. (10) FoVer (2505.15960, ACL 2026 Findings): Formally-verified PRM training data synthesis using Z3 (for first-order logic entailment) and Isabelle (for theorem proving). Trains on 40K formally-verified steps achieving ProcessBench AUROC 85.8% (vs 75.9% baseline) with cross-task generalization to MATH and AIME. Key distinction: FoVer verifies *step correctness labels* (is step k logically valid given premises?) for training data quality — it does not address semantic equivalence verification for augmentation pairs, nor debiasing or spurious feature mitigation. (11) 'Controllable and Verifiable Process Data Synthesis' (2605.02395, May 2026): Constructs paired correct/error trajectories via symbolic reasoning chains with template-aware error injection and prefix non-derivability verification. Creates step-level training data for PRMs with controlled error types (truth-state errors, structural errors). Key distinction: generates correct-vs-incorrect trajectory pairs for PRM classifier training — does not generate surface-different-but-semantically-equivalent augmentation pairs for invariance training, nor address debiasing. (12) PathFinder-PRM: Error typing for PRMs, 67.7 PRMScore. (13) Factored Causal Representation Learning (2601.21350, ICML 2026): Decomposes contextual embeddings into causal (reward-relevant) and non-causal (spurious) factors using gradient reversal on the non-causal component. Outcome-level RMs only. Provides direct precedent for gradient reversal in reward model debiasing, but does not address step-level representations or per-step invariance challenges. (14) APRM (Nov 2025): Adversarial PRM training for harder negatives. (15) Adv-RM (2504.06141, Apr 2026): Adversarial training of outcome-level RMs; allows RL to run 3× longer without hacking but at 3× training cost. Outcome-level only. (16) MATH-VF (2505.20869, May 2025): Step-wise formal verification using SymPy+Z3, >90% formalization success on MATH500, 74.1% F1 on ProcessBench. (17) 'Debiasing Reward Models by Representation Learning with Guarantees' (Oct 2025): Theoretical framework showing non-spurious latent variables can be identified without spurious variable surrogates. (18) Preference Leakage (2502.01534, ICLR 2026): Demonstrates same-model bias (23.6% leakage) and family bias (22.3%) in LLM-as-judge settings, with only Contextual Calibration effectively mitigating leakage. Directly motivates cross-family verification in our Tier 2 pipeline. Summary: FoVer and Controllable Process Data Synthesis advance formally-verified PRM *training data quality* but target correctness labeling, not debiasing. CRA is the only step-level debiasing method but is inference-time-only with modest gains and no RL pressure evaluation. DIR is the only method validated under RL pressure but is outcome-level. No method combines step-level training-time debiasing with equivalence-verified augmentations and RL-pressure validation.",
+  "inspired_by": "Field gap: the convergence of (a) 'Reward Under Attack' diagnosing the problem without defense, (b) 'One Bias After Another' showing high-complexity biases resist inference-time fixes, (c) DIR showing training-time methods survive RL pressure, (d) MATH-VF providing formal verification tooling for step-level equivalence, (e) FoVer and Controllable Process Data Synthesis demonstrating that formal tools can scale for step-level PRM data but leaving debiasing-specific equivalence verification unaddressed, and (f) Factored Causal Representation Learning showing gradient reversal works for outcome-level RM debiasing but leaving step-level application unexplored — creating a unique opportunity for a formally-grounded, training-time, step-level, generalization-aware PRM debiasing approach.",
+  "approach": "We propose CI-PRM (Counterfactual-Invariant PRM), a training-time framework with three technical innovations addressing step-level PRM debiasing:\n\n**Innovation 1: Equivalence-Verified Counterfactual Augmentation Pipeline.** A critical distinction separates our verification goal from prior formally-verified PRM data work: FoVer (ACL 2026) uses Z3/Isabelle to verify *correctness labels* (is step k logically valid?), and Controllable Process Data Synthesis uses symbolic provers to verify *error injection validity* (is the corrupted step non-derivable from its prefix?). Our pipeline addresses a fundamentally different verification task — *semantic equivalence* between augmentation pairs: are two surface-different formulations of the same step logically identical? This equivalence verification is necessary for debiasing because incorrectly-verified 'neutral' augmentations that actually alter semantics would teach the PRM to ignore genuine logical differences. We build a two-tier verification system:\n\nTier 1 (Symbolic): An LLM formalizer translates each step into SimpleMath, then SymPy verifies algebraic equivalence and Z3 verifies logical entailment between original and augmented steps. MATH-VF demonstrates >90% formalization success on MATH500, providing scalability evidence. Unlike FoVer's binary correctness checks, our symbolic verification must establish bidirectional entailment (original ⟺ augmented), a strictly stronger requirement.\n\nTier 2 (Cross-Family Soft Verification): For steps resisting full formalization (e.g., natural-language reasoning bridges), we use Claude Sonnet 4.6 — deliberately chosen from a different model family than the Qwen-based PRM backbone — for chain-of-thought equivalence judgment. This cross-family design directly addresses the preference leakage problem (arXiv 2502.01534, ICLR 2026), which demonstrates 22-24% bias when judge and target share model family. We calibrate against a human-verified set of 500 step pairs (targeting <5% false-equivalence rate), and additionally compute cross-model agreement between Claude Sonnet 4.6 and GPT-4.1 on a 200-pair subset, rejecting any pair where the two judges disagree. We report formalization success rates, symbolic verification coverage, cross-model agreement rates, and calibrated error rates per augmentation type.\n\n**Step-Level-Specific Verification Challenges.** Per-step equivalence verification poses unique difficulties beyond response-level equivalence (as used in CROME): (a) a step's meaning is context-dependent — the same algebraic manipulation may be valid or invalid depending on prior steps, requiring verification to condition on the step's prefix chain; (b) augmentation must preserve step-chain coherence — changing step k's surface form cannot break logical dependencies with steps k-1 and k+1, which we enforce by re-verifying adjacent-step entailment after augmentation; (c) error propagation means that a false-equivalence error in step k can cascade through subsequent step evaluations during PRM training, making per-step false-equivalence rates more consequential than in outcome-level settings.\n\n**Innovation 2: Dimension-Agnostic Augmentation with Empirically-Grounded Channels.** We adopt an extensible framework grounded in PRM-BiasBench's empirically-validated perturbation categories. Our initial neutral augmentation channels correspond to the four semantics-preserving perturbation types from PRM-BiasBench: rephrasing, increased verbosity, decreased verbosity, and within-step reordering. The architecture is dimension-agnostic — new channels can be added without architectural changes. Using Qwen3-235B, we generate: (a) Neutral augmentations varying each surface channel while preserving logic (verified by Tier 1/2 above), creating invariance training pairs; (b) Causal augmentations introducing specific logical errors (sign flips, dropped terms, invalid inferences, numerical perturbations — aligned with PRM-BiasBench's semantics-altering categories) while maintaining surface fluency, creating sensitivity training pairs.\n\n**Innovation 3: Domain-Adversarial Catch-All Invariance.** To address the concern that RL may discover spurious dimensions not in our training augmentations, we add a gradient-reversal domain-adversarial head inspired by Factored Causal Representation Learning (ICML 2026), which demonstrated gradient reversal's effectiveness for outcome-level RM debiasing. A discriminator head attempts to predict which augmentation type (or original) produced each step from the PRM's internal representations, while gradient reversal encourages the encoder to produce representations from which augmentation type is unrecoverable. Extending this from outcome-level to step-level introduces a distinct technical challenge: the adversarial head operates on per-step representations (~100-200 tokens of context) rather than full-response representations, providing both less context for the discriminator to exploit and fewer redundant features for the encoder to hide information in — requiring careful architectural design of the discriminator capacity.\n\n**Scope of generalization (tempered claim):** The gradient-reversal mechanism provides additional robustness to novel surface variations that share distributional characteristics with the augmentation channels seen during training — for example, new formatting styles that are distributional neighbors of rephrasing/verbosity variations. However, we explicitly acknowledge that truly orthogonal exploit dimensions (e.g., specific token-level patterns, positional encoding artifacts, or entirely novel stylistic features with no distributional overlap with training augmentations) may not be covered by this mechanism. The catch-all head complements, rather than replaces, targeted channel-specific invariance. Complete robustness to arbitrary RL exploitation strategies remains an open problem.\n\n**Progressive Training Protocol and Loss Balancing.** The 4-term composite loss creates real training stability risks, particularly from gradient reversal. We adopt a progressive training protocol inspired by curriculum learning and DANN-style λ-scheduling (Ganin et al., JMLR 2016):\n\n- *Phase 1 — Base PRM (steps 0 to T₁)*: Train on step-correctness cross-entropy only, establishing a competent base verifier.\n- *Phase 2 — Invariance (steps T₁ to T₂)*: Add per-channel KL-divergence invariance regularization with linear warmup of its coefficient α from 0 to α_max.\n- *Phase 3 — Sensitivity (steps T₂ to T₃)*: Add contrastive sensitivity margins on causal augmentation pairs with coefficient β, also linearly warmed.\n- *Phase 4 — Adversarial (steps T₃ to T_end)*: Add gradient-reversal adversarial loss with logistic λ-annealing: λ(p) = 2/(1 + exp(−γ·p)) − 1, where p is progress through Phase 4 (0→1) and γ = 10.\n\nWithin each phase, we apply GradNorm-style adaptive gradient normalization (Chen et al., ICML 2018) across active loss terms to equalize task training rates, reducing the hyperparameter search to GradNorm's single asymmetry parameter α_GN. We ablate: (a) progressive vs. simultaneous introduction, (b) GradNorm vs. fixed weights, (c) Phase 4 with/without λ-annealing.\n\nThe PRM is trained on a Qwen2.5-Math-7B backbone with ~50K generated pairs verified through the two-tier system.\n\n**Critical Evaluation: Training-Time vs. Inference-Time Under RL Pressure.** Direct head-to-head: CI-PRM (training-time) vs. SteerRM-adapted and CRA (inference-time baselines) under GRPO/PPO on MATH-500 and AIME, measuring ground-truth solve rate over optimization steps.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "700-900 (200h augmentation generation via Qwen3-235B on 4×H100, 50-80h symbolic verification pipeline, 250-350h PRM training sweeps including progressive training ablations on 4×H100, 100-150h RL pressure evaluation, 100-120h ablations + baselines)",
+      "timeline": "14-18 weeks",
+      "estimated_gpu_cost": "$1,750-$2,250 at $2.50/H100-hr"
+    },
+    "human_in_loop": {
+      "gpu_hours": "550-700 (Claude assists with formalizer prompt engineering and augmentation QA; human verifies 500 calibration pairs for Tier 2 + 200 cross-model agreement pairs)",
+      "timeline": "10-14 weeks",
+      "claude_api_cost": "$500-$800 (Sonnet 4.6 for Tier 2 cross-family verification, formalizer prompt iteration, augmentation QA, ablation design; ~150M input + 60M output tokens)",
+      "estimated_gpu_cost": "$1,375-$1,750 at $2.50/H100-hr"
+    },
+    "auto_research": {
+      "gpu_hours": "550-700",
+      "timeline": "5-7 weeks",
+      "claude_api_cost": "$1,200-$1,800 (Sonnet 4.6 for end-to-end Tier 2 verification + cross-model agreement, augmentation generation QA, hyperparameter reasoning, progressive training schedule optimization, RL pressure experiment management; ~350M input + 140M output tokens with batch API)",
+      "estimated_gpu_cost": "$1,375-$1,750 at $2.50/H100-hr",
+      "speed_bottleneck": "Tier 1 symbolic verification via SymPy/Z3 is deterministic and parallelizable; Tier 2 cross-family LLM-based verification requires calibration against human judgments (500 step pairs) and cross-model agreement computation (200 pairs). Progressive training protocol is sequential across phases. RL pressure evaluation experiments are sequential and depend on PRM training completion."
+    }
+  },
+  "target_venues": [
+    "ICLR 2027 (paper deadline: Sep 24, 2026) — primary target",
+    "AISTATS 2027 (deadline: Oct 10, 2026)",
+    "ICML 2027 (deadline: Jan 29, 2027)",
+    "ACL 2027 (deadline: Feb 16, 2027)",
+    "NeurIPS 2027 (deadline: May 16, 2027)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models (arXiv 2603.06621, Mar 2026)",
+    "FoVer: Efficient PRM Training Data Synthesis via Formal Verification (arXiv 2505.15960, ACL 2026 Findings)",
+    "Controllable and Verifiable Process Data Synthesis for Process Reward Models (arXiv 2605.02395, May 2026)",
+    "Robust Reward Modeling via Causal Rubrics [CROME] (ICLR 2026)",
+    "SteerRM: Debiasing Reward Models via Sparse Autoencoders (arXiv 2603.12795, Mar 2026)",
+    "Debiasing Reward Models via Causally Motivated Inference-Time Intervention [CIRM] (arXiv 2604.27495, Apr 2026)",
+    "One Bias After Another: Mechanistic Reward Shaping and Persistent Biases in Language Reward Models (arXiv 2603.03291, Mar 2026)",
+    "Eliminating Inductive Bias in Reward Models with Information-Theoretic Guidance [DIR] (arXiv 2512.23461, Dec 2025)",
+    "Causal Reward Adjustment: Mitigating Reward Hacking via Backdoor Correction [CRA] (arXiv 2508.04216, Aug 2025)",
+    "CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models (arXiv 2507.15698, Jul 2025)",
+    "Stop Summation: Min-Form Credit Assignment [PURE] (NeurIPS 2025)",
+    "Adversarial Training of Reward Models [Adv-RM] (arXiv 2504.06141, Apr 2026)",
+    "Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving [MATH-VF] (arXiv 2505.20869, May 2025)",
+    "Factored Causal Representation Learning for Robust Reward Modeling in RLHF (arXiv 2601.21350, ICML 2026)",
+    "Error Typing for Smarter Rewards [PathFinder-PRM] (arXiv 2025)",
+    "Adversarial Training for Process Reward Models [APRM] (arXiv 2511.22888, Nov 2025)",
+    "Let's Verify Step by Step [PRM800K] (NeurIPS 2023)",
+    "Debiasing Reward Models by Representation Learning with Guarantees (arXiv 2510.23751, Oct 2025)",
+    "Preference Leakage: A Contamination Problem in LLM-as-a-judge (arXiv 2502.01534, ICLR 2026)",
+    "Domain-Adversarial Training of Neural Networks [DANN] (JMLR 2016)",
+    "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks (ICML 2018)",
+    "Robust Reward Modeling for LLMs via Causal Decomposition (arXiv 2026)"
+  ],
+  "description": "Process Reward Models (PRMs) are the backbone of step-level verification for LLM mathematical reasoning, yet 'Reward Under Attack' (2026) exposed a critical fluency-logic dissociation: RL-optimized policies achieve >0.9 PRM rewards while ground-truth accuracy stays below 4%, with 43% of gains from stylistic shortcuts. A wave of debiasing methods has since emerged — SteerRM, CIRM, and 'One Bias After Another' (inference-time, outcome-level), CRA (inference-time, step-level but modest +2.9pp gains), DIR (training-time, outcome-level) — but none combines step-level training-time debiasing with multi-dimensional coverage and RL-pressure validation. Meanwhile, FoVer (ACL 2026) and Controllable Process Data Synthesis demonstrate that formal verification tools can produce high-quality step-level PRM training data, but their verification targets correctness labeling rather than the semantic equivalence verification needed for debiasing augmentations. We propose CI-PRM, which introduces three innovations: (1) an equivalence-verified counterfactual augmentation pipeline that addresses a fundamentally different verification task than FoVer/Controllable Synthesis — establishing bidirectional semantic equivalence between augmentation pairs rather than unidirectional correctness labels — using SymPy+Z3 symbolic verification supplemented by cross-family soft verification (Claude Sonnet 4.6, deliberately non-Qwen to avoid preference leakage) with cross-model agreement checks, calibrated against 500 human-verified step pairs; (2) a dimension-agnostic augmentation framework grounded in all four of PRM-BiasBench's semantics-preserving perturbation categories (rephrasing, increased verbosity, decreased verbosity, within-step reordering), extensible to new channels without architectural changes; and (3) a domain-adversarial catch-all invariance head using gradient reversal — extending Factored Causal Representation Learning (ICML 2026) from outcome-level to step-level representations — that provides additional robustness to novel surface variations sharing distributional characteristics with training augmentations, while explicitly acknowledging that truly orthogonal exploit dimensions remain a limitation. Unique step-level challenges — context-dependent step meaning, step-chain coherence preservation under augmentation, error propagation from false-equivalence verification errors, and per-step adversarial discrimination with limited context — justify this as a substantive contribution beyond applying outcome-level techniques at finer granularity. Training uses a progressive protocol (base PRM → invariance → sensitivity → adversarial) with Ganin-style λ-annealing and GradNorm-based adaptive loss balancing to address the 4-term composite loss stability concern. Evaluation centers on a critical head-to-head: CI-PRM vs. inference-time baselines (SteerRM-adapted, CRA) under GRPO/PPO optimization pressure on MATH-500 and AIME, measuring both reward accuracy and ground-truth solve rate over optimization steps.",
+  "project_name": "ci_prm_fluency_logic",
+  "source": "web_research",
+  "revision_notes": {
+    "round_1_issue_1_missing_baselines": "Added SteerRM, CIRM, DIR, CRA, 'One Bias After Another', and Adv-RM to landscape. CI-PRM uniquely occupies the step-level + training-time + RL-validated quadrant.",
+    "round_1_issue_2_equivalence_checker": "Replaced underspecified equivalence checker with concrete two-tier system using MATH-VF-style formalization + SymPy/Z3.",
+    "round_1_issue_3_spurious_dimensions": "Grounded in PRM-BiasBench's empirically-validated perturbation categories. Framework is dimension-agnostic.",
+    "round_1_issue_4_training_vs_inference": "Added head-to-head experiment under RL pressure.",
+    "round_1_issue_5_timeline": "Dropped AAAI 2027. ICLR 2027 primary target.",
+    "round_1_issue_6_root_cause_overclaim": "Replaced with concrete gradient reversal mechanism.",
+    "round_2_issue_1_fover_positioning": "CRITICAL FIX. Added FoVer (ACL 2026 Findings) and Controllable Process Data Synthesis (arXiv 2605.02395) to landscape. Key differentiation: FoVer verifies *step correctness labels* (unidirectional: is step k valid?); Controllable Synthesis verifies *error injection validity* (is corrupted step non-derivable from prefix?); CI-PRM verifies *semantic equivalence* (bidirectional: original ⟺ augmented). FoVer/Controllable Synthesis improve PRM data quality but do not address debiasing or invariance training. Positioned as complementary.",
+    "round_2_issue_2_composite_loss_balancing": "Added progressive training protocol: 4 phases (base PRM → invariance with linear warmup → sensitivity with linear warmup → adversarial with Ganin-style logistic λ-annealing). Applied GradNorm for adaptive gradient normalization. Added ablation plan: progressive vs. simultaneous, GradNorm vs. fixed weights, λ-annealing vs. constant λ.",
+    "round_2_issue_3_gradient_reversal_overclaim": "Tempered from 'resistant to ANY surface-level variation' to 'additional robustness to novel surface variations sharing distributional characteristics with training augmentations.' Acknowledged truly orthogonal exploit dimensions as a limitation.",
+    "round_2_issue_4_tier2_circularity": "Replaced Qwen3-235B for Tier 2 verification with Claude Sonnet 4.6 (non-Qwen family), citing preference leakage literature (22-24% same-family bias). Added cross-model agreement protocol with GPT-4.1 on 200-pair subset. Qwen3-235B retained only for augmentation *generation*.",
+    "round_2_issue_5_perturbation_accuracy": "Fixed to enumerate all 4 semantics-preserving types: rephrasing, increased verbosity, decreased verbosity, within-step reordering.",
+    "round_2_issue_6_step_level_novelty": "Articulated step-level-specific challenges: (a) context-dependent step meaning requiring prefix-conditioned verification; (b) step-chain coherence preservation via adjacent-step entailment re-verification; (c) error propagation making per-step false-equivalence more consequential; (d) per-step adversarial head operating on ~100-200 token representations creating distinct discriminator capacity design problem."
+  }
+}
+```
+
+---
+
+## Summary of Changes (Round 2 → Round 2 Revision)
+
+This is a **major revision** addressing all six reviewer issues:
+
+### 1. FoVer & Controllable Process Data Synthesis (CRITICAL FIX)
+Both papers are now cited and positioned in the landscape. The key differentiation is clearly articulated:
+- **FoVer** verifies *step correctness labels* (is step k valid?) — unidirectional, for training data quality
+- **Controllable Synthesis** verifies *error injection validity* (is corrupted step non-derivable?) — for paired trajectory construction
+- **CI-PRM** verifies *semantic equivalence* (are two surface-different steps identical?) — bidirectional entailment, for debiasing augmentation quality
+
+These are fundamentally different verification tasks. FoVer/Controllable Synthesis improve PRM data quality but don't address debiasing. CI-PRM's equivalence verification is a strictly stronger requirement (bidirectional vs. unidirectional) serving a distinct purpose (invariance training vs. classifier training).
+
+### 2. Composite Loss Balancing
+Added a complete **4-phase progressive training protocol**:
+- Phase 1: Base PRM on cross-entropy only
+- Phase 2: Add KL invariance with linear warmup
+- Phase 3: Add contrastive sensitivity with linear warmup  
+- Phase 4: Add gradient-reversal adversarial with Ganin-style logistic λ-annealing: λ(p) = 2/(1+exp(−γ·p))−1
+
+Plus **GradNorm** (Chen et al., ICML 2018) for adaptive gradient normalization within phases, and a concrete ablation plan.
+
+### 3. Gradient Reversal Claim Tempered
+Changed from "resistant to ANY surface-level variation pattern" to "additional robustness to novel surface variations sharing distributional characteristics with training augmentations." Explicitly acknowledged truly orthogonal exploit dimensions as a limitation.
+
+### 4. Tier 2 Circularity Resolved
+Replaced Qwen3-235B with **Claude Sonnet 4.6** (non-Qwen family) for soft verification, citing the **Preference Leakage** paper (ICLR 2026, 22-24% same-family bias). Added **cross-model agreement** between Claude Sonnet 4.6 and GPT-4.1 on a 200-pair subset. Qwen3-235B retained only for augmentation *generation*.
+
+### 5. Perturbation Categories Fixed
+Now correctly lists all 4 semantics-preserving types: rephrasing, **increased verbosity**, **decreased verbosity**, within-step reordering.
+
+### 6. Step-Level Novelty Articulated
+Four concrete step-level-specific challenges: (a) context-dependent step meaning requiring prefix-conditioned verification, (b) step-chain coherence preservation via adjacent-step entailment re-verification, (c) error propagation making false-equivalence more consequential at step level, (d) per-step adversarial head operating on ~100-200 token representations (distinct discriminator design problem).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd7c741a-3693-468a-9db1-62a7b5fc76bf",
+  "isSidechain": false,
+  "requestId": "req_011CbTnoZichM4kEgknexSM2",
+  "type": "assistant",
+  "uuid": "6d8abe79-7982-4123-9e78-3eb9c7b2ce0c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FgB3WtKxXz5AfEK1Fk8WBf",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 366,
+      "cache_read_input_tokens": 59024,
+      "output_tokens": 7903,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 366,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7903,
+          "cache_read_input_tokens": 59024,
+          "cache_creation_input_tokens": 366,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 366
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 110_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"CI-PRM: Counterfactual-Invariant Process Reward Models with Domain-Adv…",
+  "leafUuid": "6d8abe79-7982-4123-9e78-3eb9c7b2ce0c",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 111_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CI-PRM with FoVer positioning and loss balancing",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 112_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"CI-PRM: Counterfactual-Invariant Process Reward Models with Domain-Adv…",
+  "leafUuid": "6d8abe79-7982-4123-9e78-3eb9c7b2ce0c",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 113_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CI-PRM with FoVer positioning and loss balancing",
+  "sessionId": "ff298244-a509-4f08-a48a-515b357b90bb"
+}
+```
+
+---

@@ -1,0 +1,5591 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-19 (UTC).** ## Original idea { "tit
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 88
+- **Recorded user turns:** 1
+- **Tool calls:** 24
+- **Original source:** `logs/chats/exported-trajectories/account-2/7ca890e1-b928-4745-8fd0-f052e6009850.jsonl`
+- **Structured JSON:** [`f8869f720c07a15b1b5b.json`](../../sessions/f8/f8869f720c07a15b1b5b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T19:48:37.788Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T19:48:37.788Z",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-19 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Cross-Lingual Calibration Transfer via Language-Agnostic Confidence Directions: Navigating the Layer-Depth Pareto Frontier\",\n  \"core_problem\": \"Non-English languages suffer from 5x worse calibration error (ECE) compared to English in multilingual LLMs. Existing fixes require per-language validation data (LACE) or expensive multilingual sampling (MKA). Can we transfer English calibration quality to underserved languages through shared intermediate-layer confidence directions — and if so, at what layer depth, given the fundamental tradeoff between calibration quality (which peaks at 75-91% depth) and cross-lingual transferability (which peaks at ~50% depth)?\",\n  \"opportunity\": \"Ji et al. (EMNLP 2025) discovered that verbal uncertainty is governed by a single linear direction in representation space. Joshi et al. (EMNLP 2025) showed calibration evolves across layers with a low-dimensional calibration direction in the residual stream. Zhou et al. (arXiv 2510.03136) introduced LACE, demonstrating that late-intermediate layers encode better-calibrated multilingual signals but requiring per-language validation. Liu & Niehues (ACL 2025) showed that middle layers (~50% depth) form the strongest language-agnostic shared space. Critically, Civelli et al. (arXiv 2601.12731, Jan 2026) demonstrated that linear probes for problem difficulty transfer cross-lingually at shallow-to-intermediate layers (~49% depth) with ~0.78 Spearman rho, while deep probes achieve higher within-language accuracy but fail to transfer — establishing a shallow-transferable vs. deep-accurate tradeoff. The Confidence Manifold (arXiv 2602.08159, Feb 2026) showed correctness signals occupy just 3-8 dimensions and are linearly separable, with 25 labeled examples achieving 89% of full-data probe accuracy. Nobody has tested whether this correctness/calibration probe transfer works cross-lingually, and nobody has mapped the Pareto frontier of layer depth vs. calibration quality vs. cross-lingual transferability — this frontier is the key to practical deployment.\",\n  \"landscape\": \"Zhou et al. (arXiv 2510.03136) introduced LACE, which adaptively ensembles late-intermediate layers (75-91% depth) per language but still requires per-language validation data, and confirmed the 5x ECE gap across 100+ languages and 6 model families (LLaMA-3: 23.1% vs 4.6% ECE for non-English vs English). MKA (Duwal et al., ICLR Workshop 2025) uses cross-lingual consensus for abstention but at 5x inference cost. Joshi et al. (EMNLP 2025) identified a low-dimensional calibration direction in the residual stream. Civelli et al. (arXiv 2601.12731, Jan 2026) showed cross-lingual probe transfer for problem difficulty at intermediate layers in LLaMA-3.1/3.2 and Qwen3-8B, finding shallow probes (~49% depth) transfer with ~0.78 Spearman rho while deep probes (~94% depth) achieve higher within-language accuracy but exhibit poor cross-lingual generalization (0.05-0.19 rho degradation). However, they probed IRT-based human difficulty — an inherent property of questions — not model correctness, which is a model-dependent property combining difficulty, language-specific capability, and representation quality. CORAL (Miao et al., arXiv 2602.06022, Feb 2026) demonstrates transferable correctness probes via regularized 4-layer MLP on residual activations with ~50% ECE improvement at layers 17-21 (~53-66% depth), but evaluates only in English across tasks and shows degraded transfer on domain-shifted benchmarks (e.g., HellaSwag). The Confidence Manifold (arXiv 2602.08159, Feb 2026) shows correctness signals occupy 3-8 dimensions and are linearly separable across 9 models and 5 architecture families, with few-shot (25 examples) achieving 89% of full-data probe accuracy — all English-only. Cross-lingual steering vectors have been demonstrated for language identity and task performance (Mahmoud et al., arXiv 2505.12584; arXiv 2601.16390) but never for calibration. Instruction-tuning studies (arXiv 2601.01362, Jan 2026) confirm that English-centric fine-tuning inflates confidence in low-resource languages without accuracy gains, worsening calibration. Confidence Geometry Reveals Trace-Level Correctness (arXiv 2605.16824, May 2026) extends geometric correctness analysis to reasoning traces using output-level confidence trajectories — operating at a different level (output tokens, not internal representations) with no multilingual evaluation, but suggesting convergent evidence that correctness has consistent geometric structure. No work has attempted to transfer the correctness/calibration direction itself cross-lingually, and no work has characterized the Pareto frontier between calibration quality and cross-lingual transferability across layer depth.\",\n  \"inspired_by\": \"Gap: 5x non-English ECE gap (Zhou et al., LACE) + demonstrated cross-lingual difficulty probe transfer at intermediate layers (Civelli et al., Shared Geometry of Difficulty) that has never been extended to correctness/calibration. Pattern: Ji et al.'s linear verbal uncertainty direction + Joshi et al.'s residual-stream calibration direction + Confidence Manifold's 3-8 dimensional correctness signal + cross-lingual middle-layer alignment (Liu & Niehues, ACL 2025). Untried combination: extending representation-space correctness probes from English-only cross-task transfer (CORAL) to cross-lingual calibration transfer, while characterizing the layer-depth Pareto frontier between calibration quality and transferability.\",\n  \"approach\": \"Phase 1 — Activation Extraction: Extract intermediate-layer activations at every 4th layer across the full depth of Qwen3-235B-A22B (94 layers, MoE), Llama 4 Scout (48 layers, MoE), and Gemma 4 31B Dense (46 layers, dense) on English QA tasks (MMLU, ARC-Challenge) with known correctness labels. Store activations for all layers to enable the Pareto frontier analysis. Phase 2 — English Probe Training: At each extracted layer, fit both a logistic regression probe (linear) and a lightweight 2-layer MLP probe to identify the calibration direction — the hyperplane or surface best separating correct from incorrect answers in representation space. Compare probe complexity: linear probes may transfer better cross-lingually (by analogy to the shallow-transferable finding in Civelli et al.), while MLPs may capture richer correctness signals (as CORAL found). Phase 3 — Pareto Frontier Analysis (Key Novel Contribution): Apply each layer's English-trained probe zero-shot to non-English activations across 50+ languages. For each layer, measure both (a) calibration quality (ECE, Brier score) and (b) cross-lingual transfer quality (AUROC degradation from English). Map the full Pareto frontier of layer depth × calibration quality × cross-lingual transferability. Identify whether there exists a 'sweet spot' layer range that achieves near-optimal calibration with strong cross-lingual transfer, or whether the tradeoff is strict. Phase 4 — Few-Shot Frontier Shifting: Test whether 25-100 non-English examples (motivated by Confidence Manifold's finding that 25 examples achieve 89% of full-data accuracy) can shift the Pareto frontier — specifically, whether few-shot adaptation at deeper layers (where calibration is better but transfer is worse) can recover cross-lingual transfer quality without sacrificing calibration. Phase 5 — Evaluation: Evaluate ECE, Brier score, and AUROC on MMLU-ProX (13 languages, same domain as MMLU training — controls for domain shift), Belebele (122 languages, reading comprehension — tests cross-task + cross-lingual compound transfer), and GlobalMMLU (42 languages, culturally-aware QA). Compare against final-layer softmax, temperature scaling, LACE (oracle with per-language validation), per-language probes (oracle upper bound), and MKA. Include explicit cross-task transfer analysis: training probes on MMLU/ARC and evaluating on Belebele isolates the compound effect of domain shift + language shift, following CORAL's finding of degraded cross-domain transfer. Risk Acknowledgment: The core empirical bet is that the calibration/correctness direction is sufficiently language-agnostic at intermediate layers. Unlike difficulty (an inherent question property that Civelli et al. showed transfers well), correctness is model-dependent — it combines question difficulty, model capability per language, and representation quality. If model capability is encoded language-specifically even at intermediate layers, zero-shot transfer may fail, and the Pareto frontier analysis will quantify exactly where and why. The fallback is that even partial transfer + few-shot adaptation significantly outperforms existing methods that require full per-language validation sets.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"300-450 A100-80GB hours (Qwen3-235B requires 6-8 A100s per run dominating compute; Llama 4 Scout requires 3-4 A100s at FP16; Gemma 4 31B Dense fits on 1 A100. Activation extraction across 3 models × 50+ languages × all layers dominates; probe training takes minutes on cached activations)\",\n      \"timeline\": \"8-10 weeks (1-2 weeks infrastructure/data, 3-4 weeks experiments across 3 models, 2 weeks Pareto frontier analysis and ablations, 2 weeks writing)\",\n      \"estimated_gpu_cost\": \"$700-1100 (at ~$2/hr A100 spot pricing, accounting for multi-GPU coordination overhead on Qwen3-235B and Llama 4 Scout)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"300-450 A100-80GB hours\",\n      \"timeline\": \"6-8 weeks (Claude drafts experiment scripts, analysis code, Pareto frontier visualizations, and paper sections; human steers hypotheses, interprets results, and manages multi-GPU infrastructure)\",\n      \"claude_api_cost\": \"$75-150\",\n      \"estimated_gpu_cost\": \"$700-1100\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"300-450 A100-80GB hours\",\n      \"timeline\": \"5-6 weeks\",\n      \"claude_api_cost\": \"$200-350\",\n      \"estimated_gpu_cost\": \"$700-1100\",\n      \"speed_bottleneck\": \"Sequential GPU activation extraction across 3 model families and 50+ languages; Qwen3-235B requires 6-8 A100-80GB GPUs (470GB FP16) and dominates compute. Each model requires 8-20 GPU-hours for full multi-layer extraction. Probe training and Pareto analysis are CPU-bound and take minutes on cached activations.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (abstract: July 21, 2026; full paper: July 28, 2026 — tight but feasible with 10-week timeline)\",\n    \"EACL 2027 (ARR submission deadline: August 3, 2026 — primary target, 11 weeks from now)\",\n    \"ICLR 2027 (estimated deadline: ~October 2026, not yet announced — comfortable timeline)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations — Ji et al. (EMNLP 2025)\",\n    \"Calibration Across Layers: Understanding Calibration Evolution in LLMs — Joshi et al. (EMNLP 2025)\",\n    \"Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in LLMs — Zhou et al. (arXiv 2510.03136, 2025)\",\n    \"MKA: Leveraging Cross-Lingual Consensus for Model Abstention — Duwal et al. (ICLR Workshop 2025)\",\n    \"Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs — Liu & Niehues (ACL 2025)\",\n    \"A Shared Geometry of Difficulty in Multilingual Language Models — Civelli et al. (arXiv 2601.12731, Jan 2026)\",\n    \"Correctness-Optimized Residual Activation Lens (CORAL) — Miao et al. (arXiv 2602.06022, Feb 2026)\",\n    \"The Confidence Manifold: Geometric Structure of Correctness Representations in Language Models (arXiv 2602.08159, Feb 2026)\",\n    \"Investigating the Multilingual Calibration Effects of Language Model Instruction-Tuning (arXiv 2601.01362, Jan 2026)\",\n    \"Confidence Geometry Reveals Trace-Level Correctness in LLM Reasoning (arXiv 2605.16824, May 2026)\"\n  ],\n  \"description\": \"Non-English languages suffer from 5x worse calibration error (ECE) compared to English in multilingual LLMs, yet existing fixes require per-language validation data (LACE) or expensive multilingual sampling (MKA). We propose extracting a linear calibration direction from English-only intermediate-layer activations and transferring it zero-shot to non-English languages — but crucially, we frame this around a fundamental and previously uncharacterized tradeoff: calibration quality peaks at 75-91% model depth (Zhou et al., 2025; CORAL, 2026), while cross-lingual transferability peaks at ~50% depth (Liu & Niehues, ACL 2025; Civelli et al., 2026). Our core contribution is mapping the Pareto frontier of layer depth × calibration quality × cross-lingual transfer quality across three architectures (Qwen3-235B-A22B, Llama 4 Scout, Gemma 4 31B Dense) and 50+ languages. We differentiate from the closely related Shared Geometry of Difficulty work (Civelli et al., arXiv 2601.12731), which demonstrated cross-lingual probe transfer for IRT-based human difficulty at intermediate layers: difficulty is an inherent question property, while correctness is model-dependent — combining difficulty, language-specific capability, and representation quality — making cross-lingual transfer a stronger empirical bet with higher practical payoff for calibration. We synthesize three converging findings: (1) correctness signals are low-dimensional (3-8 dims) and linearly separable across architectures (Confidence Manifold, 2026), (2) intermediate layers contain calibration directions that outperform the final layer (Joshi et al., EMNLP 2025; Zhou et al., 2025), and (3) middle layers form the strongest language-agnostic shared space (Liu & Niehues, ACL 2025). We train logistic regression and lightweight MLP probes on English activations at every 4th layer, then evaluate zero-shot and few-shot (25-100 examples) transfer to 50+ languages on MMLU-ProX, Belebele, and GlobalMMLU, explicitly analyzing the compound effect of domain shift + language shift. If the calibration direction is sufficiently language-agnostic, this method can close the multilingual ECE gap without per-language supervision; the Pareto frontier analysis will quantify exactly how much calibration quality must be traded for cross-lingual transferability, and whether few-shot adaptation can shift this frontier favorably.\",\n  \"project_name\": \"xling_calib_direction\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 2)\nIssues: [\"CRITICAL MISSING REFERENCE: 'Analyzing LLMs' Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations' (arXiv 2504.13816, ACL 2025) trains linear probes on known/unknown boundaries in one language and transfers them zero-shot to 8 other languages at middle-to-upper layers. They demonstrate training-free alignment (mean shifting + linear projection) that 'nearly closes the gap with in-distribution accuracy.' This is the closest existing work to the proposal's core approach — probing a model-dependent property (knowledge boundaries ≈ can/can't answer) and transferring cross-lingually — and must be cited and differentiated.\", \"MISSING SUPPORTING REFERENCE: 'Can you map it to English?' (arXiv 2504.09378, EACL 2026) demonstrates via activation patching that incorrect non-English predictions are causally linked to misalignment with English in middle layers, and patching English activations fixes them. This directly supports the proposal's hypothesis that English-trained probes can inform non-English correctness.\", \"FACTUAL ERROR: MMLU-ProX covers 29 languages (confirmed from arXiv 2503.10497), not 13 as claimed. Either correct the number or specify that you are using a 13-language subset and justify why.\", \"CHERRY-PICKED LAYER DEPTH: The '~49% depth' figure for cross-lingual transfer (Civelli et al.) is from LLaMA-3.1-8B only. Other models show very different optimal depths: Qwen3-8B at 24%, LLaMA-3.2-3B at 32%, LLaMA-3.2-1B at 38%. Since the proposal tests Qwen3-235B, the Qwen3 evidence (24%) is actually more relevant. Acknowledge this variance explicitly.\", \"NOVELTY CONCERN: With the ACL 2025 knowledge boundary paper demonstrating cross-lingual probe transfer for a model-dependent property, the novelty claim needs sharpening. The key differentiators must be articulated: (1) correctness vs. knowledge boundary, (2) calibration metrics (ECE/Brier) vs. classification accuracy, (3) Pareto frontier analysis, (4) 50+ languages vs. 8, (5) scale (235B/109B vs. 7B-8B).\", \"AAAI 2027 TIMELINE CONCERN: Abstract deadline July 21 (9 weeks away) for an 8-10 week project starting now is effectively unreachable. Consider listing EACL 2027 (Aug 3, ~11 weeks) as primary and ICLR 2027 (Sep 24, ~18 weeks) as comfortable target.\"]\nFeedback: The idea has been substantially improved from Round 1. The Pareto frontier framing and difficulty-vs-correctness distinction are well-argued. However, a critical concurrent paper was missed: 'Analyzing LLMs' Knowledge Boundary Cognition Across Languages' (ACL 2025, arXiv 2504.13816) already demonstrates cross-lingual probe transfer for a model-dependent property (knowledge boundaries) at middle layers with training-free alignment, achieving near in-distribution accuracy. This doesn't kill the idea — correctness and knowledge boundaries are distinct, calibration metrics differ from classification accuracy, and the Pareto frontier analysis is novel — but it significantly narrows the novelty gap and MUST be cited. To pass: (1) Cite and differentiate from arXiv 2504.13816; (2) Cite 2504.09378 as supporting evidence; (3) Fix MMLU-ProX language count (29, not 13); (4) Acknowledge that optimal cross-lingual depth varies 24-49% across models (not just ~49%); (5) Sharpen novelty claims given the precedent work; (6) Adjust venue timeline (AAAI is unreachable, make EACL primary).\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.\n- Address each issue specifically.\n\n## 深度调研要求\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。\n3. **深度思考**：\n   - 核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach？\n4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。\n\n## 针对 Review 意见的定向搜索\n\n1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点\n2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline\n3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现\n4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot\n\n- You have full freedom: minor fix, major revision, or pivot.\n- Include a \"change_type\" field: \"minor\", \"major\", or \"pivot\".\n- Output a COMPLETE JSON object with ALL fields."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T19:48:37.792Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T19:48:37.792Z",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+## Round 1
+
+86 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T19:48:37.805Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-19 (UTC).**
+
+## Original idea
+{
+  "title": "Cross-Lingual Calibration Transfer via Language-Agnostic Confidence Directions: Navigating the Layer-Depth Pareto Frontier",
+  "core_problem": "Non-English languages suffer from 5x worse calibration error (ECE) compared to English in multilingual LLMs. Existing fixes require per-language validation data (LACE) or expensive multilingual sampling (MKA). Can we transfer English calibration quality to underserved languages through shared intermediate-layer confidence directions — and if so, at what layer depth, given the fundamental tradeoff between calibration quality (which peaks at 75-91% depth) and cross-lingual transferability (which peaks at ~50% depth)?",
+  "opportunity": "Ji et al. (EMNLP 2025) discovered that verbal uncertainty is governed by a single linear direction in representation space. Joshi et al. (EMNLP 2025) showed calibration evolves across layers with a low-dimensional calibration direction in the residual stream. Zhou et al. (arXiv 2510.03136) introduced LACE, demonstrating that late-intermediate layers encode better-calibrated multilingual signals but requiring per-language validation. Liu & Niehues (ACL 2025) showed that middle layers (~50% depth) form the strongest language-agnostic shared space. Critically, Civelli et al. (arXiv 2601.12731, Jan 2026) demonstrated that linear probes for problem difficulty transfer cross-lingually at shallow-to-intermediate layers (~49% depth) with ~0.78 Spearman rho, while deep probes achieve higher within-language accuracy but fail to transfer — establishing a shallow-transferable vs. deep-accurate tradeoff. The Confidence Manifold (arXiv 2602.08159, Feb 2026) showed correctness signals occupy just 3-8 dimensions and are linearly separable, with 25 labeled examples achieving 89% of full-data probe accuracy. Nobody has tested whether this correctness/calibration probe transfer works cross-lingually, and nobody has mapped the Pareto frontier of layer depth vs. calibration quality vs. cross-lingual transferability — this frontier is the key to practical deployment.",
+  "landscape": "Zhou et al. (arXiv 2510.03136) introduced LACE, which adaptively ensembles late-intermediate layers (75-91% depth) per language but still requires per-language validation data, and confirmed the 5x ECE gap across 100+ languages and 6 model families (LLaMA-3: 23.1% vs 4.6% ECE for non-English vs English). MKA (Duwal et al., ICLR Workshop 2025) uses cross-lingual consensus for abstention but at 5x inference cost. Joshi et al. (EMNLP 2025) identified a low-dimensional calibration direction in the residual stream. Civelli et al. (arXiv 2601.12731, Jan 2026) showed cross-lingual probe transfer for problem difficulty at intermediate layers in LLaMA-3.1/3.2 and Qwen3-8B, finding shallow probes (~49% depth) transfer with ~0.78 Spearman rho while deep probes (~94% depth) achieve higher within-language accuracy but exhibit poor cross-lingual generalization (0.05-0.19 rho degradation). However, they probed IRT-based human difficulty — an inherent property of questions — not model correctness, which is a model-dependent property combining difficulty, language-specific capability, and representation quality. CORAL (Miao et al., arXiv 2602.06022, Feb 2026) demonstrates transferable correctness probes via regularized 4-layer MLP on residual activations with ~50% ECE improvement at layers 17-21 (~53-66% depth), but evaluates only in English across tasks and shows degraded transfer on domain-shifted benchmarks (e.g., HellaSwag). The Confidence Manifold (arXiv 2602.08159, Feb 2026) shows correctness signals occupy 3-8 dimensions and are linearly separable across 9 models and 5 architecture families, with few-shot (25 examples) achieving 89% of full-data probe accuracy — all English-only. Cross-lingual steering vectors have been demonstrated for language identity and task performance (Mahmoud et al., arXiv 2505.12584; arXiv 2601.16390) but never for calibration. Instruction-tuning studies (arXiv 2601.01362, Jan 2026) confirm that English-centric fine-tuning inflates confidence in low-resource languages without accuracy gains, worsening calibration. Confidence Geometry Reveals Trace-Level Correctness (arXiv 2605.16824, May 2026) extends geometric correctness analysis to reasoning traces using output-level confidence trajectories — operating at a different level (output tokens, not internal representations) with no multilingual evaluation, but suggesting convergent evidence that correctness has consistent geometric structure. No work has attempted to transfer the correctness/calibration direction itself cross-lingually, and no work has characterized the Pareto frontier between calibration quality and cross-lingual transferability across layer depth.",
+  "inspired_by": "Gap: 5x non-English ECE gap (Zhou et al., LACE) + demonstrated cross-lingual difficulty probe transfer at intermediate layers (Civelli et al., Shared Geometry of Difficulty) that has never been extended to correctness/calibration. Pattern: Ji et al.'s linear verbal uncertainty direction + Joshi et al.'s residual-stream calibration direction + Confidence Manifold's 3-8 dimensional correctness signal + cross-lingual middle-layer alignment (Liu & Niehues, ACL 2025). Untried combination: extending representation-space correctness probes from English-only cross-task transfer (CORAL) to cross-lingual calibration transfer, while characterizing the layer-depth Pareto frontier between calibration quality and transferability.",
+  "approach": "Phase 1 — Activation Extraction: Extract intermediate-layer activations at every 4th layer across the full depth of Qwen3-235B-A22B (94 layers, MoE), Llama 4 Scout (48 layers, MoE), and Gemma 4 31B Dense (46 layers, dense) on English QA tasks (MMLU, ARC-Challenge) with known correctness labels. Store activations for all layers to enable the Pareto frontier analysis. Phase 2 — English Probe Training: At each extracted layer, fit both a logistic regression probe (linear) and a lightweight 2-layer MLP probe to identify the calibration direction — the hyperplane or surface best separating correct from incorrect answers in representation space. Compare probe complexity: linear probes may transfer better cross-lingually (by analogy to the shallow-transferable finding in Civelli et al.), while MLPs may capture richer correctness signals (as CORAL found). Phase 3 — Pareto Frontier Analysis (Key Novel Contribution): Apply each layer's English-trained probe zero-shot to non-English activations across 50+ languages. For each layer, measure both (a) calibration quality (ECE, Brier score) and (b) cross-lingual transfer quality (AUROC degradation from English). Map the full Pareto frontier of layer depth × calibration quality × cross-lingual transferability. Identify whether there exists a 'sweet spot' layer range that achieves near-optimal calibration with strong cross-lingual transfer, or whether the tradeoff is strict. Phase 4 — Few-Shot Frontier Shifting: Test whether 25-100 non-English examples (motivated by Confidence Manifold's finding that 25 examples achieve 89% of full-data accuracy) can shift the Pareto frontier — specifically, whether few-shot adaptation at deeper layers (where calibration is better but transfer is worse) can recover cross-lingual transfer quality without sacrificing calibration. Phase 5 — Evaluation: Evaluate ECE, Brier score, and AUROC on MMLU-ProX (13 languages, same domain as MMLU training — controls for domain shift), Belebele (122 languages, reading comprehension — tests cross-task + cross-lingual compound transfer), and GlobalMMLU (42 languages, culturally-aware QA). Compare against final-layer softmax, temperature scaling, LACE (oracle with per-language validation), per-language probes (oracle upper bound), and MKA. Include explicit cross-task transfer analysis: training probes on MMLU/ARC and evaluating on Belebele isolates the compound effect of domain shift + language shift, following CORAL's finding of degraded cross-domain transfer. Risk Acknowledgment: The core empirical bet is that the calibration/correctness direction is sufficiently language-agnostic at intermediate layers. Unlike difficulty (an inherent question property that Civelli et al. showed transfers well), correctness is model-dependent — it combines question difficulty, model capability per language, and representation quality. If model capability is encoded language-specifically even at intermediate layers, zero-shot transfer may fail, and the Pareto frontier analysis will quantify exactly where and why. The fallback is that even partial transfer + few-shot adaptation significantly outperforms existing methods that require full per-language validation sets.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "300-450 A100-80GB hours (Qwen3-235B requires 6-8 A100s per run dominating compute; Llama 4 Scout requires 3-4 A100s at FP16; Gemma 4 31B Dense fits on 1 A100. Activation extraction across 3 models × 50+ languages × all layers dominates; probe training takes minutes on cached activations)",
+      "timeline": "8-10 weeks (1-2 weeks infrastructure/data, 3-4 weeks experiments across 3 models, 2 weeks Pareto frontier analysis and ablations, 2 weeks writing)",
+      "estimated_gpu_cost": "$700-1100 (at ~$2/hr A100 spot pricing, accounting for multi-GPU coordination overhead on Qwen3-235B and Llama 4 Scout)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "300-450 A100-80GB hours",
+      "timeline": "6-8 weeks (Claude drafts experiment scripts, analysis code, Pareto frontier visualizations, and paper sections; human steers hypotheses, interprets results, and manages multi-GPU infrastructure)",
+      "claude_api_cost": "$75-150",
+      "estimated_gpu_cost": "$700-1100"
+    },
+    "auto_research": {
+      "gpu_hours": "300-450 A100-80GB hours",
+      "timeline": "5-6 weeks",
+      "claude_api_cost": "$200-350",
+      "estimated_gpu_cost": "$700-1100",
+      "speed_bottleneck": "Sequential GPU activation extraction across 3 model families and 50+ languages; Qwen3-235B requires 6-8 A100-80GB GPUs (470GB FP16) and dominates compute. Each model requires 8-20 GPU-hours for full multi-layer extraction. Probe training and Pareto analysis are CPU-bound and take minutes on cached activations."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (abstract: July 21, 2026; full paper: July 28, 2026 — tight but feasible with 10-week timeline)",
+    "EACL 2027 (ARR submission deadline: August 3, 2026 — primary target, 11 weeks from now)",
+    "ICLR 2027 (estimated deadline: ~October 2026, not yet announced — comfortable timeline)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations — Ji et al. (EMNLP 2025)",
+    "Calibration Across Layers: Understanding Calibration Evolution in LLMs — Joshi et al. (EMNLP 2025)",
+    "Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in LLMs — Zhou et al. (arXiv 2510.03136, 2025)",
+    "MKA: Leveraging Cross-Lingual Consensus for Model Abstention — Duwal et al. (ICLR Workshop 2025)",
+    "Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs — Liu & Niehues (ACL 2025)",
+    "A Shared Geometry of Difficulty in Multilingual Language Models — Civelli et al. (arXiv 2601.12731, Jan 2026)",
+    "Correctness-Optimized Residual Activation Lens (CORAL) — Miao et al. (arXiv 2602.06022, Feb 2026)",
+    "The Confidence Manifold: Geometric Structure of Correctness Representations in Language Models (arXiv 2602.08159, Feb 2026)",
+    "Investigating the Multilingual Calibration Effects of Language Model Instruction-Tuning (arXiv 2601.01362, Jan 2026)",
+    "Confidence Geometry Reveals Trace-Level Correctness in LLM Reasoning (arXiv 2605.16824, May 2026)"
+  ],
+  "description": "Non-English languages suffer from 5x worse calibration error (ECE) compared to English in multilingual LLMs, yet existing fixes require per-language validation data (LACE) or expensive multilingual sampling (MKA). We propose extracting a linear calibration direction from English-only intermediate-layer activations and transferring it zero-shot to non-English languages — but crucially, we frame this around a fundamental and previously uncharacterized tradeoff: calibration quality peaks at 75-91% model depth (Zhou et al., 2025; CORAL, 2026), while cross-lingual transferability peaks at ~50% depth (Liu & Niehues, ACL 2025; Civelli et al., 2026). Our core contribution is mapping the Pareto frontier of layer depth × calibration quality × cross-lingual transfer quality across three architectures (Qwen3-235B-A22B, Llama 4 Scout, Gemma 4 31B Dense) and 50+ languages. We differentiate from the closely related Shared Geometry of Difficulty work (Civelli et al., arXiv 2601.12731), which demonstrated cross-lingual probe transfer for IRT-based human difficulty at intermediate layers: difficulty is an inherent question property, while correctness is model-dependent — combining difficulty, language-specific capability, and representation quality — making cross-lingual transfer a stronger empirical bet with higher practical payoff for calibration. We synthesize three converging findings: (1) correctness signals are low-dimensional (3-8 dims) and linearly separable across architectures (Confidence Manifold, 2026), (2) intermediate layers contain calibration directions that outperform the final layer (Joshi et al., EMNLP 2025; Zhou et al., 2025), and (3) middle layers form the strongest language-agnostic shared space (Liu & Niehues, ACL 2025). We train logistic regression and lightweight MLP probes on English activations at every 4th layer, then evaluate zero-shot and few-shot (25-100 examples) transfer to 50+ languages on MMLU-ProX, Belebele, and GlobalMMLU, explicitly analyzing the compound effect of domain shift + language shift. If the calibration direction is sufficiently language-agnostic, this method can close the multilingual ECE gap without per-language supervision; the Pareto frontier analysis will quantify exactly how much calibration quality must be traded for cross-lingual transferability, and whether few-shot adaptation can shift this frontier favorably.",
+  "project_name": "xling_calib_direction",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 2)
+Issues: ["CRITICAL MISSING REFERENCE: 'Analyzing LLMs' Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations' (arXiv 2504.13816, ACL 2025) trains linear probes on known/unknown boundaries in one language and transfers them zero-shot to 8 other languages at middle-to-upper layers. They demonstrate training-free alignment (mean shifting + linear projection) that 'nearly closes the gap with in-distribution accuracy.' This is the closest existing work to the proposal's core approach — probing a model-dependent property (knowledge boundaries ≈ can/can't answer) and transferring cross-lingually — and must be cited and differentiated.", "MISSING SUPPORTING REFERENCE: 'Can you map it to English?' (arXiv 2504.09378, EACL 2026) demonstrates via activation patching that incorrect non-English predictions are causally linked to misalignment with English in middle layers, and patching English activations fixes them. This directly supports the proposal's hypothesis that English-trained probes can inform non-English correctness.", "FACTUAL ERROR: MMLU-ProX covers 29 languages (confirmed from arXiv 2503.10497), not 13 as claimed. Either correct the number or specify that you are using a 13-language subset and justify why.", "CHERRY-PICKED LAYER DEPTH: The '~49% depth' figure for cross-lingual transfer (Civelli et al.) is from LLaMA-3.1-8B only. Other models show very different optimal depths: Qwen3-8B at 24%, LLaMA-3.2-3B at 32%, LLaMA-3.2-1B at 38%. Since the proposal tests Qwen3-235B, the Qwen3 evidence (24%) is actually more relevant. Acknowledge this variance explicitly.", "NOVELTY CONCERN: With the ACL 2025 knowledge boundary paper demonstrating cross-lingual probe transfer for a model-dependent property, the novelty claim needs sharpening. The key differentiators must be articulated: (1) correctness vs. knowledge boundary, (2) calibration metrics (ECE/Brier) vs. classification accuracy, (3) Pareto frontier analysis, (4) 50+ languages vs. 8, (5) scale (235B/109B vs. 7B-8B).", "AAAI 2027 TIMELINE CONCERN: Abstract deadline July 21 (9 weeks away) for an 8-10 week project starting now is effectively unreachable. Consider listing EACL 2027 (Aug 3, ~11 weeks) as primary and ICLR 2027 (Sep 24, ~18 weeks) as comfortable target."]
+Feedback: The idea has been substantially improved from Round 1. The Pareto frontier framing and difficulty-vs-correctness distinction are well-argued. However, a critical concurrent paper was missed: 'Analyzing LLMs' Knowledge Boundary Cognition Across Languages' (ACL 2025, arXiv 2504.13816) already demonstrates cross-lingual probe transfer for a model-dependent property (knowledge boundaries) at middle layers with training-free alignment, achieving near in-distribution accuracy. This doesn't kill the idea — correctness and knowledge boundaries are distinct, calibration metrics differ from classification accuracy, and the Pareto frontier analysis is novel — but it significantly narrows the novelty gap and MUST be cited. To pass: (1) Cite and differentiate from arXiv 2504.13816; (2) Cite 2504.09378 as supporting evidence; (3) Fix MMLU-ProX language count (29, not 13); (4) Acknowledge that optimal cross-lingual depth varies 24-49% across models (not just ~49%); (5) Sharpen novelty claims given the precedent work; (6) Adjust venue timeline (AAAI is unreachable, make EACL primary).
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.
+- Address each issue specifically.
+
+## 深度调研要求
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。
+3. **深度思考**：
+   - 核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach？
+4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。
+
+## 针对 Review 意见的定向搜索
+
+1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点
+2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline
+3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现
+4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot
+
+- You have full freedom: minor fix, major revision, or pivot.
+- Include a "change_type" field: "minor", "major", or "pivot".
+- Output a COMPLETE JSON object with ALL fields.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "61d2f3ae-d648-4f0c-b534-45b7acf3f4a6",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T19:48:37.804Z_
+
+```json
+{
+  "parentUuid": "61d2f3ae-d648-4f0c-b534-45b7acf3f4a6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "4bb38157-a0f3-461f-9251-1b89a54361a7",
+  "timestamp": "2026-05-19T19:48:37.804Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T19:48:37.804Z_
+
+```json
+{
+  "parentUuid": "4bb38157-a0f3-461f-9251-1b89a54361a7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "a550105e-a141-4013-9bf8-f3591f0ea87e",
+  "timestamp": "2026-05-19T19:48:37.804Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Cross-Lingual Calibration Transfer via Language-Agnostic Confidence Di…",
+  "leafUuid": "a550105e-a141-4013-9bf8-f3591f0ea87e",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise cross-lingual calibration transfer with critical references",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T19:48:46.073Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully and plan my research accordingly.
+
+The reviewer has raised 6 specific issues:
+
+1. **CRITICAL MISSING REFERENCE**: arXiv 2504.13816 (ACL 2025) - cross-lingual probe transfer for knowledge boundaries
+2. **MISSING SUPPORTING REFERENCE**: arXiv 2504.09378 (EACL 2026) - activation patching showing English-non-English misalignment
+
+
+3. **FACTUAL ERROR**: MMLU-ProX actually covers 29 languages, not 13 as I stated
+4. **CHERRY-PICKED LAYER DEPTH**: The ~49% depth finding only applies to LLaMA-3.1-8B; Qwen3-8B shows a much lower 24%
+5. **NOVELTY CONCERN**: I need to more clearly distinguish my work from the knowledge boundary paper
+6. **AAAI TIMELINE**: That venue is unreachable given the timeline, so I need to pivot to a different conference
+
+I need to dig into these issues systematically, starting with retrieving those critical papers and verifying the factual claims about the datasets and model results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a550105e-a141-4013-9bf8-f3591f0ea87e",
+  "isSidechain": false,
+  "requestId": "req_011CbCWKfJmPhXEZCaAVtpem",
+  "type": "assistant",
+  "uuid": "5376477f-a1d4-403b-895d-cef8945abad0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017pT8jjYtrBusxWzmXy2ckw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6664,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 358,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6664,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 358,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 6664,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6664
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T19:48:46.075Z_
+
+I'll conduct deep research on each reviewer issue in parallel, starting with the critical missing references and factual claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5376477f-a1d4-403b-895d-cef8945abad0",
+  "isSidechain": false,
+  "requestId": "req_011CbCWKfJmPhXEZCaAVtpem",
+  "type": "assistant",
+  "uuid": "907f6d05-6dbd-49a8-afb5-666e2c9c15d3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017pT8jjYtrBusxWzmXy2ckw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6664,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 358,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6664,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 358,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 6664,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6664
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T19:48:46.081Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HSJzJBdXTucYWJYkmeihcg`</summary>
+
+```json
+{
+  "query": "select:WebFetch,WebSearch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "907f6d05-6dbd-49a8-afb5-666e2c9c15d3",
+  "isSidechain": false,
+  "requestId": "req_011CbCWKfJmPhXEZCaAVtpem",
+  "type": "assistant",
+  "uuid": "4c23b992-e8aa-4845-bdbd-61eac5c9f5c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017pT8jjYtrBusxWzmXy2ckw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6664,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 358,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6664,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 358,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 6664,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6664
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T19:48:46.088Z_
+
+<details><summary>↩ Tool result · `toolu_01HSJzJBdXTucYWJYkmeihcg`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4c23b992-e8aa-4845-bdbd-61eac5c9f5c8",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "633d221c-affc-4c08-ae87-c4fb721c28e9",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch",
+      "WebSearch"
+    ],
+    "query": "select:WebFetch,WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "4c23b992-e8aa-4845-bdbd-61eac5c9f5c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-19T19:48:49.325Z_
+
+Now let me launch parallel research on all the critical issues simultaneously.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "633d221c-affc-4c08-ae87-c4fb721c28e9",
+  "isSidechain": false,
+  "requestId": "req_011CbCWLGqwDx91XCRKbEd6P",
+  "type": "assistant",
+  "uuid": "d6efe79a-63d8-4b24-905f-a36b67bef25d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jez1muPtKqAyeSAorcGcB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 18038,
+      "output_tokens": 643,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 643,
+          "cache_read_input_tokens": 18038,
+          "cache_creation_input_tokens": 1378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T19:48:52.046Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HeZjSHqHd39t9X2L9bPwzp`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2504.13816",
+  "prompt": "Extract the full details of this paper: title, authors, venue, abstract, key methodology (how they train probes, what layers, what languages), key results (transfer accuracy, layer depths, alignment methods like mean shifting + linear projection), and any limitations. Focus on: (1) what model-dependent property they probe, (2) how they transfer cross-lingually, (3) what layer depths work best, (4) how many languages they test, (5) what models they use."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6efe79a-63d8-4b24-905f-a36b67bef25d",
+  "isSidechain": false,
+  "requestId": "req_011CbCWLGqwDx91XCRKbEd6P",
+  "type": "assistant",
+  "uuid": "5907dc9b-eacc-488c-a967-ed8def03eab8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jez1muPtKqAyeSAorcGcB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 18038,
+      "output_tokens": 643,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 643,
+          "cache_read_input_tokens": 18038,
+          "cache_creation_input_tokens": 1378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T19:48:54.548Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GJBoL8QEA8pus28SzRQKd2`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2504.09378",
+  "prompt": "Extract the full details of this paper: title, authors, venue, abstract, key methodology (activation patching between English and non-English), key results (how patching English activations fixes non-English errors, which layers matter), and how this relates to cross-lingual representation alignment. Focus on: (1) causal evidence that English representations inform non-English correctness, (2) which layers show strongest alignment, (3) what models and languages they test."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5907dc9b-eacc-488c-a967-ed8def03eab8",
+  "isSidechain": false,
+  "requestId": "req_011CbCWLGqwDx91XCRKbEd6P",
+  "type": "assistant",
+  "uuid": "5cb1e252-3a70-45ca-84c2-427184090f4a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jez1muPtKqAyeSAorcGcB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 18038,
+      "output_tokens": 643,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 643,
+          "cache_read_input_tokens": 18038,
+          "cache_creation_input_tokens": 1378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T19:48:55.971Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01NXrkxZvWtZS4LbHwegK59f`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2503.10497",
+  "prompt": "Extract the details about MMLU-ProX: how many languages does it cover? List all languages if possible. What is its relationship to MMLU-Pro? How was it constructed? What is its purpose?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5cb1e252-3a70-45ca-84c2-427184090f4a",
+  "isSidechain": false,
+  "requestId": "req_011CbCWLGqwDx91XCRKbEd6P",
+  "type": "assistant",
+  "uuid": "b1b061c0-35d1-41ba-8d30-37524b90a71b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jez1muPtKqAyeSAorcGcB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 18038,
+      "output_tokens": 643,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 643,
+          "cache_read_input_tokens": 18038,
+          "cache_creation_input_tokens": 1378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T19:48:58.174Z_
+
+<details><summary>↩ Tool result · `toolu_01HeZjSHqHd39t9X2L9bPwzp`</summary>
+
+```text
+# Paper Analysis: LLMs' Knowledge Boundary Cognition Across Languages
+
+## Title
+"Analyzing LLMs' Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations"
+
+## Authors
+Chenghao Xiao, Hou Pong Chan, Hao Zhang, Mahani Aljunied, Lidong Bing, Noura Al Moubayed, Yu Rong
+
+## Venue
+ACL 2025 (main conference)
+
+## Abstract Summary
+The researchers investigate how LLMs recognize knowledge boundaries across different languages by examining internal representations when processing known versus unknown questions. They identify three key contributions:
+
+1. Knowledge boundary perception is encoded in middle-to-upper layers across languages
+2. Language differences follow a linear structure enabling training-free cross-lingual transfer
+3. Bilingual fine-tuning on question pairs enhances boundary recognition
+
+## Key Methodology
+
+**Model-Dependent Property Probed:** Recognition of knowledge boundaries (distinguishing known from unknown information)
+
+**Cross-Lingual Transfer Method:** The authors propose "a training-free alignment method" that transfers knowledge boundary perception across languages using the linear structure they discovered
+
+**Layer Analysis:** Focus on middle to middle-upper layers for encoding boundary perception
+
+**Languages & Models:** The abstract does not specify the exact number of languages or which specific LLM architectures were evaluated
+
+**Evaluation Resources:** They created "a multilingual evaluation suite comprising three representative types of knowledge boundary data"
+
+## Limitations
+The webpage excerpt does not detail specific transfer accuracy rates, precise layer depths, or comprehensive model specifications. These details would require accessing the full PDF or HTML versions of the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5907dc9b-eacc-488c-a967-ed8def03eab8",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "d6191f97-7710-4aa6-bd05-4c95958efb5e",
+  "toolUseResult": {
+    "bytes": 47651,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Analysis: LLMs' Knowledge Boundary Cognition Across Languages\n\n## Title\n\"Analyzing LLMs' Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations\"\n\n## Authors\nChenghao Xiao, Hou Pong Chan, Hao Zhang, Mahani Aljunied, Lidong Bing, Noura Al Moubayed, Yu Rong\n\n## Venue\nACL 2025 (main conference)\n\n## Abstract Summary\nThe researchers investigate how LLMs recognize knowledge boundaries across different languages by examining internal representations when processing known versus unknown questions. They identify three key contributions:\n\n1. Knowledge boundary perception is encoded in middle-to-upper layers across languages\n2. Language differences follow a linear structure enabling training-free cross-lingual transfer\n3. Bilingual fine-tuning on question pairs enhances boundary recognition\n\n## Key Methodology\n\n**Model-Dependent Property Probed:** Recognition of knowledge boundaries (distinguishing known from unknown information)\n\n**Cross-Lingual Transfer Method:** The authors propose \"a training-free alignment method\" that transfers knowledge boundary perception across languages using the linear structure they discovered\n\n**Layer Analysis:** Focus on middle to middle-upper layers for encoding boundary perception\n\n**Languages & Models:** The abstract does not specify the exact number of languages or which specific LLM architectures were evaluated\n\n**Evaluation Resources:** They created \"a multilingual evaluation suite comprising three representative types of knowledge boundary data\"\n\n## Limitations\nThe webpage excerpt does not detail specific transfer accuracy rates, precise layer depths, or comprehensive model specifications. These details would require accessing the full PDF or HTML versions of the paper.",
+    "durationMs": 6124,
+    "url": "https://arxiv.org/abs/2504.13816"
+  },
+  "sourceToolAssistantUUID": "5907dc9b-eacc-488c-a967-ed8def03eab8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T19:48:58.309Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01722VpGn1ZeT7xsSUbNcEN3`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.12731",
+  "prompt": "Extract the specific layer depth findings for EACH model tested: what is the optimal cross-lingual transfer depth for LLaMA-3.1-8B, LLaMA-3.2-3B, LLaMA-3.2-1B, Qwen3-8B, and any other models? Report exact layer numbers and percentages. Also report what the within-language optimal depth is for each model. I need to understand the variance in optimal transfer depth across models."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6191f97-7710-4aa6-bd05-4c95958efb5e",
+  "isSidechain": false,
+  "requestId": "req_011CbCWLGqwDx91XCRKbEd6P",
+  "type": "assistant",
+  "uuid": "5acccbf2-9ce3-4a83-936c-7aab84e5594d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jez1muPtKqAyeSAorcGcB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 18038,
+      "output_tokens": 643,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 643,
+          "cache_read_input_tokens": 18038,
+          "cache_creation_input_tokens": 1378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T19:48:59.937Z_
+
+<details><summary>↩ Tool result · `toolu_01GJBoL8QEA8pus28SzRQKd2`</summary>
+
+```text
+# Paper Summary: Cross-Lingual Alignment in Multilingual LLMs
+
+**Title:** "Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs"
+
+**Authors:** Kartik Ravisankar, Hyojung Han, Sarah Wiegreffe, Marine Carpuat
+
+**Venue:** arXiv (cs.CL - Computation and Language), submitted April 2025
+
+## Abstract Overview
+
+The research investigates how LLMs generalize across languages despite predominantly English training. The central question examines whether aligning non-English representations to English impacts performance on natural language understanding tasks.
+
+## Key Methodology
+
+The team introduced the **Discriminative Alignment Index (DALI)** to measure instance-level representation alignment across 24 non-English languages and three NLU tasks. Their primary experimental approach involved **activation patching**—replacing non-English neural activations with parallel English activations to test causal relationships.
+
+## Major Findings
+
+1. **Causal Evidence:** Incorrect predictions in non-English languages can be corrected by patching their middle-layer activations with corresponding English model activations, demonstrating that representation misalignment directly causes errors.
+
+2. **Layer Specificity:** The abstract indicates that "incorrect NLU predictions are strongly associated with lower representation alignment with English in the model's middle layers," suggesting middle layers are critical for cross-lingual transfer.
+
+3. **Scope:** Testing covered 24 languages beyond English across three distinct NLU tasks.
+
+## Cross-Lingual Alignment Insight
+
+The findings reveal that LLMs rely fundamentally on mapping non-English inputs to English semantic space, making English representation quality a bottleneck for multilingual performance.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5cb1e252-3a70-45ca-84c2-427184090f4a",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "ee08d86b-5fd7-4e62-86d8-d3196e32abd6",
+  "toolUseResult": {
+    "bytes": 46138,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary: Cross-Lingual Alignment in Multilingual LLMs\n\n**Title:** \"Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs\"\n\n**Authors:** Kartik Ravisankar, Hyojung Han, Sarah Wiegreffe, Marine Carpuat\n\n**Venue:** arXiv (cs.CL - Computation and Language), submitted April 2025\n\n## Abstract Overview\n\nThe research investigates how LLMs generalize across languages despite predominantly English training. The central question examines whether aligning non-English representations to English impacts performance on natural language understanding tasks.\n\n## Key Methodology\n\nThe team introduced the **Discriminative Alignment Index (DALI)** to measure instance-level representation alignment across 24 non-English languages and three NLU tasks. Their primary experimental approach involved **activation patching**—replacing non-English neural activations with parallel English activations to test causal relationships.\n\n## Major Findings\n\n1. **Causal Evidence:** Incorrect predictions in non-English languages can be corrected by patching their middle-layer activations with corresponding English model activations, demonstrating that representation misalignment directly causes errors.\n\n2. **Layer Specificity:** The abstract indicates that \"incorrect NLU predictions are strongly associated with lower representation alignment with English in the model's middle layers,\" suggesting middle layers are critical for cross-lingual transfer.\n\n3. **Scope:** Testing covered 24 languages beyond English across three distinct NLU tasks.\n\n## Cross-Lingual Alignment Insight\n\nThe findings reveal that LLMs rely fundamentally on mapping non-English inputs to English semantic space, making English representation quality a bottleneck for multilingual performance.",
+    "durationMs": 5386,
+    "url": "https://arxiv.org/abs/2504.09378"
+  },
+  "sourceToolAssistantUUID": "5cb1e252-3a70-45ca-84c2-427184090f4a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T19:49:00.127Z_
+
+<details><summary>↩ Tool result · `toolu_01NXrkxZvWtZS4LbHwegK59f`</summary>
+
+```text
+# MMLU-ProX: Multilingual Benchmark Overview
+
+## Language Coverage
+MMLU-ProX covers **29 languages**, though the specific languages are not enumerated in the provided content.
+
+## Relationship to MMLU-Pro
+The benchmark is "built on an English benchmark," suggesting it extends existing MMLU work to multilingual contexts, though the precise relationship to MMLU-Pro specifically is not detailed in this excerpt.
+
+## Construction Methodology
+The development process involved three key stages:
+
+1. **Translation**: Multiple advanced language models generated translations
+2. **Expert Review**: Human experts verified "accurate expression, consistent terminology, and cultural relevance"
+3. **Evaluation**: The authors systematically assessed 36 state-of-the-art LLMs
+
+## Dataset Specifications
+- Full version: 11,829 identical questions per language
+- Lite version: 658 questions per language
+- Identical questions enable "direct cross-linguistic comparisons"
+
+## Purpose
+The benchmark aims to "advance the development of more inclusive AI systems" by revealing significant performance gaps in multilingual LLM capabilities. The results demonstrate that while models perform well in high-resource languages, performance "declines markedly in low-resource languages, with gaps of up to 24.3%."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b1b061c0-35d1-41ba-8d30-37524b90a71b",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "a7e5060f-1342-4e71-ba9b-bf95492a9d01",
+  "toolUseResult": {
+    "bytes": 51103,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# MMLU-ProX: Multilingual Benchmark Overview\n\n## Language Coverage\nMMLU-ProX covers **29 languages**, though the specific languages are not enumerated in the provided content.\n\n## Relationship to MMLU-Pro\nThe benchmark is \"built on an English benchmark,\" suggesting it extends existing MMLU work to multilingual contexts, though the precise relationship to MMLU-Pro specifically is not detailed in this excerpt.\n\n## Construction Methodology\nThe development process involved three key stages:\n\n1. **Translation**: Multiple advanced language models generated translations\n2. **Expert Review**: Human experts verified \"accurate expression, consistent terminology, and cultural relevance\"\n3. **Evaluation**: The authors systematically assessed 36 state-of-the-art LLMs\n\n## Dataset Specifications\n- Full version: 11,829 identical questions per language\n- Lite version: 658 questions per language\n- Identical questions enable \"direct cross-linguistic comparisons\"\n\n## Purpose\nThe benchmark aims to \"advance the development of more inclusive AI systems\" by revealing significant performance gaps in multilingual LLM capabilities. The results demonstrate that while models perform well in high-resource languages, performance \"declines markedly in low-resource languages, with gaps of up to 24.3%.\"",
+    "durationMs": 4151,
+    "url": "https://arxiv.org/abs/2503.10497"
+  },
+  "sourceToolAssistantUUID": "b1b061c0-35d1-41ba-8d30-37524b90a71b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T19:49:01.357Z_
+
+<details><summary>↩ Tool result · `toolu_01722VpGn1ZeT7xsSUbNcEN3`</summary>
+
+```text
+# Response
+
+I cannot provide the specific layer depth findings you've requested. The webpage content available shows only the abstract and metadata for arXiv paper 2601.12731. 
+
+The abstract mentions that "difficulty-related signals emerge at two distinct stages of the model internals, corresponding to shallow (early-layers) and deep (later-layers)" but does not specify exact layer numbers, optimal depths for individual models, or cross-lingual transfer percentages.
+
+To obtain the detailed metrics you need—including optimal layer depths for LLaMA-3.1-8B, LLaMA-3.2-3B, LLaMA-3.2-1B, Qwen3-8B, and cross-lingual transfer performance percentages—you would need to access the full paper PDF or HTML version linked on the page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5acccbf2-9ce3-4a83-936c-7aab84e5594d",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "2e96bebd-77ae-42c7-866b-fc9671a1718c",
+  "toolUseResult": {
+    "bytes": 46730,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Response\n\nI cannot provide the specific layer depth findings you've requested. The webpage content available shows only the abstract and metadata for arXiv paper 2601.12731. \n\nThe abstract mentions that \"difficulty-related signals emerge at two distinct stages of the model internals, corresponding to shallow (early-layers) and deep (later-layers)\" but does not specify exact layer numbers, optimal depths for individual models, or cross-lingual transfer percentages.\n\nTo obtain the detailed metrics you need—including optimal layer depths for LLaMA-3.1-8B, LLaMA-3.2-3B, LLaMA-3.2-1B, Qwen3-8B, and cross-lingual transfer performance percentages—you would need to access the full paper PDF or HTML version linked on the page.",
+    "durationMs": 3046,
+    "url": "https://arxiv.org/abs/2601.12731"
+  },
+  "sourceToolAssistantUUID": "5acccbf2-9ce3-4a83-936c-7aab84e5594d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-19T19:49:04.793Z_
+
+Good, I have initial data. Now let me fetch the full papers for the critical reference and dig deeper into the layer depth variance, as well as search for additional context.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e96bebd-77ae-42c7-866b-fc9671a1718c",
+  "isSidechain": false,
+  "requestId": "req_011CbCWMPvrehvdZxaGSwkS4",
+  "type": "assistant",
+  "uuid": "d0aa73b2-46df-4e56-8889-9b2befb4fc42",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AJaBCu5QPiSYJb55a1fWjw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3353,
+      "cache_read_input_tokens": 18038,
+      "output_tokens": 564,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3353,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 564,
+          "cache_read_input_tokens": 18038,
+          "cache_creation_input_tokens": 3353,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3353
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-19T19:49:09.100Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01RNJaLU8svMcxtQmEPgPQg2`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2504.13816",
+  "prompt": "Extract ALL details about: (1) Which specific models were used (model names and sizes), (2) Which languages were tested and how many, (3) The training-free alignment method - exactly how does mean shifting + linear projection work, (4) At which layers do they find knowledge boundary probes work best, (5) Exact transfer accuracy numbers - what accuracy do they achieve with zero-shot cross-lingual transfer vs in-distribution, (6) How they define \"knowledge boundary\" - is it about whether the model CAN answer correctly or whether it KNOWS the answer, (7) Any comparison to calibration metrics like ECE or Brier score, (8) Key limitations they mention."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0aa73b2-46df-4e56-8889-9b2befb4fc42",
+  "isSidechain": false,
+  "requestId": "req_011CbCWMPvrehvdZxaGSwkS4",
+  "type": "assistant",
+  "uuid": "5b77031c-13f1-4597-b376-e1292e215c62",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AJaBCu5QPiSYJb55a1fWjw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3353,
+      "cache_read_input_tokens": 18038,
+      "output_tokens": 564,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3353,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 564,
+          "cache_read_input_tokens": 18038,
+          "cache_creation_input_tokens": 3353,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3353
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T19:49:12.471Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DZuuVJT7vC5hvMybJ5XfFY`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2504.09378",
+  "prompt": "Extract ALL details about: (1) Which models and how many languages tested, (2) Exact layer ranges where activation patching is most effective for fixing non-English errors, (3) The DALI metric - how it works, (4) Quantitative results - what percentage of errors are fixed by patching, (5) Whether they test on any calibration-related tasks, (6) Key findings about which layer ranges show strongest cross-lingual alignment, (7) Any findings specific to MoE or large-scale models."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b77031c-13f1-4597-b376-e1292e215c62",
+  "isSidechain": false,
+  "requestId": "req_011CbCWMPvrehvdZxaGSwkS4",
+  "type": "assistant",
+  "uuid": "2a279a9f-c52b-4864-b8bc-85617d4da117",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AJaBCu5QPiSYJb55a1fWjw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3353,
+      "cache_read_input_tokens": 18038,
+      "output_tokens": 564,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3353,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 564,
+          "cache_read_input_tokens": 18038,
+          "cache_creation_input_tokens": 3353,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3353
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T19:49:12.480Z_
+
+<details><summary>↩ Tool result · `toolu_01DZuuVJT7vC5hvMybJ5XfFY`</summary>
+
+```text
+The server returned HTTP 404 Not Found.
+
+The response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2a279a9f-c52b-4864-b8bc-85617d4da117",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "8173ada9-17e1-4edc-9134-71fd4937acce",
+  "toolUseResult": {
+    "bytes": 0,
+    "code": 404,
+    "codeText": "Not Found",
+    "result": "The server returned HTTP 404 Not Found.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch.",
+    "durationMs": 7,
+    "url": "https://arxiv.org/html/2504.09378"
+  },
+  "sourceToolAssistantUUID": "2a279a9f-c52b-4864-b8bc-85617d4da117",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T19:49:12.928Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RQ53xqxayZkJi94sdTBDSn`</summary>
+
+```json
+{
+  "query": "arXiv 2504.13816 \"knowledge boundary\" cross-lingual probe transfer layer depth results accuracy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8173ada9-17e1-4edc-9134-71fd4937acce",
+  "isSidechain": false,
+  "requestId": "req_011CbCWMPvrehvdZxaGSwkS4",
+  "type": "assistant",
+  "uuid": "b3cccddc-60fc-4713-9a39-f75836f5ee16",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AJaBCu5QPiSYJb55a1fWjw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3353,
+      "cache_read_input_tokens": 18038,
+      "output_tokens": 564,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3353,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 564,
+          "cache_read_input_tokens": 18038,
+          "cache_creation_input_tokens": 3353,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3353
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T19:49:13.716Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SS2HWaose5SWSRkAnvhsUE`</summary>
+
+```json
+{
+  "query": "Civelli \"shared geometry of difficulty\" Qwen3 LLaMA optimal layer depth cross-lingual transfer percentage"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3cccddc-60fc-4713-9a39-f75836f5ee16",
+  "isSidechain": false,
+  "requestId": "req_011CbCWMPvrehvdZxaGSwkS4",
+  "type": "assistant",
+  "uuid": "fc80e3da-036f-486f-8395-91f448ba2714",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AJaBCu5QPiSYJb55a1fWjw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3353,
+      "cache_read_input_tokens": 18038,
+      "output_tokens": 564,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3353,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 564,
+          "cache_read_input_tokens": 18038,
+          "cache_creation_input_tokens": 3353,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3353
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Cross-Lingual Calibration Transfer via Language-Agnostic Confidence Di…",
+  "leafUuid": "fc80e3da-036f-486f-8395-91f448ba2714",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise cross-lingual calibration transfer with critical references",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T19:49:19.067Z_
+
+<details><summary>↩ Tool result · `toolu_01RQ53xqxayZkJi94sdTBDSn`</summary>
+
+```text
+Web search results for query: "arXiv 2504.13816 "knowledge boundary" cross-lingual probe transfer layer depth results accuracy"
+
+Links: [{"title":"[2504.13816] Analyzing LLMs' Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations","url":"https://arxiv.org/abs/2504.13816"},{"title":"Analyzing LLMs’ Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations","url":"https://arxiv.org/html/2504.13816"},{"title":"arXiv:2504.13816v3 [cs.CL] 24 Jun 2025","url":"https://arxiv.org/pdf/2504.13816"},{"title":"Probing Cross-Lingual Lexical Knowledge from Multilingual Sentence   Encoders","url":"https://arxiv.org/pdf/2205.00267"},{"title":"Probing the Knowledge Boundary: An Interactive Agentic ...","url":"https://arxiv.org/pdf/2602.00959"}]
+
+Based on the search results, I found the arXiv paper 2504.13816 titled "Analyzing LLMs' Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations."
+
+Here are the key findings related to your query:
+
+**Layer Depth Results:**
+LLMs' perceptions of knowledge boundaries are encoded in the middle to middle-upper layers across different languages.
+
+**Cross-Lingual Transfer Method:**
+The paper proposes a training-free alignment method that effectively transfers knowledge boundary perception ability across languages, thereby helping reduce hallucination risk in low-resource languages. Additionally, fine-tuning on bilingual question pair translation further enhances LLMs' recognition of knowledge boundaries across languages.
+
+**Probe Transfer Findings:**
+The representation subspaces of different languages converge into a unified knowledge space, in which probes exhibit the best inter-language transferability.
+
+The study appears to be the first to systematically analyze how LLMs recognize knowledge boundaries across different languages by examining their internal representations when processing known and unknown questions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b3cccddc-60fc-4713-9a39-f75836f5ee16",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "6ec23bf7-7478-460c-a5a9-51ec6fa234fa",
+  "toolUseResult": {
+    "query": "arXiv 2504.13816 \"knowledge boundary\" cross-lingual probe transfer layer depth results accuracy",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014NvPZwYM9LskXwYHwVc94G",
+        "content": [
+          {
+            "title": "[2504.13816] Analyzing LLMs' Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations",
+            "url": "https://arxiv.org/abs/2504.13816"
+          },
+          {
+            "title": "Analyzing LLMs’ Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations",
+            "url": "https://arxiv.org/html/2504.13816"
+          },
+          {
+            "title": "arXiv:2504.13816v3 [cs.CL] 24 Jun 2025",
+            "url": "https://arxiv.org/pdf/2504.13816"
+          },
+          {
+            "title": "Probing Cross-Lingual Lexical Knowledge from Multilingual Sentence   Encoders",
+            "url": "https://arxiv.org/pdf/2205.00267"
+          },
+          {
+            "title": "Probing the Knowledge Boundary: An Interactive Agentic ...",
+            "url": "https://arxiv.org/pdf/2602.00959"
+          }
+        ]
+      },
+      "Based on the search results, I found the arXiv paper 2504.13816 titled \"Analyzing LLMs' Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations.\"\n\nHere are the key findings related to your query:\n\n**Layer Depth Results:**\nLLMs' perceptions of knowledge boundaries are encoded in the middle to middle-upper layers across different languages.\n\n**Cross-Lingual Transfer Method:**\nThe paper proposes a training-free alignment method that effectively transfers knowledge boundary perception ability across languages, thereby helping reduce hallucination risk in low-resource languages. Additionally, fine-tuning on bilingual question pair translation further enhances LLMs' recognition of knowledge boundaries across languages.\n\n**Probe Transfer Findings:**\nThe representation subspaces of different languages converge into a unified knowledge space, in which probes exhibit the best inter-language transferability.\n\nThe study appears to be the first to systematically analyze how LLMs recognize knowledge boundaries across different languages by examining their internal representations when processing known and unknown questions."
+    ],
+    "durationSeconds": 6.1118287850000055,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b3cccddc-60fc-4713-9a39-f75836f5ee16",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T19:49:19.281Z_
+
+<details><summary>↩ Tool result · `toolu_01RNJaLU8svMcxtQmEPgPQg2`</summary>
+
+```text
+# Analysis of LLM Knowledge Boundary Cognition Study
+
+## (1) Models Used
+The researchers tested **Qwen2.5-7B, Qwen2.5-14B, Qwen2.5-72B, and Llama-3.1-8B**. They evaluated both base and instruct variants across different sizes.
+
+## (2) Languages Tested
+The study examined **8 languages** in FreshQAParallel (English, Chinese, Vietnamese, Thai, Indonesian, Malay, Khmer, Lao) and **5 languages** in SeaRefuse (English, Chinese, Indonesian, Thai, Vietnamese). TrueFalseMultiLang covered **8 languages** including Spanish, German, Italian, Portuguese, French.
+
+## (3) Training-Free Alignment Methods
+
+**Mean Shifting:** The method computes mean vectors for source and target language embeddings, then calculates the difference (Δμ = μ_in - μ_ood). This translation vector is applied to OOD test data to align subspace means.
+
+**Linear Projection:** A transformation matrix W is learned via least squares to project target language representations into source language subspace: W = (X_ood^train+ X_ood)^-1 X_ood^train+ X_in, computed using SVD for numerical stability.
+
+## (4) Optimal Layers
+Knowledge boundary perception emerges most strongly in **middle to mid-upper layers**: specifically the 19th layer for Qwen2.5-7B and middle layers for Llama. The bottom layers show poor cross-lingual transferability due to language-specific embeddings; upper layers diverge again during generation preparation.
+
+## (5) Transfer Accuracy Numbers
+
+**Zero-shot cross-lingual transfer** showed substantial gaps. For instance, English→Khmer dropped from 89% in-distribution to 79% out-of-distribution at the best layer. After **linear projection**, performance "nearly matches in-distribution accuracy," closing most gaps. Mean shifting achieved intermediate improvements, substantially better than vanilla but worse than projection.
+
+## (6) Knowledge Boundary Definition
+The study defines knowledge boundaries as the model's ability to **recognize when it cannot answer correctly**—specifically identifying false-premise questions and unanswerable queries about non-existent entities. This focuses on internal *perception* rather than actual answering capability. As noted: "LLMs internally encode knowledge boundary awareness, such as identifying false-premise questions."
+
+## (7) Calibration Metrics Comparison
+The paper does **not** employ calibration metrics like ECE or Brier score. It relies solely on **probing accuracy** to measure knowledge boundary cognition in internal representations.
+
+## (8) Key Limitations
+The authors acknowledge: "It is of interest to investigate how these representations evolve in the generation process" and note difficulty "locating the information when the transformation takes place" during reasoning. They also highlight that probing representations doesn't fully explain why models "may underutilize the information during generation."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b77031c-13f1-4597-b376-e1292e215c62",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "8f4a2f84-8fab-4d26-8b7c-f143c2a996fc",
+  "toolUseResult": {
+    "bytes": 314121,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of LLM Knowledge Boundary Cognition Study\n\n## (1) Models Used\nThe researchers tested **Qwen2.5-7B, Qwen2.5-14B, Qwen2.5-72B, and Llama-3.1-8B**. They evaluated both base and instruct variants across different sizes.\n\n## (2) Languages Tested\nThe study examined **8 languages** in FreshQAParallel (English, Chinese, Vietnamese, Thai, Indonesian, Malay, Khmer, Lao) and **5 languages** in SeaRefuse (English, Chinese, Indonesian, Thai, Vietnamese). TrueFalseMultiLang covered **8 languages** including Spanish, German, Italian, Portuguese, French.\n\n## (3) Training-Free Alignment Methods\n\n**Mean Shifting:** The method computes mean vectors for source and target language embeddings, then calculates the difference (Δμ = μ_in - μ_ood). This translation vector is applied to OOD test data to align subspace means.\n\n**Linear Projection:** A transformation matrix W is learned via least squares to project target language representations into source language subspace: W = (X_ood^train+ X_ood)^-1 X_ood^train+ X_in, computed using SVD for numerical stability.\n\n## (4) Optimal Layers\nKnowledge boundary perception emerges most strongly in **middle to mid-upper layers**: specifically the 19th layer for Qwen2.5-7B and middle layers for Llama. The bottom layers show poor cross-lingual transferability due to language-specific embeddings; upper layers diverge again during generation preparation.\n\n## (5) Transfer Accuracy Numbers\n\n**Zero-shot cross-lingual transfer** showed substantial gaps. For instance, English→Khmer dropped from 89% in-distribution to 79% out-of-distribution at the best layer. After **linear projection**, performance \"nearly matches in-distribution accuracy,\" closing most gaps. Mean shifting achieved intermediate improvements, substantially better than vanilla but worse than projection.\n\n## (6) Knowledge Boundary Definition\nThe study defines knowledge boundaries as the model's ability to **recognize when it cannot answer correctly**—specifically identifying false-premise questions and unanswerable queries about non-existent entities. This focuses on internal *perception* rather than actual answering capability. As noted: \"LLMs internally encode knowledge boundary awareness, such as identifying false-premise questions.\"\n\n## (7) Calibration Metrics Comparison\nThe paper does **not** employ calibration metrics like ECE or Brier score. It relies solely on **probing accuracy** to measure knowledge boundary cognition in internal representations.\n\n## (8) Key Limitations\nThe authors acknowledge: \"It is of interest to investigate how these representations evolve in the generation process\" and note difficulty \"locating the information when the transformation takes place\" during reasoning. They also highlight that probing representations doesn't fully explain why models \"may underutilize the information during generation.\"",
+    "durationMs": 10177,
+    "url": "https://arxiv.org/html/2504.13816"
+  },
+  "sourceToolAssistantUUID": "5b77031c-13f1-4597-b376-e1292e215c62",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T19:49:21.114Z_
+
+<details><summary>↩ Tool result · `toolu_01SS2HWaose5SWSRkAnvhsUE`</summary>
+
+```text
+Web search results for query: "Civelli "shared geometry of difficulty" Qwen3 LLaMA optimal layer depth cross-lingual transfer percentage"
+
+Links: [{"title":"[2601.12731] A Shared Geometry of Difficulty in Multilingual Language Models","url":"https://arxiv.org/abs/2601.12731"},{"title":"A Shared Geometry of Difficulty in Multilingual Language Models","url":"https://arxiv.org/pdf/2601.12731"},{"title":"Is Bigger and Deeper Always Better? Probing LLaMA Across Scales and   Layers","url":"https://arxiv.org/pdf/2312.04333"},{"title":"Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in Large Language Models","url":"https://arxiv.org/pdf/2510.03136"},{"title":"Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs","url":"https://arxiv.org/pdf/2502.14830"},{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"}]
+
+Based on the web search results, I found relevant research on the "shared geometry of difficulty" concept:
+
+Stefano Civelli and colleagues studied the multilingual geometry of problem-difficulty in LLMs by training linear probes using the AMC subset of the Easy2Hard benchmark, translated into 21 languages.
+
+Key findings from their research include:
+
+Difficulty-related signals emerge at two distinct stages of the model internals, corresponding to shallow (early-layers) and deep (later-layers) internal representations, that exhibit functionally different behaviors.
+
+Regarding cross-lingual transfer performance:
+
+Probes trained on deep representations achieve high accuracy when evaluated on the same language but exhibit poor cross-lingual generalization. In contrast, probes trained on shallow representations generalize substantially better across languages, despite achieving lower within-language performance.
+
+The research also suggests that LLMs first form a language-agnostic representation of problem difficulty, which subsequently becomes language-specific.
+
+Regarding cross-lingual performance in language models more broadly, separate research on LLaMA found that in cross-lingual reasoning, models' performance gradually decreases as the layers deepen, indicating that LLaMA's earlier layers are responsible for preserving general multilingual features.
+
+Note: The search results do not contain specific quantitative percentages for cross-lingual transfer, nor do they specifically mention optimal layer depth numbers or specific data about Qwen3 models in relation to this research.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fc80e3da-036f-486f-8395-91f448ba2714",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "86c18a17-c7f8-4568-bf95-b568ceb1c2c5",
+  "toolUseResult": {
+    "query": "Civelli \"shared geometry of difficulty\" Qwen3 LLaMA optimal layer depth cross-lingual transfer percentage",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LnKubkZSs8xaLCjoc3VZ9m",
+        "content": [
+          {
+            "title": "[2601.12731] A Shared Geometry of Difficulty in Multilingual Language Models",
+            "url": "https://arxiv.org/abs/2601.12731"
+          },
+          {
+            "title": "A Shared Geometry of Difficulty in Multilingual Language Models",
+            "url": "https://arxiv.org/pdf/2601.12731"
+          },
+          {
+            "title": "Is Bigger and Deeper Always Better? Probing LLaMA Across Scales and   Layers",
+            "url": "https://arxiv.org/pdf/2312.04333"
+          },
+          {
+            "title": "Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in Large Language Models",
+            "url": "https://arxiv.org/pdf/2510.03136"
+          },
+          {
+            "title": "Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs",
+            "url": "https://arxiv.org/pdf/2502.14830"
+          },
+          {
+            "title": "2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant research on the \"shared geometry of difficulty\" concept:\n\nStefano Civelli and colleagues studied the multilingual geometry of problem-difficulty in LLMs by training linear probes using the AMC subset of the Easy2Hard benchmark, translated into 21 languages.\n\nKey findings from their research include:\n\nDifficulty-related signals emerge at two distinct stages of the model internals, corresponding to shallow (early-layers) and deep (later-layers) internal representations, that exhibit functionally different behaviors.\n\nRegarding cross-lingual transfer performance:\n\nProbes trained on deep representations achieve high accuracy when evaluated on the same language but exhibit poor cross-lingual generalization. In contrast, probes trained on shallow representations generalize substantially better across languages, despite achieving lower within-language performance.\n\nThe research also suggests that LLMs first form a language-agnostic representation of problem difficulty, which subsequently becomes language-specific.\n\nRegarding cross-lingual performance in language models more broadly, separate research on LLaMA found that in cross-lingual reasoning, models' performance gradually decreases as the layers deepen, indicating that LLaMA's earlier layers are responsible for preserving general multilingual features.\n\nNote: The search results do not contain specific quantitative percentages for cross-lingual transfer, nor do they specifically mention optimal layer depth numbers or specific data about Qwen3 models in relation to this research."
+    ],
+    "durationSeconds": 7.396269027000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fc80e3da-036f-486f-8395-91f448ba2714",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-19T19:49:21.118Z_
+
+```json
+{
+  "parentUuid": "86c18a17-c7f8-4568-bf95-b568ceb1c2c5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d88fbdfb-3a24-4a75-a1dd-73c591458747",
+  "timestamp": "2026-05-19T19:49:21.118Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-19T19:49:24.358Z_
+
+Now let me get the full Civelli et al. paper details and search for the EACL 2026 paper's full text, plus check ICLR 2027 deadline.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d88fbdfb-3a24-4a75-a1dd-73c591458747",
+  "isSidechain": false,
+  "requestId": "req_011CbCWNrNN5WfFHvt4uiKqX",
+  "type": "assistant",
+  "uuid": "88731c0b-c2b6-4e64-99f7-23242fb168ba",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqL1HjbXYHH3dRLT6kmmcM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2651,
+      "cache_read_input_tokens": 21391,
+      "output_tokens": 560,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2651,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 560,
+          "cache_read_input_tokens": 21391,
+          "cache_creation_input_tokens": 2651,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2651
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-19T19:49:28.748Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UbT8gd9UUL7PSyrUxgWAKW`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/pdf/2601.12731",
+  "prompt": "Extract the EXACT layer depth findings for EACH model: (1) For LLaMA-3.1-8B (32 layers): what is the optimal cross-lingual transfer layer? What percentage depth? (2) For LLaMA-3.2-3B (28 layers): optimal cross-lingual transfer layer? (3) For LLaMA-3.2-1B (16 layers): optimal transfer layer? (4) For Qwen3-8B: what layers? What is the optimal cross-lingual transfer depth? Report as percentage. (5) What Spearman rho values do they get for cross-lingual vs within-language at each depth? Report exact numbers from tables or figures. Also extract: how many languages tested, which languages, what benchmark data."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88731c0b-c2b6-4e64-99f7-23242fb168ba",
+  "isSidechain": false,
+  "requestId": "req_011CbCWNrNN5WfFHvt4uiKqX",
+  "type": "assistant",
+  "uuid": "6af65bf6-0259-4642-96cf-1f8189ada753",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqL1HjbXYHH3dRLT6kmmcM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2651,
+      "cache_read_input_tokens": 21391,
+      "output_tokens": 560,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2651,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 560,
+          "cache_read_input_tokens": 21391,
+          "cache_creation_input_tokens": 2651,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2651
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T19:49:31.651Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PXJv37moW1YE7SP15WjWzR`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2504.09378",
+  "prompt": "Extract ALL details: (1) Full list of languages tested (how many), (2) Models used (names and sizes), (3) Key quantitative results about activation patching - what percentage of incorrect non-English predictions are corrected, (4) At which layers is patching most effective, (5) The DALI metric definition and findings, (6) Any calibration-related findings, (7) Venue (published or under review where)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6af65bf6-0259-4642-96cf-1f8189ada753",
+  "isSidechain": false,
+  "requestId": "req_011CbCWNrNN5WfFHvt4uiKqX",
+  "type": "assistant",
+  "uuid": "dc21e612-a68f-4d31-b88d-6b099fa5cbdf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqL1HjbXYHH3dRLT6kmmcM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2651,
+      "cache_read_input_tokens": 21391,
+      "output_tokens": 560,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2651,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 560,
+          "cache_read_input_tokens": 21391,
+          "cache_creation_input_tokens": 2651,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2651
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-19T19:49:31.656Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Tsv8DCiP8fFA5upaLecHba`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dc21e612-a68f-4d31-b88d-6b099fa5cbdf",
+  "isSidechain": false,
+  "requestId": "req_011CbCWNrNN5WfFHvt4uiKqX",
+  "type": "assistant",
+  "uuid": "e395885a-19ac-4d56-9fae-ef3bd33ec81b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqL1HjbXYHH3dRLT6kmmcM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2651,
+      "cache_read_input_tokens": 21391,
+      "output_tokens": 560,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2651,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 560,
+          "cache_read_input_tokens": 21391,
+          "cache_creation_input_tokens": 2651,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2651
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T19:49:32.107Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VDLvhpF3GcALCCFPopMvdF`</summary>
+
+```json
+{
+  "query": "EACL 2027 ARR submission deadline August 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e395885a-19ac-4d56-9fae-ef3bd33ec81b",
+  "isSidechain": false,
+  "requestId": "req_011CbCWNrNN5WfFHvt4uiKqX",
+  "type": "assistant",
+  "uuid": "b26debdb-680e-4eaa-bd87-75198670451a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqL1HjbXYHH3dRLT6kmmcM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2651,
+      "cache_read_input_tokens": 21391,
+      "output_tokens": 560,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2651,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 560,
+          "cache_read_input_tokens": 21391,
+          "cache_creation_input_tokens": 2651,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2651
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T19:49:34.625Z_
+
+<details><summary>↩ Tool result · `toolu_01UbT8gd9UUL7PSyrUxgWAKW`</summary>
+
+```text
+I cannot extract the specific layer depth findings you requested from this PDF content. While the document is titled "A Shared Geometry of Difficulty in Multilingual Language Models" by Civelli et al., the provided text consists primarily of PDF metadata and encoded content streams that don't display the actual research findings in readable form.
+
+To obtain the exact information you need, I recommend:
+
+1. **Accessing the full paper directly** via arXiv (2601.12731) at https://arxiv.org/abs/2601.12731v1
+
+2. **Looking for these specific sections:**
+   - Results tables showing layer depths for each model
+   - Figures displaying Spearman rho correlations across depths
+   - Methods section detailing the languages tested
+
+3. **Key details to search for:**
+   - Model specifications (layer counts per model)
+   - Cross-lingual transfer layer percentages
+   - Within-language baseline comparisons
+   - Language set composition and benchmarks used
+
+The document structure indicates sections on "Related Work," "Methods," and detailed analyses, but the encoded PDF streams prevent me from extracting the numerical findings and layer-specific data you're seeking. A properly rendered or text-extractable version would be necessary for accurate data retrieval.
+
+[Binary content (application/pdf, 7.3MB) also saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu-idea-gen-pipeline/7ca890e1-b928-4745-8fd0-f052e6009850/tool-results/webfetch-1779220168798-8q8zt1.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6af65bf6-0259-4642-96cf-1f8189ada753",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "b36f1f0d-ad2b-4dd3-a27d-809d50142543",
+  "toolUseResult": {
+    "bytes": 7638581,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot extract the specific layer depth findings you requested from this PDF content. While the document is titled \"A Shared Geometry of Difficulty in Multilingual Language Models\" by Civelli et al., the provided text consists primarily of PDF metadata and encoded content streams that don't display the actual research findings in readable form.\n\nTo obtain the exact information you need, I recommend:\n\n1. **Accessing the full paper directly** via arXiv (2601.12731) at https://arxiv.org/abs/2601.12731v1\n\n2. **Looking for these specific sections:**\n   - Results tables showing layer depths for each model\n   - Figures displaying Spearman rho correlations across depths\n   - Methods section detailing the languages tested\n\n3. **Key details to search for:**\n   - Model specifications (layer counts per model)\n   - Cross-lingual transfer layer percentages\n   - Within-language baseline comparisons\n   - Language set composition and benchmarks used\n\nThe document structure indicates sections on \"Related Work,\" \"Methods,\" and detailed analyses, but the encoded PDF streams prevent me from extracting the numerical findings and layer-specific data you're seeking. A properly rendered or text-extractable version would be necessary for accurate data retrieval.\n\n[Binary content (application/pdf, 7.3MB) also saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu-idea-gen-pipeline/7ca890e1-b928-4745-8fd0-f052e6009850/tool-results/webfetch-1779220168798-8q8zt1.pdf]",
+    "durationMs": 5873,
+    "url": "https://arxiv.org/pdf/2601.12731"
+  },
+  "sourceToolAssistantUUID": "6af65bf6-0259-4642-96cf-1f8189ada753",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-19T19:49:34.748Z_
+
+<details><summary>↩ Tool result · `toolu_01Tsv8DCiP8fFA5upaLecHba`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline date"
+
+Links: [{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"International Conference on Learning Representations - Wikipedia","url":"https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"Personal Conference Deadlines","url":"https://zhaohsu.top/conference-deadlines/"}]
+
+Based on the search results, I found information about ICLR 2027. The abstract/full-text paper submission deadline for ICLR 2027 is June 01, 2026.
+
+However, please note that this appears to be information from a third-party conference listing site rather than the official ICLR website. For the most up-to-date and authoritative information about ICLR 2027 submission deadlines, I'd recommend checking the official ICLR website at iclr.cc once they publish the 2027 call for papers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e395885a-19ac-4d56-9fae-ef3bd33ec81b",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "f29d6ef5-1a27-467c-9b82-5571ae4ac337",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SZx6uRtMrrw1gCXMsnQCRg",
+        "content": [
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "International Conference on Learning Representations - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "Personal Conference Deadlines",
+            "url": "https://zhaohsu.top/conference-deadlines/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR 2027. The abstract/full-text paper submission deadline for ICLR 2027 is June 01, 2026.\n\nHowever, please note that this appears to be information from a third-party conference listing site rather than the official ICLR website. For the most up-to-date and authoritative information about ICLR 2027 submission deadlines, I'd recommend checking the official ICLR website at iclr.cc once they publish the 2027 call for papers."
+    ],
+    "durationSeconds": 3.0900909709999977,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e395885a-19ac-4d56-9fae-ef3bd33ec81b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Cross-Lingual Calibration Transfer via Language-Agnostic Confidence Di…",
+  "leafUuid": "f29d6ef5-1a27-467c-9b82-5571ae4ac337",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise cross-lingual calibration transfer with critical references",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T19:49:36.357Z_
+
+<details><summary>↩ Tool result · `toolu_01PXJv37moW1YE7SP15WjWzR`</summary>
+
+```text
+# Research Summary: Cross-Lingual Alignment in LLMs
+
+Based on the arXiv page provided, here's what can be extracted:
+
+## Available Information
+
+**Languages Tested:** 24 languages other than English were examined.
+
+**Models Used:** Not specified in the abstract or visible page content.
+
+**Activation Patching Results:** The abstract indicates that "incorrect predictions in languages other than English can be fixed by patching their parallel English activations in the middle layers," but specific correction percentages are not provided in this excerpt.
+
+**Effective Layers:** The research found that "incorrect NLU predictions are strongly associated with lower representation alignment with English in the model's middle layers," establishing middle layers as critical, though exact layer numbers aren't detailed here.
+
+**DALI Metric:** The authors "introduce the Discriminative Alignment Index (DALI) to quantify instance-level alignment across 24 languages other than English and three distinct NLU tasks." The metric measures how well non-English representations align with English representations at the instance level.
+
+**Calibration Findings:** Not mentioned in the provided content.
+
+**Venue:** Submitted April 13, 2025; last revised January 29, 2026. Published on arXiv (cs.CL category). No indication of traditional venue publication in this excerpt.
+
+**Note:** Full quantitative details require accessing the complete PDF paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dc21e612-a68f-4d31-b88d-6b099fa5cbdf",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "1aa816dd-f7a8-401d-8b21-78380ea1b031",
+  "toolUseResult": {
+    "bytes": 46138,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Research Summary: Cross-Lingual Alignment in LLMs\n\nBased on the arXiv page provided, here's what can be extracted:\n\n## Available Information\n\n**Languages Tested:** 24 languages other than English were examined.\n\n**Models Used:** Not specified in the abstract or visible page content.\n\n**Activation Patching Results:** The abstract indicates that \"incorrect predictions in languages other than English can be fixed by patching their parallel English activations in the middle layers,\" but specific correction percentages are not provided in this excerpt.\n\n**Effective Layers:** The research found that \"incorrect NLU predictions are strongly associated with lower representation alignment with English in the model's middle layers,\" establishing middle layers as critical, though exact layer numbers aren't detailed here.\n\n**DALI Metric:** The authors \"introduce the Discriminative Alignment Index (DALI) to quantify instance-level alignment across 24 languages other than English and three distinct NLU tasks.\" The metric measures how well non-English representations align with English representations at the instance level.\n\n**Calibration Findings:** Not mentioned in the provided content.\n\n**Venue:** Submitted April 13, 2025; last revised January 29, 2026. Published on arXiv (cs.CL category). No indication of traditional venue publication in this excerpt.\n\n**Note:** Full quantitative details require accessing the complete PDF paper.",
+    "durationMs": 4703,
+    "url": "https://arxiv.org/abs/2504.09378"
+  },
+  "sourceToolAssistantUUID": "dc21e612-a68f-4d31-b88d-6b099fa5cbdf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-19T19:49:37.463Z_
+
+<details><summary>↩ Tool result · `toolu_01VDLvhpF3GcALCCFPopMvdF`</summary>
+
+```text
+Web search results for query: "EACL 2027 ARR submission deadline August 2026"
+
+Links: [{"title":"The 20th Conference of the European Chapter of the Association for Computational LinguisticsAthens, GreeceMarch 9-14, 2027 -","url":"https://2027.eacl.org/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"eaclmeeting on X: \"📢⚠️ IMPORTANT DATE CORRECTION: the ARR deadline for EACL 2027 is Aug 3, 2026 (not Aug 6 as previously announced). EACL is earlier than usual in '27, so this is the only viable ARR cycle! 📚 All areas of CL/NLP + related fields welcome. Full CfP coming soon. #NLProc #EACL2027\" / X","url":"https://x.com/eaclmeeting/status/2051971432171688436"},{"title":"EACL 2027 Call for Main Conference Papers","url":"https://2027.eacl.org/calls/papers/"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"eaclmeeting on X: \"Attention #NLProc researchers, the EACL 2027 website is officially LIVE: https://t.co/0Q0WZVqWV6! 🎉 🇬🇷 Join us in Athens, Greece (Mar 9-13, 2027) at #EACL2027 📅 ARR submission deadline: Aug 6, 2026. Open to all areas of CL/NLP + related fields. Stay tuned for the detailed CfP! https://t.co/bTJhfmuncY\" / X","url":"https://x.com/eaclmeeting/status/2051314762948989215"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"AI Conference Deadlines","url":"https://hlr.github.io/deadlines/"},{"title":"Where's Dan: Conference and Grant Deadlines","url":"https://web.stanford.edu/~jurafsky/deadlines.html"}]
+
+Based on the search results, I found information about the EACL 2027 ARR submission deadline:
+
+The ARR submission deadline for EACL 2027 (for both long and short papers) is August 3, 2026. All deadlines are 11:59PM UTC-12:00 ("anywhere on Earth").
+
+It's worth noting that there was an important date correction, as the ARR deadline for EACL 2027 was initially announced as August 6, 2026 but was corrected to August 3, 2026. EACL is earlier than usual in '27, so this is the only viable ARR cycle.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b26debdb-680e-4eaa-bd87-75198670451a",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "da4b199d-4ee4-4cc6-ade0-9e0e90ed0c06",
+  "toolUseResult": {
+    "query": "EACL 2027 ARR submission deadline August 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012ujkwbuhFZXzijAd9VEz2v",
+        "content": [
+          {
+            "title": "The 20th Conference of the European Chapter of the Association for Computational LinguisticsAthens, GreeceMarch 9-14, 2027 -",
+            "url": "https://2027.eacl.org/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "eaclmeeting on X: \"📢⚠️ IMPORTANT DATE CORRECTION: the ARR deadline for EACL 2027 is Aug 3, 2026 (not Aug 6 as previously announced). EACL is earlier than usual in '27, so this is the only viable ARR cycle! 📚 All areas of CL/NLP + related fields welcome. Full CfP coming soon. #NLProc #EACL2027\" / X",
+            "url": "https://x.com/eaclmeeting/status/2051971432171688436"
+          },
+          {
+            "title": "EACL 2027 Call for Main Conference Papers",
+            "url": "https://2027.eacl.org/calls/papers/"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "eaclmeeting on X: \"Attention #NLProc researchers, the EACL 2027 website is officially LIVE: https://t.co/0Q0WZVqWV6! 🎉 🇬🇷 Join us in Athens, Greece (Mar 9-13, 2027) at #EACL2027 📅 ARR submission deadline: Aug 6, 2026. Open to all areas of CL/NLP + related fields. Stay tuned for the detailed CfP! https://t.co/bTJhfmuncY\" / X",
+            "url": "https://x.com/eaclmeeting/status/2051314762948989215"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://hlr.github.io/deadlines/"
+          },
+          {
+            "title": "Where's Dan: Conference and Grant Deadlines",
+            "url": "https://web.stanford.edu/~jurafsky/deadlines.html"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the EACL 2027 ARR submission deadline:\n\nThe ARR submission deadline for EACL 2027 (for both long and short papers) is August 3, 2026. All deadlines are 11:59PM UTC-12:00 (\"anywhere on Earth\").\n\nIt's worth noting that there was an important date correction, as the ARR deadline for EACL 2027 was initially announced as August 6, 2026 but was corrected to August 3, 2026. EACL is earlier than usual in '27, so this is the only viable ARR cycle."
+    ],
+    "durationSeconds": 5.354372102000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b26debdb-680e-4eaa-bd87-75198670451a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-19T19:49:42.910Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have key information. Let me now search for more details:
+
+1. The Civelli et al. paper - I need exact layer depths per model. Let me try the HTML version.
+2. ICLR 2027 - the search results suggest a deadline of June 1, 2026 but this seems too early. Let me verify.
+3. I need to search for whether arXiv 2504.09378 was accepted at EACL 2026.
+4. Let me also search for any additional work on cross-lingual calibration transfer that might have appeared recently.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da4b199d-4ee4-4cc6-ade0-9e0e90ed0c06",
+  "isSidechain": false,
+  "requestId": "req_011CbCWQ4KUttRFGL7p2T4zv",
+  "type": "assistant",
+  "uuid": "72388064-ccc2-48a8-a10b-fde864c92dae",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fs8cfShzhucvokx4SLZcq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2659,
+      "cache_read_input_tokens": 24042,
+      "output_tokens": 598,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2659,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 598,
+          "cache_read_input_tokens": 24042,
+          "cache_creation_input_tokens": 2659,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2659
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-19T19:49:43.930Z_
+
+Let me get more details on the critical issues - particularly the Civelli layer depths and ICLR 2027 deadline.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72388064-ccc2-48a8-a10b-fde864c92dae",
+  "isSidechain": false,
+  "requestId": "req_011CbCWQ4KUttRFGL7p2T4zv",
+  "type": "assistant",
+  "uuid": "7ceb574e-4055-43e6-8999-cf3f9a2e7295",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fs8cfShzhucvokx4SLZcq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2659,
+      "cache_read_input_tokens": 24042,
+      "output_tokens": 598,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2659,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 598,
+          "cache_read_input_tokens": 24042,
+          "cache_creation_input_tokens": 2659,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2659
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-19T19:49:47.345Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01H13LWi3CxDjHtq742MkVQD`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2601.12731",
+  "prompt": "I need EXACT numbers from this paper. Extract: (1) For EACH model (LLaMA-3.1-8B, LLaMA-3.2-3B, LLaMA-3.2-1B, Qwen3-8B), what is the optimal layer for cross-lingual transfer? Report exact layer number and percentage of total layers. (2) What Spearman rho values do they report for cross-lingual transfer at different depths? (3) How much does rho degrade from within-language to cross-lingual at deep vs shallow layers? (4) What languages and how many are tested? (5) What is their benchmark - AMC/Easy2Hard? How many questions? Look for tables and figures with numbers."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ceb574e-4055-43e6-8999-cf3f9a2e7295",
+  "isSidechain": false,
+  "requestId": "req_011CbCWQ4KUttRFGL7p2T4zv",
+  "type": "assistant",
+  "uuid": "f571d7b5-b41d-4a0e-b4a7-0bdbb3a4e01e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fs8cfShzhucvokx4SLZcq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2659,
+      "cache_read_input_tokens": 24042,
+      "output_tokens": 598,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2659,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 598,
+          "cache_read_input_tokens": 24042,
+          "cache_creation_input_tokens": 2659,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2659
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-19T19:49:47.839Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016kPLyUAq7XiCes7rzFYcM9`</summary>
+
+```json
+{
+  "query": "ICLR 2027 call for papers deadline October September 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f571d7b5-b41d-4a0e-b4a7-0bdbb3a4e01e",
+  "isSidechain": false,
+  "requestId": "req_011CbCWQ4KUttRFGL7p2T4zv",
+  "type": "assistant",
+  "uuid": "81747704-0c08-4de7-a834-939c68f6f06f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fs8cfShzhucvokx4SLZcq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2659,
+      "cache_read_input_tokens": 24042,
+      "output_tokens": 598,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2659,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 598,
+          "cache_read_input_tokens": 24042,
+          "cache_creation_input_tokens": 2659,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2659
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-19T19:49:49.305Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ALyrFG2vwUxHiE4smq62sb`</summary>
+
+```json
+{
+  "query": "\"Can you map it to English\" EACL 2026 Ravisankar Carpuat activation patching cross-lingual layers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81747704-0c08-4de7-a834-939c68f6f06f",
+  "isSidechain": false,
+  "requestId": "req_011CbCWQ4KUttRFGL7p2T4zv",
+  "type": "assistant",
+  "uuid": "4f977a4e-c3d7-4e5a-9f84-f71a687f7efe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fs8cfShzhucvokx4SLZcq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2659,
+      "cache_read_input_tokens": 24042,
+      "output_tokens": 598,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2659,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 598,
+          "cache_read_input_tokens": 24042,
+          "cache_creation_input_tokens": 2659,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2659
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-19T19:49:49.414Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0167fNmjRj6TxtMrybiiVS5N`</summary>
+
+```json
+{
+  "query": "cross-lingual calibration probe transfer internal representations 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f977a4e-c3d7-4e5a-9f84-f71a687f7efe",
+  "isSidechain": false,
+  "requestId": "req_011CbCWQ4KUttRFGL7p2T4zv",
+  "type": "assistant",
+  "uuid": "fe9aaab9-af6b-4f85-8152-5a8665cd63bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fs8cfShzhucvokx4SLZcq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2659,
+      "cache_read_input_tokens": 24042,
+      "output_tokens": 598,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2659,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 598,
+          "cache_read_input_tokens": 24042,
+          "cache_creation_input_tokens": 2659,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2659
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T19:49:54.804Z_
+
+<details><summary>↩ Tool result · `toolu_01H13LWi3CxDjHtq742MkVQD`</summary>
+
+```text
+# Exact Numbers from "A Shared Geometry of Difficulty in Multilingual Language Models"
+
+## (1) Optimal Layers for Cross-Lingual Transfer
+
+From Table 1:
+
+| Model | Total Layers | Cross-lingual Optimal Layer | Percentage |
+|-------|--------------|----------------------------|-----------|
+| LLaMA-3.1-8B | 32 | 15.67 | 48.9% |
+| LLaMA-3.2-3B | 28 | 9.07 | 32.4% |
+| LLaMA-3.2-1B | 16 | 6.11 | 38.2% |
+| Qwen3-8B | 36 | 8.59 | 23.9% |
+
+Same-language optimal layers: 30.05, 22.62, 12.05, and 14.29 respectively.
+
+## (2) Spearman ρ Values
+
+From Table 1:
+
+**Same-language (within-language) performance:**
+- LLaMA-3.1-8B: 0.822 ± 0.019
+- LLaMA-3.2-3B: 0.805 ± 0.022
+- LLaMA-3.2-1B: 0.797 ± 0.021
+- Qwen3-8B: 0.849 ± 0.019
+
+**Cross-lingual transfer performance:**
+- LLaMA-3.1-8B: 0.783 ± 0.024
+- LLaMA-3.2-3B: 0.771 ± 0.027
+- LLaMA-3.2-1B: 0.761 ± 0.028
+- Qwen3-8B: 0.783 ± 0.034
+
+## (3) Performance Degradation (Deep vs. Shallow)
+
+**Transfer drop (diagonal→off-diagonal)** - cost of using same-language optimal layers for cross-lingual tasks:
+- LLaMA-3.1-8B: Δ = 0.177 ρ
+- LLaMA-3.2-3B: Δ = 0.192 ρ
+- LLaMA-3.2-1B: Δ = 0.055 ρ
+- Qwen3-8B: Δ = 0.114 ρ
+
+**In-language drop (off-diagonal→diagonal)** - cost of using transfer-optimal shallow layers for within-language tasks:
+- LLaMA-3.1-8B: Δ = 0.014 ρ
+- LLaMA-3.2-3B: Δ = 0.010 ρ
+- LLaMA-3.2-1B: Δ = 0.007 ρ
+- Qwen3-8B: Δ = 0.015 ρ
+
+## (4) Languages Tested
+
+**21 languages** total: English plus 20 additional languages including Italian, Japanese, Dutch, French, Spanish, Turkish, Vietnamese, Russian, Portuguese, Korean, Greek, Chinese, Bengali, German, Thai, Polish, Hebrew, Arabic, Telugu, and Swahili.
+
+## (5) Benchmark Details
+
+Dataset: "AMC subset of the Easy2Hard benchmark"
+
+Questions: Approximately **4,000 math problems** (3,975 unique problems)
+- Training: ~3,000 per language
+- Testing: ~1,000 per language
+
+Difficulty scoring: "Item Response Theory (IRT) from human success rates, yielding values in [0,1]"
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f571d7b5-b41d-4a0e-b4a7-0bdbb3a4e01e",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "48dc2b6e-a1a3-4357-9440-53feb9e6ea11",
+  "toolUseResult": {
+    "bytes": 111776,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Exact Numbers from \"A Shared Geometry of Difficulty in Multilingual Language Models\"\n\n## (1) Optimal Layers for Cross-Lingual Transfer\n\nFrom Table 1:\n\n| Model | Total Layers | Cross-lingual Optimal Layer | Percentage |\n|-------|--------------|----------------------------|-----------|\n| LLaMA-3.1-8B | 32 | 15.67 | 48.9% |\n| LLaMA-3.2-3B | 28 | 9.07 | 32.4% |\n| LLaMA-3.2-1B | 16 | 6.11 | 38.2% |\n| Qwen3-8B | 36 | 8.59 | 23.9% |\n\nSame-language optimal layers: 30.05, 22.62, 12.05, and 14.29 respectively.\n\n## (2) Spearman ρ Values\n\nFrom Table 1:\n\n**Same-language (within-language) performance:**\n- LLaMA-3.1-8B: 0.822 ± 0.019\n- LLaMA-3.2-3B: 0.805 ± 0.022\n- LLaMA-3.2-1B: 0.797 ± 0.021\n- Qwen3-8B: 0.849 ± 0.019\n\n**Cross-lingual transfer performance:**\n- LLaMA-3.1-8B: 0.783 ± 0.024\n- LLaMA-3.2-3B: 0.771 ± 0.027\n- LLaMA-3.2-1B: 0.761 ± 0.028\n- Qwen3-8B: 0.783 ± 0.034\n\n## (3) Performance Degradation (Deep vs. Shallow)\n\n**Transfer drop (diagonal→off-diagonal)** - cost of using same-language optimal layers for cross-lingual tasks:\n- LLaMA-3.1-8B: Δ = 0.177 ρ\n- LLaMA-3.2-3B: Δ = 0.192 ρ\n- LLaMA-3.2-1B: Δ = 0.055 ρ\n- Qwen3-8B: Δ = 0.114 ρ\n\n**In-language drop (off-diagonal→diagonal)** - cost of using transfer-optimal shallow layers for within-language tasks:\n- LLaMA-3.1-8B: Δ = 0.014 ρ\n- LLaMA-3.2-3B: Δ = 0.010 ρ\n- LLaMA-3.2-1B: Δ = 0.007 ρ\n- Qwen3-8B: Δ = 0.015 ρ\n\n## (4) Languages Tested\n\n**21 languages** total: English plus 20 additional languages including Italian, Japanese, Dutch, French, Spanish, Turkish, Vietnamese, Russian, Portuguese, Korean, Greek, Chinese, Bengali, German, Thai, Polish, Hebrew, Arabic, Telugu, and Swahili.\n\n## (5) Benchmark Details\n\nDataset: \"AMC subset of the Easy2Hard benchmark\"\n\nQuestions: Approximately **4,000 math problems** (3,975 unique problems)\n- Training: ~3,000 per language\n- Testing: ~1,000 per language\n\nDifficulty scoring: \"Item Response Theory (IRT) from human success rates, yielding values in [0,1]\"",
+    "durationMs": 7454,
+    "url": "https://arxiv.org/html/2601.12731"
+  },
+  "sourceToolAssistantUUID": "f571d7b5-b41d-4a0e-b4a7-0bdbb3a4e01e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-19T19:49:55.004Z_
+
+<details><summary>↩ Tool result · `toolu_01ALyrFG2vwUxHiE4smq62sb`</summary>
+
+```text
+Web search results for query: ""Can you map it to English" EACL 2026 Ravisankar Carpuat activation patching cross-lingual layers"
+
+Links: [{"title":"Can you map it to English? The Role of Cross-Lingual Alignment in the Multilingual Performance of LLMs - ACL Anthology","url":"https://aclanthology.org/2026.eacl-long.225/"},{"title":"[2504.09378] Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs","url":"https://arxiv.org/abs/2504.09378"},{"title":"Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs","url":"https://arxiv.org/pdf/2504.09378"},{"title":"(PDF) Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs","url":"https://www.researchgate.net/publication/390773780_Can_you_map_it_to_English_The_Role_of_Cross-Lingual_Alignment_in_Multilingual_Performance_of_LLMs"},{"title":"Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs","url":"https://arxiv.org/html/2504.09378v1"},{"title":"Kartik Ravisankar's research works","url":"https://www.researchgate.net/scientific-contributions/Kartik-Ravisankar-2310395112"}]
+
+I found the paper you're looking for! "Can you map it to English? The Role of Cross-Lingual Alignment in the Multilingual Performance of LLMs" by Ravisankar, HyoJung Han, Sarah Wiegreffe, and Marine Carpuat was published at EACL 2026.
+
+The key findings of the paper include:
+
+- The work investigates how an LLM's ability to align representations of non-English inputs to English impacts its performance on natural language understanding tasks.
+
+- The authors introduce the Discriminative Alignment Index (DALI) to quantify instance-level alignment across 24 languages other than English and three distinct NLU tasks.
+
+- Results show that incorrect NLU predictions are strongly associated with lower representation alignment with English in the model's middle layers, and through activation patching, incorrect predictions in non-English languages can be fixed by patching their parallel English activations in the middle layers.
+
+The paper was presented at the 19th Conference of the European Chapter of the Association for Computational Linguistics in Rabat, Morocco.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f977a4e-c3d7-4e5a-9f84-f71a687f7efe",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "1aea614c-4e9a-41d6-8438-e411bb90bb92",
+  "toolUseResult": {
+    "query": "\"Can you map it to English\" EACL 2026 Ravisankar Carpuat activation patching cross-lingual layers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01435mCtds9iYkCu5t5tirUm",
+        "content": [
+          {
+            "title": "Can you map it to English? The Role of Cross-Lingual Alignment in the Multilingual Performance of LLMs - ACL Anthology",
+            "url": "https://aclanthology.org/2026.eacl-long.225/"
+          },
+          {
+            "title": "[2504.09378] Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs",
+            "url": "https://arxiv.org/abs/2504.09378"
+          },
+          {
+            "title": "Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs",
+            "url": "https://arxiv.org/pdf/2504.09378"
+          },
+          {
+            "title": "(PDF) Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs",
+            "url": "https://www.researchgate.net/publication/390773780_Can_you_map_it_to_English_The_Role_of_Cross-Lingual_Alignment_in_Multilingual_Performance_of_LLMs"
+          },
+          {
+            "title": "Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs",
+            "url": "https://arxiv.org/html/2504.09378v1"
+          },
+          {
+            "title": "Kartik Ravisankar's research works",
+            "url": "https://www.researchgate.net/scientific-contributions/Kartik-Ravisankar-2310395112"
+          }
+        ]
+      },
+      "I found the paper you're looking for! \"Can you map it to English? The Role of Cross-Lingual Alignment in the Multilingual Performance of LLMs\" by Ravisankar, HyoJung Han, Sarah Wiegreffe, and Marine Carpuat was published at EACL 2026.\n\nThe key findings of the paper include:\n\n- The work investigates how an LLM's ability to align representations of non-English inputs to English impacts its performance on natural language understanding tasks.\n\n- The authors introduce the Discriminative Alignment Index (DALI) to quantify instance-level alignment across 24 languages other than English and three distinct NLU tasks.\n\n- Results show that incorrect NLU predictions are strongly associated with lower representation alignment with English in the model's middle layers, and through activation patching, incorrect predictions in non-English languages can be fixed by patching their parallel English activations in the middle layers.\n\nThe paper was presented at the 19th Conference of the European Chapter of the Association for Computational Linguistics in Rabat, Morocco."
+    ],
+    "durationSeconds": 5.696359519999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4f977a4e-c3d7-4e5a-9f84-f71a687f7efe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T19:49:55.997Z_
+
+<details><summary>↩ Tool result · `toolu_0167fNmjRj6TxtMrybiiVS5N`</summary>
+
+```text
+Web search results for query: "cross-lingual calibration probe transfer internal representations 2025 2026"
+
+Links: [{"title":"Cross-lingual Transfer of Monolingual Models","url":"https://arxiv.org/pdf/2109.07348"},{"title":"Modality Matching Matters: Calibrating Language Distances for Cross-Lingual Transfer in URIEL+","url":"https://arxiv.org/html/2510.19217"},{"title":"Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in Large Language Models","url":"https://arxiv.org/pdf/2510.03136"},{"title":"Cross-Lingual Transfer: Language Selection","url":"https://www.emergentmind.com/topics/cross-lingual-transfer-language-selection"},{"title":"[2302.12695] Cross-Lingual Transfer of Cognitive Processing Complexity","url":"https://ar5iv.labs.arxiv.org/html/2302.12695"},{"title":"Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in Large Language Models","url":"https://arxiv.org/html/2510.03136v1"}]
+
+Based on the search results, here are some highly relevant findings on this topic:
+
+## Recent Research on Multilingual Calibration and Internal Representations
+
+Recent work has conducted the first layer-wise investigation of multilingual calibration, discovering that intermediate layers offer more reliable calibration signals than the final layer, and introduced novel training-free calibration methods that leverage intermediate representations. This research from October 2025 directly addresses the intersection of calibration and internal representations in multilingual settings.
+
+A comprehensive empirical analysis of multilingual LLM calibration reveals systematic and significant disparities between English and over 100 other languages.
+
+## Cross-Lingual Transfer and Model-Internal Representations
+
+A recent approach called Sub-Network Similarity (X-SNS) computes binary masks over model parameters corresponding to the most salient parameters for each language, with Jaccard similarity between masks operationalizing cross-lingual transfer compatibility.
+
+Additionally, research into layer-wise representations in multilingual transformers shows that intermediate layers encode cross-lingual semantic knowledge in a largely language-agnostic manner, forming a shared representational space.
+
+These recent papers (from 2025-2026) represent cutting-edge work on understanding how internal model representations facilitate cross-lingual transfer and calibration.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe9aaab9-af6b-4f85-8152-5a8665cd63bc",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "2b932e60-cf71-4db2-8f73-68043f51e34b",
+  "toolUseResult": {
+    "query": "cross-lingual calibration probe transfer internal representations 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Xs3uQrr42o1zGCi8wSsxB8",
+        "content": [
+          {
+            "title": "Cross-lingual Transfer of Monolingual Models",
+            "url": "https://arxiv.org/pdf/2109.07348"
+          },
+          {
+            "title": "Modality Matching Matters: Calibrating Language Distances for Cross-Lingual Transfer in URIEL+",
+            "url": "https://arxiv.org/html/2510.19217"
+          },
+          {
+            "title": "Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in Large Language Models",
+            "url": "https://arxiv.org/pdf/2510.03136"
+          },
+          {
+            "title": "Cross-Lingual Transfer: Language Selection",
+            "url": "https://www.emergentmind.com/topics/cross-lingual-transfer-language-selection"
+          },
+          {
+            "title": "[2302.12695] Cross-Lingual Transfer of Cognitive Processing Complexity",
+            "url": "https://ar5iv.labs.arxiv.org/html/2302.12695"
+          },
+          {
+            "title": "Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in Large Language Models",
+            "url": "https://arxiv.org/html/2510.03136v1"
+          }
+        ]
+      },
+      "Based on the search results, here are some highly relevant findings on this topic:\n\n## Recent Research on Multilingual Calibration and Internal Representations\n\nRecent work has conducted the first layer-wise investigation of multilingual calibration, discovering that intermediate layers offer more reliable calibration signals than the final layer, and introduced novel training-free calibration methods that leverage intermediate representations. This research from October 2025 directly addresses the intersection of calibration and internal representations in multilingual settings.\n\nA comprehensive empirical analysis of multilingual LLM calibration reveals systematic and significant disparities between English and over 100 other languages.\n\n## Cross-Lingual Transfer and Model-Internal Representations\n\nA recent approach called Sub-Network Similarity (X-SNS) computes binary masks over model parameters corresponding to the most salient parameters for each language, with Jaccard similarity between masks operationalizing cross-lingual transfer compatibility.\n\nAdditionally, research into layer-wise representations in multilingual transformers shows that intermediate layers encode cross-lingual semantic knowledge in a largely language-agnostic manner, forming a shared representational space.\n\nThese recent papers (from 2025-2026) represent cutting-edge work on understanding how internal model representations facilitate cross-lingual transfer and calibration."
+    ],
+    "durationSeconds": 6.580090238999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fe9aaab9-af6b-4f85-8152-5a8665cd63bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Cross-Lingual Calibration Transfer via Language-Agnostic Confidence Di…",
+  "leafUuid": "2b932e60-cf71-4db2-8f73-68043f51e34b",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise cross-lingual calibration transfer with critical references",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-19T19:49:57.860Z_
+
+<details><summary>↩ Tool result · `toolu_016kPLyUAq7XiCes7rzFYcM9`</summary>
+
+```text
+Web search results for query: "ICLR 2027 call for papers deadline October September 2026"
+
+Links: [{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"ICLR | OpenReview","url":"https://openreview.net/group?id=ICLR.cc"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"International Conference on Learning Representations - Wikipedia","url":"https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"}]
+
+The search results show information about ICLR 2026, but I need to search more specifically for ICLR 2027 details including the call for papers deadline.
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"Personal Conference Deadlines","url":"https://zhaohsu.top/conference-deadlines/"},{"title":"AI Conference Deadlines","url":"https://hlr.github.io/deadlines/"}]
+
+Let me search more specifically for the official ICLR 2027 conference information.
+
+Links: [{"title":"International Conference on Learning Representations ICLR on February 08-09, 2027 in Lisbon, Portugal - Conference Index","url":"https://conferenceindex.org/event/international-conference-on-learning-representations-iclr-2027-february-lisbon-pt"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"Future Meetings","url":"https://iclr.cc/Conferences/FutureMeetings"},{"title":"International Conference on Learning Representations - Wikipedia","url":"https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"},{"title":"About ICLR","url":"https://iclr.cc/About"},{"title":"ICLR | OpenReview","url":"https://openreview.net/group?id=ICLR.cc"},{"title":"2025 Dates and Deadlines","url":"https://iclr.cc/Conferences/2025/Dates"},{"title":"International Conference on Learning and Reinforcement ICLR in August 2027 in Barcelona","url":"https://waset.org/learning-and-reinforcement-conference-in-august-2027-in-barcelona"}]
+
+Based on my search results, I was unable to find the specific call for papers deadline for the official ICLR 2027 conference. The search results show that some 2026/2027 CFPs are not yet posted as of early February 2026.
+
+The official ICLR website (iclr.cc) currently displays information about ICLR 2026, which is scheduled for April 23-27, 2026 in Rio de Janeiro, Brazil. The 2027 dates and submission deadlines do not appear to be publicly available yet on the main ICLR website.
+
+To find the ICLR 2027 call for papers deadline when it becomes available, I recommend:
+1. Checking the official ICLR website at iclr.cc
+2. Monitoring OpenReview.net (where ICLR submissions are typically handled)
+3. Subscribing to ICLR's mailing list or social media channels for announcements
+
+Since ICLR is typically held in late April or early May each year, the 2027 submission deadline will likely follow a similar timeline to previous years, but the exact dates have not yet been announced.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "81747704-0c08-4de7-a834-939c68f6f06f",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "5ec31d9f-d0ed-49ab-af8e-1a38d65c6657",
+  "toolUseResult": {
+    "query": "ICLR 2027 call for papers deadline October September 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017qo9rV7xXe27iu2UcETA4F",
+        "content": [
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICLR | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "International Conference on Learning Representations - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"
+          }
+        ]
+      },
+      "The search results show information about ICLR 2026, but I need to search more specifically for ICLR 2027 details including the call for papers deadline.",
+      {
+        "tool_use_id": "srvtoolu_01UiiRPobCWUKxx5ZT3RPYUP",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "Personal Conference Deadlines",
+            "url": "https://zhaohsu.top/conference-deadlines/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://hlr.github.io/deadlines/"
+          }
+        ]
+      },
+      "Let me search more specifically for the official ICLR 2027 conference information.",
+      {
+        "tool_use_id": "srvtoolu_01XYgzSKqEG5gAaPYzTNp8DT",
+        "content": [
+          {
+            "title": "International Conference on Learning Representations ICLR on February 08-09, 2027 in Lisbon, Portugal - Conference Index",
+            "url": "https://conferenceindex.org/event/international-conference-on-learning-representations-iclr-2027-february-lisbon-pt"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "Future Meetings",
+            "url": "https://iclr.cc/Conferences/FutureMeetings"
+          },
+          {
+            "title": "International Conference on Learning Representations - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations"
+          },
+          {
+            "title": "About ICLR",
+            "url": "https://iclr.cc/About"
+          },
+          {
+            "title": "ICLR | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc"
+          },
+          {
+            "title": "2025 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2025/Dates"
+          },
+          {
+            "title": "International Conference on Learning and Reinforcement ICLR in August 2027 in Barcelona",
+            "url": "https://waset.org/learning-and-reinforcement-conference-in-august-2027-in-barcelona"
+          }
+        ]
+      },
+      "Based on my search results, I was unable to find the specific call for papers deadline for the official ICLR 2027 conference. The search results show that some 2026/2027 CFPs are not yet posted as of early February 2026.\n\nThe official ICLR website (iclr.cc) currently displays information about ICLR 2026, which is scheduled for April 23-27, 2026 in Rio de Janeiro, Brazil. The 2027 dates and submission deadlines do not appear to be publicly available yet on the main ICLR website.\n\nTo find the ICLR 2027 call for papers deadline when it becomes available, I recommend:\n1. Checking the official ICLR website at iclr.cc\n2. Monitoring OpenReview.net (where ICLR submissions are typically handled)\n3. Subscribing to ICLR's mailing list or social media channels for announcements\n\nSince ICLR is typically held in late April or early May each year, the 2027 submission deadline will likely follow a similar timeline to previous years, but the exact dates have not yet been announced."
+    ],
+    "durationSeconds": 10.018904541999989,
+    "searchCount": 3
+  },
+  "sourceToolAssistantUUID": "81747704-0c08-4de7-a834-939c68f6f06f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56 · 2026-05-19T19:49:57.864Z_
+
+```json
+{
+  "parentUuid": "5ec31d9f-d0ed-49ab-af8e-1a38d65c6657",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e395504c-9616-4c10-9cef-bd34955d068a",
+  "timestamp": "2026-05-19T19:49:57.864Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-19T19:50:17.418Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! I now have the detailed Civelli et al. data. Let me compile what I know:
+
+**Civelli et al. layer depth findings:**
+| Model | Total Layers | Cross-lingual Optimal Layer | Percentage |
+|-------|--------------|----------------------------|-----------|
+| LLaMA-3.1-8B | 32 | 15.67 | 48.9% |
+| LLaMA-3.2-3B | 28 | 9.07 | 32.4% |
+
+
+| LLaMA-3.2-1B | 16 | 6.11 | 38.2% |
+| Qwen3-8B | 36 | 8.59 | 23.9% |
+
+The optimal layer depths across these models range from 24-49%, with Qwen3 showing notably lower percentages—that's particularly interesting given we're considering testing Qwen3-235B. Now I'm looking at the Knowledge Boundary paper from ACL 2025, which examines layer-wise knowledge in Qwen2.5 and LLaMA-3.1 models across different scales.
+
+The work uses mean shifting and linear projection to align representations across languages without retraining, finding that middle-to-upper layers capture the knowledge boundary best. What makes this especially relevant is their cross-lingual transfer results—when they tested English-to-Khmer alignment, performance dropped from 89% to 79%, but their linear projection method nearly recovered that gap. Unlike our approach, they don't evaluate calibration metrics like ECE or Brier score, focusing only on probing accuracy, which makes this the closest existing work to what we're proposing.
+
+There's also a related EACL 2026 paper examining activation patching in middle layers to fix non-English prediction errors across 24 languages and multiple NLU tasks, introducing a DALI metric for evaluation.
+
+I'm checking the conference deadlines now—EACL 2027 has an ARR deadline of August 3, 2026, and based on ICLR 2026's October 2025 deadline, ICLR 2027 will likely be around September-October 2026. I should also verify whether AAAI 2027 is even feasible and search for any other recent work on cross-lingual correctness probes or calibration transfer that might have emerged after February 2026.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e395504c-9616-4c10-9cef-bd34955d068a",
+  "isSidechain": false,
+  "requestId": "req_011CbCWRZUSn2Q2kxc2mcvLN",
+  "type": "assistant",
+  "uuid": "9df37568-8d5f-448d-a7c0-1a8f50b4b424",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013qNrn1npx6P7FhEpVbettb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1281,
+      "cache_creation_input_tokens": 3014,
+      "cache_read_input_tokens": 26701,
+      "output_tokens": 970,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3014,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1281,
+          "output_tokens": 970,
+          "cache_read_input_tokens": 26701,
+          "cache_creation_input_tokens": 3014,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3014
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-19T19:50:17.420Z_
+
+Let me get a few more critical details before synthesizing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9df37568-8d5f-448d-a7c0-1a8f50b4b424",
+  "isSidechain": false,
+  "requestId": "req_011CbCWRZUSn2Q2kxc2mcvLN",
+  "type": "assistant",
+  "uuid": "45ee97f4-788a-493e-a7fe-73f7d197ae57",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013qNrn1npx6P7FhEpVbettb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1281,
+      "cache_creation_input_tokens": 3014,
+      "cache_read_input_tokens": 26701,
+      "output_tokens": 970,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3014,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1281,
+          "output_tokens": 970,
+          "cache_read_input_tokens": 26701,
+          "cache_creation_input_tokens": 3014,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3014
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-19T19:50:17.609Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01MvApNerwDeBF9zRzsskd38`</summary>
+
+```json
+{
+  "url": "https://iclr.cc/Conferences/2026/Dates",
+  "prompt": "What are the key dates for ICLR 2026 - specifically the submission deadline and the conference dates? I need this to estimate when ICLR 2027 deadlines would be."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45ee97f4-788a-493e-a7fe-73f7d197ae57",
+  "isSidechain": false,
+  "requestId": "req_011CbCWRZUSn2Q2kxc2mcvLN",
+  "type": "assistant",
+  "uuid": "b5840c90-7a2f-483b-b3cd-9aeb387d9739",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013qNrn1npx6P7FhEpVbettb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1281,
+      "cache_creation_input_tokens": 3014,
+      "cache_read_input_tokens": 26701,
+      "output_tokens": 970,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3014,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1281,
+          "output_tokens": 970,
+          "cache_read_input_tokens": 26701,
+          "cache_creation_input_tokens": 3014,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3014
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-19T19:50:18.603Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A7xiHfgCCtseQZZc9BtCzM`</summary>
+
+```json
+{
+  "query": "AAAI 2027 abstract deadline full paper deadline July 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5840c90-7a2f-483b-b3cd-9aeb387d9739",
+  "isSidechain": false,
+  "requestId": "req_011CbCWRZUSn2Q2kxc2mcvLN",
+  "type": "assistant",
+  "uuid": "3508d43a-22d9-4f51-b147-32c4450620e2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013qNrn1npx6P7FhEpVbettb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1281,
+      "cache_creation_input_tokens": 3014,
+      "cache_read_input_tokens": 26701,
+      "output_tokens": 970,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3014,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1281,
+          "output_tokens": 970,
+          "cache_read_input_tokens": 26701,
+          "cache_creation_input_tokens": 3014,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3014
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-19T19:50:18.972Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0135WUNWuhgFmnPdd85aZZSY`</summary>
+
+```json
+{
+  "query": "cross-lingual correctness prediction probe transfer LLM 2026 calibration ECE"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3508d43a-22d9-4f51-b147-32c4450620e2",
+  "isSidechain": false,
+  "requestId": "req_011CbCWRZUSn2Q2kxc2mcvLN",
+  "type": "assistant",
+  "uuid": "540f6b96-b5e8-4bae-89ec-4b7af2067989",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013qNrn1npx6P7FhEpVbettb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1281,
+      "cache_creation_input_tokens": 3014,
+      "cache_read_input_tokens": 26701,
+      "output_tokens": 970,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3014,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1281,
+          "output_tokens": 970,
+          "cache_read_input_tokens": 26701,
+          "cache_creation_input_tokens": 3014,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3014
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-19T19:50:21.325Z_
+
+<details><summary>↩ Tool result · `toolu_01MvApNerwDeBF9zRzsskd38`</summary>
+
+```text
+# ICLR 2026 Key Dates
+
+Based on the webpage, here are the critical deadlines:
+
+**Submission Deadlines:**
+- "Abstract Submission Deadline: Sep 19 '25 (Anywhere on Earth)"
+- "Paper Submission Deadline: Sep 24 '25 (Anywhere on Earth)"
+
+**Conference Dates:**
+- Main conference runs "Thursday April 23 through Saturday April 25"
+- Workshops occur "Sunday April 26 through Monday April 27"
+
+**Decision Timeline:**
+The paper decision notification occurs on "Jan 25 '26 (Anywhere on Earth)"
+
+For estimating ICLR 2027 deadlines, you can observe that submissions occur in September (roughly 7-8 months before the April conference), decisions are made in January (3 months before the event), and the full conference cycle spans from September through April.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5840c90-7a2f-483b-b3cd-9aeb387d9739",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "cc152b75-0bb2-4ece-b893-ce6866dc1ee9",
+  "toolUseResult": {
+    "bytes": 75235,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ICLR 2026 Key Dates\n\nBased on the webpage, here are the critical deadlines:\n\n**Submission Deadlines:**\n- \"Abstract Submission Deadline: Sep 19 '25 (Anywhere on Earth)\"\n- \"Paper Submission Deadline: Sep 24 '25 (Anywhere on Earth)\"\n\n**Conference Dates:**\n- Main conference runs \"Thursday April 23 through Saturday April 25\"\n- Workshops occur \"Sunday April 26 through Monday April 27\"\n\n**Decision Timeline:**\nThe paper decision notification occurs on \"Jan 25 '26 (Anywhere on Earth)\"\n\nFor estimating ICLR 2027 deadlines, you can observe that submissions occur in September (roughly 7-8 months before the April conference), decisions are made in January (3 months before the event), and the full conference cycle spans from September through April.",
+    "durationMs": 3712,
+    "url": "https://iclr.cc/Conferences/2026/Dates"
+  },
+  "sourceToolAssistantUUID": "b5840c90-7a2f-483b-b3cd-9aeb387d9739",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-19T19:50:22.990Z_
+
+<details><summary>↩ Tool result · `toolu_01A7xiHfgCCtseQZZc9BtCzM`</summary>
+
+```text
+Web search results for query: "AAAI 2027 abstract deadline full paper deadline July 2026"
+
+Links: [{"title":"AAAI 2027 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"MPC Deadlines Hub","url":"https://mpc-deadlines.github.io/"},{"title":"AAAI-27 Main Technical Track - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AI/ML Conference Timeline | NIU AI","url":"https://www.niuai.org/resources/conference-timeline/"},{"title":"AAAI-26 Submission Instructions - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/submission-instructions/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"}]
+
+Based on the search results, here are the AAAI 2027 deadlines:
+
+**Abstract deadline:** July 21, 2026 at 11:59 PM UTC-12
+
+**Full paper deadline:** July 28, 2026 at 11:59 PM UTC-12
+
+The conference will take place February 16-23, 2027 in Montréal, Canada. All deadlines are "anywhere on earth" (UTC-12).
+
+Additional key dates include supplementary material and code due by July 31, 2026, and notification of Phase 1 rejections on September 24, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3508d43a-22d9-4f51-b147-32c4450620e2",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "eba143e1-c2e9-47b4-a840-dc981e039d23",
+  "toolUseResult": {
+    "query": "AAAI 2027 abstract deadline full paper deadline July 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AJgL6nWHgst8Sa1GFNCRR2",
+        "content": [
+          {
+            "title": "AAAI 2027 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "MPC Deadlines Hub",
+            "url": "https://mpc-deadlines.github.io/"
+          },
+          {
+            "title": "AAAI-27 Main Technical Track - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AI/ML Conference Timeline | NIU AI",
+            "url": "https://www.niuai.org/resources/conference-timeline/"
+          },
+          {
+            "title": "AAAI-26 Submission Instructions - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          }
+        ]
+      },
+      "Based on the search results, here are the AAAI 2027 deadlines:\n\n**Abstract deadline:** July 21, 2026 at 11:59 PM UTC-12\n\n**Full paper deadline:** July 28, 2026 at 11:59 PM UTC-12\n\nThe conference will take place February 16-23, 2027 in Montréal, Canada. All deadlines are \"anywhere on earth\" (UTC-12).\n\nAdditional key dates include supplementary material and code due by July 31, 2026, and notification of Phase 1 rejections on September 24, 2026."
+    ],
+    "durationSeconds": 4.384273933999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3508d43a-22d9-4f51-b147-32c4450620e2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-19T19:50:24.860Z_
+
+<details><summary>↩ Tool result · `toolu_0135WUNWuhgFmnPdd85aZZSY`</summary>
+
+```text
+Web search results for query: "cross-lingual correctness prediction probe transfer LLM 2026 calibration ECE"
+
+Links: [{"title":"Correctness-Optimized Residual Activation Lens (CORAL): Transferrable and Calibration-Aware Inference-Time Steering","url":"https://arxiv.org/pdf/2602.06022"},{"title":"Probing the Emergence of Cross-lingual Alignment during LLM Training","url":"https://arxiv.org/html/2406.13229v1"},{"title":"On the Calibration of Multilingual Question Answering LLMs","url":"https://arxiv.org/html/2311.08669v2"},{"title":"Calibrating LLM Judges: Linear Probes for Fast and Reliable Uncertainty Estimation","url":"https://arxiv.org/pdf/2512.22245"},{"title":"Correctness-Optimized Residual Activation Lens (CORAL): Transferrable and Calibration-Aware Inference-Time Steering","url":"https://arxiv.org/html/2602.06022"},{"title":"Cross-Lingual Stability of LLM Judges Under Controlled Generation: Evidence from Finno-Ugric Languages","url":"https://arxiv.org/pdf/2602.02287"},{"title":"Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs","url":"https://arxiv.org/pdf/2504.09378"}]
+
+Based on the search results, I found several relevant papers addressing aspects of your query:
+
+**Recent 2026 Research on Calibration and Probes:**
+
+CORAL (Correctness-Optimized Residual Activation Lens) consistently improves expected calibration error (ECE) by 50% on average across three 7B-parameter models. CORAL is a regularized inference-time steering method that captures distributed correctness signals from model internal activations using weight-decay MLP probes. These gains transfer without retraining to held-out benchmarks, averaging 14% accuracy improvements and 49% ECE improvements.
+
+**Cross-Lingual Transfer Research:**
+
+Research shows that incorrect NLU predictions are strongly associated with lower representation alignment with English in the model's middle layers, and activation patching demonstrates that incorrect predictions in other languages can be fixed by patching their parallel English activations.
+
+Additionally, studies suggest that zero-shot judge transfer is unreliable for discourse-level assessment in morphologically rich languages, motivating language-specific calibration against targeted human baselines.
+
+These papers address the intersection of probe-based methods, correctness prediction, calibration (ECE), cross-lingual transfer, and LLM inference, which appears to be an active research area in early 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "540f6b96-b5e8-4bae-89ec-4b7af2067989",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "ca80a8a5-9498-4de3-ad50-7fb14904d469",
+  "toolUseResult": {
+    "query": "cross-lingual correctness prediction probe transfer LLM 2026 calibration ECE",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013dDLRWb25apcfc9ctvLge7",
+        "content": [
+          {
+            "title": "Correctness-Optimized Residual Activation Lens (CORAL): Transferrable and Calibration-Aware Inference-Time Steering",
+            "url": "https://arxiv.org/pdf/2602.06022"
+          },
+          {
+            "title": "Probing the Emergence of Cross-lingual Alignment during LLM Training",
+            "url": "https://arxiv.org/html/2406.13229v1"
+          },
+          {
+            "title": "On the Calibration of Multilingual Question Answering LLMs",
+            "url": "https://arxiv.org/html/2311.08669v2"
+          },
+          {
+            "title": "Calibrating LLM Judges: Linear Probes for Fast and Reliable Uncertainty Estimation",
+            "url": "https://arxiv.org/pdf/2512.22245"
+          },
+          {
+            "title": "Correctness-Optimized Residual Activation Lens (CORAL): Transferrable and Calibration-Aware Inference-Time Steering",
+            "url": "https://arxiv.org/html/2602.06022"
+          },
+          {
+            "title": "Cross-Lingual Stability of LLM Judges Under Controlled Generation: Evidence from Finno-Ugric Languages",
+            "url": "https://arxiv.org/pdf/2602.02287"
+          },
+          {
+            "title": "Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs",
+            "url": "https://arxiv.org/pdf/2504.09378"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers addressing aspects of your query:\n\n**Recent 2026 Research on Calibration and Probes:**\n\nCORAL (Correctness-Optimized Residual Activation Lens) consistently improves expected calibration error (ECE) by 50% on average across three 7B-parameter models. CORAL is a regularized inference-time steering method that captures distributed correctness signals from model internal activations using weight-decay MLP probes. These gains transfer without retraining to held-out benchmarks, averaging 14% accuracy improvements and 49% ECE improvements.\n\n**Cross-Lingual Transfer Research:**\n\nResearch shows that incorrect NLU predictions are strongly associated with lower representation alignment with English in the model's middle layers, and activation patching demonstrates that incorrect predictions in other languages can be fixed by patching their parallel English activations.\n\nAdditionally, studies suggest that zero-shot judge transfer is unreliable for discourse-level assessment in morphologically rich languages, motivating language-specific calibration against targeted human baselines.\n\nThese papers address the intersection of probe-based methods, correctness prediction, calibration (ECE), cross-lingual transfer, and LLM inference, which appears to be an active research area in early 2026."
+    ],
+    "durationSeconds": 5.885402648999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "540f6b96-b5e8-4bae-89ec-4b7af2067989",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Cross-Lingual Calibration Transfer via Language-Agnostic Confidence Di…",
+  "leafUuid": "ca80a8a5-9498-4de3-ad50-7fb14904d469",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise cross-lingual calibration transfer with critical references",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-19T19:51:32.173Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the key information I need. Let me also check whether there's been any more recent work (April-May 2026) specifically on cross-lingual calibration or correctness probe transfer that I should be aware of. Let me also look at AAAI 2027 deadline more carefully - July 21 abstract, July 28 full paper. That's about 9 weeks from now (May 19, 2026). The reviewer says this is "effectively unreachable" for an 8-10 week project. I agree.
+
+Let me now think about the overall revision strategy.
+
+
+I need to add arXiv 2504.13816 on knowledge boundaries from ACL 2025 - it's a critical addition since it probes a model-dependent property and demonstrates cross-lingual transfer using linear projection and mean shifting, tested across multiple model sizes and up to 8 languages. The key distinction here is that knowledge boundaries (binary classification of what the model knows) differ fundamentally from calibration (continuous confidence measures), which helps clarify where my work sits in the landscape.
+
+I should also incorporate arXiv 2504.09378 which provides direct causal evidence that English middle-layer representations affect non-English correctness across 24 languages - this validates the core hypothesis. I need to correct MMLU-ProX to 29 languages and fix the layer depth variation claims with the specific percentages mentioned. I need to factor in the model scale differences—they're using a 235B MoE while we're working with 7B-72B dense models—and consider whether their training-free alignment methods like mean shifting and linear projection could serve as useful baselines or complement our approach. For the venue timeline, AAAI 2027 is too tight at 9 weeks out, but EACL 2027 with an ARR deadline in 11 weeks is feasible as the primary target, while ICLR 2027 around September 2026 gives us more breathing room.
+
+Looking at the reviewer feedback, this qualifies as a major revision since the knowledge boundary paper substantially reshapes our novelty positioning and we should integrate their training-free alignment methods, plus the layer depth variance finding changes how we frame the Pareto frontier. The core issues—missing references, factual errors, cherry-picked data, and timeline—are all fixable, and the fundamental hypothesis still holds that model-dependent properties can transfer cross-lingually with proper alignment.
+
+The key insight is that their work actually strengthens our hypothesis rather than weakening it, though it does narrow the novelty gap. Our real differentiator is focusing on calibration metrics like continuous confidence and ECE rather than their binary known/unknown classification. I'm thinking about how to integrate their training-free alignment techniques—either as a Phase 3.5 or folded into Phase 4—which would let us design a richer experiment comparing zero-shot transfer, mean-shift alignment, linear projection alignment, and few-shot adaptation to see which best shifts the Pareto frontier. This makes the paper stronger overall.
+
+I found that the knowledge boundary probing works at deeper layers (around 68% depth for the 7B model) compared to difficulty probing, which suggests it's capturing more model-dependent properties. What's striking is that Civelli's cross-lingual transfer works best at shallow layers while the knowledge boundary paper achieves results at deeper layers with alignment techniques—this implies alignment methods can unlock stronger signals at greater depths, which directly informs how we should approach Phase 4 and frontier shifting.
+
+Now I'm distinguishing between three related but separate concepts: knowledge boundaries measure whether the model recognizes what it knows, correctness is about actual performance, and calibration is about confidence matching accuracy. The key difference is that knowledge boundaries probe self-awareness while calibration addresses the confidence-accuracy gap, and both CORAL and the knowledge boundary work use binary probing but on different dimensions—one for right/wrong answers, the other for known/unknown states.
+
+Given that the core idea and contribution stay intact but the positioning shifts significantly to differentiate from knowledge boundary work, and I'm adding training-free alignment methods while correcting the layer depth narrative, this warrants a major revision. Let me structure the full revised JSON now.
+
+I'm mapping out the submission timeline to see what's actually feasible—AAAI's abstract deadline in 9 weeks is essentially unreachable unless I start immediately, but EACL at 11 weeks is tight but doable with focused effort.
+
+Now I'm reconsidering the model selection. Using three large models like Qwen3-235B, LLaMA 4 Scout, and Gemma 4 31B is computationally expensive compared to the knowledge boundary paper's approach with smaller variants, but the scale is a key differentiator for this work, so I'll keep it while being realistic about the resource costs.
+
+I'm restructuring the approach to add a training-free alignment phase using mean shifting techniques as an intermediate step. linear projection, inspired by 2504.13816)
+2. Correct layer depth to 24-49% range
+3. Sharpen distinction between correctness-calibration and knowledge boundary
+4. Add both new references
+5. Fix MMLU-ProX to 29 languages
+6. Update venue timeline
+
+Let me compose the full revised JSON now.
+
+Actually, I'm realizing the approach itself should be strengthened. The knowledge boundary paper demonstrates that training-free alignment techniques like mean shifting and linear projection can transfer model-dependent probes across languages, which means I should test these alignment methods alongside zero-shot and few-shot approaches. This enriches Phase 3 by analyzing the Pareto frontier under multiple transfer conditions, and Phase 4 becomes analyzing how alignment and few-shot adaptation shift that frontier. The "Can you map it to English" paper adds causal evidence through activation patching showing English representations drive non-English correctness, which gives the theoretical foundation more weight.
+
+Now I need to figure out the ICLR 2027 timeline. Based on ICLR 2026's pattern of a September deadline for an April conference, 2027 should follow similarly around September-October 2026, though there's conflicting information about whether it's in Lisbon in February or Sydney in August. The official site only lists 2026, so I'll be conservative with the estimate.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca80a8a5-9498-4de3-ad50-7fb14904d469",
+  "isSidechain": false,
+  "requestId": "req_011CbCWTYwFxX9dJ2YiNAPNu",
+  "type": "assistant",
+  "uuid": "5996472d-3be3-41a0-bee6-a8872a6672b2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXbYaSjG8GgzvRMgiguiWG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3730,
+      "cache_read_input_tokens": 29715,
+      "output_tokens": 3169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3730,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3169,
+          "cache_read_input_tokens": 29715,
+          "cache_creation_input_tokens": 3730,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3730
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68 · 2026-05-19T19:51:32.179Z_
+
+Now I have all the research I need. Let me compile the comprehensive revision.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5996472d-3be3-41a0-bee6-a8872a6672b2",
+  "isSidechain": false,
+  "requestId": "req_011CbCWTYwFxX9dJ2YiNAPNu",
+  "type": "assistant",
+  "uuid": "778f0f96-c1f1-481e-b008-848615433070",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXbYaSjG8GgzvRMgiguiWG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3730,
+      "cache_read_input_tokens": 29715,
+      "output_tokens": 3169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3730,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3169,
+          "cache_read_input_tokens": 29715,
+          "cache_creation_input_tokens": 3730,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3730
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-19T19:51:32.180Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ps8xTKRAeJws57pB162XAP`</summary>
+
+```json
+{
+  "query": "\"knowledge boundary\" \"calibration\" difference LLM correctness probe 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "778f0f96-c1f1-481e-b008-848615433070",
+  "isSidechain": false,
+  "requestId": "req_011CbCWTYwFxX9dJ2YiNAPNu",
+  "type": "assistant",
+  "uuid": "ac65f81b-f06a-40a1-b4e4-ebabd520b5a1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXbYaSjG8GgzvRMgiguiWG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3730,
+      "cache_read_input_tokens": 29715,
+      "output_tokens": 3169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3730,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3169,
+          "cache_read_input_tokens": 29715,
+          "cache_creation_input_tokens": 3730,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3730
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-19T19:51:34.020Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FyBqj1WH2YTvMS5KpE3Ntx`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2504.13816",
+  "prompt": "Focus on: (1) How is \"knowledge boundary\" defined precisely - is it about the model knowing the answer exists, or about the model being able to produce the correct answer? (2) What types of questions do they test: false-premise questions, unanswerable questions, or general QA? (3) Do they test on standard QA benchmarks like MMLU, or specialized knowledge boundary datasets? (4) What exactly does the probe predict - a binary known/unknown label, or something more nuanced? (5) What is the exact performance gap between zero-shot transfer and in-distribution, and how much does linear projection close it? Give me exact numbers from tables."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac65f81b-f06a-40a1-b4e4-ebabd520b5a1",
+  "isSidechain": false,
+  "requestId": "req_011CbCWTYwFxX9dJ2YiNAPNu",
+  "type": "assistant",
+  "uuid": "f3cfc17f-ccd6-4fec-9149-1ff7edefe1ab",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXbYaSjG8GgzvRMgiguiWG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3730,
+      "cache_read_input_tokens": 29715,
+      "output_tokens": 3169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3730,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3169,
+          "cache_read_input_tokens": 29715,
+          "cache_creation_input_tokens": 3730,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3730
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-19T19:51:40.932Z_
+
+<details><summary>↩ Tool result · `toolu_01Ps8xTKRAeJws57pB162XAP`</summary>
+
+```text
+Web search results for query: ""knowledge boundary" "calibration" difference LLM correctness probe 2025 2026"
+
+Links: [{"title":"Mirror: A Hierarchical Benchmark for Metacognitive Calibration in Large Language Models","url":"https://arxiv.org/html/2604.19809v1"},{"title":"How Knowledge Popularity Influences and Enhances LLM Knowledge Boundary Perception","url":"https://arxiv.org/html/2505.17537"},{"title":"Published as a conference paper at COLM 2025","url":"https://arxiv.org/pdf/2503.15299"},{"title":"Calibrating LLM Confidence by Probing Perturbed Representation Stability","url":"https://arxiv.org/pdf/2505.21772"},{"title":"Towards Fully Exploiting LLM Internal States to Enhance Knowledge Boundary Perception","url":"https://arxiv.org/pdf/2502.11677"},{"title":"Teaching Large Language Models to Express Knowledge Boundary from Their   Own Signals","url":"https://arxiv.org/pdf/2406.10881"},{"title":"GitHub - li-moxin/knowledge_boundary_survey: Knowledge Boundary of Language Models: A Survey · GitHub","url":"https://github.com/li-moxin/knowledge_boundary_survey"},{"title":"How Knowledge Popularity Influences and Enhances LLM Knowledge Boundary Perception","url":"https://arxiv.org/pdf/2505.17537"},{"title":"Knowledge Boundary Discovery for Large Language Models","url":"https://arxiv.org/pdf/2603.21022"}]
+
+Based on the web search results, I found several recent research papers on knowledge boundaries, calibration, and correctness probes in LLMs from 2025-2026:
+
+## Key Research Areas
+
+**Metacognitive Calibration and Knowledge Boundaries:**
+In 2025, Mirror is a hierarchical benchmark that tests when agents recognize knowledge boundaries in tool-use settings and systematically measures the monitoring-to-control gap across 8 domains and 4 escalation conditions.
+
+**Knowledge Popularity and Calibration:**
+LLMs exhibit better QA performance, higher confidence, and more accurate perception on more popular knowledge, with relation popularity having the strongest correlation. Knowledge popularity shows strong correlation with LLMs' performance, and leveraging these signals for confidence calibration improves the accuracy of answer correctness prediction by an average of 5.24% across all models and datasets.
+
+**Hidden Knowledge and Probing:**
+LLMs encode more knowledge than they express externally, and in extreme cases models can fail to generate answers after many attempts, yet still perfectly know the correct answer when probed through their internal states.
+
+**Internal States for Knowledge Boundary Perception:**
+Recent work focuses on estimating LLMs' confidence based on their internal states, aiming to enhance their knowledge boundary perception from efficiency and risk perspectives.
+
+These research directions explore the gap between what LLMs know internally versus what they express, and how to better calibrate confidence estimates for correctness prediction.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac65f81b-f06a-40a1-b4e4-ebabd520b5a1",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "c83eef13-3e77-4f11-92c7-b0979a3ea331",
+  "toolUseResult": {
+    "query": "\"knowledge boundary\" \"calibration\" difference LLM correctness probe 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0154TLpHZFMfSS66FFETNa1i",
+        "content": [
+          {
+            "title": "Mirror: A Hierarchical Benchmark for Metacognitive Calibration in Large Language Models",
+            "url": "https://arxiv.org/html/2604.19809v1"
+          },
+          {
+            "title": "How Knowledge Popularity Influences and Enhances LLM Knowledge Boundary Perception",
+            "url": "https://arxiv.org/html/2505.17537"
+          },
+          {
+            "title": "Published as a conference paper at COLM 2025",
+            "url": "https://arxiv.org/pdf/2503.15299"
+          },
+          {
+            "title": "Calibrating LLM Confidence by Probing Perturbed Representation Stability",
+            "url": "https://arxiv.org/pdf/2505.21772"
+          },
+          {
+            "title": "Towards Fully Exploiting LLM Internal States to Enhance Knowledge Boundary Perception",
+            "url": "https://arxiv.org/pdf/2502.11677"
+          },
+          {
+            "title": "Teaching Large Language Models to Express Knowledge Boundary from Their   Own Signals",
+            "url": "https://arxiv.org/pdf/2406.10881"
+          },
+          {
+            "title": "GitHub - li-moxin/knowledge_boundary_survey: Knowledge Boundary of Language Models: A Survey · GitHub",
+            "url": "https://github.com/li-moxin/knowledge_boundary_survey"
+          },
+          {
+            "title": "How Knowledge Popularity Influences and Enhances LLM Knowledge Boundary Perception",
+            "url": "https://arxiv.org/pdf/2505.17537"
+          },
+          {
+            "title": "Knowledge Boundary Discovery for Large Language Models",
+            "url": "https://arxiv.org/pdf/2603.21022"
+          }
+        ]
+      },
+      "Based on the web search results, I found several recent research papers on knowledge boundaries, calibration, and correctness probes in LLMs from 2025-2026:\n\n## Key Research Areas\n\n**Metacognitive Calibration and Knowledge Boundaries:**\nIn 2025, Mirror is a hierarchical benchmark that tests when agents recognize knowledge boundaries in tool-use settings and systematically measures the monitoring-to-control gap across 8 domains and 4 escalation conditions.\n\n**Knowledge Popularity and Calibration:**\nLLMs exhibit better QA performance, higher confidence, and more accurate perception on more popular knowledge, with relation popularity having the strongest correlation. Knowledge popularity shows strong correlation with LLMs' performance, and leveraging these signals for confidence calibration improves the accuracy of answer correctness prediction by an average of 5.24% across all models and datasets.\n\n**Hidden Knowledge and Probing:**\nLLMs encode more knowledge than they express externally, and in extreme cases models can fail to generate answers after many attempts, yet still perfectly know the correct answer when probed through their internal states.\n\n**Internal States for Knowledge Boundary Perception:**\nRecent work focuses on estimating LLMs' confidence based on their internal states, aiming to enhance their knowledge boundary perception from efficiency and risk perspectives.\n\nThese research directions explore the gap between what LLMs know internally versus what they express, and how to better calibrate confidence estimates for correctness prediction."
+    ],
+    "durationSeconds": 8.746751819999975,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ac65f81b-f06a-40a1-b4e4-ebabd520b5a1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Cross-Lingual Calibration Transfer via Language-Agnostic Confidence Di…",
+  "leafUuid": "c83eef13-3e77-4f11-92c7-b0979a3ea331",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise cross-lingual calibration transfer with critical references",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-19T19:51:42.023Z_
+
+<details><summary>↩ Tool result · `toolu_01FyBqj1WH2YTvMS5KpE3Ntx`</summary>
+
+```text
+# Analysis of Knowledge Boundary Definition and Testing in the Research
+
+## (1) Knowledge Boundary Definition
+
+The paper defines knowledge boundary as whether a model recognizes when it encounters questions **beyond its knowledge**. Specifically, they probe whether models can distinguish between "known" (answerable) and "unknown" (unanswerable) questions. The focus is on internal representation awareness rather than answer correctness—the model may internally "know" a question is unanswerable even if it fails to express this during generation.
+
+## (2) Question Types Tested
+
+The researchers employ three distinct question categories:
+
+- **False-premise questions** (FreshQAParallel): Questions with incorrect presuppositions, like "When did Google release ChatGPT?"
+- **Unanswerable questions** (SeaRefuse): Factoid questions about non-existent entities
+- **True/false statements** (TrueFalseMultiLang): Binary classification of factual accuracy
+
+## (3) Benchmark Scope
+
+This is **not** standard QA benchmark testing. Instead, they created specialized multilingual datasets: "FreshQAParallel covers 8 languages with 9,600 test samples, SeaRefuse spans 5 languages with 6,000 test samples, and TrueFalseMultiLang includes 8 languages with 48,680 test samples."
+
+## (4) Probe Prediction Task
+
+The probes perform **binary classification**: distinguishing between true/false premises, answerable/unanswerable questions, or factually accurate/inaccurate statements. Specifically, they "train k×m in-distribution linear classifiers" for each language-layer combination.
+
+## (5) Performance Gap Numbers
+
+**Zero-shot transfer performance drop:**
+- English→Khmer drops from 89% to 79% "in the most transferable layer"
+- Figure 2 shows substantial gap between in-distribution (blue) and OOD (orange) across lower layers
+
+**Linear projection effectiveness:**
+Linear projection "nearly matches in-distribution performance," with the transformation reducing gaps substantially. For example, Thai and Malay achieve 88.31% and 88.64% respectively through projection, compared to lower zero-shot baseline performance shown in comparative visualizations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f3cfc17f-ccd6-4fec-9149-1ff7edefe1ab",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "2b5e7c7f-d478-49d2-bce9-e69cf4b89cdb",
+  "toolUseResult": {
+    "bytes": 314121,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of Knowledge Boundary Definition and Testing in the Research\n\n## (1) Knowledge Boundary Definition\n\nThe paper defines knowledge boundary as whether a model recognizes when it encounters questions **beyond its knowledge**. Specifically, they probe whether models can distinguish between \"known\" (answerable) and \"unknown\" (unanswerable) questions. The focus is on internal representation awareness rather than answer correctness—the model may internally \"know\" a question is unanswerable even if it fails to express this during generation.\n\n## (2) Question Types Tested\n\nThe researchers employ three distinct question categories:\n\n- **False-premise questions** (FreshQAParallel): Questions with incorrect presuppositions, like \"When did Google release ChatGPT?\"\n- **Unanswerable questions** (SeaRefuse): Factoid questions about non-existent entities\n- **True/false statements** (TrueFalseMultiLang): Binary classification of factual accuracy\n\n## (3) Benchmark Scope\n\nThis is **not** standard QA benchmark testing. Instead, they created specialized multilingual datasets: \"FreshQAParallel covers 8 languages with 9,600 test samples, SeaRefuse spans 5 languages with 6,000 test samples, and TrueFalseMultiLang includes 8 languages with 48,680 test samples.\"\n\n## (4) Probe Prediction Task\n\nThe probes perform **binary classification**: distinguishing between true/false premises, answerable/unanswerable questions, or factually accurate/inaccurate statements. Specifically, they \"train k×m in-distribution linear classifiers\" for each language-layer combination.\n\n## (5) Performance Gap Numbers\n\n**Zero-shot transfer performance drop:**\n- English→Khmer drops from 89% to 79% \"in the most transferable layer\"\n- Figure 2 shows substantial gap between in-distribution (blue) and OOD (orange) across lower layers\n\n**Linear projection effectiveness:**\nLinear projection \"nearly matches in-distribution performance,\" with the transformation reducing gaps substantially. For example, Thai and Malay achieve 88.31% and 88.64% respectively through projection, compared to lower zero-shot baseline performance shown in comparative visualizations.",
+    "durationMs": 8000,
+    "url": "https://arxiv.org/html/2504.13816"
+  },
+  "sourceToolAssistantUUID": "f3cfc17f-ccd6-4fec-9149-1ff7edefe1ab",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-19T19:51:51.862Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive understanding. Let me compose the full revised idea.
+
+Key synthesis:
+1. The knowledge boundary paper (2504.13816) probes a DIFFERENT model-dependent property: whether the model recognizes it's out of its knowledge depth (binary: answerable/unanswerable, true/false premise). This is NOT the same as correctness (did the model actually answer correctly) or calibration (does confidence match accuracy).
+
+2. The gap between these two is significant:
+   - Knowledge boundary = self-awareness of ignorance (meta-cognitive)
+   - Correctness = actual performance outcome
+   - Calibration = confidence-accuracy alignment
+   
+3. The training-free alignment methods using mean shifting and linear projection are directly applicable and should be incorporated into our approach.
+
+4. The layer depth variance across models is actually a strength—it makes the Pareto frontier analysis more critical for understanding the trade-offs.
+
+5. The "Can you map it to English" paper gives us causal evidence that English representations drive non-English performance, which is the strongest theoretical grounding for what we're doing.
+
+This is a major revision because I'm significantly repositioning the novelty claims and integrating training-free alignment methods into the framework.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b5e7c7f-d478-49d2-bce9-e69cf4b89cdb",
+  "isSidechain": false,
+  "requestId": "req_011CbCWZEqkMWq48zFPLb43y",
+  "type": "assistant",
+  "uuid": "b84f7acf-9bd8-40ae-af78-1376efca574e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V4pF9E3P29oJ8VxE8cv4w5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4452,
+      "cache_read_input_tokens": 33445,
+      "output_tokens": 5997,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4452,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5997,
+          "cache_read_input_tokens": 33445,
+          "cache_creation_input_tokens": 4452,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4452
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-19T19:51:51.872Z_
+
+Now I have all the research needed. Let me synthesize everything and produce the comprehensive revision.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b84f7acf-9bd8-40ae-af78-1376efca574e",
+  "isSidechain": false,
+  "requestId": "req_011CbCWZEqkMWq48zFPLb43y",
+  "type": "assistant",
+  "uuid": "58f498d8-afcc-4a5b-ad60-f803ffc670c3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V4pF9E3P29oJ8VxE8cv4w5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4452,
+      "cache_read_input_tokens": 33445,
+      "output_tokens": 5997,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4452,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5997,
+          "cache_read_input_tokens": 33445,
+          "cache_creation_input_tokens": 4452,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4452
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-19T19:53:57.361Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01VzFo9Xr7aPnkv3MRGQQ2yb`</summary>
+
+```json
+{
+  "command": "cat << 'JSONEOF'\n{\n  \"change_type\": \"major\",\n  \"revision_notes\": \"Major revision addressing all 6 reviewer issues: (1) Added critical reference arXiv 2504.13816 (Knowledge Boundary, ACL 2025) with detailed differentiation — they probe binary knowledge-boundary recognition (answerable vs unanswerable), not correctness or calibration (ECE/Brier), test 8 languages on specialized datasets (not standard QA), and use models up to 72B; (2) Added supporting reference arXiv 2504.09378 (EACL 2026) as causal evidence; (3) Fixed MMLU-ProX to 29 languages; (4) Corrected layer depth to 24-49% range with per-model variance explicitly acknowledged; (5) Sharpened novelty via 5-point differentiation from knowledge boundary work; (6) Dropped AAAI 2027, made EACL 2027 primary. Additionally, incorporated training-free alignment methods (mean shifting + linear projection from 2504.13816) into the approach as a Pareto frontier shifting technique alongside few-shot adaptation, strengthening the experimental design.\",\n  \"title\": \"Cross-Lingual Calibration Transfer via Language-Agnostic Confidence Directions: Navigating the Layer-Depth Pareto Frontier\",\n  \"core_problem\": \"Non-English languages suffer from 5x worse calibration error (ECE) compared to English in multilingual LLMs. Existing fixes require per-language validation data (LACE) or expensive multilingual sampling (MKA). While recent work has shown that knowledge-boundary recognition (answerable vs. unanswerable) can transfer cross-lingually via linear probes at middle layers (Xiao et al., ACL 2025), calibration — the alignment between model confidence and actual correctness — is a fundamentally different and harder transfer target: it depends not just on what the model knows, but on how its capabilities, representation quality, and confidence interact per-language. Can we transfer English calibration quality to underserved languages through shared intermediate-layer correctness directions, and at what layer depth — given a tradeoff between calibration quality (peaking at 53-91% depth) and cross-lingual transferability (peaking at 24-49% depth depending on the model architecture)?\",\n  \"opportunity\": \"Ji et al. (EMNLP 2025) discovered that verbal uncertainty is governed by a single linear direction in representation space. Joshi et al. (EMNLP 2025) showed calibration evolves across layers with a low-dimensional calibration direction in the residual stream. Zhou et al. (arXiv 2510.03136) introduced LACE, demonstrating that late-intermediate layers encode better-calibrated multilingual signals but requiring per-language validation. Liu & Niehues (ACL 2025) showed that middle layers form the strongest language-agnostic shared space, and Ravisankar et al. (EACL 2026) provided causal evidence via activation patching that incorrect non-English predictions are fixed by substituting English middle-layer activations — establishing that English representations causally drive non-English correctness across 24 languages. Critically, Xiao et al. (ACL 2025, arXiv 2504.13816) demonstrated that knowledge-boundary perception — a model-dependent property — transfers cross-lingually via linear probes with training-free alignment (mean shifting + linear projection) at middle-to-upper layers, achieving near in-distribution accuracy (e.g., closing the 89%→79% zero-shot gap for English→Khmer). However, they probe binary known/unknown classification on specialized datasets, not correctness on standard QA or calibration metrics. Civelli et al. (arXiv 2601.12731, Jan 2026) showed that cross-lingual difficulty probe transfer varies dramatically by architecture: optimal transfer depth ranges from 24% (Qwen3-8B) to 49% (LLaMA-3.1-8B), with 32% for LLaMA-3.2-3B and 38% for LLaMA-3.2-1B — establishing that the shallow-transferable vs. deep-accurate tradeoff is architecture-dependent and cannot be summarized by a single depth. The Confidence Manifold (arXiv 2602.08159, Feb 2026) showed correctness signals occupy just 3-8 dimensions and are linearly separable, with 25 labeled examples achieving 89% of full-data probe accuracy. Nobody has tested whether correctness/calibration probes — optimized for ECE and Brier score rather than classification accuracy — transfer cross-lingually, and nobody has mapped the Pareto frontier of layer depth × calibration quality × cross-lingual transferability across architectures. This frontier, combined with the architecture-dependent optimal depth, is the key to practical deployment.\",\n  \"landscape\": \"Zhou et al. (arXiv 2510.03136) introduced LACE, which adaptively ensembles late-intermediate layers (75-91% depth) per language but still requires per-language validation data, and confirmed the 5x ECE gap across 100+ languages and 6 model families (LLaMA-3: 23.1% vs 4.6% ECE for non-English vs English). MKA (Duwal et al., ICLR Workshop 2025) uses cross-lingual consensus for abstention but at 5x inference cost. Joshi et al. (EMNLP 2025) identified a low-dimensional calibration direction in the residual stream. Xiao et al. (ACL 2025, arXiv 2504.13816) — the closest prior work to our proposal — trained linear probes on knowledge-boundary perception (distinguishing answerable from unanswerable questions, including false-premise and non-existent entity queries) and transferred them cross-lingually across 8 languages in Qwen2.5-7B/14B/72B and LLaMA-3.1-8B. They showed that zero-shot transfer drops ~10 points (89%→79% for English→Khmer) but training-free alignment via mean shifting and linear projection 'nearly closes the gap with in-distribution accuracy.' Critical differences from our work: (1) they probe knowledge boundaries (binary: model recognizes it cannot answer), not correctness (binary: model answered correctly) — knowledge boundaries concern meta-cognitive self-awareness while correctness combines difficulty, capability, and representation quality; (2) they measure probing accuracy, not calibration metrics (ECE, Brier score) — good boundary detection does not imply good calibration; (3) they test 8 languages on specialized false-premise/unanswerable datasets, not 50+ languages on standard QA benchmarks; (4) they use models up to 72B (dense), not 235B MoE; (5) they do not characterize the layer-depth Pareto frontier or the architecture-dependent optimal depth. Ravisankar et al. (EACL 2026, arXiv 2504.09378) introduced DALI (Discriminative Alignment Index) showing that incorrect non-English predictions correlate with low alignment with English at middle layers, and that activation patching of English representations causally fixes errors across 24 languages — providing the strongest causal evidence for our hypothesis that English-trained probes can inform non-English calibration. Civelli et al. (arXiv 2601.12731, Jan 2026) showed cross-lingual difficulty probe transfer at intermediate layers, but critically, the optimal transfer depth is architecture-dependent: 24% for Qwen3-8B, 32% for LLaMA-3.2-3B, 38% for LLaMA-3.2-1B, 49% for LLaMA-3.1-8B. Within-language probes achieve ρ=0.80-0.85 while cross-lingual probes achieve ρ=0.76-0.78 at optimal transfer layers, with deep probes (94% depth) suffering 0.05-0.19 ρ degradation when transferred. They probed IRT-based human difficulty — an inherent property of questions — not model correctness. CORAL (Miao et al., arXiv 2602.06022, Feb 2026) demonstrates transferable correctness probes via regularized 4-layer MLP on residual activations with ~50% ECE improvement at layers 17-21 (~53-66% depth), but evaluates only in English across tasks and shows degraded transfer on domain-shifted benchmarks. The Confidence Manifold (arXiv 2602.08159, Feb 2026) shows correctness signals occupy 3-8 dimensions and are linearly separable across 9 models and 5 architecture families, with few-shot (25 examples) achieving 89% of full-data accuracy — all English-only. Confidence Geometry Reveals Trace-Level Correctness (arXiv 2605.16824, May 2026) extends geometric correctness analysis to reasoning traces using output-level confidence trajectories — operating at a different level (output tokens, not internal representations) with no multilingual evaluation. Instruction-tuning studies (arXiv 2601.01362, Jan 2026) confirm that English-centric fine-tuning inflates confidence in low-resource languages without accuracy gains, worsening calibration. Cross-lingual steering vectors have been demonstrated for language identity and task performance (Mahmoud et al., arXiv 2505.12584; arXiv 2601.16390) but never for calibration. No work has attempted to transfer the correctness/calibration direction itself cross-lingually, characterized the Pareto frontier between calibration quality and cross-lingual transferability, or tested whether training-free alignment methods that work for knowledge boundaries also work for calibration.\",\n  \"inspired_by\": \"Gap: 5x non-English ECE gap (Zhou et al., LACE) + demonstrated cross-lingual transfer for model-dependent properties (knowledge boundaries at middle-upper layers via Xiao et al., ACL 2025; difficulty at shallow layers via Civelli et al.) that has never been extended to correctness/calibration. Causal evidence: activation patching proves English representations causally drive non-English correctness (Ravisankar et al., EACL 2026). Pattern: Ji et al.'s linear verbal uncertainty direction + Joshi et al.'s residual-stream calibration direction + Confidence Manifold's 3-8 dimensional correctness signal + architecture-dependent optimal transfer depth (24-49% across models, Civelli et al.). Untried combination: extending representation-space correctness probes from English-only cross-task transfer (CORAL) to cross-lingual calibration transfer using both zero-shot transfer and training-free alignment (mean shifting + linear projection from Xiao et al.), while characterizing the architecture-dependent Pareto frontier.\",\n  \"approach\": \"Phase 1 — Activation Extraction: Extract intermediate-layer activations at every 4th layer across the full depth of Qwen3-235B-A22B (94 layers, MoE), Llama 4 Scout (48 layers, MoE), and Gemma 4 31B Dense (46 layers, dense) on English QA tasks (MMLU, ARC-Challenge) with known correctness labels. Also extract activations for a parallel non-English subset (using GlobalMMLU's matched questions) in 50+ languages at the same layers, to enable alignment computation. Store activations for all layers to enable the full Pareto frontier analysis. Phase 2 — English Probe Training: At each extracted layer, fit both a logistic regression probe (linear) and a lightweight 2-layer MLP probe to identify the calibration direction — the hyperplane or surface best separating correct from incorrect answers in representation space. Compare probe complexity: linear probes may transfer better cross-lingually (by analogy to the shallow-transferable finding in Civelli et al.), while MLPs may capture richer correctness signals (as CORAL found). Phase 3 — Pareto Frontier Analysis (Core Contribution): Apply each layer's English-trained probe to non-English activations across 50+ languages under four transfer conditions: (a) zero-shot (direct application), (b) mean-shift alignment (compute Δμ between English and target-language activation means, shift target activations; per Xiao et al., ACL 2025), (c) linear projection alignment (learn least-squares projection from small parallel set; per Xiao et al., ACL 2025), and (d) few-shot probe fine-tuning (25-100 target-language examples; motivated by Confidence Manifold's finding that 25 examples achieve 89% of full-data accuracy). For each layer × transfer condition, measure (i) calibration quality (ECE, Brier score) and (ii) cross-lingual transfer quality (AUROC degradation from English). Map the full Pareto frontier of layer depth × calibration quality × cross-lingual transferability for each transfer condition and each model. Critically, given that optimal cross-lingual transfer depth varies from 24% (Qwen3-8B) to 49% (LLaMA-3.1-8B) for difficulty probes, we test whether correctness probes show a similar architecture-dependent pattern, and whether alignment techniques flatten this variance by enabling effective transfer at deeper, better-calibrated layers. Phase 4 — Frontier Shifting Analysis: Quantify how each alignment/adaptation technique shifts the Pareto frontier. Key hypothesis: mean-shift and linear projection alignment (which require only unlabeled parallel activations, no correctness labels) may enable effective transfer at deeper layers where calibration is superior (75-91% depth) but zero-shot transfer fails — potentially resolving the depth-transferability tradeoff without requiring labeled target-language data. Compare cost-effectiveness: mean-shift (zero labeled examples, needs only activation means) vs. linear projection (zero labeled examples, needs small parallel activation set) vs. few-shot (25-100 labeled examples). Phase 5 — Evaluation: Evaluate ECE, Brier score, and AUROC on MMLU-ProX (29 languages, same domain as MMLU training — controls for domain shift), Belebele (122 languages, reading comprehension — tests cross-task + cross-lingual compound transfer), and GlobalMMLU (42 languages, culturally-aware QA). Compare against final-layer softmax, temperature scaling, LACE (oracle with per-language validation), per-language probes (oracle upper bound), and MKA. Include explicit cross-task transfer analysis: training probes on MMLU/ARC and evaluating on Belebele isolates the compound effect of domain shift + language shift, following CORAL's finding of degraded cross-domain transfer. Risk Acknowledgment: The core empirical bet is that the correctness direction is sufficiently language-agnostic at intermediate layers. The knowledge-boundary work (Xiao et al., ACL 2025) provides strong positive evidence — knowledge boundaries are model-dependent and do transfer with alignment — but correctness is arguably harder: it encodes not just whether the model could know the answer, but whether it actually produced the right one given its per-language capabilities and representation quality. If zero-shot transfer fails, the Pareto frontier analysis under alignment conditions will quantify exactly where and why, and whether alignment techniques can rescue transfer at calibration-optimal depths. The fallback is that alignment + few-shot adaptation significantly outperforms existing methods that require full per-language validation sets.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"350-500 A100-80GB hours (Qwen3-235B requires 6-8 A100s per run dominating compute; Llama 4 Scout requires 3-4 A100s at FP16; Gemma 4 31B Dense fits on 1 A100. Activation extraction across 3 models × 50+ languages × all layers dominates; alignment computation and probe training take minutes on cached activations. Slightly increased from prior estimate due to parallel non-English extraction needed for mean-shift/projection alignment)\",\n      \"timeline\": \"8-10 weeks (1-2 weeks infrastructure/data including parallel activation extraction, 3-4 weeks experiments across 3 models with 4 transfer conditions, 2 weeks Pareto frontier analysis and ablations, 2 weeks writing)\",\n      \"estimated_gpu_cost\": \"$800-1200 (at ~$2/hr A100 spot pricing, accounting for multi-GPU coordination overhead on Qwen3-235B and Llama 4 Scout)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"350-500 A100-80GB hours\",\n      \"timeline\": \"7-9 weeks (Claude drafts experiment scripts, alignment/analysis code, Pareto frontier visualizations, and paper sections; human steers hypotheses, interprets results, and manages multi-GPU infrastructure)\",\n      \"claude_api_cost\": \"$75-150\",\n      \"estimated_gpu_cost\": \"$800-1200\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"350-500 A100-80GB hours\",\n      \"timeline\": \"5-7 weeks\",\n      \"claude_api_cost\": \"$200-350\",\n      \"estimated_gpu_cost\": \"$800-1200\",\n      \"speed_bottleneck\": \"Sequential GPU activation extraction across 3 model families and 50+ languages; Qwen3-235B requires 6-8 A100-80GB GPUs (470GB FP16) and dominates compute. Each model requires 10-25 GPU-hours for full multi-layer, multi-language extraction. Probe training, alignment computation, and Pareto analysis are CPU-bound and take minutes on cached activations.\"\n    }\n  },\n  \"target_venues\": [\n    \"EACL 2027 (ARR submission deadline: August 3, 2026 — primary target, 11 weeks from now; only viable ARR cycle for EACL 2027)\",\n    \"ICLR 2027 (estimated deadline: ~September 24, 2026, not yet announced — comfortable backup, ~18 weeks from now, based on ICLR 2026 deadline pattern)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations — Ji et al. (EMNLP 2025)\",\n    \"Calibration Across Layers: Understanding Calibration Evolution in LLMs — Joshi et al. (EMNLP 2025)\",\n    \"Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in LLMs — Zhou et al. (arXiv 2510.03136, 2025)\",\n    \"MKA: Leveraging Cross-Lingual Consensus for Model Abstention — Duwal et al. (ICLR Workshop 2025)\",\n    \"Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs — Liu & Niehues (ACL 2025)\",\n    \"Analyzing LLMs' Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations — Xiao et al. (ACL 2025, arXiv 2504.13816)\",\n    \"Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs — Ravisankar et al. (EACL 2026, arXiv 2504.09378)\",\n    \"A Shared Geometry of Difficulty in Multilingual Language Models — Civelli et al. (arXiv 2601.12731, Jan 2026)\",\n    \"Correctness-Optimized Residual Activation Lens (CORAL) — Miao et al. (arXiv 2602.06022, Feb 2026)\",\n    \"The Confidence Manifold: Geometric Structure of Correctness Representations in Language Models (arXiv 2602.08159, Feb 2026)\",\n    \"Investigating the Multilingual Calibration Effects of Language Model Instruction-Tuning (arXiv 2601.01362, Jan 2026)\",\n    \"Confidence Geometry Reveals Trace-Level Correctness in LLM Reasoning (arXiv 2605.16824, May 2026)\"\n  ],\n  \"description\": \"Non-English languages suffer from 5x worse calibration error (ECE) compared to English in multilingual LLMs, yet existing fixes require per-language validation data (LACE) or expensive multilingual sampling (MKA). We propose extracting a linear calibration direction from English-only intermediate-layer activations and transferring it to non-English languages — but crucially, we frame this around a previously uncharacterized and architecture-dependent tradeoff: calibration quality peaks at 53-91% model depth (Zhou et al., 2025; CORAL, 2026), while cross-lingual transferability peaks at 24-49% depth depending on model architecture (Qwen3: 24%, LLaMA-3.2-3B: 32%, LLaMA-3.2-1B: 38%, LLaMA-3.1-8B: 49%; Civelli et al., 2026). Our core contribution is mapping the Pareto frontier of layer depth × calibration quality × cross-lingual transfer quality across three architectures (Qwen3-235B-A22B, Llama 4 Scout, Gemma 4 31B Dense) and 50+ languages, under four transfer conditions: zero-shot, mean-shift alignment, linear projection alignment, and few-shot adaptation. We differentiate from the closest prior work — Xiao et al. (ACL 2025, arXiv 2504.13816), who demonstrated cross-lingual transfer of knowledge-boundary probes (binary: answerable/unanswerable) with training-free alignment — on five axes: (1) we probe correctness (did the model answer right), not knowledge boundaries (does the model recognize it can't answer) — correctness is a harder transfer target because it combines question difficulty, per-language model capability, and representation quality; (2) we optimize for calibration metrics (ECE, Brier score), not classification accuracy; (3) we characterize the full Pareto frontier across layer depth and transfer conditions; (4) we test 50+ languages on standard QA benchmarks vs. their 8 languages on specialized false-premise datasets; (5) we operate at 235B MoE scale vs. their 72B dense. We also incorporate their training-free alignment methods (mean shifting + linear projection) to test whether these techniques can rescue transfer at deeper, better-calibrated layers where zero-shot transfer fails — potentially resolving the depth-transferability tradeoff. Causal evidence from activation patching (Ravisankar et al., EACL 2026) and convergent geometric findings (Confidence Manifold; Ji et al.; Joshi et al.) provide strong theoretical grounding. If the calibration direction is sufficiently language-agnostic, this method can close the multilingual ECE gap without per-language supervision; the Pareto frontier analysis will quantify exactly how much calibration quality must be traded for cross-lingual transferability, whether this tradeoff is architecture-dependent, and whether alignment techniques can shift the frontier favorably.\",\n  \"project_name\": \"xling_calib_direction\",\n  \"source\": \"web_research\"\n}\nJSONEOF",
+  "description": "Output the revised research idea JSON"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58f498d8-afcc-4a5b-ad60-f803ffc670c3",
+  "isSidechain": false,
+  "requestId": "req_011CbCWZEqkMWq48zFPLb43y",
+  "type": "assistant",
+  "uuid": "8488e230-14ae-4e72-bdc0-78ec34ebd76f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V4pF9E3P29oJ8VxE8cv4w5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4452,
+      "cache_read_input_tokens": 33445,
+      "output_tokens": 5997,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4452,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5997,
+          "cache_read_input_tokens": 33445,
+          "cache_creation_input_tokens": 4452,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4452
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-19T19:53:57.384Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01VzFo9Xr7aPnkv3MRGQQ2yb`</summary>
+
+```text
+Contains brace with quote character (expansion obfuscation)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8488e230-14ae-4e72-bdc0-78ec34ebd76f",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "d93be482-8f5c-4086-a0c0-4fc9a687887d",
+  "toolUseResult": "Error: Contains brace with quote character (expansion obfuscation)",
+  "sourceToolAssistantUUID": "8488e230-14ae-4e72-bdc0-78ec34ebd76f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Cross-Lingual Calibration Transfer via Language-Agnostic Confidence Di…",
+  "leafUuid": "d93be482-8f5c-4086-a0c0-4fc9a687887d",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise cross-lingual calibration transfer with critical references",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-19T19:55:05.347Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01SjqcEbk4zSyUBSsevFVNkC`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/revised_idea.json",
+  "content": "{\n  \"change_type\": \"major\",\n  \"revision_notes\": \"Major revision addressing all 6 reviewer issues: (1) Added critical reference arXiv 2504.13816 (Knowledge Boundary, ACL 2025) with detailed differentiation — they probe binary knowledge-boundary recognition (answerable vs unanswerable), not correctness or calibration (ECE/Brier), test 8 languages on specialized datasets (not standard QA), and use models up to 72B; (2) Added supporting reference arXiv 2504.09378 (EACL 2026) as causal evidence; (3) Fixed MMLU-ProX to 29 languages; (4) Corrected layer depth to 24-49% range with per-model variance explicitly acknowledged; (5) Sharpened novelty via 5-point differentiation from knowledge boundary work; (6) Dropped AAAI 2027, made EACL 2027 primary. Additionally, incorporated training-free alignment methods (mean shifting + linear projection from 2504.13816) into the approach as a Pareto frontier shifting technique alongside few-shot adaptation, strengthening the experimental design.\",\n  \"title\": \"Cross-Lingual Calibration Transfer via Language-Agnostic Confidence Directions: Navigating the Layer-Depth Pareto Frontier\",\n  \"core_problem\": \"Non-English languages suffer from 5x worse calibration error (ECE) compared to English in multilingual LLMs. Existing fixes require per-language validation data (LACE) or expensive multilingual sampling (MKA). While recent work has shown that knowledge-boundary recognition (answerable vs. unanswerable) can transfer cross-lingually via linear probes at middle layers (Xiao et al., ACL 2025), calibration — the alignment between model confidence and actual correctness — is a fundamentally different and harder transfer target: it depends not just on what the model knows, but on how its capabilities, representation quality, and confidence interact per-language. Can we transfer English calibration quality to underserved languages through shared intermediate-layer correctness directions, and at what layer depth — given a tradeoff between calibration quality (peaking at 53-91% depth) and cross-lingual transferability (peaking at 24-49% depth depending on the model architecture)?\",\n  \"opportunity\": \"Ji et al. (EMNLP 2025) discovered that verbal uncertainty is governed by a single linear direction in representation space. Joshi et al. (EMNLP 2025) showed calibration evolves across layers with a low-dimensional calibration direction in the residual stream. Zhou et al. (arXiv 2510.03136) introduced LACE, demonstrating that late-intermediate layers encode better-calibrated multilingual signals but requiring per-language validation. Liu & Niehues (ACL 2025) showed that middle layers form the strongest language-agnostic shared space, and Ravisankar et al. (EACL 2026) provided causal evidence via activation patching that incorrect non-English predictions are fixed by substituting English middle-layer activations — establishing that English representations causally drive non-English correctness across 24 languages. Critically, Xiao et al. (ACL 2025, arXiv 2504.13816) demonstrated that knowledge-boundary perception — a model-dependent property — transfers cross-lingually via linear probes with training-free alignment (mean shifting + linear projection) at middle-to-upper layers, achieving near in-distribution accuracy (e.g., closing the 89% to 79% zero-shot gap for English to Khmer). However, they probe binary known/unknown classification on specialized datasets, not correctness on standard QA or calibration metrics. Civelli et al. (arXiv 2601.12731, Jan 2026) showed that cross-lingual difficulty probe transfer varies dramatically by architecture: optimal transfer depth ranges from 24% (Qwen3-8B) to 49% (LLaMA-3.1-8B), with 32% for LLaMA-3.2-3B and 38% for LLaMA-3.2-1B — establishing that the shallow-transferable vs. deep-accurate tradeoff is architecture-dependent and cannot be summarized by a single depth. The Confidence Manifold (arXiv 2602.08159, Feb 2026) showed correctness signals occupy just 3-8 dimensions and are linearly separable, with 25 labeled examples achieving 89% of full-data probe accuracy. Nobody has tested whether correctness/calibration probes — optimized for ECE and Brier score rather than classification accuracy — transfer cross-lingually, and nobody has mapped the Pareto frontier of layer depth x calibration quality x cross-lingual transferability across architectures. This frontier, combined with the architecture-dependent optimal depth, is the key to practical deployment.\",\n  \"landscape\": \"Zhou et al. (arXiv 2510.03136) introduced LACE, which adaptively ensembles late-intermediate layers (75-91% depth) per language but still requires per-language validation data, and confirmed the 5x ECE gap across 100+ languages and 6 model families (LLaMA-3: 23.1% vs 4.6% ECE for non-English vs English). MKA (Duwal et al., ICLR Workshop 2025) uses cross-lingual consensus for abstention but at 5x inference cost. Joshi et al. (EMNLP 2025) identified a low-dimensional calibration direction in the residual stream. Xiao et al. (ACL 2025, arXiv 2504.13816) — the closest prior work to our proposal — trained linear probes on knowledge-boundary perception (distinguishing answerable from unanswerable questions, including false-premise and non-existent entity queries) and transferred them cross-lingually across 8 languages in Qwen2.5-7B/14B/72B and LLaMA-3.1-8B. They showed that zero-shot transfer drops approximately 10 points (89% to 79% for English to Khmer) but training-free alignment via mean shifting and linear projection 'nearly closes the gap with in-distribution accuracy.' Critical differences from our work: (1) they probe knowledge boundaries (binary: model recognizes it cannot answer), not correctness (binary: model answered correctly) — knowledge boundaries concern meta-cognitive self-awareness while correctness combines difficulty, capability, and representation quality; (2) they measure probing accuracy, not calibration metrics (ECE, Brier score) — good boundary detection does not imply good calibration; (3) they test 8 languages on specialized false-premise/unanswerable datasets, not 50+ languages on standard QA benchmarks; (4) they use models up to 72B (dense), not 235B MoE; (5) they do not characterize the layer-depth Pareto frontier or the architecture-dependent optimal depth. Ravisankar et al. (EACL 2026, arXiv 2504.09378) introduced DALI (Discriminative Alignment Index) showing that incorrect non-English predictions correlate with low alignment with English at middle layers, and that activation patching of English representations causally fixes errors across 24 languages — providing the strongest causal evidence for our hypothesis that English-trained probes can inform non-English calibration. Civelli et al. (arXiv 2601.12731, Jan 2026) showed cross-lingual difficulty probe transfer at intermediate layers, but critically, the optimal transfer depth is architecture-dependent: 24% for Qwen3-8B, 32% for LLaMA-3.2-3B, 38% for LLaMA-3.2-1B, 49% for LLaMA-3.1-8B. Within-language probes achieve rho 0.80-0.85 while cross-lingual probes achieve rho 0.76-0.78 at optimal transfer layers, with deep probes (94% depth) suffering 0.05-0.19 rho degradation when transferred. They probed IRT-based human difficulty — an inherent property of questions — not model correctness. CORAL (Miao et al., arXiv 2602.06022, Feb 2026) demonstrates transferable correctness probes via regularized 4-layer MLP on residual activations with approximately 50% ECE improvement at layers 17-21 (53-66% depth), but evaluates only in English across tasks and shows degraded transfer on domain-shifted benchmarks. The Confidence Manifold (arXiv 2602.08159, Feb 2026) shows correctness signals occupy 3-8 dimensions and are linearly separable across 9 models and 5 architecture families, with few-shot (25 examples) achieving 89% of full-data accuracy — all English-only. Confidence Geometry Reveals Trace-Level Correctness (arXiv 2605.16824, May 2026) extends geometric correctness analysis to reasoning traces using output-level confidence trajectories — operating at a different level (output tokens, not internal representations) with no multilingual evaluation. Instruction-tuning studies (arXiv 2601.01362, Jan 2026) confirm that English-centric fine-tuning inflates confidence in low-resource languages without accuracy gains, worsening calibration. Cross-lingual steering vectors have been demonstrated for language identity and task performance (Mahmoud et al., arXiv 2505.12584; arXiv 2601.16390) but never for calibration. No work has attempted to transfer the correctness/calibration direction itself cross-lingually, characterized the Pareto frontier between calibration quality and cross-lingual transferability, or tested whether training-free alignment methods that work for knowledge boundaries also work for calibration.\",\n  \"inspired_by\": \"Gap: 5x non-English ECE gap (Zhou et al., LACE) + demonstrated cross-lingual transfer for model-dependent properties (knowledge boundaries at middle-upper layers via Xiao et al., ACL 2025; difficulty at shallow layers via Civelli et al.) that has never been extended to correctness/calibration. Causal evidence: activation patching proves English representations causally drive non-English correctness (Ravisankar et al., EACL 2026). Pattern: Ji et al.'s linear verbal uncertainty direction + Joshi et al.'s residual-stream calibration direction + Confidence Manifold's 3-8 dimensional correctness signal + architecture-dependent optimal transfer depth (24-49% across models, Civelli et al.). Untried combination: extending representation-space correctness probes from English-only cross-task transfer (CORAL) to cross-lingual calibration transfer using both zero-shot transfer and training-free alignment (mean shifting + linear projection from Xiao et al.), while characterizing the architecture-dependent Pareto frontier.\",\n  \"approach\": \"Phase 1 — Activation Extraction: Extract intermediate-layer activations at every 4th layer across the full depth of Qwen3-235B-A22B (94 layers, MoE), Llama 4 Scout (48 layers, MoE), and Gemma 4 31B Dense (46 layers, dense) on English QA tasks (MMLU, ARC-Challenge) with known correctness labels. Also extract activations for a parallel non-English subset (using GlobalMMLU's matched questions) in 50+ languages at the same layers, to enable alignment computation. Store activations for all layers to enable the full Pareto frontier analysis. Phase 2 — English Probe Training: At each extracted layer, fit both a logistic regression probe (linear) and a lightweight 2-layer MLP probe to identify the calibration direction — the hyperplane or surface best separating correct from incorrect answers in representation space. Compare probe complexity: linear probes may transfer better cross-lingually (by analogy to the shallow-transferable finding in Civelli et al.), while MLPs may capture richer correctness signals (as CORAL found). Phase 3 — Pareto Frontier Analysis (Core Contribution): Apply each layer's English-trained probe to non-English activations across 50+ languages under four transfer conditions: (a) zero-shot (direct application), (b) mean-shift alignment (compute delta-mu between English and target-language activation means, shift target activations; per Xiao et al., ACL 2025), (c) linear projection alignment (learn least-squares projection from small parallel set; per Xiao et al., ACL 2025), and (d) few-shot probe fine-tuning (25-100 target-language examples; motivated by Confidence Manifold's finding that 25 examples achieve 89% of full-data accuracy). For each layer x transfer condition, measure (i) calibration quality (ECE, Brier score) and (ii) cross-lingual transfer quality (AUROC degradation from English). Map the full Pareto frontier of layer depth x calibration quality x cross-lingual transferability for each transfer condition and each model. Critically, given that optimal cross-lingual transfer depth varies from 24% (Qwen3-8B) to 49% (LLaMA-3.1-8B) for difficulty probes, we test whether correctness probes show a similar architecture-dependent pattern, and whether alignment techniques flatten this variance by enabling effective transfer at deeper, better-calibrated layers. Phase 4 — Frontier Shifting Analysis: Quantify how each alignment/adaptation technique shifts the Pareto frontier. Key hypothesis: mean-shift and linear projection alignment (which require only unlabeled parallel activations, no correctness labels) may enable effective transfer at deeper layers where calibration is superior (75-91% depth) but zero-shot transfer fails — potentially resolving the depth-transferability tradeoff without requiring labeled target-language data. Compare cost-effectiveness: mean-shift (zero labeled examples, needs only activation means) vs. linear projection (zero labeled examples, needs small parallel activation set) vs. few-shot (25-100 labeled examples). Phase 5 — Evaluation: Evaluate ECE, Brier score, and AUROC on MMLU-ProX (29 languages, same domain as MMLU training — controls for domain shift), Belebele (122 languages, reading comprehension — tests cross-task + cross-lingual compound transfer), and GlobalMMLU (42 languages, culturally-aware QA). Compare against final-layer softmax, temperature scaling, LACE (oracle with per-language validation), per-language probes (oracle upper bound), and MKA. Include explicit cross-task transfer analysis: training probes on MMLU/ARC and evaluating on Belebele isolates the compound effect of domain shift + language shift, following CORAL's finding of degraded cross-domain transfer. Risk Acknowledgment: The core empirical bet is that the correctness direction is sufficiently language-agnostic at intermediate layers. The knowledge-boundary work (Xiao et al., ACL 2025) provides strong positive evidence — knowledge boundaries are model-dependent and do transfer with alignment — but correctness is arguably harder: it encodes not just whether the model could know the answer, but whether it actually produced the right one given its per-language capabilities and representation quality. If zero-shot transfer fails, the Pareto frontier analysis under alignment conditions will quantify exactly where and why, and whether alignment techniques can rescue transfer at calibration-optimal depths. The fallback is that alignment + few-shot adaptation significantly outperforms existing methods that require full per-language validation sets.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"350-500 A100-80GB hours (Qwen3-235B requires 6-8 A100s per run dominating compute; Llama 4 Scout requires 3-4 A100s at FP16; Gemma 4 31B Dense fits on 1 A100. Activation extraction across 3 models x 50+ languages x all layers dominates; alignment computation and probe training take minutes on cached activations. Slightly increased from prior estimate due to parallel non-English extraction needed for mean-shift/projection alignment)\",\n      \"timeline\": \"8-10 weeks (1-2 weeks infrastructure/data including parallel activation extraction, 3-4 weeks experiments across 3 models with 4 transfer conditions, 2 weeks Pareto frontier analysis and ablations, 2 weeks writing)\",\n      \"estimated_gpu_cost\": \"$800-1200 (at approximately $2/hr A100 spot pricing, accounting for multi-GPU coordination overhead on Qwen3-235B and Llama 4 Scout)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"350-500 A100-80GB hours\",\n      \"timeline\": \"7-9 weeks (Claude drafts experiment scripts, alignment/analysis code, Pareto frontier visualizations, and paper sections; human steers hypotheses, interprets results, and manages multi-GPU infrastructure)\",\n      \"claude_api_cost\": \"$75-150\",\n      \"estimated_gpu_cost\": \"$800-1200\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"350-500 A100-80GB hours\",\n      \"timeline\": \"5-7 weeks\",\n      \"claude_api_cost\": \"$200-350\",\n      \"estimated_gpu_cost\": \"$800-1200\",\n      \"speed_bottleneck\": \"Sequential GPU activation extraction across 3 model families and 50+ languages; Qwen3-235B requires 6-8 A100-80GB GPUs (470GB FP16) and dominates compute. Each model requires 10-25 GPU-hours for full multi-layer, multi-language extraction. Probe training, alignment computation, and Pareto analysis are CPU-bound and take minutes on cached activations.\"\n    }\n  },\n  \"target_venues\": [\n    \"EACL 2027 (ARR submission deadline: August 3, 2026 — primary target, 11 weeks from now; only viable ARR cycle for EACL 2027)\",\n    \"ICLR 2027 (estimated deadline: ~September 24, 2026, not yet announced — comfortable backup, ~18 weeks from now, based on ICLR 2026 deadline pattern)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations — Ji et al. (EMNLP 2025)\",\n    \"Calibration Across Layers: Understanding Calibration Evolution in LLMs — Joshi et al. (EMNLP 2025)\",\n    \"Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in LLMs — Zhou et al. (arXiv 2510.03136, 2025)\",\n    \"MKA: Leveraging Cross-Lingual Consensus for Model Abstention — Duwal et al. (ICLR Workshop 2025)\",\n    \"Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs — Liu & Niehues (ACL 2025)\",\n    \"Analyzing LLMs' Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations — Xiao et al. (ACL 2025, arXiv 2504.13816)\",\n    \"Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs — Ravisankar et al. (EACL 2026, arXiv 2504.09378)\",\n    \"A Shared Geometry of Difficulty in Multilingual Language Models — Civelli et al. (arXiv 2601.12731, Jan 2026)\",\n    \"Correctness-Optimized Residual Activation Lens (CORAL) — Miao et al. (arXiv 2602.06022, Feb 2026)\",\n    \"The Confidence Manifold: Geometric Structure of Correctness Representations in Language Models (arXiv 2602.08159, Feb 2026)\",\n    \"Investigating the Multilingual Calibration Effects of Language Model Instruction-Tuning (arXiv 2601.01362, Jan 2026)\",\n    \"Confidence Geometry Reveals Trace-Level Correctness in LLM Reasoning (arXiv 2605.16824, May 2026)\"\n  ],\n  \"description\": \"Non-English languages suffer from 5x worse calibration error (ECE) compared to English in multilingual LLMs, yet existing fixes require per-language validation data (LACE) or expensive multilingual sampling (MKA). We propose extracting a linear calibration direction from English-only intermediate-layer activations and transferring it to non-English languages — but crucially, we frame this around a previously uncharacterized and architecture-dependent tradeoff: calibration quality peaks at 53-91% model depth (Zhou et al., 2025; CORAL, 2026), while cross-lingual transferability peaks at 24-49% depth depending on model architecture (Qwen3: 24%, LLaMA-3.2-3B: 32%, LLaMA-3.2-1B: 38%, LLaMA-3.1-8B: 49%; Civelli et al., 2026). Our core contribution is mapping the Pareto frontier of layer depth x calibration quality x cross-lingual transfer quality across three architectures (Qwen3-235B-A22B, Llama 4 Scout, Gemma 4 31B Dense) and 50+ languages, under four transfer conditions: zero-shot, mean-shift alignment, linear projection alignment, and few-shot adaptation. We differentiate from the closest prior work — Xiao et al. (ACL 2025, arXiv 2504.13816), who demonstrated cross-lingual transfer of knowledge-boundary probes (binary: answerable/unanswerable) with training-free alignment — on five axes: (1) we probe correctness (did the model answer right), not knowledge boundaries (does the model recognize it cannot answer) — correctness is a harder transfer target because it combines question difficulty, per-language model capability, and representation quality; (2) we optimize for calibration metrics (ECE, Brier score), not classification accuracy; (3) we characterize the full Pareto frontier across layer depth and transfer conditions; (4) we test 50+ languages on standard QA benchmarks vs. their 8 languages on specialized false-premise datasets; (5) we operate at 235B MoE scale vs. their 72B dense. We also incorporate their training-free alignment methods (mean shifting + linear projection) to test whether these techniques can rescue transfer at deeper, better-calibrated layers where zero-shot transfer fails — potentially resolving the depth-transferability tradeoff. Causal evidence from activation patching (Ravisankar et al., EACL 2026) and convergent geometric findings (Confidence Manifold; Ji et al.; Joshi et al.) provide strong theoretical grounding. If the calibration direction is sufficiently language-agnostic, this method can close the multilingual ECE gap without per-language supervision; the Pareto frontier analysis will quantify exactly how much calibration quality must be traded for cross-lingual transferability, whether this tradeoff is architecture-dependent, and whether alignment techniques can shift the frontier favorably.\",\n  \"project_name\": \"xling_calib_direction\",\n  \"source\": \"web_research\"\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d93be482-8f5c-4086-a0c0-4fc9a687887d",
+  "isSidechain": false,
+  "requestId": "req_011CbCWjE9rBS9c9GVs8D2fJ",
+  "type": "assistant",
+  "uuid": "340d9c45-3750-4652-8efb-424b7dd847f6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C4A2J7WXzGxDFWWwczawEt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6028,
+      "cache_read_input_tokens": 37897,
+      "output_tokens": 5611,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6028,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5611,
+          "cache_read_input_tokens": 37897,
+          "cache_creation_input_tokens": 6028,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6028
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-19T19:55:05.355Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01SjqcEbk4zSyUBSsevFVNkC`</summary>
+
+```text
+Claude requested permissions to write to /home/ubuntu/revised_idea.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "340d9c45-3750-4652-8efb-424b7dd847f6",
+  "isSidechain": false,
+  "promptId": "16172884-e214-46f9-b540-7ccf9373ef8a",
+  "type": "user",
+  "uuid": "2230abc6-fe87-4113-9298-2169e30c2d2f",
+  "toolUseResult": "Error: Claude requested permissions to write to /home/ubuntu/revised_idea.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "340d9c45-3750-4652-8efb-424b7dd847f6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 83 · 2026-05-19T19:55:05.405Z_
+
+```json
+{
+  "parentUuid": "2230abc6-fe87-4113-9298-2169e30c2d2f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "fbe676c9-fd1f-4dde-897a-c38614ba9298",
+  "timestamp": "2026-05-19T19:55:05.405Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 84 · 2026-05-19T19:56:33.730Z_
+
+Here is the complete revised research idea JSON, addressing all 6 reviewer issues:
+
+```json
+{
+  "change_type": "major",
+  "revision_notes": "Major revision addressing all 6 reviewer issues: (1) Added critical reference arXiv 2504.13816 (Knowledge Boundary, ACL 2025) with detailed differentiation — they probe binary knowledge-boundary recognition (answerable vs unanswerable), not correctness or calibration (ECE/Brier), test 8 languages on specialized datasets (not standard QA), and use models up to 72B; (2) Added supporting reference arXiv 2504.09378 (EACL 2026) as causal evidence; (3) Fixed MMLU-ProX to 29 languages; (4) Corrected layer depth to 24-49% range with per-model variance explicitly acknowledged; (5) Sharpened novelty via 5-point differentiation from knowledge boundary work; (6) Dropped AAAI 2027, made EACL 2027 primary. Additionally, incorporated training-free alignment methods (mean shifting + linear projection from 2504.13816) into the approach as a Pareto frontier shifting technique alongside few-shot adaptation, strengthening the experimental design.",
+  "title": "Cross-Lingual Calibration Transfer via Language-Agnostic Confidence Directions: Navigating the Layer-Depth Pareto Frontier",
+  "core_problem": "Non-English languages suffer from 5x worse calibration error (ECE) compared to English in multilingual LLMs. Existing fixes require per-language validation data (LACE) or expensive multilingual sampling (MKA). While recent work has shown that knowledge-boundary recognition (answerable vs. unanswerable) can transfer cross-lingually via linear probes at middle layers (Xiao et al., ACL 2025), calibration — the alignment between model confidence and actual correctness — is a fundamentally different and harder transfer target: it depends not just on what the model knows, but on how its capabilities, representation quality, and confidence interact per-language. Can we transfer English calibration quality to underserved languages through shared intermediate-layer correctness directions, and at what layer depth — given a tradeoff between calibration quality (peaking at 53-91% depth) and cross-lingual transferability (peaking at 24-49% depth depending on the model architecture)?",
+  "opportunity": "Ji et al. (EMNLP 2025) discovered that verbal uncertainty is governed by a single linear direction in representation space. Joshi et al. (EMNLP 2025) showed calibration evolves across layers with a low-dimensional calibration direction in the residual stream. Zhou et al. (arXiv 2510.03136) introduced LACE, demonstrating that late-intermediate layers encode better-calibrated multilingual signals but requiring per-language validation. Liu & Niehues (ACL 2025) showed that middle layers form the strongest language-agnostic shared space, and Ravisankar et al. (EACL 2026) provided causal evidence via activation patching that incorrect non-English predictions are fixed by substituting English middle-layer activations — establishing that English representations causally drive non-English correctness across 24 languages. Critically, Xiao et al. (ACL 2025, arXiv 2504.13816) demonstrated that knowledge-boundary perception — a model-dependent property — transfers cross-lingually via linear probes with training-free alignment (mean shifting + linear projection) at middle-to-upper layers, achieving near in-distribution accuracy (e.g., closing the 89% to 79% zero-shot gap for English to Khmer). However, they probe binary known/unknown classification on specialized datasets, not correctness on standard QA or calibration metrics. Civelli et al. (arXiv 2601.12731, Jan 2026) showed that cross-lingual difficulty probe transfer varies dramatically by architecture: optimal transfer depth ranges from 24% (Qwen3-8B) to 49% (LLaMA-3.1-8B), with 32% for LLaMA-3.2-3B and 38% for LLaMA-3.2-1B — establishing that the shallow-transferable vs. deep-accurate tradeoff is architecture-dependent and cannot be summarized by a single depth. The Confidence Manifold (arXiv 2602.08159, Feb 2026) showed correctness signals occupy just 3-8 dimensions and are linearly separable, with 25 labeled examples achieving 89% of full-data probe accuracy. Nobody has tested whether correctness/calibration probes — optimized for ECE and Brier score rather than classification accuracy — transfer cross-lingually, and nobody has mapped the Pareto frontier of layer depth x calibration quality x cross-lingual transferability across architectures. This frontier, combined with the architecture-dependent optimal depth, is the key to practical deployment.",
+  "landscape": "Zhou et al. (arXiv 2510.03136) introduced LACE, which adaptively ensembles late-intermediate layers (75-91% depth) per language but still requires per-language validation data, and confirmed the 5x ECE gap across 100+ languages and 6 model families (LLaMA-3: 23.1% vs 4.6% ECE for non-English vs English). MKA (Duwal et al., ICLR Workshop 2025) uses cross-lingual consensus for abstention but at 5x inference cost. Joshi et al. (EMNLP 2025) identified a low-dimensional calibration direction in the residual stream. Xiao et al. (ACL 2025, arXiv 2504.13816) — the closest prior work to our proposal — trained linear probes on knowledge-boundary perception (distinguishing answerable from unanswerable questions, including false-premise and non-existent entity queries) and transferred them cross-lingually across 8 languages in Qwen2.5-7B/14B/72B and LLaMA-3.1-8B. They showed that zero-shot transfer drops approximately 10 points (89% to 79% for English to Khmer) but training-free alignment via mean shifting and linear projection 'nearly closes the gap with in-distribution accuracy.' Critical differences from our work: (1) they probe knowledge boundaries (binary: model recognizes it cannot answer), not correctness (binary: model answered correctly) — knowledge boundaries concern meta-cognitive self-awareness while correctness combines difficulty, capability, and representation quality; (2) they measure probing accuracy, not calibration metrics (ECE, Brier score) — good boundary detection does not imply good calibration; (3) they test 8 languages on specialized false-premise/unanswerable datasets, not 50+ languages on standard QA benchmarks; (4) they use models up to 72B (dense), not 235B MoE; (5) they do not characterize the layer-depth Pareto frontier or the architecture-dependent optimal depth. Ravisankar et al. (EACL 2026, arXiv 2504.09378) introduced DALI (Discriminative Alignment Index) showing that incorrect non-English predictions correlate with low alignment with English at middle layers, and that activation patching of English representations causally fixes errors across 24 languages — providing the strongest causal evidence for our hypothesis that English-trained probes can inform non-English calibration. Civelli et al. (arXiv 2601.12731, Jan 2026) showed cross-lingual difficulty probe transfer at intermediate layers, but critically, the optimal transfer depth is architecture-dependent: 24% for Qwen3-8B, 32% for LLaMA-3.2-3B, 38% for LLaMA-3.2-1B, 49% for LLaMA-3.1-8B. Within-language probes achieve rho 0.80-0.85 while cross-lingual probes achieve rho 0.76-0.78 at optimal transfer layers, with deep probes (94% depth) suffering 0.05-0.19 rho degradation when transferred. They probed IRT-based human difficulty — an inherent property of questions — not model correctness. CORAL (Miao et al., arXiv 2602.06022, Feb 2026) demonstrates transferable correctness probes via regularized 4-layer MLP on residual activations with approximately 50% ECE improvement at layers 17-21 (53-66% depth), but evaluates only in English across tasks and shows degraded transfer on domain-shifted benchmarks. The Confidence Manifold (arXiv 2602.08159, Feb 2026) shows correctness signals occupy 3-8 dimensions and are linearly separable across 9 models and 5 architecture families, with few-shot (25 examples) achieving 89% of full-data accuracy — all English-only. Confidence Geometry Reveals Trace-Level Correctness (arXiv 2605.16824, May 2026) extends geometric correctness analysis to reasoning traces using output-level confidence trajectories — operating at a different level (output tokens, not internal representations) with no multilingual evaluation. Instruction-tuning studies (arXiv 2601.01362, Jan 2026) confirm that English-centric fine-tuning inflates confidence in low-resource languages without accuracy gains, worsening calibration. Cross-lingual steering vectors have been demonstrated for language identity and task performance (Mahmoud et al., arXiv 2505.12584; arXiv 2601.16390) but never for calibration. No work has attempted to transfer the correctness/calibration direction itself cross-lingually, characterized the Pareto frontier between calibration quality and cross-lingual transferability, or tested whether training-free alignment methods that work for knowledge boundaries also work for calibration.",
+  "inspired_by": "Gap: 5x non-English ECE gap (Zhou et al., LACE) + demonstrated cross-lingual transfer for model-dependent properties (knowledge boundaries at middle-upper layers via Xiao et al., ACL 2025; difficulty at shallow layers via Civelli et al.) that has never been extended to correctness/calibration. Causal evidence: activation patching proves English representations causally drive non-English correctness (Ravisankar et al., EACL 2026). Pattern: Ji et al.'s linear verbal uncertainty direction + Joshi et al.'s residual-stream calibration direction + Confidence Manifold's 3-8 dimensional correctness signal + architecture-dependent optimal transfer depth (24-49% across models, Civelli et al.). Untried combination: extending representation-space correctness probes from English-only cross-task transfer (CORAL) to cross-lingual calibration transfer using both zero-shot transfer and training-free alignment (mean shifting + linear projection from Xiao et al.), while characterizing the architecture-dependent Pareto frontier.",
+  "approach": "Phase 1 — Activation Extraction: Extract intermediate-layer activations at every 4th layer across the full depth of Qwen3-235B-A22B (94 layers, MoE), Llama 4 Scout (48 layers, MoE), and Gemma 4 31B Dense (46 layers, dense) on English QA tasks (MMLU, ARC-Challenge) with known correctness labels. Also extract activations for a parallel non-English subset (using GlobalMMLU's matched questions) in 50+ languages at the same layers, to enable alignment computation. Store activations for all layers to enable the full Pareto frontier analysis. Phase 2 — English Probe Training: At each extracted layer, fit both a logistic regression probe (linear) and a lightweight 2-layer MLP probe to identify the calibration direction — the hyperplane or surface best separating correct from incorrect answers in representation space. Compare probe complexity: linear probes may transfer better cross-lingually (by analogy to the shallow-transferable finding in Civelli et al.), while MLPs may capture richer correctness signals (as CORAL found). Phase 3 — Pareto Frontier Analysis (Core Contribution): Apply each layer's English-trained probe to non-English activations across 50+ languages under four transfer conditions: (a) zero-shot (direct application), (b) mean-shift alignment (compute delta-mu between English and target-language activation means, shift target activations; per Xiao et al., ACL 2025), (c) linear projection alignment (learn least-squares projection from small parallel set; per Xiao et al., ACL 2025), and (d) few-shot probe fine-tuning (25-100 target-language examples; motivated by Confidence Manifold's finding that 25 examples achieve 89% of full-data accuracy). For each layer x transfer condition, measure (i) calibration quality (ECE, Brier score) and (ii) cross-lingual transfer quality (AUROC degradation from English). Map the full Pareto frontier of layer depth x calibration quality x cross-lingual transferability for each transfer condition and each model. Critically, given that optimal cross-lingual transfer depth varies from 24% (Qwen3-8B) to 49% (LLaMA-3.1-8B) for difficulty probes, we test whether correctness probes show a similar architecture-dependent pattern, and whether alignment techniques flatten this variance by enabling effective transfer at deeper, better-calibrated layers. Phase 4 — Frontier Shifting Analysis: Quantify how each alignment/adaptation technique shifts the Pareto frontier. Key hypothesis: mean-shift and linear projection alignment (which require only unlabeled parallel activations, no correctness labels) may enable effective transfer at deeper layers where calibration is superior (75-91% depth) but zero-shot transfer fails — potentially resolving the depth-transferability tradeoff without requiring labeled target-language data. Compare cost-effectiveness: mean-shift (zero labeled examples, needs only activation means) vs. linear projection (zero labeled examples, needs small parallel activation set) vs. few-shot (25-100 labeled examples). Phase 5 — Evaluation: Evaluate ECE, Brier score, and AUROC on MMLU-ProX (29 languages, same domain as MMLU training — controls for domain shift), Belebele (122 languages, reading comprehension — tests cross-task + cross-lingual compound transfer), and GlobalMMLU (42 languages, culturally-aware QA). Compare against final-layer softmax, temperature scaling, LACE (oracle with per-language validation), per-language probes (oracle upper bound), and MKA. Include explicit cross-task transfer analysis: training probes on MMLU/ARC and evaluating on Belebele isolates the compound effect of domain shift + language shift, following CORAL's finding of degraded cross-domain transfer. Risk Acknowledgment: The core empirical bet is that the correctness direction is sufficiently language-agnostic at intermediate layers. The knowledge-boundary work (Xiao et al., ACL 2025) provides strong positive evidence — knowledge boundaries are model-dependent and do transfer with alignment — but correctness is arguably harder: it encodes not just whether the model could know the answer, but whether it actually produced the right one given its per-language capabilities and representation quality. If zero-shot transfer fails, the Pareto frontier analysis under alignment conditions will quantify exactly where and why, and whether alignment techniques can rescue transfer at calibration-optimal depths. The fallback is that alignment + few-shot adaptation significantly outperforms existing methods that require full per-language validation sets.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "350-500 A100-80GB hours (Qwen3-235B requires 6-8 A100s per run dominating compute; Llama 4 Scout requires 3-4 A100s at FP16; Gemma 4 31B Dense fits on 1 A100. Activation extraction across 3 models x 50+ languages x all layers dominates; alignment computation and probe training take minutes on cached activations. Slightly increased from prior estimate due to parallel non-English extraction needed for mean-shift/projection alignment)",
+      "timeline": "8-10 weeks (1-2 weeks infrastructure/data including parallel activation extraction, 3-4 weeks experiments across 3 models with 4 transfer conditions, 2 weeks Pareto frontier analysis and ablations, 2 weeks writing)",
+      "estimated_gpu_cost": "$800-1200 (at approximately $2/hr A100 spot pricing, accounting for multi-GPU coordination overhead on Qwen3-235B and Llama 4 Scout)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "350-500 A100-80GB hours",
+      "timeline": "7-9 weeks (Claude drafts experiment scripts, alignment/analysis code, Pareto frontier visualizations, and paper sections; human steers hypotheses, interprets results, and manages multi-GPU infrastructure)",
+      "claude_api_cost": "$75-150",
+      "estimated_gpu_cost": "$800-1200"
+    },
+    "auto_research": {
+      "gpu_hours": "350-500 A100-80GB hours",
+      "timeline": "5-7 weeks",
+      "claude_api_cost": "$200-350",
+      "estimated_gpu_cost": "$800-1200",
+      "speed_bottleneck": "Sequential GPU activation extraction across 3 model families and 50+ languages; Qwen3-235B requires 6-8 A100-80GB GPUs (470GB FP16) and dominates compute. Each model requires 10-25 GPU-hours for full multi-layer, multi-language extraction. Probe training, alignment computation, and Pareto analysis are CPU-bound and take minutes on cached activations."
+    }
+  },
+  "target_venues": [
+    "EACL 2027 (ARR submission deadline: August 3, 2026 — primary target, 11 weeks from now; only viable ARR cycle for EACL 2027)",
+    "ICLR 2027 (estimated deadline: ~September 24, 2026, not yet announced — comfortable backup, ~18 weeks from now, based on ICLR 2026 deadline pattern)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations — Ji et al. (EMNLP 2025)",
+    "Calibration Across Layers: Understanding Calibration Evolution in LLMs — Joshi et al. (EMNLP 2025)",
+    "Beyond the Final Layer: Intermediate Representations for Better Multilingual Calibration in LLMs — Zhou et al. (arXiv 2510.03136, 2025)",
+    "MKA: Leveraging Cross-Lingual Consensus for Model Abstention — Duwal et al. (ICLR Workshop 2025)",
+    "Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs — Liu & Niehues (ACL 2025)",
+    "Analyzing LLMs' Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations — Xiao et al. (ACL 2025, arXiv 2504.13816)",
+    "Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs — Ravisankar et al. (EACL 2026, arXiv 2504.09378)",
+    "A Shared Geometry of Difficulty in Multilingual Language Models — Civelli et al. (arXiv 2601.12731, Jan 2026)",
+    "Correctness-Optimized Residual Activation Lens (CORAL) — Miao et al. (arXiv 2602.06022, Feb 2026)",
+    "The Confidence Manifold: Geometric Structure of Correctness Representations in Language Models (arXiv 2602.08159, Feb 2026)",
+    "Investigating the Multilingual Calibration Effects of Language Model Instruction-Tuning (arXiv 2601.01362, Jan 2026)",
+    "Confidence Geometry Reveals Trace-Level Correctness in LLM Reasoning (arXiv 2605.16824, May 2026)"
+  ],
+  "description": "Non-English languages suffer from 5x worse calibration error (ECE) compared to English in multilingual LLMs, yet existing fixes require per-language validation data (LACE) or expensive multilingual sampling (MKA). We propose extracting a linear calibration direction from English-only intermediate-layer activations and transferring it to non-English languages — but crucially, we frame this around a previously uncharacterized and architecture-dependent tradeoff: calibration quality peaks at 53-91% model depth (Zhou et al., 2025; CORAL, 2026), while cross-lingual transferability peaks at 24-49% depth depending on model architecture (Qwen3: 24%, LLaMA-3.2-3B: 32%, LLaMA-3.2-1B: 38%, LLaMA-3.1-8B: 49%; Civelli et al., 2026). Our core contribution is mapping the Pareto frontier of layer depth x calibration quality x cross-lingual transfer quality across three architectures (Qwen3-235B-A22B, Llama 4 Scout, Gemma 4 31B Dense) and 50+ languages, under four transfer conditions: zero-shot, mean-shift alignment, linear projection alignment, and few-shot adaptation. We differentiate from the closest prior work — Xiao et al. (ACL 2025, arXiv 2504.13816), who demonstrated cross-lingual transfer of knowledge-boundary probes (binary: answerable/unanswerable) with training-free alignment — on five axes: (1) we probe correctness (did the model answer right), not knowledge boundaries (does the model recognize it cannot answer) — correctness is a harder transfer target because it combines question difficulty, per-language model capability, and representation quality; (2) we optimize for calibration metrics (ECE, Brier score), not classification accuracy; (3) we characterize the full Pareto frontier across layer depth and transfer conditions; (4) we test 50+ languages on standard QA benchmarks vs. their 8 languages on specialized false-premise datasets; (5) we operate at 235B MoE scale vs. their 72B dense. We also incorporate their training-free alignment methods (mean shifting + linear projection) to test whether these techniques can rescue transfer at deeper, better-calibrated layers where zero-shot transfer fails — potentially resolving the depth-transferability tradeoff. Causal evidence from activation patching (Ravisankar et al., EACL 2026) and convergent geometric findings (Confidence Manifold; Ji et al.; Joshi et al.) provide strong theoretical grounding. If the calibration direction is sufficiently language-agnostic, this method can close the multilingual ECE gap without per-language supervision; the Pareto frontier analysis will quantify exactly how much calibration quality must be traded for cross-lingual transferability, whether this tradeoff is architecture-dependent, and whether alignment techniques can shift the frontier favorably.",
+  "project_name": "xling_calib_direction",
+  "source": "web_research"
+}
+```
+
+---
+
+## Summary of changes addressing each reviewer issue:
+
+### 1. ✅ CRITICAL MISSING REFERENCE (arXiv 2504.13816)
+Xiao et al. (ACL 2025) is now cited prominently in **core_problem**, **opportunity**, **landscape** (as "closest prior work"), and **key_references**. I read the full paper: they probe *knowledge-boundary perception* (answerable vs. unanswerable questions — false-premise queries, non-existent entities) in Qwen2.5-7B/14B/72B and LLaMA-3.1-8B across 8 languages using specialized datasets. Their training-free alignment (mean shifting + linear projection) closes the ~10-point zero-shot gap. A detailed 5-point differentiation is articulated throughout.
+
+### 2. ✅ MISSING SUPPORTING REFERENCE (arXiv 2504.09378)
+Ravisankar et al. (EACL 2026) is now cited as providing the **strongest causal evidence** for our hypothesis — their DALI metric and activation patching experiments across 24 languages prove that English representations causally drive non-English correctness at middle layers.
+
+### 3. ✅ FACTUAL ERROR: MMLU-ProX
+Corrected to **29 languages** (confirmed from arXiv 2503.10497: 11,829 questions per language, 29 languages total).
+
+### 4. ✅ CHERRY-PICKED LAYER DEPTH
+The "~49% depth" claim is replaced everywhere with the full architecture-dependent range from Civelli et al.'s Table 1:
+- **Qwen3-8B: 24%** (layer 8.59/36)
+- **LLaMA-3.2-3B: 32%** (layer 9.07/28)
+- **LLaMA-3.2-1B: 38%** (layer 6.11/16)
+- **LLaMA-3.1-8B: 49%** (layer 15.67/32)
+
+The Qwen3 figure (24%) is highlighted as particularly relevant given we test Qwen3-235B. This variance is reframed as making the Pareto frontier analysis *more important*, not less.
+
+### 5. ✅ NOVELTY CONCERN
+Five-axis differentiation from the knowledge boundary paper is now explicit:
+1. **Correctness vs. knowledge boundary** — correctness combines difficulty + per-language capability + representation quality; knowledge boundary is meta-cognitive self-awareness
+2. **Calibration metrics (ECE, Brier) vs. classification accuracy** — they never measure ECE
+3. **Pareto frontier analysis** — completely absent from their work
+4. **50+ languages on standard QA vs. 8 languages on specialized datasets**
+5. **235B MoE scale vs. 72B dense**
+
+Additionally, we now **incorporate** their methods (mean-shift, linear projection) as transfer conditions, turning a potential weakness into a strength.
+
+### 6. ✅ VENUE TIMELINE
+- **AAAI 2027 dropped** (abstract July 21 = 9 weeks, unreachable)
+- **EACL 2027 = primary** (ARR August 3, 11 weeks, tight but feasible)
+- **ICLR 2027 = comfortable backup** (~September 24, ~18 weeks, based on ICLR 2026 pattern)
+
+### Bonus: Methodological improvement
+The approach now tests **four transfer conditions** (zero-shot, mean-shift, linear projection, few-shot) instead of two, with a new Phase 4 analyzing how each technique shifts the Pareto frontier. This was inspired by the knowledge boundary paper's alignment methods and makes the experimental design substantially richer.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fbe676c9-fd1f-4dde-897a-c38614ba9298",
+  "isSidechain": false,
+  "requestId": "req_011CbCWpEMQ4tHMXf3biKktq",
+  "type": "assistant",
+  "uuid": "cf3b9221-2975-498c-b3ba-017f14f000f2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XvyDhR7u3ANZTC5Qxs6B66",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11782,
+      "cache_read_input_tokens": 37897,
+      "output_tokens": 6466,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6466,
+          "cache_read_input_tokens": 37897,
+          "cache_creation_input_tokens": 11782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Cross-Lingual Calibration Transfer via Language-Agnostic Confidence Di…",
+  "leafUuid": "cf3b9221-2975-498c-b3ba-017f14f000f2",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise cross-lingual calibration transfer with critical references",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Cross-Lingual Calibration Transfer via Language-Agnostic Confidence Di…",
+  "leafUuid": "cf3b9221-2975-498c-b3ba-017f14f000f2",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise cross-lingual calibration transfer with critical references",
+  "sessionId": "7ca890e1-b928-4745-8fd0-f052e6009850"
+}
+```
+
+---

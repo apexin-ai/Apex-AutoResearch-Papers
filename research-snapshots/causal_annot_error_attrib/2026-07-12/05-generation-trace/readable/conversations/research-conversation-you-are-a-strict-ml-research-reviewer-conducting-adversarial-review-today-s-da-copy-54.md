@@ -1,0 +1,9274 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-14 (UTC).** Your job: indep
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 127
+- **Recorded user turns:** 1
+- **Tool calls:** 40
+- **Original source:** `logs/chats/exported-trajectories/account-1/3582b579-62e3-48e1-99cb-64cc145b5d8e.jsonl`
+- **Structured JSON:** [`8ba2b1616cece6ac158b.json`](../../sessions/8b/8ba2b1616cece6ac158b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T06:17:36.268Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T06:17:36.268Z",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-14 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **按照以下方向，生成1-2个优质idea，保质不求量：Token-Level Representation Surgery for VLA Robustness\nTarget: CoRL 2026 (Austin, Nov 9–12, 2026). Abstract deadline 2026-05-26 (12 days from today 2026-05-14); paper deadline 2026-05-29 (15 days).\nDirection: Token pruning and augmentation in VLA visual representations — methods that surgically manipulate visual tokens in latent space to improve VLA generalization under realistic perturbations. The core theoretical insight is that VLA visual encoders produce highly redundant token sequences where task-irrelevant tokens (background clutter, static scene regions, occluded areas) dominate attention budgets and create brittle feature correlations. By pruning uninformative tokens and augmenting critical ones in representation space (not pixel space), we compress the effective visual input to a task-relevant manifold that is inherently more robust to distribution shift. Theoretical grounding includes: (1) Information Bottleneck — pruning enforces a tighter bottleneck that retains only task-sufficient statistics, provably improving generalization bounds; (2) Attention Entropy Reduction — concentrating attention mass on fewer, more informative tokens reduces sensitivity to perturbations in pruned regions; (3) Manifold Regularization — augmenting retained tokens along the tangent space of the learned representation manifold provides robustness without leaving the data support. In-scope: adaptive token pruning based on action-relevance scoring, latent-space token augmentation via interpolation/extrapolation on task-critical tokens, attention-guided token selection with theoretical guarantees on information retention, combined prune-and-augment pipelines that maintain action prediction quality while improving robustness to visual distractors, lighting changes, viewpoint shifts, and occlusion.\nRecent landscape (do not duplicate): Helix-style self-correction, CacheVLA,LightVLA,TraceVLA, RoboPro, retry/reflection wrappers around VLAs, FastVLA token merging (efficiency-only, no robustness analysis), TokenLearner fixed-count compression. Robustness as benchmark-only is saturated — must propose a method with theoretical motivation.\nContribution type: METHOD ONLY. New training algorithm combining action-conditioned token pruning with latent manifold augmentation: (1) a differentiable token relevance scorer trained with auxiliary action-prediction loss to identify which visual tokens carry task-critical information, (2) a prune-then-augment pipeline that removes low-relevance tokens and performs controlled perturbation of high-relevance tokens in latent space, (3) theoretical analysis showing the pruning step tightens the information bottleneck bound while augmentation smooths the action-prediction landscape, yielding provable robustness margins.\nEVAL PROTOCOL — IMPORTANT:\nTRAIN on standard LIBERO suites (Object/Spatial/Goal/Long/90).\nEVALUATE on existing LIBERO-PLUS / LIBERO-PRO style perturbation benchmarks (and similar community-released robustness benchmark series). DO NOT spend time constructing your own robustness benchmark — use existing perturbation suites and route the budget into the method.\nReport robustness gap (Δ between nominal LIBERO success and perturbed-suite success) AND nominal preservation (must not regress on base LIBERO).\nAdditionally report token reduction ratio vs. robustness improvement curve, and ablate pruning-only vs. augmentation-only vs. combined.\nExperiments can be extended to other benchmark series (e.g., CALVIN with perturbation variants) to verify cross-benchmark robustness.\nSIM-ONLY MITIGATION: Robustness eval in sim is well-accepted at CoRL — established LIBERO-PLUS / LIBERO-PRO style suites are a recognized sim-only pattern.\nHARD CONSTRAINTS:\nCompute: ≤200 H100-hours total. Fine-tune from open VLA checkpoints (OpenVLA, SmolVLA, OpenPi, π0) — no pretraining. Token pruning/augmentation adds negligible overhead. Show the math.\nTime: ≤20 days. Build on OpenVLA, OpenPi and other proper codebases, LeRobot, HF Transformers.\nEval datasets: LIBERO base (training/nominal eval) + LIBERO-PLUS / LIBERO-PRO and similar existing perturbation suites (perturbed eval). No custom benchmark construction.\nLook for: action-conditioned token relevance scoring that adapts per-timestep, latent-space augmentation that exploits the geometry of VLA's representation manifold, information-theoretic pruning criteria with provable bounds, attention entropy as a proxy for robustness, connections between token sparsity and flat minima in action space. Avoid: vanilla pixel-space data augmentation without latent-space method, static/fixed pruning ratios without adaptivity, pure efficiency-motivated token reduction rebranded as robustness, just-add-noise training.\nTag: direction=robust_vla, contribution_type=method, sub_direction=token_surgery, target_venues=[\"CoRL 2026\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-14?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 3/10)\n{\n  \"title\": \"Entropy-Stabilized Attention for Compression-Robust Vision-Language-Action Models\",\n  \"core_problem\": \"Visual token compression is essential for deploying VLAs in real-time robotic systems, yet 'Less Is More Until It Breaks' (2601.12042) and CAGE (ICML 2026) demonstrate that compression introduces adversarial vulnerability through token importance ranking instability — small input perturbations cause the compression mechanism to discard safety-critical tokens. This compression-robustness gap is unaddressed: existing VLA robustness methods (RobustVLA, OBEYED-VLA, ProGAL-VLA) ignore compression, while existing VLA compression methods (VLA-ADP, AVA-VLA, LightVLA, GridS, VLA-Cache, Compressor-VLA) ignore adversarial robustness. No work provides formal guarantees on when compression is safe under perturbation.\",\n  \"opportunity\": \"The root cause of compression fragility identified by 'Less Is More' is ranking instability: high attention entropy means attention weights are flat, so tiny perturbations cause large ranking permutations, making compression select wrong tokens. This reveals a precise intervention point — attention entropy itself. By regularizing attention distributions during training to have low entropy (concentrated, peaked), we increase the gaps between token importance scores, making rankings provably stable under bounded perturbation. This is a model-level property, not a compression-method property, meaning entropy-stabilized models are robust under ANY attention-based compression (FastV, VLA-IAP, VLA-Cache, etc.). The theoretical contribution is a formal bound: attention entropy upper-bounds the expected Kendall-tau distance between clean and perturbed importance rankings, establishing that lower entropy means certifiably safer compression. This entropy-to-ranking-stability bound is novel — it connects two independently studied phenomena (attention entropy and compression vulnerability) and provides the first principled defense against compression-induced adversarial fragility in VLAs. RobustVLA provides general Jacobian regularization but does not address compression; ProGAL-VLA uses entropy for ambiguity detection but does not regularize it for compression safety; σReparam prevents entropy collapse for training stability but does not connect entropy to adversarial robustness. The 'Token Reduction Should Go Beyond Efficiency' survey (arXiv 2505.18227) articulates the thesis that token reduction should target robustness but provides no mechanism — our entropy regularization is that mechanism.\",\n  \"landscape\": \"The VLA token compression landscape is highly active: VLA-ADP (arXiv 2509.22093) does action-trajectory-conditioned dynamic pruning; AVA-VLA (arXiv 2511.18960) performs recurrent-state visual reweighting with incidental robustness gains; LightVLA (ICRA 2026) introduces differentiable token pruning via Gumbel softmax; 'See What Matters' GridS (ICML 2026) performs differentiable grid sampling for continuous token resampling; VLA-Cache (NeurIPS 2025) does temporal caching and observes that 'reduced interference from redundant visual tokens enhanced decision robustness'; Compressor-VLA (Nov 2025) does instruction-guided hybrid compression; SpecPrune-VLA (Sep 2025) and VLA-IAP (2026) provide additional pruning approaches. All target efficiency — none target compression robustness under adversarial perturbation. On the attack/vulnerability side, 'Less Is More Until It Breaks' (arXiv 2601.12042, Jan 2026) demonstrates that importance-based compression degrades adversarial robustness via ranking instability across FastV, PDrop, and SparseVLM; CAGE (ICML 2026, arXiv 2601.21531) shows optimization-inference mismatch under compression creates exploitable gaps; 'Visual Token Compression Enhances Model Robustness' (OpenReview 2026) provides a partial counterpoint showing compression helps against jailbreaks by removing misaligned tokens — but this addresses safety alignment, not adversarial input perturbation. On the VLA robustness side, RobustVLA (arXiv 2511.01331) applies Jacobian and smoothness regularization via RL post-training for general robustness; ProGAL-VLA (arXiv 2604.09824, Apr 2026) uses attention entropy as an ambiguity signal for selective prediction; LIBERO-Plus (CVPR 2026) and LIBERO-X (arXiv 2602.06556) establish robustness benchmarks. EntropyPrune (Feb 2026) uses matrix entropy to guide pruning for efficiency. 'Stabilizing Transformer Training by Preventing Attention Entropy Collapse' (ICML 2023) uses entropy for training stability via σReparam. 'Understanding Sensitivity of Differential Attention' (ICLR 2026) establishes that attention design controls adversarial sensitivity via gradient norms and Lipschitz constants. The gap: no work connects attention entropy regularization during training to provable compression robustness under adversarial perturbation — this is the intervention point that the 'Less Is More' vulnerability mechanism directly prescribes.\",\n  \"approach\": \"We propose Entropy-Stabilized Attention (ESA), a training-time regularization that makes VLA models inherently robust to visual token compression under adversarial perturbation. Rather than designing a new compression method (the crowded approach), ESA modifies the model itself so that existing compression methods become safe. During LoRA fine-tuning of SmolVLA on LIBERO, we add an attention entropy penalty that encourages concentrated attention distributions across visual tokens in each transformer layer. The regularization takes the form L_total = L_action + λ · mean_l(H(α_l)), where H(α_l) is the Shannon entropy of attention weights over visual tokens at layer l, and λ is a weighting coefficient. This produces attention distributions with large gaps between important and unimportant tokens, directly addressing the ranking instability mechanism identified by 'Less Is More.' We derive a formal bound (Theorem 1) showing that for attention distributions with entropy H, the expected Kendall-tau distance between clean and ε-perturbed token importance rankings is O(n² · exp(H) · ε / Δ_min), where n is token count, ε is perturbation magnitude, and Δ_min is the minimum gap between adjacent sorted attention weights. Since Δ_min scales inversely with exp(H) for peaked distributions, this simplifies to show that ranking stability improves exponentially with entropy reduction. We further connect this to action-head sensitivity (Corollary 1): stable rankings under compression → consistent token selection → bounded action output deviation, using the attention sensitivity norm framework from 'Understanding Sensitivity of Differential Attention' (ICLR 2026). The bound provides the first certified condition under which visual token compression is adversarially safe. Experiments evaluate on SmolVLA (450M) with LoRA fine-tuning across LIBERO and LIBERO-Plus under all seven perturbation dimensions (layout, viewpoint, robot state, language, lighting, background, noise). We apply three existing compression methods (FastV-style single-layer pruning, VLA-IAP interaction-alignment pruning, VLA-Cache temporal caching) to both standard and entropy-regularized models, measuring: (1) clean performance with/without compression, (2) robustness under compression + perturbation, (3) ranking stability metrics (Kendall-tau, top-k preservation rate). Baselines include vanilla SmolVLA, SmolVLA+RobustVLA-style Jacobian regularization, and SmolVLA+each compression method. The hypothesis is that entropy-regularized models maintain performance under compression+perturbation while standard models degrade as predicted by 'Less Is More.'\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~120h H100 (SmolVLA LoRA fine-tuning: 8 configurations × ~3h each = 24h training; LIBERO-Plus evaluation across 7 perturbation dims × 3 compression methods × 4 model variants = ~70h evaluation; ablation studies ~26h)\",\n      \"gpu_utilization\": \"Moderate (~50-60%): GPU idle during entropy regularization debugging, bound proof iteration, and result analysis between runs\",\n      \"timeline\": \"3-4 months (theory derivation 4-6 weeks + implementation 2-3 weeks + experiments 3-4 weeks + writing 2-3 weeks)\",\n      \"team\": \"1-2 researchers (1 lead on theory/method, 1 optional for experiments)\",\n      \"estimated_gpu_cost\": \"$360 at ~$3/hr (H100 cloud rental)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~150h H100 (agent runs 10-12 configurations, human approves entropy regularization strength and validates bound proof steps)\",\n      \"gpu_utilization\": \"Improved (~60-70%): agent chains training and evaluation runs, blocks on theory validation and regularization schedule design\",\n      \"timeline\": \"5-8 weeks\",\n      \"team\": \"1 researcher, ~20min/day for design approvals and bound proof review\",\n      \"claude_api_cost\": \"$80-150 (~800-1500 turns for implementation, experiment orchestration, result analysis)\",\n      \"estimated_gpu_cost\": \"$450 at ~$3/hr\",\n      \"risk_note\": \"The ranking stability bound proof is more tractable than the original Jacobian bound (it builds on known perturbation theory for argsort) but still requires human verification of proof steps\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~190h H100 (agent explores 15-20 configurations: multiple λ values, layer-specific vs. global entropy penalties, different compression methods, full LIBERO-Plus matrix)\",\n      \"gpu_utilization\": \"Near-zero idle: agent chains experiments continuously, evaluation runs in parallel with next training\",\n      \"timeline\": \"10-14 days with 2-4 H100 GPUs (SmolVLA trains on single GPU, so multiple configs run in parallel)\",\n      \"team\": \"0 (initial setup only)\",\n      \"claude_api_cost\": \"$200-350 (~2000-3500 turns for full pipeline)\",\n      \"estimated_gpu_cost\": \"$570 at ~$3/hr\",\n      \"speed_bottleneck\": \"GPU count: each SmolVLA LoRA run needs 1 H100 for ~3h; with 4 GPUs, 4 experiments run in parallel and full sweep completes in ~3 days\",\n      \"risk_note\": \"Formal bound derivation requires mathematical reasoning that may produce incorrect proofs needing human verification; empirical pipeline is fully automatable\"\n    }\n  },\n  \"target_venues\": [\n    \"CoRL 2026 (abstract deadline May 26, paper deadline May 29, 2026 — tight but feasible for focused SmolVLA-only experiments with pre-derived theory; ideal topical fit for VLA robustness in deployment)\",\n    \"AAAI 2027 (deadline expected ~August 2026 — comfortable timeline for complete experiments + theory polish; supports theoretical + empirical contributions)\",\n    \"ICLR 2027 (deadline expected ~October 2026 — full scope including OpenVLA extension if desired; top-tier venue for the entropy-robustness theory)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models (arXiv 2601.12042, Jan 2026)\",\n    \"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression [CAGE] (ICML 2026, arXiv 2601.21531)\",\n    \"VLA-ADP: Action-aware Dynamic Pruning for Efficient Vision-Language-Action Manipulation (arXiv 2509.22093)\",\n    \"AVA-VLA: Improving Vision-Language-Action Models with Active Visual Attention (arXiv 2511.18960)\",\n    \"VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching (NeurIPS 2025)\",\n    \"LightVLA: Towards Efficient Vision-Language-Action Models via Differentiable Token Pruning (ICRA 2026)\",\n    \"See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model [GridS] (ICML 2026)\",\n    \"Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation (arXiv 2511.18950)\",\n    \"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning (arXiv 2509.05614)\",\n    \"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models (arXiv 2026)\",\n    \"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models (arXiv 2511.01331)\",\n    \"ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models (arXiv 2604.09824, Apr 2026)\",\n    \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (CVPR 2026)\",\n    \"LIBERO-X: Robustness Litmus for Vision-Language-Action Models (arXiv 2602.06556)\",\n    \"Token Reduction Should Go Beyond Efficiency in Generative Models (arXiv 2505.18227)\",\n    \"EntropyPrune: Matrix Entropy Guided Visual Token Pruning for Multimodal Large Language Models (arXiv 2026)\",\n    \"Understanding Sensitivity of Differential Attention through the Lens of Adversarial Robustness (ICLR 2026)\",\n    \"A Generalized Information Bottleneck Theory of Deep Learning (arXiv 2025)\",\n    \"Stabilizing Transformer Training by Preventing Attention Entropy Collapse (ICML 2023)\",\n    \"OpenVLA: An Open-Source Vision-Language-Action Model (CoRL 2024)\",\n    \"SmolVLA: Efficient Vision-Language-Action Model (HuggingFace/LeRobot 2025)\",\n    \"ATP-LLaVA: Adaptive Token Pruning for Large Vision Language Models (CVPR 2025)\",\n    \"AgilePruner: An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning (ICLR 2026)\",\n    \"Visual Token Compression Enhances Model Robustness (OpenReview 2026)\"\n  ],\n  \"description\": \"We propose Entropy-Stabilized Attention (ESA), a training-time regularization that makes VLA models inherently robust to visual token compression under adversarial perturbation — addressing the compression-robustness gap where existing VLA compression methods (VLA-ADP, AVA-VLA, LightVLA, GridS, VLA-Cache) target only efficiency while existing VLA robustness methods (RobustVLA, ProGAL-VLA) ignore compression. ESA is motivated by the key insight from 'Less Is More Until It Breaks': compression fragility stems from token importance ranking instability, which is directly caused by high attention entropy (flat distributions where small perturbations flip rankings). Rather than designing yet another pruning criterion in the crowded VLA compression landscape, ESA regularizes attention entropy during LoRA fine-tuning, producing concentrated attention distributions with stable importance rankings that make ANY downstream compression method adversarially safe. We derive a formal bound showing that ranking stability under ε-bounded perturbation improves exponentially with attention entropy reduction, providing the first certified condition for safe visual token compression. We further connect ranking stability to action-head sensitivity via the attention sensitivity norm framework. Evaluated on SmolVLA (450M) across LIBERO and LIBERO-Plus benchmarks under seven perturbation dimensions with three representative compression methods (FastV-style, VLA-IAP, VLA-Cache), ESA targets the unexploited intersection of training-time entropy control and compression-time adversarial safety — providing a model-level defense that is orthogonal to and composable with existing compression and robustness approaches.\",\n  \"project_name\": \"attn_entropy_vla_robust\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"COMPUTE BUDGET VIOLATION: Idea estimates ~400 A100-hours (manual) but user's hard constraint is ≤200 H100-hours total. OpenVLA-OFT fine-tuning alone takes 192-384 GPU-hours per run on 8 GPUs. 10 runs is infeasible within budget.\", \"CRITICAL MISSING RELATED WORK — VLA-ADP (arXiv 2509.22093): Action-aware Dynamic Pruning already does action-conditioned adaptive pruning that varies across coarse vs. fine-grained manipulation phases, directly overlapping with AES's per-timestep adaptivity claim.\", \"CRITICAL MISSING RELATED WORK — AVA-VLA (arXiv 2511.18960): Active Visual Attention already dynamically reweights visual tokens and demonstrates robustness under Light and Layout perturbations on LIBERO/CALVIN, directly overlapping with AES's robustness-via-attention-focus mechanism.\", \"CRITICAL MISSING RELATED WORK — 'See What Matters' GridS (ICML 2026): Differentiable grid sampling for generalizable VLA, already accepted at ICML 2026, does task-aware token resampling for generalization — closely related to AES's goal.\", \"COUNTER-EVIDENCE: 'Less Is More — Until It Breaks' (arXiv 2601.12042, Jan 2026) empirically demonstrates that visual token compression DEGRADES adversarial robustness of LVLMs, with vulnerabilities emerging only in compressed settings. This directly challenges AES's core premise that pruning improves robustness. The idea must address this evidence.\", \"MISSING RELATED WORK — VLA-Cache (NeurIPS 2025) already observes and documents that 'reduced interference from redundant visual tokens enhanced decision robustness' — the exact phenomenon AES claims to exploit, reducing its claimed novelty.\", \"MISSING RELATED WORK — Compressor-VLA (Nov 2025), BFA++ (Feb 2026), LightVLA (ICRA 2026), SpecPrune-VLA (Sep 2025), CRT (Feb 2026), Mask World Model (Apr 2026), LIBERO-X (Feb 2026) — the landscape is far more crowded than the generator's survey suggests.\", \"MISSING RELATED WORK — 'Token Reduction Should Go Beyond Efficiency' (May 2025, revised Jan 2026) survey already articulates the exact thesis that token reduction should target robustness, not just efficiency — reducing the conceptual novelty of AES's framing.\", \"THEORETICAL RISK: The formal bound linking attention entropy to Jacobian norm has no direct precedent. Deriving it rigorously within 15 days while also implementing and running experiments is extremely ambitious. The risk_note in auto_research correctly flags this but underestimates severity.\", \"TIMELINE: 15 days to CoRL paper deadline for theory derivation + implementation + full LIBERO/LIBERO-Plus evaluation across 7 perturbation dimensions + SmolVLA experiments + ablation studies is unrealistic even with agent assistance.\"]\nFeedback: The idea's strongest novelty asset — the formal entropy→Jacobian sensitivity bound — is genuinely novel but also its highest execution risk. To make this viable for CoRL 2026:\n\n1. **Address compute budget**: Switch entirely to LoRA fine-tuning (10-15h per run on single A100) and focus on SmolVLA (450M, trains on single GPU). Drop OpenVLA-OFT full fine-tuning to bring total under 200 H100-hours. Run 3-4 configurations max, not 10.\n\n2. **Differentiate from VLA-ADP and AVA-VLA**: These papers already do action-conditioned adaptive pruning (VLA-ADP) and dynamic token reweighting for robustness (AVA-VLA). Your differentiator must be the *entropy criterion specifically* and the *formal bound*, not just 'adaptive pruning for robustness.' Make the theoretical contribution the headline, not the empirical pipeline.\n\n3. **Address 'Less Is More Until It Breaks' directly**: This paper shows compression hurts adversarial robustness. You must argue (with evidence) why entropy-guided selective pruning differs from uniform compression — i.e., that intelligent pruning removes vulnerability surfaces while naive compression discards safety-critical tokens.\n\n4. **Drastically expand related work**: You're missing VLA-ADP, AVA-VLA, VLA-Cache's robustness observation, 'See What Matters' (ICML 2026), Compressor-VLA, BFA++, LightVLA, SpecPrune-VLA, CRT, Mask World Model, LIBERO-X, 'Token Reduction Beyond Efficiency' survey, and 'Few Tokens Matter' EGA. The generator's landscape analysis severely underestimates the competition.\n\n5. **Simplify scope**: Drop the dual-entropy framing and manifold augmentation if time is tight — the entropy-guided pruning-for-robustness with theoretical bounds alone is a sufficient contribution if the theory is sound. Adding augmentation dilutes focus and increases implementation burden.\n\n6. **Consider SmolVLA-only experiments**: SmolVLA (450M) trains fast enough for rapid iteration within 15 days and is well-supported in LeRobot. Add OpenVLA results only if time permits.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"CRITICAL THEORETICAL CONTRADICTION: ESA proposes to LOWER attention entropy for ranking stability, but σReparam (ICML 2023) proves that low attention entropy causes training instability and entropy collapse (degenerate rank-1 attention outputs). 'Variance Sensitivity Induces Attention Entropy Collapse' (EMNLP 2025) further confirms this. The idea does not address what happens when entropy regularization pushes entropy below the stability threshold, nor how to balance compression robustness (wants low entropy) against training stability (needs moderate entropy).\", \"CRITICAL EVIDENCE CONTRADICTION: arXiv 2502.20604 (DATE 2025) empirically demonstrates that HIGH softmax temperature (= HIGH attention entropy) improves adversarial robustness against PGD attacks, corruptions, and natural perturbations. ESA's core claim that LOW entropy improves robustness contradicts this evidence. The idea must reconcile these opposing findings — the distinction between 'compression robustness' (ranking stability) and 'general adversarial robustness' (perturbation resistance) needs explicit theoretical treatment to explain why the optimal entropy direction differs.\", \"NOVELTY OVERLAP — Rényi Attention Entropy for Patch Pruning (arXiv 2604.03803, April 2026): This concurrent work directly uses attention entropy (extended to Rényi entropy) as a pruning criterion, with the finding that 'lower entropy corresponds to foreground regions' and should be preserved. While this paper focuses on efficiency rather than adversarial robustness, it establishes the same entropy-based importance ranking that ESA uses, reducing ESA's novelty.\", \"NOVELTY OVERLAP — AVA-VLA (arXiv 2511.18960): Already demonstrates that dynamic attention reweighting (concentrating attention on task-relevant regions) achieves robustness under Light and Layout perturbations on LIBERO-Plus, AND maintains performance with 50-70% token pruning. This is essentially what ESA claims to achieve through entropy regularization — AVA-VLA does it through a recurrent state mechanism instead.\", \"MISSING COMPETITOR — Test-Time Perturbation Learning (arXiv 2604.18107, April 2026): Proposes a test-time adaptation framework for VLA robustness that uses uncertainty-based augmentation and action voting, achieving robustness without modifying the base model. This provides a simpler alternative to ESA's training-time approach.\", \"MISSING COMPETITOR — CRT (arXiv 2602.01158, Feb 2026): Corruption Restoration Transformer recovers VLA performance to within 1-3% of clean baseline under heavy corruptions, without any model fine-tuning. This plug-and-play module may make training-time entropy regularization unnecessary for practical robustness.\", \"MISSING COMPETITOR — LearnPruner (arXiv 2604.23950, April 2026): Uses a learnable pruning module that directly predicts token importance scores, replacing attention-based importance scoring. If importance scoring is learned rather than derived from attention, entropy regularization of attention may be orthogonal or redundant.\", \"THEORETICAL RISK: The proposed bound (Kendall-tau ~ n² · exp(H) · ε / Δ_min) requires rigorous derivation. The claim that Δ_min 'scales inversely with exp(H) for peaked distributions' is an assumption, not a theorem — the relationship between entropy and minimum gap in sorted attention weights depends on the specific distribution shape, not just entropy. Deriving this rigorously within 15 days alongside experiments is high-risk.\", \"'Less Is More' evaluates defenses and finds they provide 'only limited protection' — the paper does not specifically evaluate entropy regularization, but the general pessimism about defenses against compression-aware attacks should be addressed. The idea should explain why entropy regularization would succeed where other defenses failed.\"]\nFeedback: The revised idea has improved significantly from round 1 — switching to SmolVLA, narrowing to compression robustness, and covering more related work. The core insight (entropy → ranking stability → compression safety) is logically coherent and addresses a real gap. But there are critical theoretical tensions that must be resolved:\n\n1. **Resolve the entropy direction paradox**: The single most important revision. σReparam proves low entropy → training instability. arXiv 2502.20604 proves high entropy → adversarial robustness. Yet ESA proposes low entropy for compression robustness. You MUST explicitly theorize why the optimal entropy direction for compression robustness differs from both training stability and general adversarial robustness. The likely resolution: there's a sweet spot — entropy should be low enough for stable rankings but not so low as to cause collapse. Define this 'goldilocks zone' formally (e.g., H ∈ [H_min, H_max] where H_min prevents collapse per σReparam and H_max ensures ranking stability per your bound). This would actually strengthen the paper by providing a more nuanced contribution.\n\n2. **Differentiate more sharply from AVA-VLA**: AVA-VLA already achieves robustness + pruning compatibility through dynamic attention. Your differentiator is the formal bound and the model-level property (works with ANY compression method). Lead with this — show that AVA-VLA's robustness is tied to its specific recurrent mechanism, while ESA provides compression-agnostic certified safety.\n\n3. **Address the Rényi entropy concurrent work**: Acknowledge arXiv 2604.03803 and position ESA as complementary — they use entropy for pruning decisions (inference-time), ESA regularizes entropy during training to make ANY entropy-based pruning more robust.\n\n4. **Simplify the theoretical claim**: Rather than claiming the full Kendall-tau bound, consider a weaker but more provable statement: under ε-bounded perturbation, the probability that the top-k token set changes is bounded by a function of entropy and ε. This is easier to prove and sufficient for the practical claim.\n\n5. **Address CRT as an alternative**: CRT achieves robustness without modifying the model. Argue that ESA provides robustness *without* an additional inference-time module — it's a training-time investment that reduces deployment complexity.\n\n6. **Consider the entropy regularization schedule**: Don't apply entropy penalty uniformly — use a schedule that reduces entropy gradually while monitoring training stability metrics. This addresses the σReparam concern practically.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T06:17:36.272Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T06:17:36.272Z",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+## Round 1
+
+125 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T06:17:36.296Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-14 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **按照以下方向，生成1-2个优质idea，保质不求量：Token-Level Representation Surgery for VLA Robustness
+Target: CoRL 2026 (Austin, Nov 9–12, 2026). Abstract deadline 2026-05-26 (12 days from today 2026-05-14); paper deadline 2026-05-29 (15 days).
+Direction: Token pruning and augmentation in VLA visual representations — methods that surgically manipulate visual tokens in latent space to improve VLA generalization under realistic perturbations. The core theoretical insight is that VLA visual encoders produce highly redundant token sequences where task-irrelevant tokens (background clutter, static scene regions, occluded areas) dominate attention budgets and create brittle feature correlations. By pruning uninformative tokens and augmenting critical ones in representation space (not pixel space), we compress the effective visual input to a task-relevant manifold that is inherently more robust to distribution shift. Theoretical grounding includes: (1) Information Bottleneck — pruning enforces a tighter bottleneck that retains only task-sufficient statistics, provably improving generalization bounds; (2) Attention Entropy Reduction — concentrating attention mass on fewer, more informative tokens reduces sensitivity to perturbations in pruned regions; (3) Manifold Regularization — augmenting retained tokens along the tangent space of the learned representation manifold provides robustness without leaving the data support. In-scope: adaptive token pruning based on action-relevance scoring, latent-space token augmentation via interpolation/extrapolation on task-critical tokens, attention-guided token selection with theoretical guarantees on information retention, combined prune-and-augment pipelines that maintain action prediction quality while improving robustness to visual distractors, lighting changes, viewpoint shifts, and occlusion.
+Recent landscape (do not duplicate): Helix-style self-correction, CacheVLA,LightVLA,TraceVLA, RoboPro, retry/reflection wrappers around VLAs, FastVLA token merging (efficiency-only, no robustness analysis), TokenLearner fixed-count compression. Robustness as benchmark-only is saturated — must propose a method with theoretical motivation.
+Contribution type: METHOD ONLY. New training algorithm combining action-conditioned token pruning with latent manifold augmentation: (1) a differentiable token relevance scorer trained with auxiliary action-prediction loss to identify which visual tokens carry task-critical information, (2) a prune-then-augment pipeline that removes low-relevance tokens and performs controlled perturbation of high-relevance tokens in latent space, (3) theoretical analysis showing the pruning step tightens the information bottleneck bound while augmentation smooths the action-prediction landscape, yielding provable robustness margins.
+EVAL PROTOCOL — IMPORTANT:
+TRAIN on standard LIBERO suites (Object/Spatial/Goal/Long/90).
+EVALUATE on existing LIBERO-PLUS / LIBERO-PRO style perturbation benchmarks (and similar community-released robustness benchmark series). DO NOT spend time constructing your own robustness benchmark — use existing perturbation suites and route the budget into the method.
+Report robustness gap (Δ between nominal LIBERO success and perturbed-suite success) AND nominal preservation (must not regress on base LIBERO).
+Additionally report token reduction ratio vs. robustness improvement curve, and ablate pruning-only vs. augmentation-only vs. combined.
+Experiments can be extended to other benchmark series (e.g., CALVIN with perturbation variants) to verify cross-benchmark robustness.
+SIM-ONLY MITIGATION: Robustness eval in sim is well-accepted at CoRL — established LIBERO-PLUS / LIBERO-PRO style suites are a recognized sim-only pattern.
+HARD CONSTRAINTS:
+Compute: ≤200 H100-hours total. Fine-tune from open VLA checkpoints (OpenVLA, SmolVLA, OpenPi, π0) — no pretraining. Token pruning/augmentation adds negligible overhead. Show the math.
+Time: ≤20 days. Build on OpenVLA, OpenPi and other proper codebases, LeRobot, HF Transformers.
+Eval datasets: LIBERO base (training/nominal eval) + LIBERO-PLUS / LIBERO-PRO and similar existing perturbation suites (perturbed eval). No custom benchmark construction.
+Look for: action-conditioned token relevance scoring that adapts per-timestep, latent-space augmentation that exploits the geometry of VLA's representation manifold, information-theoretic pruning criteria with provable bounds, attention entropy as a proxy for robustness, connections between token sparsity and flat minima in action space. Avoid: vanilla pixel-space data augmentation without latent-space method, static/fixed pruning ratios without adaptivity, pure efficiency-motivated token reduction rebranded as robustness, just-add-noise training.
+Tag: direction=robust_vla, contribution_type=method, sub_direction=token_surgery, target_venues=["CoRL 2026"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-14?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 3/10)
+{
+  "title": "Entropy-Stabilized Attention for Compression-Robust Vision-Language-Action Models",
+  "core_problem": "Visual token compression is essential for deploying VLAs in real-time robotic systems, yet 'Less Is More Until It Breaks' (2601.12042) and CAGE (ICML 2026) demonstrate that compression introduces adversarial vulnerability through token importance ranking instability — small input perturbations cause the compression mechanism to discard safety-critical tokens. This compression-robustness gap is unaddressed: existing VLA robustness methods (RobustVLA, OBEYED-VLA, ProGAL-VLA) ignore compression, while existing VLA compression methods (VLA-ADP, AVA-VLA, LightVLA, GridS, VLA-Cache, Compressor-VLA) ignore adversarial robustness. No work provides formal guarantees on when compression is safe under perturbation.",
+  "opportunity": "The root cause of compression fragility identified by 'Less Is More' is ranking instability: high attention entropy means attention weights are flat, so tiny perturbations cause large ranking permutations, making compression select wrong tokens. This reveals a precise intervention point — attention entropy itself. By regularizing attention distributions during training to have low entropy (concentrated, peaked), we increase the gaps between token importance scores, making rankings provably stable under bounded perturbation. This is a model-level property, not a compression-method property, meaning entropy-stabilized models are robust under ANY attention-based compression (FastV, VLA-IAP, VLA-Cache, etc.). The theoretical contribution is a formal bound: attention entropy upper-bounds the expected Kendall-tau distance between clean and perturbed importance rankings, establishing that lower entropy means certifiably safer compression. This entropy-to-ranking-stability bound is novel — it connects two independently studied phenomena (attention entropy and compression vulnerability) and provides the first principled defense against compression-induced adversarial fragility in VLAs. RobustVLA provides general Jacobian regularization but does not address compression; ProGAL-VLA uses entropy for ambiguity detection but does not regularize it for compression safety; σReparam prevents entropy collapse for training stability but does not connect entropy to adversarial robustness. The 'Token Reduction Should Go Beyond Efficiency' survey (arXiv 2505.18227) articulates the thesis that token reduction should target robustness but provides no mechanism — our entropy regularization is that mechanism.",
+  "landscape": "The VLA token compression landscape is highly active: VLA-ADP (arXiv 2509.22093) does action-trajectory-conditioned dynamic pruning; AVA-VLA (arXiv 2511.18960) performs recurrent-state visual reweighting with incidental robustness gains; LightVLA (ICRA 2026) introduces differentiable token pruning via Gumbel softmax; 'See What Matters' GridS (ICML 2026) performs differentiable grid sampling for continuous token resampling; VLA-Cache (NeurIPS 2025) does temporal caching and observes that 'reduced interference from redundant visual tokens enhanced decision robustness'; Compressor-VLA (Nov 2025) does instruction-guided hybrid compression; SpecPrune-VLA (Sep 2025) and VLA-IAP (2026) provide additional pruning approaches. All target efficiency — none target compression robustness under adversarial perturbation. On the attack/vulnerability side, 'Less Is More Until It Breaks' (arXiv 2601.12042, Jan 2026) demonstrates that importance-based compression degrades adversarial robustness via ranking instability across FastV, PDrop, and SparseVLM; CAGE (ICML 2026, arXiv 2601.21531) shows optimization-inference mismatch under compression creates exploitable gaps; 'Visual Token Compression Enhances Model Robustness' (OpenReview 2026) provides a partial counterpoint showing compression helps against jailbreaks by removing misaligned tokens — but this addresses safety alignment, not adversarial input perturbation. On the VLA robustness side, RobustVLA (arXiv 2511.01331) applies Jacobian and smoothness regularization via RL post-training for general robustness; ProGAL-VLA (arXiv 2604.09824, Apr 2026) uses attention entropy as an ambiguity signal for selective prediction; LIBERO-Plus (CVPR 2026) and LIBERO-X (arXiv 2602.06556) establish robustness benchmarks. EntropyPrune (Feb 2026) uses matrix entropy to guide pruning for efficiency. 'Stabilizing Transformer Training by Preventing Attention Entropy Collapse' (ICML 2023) uses entropy for training stability via σReparam. 'Understanding Sensitivity of Differential Attention' (ICLR 2026) establishes that attention design controls adversarial sensitivity via gradient norms and Lipschitz constants. The gap: no work connects attention entropy regularization during training to provable compression robustness under adversarial perturbation — this is the intervention point that the 'Less Is More' vulnerability mechanism directly prescribes.",
+  "approach": "We propose Entropy-Stabilized Attention (ESA), a training-time regularization that makes VLA models inherently robust to visual token compression under adversarial perturbation. Rather than designing a new compression method (the crowded approach), ESA modifies the model itself so that existing compression methods become safe. During LoRA fine-tuning of SmolVLA on LIBERO, we add an attention entropy penalty that encourages concentrated attention distributions across visual tokens in each transformer layer. The regularization takes the form L_total = L_action + λ · mean_l(H(α_l)), where H(α_l) is the Shannon entropy of attention weights over visual tokens at layer l, and λ is a weighting coefficient. This produces attention distributions with large gaps between important and unimportant tokens, directly addressing the ranking instability mechanism identified by 'Less Is More.' We derive a formal bound (Theorem 1) showing that for attention distributions with entropy H, the expected Kendall-tau distance between clean and ε-perturbed token importance rankings is O(n² · exp(H) · ε / Δ_min), where n is token count, ε is perturbation magnitude, and Δ_min is the minimum gap between adjacent sorted attention weights. Since Δ_min scales inversely with exp(H) for peaked distributions, this simplifies to show that ranking stability improves exponentially with entropy reduction. We further connect this to action-head sensitivity (Corollary 1): stable rankings under compression → consistent token selection → bounded action output deviation, using the attention sensitivity norm framework from 'Understanding Sensitivity of Differential Attention' (ICLR 2026). The bound provides the first certified condition under which visual token compression is adversarially safe. Experiments evaluate on SmolVLA (450M) with LoRA fine-tuning across LIBERO and LIBERO-Plus under all seven perturbation dimensions (layout, viewpoint, robot state, language, lighting, background, noise). We apply three existing compression methods (FastV-style single-layer pruning, VLA-IAP interaction-alignment pruning, VLA-Cache temporal caching) to both standard and entropy-regularized models, measuring: (1) clean performance with/without compression, (2) robustness under compression + perturbation, (3) ranking stability metrics (Kendall-tau, top-k preservation rate). Baselines include vanilla SmolVLA, SmolVLA+RobustVLA-style Jacobian regularization, and SmolVLA+each compression method. The hypothesis is that entropy-regularized models maintain performance under compression+perturbation while standard models degrade as predicted by 'Less Is More.'",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~120h H100 (SmolVLA LoRA fine-tuning: 8 configurations × ~3h each = 24h training; LIBERO-Plus evaluation across 7 perturbation dims × 3 compression methods × 4 model variants = ~70h evaluation; ablation studies ~26h)",
+      "gpu_utilization": "Moderate (~50-60%): GPU idle during entropy regularization debugging, bound proof iteration, and result analysis between runs",
+      "timeline": "3-4 months (theory derivation 4-6 weeks + implementation 2-3 weeks + experiments 3-4 weeks + writing 2-3 weeks)",
+      "team": "1-2 researchers (1 lead on theory/method, 1 optional for experiments)",
+      "estimated_gpu_cost": "$360 at ~$3/hr (H100 cloud rental)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~150h H100 (agent runs 10-12 configurations, human approves entropy regularization strength and validates bound proof steps)",
+      "gpu_utilization": "Improved (~60-70%): agent chains training and evaluation runs, blocks on theory validation and regularization schedule design",
+      "timeline": "5-8 weeks",
+      "team": "1 researcher, ~20min/day for design approvals and bound proof review",
+      "claude_api_cost": "$80-150 (~800-1500 turns for implementation, experiment orchestration, result analysis)",
+      "estimated_gpu_cost": "$450 at ~$3/hr",
+      "risk_note": "The ranking stability bound proof is more tractable than the original Jacobian bound (it builds on known perturbation theory for argsort) but still requires human verification of proof steps"
+    },
+    "auto_research": {
+      "gpu_hours": "~190h H100 (agent explores 15-20 configurations: multiple λ values, layer-specific vs. global entropy penalties, different compression methods, full LIBERO-Plus matrix)",
+      "gpu_utilization": "Near-zero idle: agent chains experiments continuously, evaluation runs in parallel with next training",
+      "timeline": "10-14 days with 2-4 H100 GPUs (SmolVLA trains on single GPU, so multiple configs run in parallel)",
+      "team": "0 (initial setup only)",
+      "claude_api_cost": "$200-350 (~2000-3500 turns for full pipeline)",
+      "estimated_gpu_cost": "$570 at ~$3/hr",
+      "speed_bottleneck": "GPU count: each SmolVLA LoRA run needs 1 H100 for ~3h; with 4 GPUs, 4 experiments run in parallel and full sweep completes in ~3 days",
+      "risk_note": "Formal bound derivation requires mathematical reasoning that may produce incorrect proofs needing human verification; empirical pipeline is fully automatable"
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (abstract deadline May 26, paper deadline May 29, 2026 — tight but feasible for focused SmolVLA-only experiments with pre-derived theory; ideal topical fit for VLA robustness in deployment)",
+    "AAAI 2027 (deadline expected ~August 2026 — comfortable timeline for complete experiments + theory polish; supports theoretical + empirical contributions)",
+    "ICLR 2027 (deadline expected ~October 2026 — full scope including OpenVLA extension if desired; top-tier venue for the entropy-robustness theory)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models (arXiv 2601.12042, Jan 2026)",
+    "On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression [CAGE] (ICML 2026, arXiv 2601.21531)",
+    "VLA-ADP: Action-aware Dynamic Pruning for Efficient Vision-Language-Action Manipulation (arXiv 2509.22093)",
+    "AVA-VLA: Improving Vision-Language-Action Models with Active Visual Attention (arXiv 2511.18960)",
+    "VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching (NeurIPS 2025)",
+    "LightVLA: Towards Efficient Vision-Language-Action Models via Differentiable Token Pruning (ICRA 2026)",
+    "See What Matters: Differentiable Grid Sample Pruning for Generalizable Vision-Language-Action Model [GridS] (ICML 2026)",
+    "Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation (arXiv 2511.18950)",
+    "SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning (arXiv 2509.05614)",
+    "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models (arXiv 2026)",
+    "RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models (arXiv 2511.01331)",
+    "ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models (arXiv 2604.09824, Apr 2026)",
+    "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (CVPR 2026)",
+    "LIBERO-X: Robustness Litmus for Vision-Language-Action Models (arXiv 2602.06556)",
+    "Token Reduction Should Go Beyond Efficiency in Generative Models (arXiv 2505.18227)",
+    "EntropyPrune: Matrix Entropy Guided Visual Token Pruning for Multimodal Large Language Models (arXiv 2026)",
+    "Understanding Sensitivity of Differential Attention through the Lens of Adversarial Robustness (ICLR 2026)",
+    "A Generalized Information Bottleneck Theory of Deep Learning (arXiv 2025)",
+    "Stabilizing Transformer Training by Preventing Attention Entropy Collapse (ICML 2023)",
+    "OpenVLA: An Open-Source Vision-Language-Action Model (CoRL 2024)",
+    "SmolVLA: Efficient Vision-Language-Action Model (HuggingFace/LeRobot 2025)",
+    "ATP-LLaVA: Adaptive Token Pruning for Large Vision Language Models (CVPR 2025)",
+    "AgilePruner: An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning (ICLR 2026)",
+    "Visual Token Compression Enhances Model Robustness (OpenReview 2026)"
+  ],
+  "description": "We propose Entropy-Stabilized Attention (ESA), a training-time regularization that makes VLA models inherently robust to visual token compression under adversarial perturbation — addressing the compression-robustness gap where existing VLA compression methods (VLA-ADP, AVA-VLA, LightVLA, GridS, VLA-Cache) target only efficiency while existing VLA robustness methods (RobustVLA, ProGAL-VLA) ignore compression. ESA is motivated by the key insight from 'Less Is More Until It Breaks': compression fragility stems from token importance ranking instability, which is directly caused by high attention entropy (flat distributions where small perturbations flip rankings). Rather than designing yet another pruning criterion in the crowded VLA compression landscape, ESA regularizes attention entropy during LoRA fine-tuning, producing concentrated attention distributions with stable importance rankings that make ANY downstream compression method adversarially safe. We derive a formal bound showing that ranking stability under ε-bounded perturbation improves exponentially with attention entropy reduction, providing the first certified condition for safe visual token compression. We further connect ranking stability to action-head sensitivity via the attention sensitivity norm framework. Evaluated on SmolVLA (450M) across LIBERO and LIBERO-Plus benchmarks under seven perturbation dimensions with three representative compression methods (FastV-style, VLA-IAP, VLA-Cache), ESA targets the unexploited intersection of training-time entropy control and compression-time adversarial safety — providing a model-level defense that is orthogonal to and composable with existing compression and robustness approaches.",
+  "project_name": "attn_entropy_vla_robust",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["COMPUTE BUDGET VIOLATION: Idea estimates ~400 A100-hours (manual) but user's hard constraint is ≤200 H100-hours total. OpenVLA-OFT fine-tuning alone takes 192-384 GPU-hours per run on 8 GPUs. 10 runs is infeasible within budget.", "CRITICAL MISSING RELATED WORK — VLA-ADP (arXiv 2509.22093): Action-aware Dynamic Pruning already does action-conditioned adaptive pruning that varies across coarse vs. fine-grained manipulation phases, directly overlapping with AES's per-timestep adaptivity claim.", "CRITICAL MISSING RELATED WORK — AVA-VLA (arXiv 2511.18960): Active Visual Attention already dynamically reweights visual tokens and demonstrates robustness under Light and Layout perturbations on LIBERO/CALVIN, directly overlapping with AES's robustness-via-attention-focus mechanism.", "CRITICAL MISSING RELATED WORK — 'See What Matters' GridS (ICML 2026): Differentiable grid sampling for generalizable VLA, already accepted at ICML 2026, does task-aware token resampling for generalization — closely related to AES's goal.", "COUNTER-EVIDENCE: 'Less Is More — Until It Breaks' (arXiv 2601.12042, Jan 2026) empirically demonstrates that visual token compression DEGRADES adversarial robustness of LVLMs, with vulnerabilities emerging only in compressed settings. This directly challenges AES's core premise that pruning improves robustness. The idea must address this evidence.", "MISSING RELATED WORK — VLA-Cache (NeurIPS 2025) already observes and documents that 'reduced interference from redundant visual tokens enhanced decision robustness' — the exact phenomenon AES claims to exploit, reducing its claimed novelty.", "MISSING RELATED WORK — Compressor-VLA (Nov 2025), BFA++ (Feb 2026), LightVLA (ICRA 2026), SpecPrune-VLA (Sep 2025), CRT (Feb 2026), Mask World Model (Apr 2026), LIBERO-X (Feb 2026) — the landscape is far more crowded than the generator's survey suggests.", "MISSING RELATED WORK — 'Token Reduction Should Go Beyond Efficiency' (May 2025, revised Jan 2026) survey already articulates the exact thesis that token reduction should target robustness, not just efficiency — reducing the conceptual novelty of AES's framing.", "THEORETICAL RISK: The formal bound linking attention entropy to Jacobian norm has no direct precedent. Deriving it rigorously within 15 days while also implementing and running experiments is extremely ambitious. The risk_note in auto_research correctly flags this but underestimates severity.", "TIMELINE: 15 days to CoRL paper deadline for theory derivation + implementation + full LIBERO/LIBERO-Plus evaluation across 7 perturbation dimensions + SmolVLA experiments + ablation studies is unrealistic even with agent assistance."]
+Feedback: The idea's strongest novelty asset — the formal entropy→Jacobian sensitivity bound — is genuinely novel but also its highest execution risk. To make this viable for CoRL 2026:
+
+1. **Address compute budget**: Switch entirely to LoRA fine-tuning (10-15h per run on single A100) and focus on SmolVLA (450M, trains on single GPU). Drop OpenVLA-OFT full fine-tuning to bring total under 200 H100-hours. Run 3-4 configurations max, not 10.
+
+2. **Differentiate from VLA-ADP and AVA-VLA**: These papers already do action-conditioned adaptive pruning (VLA-ADP) and dynamic token reweighting for robustness (AVA-VLA). Your differentiator must be the *entropy criterion specifically* and the *formal bound*, not just 'adaptive pruning for robustness.' Make the theoretical contribution the headline, not the empirical pipeline.
+
+3. **Address 'Less Is More Until It Breaks' directly**: This paper shows compression hurts adversarial robustness. You must argue (with evidence) why entropy-guided selective pruning differs from uniform compression — i.e., that intelligent pruning removes vulnerability surfaces while naive compression discards safety-critical tokens.
+
+4. **Drastically expand related work**: You're missing VLA-ADP, AVA-VLA, VLA-Cache's robustness observation, 'See What Matters' (ICML 2026), Compressor-VLA, BFA++, LightVLA, SpecPrune-VLA, CRT, Mask World Model, LIBERO-X, 'Token Reduction Beyond Efficiency' survey, and 'Few Tokens Matter' EGA. The generator's landscape analysis severely underestimates the competition.
+
+5. **Simplify scope**: Drop the dual-entropy framing and manifold augmentation if time is tight — the entropy-guided pruning-for-robustness with theoretical bounds alone is a sufficient contribution if the theory is sound. Adding augmentation dilutes focus and increases implementation burden.
+
+6. **Consider SmolVLA-only experiments**: SmolVLA (450M) trains fast enough for rapid iteration within 15 days and is well-supported in LeRobot. Add OpenVLA results only if time permits.
+
+### Round 2 review
+Verdict: revise
+Issues: ["CRITICAL THEORETICAL CONTRADICTION: ESA proposes to LOWER attention entropy for ranking stability, but σReparam (ICML 2023) proves that low attention entropy causes training instability and entropy collapse (degenerate rank-1 attention outputs). 'Variance Sensitivity Induces Attention Entropy Collapse' (EMNLP 2025) further confirms this. The idea does not address what happens when entropy regularization pushes entropy below the stability threshold, nor how to balance compression robustness (wants low entropy) against training stability (needs moderate entropy).", "CRITICAL EVIDENCE CONTRADICTION: arXiv 2502.20604 (DATE 2025) empirically demonstrates that HIGH softmax temperature (= HIGH attention entropy) improves adversarial robustness against PGD attacks, corruptions, and natural perturbations. ESA's core claim that LOW entropy improves robustness contradicts this evidence. The idea must reconcile these opposing findings — the distinction between 'compression robustness' (ranking stability) and 'general adversarial robustness' (perturbation resistance) needs explicit theoretical treatment to explain why the optimal entropy direction differs.", "NOVELTY OVERLAP — Rényi Attention Entropy for Patch Pruning (arXiv 2604.03803, April 2026): This concurrent work directly uses attention entropy (extended to Rényi entropy) as a pruning criterion, with the finding that 'lower entropy corresponds to foreground regions' and should be preserved. While this paper focuses on efficiency rather than adversarial robustness, it establishes the same entropy-based importance ranking that ESA uses, reducing ESA's novelty.", "NOVELTY OVERLAP — AVA-VLA (arXiv 2511.18960): Already demonstrates that dynamic attention reweighting (concentrating attention on task-relevant regions) achieves robustness under Light and Layout perturbations on LIBERO-Plus, AND maintains performance with 50-70% token pruning. This is essentially what ESA claims to achieve through entropy regularization — AVA-VLA does it through a recurrent state mechanism instead.", "MISSING COMPETITOR — Test-Time Perturbation Learning (arXiv 2604.18107, April 2026): Proposes a test-time adaptation framework for VLA robustness that uses uncertainty-based augmentation and action voting, achieving robustness without modifying the base model. This provides a simpler alternative to ESA's training-time approach.", "MISSING COMPETITOR — CRT (arXiv 2602.01158, Feb 2026): Corruption Restoration Transformer recovers VLA performance to within 1-3% of clean baseline under heavy corruptions, without any model fine-tuning. This plug-and-play module may make training-time entropy regularization unnecessary for practical robustness.", "MISSING COMPETITOR — LearnPruner (arXiv 2604.23950, April 2026): Uses a learnable pruning module that directly predicts token importance scores, replacing attention-based importance scoring. If importance scoring is learned rather than derived from attention, entropy regularization of attention may be orthogonal or redundant.", "THEORETICAL RISK: The proposed bound (Kendall-tau ~ n² · exp(H) · ε / Δ_min) requires rigorous derivation. The claim that Δ_min 'scales inversely with exp(H) for peaked distributions' is an assumption, not a theorem — the relationship between entropy and minimum gap in sorted attention weights depends on the specific distribution shape, not just entropy. Deriving this rigorously within 15 days alongside experiments is high-risk.", "'Less Is More' evaluates defenses and finds they provide 'only limited protection' — the paper does not specifically evaluate entropy regularization, but the general pessimism about defenses against compression-aware attacks should be addressed. The idea should explain why entropy regularization would succeed where other defenses failed."]
+Feedback: The revised idea has improved significantly from round 1 — switching to SmolVLA, narrowing to compression robustness, and covering more related work. The core insight (entropy → ranking stability → compression safety) is logically coherent and addresses a real gap. But there are critical theoretical tensions that must be resolved:
+
+1. **Resolve the entropy direction paradox**: The single most important revision. σReparam proves low entropy → training instability. arXiv 2502.20604 proves high entropy → adversarial robustness. Yet ESA proposes low entropy for compression robustness. You MUST explicitly theorize why the optimal entropy direction for compression robustness differs from both training stability and general adversarial robustness. The likely resolution: there's a sweet spot — entropy should be low enough for stable rankings but not so low as to cause collapse. Define this 'goldilocks zone' formally (e.g., H ∈ [H_min, H_max] where H_min prevents collapse per σReparam and H_max ensures ranking stability per your bound). This would actually strengthen the paper by providing a more nuanced contribution.
+
+2. **Differentiate more sharply from AVA-VLA**: AVA-VLA already achieves robustness + pruning compatibility through dynamic attention. Your differentiator is the formal bound and the model-level property (works with ANY compression method). Lead with this — show that AVA-VLA's robustness is tied to its specific recurrent mechanism, while ESA provides compression-agnostic certified safety.
+
+3. **Address the Rényi entropy concurrent work**: Acknowledge arXiv 2604.03803 and position ESA as complementary — they use entropy for pruning decisions (inference-time), ESA regularizes entropy during training to make ANY entropy-based pruning more robust.
+
+4. **Simplify the theoretical claim**: Rather than claiming the full Kendall-tau bound, consider a weaker but more provable statement: under ε-bounded perturbation, the probability that the top-k token set changes is bounded by a function of entropy and ε. This is easier to prove and sufficient for the practical claim.
+
+5. **Address CRT as an alternative**: CRT achieves robustness without modifying the model. Argue that ESA provides robustness *without* an additional inference-time module — it's a training-time investment that reduces deployment complexity.
+
+6. **Consider the entropy regularization schedule**: Don't apply entropy penalty uniformly — use a schedule that reduces entropy gradually while monitoring training stability metrics. This addresses the σReparam concern practically.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "cbb2f44a-ce25-4e49-8347-ebf18ed5e5b4",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T06:17:36.295Z_
+
+```json
+{
+  "parentUuid": "cbb2f44a-ce25-4e49-8347-ebf18ed5e5b4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "3d00b18c-db6e-40b4-9a3b-d193aeeb1a54",
+  "timestamp": "2026-05-14T06:17:36.295Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T06:17:36.295Z_
+
+```json
+{
+  "parentUuid": "3d00b18c-db6e-40b4-9a3b-d193aeeb1a54",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "38cd5e94-0697-4898-a6e4-17feb0927ef3",
+  "timestamp": "2026-05-14T06:17:36.295Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "38cd5e94-0697-4898-a6e4-17feb0927ef3",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review: Entropy-Stabilized Attention for Compression-Robust VLAs (Round 3)",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T06:17:45.047Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a detailed review request for a research idea about "Entropy-Stabilized Attention for Compression-Robust Vision-Language-Action Models." I need to independently verify the claims, check for competing work, and assess feasibility, novelty, and quality. Let me conduct thorough searches to verify the key claims and check for missing related work.
+
+Let me plan my search strategy:
+
+1. Verify the core theoretical claim: attention entropy → ranking stability → compression robustness
+2. Check for the entropy direction paradox (raised in round 2 review)
+3. Search for concurrent/competing work that may have appeared since round 2
+
+
+4. Validate that the cited papers are accurately represented and actually exist
+5. Determine if the SmolVLA LoRA fine-tuning approach is feasible given the computational constraints
+6. Evaluate whether the theoretical concerns flagged in the previous review have been properly resolved
+
+I'll run multiple searches in parallel to cover all these angles.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38cd5e94-0697-4898-a6e4-17feb0927ef3",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yS33jxwuy8fQ6RGYX1",
+  "type": "assistant",
+  "uuid": "f26821aa-902e-4edc-a45c-436f33d434fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SseDfxoYKdE4TdTgMQxrvz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16727,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16727,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16727,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16727
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-14T06:17:45.049Z_
+
+I'll conduct an independent, thorough review of this round 3 submission. Let me start with parallel searches to verify key claims and check for competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f26821aa-902e-4edc-a45c-436f33d434fe",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yS33jxwuy8fQ6RGYX1",
+  "type": "assistant",
+  "uuid": "18f2a83b-a945-42d0-a154-f9ff032d2f18",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SseDfxoYKdE4TdTgMQxrvz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16727,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16727,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16727,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16727
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T06:17:45.378Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01G5nLiUFkTvz1nthUc5yerM`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18f2a83b-a945-42d0-a154-f9ff032d2f18",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yS33jxwuy8fQ6RGYX1",
+  "type": "assistant",
+  "uuid": "b75c5320-f2ab-48a8-83c3-ef5028f97d10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SseDfxoYKdE4TdTgMQxrvz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16727,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16727,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16727,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16727
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T06:17:45.387Z_
+
+<details><summary>↩ Tool result · `toolu_01G5nLiUFkTvz1nthUc5yerM`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b75c5320-f2ab-48a8-83c3-ef5028f97d10",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "622eb96e-e072-47fc-9174-c96d55a8f19f",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "b75c5320-f2ab-48a8-83c3-ef5028f97d10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-14T06:17:48.015Z_
+
+Now let me launch parallel searches to verify the key claims and check for competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "622eb96e-e072-47fc-9174-c96d55a8f19f",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yShyJMWteFR8oe5XY3",
+  "type": "assistant",
+  "uuid": "a3f23686-d803-4b1b-8b6c-c90f32a693e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PpobBrUfuEvy2b24fJphr4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1348,
+      "cache_read_input_tokens": 28568,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1348,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 28568,
+          "cache_creation_input_tokens": 1348,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1348
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T06:17:48.711Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NWLvVuiTk9p4faww2yn1Ri`</summary>
+
+```json
+{
+  "query": "attention entropy regularization adversarial robustness vision language model 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3f23686-d803-4b1b-8b6c-c90f32a693e4",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yShyJMWteFR8oe5XY3",
+  "type": "assistant",
+  "uuid": "741449ba-348a-4459-8751-3af61b82bf6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PpobBrUfuEvy2b24fJphr4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1348,
+      "cache_read_input_tokens": 28568,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1348,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 28568,
+          "cache_creation_input_tokens": 1348,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1348
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T06:17:57.446Z_
+
+<details><summary>↩ Tool result · `toolu_01NWLvVuiTk9p4faww2yn1Ri`</summary>
+
+```text
+Web search results for query: "attention entropy regularization adversarial robustness vision language model 2026"
+
+Links: [{"title":"Jailbreaking MLLMs via Attention Redirection and Entropy Regularization","url":"https://www.mdpi.com/2079-9292/15/1/237"},{"title":"Visual Adversarial Attack on Vision-Language Models for Autonomous Driving","url":"https://arxiv.org/html/2411.18275v1"},{"title":"Enhancing Adversarial Robustness of Vision-Language Models through Low-Rank Adaptation | Proceedings of the 2025 International Conference on Multimedia Retrieval","url":"https://dl.acm.org/doi/10.1145/3731715.3733324"},{"title":"Non-targeted Adversarial Attacks on Vision-Language Models via Maximizing Information Entropy | OpenReview","url":"https://openreview.net/forum?id=7OO8tTOgh4"},{"title":"Improving Adversarial Robustness in Vision-Language ...","url":"https://aclanthology.org/2024.findings-emnlp.990.pdf"},{"title":"Mitigating low-frequency bias: Feature recalibration and frequency attention regularization for adversarial robustness - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0893608025009505"},{"title":"[2404.19287] Revisiting the Adversarial Robustness of Vision Language Models: a Multimodal Perspective","url":"https://arxiv.org/abs/2404.19287"},{"title":"[2305.16934] On Evaluating Adversarial Robustness of Large Vision-Language Models","url":"https://arxiv.org/abs/2305.16934"},{"title":"[2603.12799] What Makes VLMs Robust? Towards Reconciling Robustness and Accuracy in Vision-Language Models","url":"https://arxiv.org/abs/2603.12799"},{"title":"Revisiting the Adversarial Robustness of Vision Language Models: a Multimodal Perspective","url":"https://arxiv.org/html/2404.19287v3"}]
+
+Based on the web search results, here are the key findings related to attention entropy regularization, adversarial robustness, and vision-language models in 2026:
+
+## Recent Research Highlights
+
+**AERO Framework (January 2026)**
+
+A novel jailbreak framework called Attention-Enhancement and Targeted Entropy Regularization for Adversarial Optimization (AERO) addresses limitations through two complementary mechanisms. An attention enhancement loss strategically redirects cross-modal attention toward perturbed visual tokens, while maintaining entropy in the output distribution allows the model's natural language understanding capabilities to engage with the query content.
+
+**Robustness Analysis (March 2026)**
+
+Achieving adversarial robustness in Vision-Language Models (VLMs) inevitably compromises accuracy on clean data, presenting a long-standing and challenging trade-off. Recent findings show that adversarial robustness is primarily localized within shallow layers, driven by a low-frequency spectral bias and input-insensitive attention patterns.
+
+**Defense Mechanisms**
+
+A parameter-efficient adversarial adaptation method called AdvLoRA was proposed, enhancing efficiency and robustness through a novel reparameterization method that leverages parameter clustering and alignment.
+
+**Autonomous Driving Applications**
+
+For vision-language models in autonomous driving, researchers propose Semantic-Invariant Induction using semantic entropy to create diverse prompts, combined with Scenario-Associated Enhancement where attention mechanisms select key frames to optimize adversarial perturbations.
+
+These 2026 studies demonstrate an active focus on understanding and improving the robustness of vision-language models against adversarial attacks through attention mechanisms and entropy regularization techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "741449ba-348a-4459-8751-3af61b82bf6a",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "deee6747-d76f-4dcd-91df-a929bb23ba42",
+  "toolUseResult": {
+    "query": "attention entropy regularization adversarial robustness vision language model 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N7koyRKR1yieT2yXP2KxmZ",
+        "content": [
+          {
+            "title": "Jailbreaking MLLMs via Attention Redirection and Entropy Regularization",
+            "url": "https://www.mdpi.com/2079-9292/15/1/237"
+          },
+          {
+            "title": "Visual Adversarial Attack on Vision-Language Models for Autonomous Driving",
+            "url": "https://arxiv.org/html/2411.18275v1"
+          },
+          {
+            "title": "Enhancing Adversarial Robustness of Vision-Language Models through Low-Rank Adaptation | Proceedings of the 2025 International Conference on Multimedia Retrieval",
+            "url": "https://dl.acm.org/doi/10.1145/3731715.3733324"
+          },
+          {
+            "title": "Non-targeted Adversarial Attacks on Vision-Language Models via Maximizing Information Entropy | OpenReview",
+            "url": "https://openreview.net/forum?id=7OO8tTOgh4"
+          },
+          {
+            "title": "Improving Adversarial Robustness in Vision-Language ...",
+            "url": "https://aclanthology.org/2024.findings-emnlp.990.pdf"
+          },
+          {
+            "title": "Mitigating low-frequency bias: Feature recalibration and frequency attention regularization for adversarial robustness - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0893608025009505"
+          },
+          {
+            "title": "[2404.19287] Revisiting the Adversarial Robustness of Vision Language Models: a Multimodal Perspective",
+            "url": "https://arxiv.org/abs/2404.19287"
+          },
+          {
+            "title": "[2305.16934] On Evaluating Adversarial Robustness of Large Vision-Language Models",
+            "url": "https://arxiv.org/abs/2305.16934"
+          },
+          {
+            "title": "[2603.12799] What Makes VLMs Robust? Towards Reconciling Robustness and Accuracy in Vision-Language Models",
+            "url": "https://arxiv.org/abs/2603.12799"
+          },
+          {
+            "title": "Revisiting the Adversarial Robustness of Vision Language Models: a Multimodal Perspective",
+            "url": "https://arxiv.org/html/2404.19287v3"
+          }
+        ]
+      },
+      "Based on the web search results, here are the key findings related to attention entropy regularization, adversarial robustness, and vision-language models in 2026:\n\n## Recent Research Highlights\n\n**AERO Framework (January 2026)**\n\nA novel jailbreak framework called Attention-Enhancement and Targeted Entropy Regularization for Adversarial Optimization (AERO) addresses limitations through two complementary mechanisms. An attention enhancement loss strategically redirects cross-modal attention toward perturbed visual tokens, while maintaining entropy in the output distribution allows the model's natural language understanding capabilities to engage with the query content.\n\n**Robustness Analysis (March 2026)**\n\nAchieving adversarial robustness in Vision-Language Models (VLMs) inevitably compromises accuracy on clean data, presenting a long-standing and challenging trade-off. Recent findings show that adversarial robustness is primarily localized within shallow layers, driven by a low-frequency spectral bias and input-insensitive attention patterns.\n\n**Defense Mechanisms**\n\nA parameter-efficient adversarial adaptation method called AdvLoRA was proposed, enhancing efficiency and robustness through a novel reparameterization method that leverages parameter clustering and alignment.\n\n**Autonomous Driving Applications**\n\nFor vision-language models in autonomous driving, researchers propose Semantic-Invariant Induction using semantic entropy to create diverse prompts, combined with Scenario-Associated Enhancement where attention mechanisms select key frames to optimize adversarial perturbations.\n\nThese 2026 studies demonstrate an active focus on understanding and improving the robustness of vision-language models against adversarial attacks through attention mechanisms and entropy regularization techniques."
+    ],
+    "durationSeconds": 8.729811837999998
+  },
+  "sourceToolAssistantUUID": "741449ba-348a-4459-8751-3af61b82bf6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T06:17:59.917Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CsvkL7VjQwd64PxTxQyu47`</summary>
+
+```json
+{
+  "query": "\"Less Is More Until It Breaks\" visual token compression security arXiv 2601.12042"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "deee6747-d76f-4dcd-91df-a929bb23ba42",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yTbFm8Acv1TP7ni337",
+  "type": "assistant",
+  "uuid": "4b56731f-7caf-4e5d-b05a-4fcb6329a2f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017TAn1bqePXt6y1coZ6PioJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1034,
+      "cache_read_input_tokens": 29916,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1034,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 29916,
+          "cache_creation_input_tokens": 1034,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1034
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T06:18:08.769Z_
+
+<details><summary>↩ Tool result · `toolu_01CsvkL7VjQwd64PxTxQyu47`</summary>
+
+```text
+Web search results for query: ""Less Is More Until It Breaks" visual token compression security arXiv 2601.12042"
+
+No links found.
+
+The search didn't return results for that specific query. Let me try a more focused search:
+
+Links: [{"title":"[2601.20742] Compression Tells Intelligence: Visual Coding, Visual Token Technology, and the Unification","url":"https://arxiv.org/abs/2601.20742"},{"title":"[2601.12042] Less Is More -- Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models","url":"https://arxiv.org/abs/2601.12042"},{"title":"Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models","url":"https://arxiv.org/html/2601.12042"},{"title":"[2601.21531] On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/abs/2601.21531"},{"title":"Compression Tells Intelligence: Visual Coding, Visual Token Technology, and the Unification","url":"https://arxiv.org/html/2601.20742"},{"title":"[2601.22674] VisionTrim: Unified Vision Token Compression for Training-Free MLLM Acceleration","url":"https://arxiv.org/abs/2601.22674"},{"title":"GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub","url":"https://github.com/daixiangzi/Awesome-Token-Compress"},{"title":"An Efficient Token Compression Framework for Visual Object Tracking","url":"https://arxiv.org/html/2605.08329"},{"title":"Vision-centric Token Compression in Large Language Model","url":"https://openreview.net/pdf/0d7442c68e585e718f4a9edb5254177d2345bc5f.pdf"},{"title":"A Glimpse to Compress: Dynamic Visual Token Pruning for Large Vision-Language Models","url":"https://arxiv.org/html/2508.01548v1"}]
+
+Perfect! I found the paper. Here's what I found:
+
+## "Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models"
+
+**arXiv: 2601.12042** (Submitted January 17, 2026)
+
+**Authors:** Xiaomei Zhang, Zhaoxi Zhang, Leo Yu Zhang, Yanjun Zhang, Guanhong Tao, Shirui Pan
+
+### Key Findings:
+
+Visual token compression is widely adopted to improve the inference efficiency of Large Vision-Language Models (LVLMs), enabling their deployment in latency-sensitive and resource-constrained scenarios. However, existing work has mainly focused on efficiency and performance, while the security implications of visual token compression remain largely unexplored.
+
+The paper reveals that visual token compression substantially degrades the robustness of LVLMs: models that are robust under uncompressed inference become highly vulnerable once compression is enabled. These vulnerabilities are state-specific; failure modes emerge only in the compressed setting and completely disappear when compression is disabled, making them particularly hidden and difficult to diagnose.
+
+By analyzing the key stages of the compression process, the authors identify instability in token importance ranking as the primary cause of this robustness degradation.
+
+The paper proposes a Compression-Aware Attack (CAA) to systematically study and exploit this vulnerability. CAA directly targets the token selection mechanism and induces failures exclusively under compressed inference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4b56731f-7caf-4e5d-b05a-4fcb6329a2f6",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "31086d31-89a5-45c8-99a5-715dbc0e14f8",
+  "toolUseResult": {
+    "query": "\"Less Is More Until It Breaks\" visual token compression security arXiv 2601.12042",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y8qvDunvJyDNngwacu7fiu",
+        "content": []
+      },
+      "The search didn't return results for that specific query. Let me try a more focused search:",
+      {
+        "tool_use_id": "srvtoolu_01TG9bRz7c45afJYpp3PxUoW",
+        "content": [
+          {
+            "title": "[2601.20742] Compression Tells Intelligence: Visual Coding, Visual Token Technology, and the Unification",
+            "url": "https://arxiv.org/abs/2601.20742"
+          },
+          {
+            "title": "[2601.12042] Less Is More -- Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models",
+            "url": "https://arxiv.org/abs/2601.12042"
+          },
+          {
+            "title": "Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2601.12042"
+          },
+          {
+            "title": "[2601.21531] On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression",
+            "url": "https://arxiv.org/abs/2601.21531"
+          },
+          {
+            "title": "Compression Tells Intelligence: Visual Coding, Visual Token Technology, and the Unification",
+            "url": "https://arxiv.org/html/2601.20742"
+          },
+          {
+            "title": "[2601.22674] VisionTrim: Unified Vision Token Compression for Training-Free MLLM Acceleration",
+            "url": "https://arxiv.org/abs/2601.22674"
+          },
+          {
+            "title": "GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub",
+            "url": "https://github.com/daixiangzi/Awesome-Token-Compress"
+          },
+          {
+            "title": "An Efficient Token Compression Framework for Visual Object Tracking",
+            "url": "https://arxiv.org/html/2605.08329"
+          },
+          {
+            "title": "Vision-centric Token Compression in Large Language Model",
+            "url": "https://openreview.net/pdf/0d7442c68e585e718f4a9edb5254177d2345bc5f.pdf"
+          },
+          {
+            "title": "A Glimpse to Compress: Dynamic Visual Token Pruning for Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2508.01548v1"
+          }
+        ]
+      },
+      "Perfect! I found the paper. Here's what I found:\n\n## \"Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models\"\n\n**arXiv: 2601.12042** (Submitted January 17, 2026)\n\n**Authors:** Xiaomei Zhang, Zhaoxi Zhang, Leo Yu Zhang, Yanjun Zhang, Guanhong Tao, Shirui Pan\n\n### Key Findings:\n\nVisual token compression is widely adopted to improve the inference efficiency of Large Vision-Language Models (LVLMs), enabling their deployment in latency-sensitive and resource-constrained scenarios. However, existing work has mainly focused on efficiency and performance, while the security implications of visual token compression remain largely unexplored.\n\nThe paper reveals that visual token compression substantially degrades the robustness of LVLMs: models that are robust under uncompressed inference become highly vulnerable once compression is enabled. These vulnerabilities are state-specific; failure modes emerge only in the compressed setting and completely disappear when compression is disabled, making them particularly hidden and difficult to diagnose.\n\nBy analyzing the key stages of the compression process, the authors identify instability in token importance ranking as the primary cause of this robustness degradation.\n\nThe paper proposes a Compression-Aware Attack (CAA) to systematically study and exploit this vulnerability. CAA directly targets the token selection mechanism and induces failures exclusively under compressed inference."
+    ],
+    "durationSeconds": 8.848623510000001
+  },
+  "sourceToolAssistantUUID": "4b56731f-7caf-4e5d-b05a-4fcb6329a2f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T06:18:10.815Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PYDVekhtSBfrUkMG6JQErC`</summary>
+
+```json
+{
+  "query": "CAGE adversarial robustness visual token compression ICML 2026 arXiv 2601.21531"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31086d31-89a5-45c8-99a5-715dbc0e14f8",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yURdM8spdQRUybTyjW",
+  "type": "assistant",
+  "uuid": "f183c06b-41aa-41ff-afef-745c52dc12f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G4TZ4NWKVDGukuRUXwdiST",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 966,
+      "cache_read_input_tokens": 30950,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 966,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 30950,
+          "cache_creation_input_tokens": 966,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 966
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T06:18:17.732Z_
+
+<details><summary>↩ Tool result · `toolu_01PYDVekhtSBfrUkMG6JQErC`</summary>
+
+```text
+Web search results for query: "CAGE adversarial robustness visual token compression ICML 2026 arXiv 2601.21531"
+
+Links: [{"title":"[2601.21531] On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/abs/2601.21531"},{"title":"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/html/2601.21531"},{"title":"Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models","url":"https://arxiv.org/html/2601.12042"},{"title":"Feature-Space Adversarial Robustness Certification for Multimodal Large Language Models","url":"https://arxiv.org/html/2601.16200"},{"title":"On evaluating adversarial robustness of large vision-language models | Proceedings of the 37th International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3666122.3668477"},{"title":"Token Reduction Should Go Beyond Efficiency in Generative Models – From Vision, Language to Multimodality","url":"https://arxiv.org/html/2505.18227v3"},{"title":"[2605.08329] An Efficient Token Compression Framework for Visual Object Tracking","url":"https://arxiv.org/abs/2605.08329"},{"title":"Computer Science Dec 2023","url":"https://arxiv.org/list/cs/2023-12?skip=1250&show=1000"},{"title":"arXiv:2503.10191v1 [cs.LG] 13 Mar 2025","url":"https://arxiv.org/pdf/2503.10191"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"}]
+
+Based on the search results, I found the paper you were looking for:
+
+## CAGE: Compression-AliGnEd Attack
+
+Visual token compression is widely used to accelerate large vision-language models (LVLMs) by pruning or merging visual tokens, yet its adversarial robustness remains unexplored.
+
+Existing encoder-based attacks can substantially overestimate the robustness of compressed LVLMs, due to an optimization-inference mismatch: perturbations are optimized on the full-token representation, while inference is performed through a token-compression bottleneck.
+
+The Compression-AliGnEd attack (CAGE) aligns perturbation optimization with compression inference without assuming access to the deployed compression mechanism or its token budget. CAGE combines (i) expected feature disruption, which concentrates distortion on tokens likely to survive across plausible budgets, and (ii) rank distortion alignment, which actively aligns token distortions with rank scores to promote the retention of highly distorted evidence.
+
+Across diverse representative plug-and-play compression mechanisms and datasets, the results show that CAGE consistently achieves lower robust accuracy than the baseline. This work highlights that robustness assessments ignoring compression can be overly optimistic, calling for compression-aware security evaluation and defenses for efficient LVLMs.
+
+The paper (arXiv 2601.21531) was posted on January 29, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f183c06b-41aa-41ff-afef-745c52dc12f3",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "1fd88c95-de03-431e-acac-f1fc3999b4b6",
+  "toolUseResult": {
+    "query": "CAGE adversarial robustness visual token compression ICML 2026 arXiv 2601.21531",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EtGAM6Lnx3nFttJ4aVEEwG",
+        "content": [
+          {
+            "title": "[2601.21531] On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression",
+            "url": "https://arxiv.org/abs/2601.21531"
+          },
+          {
+            "title": "On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression",
+            "url": "https://arxiv.org/html/2601.21531"
+          },
+          {
+            "title": "Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2601.12042"
+          },
+          {
+            "title": "Feature-Space Adversarial Robustness Certification for Multimodal Large Language Models",
+            "url": "https://arxiv.org/html/2601.16200"
+          },
+          {
+            "title": "On evaluating adversarial robustness of large vision-language models | Proceedings of the 37th International Conference on Neural Information Processing Systems",
+            "url": "https://dl.acm.org/doi/10.5555/3666122.3668477"
+          },
+          {
+            "title": "Token Reduction Should Go Beyond Efficiency in Generative Models – From Vision, Language to Multimodality",
+            "url": "https://arxiv.org/html/2505.18227v3"
+          },
+          {
+            "title": "[2605.08329] An Efficient Token Compression Framework for Visual Object Tracking",
+            "url": "https://arxiv.org/abs/2605.08329"
+          },
+          {
+            "title": "Computer Science Dec 2023",
+            "url": "https://arxiv.org/list/cs/2023-12?skip=1250&show=1000"
+          },
+          {
+            "title": "arXiv:2503.10191v1 [cs.LG] 13 Mar 2025",
+            "url": "https://arxiv.org/pdf/2503.10191"
+          },
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you were looking for:\n\n## CAGE: Compression-AliGnEd Attack\n\nVisual token compression is widely used to accelerate large vision-language models (LVLMs) by pruning or merging visual tokens, yet its adversarial robustness remains unexplored.\n\nExisting encoder-based attacks can substantially overestimate the robustness of compressed LVLMs, due to an optimization-inference mismatch: perturbations are optimized on the full-token representation, while inference is performed through a token-compression bottleneck.\n\nThe Compression-AliGnEd attack (CAGE) aligns perturbation optimization with compression inference without assuming access to the deployed compression mechanism or its token budget. CAGE combines (i) expected feature disruption, which concentrates distortion on tokens likely to survive across plausible budgets, and (ii) rank distortion alignment, which actively aligns token distortions with rank scores to promote the retention of highly distorted evidence.\n\nAcross diverse representative plug-and-play compression mechanisms and datasets, the results show that CAGE consistently achieves lower robust accuracy than the baseline. This work highlights that robustness assessments ignoring compression can be overly optimistic, calling for compression-aware security evaluation and defenses for efficient LVLMs.\n\nThe paper (arXiv 2601.21531) was posted on January 29, 2026."
+    ],
+    "durationSeconds": 6.912069984999994
+  },
+  "sourceToolAssistantUUID": "f183c06b-41aa-41ff-afef-745c52dc12f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "1fd88c95-de03-431e-acac-f1fc3999b4b6",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review: Entropy-Stabilized Attention for Compression-Robust VLAs (Round 3)",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T06:18:19.808Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011SXUhGWZ3AKvjxR96nmmnJ`</summary>
+
+```json
+{
+  "query": "sigma reparam attention entropy collapse training stability ICML 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1fd88c95-de03-431e-acac-f1fc3999b4b6",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yV5xwSUyPskq33ZnYw",
+  "type": "assistant",
+  "uuid": "f47331f2-eb30-4d9e-88fa-fa1e2f1060e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HCocyZAVP7sz3zLPcxct2e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 949,
+      "cache_read_input_tokens": 31916,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 949,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 31916,
+          "cache_creation_input_tokens": 949,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 949
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T06:18:26.805Z_
+
+<details><summary>↩ Tool result · `toolu_011SXUhGWZ3AKvjxR96nmmnJ`</summary>
+
+```text
+Web search results for query: "sigma reparam attention entropy collapse training stability ICML 2023"
+
+Links: [{"title":"GitHub - apple/ml-sigma-reparam · GitHub","url":"https://github.com/apple/ml-sigma-reparam"},{"title":"ICML Poster Stabilizing Transformer Training by Preventing Attention Entropy Collapse","url":"https://icml.cc/virtual/2023/poster/24935"},{"title":"ml-sigma-reparam/README.md at main · apple/ml-sigma-reparam","url":"https://github.com/apple/ml-sigma-reparam/blob/main/README.md"},{"title":"Stabilizing Transformer Training by Preventing Attention Entropy Collapse","url":"https://proceedings.mlr.press/v202/zhai23a.html"},{"title":"Stabilizing Transformer Training by Preventing Attention Entropy Collapse | OpenReview","url":"https://openreview.net/forum?id=LL8gz8FHxH"},{"title":"Stabilizing Transformer Training by Preventing Attention Entropy Collapse - Apple Machine Learning Research","url":"https://machinelearning.apple.com/research/stabilizing-transformer-training"},{"title":"Stabilizing transformer training by preventing attention entropy collapse | Proceedings of the 40th International Conference on Machine Learning","url":"https://dl.acm.org/doi/10.5555/3618408.3620117"},{"title":"STABILIZING TRANSFORMER TRAINING BY PREVENTING ATTENTION ENTROPY COLLAPSE","url":"https://arxiv.org/pdf/2303.06296"},{"title":"[2303.06296] Stabilizing Transformer Training by Preventing Attention Entropy Collapse","url":"https://arxiv.org/abs/2303.06296"},{"title":"$\\sigma$Reparam: Stable Transformer Training with Spectral Reparametrization | OpenReview","url":"https://openreview.net/forum?id=QwqxO8URJzn"}]
+
+I found comprehensive information about this research. Here's a summary of the search results:
+
+## Stabilizing Transformer Training by Preventing Attention Entropy Collapse (ICML 2023)
+
+This research paper, published at ICML 2023, accompanies a software project on sigma reparameterization.
+
+### The Problem
+
+The work investigates the training dynamics of Transformers by examining the evolution of the attention layers, tracking the attention entropy for each attention head during training, which is a proxy for model sharpness. A common pattern was identified across different architectures and tasks, where low attention entropy is accompanied by high training instability, which can take the form of oscillating loss or divergence. The pathologically low attention entropy, corresponding to highly concentrated attention scores, is denoted as entropy collapse.
+
+### The Solution
+
+The proposed solution, σReparam, reparametrizes all linear layers with spectral normalization and an additional learned scalar. σReparam successfully prevents entropy collapse in the attention layers, promoting more stable training.
+
+### Theoretical Contribution
+
+The authors prove a tight lower bound of the attention entropy, which decreases exponentially fast with the spectral norm of the attention logits, providing additional motivation for the approach.
+
+### Experimental Results
+
+Experiments were conducted on image classification, image self-supervised learning, machine translation, speech recognition, and language modeling tasks, demonstrating that σReparam provides stability and robustness with respect to the choice of hyperparameters, enabling training of Vision Transformers to competitive performance without warmup, weight decay, layer normalization or adaptive optimizers.
+
+Code is available at https://github.com/apple/ml-sigma-reparam.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f47331f2-eb30-4d9e-88fa-fa1e2f1060e6",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "0791be78-69a9-4992-8025-91191839cae3",
+  "toolUseResult": {
+    "query": "sigma reparam attention entropy collapse training stability ICML 2023",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YCG9ZotBZpAYB2qzNfQkhj",
+        "content": [
+          {
+            "title": "GitHub - apple/ml-sigma-reparam · GitHub",
+            "url": "https://github.com/apple/ml-sigma-reparam"
+          },
+          {
+            "title": "ICML Poster Stabilizing Transformer Training by Preventing Attention Entropy Collapse",
+            "url": "https://icml.cc/virtual/2023/poster/24935"
+          },
+          {
+            "title": "ml-sigma-reparam/README.md at main · apple/ml-sigma-reparam",
+            "url": "https://github.com/apple/ml-sigma-reparam/blob/main/README.md"
+          },
+          {
+            "title": "Stabilizing Transformer Training by Preventing Attention Entropy Collapse",
+            "url": "https://proceedings.mlr.press/v202/zhai23a.html"
+          },
+          {
+            "title": "Stabilizing Transformer Training by Preventing Attention Entropy Collapse | OpenReview",
+            "url": "https://openreview.net/forum?id=LL8gz8FHxH"
+          },
+          {
+            "title": "Stabilizing Transformer Training by Preventing Attention Entropy Collapse - Apple Machine Learning Research",
+            "url": "https://machinelearning.apple.com/research/stabilizing-transformer-training"
+          },
+          {
+            "title": "Stabilizing transformer training by preventing attention entropy collapse | Proceedings of the 40th International Conference on Machine Learning",
+            "url": "https://dl.acm.org/doi/10.5555/3618408.3620117"
+          },
+          {
+            "title": "STABILIZING TRANSFORMER TRAINING BY PREVENTING ATTENTION ENTROPY COLLAPSE",
+            "url": "https://arxiv.org/pdf/2303.06296"
+          },
+          {
+            "title": "[2303.06296] Stabilizing Transformer Training by Preventing Attention Entropy Collapse",
+            "url": "https://arxiv.org/abs/2303.06296"
+          },
+          {
+            "title": "$\\sigma$Reparam: Stable Transformer Training with Spectral Reparametrization | OpenReview",
+            "url": "https://openreview.net/forum?id=QwqxO8URJzn"
+          }
+        ]
+      },
+      "I found comprehensive information about this research. Here's a summary of the search results:\n\n## Stabilizing Transformer Training by Preventing Attention Entropy Collapse (ICML 2023)\n\nThis research paper, published at ICML 2023, accompanies a software project on sigma reparameterization.\n\n### The Problem\n\nThe work investigates the training dynamics of Transformers by examining the evolution of the attention layers, tracking the attention entropy for each attention head during training, which is a proxy for model sharpness. A common pattern was identified across different architectures and tasks, where low attention entropy is accompanied by high training instability, which can take the form of oscillating loss or divergence. The pathologically low attention entropy, corresponding to highly concentrated attention scores, is denoted as entropy collapse.\n\n### The Solution\n\nThe proposed solution, σReparam, reparametrizes all linear layers with spectral normalization and an additional learned scalar. σReparam successfully prevents entropy collapse in the attention layers, promoting more stable training.\n\n### Theoretical Contribution\n\nThe authors prove a tight lower bound of the attention entropy, which decreases exponentially fast with the spectral norm of the attention logits, providing additional motivation for the approach.\n\n### Experimental Results\n\nExperiments were conducted on image classification, image self-supervised learning, machine translation, speech recognition, and language modeling tasks, demonstrating that σReparam provides stability and robustness with respect to the choice of hyperparameters, enabling training of Vision Transformers to competitive performance without warmup, weight decay, layer normalization or adaptive optimizers.\n\nCode is available at https://github.com/apple/ml-sigma-reparam."
+    ],
+    "durationSeconds": 6.992085491999998
+  },
+  "sourceToolAssistantUUID": "f47331f2-eb30-4d9e-88fa-fa1e2f1060e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T06:18:28.694Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UpwFCEGmi42RmjrfzL23vo`</summary>
+
+```json
+{
+  "query": "high softmax temperature attention entropy improves adversarial robustness arXiv 2502"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0791be78-69a9-4992-8025-91191839cae3",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yVksGFvFWNh99cuv23",
+  "type": "assistant",
+  "uuid": "b6e4e39a-6b16-4058-af7e-ea37d12a2458",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018iSMJAWCJ2Pn5R1CPkPpFR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 938,
+      "cache_read_input_tokens": 32865,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 938,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 32865,
+          "cache_creation_input_tokens": 938,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 938
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T06:18:34.653Z_
+
+<details><summary>↩ Tool result · `toolu_01UpwFCEGmi42RmjrfzL23vo`</summary>
+
+```text
+Web search results for query: "high softmax temperature attention entropy improves adversarial robustness arXiv 2502"
+
+Links: [{"title":"Exploring the Impact of Temperature Scaling in Softmax for Classification and Adversarial Robustness","url":"https://arxiv.org/html/2502.20604v1"},{"title":"[2502.20604] Exploring the Impact of Temperature Scaling in Softmax for Classification and Adversarial Robustness","url":"https://ar5iv.labs.arxiv.org/html/2502.20604"},{"title":"[2502.20604] Exploring the Impact of Temperature Scaling in Softmax for Classification and Adversarial Robustness","url":"https://arxiv.org/abs/2502.20604"},{"title":"Optimal Attention Temperature Improves the Robustness of In-Context Learning under Distribution Shift in High Dimensions","url":"https://arxiv.org/html/2511.01292"},{"title":"(PDF) Exploring the Impact of Temperature Scaling in Softmax for Classification and Adversarial Robustness","url":"https://www.researchgate.net/publication/389510342_Exploring_the_Impact_of_Temperature_Scaling_in_Softmax_for_Classification_and_Adversarial_Robustness"},{"title":"Machine Learning Feb 2025","url":"https://www.arxiv.org/list/cs.LG/2025-02?skip=2375&show=25"},{"title":"Tropical Attention: Neural Algorithmic Reasoning for Combinatorial Algorithms","url":"https://arxiv.org/html/2505.17190v1"},{"title":"Optimal Attention Temperature Enhances In-Context Learning under Distribution Shift","url":"https://arxiv.org/html/2511.01292v1"},{"title":"Learning to Scale Temperature in Masked Self-Attention for ...","url":"https://arxiv.org/pdf/2302.06130"},{"title":"Artificial Intelligence Feb 2025","url":"https://arxiv.org/list/cs.AI/2025-02?skip=3500&show=1000"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## Paper: "Exploring the Impact of Temperature Scaling in Softmax for Classification and Adversarial Robustness"
+
+**ArXiv ID:** 2502.20604  
+**Authors:** Hao Xuan, Bokai Yang, Xingyu Li  
+**Published:** February 28, 2025
+
+### Key Findings:
+
+The study investigates the often-overlooked parameter within the softmax function, known as "temperature," providing novel insights into the practical and theoretical aspects of temperature scaling for image classification.
+
+The paper discovers that elevated temperatures provide enhanced model robustness against common corruption, natural perturbation, and non-targeted adversarial attacks like Projected Gradient Descent.
+
+Empirical studies using convolutional neural networks and transformers on multiple benchmark datasets reveal that moderate temperatures generally introduce better overall performance.
+
+Applying high temperatures during training introduces enormous robustness against gradient-based untargeted adversarial attacks. Additionally, a wide range of temperatures (30 to 70) can provide improvements to the model.
+
+The authors extend their discoveries to adversarial training, demonstrating that higher temperatures have the potential to enhance adversarial training compared to the standard softmax function with default temperature value.
+
+The paper is available on arXiv at https://arxiv.org/abs/2502.20604 and has been published in February 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b6e4e39a-6b16-4058-af7e-ea37d12a2458",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "d0291f38-9a74-4211-9933-3917497f1642",
+  "toolUseResult": {
+    "query": "high softmax temperature attention entropy improves adversarial robustness arXiv 2502",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01W5smCYjyk6wFr9hTp8ARFq",
+        "content": [
+          {
+            "title": "Exploring the Impact of Temperature Scaling in Softmax for Classification and Adversarial Robustness",
+            "url": "https://arxiv.org/html/2502.20604v1"
+          },
+          {
+            "title": "[2502.20604] Exploring the Impact of Temperature Scaling in Softmax for Classification and Adversarial Robustness",
+            "url": "https://ar5iv.labs.arxiv.org/html/2502.20604"
+          },
+          {
+            "title": "[2502.20604] Exploring the Impact of Temperature Scaling in Softmax for Classification and Adversarial Robustness",
+            "url": "https://arxiv.org/abs/2502.20604"
+          },
+          {
+            "title": "Optimal Attention Temperature Improves the Robustness of In-Context Learning under Distribution Shift in High Dimensions",
+            "url": "https://arxiv.org/html/2511.01292"
+          },
+          {
+            "title": "(PDF) Exploring the Impact of Temperature Scaling in Softmax for Classification and Adversarial Robustness",
+            "url": "https://www.researchgate.net/publication/389510342_Exploring_the_Impact_of_Temperature_Scaling_in_Softmax_for_Classification_and_Adversarial_Robustness"
+          },
+          {
+            "title": "Machine Learning Feb 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-02?skip=2375&show=25"
+          },
+          {
+            "title": "Tropical Attention: Neural Algorithmic Reasoning for Combinatorial Algorithms",
+            "url": "https://arxiv.org/html/2505.17190v1"
+          },
+          {
+            "title": "Optimal Attention Temperature Enhances In-Context Learning under Distribution Shift",
+            "url": "https://arxiv.org/html/2511.01292v1"
+          },
+          {
+            "title": "Learning to Scale Temperature in Masked Self-Attention for ...",
+            "url": "https://arxiv.org/pdf/2302.06130"
+          },
+          {
+            "title": "Artificial Intelligence Feb 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-02?skip=3500&show=1000"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## Paper: \"Exploring the Impact of Temperature Scaling in Softmax for Classification and Adversarial Robustness\"\n\n**ArXiv ID:** 2502.20604  \n**Authors:** Hao Xuan, Bokai Yang, Xingyu Li  \n**Published:** February 28, 2025\n\n### Key Findings:\n\nThe study investigates the often-overlooked parameter within the softmax function, known as \"temperature,\" providing novel insights into the practical and theoretical aspects of temperature scaling for image classification.\n\nThe paper discovers that elevated temperatures provide enhanced model robustness against common corruption, natural perturbation, and non-targeted adversarial attacks like Projected Gradient Descent.\n\nEmpirical studies using convolutional neural networks and transformers on multiple benchmark datasets reveal that moderate temperatures generally introduce better overall performance.\n\nApplying high temperatures during training introduces enormous robustness against gradient-based untargeted adversarial attacks. Additionally, a wide range of temperatures (30 to 70) can provide improvements to the model.\n\nThe authors extend their discoveries to adversarial training, demonstrating that higher temperatures have the potential to enhance adversarial training compared to the standard softmax function with default temperature value.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2502.20604 and has been published in February 2025."
+    ],
+    "durationSeconds": 5.955378421000002
+  },
+  "sourceToolAssistantUUID": "b6e4e39a-6b16-4058-af7e-ea37d12a2458",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T06:18:36.908Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y9dZqwhq9gsbwoS1c9Uqj4`</summary>
+
+```json
+{
+  "query": "Rényi attention entropy patch pruning arXiv 2604.03803 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0291f38-9a74-4211-9933-3917497f1642",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yWLMQHZJR2qZpeC8uu",
+  "type": "assistant",
+  "uuid": "5896c513-cf99-4d8f-b913-4de2493472ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUgVLfzMGEoS7EAfe9HXMu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 938,
+      "cache_read_input_tokens": 33803,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 938,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 33803,
+          "cache_creation_input_tokens": 938,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 938
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T06:18:43.491Z_
+
+<details><summary>↩ Tool result · `toolu_01Y9dZqwhq9gsbwoS1c9Uqj4`</summary>
+
+```text
+Web search results for query: "Rényi attention entropy patch pruning arXiv 2604.03803 2026"
+
+Links: [{"title":"[2604.03803] Rényi Attention Entropy for Patch Pruning","url":"https://arxiv.org/abs/2604.03803"},{"title":"Rényi Attention Entropy for Patch Pruning","url":"https://arxiv.org/html/2604.03803"},{"title":"Entropy-Lens: Uncovering Decision Strategies in LLMs","url":"https://arxiv.org/html/2502.16570"},{"title":"Token-Level Pruning in Attention Models","url":"https://www.preprints.org/frontend/manuscript/7cdd38873335571c67d699f0d7594388/download_pub"},{"title":"[2604.18081] Shannon and Rényi entropies of molecular densities: insights into extensivity and the incomplete description of electron correlation","url":"https://arxiv.org/abs/2604.18081"},{"title":"Entanglement in the open XX chain: Rényi oscillations, hard-edge crossover, and symmetry resolution","url":"https://arxiv.org/html/2604.05356"},{"title":"Attention Head Entropy of LLMs Predicts Answer Correctness","url":"https://arxiv.org/html/2602.13699"},{"title":"[2605.09655] Geometry of Rényi Entropy on the Majorization Lattice","url":"https://arxiv.org/abs/2605.09655"},{"title":"Video Patch Pruning: Efficient Video Instance Segmentation via Early Token Reduction","url":"https://arxiv.org/html/2604.00827"},{"title":"Accurate Neural Network Pruning Requires Rethinking Sparse Optimization","url":"https://arxiv.org/pdf/2308.02060"}]
+
+I found the paper you're looking for! The paper "Rényi Attention Entropy for Patch Pruning" was submitted on April 4, 2026, with arXiv identifier 2604.03803 by Hiroaki Aizawa and Yuki Igaue from Hiroshima University.
+
+## Overview
+
+The paper addresses the fact that while Transformers are strong models because self-attention captures long-range dependencies, the cost of self-attention grows quadratically with the number of tokens. Patch pruning mitigates this cost by estimating per-patch importance and removing redundant patches.
+
+## Key Contribution
+
+The authors introduce a criterion based on Shannon entropy of the attention distribution, where low-entropy patches that receive selective and concentrated attention are kept as important, while high-entropy patches with attention spread across many locations are treated as redundant.
+
+The work extends the criterion from Shannon to Rényi entropy, which emphasizes sharp attention peaks and supports pruning strategies that adapt to task needs and computational limits.
+
+## Results
+
+Using a pre-trained DeiT-S and evaluating on ImageNet-100, the approach reduces computation by about 35% and improves inference speed by about 55% while limiting the accuracy drop to about 0.02 percentage points.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5896c513-cf99-4d8f-b913-4de2493472ce",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "5f8d134d-753e-444c-bf03-d47ab6037fae",
+  "toolUseResult": {
+    "query": "Rényi attention entropy patch pruning arXiv 2604.03803 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012VpnLjJoy7gXwj4EVTU8a8",
+        "content": [
+          {
+            "title": "[2604.03803] Rényi Attention Entropy for Patch Pruning",
+            "url": "https://arxiv.org/abs/2604.03803"
+          },
+          {
+            "title": "Rényi Attention Entropy for Patch Pruning",
+            "url": "https://arxiv.org/html/2604.03803"
+          },
+          {
+            "title": "Entropy-Lens: Uncovering Decision Strategies in LLMs",
+            "url": "https://arxiv.org/html/2502.16570"
+          },
+          {
+            "title": "Token-Level Pruning in Attention Models",
+            "url": "https://www.preprints.org/frontend/manuscript/7cdd38873335571c67d699f0d7594388/download_pub"
+          },
+          {
+            "title": "[2604.18081] Shannon and Rényi entropies of molecular densities: insights into extensivity and the incomplete description of electron correlation",
+            "url": "https://arxiv.org/abs/2604.18081"
+          },
+          {
+            "title": "Entanglement in the open XX chain: Rényi oscillations, hard-edge crossover, and symmetry resolution",
+            "url": "https://arxiv.org/html/2604.05356"
+          },
+          {
+            "title": "Attention Head Entropy of LLMs Predicts Answer Correctness",
+            "url": "https://arxiv.org/html/2602.13699"
+          },
+          {
+            "title": "[2605.09655] Geometry of Rényi Entropy on the Majorization Lattice",
+            "url": "https://arxiv.org/abs/2605.09655"
+          },
+          {
+            "title": "Video Patch Pruning: Efficient Video Instance Segmentation via Early Token Reduction",
+            "url": "https://arxiv.org/html/2604.00827"
+          },
+          {
+            "title": "Accurate Neural Network Pruning Requires Rethinking Sparse Optimization",
+            "url": "https://arxiv.org/pdf/2308.02060"
+          }
+        ]
+      },
+      "I found the paper you're looking for! The paper \"Rényi Attention Entropy for Patch Pruning\" was submitted on April 4, 2026, with arXiv identifier 2604.03803 by Hiroaki Aizawa and Yuki Igaue from Hiroshima University.\n\n## Overview\n\nThe paper addresses the fact that while Transformers are strong models because self-attention captures long-range dependencies, the cost of self-attention grows quadratically with the number of tokens. Patch pruning mitigates this cost by estimating per-patch importance and removing redundant patches.\n\n## Key Contribution\n\nThe authors introduce a criterion based on Shannon entropy of the attention distribution, where low-entropy patches that receive selective and concentrated attention are kept as important, while high-entropy patches with attention spread across many locations are treated as redundant.\n\nThe work extends the criterion from Shannon to Rényi entropy, which emphasizes sharp attention peaks and supports pruning strategies that adapt to task needs and computational limits.\n\n## Results\n\nUsing a pre-trained DeiT-S and evaluating on ImageNet-100, the approach reduces computation by about 35% and improves inference speed by about 55% while limiting the accuracy drop to about 0.02 percentage points."
+    ],
+    "durationSeconds": 6.579103693999998
+  },
+  "sourceToolAssistantUUID": "5896c513-cf99-4d8f-b913-4de2493472ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T06:18:45.840Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0182mKwTMiJy1Uu5j5BDer7n`</summary>
+
+```json
+{
+  "query": "SmolVLA LoRA fine-tuning LIBERO training time GPU hours 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f8d134d-753e-444c-bf03-d47ab6037fae",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yWz7XAezkjJjhsX4bp",
+  "type": "assistant",
+  "uuid": "9787bb54-13a7-4275-92e6-9807abee3eb2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LxnPJXNp9r5gZ6zdyArxoW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 851,
+      "cache_read_input_tokens": 34741,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 851,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 34741,
+          "cache_creation_input_tokens": 851,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 851
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T06:18:51.659Z_
+
+<details><summary>↩ Tool result · `toolu_0182mKwTMiJy1Uu5j5BDer7n`</summary>
+
+```text
+Web search results for query: "SmolVLA LoRA fine-tuning LIBERO training time GPU hours 2025 2026"
+
+Links: [{"title":"Fine Tuning SmolVLA for New Environments (Code included!) | by Xavier O'Keefe | Toward Humanoids | Medium","url":"https://medium.com/correll-lab/fine-tuning-smolvla-for-new-environments-code-included-af266c56d632"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://openvla-oft.github.io/"},{"title":"OpenVLA: Open Source VLA for Robotics","url":"https://www.emergentmind.com/topics/openvla"},{"title":"How LoRA Makes AI Fine-Tuning Faster, Cheaper, and More Practical | Exxact Bog","url":"https://www.exxactcorp.com/blog/deep-learning/ai-fine-tuning-with-lora"},{"title":"How can I fine-tune large language models on a budget using LoRA and QLoRA on cloud GPUs?","url":"https://www.runpod.io/articles/guides/how-to-fine-tune-large-language-models-on-a-budget"},{"title":"Efficient Fine-Tuning with LoRA: A Guide to Optimal Parameter Selection for Large Language Models","url":"https://www.databricks.com/blog/efficient-fine-tuning-lora-guide-llms"},{"title":"Fine-Tuning LLMs with LoRA on a small GPU | Niklas Heidloff","url":"https://heidloff.net/article/fine-tuning-llm-lora-small-gpu/"},{"title":"LoRA fine-tuning Hyperparameters Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/get-started/fine-tuning-llms-guide/lora-hyperparameters-guide"},{"title":"Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control","url":"https://arxiv.org/html/2512.11921v1"},{"title":"Fine-Tune LLMs with LoRA and QLoRA: 2026 Guide - DEV Community","url":"https://dev.to/jangwook_kim_e31e7291ad98/fine-tune-llms-with-lora-and-qlora-2026-guide-33lf"}]
+
+I found relevant information about SmolVLA LoRA fine-tuning with the LIBERO dataset. Here are the key findings:
+
+## SmolVLA LoRA Fine-Tuning on LIBERO
+
+Training took about 4 hours using an L4 GPU for a LoRA fine-tuning experiment on SmolVLA for LIBERO-based tasks. The training required 22 GB of VRAM, which was just about as large as could be fit on this chip.
+
+The simulation environment was designed with camera positions that replicate the LIBERO dataset, which uses the same Panda arm for pick-and-place tasks. Since LIBERO is a common benchmark dataset, there's a pretrained SmolVLA checkpoint available, which provides a good starting point for fine-tuning.
+
+## Context on SmolVLA
+
+SmolVLA is at only 450 million parameters, an order of magnitude smaller than frontier robotics models (which can exceed 5–7 billion parameters), meaning it can run on consumer hardware without needing to rent expensive GPU clusters.
+
+The search results indicate this training example was from February 2026, demonstrating practical fine-tuning on consumer-grade GPUs for robotics applications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9787bb54-13a7-4275-92e6-9807abee3eb2",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "a18878ba-0270-42c3-8de0-a3cc435b88a3",
+  "toolUseResult": {
+    "query": "SmolVLA LoRA fine-tuning LIBERO training time GPU hours 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ucip7Zw7cwtPUBgKZM2nDp",
+        "content": [
+          {
+            "title": "Fine Tuning SmolVLA for New Environments (Code included!) | by Xavier O'Keefe | Toward Humanoids | Medium",
+            "url": "https://medium.com/correll-lab/fine-tuning-smolvla-for-new-environments-code-included-af266c56d632"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://openvla-oft.github.io/"
+          },
+          {
+            "title": "OpenVLA: Open Source VLA for Robotics",
+            "url": "https://www.emergentmind.com/topics/openvla"
+          },
+          {
+            "title": "How LoRA Makes AI Fine-Tuning Faster, Cheaper, and More Practical | Exxact Bog",
+            "url": "https://www.exxactcorp.com/blog/deep-learning/ai-fine-tuning-with-lora"
+          },
+          {
+            "title": "How can I fine-tune large language models on a budget using LoRA and QLoRA on cloud GPUs?",
+            "url": "https://www.runpod.io/articles/guides/how-to-fine-tune-large-language-models-on-a-budget"
+          },
+          {
+            "title": "Efficient Fine-Tuning with LoRA: A Guide to Optimal Parameter Selection for Large Language Models",
+            "url": "https://www.databricks.com/blog/efficient-fine-tuning-lora-guide-llms"
+          },
+          {
+            "title": "Fine-Tuning LLMs with LoRA on a small GPU | Niklas Heidloff",
+            "url": "https://heidloff.net/article/fine-tuning-llm-lora-small-gpu/"
+          },
+          {
+            "title": "LoRA fine-tuning Hyperparameters Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/get-started/fine-tuning-llms-guide/lora-hyperparameters-guide"
+          },
+          {
+            "title": "Towards Accessible Physical AI: LoRA-Based Fine-Tuning of VLA Models for Real-World Robot Control",
+            "url": "https://arxiv.org/html/2512.11921v1"
+          },
+          {
+            "title": "Fine-Tune LLMs with LoRA and QLoRA: 2026 Guide - DEV Community",
+            "url": "https://dev.to/jangwook_kim_e31e7291ad98/fine-tune-llms-with-lora-and-qlora-2026-guide-33lf"
+          }
+        ]
+      },
+      "I found relevant information about SmolVLA LoRA fine-tuning with the LIBERO dataset. Here are the key findings:\n\n## SmolVLA LoRA Fine-Tuning on LIBERO\n\nTraining took about 4 hours using an L4 GPU for a LoRA fine-tuning experiment on SmolVLA for LIBERO-based tasks. The training required 22 GB of VRAM, which was just about as large as could be fit on this chip.\n\nThe simulation environment was designed with camera positions that replicate the LIBERO dataset, which uses the same Panda arm for pick-and-place tasks. Since LIBERO is a common benchmark dataset, there's a pretrained SmolVLA checkpoint available, which provides a good starting point for fine-tuning.\n\n## Context on SmolVLA\n\nSmolVLA is at only 450 million parameters, an order of magnitude smaller than frontier robotics models (which can exceed 5–7 billion parameters), meaning it can run on consumer hardware without needing to rent expensive GPU clusters.\n\nThe search results indicate this training example was from February 2026, demonstrating practical fine-tuning on consumer-grade GPUs for robotics applications."
+    ],
+    "durationSeconds": 5.814724417000005
+  },
+  "sourceToolAssistantUUID": "9787bb54-13a7-4275-92e6-9807abee3eb2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-14T06:18:51.663Z_
+
+```json
+{
+  "parentUuid": "a18878ba-0270-42c3-8de0-a3cc435b88a3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2931dc35-bfb6-4a57-83cd-3eeefccb45fe",
+  "timestamp": "2026-05-14T06:18:51.663Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2931dc35-bfb6-4a57-83cd-3eeefccb45fe",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review: Entropy-Stabilized Attention for Compression-Robust VLAs (Round 3)",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T06:18:55.766Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011cH11rHk4YBcy8v5PnZFoc`</summary>
+
+```json
+{
+  "query": "VLA token compression robustness defense training-time 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2931dc35-bfb6-4a57-83cd-3eeefccb45fe",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yXb7CG1yRVy4P7Qvv3",
+  "type": "assistant",
+  "uuid": "d522bba7-54e2-4861-8a3a-1819d08e2b0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EktKpTwDDyF6prxRYmkwEb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1098,
+      "cache_read_input_tokens": 35592,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1098,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 35592,
+          "cache_creation_input_tokens": 1098,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1098
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T06:19:05.772Z_
+
+<details><summary>↩ Tool result · `toolu_011cH11rHk4YBcy8v5PnZFoc`</summary>
+
+```text
+Web search results for query: "VLA token compression robustness defense training-time 2026 arXiv"
+
+Links: [{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"[2601.21531] On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/abs/2601.21531"},{"title":"Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation","url":"https://arxiv.org/html/2511.18950v1"},{"title":"Token Expand-Merge: Training-Free Token Compression for Vision-Language-Action Models","url":"https://arxiv.org/html/2512.09927"},{"title":"Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models","url":"https://arxiv.org/html/2601.12042"},{"title":"[2511.18950] Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation","url":"https://arxiv.org/abs/2511.18950"},{"title":"EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models","url":"https://arxiv.org/html/2506.10100v1"},{"title":"AC2-VLA: Action-Context-Aware Adaptive Computation in Vision-Language-Action Models for Efficient Robotic Manipulation","url":"https://arxiv.org/html/2601.19634"},{"title":"FAST: Efficient Action Tokenization for Vision-Language-Action Models","url":"https://www.pi.website/download/fast.pdf"},{"title":"[2512.09927] Token Expand-Merge: Training-Free Token Compression for Vision-Language-Action Models","url":"https://arxiv.org/abs/2512.09927"}]
+
+Based on the search results, I found several relevant papers from 2026 and late 2025 on arXiv related to VLA token compression, robustness, and defense mechanisms:
+
+## Key Papers Found:
+
+**1. On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression** (January 29, 2026)
+
+Visual token compression is widely used to accelerate large vision-language models (LVLMs) by pruning or merging visual tokens, yet its adversarial robustness remains unexplored. Existing encoder-based attacks can substantially overestimate the robustness of compressed LVLMs, due to an optimization-inference mismatch: perturbations are optimized on the full-token representation, while inference is performed through a token-compression bottleneck. The paper proposes the Compression-AliGnEd attack (CAGE), which aligns perturbation optimization with compression inference without assuming access to the deployed compression mechanism or its token budget.
+
+**2. Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models** (January 17, 2026)
+
+Token importance ranking instability is identified as the primary cause of robustness degradation, where small and imperceptible perturbations can significantly alter token rankings, leading the compression mechanism to mistakenly discard task-critical information. The paper proposes a Compression-Aware Attack (CAA) to systematically study and exploit this vulnerability.
+
+**3. VLA-IAP: Training-Free Visual Token Pruning** (March 24, 2026)
+
+This work proposes an Interaction-Aligned Dynamic Strategy coupling spatiotemporal priors with an adaptive safety mechanism, using a Semantic-Motion IoU metric to assess interaction lock and dynamically switch between conservative and aggressive pruning modes to ensure robustness under extreme compression.
+
+**4. AC2-VLA: Action-Context-Aware Adaptive Computation** (January 27, 2026)
+
+This paper proposes AC2-VLA with an action-prior router that adaptively coordinates cognition caching, token pruning, and layer skipping, supported by action-guided self-distillation for robust sparsification.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d522bba7-54e2-4861-8a3a-1819d08e2b0f",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "3c2f9e5d-268a-467f-8611-736508ae90a7",
+  "toolUseResult": {
+    "query": "VLA token compression robustness defense training-time 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Nkxe9R169cohmy4iA6tmAb",
+        "content": [
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "[2601.21531] On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression",
+            "url": "https://arxiv.org/abs/2601.21531"
+          },
+          {
+            "title": "Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation",
+            "url": "https://arxiv.org/html/2511.18950v1"
+          },
+          {
+            "title": "Token Expand-Merge: Training-Free Token Compression for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2512.09927"
+          },
+          {
+            "title": "Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2601.12042"
+          },
+          {
+            "title": "[2511.18950] Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation",
+            "url": "https://arxiv.org/abs/2511.18950"
+          },
+          {
+            "title": "EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2506.10100v1"
+          },
+          {
+            "title": "AC2-VLA: Action-Context-Aware Adaptive Computation in Vision-Language-Action Models for Efficient Robotic Manipulation",
+            "url": "https://arxiv.org/html/2601.19634"
+          },
+          {
+            "title": "FAST: Efficient Action Tokenization for Vision-Language-Action Models",
+            "url": "https://www.pi.website/download/fast.pdf"
+          },
+          {
+            "title": "[2512.09927] Token Expand-Merge: Training-Free Token Compression for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2512.09927"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers from 2026 and late 2025 on arXiv related to VLA token compression, robustness, and defense mechanisms:\n\n## Key Papers Found:\n\n**1. On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression** (January 29, 2026)\n\nVisual token compression is widely used to accelerate large vision-language models (LVLMs) by pruning or merging visual tokens, yet its adversarial robustness remains unexplored. Existing encoder-based attacks can substantially overestimate the robustness of compressed LVLMs, due to an optimization-inference mismatch: perturbations are optimized on the full-token representation, while inference is performed through a token-compression bottleneck. The paper proposes the Compression-AliGnEd attack (CAGE), which aligns perturbation optimization with compression inference without assuming access to the deployed compression mechanism or its token budget.\n\n**2. Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models** (January 17, 2026)\n\nToken importance ranking instability is identified as the primary cause of robustness degradation, where small and imperceptible perturbations can significantly alter token rankings, leading the compression mechanism to mistakenly discard task-critical information. The paper proposes a Compression-Aware Attack (CAA) to systematically study and exploit this vulnerability.\n\n**3. VLA-IAP: Training-Free Visual Token Pruning** (March 24, 2026)\n\nThis work proposes an Interaction-Aligned Dynamic Strategy coupling spatiotemporal priors with an adaptive safety mechanism, using a Semantic-Motion IoU metric to assess interaction lock and dynamically switch between conservative and aggressive pruning modes to ensure robustness under extreme compression.\n\n**4. AC2-VLA: Action-Context-Aware Adaptive Computation** (January 27, 2026)\n\nThis paper proposes AC2-VLA with an action-prior router that adaptively coordinates cognition caching, token pruning, and layer skipping, supported by action-guided self-distillation for robust sparsification."
+    ],
+    "durationSeconds": 10.00049369100001
+  },
+  "sourceToolAssistantUUID": "d522bba7-54e2-4861-8a3a-1819d08e2b0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-14T06:19:08.109Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BNyGFsxvagDDSEa79dTU6Q`</summary>
+
+```json
+{
+  "query": "entropy regularization compression robustness defense VLM token pruning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c2f9e5d-268a-467f-8611-736508ae90a7",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yYdVbCEZmUXv9ftiCQ",
+  "type": "assistant",
+  "uuid": "4473550e-b922-400b-8766-216db9f3706f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CZBU1kap3hcBS74m7SV88t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1102,
+      "cache_read_input_tokens": 36690,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1102,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 36690,
+          "cache_creation_input_tokens": 1102,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1102
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T06:19:19.003Z_
+
+<details><summary>↩ Tool result · `toolu_01BNyGFsxvagDDSEa79dTU6Q`</summary>
+
+```text
+Web search results for query: "entropy regularization compression robustness defense VLM token pruning 2026"
+
+Links: [{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"ERASE: Eliminating Redundant Visual Tokens via Adaptive Two-Stage Token Pruning","url":"https://arxiv.org/html/2605.09982v1"},{"title":"[2601.21531] On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression","url":"https://arxiv.org/abs/2601.21531"},{"title":"GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub","url":"https://github.com/daixiangzi/Awesome-Token-Compress"},{"title":"VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm","url":"https://arxiv.org/html/2512.02700v3"},{"title":"[2511.19518] Towards Efficient VLMs: Information-Theoretic Driven Compression via Adaptive Structural Pruning","url":"https://arxiv.org/abs/2511.19518"},{"title":"SparseVLM: Visual Token Sparsification for Efficient Vision Language Models Inference | OpenReview","url":"https://openreview.net/forum?id=1xG3MN1RRW"},{"title":"Towards Efficient VLMs: Information-Theoretic Driven Compression via Adaptive Structural Pruning","url":"https://arxiv.org/html/2511.19518v1"},{"title":"TopV: Compatible Token Pruning with Inference Time Optimization for Fast","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_TopV_Compatible_Token_Pruning_with_Inference_Time_Optimization_for_Fast_CVPR_2025_paper.pdf"},{"title":"[2512.02700] VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm","url":"https://arxiv.org/abs/2512.02700"}]
+
+Based on the web search results, here's what I found regarding entropy regularization, compression, robustness, defense, VLM token pruning, and related work in 2026:
+
+## Recent Work on VLM Token Pruning and Compression (2026)
+
+### Entropy-Based Approaches
+
+ERASE uses entropy scores computed directly from raw images for image-level pruning, which removes visually redundant regions, combined with context-aware pruning that further prunes vision tokens at adaptive decoder layers based on input-specific contextual redundancy. EntropyPrune is another approach using matrix entropy guided visual token pruning for multimodal large language models.
+
+### Information-Theoretic Framework
+
+InfoPrune is an information-theoretic framework for adaptive structural compression of VLMs grounded in the Information Bottleneck principle, formulating pruning as a trade-off between retaining task-relevant semantics and discarding redundant dependencies. It introduces an entropy-based effective rank (eRank) and employs the Kolmogorov-Smirnov (KS) distance to measure divergence between original and compressed structures.
+
+### Adversarial Robustness and Defense
+
+Visual token compression in large vision-language models (LVLMs) has adversarial robustness challenges due to an optimization-inference mismatch. The Compression-AliGnEd attack (CAGE) aligns perturbation optimization with compression inference without assuming access to the deployed compression mechanism or its token budget.
+
+### Recent 2026 Methods
+
+ICLR 2026 papers include MMTok (Multimodal Coverage Maximization), iLLaVA, HiDrop, FLoC, PruneSID, AgilePruner, and FlashVID, all addressing various aspects of visual token reduction in VLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4473550e-b922-400b-8766-216db9f3706f",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "703b582a-84c9-4525-81f4-7bc328ce88e7",
+  "toolUseResult": {
+    "query": "entropy regularization compression robustness defense VLM token pruning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0141v3GU8x8z85ihdzTbvhTR",
+        "content": [
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          },
+          {
+            "title": "ERASE: Eliminating Redundant Visual Tokens via Adaptive Two-Stage Token Pruning",
+            "url": "https://arxiv.org/html/2605.09982v1"
+          },
+          {
+            "title": "[2601.21531] On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression",
+            "url": "https://arxiv.org/abs/2601.21531"
+          },
+          {
+            "title": "GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub",
+            "url": "https://github.com/daixiangzi/Awesome-Token-Compress"
+          },
+          {
+            "title": "VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm",
+            "url": "https://arxiv.org/html/2512.02700v3"
+          },
+          {
+            "title": "[2511.19518] Towards Efficient VLMs: Information-Theoretic Driven Compression via Adaptive Structural Pruning",
+            "url": "https://arxiv.org/abs/2511.19518"
+          },
+          {
+            "title": "SparseVLM: Visual Token Sparsification for Efficient Vision Language Models Inference | OpenReview",
+            "url": "https://openreview.net/forum?id=1xG3MN1RRW"
+          },
+          {
+            "title": "Towards Efficient VLMs: Information-Theoretic Driven Compression via Adaptive Structural Pruning",
+            "url": "https://arxiv.org/html/2511.19518v1"
+          },
+          {
+            "title": "TopV: Compatible Token Pruning with Inference Time Optimization for Fast",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_TopV_Compatible_Token_Pruning_with_Inference_Time_Optimization_for_Fast_CVPR_2025_paper.pdf"
+          },
+          {
+            "title": "[2512.02700] VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm",
+            "url": "https://arxiv.org/abs/2512.02700"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding entropy regularization, compression, robustness, defense, VLM token pruning, and related work in 2026:\n\n## Recent Work on VLM Token Pruning and Compression (2026)\n\n### Entropy-Based Approaches\n\nERASE uses entropy scores computed directly from raw images for image-level pruning, which removes visually redundant regions, combined with context-aware pruning that further prunes vision tokens at adaptive decoder layers based on input-specific contextual redundancy. EntropyPrune is another approach using matrix entropy guided visual token pruning for multimodal large language models.\n\n### Information-Theoretic Framework\n\nInfoPrune is an information-theoretic framework for adaptive structural compression of VLMs grounded in the Information Bottleneck principle, formulating pruning as a trade-off between retaining task-relevant semantics and discarding redundant dependencies. It introduces an entropy-based effective rank (eRank) and employs the Kolmogorov-Smirnov (KS) distance to measure divergence between original and compressed structures.\n\n### Adversarial Robustness and Defense\n\nVisual token compression in large vision-language models (LVLMs) has adversarial robustness challenges due to an optimization-inference mismatch. The Compression-AliGnEd attack (CAGE) aligns perturbation optimization with compression inference without assuming access to the deployed compression mechanism or its token budget.\n\n### Recent 2026 Methods\n\nICLR 2026 papers include MMTok (Multimodal Coverage Maximization), iLLaVA, HiDrop, FLoC, PruneSID, AgilePruner, and FlashVID, all addressing various aspects of visual token reduction in VLMs."
+    ],
+    "durationSeconds": 10.889756452000002
+  },
+  "sourceToolAssistantUUID": "4473550e-b922-400b-8766-216db9f3706f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T06:19:22.031Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UD3sjKqHy6gvMoFfRokfXu`</summary>
+
+```json
+{
+  "query": "ProGAL-VLA attention entropy ambiguity detection VLA arXiv 2604.09824"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "703b582a-84c9-4525-81f4-7bc328ce88e7",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yZbx6X9uRrTLL5sMd1",
+  "type": "assistant",
+  "uuid": "3cbae8fd-dd85-4842-a118-e2a364311091",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MedutFfPbCwjZqKaJNBwT6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1134,
+      "cache_read_input_tokens": 37792,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 37792,
+          "cache_creation_input_tokens": 1134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T06:19:30.486Z_
+
+<details><summary>↩ Tool result · `toolu_01UD3sjKqHy6gvMoFfRokfXu`</summary>
+
+```text
+Web search results for query: "ProGAL-VLA attention entropy ambiguity detection VLA arXiv 2604.09824"
+
+Links: [{"title":"[2604.09824] ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models","url":"https://arxiv.org/abs/2604.09824"},{"title":"ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models","url":"https://arxiv.org/html/2604.09824"},{"title":"Pure Vision Language Action (VLA) Models: A Comprehensive Survey","url":"https://arxiv.org/html/2509.19012v1"},{"title":"[2603.13782] Your Vision-Language-Action Model Already Has Attention Heads For Path Deviation Detection","url":"https://arxiv.org/abs/2603.13782"},{"title":"Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v2"},{"title":"A Pragmatic VLA Foundation Model","url":"https://arxiv.org/html/2601.18692v1"},{"title":"[2507.22424] Spec-VLA: Speculative Decoding for Vision-Language-Action Models with Relaxed Acceptance","url":"https://arxiv.org/abs/2507.22424"},{"title":"[2604.03803] Rényi Attention Entropy for Patch Pruning","url":"https://arxiv.org/abs/2604.03803"},{"title":"Language Model Uncertainty Quantification with Attention Chain","url":"https://arxiv.org/html/2503.19168v2"},{"title":"Segmentation-Based Attention Entropy: Detecting and Mitigating Object Hallucinations in Large Vision-Language Models","url":"https://arxiv.org/html/2603.16558"}]
+
+Based on the search results, I found information about the paper you're looking for:
+
+## ProGAL-VLA: Grounded Alignment through Prospective Reasoning
+
+ProGAL-VLA (Prospective Grounding and Alignment VLA) constructs a 3D entity-centric graph (GSM), uses a slow planner to produce symbolic sub-goals, and aligns them with grounded entities via a Grounding Alignment Contrastive (GAC) loss.
+
+**Attention Entropy for Ambiguity Detection:**
+
+All actions are conditioned on a verified goal embedding whose attention entropy provides an intrinsic ambiguity signal. Attention entropy yields calibrated selective prediction, indicating that explicit verified grounding is an effective path toward instruction-sensitive, ambiguity-aware agents.
+
+**Key Performance Results:**
+
+On LIBERO-Plus, ProGAL-VLA increases robustness under robot perturbations from 30.3 to 71.5 percent, reduces language ignorance by 3x-4x, and improves entity retrieval from 0.41 to 0.71 Recall@1. On the Custom Ambiguity Benchmark, it reaches AUROC 0.81 (vs. 0.52), AUPR 0.79, and raises clarification on ambiguous inputs from 0.09 to 0.81 without harming unambiguous success.
+
+The paper was published on arXiv on April 10, 2026 (arXiv:2604.09824) by Nastaran Darabi and Amit Ranjan Trivedi from the University of Illinois Chicago.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3cbae8fd-dd85-4842-a118-e2a364311091",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "38fa8741-2aea-40a7-922a-6e414a60d027",
+  "toolUseResult": {
+    "query": "ProGAL-VLA attention entropy ambiguity detection VLA arXiv 2604.09824",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WFrH1GxZ3Pex3eZMKzvbCH",
+        "content": [
+          {
+            "title": "[2604.09824] ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2604.09824"
+          },
+          {
+            "title": "ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2604.09824"
+          },
+          {
+            "title": "Pure Vision Language Action (VLA) Models: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2509.19012v1"
+          },
+          {
+            "title": "[2603.13782] Your Vision-Language-Action Model Already Has Attention Heads For Path Deviation Detection",
+            "url": "https://arxiv.org/abs/2603.13782"
+          },
+          {
+            "title": "Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges",
+            "url": "https://arxiv.org/html/2505.04769v2"
+          },
+          {
+            "title": "A Pragmatic VLA Foundation Model",
+            "url": "https://arxiv.org/html/2601.18692v1"
+          },
+          {
+            "title": "[2507.22424] Spec-VLA: Speculative Decoding for Vision-Language-Action Models with Relaxed Acceptance",
+            "url": "https://arxiv.org/abs/2507.22424"
+          },
+          {
+            "title": "[2604.03803] Rényi Attention Entropy for Patch Pruning",
+            "url": "https://arxiv.org/abs/2604.03803"
+          },
+          {
+            "title": "Language Model Uncertainty Quantification with Attention Chain",
+            "url": "https://arxiv.org/html/2503.19168v2"
+          },
+          {
+            "title": "Segmentation-Based Attention Entropy: Detecting and Mitigating Object Hallucinations in Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2603.16558"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the paper you're looking for:\n\n## ProGAL-VLA: Grounded Alignment through Prospective Reasoning\n\nProGAL-VLA (Prospective Grounding and Alignment VLA) constructs a 3D entity-centric graph (GSM), uses a slow planner to produce symbolic sub-goals, and aligns them with grounded entities via a Grounding Alignment Contrastive (GAC) loss.\n\n**Attention Entropy for Ambiguity Detection:**\n\nAll actions are conditioned on a verified goal embedding whose attention entropy provides an intrinsic ambiguity signal. Attention entropy yields calibrated selective prediction, indicating that explicit verified grounding is an effective path toward instruction-sensitive, ambiguity-aware agents.\n\n**Key Performance Results:**\n\nOn LIBERO-Plus, ProGAL-VLA increases robustness under robot perturbations from 30.3 to 71.5 percent, reduces language ignorance by 3x-4x, and improves entity retrieval from 0.41 to 0.71 Recall@1. On the Custom Ambiguity Benchmark, it reaches AUROC 0.81 (vs. 0.52), AUPR 0.79, and raises clarification on ambiguous inputs from 0.09 to 0.81 without harming unambiguous success.\n\nThe paper was published on arXiv on April 10, 2026 (arXiv:2604.09824) by Nastaran Darabi and Amit Ranjan Trivedi from the University of Illinois Chicago."
+    ],
+    "durationSeconds": 8.449563385999994
+  },
+  "sourceToolAssistantUUID": "3cbae8fd-dd85-4842-a118-e2a364311091",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-14T06:19:32.932Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KJYuEXUv5LchD9kFy53g2Q`</summary>
+
+```json
+{
+  "query": "attention entropy ranking stability token importance adversarial perturbation theoretical bound 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38fa8741-2aea-40a7-922a-6e414a60d027",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yaT5aTGVi57HBAgF8p",
+  "type": "assistant",
+  "uuid": "269c74b0-89e0-41d8-bc2e-879a646bc923",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U7YpuaSrGL5pbW5ZMfj88r",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 956,
+      "cache_read_input_tokens": 38926,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 956,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 38926,
+          "cache_creation_input_tokens": 956,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 956
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T06:19:39.725Z_
+
+<details><summary>↩ Tool result · `toolu_01KJYuEXUv5LchD9kFy53g2Q`</summary>
+
+```text
+Web search results for query: "attention entropy ranking stability token importance adversarial perturbation theoretical bound 2025 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026 LONG-CONTEXT GENERALIZATION WITH","url":"https://arxiv.org/pdf/2506.16640"},{"title":"ENTROPY-GUIDED ATTENTION FOR PRIVATE LLMS Nandan Kumar Jha New York University","url":"https://arxiv.org/pdf/2501.03489"},{"title":"First version: June 2, 2025; last revised: November 13, 2025.","url":"https://arxiv.org/pdf/2506.01939"},{"title":"Machine Learning Jul 2025","url":"https://www.arxiv.org/list/cs.LG/2025-07?skip=675&show=1000"},{"title":"ICLR 2026 Papers","url":"https://iclr.cc/virtual/2026/papers.html"},{"title":"A Spatially Distributed Perturbation Strategy with Smoothed Gradient Sign Method for Adversarial Analysis of Image Classification Systems","url":"https://www.mdpi.com/1099-4300/28/2/193"},{"title":"Artificial Intelligence Jun 2025","url":"https://arxiv.org/list/cs.AI/2025-06?skip=1800&show=2000"},{"title":"Published as a conference paper at ICLR 2025","url":"https://arxiv.org/pdf/2412.12089"},{"title":"Machine Learning","url":"https://arxiv.org/list/cs.LG/new"},{"title":"ICLR 2025 Papers","url":"https://iclr.cc/virtual/2025/papers.html"}]
+
+I've found several relevant research papers from 2025-2026 related to your search query. Here are the key findings:
+
+## Recent Research on Attention, Entropy, and Theoretical Bounds
+
+**1. Attention Dispersion and Entropy (ICLR 2026)**
+
+Recent work has highlighted attention dispersion as a fundamental limitation of softmax for long context generalization, with formal definitions to characterize attention dispersion showing how α-entmax naturally exhibits concentration properties. The research provides theoretical guarantees that α-entmax maintains bounded normalized entropy as sequence length increases—a property softmax fundamentally lacks.
+
+**2. Token Entropy and Ranking (2025)**
+
+Research analyzing token entropy patterns in language models investigates how tokens with varying entropy impact reasoning performance, finding that in Chain-of-Thought processes, the entropy distribution exhibits a distinct pattern where the majority of tokens are generated with low entropy, while a critical minority of tokens emerge with high entropy. High-entropy tokens function as pivotal decision points that determine the trajectory of reasoning among multiple potential pathways.
+
+**3. Adversarial Perturbation and Robustness (2026)**
+
+Understanding and evaluating systemic robustness against adversarial perturbations has become fundamental for system safety and reliability, as deep neural networks remain vulnerable to adversarial perturbations which can compromise their reliability in safety-critical applications.
+
+These papers appear to address different aspects of your query—from theoretical bounds on attention entropy and token importance to adversarial robustness analysis in neural networks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "269c74b0-89e0-41d8-bc2e-879a646bc923",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "26a3d888-b5de-47d6-b074-857cfbcd24c2",
+  "toolUseResult": {
+    "query": "attention entropy ranking stability token importance adversarial perturbation theoretical bound 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PjdbXygqygVoTfpPc7H5jc",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026 LONG-CONTEXT GENERALIZATION WITH",
+            "url": "https://arxiv.org/pdf/2506.16640"
+          },
+          {
+            "title": "ENTROPY-GUIDED ATTENTION FOR PRIVATE LLMS Nandan Kumar Jha New York University",
+            "url": "https://arxiv.org/pdf/2501.03489"
+          },
+          {
+            "title": "First version: June 2, 2025; last revised: November 13, 2025.",
+            "url": "https://arxiv.org/pdf/2506.01939"
+          },
+          {
+            "title": "Machine Learning Jul 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-07?skip=675&show=1000"
+          },
+          {
+            "title": "ICLR 2026 Papers",
+            "url": "https://iclr.cc/virtual/2026/papers.html"
+          },
+          {
+            "title": "A Spatially Distributed Perturbation Strategy with Smoothed Gradient Sign Method for Adversarial Analysis of Image Classification Systems",
+            "url": "https://www.mdpi.com/1099-4300/28/2/193"
+          },
+          {
+            "title": "Artificial Intelligence Jun 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-06?skip=1800&show=2000"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://arxiv.org/pdf/2412.12089"
+          },
+          {
+            "title": "Machine Learning",
+            "url": "https://arxiv.org/list/cs.LG/new"
+          },
+          {
+            "title": "ICLR 2025 Papers",
+            "url": "https://iclr.cc/virtual/2025/papers.html"
+          }
+        ]
+      },
+      "I've found several relevant research papers from 2025-2026 related to your search query. Here are the key findings:\n\n## Recent Research on Attention, Entropy, and Theoretical Bounds\n\n**1. Attention Dispersion and Entropy (ICLR 2026)**\n\nRecent work has highlighted attention dispersion as a fundamental limitation of softmax for long context generalization, with formal definitions to characterize attention dispersion showing how α-entmax naturally exhibits concentration properties. The research provides theoretical guarantees that α-entmax maintains bounded normalized entropy as sequence length increases—a property softmax fundamentally lacks.\n\n**2. Token Entropy and Ranking (2025)**\n\nResearch analyzing token entropy patterns in language models investigates how tokens with varying entropy impact reasoning performance, finding that in Chain-of-Thought processes, the entropy distribution exhibits a distinct pattern where the majority of tokens are generated with low entropy, while a critical minority of tokens emerge with high entropy. High-entropy tokens function as pivotal decision points that determine the trajectory of reasoning among multiple potential pathways.\n\n**3. Adversarial Perturbation and Robustness (2026)**\n\nUnderstanding and evaluating systemic robustness against adversarial perturbations has become fundamental for system safety and reliability, as deep neural networks remain vulnerable to adversarial perturbations which can compromise their reliability in safety-critical applications.\n\nThese papers appear to address different aspects of your query—from theoretical bounds on attention entropy and token importance to adversarial robustness analysis in neural networks."
+    ],
+    "durationSeconds": 6.789104691
+  },
+  "sourceToolAssistantUUID": "269c74b0-89e0-41d8-bc2e-879a646bc923",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "26a3d888-b5de-47d6-b074-857cfbcd24c2",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review: Entropy-Stabilized Attention for Compression-Robust VLAs (Round 3)",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-14T06:19:43.419Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0116jSVQU7uocGcmb347mn2z`</summary>
+
+```json
+{
+  "query": "CoRL 2026 submission deadline abstract paper Austin November"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26a3d888-b5de-47d6-b074-857cfbcd24c2",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yb8ZsVduvEwKDu1og7",
+  "type": "assistant",
+  "uuid": "f878c954-2166-4b6e-a918-2ab6c82c8b5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UHdx4JcQKFuMvkve6RGd65",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 863,
+      "cache_read_input_tokens": 39882,
+      "output_tokens": 63,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 863,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 63,
+          "cache_read_input_tokens": 39882,
+          "cache_creation_input_tokens": 863,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 863
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T06:19:48.941Z_
+
+<details><summary>↩ Tool result · `toolu_0116jSVQU7uocGcmb347mn2z`</summary>
+
+```text
+Web search results for query: "CoRL 2026 submission deadline abstract paper Austin November"
+
+Links: [{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz","url":"https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"}]
+
+Based on the search results, here's the information about CoRL 2026 submission deadlines:
+
+## CoRL 2026 Key Information
+
+**Conference Details:**
+CoRL 2026 will be held in Austin, Texas, US. The conference dates are November 9-12, 2026 at JW Marriott Austin, 110 E 2nd St, Austin, TX 78701.
+
+**Submission Deadlines:**
+- Abstract submission deadline: May 26, 2026 11:59 UTC
+- Paper submission deadline: May 29, 2026 11:59 UTC
+
+**Paper Requirements:**
+- Page limit is 8 pages for the main paper. Acknowledgments, References, and Appendix (optional) will not count towards the page limit.
+- Papers may be submitted through OpenReview.
+
+The deadlines are final, and no accommodations can be made for missing the abstract deadline or paper deadline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f878c954-2166-4b6e-a918-2ab6c82c8b5a",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "9e6a1e3b-edb5-4feb-bd98-40425d0aef8f",
+  "toolUseResult": {
+    "query": "CoRL 2026 submission deadline abstract paper Austin November",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CU2fBMhGhzo5vzHomhueyX",
+        "content": [
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf?lang=en"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz",
+            "url": "https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          },
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about CoRL 2026 submission deadlines:\n\n## CoRL 2026 Key Information\n\n**Conference Details:**\nCoRL 2026 will be held in Austin, Texas, US. The conference dates are November 9-12, 2026 at JW Marriott Austin, 110 E 2nd St, Austin, TX 78701.\n\n**Submission Deadlines:**\n- Abstract submission deadline: May 26, 2026 11:59 UTC\n- Paper submission deadline: May 29, 2026 11:59 UTC\n\n**Paper Requirements:**\n- Page limit is 8 pages for the main paper. Acknowledgments, References, and Appendix (optional) will not count towards the page limit.\n- Papers may be submitted through OpenReview.\n\nThe deadlines are final, and no accommodations can be made for missing the abstract deadline or paper deadline."
+    ],
+    "durationSeconds": 5.517642632000003
+  },
+  "sourceToolAssistantUUID": "f878c954-2166-4b6e-a918-2ab6c82c8b5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-14T06:19:53.505Z_
+
+Good, CoRL 2026 deadlines confirmed. Now let me do deeper dives on the critical theoretical tensions and competitor landscape.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e6a1e3b-edb5-4feb-bd98-40425d0aef8f",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ybovyyq9i875AKYtbK",
+  "type": "assistant",
+  "uuid": "53ca471b-1bd3-4b5d-856c-b915885da421",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XAHAYmM1enWzEaA8cTCY7J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 729,
+      "cache_read_input_tokens": 40745,
+      "output_tokens": 97,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 97,
+          "cache_read_input_tokens": 40745,
+          "cache_creation_input_tokens": 729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T06:19:53.761Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EP4wNna3B8vHHpo8s6WFtY`</summary>
+
+```json
+{
+  "query": "\"visual token compression enhances model robustness\" OpenReview 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "53ca471b-1bd3-4b5d-856c-b915885da421",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ybovyyq9i875AKYtbK",
+  "type": "assistant",
+  "uuid": "be49145d-e2dc-4071-8fcd-d108dcca51ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XAHAYmM1enWzEaA8cTCY7J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 729,
+      "cache_read_input_tokens": 40745,
+      "output_tokens": 97,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 97,
+          "cache_read_input_tokens": 40745,
+          "cache_creation_input_tokens": 729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T06:19:59.095Z_
+
+<details><summary>↩ Tool result · `toolu_01EP4wNna3B8vHHpo8s6WFtY`</summary>
+
+```text
+Web search results for query: ""visual token compression enhances model robustness" OpenReview 2026"
+
+Links: [{"title":"VISUAL TOKEN COMPRESSION ENHANCES MODEL ...","url":"https://openreview.net/pdf/55b90f437cc9c2ca5ac998f826849508b9f0acc2.pdf"},{"title":"GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub","url":"https://github.com/daixiangzi/Awesome-Token-Compress"},{"title":"A Survey of Token Compression for Efficient Multimodal Large Language Models | OpenReview","url":"https://openreview.net/forum?id=G2od9JVHkE"},{"title":"Enhancing Visual Token Representations for Video Large Language Models via Training-free Spatial-Temporal Pooling and Gridding | OpenReview","url":"https://openreview.net/forum?id=MZi9SYPVz5"},{"title":"Can visual input Be Compressed? A visual input token compression benchmark for large multimodal models | OpenReview","url":"https://openreview.net/forum?id=Vu7iQO3f9u"},{"title":"Vision-centric Token Compression in Large Language Model","url":"https://openreview.net/pdf/0d7442c68e585e718f4a9edb5254177d2345bc5f.pdf"},{"title":"Efficient Multi-modal Large Language Models via Visual Token Grouping | OpenReview","url":"https://openreview.net/forum?id=ym1dS37mZE"},{"title":"Vision-centric Token Compression in Large Language Model | OpenReview","url":"https://openreview.net/forum?id=YdggdEL41C"},{"title":"Less Is More, but Where? Dynamic Token Compression via LLM-Guided","url":"https://openreview.net/pdf/b4a33413bf051e6a2476bdf1b3f34a1cab246ff1.pdf"},{"title":"SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference | OpenReview","url":"https://openreview.net/forum?id=80faIPZ67S"}]
+
+I found the paper you were searching for! The search results include a paper that aims to enhance model robustness against jailbreaks and hallucinations by selectively reducing visual tokens, while also reducing inference cost as a side benefit.
+
+The paper is available on OpenReview and is under review as a conference paper at ICLR 2026. The research validates the approach using two vision-language model frameworks: LLaVA and Qwen2.5-VL.
+
+The key contribution of the work is that it addresses how the distance between each visual token and the language feature space can be measured to determine which tokens to compress. This approach differs from previous visual token compression methods that primarily focus on efficiency, as the goal is to enhance the robustness of VLMs via visual token compression.
+
+The PDF is directly accessible at the first search result link above.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "be49145d-e2dc-4071-8fcd-d108dcca51ff",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "18784bd1-c7a5-4dc4-ba20-7ccdad0fafaa",
+  "toolUseResult": {
+    "query": "\"visual token compression enhances model robustness\" OpenReview 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DTPcNgmmvdUhKHPJuMfBY8",
+        "content": [
+          {
+            "title": "VISUAL TOKEN COMPRESSION ENHANCES MODEL ...",
+            "url": "https://openreview.net/pdf/55b90f437cc9c2ca5ac998f826849508b9f0acc2.pdf"
+          },
+          {
+            "title": "GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub",
+            "url": "https://github.com/daixiangzi/Awesome-Token-Compress"
+          },
+          {
+            "title": "A Survey of Token Compression for Efficient Multimodal Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=G2od9JVHkE"
+          },
+          {
+            "title": "Enhancing Visual Token Representations for Video Large Language Models via Training-free Spatial-Temporal Pooling and Gridding | OpenReview",
+            "url": "https://openreview.net/forum?id=MZi9SYPVz5"
+          },
+          {
+            "title": "Can visual input Be Compressed? A visual input token compression benchmark for large multimodal models | OpenReview",
+            "url": "https://openreview.net/forum?id=Vu7iQO3f9u"
+          },
+          {
+            "title": "Vision-centric Token Compression in Large Language Model",
+            "url": "https://openreview.net/pdf/0d7442c68e585e718f4a9edb5254177d2345bc5f.pdf"
+          },
+          {
+            "title": "Efficient Multi-modal Large Language Models via Visual Token Grouping | OpenReview",
+            "url": "https://openreview.net/forum?id=ym1dS37mZE"
+          },
+          {
+            "title": "Vision-centric Token Compression in Large Language Model | OpenReview",
+            "url": "https://openreview.net/forum?id=YdggdEL41C"
+          },
+          {
+            "title": "Less Is More, but Where? Dynamic Token Compression via LLM-Guided",
+            "url": "https://openreview.net/pdf/b4a33413bf051e6a2476bdf1b3f34a1cab246ff1.pdf"
+          },
+          {
+            "title": "SparseVLM: Visual Token Sparsification for Efficient Vision-Language Model Inference | OpenReview",
+            "url": "https://openreview.net/forum?id=80faIPZ67S"
+          }
+        ]
+      },
+      "I found the paper you were searching for! The search results include a paper that aims to enhance model robustness against jailbreaks and hallucinations by selectively reducing visual tokens, while also reducing inference cost as a side benefit.\n\nThe paper is available on OpenReview and is under review as a conference paper at ICLR 2026. The research validates the approach using two vision-language model frameworks: LLaVA and Qwen2.5-VL.\n\nThe key contribution of the work is that it addresses how the distance between each visual token and the language feature space can be measured to determine which tokens to compress. This approach differs from previous visual token compression methods that primarily focus on efficiency, as the goal is to enhance the robustness of VLMs via visual token compression.\n\nThe PDF is directly accessible at the first search result link above."
+    ],
+    "durationSeconds": 5.330104938000004
+  },
+  "sourceToolAssistantUUID": "be49145d-e2dc-4071-8fcd-d108dcca51ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T06:20:01.756Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019BegQqTvXFBeExBmnbZMHF`</summary>
+
+```json
+{
+  "query": "test time perturbation learning VLA robustness arXiv 2604.18107 uncertainty augmentation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18784bd1-c7a5-4dc4-ba20-7ccdad0fafaa",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ycZKvVKWTGGaKZwuqt",
+  "type": "assistant",
+  "uuid": "b7d36917-4d90-461b-833e-60fdc13a1ce8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QiqymL288vdgtfHbQSNjLQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 878,
+      "cache_read_input_tokens": 41474,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 878,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 41474,
+          "cache_creation_input_tokens": 878,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 878
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T06:20:09.261Z_
+
+<details><summary>↩ Tool result · `toolu_019BegQqTvXFBeExBmnbZMHF`</summary>
+
+```text
+Web search results for query: "test time perturbation learning VLA robustness arXiv 2604.18107 uncertainty augmentation"
+
+Links: [{"title":"Test-Time Perturbation Learning with Delayed Feedback for Vision-Language-Action Models","url":"https://arxiv.org/html/2604.18107"},{"title":"[2604.18107] Test-Time Perturbation Learning with Delayed Feedback for Vision-Language-Action Models","url":"https://arxiv.org/abs/2604.18107"},{"title":"Test-Time Perturbation Learning with Delayed Feedback for","url":"https://arxiv.org/pdf/2604.18107"},{"title":"On Robustness of Vision-Language-Action Model against Multi-Modal Perturbations","url":"https://arxiv.org/html/2510.00037v4"},{"title":"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning","url":"https://arxiv.org/html/2601.06748v1"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626.pdf"},{"title":"1 Introduction","url":"https://arxiv.org/html/2511.01331v1"},{"title":"IN-DEPTH ROBUSTNESS ANALYSIS FOR VISION- ...","url":"https://openreview.net/pdf/bf4411a9941dccca2977e464f53188af2a03a6d3.pdf"},{"title":"[2601.06341] Evaluating Robustness of Large Language Models in Enterprise Applications: Benchmarks for Perturbation Consistency Across Formats and Languages","url":"https://arxiv.org/abs/2601.06341"},{"title":"arXiv:2506.17811v2 [cs.RO] 7 Jul 2025","url":"https://arxiv.org/pdf/2506.17811"}]
+
+Based on the web search results, I found relevant information about the arXiv paper 2604.18107. Here's what I found:
+
+## Test-Time Perturbation Learning with Delayed Feedback for Vision-Language-Action Models
+
+Vision-Language-Action models (VLAs) achieve remarkable performance in sequential decision-making but remain fragile to subtle environmental shifts, such as small changes in object pose, due to trajectory overfitting where VLAs over-attend to the spurious correlation between actions and entities and then reproduce memorized action patterns.
+
+### The PDF Method
+
+The paper proposes Perturbation learning with Delayed Feedback (PDF), a verifier-free test-time adaptation framework that improves decision performance without fine-tuning the base model. PDF mitigates the spurious correlation through uncertainty-based data augmentation and action voting, while an adaptive scheduler allocates augmentation budgets to balance performance and efficiency. PDF learns a lightweight perturbation module that retrospectively adjusts action logits guided by delayed feedback, correcting overconfidence issues.
+
+### Performance Results
+
+PDF attains the best average performance on LIBERO benchmarks, with the largest gains on long-horizon tasks (0.59 success rate, +4.1 over the best baseline), indicating stronger sequential decision quality. These results underscore PDF's effectiveness in mitigating trajectory overfitting and boosting robustness in spatially complex, long-horizon settings.
+
+The paper was submitted to arXiv on April 20, 2026 (arXiv:2604.18107v1).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b7d36917-4d90-461b-833e-60fdc13a1ce8",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "e3c4a476-ea7b-4b28-b7d7-e5a0b6b9614a",
+  "toolUseResult": {
+    "query": "test time perturbation learning VLA robustness arXiv 2604.18107 uncertainty augmentation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016PA37FGph5L3kcGRqD99dC",
+        "content": [
+          {
+            "title": "Test-Time Perturbation Learning with Delayed Feedback for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2604.18107"
+          },
+          {
+            "title": "[2604.18107] Test-Time Perturbation Learning with Delayed Feedback for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2604.18107"
+          },
+          {
+            "title": "Test-Time Perturbation Learning with Delayed Feedback for",
+            "url": "https://arxiv.org/pdf/2604.18107"
+          },
+          {
+            "title": "On Robustness of Vision-Language-Action Model against Multi-Modal Perturbations",
+            "url": "https://arxiv.org/html/2510.00037v4"
+          },
+          {
+            "title": "On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/html/2601.06748v1"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626.pdf"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2511.01331v1"
+          },
+          {
+            "title": "IN-DEPTH ROBUSTNESS ANALYSIS FOR VISION- ...",
+            "url": "https://openreview.net/pdf/bf4411a9941dccca2977e464f53188af2a03a6d3.pdf"
+          },
+          {
+            "title": "[2601.06341] Evaluating Robustness of Large Language Models in Enterprise Applications: Benchmarks for Perturbation Consistency Across Formats and Languages",
+            "url": "https://arxiv.org/abs/2601.06341"
+          },
+          {
+            "title": "arXiv:2506.17811v2 [cs.RO] 7 Jul 2025",
+            "url": "https://arxiv.org/pdf/2506.17811"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant information about the arXiv paper 2604.18107. Here's what I found:\n\n## Test-Time Perturbation Learning with Delayed Feedback for Vision-Language-Action Models\n\nVision-Language-Action models (VLAs) achieve remarkable performance in sequential decision-making but remain fragile to subtle environmental shifts, such as small changes in object pose, due to trajectory overfitting where VLAs over-attend to the spurious correlation between actions and entities and then reproduce memorized action patterns.\n\n### The PDF Method\n\nThe paper proposes Perturbation learning with Delayed Feedback (PDF), a verifier-free test-time adaptation framework that improves decision performance without fine-tuning the base model. PDF mitigates the spurious correlation through uncertainty-based data augmentation and action voting, while an adaptive scheduler allocates augmentation budgets to balance performance and efficiency. PDF learns a lightweight perturbation module that retrospectively adjusts action logits guided by delayed feedback, correcting overconfidence issues.\n\n### Performance Results\n\nPDF attains the best average performance on LIBERO benchmarks, with the largest gains on long-horizon tasks (0.59 success rate, +4.1 over the best baseline), indicating stronger sequential decision quality. These results underscore PDF's effectiveness in mitigating trajectory overfitting and boosting robustness in spatially complex, long-horizon settings.\n\nThe paper was submitted to arXiv on April 20, 2026 (arXiv:2604.18107v1)."
+    ],
+    "durationSeconds": 7.501879306000017
+  },
+  "sourceToolAssistantUUID": "b7d36917-4d90-461b-833e-60fdc13a1ce8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-14T06:20:13.760Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XrwjtKKVhnq2WBtjtfZpQ7`</summary>
+
+```json
+{
+  "query": "CRT corruption restoration transformer VLA robustness arXiv 2602.01158"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3c4a476-ea7b-4b28-b7d7-e5a0b6b9614a",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ydJoajcZhsc8tPhYQy",
+  "type": "assistant",
+  "uuid": "7972ccaa-afbb-4541-9bc2-5a3928bf8677",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TDvY6bPRRjumfV5CBpe4Fv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 42352,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 42352,
+          "cache_creation_input_tokens": 930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T06:20:20.843Z_
+
+<details><summary>↩ Tool result · `toolu_01XrwjtKKVhnq2WBtjtfZpQ7`</summary>
+
+```text
+Web search results for query: "CRT corruption restoration transformer VLA robustness arXiv 2602.01158"
+
+Links: [{"title":"[2602.01158] Improving Robustness of Vision-Language-Action Models by Restoring Corrupted Visual Inputs","url":"https://arxiv.org/abs/2602.01158"},{"title":"Improving Robustness of Vision-Language-Action Models by Restoring Corrupted Visual Inputs","url":"https://arxiv.org/html/2602.01158"},{"title":"Improving Robustness of Vision-Language-Action Models ...","url":"https://arxiv.org/pdf/2602.01158"},{"title":"ANY3D-VLA: Enhancing VLA Robustness via Diverse Point Clouds","url":"https://arxiv.org/pdf/2602.00807"},{"title":"Improving Corruption Robustness with Adversarial Feature Alignment Transformers | OpenReview","url":"https://openreview.net/forum?id=YWZ90TiPBM"},{"title":"Beware of Aliases – Signal Preservation is Crucial for Robust Image Restoration","url":"https://arxiv.org/html/2406.07435v1"},{"title":"[2106.13122v2] Exploring Corruption Robustness: Inductive Biases in Vision Transformers and MLP-Mixers","url":"https://arxiv.org/abs/2106.13122v2"},{"title":"[2602.01459] Understanding vision transformer robustness through the lens of out-of-distribution detection","url":"https://arxiv.org/abs/2602.01459"},{"title":"[2504.13690v2] Analysing the Robustness of Vision-Language-Models to Common Corruptions","url":"https://arxiv.org/abs/2504.13690v2"},{"title":"[2602.00807] Any3D-VLA: Enhancing VLA Robustness via Diverse Point Clouds","url":"https://arxiv.org/abs/2602.00807"}]
+
+Based on the search results, here's what I found about arXiv paper 2602.01158:
+
+## Overview
+
+The paper is titled "Improving Robustness of Vision-Language-Action Models by Restoring Corrupted Visual Inputs".
+
+## Problem Statement
+
+Vision-Language-Action (VLA) models have emerged as a dominant paradigm for generalist robotic manipulation, unifying perception and control within a single end-to-end architecture. However, despite their success in controlled environments, reliable real-world deployment is severely hindered by their fragility to visual disturbances.
+
+These sensor-level artifacts range from electronic noise and dead pixels to lens contaminants, which directly compromise the integrity of the visual signal prior to interpretation. State-of-the-art VLAs such as π₀.₅ and SmolVLA suffer catastrophic performance degradation, dropping from 90% success rates to as low as 2%, under common signal artifacts.
+
+## Solution: Corruption Restoration Transformer (CRT)
+
+The authors introduce the Corruption Restoration Transformer (CRT), a plug-and-play and model-agnostic vision transformer designed to immunize VLA models against sensor disturbances. CRT leverages an adversarial training objective to restore clean observations from corrupted inputs without requiring computationally expensive fine-tuning of the underlying model.
+
+## Results
+
+Extensive experiments across the LIBERO and Meta-World benchmarks demonstrate that CRT effectively recovers lost performance, enabling VLAs to maintain near-baseline success rates, even under severe visual corruption.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7972ccaa-afbb-4541-9bc2-5a3928bf8677",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "31143225-95e7-4969-84b4-f6dc1625fd66",
+  "toolUseResult": {
+    "query": "CRT corruption restoration transformer VLA robustness arXiv 2602.01158",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ThZhMPud6FVucwiS4SWgX4",
+        "content": [
+          {
+            "title": "[2602.01158] Improving Robustness of Vision-Language-Action Models by Restoring Corrupted Visual Inputs",
+            "url": "https://arxiv.org/abs/2602.01158"
+          },
+          {
+            "title": "Improving Robustness of Vision-Language-Action Models by Restoring Corrupted Visual Inputs",
+            "url": "https://arxiv.org/html/2602.01158"
+          },
+          {
+            "title": "Improving Robustness of Vision-Language-Action Models ...",
+            "url": "https://arxiv.org/pdf/2602.01158"
+          },
+          {
+            "title": "ANY3D-VLA: Enhancing VLA Robustness via Diverse Point Clouds",
+            "url": "https://arxiv.org/pdf/2602.00807"
+          },
+          {
+            "title": "Improving Corruption Robustness with Adversarial Feature Alignment Transformers | OpenReview",
+            "url": "https://openreview.net/forum?id=YWZ90TiPBM"
+          },
+          {
+            "title": "Beware of Aliases – Signal Preservation is Crucial for Robust Image Restoration",
+            "url": "https://arxiv.org/html/2406.07435v1"
+          },
+          {
+            "title": "[2106.13122v2] Exploring Corruption Robustness: Inductive Biases in Vision Transformers and MLP-Mixers",
+            "url": "https://arxiv.org/abs/2106.13122v2"
+          },
+          {
+            "title": "[2602.01459] Understanding vision transformer robustness through the lens of out-of-distribution detection",
+            "url": "https://arxiv.org/abs/2602.01459"
+          },
+          {
+            "title": "[2504.13690v2] Analysing the Robustness of Vision-Language-Models to Common Corruptions",
+            "url": "https://arxiv.org/abs/2504.13690v2"
+          },
+          {
+            "title": "[2602.00807] Any3D-VLA: Enhancing VLA Robustness via Diverse Point Clouds",
+            "url": "https://arxiv.org/abs/2602.00807"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about arXiv paper 2602.01158:\n\n## Overview\n\nThe paper is titled \"Improving Robustness of Vision-Language-Action Models by Restoring Corrupted Visual Inputs\".\n\n## Problem Statement\n\nVision-Language-Action (VLA) models have emerged as a dominant paradigm for generalist robotic manipulation, unifying perception and control within a single end-to-end architecture. However, despite their success in controlled environments, reliable real-world deployment is severely hindered by their fragility to visual disturbances.\n\nThese sensor-level artifacts range from electronic noise and dead pixels to lens contaminants, which directly compromise the integrity of the visual signal prior to interpretation. State-of-the-art VLAs such as π₀.₅ and SmolVLA suffer catastrophic performance degradation, dropping from 90% success rates to as low as 2%, under common signal artifacts.\n\n## Solution: Corruption Restoration Transformer (CRT)\n\nThe authors introduce the Corruption Restoration Transformer (CRT), a plug-and-play and model-agnostic vision transformer designed to immunize VLA models against sensor disturbances. CRT leverages an adversarial training objective to restore clean observations from corrupted inputs without requiring computationally expensive fine-tuning of the underlying model.\n\n## Results\n\nExtensive experiments across the LIBERO and Meta-World benchmarks demonstrate that CRT effectively recovers lost performance, enabling VLAs to maintain near-baseline success rates, even under severe visual corruption."
+    ],
+    "durationSeconds": 7.077732394999999
+  },
+  "sourceToolAssistantUUID": "7972ccaa-afbb-4541-9bc2-5a3928bf8677",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-14T06:20:23.236Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WzmNjAGtySk2ETNqUvgprR`</summary>
+
+```json
+{
+  "query": "LearnPruner learnable pruning module token importance VLM arXiv 2604.23950"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31143225-95e7-4969-84b4-f6dc1625fd66",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yeAMcQ5GLv9V6nLG9c",
+  "type": "assistant",
+  "uuid": "a1f36fb6-8773-439b-bf25-e2852ef42918",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SaguCU51TVLizgvvZCmhKK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 951,
+      "cache_read_input_tokens": 43282,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 951,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 43282,
+          "cache_creation_input_tokens": 951,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 951
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T06:20:29.346Z_
+
+<details><summary>↩ Tool result · `toolu_01WzmNjAGtySk2ETNqUvgprR`</summary>
+
+```text
+Web search results for query: "LearnPruner learnable pruning module token importance VLM arXiv 2604.23950"
+
+Links: [{"title":"LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models","url":"https://arxiv.org/html/2604.23950"},{"title":"[2604.23950] LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models","url":"https://arxiv.org/abs/2604.23950"},{"title":"LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models | OpenReview","url":"https://openreview.net/forum?id=Dxb6gBJHby"},{"title":"[2512.02700] VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm","url":"https://arxiv.org/abs/2512.02700"},{"title":"RETHINKING ATTENTION-BASED TOKEN PRUNING IN ...","url":"https://openreview.net/pdf/e94a30dd71e7b6a0a1a27082eb13b96f3442bf87.pdf"},{"title":"VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm","url":"https://arxiv.org/html/2512.02700v3"},{"title":"LVPruning: An Effective yet Simple Language-Guided Vision Token Pruning Approach for Multi-modal Large Language Models","url":"https://arxiv.org/html/2501.13652"},{"title":"SVD-PRUNE: TRAINING-FREE TOKEN PRUNING FOR EFFICIENT VISION-LANGUAGE MODELS","url":"https://arxiv.org/html/2604.11530"},{"title":"[2511.16449] VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference","url":"https://arxiv.org/abs/2511.16449"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/html/2509.12594"}]
+
+Based on the search results, here's what I found about LearnPruner:
+
+## LearnPruner: Overview
+
+LearnPruner is a two-stage token pruning framework that enhances the efficiency of VLMs by sequentially removing unnecessary vision tokens after the vision encoder and in the LLM.
+
+## Key Components
+
+The framework employs a lightweight learnable module to directly predict the importance scores of vision tokens, replacing the conventional [CLS] attention scores. A small set of diversity tokens are retained to provide complementary visual information.
+
+Subsequently, the method performs query-aware token selection in the middle layer of LLM, further discarding tokens that are irrelevant to the given query.
+
+## Performance
+
+Experimental results show that LearnPruner can preserve approximately 95% of the original performance while using only 5.5% of vision tokens, and achieve 3.2× inference acceleration.
+
+The paper (arXiv 2604.23950) addresses limitations in current token pruning approaches by analyzing attention mechanisms in both vision encoders and LLMs, and proposes this learnable pruning module as an improvement over existing attention-based methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a1f36fb6-8773-439b-bf25-e2852ef42918",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "eb4bbb8b-5cc8-4523-987f-d2f71048b56a",
+  "toolUseResult": {
+    "query": "LearnPruner learnable pruning module token importance VLM arXiv 2604.23950",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FtrBA6t3p9nJGB2CgfaSmi",
+        "content": [
+          {
+            "title": "LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models",
+            "url": "https://arxiv.org/html/2604.23950"
+          },
+          {
+            "title": "[2604.23950] LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models",
+            "url": "https://arxiv.org/abs/2604.23950"
+          },
+          {
+            "title": "LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=Dxb6gBJHby"
+          },
+          {
+            "title": "[2512.02700] VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm",
+            "url": "https://arxiv.org/abs/2512.02700"
+          },
+          {
+            "title": "RETHINKING ATTENTION-BASED TOKEN PRUNING IN ...",
+            "url": "https://openreview.net/pdf/e94a30dd71e7b6a0a1a27082eb13b96f3442bf87.pdf"
+          },
+          {
+            "title": "VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm",
+            "url": "https://arxiv.org/html/2512.02700v3"
+          },
+          {
+            "title": "LVPruning: An Effective yet Simple Language-Guided Vision Token Pruning Approach for Multi-modal Large Language Models",
+            "url": "https://arxiv.org/html/2501.13652"
+          },
+          {
+            "title": "SVD-PRUNE: TRAINING-FREE TOKEN PRUNING FOR EFFICIENT VISION-LANGUAGE MODELS",
+            "url": "https://arxiv.org/html/2604.11530"
+          },
+          {
+            "title": "[2511.16449] VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference",
+            "url": "https://arxiv.org/abs/2511.16449"
+          },
+          {
+            "title": "The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning",
+            "url": "https://arxiv.org/html/2509.12594"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about LearnPruner:\n\n## LearnPruner: Overview\n\nLearnPruner is a two-stage token pruning framework that enhances the efficiency of VLMs by sequentially removing unnecessary vision tokens after the vision encoder and in the LLM.\n\n## Key Components\n\nThe framework employs a lightweight learnable module to directly predict the importance scores of vision tokens, replacing the conventional [CLS] attention scores. A small set of diversity tokens are retained to provide complementary visual information.\n\nSubsequently, the method performs query-aware token selection in the middle layer of LLM, further discarding tokens that are irrelevant to the given query.\n\n## Performance\n\nExperimental results show that LearnPruner can preserve approximately 95% of the original performance while using only 5.5% of vision tokens, and achieve 3.2× inference acceleration.\n\nThe paper (arXiv 2604.23950) addresses limitations in current token pruning approaches by analyzing attention mechanisms in both vision encoders and LLMs, and proposes this learnable pruning module as an improvement over existing attention-based methods."
+    ],
+    "durationSeconds": 6.104911893000011
+  },
+  "sourceToolAssistantUUID": "a1f36fb6-8773-439b-bf25-e2852ef42918",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53 · 2026-05-14T06:20:29.349Z_
+
+```json
+{
+  "parentUuid": "eb4bbb8b-5cc8-4523-987f-d2f71048b56a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "fcde81c6-9b4c-400b-a036-1d7f48825c4a",
+  "timestamp": "2026-05-14T06:20:29.349Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "fcde81c6-9b4c-400b-a036-1d7f48825c4a",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review: Entropy-Stabilized Attention for Compression-Robust VLAs (Round 3)",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-14T06:20:31.678Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015qqySmyRtKFEZRP5vcztj2`</summary>
+
+```json
+{
+  "query": "entropy stabilized attention training compression robust VLA VLM 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fcde81c6-9b4c-400b-a036-1d7f48825c4a",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yenfR6ZjjqLZEHY64a",
+  "type": "assistant",
+  "uuid": "a47dd3d1-c842-4a7b-82d2-238192db6e06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MDD5ihryPVBZZdgXSjZ8PR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1045,
+      "cache_read_input_tokens": 44233,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1045,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 44233,
+          "cache_creation_input_tokens": 1045,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1045
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-14T06:20:38.803Z_
+
+<details><summary>↩ Tool result · `toolu_015qqySmyRtKFEZRP5vcztj2`</summary>
+
+```text
+Web search results for query: "entropy stabilized attention training compression robust VLA VLM 2026"
+
+Links: [{"title":"Stabilizing Transformer Training by Preventing Attention Entropy Collapse - Apple Machine Learning Research","url":"https://machinelearning.apple.com/research/stabilizing-transformer-training"},{"title":"Stabilizing Transformer Training by Preventing Attention Entropy Collapse","url":"https://proceedings.mlr.press/v202/zhai23a/zhai23a.pdf"},{"title":"Q-VLM: Post-training Quantization for Large Vision-Language Models","url":"https://changyuanwang17.github.io/data/NIPS2024_Q_VLM.pdf"},{"title":"SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation","url":"https://arxiv.org/html/2603.22760v1"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"[2303.06296] Stabilizing Transformer Training by Preventing Attention Entropy Collapse","url":"https://arxiv.org/abs/2303.06296"},{"title":"VLM: How Vision-Language Models Work (2026 Guide) | Label Your Data","url":"https://labelyourdata.com/articles/machine-learning/vision-language-models"},{"title":"EfficientVLA: Training-Free Acceleration and Compression ...","url":"https://openreview.net/pdf?id=SELYlDHZk2"},{"title":"EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models","url":"https://arxiv.org/html/2506.10100v1"},{"title":"GitHub - AgibotTech/ACoT-VLA: [CVPR 2026] Official implementation of \"ACoT-VLA: Action Chain-of-Thought for Vision-Language-Action Models\" · GitHub","url":"https://github.com/AgibotTech/ACoT-VLA"}]
+
+Based on the web search results, here's what I found related to your query about entropy stabilized attention training, compression, and robust VLA/VLM in 2026:
+
+## Attention Entropy Stabilization
+
+Increasing the learning rate easily causes attention entropy collapse and training divergence in Transformers. To address this, σReparam proposes reparameterizing all linear layers with spectral normalization and an additional learned scalar. This approach provides stability and robustness with respect to the choice of hyperparameters, enabling training of Vision Transformers to competitive performance without warmup, weight decay, layer normalization or adaptive optimizers.
+
+## VLM Compression with Entropy
+
+Entropy is employed as a proxy to represent cross-layer dependency for efficient block assignment, which decomposes the large search space from the entire model to blocks containing multiple layers. For Vision-Language Models specifically, there is significant correlation between activation entropy and discretization error, and entropy is used to decompose the large search space from the entire model to smaller blocks containing multiple layers.
+
+## Robust VLA Systems in 2026
+
+There has been comprehensive analysis of 164 Vision-Language-Action (VLA) model submissions at ICLR 2026, with trends in discrete diffusion VLAs, reasoning models, and benchmarks. Recent VLA models like ACoT-VLA achieve state-of-the-art performance on multiple simulation benchmarks and exhibit superior robustness under distribution shifts and challenging perturbations like camera-viewpoint shifts and sensor noise.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a47dd3d1-c842-4a7b-82d2-238192db6e06",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "2aa6f26d-1b67-48b1-8a74-f11216d6c1a5",
+  "toolUseResult": {
+    "query": "entropy stabilized attention training compression robust VLA VLM 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HDamvVkWxnaPijxFtEM53M",
+        "content": [
+          {
+            "title": "Stabilizing Transformer Training by Preventing Attention Entropy Collapse - Apple Machine Learning Research",
+            "url": "https://machinelearning.apple.com/research/stabilizing-transformer-training"
+          },
+          {
+            "title": "Stabilizing Transformer Training by Preventing Attention Entropy Collapse",
+            "url": "https://proceedings.mlr.press/v202/zhai23a/zhai23a.pdf"
+          },
+          {
+            "title": "Q-VLM: Post-training Quantization for Large Vision-Language Models",
+            "url": "https://changyuanwang17.github.io/data/NIPS2024_Q_VLM.pdf"
+          },
+          {
+            "title": "SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation",
+            "url": "https://arxiv.org/html/2603.22760v1"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "[2303.06296] Stabilizing Transformer Training by Preventing Attention Entropy Collapse",
+            "url": "https://arxiv.org/abs/2303.06296"
+          },
+          {
+            "title": "VLM: How Vision-Language Models Work (2026 Guide) | Label Your Data",
+            "url": "https://labelyourdata.com/articles/machine-learning/vision-language-models"
+          },
+          {
+            "title": "EfficientVLA: Training-Free Acceleration and Compression ...",
+            "url": "https://openreview.net/pdf?id=SELYlDHZk2"
+          },
+          {
+            "title": "EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2506.10100v1"
+          },
+          {
+            "title": "GitHub - AgibotTech/ACoT-VLA: [CVPR 2026] Official implementation of \"ACoT-VLA: Action Chain-of-Thought for Vision-Language-Action Models\" · GitHub",
+            "url": "https://github.com/AgibotTech/ACoT-VLA"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found related to your query about entropy stabilized attention training, compression, and robust VLA/VLM in 2026:\n\n## Attention Entropy Stabilization\n\nIncreasing the learning rate easily causes attention entropy collapse and training divergence in Transformers. To address this, σReparam proposes reparameterizing all linear layers with spectral normalization and an additional learned scalar. This approach provides stability and robustness with respect to the choice of hyperparameters, enabling training of Vision Transformers to competitive performance without warmup, weight decay, layer normalization or adaptive optimizers.\n\n## VLM Compression with Entropy\n\nEntropy is employed as a proxy to represent cross-layer dependency for efficient block assignment, which decomposes the large search space from the entire model to blocks containing multiple layers. For Vision-Language Models specifically, there is significant correlation between activation entropy and discretization error, and entropy is used to decompose the large search space from the entire model to smaller blocks containing multiple layers.\n\n## Robust VLA Systems in 2026\n\nThere has been comprehensive analysis of 164 Vision-Language-Action (VLA) model submissions at ICLR 2026, with trends in discrete diffusion VLAs, reasoning models, and benchmarks. Recent VLA models like ACoT-VLA achieve state-of-the-art performance on multiple simulation benchmarks and exhibit superior robustness under distribution shifts and challenging perturbations like camera-viewpoint shifts and sensor noise."
+    ],
+    "durationSeconds": 7.120973853000003
+  },
+  "sourceToolAssistantUUID": "a47dd3d1-c842-4a7b-82d2-238192db6e06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-14T06:20:41.104Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AgvCjiCvFmdLBJBZrvxXLT`</summary>
+
+```json
+{
+  "query": "\"understanding sensitivity\" \"differential attention\" adversarial robustness ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2aa6f26d-1b67-48b1-8a74-f11216d6c1a5",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yfV71advRf6MJePthr",
+  "type": "assistant",
+  "uuid": "ec4da219-3306-47a1-8e67-972d5d46ec3d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E1DZeiQumrDsFRkXZJvsx4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 966,
+      "cache_read_input_tokens": 45278,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 966,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 45278,
+          "cache_creation_input_tokens": 966,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 966
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-14T06:20:48.645Z_
+
+<details><summary>↩ Tool result · `toolu_01AgvCjiCvFmdLBJBZrvxXLT`</summary>
+
+```text
+Web search results for query: ""understanding sensitivity" "differential attention" adversarial robustness ICLR 2026"
+
+Links: [{"title":"ICLR Poster Understanding Sensitivity of Differential Attention through the Lens of Adversarial Robustness","url":"https://iclr.cc/virtual/2026/poster/10007736"},{"title":"[2510.00517] Understanding Sensitivity of Differential Attention through the Lens of Adversarial Robustness","url":"https://arxiv.org/abs/2510.00517"},{"title":"Understanding Sensitivity of Differential Attention through the Lens of Adversarial Robustness [Quick Review]","url":"https://liner.com/review/understanding-sensitivity-of-differential-attention-through-the-lens-of-adversarial"},{"title":"Understanding Sensitivity of Differential Attention through the Lens of Adversarial Robustness | OpenReview","url":"https://openreview.net/forum?id=kwy0cKmTm3"},{"title":"TENTION THROUGH THE LENS OF ADVERSARIAL RO","url":"https://openreview.net/pdf/20590b6efeb9178217602b771f0331f5b538c73e.pdf"},{"title":"Tsubasa Takahashi's Website","url":"https://sites.google.com/view/tsubasa-takahashi/"},{"title":"Kento Sasaki","url":"https://kentosasaki-jp.github.io/"},{"title":"Understanding Sensitivity of Differential Attention through the Lens of Adversarial Robustness","url":"https://arxiv.org/html/2510.00517v1"},{"title":"Understanding Sensitivity of Differential Attention through ...","url":"https://arxiv.org/pdf/2510.00517"},{"title":"UNDERSTANDING SENSITIVITY OF DIFFERENTIAL AT","url":"https://openreview.net/pdf?id=kwy0cKmTm3"}]
+
+I found relevant results for your search query. Here's what I discovered:
+
+## Paper Overview
+
+The paper "Understanding Sensitivity of Differential Attention through the Lens of Adversarial Robustness" presents research showing higher attack success rates, frequent gradient opposition, and stronger local sensitivity in differential attention compared to standard attention.
+
+## Key Findings
+
+Differential Attention (DA) has been proposed as a refinement to standard attention, suppressing redundant or noisy context through a subtractive structure and thereby reducing contextual hallucination. However, the design introduces a structural fragility under adversarial perturbations, with theoretical analysis identifying negative gradient alignment—a configuration encouraged by DA's subtraction—as the key driver of sensitivity amplification, leading to increased gradient norms and elevated local Lipschitz constants.
+
+## Research Validation
+
+The researchers empirically validated this Fragile Principle through systematic experiments on ViT/DiffViT and evaluations of pretrained CLIP/DiffCLIP, spanning five datasets in total.
+
+## Depth-Dependent Effects
+
+Depth-dependent experiments reveal a robustness crossover: stacking DA layers attenuates small perturbations via depth-dependent noise cancellation, though this protection fades under larger attack budgets.
+
+## Overall Trade-off
+
+The findings uncover a fundamental trade-off: DA improves discriminative focus on clean inputs but increases adversarial vulnerability, underscoring the need to jointly design for selectivity and robustness in future attention mechanisms.
+
+This paper was presented at ICLR 2026 and authored by Tsubasa Takahashi, Shojiro Yamage, Futa Waseda, and Kento Sasaki.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec4da219-3306-47a1-8e67-972d5d46ec3d",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "6c6c0da7-673c-488d-bbd7-3ad45833b0c1",
+  "toolUseResult": {
+    "query": "\"understanding sensitivity\" \"differential attention\" adversarial robustness ICLR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EQyXY2VeDvBPhaAwa9y5pB",
+        "content": [
+          {
+            "title": "ICLR Poster Understanding Sensitivity of Differential Attention through the Lens of Adversarial Robustness",
+            "url": "https://iclr.cc/virtual/2026/poster/10007736"
+          },
+          {
+            "title": "[2510.00517] Understanding Sensitivity of Differential Attention through the Lens of Adversarial Robustness",
+            "url": "https://arxiv.org/abs/2510.00517"
+          },
+          {
+            "title": "Understanding Sensitivity of Differential Attention through the Lens of Adversarial Robustness [Quick Review]",
+            "url": "https://liner.com/review/understanding-sensitivity-of-differential-attention-through-the-lens-of-adversarial"
+          },
+          {
+            "title": "Understanding Sensitivity of Differential Attention through the Lens of Adversarial Robustness | OpenReview",
+            "url": "https://openreview.net/forum?id=kwy0cKmTm3"
+          },
+          {
+            "title": "TENTION THROUGH THE LENS OF ADVERSARIAL RO",
+            "url": "https://openreview.net/pdf/20590b6efeb9178217602b771f0331f5b538c73e.pdf"
+          },
+          {
+            "title": "Tsubasa Takahashi's Website",
+            "url": "https://sites.google.com/view/tsubasa-takahashi/"
+          },
+          {
+            "title": "Kento Sasaki",
+            "url": "https://kentosasaki-jp.github.io/"
+          },
+          {
+            "title": "Understanding Sensitivity of Differential Attention through the Lens of Adversarial Robustness",
+            "url": "https://arxiv.org/html/2510.00517v1"
+          },
+          {
+            "title": "Understanding Sensitivity of Differential Attention through ...",
+            "url": "https://arxiv.org/pdf/2510.00517"
+          },
+          {
+            "title": "UNDERSTANDING SENSITIVITY OF DIFFERENTIAL AT",
+            "url": "https://openreview.net/pdf?id=kwy0cKmTm3"
+          }
+        ]
+      },
+      "I found relevant results for your search query. Here's what I discovered:\n\n## Paper Overview\n\nThe paper \"Understanding Sensitivity of Differential Attention through the Lens of Adversarial Robustness\" presents research showing higher attack success rates, frequent gradient opposition, and stronger local sensitivity in differential attention compared to standard attention.\n\n## Key Findings\n\nDifferential Attention (DA) has been proposed as a refinement to standard attention, suppressing redundant or noisy context through a subtractive structure and thereby reducing contextual hallucination. However, the design introduces a structural fragility under adversarial perturbations, with theoretical analysis identifying negative gradient alignment—a configuration encouraged by DA's subtraction—as the key driver of sensitivity amplification, leading to increased gradient norms and elevated local Lipschitz constants.\n\n## Research Validation\n\nThe researchers empirically validated this Fragile Principle through systematic experiments on ViT/DiffViT and evaluations of pretrained CLIP/DiffCLIP, spanning five datasets in total.\n\n## Depth-Dependent Effects\n\nDepth-dependent experiments reveal a robustness crossover: stacking DA layers attenuates small perturbations via depth-dependent noise cancellation, though this protection fades under larger attack budgets.\n\n## Overall Trade-off\n\nThe findings uncover a fundamental trade-off: DA improves discriminative focus on clean inputs but increases adversarial vulnerability, underscoring the need to jointly design for selectivity and robustness in future attention mechanisms.\n\nThis paper was presented at ICLR 2026 and authored by Tsubasa Takahashi, Shojiro Yamage, Futa Waseda, and Kento Sasaki."
+    ],
+    "durationSeconds": 7.534386942999991
+  },
+  "sourceToolAssistantUUID": "ec4da219-3306-47a1-8e67-972d5d46ec3d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-14T06:20:50.969Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YHJfKYcV6h2Mv383LZL33u`</summary>
+
+```json
+{
+  "query": "RobustVLA jacobian regularization RL post-training VLA arXiv 2511.01331"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c6c0da7-673c-488d-bbd7-3ad45833b0c1",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ygDFnt7Wmi8zi7kc8m",
+  "type": "assistant",
+  "uuid": "7659d6dc-217d-4a6c-bec7-5351556ca414",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013gHeFuivYrP16XL4ZKT8td",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 960,
+      "cache_read_input_tokens": 46244,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 960,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 46244,
+          "cache_creation_input_tokens": 960,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 960
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-14T06:20:56.804Z_
+
+<details><summary>↩ Tool result · `toolu_01YHJfKYcV6h2Mv383LZL33u`</summary>
+
+```text
+Web search results for query: "RobustVLA jacobian regularization RL post-training VLA arXiv 2511.01331"
+
+Links: [{"title":"[2511.01331] RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models","url":"https://arxiv.org/abs/2511.01331"},{"title":"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models","url":"https://arxiv.org/html/2511.01331"},{"title":"1 Introduction","url":"https://arxiv.org/html/2511.01331v1"},{"title":"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models","url":"https://www.researchgate.net/publication/397231717_RobustVLA_Robustness-Aware_Reinforcement_Post-Training_for_Vision-Language-Action_Models"},{"title":"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models | OpenReview","url":"https://openreview.net/forum?id=9g7UXLqD4B"},{"title":"Jump-Start Reinforcement Learning with Vision-Language-Action Regularization","url":"https://arxiv.org/html/2604.13733"},{"title":"Robust Learning with Jacobian Regularization","url":"https://arxiv.org/pdf/1908.02729"},{"title":"[1908.02729] Robust Learning with Jacobian Regularization","url":"https://arxiv.org/abs/1908.02729"},{"title":"SimpleVLA-RL: Scaling VLA Training via Reinforcement ...","url":"https://arxiv.org/pdf/2509.09674"},{"title":"VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation","url":"https://arxiv.org/html/2603.26666v1"}]
+
+Based on the search results, here's what I found about RobustVLA (arXiv 2511.01331):
+
+## Overview
+
+RobustVLA is a lightweight online RL post-training method designed to explicitly enhance the resilience of VLA models. Vision-Language-Action (VLA) models have recently emerged as powerful general-purpose policies for robotic manipulation, but they often fail to generalize reliably in out-of-distribution deployments where disturbances such as observation noise, sensor errors, or actuation perturbations become prevalent.
+
+## Key Regularizations
+
+The method identifies two key regularizations: Jacobian regularization, which mitigates sensitivity to observation noise, and smoothness regularization, which stabilizes policies under action perturbations.
+
+## Theoretical Foundation
+
+The robustness gap under observation perturbations is governed by the Jacobian sensitivity of the VLA model, whereas under action perturbations it is controlled by the smoothness of the VLA model update, which naturally motivates the introduction of Jacobian and smoothness regularization into the online RL fine-tuning process.
+
+## Experimental Results
+
+Extensive experiments across diverse robotic environments demonstrate that RobustVLA significantly outperforms prior state-of-the-art methods in robustness and reliability.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7659d6dc-217d-4a6c-bec7-5351556ca414",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "c62c326a-b646-4af9-b825-d4f471c180fe",
+  "toolUseResult": {
+    "query": "RobustVLA jacobian regularization RL post-training VLA arXiv 2511.01331",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VE7dYseN4Y7PVx8VmMTVtK",
+        "content": [
+          {
+            "title": "[2511.01331] RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2511.01331"
+          },
+          {
+            "title": "RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2511.01331"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2511.01331v1"
+          },
+          {
+            "title": "RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models",
+            "url": "https://www.researchgate.net/publication/397231717_RobustVLA_Robustness-Aware_Reinforcement_Post-Training_for_Vision-Language-Action_Models"
+          },
+          {
+            "title": "RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models | OpenReview",
+            "url": "https://openreview.net/forum?id=9g7UXLqD4B"
+          },
+          {
+            "title": "Jump-Start Reinforcement Learning with Vision-Language-Action Regularization",
+            "url": "https://arxiv.org/html/2604.13733"
+          },
+          {
+            "title": "Robust Learning with Jacobian Regularization",
+            "url": "https://arxiv.org/pdf/1908.02729"
+          },
+          {
+            "title": "[1908.02729] Robust Learning with Jacobian Regularization",
+            "url": "https://arxiv.org/abs/1908.02729"
+          },
+          {
+            "title": "SimpleVLA-RL: Scaling VLA Training via Reinforcement ...",
+            "url": "https://arxiv.org/pdf/2509.09674"
+          },
+          {
+            "title": "VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation",
+            "url": "https://arxiv.org/html/2603.26666v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about RobustVLA (arXiv 2511.01331):\n\n## Overview\n\nRobustVLA is a lightweight online RL post-training method designed to explicitly enhance the resilience of VLA models. Vision-Language-Action (VLA) models have recently emerged as powerful general-purpose policies for robotic manipulation, but they often fail to generalize reliably in out-of-distribution deployments where disturbances such as observation noise, sensor errors, or actuation perturbations become prevalent.\n\n## Key Regularizations\n\nThe method identifies two key regularizations: Jacobian regularization, which mitigates sensitivity to observation noise, and smoothness regularization, which stabilizes policies under action perturbations.\n\n## Theoretical Foundation\n\nThe robustness gap under observation perturbations is governed by the Jacobian sensitivity of the VLA model, whereas under action perturbations it is controlled by the smoothness of the VLA model update, which naturally motivates the introduction of Jacobian and smoothness regularization into the online RL fine-tuning process.\n\n## Experimental Results\n\nExtensive experiments across diverse robotic environments demonstrate that RobustVLA significantly outperforms prior state-of-the-art methods in robustness and reliability."
+    ],
+    "durationSeconds": 5.831019014999998
+  },
+  "sourceToolAssistantUUID": "7659d6dc-217d-4a6c-bec7-5351556ca414",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-14T06:20:59.514Z_
+
+Now let me search for very recent work that might directly overlap with this ESA idea — specifically entropy-based defense against compression attacks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c62c326a-b646-4af9-b825-d4f471c180fe",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ygp5oAVuQY7P4yA2Hr",
+  "type": "assistant",
+  "uuid": "5e94c002-5960-4f0d-8cc9-cc3026f72b4b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KFfnM9yVgEjVV5F2sntuSR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 899,
+      "cache_read_input_tokens": 47204,
+      "output_tokens": 95,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 899,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 95,
+          "cache_read_input_tokens": 47204,
+          "cache_creation_input_tokens": 899,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 899
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-14T06:20:59.972Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LmFf7CeZZ6VYwCzAb314GV`</summary>
+
+```json
+{
+  "query": "\"attention entropy\" \"token ranking\" stability defense compression attack vision 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e94c002-5960-4f0d-8cc9-cc3026f72b4b",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ygp5oAVuQY7P4yA2Hr",
+  "type": "assistant",
+  "uuid": "adbdd8e5-bd4e-4ae4-b2a9-e905e2df1ae1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KFfnM9yVgEjVV5F2sntuSR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 899,
+      "cache_read_input_tokens": 47204,
+      "output_tokens": 95,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 899,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 95,
+          "cache_read_input_tokens": 47204,
+          "cache_creation_input_tokens": 899,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 899
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T06:21:07.020Z_
+
+<details><summary>↩ Tool result · `toolu_01LmFf7CeZZ6VYwCzAb314GV`</summary>
+
+```text
+Web search results for query: ""attention entropy" "token ranking" stability defense compression attack vision 2026"
+
+Links: [{"title":"Entropy-Select: Training-Free Local Entropy Token Compression for Video LLMs | OpenReview","url":"https://openreview.net/forum?id=1fvPaaFuy2"},{"title":"Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models","url":"https://arxiv.org/html/2601.12042"},{"title":"Is Less More? Exploring Token Condensation as Training-free ...","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Wang_Is_Less_More_Exploring_Token_Condensation_as_Training-free_Test-time_Adaptation_ICCV_2025_paper.pdf"},{"title":"Vision Token Reduction via Attention-Driven Self- ...","url":"https://arxiv.org/pdf/2602.12618"},{"title":"ICLR 2026 Papers","url":"https://iclr.cc/virtual/2026/papers.html"},{"title":"Robustifying Token Attention for Vision Transformers","url":"https://openaccess.thecvf.com/content/ICCV2023/papers/Guo_Robustifying_Token_Attention_for_Vision_Transformers_ICCV_2023_paper.pdf"},{"title":"[2601.12042] Less Is More -- Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models","url":"https://arxiv.org/abs/2601.12042"},{"title":"Few Tokens Matter: Entropy Guided Attacks on Vision-Language Models","url":"https://arxiv.org/html/2512.21815"},{"title":"Token Entropy in AI Models","url":"https://www.emergentmind.com/topics/token-entropy"},{"title":"Vision Token Reduction","url":"https://www.emergentmind.com/topics/vision-token-reduction"}]
+
+I've found several relevant results on your search topic. Here's what the recent research shows:
+
+## Key Research Areas
+
+**Vision Token Compression and Security:**
+Visual token compression is widely adopted to improve the inference efficiency of Large Vision-Language Models (LVLMs), but existing work has mainly focused on efficiency and performance, while the security implications remain largely unexplored, revealing that visual token compression substantially degrades the robustness of LVLMs.
+
+**Token Ranking Instability:**
+Instability in token importance ranking has been identified as the primary cause of robustness degradation in compressed models. Compression-aware attacks (CAA) can disrupt token rankings by promoting irrelevant tokens into the Top-100 set, and under compression, token selection becomes irreversible, permanently discarding essential visual evidence and causing performance collapse.
+
+**Entropy-Based Approaches:**
+EntropySelect is a training-free, architecture-agnostic framework that ranks tokens by local neighborhood entropy, an information-theoretic measure of unpredictability relative to nearby tokens.
+
+**Entropy-Guided Attacks:**
+Entropy, a measure of the model's uncertainty, is highly correlated with model reliability, with high-entropy tokens in vision language models referring to tokens with high uncertainty in the model's output probability distribution, often associated with prediction hallucinations.
+
+The search results indicate active research in 2026 on understanding how token compression interacts with adversarial robustness in vision-language models, with entropy playing a central role in both attack strategies and defense mechanisms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "adbdd8e5-bd4e-4ae4-b2a9-e905e2df1ae1",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "f44dbcde-6639-40c4-b83b-4da680099378",
+  "toolUseResult": {
+    "query": "\"attention entropy\" \"token ranking\" stability defense compression attack vision 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PPitkNvo6MtYBvoSbmyLnu",
+        "content": [
+          {
+            "title": "Entropy-Select: Training-Free Local Entropy Token Compression for Video LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=1fvPaaFuy2"
+          },
+          {
+            "title": "Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2601.12042"
+          },
+          {
+            "title": "Is Less More? Exploring Token Condensation as Training-free ...",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Wang_Is_Less_More_Exploring_Token_Condensation_as_Training-free_Test-time_Adaptation_ICCV_2025_paper.pdf"
+          },
+          {
+            "title": "Vision Token Reduction via Attention-Driven Self- ...",
+            "url": "https://arxiv.org/pdf/2602.12618"
+          },
+          {
+            "title": "ICLR 2026 Papers",
+            "url": "https://iclr.cc/virtual/2026/papers.html"
+          },
+          {
+            "title": "Robustifying Token Attention for Vision Transformers",
+            "url": "https://openaccess.thecvf.com/content/ICCV2023/papers/Guo_Robustifying_Token_Attention_for_Vision_Transformers_ICCV_2023_paper.pdf"
+          },
+          {
+            "title": "[2601.12042] Less Is More -- Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models",
+            "url": "https://arxiv.org/abs/2601.12042"
+          },
+          {
+            "title": "Few Tokens Matter: Entropy Guided Attacks on Vision-Language Models",
+            "url": "https://arxiv.org/html/2512.21815"
+          },
+          {
+            "title": "Token Entropy in AI Models",
+            "url": "https://www.emergentmind.com/topics/token-entropy"
+          },
+          {
+            "title": "Vision Token Reduction",
+            "url": "https://www.emergentmind.com/topics/vision-token-reduction"
+          }
+        ]
+      },
+      "I've found several relevant results on your search topic. Here's what the recent research shows:\n\n## Key Research Areas\n\n**Vision Token Compression and Security:**\nVisual token compression is widely adopted to improve the inference efficiency of Large Vision-Language Models (LVLMs), but existing work has mainly focused on efficiency and performance, while the security implications remain largely unexplored, revealing that visual token compression substantially degrades the robustness of LVLMs.\n\n**Token Ranking Instability:**\nInstability in token importance ranking has been identified as the primary cause of robustness degradation in compressed models. Compression-aware attacks (CAA) can disrupt token rankings by promoting irrelevant tokens into the Top-100 set, and under compression, token selection becomes irreversible, permanently discarding essential visual evidence and causing performance collapse.\n\n**Entropy-Based Approaches:**\nEntropySelect is a training-free, architecture-agnostic framework that ranks tokens by local neighborhood entropy, an information-theoretic measure of unpredictability relative to nearby tokens.\n\n**Entropy-Guided Attacks:**\nEntropy, a measure of the model's uncertainty, is highly correlated with model reliability, with high-entropy tokens in vision language models referring to tokens with high uncertainty in the model's output probability distribution, often associated with prediction hallucinations.\n\nThe search results indicate active research in 2026 on understanding how token compression interacts with adversarial robustness in vision-language models, with entropy playing a central role in both attack strategies and defense mechanisms."
+    ],
+    "durationSeconds": 7.042739885000017
+  },
+  "sourceToolAssistantUUID": "adbdd8e5-bd4e-4ae4-b2a9-e905e2df1ae1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f44dbcde-6639-40c4-b83b-4da680099378",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review: Entropy-Stabilized Attention for Compression-Robust VLAs (Round 3)",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-14T06:21:09.267Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UAEtv7bWNnaCaXcMXUFHWH`</summary>
+
+```json
+{
+  "query": "\"robustifying token attention\" vision transformer ICCV 2023 attention robustness regularization"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f44dbcde-6639-40c4-b83b-4da680099378",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yhZk7by2LnqKnG5HuC",
+  "type": "assistant",
+  "uuid": "62308b6c-e36c-4bbf-81a8-ca5c46d3167f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VLq1GM117Ugxo5VyPVAGwo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 967,
+      "cache_read_input_tokens": 48103,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 967,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 48103,
+          "cache_creation_input_tokens": 967,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 967
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-14T06:21:15.600Z_
+
+<details><summary>↩ Tool result · `toolu_01UAEtv7bWNnaCaXcMXUFHWH`</summary>
+
+```text
+Web search results for query: ""robustifying token attention" vision transformer ICCV 2023 attention robustness regularization"
+
+Links: [{"title":"Robustifying Token Attention for Vision Transformers","url":"https://openaccess.thecvf.com/content/ICCV2023/papers/Guo_Robustifying_Token_Attention_for_Vision_Transformers_ICCV_2023_paper.pdf"},{"title":"[2303.11126] Robustifying Token Attention for Vision Transformers","url":"https://arxiv.org/abs/2303.11126"},{"title":"Supplementary Materials for “Robustifying Token Attention ...","url":"https://openaccess.thecvf.com/content/ICCV2023/supplemental/Guo_Robustifying_Token_Attention_ICCV_2023_supplemental.pdf"},{"title":"Robustifying Token Attention for Vision Transformers | Yong Guo","url":"https://www.guoyongcs.com/publication/tapadl/"},{"title":"GitHub - 52CV/ICCV-2023-Papers · GitHub","url":"https://github.com/52CV/ICCV-2023-Papers"},{"title":"Robustifying Token Attention for Vision Transformers | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/10378050/"},{"title":"Improving Robustness of Vision Transformers by Reducing ...","url":"https://openaccess.thecvf.com/content/CVPR2023/papers/Guo_Improving_Robustness_of_Vision_Transformers_by_Reducing_Sensitivity_To_Patch_CVPR_2023_paper.pdf"},{"title":"Robustifying Vision Transformer Without Retraining from Scratch Using Attention-Based Test-Time Adaptation | New Generation Computing | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s00354-022-00197-9"},{"title":"A Manifold Representation of the Key in Vision Transformers","url":"https://arxiv.org/html/2402.00534v2"},{"title":"GitHub - hkzhang-git/FcaFormer: [ICCV 2023] Source code of \"Fcaformer: Forward Cross Attention in Hybrid Vision Transformer\"","url":"https://github.com/hkzhang-git/FcaFormer"}]
+
+Based on the search results, I found the paper "Robustifying Token Attention for Vision Transformers" which was published at ICCV 2023.
+
+## Summary
+
+The paper addresses how vision transformers (ViTs) suffer from significant drops in accuracy in the presence of common corruptions, such as noise or blur. The authors observe that the attention mechanism of ViTs tends to rely on few important tokens, a phenomenon they call token overfocusing.
+
+## Key Contributions
+
+The paper proposes two main techniques to address this issue:
+
+1. **Token-aware Average Pooling (TAP) Module**: TAP encourages the local neighborhood of each token to take part in the attention mechanism by learning average pooling schemes for each token such that the information of potentially important tokens in the neighborhood can adaptively be taken into account.
+
+2. **Attention Diversification Loss (ADL)**: The paper proposes the Attention Diversification Loss (ADL) as a second technique.
+
+## Performance
+
+TAP yields the best tradeoff between accuracy and robustness along with negligible computational overhead. Additionally, the complexity introduced by TAP only takes around 2% of the complexity of each self-attention block, and when considering the whole model, the additional complexity is less than 1% in practice.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "62308b6c-e36c-4bbf-81a8-ca5c46d3167f",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "e4e51288-26df-4e16-85b7-c88f69a2171d",
+  "toolUseResult": {
+    "query": "\"robustifying token attention\" vision transformer ICCV 2023 attention robustness regularization",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018Kk6HEVSjQ2By4aU2r1qMC",
+        "content": [
+          {
+            "title": "Robustifying Token Attention for Vision Transformers",
+            "url": "https://openaccess.thecvf.com/content/ICCV2023/papers/Guo_Robustifying_Token_Attention_for_Vision_Transformers_ICCV_2023_paper.pdf"
+          },
+          {
+            "title": "[2303.11126] Robustifying Token Attention for Vision Transformers",
+            "url": "https://arxiv.org/abs/2303.11126"
+          },
+          {
+            "title": "Supplementary Materials for “Robustifying Token Attention ...",
+            "url": "https://openaccess.thecvf.com/content/ICCV2023/supplemental/Guo_Robustifying_Token_Attention_ICCV_2023_supplemental.pdf"
+          },
+          {
+            "title": "Robustifying Token Attention for Vision Transformers | Yong Guo",
+            "url": "https://www.guoyongcs.com/publication/tapadl/"
+          },
+          {
+            "title": "GitHub - 52CV/ICCV-2023-Papers · GitHub",
+            "url": "https://github.com/52CV/ICCV-2023-Papers"
+          },
+          {
+            "title": "Robustifying Token Attention for Vision Transformers | IEEE Conference Publication | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/10378050/"
+          },
+          {
+            "title": "Improving Robustness of Vision Transformers by Reducing ...",
+            "url": "https://openaccess.thecvf.com/content/CVPR2023/papers/Guo_Improving_Robustness_of_Vision_Transformers_by_Reducing_Sensitivity_To_Patch_CVPR_2023_paper.pdf"
+          },
+          {
+            "title": "Robustifying Vision Transformer Without Retraining from Scratch Using Attention-Based Test-Time Adaptation | New Generation Computing | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s00354-022-00197-9"
+          },
+          {
+            "title": "A Manifold Representation of the Key in Vision Transformers",
+            "url": "https://arxiv.org/html/2402.00534v2"
+          },
+          {
+            "title": "GitHub - hkzhang-git/FcaFormer: [ICCV 2023] Source code of \"Fcaformer: Forward Cross Attention in Hybrid Vision Transformer\"",
+            "url": "https://github.com/hkzhang-git/FcaFormer"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper \"Robustifying Token Attention for Vision Transformers\" which was published at ICCV 2023.\n\n## Summary\n\nThe paper addresses how vision transformers (ViTs) suffer from significant drops in accuracy in the presence of common corruptions, such as noise or blur. The authors observe that the attention mechanism of ViTs tends to rely on few important tokens, a phenomenon they call token overfocusing.\n\n## Key Contributions\n\nThe paper proposes two main techniques to address this issue:\n\n1. **Token-aware Average Pooling (TAP) Module**: TAP encourages the local neighborhood of each token to take part in the attention mechanism by learning average pooling schemes for each token such that the information of potentially important tokens in the neighborhood can adaptively be taken into account.\n\n2. **Attention Diversification Loss (ADL)**: The paper proposes the Attention Diversification Loss (ADL) as a second technique.\n\n## Performance\n\nTAP yields the best tradeoff between accuracy and robustness along with negligible computational overhead. Additionally, the complexity introduced by TAP only takes around 2% of the complexity of each self-attention block, and when considering the whole model, the additional complexity is less than 1% in practice."
+    ],
+    "durationSeconds": 6.329221003999992
+  },
+  "sourceToolAssistantUUID": "62308b6c-e36c-4bbf-81a8-ca5c46d3167f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-14T06:21:20.569Z_
+
+This is very important — "Robustifying Token Attention" (ICCV 2023) addresses attention robustness through diversification, which is somewhat opposite to ESA's entropy reduction approach. Let me also check one more critical thing: whether anyone has specifically proposed entropy regularization as a defense against compression attacks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4e51288-26df-4e16-85b7-c88f69a2171d",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yiCSVGD9oqLEvUinFq",
+  "type": "assistant",
+  "uuid": "6d26f6c5-0df0-41b2-ae75-21dbcebd2a5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WgnveCpb4UFNJAgEqrMQ6T",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1008,
+      "cache_read_input_tokens": 49070,
+      "output_tokens": 136,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 136,
+          "cache_read_input_tokens": 49070,
+          "cache_creation_input_tokens": 1008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-14T06:21:21.189Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WkV2i4wuubm2KWJDY12cpd`</summary>
+
+```json
+{
+  "query": "defense against token compression attack ranking instability vision language model regularization 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d26f6c5-0df0-41b2-ae75-21dbcebd2a5d",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yiCSVGD9oqLEvUinFq",
+  "type": "assistant",
+  "uuid": "33aabaed-91d2-4d17-a857-d865d8631ad7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WgnveCpb4UFNJAgEqrMQ6T",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1008,
+      "cache_read_input_tokens": 49070,
+      "output_tokens": 136,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 136,
+          "cache_read_input_tokens": 49070,
+          "cache_creation_input_tokens": 1008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-14T06:21:29.031Z_
+
+<details><summary>↩ Tool result · `toolu_01WkV2i4wuubm2KWJDY12cpd`</summary>
+
+```text
+Web search results for query: "defense against token compression attack ranking instability vision language model regularization 2026"
+
+Links: [{"title":"Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models","url":"https://arxiv.org/html/2601.12042"},{"title":"[2601.12042] Less Is More -- Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models","url":"https://arxiv.org/abs/2601.12042"},{"title":"(PDF) Less Is More -- Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models","url":"https://www.researchgate.net/publication/399931955_Less_Is_More_--_Until_It_Breaks_Security_Pitfalls_of_Vision_Token_Compression_in_Large_Vision-Language_Models"},{"title":"7 Essential AI Assisted Attacks Trends for 2026","url":"https://www.huuphan.com/2026/05/ai-assisted-attacks-2026-guide.html"},{"title":"A Survey of Recent Advances in Adversarial Attack and Defense on Vision-Language Models[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202511.1363"},{"title":"GitHub - cokeshao/Awesome-Multimodal-Token-Compression: [TMLR 2026] Survey: https://arxiv.org/pdf/2507.20198 · GitHub","url":"https://github.com/cokeshao/Awesome-Multimodal-Token-Compression"},{"title":"ADAPTIVE-VOCO: COMPLEXITY-AWARE VISUAL TOKEN COMPRESSION FOR","url":"https://arxiv.org/pdf/2512.18496"},{"title":"Break the Visual Perception: Adversarial Attacks Targeting Encoded Visual Tokens of Large Vision-Language Models","url":"https://arxiv.org/html/2410.06699v1"},{"title":"October 2025 AI safety news: Adaptive attacks, Tokenization, Impossible tasks","url":"https://newsletter.danielpaleka.com/p/october-2025-ai-safety-news-adaptive"},{"title":"Rethinking Token Reduction for Large Vision-Language Models","url":"https://arxiv.org/pdf/2603.21701"}]
+
+Based on the search results, I found highly relevant research on this topic. Here's what the current literature shows:
+
+## Key Findings on Token Compression Attacks and Defenses
+
+Token importance ranking instability has been identified as a key mechanism underlying vulnerability in vision-language models with token compression. By analyzing the key stages of the compression process, researchers have identified instability in token importance ranking as the primary cause of robustness degradation.
+
+### The Attack Method
+
+A Compression-Aware Attack (CAA) has been proposed that manipulates token importance ranking to induce failures only under compressed inference. Small and imperceptible perturbations can significantly alter token rankings, leading the compression mechanism to mistakenly discard task-critical information and ultimately causing model failure.
+
+### Defense Challenges
+
+The research reveals significant challenges in defending against these attacks. Even when defenders have knowledge of the CAA mechanism, adaptive defenses based on post-hoc token ranking remain ill-posed. More specifically:
+
+- Removing high-ranked regions can suppress the attack but severely degrades benign performance, since such regions typically encode task-critical information
+- Estimating importance using the victim model is unreliable because the ranking has already been manipulated by the attack, and using an auxiliary model also fails due to substantial cross-model disagreement in least-informative regions
+
+### Overall Assessment
+
+Existing vision token compression methods suffer severe robustness degradation under CAA, revealing an inherent efficiency-security trade-off, and potential defense strategies provide limited protection.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "33aabaed-91d2-4d17-a857-d865d8631ad7",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "053136cf-14e1-440c-afaa-3e52586a659d",
+  "toolUseResult": {
+    "query": "defense against token compression attack ranking instability vision language model regularization 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QSNvSq7qpJycccE73b1zc4",
+        "content": [
+          {
+            "title": "Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2601.12042"
+          },
+          {
+            "title": "[2601.12042] Less Is More -- Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models",
+            "url": "https://arxiv.org/abs/2601.12042"
+          },
+          {
+            "title": "(PDF) Less Is More -- Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models",
+            "url": "https://www.researchgate.net/publication/399931955_Less_Is_More_--_Until_It_Breaks_Security_Pitfalls_of_Vision_Token_Compression_in_Large_Vision-Language_Models"
+          },
+          {
+            "title": "7 Essential AI Assisted Attacks Trends for 2026",
+            "url": "https://www.huuphan.com/2026/05/ai-assisted-attacks-2026-guide.html"
+          },
+          {
+            "title": "A Survey of Recent Advances in Adversarial Attack and Defense on Vision-Language Models[v1] | Preprints.org",
+            "url": "https://www.preprints.org/manuscript/202511.1363"
+          },
+          {
+            "title": "GitHub - cokeshao/Awesome-Multimodal-Token-Compression: [TMLR 2026] Survey: https://arxiv.org/pdf/2507.20198 · GitHub",
+            "url": "https://github.com/cokeshao/Awesome-Multimodal-Token-Compression"
+          },
+          {
+            "title": "ADAPTIVE-VOCO: COMPLEXITY-AWARE VISUAL TOKEN COMPRESSION FOR",
+            "url": "https://arxiv.org/pdf/2512.18496"
+          },
+          {
+            "title": "Break the Visual Perception: Adversarial Attacks Targeting Encoded Visual Tokens of Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2410.06699v1"
+          },
+          {
+            "title": "October 2025 AI safety news: Adaptive attacks, Tokenization, Impossible tasks",
+            "url": "https://newsletter.danielpaleka.com/p/october-2025-ai-safety-news-adaptive"
+          },
+          {
+            "title": "Rethinking Token Reduction for Large Vision-Language Models",
+            "url": "https://arxiv.org/pdf/2603.21701"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant research on this topic. Here's what the current literature shows:\n\n## Key Findings on Token Compression Attacks and Defenses\n\nToken importance ranking instability has been identified as a key mechanism underlying vulnerability in vision-language models with token compression. By analyzing the key stages of the compression process, researchers have identified instability in token importance ranking as the primary cause of robustness degradation.\n\n### The Attack Method\n\nA Compression-Aware Attack (CAA) has been proposed that manipulates token importance ranking to induce failures only under compressed inference. Small and imperceptible perturbations can significantly alter token rankings, leading the compression mechanism to mistakenly discard task-critical information and ultimately causing model failure.\n\n### Defense Challenges\n\nThe research reveals significant challenges in defending against these attacks. Even when defenders have knowledge of the CAA mechanism, adaptive defenses based on post-hoc token ranking remain ill-posed. More specifically:\n\n- Removing high-ranked regions can suppress the attack but severely degrades benign performance, since such regions typically encode task-critical information\n- Estimating importance using the victim model is unreliable because the ranking has already been manipulated by the attack, and using an auxiliary model also fails due to substantial cross-model disagreement in least-informative regions\n\n### Overall Assessment\n\nExisting vision token compression methods suffer severe robustness degradation under CAA, revealing an inherent efficiency-security trade-off, and potential defense strategies provide limited protection."
+    ],
+    "durationSeconds": 7.8380566230000115
+  },
+  "sourceToolAssistantUUID": "33aabaed-91d2-4d17-a857-d865d8631ad7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72 · 2026-05-14T06:21:31.815Z_
+
+This is critical — "Less Is More" explicitly states that defense strategies provide "limited protection." Let me read the actual defense evaluation section of this paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "053136cf-14e1-440c-afaa-3e52586a659d",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yjByVEhexSF4doLCcQ",
+  "type": "assistant",
+  "uuid": "e73743e1-1e2d-4b01-95f1-0d79b7cac82f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JNxC7XR8NB5ERKVzRhKmro",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1066,
+      "cache_read_input_tokens": 50078,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1066,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 50078,
+          "cache_creation_input_tokens": 1066,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1066
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-14T06:21:34.738Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01RLrUMnTAc19cUxv8Sw4k3f`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.12042",
+  "prompt": "Extract all information about: 1) What defense strategies were evaluated? 2) Why did they provide \"only limited protection\"? 3) Does the paper discuss entropy regularization as a potential defense? 4) What specifically causes ranking instability? 5) Any theoretical bounds or analysis about when compression is safe? 6) What recommendations does the paper make for future defenses?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e73743e1-1e2d-4b01-95f1-0d79b7cac82f",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yjByVEhexSF4doLCcQ",
+  "type": "assistant",
+  "uuid": "8a589051-5180-4e5c-b136-8184da4ce6a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JNxC7XR8NB5ERKVzRhKmro",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1066,
+      "cache_read_input_tokens": 50078,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1066,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 50078,
+          "cache_creation_input_tokens": 1066,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1066
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-14T06:21:38.988Z_
+
+<details><summary>↩ Tool result · `toolu_01RLrUMnTAc19cUxv8Sw4k3f`</summary>
+
+```text
+# Analysis of Defense Strategies in Vision Token Compression Paper
+
+Based on the provided abstract and page content, I can only offer limited information:
+
+**1) Defense Strategies Evaluated:**
+The abstract mentions that "potential defenses" were evaluated, but no specific defense names or types are detailed in the available content.
+
+**2) Why Limited Protection:**
+The paper states defenses "provide only limited protection," but the abstract doesn't explain the underlying reasons for this limitation.
+
+**3) Entropy Regularization:**
+No mention of entropy regularization or any specific defense technique appears in the provided excerpt.
+
+**4) Cause of Ranking Instability:**
+The abstract identifies the core issue: "Small and imperceptible perturbations can significantly alter token rankings," causing compression mechanisms to discard critical information. The root cause is described as "instability in token importance ranking."
+
+**5) Theoretical Bounds:**
+The abstract contains no discussion of theoretical bounds or conditions for safe compression.
+
+**6) Future Defense Recommendations:**
+The provided content does not include specific recommendations for future defense development.
+
+**Note:** To obtain detailed answers to questions 1, 2, 3, and 6, you would need to access the full paper PDF or HTML version available on arXiv.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a589051-5180-4e5c-b136-8184da4ce6a4",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "77c4bbe8-680f-4bf1-b5d1-0814e4f7a2bb",
+  "toolUseResult": {
+    "bytes": 48751,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of Defense Strategies in Vision Token Compression Paper\n\nBased on the provided abstract and page content, I can only offer limited information:\n\n**1) Defense Strategies Evaluated:**\nThe abstract mentions that \"potential defenses\" were evaluated, but no specific defense names or types are detailed in the available content.\n\n**2) Why Limited Protection:**\nThe paper states defenses \"provide only limited protection,\" but the abstract doesn't explain the underlying reasons for this limitation.\n\n**3) Entropy Regularization:**\nNo mention of entropy regularization or any specific defense technique appears in the provided excerpt.\n\n**4) Cause of Ranking Instability:**\nThe abstract identifies the core issue: \"Small and imperceptible perturbations can significantly alter token rankings,\" causing compression mechanisms to discard critical information. The root cause is described as \"instability in token importance ranking.\"\n\n**5) Theoretical Bounds:**\nThe abstract contains no discussion of theoretical bounds or conditions for safe compression.\n\n**6) Future Defense Recommendations:**\nThe provided content does not include specific recommendations for future defense development.\n\n**Note:** To obtain detailed answers to questions 1, 2, 3, and 6, you would need to access the full paper PDF or HTML version available on arXiv.",
+    "durationMs": 4246,
+    "url": "https://arxiv.org/abs/2601.12042"
+  },
+  "sourceToolAssistantUUID": "8a589051-5180-4e5c-b136-8184da4ce6a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 75 · 2026-05-14T06:21:38.990Z_
+
+```json
+{
+  "parentUuid": "77c4bbe8-680f-4bf1-b5d1-0814e4f7a2bb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b0b794e1-d5ce-4a8a-8e19-6d8a5c6d32e5",
+  "timestamp": "2026-05-14T06:21:38.990Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-14T06:21:42.716Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Fs8LQhEsvPUHFKHbnSv3Uy`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2601.12042",
+  "prompt": "I need detailed information from this paper about: 1) What defense strategies were evaluated against compression-aware attacks? 2) Why did they fail or provide limited protection? 3) Is entropy discussed as a cause of ranking instability? 4) What specific theoretical analysis connects perturbations to ranking changes? 5) What recommendations for future defenses? 6) Does the paper mention any connection between attention entropy and ranking stability? Extract all relevant technical details."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0b794e1-d5ce-4a8a-8e19-6d8a5c6d32e5",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yjvQtKxu6Z7Ykg1d4V",
+  "type": "assistant",
+  "uuid": "5a84268b-b717-46f4-9305-d858d440a027",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DBDvBx4oc6hBQ6fsUNRAcT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 582,
+      "cache_read_input_tokens": 51144,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 582,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 51144,
+          "cache_creation_input_tokens": 582,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 582
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-14T06:21:49.272Z_
+
+<details><summary>↩ Tool result · `toolu_01Fs8LQhEsvPUHFKHbnSv3Uy`</summary>
+
+```text
+# Analysis of Defense Strategies and Theoretical Foundations
+
+## Defense Evaluation
+
+The paper states: "We further evaluate potential defenses and find that they provide only limited protection." However, the provided content excerpt **does not include the detailed discussion section** that would contain specific defense mechanisms tested or their failure modes. The abstract mentions defenses are evaluated but the full analysis appears in Section 6 (Discussion), which is not included in the supplied text.
+
+## Ranking Instability Mechanisms
+
+The paper identifies **token importance ranking instability** as the root cause rather than entropy explicitly. The analysis shows:
+
+- "Small and imperceptible perturbations can significantly alter token rankings, leading the compression mechanism to mistakenly discard task-critical information"
+- Three quantitative metrics measure ranking degradation: Kendall's τ, Spearman's ρ, Top-100 preservation rate, and Bottom-100 infiltration rate
+- "Identical perturbations largely preserve token semantics while substantially altering their relative ordering"
+
+## Theoretical Connection Between Perturbations and Rankings
+
+The paper establishes this through attention-based importance scoring. Token importance uses: "the fraction of visual tokens retained at layer l~ relative to the original vision token count." The mechanism relies on "attention weights from token i to token i'" calculated via softmax operations—continuous functions vulnerable to discrete reordering under perturbations.
+
+## Missing Elements from Provided Content
+
+**Not available in excerpt:**
+- Specific defense strategies evaluated (Section 6)
+- Entropy discussion as ranking stability factor
+- Future defense recommendations
+- Attention entropy correlation with ranking stability
+
+These sections exist in the full paper but weren't included in the webpage content provided.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5a84268b-b717-46f4-9305-d858d440a027",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "3698f379-0529-4273-b67b-0392501a661e",
+  "toolUseResult": {
+    "bytes": 618420,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of Defense Strategies and Theoretical Foundations\n\n## Defense Evaluation\n\nThe paper states: \"We further evaluate potential defenses and find that they provide only limited protection.\" However, the provided content excerpt **does not include the detailed discussion section** that would contain specific defense mechanisms tested or their failure modes. The abstract mentions defenses are evaluated but the full analysis appears in Section 6 (Discussion), which is not included in the supplied text.\n\n## Ranking Instability Mechanisms\n\nThe paper identifies **token importance ranking instability** as the root cause rather than entropy explicitly. The analysis shows:\n\n- \"Small and imperceptible perturbations can significantly alter token rankings, leading the compression mechanism to mistakenly discard task-critical information\"\n- Three quantitative metrics measure ranking degradation: Kendall's τ, Spearman's ρ, Top-100 preservation rate, and Bottom-100 infiltration rate\n- \"Identical perturbations largely preserve token semantics while substantially altering their relative ordering\"\n\n## Theoretical Connection Between Perturbations and Rankings\n\nThe paper establishes this through attention-based importance scoring. Token importance uses: \"the fraction of visual tokens retained at layer l~ relative to the original vision token count.\" The mechanism relies on \"attention weights from token i to token i'\" calculated via softmax operations—continuous functions vulnerable to discrete reordering under perturbations.\n\n## Missing Elements from Provided Content\n\n**Not available in excerpt:**\n- Specific defense strategies evaluated (Section 6)\n- Entropy discussion as ranking stability factor\n- Future defense recommendations\n- Attention entropy correlation with ranking stability\n\nThese sections exist in the full paper but weren't included in the webpage content provided.",
+    "durationMs": 6553,
+    "url": "https://arxiv.org/html/2601.12042"
+  },
+  "sourceToolAssistantUUID": "5a84268b-b717-46f4-9305-d858d440a027",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-14T06:21:51.451Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TCmC8SJG5d4NRDaC9ym8UP`</summary>
+
+```json
+{
+  "query": "\"Less Is More Until It Breaks\" defense strategies CAA compression aware attack defense evaluation section"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3698f379-0529-4273-b67b-0392501a661e",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ykgQJHKsrt8zniyq7Y",
+  "type": "assistant",
+  "uuid": "94c4c4bc-7a3b-4a8f-843f-06d6c92fd67f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XG4RuYQG7aQSqGqPyMwz21",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 557,
+      "cache_read_input_tokens": 51726,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 557,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 51726,
+          "cache_creation_input_tokens": 557,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 557
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "94c4c4bc-7a3b-4a8f-843f-06d6c92fd67f",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review: Entropy-Stabilized Attention for Compression-Robust VLAs (Round 3)",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-14T06:21:58.736Z_
+
+<details><summary>↩ Tool result · `toolu_01TCmC8SJG5d4NRDaC9ym8UP`</summary>
+
+```text
+Web search results for query: ""Less Is More Until It Breaks" defense strategies CAA compression aware attack defense evaluation section"
+
+No links found.
+
+The search didn't return any results. This could mean:
+
+1. The exact phrase "Less Is More Until It Breaks" may not be widely indexed or may not exist as a common document title
+2. The specific combination of terms (defense strategies, CAA, compression aware attack) might be too specialized or niche
+3. The content might be from a recent publication, academic paper, or technical document that isn't readily available through general web search
+
+Could you provide additional context? For example:
+- Is this from a specific research paper, technical report, or conference proceedings?
+- Do you know the authors or which organization published this?
+- Is there an alternative title or a more general topic area I should search for?
+- Do you have a direct link to the document?
+
+This would help me locate the specific evaluation section you're looking for.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "94c4c4bc-7a3b-4a8f-843f-06d6c92fd67f",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "5101fb6f-7023-4652-985c-dc3af7709415",
+  "toolUseResult": {
+    "query": "\"Less Is More Until It Breaks\" defense strategies CAA compression aware attack defense evaluation section",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011F7omRVmAbUnF48fLdLvFH",
+        "content": []
+      },
+      "The search didn't return any results. This could mean:\n\n1. The exact phrase \"Less Is More Until It Breaks\" may not be widely indexed or may not exist as a common document title\n2. The specific combination of terms (defense strategies, CAA, compression aware attack) might be too specialized or niche\n3. The content might be from a recent publication, academic paper, or technical document that isn't readily available through general web search\n\nCould you provide additional context? For example:\n- Is this from a specific research paper, technical report, or conference proceedings?\n- Do you know the authors or which organization published this?\n- Is there an alternative title or a more general topic area I should search for?\n- Do you have a direct link to the document?\n\nThis would help me locate the specific evaluation section you're looking for."
+    ],
+    "durationSeconds": 7.281136022999999
+  },
+  "sourceToolAssistantUUID": "94c4c4bc-7a3b-4a8f-843f-06d6c92fd67f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-14T06:22:01.128Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CSACTfuKfaCmfzeaBi6JSu`</summary>
+
+```json
+{
+  "query": "arxiv 2601.12042 defense evaluation \"limited protection\" token ranking instability defense mechanism"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5101fb6f-7023-4652-985c-dc3af7709415",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ymNqPjVZvp6UgYW6Wt",
+  "type": "assistant",
+  "uuid": "16737c09-e881-46d0-a69c-28be1902de6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S5mZ3qdfJREppwGHjH2Uxh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 314,
+      "cache_read_input_tokens": 52283,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 314,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 52283,
+          "cache_creation_input_tokens": 314,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 314
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-14T06:22:05.479Z_
+
+<details><summary>↩ Tool result · `toolu_01CSACTfuKfaCmfzeaBi6JSu`</summary>
+
+```text
+Web search results for query: "arxiv 2601.12042 defense evaluation "limited protection" token ranking instability defense mechanism"
+
+Links: [{"title":"Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models","url":"https://arxiv.org/html/2601.12042"},{"title":"[2602.12042] Scalable Preparation of Matrix Product States with Sequential and Brick Wall Quantum Circuits","url":"https://arxiv.org/abs/2602.12042"},{"title":"my_arXiv_daily/README.md at main · BaiShuanghao/my_arXiv_daily","url":"https://github.com/BaiShuanghao/my_arXiv_daily/blob/main/README.md"},{"title":"Computation and Language","url":"https://www.arxiv.org/list/cs.CL/pastweek?skip=0&show=500"},{"title":"[2510.12042] FakeMark: Deepfake Speech Attribution With Watermarked Artifacts","url":"https://arxiv.org/abs/2510.12042"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=474&show=500"},{"title":"[2601.07372] Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models","url":"https://arxiv.org/abs/2601.07372"},{"title":"Anatomy of Agentic Memory: Taxonomy and Empirical Analysis of Evaluation and System Limitations","url":"https://arxiv.org/html/2602.19320v1"},{"title":"[2504.12042] Diverse regular spacetimes using a parametrised density profile","url":"https://arxiv.org/abs/2504.12042"},{"title":"[2506.12042] CRITS: Convolutional Rectifier for Interpretable Time Series Classification","url":"https://arxiv.org/abs/2506.12042"}]
+
+Great! I found the paper. Visual token compression is widely adopted to improve the inference efficiency of Large Vision–Language Models (LVLMs), enabling their deployment in latency-sensitive and resource-constrained scenarios. The paper is titled "Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models" and was published on January 17, 2026.
+
+Based on the search result, this paper appears to examine the security implications of vision token compression in LVLMs. The title suggests it explores how the efficiency benefits of token compression come with security vulnerabilities. To get more specific details about defense evaluation, "limited protection," token ranking instability, and the defense mechanisms discussed in the paper, you would need to access the full paper at https://arxiv.org/html/2601.12042.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "16737c09-e881-46d0-a69c-28be1902de6b",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "5eb2f9a7-0027-47a0-9aae-df79934e8c7f",
+  "toolUseResult": {
+    "query": "arxiv 2601.12042 defense evaluation \"limited protection\" token ranking instability defense mechanism",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01B5WQohNMguRrLdH8nzNZgu",
+        "content": [
+          {
+            "title": "Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2601.12042"
+          },
+          {
+            "title": "[2602.12042] Scalable Preparation of Matrix Product States with Sequential and Brick Wall Quantum Circuits",
+            "url": "https://arxiv.org/abs/2602.12042"
+          },
+          {
+            "title": "my_arXiv_daily/README.md at main · BaiShuanghao/my_arXiv_daily",
+            "url": "https://github.com/BaiShuanghao/my_arXiv_daily/blob/main/README.md"
+          },
+          {
+            "title": "Computation and Language",
+            "url": "https://www.arxiv.org/list/cs.CL/pastweek?skip=0&show=500"
+          },
+          {
+            "title": "[2510.12042] FakeMark: Deepfake Speech Attribution With Watermarked Artifacts",
+            "url": "https://arxiv.org/abs/2510.12042"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/recent?skip=474&show=500"
+          },
+          {
+            "title": "[2601.07372] Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models",
+            "url": "https://arxiv.org/abs/2601.07372"
+          },
+          {
+            "title": "Anatomy of Agentic Memory: Taxonomy and Empirical Analysis of Evaluation and System Limitations",
+            "url": "https://arxiv.org/html/2602.19320v1"
+          },
+          {
+            "title": "[2504.12042] Diverse regular spacetimes using a parametrised density profile",
+            "url": "https://arxiv.org/abs/2504.12042"
+          },
+          {
+            "title": "[2506.12042] CRITS: Convolutional Rectifier for Interpretable Time Series Classification",
+            "url": "https://arxiv.org/abs/2506.12042"
+          }
+        ]
+      },
+      "Great! I found the paper. Visual token compression is widely adopted to improve the inference efficiency of Large Vision–Language Models (LVLMs), enabling their deployment in latency-sensitive and resource-constrained scenarios. The paper is titled \"Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models\" and was published on January 17, 2026.\n\nBased on the search result, this paper appears to examine the security implications of vision token compression in LVLMs. The title suggests it explores how the efficiency benefits of token compression come with security vulnerabilities. To get more specific details about defense evaluation, \"limited protection,\" token ranking instability, and the defense mechanisms discussed in the paper, you would need to access the full paper at https://arxiv.org/html/2601.12042."
+    ],
+    "durationSeconds": 4.3477063530000155
+  },
+  "sourceToolAssistantUUID": "16737c09-e881-46d0-a69c-28be1902de6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84 · 2026-05-14T06:22:08.482Z_
+
+Let me now check for any very recent work that might directly propose the same idea as ESA.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5eb2f9a7-0027-47a0-9aae-df79934e8c7f",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ymsgjVLH9YKPv45PwN",
+  "type": "assistant",
+  "uuid": "ae6114aa-24eb-4c8c-8127-199f9df1032b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176dNVwYopfaY4g6xaJaM4S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 777,
+      "cache_read_input_tokens": 52597,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 777,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 52597,
+          "cache_creation_input_tokens": 777,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 777
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-14T06:22:09.030Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019p7ZN4eUXmrtp75yhwABdH`</summary>
+
+```json
+{
+  "query": "training time regularization defense compression robust token pruning VLM VLA attention concentrated 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae6114aa-24eb-4c8c-8127-199f9df1032b",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ymsgjVLH9YKPv45PwN",
+  "type": "assistant",
+  "uuid": "48de7a1d-9f83-4cf3-bb52-03f97b51263e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176dNVwYopfaY4g6xaJaM4S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 777,
+      "cache_read_input_tokens": 52597,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 777,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 52597,
+          "cache_creation_input_tokens": 777,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 777
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-14T06:22:17.005Z_
+
+<details><summary>↩ Tool result · `toolu_019p7ZN4eUXmrtp75yhwABdH`</summary>
+
+```text
+Web search results for query: "training time regularization defense compression robust token pruning VLM VLA attention concentrated 2026"
+
+Links: [{"title":"EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models","url":"https://arxiv.org/html/2506.10100v1"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"TopV: Compatible Token Pruning with Inference Time Optimization for Fast","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_TopV_Compatible_Token_Pruning_with_Inference_Time_Optimization_for_Fast_CVPR_2025_paper.pdf"},{"title":"VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference","url":"https://arxiv.org/html/2511.16449"},{"title":"GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub","url":"https://github.com/daixiangzi/Awesome-Token-Compress"},{"title":"[CLS] Attention is All You Need for Training-Free Visual Token Pruning: Make VLM Inference Faster","url":"https://arxiv.org/html/2412.01818v1"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/html/2509.12594v1"},{"title":"SparseVLM: Visual Token Sparsification for Efficient Vision Language Models Inference | OpenReview","url":"https://openreview.net/forum?id=1xG3MN1RRW"},{"title":"Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation","url":"https://arxiv.org/html/2603.23202v1"}]
+
+I've successfully performed the web search. Here are the key results related to training-time regularization, defense, compression, robust token pruning, and attention concentration in VLM/VLA models for 2026:
+
+## Recent Research Findings (2025-2026):
+
+**Training-Based Approaches:**
+
+LightVLA is a differentiable token pruning framework for vision-language-action models that generates dynamic queries to evaluate visual token importance using Gumbel softmax for differentiable token selection, learning to preserve informative visual tokens while pruning non-essential ones.
+
+A gaze-regularized training framework aligns VLA models' internal attention with human visual patterns through KL divergence regularization of transformer attention, creating an inductive bias toward task-relevant features.
+
+**Training-Free Approaches:**
+
+EfficientVLA is a structured, training-free acceleration framework for Diffusion-based VLAs that prunes functionally inconsequential layers and employs a visual token pruning strategy targeting both task-relevant and inherent image redundancies.
+
+VLA-Pruner is a plug-and-play VLA token pruning method that aligns with the dual-system nature of VLA models and exploits temporal continuity in robot manipulation.
+
+**Attention Concentration & Robustness:**
+
+FasterVLM is a training-free visual token pruning method that evaluates token importance by utilizing attentions between the [CLS] token and image tokens from the visual encoder. [CLS] attention is highly focused, with only a few tokens receiving significant attention, capturing global information that can accelerate inference while preserving performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "48de7a1d-9f83-4cf3-bb52-03f97b51263e",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "962c9a4a-dee3-4e23-b168-15d246eaf289",
+  "toolUseResult": {
+    "query": "training time regularization defense compression robust token pruning VLM VLA attention concentrated 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VPArWJFZAL3Q4Qx5526mgx",
+        "content": [
+          {
+            "title": "EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2506.10100v1"
+          },
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "TopV: Compatible Token Pruning with Inference Time Optimization for Fast",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_TopV_Compatible_Token_Pruning_with_Inference_Time_Optimization_for_Fast_CVPR_2025_paper.pdf"
+          },
+          {
+            "title": "VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference",
+            "url": "https://arxiv.org/html/2511.16449"
+          },
+          {
+            "title": "GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub",
+            "url": "https://github.com/daixiangzi/Awesome-Token-Compress"
+          },
+          {
+            "title": "[CLS] Attention is All You Need for Training-Free Visual Token Pruning: Make VLM Inference Faster",
+            "url": "https://arxiv.org/html/2412.01818v1"
+          },
+          {
+            "title": "The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning",
+            "url": "https://arxiv.org/html/2509.12594v1"
+          },
+          {
+            "title": "SparseVLM: Visual Token Sparsification for Efficient Vision Language Models Inference | OpenReview",
+            "url": "https://openreview.net/forum?id=1xG3MN1RRW"
+          },
+          {
+            "title": "Gaze-Regularized Vision-Language-Action Models for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2603.23202v1"
+          }
+        ]
+      },
+      "I've successfully performed the web search. Here are the key results related to training-time regularization, defense, compression, robust token pruning, and attention concentration in VLM/VLA models for 2026:\n\n## Recent Research Findings (2025-2026):\n\n**Training-Based Approaches:**\n\nLightVLA is a differentiable token pruning framework for vision-language-action models that generates dynamic queries to evaluate visual token importance using Gumbel softmax for differentiable token selection, learning to preserve informative visual tokens while pruning non-essential ones.\n\nA gaze-regularized training framework aligns VLA models' internal attention with human visual patterns through KL divergence regularization of transformer attention, creating an inductive bias toward task-relevant features.\n\n**Training-Free Approaches:**\n\nEfficientVLA is a structured, training-free acceleration framework for Diffusion-based VLAs that prunes functionally inconsequential layers and employs a visual token pruning strategy targeting both task-relevant and inherent image redundancies.\n\nVLA-Pruner is a plug-and-play VLA token pruning method that aligns with the dual-system nature of VLA models and exploits temporal continuity in robot manipulation.\n\n**Attention Concentration & Robustness:**\n\nFasterVLM is a training-free visual token pruning method that evaluates token importance by utilizing attentions between the [CLS] token and image tokens from the visual encoder. [CLS] attention is highly focused, with only a few tokens receiving significant attention, capturing global information that can accelerate inference while preserving performance."
+    ],
+    "durationSeconds": 7.9720435350000045
+  },
+  "sourceToolAssistantUUID": "48de7a1d-9f83-4cf3-bb52-03f97b51263e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-14T06:22:19.348Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HPFz9KFnJTfidMorV1N8pf`</summary>
+
+```json
+{
+  "query": "\"variance sensitivity\" \"attention entropy collapse\" EMNLP 2025 transformer training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "962c9a4a-dee3-4e23-b168-15d246eaf289",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yniweR8aqiEZLzFNAK",
+  "type": "assistant",
+  "uuid": "79bf4541-8290-418b-baf4-c2932069825e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0174zxvCKL5aJTDNU11xkJx6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1079,
+      "cache_read_input_tokens": 53374,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1079,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 53374,
+          "cache_creation_input_tokens": 1079,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1079
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-14T06:22:25.812Z_
+
+<details><summary>↩ Tool result · `toolu_01HPFz9KFnJTfidMorV1N8pf`</summary>
+
+```text
+Web search results for query: ""variance sensitivity" "attention entropy collapse" EMNLP 2025 transformer training"
+
+Links: [{"title":"Variance Sensitivity Induces Attention Entropy Collapse and Instability in Transformers - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.421/"},{"title":"Variance Sensitivity Induces Attention Entropy Collapse in Transformers","url":"https://aclanthology.org/2025.emnlp-main.421.pdf"},{"title":"Variance Sensitivity Induces Attention Entropy Collapse and Instability in Transformers | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/2025.emnlp-main.421@ACL"},{"title":"Variance Sensitivity Induces Attention Entropy Collapse in ...","url":"https://aclanthology.org/2025.emnlp-main.421v1.pdf"},{"title":"dblp: Variance Sensitivity Induces Attention Entropy Collapse and Instability in Transformers.","url":"https://dblp.org/rec/conf/emnlp/HongL25.html"},{"title":"Variance Sensitivity Induces Attention Entropy Collapse in Transformers","url":"https://openreview.net/pdf/6fdd7d4d802a388fa58aabdfae92fd0fb7f4b8ca.pdf"},{"title":"Accepted Main Conference Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/main_papers/"},{"title":"Variance Sensitivity Induces Attention Entropy Collapse and Instability in Transformers | OpenReview","url":"https://openreview.net/forum?id=Qe4go2UH1H"},{"title":"Integral Transformer: Denoising Attention, Not Too Much ...","url":"https://aclanthology.org/2025.emnlp-main.118.pdf"},{"title":"Stabilizing Transformer Training by Preventing Attention Entropy Collapse","url":"https://proceedings.mlr.press/v202/zhai23a/zhai23a.pdf"}]
+
+I found the paper you're looking for! Here are the search results:
+
+## Paper: "Variance Sensitivity Induces Attention Entropy Collapse and Instability in Transformers"
+
+This paper by Hong & Lee was published at EMNLP 2025.
+
+### Key Findings:
+
+The authors identify the high variance sensitivity of softmax as a primary cause of attention entropy collapse. The problem manifests as attention entropy collapse, in which attention disproportionately concentrates on a single token, ultimately causing training instability.
+
+### Solution:
+
+The paper shows that entropy-stable attention methods, which either control or are insensitive to the variance of attention logits, can prevent entropy collapse and enable more stable training.
+
+### Evidence:
+
+The authors provide empirical evidence of this effect in both large language models (LLMs) and a small Transformer model composed solely of self-attention and support their findings with theoretical analysis. Additionally, the concentration of attention probabilities increases the probability matrix norm, leading to gradient exploding.
+
+The paper is published in the Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing, pages 8360–8378, Suzhou, China. You can access it through the ACL Anthology at https://aclanthology.org/2025.emnlp-main.421/.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79bf4541-8290-418b-baf4-c2932069825e",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "783efc66-9ebb-43fa-b594-261b09df6741",
+  "toolUseResult": {
+    "query": "\"variance sensitivity\" \"attention entropy collapse\" EMNLP 2025 transformer training",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RojbUjgzzhjVaqLnogBZJe",
+        "content": [
+          {
+            "title": "Variance Sensitivity Induces Attention Entropy Collapse and Instability in Transformers - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.421/"
+          },
+          {
+            "title": "Variance Sensitivity Induces Attention Entropy Collapse in Transformers",
+            "url": "https://aclanthology.org/2025.emnlp-main.421.pdf"
+          },
+          {
+            "title": "Variance Sensitivity Induces Attention Entropy Collapse and Instability in Transformers | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/2025.emnlp-main.421@ACL"
+          },
+          {
+            "title": "Variance Sensitivity Induces Attention Entropy Collapse in ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.421v1.pdf"
+          },
+          {
+            "title": "dblp: Variance Sensitivity Induces Attention Entropy Collapse and Instability in Transformers.",
+            "url": "https://dblp.org/rec/conf/emnlp/HongL25.html"
+          },
+          {
+            "title": "Variance Sensitivity Induces Attention Entropy Collapse in Transformers",
+            "url": "https://openreview.net/pdf/6fdd7d4d802a388fa58aabdfae92fd0fb7f4b8ca.pdf"
+          },
+          {
+            "title": "Accepted Main Conference Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/main_papers/"
+          },
+          {
+            "title": "Variance Sensitivity Induces Attention Entropy Collapse and Instability in Transformers | OpenReview",
+            "url": "https://openreview.net/forum?id=Qe4go2UH1H"
+          },
+          {
+            "title": "Integral Transformer: Denoising Attention, Not Too Much ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.118.pdf"
+          },
+          {
+            "title": "Stabilizing Transformer Training by Preventing Attention Entropy Collapse",
+            "url": "https://proceedings.mlr.press/v202/zhai23a/zhai23a.pdf"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the search results:\n\n## Paper: \"Variance Sensitivity Induces Attention Entropy Collapse and Instability in Transformers\"\n\nThis paper by Hong & Lee was published at EMNLP 2025.\n\n### Key Findings:\n\nThe authors identify the high variance sensitivity of softmax as a primary cause of attention entropy collapse. The problem manifests as attention entropy collapse, in which attention disproportionately concentrates on a single token, ultimately causing training instability.\n\n### Solution:\n\nThe paper shows that entropy-stable attention methods, which either control or are insensitive to the variance of attention logits, can prevent entropy collapse and enable more stable training.\n\n### Evidence:\n\nThe authors provide empirical evidence of this effect in both large language models (LLMs) and a small Transformer model composed solely of self-attention and support their findings with theoretical analysis. Additionally, the concentration of attention probabilities increases the probability matrix norm, leading to gradient exploding.\n\nThe paper is published in the Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing, pages 8360–8378, Suzhou, China. You can access it through the ACL Anthology at https://aclanthology.org/2025.emnlp-main.421/."
+    ],
+    "durationSeconds": 6.458579918000032
+  },
+  "sourceToolAssistantUUID": "79bf4541-8290-418b-baf4-c2932069825e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-14T06:22:28.232Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RCR7PYBtEtgyCMeaTVpL5P`</summary>
+
+```json
+{
+  "query": "LIBERO-Plus LIBERO-X perturbation benchmark robustness evaluation VLA 2026 seven dimensions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "783efc66-9ebb-43fa-b594-261b09df6741",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yoNdJVLz9cqG6KDsYo",
+  "type": "assistant",
+  "uuid": "384da1e0-adc5-4c5c-9c46-b8251de886ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RxAcRB5Qx8rLJBFmAKkpNh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 938,
+      "cache_read_input_tokens": 54453,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 938,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 54453,
+          "cache_creation_input_tokens": 938,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 938
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-14T06:22:35.185Z_
+
+<details><summary>↩ Tool result · `toolu_01RCR7PYBtEtgyCMeaTVpL5P`</summary>
+
+```text
+Web search results for query: "LIBERO-Plus LIBERO-X perturbation benchmark robustness evaluation VLA 2026 seven dimensions"
+
+Links: [{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://sylvestf.github.io/LIBERO-plus/"},{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://huggingface.co/papers/2510.13626"},{"title":"CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models","url":"https://cvpr.thecvf.com/virtual/2026/poster/38735"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"},{"title":"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models","url":"https://arxiv.org/html/2603.28301v1"},{"title":"In-depth Robustness Analysis for Vision-Language-Action Models | OpenReview","url":"https://openreview.net/forum?id=6mEfYoMRpF"},{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"},{"title":"LIBERO-plus/README.md at main · sylvestf/LIBERO-plus","url":"https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"}]
+
+Based on the web search results, I found comprehensive information about LIBERO-Plus and related benchmarks for evaluating VLA (Vision-Language-Action) model robustness.
+
+## LIBERO-Plus: In-depth Robustness Analysis
+
+LIBERO-Plus introduces controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise.
+
+LIBERO-Plus is an extensive benchmark with 10,030 tasks spanning seven perturbation dimensions, with a diverse training dataset containing over 20,000 successful trajectories.
+
+## Key Findings on VLA Model Vulnerabilities
+
+Models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations. However, models are largely insensitive to language variations, with further experiments revealing that models tend to ignore language instructions completely.
+
+## Benchmark Structure and Evaluation
+
+LIBERO-Plus was designed as a comprehensive benchmark with a systematic two-stage construction process: expanding the original LIBERO benchmark through seven distinct perturbation factors, followed by task filtering and category balancing; and evaluating the resulting tasks using four representative models and stratifying them into five difficulty levels (Level-1 to Level-5).
+
+## Related Work
+
+The search results also mention LIBERO-X (Wang et al., 2026) which introduces multimodal perturbation-based evaluations including linguistic variation as one of several axes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "384da1e0-adc5-4c5c-9c46-b8251de886ad",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "3b927d76-eb40-497d-8dea-ca7df24b06b5",
+  "toolUseResult": {
+    "query": "LIBERO-Plus LIBERO-X perturbation benchmark robustness evaluation VLA 2026 seven dimensions",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Wtihjwey2cmRtxcuFGTMgE",
+        "content": [
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://sylvestf.github.io/LIBERO-plus/"
+          },
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          },
+          {
+            "title": "Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2510.13626"
+          },
+          {
+            "title": "CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models",
+            "url": "https://cvpr.thecvf.com/virtual/2026/poster/38735"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          },
+          {
+            "title": "LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models",
+            "url": "https://arxiv.org/html/2603.28301v1"
+          },
+          {
+            "title": "In-depth Robustness Analysis for Vision-Language-Action Models | OpenReview",
+            "url": "https://openreview.net/forum?id=6mEfYoMRpF"
+          },
+          {
+            "title": "LIBERO Benchmark: Vision-Language-Action in Robotics",
+            "url": "https://www.emergentmind.com/topics/libero"
+          },
+          {
+            "title": "LIBERO-plus/README.md at main · sylvestf/LIBERO-plus",
+            "url": "https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"
+          }
+        ]
+      },
+      "Based on the web search results, I found comprehensive information about LIBERO-Plus and related benchmarks for evaluating VLA (Vision-Language-Action) model robustness.\n\n## LIBERO-Plus: In-depth Robustness Analysis\n\nLIBERO-Plus introduces controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise.\n\nLIBERO-Plus is an extensive benchmark with 10,030 tasks spanning seven perturbation dimensions, with a diverse training dataset containing over 20,000 successful trajectories.\n\n## Key Findings on VLA Model Vulnerabilities\n\nModels exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations. However, models are largely insensitive to language variations, with further experiments revealing that models tend to ignore language instructions completely.\n\n## Benchmark Structure and Evaluation\n\nLIBERO-Plus was designed as a comprehensive benchmark with a systematic two-stage construction process: expanding the original LIBERO benchmark through seven distinct perturbation factors, followed by task filtering and category balancing; and evaluating the resulting tasks using four representative models and stratifying them into five difficulty levels (Level-1 to Level-5).\n\n## Related Work\n\nThe search results also mention LIBERO-X (Wang et al., 2026) which introduces multimodal perturbation-based evaluations including linguistic variation as one of several axes."
+    ],
+    "durationSeconds": 6.949806870000029
+  },
+  "sourceToolAssistantUUID": "384da1e0-adc5-4c5c-9c46-b8251de886ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 91_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "3b927d76-eb40-497d-8dea-ca7df24b06b5",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 92_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review: Entropy-Stabilized Attention for Compression-Robust VLAs (Round 3)",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-14T06:22:40.835Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019VVPKxGGiQ1HnHpZjbpfsF`</summary>
+
+```json
+{
+  "query": "EfficientVLA training-free acceleration compression VLA 2026 arXiv token pruning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b927d76-eb40-497d-8dea-ca7df24b06b5",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yp4g5Wxj2mNqSXk1z7",
+  "type": "assistant",
+  "uuid": "2e7fce4d-8be8-4019-b401-7b158e04a1a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014TBr9o6o3ZhVo28eaB16mF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 973,
+      "cache_read_input_tokens": 55391,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 973,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 55391,
+          "cache_creation_input_tokens": 973,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 973
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-14T06:22:49.279Z_
+
+<details><summary>↩ Tool result · `toolu_019VVPKxGGiQ1HnHpZjbpfsF`</summary>
+
+```text
+Web search results for query: "EfficientVLA training-free acceleration compression VLA 2026 arXiv token pruning"
+
+Links: [{"title":"EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models","url":"https://arxiv.org/html/2506.10100v1"},{"title":"[2506.10100] EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models","url":"https://arxiv.org/abs/2506.10100"},{"title":"Paper page - EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models","url":"https://huggingface.co/papers/2506.10100"},{"title":"EfficientVLA: Training-Free Acceleration and Compression ...","url":"https://openreview.net/pdf?id=SELYlDHZk2"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models | OpenReview","url":"https://openreview.net/forum?id=SELYlDHZk2"},{"title":"GitHub - KwanWaiPang/Awesome-VLA: Paper Survey for Visual Language Action · GitHub","url":"https://github.com/KwanWaiPang/Awesome-VLA"},{"title":"Token Expand-Merge: Training-Free Token Compression for Vision-Language-Action Models","url":"https://arxiv.org/html/2512.09927"},{"title":"GitHub - JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation: A curated list of large VLM-based VLA models for robotic manipulation. · GitHub","url":"https://github.com/JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation"},{"title":"Think Twice, Act Once: Token-Aware Compression and Action Reuse for Efficient Inference in Vision-Language-Action Models","url":"https://arxiv.org/html/2505.21200"}]
+
+I found the paper you're looking for! EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models is a recent arXiv paper published in June 2025.
+
+## Overview
+
+Vision-Language-Action (VLA) models, particularly diffusion-based architectures, demonstrate transformative potential for embodied intelligence but are severely hampered by high computational and memory demands stemming from extensive inherent and inference-time redundancies.
+
+## Key Approach
+
+EfficientVLA synergistically integrates three targeted strategies: (1) pruning of functionally inconsequential layers from the language module, guided by an analysis of inter-layer redundancies; (2) optimizing the visual processing pathway through a task-aware strategy that selects a compact, diverse set of visual tokens, balancing task-criticality with informational coverage; and (3) alleviating temporal computational redundancy within the iterative diffusion-based action head by strategically caching and reusing key intermediate features.
+
+## Results
+
+The method was applied to a standard VLA model CogACT, yielding a 1.93X inference speedup and reduces FLOPs to 28.9%, with only a 0.6% success rate drop in the SIMPLER benchmark.
+
+The paper is available on arXiv as paper 2506.10100 and represents an important contribution to making VLA models more efficient for practical robotic deployment without requiring additional training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2e7fce4d-8be8-4019-b401-7b158e04a1a1",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "59b2beb5-e45a-466b-8fa6-a03707dd29fd",
+  "toolUseResult": {
+    "query": "EfficientVLA training-free acceleration compression VLA 2026 arXiv token pruning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KNz2GzHTNz7G2WXi4N5G99",
+        "content": [
+          {
+            "title": "EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2506.10100v1"
+          },
+          {
+            "title": "[2506.10100] EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2506.10100"
+          },
+          {
+            "title": "Paper page - EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2506.10100"
+          },
+          {
+            "title": "EfficientVLA: Training-Free Acceleration and Compression ...",
+            "url": "https://openreview.net/pdf?id=SELYlDHZk2"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models | OpenReview",
+            "url": "https://openreview.net/forum?id=SELYlDHZk2"
+          },
+          {
+            "title": "GitHub - KwanWaiPang/Awesome-VLA: Paper Survey for Visual Language Action · GitHub",
+            "url": "https://github.com/KwanWaiPang/Awesome-VLA"
+          },
+          {
+            "title": "Token Expand-Merge: Training-Free Token Compression for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2512.09927"
+          },
+          {
+            "title": "GitHub - JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation: A curated list of large VLM-based VLA models for robotic manipulation. · GitHub",
+            "url": "https://github.com/JiuTian-VL/Large-VLM-based-VLA-for-Robotic-Manipulation"
+          },
+          {
+            "title": "Think Twice, Act Once: Token-Aware Compression and Action Reuse for Efficient Inference in Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2505.21200"
+          }
+        ]
+      },
+      "I found the paper you're looking for! EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models is a recent arXiv paper published in June 2025.\n\n## Overview\n\nVision-Language-Action (VLA) models, particularly diffusion-based architectures, demonstrate transformative potential for embodied intelligence but are severely hampered by high computational and memory demands stemming from extensive inherent and inference-time redundancies.\n\n## Key Approach\n\nEfficientVLA synergistically integrates three targeted strategies: (1) pruning of functionally inconsequential layers from the language module, guided by an analysis of inter-layer redundancies; (2) optimizing the visual processing pathway through a task-aware strategy that selects a compact, diverse set of visual tokens, balancing task-criticality with informational coverage; and (3) alleviating temporal computational redundancy within the iterative diffusion-based action head by strategically caching and reusing key intermediate features.\n\n## Results\n\nThe method was applied to a standard VLA model CogACT, yielding a 1.93X inference speedup and reduces FLOPs to 28.9%, with only a 0.6% success rate drop in the SIMPLER benchmark.\n\nThe paper is available on arXiv as paper 2506.10100 and represents an important contribution to making VLA models more efficient for practical robotic deployment without requiring additional training."
+    ],
+    "durationSeconds": 8.438890245999966
+  },
+  "sourceToolAssistantUUID": "2e7fce4d-8be8-4019-b401-7b158e04a1a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95 · 2026-05-14T06:22:53.751Z_
+
+Now let me specifically check whether the entropy direction paradox has been addressed in the revised idea, and look for the ICCV 2023 paper that proposes attention *diversification* (higher entropy) for robustness.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59b2beb5-e45a-466b-8fa6-a03707dd29fd",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yq6wnagsKksCrwQcRL",
+  "type": "assistant",
+  "uuid": "c1251faa-98b1-46c3-8f65-f6d2503e4265",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018kkwmMsNQyGCCukCZKYxhs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 980,
+      "cache_read_input_tokens": 56364,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 980,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 56364,
+          "cache_creation_input_tokens": 980,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 980
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-14T06:22:57.516Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015BxokzCWkMsewghStJTKGG`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2303.11126",
+  "prompt": "Extract the key findings from \"Robustifying Token Attention for Vision Transformers\" (ICCV 2023). Specifically: 1) What is \"token overfocusing\" and why is it a problem for robustness? 2) How does the Attention Diversification Loss (ADL) work? Does it encourage HIGHER or LOWER attention entropy? 3) What is TAP and how does it improve robustness? 4) How do these relate to attention entropy — does the paper argue for concentrated or dispersed attention for robustness?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1251faa-98b1-46c3-8f65-f6d2503e4265",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yq6wnagsKksCrwQcRL",
+  "type": "assistant",
+  "uuid": "7b2d1c88-b0a9-49fe-81b3-770a7e6ae42f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018kkwmMsNQyGCCukCZKYxhs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 980,
+      "cache_read_input_tokens": 56364,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 980,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 56364,
+          "cache_creation_input_tokens": 980,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 980
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-14T06:23:01.464Z_
+
+<details><summary>↩ Tool result · `toolu_015BxokzCWkMsewghStJTKGG`</summary>
+
+```text
+# Analysis of "Robustifying Token Attention for Vision Transformers"
+
+## 1) Token Overfocusing Problem
+The paper identifies that vision transformers exhibit **"token overfocusing"** — the attention mechanism relies excessively on a small set of important tokens. This is problematic for robustness because these critical tokens are vulnerable to common corruptions (noise, blur), causing attention patterns to diverge significantly under adverse conditions.
+
+## 2) Attention Diversification Loss (ADL)
+The ADL encourages **LOWER** attention concentration. It works by "penalizing high cosine similarity between the attention vectors of different tokens," compelling output tokens to aggregate information from a broader range of inputs rather than focusing narrowly. This inherently increases attention entropy.
+
+## 3) Token-aware Average Pooling (TAP)
+TAP is a learnable module that "encourages the local neighborhood of each token to take part in the attention mechanism." Rather than relying on individual tokens, TAP learns adaptive pooling schemes allowing neighborhood information to be incorporated, thereby distributing attention more broadly.
+
+## 4) Relationship to Attention Entropy
+The paper argues for **dispersed attention for robustness**. Both TAP and ADL work toward more distributed, less concentrated attention patterns. The underlying thesis is that robustness improves when transformers avoid over-reliance on vulnerable focal tokens and instead leverage diverse information sources.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7b2d1c88-b0a9-49fe-81b3-770a7e6ae42f",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "4e7488d6-9139-4d58-b226-e3bfe0e215b1",
+  "toolUseResult": {
+    "bytes": 46028,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of \"Robustifying Token Attention for Vision Transformers\"\n\n## 1) Token Overfocusing Problem\nThe paper identifies that vision transformers exhibit **\"token overfocusing\"** — the attention mechanism relies excessively on a small set of important tokens. This is problematic for robustness because these critical tokens are vulnerable to common corruptions (noise, blur), causing attention patterns to diverge significantly under adverse conditions.\n\n## 2) Attention Diversification Loss (ADL)\nThe ADL encourages **LOWER** attention concentration. It works by \"penalizing high cosine similarity between the attention vectors of different tokens,\" compelling output tokens to aggregate information from a broader range of inputs rather than focusing narrowly. This inherently increases attention entropy.\n\n## 3) Token-aware Average Pooling (TAP)\nTAP is a learnable module that \"encourages the local neighborhood of each token to take part in the attention mechanism.\" Rather than relying on individual tokens, TAP learns adaptive pooling schemes allowing neighborhood information to be incorporated, thereby distributing attention more broadly.\n\n## 4) Relationship to Attention Entropy\nThe paper argues for **dispersed attention for robustness**. Both TAP and ADL work toward more distributed, less concentrated attention patterns. The underlying thesis is that robustness improves when transformers avoid over-reliance on vulnerable focal tokens and instead leverage diverse information sources.",
+    "durationMs": 3943,
+    "url": "https://arxiv.org/abs/2303.11126"
+  },
+  "sourceToolAssistantUUID": "7b2d1c88-b0a9-49fe-81b3-770a7e6ae42f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 98 · 2026-05-14T06:23:01.468Z_
+
+```json
+{
+  "parentUuid": "4e7488d6-9139-4d58-b226-e3bfe0e215b1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "da3ff564-652e-4d18-840e-82d60acc7f9a",
+  "timestamp": "2026-05-14T06:23:01.468Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 99 · 2026-05-14T06:23:05.355Z_
+
+This is a critical finding. "Robustifying Token Attention" (ICCV 2023) argues for *higher* attention entropy (dispersed attention) for robustness — directly contradicting ESA's proposal. Let me check a few more things.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da3ff564-652e-4d18-840e-82d60acc7f9a",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yr16LKFR4bLggbUb4V",
+  "type": "assistant",
+  "uuid": "1ff1b8ef-cd1f-41f6-810d-c6d1872e91e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ASpvcboyNVL1pekkRVegc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 683,
+      "cache_read_input_tokens": 57344,
+      "output_tokens": 135,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 683,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 135,
+          "cache_read_input_tokens": 57344,
+          "cache_creation_input_tokens": 683,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 683
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-14T06:23:06.344Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WvoDt4BXk3VoNs6sNyVovN`</summary>
+
+```json
+{
+  "query": "SmolVLA model architecture parameters 450M HuggingFace LeRobot open source checkpoint 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ff1b8ef-cd1f-41f6-810d-c6d1872e91e6",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yr16LKFR4bLggbUb4V",
+  "type": "assistant",
+  "uuid": "491397b6-fdf9-49e9-ac33-c07c2d5446a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ASpvcboyNVL1pekkRVegc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 683,
+      "cache_read_input_tokens": 57344,
+      "output_tokens": 135,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 683,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 135,
+          "cache_read_input_tokens": 57344,
+          "cache_creation_input_tokens": 683,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 683
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-14T06:23:14.628Z_
+
+<details><summary>↩ Tool result · `toolu_01WvoDt4BXk3VoNs6sNyVovN`</summary>
+
+```text
+Web search results for query: "SmolVLA model architecture parameters 450M HuggingFace LeRobot open source checkpoint 2025"
+
+Links: [{"title":"SmolVLA: Efficient Vision-Language-Action Model trained on Lerobot Community Data","url":"https://huggingface.co/blog/smolvla"},{"title":"SmolVLA · Hugging Face","url":"https://huggingface.co/docs/lerobot/smolvla"},{"title":"lerobot/smolvla_base · Hugging Face","url":"https://huggingface.co/lerobot/smolvla_base"},{"title":"SmolVLA: An Open-Source Vision-Language-Action Model for Modern Robotics","url":"https://smolvla.net/index_en"},{"title":"lerobot/docs/source/smolvla.mdx at main · huggingface/lerobot","url":"https://github.com/huggingface/lerobot/blob/main/docs/source/smolvla.mdx"},{"title":"SmolVLA: Efficient Vision Language Action Model - LeRobot","url":"https://learnopencv.com/smolvla-lerobot-vision-language-action-model/"},{"title":"Train SmolVLA","url":"https://docs.phospho.ai/learn/train-smolvla"},{"title":"Hugging Face Releases SmolVLA, a Compact Open-Source Robotics Model -- Pure AI","url":"https://pureai.com/articles/2025/06/10/hugging-face-releases-smolvla.aspx"},{"title":"SmolVLA fine-tuning | EmbodiFlow","url":"https://io-ai.tech/platform/en/guides/Pipeline/LeRobot/SmolVLA/"},{"title":"GitHub - huggingface/VLAb · GitHub","url":"https://github.com/huggingface/VLAb"}]
+
+Based on the web search results, here's comprehensive information about SmolVLA:
+
+## Overview
+SmolVLA is a compact (450M), open-source Vision-Language-Action model for robotics that runs on consumer hardware.
+
+## Model Architecture
+The model combines Transformers with flow-matching decoders, and is optimized for speed and low-latency inference with design choices including skipping half of the layers of the vision model for faster inference and smaller size, and interleaving self-attention and cross-attention blocks. SmolVLA's architecture includes a modified SmolVLM2 encoder-decoder stack, reduced visual token use, and selectively truncated layers during inference.
+
+## Key Features and Performance
+SmolVLA-450M outperforms much larger VLAs and strong baselines such as ACT on simulation (LIBERO, Meta-World) and real-world tasks (SO100, SO101). It supports asynchronous inference for 30% faster response and 2× task throughput.
+
+## Training Data
+All training data used in SmolVLA comes from LeRobot Community Datasets, robotics datasets shared on the Hugging Face Hub under the lerobot tag. SmolVLA is pretrained on 10 million frames curated from 487 community datasets tagged under "lerobot" on Hugging Face.
+
+## HuggingFace Checkpoint
+The pretrained 450M model is available as smolvla_base. Training the model for 20k steps will roughly take ~4 hrs on a single A100 GPU.
+
+## Input/Output
+SmolVLA takes as input (i) multiple cameras views, (ii) the robot's current sensorimotor state, and (iii) a natural language instruction, encoded into contextual features used to condition the action expert when generating an action chunk.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "491397b6-fdf9-49e9-ac33-c07c2d5446a8",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "cae5e462-9da1-4557-a6da-f8c06b2f8110",
+  "toolUseResult": {
+    "query": "SmolVLA model architecture parameters 450M HuggingFace LeRobot open source checkpoint 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018yXruxk63nDFT86ZutiPLa",
+        "content": [
+          {
+            "title": "SmolVLA: Efficient Vision-Language-Action Model trained on Lerobot Community Data",
+            "url": "https://huggingface.co/blog/smolvla"
+          },
+          {
+            "title": "SmolVLA · Hugging Face",
+            "url": "https://huggingface.co/docs/lerobot/smolvla"
+          },
+          {
+            "title": "lerobot/smolvla_base · Hugging Face",
+            "url": "https://huggingface.co/lerobot/smolvla_base"
+          },
+          {
+            "title": "SmolVLA: An Open-Source Vision-Language-Action Model for Modern Robotics",
+            "url": "https://smolvla.net/index_en"
+          },
+          {
+            "title": "lerobot/docs/source/smolvla.mdx at main · huggingface/lerobot",
+            "url": "https://github.com/huggingface/lerobot/blob/main/docs/source/smolvla.mdx"
+          },
+          {
+            "title": "SmolVLA: Efficient Vision Language Action Model - LeRobot",
+            "url": "https://learnopencv.com/smolvla-lerobot-vision-language-action-model/"
+          },
+          {
+            "title": "Train SmolVLA",
+            "url": "https://docs.phospho.ai/learn/train-smolvla"
+          },
+          {
+            "title": "Hugging Face Releases SmolVLA, a Compact Open-Source Robotics Model -- Pure AI",
+            "url": "https://pureai.com/articles/2025/06/10/hugging-face-releases-smolvla.aspx"
+          },
+          {
+            "title": "SmolVLA fine-tuning | EmbodiFlow",
+            "url": "https://io-ai.tech/platform/en/guides/Pipeline/LeRobot/SmolVLA/"
+          },
+          {
+            "title": "GitHub - huggingface/VLAb · GitHub",
+            "url": "https://github.com/huggingface/VLAb"
+          }
+        ]
+      },
+      "Based on the web search results, here's comprehensive information about SmolVLA:\n\n## Overview\nSmolVLA is a compact (450M), open-source Vision-Language-Action model for robotics that runs on consumer hardware.\n\n## Model Architecture\nThe model combines Transformers with flow-matching decoders, and is optimized for speed and low-latency inference with design choices including skipping half of the layers of the vision model for faster inference and smaller size, and interleaving self-attention and cross-attention blocks. SmolVLA's architecture includes a modified SmolVLM2 encoder-decoder stack, reduced visual token use, and selectively truncated layers during inference.\n\n## Key Features and Performance\nSmolVLA-450M outperforms much larger VLAs and strong baselines such as ACT on simulation (LIBERO, Meta-World) and real-world tasks (SO100, SO101). It supports asynchronous inference for 30% faster response and 2× task throughput.\n\n## Training Data\nAll training data used in SmolVLA comes from LeRobot Community Datasets, robotics datasets shared on the Hugging Face Hub under the lerobot tag. SmolVLA is pretrained on 10 million frames curated from 487 community datasets tagged under \"lerobot\" on Hugging Face.\n\n## HuggingFace Checkpoint\nThe pretrained 450M model is available as smolvla_base. Training the model for 20k steps will roughly take ~4 hrs on a single A100 GPU.\n\n## Input/Output\nSmolVLA takes as input (i) multiple cameras views, (ii) the robot's current sensorimotor state, and (iii) a natural language instruction, encoded into contextual features used to condition the action expert when generating an action chunk."
+    ],
+    "durationSeconds": 8.279470672999974
+  },
+  "sourceToolAssistantUUID": "491397b6-fdf9-49e9-ac33-c07c2d5446a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102 · 2026-05-14T06:23:17.287Z_
+
+Good — SmolVLA training time confirmed: ~4 hours on a single A100 for 20k steps. Now let me check the key theoretical claim more deeply.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cae5e462-9da1-4557-a6da-f8c06b2f8110",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yryNBSbkPQVACZbgYM",
+  "type": "assistant",
+  "uuid": "8ef30cd4-3232-4898-bf56-115e64f50d91",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MDZUYJjEbpSak9HoG9E9w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1050,
+      "cache_read_input_tokens": 58027,
+      "output_tokens": 106,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1050,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 106,
+          "cache_read_input_tokens": 58027,
+          "cache_creation_input_tokens": 1050,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1050
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-14T06:23:17.803Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017o4wrrCGWkvzPYsS4kSLws`</summary>
+
+```json
+{
+  "query": "Kendall tau distance perturbation attention weights ranking stability theoretical bound argsort"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ef30cd4-3232-4898-bf56-115e64f50d91",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yryNBSbkPQVACZbgYM",
+  "type": "assistant",
+  "uuid": "a19d38d8-51cc-474a-8f0e-54144f64879a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MDZUYJjEbpSak9HoG9E9w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1050,
+      "cache_read_input_tokens": 58027,
+      "output_tokens": 106,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1050,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 106,
+          "cache_read_input_tokens": 58027,
+          "cache_creation_input_tokens": 1050,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1050
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-14T06:23:24.694Z_
+
+<details><summary>↩ Tool result · `toolu_017o4wrrCGWkvzPYsS4kSLws`</summary>
+
+```text
+Web search results for query: "Kendall tau distance perturbation attention weights ranking stability theoretical bound argsort"
+
+Links: [{"title":"Kendall tau distance - Wikipedia","url":"https://en.wikipedia.org/wiki/Kendall_tau_distance"},{"title":"On a weighted generalization of Kendall’s tau distance The second author was supported by H2020-MSCA-RISE-2014, Project number 645672 (AMMODIT: “Approximation Methods for Molecular Modelling and Diagnosis Tools”).","url":"https://arxiv.org/html/2412.18400v1"},{"title":"Kendall's Tau: A Beginner’s Guide","url":"https://numiqo.com/tutorial/kendalls-tau"},{"title":"kendalltau — SciPy v1.17.0 Manual","url":"https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.kendalltau.html"},{"title":"The Kendall Tau Distance between Two Rankings ...","url":"https://ursinus-cs271-f2022.github.io/CoursePage/ClassExercises/Week7_KendallTau/"},{"title":"Kendall Tau Distance — distancia 0.0.1 documentation","url":"https://distancia.readthedocs.io/en/latest/KendallTau.html"},{"title":"Kendall rank correlation coefficient - Wikipedia","url":"https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient"},{"title":"Kendall Tau Sequence Distance: Extending Kendall Tau from Ranks to Sequences","url":"https://arxiv.org/pdf/1905.02752"},{"title":"weightedtau — SciPy v1.17.0 Manual","url":"https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.weightedtau.html"},{"title":"Comparing and Aggregating Partial Orders with Kendall Tau Distances | Request PDF","url":"https://www.researchgate.net/publication/221013517_Comparing_and_Aggregating_Partial_Orders_with_Kendall_Tau_Distances"}]
+
+I've performed the web search for your query about Kendall tau distance, perturbation, attention weights, ranking stability, theoretical bounds, and argsort. Here are the key results:
+
+## Key Findings:
+
+**Kendall Tau Distance Basics:**
+The Kendall Tau distance is a way of comparing two rankings of items by counting the number of pairs that occur in a different order between the two rankings, where discordant pairs occur in different order and concordant pairs agree.
+
+**Computational Implementation:**
+The computational approach uses argsort to obtain rankings, then employs meshgrid operations to count disordered pairs between two sets of rankings.
+
+**Ranking Stability and Perturbation:**
+Rank Stability quantifies the robustness of a solution against perturbations, while Balance Point evaluates the conditioning of the solution within the problem's structure.
+
+**Weighted Extensions:**
+The weighted τ is a weighted version of Kendall's τ in which exchanges of high weight are more influential than exchanges of low weight.
+
+**Computational Complexity:**
+The merge sort algorithm can be used to reach O(N log N) computational worst case bound by counting the number of inversions.
+
+The search results provide foundational information on Kendall tau distance, its computational methods using argsort, weighted variants, and ranking stability concepts, though they don't contain specific theoretical bounds on attention weight perturbations. You may find more specialized information in recent machine learning and attention mechanism literature.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a19d38d8-51cc-474a-8f0e-54144f64879a",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "bb57ec9c-2267-45c5-ba4e-0729351712be",
+  "toolUseResult": {
+    "query": "Kendall tau distance perturbation attention weights ranking stability theoretical bound argsort",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AvX1EX57hBuni8XunnWRwY",
+        "content": [
+          {
+            "title": "Kendall tau distance - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Kendall_tau_distance"
+          },
+          {
+            "title": "On a weighted generalization of Kendall’s tau distance The second author was supported by H2020-MSCA-RISE-2014, Project number 645672 (AMMODIT: “Approximation Methods for Molecular Modelling and Diagnosis Tools”).",
+            "url": "https://arxiv.org/html/2412.18400v1"
+          },
+          {
+            "title": "Kendall's Tau: A Beginner’s Guide",
+            "url": "https://numiqo.com/tutorial/kendalls-tau"
+          },
+          {
+            "title": "kendalltau — SciPy v1.17.0 Manual",
+            "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.kendalltau.html"
+          },
+          {
+            "title": "The Kendall Tau Distance between Two Rankings ...",
+            "url": "https://ursinus-cs271-f2022.github.io/CoursePage/ClassExercises/Week7_KendallTau/"
+          },
+          {
+            "title": "Kendall Tau Distance — distancia 0.0.1 documentation",
+            "url": "https://distancia.readthedocs.io/en/latest/KendallTau.html"
+          },
+          {
+            "title": "Kendall rank correlation coefficient - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient"
+          },
+          {
+            "title": "Kendall Tau Sequence Distance: Extending Kendall Tau from Ranks to Sequences",
+            "url": "https://arxiv.org/pdf/1905.02752"
+          },
+          {
+            "title": "weightedtau — SciPy v1.17.0 Manual",
+            "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.weightedtau.html"
+          },
+          {
+            "title": "Comparing and Aggregating Partial Orders with Kendall Tau Distances | Request PDF",
+            "url": "https://www.researchgate.net/publication/221013517_Comparing_and_Aggregating_Partial_Orders_with_Kendall_Tau_Distances"
+          }
+        ]
+      },
+      "I've performed the web search for your query about Kendall tau distance, perturbation, attention weights, ranking stability, theoretical bounds, and argsort. Here are the key results:\n\n## Key Findings:\n\n**Kendall Tau Distance Basics:**\nThe Kendall Tau distance is a way of comparing two rankings of items by counting the number of pairs that occur in a different order between the two rankings, where discordant pairs occur in different order and concordant pairs agree.\n\n**Computational Implementation:**\nThe computational approach uses argsort to obtain rankings, then employs meshgrid operations to count disordered pairs between two sets of rankings.\n\n**Ranking Stability and Perturbation:**\nRank Stability quantifies the robustness of a solution against perturbations, while Balance Point evaluates the conditioning of the solution within the problem's structure.\n\n**Weighted Extensions:**\nThe weighted τ is a weighted version of Kendall's τ in which exchanges of high weight are more influential than exchanges of low weight.\n\n**Computational Complexity:**\nThe merge sort algorithm can be used to reach O(N log N) computational worst case bound by counting the number of inversions.\n\nThe search results provide foundational information on Kendall tau distance, its computational methods using argsort, weighted variants, and ranking stability concepts, though they don't contain specific theoretical bounds on attention weight perturbations. You may find more specialized information in recent machine learning and attention mechanism literature."
+    ],
+    "durationSeconds": 6.885386202000023
+  },
+  "sourceToolAssistantUUID": "a19d38d8-51cc-474a-8f0e-54144f64879a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "bb57ec9c-2267-45c5-ba4e-0729351712be",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 106_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review: Entropy-Stabilized Attention for Compression-Robust VLAs (Round 3)",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-14T06:23:27.148Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B8zeBwNHKoAqKvVYwAp4UX`</summary>
+
+```json
+{
+  "query": "\"attention entropy\" \"goldilocks\" OR \"sweet spot\" OR \"optimal range\" compression robustness training stability 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb57ec9c-2267-45c5-ba4e-0729351712be",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ysiR31ZDddZzEVGbVR",
+  "type": "assistant",
+  "uuid": "05db9287-d897-4725-8e38-180f54b2291a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012jrJ9hrYtZPrmGdrP9jmcT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 986,
+      "cache_read_input_tokens": 59077,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 59077,
+          "cache_creation_input_tokens": 986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-14T06:23:35.235Z_
+
+<details><summary>↩ Tool result · `toolu_01B8zeBwNHKoAqKvVYwAp4UX`</summary>
+
+```text
+Web search results for query: ""attention entropy" "goldilocks" OR "sweet spot" OR "optimal range" compression robustness training stability 2026"
+
+Links: [{"title":"Stabilizing Transformer Training by Preventing Attention Entropy Collapse - Apple Machine Learning Research","url":"https://machinelearning.apple.com/research/stabilizing-transformer-training"},{"title":"ATTENTION ENTROPY MINIMIZATION FOR TEST-TIME ...","url":"https://openreview.net/pdf/bd479c5e329d75c4e55026015fc5962bc3a672ef.pdf"},{"title":"OPT2025: 17th Annual Workshop on Optimization for Machine Learning","url":"https://openreview.net/pdf?id=UKx7KhS9ZV"},{"title":"ICLR 2026 Papers","url":"https://iclr.cc/virtual/2026/papers.html"},{"title":"GitHub - F-JISOO/ICLR-2025-Submitted · GitHub","url":"https://github.com/F-JISOO/ICLR-2025-Submitted"},{"title":"Stabilizing Information Flow: Entropy Regularization for Safe and Interpretable Autonomous Driving Perception","url":"https://arxiv.org/html/2509.16277v1"},{"title":"Entropy is not Enough for Test-Time Adaptation: From the Perspective of Disentangled Factors | OpenReview","url":"https://openreview.net/forum?id=9w3iw8wDuE"},{"title":"Track: Poster Session 2","url":"https://neurips.cc/virtual/2021/session/44792"},{"title":"Machine Learning Mar 2025","url":"https://arxiv.org/list/cs.LG/2025-03?skip=25&show=1000"},{"title":"Machine Learning Jan 2025","url":"https://arxiv.org/list/cs.LG/2025-01?skip=1150&show=2000"}]
+
+I've completed the web search for your query. Here are the key findings:
+
+## Search Results Summary
+
+The search returned several highly relevant papers from 2025-2026 focused on attention entropy in the context of model compression, training stability, and robustness:
+
+### 1. **Stabilizing Transformer Training by Preventing Attention Entropy Collapse** (Apple ML Research, March 2026)
+Increasing the learning rate easily causes attention entropy collapse and training divergence. The method sigmaReparam provides stability and robustness with respect to the choice of hyperparameters across various Transformer architectures and tasks.
+
+### 2. **Entropy Meets Importance: HIES for Stable Transformer Pruning** (OPT2025 Workshop)
+This paper directly addresses the "Goldilocks" concept in compression. To determine the optimal combination of Head Importance Score (HIS) and Attention Entropy (AE) for each task, they adopt a task-specific tuning procedure based on weighted AUC (wAUC), which selects the best-performing combination under each compression setting. 
+
+The combination of HIS to quantify a head's loss relevance and Attention Entropy (AE) to measure how evenly a head distributes attention enables layer-sensitive pruning decisions and improves both accuracy and stability under aggressive compression.
+
+### 3. **Attention Entropy Minimization for Test-Time Adaptation** (2025)
+Accuracy drops sharply if the attention entropy is too diffuse, with higher entropy (x-axis, right) tending toward lower accuracy (y-axis, bottom).
+
+The search results indicate active research into finding optimal attention entropy ranges for both training stability and model compression, aligning with the "sweet spot" or "Goldilocks" principle in your query.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "05db9287-d897-4725-8e38-180f54b2291a",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "d782e0bc-b7b0-47f6-b2ec-789aa8938df0",
+  "toolUseResult": {
+    "query": "\"attention entropy\" \"goldilocks\" OR \"sweet spot\" OR \"optimal range\" compression robustness training stability 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QbKRcsfs1u3hgyxS4Ap4Ju",
+        "content": [
+          {
+            "title": "Stabilizing Transformer Training by Preventing Attention Entropy Collapse - Apple Machine Learning Research",
+            "url": "https://machinelearning.apple.com/research/stabilizing-transformer-training"
+          },
+          {
+            "title": "ATTENTION ENTROPY MINIMIZATION FOR TEST-TIME ...",
+            "url": "https://openreview.net/pdf/bd479c5e329d75c4e55026015fc5962bc3a672ef.pdf"
+          },
+          {
+            "title": "OPT2025: 17th Annual Workshop on Optimization for Machine Learning",
+            "url": "https://openreview.net/pdf?id=UKx7KhS9ZV"
+          },
+          {
+            "title": "ICLR 2026 Papers",
+            "url": "https://iclr.cc/virtual/2026/papers.html"
+          },
+          {
+            "title": "GitHub - F-JISOO/ICLR-2025-Submitted · GitHub",
+            "url": "https://github.com/F-JISOO/ICLR-2025-Submitted"
+          },
+          {
+            "title": "Stabilizing Information Flow: Entropy Regularization for Safe and Interpretable Autonomous Driving Perception",
+            "url": "https://arxiv.org/html/2509.16277v1"
+          },
+          {
+            "title": "Entropy is not Enough for Test-Time Adaptation: From the Perspective of Disentangled Factors | OpenReview",
+            "url": "https://openreview.net/forum?id=9w3iw8wDuE"
+          },
+          {
+            "title": "Track: Poster Session 2",
+            "url": "https://neurips.cc/virtual/2021/session/44792"
+          },
+          {
+            "title": "Machine Learning Mar 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-03?skip=25&show=1000"
+          },
+          {
+            "title": "Machine Learning Jan 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-01?skip=1150&show=2000"
+          }
+        ]
+      },
+      "I've completed the web search for your query. Here are the key findings:\n\n## Search Results Summary\n\nThe search returned several highly relevant papers from 2025-2026 focused on attention entropy in the context of model compression, training stability, and robustness:\n\n### 1. **Stabilizing Transformer Training by Preventing Attention Entropy Collapse** (Apple ML Research, March 2026)\nIncreasing the learning rate easily causes attention entropy collapse and training divergence. The method sigmaReparam provides stability and robustness with respect to the choice of hyperparameters across various Transformer architectures and tasks.\n\n### 2. **Entropy Meets Importance: HIES for Stable Transformer Pruning** (OPT2025 Workshop)\nThis paper directly addresses the \"Goldilocks\" concept in compression. To determine the optimal combination of Head Importance Score (HIS) and Attention Entropy (AE) for each task, they adopt a task-specific tuning procedure based on weighted AUC (wAUC), which selects the best-performing combination under each compression setting. \n\nThe combination of HIS to quantify a head's loss relevance and Attention Entropy (AE) to measure how evenly a head distributes attention enables layer-sensitive pruning decisions and improves both accuracy and stability under aggressive compression.\n\n### 3. **Attention Entropy Minimization for Test-Time Adaptation** (2025)\nAccuracy drops sharply if the attention entropy is too diffuse, with higher entropy (x-axis, right) tending toward lower accuracy (y-axis, bottom).\n\nThe search results indicate active research into finding optimal attention entropy ranges for both training stability and model compression, aligning with the \"sweet spot\" or \"Goldilocks\" principle in your query."
+    ],
+    "durationSeconds": 8.082794018000016
+  },
+  "sourceToolAssistantUUID": "05db9287-d897-4725-8e38-180f54b2291a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-14T06:23:37.464Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CZ28B2ZXaxWmxsnv6CbWa6`</summary>
+
+```json
+{
+  "query": "\"HIES\" \"head importance\" \"attention entropy\" pruning stability compression 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d782e0bc-b7b0-47f6-b2ec-789aa8938df0",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ytVThX4TT5J3eizXpN",
+  "type": "assistant",
+  "uuid": "c91fda6f-c9df-417c-9d38-efc6b0b6aec6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LLEwskAZKvy2A3Hrk1zwy2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 997,
+      "cache_read_input_tokens": 60063,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 997,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 60063,
+          "cache_creation_input_tokens": 997,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 997
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-14T06:23:44.152Z_
+
+<details><summary>↩ Tool result · `toolu_01CZ28B2ZXaxWmxsnv6CbWa6`</summary>
+
+```text
+Web search results for query: ""HIES" "head importance" "attention entropy" pruning stability compression 2025 2026"
+
+Links: [{"title":"Entropy Meets Importance: A Unified Head Importance–Entropy Score for Stable and Efficient Transformer Pruning","url":"https://arxiv.org/html/2510.13832"},{"title":"A Unified Head Importance-Entropy Score for Stable and ...","url":"https://arxiv.org/pdf/2510.13832"},{"title":"A Unified Head Importance–Entropy Score for Stable and ...","url":"https://opt-ml.org/papers/2025/paper51.pdf"},{"title":"[2510.13832] Entropy Meets Importance: A Unified Head Importance-Entropy Score for Stable and Efficient Transformer Pruning","url":"https://arxiv.org/abs/2510.13832"},{"title":"(PDF) Entropy Meets Importance: A Unified Head Importance-Entropy Score for Stable and Efficient Transformer Pruning","url":"https://www.researchgate.net/publication/396541457_Entropy_Meets_Importance_A_Unified_Head_Importance-Entropy_Score_for_Stable_and_Efficient_Transformer_Pruning"},{"title":"[2602.04491] Greedy-Gnorm: A Gradient Matrix Norm-Based Alternative to Attention Entropy for Head Pruning","url":"https://arxiv.org/abs/2602.04491"},{"title":"UNCOMP: Can Matrix Entropy Uncover Sparsity?","url":"https://aclanthology.org/2025.emnlp-main.209.pdf"},{"title":"Frontiers | A survey of model compression techniques: past, present, and future","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1518965/full"},{"title":"Efficient self-attention with smart pruning for sustainable large language models | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-92586-5"},{"title":"Attention Sinks and Compression Valleys in LLMs are Two Sides of the Same Coin | OpenReview","url":"https://openreview.net/forum?id=c5TFhCJ6fs"}]
+
+Based on the search results, I found relevant information about HIES (Head Importance-Entropy Score) and related research on attention entropy and transformer pruning.
+
+## Key Findings
+
+**HIES Overview:**
+HIES (Head Importance-Entropy Score) integrates head importance scores with attention entropy, providing complementary evidence on per-head contribution.
+
+**Performance Results:**
+HIES-based pruning yields up to 15.2% improvement in model quality and 2.04x improvement in stability over HIS-only methods, enabling substantial model compression without sacrificing either accuracy or stability.
+
+**Methodology:**
+The approach computes HIS to quantify a head's loss relevance and Attention Entropy (AE) to measure how evenly a head distributes attention over input tokens. The gradients of HIS and AE are orthogonal in expectation, indicating complementary axes: magnitude of contribution (HIS) and dispersion of attention (AE).
+
+**Addressing Stability Issues:**
+Low-entropy heads may correlate with increased sensitivity to input perturbations, leading to unstable predictions under distribution shifts. Incorporating AE helps retain low-entropy heads by recognizing their concentrated focus on decisive tokens, thereby preventing them from being pruned and mitigating the sharp-drop in accuracy.
+
+The research was published on arXiv in February 2026, representing recent work in stable and efficient transformer compression.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c91fda6f-c9df-417c-9d38-efc6b0b6aec6",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "3b8feaa4-3507-422f-83bf-fd1038eda3d3",
+  "toolUseResult": {
+    "query": "\"HIES\" \"head importance\" \"attention entropy\" pruning stability compression 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UG4wSF82RSzfPpW68QMQVY",
+        "content": [
+          {
+            "title": "Entropy Meets Importance: A Unified Head Importance–Entropy Score for Stable and Efficient Transformer Pruning",
+            "url": "https://arxiv.org/html/2510.13832"
+          },
+          {
+            "title": "A Unified Head Importance-Entropy Score for Stable and ...",
+            "url": "https://arxiv.org/pdf/2510.13832"
+          },
+          {
+            "title": "A Unified Head Importance–Entropy Score for Stable and ...",
+            "url": "https://opt-ml.org/papers/2025/paper51.pdf"
+          },
+          {
+            "title": "[2510.13832] Entropy Meets Importance: A Unified Head Importance-Entropy Score for Stable and Efficient Transformer Pruning",
+            "url": "https://arxiv.org/abs/2510.13832"
+          },
+          {
+            "title": "(PDF) Entropy Meets Importance: A Unified Head Importance-Entropy Score for Stable and Efficient Transformer Pruning",
+            "url": "https://www.researchgate.net/publication/396541457_Entropy_Meets_Importance_A_Unified_Head_Importance-Entropy_Score_for_Stable_and_Efficient_Transformer_Pruning"
+          },
+          {
+            "title": "[2602.04491] Greedy-Gnorm: A Gradient Matrix Norm-Based Alternative to Attention Entropy for Head Pruning",
+            "url": "https://arxiv.org/abs/2602.04491"
+          },
+          {
+            "title": "UNCOMP: Can Matrix Entropy Uncover Sparsity?",
+            "url": "https://aclanthology.org/2025.emnlp-main.209.pdf"
+          },
+          {
+            "title": "Frontiers | A survey of model compression techniques: past, present, and future",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1518965/full"
+          },
+          {
+            "title": "Efficient self-attention with smart pruning for sustainable large language models | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-92586-5"
+          },
+          {
+            "title": "Attention Sinks and Compression Valleys in LLMs are Two Sides of the Same Coin | OpenReview",
+            "url": "https://openreview.net/forum?id=c5TFhCJ6fs"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about HIES (Head Importance-Entropy Score) and related research on attention entropy and transformer pruning.\n\n## Key Findings\n\n**HIES Overview:**\nHIES (Head Importance-Entropy Score) integrates head importance scores with attention entropy, providing complementary evidence on per-head contribution.\n\n**Performance Results:**\nHIES-based pruning yields up to 15.2% improvement in model quality and 2.04x improvement in stability over HIS-only methods, enabling substantial model compression without sacrificing either accuracy or stability.\n\n**Methodology:**\nThe approach computes HIS to quantify a head's loss relevance and Attention Entropy (AE) to measure how evenly a head distributes attention over input tokens. The gradients of HIS and AE are orthogonal in expectation, indicating complementary axes: magnitude of contribution (HIS) and dispersion of attention (AE).\n\n**Addressing Stability Issues:**\nLow-entropy heads may correlate with increased sensitivity to input perturbations, leading to unstable predictions under distribution shifts. Incorporating AE helps retain low-entropy heads by recognizing their concentrated focus on decisive tokens, thereby preventing them from being pruned and mitigating the sharp-drop in accuracy.\n\nThe research was published on arXiv in February 2026, representing recent work in stable and efficient transformer compression."
+    ],
+    "durationSeconds": 6.68433818099997
+  },
+  "sourceToolAssistantUUID": "c91fda6f-c9df-417c-9d38-efc6b0b6aec6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111 · 2026-05-14T06:23:47.075Z_
+
+This is very interesting — HIES shows that low-entropy heads correlate with increased sensitivity to perturbations, which directly contradicts ESA's claim. Let me do one more critical search.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b8feaa4-3507-422f-83bf-fd1038eda3d3",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yu9aeGoj1YynyTX49W",
+  "type": "assistant",
+  "uuid": "8db7137f-0a43-4994-b972-c06eb028f82d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ScmxvCrLeL8fDKW7FpywDG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 987,
+      "cache_read_input_tokens": 61060,
+      "output_tokens": 115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 987,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 115,
+          "cache_read_input_tokens": 61060,
+          "cache_creation_input_tokens": 987,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 987
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112 · 2026-05-14T06:23:47.818Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015Ussj3pzZ3MxCXMQuoXq4M`</summary>
+
+```json
+{
+  "query": "attention entropy low high adversarial robustness vision transformer contradiction tradeoff 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8db7137f-0a43-4994-b972-c06eb028f82d",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yu9aeGoj1YynyTX49W",
+  "type": "assistant",
+  "uuid": "e981c324-78ad-49e9-9840-d5bfc92f98fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ScmxvCrLeL8fDKW7FpywDG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 987,
+      "cache_read_input_tokens": 61060,
+      "output_tokens": 115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 987,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 115,
+          "cache_read_input_tokens": 61060,
+          "cache_creation_input_tokens": 987,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 987
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-14T06:23:54.341Z_
+
+<details><summary>↩ Tool result · `toolu_015Ussj3pzZ3MxCXMQuoXq4M`</summary>
+
+```text
+Web search results for query: "attention entropy low high adversarial robustness vision transformer contradiction tradeoff 2025 2026"
+
+Links: [{"title":"[2103.15670] On the Adversarial Robustness of Vision Transformers","url":"https://arxiv.org/abs/2103.15670"},{"title":"On the Adversarial Robustness of Vision Transformers Rulin Shao","url":"https://openreview.net/pdf?id=x9mxhoYRtSP"},{"title":"(PDF) On the Adversarial Robustness of Visual Transformers","url":"https://www.researchgate.net/publication/350484372_On_the_Adversarial_Robustness_of_Visual_Transformers"},{"title":"Towards Understanding and Improving Adversarial Robustness of Vision Transformers | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/iel8/10654794/10654797/10658195.pdf"},{"title":"On the Adversarial Robustness of Vision Transformers | OpenReview","url":"https://openreview.net/forum?id=O0g6uPDLW7"},{"title":"Recent Advances in Vision Transformer Robustness Against","url":"https://dl.acm.org/doi/pdf/10.1145/3729167"},{"title":"On the Adversarial Robustness of Vision Transformers","url":"https://openreview.net/pdf?id=lE7K4n1Esk"},{"title":"Towards Understanding and Improving Adversarial Robustness of Vision Transformers | Request PDF","url":"https://www.researchgate.net/publication/384235060_Towards_Understanding_and_Improving_Adversarial_Robustness_of_Vision_Transformers"},{"title":"NeurIPS On the Adversarial Robustness of Vision Transformers","url":"https://neurips.cc/virtual/2022/65672"},{"title":"[2106.03734] Reveal of Vision Transformers Robustness against Adversarial Attacks","url":"https://ar5iv.labs.arxiv.org/html/2106.03734"}]
+
+Based on the web search results, I found relevant information about attention, entropy, and adversarial robustness in Vision Transformers, though the specific framing of your query about contradictory relationships appears to be an active area of research.
+
+## Key Findings:
+
+**Attention and Adversarial Robustness:**
+Adversarial examples can change the model's attention in Vision Transformers, and research has developed frameworks that generate uncertainty in attention maps and perturb sensitive regions to create more transferable attacks.
+
+**Information Entropy and Robustness:**
+Recent work reveals a positive correlation between adversarial perturbations and image information entropy, and a negative correlation with robust accuracy. This suggests that higher entropy in adversarial perturbations relates to lower robustness performance.
+
+**Trade-offs in Vision Transformers:**
+Features learned by ViTs that contain less low-level information contribute to superior robustness against adversarial perturbations, but introducing convolutional or tokens-to-token blocks for learning low-level features can improve classification accuracy at the cost of adversarial robustness. Additionally, introducing other modules to ViT can improve clean accuracy but hurt adversarial robustness.
+
+**Recent Work (2025):**
+Structural changes such as adding token-to-token blocks or convolutional elements can influence how vulnerable the self-attention mechanism is to attacks.
+
+The research suggests complex trade-offs between different architectural choices and their effects on both standard and adversarial robustness in Vision Transformers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e981c324-78ad-49e9-9840-d5bfc92f98fa",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "bf8f1bd6-f1a1-4723-9538-cc10b9254c3d",
+  "toolUseResult": {
+    "query": "attention entropy low high adversarial robustness vision transformer contradiction tradeoff 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FE9QxMD3jQA2Go7rQDCMSf",
+        "content": [
+          {
+            "title": "[2103.15670] On the Adversarial Robustness of Vision Transformers",
+            "url": "https://arxiv.org/abs/2103.15670"
+          },
+          {
+            "title": "On the Adversarial Robustness of Vision Transformers Rulin Shao",
+            "url": "https://openreview.net/pdf?id=x9mxhoYRtSP"
+          },
+          {
+            "title": "(PDF) On the Adversarial Robustness of Visual Transformers",
+            "url": "https://www.researchgate.net/publication/350484372_On_the_Adversarial_Robustness_of_Visual_Transformers"
+          },
+          {
+            "title": "Towards Understanding and Improving Adversarial Robustness of Vision Transformers | IEEE Conference Publication | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/iel8/10654794/10654797/10658195.pdf"
+          },
+          {
+            "title": "On the Adversarial Robustness of Vision Transformers | OpenReview",
+            "url": "https://openreview.net/forum?id=O0g6uPDLW7"
+          },
+          {
+            "title": "Recent Advances in Vision Transformer Robustness Against",
+            "url": "https://dl.acm.org/doi/pdf/10.1145/3729167"
+          },
+          {
+            "title": "On the Adversarial Robustness of Vision Transformers",
+            "url": "https://openreview.net/pdf?id=lE7K4n1Esk"
+          },
+          {
+            "title": "Towards Understanding and Improving Adversarial Robustness of Vision Transformers | Request PDF",
+            "url": "https://www.researchgate.net/publication/384235060_Towards_Understanding_and_Improving_Adversarial_Robustness_of_Vision_Transformers"
+          },
+          {
+            "title": "NeurIPS On the Adversarial Robustness of Vision Transformers",
+            "url": "https://neurips.cc/virtual/2022/65672"
+          },
+          {
+            "title": "[2106.03734] Reveal of Vision Transformers Robustness against Adversarial Attacks",
+            "url": "https://ar5iv.labs.arxiv.org/html/2106.03734"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant information about attention, entropy, and adversarial robustness in Vision Transformers, though the specific framing of your query about contradictory relationships appears to be an active area of research.\n\n## Key Findings:\n\n**Attention and Adversarial Robustness:**\nAdversarial examples can change the model's attention in Vision Transformers, and research has developed frameworks that generate uncertainty in attention maps and perturb sensitive regions to create more transferable attacks.\n\n**Information Entropy and Robustness:**\nRecent work reveals a positive correlation between adversarial perturbations and image information entropy, and a negative correlation with robust accuracy. This suggests that higher entropy in adversarial perturbations relates to lower robustness performance.\n\n**Trade-offs in Vision Transformers:**\nFeatures learned by ViTs that contain less low-level information contribute to superior robustness against adversarial perturbations, but introducing convolutional or tokens-to-token blocks for learning low-level features can improve classification accuracy at the cost of adversarial robustness. Additionally, introducing other modules to ViT can improve clean accuracy but hurt adversarial robustness.\n\n**Recent Work (2025):**\nStructural changes such as adding token-to-token blocks or convolutional elements can influence how vulnerable the self-attention mechanism is to attacks.\n\nThe research suggests complex trade-offs between different architectural choices and their effects on both standard and adversarial robustness in Vision Transformers."
+    ],
+    "durationSeconds": 6.517145718999964
+  },
+  "sourceToolAssistantUUID": "e981c324-78ad-49e9-9840-d5bfc92f98fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-14T06:24:07.364Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HX524vLizbyok4DPQYsDKo`</summary>
+
+```json
+{
+  "query": "EntropyPrune matrix entropy visual token pruning multimodal LLM 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bf8f1bd6-f1a1-4723-9538-cc10b9254c3d",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yuuBkCCPnpNHG6v8Am",
+  "type": "assistant",
+  "uuid": "6ecc7026-c258-45e7-873e-9ee9056150e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QMuaYE7kjwn1Z66crtR56A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1036,
+      "cache_read_input_tokens": 62047,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1036,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 62047,
+          "cache_creation_input_tokens": 1036,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1036
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-14T06:24:14.352Z_
+
+<details><summary>↩ Tool result · `toolu_01HX524vLizbyok4DPQYsDKo`</summary>
+
+```text
+Web search results for query: "EntropyPrune matrix entropy visual token pruning multimodal LLM 2026 arXiv"
+
+Links: [{"title":"[2602.17196] EntropyPrune: Matrix Entropy Guided Visual Token Pruning for Multimodal Large Language Models","url":"https://arxiv.org/abs/2602.17196"},{"title":"EntropyPrune: Matrix Entropy Guided Visual Token Pruning for Multimodal Large Language Models","url":"https://arxiv.org/html/2602.17196"},{"title":"GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub","url":"https://github.com/daixiangzi/Awesome-Token-Compress"},{"title":"EvoPrune: Early-Stage Visual Token Pruning for Efficient MLLMs","url":"https://arxiv.org/html/2603.03681v1"},{"title":"Unbiased Token Pruning for Efficient Large Multimodal Models | OpenReview","url":"https://openreview.net/forum?id=mTR9CVXpFv"},{"title":"ERASE: Eliminating Redundant Visual Tokens via Adaptive Two-Stage Token Pruning","url":"https://arxiv.org/html/2605.09982v1"},{"title":"[2503.02175] DivPrune: Diversity-based Visual Token Pruning for Large Multimodal Models","url":"https://arxiv.org/abs/2503.02175"},{"title":"LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models","url":"https://arxiv.org/html/2604.23950"},{"title":"Token Pruning in Multimodal Large Language Models: Are We Solving the Right Problem?","url":"https://arxiv.org/html/2502.11501v1"},{"title":"SVD-PRUNE: TRAINING-FREE TOKEN PRUNING FOR EFFICIENT VISION-LANGUAGE MODELS","url":"https://arxiv.org/html/2604.11530"}]
+
+I found the paper you're looking for! Here are the key details about EntropyPrune:
+
+## EntropyPrune Overview
+
+EntropyPrune is a novel matrix-entropy-guided token pruning framework that quantifies the information value of individual visual tokens and prunes redundant ones without relying on attention maps.
+
+## Key Innovation
+
+The work introduces a matrix-entropy perspective and identifies an "Entropy Collapse Layer" (ECL), where the information content of visual representations exhibits a sharp and consistent drop, which provides a principled criterion for selecting the pruning stage.
+
+## Performance
+
+On LLaVA-1.5-7B, the method achieves a 68.2% reduction in FLOPs while preserving 96.0% of the original performance. Extensive experiments on diverse multimodal benchmarks demonstrate that EntropyPrune consistently outperforms state-of-the-art pruning methods in both accuracy and efficiency.
+
+## Efficiency
+
+To enable efficient computation, the work exploits the spectral equivalence of dual Gram matrices, reducing the complexity of entropy computation and yielding up to a 64x theoretical speedup.
+
+## Generalization
+
+EntropyPrune generalizes effectively to high-resolution and video-based models, highlighting strong robustness and scalability in practical MLLM acceleration.
+
+The paper (arXiv 2602.17196) was published on February 19, 2026, and the code is available at https://github.com/YahongWang1/EntropyPrune.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ecc7026-c258-45e7-873e-9ee9056150e1",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "3fa9a884-98e9-4a35-ac01-4c0306c548fd",
+  "toolUseResult": {
+    "query": "EntropyPrune matrix entropy visual token pruning multimodal LLM 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BqiACs9dmVq1BFh2fgPqrs",
+        "content": [
+          {
+            "title": "[2602.17196] EntropyPrune: Matrix Entropy Guided Visual Token Pruning for Multimodal Large Language Models",
+            "url": "https://arxiv.org/abs/2602.17196"
+          },
+          {
+            "title": "EntropyPrune: Matrix Entropy Guided Visual Token Pruning for Multimodal Large Language Models",
+            "url": "https://arxiv.org/html/2602.17196"
+          },
+          {
+            "title": "GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub",
+            "url": "https://github.com/daixiangzi/Awesome-Token-Compress"
+          },
+          {
+            "title": "EvoPrune: Early-Stage Visual Token Pruning for Efficient MLLMs",
+            "url": "https://arxiv.org/html/2603.03681v1"
+          },
+          {
+            "title": "Unbiased Token Pruning for Efficient Large Multimodal Models | OpenReview",
+            "url": "https://openreview.net/forum?id=mTR9CVXpFv"
+          },
+          {
+            "title": "ERASE: Eliminating Redundant Visual Tokens via Adaptive Two-Stage Token Pruning",
+            "url": "https://arxiv.org/html/2605.09982v1"
+          },
+          {
+            "title": "[2503.02175] DivPrune: Diversity-based Visual Token Pruning for Large Multimodal Models",
+            "url": "https://arxiv.org/abs/2503.02175"
+          },
+          {
+            "title": "LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models",
+            "url": "https://arxiv.org/html/2604.23950"
+          },
+          {
+            "title": "Token Pruning in Multimodal Large Language Models: Are We Solving the Right Problem?",
+            "url": "https://arxiv.org/html/2502.11501v1"
+          },
+          {
+            "title": "SVD-PRUNE: TRAINING-FREE TOKEN PRUNING FOR EFFICIENT VISION-LANGUAGE MODELS",
+            "url": "https://arxiv.org/html/2604.11530"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details about EntropyPrune:\n\n## EntropyPrune Overview\n\nEntropyPrune is a novel matrix-entropy-guided token pruning framework that quantifies the information value of individual visual tokens and prunes redundant ones without relying on attention maps.\n\n## Key Innovation\n\nThe work introduces a matrix-entropy perspective and identifies an \"Entropy Collapse Layer\" (ECL), where the information content of visual representations exhibits a sharp and consistent drop, which provides a principled criterion for selecting the pruning stage.\n\n## Performance\n\nOn LLaVA-1.5-7B, the method achieves a 68.2% reduction in FLOPs while preserving 96.0% of the original performance. Extensive experiments on diverse multimodal benchmarks demonstrate that EntropyPrune consistently outperforms state-of-the-art pruning methods in both accuracy and efficiency.\n\n## Efficiency\n\nTo enable efficient computation, the work exploits the spectral equivalence of dual Gram matrices, reducing the complexity of entropy computation and yielding up to a 64x theoretical speedup.\n\n## Generalization\n\nEntropyPrune generalizes effectively to high-resolution and video-based models, highlighting strong robustness and scalability in practical MLLM acceleration.\n\nThe paper (arXiv 2602.17196) was published on February 19, 2026, and the code is available at https://github.com/YahongWang1/EntropyPrune."
+    ],
+    "durationSeconds": 6.984186421000049
+  },
+  "sourceToolAssistantUUID": "6ecc7026-c258-45e7-873e-9ee9056150e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 116_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "3fa9a884-98e9-4a35-ac01-4c0306c548fd",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 117_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review: Entropy-Stabilized Attention for Compression-Robust VLAs (Round 3)",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 118 · 2026-05-14T06:24:20.900Z_
+
+Now I have enough information. Let me compile the final review. Let me do one more search to make sure I haven't missed the most directly competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3fa9a884-98e9-4a35-ac01-4c0306c548fd",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ywNjicvMCKSTKRWSM6",
+  "type": "assistant",
+  "uuid": "90ff0037-380a-4df8-a1a8-7967bd89c807",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ujc6wJZkamM5ne2UjfuKv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 979,
+      "cache_read_input_tokens": 63083,
+      "output_tokens": 104,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 979,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 104,
+          "cache_read_input_tokens": 63083,
+          "cache_creation_input_tokens": 979,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 979
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-14T06:24:21.616Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VXbCFgpn2B7LggrbnaiktW`</summary>
+
+```json
+{
+  "query": "\"compression safe\" OR \"compression robust\" attention training regularization vision language model defense 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90ff0037-380a-4df8-a1a8-7967bd89c807",
+  "isSidechain": false,
+  "requestId": "req_011Cb1ywNjicvMCKSTKRWSM6",
+  "type": "assistant",
+  "uuid": "17d92559-4b7f-4e68-a494-9c1c89cb27d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ujc6wJZkamM5ne2UjfuKv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 979,
+      "cache_read_input_tokens": 63083,
+      "output_tokens": 104,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 979,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 104,
+          "cache_read_input_tokens": 63083,
+          "cache_creation_input_tokens": 979,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 979
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-14T06:24:28.252Z_
+
+<details><summary>↩ Tool result · `toolu_01VXbCFgpn2B7LggrbnaiktW`</summary>
+
+```text
+Web search results for query: ""compression safe" OR "compression robust" attention training regularization vision language model defense 2026"
+
+Links: [{"title":"Chain of Attack: On the Robustness of Vision-Language Models Against","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Xie_Chain_of_Attack_On_the_Robustness_of_Vision-Language_Models_Against_CVPR_2025_paper.pdf"},{"title":"(PDF) Robust Vision-Language Models via Tensor Decomposition: A Defense Against Adversarial Attacks","url":"https://www.researchgate.net/publication/395710320_Robust_Vision-Language_Models_via_Tensor_Decomposition_A_Defense_Against_Adversarial_Attacks"},{"title":"Defense against adversarial attacks: robust and efficient compressed optimized neural networks | Scientific Reports","url":"https://www.nature.com/articles/s41598-024-56259-z"},{"title":"Model Compression with Adversarial Robustness: A Uniﬁed Optimization Framework","url":"http://papers.neurips.cc/paper/8410-model-compression-with-adversarial-robustness-a-unified-optimization-framework.pdf"},{"title":"Analysing the Robustness of Vision-Language-Models to Common Corruptions","url":"https://arxiv.org/html/2504.13690v1"},{"title":"[2509.16163] Robust Vision-Language Models via Tensor Decomposition: A Defense Against Adversarial Attacks","url":"https://arxiv.org/abs/2509.16163"},{"title":"Enhancing the robustness of vision transformer defense against adversarial attacks based on squeeze-and-excitation module - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10280230/"},{"title":"Comparative Study of Adversarial Defenses: Adversarial Training and Regularization in Vision Transformers and CNNs","url":"https://www.mdpi.com/2079-9292/13/13/2534"},{"title":"A Survey of Adversarial Defenses and Robustness in NLP | ACM Computing Surveys","url":"https://dl.acm.org/doi/10.1145/3593042"},{"title":"On Evaluating Adversarial Robustness of Large Vision-Language Models","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/a97b58c4f7551053b0512f92244b0810-Paper-Conference.pdf"}]
+
+Based on the web search results, I found several relevant papers and research on compression, robustness, attention mechanisms, and vision-language models. Here's a summary of the key findings:
+
+## Key Research Areas Found
+
+**Compression and Defense Against Adversarial Attacks:**
+
+For ATMC-compressed models, the gaps between their accuracies on benign and attacked testing sets are smaller than those of the uncompressed original models, suggesting that compression (when done right) has positive performance regularization effects.
+
+**Vision-Language Model Defense:**
+
+A lightweight defense using tensor decomposition is suitable for any pre-trained VLM, requiring no retraining, by decomposing and reconstructing vision encoder representations to filter adversarial noise while preserving meaning.
+
+**Regularization and Attention in Vision Transformers:**
+
+Vision Transformers with carefully chosen regularization techniques exhibit a notable improvement in adversarial robustness compared to their CNN counterparts, proving the potential of ViTs to offer a viable defense mechanism against adversarial manipulation when augmented with regularization strategies.
+
+**Attention Mechanisms and Compression:**
+
+The SE module adaptively weights each channel by adding a content-aware mechanism that compresses the feature maps to a single value so that the network model can adaptively adjust the weight of each feature map.
+
+The search results indicate active research into combining compression techniques with robustness and defense mechanisms, particularly for vision-language models and transformer-based architectures.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "17d92559-4b7f-4e68-a494-9c1c89cb27d6",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "ee7483ba-8795-4cd0-958b-1bf65ab6e5c6",
+  "toolUseResult": {
+    "query": "\"compression safe\" OR \"compression robust\" attention training regularization vision language model defense 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WF2SUDY2DWqYWywgRkQRc5",
+        "content": [
+          {
+            "title": "Chain of Attack: On the Robustness of Vision-Language Models Against",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Xie_Chain_of_Attack_On_the_Robustness_of_Vision-Language_Models_Against_CVPR_2025_paper.pdf"
+          },
+          {
+            "title": "(PDF) Robust Vision-Language Models via Tensor Decomposition: A Defense Against Adversarial Attacks",
+            "url": "https://www.researchgate.net/publication/395710320_Robust_Vision-Language_Models_via_Tensor_Decomposition_A_Defense_Against_Adversarial_Attacks"
+          },
+          {
+            "title": "Defense against adversarial attacks: robust and efficient compressed optimized neural networks | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-024-56259-z"
+          },
+          {
+            "title": "Model Compression with Adversarial Robustness: A Uniﬁed Optimization Framework",
+            "url": "http://papers.neurips.cc/paper/8410-model-compression-with-adversarial-robustness-a-unified-optimization-framework.pdf"
+          },
+          {
+            "title": "Analysing the Robustness of Vision-Language-Models to Common Corruptions",
+            "url": "https://arxiv.org/html/2504.13690v1"
+          },
+          {
+            "title": "[2509.16163] Robust Vision-Language Models via Tensor Decomposition: A Defense Against Adversarial Attacks",
+            "url": "https://arxiv.org/abs/2509.16163"
+          },
+          {
+            "title": "Enhancing the robustness of vision transformer defense against adversarial attacks based on squeeze-and-excitation module - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10280230/"
+          },
+          {
+            "title": "Comparative Study of Adversarial Defenses: Adversarial Training and Regularization in Vision Transformers and CNNs",
+            "url": "https://www.mdpi.com/2079-9292/13/13/2534"
+          },
+          {
+            "title": "A Survey of Adversarial Defenses and Robustness in NLP | ACM Computing Surveys",
+            "url": "https://dl.acm.org/doi/10.1145/3593042"
+          },
+          {
+            "title": "On Evaluating Adversarial Robustness of Large Vision-Language Models",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/a97b58c4f7551053b0512f92244b0810-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers and research on compression, robustness, attention mechanisms, and vision-language models. Here's a summary of the key findings:\n\n## Key Research Areas Found\n\n**Compression and Defense Against Adversarial Attacks:**\n\nFor ATMC-compressed models, the gaps between their accuracies on benign and attacked testing sets are smaller than those of the uncompressed original models, suggesting that compression (when done right) has positive performance regularization effects.\n\n**Vision-Language Model Defense:**\n\nA lightweight defense using tensor decomposition is suitable for any pre-trained VLM, requiring no retraining, by decomposing and reconstructing vision encoder representations to filter adversarial noise while preserving meaning.\n\n**Regularization and Attention in Vision Transformers:**\n\nVision Transformers with carefully chosen regularization techniques exhibit a notable improvement in adversarial robustness compared to their CNN counterparts, proving the potential of ViTs to offer a viable defense mechanism against adversarial manipulation when augmented with regularization strategies.\n\n**Attention Mechanisms and Compression:**\n\nThe SE module adaptively weights each channel by adding a content-aware mechanism that compresses the feature maps to a single value so that the network model can adaptively adjust the weight of each feature map.\n\nThe search results indicate active research into combining compression techniques with robustness and defense mechanisms, particularly for vision-language models and transformer-based architectures."
+    ],
+    "durationSeconds": 6.631046623000002
+  },
+  "sourceToolAssistantUUID": "17d92559-4b7f-4e68-a494-9c1c89cb27d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 121 · 2026-05-14T06:24:28.255Z_
+
+```json
+{
+  "parentUuid": "ee7483ba-8795-4cd0-958b-1bf65ab6e5c6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2181dd2a-bb88-4e59-aa8c-2630ebe9675f",
+  "timestamp": "2026-05-14T06:24:28.255Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 122 · 2026-05-14T06:24:30.800Z_
+
+Now I have enough evidence to write a thorough review. Let me synthesize my findings.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2181dd2a-bb88-4e59-aa8c-2630ebe9675f",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yxQ8qdbqinxqqxBg47",
+  "type": "assistant",
+  "uuid": "2ed337f5-7700-4a90-9bfe-bc9b3accc107",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GVc9QRsPfQ4kyCnPUnkyAf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1196,
+      "cache_read_input_tokens": 64062,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1196,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 64062,
+          "cache_creation_input_tokens": 1196,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1196
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-14T06:24:31.490Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RsAbe9ciWmvKYmqCL5dm9M`</summary>
+
+```json
+{
+  "query": "\"token reduction should go beyond efficiency\" survey arXiv 2505.18227 robustness mechanism"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ed337f5-7700-4a90-9bfe-bc9b3accc107",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yxQ8qdbqinxqqxBg47",
+  "type": "assistant",
+  "uuid": "8b41219f-a1a3-4ddf-b85c-58a9205b1f0a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GVc9QRsPfQ4kyCnPUnkyAf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1196,
+      "cache_read_input_tokens": 64062,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1196,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 64062,
+          "cache_creation_input_tokens": 1196,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1196
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-14T06:24:39.293Z_
+
+<details><summary>↩ Tool result · `toolu_01RsAbe9ciWmvKYmqCL5dm9M`</summary>
+
+```text
+Web search results for query: ""token reduction should go beyond efficiency" survey arXiv 2505.18227 robustness mechanism"
+
+Links: [{"title":"Token Reduction Should Go Beyond Efficiency in Generative Models – From Vision, Language to Multimodality","url":"https://arxiv.org/html/2505.18227v1"},{"title":"Token Reduction Should Go Beyond Efficiency in ...","url":"https://arxiv.org/pdf/2505.18227"},{"title":"[2505.18227] Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality","url":"https://arxiv.org/abs/2505.18227"},{"title":"[2505.18227v2] Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality","url":"https://arxiv.org/abs/2505.18227v2"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"(PDF) Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality","url":"https://www.researchgate.net/publication/392104162_Token_Reduction_Should_Go_Beyond_Efficiency_in_Generative_Models_--_From_Vision_Language_to_Multimodality"},{"title":"Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250518227K/abstract"},{"title":"Machine Learning May 2025","url":"https://www.arxiv.org/list/cs.LG/2025-05?skip=1675&show=2000"},{"title":"Understanding and Improving Token-Efficiency of Reasoning Models","url":"https://arxiv.org/html/2505.07961v1"},{"title":"Less is More: A Simple yet Effective Token Reduction Method for Efficient Multi-modal LLMs","url":"https://arxiv.org/html/2409.10994v3"}]
+
+I found the paper you're searching for. Here's an overview of the key findings:
+
+## Overview
+
+"Token Reduction Should Go Beyond Efficiency in Generative Models" argues that token reduction should transcend its traditional efficiency-oriented role in the era of large generative models, and instead be positioned as a fundamental principle in generative modeling, critically influencing both model architecture and broader applications.
+
+## Key Applications Beyond Efficiency
+
+The paper contends that across vision, language, and multimodal systems, token reduction can: (i) facilitate deeper multimodal integration and alignment, (ii) mitigate "overthinking" and hallucinations, (iii) maintain coherence over long inputs, and (iv) enhance training stability.
+
+## Robustness Mechanisms
+
+The paper discusses several approaches to improve robustness through token reduction:
+
+Recent research indicates token reduction's potential to significantly improve training stability when integrated into the pre-training phase, suggesting that selective token utilization during training can lead to more robust and effective model learning.
+
+More robust and unbiased scoring mechanisms can be developed, such as predictors or meta-learning frameworks that go beyond attention-based proxies. These models should capture downstream utility with minimal supervision, enabling adaptive pruning across tasks and domains.
+
+Additionally, in MLLMs, attention-based pruning methods often rely on attention scores from a fixed query token, leading to retained tokens concentrating in specific image regions with potential position bias. Future methods should preserve spatial diversity by enforcing structural uniformity in retained tokens to improve robustness on visual tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8b41219f-a1a3-4ddf-b85c-58a9205b1f0a",
+  "isSidechain": false,
+  "promptId": "cdb61f3b-6883-4cb4-abc8-94da6eee2948",
+  "type": "user",
+  "uuid": "e60af4ef-f862-43c0-91e5-86600cd725a9",
+  "toolUseResult": {
+    "query": "\"token reduction should go beyond efficiency\" survey arXiv 2505.18227 robustness mechanism",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TVd9QtziwbGgg3T8dtx3zA",
+        "content": [
+          {
+            "title": "Token Reduction Should Go Beyond Efficiency in Generative Models – From Vision, Language to Multimodality",
+            "url": "https://arxiv.org/html/2505.18227v1"
+          },
+          {
+            "title": "Token Reduction Should Go Beyond Efficiency in ...",
+            "url": "https://arxiv.org/pdf/2505.18227"
+          },
+          {
+            "title": "[2505.18227] Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality",
+            "url": "https://arxiv.org/abs/2505.18227"
+          },
+          {
+            "title": "[2505.18227v2] Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality",
+            "url": "https://arxiv.org/abs/2505.18227v2"
+          },
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          },
+          {
+            "title": "(PDF) Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality",
+            "url": "https://www.researchgate.net/publication/392104162_Token_Reduction_Should_Go_Beyond_Efficiency_in_Generative_Models_--_From_Vision_Language_to_Multimodality"
+          },
+          {
+            "title": "Token Reduction Should Go Beyond Efficiency in Generative Models -- From Vision, Language to Multimodality - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250518227K/abstract"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-05?skip=1675&show=2000"
+          },
+          {
+            "title": "Understanding and Improving Token-Efficiency of Reasoning Models",
+            "url": "https://arxiv.org/html/2505.07961v1"
+          },
+          {
+            "title": "Less is More: A Simple yet Effective Token Reduction Method for Efficient Multi-modal LLMs",
+            "url": "https://arxiv.org/html/2409.10994v3"
+          }
+        ]
+      },
+      "I found the paper you're searching for. Here's an overview of the key findings:\n\n## Overview\n\n\"Token Reduction Should Go Beyond Efficiency in Generative Models\" argues that token reduction should transcend its traditional efficiency-oriented role in the era of large generative models, and instead be positioned as a fundamental principle in generative modeling, critically influencing both model architecture and broader applications.\n\n## Key Applications Beyond Efficiency\n\nThe paper contends that across vision, language, and multimodal systems, token reduction can: (i) facilitate deeper multimodal integration and alignment, (ii) mitigate \"overthinking\" and hallucinations, (iii) maintain coherence over long inputs, and (iv) enhance training stability.\n\n## Robustness Mechanisms\n\nThe paper discusses several approaches to improve robustness through token reduction:\n\nRecent research indicates token reduction's potential to significantly improve training stability when integrated into the pre-training phase, suggesting that selective token utilization during training can lead to more robust and effective model learning.\n\nMore robust and unbiased scoring mechanisms can be developed, such as predictors or meta-learning frameworks that go beyond attention-based proxies. These models should capture downstream utility with minimal supervision, enabling adaptive pruning across tasks and domains.\n\nAdditionally, in MLLMs, attention-based pruning methods often rely on attention scores from a fixed query token, leading to retained tokens concentrating in specific image regions with potential position bias. Future methods should preserve spatial diversity by enforcing structural uniformity in retained tokens to improve robustness on visual tasks."
+    ],
+    "durationSeconds": 7.800250046000001
+  },
+  "sourceToolAssistantUUID": "8b41219f-a1a3-4ddf-b85c-58a9205b1f0a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 125 · 2026-05-14T06:25:47.515Z_
+
+Now I have comprehensive evidence. Let me synthesize the final review.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3, "rationale": "The specific framing of entropy regularization for compression robustness is novel, but the core idea faces an unresolved theoretical contradiction: three independent lines of evidence (σReparam ICML 2023, arXiv 2502.20604, 'Robustifying Token Attention' ICCV 2023, HIES 2025) argue that LOW attention entropy hurts robustness, while ESA claims it helps. Rényi Attention Entropy (2604.03803) already uses entropy for pruning decisions. The 'Token Reduction Beyond Efficiency' survey articulates the same thesis without mechanism. The gap between attack papers (Less Is More, CAGE) and defense is real, but the proposed solution direction has contradictory evidence."},
+    "feasibility": {"score": 3, "rationale": "SmolVLA LoRA fine-tuning is confirmed feasible (~4h/run on single A100), and 120h H100 total is realistic for the proposed experimental scope. LIBERO-Plus is publicly available. However, the entropy regularization may cause training instability per σReparam/EMNLP 2025 findings, requiring careful tuning that adds time risk. The formal bound derivation within 12 days alongside experiments and paper writing is very high risk. The bound's key assumption (Δ_min scales inversely with exp(H)) is an unproven claim, not a theorem."},
+    "clarity": {"score": 4, "rationale": "The idea is well-structured with clear problem framing, a specific intervention mechanism, well-defined experiments, and appropriate baselines. The 'model-level property that works with ANY compression method' framing is compelling and clearly communicated. The theoretical claim is stated precisely enough to be verifiable."},
+    "impact": {"score": 3, "rationale": "If the entropy-to-ranking-stability bound holds and the entropy direction paradox is resolved, this would be a meaningful contribution at the intersection of compression and robustness. However, CRT (2602.01158) achieves near-baseline robustness as a plug-and-play module without model modification, and Test-Time Perturbation Learning (2604.18107) provides test-time adaptation without training changes — both simpler alternatives that reduce ESA's practical impact. The VLA-specific setting is somewhat niche."}
+  },
+  "issues": [
+    "CRITICAL UNRESOLVED THEORETICAL CONTRADICTION: The entropy direction paradox from Round 2 remains the core weakness. Four independent sources argue AGAINST low attention entropy for robustness: (1) σReparam (ICML 2023) proves low entropy → training instability/entropy collapse; (2) arXiv 2502.20604 empirically shows HIGH softmax temperature (= HIGH entropy) improves adversarial robustness against PGD/corruptions; (3) 'Robustifying Token Attention' (ICCV 2023) proposes Attention Diversification Loss that INCREASES entropy for robustness, finding 'token overfocusing' (low entropy) is the vulnerability; (4) HIES (arXiv 2510.13832) notes 'low-entropy heads may correlate with increased sensitivity to input perturbations.' ESA's core claim that LOW entropy improves robustness directly contradicts all four. The Round 2 review specifically requested a 'goldilocks zone' resolution — this revision does not provide one.",
+    "THEORETICAL BOUND VALIDITY: The proposed bound (Kendall-tau ~ n² · exp(H) · ε / Δ_min) relies on the claim that 'Δ_min scales inversely with exp(H) for peaked distributions' — this is stated as fact but is an unproven assumption. The relationship between entropy and minimum gap between sorted attention weights depends on distribution shape (uniform-like vs. power-law vs. Gaussian-tail), not just entropy. A Dirac-like distribution has near-zero entropy but Δ_min approaches 0 for all but one pair. The bound needs rigorous derivation, not hand-waving.",
+    "MISSING CRITICAL RELATED WORK — 'Robustifying Token Attention for Vision Transformers' (ICCV 2023): This paper directly addresses attention robustness through Token-Aware Average Pooling (TAP) and Attention Diversification Loss (ADL), arguing that DISPERSED attention (higher entropy) improves robustness by avoiding 'token overfocusing.' This is a direct counterargument to ESA's premise and must be cited and addressed.",
+    "MISSING COMPETITOR — HIES: 'Entropy Meets Importance: A Unified Head Importance-Entropy Score for Stable and Efficient Transformer Pruning' (arXiv 2510.13832, OPT 2025 Workshop) combines head importance with attention entropy for stable pruning, finding that low-entropy heads need special protection during compression because they are MORE sensitive to perturbations — contradicting ESA's claim that low entropy provides stability.",
+    "MISSING COMPETITOR — EfficientVLA (arXiv 2506.10100): Training-free acceleration framework for VLAs combining layer pruning, task-aware visual token selection, and diffusion feature caching. Achieves 1.93x speedup with only 0.6% success rate drop. While efficiency-focused, it represents a very recent comprehensive VLA compression method that should be discussed.",
+    "SCOPE MISMATCH WITH USER REQUIREMENTS: The user's direction specifies 'Token pruning and augmentation in VLA visual representations — methods that surgically manipulate visual tokens in latent space.' ESA is a training-time entropy regularization method — it does NOT prune or augment tokens. It modifies attention distributions during training so that downstream compression methods work better. This is a defense mechanism, not a token surgery method. The user explicitly asked for 'adaptive token pruning based on action-relevance scoring, latent-space token augmentation' — ESA provides neither.",
+    "TIMELINE RISK: 12 days to CoRL abstract deadline. Even with SmolVLA's fast training, the project requires: (1) implementing entropy regularization in LeRobot/SmolVLA, (2) deriving and verifying the formal bound (which has unresolved contradictions), (3) running 8+ configurations × 3h each = 24h training + 70h evaluation, (4) analyzing results across 7 perturbation dimensions × 3 compression methods, (5) writing the paper. The formal bound derivation alone — especially given the entropy direction paradox that must be resolved — is a multi-week effort.",
+    "'Less Is More' EXPLICITLY STATES DEFENSES PROVIDE 'ONLY LIMITED PROTECTION': The paper ESA builds upon evaluates potential defenses and finds they provide only limited protection against compression-aware attacks. ESA must explain why entropy regularization would succeed where other defenses failed, especially given that the attack directly manipulates the ranking mechanism ESA tries to stabilize."
+  ],
+  "feedback": "This is the third round and the core theoretical contradiction from Round 2 — the entropy direction paradox — remains unresolved and is the single biggest obstacle to acceptance. Here is specific guidance:\n\n1. **RESOLVE THE ENTROPY PARADOX OR PIVOT**: You cannot publish a paper claiming low entropy improves robustness when σReparam (ICML 2023), 'Robustifying Token Attention' (ICCV 2023), arXiv 2502.20604, and HIES all provide evidence for the opposite. Three options: (a) Define and prove a 'goldilocks zone' where entropy is low enough for ranking stability but high enough for perturbation resistance — this requires non-trivial theoretical work; (b) Reframe as 'entropy shaping' rather than 'entropy reduction' — regularize toward a target entropy profile rather than minimizing entropy; (c) Pivot entirely to a different mechanism for ranking stability that doesn't contradict robustness literature (e.g., margin-based ranking loss that directly maximizes Δ_min without touching entropy).\n\n2. **FIX THE BOUND**: The Δ_min ∝ 1/exp(H) claim is wrong in general. Consider a simpler, provable statement: 'Under ε-bounded perturbation, the probability that any token leaves the top-k set is bounded by k · ε / Δ_k, where Δ_k is the gap between the k-th and (k+1)-th attention weight.' This doesn't require entropy at all and is straightforward to prove. Then separately argue that entropy regularization increases Δ_k empirically.\n\n3. **ADDRESS SCOPE MISMATCH**: The user asked for token pruning and augmentation methods. ESA is a training regularization that makes existing compression safer — it doesn't prune or augment tokens itself. Either add an actual token surgery component or acknowledge this is a complementary contribution rather than the token surgery method the user specified.\n\n4. **CITE 'ROBUSTIFYING TOKEN ATTENTION' (ICCV 2023)**: This paper's Attention Diversification Loss is a direct counterargument. You must explain why the optimal entropy direction differs for compression robustness vs. general corruption robustness.\n\n5. **ADDRESS SIMPLER ALTERNATIVES**: CRT achieves near-baseline robustness as a plug-and-play module without any training modification. Test-Time Perturbation Learning provides test-time adaptation. Why is ESA's training-time approach preferable when these alternatives require no model modification?",
+  "reason": "Critical theoretical contradiction (entropy direction paradox) remains unresolved from Round 2, with four independent sources contradicting the core low-entropy-improves-robustness claim; scope mismatch with user's token surgery requirements."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e60af4ef-f862-43c0-91e5-86600cd725a9",
+  "isSidechain": false,
+  "requestId": "req_011Cb1yyDJzPCvRxBR9eiY1X",
+  "type": "assistant",
+  "uuid": "119bf171-3344-4105-862e-73db5fe83a13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B2ag1wy4bnT2PmMonyewCj",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1013,
+      "cache_read_input_tokens": 65258,
+      "output_tokens": 2324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1013,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2324,
+          "cache_read_input_tokens": 65258,
+          "cache_creation_input_tokens": 1013,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1013
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 126_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-14 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "119bf171-3344-4105-862e-73db5fe83a13",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 127_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review: Entropy-Stabilized Attention for Compression-Robust VLAs (Round 3)",
+  "sessionId": "3582b579-62e3-48e1-99cb-64cc145b5d8e"
+}
+```
+
+---

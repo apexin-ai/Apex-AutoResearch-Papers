@@ -1,0 +1,6949 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-18 (UTC).** ## Original idea { "tit
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 105
+- **Recorded user turns:** 1
+- **Tool calls:** 33
+- **Original source:** `logs/chats/exported-trajectories/account-3/98c0574c-97ec-4487-bfb9-77bfda3c289b.jsonl`
+- **Structured JSON:** [`01ad2d6c47903133c39f.json`](../../sessions/01/01ad2d6c47903133c39f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-18T20:11:58.543Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-18T20:11:58.543Z",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-18 (UTC).**\n\n## Original idea\n{\n  \"title\": \"OVA-VLA: Does Affordance-Specific Reasoning Ground VLA Action Decoders Beyond Entity References? A Controlled Study Under Distribution Shift\",\n  \"core_problem\": \"Do affordance-specific reasoning tokens provide grounding to VLA action decoders BEYOND entity-reference integrity? 'Altered Thoughts, Altered Actions' (arXiv 2603.12717) reveals that on standard LIBERO, DeepThinkVLA's action decoder depends solely on entity references — sentence reordering, spatial-direction reversal, and even LLM-crafted wrong reasoning have negligible impact on success. ECoT-Lite (arXiv 2505.08243) shows reasoning benefits come primarily through representation learning, not expressivity, and that non-semantic thinking tokens hurt performance (-3.8%). Together, these findings suggest that generic CoT serves mainly as a carrier for entity names that the decoder extracts, while meaningful semantic structure is needed for representation learning benefits. This raises the central question: do affordance descriptions — which encode perturbation-invariant physical interaction properties (contact surfaces, grasp strategies, functional regions) — provide action-relevant grounding beyond what entity names alone supply? If so, affordance reasoning should resist the 'entity-reference-only' dependence pattern under distribution shift (where entity names alone are insufficient because objects change), and the representation learning benefits should be LARGER for affordance-specific content than for generic CoT (because affordance descriptions encode object-centric functional properties that transfer). This would establish that reasoning CONTENT — not just reasoning EXISTENCE or entity naming — independently contributes to VLA robustness.\",\n  \"opportunity\": \"Three converging findings create a precise research gap:\\n\\n(1) 'Altered Thoughts' shows entity-reference integrity is all that matters for generic CoT on standard LIBERO — but this was tested only on standard LIBERO (no distribution shift) and only with generic CoT (not affordance-specific reasoning). Under distribution shift, entity names alone may be INSUFFICIENT: when objects change (LIBERO-PRO 'manipulated objects'), camera viewpoints shift (LIBERO-Plus), or instructions are paraphrased, entity references become ambiguous or uninformative. Affordance descriptions that reference perturbation-invariant functional properties ('curved handle for power grasp,' 'flat surface for stable placement') may provide the ADDITIONAL grounding that generic entity references cannot.\\n\\n(2) ECoT-Lite shows reasoning helps primarily through representation learning, and semantic content matters (thinking tokens hurt). But no work has compared whether DIFFERENT types of semantic content (affordance-specific vs. generic plans) produce different representation learning effects. If affordance descriptions force the model to attend to functionally-relevant visual features (contact surfaces, edges, handles), they may produce more transferable representations than generic CoT that attends to layout-specific features.\\n\\n(3) ProGAL-VLA (arXiv 2604.09824) achieves 85.5% on LIBERO-Plus by addressing language ignorance through a modular pipeline (separate slow planner + YOLO-World + Metric3D + contrastive alignment). This sets the robustness SOTA but uses an architecturally complex, non-autoregressive approach. The question remains: can a simpler autoregressive approach achieve competitive robustness through better reasoning content alone?\\n\\nThe specific gap: no work has (a) tested whether 'Altered Thoughts' entity-reference-only dependence holds under distribution shift, (b) compared whether affordance-specific vs. generic CoT produces different representation learning effects (extending ECoT-Lite's mechanism analysis), (c) designed controlled experiments where entity references are held constant while reasoning structure/content varies — isolating whether affordance-specific physical grounding provides value beyond entity naming.\",\n  \"landscape\": \"**Entity-reference dependence and reasoning mechanisms:**\\n\\nAltered Thoughts, Altered Actions (arXiv 2603.12717, March 2026): Tests 7 CoT corruption types on DeepThinkVLA across 40 standard LIBERO tasks. Entity-name substitution causes -8.3pp overall (-19.3pp goal-conditioned, -45pp worst-case), while sentence reordering, spatial-direction reversal, random tokens, and LLM-crafted wrong reasoning have negligible impact. Establishes that action decoders depend on entity-reference integrity, not reasoning quality or structure. CENTRAL MOTIVATING FINDING for our study — we test whether this pattern holds under distribution shift and whether affordance descriptions break it.\\n\\nECoT-Lite / Training Strategies for Efficient Embodied Reasoning (arXiv 2505.08243, May 2025): Tests 6 training variants including thinking tokens. Key findings: (a) representation learning is the primary mechanism by which reasoning helps VLAs, (b) non-semantic thinking tokens HURT performance (-3.8%), confirming semantic content matters, (c) reasoning dropout matches full ECoT on LIBERO-90 (89.4% vs 90.8%), suggesting test-time reasoning generation is less important than training-time representation learning. Our study extends this by comparing whether DIFFERENT semantic content types (affordance vs. generic) produce different representation quality.\\n\\n**Robustness SOTA and language grounding:**\\n\\nProGAL-VLA (arXiv 2604.09824, April 2026): Current SOTA on LIBERO-Plus at 85.5% overall. Uses modular pipeline: Qwen2.5-VL-7B slow planner → YOLO-World detector → Metric3D depth → 3D entity-centric graph → Grounding Alignment Contrastive loss. Reduces language ignorance by 3-4x (language perturbation: 93.6%). Sets the bar for robustness but at significant architectural complexity. Our work tests whether better reasoning content in a simpler autoregressive architecture can approach this performance, and whether affordance reasoning specifically addresses language ignorance through instruction-independent physical grounding.\\n\\nLangGap (arXiv 2603.00592, February 2026): Diagnostic benchmark showing pi0.5 ignores language instructions. Targeted data augmentation improves from 0% to 90% (single-task) but only 0% to 28% (multi-task). Demonstrates language grounding remains an open problem.\\n\\n**Reasoning-augmented VLAs:**\\n\\nDeepThinkVLA (arXiv 2511.15669): Hybrid causal-bidirectional attention, SFT→RL. 97.0% standard LIBERO, 79.0% LIBERO-Plus. SFT-only variant shows 32pp robustness drop, identical to no-reasoning. Subject of 'Altered Thoughts' corruption study.\\n\\nSimpleVLA-RL (ICLR 2026, arXiv 2509.09674): RL framework for VLAs, 97.6% LIBERO-Long. Demonstrates RL's power but does not compare reasoning content types.\\n\\nECoT (arXiv 2407.08693): Free-form generic reasoning tokens, 28% over OpenVLA. No robustness evaluation.\\n\\nDualCoT-VLA (arXiv 2603.22280): Parallel visual-linguistic CoT with learnable queries, SOTA on LIBERO and RoboCasa.\\n\\nACoT-VLA (CVPR 2026, arXiv 2601.11404): Coarse action trajectory reasoning in action space.\\n\\nCoT-VLA (arXiv 2503.22020): Visual subgoal images as reasoning, 17% real-world improvement.\\n\\nFlowVLA (arXiv 2508.18269): Optical flow as visual CoT for motion reasoning.\\n\\nLaRA-VLA (arXiv 2602.01166): Latent CoT, 90% latency reduction. If our study finds reasoning content doesn't matter, this supports latent reasoning.\\n\\n**Affordance-based VLA reasoning:**\\n\\nPALM (arXiv 2601.07060, January 2026): End-to-end affordance reasoning VLA with 4 latent affordance types (object relevance, contact geometry, spatial placement, motion dynamics) via structured attention + diffusion policy. 91.8% LIBERO-LONG (+22.8pp over CoT-VLA). Uses LATENT affordance representations, not text-based CoT. Key difference from our work: we generate TEXTUAL affordance descriptions as intermediate reasoning tokens within an autoregressive sequence, enabling interpretable analysis of what the model reasons about. PALM's latent approach is complementary — if our study shows affordance content helps, PALM's latent encoding is validated; if not, our interpretable analysis reveals why not.\\n\\nCoA-VLA (ICCV 2025, arXiv 2412.20451): Fixed 4-type textual affordance reasoning via separate co-injection module.\\n\\nRoboInter (ICLR 2026, arXiv 2602.09973): 230K episodes with dense per-frame annotations including affordance boxes, contact points, grasp poses. Our data source.\\n\\nGST-VLA (arXiv 2603.09079): 3D Gaussian spatial tokens including grasp affordance contact geometry. Geometric, not semantic. 96.4% LIBERO.\\n\\nVLA-R1 (arXiv 2510.01623): Affordance-aligned CoT via GRPO RL.\\n\\nRT-Affordance (ICRA 2025, arXiv 2411.02704): Visual affordance images in hierarchical pipeline.\\n\\nAffordGrasp (arXiv 2503.00778): VLM in-context affordance reasoning for grasping, not unified VLA.\\n\\n**Open-vocabulary affordance data:**\\n\\nAffogato (arXiv 2506.12009, withdrawn from ICLR 2026 but dataset publicly available on HuggingFace): 150K 3D objects, >450 object classes, >350 affordance types with open-vocabulary text annotations. We use this for affordance vocabulary pre-training.\\n\\nGLOVER++ (arXiv 2505.11865): HOVA-500K dataset. Availability unclear.\\n\\n**Robustness benchmarks:**\\n\\nLIBERO-Plus (CVPR 2026, arXiv 2510.13626): 7 perturbation dimensions. Models drop from 95% to <30%.\\n\\nLIBERO-PRO (arXiv 2510.03827): 4 perturbation dimensions. Models collapse to 0%.\\n\\n**The specific gap:** (a) 'Altered Thoughts' tested entity-reference dependence only on standard LIBERO with generic CoT — not under distribution shift, not with affordance-specific reasoning; (b) ECoT-Lite identified representation learning as the mechanism but did not compare content types; (c) ProGAL-VLA achieves 85.5% LIBERO-Plus robustness through architectural complexity — no work tests whether better reasoning content in a simpler architecture achieves competitive robustness; (d) PALM uses latent affordance representations but doesn't compare against generic alternatives or provide interpretable analysis of what content matters; (e) no work designs entity-reference-controlled experiments isolating whether affordance structure provides value beyond entity naming.\",\n  \"approach\": \"We propose OVA-VLA, combining a reusable technical pipeline for scalable open-vocabulary affordance supervision generation with a systematic controlled study testing whether affordance-specific reasoning provides grounding beyond entity references under distribution shift.\\n\\n**Technical contribution — OVA Pipeline (the first scalable pipeline for open-vocabulary affordance supervision for VLA training):**\\n\\n(1) Affordance vocabulary pre-training on Affogato's publicly available 150K open-vocabulary affordance annotations (>450 object classes, >350 affordance types, HuggingFace). Trains the model to generate diverse affordance descriptions from visual inputs.\\n\\n(2) Trajectory-grounded affordance annotation: We generate open-vocabulary affordance descriptions for ~60K RoboInter-Data trajectories using Qwen2.5-VL-72B API, conditioned on BOTH RGB frames AND RoboInter-Data's existing affordance box coordinates and contact point annotations. Descriptions are validated against trajectory kinematics (grasp type must match gripper trajectory). Estimated API cost: ~$300-450.\\n\\n(3) Curriculum training: three-stage progression from structured (4-type CoA-VLA format) → semi-structured (8-10 dimensions) → fully open-vocabulary free-form descriptions.\\n\\nThis pipeline is released as a reusable toolkit: annotation prompts, validation scripts, curriculum schedule, and 60K affordance-annotated trajectories.\\n\\n**Backbone and conditions:** Built on Qwen2.5-VL-3B (following NORA's validated architecture), all conditions share the same backbone, LoRA configuration, training data, and compute budget:\\n(A) No reasoning → action tokens (baseline)\\n(B) Generic CoT → action tokens (ECoT-style: plans, sub-tasks, motion descriptions)\\n(C) Fixed 4-type affordance → action tokens (CoA-VLA-style)\\n(D) Open-vocabulary semantic affordance → action tokens (OVA-VLA)\\n\\n**Entity-reference-controlled experiments (directly addressing 'Altered Thoughts'):**\\n\\nThe key methodological innovation: we design conditions where entity references are HELD CONSTANT while reasoning structure/content varies, isolating whether affordance-specific content provides grounding beyond entity naming:\\n\\n(B-ent) Generic CoT with MATCHED entity references: same object names appear in reasoning as in condition (D), but surrounded by generic planning language rather than affordance descriptions. E.g., 'Move to the red mug and place it on the shelf' vs. 'The red mug has a curved handle affording a lateral power grasp; the shelf presents a flat surface for stable top-down placement.'\\n(D-ent) Affordance reasoning with SHUFFLED entity references: affordance descriptions with correct physical interaction content but entity names randomly replaced (mimicking 'Altered Thoughts' entity-swap attack).\\n\\nComparing (B) vs. (B-ent) on standard LIBERO should replicate 'Altered Thoughts' finding (entity references dominate). Comparing (B-ent) vs. (D) on LIBERO-Plus/PRO tests whether affordance content provides additional grounding UNDER DISTRIBUTION SHIFT. Comparing (D) vs. (D-ent) tests whether affordance reasoning is MORE or LESS dependent on entity references than generic CoT.\\n\\n**Representation learning analysis (extending ECoT-Lite):**\\n\\nWe add ECoT-Lite-style ablations to test whether affordance-specific content produces better REPRESENTATIONS:\\n(D-pretrain) Affordance pre-training only, no test-time affordance generation (isolates representation learning)\\n(B-pretrain) Generic CoT pre-training only (control)\\nComparing (D-pretrain) vs. (B-pretrain) directly tests whether affordance content produces more transferable internal representations, extending ECoT-Lite's mechanism analysis to content type comparison.\\n\\n**Primary evaluation on robustness benchmarks:**\\n\\n- LIBERO-Plus (CVPR 2026): 7 perturbation dimensions. Per-dimension analysis. ProGAL-VLA comparison at 85.5% as discussion baseline (different approach: modular vs. our autoregressive). We do NOT claim to beat ProGAL-VLA's modular approach but analyze whether affordance reasoning in a simpler architecture narrows the gap vs. generic CoT.\\n- LIBERO-PRO: 4 perturbation dimensions, focus on 'manipulated objects' (where affordance descriptions should transfer to novel objects with similar functional properties) and 'task instructions.'\\n- Standard LIBERO: Reported for comparison + replication of 'Altered Thoughts' entity-reference findings with our models.\\n- SimplerEnv: Cross-embodiment evaluation targeting manipulation mode diversity.\\n\\n**Operationalized hypotheses (sharpened by 'Altered Thoughts' + ECoT-Lite):**\\n\\n- H1 (Beyond entity references under shift): On LIBERO-Plus/PRO, condition (D) outperforms entity-matched (B-ent) by ≥5%, while on standard LIBERO the gap is ≤2%. This would demonstrate that affordance content provides grounding BEYOND entity references specifically under distribution shift. Stratified by perturbation type: largest advantage expected on 'manipulated objects' (LIBERO-PRO) and 'camera viewpoint' (LIBERO-Plus) where entity references become ambiguous.\\n\\n- H2 (Representation learning quality): (D-pretrain) outperforms (B-pretrain) by ≥3% on LIBERO-Plus, demonstrating that affordance-specific content produces more transferable representations than generic CoT — extending ECoT-Lite's mechanism finding to content type comparison.\\n\\n- H3 (Language grounding): Under LIBERO-Plus 'language instruction' perturbation, (D) shows less performance variance than (B) because affordance descriptions provide instruction-independent physical grounding. This tests whether affordance reasoning addresses the language ignorance problem (LIBERO-Plus, LangGap) through a different mechanism than ProGAL-VLA's contrastive alignment.\\n\\n- H4 (Entity-reference dependence asymmetry): On standard LIBERO, (D-ent) entity-swap attack causes LESS degradation than (B-ent) entity-swap, because affordance descriptions provide alternative grounding pathways (physical interaction properties) that partially compensate for wrong entity references. This would show that affordance reasoning is MORE ROBUST to entity-reference corruption.\\n\\n**Contingency plan — publishable under all outcomes:**\\n\\nScenario A (Affordance >> Generic under shift, ≥5% on LIBERO-Plus/PRO): Method contribution (OVA pipeline) + evidence that reasoning content matters for robustness + taxonomy of when affordance reasoning helps. Strongest paper.\\n\\nScenario B (Affordance > Generic, modest 2-5% or mixed across perturbation types): Primary contribution: (a) OVA pipeline as reusable technical contribution, (b) first entity-reference-controlled analysis showing WHERE affordance content provides value beyond naming, (c) representation learning comparison extending ECoT-Lite, (d) per-perturbation robustness profiles.\\n\\nScenario C (Affordance ≈ Generic across all conditions, including entity-controlled experiments): Strong negative result: (a) demonstrates 'Altered Thoughts' entity-reference-only pattern extends to distribution shift — reasoning CONTENT beyond entity names doesn't matter for robustness, (b) representation learning analysis shows affordance and generic content produce equivalent representations (extending ECoT-Lite), (c) supports latent reasoning direction (PALM, LaRA-VLA) — if content doesn't matter, encode reasoning in latent space, (d) OVA pipeline released as community resource regardless.\\n\\nThe paper is framed as 'testing whether affordance reasoning provides grounding beyond entity references under distribution shift' — a question whose answer is valuable regardless of direction, directly motivated by 'Altered Thoughts' and ECoT-Lite.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~150h H100 (LoRA training 3B model: ~12h/run × 6 conditions [A,B,B-ent,C,D,D-ent] × 2 seeds = 144h; Affogato pre-training: ~3h; evaluation: ~3h. Note: representation learning ablations [D-pretrain, B-pretrain] reuse pre-training runs with added evaluation only)\",\n      \"gpu_utilization\": \"Low (~30-40%). GPU idle during annotation quality review and analysis.\",\n      \"timeline\": \"8-10 weeks\",\n      \"team\": \"1 researcher with VLA experience\",\n      \"annotation_cost\": \"$300-450 (Qwen2.5-VL-72B API for 60K trajectories + equivalent annotations for all conditions)\",\n      \"estimated_gpu_cost\": \"$300-600 (at $2-4/hr H100 rental)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~180h H100 (LoRA training: ~12h/run × 6 conditions × 2 seeds + 2 representation ablations = 160h; Affogato pre-training: ~3h; evaluation LIBERO-Plus/PRO + standard LIBERO: ~12h; entity-reference analysis: ~5h)\",\n      \"gpu_utilization\": \"Moderate (~60-70%). Agent queues experiments, human reviews entity-reference analysis.\",\n      \"timeline\": \"5-7 weeks\",\n      \"team\": \"1 researcher, ~30min/day review\",\n      \"annotation_cost\": \"$300-450 (API-based)\",\n      \"claude_api_cost\": \"$150-300 (~2000-4000 agent turns)\",\n      \"estimated_gpu_cost\": \"$360-720\",\n      \"risk_note\": \"Annotation quality validated by cross-checking against RoboInter-Data contact points and gripper trajectories. Human spot-checks 500 samples.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~195h H100 (LoRA training: ~12h/run × 6 conditions × 2 seeds = 144h; Affogato pre-training: ~3h; 2 representation ablations: ~24h; evaluation LIBERO-Plus/PRO + standard LIBERO + SimplerEnv: ~16h; entity-reference analysis: ~8h)\",\n      \"gpu_utilization\": \"High (~85-90%). Agent runs 24/7: queues experiments, performs automated analysis between runs.\",\n      \"timeline\": \"10-14 days with 2 H100 GPUs\",\n      \"team\": \"0 (3-hour setup: download RoboInter-Data, Affogato dataset, base model, configure API keys, install LIBERO-Plus/PRO)\",\n      \"annotation_cost\": \"$300-450 (API-based, runs in parallel with GPU training)\",\n      \"claude_api_cost\": \"$300-600 (~4000-8000 agent turns)\",\n      \"estimated_gpu_cost\": \"$390-780\",\n      \"speed_bottleneck\": \"Sequential LoRA training runs (6 conditions × 2 seeds = 12 runs + 2 ablations = 14 runs). With 2 H100s, two runs overlap (~7-10 days for training). Evaluation is parallelizable.\",\n      \"risk_note\": \"Automated affordance quality assessment: trajectory-contact consistency scoring flags descriptions where grasp type contradicts gripper approach vector. Agent iterates annotation prompts based on consistency scores.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (abstract deadline July 21, paper deadline July 28, 2026; ~9 weeks from today; primary target; feasible with auto-research timeline of 10-14 days + 7 weeks for writing, analysis, supplementary experiments)\",\n    \"ICLR 2027 (expected deadline Sep-Oct 2026; ~4-5 months; comfortable backup; allows additional ablations, RL extension experiments)\",\n    \"CoRL 2026 (abstract deadline May 26, paper deadline May 29, 2026; INFEASIBLE — 8-11 days from today)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Altered Thoughts, Altered Actions: Probing CoT Vulnerabilities in VLA Robotic Manipulation (arXiv 2603.12717, March 2026) — CENTRAL MOTIVATING FINDING: entity-reference integrity is all that matters for generic CoT on standard LIBERO; 7 corruption types, only entity-swap causes degradation (-8.3pp)\",\n    \"Training Strategies for Efficient Embodied Reasoning / ECoT-Lite (arXiv 2505.08243, May 2025) — representation learning is the primary mechanism; thinking tokens hurt (-3.8%); semantic content matters; we extend to content type comparison\",\n    \"ProGAL-VLA: Grounded Alignment through Prospective Reasoning (arXiv 2604.09824, April 2026) — current SOTA on LIBERO-Plus at 85.5%; modular pipeline (slow planner + YOLO-World + Metric3D + GAC loss); reduces language ignorance 3-4x; discussion baseline\",\n    \"PALM: Progress-Aware Policy Learning via Affordance Reasoning (arXiv 2601.07060, January 2026) — end-to-end affordance VLA with 4 latent affordance types via structured attention + diffusion policy; 91.8% LIBERO-LONG; uses latent representations vs. our text-based approach\",\n    \"DeepThinkVLA: Enhancing Reasoning Capability of VLA Models (arXiv 2511.15669) — hybrid attention + SFT→RL; 97% LIBERO / 79% LIBERO-Plus; SFT-only CoT shows no robustness benefit\",\n    \"CoA-VLA: Visual-Textual Chain-of-Affordance for VLA Models (ICCV 2025, arXiv 2412.20451) — fixed 4-type affordance reasoning baseline\",\n    \"RoboInter: Holistic Intermediate Representation Suite (ICLR 2026, arXiv 2602.09973) — 230K episodes with dense per-frame annotations; data source for trajectory-grounded affordance generation\",\n    \"ECoT: Robotic Control via Embodied Chain-of-Thought Reasoning (arXiv 2407.08693) — generic CoT baseline, 28% over OpenVLA\",\n    \"LangGap: Diagnosing and Closing the Language Gap in VLAs (arXiv 2603.00592, February 2026) — pi0.5 ignores language; targeted augmentation partially helps; language grounding remains open\",\n    \"FlowVLA: Visual CoT-based Motion Reasoning for VLA Models (arXiv 2508.18269) — motion-specific visual CoT, complementary modality\",\n    \"LIBERO-Plus: In-depth Robustness Analysis of VLA Models (CVPR 2026, arXiv 2510.13626) — 7-dimension robustness benchmark; primary evaluation\",\n    \"LIBERO-PRO: Robust and Fair Evaluation Beyond Memorization (arXiv 2510.03827) — 4-dimension robustness benchmark; models collapse to 0%\",\n    \"SimpleVLA-RL: Scaling VLA Training via RL (ICLR 2026, arXiv 2509.09674) — RL for VLAs, 97.6% LIBERO-Long\",\n    \"LaRA-VLA: Latent Reasoning for VLA Models (arXiv 2602.01166) — latent CoT, 90% latency reduction; supported if content doesn't matter\",\n    \"GST-VLA: Gaussian Spatial Tokens for 3D Depth-Aware VLA (arXiv 2603.09079) — geometric affordance thoughts\",\n    \"DualCoT-VLA: Visual-Linguistic CoT via Parallel Reasoning (arXiv 2603.22280) — parallel visual-linguistic reasoning\",\n    \"ACoT-VLA: Action Chain-of-Thought for VLA Models (CVPR 2026, arXiv 2601.11404) — coarse action trajectory reasoning\",\n    \"Affogato: Open-Vocabulary Affordance Grounding at Scale (arXiv 2506.12009, withdrawn from ICLR 2026; dataset publicly available) — 150K annotations for pre-training\",\n    \"RT-Affordance: Affordances as Versatile Intermediate Representations (ICRA 2025, arXiv 2411.02704)\",\n    \"AffordGrasp: In-Context Affordance Reasoning for Grasping (arXiv 2503.00778)\",\n    \"GLOVER++: Open-Vocabulary Affordance with HOVA-500K (arXiv 2505.11865)\",\n    \"Affordance-R1: RL for Affordance Reasoning in MLLMs (AAAI 2026, arXiv 2508.06206)\",\n    \"VLA-R1: Enhancing Reasoning in VLA Models (arXiv 2510.01623)\",\n    \"CoT-VLA: Visual Chain-of-Thought Reasoning for VLA Models (arXiv 2503.22020)\",\n    \"NORA: Small Open-Sourced Generalist VLA Model (arXiv 2504.19854) — Qwen2.5-VL-3B backbone reference\",\n    \"Context-Dependent Affordance Computation in VLMs (arXiv 2603.04419)\",\n    \"VLA Survey: An Action Tokenization Perspective (arXiv 2507.01925)\"\n  ],\n  \"description\": \"We propose OVA-VLA, combining a reusable technical pipeline for scalable open-vocabulary affordance supervision generation with a systematic controlled study of whether affordance-specific intermediate reasoning provides action-relevant grounding BEYOND entity-reference integrity under distribution shift. Directly motivated by two key findings — 'Altered Thoughts, Altered Actions' showing that VLA action decoders depend solely on entity references (not reasoning quality or structure) for generic CoT on standard LIBERO, and ECoT-Lite showing reasoning benefits come through representation learning with semantic content required — we ask: does affordance-specific content break the 'entity-reference-only' pattern because it encodes perturbation-invariant physical interaction properties? We evaluate six conditions on Qwen2.5-VL-3B with LoRA: no reasoning, generic CoT, entity-matched generic CoT, fixed 4-type affordance, open-vocabulary affordance (OVA-VLA), and entity-swapped affordance — with entity-reference-controlled conditions directly isolating whether affordance content provides value beyond entity naming. We additionally extend ECoT-Lite's mechanism analysis to content type comparison through representation learning ablations. Primary evaluation on LIBERO-Plus (7 perturbation dimensions; ProGAL-VLA's 85.5% as discussion baseline) and LIBERO-PRO (4 perturbation dimensions), with standard LIBERO for 'Altered Thoughts' replication. The OVA pipeline — Affogato pre-training + API-based trajectory-grounded annotation + curriculum training — is released as a reusable toolkit for generating open-vocabulary affordance supervision. The paper is framed as 'testing whether affordance reasoning provides grounding beyond entity references under distribution shift,' with a three-scenario contingency ensuring publishable contributions regardless of outcome. Total compute: ≤195 H100-hours; annotation cost: ~$300-450 via API.\",\n  \"project_name\": \"open_vocab_afford_vla\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 4)\nIssues: [\"USER REQUIREMENT MISMATCH PERSISTS: The user explicitly requested 'Contribution Type: Method contribution' with 'unified architecture design for open-vocabulary affordance and VLA' and 'end-to-end training strategy.' The proposal delivers a controlled comparison study with the OVA pipeline as a secondary technical contribution. While the pivot is defensible given the crowded landscape (PALM, CoA-VLA, RoboInter already do affordance+VLA), the proposal should either (a) explicitly acknowledge this departure with a reasoned argument for why a comparison study is MORE valuable than yet-another-architecture paper, or (b) elevate the OVA pipeline + curriculum training into a stronger method contribution with novel architectural elements (e.g., affordance-conditioned attention masking, contrastive affordance-action alignment loss) that distinguish it from simply 'generating different CoT text.'\", \"MISSING REFERENCE — TRAP (arXiv 2603.23117, March 2026): Adversarial patches hijack VLA CoT-reasoning, demonstrating that 'CoT strongly governs action generation, even when semantically misaligned with input instructions.' This finding nuances the Altered Thoughts premise: while Altered Thoughts shows post-hoc text corruption of generic CoT only affects entity references, TRAP shows that adversarially-generated CoT at the autoregressive level DOES control actions. The proposal should discuss this distinction — it actually SUPPORTS the hypothesis that if the model generates affordance-specific content (rather than having it post-hoc injected), the content may provide genuine grounding.\", \"MISSING REFERENCE — 'Do What You Say' (arXiv 2510.16281, ICRA 2026): Runtime reasoning-action alignment verification boosts robustness to semantic and visual OOD perturbations by 15%. This directly addresses the reasoning-action faithfulness question under distribution shift. The proposal's H3 (language grounding) and the broader theme of reasoning quality mattering for robustness should be discussed in relation to this work.\", \"WEAK NEGATIVE-RESULT CONTINGENCY: Scenario C ('affordance ≈ generic across all conditions') is framed as a 'strong negative result,' but AAAI/ICLR reviewers may view it as 'confirming the obvious' given Altered Thoughts already showed content doesn't matter. The proposal needs to argue more forcefully why testing this under distribution shift (where Altered Thoughts did NOT test) and with representation learning analysis (extending ECoT-Lite) constitutes a NOVEL negative finding rather than an expected extension. Consider adding a proactive mitigation: if preliminary results trend toward Scenario C, pivot some compute toward testing whether RL refinement (à la DeepThinkVLA's SFT→RL) differentially benefits affordance vs. generic reasoning.\", \"NOVELTY CEILING CONCERN: The core experimental contribution — comparing reasoning content types in VLAs under controlled conditions — is a well-designed empirical study but may be perceived as 'just running ablations' by top-venue reviewers. The OVA pipeline (Affogato pre-training + API annotation + curriculum) is the main technical novelty, but it's primarily an annotation engineering contribution. Consider adding at least one architecturally novel element: e.g., an affordance-specific attention mask that restricts the action decoder's attention to affordance-annotated visual regions during training, creating an architectural mechanism (not just different text content) that could amplify the affordance signal.\"]\nFeedback: The proposal has matured significantly across four rounds — the experimental design is now clean, the central question is well-motivated by Altered Thoughts + ECoT-Lite, the compute fits within budget, and the contingency plan is thorough. Three targeted improvements would bring this to passing quality:\n\n1. **Boost the method contribution**: Add one architecturally novel element beyond 'different text content.' For example: (a) an affordance-conditioned attention mask that modulates the action decoder's visual attention based on generated affordance descriptions (mechanistically linking content to grounding), or (b) a contrastive training loss that aligns affordance-reasoning hidden states with contact-point visual features from RoboInter-Data (creating a representation learning mechanism specific to affordance content). Either would transform the work from 'ablation study with a good annotation pipeline' to 'method contribution with a rigorous ablation study.'\n\n2. **Incorporate TRAP and 'Do What You Say'**: TRAP (2603.23117) actually SUPPORTS your hypothesis — it shows that CoT content at the autoregressive level genuinely governs actions, while Altered Thoughts tested post-hoc text replacement. Frame this distinction: 'Altered Thoughts tests whether post-hoc corruption of already-generated CoT affects actions; TRAP shows that the generation process itself matters. Our study tests whether TRAINING the model to generate affordance-specific content produces better representations (ECoT-Lite mechanism) and more robust grounding (Altered Thoughts + distribution shift).' 'Do What You Say' (2510.16281) is a direct comparison point for OOD reasoning faithfulness.\n\n3. **Strengthen Scenario C**: Add a proactive pivot plan: if preliminary results show affordance ≈ generic, allocate remaining compute to testing whether RL refinement (GRPO or DeepThinkVLA-style) differentially benefits affordance reasoning — this would test whether affordance content enables better reward signal extraction even if SFT alone doesn't differentiate. This makes the negative result more actionable and citable.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-18T20:11:58.549Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-18T20:11:58.549Z",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+## Round 1
+
+103 recorded events
+
+### User
+
+_source line 3 · 2026-05-18T20:11:58.591Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-18 (UTC).**
+
+## Original idea
+{
+  "title": "OVA-VLA: Does Affordance-Specific Reasoning Ground VLA Action Decoders Beyond Entity References? A Controlled Study Under Distribution Shift",
+  "core_problem": "Do affordance-specific reasoning tokens provide grounding to VLA action decoders BEYOND entity-reference integrity? 'Altered Thoughts, Altered Actions' (arXiv 2603.12717) reveals that on standard LIBERO, DeepThinkVLA's action decoder depends solely on entity references — sentence reordering, spatial-direction reversal, and even LLM-crafted wrong reasoning have negligible impact on success. ECoT-Lite (arXiv 2505.08243) shows reasoning benefits come primarily through representation learning, not expressivity, and that non-semantic thinking tokens hurt performance (-3.8%). Together, these findings suggest that generic CoT serves mainly as a carrier for entity names that the decoder extracts, while meaningful semantic structure is needed for representation learning benefits. This raises the central question: do affordance descriptions — which encode perturbation-invariant physical interaction properties (contact surfaces, grasp strategies, functional regions) — provide action-relevant grounding beyond what entity names alone supply? If so, affordance reasoning should resist the 'entity-reference-only' dependence pattern under distribution shift (where entity names alone are insufficient because objects change), and the representation learning benefits should be LARGER for affordance-specific content than for generic CoT (because affordance descriptions encode object-centric functional properties that transfer). This would establish that reasoning CONTENT — not just reasoning EXISTENCE or entity naming — independently contributes to VLA robustness.",
+  "opportunity": "Three converging findings create a precise research gap:\n\n(1) 'Altered Thoughts' shows entity-reference integrity is all that matters for generic CoT on standard LIBERO — but this was tested only on standard LIBERO (no distribution shift) and only with generic CoT (not affordance-specific reasoning). Under distribution shift, entity names alone may be INSUFFICIENT: when objects change (LIBERO-PRO 'manipulated objects'), camera viewpoints shift (LIBERO-Plus), or instructions are paraphrased, entity references become ambiguous or uninformative. Affordance descriptions that reference perturbation-invariant functional properties ('curved handle for power grasp,' 'flat surface for stable placement') may provide the ADDITIONAL grounding that generic entity references cannot.\n\n(2) ECoT-Lite shows reasoning helps primarily through representation learning, and semantic content matters (thinking tokens hurt). But no work has compared whether DIFFERENT types of semantic content (affordance-specific vs. generic plans) produce different representation learning effects. If affordance descriptions force the model to attend to functionally-relevant visual features (contact surfaces, edges, handles), they may produce more transferable representations than generic CoT that attends to layout-specific features.\n\n(3) ProGAL-VLA (arXiv 2604.09824) achieves 85.5% on LIBERO-Plus by addressing language ignorance through a modular pipeline (separate slow planner + YOLO-World + Metric3D + contrastive alignment). This sets the robustness SOTA but uses an architecturally complex, non-autoregressive approach. The question remains: can a simpler autoregressive approach achieve competitive robustness through better reasoning content alone?\n\nThe specific gap: no work has (a) tested whether 'Altered Thoughts' entity-reference-only dependence holds under distribution shift, (b) compared whether affordance-specific vs. generic CoT produces different representation learning effects (extending ECoT-Lite's mechanism analysis), (c) designed controlled experiments where entity references are held constant while reasoning structure/content varies — isolating whether affordance-specific physical grounding provides value beyond entity naming.",
+  "landscape": "**Entity-reference dependence and reasoning mechanisms:**\n\nAltered Thoughts, Altered Actions (arXiv 2603.12717, March 2026): Tests 7 CoT corruption types on DeepThinkVLA across 40 standard LIBERO tasks. Entity-name substitution causes -8.3pp overall (-19.3pp goal-conditioned, -45pp worst-case), while sentence reordering, spatial-direction reversal, random tokens, and LLM-crafted wrong reasoning have negligible impact. Establishes that action decoders depend on entity-reference integrity, not reasoning quality or structure. CENTRAL MOTIVATING FINDING for our study — we test whether this pattern holds under distribution shift and whether affordance descriptions break it.\n\nECoT-Lite / Training Strategies for Efficient Embodied Reasoning (arXiv 2505.08243, May 2025): Tests 6 training variants including thinking tokens. Key findings: (a) representation learning is the primary mechanism by which reasoning helps VLAs, (b) non-semantic thinking tokens HURT performance (-3.8%), confirming semantic content matters, (c) reasoning dropout matches full ECoT on LIBERO-90 (89.4% vs 90.8%), suggesting test-time reasoning generation is less important than training-time representation learning. Our study extends this by comparing whether DIFFERENT semantic content types (affordance vs. generic) produce different representation quality.\n\n**Robustness SOTA and language grounding:**\n\nProGAL-VLA (arXiv 2604.09824, April 2026): Current SOTA on LIBERO-Plus at 85.5% overall. Uses modular pipeline: Qwen2.5-VL-7B slow planner → YOLO-World detector → Metric3D depth → 3D entity-centric graph → Grounding Alignment Contrastive loss. Reduces language ignorance by 3-4x (language perturbation: 93.6%). Sets the bar for robustness but at significant architectural complexity. Our work tests whether better reasoning content in a simpler autoregressive architecture can approach this performance, and whether affordance reasoning specifically addresses language ignorance through instruction-independent physical grounding.\n\nLangGap (arXiv 2603.00592, February 2026): Diagnostic benchmark showing pi0.5 ignores language instructions. Targeted data augmentation improves from 0% to 90% (single-task) but only 0% to 28% (multi-task). Demonstrates language grounding remains an open problem.\n\n**Reasoning-augmented VLAs:**\n\nDeepThinkVLA (arXiv 2511.15669): Hybrid causal-bidirectional attention, SFT→RL. 97.0% standard LIBERO, 79.0% LIBERO-Plus. SFT-only variant shows 32pp robustness drop, identical to no-reasoning. Subject of 'Altered Thoughts' corruption study.\n\nSimpleVLA-RL (ICLR 2026, arXiv 2509.09674): RL framework for VLAs, 97.6% LIBERO-Long. Demonstrates RL's power but does not compare reasoning content types.\n\nECoT (arXiv 2407.08693): Free-form generic reasoning tokens, 28% over OpenVLA. No robustness evaluation.\n\nDualCoT-VLA (arXiv 2603.22280): Parallel visual-linguistic CoT with learnable queries, SOTA on LIBERO and RoboCasa.\n\nACoT-VLA (CVPR 2026, arXiv 2601.11404): Coarse action trajectory reasoning in action space.\n\nCoT-VLA (arXiv 2503.22020): Visual subgoal images as reasoning, 17% real-world improvement.\n\nFlowVLA (arXiv 2508.18269): Optical flow as visual CoT for motion reasoning.\n\nLaRA-VLA (arXiv 2602.01166): Latent CoT, 90% latency reduction. If our study finds reasoning content doesn't matter, this supports latent reasoning.\n\n**Affordance-based VLA reasoning:**\n\nPALM (arXiv 2601.07060, January 2026): End-to-end affordance reasoning VLA with 4 latent affordance types (object relevance, contact geometry, spatial placement, motion dynamics) via structured attention + diffusion policy. 91.8% LIBERO-LONG (+22.8pp over CoT-VLA). Uses LATENT affordance representations, not text-based CoT. Key difference from our work: we generate TEXTUAL affordance descriptions as intermediate reasoning tokens within an autoregressive sequence, enabling interpretable analysis of what the model reasons about. PALM's latent approach is complementary — if our study shows affordance content helps, PALM's latent encoding is validated; if not, our interpretable analysis reveals why not.\n\nCoA-VLA (ICCV 2025, arXiv 2412.20451): Fixed 4-type textual affordance reasoning via separate co-injection module.\n\nRoboInter (ICLR 2026, arXiv 2602.09973): 230K episodes with dense per-frame annotations including affordance boxes, contact points, grasp poses. Our data source.\n\nGST-VLA (arXiv 2603.09079): 3D Gaussian spatial tokens including grasp affordance contact geometry. Geometric, not semantic. 96.4% LIBERO.\n\nVLA-R1 (arXiv 2510.01623): Affordance-aligned CoT via GRPO RL.\n\nRT-Affordance (ICRA 2025, arXiv 2411.02704): Visual affordance images in hierarchical pipeline.\n\nAffordGrasp (arXiv 2503.00778): VLM in-context affordance reasoning for grasping, not unified VLA.\n\n**Open-vocabulary affordance data:**\n\nAffogato (arXiv 2506.12009, withdrawn from ICLR 2026 but dataset publicly available on HuggingFace): 150K 3D objects, >450 object classes, >350 affordance types with open-vocabulary text annotations. We use this for affordance vocabulary pre-training.\n\nGLOVER++ (arXiv 2505.11865): HOVA-500K dataset. Availability unclear.\n\n**Robustness benchmarks:**\n\nLIBERO-Plus (CVPR 2026, arXiv 2510.13626): 7 perturbation dimensions. Models drop from 95% to <30%.\n\nLIBERO-PRO (arXiv 2510.03827): 4 perturbation dimensions. Models collapse to 0%.\n\n**The specific gap:** (a) 'Altered Thoughts' tested entity-reference dependence only on standard LIBERO with generic CoT — not under distribution shift, not with affordance-specific reasoning; (b) ECoT-Lite identified representation learning as the mechanism but did not compare content types; (c) ProGAL-VLA achieves 85.5% LIBERO-Plus robustness through architectural complexity — no work tests whether better reasoning content in a simpler architecture achieves competitive robustness; (d) PALM uses latent affordance representations but doesn't compare against generic alternatives or provide interpretable analysis of what content matters; (e) no work designs entity-reference-controlled experiments isolating whether affordance structure provides value beyond entity naming.",
+  "approach": "We propose OVA-VLA, combining a reusable technical pipeline for scalable open-vocabulary affordance supervision generation with a systematic controlled study testing whether affordance-specific reasoning provides grounding beyond entity references under distribution shift.\n\n**Technical contribution — OVA Pipeline (the first scalable pipeline for open-vocabulary affordance supervision for VLA training):**\n\n(1) Affordance vocabulary pre-training on Affogato's publicly available 150K open-vocabulary affordance annotations (>450 object classes, >350 affordance types, HuggingFace). Trains the model to generate diverse affordance descriptions from visual inputs.\n\n(2) Trajectory-grounded affordance annotation: We generate open-vocabulary affordance descriptions for ~60K RoboInter-Data trajectories using Qwen2.5-VL-72B API, conditioned on BOTH RGB frames AND RoboInter-Data's existing affordance box coordinates and contact point annotations. Descriptions are validated against trajectory kinematics (grasp type must match gripper trajectory). Estimated API cost: ~$300-450.\n\n(3) Curriculum training: three-stage progression from structured (4-type CoA-VLA format) → semi-structured (8-10 dimensions) → fully open-vocabulary free-form descriptions.\n\nThis pipeline is released as a reusable toolkit: annotation prompts, validation scripts, curriculum schedule, and 60K affordance-annotated trajectories.\n\n**Backbone and conditions:** Built on Qwen2.5-VL-3B (following NORA's validated architecture), all conditions share the same backbone, LoRA configuration, training data, and compute budget:\n(A) No reasoning → action tokens (baseline)\n(B) Generic CoT → action tokens (ECoT-style: plans, sub-tasks, motion descriptions)\n(C) Fixed 4-type affordance → action tokens (CoA-VLA-style)\n(D) Open-vocabulary semantic affordance → action tokens (OVA-VLA)\n\n**Entity-reference-controlled experiments (directly addressing 'Altered Thoughts'):**\n\nThe key methodological innovation: we design conditions where entity references are HELD CONSTANT while reasoning structure/content varies, isolating whether affordance-specific content provides grounding beyond entity naming:\n\n(B-ent) Generic CoT with MATCHED entity references: same object names appear in reasoning as in condition (D), but surrounded by generic planning language rather than affordance descriptions. E.g., 'Move to the red mug and place it on the shelf' vs. 'The red mug has a curved handle affording a lateral power grasp; the shelf presents a flat surface for stable top-down placement.'\n(D-ent) Affordance reasoning with SHUFFLED entity references: affordance descriptions with correct physical interaction content but entity names randomly replaced (mimicking 'Altered Thoughts' entity-swap attack).\n\nComparing (B) vs. (B-ent) on standard LIBERO should replicate 'Altered Thoughts' finding (entity references dominate). Comparing (B-ent) vs. (D) on LIBERO-Plus/PRO tests whether affordance content provides additional grounding UNDER DISTRIBUTION SHIFT. Comparing (D) vs. (D-ent) tests whether affordance reasoning is MORE or LESS dependent on entity references than generic CoT.\n\n**Representation learning analysis (extending ECoT-Lite):**\n\nWe add ECoT-Lite-style ablations to test whether affordance-specific content produces better REPRESENTATIONS:\n(D-pretrain) Affordance pre-training only, no test-time affordance generation (isolates representation learning)\n(B-pretrain) Generic CoT pre-training only (control)\nComparing (D-pretrain) vs. (B-pretrain) directly tests whether affordance content produces more transferable internal representations, extending ECoT-Lite's mechanism analysis to content type comparison.\n\n**Primary evaluation on robustness benchmarks:**\n\n- LIBERO-Plus (CVPR 2026): 7 perturbation dimensions. Per-dimension analysis. ProGAL-VLA comparison at 85.5% as discussion baseline (different approach: modular vs. our autoregressive). We do NOT claim to beat ProGAL-VLA's modular approach but analyze whether affordance reasoning in a simpler architecture narrows the gap vs. generic CoT.\n- LIBERO-PRO: 4 perturbation dimensions, focus on 'manipulated objects' (where affordance descriptions should transfer to novel objects with similar functional properties) and 'task instructions.'\n- Standard LIBERO: Reported for comparison + replication of 'Altered Thoughts' entity-reference findings with our models.\n- SimplerEnv: Cross-embodiment evaluation targeting manipulation mode diversity.\n\n**Operationalized hypotheses (sharpened by 'Altered Thoughts' + ECoT-Lite):**\n\n- H1 (Beyond entity references under shift): On LIBERO-Plus/PRO, condition (D) outperforms entity-matched (B-ent) by ≥5%, while on standard LIBERO the gap is ≤2%. This would demonstrate that affordance content provides grounding BEYOND entity references specifically under distribution shift. Stratified by perturbation type: largest advantage expected on 'manipulated objects' (LIBERO-PRO) and 'camera viewpoint' (LIBERO-Plus) where entity references become ambiguous.\n\n- H2 (Representation learning quality): (D-pretrain) outperforms (B-pretrain) by ≥3% on LIBERO-Plus, demonstrating that affordance-specific content produces more transferable representations than generic CoT — extending ECoT-Lite's mechanism finding to content type comparison.\n\n- H3 (Language grounding): Under LIBERO-Plus 'language instruction' perturbation, (D) shows less performance variance than (B) because affordance descriptions provide instruction-independent physical grounding. This tests whether affordance reasoning addresses the language ignorance problem (LIBERO-Plus, LangGap) through a different mechanism than ProGAL-VLA's contrastive alignment.\n\n- H4 (Entity-reference dependence asymmetry): On standard LIBERO, (D-ent) entity-swap attack causes LESS degradation than (B-ent) entity-swap, because affordance descriptions provide alternative grounding pathways (physical interaction properties) that partially compensate for wrong entity references. This would show that affordance reasoning is MORE ROBUST to entity-reference corruption.\n\n**Contingency plan — publishable under all outcomes:**\n\nScenario A (Affordance >> Generic under shift, ≥5% on LIBERO-Plus/PRO): Method contribution (OVA pipeline) + evidence that reasoning content matters for robustness + taxonomy of when affordance reasoning helps. Strongest paper.\n\nScenario B (Affordance > Generic, modest 2-5% or mixed across perturbation types): Primary contribution: (a) OVA pipeline as reusable technical contribution, (b) first entity-reference-controlled analysis showing WHERE affordance content provides value beyond naming, (c) representation learning comparison extending ECoT-Lite, (d) per-perturbation robustness profiles.\n\nScenario C (Affordance ≈ Generic across all conditions, including entity-controlled experiments): Strong negative result: (a) demonstrates 'Altered Thoughts' entity-reference-only pattern extends to distribution shift — reasoning CONTENT beyond entity names doesn't matter for robustness, (b) representation learning analysis shows affordance and generic content produce equivalent representations (extending ECoT-Lite), (c) supports latent reasoning direction (PALM, LaRA-VLA) — if content doesn't matter, encode reasoning in latent space, (d) OVA pipeline released as community resource regardless.\n\nThe paper is framed as 'testing whether affordance reasoning provides grounding beyond entity references under distribution shift' — a question whose answer is valuable regardless of direction, directly motivated by 'Altered Thoughts' and ECoT-Lite.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~150h H100 (LoRA training 3B model: ~12h/run × 6 conditions [A,B,B-ent,C,D,D-ent] × 2 seeds = 144h; Affogato pre-training: ~3h; evaluation: ~3h. Note: representation learning ablations [D-pretrain, B-pretrain] reuse pre-training runs with added evaluation only)",
+      "gpu_utilization": "Low (~30-40%). GPU idle during annotation quality review and analysis.",
+      "timeline": "8-10 weeks",
+      "team": "1 researcher with VLA experience",
+      "annotation_cost": "$300-450 (Qwen2.5-VL-72B API for 60K trajectories + equivalent annotations for all conditions)",
+      "estimated_gpu_cost": "$300-600 (at $2-4/hr H100 rental)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~180h H100 (LoRA training: ~12h/run × 6 conditions × 2 seeds + 2 representation ablations = 160h; Affogato pre-training: ~3h; evaluation LIBERO-Plus/PRO + standard LIBERO: ~12h; entity-reference analysis: ~5h)",
+      "gpu_utilization": "Moderate (~60-70%). Agent queues experiments, human reviews entity-reference analysis.",
+      "timeline": "5-7 weeks",
+      "team": "1 researcher, ~30min/day review",
+      "annotation_cost": "$300-450 (API-based)",
+      "claude_api_cost": "$150-300 (~2000-4000 agent turns)",
+      "estimated_gpu_cost": "$360-720",
+      "risk_note": "Annotation quality validated by cross-checking against RoboInter-Data contact points and gripper trajectories. Human spot-checks 500 samples."
+    },
+    "auto_research": {
+      "gpu_hours": "~195h H100 (LoRA training: ~12h/run × 6 conditions × 2 seeds = 144h; Affogato pre-training: ~3h; 2 representation ablations: ~24h; evaluation LIBERO-Plus/PRO + standard LIBERO + SimplerEnv: ~16h; entity-reference analysis: ~8h)",
+      "gpu_utilization": "High (~85-90%). Agent runs 24/7: queues experiments, performs automated analysis between runs.",
+      "timeline": "10-14 days with 2 H100 GPUs",
+      "team": "0 (3-hour setup: download RoboInter-Data, Affogato dataset, base model, configure API keys, install LIBERO-Plus/PRO)",
+      "annotation_cost": "$300-450 (API-based, runs in parallel with GPU training)",
+      "claude_api_cost": "$300-600 (~4000-8000 agent turns)",
+      "estimated_gpu_cost": "$390-780",
+      "speed_bottleneck": "Sequential LoRA training runs (6 conditions × 2 seeds = 12 runs + 2 ablations = 14 runs). With 2 H100s, two runs overlap (~7-10 days for training). Evaluation is parallelizable.",
+      "risk_note": "Automated affordance quality assessment: trajectory-contact consistency scoring flags descriptions where grasp type contradicts gripper approach vector. Agent iterates annotation prompts based on consistency scores."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (abstract deadline July 21, paper deadline July 28, 2026; ~9 weeks from today; primary target; feasible with auto-research timeline of 10-14 days + 7 weeks for writing, analysis, supplementary experiments)",
+    "ICLR 2027 (expected deadline Sep-Oct 2026; ~4-5 months; comfortable backup; allows additional ablations, RL extension experiments)",
+    "CoRL 2026 (abstract deadline May 26, paper deadline May 29, 2026; INFEASIBLE — 8-11 days from today)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Altered Thoughts, Altered Actions: Probing CoT Vulnerabilities in VLA Robotic Manipulation (arXiv 2603.12717, March 2026) — CENTRAL MOTIVATING FINDING: entity-reference integrity is all that matters for generic CoT on standard LIBERO; 7 corruption types, only entity-swap causes degradation (-8.3pp)",
+    "Training Strategies for Efficient Embodied Reasoning / ECoT-Lite (arXiv 2505.08243, May 2025) — representation learning is the primary mechanism; thinking tokens hurt (-3.8%); semantic content matters; we extend to content type comparison",
+    "ProGAL-VLA: Grounded Alignment through Prospective Reasoning (arXiv 2604.09824, April 2026) — current SOTA on LIBERO-Plus at 85.5%; modular pipeline (slow planner + YOLO-World + Metric3D + GAC loss); reduces language ignorance 3-4x; discussion baseline",
+    "PALM: Progress-Aware Policy Learning via Affordance Reasoning (arXiv 2601.07060, January 2026) — end-to-end affordance VLA with 4 latent affordance types via structured attention + diffusion policy; 91.8% LIBERO-LONG; uses latent representations vs. our text-based approach",
+    "DeepThinkVLA: Enhancing Reasoning Capability of VLA Models (arXiv 2511.15669) — hybrid attention + SFT→RL; 97% LIBERO / 79% LIBERO-Plus; SFT-only CoT shows no robustness benefit",
+    "CoA-VLA: Visual-Textual Chain-of-Affordance for VLA Models (ICCV 2025, arXiv 2412.20451) — fixed 4-type affordance reasoning baseline",
+    "RoboInter: Holistic Intermediate Representation Suite (ICLR 2026, arXiv 2602.09973) — 230K episodes with dense per-frame annotations; data source for trajectory-grounded affordance generation",
+    "ECoT: Robotic Control via Embodied Chain-of-Thought Reasoning (arXiv 2407.08693) — generic CoT baseline, 28% over OpenVLA",
+    "LangGap: Diagnosing and Closing the Language Gap in VLAs (arXiv 2603.00592, February 2026) — pi0.5 ignores language; targeted augmentation partially helps; language grounding remains open",
+    "FlowVLA: Visual CoT-based Motion Reasoning for VLA Models (arXiv 2508.18269) — motion-specific visual CoT, complementary modality",
+    "LIBERO-Plus: In-depth Robustness Analysis of VLA Models (CVPR 2026, arXiv 2510.13626) — 7-dimension robustness benchmark; primary evaluation",
+    "LIBERO-PRO: Robust and Fair Evaluation Beyond Memorization (arXiv 2510.03827) — 4-dimension robustness benchmark; models collapse to 0%",
+    "SimpleVLA-RL: Scaling VLA Training via RL (ICLR 2026, arXiv 2509.09674) — RL for VLAs, 97.6% LIBERO-Long",
+    "LaRA-VLA: Latent Reasoning for VLA Models (arXiv 2602.01166) — latent CoT, 90% latency reduction; supported if content doesn't matter",
+    "GST-VLA: Gaussian Spatial Tokens for 3D Depth-Aware VLA (arXiv 2603.09079) — geometric affordance thoughts",
+    "DualCoT-VLA: Visual-Linguistic CoT via Parallel Reasoning (arXiv 2603.22280) — parallel visual-linguistic reasoning",
+    "ACoT-VLA: Action Chain-of-Thought for VLA Models (CVPR 2026, arXiv 2601.11404) — coarse action trajectory reasoning",
+    "Affogato: Open-Vocabulary Affordance Grounding at Scale (arXiv 2506.12009, withdrawn from ICLR 2026; dataset publicly available) — 150K annotations for pre-training",
+    "RT-Affordance: Affordances as Versatile Intermediate Representations (ICRA 2025, arXiv 2411.02704)",
+    "AffordGrasp: In-Context Affordance Reasoning for Grasping (arXiv 2503.00778)",
+    "GLOVER++: Open-Vocabulary Affordance with HOVA-500K (arXiv 2505.11865)",
+    "Affordance-R1: RL for Affordance Reasoning in MLLMs (AAAI 2026, arXiv 2508.06206)",
+    "VLA-R1: Enhancing Reasoning in VLA Models (arXiv 2510.01623)",
+    "CoT-VLA: Visual Chain-of-Thought Reasoning for VLA Models (arXiv 2503.22020)",
+    "NORA: Small Open-Sourced Generalist VLA Model (arXiv 2504.19854) — Qwen2.5-VL-3B backbone reference",
+    "Context-Dependent Affordance Computation in VLMs (arXiv 2603.04419)",
+    "VLA Survey: An Action Tokenization Perspective (arXiv 2507.01925)"
+  ],
+  "description": "We propose OVA-VLA, combining a reusable technical pipeline for scalable open-vocabulary affordance supervision generation with a systematic controlled study of whether affordance-specific intermediate reasoning provides action-relevant grounding BEYOND entity-reference integrity under distribution shift. Directly motivated by two key findings — 'Altered Thoughts, Altered Actions' showing that VLA action decoders depend solely on entity references (not reasoning quality or structure) for generic CoT on standard LIBERO, and ECoT-Lite showing reasoning benefits come through representation learning with semantic content required — we ask: does affordance-specific content break the 'entity-reference-only' pattern because it encodes perturbation-invariant physical interaction properties? We evaluate six conditions on Qwen2.5-VL-3B with LoRA: no reasoning, generic CoT, entity-matched generic CoT, fixed 4-type affordance, open-vocabulary affordance (OVA-VLA), and entity-swapped affordance — with entity-reference-controlled conditions directly isolating whether affordance content provides value beyond entity naming. We additionally extend ECoT-Lite's mechanism analysis to content type comparison through representation learning ablations. Primary evaluation on LIBERO-Plus (7 perturbation dimensions; ProGAL-VLA's 85.5% as discussion baseline) and LIBERO-PRO (4 perturbation dimensions), with standard LIBERO for 'Altered Thoughts' replication. The OVA pipeline — Affogato pre-training + API-based trajectory-grounded annotation + curriculum training — is released as a reusable toolkit for generating open-vocabulary affordance supervision. The paper is framed as 'testing whether affordance reasoning provides grounding beyond entity references under distribution shift,' with a three-scenario contingency ensuring publishable contributions regardless of outcome. Total compute: ≤195 H100-hours; annotation cost: ~$300-450 via API.",
+  "project_name": "open_vocab_afford_vla",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 4)
+Issues: ["USER REQUIREMENT MISMATCH PERSISTS: The user explicitly requested 'Contribution Type: Method contribution' with 'unified architecture design for open-vocabulary affordance and VLA' and 'end-to-end training strategy.' The proposal delivers a controlled comparison study with the OVA pipeline as a secondary technical contribution. While the pivot is defensible given the crowded landscape (PALM, CoA-VLA, RoboInter already do affordance+VLA), the proposal should either (a) explicitly acknowledge this departure with a reasoned argument for why a comparison study is MORE valuable than yet-another-architecture paper, or (b) elevate the OVA pipeline + curriculum training into a stronger method contribution with novel architectural elements (e.g., affordance-conditioned attention masking, contrastive affordance-action alignment loss) that distinguish it from simply 'generating different CoT text.'", "MISSING REFERENCE — TRAP (arXiv 2603.23117, March 2026): Adversarial patches hijack VLA CoT-reasoning, demonstrating that 'CoT strongly governs action generation, even when semantically misaligned with input instructions.' This finding nuances the Altered Thoughts premise: while Altered Thoughts shows post-hoc text corruption of generic CoT only affects entity references, TRAP shows that adversarially-generated CoT at the autoregressive level DOES control actions. The proposal should discuss this distinction — it actually SUPPORTS the hypothesis that if the model generates affordance-specific content (rather than having it post-hoc injected), the content may provide genuine grounding.", "MISSING REFERENCE — 'Do What You Say' (arXiv 2510.16281, ICRA 2026): Runtime reasoning-action alignment verification boosts robustness to semantic and visual OOD perturbations by 15%. This directly addresses the reasoning-action faithfulness question under distribution shift. The proposal's H3 (language grounding) and the broader theme of reasoning quality mattering for robustness should be discussed in relation to this work.", "WEAK NEGATIVE-RESULT CONTINGENCY: Scenario C ('affordance ≈ generic across all conditions') is framed as a 'strong negative result,' but AAAI/ICLR reviewers may view it as 'confirming the obvious' given Altered Thoughts already showed content doesn't matter. The proposal needs to argue more forcefully why testing this under distribution shift (where Altered Thoughts did NOT test) and with representation learning analysis (extending ECoT-Lite) constitutes a NOVEL negative finding rather than an expected extension. Consider adding a proactive mitigation: if preliminary results trend toward Scenario C, pivot some compute toward testing whether RL refinement (à la DeepThinkVLA's SFT→RL) differentially benefits affordance vs. generic reasoning.", "NOVELTY CEILING CONCERN: The core experimental contribution — comparing reasoning content types in VLAs under controlled conditions — is a well-designed empirical study but may be perceived as 'just running ablations' by top-venue reviewers. The OVA pipeline (Affogato pre-training + API annotation + curriculum) is the main technical novelty, but it's primarily an annotation engineering contribution. Consider adding at least one architecturally novel element: e.g., an affordance-specific attention mask that restricts the action decoder's attention to affordance-annotated visual regions during training, creating an architectural mechanism (not just different text content) that could amplify the affordance signal."]
+Feedback: The proposal has matured significantly across four rounds — the experimental design is now clean, the central question is well-motivated by Altered Thoughts + ECoT-Lite, the compute fits within budget, and the contingency plan is thorough. Three targeted improvements would bring this to passing quality:
+
+1. **Boost the method contribution**: Add one architecturally novel element beyond 'different text content.' For example: (a) an affordance-conditioned attention mask that modulates the action decoder's visual attention based on generated affordance descriptions (mechanistically linking content to grounding), or (b) a contrastive training loss that aligns affordance-reasoning hidden states with contact-point visual features from RoboInter-Data (creating a representation learning mechanism specific to affordance content). Either would transform the work from 'ablation study with a good annotation pipeline' to 'method contribution with a rigorous ablation study.'
+
+2. **Incorporate TRAP and 'Do What You Say'**: TRAP (2603.23117) actually SUPPORTS your hypothesis — it shows that CoT content at the autoregressive level genuinely governs actions, while Altered Thoughts tested post-hoc text replacement. Frame this distinction: 'Altered Thoughts tests whether post-hoc corruption of already-generated CoT affects actions; TRAP shows that the generation process itself matters. Our study tests whether TRAINING the model to generate affordance-specific content produces better representations (ECoT-Lite mechanism) and more robust grounding (Altered Thoughts + distribution shift).' 'Do What You Say' (2510.16281) is a direct comparison point for OOD reasoning faithfulness.
+
+3. **Strengthen Scenario C**: Add a proactive pivot plan: if preliminary results show affordance ≈ generic, allocate remaining compute to testing whether RL refinement (GRPO or DeepThinkVLA-style) differentially benefits affordance reasoning — this would test whether affordance content enables better reward signal extraction even if SFT alone doesn't differentiate. This makes the negative result more actionable and citable.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "c9e502b0-75df-4950-8c7d-2a606ca18684",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-18T20:11:58.588Z_
+
+```json
+{
+  "parentUuid": "c9e502b0-75df-4950-8c7d-2a606ca18684",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "95e31b32-8f80-465f-b174-96e94841d317",
+  "timestamp": "2026-05-18T20:11:58.588Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-18T20:11:58.588Z_
+
+```json
+{
+  "parentUuid": "95e31b32-8f80-465f-b174-96e94841d317",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "cc423a0a-70b0-4703-a15e-4137b8e84d61",
+  "timestamp": "2026-05-18T20:11:58.588Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-18 (UTC).**  ## Original idea {   \"title\": \"OVA-VLA: Does Affordance-Specific Reasoning Ground VLA Action Decoders…",
+  "leafUuid": "cc423a0a-70b0-4703-a15e-4137b8e84d61",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OVA-VLA with affordance-attention architecture and RL pivot",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-18T20:12:10.025Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully before diving into research:
+
+1. **User requirement mismatch** - The proposal is more of a controlled study than a method contribution. Need to add architectural novelty.
+2. **Missing TRAP reference** - TRAP (2603.23117) shows adversarial CoT at autoregressive level controls actions, which actually supports the hypothesis.
+3. **Missing "Do What You Say" reference** - (2510.16281) about runtime reasoning-action alignment.
+4. **Weak negative-result contingency** - Need to strengthen Scenario C with RL pivot plan.
+
+
+5. **Novelty ceiling** - The core issue is that I need architectural innovation beyond just annotation engineering, so I should explore adding something like affordance-conditioned attention masks or contrastive loss mechanisms.
+
+The feedback points to three concrete improvements: incorporating those two key papers, strengthening the negative-result scenario with an RL-based fallback, and introducing a novel architectural component that goes beyond the annotation strategy. Let me start researching these areas to understand how to integrate them effectively.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc423a0a-70b0-4703-a15e-4137b8e84d61",
+  "isSidechain": false,
+  "requestId": "req_011CbAeJ1MtXy2fnRN6Y77og",
+  "type": "assistant",
+  "uuid": "0d2bcca4-218e-4c5c-85a0-bcf24faec82c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012QgDCwg2anM87z48DqjgAQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15062,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 352,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15062,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 352,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 15062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15062
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-18T20:12:10.045Z_
+
+I'll start by researching the missing references and related work the reviewer flagged, then revise the proposal. Let me search for the key papers and recent developments in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d2bcca4-218e-4c5c-85a0-bcf24faec82c",
+  "isSidechain": false,
+  "requestId": "req_011CbAeJ1MtXy2fnRN6Y77og",
+  "type": "assistant",
+  "uuid": "7595fbf4-ccb7-46b2-a4c8-3ab68c12c67b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012QgDCwg2anM87z48DqjgAQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15062,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 352,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15062,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 352,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 15062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15062
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-18T20:12:10.108Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01K7zrjnxJ5LoBq4TwA7UXRg`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7595fbf4-ccb7-46b2-a4c8-3ab68c12c67b",
+  "isSidechain": false,
+  "requestId": "req_011CbAeJ1MtXy2fnRN6Y77og",
+  "type": "assistant",
+  "uuid": "708dcd5c-8502-4713-b6a1-2f5ea4662862",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012QgDCwg2anM87z48DqjgAQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15062,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 352,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15062,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 352,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 15062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15062
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T20:12:10.115Z_
+
+<details><summary>↩ Tool result · `toolu_01K7zrjnxJ5LoBq4TwA7UXRg`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "708dcd5c-8502-4713-b6a1-2f5ea4662862",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "31ce089a-6589-42c6-adc9-bfc160d07025",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "708dcd5c-8502-4713-b6a1-2f5ea4662862",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-18T20:12:13.055Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now search for the key papers and topics the reviewer flagged. I'll run multiple searches in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31ce089a-6589-42c6-adc9-bfc160d07025",
+  "isSidechain": false,
+  "requestId": "req_011CbAeJrZajzVz4STsdAJt7",
+  "type": "assistant",
+  "uuid": "700d667b-7ab6-48c2-aeda-591f4b5b3311",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VVJfKKcnKVA2XhQM94LY3D",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1371,
+      "cache_read_input_tokens": 26903,
+      "output_tokens": 126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1371,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 126,
+          "cache_read_input_tokens": 26903,
+          "cache_creation_input_tokens": 1371,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1371
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-18T20:12:13.523Z_
+
+Let me research the missing references and related work in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "700d667b-7ab6-48c2-aeda-591f4b5b3311",
+  "isSidechain": false,
+  "requestId": "req_011CbAeJrZajzVz4STsdAJt7",
+  "type": "assistant",
+  "uuid": "f324df22-80b3-4474-8540-c2fa299daa97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VVJfKKcnKVA2XhQM94LY3D",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1371,
+      "cache_read_input_tokens": 26903,
+      "output_tokens": 126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1371,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 126,
+          "cache_read_input_tokens": 26903,
+          "cache_creation_input_tokens": 1371,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1371
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-18T20:12:13.757Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Eua1nQdvjLAXwiZeWt2ywP`</summary>
+
+```json
+{
+  "query": "TRAP arXiv 2603.23117 adversarial patches VLA CoT reasoning hijack"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f324df22-80b3-4474-8540-c2fa299daa97",
+  "isSidechain": false,
+  "requestId": "req_011CbAeJrZajzVz4STsdAJt7",
+  "type": "assistant",
+  "uuid": "3635c05e-8a06-4662-8943-16a7202981cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VVJfKKcnKVA2XhQM94LY3D",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1371,
+      "cache_read_input_tokens": 26903,
+      "output_tokens": 126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1371,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 126,
+          "cache_read_input_tokens": 26903,
+          "cache_creation_input_tokens": 1371,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1371
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T20:12:21.477Z_
+
+<details><summary>↩ Tool result · `toolu_01Eua1nQdvjLAXwiZeWt2ywP`</summary>
+
+```text
+Web search results for query: "TRAP arXiv 2603.23117 adversarial patches VLA CoT reasoning hijack"
+
+Links: [{"title":"TRAP: Hijacking VLA CoT-Reasoning via Adversarial Patches","url":"https://arxiv.org/pdf/2603.23117"},{"title":"TRAP: Hijacking VLA CoT-Reasoning via Adversarial Patches","url":"https://arxiv.org/html/2603.23117v1"},{"title":"Model-agnostic Adversarial Attack and Defense for Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13237"},{"title":"Model-agnostic Adversarial Attack and Defense for Vision-Language-Action Models","url":"https://arxiv.org/pdf/2510.13237"},{"title":"When Robots Obey the Patch: Universal Transferable Patch Attacks on","url":"https://arxiv.org/pdf/2511.21192"}]
+
+Based on the search results, here's what I found about TRAP (arXiv 2603.23117):
+
+TRAP is a paper about hijacking Vision-Language-Action (VLA) models' Chain-of-Thought (CoT) reasoning capabilities, authored by Zhengxian Huang, Wenjun Zhu, Haoxuan Qiu, Xiaoyu Ji, and Wenyuan Xu.
+
+**Key Findings:**
+
+The paper reveals that the security of CoT-based reasoning mechanisms remains largely unexplored, and that CoT reasoning introduces a novel attack vector for targeted control hijacking—for example, causing a robot to mistakenly deliver a knife to a person instead of an apple—without modifying the user's instruction.
+
+**Attack Method:**
+
+TRAP uses an adversarial patch (e.g., a coaster placed on the table) to corrupt intermediate CoT reasoning and hijack the VLA's output. The patch was implemented by printing it on paper in a real-world setting.
+
+**Evaluation:**
+
+Extensive evaluations were conducted across 3 mainstream VLA architectures and 3 CoT reasoning paradigms to validate the attack's effectiveness.
+
+The paper highlights an important security vulnerability in reasoning-based VLA systems and demonstrates that physical adversarial patches can effectively hijack the models' intended behavior.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3635c05e-8a06-4662-8943-16a7202981cf",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "c55a304e-4986-40a3-bc9b-477cca977834",
+  "toolUseResult": {
+    "query": "TRAP arXiv 2603.23117 adversarial patches VLA CoT reasoning hijack",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FYahZyQGRLK9N9v7fQSUeW",
+        "content": [
+          {
+            "title": "TRAP: Hijacking VLA CoT-Reasoning via Adversarial Patches",
+            "url": "https://arxiv.org/pdf/2603.23117"
+          },
+          {
+            "title": "TRAP: Hijacking VLA CoT-Reasoning via Adversarial Patches",
+            "url": "https://arxiv.org/html/2603.23117v1"
+          },
+          {
+            "title": "Model-agnostic Adversarial Attack and Defense for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13237"
+          },
+          {
+            "title": "Model-agnostic Adversarial Attack and Defense for Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2510.13237"
+          },
+          {
+            "title": "When Robots Obey the Patch: Universal Transferable Patch Attacks on",
+            "url": "https://arxiv.org/pdf/2511.21192"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about TRAP (arXiv 2603.23117):\n\nTRAP is a paper about hijacking Vision-Language-Action (VLA) models' Chain-of-Thought (CoT) reasoning capabilities, authored by Zhengxian Huang, Wenjun Zhu, Haoxuan Qiu, Xiaoyu Ji, and Wenyuan Xu.\n\n**Key Findings:**\n\nThe paper reveals that the security of CoT-based reasoning mechanisms remains largely unexplored, and that CoT reasoning introduces a novel attack vector for targeted control hijacking—for example, causing a robot to mistakenly deliver a knife to a person instead of an apple—without modifying the user's instruction.\n\n**Attack Method:**\n\nTRAP uses an adversarial patch (e.g., a coaster placed on the table) to corrupt intermediate CoT reasoning and hijack the VLA's output. The patch was implemented by printing it on paper in a real-world setting.\n\n**Evaluation:**\n\nExtensive evaluations were conducted across 3 mainstream VLA architectures and 3 CoT reasoning paradigms to validate the attack's effectiveness.\n\nThe paper highlights an important security vulnerability in reasoning-based VLA systems and demonstrates that physical adversarial patches can effectively hijack the models' intended behavior."
+    ],
+    "durationSeconds": 7.714893176000001
+  },
+  "sourceToolAssistantUUID": "3635c05e-8a06-4662-8943-16a7202981cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-18T20:12:24.111Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01V9omx3Ae5NjDMciJW9zrDZ`</summary>
+
+```json
+{
+  "query": "\"Do What You Say\" arXiv 2510.16281 reasoning action alignment VLA robustness"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c55a304e-4986-40a3-bc9b-477cca977834",
+  "isSidechain": false,
+  "requestId": "req_011CbAeKgtwSyPgfXkL8zTuD",
+  "type": "assistant",
+  "uuid": "4bb67b1f-599b-4900-b008-0911d7991d9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014x4UPXD799CzRoJZbcj3fT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 698,
+      "cache_read_input_tokens": 28274,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 698,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 28274,
+          "cache_creation_input_tokens": 698,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 698
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-18T20:12:31.413Z_
+
+<details><summary>↩ Tool result · `toolu_01V9omx3Ae5NjDMciJW9zrDZ`</summary>
+
+```text
+Web search results for query: ""Do What You Say" arXiv 2510.16281 reasoning action alignment VLA robustness"
+
+Links: [{"title":"[2510.16281] Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification","url":"https://arxiv.org/abs/2510.16281"},{"title":"Paper page - Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification","url":"https://huggingface.co/papers/2510.16281"},{"title":"(PDF) Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification","url":"https://www.researchgate.net/publication/396714890_Do_What_You_Say_Steering_Vision-Language-Action_Models_via_Runtime_Reasoning-Action_Alignment_Verification"},{"title":"Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification","url":"https://arxiv.org/html/2510.16281v1"},{"title":"Do What You Say: Steering Vision-Language-Action Models via","url":"https://arxiv.org/pdf/2510.16281"},{"title":"Self-Supervised Bootstrapping of Action-Predictive Embodied Reasoning","url":"https://arxiv.org/html/2602.08167v1"},{"title":"Mechanistic interpretability for steering vision-language-action models","url":"https://www.emergentmind.com/papers/2509.00328"}]
+
+Based on the search results, here's what I found about the arXiv paper 2510.16281:
+
+## "Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification"
+
+Reasoning Vision Language Action (VLA) models improve robotic instruction-following by generating step-by-step textual plans before low-level actions, an approach inspired by Chain-of-Thought (CoT) reasoning in language models. However, even with a correct textual plan, the generated actions can still miss the intended outcomes in the plan, especially in out-of-distribution (OOD) scenarios.
+
+**The Proposed Method:**
+
+The authors formalize this phenomenon as a lack of embodied CoT faithfulness, and introduce a training-free, runtime policy steering method for reasoning-action alignment. Given a reasoning VLA's intermediate textual plan, their framework samples multiple candidate action sequences from the same model, predicts their outcomes via simulation, and uses a pre-trained Vision-Language Model (VLM) to select the sequence whose outcome best aligns with the VLA's own textual plan.
+
+**Key Benefits:**
+
+Only executing action sequences that align with the textual reasoning turns the base VLA's natural action diversity from a source of error into a strength, boosting robustness to semantic and visual OOD perturbations and enabling novel behavior composition. The authors demonstrate up to 15% performance gain over prior work on behavior composition tasks and scales with compute and data diversity.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4bb67b1f-599b-4900-b008-0911d7991d9b",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "4560b52d-0945-47c9-bc42-51a1b6acf72f",
+  "toolUseResult": {
+    "query": "\"Do What You Say\" arXiv 2510.16281 reasoning action alignment VLA robustness",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016jaHuyex5r4GLBFT2zoras",
+        "content": [
+          {
+            "title": "[2510.16281] Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification",
+            "url": "https://arxiv.org/abs/2510.16281"
+          },
+          {
+            "title": "Paper page - Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification",
+            "url": "https://huggingface.co/papers/2510.16281"
+          },
+          {
+            "title": "(PDF) Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification",
+            "url": "https://www.researchgate.net/publication/396714890_Do_What_You_Say_Steering_Vision-Language-Action_Models_via_Runtime_Reasoning-Action_Alignment_Verification"
+          },
+          {
+            "title": "Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification",
+            "url": "https://arxiv.org/html/2510.16281v1"
+          },
+          {
+            "title": "Do What You Say: Steering Vision-Language-Action Models via",
+            "url": "https://arxiv.org/pdf/2510.16281"
+          },
+          {
+            "title": "Self-Supervised Bootstrapping of Action-Predictive Embodied Reasoning",
+            "url": "https://arxiv.org/html/2602.08167v1"
+          },
+          {
+            "title": "Mechanistic interpretability for steering vision-language-action models",
+            "url": "https://www.emergentmind.com/papers/2509.00328"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the arXiv paper 2510.16281:\n\n## \"Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification\"\n\nReasoning Vision Language Action (VLA) models improve robotic instruction-following by generating step-by-step textual plans before low-level actions, an approach inspired by Chain-of-Thought (CoT) reasoning in language models. However, even with a correct textual plan, the generated actions can still miss the intended outcomes in the plan, especially in out-of-distribution (OOD) scenarios.\n\n**The Proposed Method:**\n\nThe authors formalize this phenomenon as a lack of embodied CoT faithfulness, and introduce a training-free, runtime policy steering method for reasoning-action alignment. Given a reasoning VLA's intermediate textual plan, their framework samples multiple candidate action sequences from the same model, predicts their outcomes via simulation, and uses a pre-trained Vision-Language Model (VLM) to select the sequence whose outcome best aligns with the VLA's own textual plan.\n\n**Key Benefits:**\n\nOnly executing action sequences that align with the textual reasoning turns the base VLA's natural action diversity from a source of error into a strength, boosting robustness to semantic and visual OOD perturbations and enabling novel behavior composition. The authors demonstrate up to 15% performance gain over prior work on behavior composition tasks and scales with compute and data diversity."
+    ],
+    "durationSeconds": 7.2979834420000005
+  },
+  "sourceToolAssistantUUID": "4bb67b1f-599b-4900-b008-0911d7991d9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-18T20:12:34.277Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RziAEdhhp1sKczerF6zb8s`</summary>
+
+```json
+{
+  "query": "affordance-conditioned attention mechanism robot manipulation VLA 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4560b52d-0945-47c9-bc42-51a1b6acf72f",
+  "isSidechain": false,
+  "requestId": "req_011CbAeLRgv78GJYneobNYhB",
+  "type": "assistant",
+  "uuid": "f689fd16-8fe3-4f6f-91ae-11537c7c98d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NKnHtrfnfFpW2wJ8Dwx8iF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 814,
+      "cache_read_input_tokens": 28972,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 814,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 28972,
+          "cache_creation_input_tokens": 814,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 814
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T20:12:41.053Z_
+
+<details><summary>↩ Tool result · `toolu_01RziAEdhhp1sKczerF6zb8s`</summary>
+
+```text
+Web search results for query: "affordance-conditioned attention mechanism robot manipulation VLA 2025 2026"
+
+Links: [{"title":"RT-Affordance: Affordances are Versatile Intermediate Representations   for Robot Manipulation","url":"https://arxiv.org/pdf/2411.02704"},{"title":"PosA-VLA: Enhancing Action Generation via Pose-Conditioned Anchor Attention","url":"https://arxiv.org/pdf/2512.03724"},{"title":"Affordance-based Robot Manipulation with Flow Matching","url":"https://arxiv.org/pdf/2409.01083"},{"title":"RT-Affordance: Reasoning about Robotic Manipulation with Affordances","url":"https://openreview.net/pdf?id=s8VMLXKH1X"},{"title":"ReconVLA: Reconstructive Vision-Language-Action Model as Effective Robot Perceiver","url":"https://arxiv.org/pdf/2508.10333"},{"title":"Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation","url":"https://arxiv.org/pdf/2512.07472"}]
+
+Based on the search results, here are the key findings related to affordance-conditioned attention mechanisms for robot manipulation VLAs:
+
+## Recent Research Findings (2025-2026)
+
+**PosA-VLA: Pose-Conditioned Anchor Attention**
+
+A pose-conditioned anchor attention mechanism enables models to better align instruction semantics with actionable visual cues, enhancing action generation precision and efficiency. This approach establishes an explicit link between the robot's end-effector pose and visual attention, generating two complementary attention anchors: a task-relevant anchor obtained when the end-effector state changes, and an end-effector anchor that tracks the end-effector's position at each timestep.
+
+**ReconVLA: Reconstructive Approaches**
+
+A reconstructive approach uses a lightweight diffusion transformer conditioned on the visual outputs of the VLA model to reconstruct the target manipulated region, prompting the VLA to learn fine-grained representations with region-specific information and focus visual attention on the correct area.
+
+**Affordance Field Intervention**
+
+An affordance-based approach repositions robots to recent high-affordance regions and proposes affordance-driven waypoints that anchor VLA-generated actions, with an affordance scorer selecting trajectories with the highest cumulative affordance.
+
+These methods represent recent advances in integrating affordance understanding with attention mechanisms to improve robotic manipulation precision and generalization across diverse tasks and environments.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f689fd16-8fe3-4f6f-91ae-11537c7c98d3",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "5ce4b5cf-66fd-4b9f-accb-f561bd68c0f7",
+  "toolUseResult": {
+    "query": "affordance-conditioned attention mechanism robot manipulation VLA 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01REzqsJVxpZgmLE54DwZaaT",
+        "content": [
+          {
+            "title": "RT-Affordance: Affordances are Versatile Intermediate Representations   for Robot Manipulation",
+            "url": "https://arxiv.org/pdf/2411.02704"
+          },
+          {
+            "title": "PosA-VLA: Enhancing Action Generation via Pose-Conditioned Anchor Attention",
+            "url": "https://arxiv.org/pdf/2512.03724"
+          },
+          {
+            "title": "Affordance-based Robot Manipulation with Flow Matching",
+            "url": "https://arxiv.org/pdf/2409.01083"
+          },
+          {
+            "title": "RT-Affordance: Reasoning about Robotic Manipulation with Affordances",
+            "url": "https://openreview.net/pdf?id=s8VMLXKH1X"
+          },
+          {
+            "title": "ReconVLA: Reconstructive Vision-Language-Action Model as Effective Robot Perceiver",
+            "url": "https://arxiv.org/pdf/2508.10333"
+          },
+          {
+            "title": "Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2512.07472"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings related to affordance-conditioned attention mechanisms for robot manipulation VLAs:\n\n## Recent Research Findings (2025-2026)\n\n**PosA-VLA: Pose-Conditioned Anchor Attention**\n\nA pose-conditioned anchor attention mechanism enables models to better align instruction semantics with actionable visual cues, enhancing action generation precision and efficiency. This approach establishes an explicit link between the robot's end-effector pose and visual attention, generating two complementary attention anchors: a task-relevant anchor obtained when the end-effector state changes, and an end-effector anchor that tracks the end-effector's position at each timestep.\n\n**ReconVLA: Reconstructive Approaches**\n\nA reconstructive approach uses a lightweight diffusion transformer conditioned on the visual outputs of the VLA model to reconstruct the target manipulated region, prompting the VLA to learn fine-grained representations with region-specific information and focus visual attention on the correct area.\n\n**Affordance Field Intervention**\n\nAn affordance-based approach repositions robots to recent high-affordance regions and proposes affordance-driven waypoints that anchor VLA-generated actions, with an affordance scorer selecting trajectories with the highest cumulative affordance.\n\nThese methods represent recent advances in integrating affordance understanding with attention mechanisms to improve robotic manipulation precision and generalization across diverse tasks and environments."
+    ],
+    "durationSeconds": 6.770967476999998
+  },
+  "sourceToolAssistantUUID": "f689fd16-8fe3-4f6f-91ae-11537c7c98d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-18T20:12:43.509Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Kv3Mum2LharyabPFbgxopK`</summary>
+
+```json
+{
+  "query": "contrastive learning affordance visual features robot manipulation contact points 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ce4b5cf-66fd-4b9f-accb-f561bd68c0f7",
+  "isSidechain": false,
+  "requestId": "req_011CbAeM8d2soVLHeXYzdAne",
+  "type": "assistant",
+  "uuid": "59a31a46-f3fb-48a9-a546-515a70fe3421",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SFVSTBDGfLBvzti6ejL2xX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 702,
+      "cache_read_input_tokens": 29786,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 702,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 29786,
+          "cache_creation_input_tokens": 702,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 702
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T20:12:53.153Z_
+
+<details><summary>↩ Tool result · `toolu_01Kv3Mum2LharyabPFbgxopK`</summary>
+
+```text
+Web search results for query: "contrastive learning affordance visual features robot manipulation contact points 2025 2026"
+
+Links: [{"title":"Learning Precise Affordances from Egocentric Videos for Robotic Manipulation","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Li_Learning_Precise_Affordances_from_Egocentric_Videos_for_Robotic_Manipulation_ICCV_2025_paper.pdf"},{"title":"RoboPCA: Pose-centered Affordance Learning from Human Demonstrations for Robot Manipulation","url":"https://arxiv.org/html/2603.07691v1"},{"title":"Multi-Keypoint Affordance Representation for Functional Dexterous Grasping","url":"https://arxiv.org/pdf/2502.20018"},{"title":"End-to-End Affordance Learning for Robotic Manipulation","url":"https://arxiv.org/pdf/2209.12941"},{"title":"Affordance-based Robot Manipulation with Flow Matching","url":"https://arxiv.org/pdf/2409.01083"}]
+
+I found several relevant research papers on affordance learning, visual features, and robot manipulation from 2025-2026. Here's a summary of the search results:
+
+**Recent Research (2025-2026):**
+
+1. **Learning Precise Affordances from Egocentric Videos (ICCV 2025)**: This work focuses on learning affordances from human videos for robotic manipulation and proposes a strategy to extract precise affordance masks.
+
+2. **RoboPCA: Pose-centered Affordance Learning (March 2026)**: This research represents affordance as contact points and post-contact trajectories by a 2D pixel and 2D vector on the image. The work leverages human demonstrations as a promising data source due to their scale, diversity, and natural capture of dynamics relevant to object interactions.
+
+3. **Multi-Keypoint Affordance Representation for Dexterous Grasping (2025)**: This method introduces Contact-guided Multi-Keypoint Affordance (CMKA), leveraging human grasping experience images for weak supervision combined with Large Vision Models for fine affordance feature extraction. It presents a Keypoint-based Grasp matrix Transformation method to ensure spatial consistency between hand keypoints and object contact points.
+
+4. **Affordance-based Robot Manipulation with Flow Matching (December 2024)**: This framework addresses adapting large-scale models to downstream scene affordance understanding tasks, using parameter-efficient prompt tuning to predict manipulation affordances.
+
+These papers collectively show active research in combining visual affordance learning with contact point prediction and manipulation for robotics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "59a31a46-f3fb-48a9-a546-515a70fe3421",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "305f1f55-62e7-433d-83bb-2c94206953ea",
+  "toolUseResult": {
+    "query": "contrastive learning affordance visual features robot manipulation contact points 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01B7HnLkx6jizzof8iGkL8ZK",
+        "content": [
+          {
+            "title": "Learning Precise Affordances from Egocentric Videos for Robotic Manipulation",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Li_Learning_Precise_Affordances_from_Egocentric_Videos_for_Robotic_Manipulation_ICCV_2025_paper.pdf"
+          },
+          {
+            "title": "RoboPCA: Pose-centered Affordance Learning from Human Demonstrations for Robot Manipulation",
+            "url": "https://arxiv.org/html/2603.07691v1"
+          },
+          {
+            "title": "Multi-Keypoint Affordance Representation for Functional Dexterous Grasping",
+            "url": "https://arxiv.org/pdf/2502.20018"
+          },
+          {
+            "title": "End-to-End Affordance Learning for Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2209.12941"
+          },
+          {
+            "title": "Affordance-based Robot Manipulation with Flow Matching",
+            "url": "https://arxiv.org/pdf/2409.01083"
+          }
+        ]
+      },
+      "I found several relevant research papers on affordance learning, visual features, and robot manipulation from 2025-2026. Here's a summary of the search results:\n\n**Recent Research (2025-2026):**\n\n1. **Learning Precise Affordances from Egocentric Videos (ICCV 2025)**: This work focuses on learning affordances from human videos for robotic manipulation and proposes a strategy to extract precise affordance masks.\n\n2. **RoboPCA: Pose-centered Affordance Learning (March 2026)**: This research represents affordance as contact points and post-contact trajectories by a 2D pixel and 2D vector on the image. The work leverages human demonstrations as a promising data source due to their scale, diversity, and natural capture of dynamics relevant to object interactions.\n\n3. **Multi-Keypoint Affordance Representation for Dexterous Grasping (2025)**: This method introduces Contact-guided Multi-Keypoint Affordance (CMKA), leveraging human grasping experience images for weak supervision combined with Large Vision Models for fine affordance feature extraction. It presents a Keypoint-based Grasp matrix Transformation method to ensure spatial consistency between hand keypoints and object contact points.\n\n4. **Affordance-based Robot Manipulation with Flow Matching (December 2024)**: This framework addresses adapting large-scale models to downstream scene affordance understanding tasks, using parameter-efficient prompt tuning to predict manipulation affordances.\n\nThese papers collectively show active research in combining visual affordance learning with contact point prediction and manipulation for robotics."
+    ],
+    "durationSeconds": 9.639405031000003
+  },
+  "sourceToolAssistantUUID": "59a31a46-f3fb-48a9-a546-515a70fe3421",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-18 (UTC).**  ## Original idea {   \"title\": \"OVA-VLA: Does Affordance-Specific Reasoning Ground VLA Action Decoders…",
+  "leafUuid": "305f1f55-62e7-433d-83bb-2c94206953ea",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OVA-VLA with affordance-attention architecture and RL pivot",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-18T20:12:56.251Z_
+
+Now let me fetch the actual TRAP paper and "Do What You Say" paper for deeper reading, plus search for more on architectural novelty ideas.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "305f1f55-62e7-433d-83bb-2c94206953ea",
+  "isSidechain": false,
+  "requestId": "req_011CbAeN2PGGU1KM6bcqcZuW",
+  "type": "assistant",
+  "uuid": "970381bf-3e02-4247-847f-a0849e3bfc21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HNPW3AkA9yV5791gdqP8kx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 731,
+      "cache_read_input_tokens": 30488,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 731,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 30488,
+          "cache_creation_input_tokens": 731,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 731
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T20:12:59.015Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Ngmzfg6PzJyhcYd7hxC2UP`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.23117",
+  "prompt": "Extract the key findings: 1) Does TRAP show that CoT content genuinely governs action generation at the autoregressive level? 2) How does this differ from Altered Thoughts' post-hoc text replacement? 3) What specific evidence do they provide that CoT reasoning controls actions even when semantically misaligned? 4) What VLA architectures were tested? 5) What are the key quantitative results?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "970381bf-3e02-4247-847f-a0849e3bfc21",
+  "isSidechain": false,
+  "requestId": "req_011CbAeN2PGGU1KM6bcqcZuW",
+  "type": "assistant",
+  "uuid": "64cea170-dd75-4163-a4f7-67dd9574311a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HNPW3AkA9yV5791gdqP8kx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 731,
+      "cache_read_input_tokens": 30488,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 731,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 30488,
+          "cache_creation_input_tokens": 731,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 731
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T20:13:03.737Z_
+
+<details><summary>↩ Tool result · `toolu_01Ngmzfg6PzJyhcYd7hxC2UP`</summary>
+
+```text
+# TRAP Paper: Key Findings Summary
+
+Based on the arXiv abstract provided, here's what can be determined:
+
+**1) CoT's Control Over Action Generation:**
+The abstract states that "CoT strongly governs action generation, even when it is semantically misaligned with the input instructions." This suggests the authors demonstrated CoT content directly influences outputs at a fundamental level.
+
+**2) Comparison to Altered Thoughts:**
+The document does not mention or compare the approach to any prior work called "Altered Thoughts" or discuss post-hoc text replacement methods.
+
+**3) Evidence of Misalignment Control:**
+The paper provides "empirical evidence" that demonstrates CoT governs action generation despite semantic misalignment, though specific experimental details aren't available in this abstract.
+
+**4) VLA Architectures Tested:**
+The abstract confirms testing across "3 mainstream VLA architectures" but does not name them specifically in the provided content.
+
+**5) Quantitative Results:**
+The abstract does not present specific numerical results, metrics, or performance statistics. It notes "extensive evaluations" validated effectiveness but reserves detailed quantitative findings for the full paper.
+
+**Notable Practical Contribution:**
+The researchers demonstrated physical feasibility by implementing the adversarial patch as a printed paper item in real-world robotic settings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "64cea170-dd75-4163-a4f7-67dd9574311a",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "4aa1f362-243f-48fe-9c0c-c419aa2f4a24",
+  "toolUseResult": {
+    "bytes": 46031,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# TRAP Paper: Key Findings Summary\n\nBased on the arXiv abstract provided, here's what can be determined:\n\n**1) CoT's Control Over Action Generation:**\nThe abstract states that \"CoT strongly governs action generation, even when it is semantically misaligned with the input instructions.\" This suggests the authors demonstrated CoT content directly influences outputs at a fundamental level.\n\n**2) Comparison to Altered Thoughts:**\nThe document does not mention or compare the approach to any prior work called \"Altered Thoughts\" or discuss post-hoc text replacement methods.\n\n**3) Evidence of Misalignment Control:**\nThe paper provides \"empirical evidence\" that demonstrates CoT governs action generation despite semantic misalignment, though specific experimental details aren't available in this abstract.\n\n**4) VLA Architectures Tested:**\nThe abstract confirms testing across \"3 mainstream VLA architectures\" but does not name them specifically in the provided content.\n\n**5) Quantitative Results:**\nThe abstract does not present specific numerical results, metrics, or performance statistics. It notes \"extensive evaluations\" validated effectiveness but reserves detailed quantitative findings for the full paper.\n\n**Notable Practical Contribution:**\nThe researchers demonstrated physical feasibility by implementing the adversarial patch as a printed paper item in real-world robotic settings.",
+    "durationMs": 4718,
+    "url": "https://arxiv.org/abs/2603.23117"
+  },
+  "sourceToolAssistantUUID": "64cea170-dd75-4163-a4f7-67dd9574311a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T20:13:09.226Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JLL3vr3DsvoRNWkWLHY9SB`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2603.23117v1",
+  "prompt": "Extract the detailed findings about: 1) Which VLA architectures were tested (e.g., DeepThinkVLA, CoT-VLA, etc.)? 2) What specific evidence shows that adversarially-generated CoT controls actions even when semantically misaligned? 3) What is the key distinction between TRAP's attack (adversarial CoT generation) vs post-hoc text corruption (like Altered Thoughts)? 4) Quantitative success rates of the attack. 5) Key conclusions about CoT's role in VLA action generation. 6) Any discussion of defense mechanisms."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4aa1f362-243f-48fe-9c0c-c419aa2f4a24",
+  "isSidechain": false,
+  "requestId": "req_011CbAeNoZcicaR9PVAgr1Hp",
+  "type": "assistant",
+  "uuid": "8f9909bd-81a1-4152-91a6-4e1f8165293b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014uvhc92g9vipergnzxomW4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 507,
+      "cache_read_input_tokens": 31219,
+      "output_tokens": 218,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 507,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 218,
+          "cache_read_input_tokens": 31219,
+          "cache_creation_input_tokens": 507,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 507
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T20:13:19.378Z_
+
+<details><summary>↩ Tool result · `toolu_01JLL3vr3DsvoRNWkWLHY9SB`</summary>
+
+```text
+# TRAP: Key Findings on VLA Security
+
+## 1) VLA Architectures Tested
+
+The paper evaluated three representative models:
+- **MolmoACT**: Integrated architecture with discrete action tokenization
+- **GraspVLA**: Integrated model using continuous action regression via flow-matching
+- **InstructVLA**: Hierarchical architecture with mixture-of-experts adaptation
+
+These span "diverse architectures and CoT types" across both integrated and hierarchical paradigms.
+
+## 2) Evidence of CoT Control Over Actions
+
+The preliminary analysis (Section 4) provides empirical proof through intervention experiments:
+
+When instructions were masked, models retained partial capability using only CoT. Under cross-sample shuffling (pairing CoT from one task with instructions from another), the results demonstrated that "CoT strongly governs action generation, even when it is semantically misaligned with the input instructions."
+
+Notably, GraspVLA achieved 94.20% task success using target CoT paired with mismatched instructions, versus 0% when instruction and CoT opposed each other.
+
+## 3) TRAP vs. Post-Hoc Text Corruption
+
+TRAP distinguishes itself through its methodology:
+
+Rather than corrupting CoT after generation, TRAP optimizes adversarial patches to **induce specific target CoT** during the forward pass. The attack jointly optimizes both "CoT hijacking loss" and action loss, ensuring the model generates attacker-specified reasoning that naturally produces malicious behaviors.
+
+This proactive corruption of intermediate reasoning differs fundamentally from reactive text manipulation approaches.
+
+## 4) Quantitative Success Rates
+
+**Main results (Table 3)**:
+- MolmoACT: 48.06% Attack Success Rate (ASR), 0.3904 hijack score
+- InstructVLA: 33.71% ASR, 0.1724 score
+- GraspVLA: 75.84% ASR, 0.4253 score
+- **Average: 52.54% ASR**
+
+Critically, performance generalized to unseen layouts with minimal decay (51.60% average ASR).
+
+Real-world evaluation: "13/15 (86.7%) of cases" showed successful reasoning subversion; "5/15 (33.3%)" achieved complete behavior hijacking.
+
+## 5) Key Conclusions on CoT's Role
+
+The research reveals a "competition mechanism" where input instructions and CoT compete for influence. The evidence shows CoT functions as "a vital driver of the final action," even surpassing instruction influence in some architectures. This makes CoT an exploitable vulnerability distinct from vanilla VLA systems.
+
+## 6) Defense Mechanisms
+
+The discussion section briefly proposes: "develop an independent, lightweight detector designed to verify alignment between the task intention latent in the CoT and the initial user input."
+
+No comprehensive defense evaluation is presented; the authors encourage future research on countermeasures.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f9909bd-81a1-4152-91a6-4e1f8165293b",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "172a8637-156b-4f0d-bae0-5be47945ba62",
+  "toolUseResult": {
+    "bytes": 278983,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# TRAP: Key Findings on VLA Security\n\n## 1) VLA Architectures Tested\n\nThe paper evaluated three representative models:\n- **MolmoACT**: Integrated architecture with discrete action tokenization\n- **GraspVLA**: Integrated model using continuous action regression via flow-matching\n- **InstructVLA**: Hierarchical architecture with mixture-of-experts adaptation\n\nThese span \"diverse architectures and CoT types\" across both integrated and hierarchical paradigms.\n\n## 2) Evidence of CoT Control Over Actions\n\nThe preliminary analysis (Section 4) provides empirical proof through intervention experiments:\n\nWhen instructions were masked, models retained partial capability using only CoT. Under cross-sample shuffling (pairing CoT from one task with instructions from another), the results demonstrated that \"CoT strongly governs action generation, even when it is semantically misaligned with the input instructions.\"\n\nNotably, GraspVLA achieved 94.20% task success using target CoT paired with mismatched instructions, versus 0% when instruction and CoT opposed each other.\n\n## 3) TRAP vs. Post-Hoc Text Corruption\n\nTRAP distinguishes itself through its methodology:\n\nRather than corrupting CoT after generation, TRAP optimizes adversarial patches to **induce specific target CoT** during the forward pass. The attack jointly optimizes both \"CoT hijacking loss\" and action loss, ensuring the model generates attacker-specified reasoning that naturally produces malicious behaviors.\n\nThis proactive corruption of intermediate reasoning differs fundamentally from reactive text manipulation approaches.\n\n## 4) Quantitative Success Rates\n\n**Main results (Table 3)**:\n- MolmoACT: 48.06% Attack Success Rate (ASR), 0.3904 hijack score\n- InstructVLA: 33.71% ASR, 0.1724 score\n- GraspVLA: 75.84% ASR, 0.4253 score\n- **Average: 52.54% ASR**\n\nCritically, performance generalized to unseen layouts with minimal decay (51.60% average ASR).\n\nReal-world evaluation: \"13/15 (86.7%) of cases\" showed successful reasoning subversion; \"5/15 (33.3%)\" achieved complete behavior hijacking.\n\n## 5) Key Conclusions on CoT's Role\n\nThe research reveals a \"competition mechanism\" where input instructions and CoT compete for influence. The evidence shows CoT functions as \"a vital driver of the final action,\" even surpassing instruction influence in some architectures. This makes CoT an exploitable vulnerability distinct from vanilla VLA systems.\n\n## 6) Defense Mechanisms\n\nThe discussion section briefly proposes: \"develop an independent, lightweight detector designed to verify alignment between the task intention latent in the CoT and the initial user input.\"\n\nNo comprehensive defense evaluation is presented; the authors encourage future research on countermeasures.",
+    "durationMs": 10146,
+    "url": "https://arxiv.org/html/2603.23117v1"
+  },
+  "sourceToolAssistantUUID": "8f9909bd-81a1-4152-91a6-4e1f8165293b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-18T20:13:19.383Z_
+
+```json
+{
+  "parentUuid": "172a8637-156b-4f0d-bae0-5be47945ba62",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "edd4f25e-6ece-4652-af04-dbcecc10b591",
+  "timestamp": "2026-05-18T20:13:19.383Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-18T20:13:26.162Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016PdT6ad88B2ZEGumDxMhLW`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2510.16281v1",
+  "prompt": "Extract the detailed findings: 1) How does the runtime reasoning-action alignment work? 2) What specific OOD perturbations were tested? 3) The 15% performance gain - what is the baseline and on what benchmark? 4) How does this relate to VLA robustness under distribution shift? 5) What VLA models were tested? 6) Key quantitative results on standard vs OOD tasks. 7) Any findings about whether reasoning CONTENT (not just alignment) matters for robustness."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "edd4f25e-6ece-4652-af04-dbcecc10b591",
+  "isSidechain": false,
+  "requestId": "req_011CbAePxYPS6E5hR6VarYbm",
+  "type": "assistant",
+  "uuid": "54bf6fb5-1ae2-4cba-a627-6ab93146936b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DinMcuLUU6Uen88XmfzHBh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 989,
+      "cache_read_input_tokens": 31726,
+      "output_tokens": 197,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 989,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 197,
+          "cache_read_input_tokens": 31726,
+          "cache_creation_input_tokens": 989,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 989
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-18T20:13:38.608Z_
+
+<details><summary>↩ Tool result · `toolu_016PdT6ad88B2ZEGumDxMhLW`</summary>
+
+```text
+# SEAL: Runtime Reasoning-Action Alignment in Vision-Language-Action Models
+
+## 1) Runtime Reasoning-Action Alignment Mechanism
+
+The SEAL framework operates through three coupled stages:
+
+**Hypothesize**: The model samples K candidate action sequences in parallel, conditioned on the current observation, textual plan, and task instruction. Generation terminates when a `&lt;think>` token is produced, yielding variable-length sequences.
+
+**Predict**: A dynamics model simulates outcomes for each candidate sequence in parallel environments, generating predicted observation sequences needed for the autoregressive policy.
+
+**Verify**: A pre-trained VLM (GPT-4o) evaluates whether each candidate's predicted outcome aligns with the textual plan. The system executes "the first sequence that the VLM successfully verifies" rather than waiting for all evaluations, enabling early-exit optimization.
+
+## 2) OOD Perturbations Tested
+
+The research evaluated four distinct distribution shifts:
+
+- **Semantic shifts**: Instruction paraphrasing (Lang-Rephrase) and alternative object descriptions (Lang-Object-Property)
+- **Visual shifts**: Object substitutions or additions (Visual-Scene) and altered camera viewpoint plus background changes (Visual-Viewpoint)
+
+## 3) The 15% Performance Gain
+
+The "up to 15% performance gain over prior work" appears on **behavior composition tasks** using the **LIBERO-100-R dataset**. SEAL achieved ~53% success versus 38% for the base reasoning VLA baseline, representing approximately 15 percentage-point improvement on novel task compositions requiring skill recombination.
+
+## 4) Relation to VLA Robustness Under Distribution Shift
+
+The paper identifies a core vulnerability: "the outcomes described by a VLA's textual reasoning mismatch its subsequent low-level actions," particularly in OOD scenarios. By enforcing alignment between the model's own semantic reasoning and executed actions, SEAL addresses what the authors term "embodied CoT faithfulness." On Visual-Viewpoint shifts (most challenging), SEAL maintained 45% success versus 28% for baselines—demonstrating substantial OOD robustness gains through plan-action verification.
+
+## 5) VLA Models Tested
+
+Baselines compared three model variants:
+- **π₀**: Vanilla VLA without reasoning
+- **π₀-reason**: Base reasoning VLA (built on recent work using `&lt;think>`/`&lt;act>` tokens)
+- **π₀-V-GPS**: Q-function based steering baseline
+
+All variants used the same π₀ backbone architecture.
+
+## 6) Key Quantitative Results
+
+| Scenario | SEAL | Best Baseline |
+|----------|------|---------------|
+| In-distribution (LIBERO-10) | 94-97% | π₀-V-GPS: 87-90% |
+| Composition (LIBERO-100) | 53% | π₀-reason: 38% |
+| Visual-Viewpoint OOD | 45% | π₀-reason: 25% |
+| Semantic OOD (average) | 93% | π₀-reason: 83% |
+
+## 7) Reasoning Content vs. Alignment
+
+The paper indicates reasoning *content quality* substantially matters. The base reasoning model generated "100% accuracy for in-distribution tasks" on text generation, yet "most task failures stem from the action generation module failing to execute that plan." This suggests high-quality reasoning alone is insufficient; alignment verification becomes critical when action diversity increases with training data scale.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54bf6fb5-1ae2-4cba-a627-6ab93146936b",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "321f814d-de6d-4dd2-946b-992217fc475b",
+  "toolUseResult": {
+    "bytes": 281415,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SEAL: Runtime Reasoning-Action Alignment in Vision-Language-Action Models\n\n## 1) Runtime Reasoning-Action Alignment Mechanism\n\nThe SEAL framework operates through three coupled stages:\n\n**Hypothesize**: The model samples K candidate action sequences in parallel, conditioned on the current observation, textual plan, and task instruction. Generation terminates when a `&lt;think>` token is produced, yielding variable-length sequences.\n\n**Predict**: A dynamics model simulates outcomes for each candidate sequence in parallel environments, generating predicted observation sequences needed for the autoregressive policy.\n\n**Verify**: A pre-trained VLM (GPT-4o) evaluates whether each candidate's predicted outcome aligns with the textual plan. The system executes \"the first sequence that the VLM successfully verifies\" rather than waiting for all evaluations, enabling early-exit optimization.\n\n## 2) OOD Perturbations Tested\n\nThe research evaluated four distinct distribution shifts:\n\n- **Semantic shifts**: Instruction paraphrasing (Lang-Rephrase) and alternative object descriptions (Lang-Object-Property)\n- **Visual shifts**: Object substitutions or additions (Visual-Scene) and altered camera viewpoint plus background changes (Visual-Viewpoint)\n\n## 3) The 15% Performance Gain\n\nThe \"up to 15% performance gain over prior work\" appears on **behavior composition tasks** using the **LIBERO-100-R dataset**. SEAL achieved ~53% success versus 38% for the base reasoning VLA baseline, representing approximately 15 percentage-point improvement on novel task compositions requiring skill recombination.\n\n## 4) Relation to VLA Robustness Under Distribution Shift\n\nThe paper identifies a core vulnerability: \"the outcomes described by a VLA's textual reasoning mismatch its subsequent low-level actions,\" particularly in OOD scenarios. By enforcing alignment between the model's own semantic reasoning and executed actions, SEAL addresses what the authors term \"embodied CoT faithfulness.\" On Visual-Viewpoint shifts (most challenging), SEAL maintained 45% success versus 28% for baselines—demonstrating substantial OOD robustness gains through plan-action verification.\n\n## 5) VLA Models Tested\n\nBaselines compared three model variants:\n- **π₀**: Vanilla VLA without reasoning\n- **π₀-reason**: Base reasoning VLA (built on recent work using `&lt;think>`/`&lt;act>` tokens)\n- **π₀-V-GPS**: Q-function based steering baseline\n\nAll variants used the same π₀ backbone architecture.\n\n## 6) Key Quantitative Results\n\n| Scenario | SEAL | Best Baseline |\n|----------|------|---------------|\n| In-distribution (LIBERO-10) | 94-97% | π₀-V-GPS: 87-90% |\n| Composition (LIBERO-100) | 53% | π₀-reason: 38% |\n| Visual-Viewpoint OOD | 45% | π₀-reason: 25% |\n| Semantic OOD (average) | 93% | π₀-reason: 83% |\n\n## 7) Reasoning Content vs. Alignment\n\nThe paper indicates reasoning *content quality* substantially matters. The base reasoning model generated \"100% accuracy for in-distribution tasks\" on text generation, yet \"most task failures stem from the action generation module failing to execute that plan.\" This suggests high-quality reasoning alone is insufficient; alignment verification becomes critical when action diversity increases with training data scale.",
+    "durationMs": 12440,
+    "url": "https://arxiv.org/html/2510.16281v1"
+  },
+  "sourceToolAssistantUUID": "54bf6fb5-1ae2-4cba-a627-6ab93146936b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-18T20:13:43.060Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013dbRPRMmshtDyr5muEEPYP`</summary>
+
+```json
+{
+  "query": "VLA affordance attention masking action decoder visual grounding architecture 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "321f814d-de6d-4dd2-946b-992217fc475b",
+  "isSidechain": false,
+  "requestId": "req_011CbAeRNmSgs3Y1x892D95k",
+  "type": "assistant",
+  "uuid": "8882431d-3327-4b54-a165-cfa46e45b425",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014hvaCmfBqzxD7vTpgoBuxB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1012,
+      "cache_read_input_tokens": 32715,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1012,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 32715,
+          "cache_creation_input_tokens": 1012,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1012
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-18T20:13:50.476Z_
+
+<details><summary>↩ Tool result · `toolu_013dbRPRMmshtDyr5muEEPYP`</summary>
+
+```text
+Web search results for query: "VLA affordance attention masking action decoder visual grounding architecture 2025 2026"
+
+Links: [{"title":"GuidedVLA: Specifying Task-Relevant Factors via Plug-and-Play Action Attention Specialization","url":"https://arxiv.org/html/2605.12369v1"},{"title":"GitHub - Ed1sonChen/DailyArxiv · GitHub","url":"https://github.com/Ed1sonChen/DailyArxiv"},{"title":"Overcoming Visual Clutter in Vision Language Action Models via Concept-Gated Visual Distillation","url":"https://arxiv.org/html/2603.10340"},{"title":"ReconVLA: Reconstructive Vision-Language-Action Model as Effective Robot Perceiver","url":"https://arxiv.org/pdf/2508.10333"},{"title":"[2511.18960] AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention","url":"https://arxiv.org/abs/2511.18960"},{"title":"Adaptive Masking Enhances Visual Grounding","url":"https://arxiv.org/pdf/2410.03161"},{"title":"PosA-VLA: Enhancing Action Generation via Pose-Conditioned Anchor Attention","url":"https://arxiv.org/pdf/2512.03724"}]
+
+Based on the search results, here's what I found about VLA (Vision-Language-Action) models with attention masking, action decoders, and visual grounding architectures from 2025-2026:
+
+## Key Recent Work
+
+**GuidedVLA**: A framework designed to manually guide the action generation to focus on task-relevant factors by treating the action decoder not as a monolithic learner, but as an assembly of functional components. The framework includes three specialized heads: object grounding, skill recognition, and geometry perception.
+
+**AVA-VLA (Active Visual Attention)**: This framework introduces Active Visual Attention (AVA), which dynamically reweights visual tokens in the current observation to focus on regions most relevant given both the instruction and execution history. AVA-VLA achieves state-of-the-art performance on standard robotic benchmarks, including LIBERO and CALVIN, and transfers effectively to real-world dual-arm manipulation tasks.
+
+**ReconVLA**: Addresses accurate visual grounding as fundamental for precise grasping of VLAs, especially in cluttered environments, and visualizes the attention map on visual inputs to analyze visual grounding behavior during action prediction.
+
+**PosA-VLA**: Features a pose-conditioned anchor attention mechanism that enables the model to better align instruction semantics with actionable visual cues, thereby enhancing action generation precision and efficiency.
+
+These recent models are addressing key challenges in VLA design, particularly around how to improve attention mechanisms and visual grounding for more robust robot learning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8882431d-3327-4b54-a165-cfa46e45b425",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "0f03b2ae-4c4f-40ca-94b3-553f0a9ed977",
+  "toolUseResult": {
+    "query": "VLA affordance attention masking action decoder visual grounding architecture 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ARvUiJVf3kZWAgdut42umm",
+        "content": [
+          {
+            "title": "GuidedVLA: Specifying Task-Relevant Factors via Plug-and-Play Action Attention Specialization",
+            "url": "https://arxiv.org/html/2605.12369v1"
+          },
+          {
+            "title": "GitHub - Ed1sonChen/DailyArxiv · GitHub",
+            "url": "https://github.com/Ed1sonChen/DailyArxiv"
+          },
+          {
+            "title": "Overcoming Visual Clutter in Vision Language Action Models via Concept-Gated Visual Distillation",
+            "url": "https://arxiv.org/html/2603.10340"
+          },
+          {
+            "title": "ReconVLA: Reconstructive Vision-Language-Action Model as Effective Robot Perceiver",
+            "url": "https://arxiv.org/pdf/2508.10333"
+          },
+          {
+            "title": "[2511.18960] AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention",
+            "url": "https://arxiv.org/abs/2511.18960"
+          },
+          {
+            "title": "Adaptive Masking Enhances Visual Grounding",
+            "url": "https://arxiv.org/pdf/2410.03161"
+          },
+          {
+            "title": "PosA-VLA: Enhancing Action Generation via Pose-Conditioned Anchor Attention",
+            "url": "https://arxiv.org/pdf/2512.03724"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about VLA (Vision-Language-Action) models with attention masking, action decoders, and visual grounding architectures from 2025-2026:\n\n## Key Recent Work\n\n**GuidedVLA**: A framework designed to manually guide the action generation to focus on task-relevant factors by treating the action decoder not as a monolithic learner, but as an assembly of functional components. The framework includes three specialized heads: object grounding, skill recognition, and geometry perception.\n\n**AVA-VLA (Active Visual Attention)**: This framework introduces Active Visual Attention (AVA), which dynamically reweights visual tokens in the current observation to focus on regions most relevant given both the instruction and execution history. AVA-VLA achieves state-of-the-art performance on standard robotic benchmarks, including LIBERO and CALVIN, and transfers effectively to real-world dual-arm manipulation tasks.\n\n**ReconVLA**: Addresses accurate visual grounding as fundamental for precise grasping of VLAs, especially in cluttered environments, and visualizes the attention map on visual inputs to analyze visual grounding behavior during action prediction.\n\n**PosA-VLA**: Features a pose-conditioned anchor attention mechanism that enables the model to better align instruction semantics with actionable visual cues, thereby enhancing action generation precision and efficiency.\n\nThese recent models are addressing key challenges in VLA design, particularly around how to improve attention mechanisms and visual grounding for more robust robot learning."
+    ],
+    "durationSeconds": 7.409492218
+  },
+  "sourceToolAssistantUUID": "8882431d-3327-4b54-a165-cfa46e45b425",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-18T20:13:53.086Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Vp8qYM5BbnDJYy3mBtR21A`</summary>
+
+```json
+{
+  "query": "GuidedVLA arXiv 2605.12369 action attention specialization task-relevant 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f03b2ae-4c4f-40ca-94b3-553f0a9ed977",
+  "isSidechain": false,
+  "requestId": "req_011CbAeSFTBkCY7XQEA9JN8n",
+  "type": "assistant",
+  "uuid": "a7ab4b07-a3a7-4cbb-b716-784f96a94d03",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MSq73Y2wC3Q47h3WGqzQL3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 771,
+      "cache_read_input_tokens": 33727,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 771,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 33727,
+          "cache_creation_input_tokens": 771,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 771
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-18 (UTC).**  ## Original idea {   \"title\": \"OVA-VLA: Does Affordance-Specific Reasoning Ground VLA Action Decoders…",
+  "leafUuid": "a7ab4b07-a3a7-4cbb-b716-784f96a94d03",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OVA-VLA with affordance-attention architecture and RL pivot",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-18T20:14:00.339Z_
+
+<details><summary>↩ Tool result · `toolu_01Vp8qYM5BbnDJYy3mBtR21A`</summary>
+
+```text
+Web search results for query: "GuidedVLA arXiv 2605.12369 action attention specialization task-relevant 2026"
+
+Links: [{"title":"[2605.12369v1] GuidedVLA: Specifying Task-Relevant Factors via Plug-and-Play Action Attention Specialization","url":"https://arxiv.org/abs/2605.12369v1"},{"title":"GuidedVLA: Specifying Task-Relevant Factors via Plug-and-Play Action Attention Specialization","url":"https://arxiv.org/html/2605.12369v1"},{"title":"Attention-Guided Patch-Wise Sparse Adversarial Attacks on Vision-Language-Action Models","url":"https://arxiv.org/pdf/2511.21663"},{"title":"ATA: Bridging Implicit Reasoning with Attention-Guided and Action-Guided Inference for Vision-Language Action Models","url":"https://arxiv.org/pdf/2603.01490"},{"title":"Look Before Acting: Enhancing Vision Foundation Representations for Vision-Language-Action Models","url":"https://arxiv.org/pdf/2603.15618"}]
+
+I found the paper you're looking for! Here are the key details about GuidedVLA:
+
+GuidedVLA is a framework designed to manually guide the action generation to focus on task-relevant factors. The core insight is to treat the action decoder not as a monolithic learner, but as an assembly of functional components.
+
+Individual attention heads are supervised by manually defined auxiliary signals to capture distinct factors, with three specialized heads instantiated: object grounding, spatial geometry, and temporal skill logic.
+
+The paper addresses a key limitation in existing VLA models: Existing VLAs rely on end-to-end supervision to implicitly enable the action decoding process to learn task-relevant features, but without explicit guidance, these models often overfit to spurious correlations, such as visual shortcuts or environmental noise, limiting their generalization.
+
+The paper is arXiv:2605.12369v1, submitted on May 12, 2026, with authors from Fudan University, Shanghai Jiao Tong University, and The University of Hong Kong. You can access it at https://arxiv.org/abs/2605.12369v1 or the project page at https://guidedvla.github.io/project_page/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a7ab4b07-a3a7-4cbb-b716-784f96a94d03",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "2b17888a-e9ef-4ff8-a520-664555b58e0a",
+  "toolUseResult": {
+    "query": "GuidedVLA arXiv 2605.12369 action attention specialization task-relevant 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01S1NjavJ9KgRVucqVFtb3EH",
+        "content": [
+          {
+            "title": "[2605.12369v1] GuidedVLA: Specifying Task-Relevant Factors via Plug-and-Play Action Attention Specialization",
+            "url": "https://arxiv.org/abs/2605.12369v1"
+          },
+          {
+            "title": "GuidedVLA: Specifying Task-Relevant Factors via Plug-and-Play Action Attention Specialization",
+            "url": "https://arxiv.org/html/2605.12369v1"
+          },
+          {
+            "title": "Attention-Guided Patch-Wise Sparse Adversarial Attacks on Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2511.21663"
+          },
+          {
+            "title": "ATA: Bridging Implicit Reasoning with Attention-Guided and Action-Guided Inference for Vision-Language Action Models",
+            "url": "https://arxiv.org/pdf/2603.01490"
+          },
+          {
+            "title": "Look Before Acting: Enhancing Vision Foundation Representations for Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2603.15618"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details about GuidedVLA:\n\nGuidedVLA is a framework designed to manually guide the action generation to focus on task-relevant factors. The core insight is to treat the action decoder not as a monolithic learner, but as an assembly of functional components.\n\nIndividual attention heads are supervised by manually defined auxiliary signals to capture distinct factors, with three specialized heads instantiated: object grounding, spatial geometry, and temporal skill logic.\n\nThe paper addresses a key limitation in existing VLA models: Existing VLAs rely on end-to-end supervision to implicitly enable the action decoding process to learn task-relevant features, but without explicit guidance, these models often overfit to spurious correlations, such as visual shortcuts or environmental noise, limiting their generalization.\n\nThe paper is arXiv:2605.12369v1, submitted on May 12, 2026, with authors from Fudan University, Shanghai Jiao Tong University, and The University of Hong Kong. You can access it at https://arxiv.org/abs/2605.12369v1 or the project page at https://guidedvla.github.io/project_page/"
+    ],
+    "durationSeconds": 7.24956081000001
+  },
+  "sourceToolAssistantUUID": "a7ab4b07-a3a7-4cbb-b716-784f96a94d03",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-18T20:14:05.209Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KrDyzgEY2KLe4L2rk4nByB`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.12369v1",
+  "prompt": "Extract key details: 1) How do they specialize attention heads for task-relevant factors (object grounding, spatial geometry, temporal skill)? 2) What auxiliary supervision signals are used? 3) How is the attention masking/guidance implemented architecturally? 4) What benchmarks and results? 5) Does this relate to affordance-guided attention? 6) Is it plug-and-play (can be added to existing VLAs)?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b17888a-e9ef-4ff8-a520-664555b58e0a",
+  "isSidechain": false,
+  "requestId": "req_011CbAeSywojZUaJU1ApGY5A",
+  "type": "assistant",
+  "uuid": "3ea5a9c1-ffe3-448c-b932-dfddec672eca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195ArpfgqFpZNvbLJNoDiHm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 34498,
+      "output_tokens": 183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 183,
+          "cache_read_input_tokens": 34498,
+          "cache_creation_input_tokens": 662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-18T20:14:14.078Z_
+
+<details><summary>↩ Tool result · `toolu_01KrDyzgEY2KLe4L2rk4nByB`</summary>
+
+````text
+# GuidedVLA: Attention Head Specialization for Robot Learning
+
+## 1. Attention Head Specialization Mechanism
+
+GuidedVLA transforms the action decoder by assigning specific attention heads to capture distinct task-relevant factors:
+
+- **Object Head**: Supervises attention concentration on task-relevant object regions using ground-truth masks
+- **Skill Head**: Guides heads to recognize temporal phases/sub-skills through feature classification
+- **Depth Head**: Constrains heads to attend exclusively to depth-encoded features from a frozen depth encoder
+
+## 2. Auxiliary Supervision Signals
+
+The framework uses mixed supervision:
+
+- **Object Loss** (ℒ_object): Negative log probability that attention mass falls within object masks, encouraging visual grounding
+- **Skill Loss** (ℒ_skill): KL-divergence between predicted and ground-truth skill distributions over temporal horizons
+- **Depth Constraint**: Structural guidance restricting depth-head queries to attend only to depth-derived keys/values (no explicit loss)
+
+Combined objective: ℒ = ℒ_FM + λ_object·ℒ_object + λ_skill·ℒ_skill
+
+## 3. Architectural Implementation
+
+The system uses a **ControlNet-style residual adapter**:
+
+```
+Attention(x) = Attention_main(x) + ZeroConv(Attention_specified(x))
+```
+
+The zero-initialized projection ensures pretrained behavior preservation initially, gradually injecting factor-specific biases. This allows "plug-and-play" integration with existing VLAs without disrupting learned representations.
+
+## 4. Benchmark Results
+
+**LIBERO-Plus**: GuidedVLA achieves 75.4% average success (vs. π₀ baseline at 68.2%), with particularly strong gains on Object suite (+8.4%) and Spatial suite (+6.3%)
+
+**RoboTwin 2.0**: Improves from 77.38% to 90.63% average success across eight manipulation tasks
+
+**Real-World (6 tasks)**: Demonstrates 20% average improvement in generalization across in-domain, scene, and lighting variations
+
+## 5. Affordance Connection
+
+While not explicitly framed as affordance-guided attention, the object head functions similarly by directing attention to "task-relevant regions" and "affordances" that enable grasping or manipulation targets.
+
+## 6. Plug-and-Play Design
+
+Yes—the approach is explicitly designed as plug-and-play: existing pretrained VLA backbones can be equipped with specialized heads while preserving pretrained capabilities through the zero-initialized residual adapter strategy.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "3ea5a9c1-ffe3-448c-b932-dfddec672eca",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "737aba70-11dd-4c7d-9775-a445017a387a",
+  "toolUseResult": {
+    "bytes": 958197,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# GuidedVLA: Attention Head Specialization for Robot Learning\n\n## 1. Attention Head Specialization Mechanism\n\nGuidedVLA transforms the action decoder by assigning specific attention heads to capture distinct task-relevant factors:\n\n- **Object Head**: Supervises attention concentration on task-relevant object regions using ground-truth masks\n- **Skill Head**: Guides heads to recognize temporal phases/sub-skills through feature classification\n- **Depth Head**: Constrains heads to attend exclusively to depth-encoded features from a frozen depth encoder\n\n## 2. Auxiliary Supervision Signals\n\nThe framework uses mixed supervision:\n\n- **Object Loss** (ℒ_object): Negative log probability that attention mass falls within object masks, encouraging visual grounding\n- **Skill Loss** (ℒ_skill): KL-divergence between predicted and ground-truth skill distributions over temporal horizons\n- **Depth Constraint**: Structural guidance restricting depth-head queries to attend only to depth-derived keys/values (no explicit loss)\n\nCombined objective: ℒ = ℒ_FM + λ_object·ℒ_object + λ_skill·ℒ_skill\n\n## 3. Architectural Implementation\n\nThe system uses a **ControlNet-style residual adapter**:\n\n```\nAttention(x) = Attention_main(x) + ZeroConv(Attention_specified(x))\n```\n\nThe zero-initialized projection ensures pretrained behavior preservation initially, gradually injecting factor-specific biases. This allows \"plug-and-play\" integration with existing VLAs without disrupting learned representations.\n\n## 4. Benchmark Results\n\n**LIBERO-Plus**: GuidedVLA achieves 75.4% average success (vs. π₀ baseline at 68.2%), with particularly strong gains on Object suite (+8.4%) and Spatial suite (+6.3%)\n\n**RoboTwin 2.0**: Improves from 77.38% to 90.63% average success across eight manipulation tasks\n\n**Real-World (6 tasks)**: Demonstrates 20% average improvement in generalization across in-domain, scene, and lighting variations\n\n## 5. Affordance Connection\n\nWhile not explicitly framed as affordance-guided attention, the object head functions similarly by directing attention to \"task-relevant regions\" and \"affordances\" that enable grasping or manipulation targets.\n\n## 6. Plug-and-Play Design\n\nYes—the approach is explicitly designed as plug-and-play: existing pretrained VLA backbones can be equipped with specialized heads while preserving pretrained capabilities through the zero-initialized residual adapter strategy.",
+    "durationMs": 8865,
+    "url": "https://arxiv.org/html/2605.12369v1"
+  },
+  "sourceToolAssistantUUID": "3ea5a9c1-ffe3-448c-b932-dfddec672eca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-18T20:14:16.817Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VrkCRzSxeSXA4m8HLMBJE3`</summary>
+
+```json
+{
+  "query": "AVA-VLA active visual attention arXiv 2511.18960 visual token reweighting"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "737aba70-11dd-4c7d-9775-a445017a387a",
+  "isSidechain": false,
+  "requestId": "req_011CbAeTzQ83sUDQnFoWoJrn",
+  "type": "assistant",
+  "uuid": "23d75b2c-0397-4ba2-a8ae-3c48ed59076a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H5gtHG45YB7Trf4R6itM8C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 799,
+      "cache_read_input_tokens": 35160,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 799,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 35160,
+          "cache_creation_input_tokens": 799,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 799
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-18T20:14:23.386Z_
+
+<details><summary>↩ Tool result · `toolu_01VrkCRzSxeSXA4m8HLMBJE3`</summary>
+
+```text
+Web search results for query: "AVA-VLA active visual attention arXiv 2511.18960 visual token reweighting"
+
+Links: [{"title":"[2511.18960] AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention","url":"https://arxiv.org/abs/2511.18960"},{"title":"AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention","url":"https://arxiv.org/html/2511.18960"},{"title":"AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention","url":"https://arxiv.org/pdf/2511.18960"},{"title":"AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv251118960X/abstract"},{"title":"AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention","url":"https://www.researchgate.net/publication/397934001_AVA-VLA_Improving_Vision-Language-Action_models_with_Active_Visual_Attention"},{"title":"AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention | alphaXiv","url":"https://www.alphaxiv.org/overview/2511.18960v1"},{"title":"Recursive Belief Vision Language Action Model","url":"https://arxiv.org/html/2602.20659v1"}]
+
+Based on the search results, here's information about the AVA-VLA paper (arXiv 2511.18960):
+
+## Overview
+
+AVA-VLA addresses the limitation that most Vision-Language-Action (VLA) models process visual observations independently at each timestep, by reformulating VLA policy learning from a Partially Observable Markov Decision Process (POMDP) perspective.
+
+## Active Visual Attention (AVA) Mechanism
+
+The core contribution is Active Visual Attention (AVA), which dynamically reweights visual tokens in the current observation to focus on regions most relevant given both the instruction and execution history. More specifically, the AVA module uses the recurrent state to compute soft weights to actively process task-relevant visual tokens based on its historical context.
+
+## Key Features
+
+The AVA-VLA framework consists of two components: the state-based initialization strategy and the AVA module. The AVA module uses the recurrent state to reweight visual tokens and suppress irrelevant visual content, leading to consistent gains across suites, and their combination achieves the best overall performance.
+
+## Evaluation and Results
+
+Comprehensive evaluations demonstrate that AVA-VLA achieves state-of-the-art performance across popular robotic benchmarks, including LIBERO and CALVIN, and real-world deployments on a dual-arm robot platform validate the framework's practical applicability and robust sim-to-real transferability.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "23d75b2c-0397-4ba2-a8ae-3c48ed59076a",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "b4fa79a7-3007-47a1-b45e-812527ae3d08",
+  "toolUseResult": {
+    "query": "AVA-VLA active visual attention arXiv 2511.18960 visual token reweighting",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VNHC64YqxhSbjpybc1GrwG",
+        "content": [
+          {
+            "title": "[2511.18960] AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention",
+            "url": "https://arxiv.org/abs/2511.18960"
+          },
+          {
+            "title": "AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention",
+            "url": "https://arxiv.org/html/2511.18960"
+          },
+          {
+            "title": "AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention",
+            "url": "https://arxiv.org/pdf/2511.18960"
+          },
+          {
+            "title": "AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv251118960X/abstract"
+          },
+          {
+            "title": "AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention",
+            "url": "https://www.researchgate.net/publication/397934001_AVA-VLA_Improving_Vision-Language-Action_models_with_Active_Visual_Attention"
+          },
+          {
+            "title": "AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2511.18960v1"
+          },
+          {
+            "title": "Recursive Belief Vision Language Action Model",
+            "url": "https://arxiv.org/html/2602.20659v1"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the AVA-VLA paper (arXiv 2511.18960):\n\n## Overview\n\nAVA-VLA addresses the limitation that most Vision-Language-Action (VLA) models process visual observations independently at each timestep, by reformulating VLA policy learning from a Partially Observable Markov Decision Process (POMDP) perspective.\n\n## Active Visual Attention (AVA) Mechanism\n\nThe core contribution is Active Visual Attention (AVA), which dynamically reweights visual tokens in the current observation to focus on regions most relevant given both the instruction and execution history. More specifically, the AVA module uses the recurrent state to compute soft weights to actively process task-relevant visual tokens based on its historical context.\n\n## Key Features\n\nThe AVA-VLA framework consists of two components: the state-based initialization strategy and the AVA module. The AVA module uses the recurrent state to reweight visual tokens and suppress irrelevant visual content, leading to consistent gains across suites, and their combination achieves the best overall performance.\n\n## Evaluation and Results\n\nComprehensive evaluations demonstrate that AVA-VLA achieves state-of-the-art performance across popular robotic benchmarks, including LIBERO and CALVIN, and real-world deployments on a dual-arm robot platform validate the framework's practical applicability and robust sim-to-real transferability."
+    ],
+    "durationSeconds": 6.564513905
+  },
+  "sourceToolAssistantUUID": "23d75b2c-0397-4ba2-a8ae-3c48ed59076a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-18T20:14:27.249Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ft2QsTEk3D2FnfzamGFWL6`</summary>
+
+```json
+{
+  "query": "RL reinforcement learning GRPO VLA affordance reasoning differential benefit 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4fa79a7-3007-47a1-b45e-812527ae3d08",
+  "isSidechain": false,
+  "requestId": "req_011CbAeUgB2gFb9ib7u6JgRo",
+  "type": "assistant",
+  "uuid": "ac378b68-3a68-4bf2-8bc1-27edad50ec8a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PZJHwTvvir2utaZmMbeDKW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 782,
+      "cache_read_input_tokens": 35959,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 35959,
+          "cache_creation_input_tokens": 782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-18T20:14:35.185Z_
+
+<details><summary>↩ Tool result · `toolu_01Ft2QsTEk3D2FnfzamGFWL6`</summary>
+
+```text
+Web search results for query: "RL reinforcement learning GRPO VLA affordance reasoning differential benefit 2025 2026"
+
+Links: [{"title":"Post-Training in 2026: GRPO, DAPO, RLVR & Beyond","url":"https://llm-stats.com/blog/research/post-training-techniques-2026"},{"title":"VLA-R1: Enhancing Reasoning in Vision-Language-Action Models | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.01623v1"},{"title":"VLA-R1: Enhancing Reasoning in Vision-Language-Action Models","url":"https://arxiv.org/html/2510.01623v1"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://rlvla.github.io/"},{"title":"Can GRPO Help LLMs Transcend Their Pretraining Origin?","url":"https://arxiv.org/pdf/2510.15990"},{"title":"Affordance-R1: Reinforcement Learning for Generalizable Affordance Reasoning","url":"https://arxiv.org/pdf/2508.06206"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/pdf/2505.19789"}]
+
+I found relevant research on these topics. Here's what the search results reveal:
+
+## Key Findings
+
+**GRPO and VLA Integration:**
+VLA-R1 is a reasoning-enhanced Vision-Language-Action model that integrates Reinforcement Learning from Verifiable Rewards (RLVR) with Group Relative Policy Optimization (GRPO) to systematically optimize both reasoning and execution.
+
+**Affordance Reasoning with GRPO:**
+VLA-R1 employs GRPO with three verifiable rewards: an affordance reward based on Generalized Intersection over Union (GIoU) to provide informative gradients for non-overlapping predicted and ground truth affordance regions, a distance-based reward using improved Fréchet distance to ensure reasonable trajectory curvature and segment length, and an output-format reward to enforce well-formed reasoning and action specifications.
+
+Affordance-R1 uses GRPO without SFT to enhance the model's inherent reasoning abilities, introducing a carefully designed affordance reward containing format, perception, and recognition components.
+
+**Differential Benefits of RL for VLA:**
+In out-of-distribution tests, RL enhances VLA generalization substantially in Execution, improves moderately in Semantics, and performs on par with SFT for Vision. This demonstrates that reinforcement learning's benefits vary across different dimensions of VLA performance.
+
+**GRPO's Technical Advantages:**
+GRPO eliminates the critic entirely, and for each prompt, it samples a group of responses (typically 8-64) and computes advantages by normalizing each response's reward against the group mean and standard deviation.
+
+These papers from 2025-2026 represent the cutting edge of combining GRPO, VLA models, and affordance reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac378b68-3a68-4bf2-8bc1-27edad50ec8a",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "1a770f74-c06a-40db-bfea-1fa82d413a67",
+  "toolUseResult": {
+    "query": "RL reinforcement learning GRPO VLA affordance reasoning differential benefit 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SQ4EZd1CzjDtwxdiGAGEVv",
+        "content": [
+          {
+            "title": "Post-Training in 2026: GRPO, DAPO, RLVR & Beyond",
+            "url": "https://llm-stats.com/blog/research/post-training-techniques-2026"
+          },
+          {
+            "title": "VLA-R1: Enhancing Reasoning in Vision-Language-Action Models | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2510.01623v1"
+          },
+          {
+            "title": "VLA-R1: Enhancing Reasoning in Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.01623v1"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://rlvla.github.io/"
+          },
+          {
+            "title": "Can GRPO Help LLMs Transcend Their Pretraining Origin?",
+            "url": "https://arxiv.org/pdf/2510.15990"
+          },
+          {
+            "title": "Affordance-R1: Reinforcement Learning for Generalizable Affordance Reasoning",
+            "url": "https://arxiv.org/pdf/2508.06206"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://arxiv.org/pdf/2505.19789"
+          }
+        ]
+      },
+      "I found relevant research on these topics. Here's what the search results reveal:\n\n## Key Findings\n\n**GRPO and VLA Integration:**\nVLA-R1 is a reasoning-enhanced Vision-Language-Action model that integrates Reinforcement Learning from Verifiable Rewards (RLVR) with Group Relative Policy Optimization (GRPO) to systematically optimize both reasoning and execution.\n\n**Affordance Reasoning with GRPO:**\nVLA-R1 employs GRPO with three verifiable rewards: an affordance reward based on Generalized Intersection over Union (GIoU) to provide informative gradients for non-overlapping predicted and ground truth affordance regions, a distance-based reward using improved Fréchet distance to ensure reasonable trajectory curvature and segment length, and an output-format reward to enforce well-formed reasoning and action specifications.\n\nAffordance-R1 uses GRPO without SFT to enhance the model's inherent reasoning abilities, introducing a carefully designed affordance reward containing format, perception, and recognition components.\n\n**Differential Benefits of RL for VLA:**\nIn out-of-distribution tests, RL enhances VLA generalization substantially in Execution, improves moderately in Semantics, and performs on par with SFT for Vision. This demonstrates that reinforcement learning's benefits vary across different dimensions of VLA performance.\n\n**GRPO's Technical Advantages:**\nGRPO eliminates the critic entirely, and for each prompt, it samples a group of responses (typically 8-64) and computes advantages by normalizing each response's reward against the group mean and standard deviation.\n\nThese papers from 2025-2026 represent the cutting edge of combining GRPO, VLA models, and affordance reasoning."
+    ],
+    "durationSeconds": 7.932643622000003
+  },
+  "sourceToolAssistantUUID": "ac378b68-3a68-4bf2-8bc1-27edad50ec8a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-18T20:14:37.922Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MiomovvsJFEitmqc7MTKxh`</summary>
+
+```json
+{
+  "query": "\"What Can RL Bring to VLA Generalization\" empirical study arXiv 2505.19789 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a770f74-c06a-40db-bfea-1fa82d413a67",
+  "isSidechain": false,
+  "requestId": "req_011CbAeVYb9iyaJvVUMTfXwY",
+  "type": "assistant",
+  "uuid": "39ef4f88-cca4-4acc-8309-0f22695d6d67",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DoM8ZBaMUg544N8C7LF9RW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 833,
+      "cache_read_input_tokens": 36741,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 833,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 36741,
+          "cache_creation_input_tokens": 833,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 833
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-18T20:14:47.675Z_
+
+<details><summary>↩ Tool result · `toolu_01MiomovvsJFEitmqc7MTKxh`</summary>
+
+```text
+Web search results for query: ""What Can RL Bring to VLA Generalization" empirical study arXiv 2505.19789 2025"
+
+Links: [{"title":"[2505.19789] What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/abs/2505.19789"},{"title":"[2505.19789v1] What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/abs/2505.19789v1"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study | alphaXiv","url":"https://www.alphaxiv.org/overview/2505.19789v1"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/pdf/2505.19789"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://arxiv.org/html/2505.19789"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/what-can-rl-bring-vla-generalization-empirical"},{"title":"What Can RL Bring to VLA Generalization? An Empirical Study - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250519789L/abstract"},{"title":"(PDF) What Can RL Bring to VLA Generalization? An Empirical Study","url":"https://www.researchgate.net/publication/392105322_What_Can_RL_Bring_to_VLA_Generalization_An_Empirical_Study"},{"title":"SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning","url":"https://arxiv.org/html/2509.09674v1"}]
+
+I found the paper you're looking for! Here's information about "What Can RL Bring to VLA Generalization? An Empirical Study" (arXiv 2505.19789):
+
+**Overview:**
+The paper studies Large Vision-Language Action (VLA) models for embodied AI. The predominant training via supervised fine-tuning (SFT) limits generalization due to susceptibility to compounding errors under distribution shifts.
+
+**Research Question:**
+The researchers investigate whether Reinforcement Learning (RL) can overcome these limitations by optimizing for task objectives via trial-and-error, as a systematic understanding of its specific generalization benefits for VLAs compared to SFT was lacking.
+
+**Key Findings:**
+The study introduces a comprehensive benchmark for evaluating VLA generalization and systematically investigates the impact of RL fine-tuning across diverse visual, semantic, and execution dimensions. The extensive experiments reveal that RL fine-tuning, particularly with PPO, significantly enhances generalization in semantic understanding and execution robustness over SFT, while maintaining comparable visual robustness.
+
+**Authors:**
+Jijia Liu, Feng Gao, Bingwen Wei, Xinlei Chen, Qingmin Liao, Yi Wu, Chao Yu, and Yu Wang.
+
+The paper was submitted on May 26, 2025, and has undergone multiple revisions, with the latest version from January 14, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "39ef4f88-cca4-4acc-8309-0f22695d6d67",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "0b4080b2-eb35-4145-8d25-c910df90270d",
+  "toolUseResult": {
+    "query": "\"What Can RL Bring to VLA Generalization\" empirical study arXiv 2505.19789 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BQn9Btcw1uWVvnAKsyBdS2",
+        "content": [
+          {
+            "title": "[2505.19789] What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://arxiv.org/abs/2505.19789"
+          },
+          {
+            "title": "[2505.19789v1] What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://arxiv.org/abs/2505.19789v1"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2505.19789v1"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://arxiv.org/pdf/2505.19789"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://arxiv.org/html/2505.19789"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/what-can-rl-bring-vla-generalization-empirical"
+          },
+          {
+            "title": "What Can RL Bring to VLA Generalization? An Empirical Study - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250519789L/abstract"
+          },
+          {
+            "title": "(PDF) What Can RL Bring to VLA Generalization? An Empirical Study",
+            "url": "https://www.researchgate.net/publication/392105322_What_Can_RL_Bring_to_VLA_Generalization_An_Empirical_Study"
+          },
+          {
+            "title": "SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2509.09674v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's information about \"What Can RL Bring to VLA Generalization? An Empirical Study\" (arXiv 2505.19789):\n\n**Overview:**\nThe paper studies Large Vision-Language Action (VLA) models for embodied AI. The predominant training via supervised fine-tuning (SFT) limits generalization due to susceptibility to compounding errors under distribution shifts.\n\n**Research Question:**\nThe researchers investigate whether Reinforcement Learning (RL) can overcome these limitations by optimizing for task objectives via trial-and-error, as a systematic understanding of its specific generalization benefits for VLAs compared to SFT was lacking.\n\n**Key Findings:**\nThe study introduces a comprehensive benchmark for evaluating VLA generalization and systematically investigates the impact of RL fine-tuning across diverse visual, semantic, and execution dimensions. The extensive experiments reveal that RL fine-tuning, particularly with PPO, significantly enhances generalization in semantic understanding and execution robustness over SFT, while maintaining comparable visual robustness.\n\n**Authors:**\nJijia Liu, Feng Gao, Bingwen Wei, Xinlei Chen, Qingmin Liao, Yi Wu, Chao Yu, and Yu Wang.\n\nThe paper was submitted on May 26, 2025, and has undergone multiple revisions, with the latest version from January 14, 2026."
+    ],
+    "durationSeconds": 9.74964684500001
+  },
+  "sourceToolAssistantUUID": "39ef4f88-cca4-4acc-8309-0f22695d6d67",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-18 (UTC).**  ## Original idea {   \"title\": \"OVA-VLA: Does Affordance-Specific Reasoning Ground VLA Action Decoders…",
+  "leafUuid": "0b4080b2-eb35-4145-8d25-c910df90270d",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OVA-VLA with affordance-attention architecture and RL pivot",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-18T20:14:50.643Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FMafSGBPgSbWYZKap5Ksu6`</summary>
+
+```json
+{
+  "query": "LIBERO-Plus leaderboard SOTA 2026 VLA robustness benchmark latest results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b4080b2-eb35-4145-8d25-c910df90270d",
+  "isSidechain": false,
+  "requestId": "req_011CbAeWU1qvia3PPuCkVBEx",
+  "type": "assistant",
+  "uuid": "dac1a368-e7c6-4b83-bc5a-87f61812c3e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EK95v4ibjjANjyHQkNVrxR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 929,
+      "cache_read_input_tokens": 37574,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 929,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 37574,
+          "cache_creation_input_tokens": 929,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 929
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-18T20:14:56.782Z_
+
+<details><summary>↩ Tool result · `toolu_01FMafSGBPgSbWYZKap5Ksu6`</summary>
+
+```text
+Web search results for query: "LIBERO-Plus leaderboard SOTA 2026 VLA robustness benchmark latest results"
+
+Links: [{"title":"VLA SOTA Leaderboard","url":"https://sota.evomind-tech.com/"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://sylvestf.github.io/LIBERO-plus/"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"},{"title":"CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models","url":"https://cvpr.thecvf.com/virtual/2026/poster/38735"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/pdf/2510.13626"},{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"}]
+
+Based on the search results, here's information about the LIBERO-Plus leaderboard and VLA robustness benchmark:
+
+## Benchmark Overview
+
+LIBERO-Plus is an extended benchmark testing robustness across 7 perturbation dimensions: Camera, Robot, Language, Light, Background, Noise, and Layout. The benchmark contains 10,030 tasks spanning seven perturbation dimensions.
+
+## Key Findings on VLA Robustness
+
+Recent SOTA evaluations on LIBERO-Plus have revealed significant vulnerabilities in Vision-Language-Action models. Models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations. Additionally, models are largely insensitive to language variations, with experiments revealing that models tend to ignore language instructions completely.
+
+## Latest Results
+
+According to the search results, some of the latest model performance scores on LIBERO-Plus include: AVA-VLA (Avg 74.7), MergeVLA (Avg 72.2), and SRPO (Avg 82.1).
+
+The LIBERO-Plus benchmark has been a focus of recent research, with a CVPR 2026 poster presentation discussing the benchmark as a progressive robustness evaluation tool for VLA models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dac1a368-e7c6-4b83-bc5a-87f61812c3e9",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "349cc3e3-e76a-447b-a8b1-74467ff2a316",
+  "toolUseResult": {
+    "query": "LIBERO-Plus leaderboard SOTA 2026 VLA robustness benchmark latest results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JJeAQeHnhJDD8QZ7drpyGE",
+        "content": [
+          {
+            "title": "VLA SOTA Leaderboard",
+            "url": "https://sota.evomind-tech.com/"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://sylvestf.github.io/LIBERO-plus/"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          },
+          {
+            "title": "CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models",
+            "url": "https://cvpr.thecvf.com/virtual/2026/poster/38735"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          },
+          {
+            "title": "LIBERO Benchmark: Vision-Language-Action in Robotics",
+            "url": "https://www.emergentmind.com/topics/libero"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the LIBERO-Plus leaderboard and VLA robustness benchmark:\n\n## Benchmark Overview\n\nLIBERO-Plus is an extended benchmark testing robustness across 7 perturbation dimensions: Camera, Robot, Language, Light, Background, Noise, and Layout. The benchmark contains 10,030 tasks spanning seven perturbation dimensions.\n\n## Key Findings on VLA Robustness\n\nRecent SOTA evaluations on LIBERO-Plus have revealed significant vulnerabilities in Vision-Language-Action models. Models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations. Additionally, models are largely insensitive to language variations, with experiments revealing that models tend to ignore language instructions completely.\n\n## Latest Results\n\nAccording to the search results, some of the latest model performance scores on LIBERO-Plus include: AVA-VLA (Avg 74.7), MergeVLA (Avg 72.2), and SRPO (Avg 82.1).\n\nThe LIBERO-Plus benchmark has been a focus of recent research, with a CVPR 2026 poster presentation discussing the benchmark as a progressive robustness evaluation tool for VLA models."
+    ],
+    "durationSeconds": 6.134278572999989
+  },
+  "sourceToolAssistantUUID": "dac1a368-e7c6-4b83-bc5a-87f61812c3e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-18T20:15:01.530Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01AhA248SXn8SJvAb4JjavHx`</summary>
+
+```json
+{
+  "url": "https://sota.evomind-tech.com/",
+  "prompt": "Extract the full LIBERO-Plus leaderboard and any other LIBERO benchmark results. I need: 1) All model names and their scores on LIBERO-Plus (overall and per-dimension if available), 2) What is the current SOTA on LIBERO-Plus? 3) Any results for LIBERO-90 or LIBERO-Long. 4) Date of last update."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "349cc3e3-e76a-447b-a8b1-74467ff2a316",
+  "isSidechain": false,
+  "requestId": "req_011CbAeX8z953edLBdM296Un",
+  "type": "assistant",
+  "uuid": "c8788884-667b-4273-ac2b-516efece1f9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VN38zHeacSp4R54kFsgn8W",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 796,
+      "cache_read_input_tokens": 38503,
+      "output_tokens": 169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 796,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 169,
+          "cache_read_input_tokens": 38503,
+          "cache_creation_input_tokens": 796,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 796
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-18T20:15:05.657Z_
+
+<details><summary>↩ Tool result · `toolu_01AhA248SXn8SJvAb4JjavHx`</summary>
+
+```text
+# LIBERO-Plus Leaderboard Data
+
+Based on the webpage content provided, I cannot provide the specific information you requested because:
+
+**Current Status:** The page indicates "0 Models" are currently displayed for LIBERO-Plus. The leaderboard infrastructure exists with a link to "/benchmarks/liberoplus/", but no actual model results, scores, or rankings are shown in this content.
+
+**What's Missing:**
+- No model names or performance metrics are listed
+- No per-dimension breakdown data is available
+- No SOTA designation is specified
+- No results for LIBERO-90 or LIBERO-Long variants appear
+- No last-update timestamp is provided
+
+**What Is Available:**
+The page describes LIBERO-Plus as testing "robustness across 7 perturbation dimensions" with "Average Success Rate (%)" as the primary metric, but the actual leaderboard data would require visiting the full benchmark page at the linked URL.
+
+To obtain the complete LIBERO-Plus results you need, you would need to access the actual leaderboard pages directly rather than relying on this homepage summary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c8788884-667b-4273-ac2b-516efece1f9a",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "d3d76778-2ec6-4ef3-b9ca-0285786d951d",
+  "toolUseResult": {
+    "bytes": 26531,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# LIBERO-Plus Leaderboard Data\n\nBased on the webpage content provided, I cannot provide the specific information you requested because:\n\n**Current Status:** The page indicates \"0 Models\" are currently displayed for LIBERO-Plus. The leaderboard infrastructure exists with a link to \"/benchmarks/liberoplus/\", but no actual model results, scores, or rankings are shown in this content.\n\n**What's Missing:**\n- No model names or performance metrics are listed\n- No per-dimension breakdown data is available\n- No SOTA designation is specified\n- No results for LIBERO-90 or LIBERO-Long variants appear\n- No last-update timestamp is provided\n\n**What Is Available:**\nThe page describes LIBERO-Plus as testing \"robustness across 7 perturbation dimensions\" with \"Average Success Rate (%)\" as the primary metric, but the actual leaderboard data would require visiting the full benchmark page at the linked URL.\n\nTo obtain the complete LIBERO-Plus results you need, you would need to access the actual leaderboard pages directly rather than relying on this homepage summary.",
+    "durationMs": 4124,
+    "url": "https://sota.evomind-tech.com/"
+  },
+  "sourceToolAssistantUUID": "c8788884-667b-4273-ac2b-516efece1f9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-18T20:15:08.425Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014KdT5g19DcuxzMT9TEwbQp`</summary>
+
+```json
+{
+  "query": "SRPO VLA LIBERO-Plus 82.1 robustness 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3d76778-2ec6-4ef3-b9ca-0285786d951d",
+  "isSidechain": false,
+  "requestId": "req_011CbAeXnsgsPSPYZXCED6WM",
+  "type": "assistant",
+  "uuid": "60124be0-49b9-4819-a8a9-ce5f55b37762",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014rmcZVxQxY9AXYsu2iXwS9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 425,
+      "cache_read_input_tokens": 39299,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 425,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 39299,
+          "cache_creation_input_tokens": 425,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 425
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-18T20:15:16.363Z_
+
+<details><summary>↩ Tool result · `toolu_014KdT5g19DcuxzMT9TEwbQp`</summary>
+
+```text
+Web search results for query: "SRPO VLA LIBERO-Plus 82.1 robustness 2026"
+
+Links: [{"title":"LIBERO-plus/README.md at main · sylvestf/LIBERO-plus","url":"https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"},{"title":"SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models","url":"https://arxiv.org/html/2511.15605"},{"title":"SRPO Code Implementation Explained — siiRL documentation","url":"https://siirl.readthedocs.io/en/latest/programming_guide/srpo_code_explained.html"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/pdf/2510.13626"},{"title":"See, Plan, Rewind: Progress-Aware VLA Models for Robust Robotic Manipulation","url":"https://tingjundai.github.io/SPRVLA/"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://sylvestf.github.io/LIBERO-plus/"},{"title":"CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models","url":"https://cvpr.thecvf.com/virtual/2026/poster/38735"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"}]
+
+Based on the search results, here's what I found about SRPO VLA LIBERO-Plus 82.1 robustness:
+
+SRPO (Self-Referential Policy Optimization) is a Vision-Language-Action model with an average performance of 82.1 on LIBERO-Plus.
+
+Regarding robustness performance: SRPO shows substantial robustness, achieving a 167% performance improvement on the LIBERO-Plus benchmark. Starting from a supervised baseline with 48.9% success, SRPO achieves a new state-of-the-art success rate of 99.2% in just 200 RL steps.
+
+The LIBERO-Plus benchmark itself is the official implementation and benchmark for a paper on "In-depth Robustness Analysis for Vision-Language-Action Models" that systematically exposes hidden vulnerabilities of contemporary VLA models through comprehensive robustness evaluation across seven perturbation dimensions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60124be0-49b9-4819-a8a9-ce5f55b37762",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "31a538be-4665-403e-a305-654ecf79d63b",
+  "toolUseResult": {
+    "query": "SRPO VLA LIBERO-Plus 82.1 robustness 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PaaZh6FCAEz7VsWrSoeZSD",
+        "content": [
+          {
+            "title": "LIBERO-plus/README.md at main · sylvestf/LIBERO-plus",
+            "url": "https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          },
+          {
+            "title": "SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2511.15605"
+          },
+          {
+            "title": "SRPO Code Implementation Explained — siiRL documentation",
+            "url": "https://siirl.readthedocs.io/en/latest/programming_guide/srpo_code_explained.html"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "See, Plan, Rewind: Progress-Aware VLA Models for Robust Robotic Manipulation",
+            "url": "https://tingjundai.github.io/SPRVLA/"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://sylvestf.github.io/LIBERO-plus/"
+          },
+          {
+            "title": "CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models",
+            "url": "https://cvpr.thecvf.com/virtual/2026/poster/38735"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SRPO VLA LIBERO-Plus 82.1 robustness:\n\nSRPO (Self-Referential Policy Optimization) is a Vision-Language-Action model with an average performance of 82.1 on LIBERO-Plus.\n\nRegarding robustness performance: SRPO shows substantial robustness, achieving a 167% performance improvement on the LIBERO-Plus benchmark. Starting from a supervised baseline with 48.9% success, SRPO achieves a new state-of-the-art success rate of 99.2% in just 200 RL steps.\n\nThe LIBERO-Plus benchmark itself is the official implementation and benchmark for a paper on \"In-depth Robustness Analysis for Vision-Language-Action Models\" that systematically exposes hidden vulnerabilities of contemporary VLA models through comprehensive robustness evaluation across seven perturbation dimensions."
+    ],
+    "durationSeconds": 7.9334208010000005
+  },
+  "sourceToolAssistantUUID": "60124be0-49b9-4819-a8a9-ce5f55b37762",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54 · 2026-05-18T20:15:16.367Z_
+
+```json
+{
+  "parentUuid": "31a538be-4665-403e-a305-654ecf79d63b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d815cf80-b77e-46fd-8d08-4daedc5f1dab",
+  "timestamp": "2026-05-18T20:15:16.367Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-18T20:15:20.119Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TmuJui6715pwnfC7kXerQd`</summary>
+
+```json
+{
+  "url": "https://github.com/sylvestf/LIBERO-plus/blob/main/README.md",
+  "prompt": "Extract the full LIBERO-Plus leaderboard/results table. I need all model names and their scores (overall average and per perturbation dimension if available). Focus on the latest results and any models achieving above 80% average."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d815cf80-b77e-46fd-8d08-4daedc5f1dab",
+  "isSidechain": false,
+  "requestId": "req_011CbAeYahV4WgEtzzHYhx7h",
+  "type": "assistant",
+  "uuid": "c330a6f2-3a41-4ff7-93be-91e0231ddfe4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Xa8KTWSX7UkRS1crmotQA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 886,
+      "cache_read_input_tokens": 39724,
+      "output_tokens": 140,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 886,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 140,
+          "cache_read_input_tokens": 39724,
+          "cache_creation_input_tokens": 886,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 886
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-18T20:15:28.574Z_
+
+<details><summary>↩ Tool result · `toolu_01TmuJui6715pwnfC7kXerQd`</summary>
+
+```text
+# LIBERO-Plus Benchmark Results
+
+Based on the README, here's the complete leaderboard with all models and their performance metrics across perturbation dimensions:
+
+## Models Achieving 80%+ Average
+
+**OpenVLA-OFT+ (Ours)** - 79.6% average
+- Camera: 92.8 | Robot: 30.3 | Language: 85.8 | Light: 94.9 | Background: 93.9 | Noise: 89.3 | Layout: 77.6
+
+**SRPO** - 82.1% average (referenced in recent works section)
+
+## Full Leaderboard
+
+| Model | Camera | Robot | Language | Light | Background | Noise | Layout | Average |
+|-------|--------|-------|----------|-------|------------|-------|--------|---------|
+| OpenVLA-OFT+ | 92.8 | 30.3 | 85.8 | 94.9 | 93.9 | 89.3 | 77.6 | 79.6 |
+| OpenVLA-OFT | 56.4 | 31.9 | 79.5 | 88.7 | 93.3 | 75.8 | 74.2 | 69.6 |
+| RIPT-VLA | 55.2 | 31.2 | 77.6 | 88.4 | 91.6 | 73.5 | 74.2 | 68.4 |
+| OpenVLA-OFT_m | 55.6 | 21.7 | 81.0 | 92.7 | 91.0 | 78.6 | 68.7 | 67.9 |
+| π₀-Fast | 65.1 | 21.6 | 61.0 | 73.2 | 73.2 | 74.4 | 68.8 | 61.6 |
+| π₀ | 13.8 | 6.0 | 58.8 | 85.0 | 81.4 | 79.0 | 68.9 | 53.6 |
+| OpenVLA-OFT_w | 10.4 | 38.7 | 70.5 | 76.8 | 93.6 | 49.9 | 69.9 | 55.8 |
+| UniVLA | 1.8 | 46.2 | 69.6 | 69.0 | 81.0 | 21.2 | 31.9 | 43.9 |
+| NORA | 2.2 | 37.0 | 65.1 | 45.7 | 58.6 | 12.8 | 62.1 | 39.0 |
+| WorldVLA | 0.1 | 27.9 | 41.6 | 43.7 | 17.1 | 10.9 | 38.0 | 25.0 |
+| OpenVLA | 0.8 | 3.5 | 23.0 | 8.1 | 34.8 | 15.2 | 28.5 | 15.6 |
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c330a6f2-3a41-4ff7-93be-91e0231ddfe4",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "fe33229a-bd98-4957-9aa9-d88dfa6d449c",
+  "toolUseResult": {
+    "bytes": 295583,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# LIBERO-Plus Benchmark Results\n\nBased on the README, here's the complete leaderboard with all models and their performance metrics across perturbation dimensions:\n\n## Models Achieving 80%+ Average\n\n**OpenVLA-OFT+ (Ours)** - 79.6% average\n- Camera: 92.8 | Robot: 30.3 | Language: 85.8 | Light: 94.9 | Background: 93.9 | Noise: 89.3 | Layout: 77.6\n\n**SRPO** - 82.1% average (referenced in recent works section)\n\n## Full Leaderboard\n\n| Model | Camera | Robot | Language | Light | Background | Noise | Layout | Average |\n|-------|--------|-------|----------|-------|------------|-------|--------|---------|\n| OpenVLA-OFT+ | 92.8 | 30.3 | 85.8 | 94.9 | 93.9 | 89.3 | 77.6 | 79.6 |\n| OpenVLA-OFT | 56.4 | 31.9 | 79.5 | 88.7 | 93.3 | 75.8 | 74.2 | 69.6 |\n| RIPT-VLA | 55.2 | 31.2 | 77.6 | 88.4 | 91.6 | 73.5 | 74.2 | 68.4 |\n| OpenVLA-OFT_m | 55.6 | 21.7 | 81.0 | 92.7 | 91.0 | 78.6 | 68.7 | 67.9 |\n| π₀-Fast | 65.1 | 21.6 | 61.0 | 73.2 | 73.2 | 74.4 | 68.8 | 61.6 |\n| π₀ | 13.8 | 6.0 | 58.8 | 85.0 | 81.4 | 79.0 | 68.9 | 53.6 |\n| OpenVLA-OFT_w | 10.4 | 38.7 | 70.5 | 76.8 | 93.6 | 49.9 | 69.9 | 55.8 |\n| UniVLA | 1.8 | 46.2 | 69.6 | 69.0 | 81.0 | 21.2 | 31.9 | 43.9 |\n| NORA | 2.2 | 37.0 | 65.1 | 45.7 | 58.6 | 12.8 | 62.1 | 39.0 |\n| WorldVLA | 0.1 | 27.9 | 41.6 | 43.7 | 17.1 | 10.9 | 38.0 | 25.0 |\n| OpenVLA | 0.8 | 3.5 | 23.0 | 8.1 | 34.8 | 15.2 | 28.5 | 15.6 |",
+    "durationMs": 8452,
+    "url": "https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"
+  },
+  "sourceToolAssistantUUID": "c330a6f2-3a41-4ff7-93be-91e0231ddfe4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-18T20:15:31.802Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016khTQdJWmRMAXL4mVC4C59`</summary>
+
+```json
+{
+  "query": "ProGAL-VLA arXiv 2604.09824 LIBERO-Plus 85.5% grounded alignment 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe33229a-bd98-4957-9aa9-d88dfa6d449c",
+  "isSidechain": false,
+  "requestId": "req_011CbAeZUrXxCoQn4omRDKjn",
+  "type": "assistant",
+  "uuid": "eeaa5667-26af-46d2-8b4c-3fd52d601d19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0156392F2uoHnNY3JwMvW7rc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 965,
+      "cache_read_input_tokens": 40610,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 965,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 40610,
+          "cache_creation_input_tokens": 965,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 965
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T20:15:40.376Z_
+
+<details><summary>↩ Tool result · `toolu_016khTQdJWmRMAXL4mVC4C59`</summary>
+
+```text
+Web search results for query: "ProGAL-VLA arXiv 2604.09824 LIBERO-Plus 85.5% grounded alignment 2026"
+
+Links: [{"title":"[2604.09824] ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models","url":"https://arxiv.org/abs/2604.09824"},{"title":"ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models","url":"https://arxiv.org/html/2604.09824"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"Information-Theoretic Constraints for Continual Vision-Language-Action Alignment","url":"https://arxiv.org/pdf/2603.13335"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization","url":"https://arxiv.org/pdf/2510.03827"}]
+
+Based on the search results, I found information about the ProGAL-VLA paper (arXiv 2604.09824):
+
+ProGAL-VLA (Prospective Grounding and Alignment VLA) constructs a 3D entity-centric graph, uses a slow planner to produce symbolic sub-goals, and aligns them with grounded entities via a Grounding Alignment Contrastive (GAC) loss.
+
+On LIBERO-Plus, ProGAL-VLA increases robustness under robot perturbations from 30.3 to 71.5 percent, reduces language ignorance by 3x-4x, and improves entity retrieval from 0.41 to 0.71 Recall@1.
+
+The paper was submitted on April 10, 2026, and addresses the problem that vision-language-action (VLA) models often exhibit language ignorance and rely on visual shortcuts rather than truly understanding instructions. The approach aims to improve grounded alignment through prospective reasoning to make robotic agents more robust and language-aware.
+
+Note: The specific 85.5% metric you mentioned in your query does not appear in the search results for this paper. The results show the 71.5% robustness improvement under perturbations on LIBERO-Plus, which appears to be the primary performance metric reported.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eeaa5667-26af-46d2-8b4c-3fd52d601d19",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "59815f58-4e59-4a80-924e-cf445a4f17c2",
+  "toolUseResult": {
+    "query": "ProGAL-VLA arXiv 2604.09824 LIBERO-Plus 85.5% grounded alignment 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GgUsc71bQCjTBWop3UrkDc",
+        "content": [
+          {
+            "title": "[2604.09824] ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2604.09824"
+          },
+          {
+            "title": "ProGAL-VLA: Grounded Alignment through Prospective Reasoning in Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2604.09824"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "Information-Theoretic Constraints for Continual Vision-Language-Action Alignment",
+            "url": "https://arxiv.org/pdf/2603.13335"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization",
+            "url": "https://arxiv.org/pdf/2510.03827"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the ProGAL-VLA paper (arXiv 2604.09824):\n\nProGAL-VLA (Prospective Grounding and Alignment VLA) constructs a 3D entity-centric graph, uses a slow planner to produce symbolic sub-goals, and aligns them with grounded entities via a Grounding Alignment Contrastive (GAC) loss.\n\nOn LIBERO-Plus, ProGAL-VLA increases robustness under robot perturbations from 30.3 to 71.5 percent, reduces language ignorance by 3x-4x, and improves entity retrieval from 0.41 to 0.71 Recall@1.\n\nThe paper was submitted on April 10, 2026, and addresses the problem that vision-language-action (VLA) models often exhibit language ignorance and rely on visual shortcuts rather than truly understanding instructions. The approach aims to improve grounded alignment through prospective reasoning to make robotic agents more robust and language-aware.\n\nNote: The specific 85.5% metric you mentioned in your query does not appear in the search results for this paper. The results show the 71.5% robustness improvement under perturbations on LIBERO-Plus, which appears to be the primary performance metric reported."
+    ],
+    "durationSeconds": 8.567763064
+  },
+  "sourceToolAssistantUUID": "eeaa5667-26af-46d2-8b4c-3fd52d601d19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T20:15:43.859Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0138r28gbdPdFPfBYQJpYmGG`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.09824",
+  "prompt": "Extract the exact LIBERO-Plus results for ProGAL-VLA. What is the overall average success rate? What are the per-dimension results? Is 85.5% mentioned anywhere? What is their SOTA claim?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59815f58-4e59-4a80-924e-cf445a4f17c2",
+  "isSidechain": false,
+  "requestId": "req_011CbAeaMN7QTT8dJ96QAbyT",
+  "type": "assistant",
+  "uuid": "48a21187-0a47-41f0-8627-ec7cb108b73b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012WrSz8QuizCQmY9mw2wyv6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 698,
+      "cache_read_input_tokens": 41575,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 698,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 41575,
+          "cache_creation_input_tokens": 698,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 698
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T20:15:47.360Z_
+
+<details><summary>↩ Tool result · `toolu_0138r28gbdPdFPfBYQJpYmGG`</summary>
+
+```text
+Based on the provided content, I can only extract limited LIBERO-Plus results from the abstract:
+
+**Available Results:**
+The abstract states that ProGAL-VLA "increases robustness under robot perturbations from 30.3 to 71.5 percent" and "reduces language ignorance by 3x-4x" on LIBERO-Plus, with entity retrieval improving "from 0.41 to 0.71 Recall@1."
+
+**What's Not Provided:**
+The webpage content does not include:
+- An overall average success rate
+- Per-dimension breakdown results
+- Any mention of 85.5%
+- An explicit SOTA (state-of-the-art) claim
+
+The abstract focuses on demonstrating improvements over baseline performance rather than providing comprehensive benchmark results or comparative claims against other methods. To find detailed per-dimension results and overall success rates, you would need to access the full paper via the PDF or HTML links provided.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "48a21187-0a47-41f0-8627-ec7cb108b73b",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "6b5c4593-64b5-48c2-8d73-5d7fbbd99550",
+  "toolUseResult": {
+    "bytes": 46291,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the provided content, I can only extract limited LIBERO-Plus results from the abstract:\n\n**Available Results:**\nThe abstract states that ProGAL-VLA \"increases robustness under robot perturbations from 30.3 to 71.5 percent\" and \"reduces language ignorance by 3x-4x\" on LIBERO-Plus, with entity retrieval improving \"from 0.41 to 0.71 Recall@1.\"\n\n**What's Not Provided:**\nThe webpage content does not include:\n- An overall average success rate\n- Per-dimension breakdown results\n- Any mention of 85.5%\n- An explicit SOTA (state-of-the-art) claim\n\nThe abstract focuses on demonstrating improvements over baseline performance rather than providing comprehensive benchmark results or comparative claims against other methods. To find detailed per-dimension results and overall success rates, you would need to access the full paper via the PDF or HTML links provided.",
+    "durationMs": 3498,
+    "url": "https://arxiv.org/abs/2604.09824"
+  },
+  "sourceToolAssistantUUID": "48a21187-0a47-41f0-8627-ec7cb108b73b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-18 (UTC).**  ## Original idea {   \"title\": \"OVA-VLA: Does Affordance-Specific Reasoning Ground VLA Action Decoders…",
+  "leafUuid": "6b5c4593-64b5-48c2-8d73-5d7fbbd99550",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OVA-VLA with affordance-attention architecture and RL pivot",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-18T20:15:52.263Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CMDM5eAoW2YGK8Tw6vfjkC`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.09824",
+  "prompt": "Find the full LIBERO-Plus results table. Extract: 1) ProGAL-VLA's overall average success rate on LIBERO-Plus. 2) Per-dimension results (Camera, Robot, Language, Light, Background, Noise, Layout). 3) Is 85.5% mentioned? 4) How does it compare to other baselines like OpenVLA-OFT, SRPO? 5) What about LIBERO standard / LIBERO-90 results?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b5c4593-64b5-48c2-8d73-5d7fbbd99550",
+  "isSidechain": false,
+  "requestId": "req_011CbAeasNthdyWF5VLwAznK",
+  "type": "assistant",
+  "uuid": "249ca2e5-d0bb-43a3-b612-873c1d51f24c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QiWwstDmxJ3KXAsqLkKQ9X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 357,
+      "cache_read_input_tokens": 42273,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 357,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 42273,
+          "cache_creation_input_tokens": 357,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 357
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T20:15:56.907Z_
+
+<details><summary>↩ Tool result · `toolu_01CMDM5eAoW2YGK8Tw6vfjkC`</summary>
+
+```text
+# ProGAL-VLA Performance on LIBERO-Plus
+
+## Overall Success Rate
+ProGAL-VLA achieves **85.5%** average success across all perturbation dimensions on LIBERO-Plus.
+
+## Per-Dimension Results
+According to Table 2, ProGAL-VLA's performance breakdown:
+
+| Dimension | Success Rate |
+|-----------|--------------|
+| Camera | 93.2% |
+| Robot | 71.5% |
+| Language | 93.6% |
+| Light | 86.8% |
+| Background | 92.3% |
+| Noise | 74.8% |
+| Layout | 86.7% |
+
+## Comparison to Baselines
+The paper shows ProGAL-VLA substantially outperforms prior methods:
+- **OpenVLA** (baseline): 17.3% overall
+- **OpenVLA-OFT+**: 79.6% overall
+- **RIPT-VLA**: 69.3% overall
+
+ProGAL-VLA's most significant gains appear in robot perturbations (30.3%→71.5%) and layout changes (77.6%→86.7%).
+
+## LIBERO Standard Results
+The document focuses primarily on LIBERO-Plus evaluation. Standard LIBERO or LIBERO-90 specific results are not detailed in the provided content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "249ca2e5-d0bb-43a3-b612-873c1d51f24c",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "16fc0e1f-83bc-456d-963e-c27d18eac223",
+  "toolUseResult": {
+    "bytes": 391198,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ProGAL-VLA Performance on LIBERO-Plus\n\n## Overall Success Rate\nProGAL-VLA achieves **85.5%** average success across all perturbation dimensions on LIBERO-Plus.\n\n## Per-Dimension Results\nAccording to Table 2, ProGAL-VLA's performance breakdown:\n\n| Dimension | Success Rate |\n|-----------|--------------|\n| Camera | 93.2% |\n| Robot | 71.5% |\n| Language | 93.6% |\n| Light | 86.8% |\n| Background | 92.3% |\n| Noise | 74.8% |\n| Layout | 86.7% |\n\n## Comparison to Baselines\nThe paper shows ProGAL-VLA substantially outperforms prior methods:\n- **OpenVLA** (baseline): 17.3% overall\n- **OpenVLA-OFT+**: 79.6% overall\n- **RIPT-VLA**: 69.3% overall\n\nProGAL-VLA's most significant gains appear in robot perturbations (30.3%→71.5%) and layout changes (77.6%→86.7%).\n\n## LIBERO Standard Results\nThe document focuses primarily on LIBERO-Plus evaluation. Standard LIBERO or LIBERO-90 specific results are not detailed in the provided content.",
+    "durationMs": 4640,
+    "url": "https://arxiv.org/html/2604.09824"
+  },
+  "sourceToolAssistantUUID": "249ca2e5-d0bb-43a3-b612-873c1d51f24c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-18T20:15:59.586Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01V9PzYWUq8rhYcNoA1CZoA5`</summary>
+
+```json
+{
+  "query": "GuidedVLA LIBERO-Plus results 75.4 attention head specialization May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16fc0e1f-83bc-456d-963e-c27d18eac223",
+  "isSidechain": false,
+  "requestId": "req_011CbAeba1ts3msuxzAR1o2x",
+  "type": "assistant",
+  "uuid": "71967d18-109a-418f-8e0c-13a7afce139b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ZdtwHfJgEcyT1BsAb1SeR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 522,
+      "cache_read_input_tokens": 42630,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 522,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 42630,
+          "cache_creation_input_tokens": 522,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 522
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T20:16:05.893Z_
+
+<details><summary>↩ Tool result · `toolu_01V9PzYWUq8rhYcNoA1CZoA5`</summary>
+
+```text
+Web search results for query: "GuidedVLA LIBERO-Plus results 75.4 attention head specialization May 2026"
+
+Links: [{"title":"GuidedVLA: Specifying Task-Relevant Factors via Plug-and-Play Action Attention Specialization","url":"https://arxiv.org/html/2605.12369v1"},{"title":"Attention Head Specialization","url":"https://www.emergentmind.com/topics/attention-head-specialization"},{"title":"[2605.12369v1] GuidedVLA: Specifying Task-Relevant Factors via Plug-and-Play Action Attention Specialization","url":"https://arxiv.org/abs/2605.12369v1"},{"title":"Specialization of softmax attention heads: insights from the high-dimensional single-location model","url":"https://arxiv.org/pdf/2603.03993"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"Head Pursuit: Probing Attention Specialization in Multimodal Transformers | OpenReview","url":"https://openreview.net/forum?id=YuOEXyZ15T"}]
+
+Based on the search results, I found information about GuidedVLA and its evaluation on LIBERO-Plus. However, the specific 75.4% result you mentioned doesn't appear in the search results returned. 
+
+GuidedVLA is a framework designed to manually guide action generation to focus on task-relevant factors, with individual attention heads supervised by manually defined auxiliary signals to capture distinct factors including object grounding, spatial geometry, and temporal skill logic.
+
+On LIBERO-Plus, the skill head gives the best single-head result on the Goal suite (68.9%) and remains above baseline on the Long suite (62.7% vs. 60.1%).
+
+The 75.4% result you're looking for may be a combined result or specific to a particular test condition that wasn't included in the search results I retrieved. The arXiv paper (2605.12369v1) appears to be the main GuidedVLA paper from May 2026, so you may find the specific result you're looking for by reviewing the full paper directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "71967d18-109a-418f-8e0c-13a7afce139b",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "21948736-f10c-4ae7-9d1d-d582c420833a",
+  "toolUseResult": {
+    "query": "GuidedVLA LIBERO-Plus results 75.4 attention head specialization May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RJ9EGhtXJc4WftcGFRjYrG",
+        "content": [
+          {
+            "title": "GuidedVLA: Specifying Task-Relevant Factors via Plug-and-Play Action Attention Specialization",
+            "url": "https://arxiv.org/html/2605.12369v1"
+          },
+          {
+            "title": "Attention Head Specialization",
+            "url": "https://www.emergentmind.com/topics/attention-head-specialization"
+          },
+          {
+            "title": "[2605.12369v1] GuidedVLA: Specifying Task-Relevant Factors via Plug-and-Play Action Attention Specialization",
+            "url": "https://arxiv.org/abs/2605.12369v1"
+          },
+          {
+            "title": "Specialization of softmax attention heads: insights from the high-dimensional single-location model",
+            "url": "https://arxiv.org/pdf/2603.03993"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "Head Pursuit: Probing Attention Specialization in Multimodal Transformers | OpenReview",
+            "url": "https://openreview.net/forum?id=YuOEXyZ15T"
+          }
+        ]
+      },
+      "Based on the search results, I found information about GuidedVLA and its evaluation on LIBERO-Plus. However, the specific 75.4% result you mentioned doesn't appear in the search results returned. \n\nGuidedVLA is a framework designed to manually guide action generation to focus on task-relevant factors, with individual attention heads supervised by manually defined auxiliary signals to capture distinct factors including object grounding, spatial geometry, and temporal skill logic.\n\nOn LIBERO-Plus, the skill head gives the best single-head result on the Goal suite (68.9%) and remains above baseline on the Long suite (62.7% vs. 60.1%).\n\nThe 75.4% result you're looking for may be a combined result or specific to a particular test condition that wasn't included in the search results I retrieved. The arXiv paper (2605.12369v1) appears to be the main GuidedVLA paper from May 2026, so you may find the specific result you're looking for by reviewing the full paper directly."
+    ],
+    "durationSeconds": 6.300491922999994
+  },
+  "sourceToolAssistantUUID": "71967d18-109a-418f-8e0c-13a7afce139b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-18T20:16:08.670Z_
+
+Now let me search for the latest on RL for reasoning content and contrastive affordance-action alignment approaches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "21948736-f10c-4ae7-9d1d-d582c420833a",
+  "isSidechain": false,
+  "requestId": "req_011CbAecEWQesfRH8b1SgUWe",
+  "type": "assistant",
+  "uuid": "0c298e80-b49b-45f1-bbd1-9a709abc7c08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019v6har4bWBUktLXeti4PS4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 653,
+      "cache_read_input_tokens": 43152,
+      "output_tokens": 95,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 653,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 95,
+          "cache_read_input_tokens": 43152,
+          "cache_creation_input_tokens": 653,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 653
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-18T20:16:09.699Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UYkZ9bJ4sGMdS6aNBaJPAL`</summary>
+
+```json
+{
+  "query": "contrastive alignment loss reasoning hidden states visual features VLA robot 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c298e80-b49b-45f1-bbd1-9a709abc7c08",
+  "isSidechain": false,
+  "requestId": "req_011CbAecEWQesfRH8b1SgUWe",
+  "type": "assistant",
+  "uuid": "82851413-0eaf-46c6-8bee-8107bd046a6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019v6har4bWBUktLXeti4PS4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 653,
+      "cache_read_input_tokens": 43152,
+      "output_tokens": 95,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 653,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 95,
+          "cache_read_input_tokens": 43152,
+          "cache_creation_input_tokens": 653,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 653
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-18T20:16:17.084Z_
+
+<details><summary>↩ Tool result · `toolu_01UYkZ9bJ4sGMdS6aNBaJPAL`</summary>
+
+```text
+Web search results for query: "contrastive alignment loss reasoning hidden states visual features VLA robot 2025 2026"
+
+Links: [{"title":"Contrastive Representation Regularization for Vision-Language-Action Models | OpenReview","url":"https://openreview.net/forum?id=hm2EcwFm2Q"},{"title":"Contrastive Representation Regularization for Vision-Language-Action Models","url":"https://arxiv.org/pdf/2510.01711"},{"title":"[2510.01711] Contrastive Representation Regularization for Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.01711"},{"title":"Contrastive Representation Regularization for Vision-Language-Action Models","url":"https://arxiv.org/html/2510.01711v1"},{"title":"Latent Reasoning VLA: Latent Thinking and Prediction for Vision-Language-Action Models","url":"https://arxiv.org/html/2602.01166v2"},{"title":"Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization","url":"https://arxiv.org/html/2510.25616v1"},{"title":"CONTRASTIVE REPRESENTATION REGULARIZATION","url":"https://openreview.net/pdf/620347d848a1d02068b859e759f37dd50a4304b9.pdf"},{"title":"CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models","url":"https://www.researchgate.net/publication/394511717_CoT-VLA_Visual_Chain-of-Thought_Reasoning_for_Vision-Language-Action_Models"}]
+
+Based on the web search results, I found several relevant papers and research on contrastive alignment approaches for Vision-Language-Action (VLA) robot models in 2025-2026. Here are the key findings:
+
+## Robot State-aware Contrastive Loss (RS-CL)
+
+A Robot State-aware Contrastive Loss (RS-CL) has been introduced as a simple and effective representation regularization for VLA models, designed to bridge the gap between VLM representations and robotic signals. RS-CL aligns the representations more closely with the robot's proprioceptive states, by using relative distances between the states as soft supervision.
+
+## Performance Improvements
+
+RS-CL substantially improves the manipulation performance of state-of-the-art VLA models; it pushes the prior art from 30.8% to 41.5% on pick-and-place tasks in RoboCasa-Kitchen, and boosts success rates from 45.0% to 58.3% on challenging real-robot manipulation tasks.
+
+## Related Research on Reasoning in VLAs
+
+The search also revealed work on latent reasoning approaches for VLA models. Text-based chain-of-thought methods represent intermediate reasoning explicitly in natural language, while visual CoT methods express reasoning through visual reconstruction or prediction, typically by modeling future observations or intermediate visual states.
+
+## Visual Representation Alignment
+
+Fine-tuning for robot control can disrupt the structured organization of inherited VLM representations, leading to a phenomenon akin to representation collapse where previously distinct VL representations converge into less discriminative subspaces.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "82851413-0eaf-46c6-8bee-8107bd046a6f",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "c59aacd6-af40-4946-b3d4-b10ced6b3359",
+  "toolUseResult": {
+    "query": "contrastive alignment loss reasoning hidden states visual features VLA robot 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012mgbQN1R41HKSH4r3LCFjB",
+        "content": [
+          {
+            "title": "Contrastive Representation Regularization for Vision-Language-Action Models | OpenReview",
+            "url": "https://openreview.net/forum?id=hm2EcwFm2Q"
+          },
+          {
+            "title": "Contrastive Representation Regularization for Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2510.01711"
+          },
+          {
+            "title": "[2510.01711] Contrastive Representation Regularization for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.01711"
+          },
+          {
+            "title": "Contrastive Representation Regularization for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.01711v1"
+          },
+          {
+            "title": "Latent Reasoning VLA: Latent Thinking and Prediction for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2602.01166v2"
+          },
+          {
+            "title": "Don’t Blind Your VLA: Aligning Visual Representations for OOD Generalization",
+            "url": "https://arxiv.org/html/2510.25616v1"
+          },
+          {
+            "title": "CONTRASTIVE REPRESENTATION REGULARIZATION",
+            "url": "https://openreview.net/pdf/620347d848a1d02068b859e759f37dd50a4304b9.pdf"
+          },
+          {
+            "title": "CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models",
+            "url": "https://www.researchgate.net/publication/394511717_CoT-VLA_Visual_Chain-of-Thought_Reasoning_for_Vision-Language-Action_Models"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers and research on contrastive alignment approaches for Vision-Language-Action (VLA) robot models in 2025-2026. Here are the key findings:\n\n## Robot State-aware Contrastive Loss (RS-CL)\n\nA Robot State-aware Contrastive Loss (RS-CL) has been introduced as a simple and effective representation regularization for VLA models, designed to bridge the gap between VLM representations and robotic signals. RS-CL aligns the representations more closely with the robot's proprioceptive states, by using relative distances between the states as soft supervision.\n\n## Performance Improvements\n\nRS-CL substantially improves the manipulation performance of state-of-the-art VLA models; it pushes the prior art from 30.8% to 41.5% on pick-and-place tasks in RoboCasa-Kitchen, and boosts success rates from 45.0% to 58.3% on challenging real-robot manipulation tasks.\n\n## Related Research on Reasoning in VLAs\n\nThe search also revealed work on latent reasoning approaches for VLA models. Text-based chain-of-thought methods represent intermediate reasoning explicitly in natural language, while visual CoT methods express reasoning through visual reconstruction or prediction, typically by modeling future observations or intermediate visual states.\n\n## Visual Representation Alignment\n\nFine-tuning for robot control can disrupt the structured organization of inherited VLM representations, leading to a phenomenon akin to representation collapse where previously distinct VL representations converge into less discriminative subspaces."
+    ],
+    "durationSeconds": 7.380613844999985
+  },
+  "sourceToolAssistantUUID": "82851413-0eaf-46c6-8bee-8107bd046a6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-18T20:16:20.507Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0189yjEh6Mg3ddx6pUSyEGAh`</summary>
+
+```json
+{
+  "query": "MergeVLA AVA-VLA LIBERO-Plus latest VLA results 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c59aacd6-af40-4946-b3d4-b10ced6b3359",
+  "isSidechain": false,
+  "requestId": "req_011CbAed4QDr7bybY8f9zAp1",
+  "type": "assistant",
+  "uuid": "14610e7f-71ab-4288-afc5-31d2c39f6bb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SCnRouGGQerF5S7jnjVQDN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 43805,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 890,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 43805,
+          "cache_creation_input_tokens": 890,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 890
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-18T20:16:28.027Z_
+
+<details><summary>↩ Tool result · `toolu_0189yjEh6Mg3ddx6pUSyEGAh`</summary>
+
+```text
+Web search results for query: "MergeVLA AVA-VLA LIBERO-Plus latest VLA results 2026"
+
+Links: [{"title":"MergeVLA: Cross-Skill Model Merging Toward a Generalist Vision-Language-Action Agent","url":"https://mergevla.github.io/"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"},{"title":"AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention","url":"https://arxiv.org/html/2511.18960"},{"title":"Yadan Luo - The University of Queensland | LinkedIn","url":"https://www.linkedin.com/in/yadan-luo-755751132/"},{"title":"CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models","url":"https://cvpr.thecvf.com/virtual/2026/poster/38735"},{"title":"Do World Action Models Generalize Better than VLAs? A Robustness Study [Quick Review]","url":"https://liner.com/review/do-world-action-models-generalize-better-than-vlas-robustness-study"},{"title":"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss","url":"https://mbreuss.github.io/blog_post_iclr_26_vla.html"},{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"VLA Models Compared: OpenVLA vs π0 vs SmolVLA vs RT-2 (2026 Guide) | SVRC","url":"https://www.roboticscenter.ai/learn/vla-models-comparison"}]
+
+Based on the latest 2026 VLA research, here are the key results for the models you asked about:
+
+## MergeVLA
+
+MergeVLA is a merging-oriented VLA architecture that preserves mergeability by design. On the standard LIBERO benchmark, MergeVLA achieved a 90.2% success rate for the merged model, restoring the capabilities of individual experts across 4 different types of tasks. On LIBERO-Plus (Robustness), MergeVLA maintained a 72.2% success rate when tested against visual and language shifts.
+
+## AVA-VLA
+
+AVA-VLA achieves state-of-the-art overall performance in both single-task and multi-task settings. AVA-VLA is an approach for improving Vision-Language-Action models with Active Visual Attention, achieving an average of 74.7 on LIBERO-Plus.
+
+## LIBERO-Plus Benchmark
+
+LIBERO-Plus performs a systematic vulnerability analysis by introducing controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise. The analysis exposes critical weaknesses with models exhibiting extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.
+
+These recent 2026 results highlight progress in VLA merging and robustness, though robustness challenges remain significant areas for improvement.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "14610e7f-71ab-4288-afc5-31d2c39f6bb7",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "3a989331-1e1b-4c40-94d8-0b94940b9d5d",
+  "toolUseResult": {
+    "query": "MergeVLA AVA-VLA LIBERO-Plus latest VLA results 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HeNmrRkq3Pj9kAJZnBZvKM",
+        "content": [
+          {
+            "title": "MergeVLA: Cross-Skill Model Merging Toward a Generalist Vision-Language-Action Agent",
+            "url": "https://mergevla.github.io/"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          },
+          {
+            "title": "AVA-VLA: Improving Vision-Language-Action models with Active Visual Attention",
+            "url": "https://arxiv.org/html/2511.18960"
+          },
+          {
+            "title": "Yadan Luo - The University of Queensland | LinkedIn",
+            "url": "https://www.linkedin.com/in/yadan-luo-755751132/"
+          },
+          {
+            "title": "CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models",
+            "url": "https://cvpr.thecvf.com/virtual/2026/poster/38735"
+          },
+          {
+            "title": "Do World Action Models Generalize Better than VLAs? A Robustness Study [Quick Review]",
+            "url": "https://liner.com/review/do-world-action-models-generalize-better-than-vlas-robustness-study"
+          },
+          {
+            "title": "State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss",
+            "url": "https://mbreuss.github.io/blog_post_iclr_26_vla.html"
+          },
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "VLA Models Compared: OpenVLA vs π0 vs SmolVLA vs RT-2 (2026 Guide) | SVRC",
+            "url": "https://www.roboticscenter.ai/learn/vla-models-comparison"
+          }
+        ]
+      },
+      "Based on the latest 2026 VLA research, here are the key results for the models you asked about:\n\n## MergeVLA\n\nMergeVLA is a merging-oriented VLA architecture that preserves mergeability by design. On the standard LIBERO benchmark, MergeVLA achieved a 90.2% success rate for the merged model, restoring the capabilities of individual experts across 4 different types of tasks. On LIBERO-Plus (Robustness), MergeVLA maintained a 72.2% success rate when tested against visual and language shifts.\n\n## AVA-VLA\n\nAVA-VLA achieves state-of-the-art overall performance in both single-task and multi-task settings. AVA-VLA is an approach for improving Vision-Language-Action models with Active Visual Attention, achieving an average of 74.7 on LIBERO-Plus.\n\n## LIBERO-Plus Benchmark\n\nLIBERO-Plus performs a systematic vulnerability analysis by introducing controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise. The analysis exposes critical weaknesses with models exhibiting extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.\n\nThese recent 2026 results highlight progress in VLA merging and robustness, though robustness challenges remain significant areas for improvement."
+    ],
+    "durationSeconds": 7.514023187999963
+  },
+  "sourceToolAssistantUUID": "14610e7f-71ab-4288-afc5-31d2c39f6bb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-18T20:16:34.472Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S9uZR55ZAgHRZcPzkhH7am`</summary>
+
+```json
+{
+  "query": "AAAI 2027 deadline abstract paper submission date July 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a989331-1e1b-4c40-94d8-0b94940b9d5d",
+  "isSidechain": false,
+  "requestId": "req_011CbAeds3sxb8d2S1gJGiKV",
+  "type": "assistant",
+  "uuid": "a4695d6c-9298-445b-9e13-a12ff2537082",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014tREriKhv36ETrJWFhWfwT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 992,
+      "cache_read_input_tokens": 44695,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 992,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 44695,
+          "cache_creation_input_tokens": 992,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 992
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-18T20:16:40.378Z_
+
+<details><summary>↩ Tool result · `toolu_01S9uZR55ZAgHRZcPzkhH7am`</summary>
+
+```text
+Web search results for query: "AAAI 2027 deadline abstract paper submission date July 2026"
+
+Links: [{"title":"AAAI 2027 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"AAAI-27 Main Technical Track - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AI/ML Conference Timeline | NIU AI","url":"https://www.niuai.org/resources/conference-timeline/"},{"title":"AAAI-26 Submission Instructions - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/submission-instructions/"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"Evaluating General-Purpose LLMs for Patient-Facing Use: Dermatology-Centered Systematic Review and Meta-Analysis","url":"https://www.medrxiv.org/content/10.1101/2025.08.11.25333149.full.pdf"},{"title":"PersonaAI: An Interactive Agentic-AI Framework for Autonomous Hypothesis Generation and Validation in Aging","url":"https://www.biorxiv.org/content/10.64898/2026.01.16.699755.full.pdf"},{"title":"Bayesian graph-based retrieval-augmented generation with synthetic feedback loop (BG-RAG-SFL)","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12437213"}]
+
+Based on the search results, the abstract deadline for AAAI-27 is July 21, 2026, at 11:59 PM UTC-12, and the full paper deadline is July 28, 2026, at 11:59 PM UTC-12. The conference will take place February 16-23, 2027 in Montréal, Canada.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a4695d6c-9298-445b-9e13-a12ff2537082",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "bbeaae65-0f5d-4939-afac-4ac5f514fbe7",
+  "toolUseResult": {
+    "query": "AAAI 2027 deadline abstract paper submission date July 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HzxRksVctVbwtSnCo75Fvc",
+        "content": [
+          {
+            "title": "AAAI 2027 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "AAAI-27 Main Technical Track - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AI/ML Conference Timeline | NIU AI",
+            "url": "https://www.niuai.org/resources/conference-timeline/"
+          },
+          {
+            "title": "AAAI-26 Submission Instructions - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "Evaluating General-Purpose LLMs for Patient-Facing Use: Dermatology-Centered Systematic Review and Meta-Analysis",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.08.11.25333149.full.pdf"
+          },
+          {
+            "title": "PersonaAI: An Interactive Agentic-AI Framework for Autonomous Hypothesis Generation and Validation in Aging",
+            "url": "https://www.biorxiv.org/content/10.64898/2026.01.16.699755.full.pdf"
+          },
+          {
+            "title": "Bayesian graph-based retrieval-augmented generation with synthetic feedback loop (BG-RAG-SFL)",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12437213"
+          }
+        ]
+      },
+      "Based on the search results, the abstract deadline for AAAI-27 is July 21, 2026, at 11:59 PM UTC-12, and the full paper deadline is July 28, 2026, at 11:59 PM UTC-12. The conference will take place February 16-23, 2027 in Montréal, Canada."
+    ],
+    "durationSeconds": 5.901847850999969
+  },
+  "sourceToolAssistantUUID": "a4695d6c-9298-445b-9e13-a12ff2537082",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-18 (UTC).**  ## Original idea {   \"title\": \"OVA-VLA: Does Affordance-Specific Reasoning Ground VLA Action Decoders…",
+  "leafUuid": "bbeaae65-0f5d-4939-afac-4ac5f514fbe7",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OVA-VLA with affordance-attention architecture and RL pivot",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-18T20:16:43.288Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NNBTFuCfmcZX7csdKwZgsc`</summary>
+
+```json
+{
+  "query": "SPR-VLA \"See Plan Rewind\" progress-aware VLA LIBERO-Plus 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bbeaae65-0f5d-4939-afac-4ac5f514fbe7",
+  "isSidechain": false,
+  "requestId": "req_011CbAeemuqyqPDDTodMgKQ7",
+  "type": "assistant",
+  "uuid": "61d8fc13-8742-4077-a40d-592d6481cd5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UaM23K9bYd3RXc56ofsQkE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 708,
+      "cache_read_input_tokens": 45687,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 45687,
+          "cache_creation_input_tokens": 708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-18T20:16:51.339Z_
+
+<details><summary>↩ Tool result · `toolu_01NNBTFuCfmcZX7csdKwZgsc`</summary>
+
+```text
+Web search results for query: "SPR-VLA "See Plan Rewind" progress-aware VLA LIBERO-Plus 2026"
+
+Links: [{"title":"See, Plan, Rewind: Progress-Aware VLA Models for Robust Robotic Manipulation","url":"https://tingjundai.github.io/SPRVLA/"},{"title":"[2603.09292] See, Plan, Rewind: Progress-Aware Vision-Language-Action Models for Robust Robotic Manipulation","url":"https://arxiv.org/abs/2603.09292"},{"title":"See, Plan, Rewind: Progress-Aware Vision-Language-Action Models for Robust Robotic Manipulation","url":"https://arxiv.org/html/2603.09292"},{"title":"See, Plan, Rewind: Progress-Aware Vision-Language-Action Models","url":"https://arxiv.org/pdf/2603.09292"},{"title":"SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models","url":"https://arxiv.org/pdf/2511.15605"},{"title":"[2601.07060] PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation","url":"https://arxiv.org/abs/2601.07060"},{"title":"CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models","url":"https://cvpr.thecvf.com/virtual/2026/poster/38735"}]
+
+Based on the search results, here's what I found about SPR-VLA (See, Plan, Rewind):
+
+## Overview
+
+SPR is a progress-aware vision-language-action framework that grounds task progress in concrete 2D spatial subgoals. SPR operates through a continuous cycle: Seeing remaining subtasks with spatial coordinates, Planning trajectories to the next waypoint, and Rewinding to escape erroneous states when progress anomalies are detected.
+
+## Key Features
+
+Unlike prior methods relying on abstract progress signals or auxiliary recovery models, SPR achieves fine-grained spatial monitoring and data-efficient error recovery within a single unified model. This closed-loop approach enables robust error correction without requiring additional training data or auxiliary models.
+
+## Performance on LIBERO and LIBERO-Plus
+
+SPR sets state-of-the-art on LIBERO and LIBERO-Plus benchmarks, and generalizes to challenging real-robot tasks where the baseline fails entirely. More specifically, on the challenging LIBERO-Plus benchmark with unseen instructions and initial states, SPR achieves state-of-the-art robustness with the smallest performance drop, surpassing OpenVLA-OFT and UniVLA.
+
+The research was published in 2026 (submitted March 10, 2026, arXiv preprint 2603.09292).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "61d8fc13-8742-4077-a40d-592d6481cd5d",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "c74eb616-ac95-41e4-b4bb-db2bd872e24d",
+  "toolUseResult": {
+    "query": "SPR-VLA \"See Plan Rewind\" progress-aware VLA LIBERO-Plus 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01J1K2u25NdwZ6B3d61HoqqF",
+        "content": [
+          {
+            "title": "See, Plan, Rewind: Progress-Aware VLA Models for Robust Robotic Manipulation",
+            "url": "https://tingjundai.github.io/SPRVLA/"
+          },
+          {
+            "title": "[2603.09292] See, Plan, Rewind: Progress-Aware Vision-Language-Action Models for Robust Robotic Manipulation",
+            "url": "https://arxiv.org/abs/2603.09292"
+          },
+          {
+            "title": "See, Plan, Rewind: Progress-Aware Vision-Language-Action Models for Robust Robotic Manipulation",
+            "url": "https://arxiv.org/html/2603.09292"
+          },
+          {
+            "title": "See, Plan, Rewind: Progress-Aware Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2603.09292"
+          },
+          {
+            "title": "SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2511.15605"
+          },
+          {
+            "title": "[2601.07060] PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation",
+            "url": "https://arxiv.org/abs/2601.07060"
+          },
+          {
+            "title": "CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models",
+            "url": "https://cvpr.thecvf.com/virtual/2026/poster/38735"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SPR-VLA (See, Plan, Rewind):\n\n## Overview\n\nSPR is a progress-aware vision-language-action framework that grounds task progress in concrete 2D spatial subgoals. SPR operates through a continuous cycle: Seeing remaining subtasks with spatial coordinates, Planning trajectories to the next waypoint, and Rewinding to escape erroneous states when progress anomalies are detected.\n\n## Key Features\n\nUnlike prior methods relying on abstract progress signals or auxiliary recovery models, SPR achieves fine-grained spatial monitoring and data-efficient error recovery within a single unified model. This closed-loop approach enables robust error correction without requiring additional training data or auxiliary models.\n\n## Performance on LIBERO and LIBERO-Plus\n\nSPR sets state-of-the-art on LIBERO and LIBERO-Plus benchmarks, and generalizes to challenging real-robot tasks where the baseline fails entirely. More specifically, on the challenging LIBERO-Plus benchmark with unseen instructions and initial states, SPR achieves state-of-the-art robustness with the smallest performance drop, surpassing OpenVLA-OFT and UniVLA.\n\nThe research was published in 2026 (submitted March 10, 2026, arXiv preprint 2603.09292)."
+    ],
+    "durationSeconds": 8.043614248999976
+  },
+  "sourceToolAssistantUUID": "61d8fc13-8742-4077-a40d-592d6481cd5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 78 · 2026-05-18T20:16:51.345Z_
+
+```json
+{
+  "parentUuid": "c74eb616-ac95-41e4-b4bb-db2bd872e24d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c6a97794-f510-466b-a1f2-ae05638f94ce",
+  "timestamp": "2026-05-18T20:16:51.345Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-18T20:16:53.985Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BzFiPB4r7RU5MKWRHmFfZQ`</summary>
+
+```json
+{
+  "query": "SRPO self-referential policy optimization VLA arXiv 2511.15605 LIBERO-Plus results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6a97794-f510-466b-a1f2-ae05638f94ce",
+  "isSidechain": false,
+  "requestId": "req_011CbAefajAXu54odpkR6jTR",
+  "type": "assistant",
+  "uuid": "e2c84f8f-1337-447e-ab0d-7a1df2fd1320",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VDqiGvTMD3V6r3TNkzUQJQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 884,
+      "cache_read_input_tokens": 46395,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 884,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 46395,
+          "cache_creation_input_tokens": 884,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 884
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-18T20:17:02.451Z_
+
+<details><summary>↩ Tool result · `toolu_01BzFiPB4r7RU5MKWRHmFfZQ`</summary>
+
+```text
+Web search results for query: "SRPO self-referential policy optimization VLA arXiv 2511.15605 LIBERO-Plus results"
+
+Links: [{"title":"[2511.15605] SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models","url":"https://arxiv.org/abs/2511.15605"},{"title":"SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models","url":"https://arxiv.org/pdf/2511.15605"},{"title":"SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models | alphaXiv","url":"https://www.alphaxiv.org/resources/2511.15605v1"},{"title":"SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models","url":"https://arxiv.org/html/2511.15605v2"},{"title":"[Quick Review] SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models","url":"https://liner.com/review/srpo-selfreferential-policy-optimization-for-visionlanguageaction-models"},{"title":"[Literature Review] SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models","url":"https://www.themoonlight.io/en/review/srpo-self-referential-policy-optimization-for-vision-language-action-models"},{"title":"Paper page - SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models","url":"https://huggingface.co/papers/2511.15605"},{"title":"SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models | Request PDF","url":"https://www.researchgate.net/publication/397780691_SRPO_Self-Referential_Policy_Optimization_for_Vision-Language-Action_Models"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"}]
+
+Based on the search results, here's information about SRPO and its LIBERO-Plus results:
+
+## SRPO: Self-Referential Policy Optimization
+
+SRPO is a novel VLA-RL framework that eliminates the need for external demonstrations or manual reward engineering by leveraging the model's own successful trajectories, generated within the current training batch, as a self-reference.
+
+### Key Innovation
+
+A core innovation is the use of latent world representations to measure behavioral progress robustly. Instead of relying on raw pixels or requiring domain-specific fine-tuning, the method utilizes compressed, transferable encodings from a world model's latent space, which naturally capture progress patterns across environments, enabling accurate, generalized trajectory comparison.
+
+### LIBERO-Plus Results
+
+SRPO shows substantial robustness, achieving a 167% performance improvement on the LIBERO-Plus benchmark. More specifically, SRPO demonstrates substantial robustness on the LIBERO-Plus benchmark, achieving a 167% performance improvement over the one-shot SFT baseline and surpassing even full-shot SFT models in perturbed environments.
+
+### Overall Performance on LIBERO
+
+Starting from a supervised baseline with 48.9% success, SRPO achieves a new state-of-the-art success rate of 99.2% in just 200 RL steps, representing a 103% relative improvement without any extra supervision.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e2c84f8f-1337-447e-ab0d-7a1df2fd1320",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "0b9d8d57-abda-4223-98f4-fefcd413ccd8",
+  "toolUseResult": {
+    "query": "SRPO self-referential policy optimization VLA arXiv 2511.15605 LIBERO-Plus results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y5kfsXaLmv6PeQ85yayQ1X",
+        "content": [
+          {
+            "title": "[2511.15605] SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2511.15605"
+          },
+          {
+            "title": "SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2511.15605"
+          },
+          {
+            "title": "SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models | alphaXiv",
+            "url": "https://www.alphaxiv.org/resources/2511.15605v1"
+          },
+          {
+            "title": "SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2511.15605v2"
+          },
+          {
+            "title": "[Quick Review] SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models",
+            "url": "https://liner.com/review/srpo-selfreferential-policy-optimization-for-visionlanguageaction-models"
+          },
+          {
+            "title": "[Literature Review] SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models",
+            "url": "https://www.themoonlight.io/en/review/srpo-self-referential-policy-optimization-for-vision-language-action-models"
+          },
+          {
+            "title": "Paper page - SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2511.15605"
+          },
+          {
+            "title": "SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models | Request PDF",
+            "url": "https://www.researchgate.net/publication/397780691_SRPO_Self-Referential_Policy_Optimization_for_Vision-Language-Action_Models"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          }
+        ]
+      },
+      "Based on the search results, here's information about SRPO and its LIBERO-Plus results:\n\n## SRPO: Self-Referential Policy Optimization\n\nSRPO is a novel VLA-RL framework that eliminates the need for external demonstrations or manual reward engineering by leveraging the model's own successful trajectories, generated within the current training batch, as a self-reference.\n\n### Key Innovation\n\nA core innovation is the use of latent world representations to measure behavioral progress robustly. Instead of relying on raw pixels or requiring domain-specific fine-tuning, the method utilizes compressed, transferable encodings from a world model's latent space, which naturally capture progress patterns across environments, enabling accurate, generalized trajectory comparison.\n\n### LIBERO-Plus Results\n\nSRPO shows substantial robustness, achieving a 167% performance improvement on the LIBERO-Plus benchmark. More specifically, SRPO demonstrates substantial robustness on the LIBERO-Plus benchmark, achieving a 167% performance improvement over the one-shot SFT baseline and surpassing even full-shot SFT models in perturbed environments.\n\n### Overall Performance on LIBERO\n\nStarting from a supervised baseline with 48.9% success, SRPO achieves a new state-of-the-art success rate of 99.2% in just 200 RL steps, representing a 103% relative improvement without any extra supervision."
+    ],
+    "durationSeconds": 8.46303169699997
+  },
+  "sourceToolAssistantUUID": "e2c84f8f-1337-447e-ab0d-7a1df2fd1320",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-18T20:17:05.543Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QrdSRrCyWnAX6HQXDVGYCK`</summary>
+
+```json
+{
+  "query": "affordance-conditioned cross-attention VLA action decoder contact point visual grounding architecture novel 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b9d8d57-abda-4223-98f4-fefcd413ccd8",
+  "isSidechain": false,
+  "requestId": "req_011CbAegQFf7mdVxm4y98k7j",
+  "type": "assistant",
+  "uuid": "d000b455-5e26-4dea-87bb-6347f0bb8afd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WB9GTM8QSfL8ofqJYcrNDW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 949,
+      "cache_read_input_tokens": 47279,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 949,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 47279,
+          "cache_creation_input_tokens": 949,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 949
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-18T20:17:12.451Z_
+
+<details><summary>↩ Tool result · `toolu_01QrdSRrCyWnAX6HQXDVGYCK`</summary>
+
+```text
+Web search results for query: "affordance-conditioned cross-attention VLA action decoder contact point visual grounding architecture novel 2026"
+
+Links: [{"title":"Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v2"},{"title":"CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance","url":"https://arxiv.org/html/2412.20451v2"},{"title":"PosA-VLA: Enhancing Action Generation via Pose-Conditioned Anchor Attention","url":"https://arxiv.org/pdf/2512.03724"},{"title":"CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance","url":"https://arxiv.org/pdf/2412.20451"},{"title":"ReconVLA: Reconstructive Vision-Language-Action Model as Effective Robot Perceiver","url":"https://arxiv.org/pdf/2508.10333"},{"title":"A Survey on Vision-Language-Action Models: An Action Tokenization Perspective","url":"https://arxiv.org/html/2507.01925v1"}]
+
+Based on the search results, I found several recent papers on Vision-Language-Action (VLA) models that relate to your query about affordance-conditioned architectures and visual grounding:
+
+## Key Findings:
+
+**CoA-VLA (2025)**: This framework features a module designed to infuse affordance knowledge into policy learning, and the synthesis of affordance concepts with VLA systems represents a significant advancement in creating more robust, interpretable, and generalizable robotic policies. The system integrates visual and textual affordances through a unified embedding pipeline with Transformer blocks for cross-modal reasoning, with encoder outputs projected into a diffusion model using FiLM conditioning layers that dynamically modulates the diffusion process by injecting affordance-aware features.
+
+**PosA-VLA (2026)**: This model features a pose-conditioned anchor attention mechanism that enables better alignment of instruction semantics with actionable visual cues for enhanced action generation precision.
+
+**ReconVLA (2025)**: This work addresses accurate visual grounding as fundamental for precise grasping in VLAs, particularly in cluttered environments, and demonstrates that traditional VLA models often exhibit dispersed visual attention failing to focus precisely on target objects.
+
+These papers represent recent advances in addressing affordance-conditioned action generation and contact point/visual grounding architectures in VLA systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d000b455-5e26-4dea-87bb-6347f0bb8afd",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "4af71a8e-f8ba-4feb-85fc-0759ac55a6bf",
+  "toolUseResult": {
+    "query": "affordance-conditioned cross-attention VLA action decoder contact point visual grounding architecture novel 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PpYmcWt5uKbxmS3aKsyc2F",
+        "content": [
+          {
+            "title": "Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges",
+            "url": "https://arxiv.org/html/2505.04769v2"
+          },
+          {
+            "title": "CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance",
+            "url": "https://arxiv.org/html/2412.20451v2"
+          },
+          {
+            "title": "PosA-VLA: Enhancing Action Generation via Pose-Conditioned Anchor Attention",
+            "url": "https://arxiv.org/pdf/2512.03724"
+          },
+          {
+            "title": "CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance",
+            "url": "https://arxiv.org/pdf/2412.20451"
+          },
+          {
+            "title": "ReconVLA: Reconstructive Vision-Language-Action Model as Effective Robot Perceiver",
+            "url": "https://arxiv.org/pdf/2508.10333"
+          },
+          {
+            "title": "A Survey on Vision-Language-Action Models: An Action Tokenization Perspective",
+            "url": "https://arxiv.org/html/2507.01925v1"
+          }
+        ]
+      },
+      "Based on the search results, I found several recent papers on Vision-Language-Action (VLA) models that relate to your query about affordance-conditioned architectures and visual grounding:\n\n## Key Findings:\n\n**CoA-VLA (2025)**: This framework features a module designed to infuse affordance knowledge into policy learning, and the synthesis of affordance concepts with VLA systems represents a significant advancement in creating more robust, interpretable, and generalizable robotic policies. The system integrates visual and textual affordances through a unified embedding pipeline with Transformer blocks for cross-modal reasoning, with encoder outputs projected into a diffusion model using FiLM conditioning layers that dynamically modulates the diffusion process by injecting affordance-aware features.\n\n**PosA-VLA (2026)**: This model features a pose-conditioned anchor attention mechanism that enables better alignment of instruction semantics with actionable visual cues for enhanced action generation precision.\n\n**ReconVLA (2025)**: This work addresses accurate visual grounding as fundamental for precise grasping in VLAs, particularly in cluttered environments, and demonstrates that traditional VLA models often exhibit dispersed visual attention failing to focus precisely on target objects.\n\nThese papers represent recent advances in addressing affordance-conditioned action generation and contact point/visual grounding architectures in VLA systems."
+    ],
+    "durationSeconds": 6.904066424999968
+  },
+  "sourceToolAssistantUUID": "d000b455-5e26-4dea-87bb-6347f0bb8afd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-18T20:17:15.454Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01H3VzYtftC4FCVVkBUuMkZA`</summary>
+
+```json
+{
+  "query": "\"Concept-Gated Visual Distillation\" VLA arXiv 2603.10340 visual clutter 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4af71a8e-f8ba-4feb-85fc-0759ac55a6bf",
+  "isSidechain": false,
+  "requestId": "req_011CbAeh9AL4xEXwGL3v4sEK",
+  "type": "assistant",
+  "uuid": "e8a8ef44-ea37-46c0-9780-704cc636fd8a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FzKYGKWprP7KzxRoRVUseN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 702,
+      "cache_read_input_tokens": 48228,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 702,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 48228,
+          "cache_creation_input_tokens": 702,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 702
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-18T20:17:20.035Z_
+
+<details><summary>↩ Tool result · `toolu_01H3VzYtftC4FCVVkBUuMkZA`</summary>
+
+```text
+Web search results for query: ""Concept-Gated Visual Distillation" VLA arXiv 2603.10340 visual clutter 2026"
+
+Links: [{"title":"[2603.10340] Overcoming Visual Clutter in Vision Language Action Models via Concept-Gated Visual Distillation","url":"https://arxiv.org/abs/2603.10340"},{"title":"Overcoming Visual Clutter in Vision Language Action Models via Concept-Gated Visual Distillation","url":"https://arxiv.org/pdf/2603.10340"},{"title":"Overcoming Visual Clutter in Vision Language Action Models via Concept-Gated Visual Distillation","url":"https://arxiv.org/html/2603.10340"},{"title":"GLaD: Geometric Latent Distillation for Vision-Language-Action Models","url":"https://arxiv.org/pdf/2512.09619"},{"title":"VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation","url":"https://arxiv.org/html/2603.26666"}]
+
+I found the paper you're looking for! Here's what the search revealed:
+
+Vision-Language-Action (VLA) models demonstrate impressive zero-shot generalization but frequently suffer from a "Precision-Reasoning Gap" in cluttered environments, driven by background-induced feature dilution where high-frequency semantic noise corrupts the geometric grounding required for precise manipulation.
+
+The paper proposes Concept-Gated Visual Distillation (CGVD), a training-free, model-agnostic inference framework that stabilizes VLA policies. CGVD operates by parsing instructions into safe and distractor sets, utilizing a two-layer target refinement process to explicitly penalize false positives and isolate genuine manipulation targets, then processes the scene via Fourier-based inpainting to generate a clean observation that suppresses semantic distractors while preserving critical spatial geometry and visual proprioception.
+
+In environments with dense semantic distractors, the method achieves a 77.5% success rate compared to the baseline's 43.0%. The paper was submitted to arXiv on March 11, 2026, with authors from the University of Technology Sydney and Western Sydney University.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e8a8ef44-ea37-46c0-9780-704cc636fd8a",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "6c0d3ef5-b30a-4fd6-8838-ac40d8db70f5",
+  "toolUseResult": {
+    "query": "\"Concept-Gated Visual Distillation\" VLA arXiv 2603.10340 visual clutter 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014Dr84jzw5zWXxuwW9yNaoK",
+        "content": [
+          {
+            "title": "[2603.10340] Overcoming Visual Clutter in Vision Language Action Models via Concept-Gated Visual Distillation",
+            "url": "https://arxiv.org/abs/2603.10340"
+          },
+          {
+            "title": "Overcoming Visual Clutter in Vision Language Action Models via Concept-Gated Visual Distillation",
+            "url": "https://arxiv.org/pdf/2603.10340"
+          },
+          {
+            "title": "Overcoming Visual Clutter in Vision Language Action Models via Concept-Gated Visual Distillation",
+            "url": "https://arxiv.org/html/2603.10340"
+          },
+          {
+            "title": "GLaD: Geometric Latent Distillation for Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2512.09619"
+          },
+          {
+            "title": "VLA-OPD: Bridging Offline SFT and Online RL for Vision-Language-Action Models via On-Policy Distillation",
+            "url": "https://arxiv.org/html/2603.26666"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what the search revealed:\n\nVision-Language-Action (VLA) models demonstrate impressive zero-shot generalization but frequently suffer from a \"Precision-Reasoning Gap\" in cluttered environments, driven by background-induced feature dilution where high-frequency semantic noise corrupts the geometric grounding required for precise manipulation.\n\nThe paper proposes Concept-Gated Visual Distillation (CGVD), a training-free, model-agnostic inference framework that stabilizes VLA policies. CGVD operates by parsing instructions into safe and distractor sets, utilizing a two-layer target refinement process to explicitly penalize false positives and isolate genuine manipulation targets, then processes the scene via Fourier-based inpainting to generate a clean observation that suppresses semantic distractors while preserving critical spatial geometry and visual proprioception.\n\nIn environments with dense semantic distractors, the method achieves a 77.5% success rate compared to the baseline's 43.0%. The paper was submitted to arXiv on March 11, 2026, with authors from the University of Technology Sydney and Western Sydney University."
+    ],
+    "durationSeconds": 4.577557199999981
+  },
+  "sourceToolAssistantUUID": "e8a8ef44-ea37-46c0-9780-704cc636fd8a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85 · 2026-05-18T20:18:11.769Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to revise the proposal. Let me think deeply about the reviewer's feedback before writing the revision.
+
+Key findings from my research:
+
+1. **TRAP (2603.23117)**: Adversarial patches can hijack VLA CoT reasoning. Key finding: "CoT strongly governs action generation, even when semantically misaligned with input instructions." GraspVLA achieved 94.20% task success using target CoT paired with mismatched instructions. This is fundamentally different from Altered Thoughts' post-hoc text corruption — TRAP shows that when the model *generates* specific CoT (even if induced by adversarial patches), that CoT genuinely controls actions. 
+
+This supports our hypothesis: training the model to generate affordance-specific CoT should genuinely influence actions.
+
+2. **"Do What You Say" / SEAL (2510.16281)**: Runtime reasoning-action alignment verification. Key finding: even with correct textual plans, actions can miss intended outcomes in OOD scenarios. SEAL achieves up to 15% improvement by sampling multiple candidate action sequences and verifying alignment with textual plans. Tested on π₀ architecture. On Visual-Viewpoint OOD: 45% vs 25% baseline. This directly relates to our reasoning faithfulness question.
+
+3. Now I'm looking at the current SOTA on LIBERO-Plus...
+
+ProGAL-VLA leads at 85.5%, followed by SRPO at 82.1% as the best RL-based approach, with OpenVLA-OFT+ at 79.6% and GuidedVLA around 75.4%.
+
+4. **GuidedVLA (2605.12369)**: Very recent (May 2026) — uses attention head specialization with auxiliary supervision for object grounding, skill recognition, and depth perception via ControlNet-style residual adapters. Achieves 75.4% on LIBERO-Plus. This is highly relevant as a concurrent work that does attention specialization, though not specifically affordance-conditioned.
+
+5. **AVA-VLA (2511.18960)**: Dynamically reweights visual tokens through active visual attention, reaching 74.7% on LIBERO-Plus.
+
+6. **Contrastive Representation Regularization (2510.01711)**: Uses RS-CL to align representations with robot proprioceptive states via relative distances as soft supervision.
+
+Now I'm thinking through the reviewer's architectural novelty concern. GuidedVLA already handles attention head specialization with auxiliary supervision across different modalities, so I'd need a distinct approach. The contrastive angle—aligning affordance-reasoning representations with contact-point visual features—could differentiate my method from existing work.
+
+I'm considering a combined approach: **Affordance-Grounded Contrastive Attention** that extracts hidden states from affordance tokens, leverages RoboInter-Data's contact annotations to identify affordance-relevant regions, and applies a contrastive loss pulling affordance representations toward contact visual features while pushing away non-contact regions. This creates a direct mechanistic path from affordance reasoning to visual attention to action grounding, which differs from GuidedVLA's generic task-relevant supervision and ProGAL-VLA's modular pipeline approach.
+
+Now I'm also thinking about how TRAP's adversarial CoT generation genuinely controls actions—unlike Altered Thoughts which showed post-hoc text replacement only matters for entity references. The key distinction is that TRAP generates adversarial CoT at the autoregressive level, demonstrating content actually influences behavior when it's part of the generation process rather than swapped in afterward.
+
+This connects to our AGCA approach: if we train the model to generate affordance-specific content during training rather than injecting it post-hoc, we should get representations that genuinely attend to affordance-relevant features. "Do What You Say" and SEAL highlight how even solid reasoning can fail at execution in out-of-distribution settings, which is exactly what our explicit representational link in AGCA is designed to address—moving beyond text-level reasoning to create a direct grounding pathway.
+
+For Scenario C, I should test whether RL with GRPO differentially benefits affordance reasoning compared to SFT alone, especially since VLA-R1 already uses affordance-aligned GRPO and recent work shows RL's concrete benefits for VLA generalization.
+
+The AGCA component combined with the RL pivot and entity-reference-controlled methodology should resolve the novelty concern—we'd have the OVA annotation pipeline, the AGCA loss mechanism, the controlled experimental design, and evidence of RL's differential impact on affordance reasoning. Now I need to reshape the core sections: the problem statement should emphasize that we're not just asking whether affordance content helps, but whether we can build an explicit representation learning mechanism that connects affordance reasoning to contact-relevant visual features. The opportunity section needs to integrate TRAP, SEAL, and GuidedVLA as converging evidence pointing toward this gap.
+
+For the landscape, I'll add those recent papers and update the LIBERO-Plus benchmarks. The approach shifts from a pure study to a method-plus-study framing with AGCA as the architectural centerpiece and the RL pivot for Scenario C. Resources might tick up slightly for AGCA training, and I'll need to add all the new references. This is a substantial reframing—AGCA elevates this from a controlled comparison into a genuine methodological contribution with rigorous ablations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c0d3ef5-b30a-4fd6-8838-ac40d8db70f5",
+  "isSidechain": false,
+  "requestId": "req_011CbAehhSJ15r1B88R33M2D",
+  "type": "assistant",
+  "uuid": "6f473805-93e7-4108-9ac1-3138f2cd3280",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KDmuexdDTXkmG3E9By4c31",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 652,
+      "cache_read_input_tokens": 48930,
+      "output_tokens": 1968,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 652,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1968,
+          "cache_read_input_tokens": 48930,
+          "cache_creation_input_tokens": 652,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 652
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86 · 2026-05-18T20:18:11.771Z_
+
+Now I have comprehensive research. Let me do one more targeted search on the RL pivot angle.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f473805-93e7-4108-9ac1-3138f2cd3280",
+  "isSidechain": false,
+  "requestId": "req_011CbAehhSJ15r1B88R33M2D",
+  "type": "assistant",
+  "uuid": "0571b588-4f97-4d95-85b9-a75a1f65233b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KDmuexdDTXkmG3E9By4c31",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 652,
+      "cache_read_input_tokens": 48930,
+      "output_tokens": 1968,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 652,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1968,
+          "cache_read_input_tokens": 48930,
+          "cache_creation_input_tokens": 652,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 652
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-18T20:18:13.030Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013tb7cVkpuq2Eyb5iNB9njU`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2505.19789",
+  "prompt": "Extract: 1) What specific VLA generalization dimensions were tested (visual, semantic, execution)? 2) Where does RL help most vs SFT? 3) Quantitative results showing differential RL benefit across perturbation types. 4) Does RL help more with certain types of reasoning content? 5) What VLA models and RL algorithms were tested?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0571b588-4f97-4d95-85b9-a75a1f65233b",
+  "isSidechain": false,
+  "requestId": "req_011CbAehhSJ15r1B88R33M2D",
+  "type": "assistant",
+  "uuid": "d88ed662-1637-48ea-88b4-b0bd9c18ca0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KDmuexdDTXkmG3E9By4c31",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 652,
+      "cache_read_input_tokens": 48930,
+      "output_tokens": 1968,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 652,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1968,
+          "cache_read_input_tokens": 48930,
+          "cache_creation_input_tokens": 652,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 652
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-18 (UTC).**  ## Original idea {   \"title\": \"OVA-VLA: Does Affordance-Specific Reasoning Ground VLA Action Decoders…",
+  "leafUuid": "d88ed662-1637-48ea-88b4-b0bd9c18ca0c",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OVA-VLA with affordance-attention architecture and RL pivot",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-18T20:18:19.709Z_
+
+<details><summary>↩ Tool result · `toolu_013tb7cVkpuq2Eyb5iNB9njU`</summary>
+
+```text
+# VLA Generalization Study: Key Findings
+
+## 1) VLA Generalization Dimensions Tested
+
+The research evaluated three primary dimensions:
+
+- **Vision**: Novel backgrounds, unseen tables, dynamic textures, and image-level noise
+- **Semantics**: Unseen objects, novel receptacles, varied instruction phrasings, multi-object scenarios
+- **Execution**: Changes in initial robot/object positions, mid-episode object repositioning
+
+## 2) Where RL Outperforms SFT
+
+The study found differential benefits across dimensions:
+
+- **Vision**: "RL performs comparably to SFT in Vision tasks"
+- **Semantics**: RL notably outperforms when encountering out-of-distribution objects
+- **Execution**: "RL surpasses SFT across all three evaluated scenarios: OOD object and receptacle positions, OOD robot initial positions, and mid-episode object repositioning"
+
+## 3) Quantitative Results
+
+The researchers reported substantial gains in execution robustness. At convergence, RL demonstrated "42.6% better" performance on unseen objects and tables compared to the best SFT baseline, while maintaining similar in-distribution performance.
+
+## 4) Reasoning Content Benefits
+
+The paper focuses on robotic manipulation rather than linguistic reasoning. However, qualitative analysis revealed RL agents developed "finer-grained control when interacting with unseen objects" and learned recovery behaviors absent from demonstration data.
+
+## 5) Models and Algorithms Tested
+
+- **VLA Model**: OpenVLA (Llama-2 7B backbone with SigLIP and DINOv2 encoders)
+- **RL Algorithms**: PPO, GRPO, DPO
+- **Finding**: PPO emerged as most effective for VLAs
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d88ed662-1637-48ea-88b4-b0bd9c18ca0c",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "db9c1fc1-9f85-440c-a164-911479332af4",
+  "toolUseResult": {
+    "bytes": 349009,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# VLA Generalization Study: Key Findings\n\n## 1) VLA Generalization Dimensions Tested\n\nThe research evaluated three primary dimensions:\n\n- **Vision**: Novel backgrounds, unseen tables, dynamic textures, and image-level noise\n- **Semantics**: Unseen objects, novel receptacles, varied instruction phrasings, multi-object scenarios\n- **Execution**: Changes in initial robot/object positions, mid-episode object repositioning\n\n## 2) Where RL Outperforms SFT\n\nThe study found differential benefits across dimensions:\n\n- **Vision**: \"RL performs comparably to SFT in Vision tasks\"\n- **Semantics**: RL notably outperforms when encountering out-of-distribution objects\n- **Execution**: \"RL surpasses SFT across all three evaluated scenarios: OOD object and receptacle positions, OOD robot initial positions, and mid-episode object repositioning\"\n\n## 3) Quantitative Results\n\nThe researchers reported substantial gains in execution robustness. At convergence, RL demonstrated \"42.6% better\" performance on unseen objects and tables compared to the best SFT baseline, while maintaining similar in-distribution performance.\n\n## 4) Reasoning Content Benefits\n\nThe paper focuses on robotic manipulation rather than linguistic reasoning. However, qualitative analysis revealed RL agents developed \"finer-grained control when interacting with unseen objects\" and learned recovery behaviors absent from demonstration data.\n\n## 5) Models and Algorithms Tested\n\n- **VLA Model**: OpenVLA (Llama-2 7B backbone with SigLIP and DINOv2 encoders)\n- **RL Algorithms**: PPO, GRPO, DPO\n- **Finding**: PPO emerged as most effective for VLAs",
+    "durationMs": 6671,
+    "url": "https://arxiv.org/html/2505.19789"
+  },
+  "sourceToolAssistantUUID": "d88ed662-1637-48ea-88b4-b0bd9c18ca0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-18T20:18:22.582Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YZP16XeFJWq3zqyaN24JFE`</summary>
+
+```json
+{
+  "query": "VLA reasoning content type comparison affordance generic plan chain-of-thought ablation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db9c1fc1-9f85-440c-a164-911479332af4",
+  "isSidechain": false,
+  "requestId": "req_011CbAen6YhvdgfipRLhHmc3",
+  "type": "assistant",
+  "uuid": "e0df38a2-0a4c-417e-bc3c-4ff2215e1471",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153mR4DziKT1Cz1rTQNV98e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2381,
+      "cache_read_input_tokens": 49582,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2381,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 49582,
+          "cache_creation_input_tokens": 2381,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2381
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-18T20:18:30.254Z_
+
+<details><summary>↩ Tool result · `toolu_01YZP16XeFJWq3zqyaN24JFE`</summary>
+
+```text
+Web search results for query: "VLA reasoning content type comparison affordance generic plan chain-of-thought ablation 2025 2026"
+
+Links: [{"title":"VLA-R1: Enhancing Reasoning in Vision-Language-Action Models","url":"https://arxiv.org/html/2510.01623v1"},{"title":"VLA-R1: Enhancing Reasoning in Vision-Language-Action Models | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.01623v1"},{"title":"CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models","url":"https://www.researchgate.net/publication/394511717_CoT-VLA_Visual_Chain-of-Thought_Reasoning_for_Vision-Language-Action_Models"},{"title":"(PDF) CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models","url":"https://www.researchgate.net/publication/390321731_CoT-VLA_Visual_Chain-of-Thought_Reasoning_for_Vision-Language-Action_Models"},{"title":"CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance","url":"https://arxiv.org/pdf/2412.20451"},{"title":"[PDF] CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CoT-VLA:-Visual-Chain-of-Thought-Reasoning-for-Zhao-Lu/2d7f3a99e916fc80ff890d109699f9682253e66d"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"}]
+
+Based on the web search results, I found several relevant papers on Vision-Language-Action (VLA) models with reasoning, affordances, chain-of-thought, and ablation studies from 2025-2026:
+
+## Key Papers Found:
+
+1. **VLA-R1: Enhancing Reasoning in Vision-Language-Action Models** (October 2025)
+   - Conducts ablation studies on Chain-of-Thought reasoning and Reinforcement Learning across in-domain datasets, out-of-domain datasets, simulation environments, and real-robot platforms
+   - Adding CoT alone improved IoU to 28.37, while the combination of CoT and RL yielded the best performance with IoU of 36.51
+
+2. **CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models** (June 2025)
+   - Ablations show that both modalities are necessary: without traces, LIBERO-Long success drops to 37.7%; text-only and vision-only traces reach 62.0% and 68.4%, while the full interleaved trace reaches 92.4%
+   - Results on LIBERO-Spatial and LIBERO-Goal benchmarks demonstrate the effectiveness of three components: action chunking, hybrid attention, and visual chain-of-thought reasoning
+
+3. **CoA-VLA: Chain-of-Affordance for Vision-Language-Action Models** (December 2024)
+   - Designs four distinct types of affordance and introduces a novel visual-text co-injection method to integrate this knowledge into the decision-making process
+
+4. **Recent VLA Research** (2025-2026)
+   - Recent papers include UAD (Unsupervised Affordance Distillation), EmbodiedVSR (Dynamic Scene Graph-Guided Chain-of-Thought), and RoboDexVLM (Vision-Language Model-Enabled Task Planning)
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e0df38a2-0a4c-417e-bc3c-4ff2215e1471",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "d36e29d7-e5c4-4f8e-99a5-7fcefb5bc757",
+  "toolUseResult": {
+    "query": "VLA reasoning content type comparison affordance generic plan chain-of-thought ablation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UuvM69S7PQFXXmqZmzmyfQ",
+        "content": [
+          {
+            "title": "VLA-R1: Enhancing Reasoning in Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.01623v1"
+          },
+          {
+            "title": "VLA-R1: Enhancing Reasoning in Vision-Language-Action Models | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2510.01623v1"
+          },
+          {
+            "title": "CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models",
+            "url": "https://www.researchgate.net/publication/394511717_CoT-VLA_Visual_Chain-of-Thought_Reasoning_for_Vision-Language-Action_Models"
+          },
+          {
+            "title": "(PDF) CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models",
+            "url": "https://www.researchgate.net/publication/390321731_CoT-VLA_Visual_Chain-of-Thought_Reasoning_for_Vision-Language-Action_Models"
+          },
+          {
+            "title": "CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance",
+            "url": "https://arxiv.org/pdf/2412.20451"
+          },
+          {
+            "title": "[PDF] CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/CoT-VLA:-Visual-Chain-of-Thought-Reasoning-for-Zhao-Lu/2d7f3a99e916fc80ff890d109699f9682253e66d"
+          },
+          {
+            "title": "GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub",
+            "url": "https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers on Vision-Language-Action (VLA) models with reasoning, affordances, chain-of-thought, and ablation studies from 2025-2026:\n\n## Key Papers Found:\n\n1. **VLA-R1: Enhancing Reasoning in Vision-Language-Action Models** (October 2025)\n   - Conducts ablation studies on Chain-of-Thought reasoning and Reinforcement Learning across in-domain datasets, out-of-domain datasets, simulation environments, and real-robot platforms\n   - Adding CoT alone improved IoU to 28.37, while the combination of CoT and RL yielded the best performance with IoU of 36.51\n\n2. **CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models** (June 2025)\n   - Ablations show that both modalities are necessary: without traces, LIBERO-Long success drops to 37.7%; text-only and vision-only traces reach 62.0% and 68.4%, while the full interleaved trace reaches 92.4%\n   - Results on LIBERO-Spatial and LIBERO-Goal benchmarks demonstrate the effectiveness of three components: action chunking, hybrid attention, and visual chain-of-thought reasoning\n\n3. **CoA-VLA: Chain-of-Affordance for Vision-Language-Action Models** (December 2024)\n   - Designs four distinct types of affordance and introduces a novel visual-text co-injection method to integrate this knowledge into the decision-making process\n\n4. **Recent VLA Research** (2025-2026)\n   - Recent papers include UAD (Unsupervised Affordance Distillation), EmbodiedVSR (Dynamic Scene Graph-Guided Chain-of-Thought), and RoboDexVLM (Vision-Language Model-Enabled Task Planning)"
+    ],
+    "durationSeconds": 7.667579780999978
+  },
+  "sourceToolAssistantUUID": "e0df38a2-0a4c-417e-bc3c-4ff2215e1471",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93 · 2026-05-18T20:18:52.473Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I now have a comprehensive picture. Let me now synthesize everything and write the revised proposal. Let me think about the key changes:
+
+**Core changes (major revision):**
+
+1. **Elevate method contribution**: Add Affordance-Grounded Contrastive Attention (AGCA) — a contrastive training loss that aligns hidden states from generated affordance reasoning tokens with contact-point visual features from RoboInter-Data. This creates an explicit representation learning mechanism linking affordance text to affordance-relevant visual regions, distinct from:
+   - GuidedVLA's generic task-relevant attention head specialization (May 2026)
+   - ProGAL-VLA's modular GAC loss (April 2026)
+   - RS-CL's proprioceptive state alignment (October 2025)
+   - PALM's latent affordance representations (January 2026)
+
+2. **Incorporate TRAP**: The key distinction is that Altered Thoughts tests post-hoc text corruption where only entity references matter, while TRAP demonstrates that adversarially generated chain-of-thought genuinely governs actions (94.20% success with target CoT despite mismatched instructions). Our approach trains the model to generate affordance-specific content with explicit representational grounding through AGCA, so the generated content should matter through both the generation and representation pathways.
+
+3. **Incorporate "Do What You Say" / SEAL**: Even correct reasoning can fail at action execution in out-of-distribution settings. AGCA addresses this by creating an explicit representational bridge rather than relying solely on text-level reasoning.
+
+4. **Strengthen Scenario C**: I should test whether GRPO differentially benefits affordance reasoning compared to SFT when affordances appear generic—the hypothesis being that affordance descriptions provide richer verifiable reward signals. I'll cite work showing RL benefits vary across different dimensions.
+
+5. **Update LIBERO-Plus benchmarks**: ProGAL-VLA reaches 85.5%, SRPO 82.1%, GuidedVLA around 75.4%, and AVA-VLA 74.7%.
+
+6. **Position against GuidedVLA**: They use generic task-relevant attention while our approach is specifically designed around affordance-driven contrastive learning.
+
+Now I'm structuring the experimental conditions more carefully. AGCA should be integrated directly into the OVA-VLA architecture rather than treated as a separate condition. The progression moves from baseline action prediction through various reasoning approaches—generic chain-of-thought, entity-matched reasoning, fixed affordance types, and finally open-vocabulary affordances with and without the contrastive loss.
+
+For the AGCA mechanism itself, I'm pulling affordance token representations toward visual features at contact points during training, using RoboInter-Data's annotations to identify those regions, then pushing away from non-contact areas. This creates a direct link between affordance descriptions and the visual grounding needed for better action prediction.
+
+The key comparisons will show whether explicit contrastive grounding adds value beyond text-only affordance reasoning, how the full method stacks up against simpler baselines, and how this approach differs from GuidedVLA's more generic task-relevant supervision.
+
+For resource requirements, AGCA is pretty lean—the contrastive loss runs during the forward pass with minimal overhead, reuses existing contact annotations from the dataset, and needs just one additional training run of about 12 hours on an H100.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d36e29d7-e5c4-4f8e-99a5-7fcefb5bc757",
+  "isSidechain": false,
+  "requestId": "req_011CbAensdMeV8TLmkXFwhZA",
+  "type": "assistant",
+  "uuid": "b7ffb05e-88b4-434d-8420-83bd22f1e216",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RtWLjg1Z5Bwv771Cb8vRaR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1071,
+      "cache_read_input_tokens": 51963,
+      "output_tokens": 11446,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1071,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11446,
+          "cache_read_input_tokens": 51963,
+          "cache_creation_input_tokens": 1071,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1071
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94 · 2026-05-18T20:18:54.167Z_
+
+I now have comprehensive research findings. Let me synthesize everything and write the revised proposal. The key changes are:
+
+1. **AGCA (Affordance-Grounded Contrastive Attention)** — a novel architectural component aligning affordance reasoning hidden states with contact-point visual features
+2. **TRAP + SEAL integration** — framing the generation-vs-corruption distinction
+3. **RL pivot for Scenario C** — GRPO differential benefit testing
+4. **Updated LIBERO-Plus SOTA** (ProGAL-VLA 85.5%, SRPO 82.1%, GuidedVLA ~75.4%)
+5. **GuidedVLA as concurrent work** — distinguishing our affordance-specific contrastive approach
+
+This is a major revision transforming the paper from "ablation study with annotation pipeline" to "method contribution with rigorous ablation study."
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7ffb05e-88b4-434d-8420-83bd22f1e216",
+  "isSidechain": false,
+  "requestId": "req_011CbAensdMeV8TLmkXFwhZA",
+  "type": "assistant",
+  "uuid": "0b7a0408-2125-48f6-b77a-f3c2d012dfde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RtWLjg1Z5Bwv771Cb8vRaR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1071,
+      "cache_read_input_tokens": 51963,
+      "output_tokens": 11446,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1071,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11446,
+          "cache_read_input_tokens": 51963,
+          "cache_creation_input_tokens": 1071,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1071
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-18T20:22:34.906Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01Md4WHQhWEXsZeXa7h1xnEX`</summary>
+
+```json
+{
+  "file_path": "/tmp/revised_idea.json",
+  "content": "{\n  \"title\": \"OVA-VLA: Affordance-Grounded Contrastive Attention for Robust VLA Reasoning Beyond Entity References\",\n  \"change_type\": \"major\",\n  \"core_problem\": \"Do affordance-specific reasoning tokens provide grounding to VLA action decoders BEYOND entity-reference integrity, and can an explicit representation learning mechanism amplify this effect? Three converging findings frame this question precisely:\\n\\n(1) 'Altered Thoughts, Altered Actions' (arXiv 2603.12717) shows that on standard LIBERO, post-hoc corruption of DeepThinkVLA's generated CoT only degrades performance when entity references are disrupted — sentence reordering, spatial-direction reversal, and LLM-crafted wrong reasoning have negligible impact. This suggests action decoders extract entity names from CoT text and ignore other content.\\n\\n(2) However, TRAP (arXiv 2603.23117) reveals the opposite when CoT is generated autoregressive: adversarial patches that induce specific CoT content at generation time STRONGLY govern action outputs — GraspVLA achieves 94.20% task success using adversarially-induced target CoT paired with mismatched instructions. This critical distinction — post-hoc text replacement vs. autoregressive generation — suggests that TRAINING the model to generate specific content creates representational pathways that post-hoc injection cannot. If the model learns to generate affordance descriptions, those descriptions may ground attention to contact-relevant visual features during the generation process itself.\\n\\n(3) ECoT-Lite (arXiv 2505.08243) confirms that reasoning benefits VLAs primarily through representation learning, not expressivity, and that non-semantic thinking tokens hurt performance (-3.8%). Together with TRAP, this implies: the VALUE of reasoning content lies in the representations it induces during training, and different content types should produce different representation quality.\\n\\nThis raises two linked questions: (a) Does affordance-specific content — encoding perturbation-invariant physical interaction properties (contact surfaces, grasp strategies, functional regions) — provide action-relevant grounding beyond entity names, especially under distribution shift where entity references become ambiguous? (b) Can an explicit contrastive mechanism that aligns affordance-reasoning hidden states with contact-point visual features AMPLIFY this grounding effect, creating an architectural pathway (not just different text) that links content to visual attention?\",\n  \"opportunity\": \"Four converging findings create a precise research gap with both empirical and architectural dimensions:\\n\\n(1) 'Altered Thoughts' establishes entity-reference dependence for post-hoc CoT corruption on standard LIBERO. But TRAP shows autoregressive CoT generation genuinely governs actions. Neither tested whether TRAINING with affordance-specific content produces different representations than generic CoT, nor whether this difference manifests under distribution shift. The Altered Thoughts → TRAP distinction motivates testing content effects at the TRAINING level (representation learning) rather than at the inference level (post-hoc corruption).\\n\\n(2) ECoT-Lite identifies representation learning as the primary mechanism but did not compare content types. If affordance descriptions force the model to attend to functionally-relevant visual features (contact surfaces, edges, handles), they should produce more transferable representations than generic CoT that attends to layout-specific features. No work has tested this content-type comparison.\\n\\n(3) 'Do What You Say' / SEAL (arXiv 2510.16281, ICRA 2026) shows that even correct textual reasoning can fail at action execution in OOD scenarios — reasoning-action faithfulness degrades under distribution shift, with up to 15% improvement from runtime alignment verification. This demonstrates that text-level reasoning alone is insufficient; an explicit representational bridge between reasoning content and visual features could improve faithfulness without requiring expensive runtime verification.\\n\\n(4) GuidedVLA (arXiv 2605.12369, May 2026) demonstrates that supervising attention heads with task-relevant auxiliary signals (object masks, skill distributions, depth features) improves robustness on LIBERO-Plus (75.4%). However, GuidedVLA uses generic task-relevant factors — not affordance-specific contact geometry. ProGAL-VLA (arXiv 2604.09824) achieves LIBERO-Plus SOTA at 85.5% through a modular pipeline with Grounding Alignment Contrastive loss. Both validate the principle of explicit visual grounding but through different mechanisms than affordance-reasoning-conditioned contrastive alignment.\\n\\nThe specific gap: (a) no work has tested whether the Altered Thoughts entity-reference-only pattern holds when models are TRAINED with affordance-specific content (the TRAP distinction), or under distribution shift; (b) no work has compared representation learning quality across reasoning content types (extending ECoT-Lite); (c) no work has created an explicit contrastive mechanism linking affordance REASONING hidden states to contact-point VISUAL features — GuidedVLA supervises attention with generic task signals, ProGAL-VLA uses modular contrastive alignment on entity graphs, but neither aligns the model's OWN generated reasoning representations with affordance-relevant visual regions; (d) no work has tested whether RL refinement differentially benefits affordance vs. generic reasoning content.\",\n  \"landscape\": \"**Entity-reference dependence, CoT control mechanisms, and reasoning faithfulness:**\\n\\nAltered Thoughts, Altered Actions (arXiv 2603.12717, March 2026): Tests 7 CoT corruption types on DeepThinkVLA across 40 standard LIBERO tasks via POST-HOC text replacement. Entity-name substitution causes -8.3pp overall (-19.3pp goal-conditioned, -45pp worst-case), while sentence reordering, spatial-direction reversal, random tokens, and LLM-crafted wrong reasoning have negligible impact. Establishes entity-reference dependence for post-hoc corruption. CENTRAL MOTIVATING FINDING — but must be interpreted alongside TRAP.\\n\\nTRAP: Hijacking VLA CoT-Reasoning via Adversarial Patches (arXiv 2603.23117, March 2026): Adversarial patches induce specific target CoT during AUTOREGRESSIVE GENERATION, demonstrating that 'CoT strongly governs action generation, even when semantically misaligned with input instructions.' GraspVLA achieves 94.20% task success using adversarially-induced target CoT paired with mismatched instructions. Tested on 3 VLA architectures (MolmoACT, GraspVLA, InstructVLA) across 3 CoT paradigms. Average 52.54% attack success rate. KEY DISTINCTION from Altered Thoughts: post-hoc text replacement vs. autoregressive generation. Supports our hypothesis that TRAINING the model to generate affordance-specific content creates representational pathways that post-hoc analysis cannot detect.\\n\\nDo What You Say / SEAL (arXiv 2510.16281, ICRA 2026): Runtime reasoning-action alignment verification for VLAs. Even with correct textual plans, actions fail in OOD scenarios — 'embodied CoT faithfulness' degrades under distribution shift. SEAL samples multiple candidate action sequences, predicts outcomes, and selects the one best aligned with the textual plan. Up to 15% improvement on behavior composition; Visual-Viewpoint OOD: 45% vs 25% baseline. Tested on π₀. Demonstrates that text-level reasoning alone is insufficient for OOD robustness — motivates our AGCA approach that creates an explicit representational bridge rather than relying on runtime verification.\\n\\nECoT-Lite / Training Strategies for Efficient Embodied Reasoning (arXiv 2505.08243, May 2025): Tests 6 training variants including thinking tokens. Key findings: (a) representation learning is the primary mechanism, (b) non-semantic thinking tokens HURT performance (-3.8%), (c) reasoning dropout matches full ECoT (89.4% vs 90.8%). We extend to content type comparison AND add an explicit mechanism (AGCA) to amplify content-specific representation learning.\\n\\n**Robustness SOTA and visual grounding:**\\n\\nProGAL-VLA (arXiv 2604.09824, April 2026): Current LIBERO-Plus SOTA at 85.5% overall. Modular pipeline: Qwen2.5-VL-7B slow planner → YOLO-World → Metric3D → 3D entity-centric graph → Grounding Alignment Contrastive (GAC) loss. Per-dimension: Camera 93.2%, Robot 71.5%, Language 93.6%, Light 86.8%, Background 92.3%, Noise 74.8%, Layout 86.7%. Reduces language ignorance 3-4x. Uses contrastive alignment but on ENTITY GRAPHS from a modular pipeline — architecturally distinct from our AGCA that aligns affordance REASONING representations with contact-point visual features within an autoregressive model.\\n\\nSRPO (arXiv 2511.15605): Self-Referential Policy Optimization. 82.1% LIBERO-Plus average; 99.2% standard LIBERO from 48.9% SFT baseline in 200 RL steps. 167% improvement on LIBERO-Plus. RL-based SOTA for robustness. Demonstrates RL's power for VLA robustness but does not address reasoning content.\\n\\nGuidedVLA (arXiv 2605.12369, May 2026): Attention head specialization with auxiliary supervision for 3 task-relevant factors (object grounding via masks, skill recognition via KL-divergence, depth via frozen encoder). ControlNet-style residual adapter for plug-and-play integration. 75.4% LIBERO-Plus. KEY CONCURRENT WORK — validates the principle of supervised attention specialization, but uses generic task-relevant signals, not affordance-specific contrastive alignment. Our AGCA differs: (a) aligns the model's OWN generated reasoning representations (not external signals) with contact-point visual features, (b) is affordance-specific rather than generic, (c) creates a self-reinforcing loop where better affordance text → better visual attention → better affordance text.\\n\\nAVA-VLA (arXiv 2511.18960): Active Visual Attention dynamically reweighting visual tokens based on instruction and history. 74.7% LIBERO-Plus. Addresses visual attention but not through reasoning content.\\n\\nContrastive Representation Regularization / RS-CL (arXiv 2510.01711): Aligns VLA representations with robot proprioceptive states using relative distances as soft supervision. Improves RoboCasa-Kitchen from 30.8% to 41.5%. Our AGCA differs: aligns with VISUAL contact features identified by affordance reasoning, not proprioceptive states.\\n\\nLangGap (arXiv 2603.00592, February 2026): pi0.5 ignores language instructions. Targeted data augmentation: 0% to 90% (single-task), 0% to 28% (multi-task). Language grounding remains open.\\n\\n**Reasoning-augmented VLAs:**\\n\\nDeepThinkVLA (arXiv 2511.15669): Hybrid causal-bidirectional attention, SFT→RL. 97.0% standard LIBERO, 79.0% LIBERO-Plus. Subject of Altered Thoughts study.\\n\\nSimpleVLA-RL (ICLR 2026, arXiv 2509.09674): RL framework for VLAs, 97.6% LIBERO-Long.\\n\\nWhat Can RL Bring to VLA Generalization? (arXiv 2505.19789, May 2025): Systematic study showing RL benefits differ across dimensions: substantial gains in Execution, moderate in Semantics, comparable to SFT for Vision. PPO most effective. RL agents develop 'finer-grained control with unseen objects.' Motivates our RL pivot for Scenario C — testing whether RL differentially benefits affordance vs. generic reasoning.\\n\\nECoT (arXiv 2407.08693): Free-form generic reasoning, 28% over OpenVLA. No robustness evaluation.\\n\\nDualCoT-VLA (arXiv 2603.22280): Parallel visual-linguistic CoT, SOTA on LIBERO and RoboCasa.\\n\\nACoT-VLA (CVPR 2026, arXiv 2601.11404): Coarse action trajectory reasoning.\\n\\nCoT-VLA (arXiv 2503.22020): Visual subgoal images as reasoning.\\n\\nFlowVLA (arXiv 2508.18269): Optical flow as visual CoT.\\n\\nLaRA-VLA (arXiv 2602.01166): Latent CoT, 90% latency reduction.\\n\\n**Affordance-based VLA reasoning:**\\n\\nPALM (arXiv 2601.07060, January 2026): End-to-end affordance VLA with 4 latent affordance types via structured attention + diffusion policy. 91.8% LIBERO-LONG. Uses LATENT affordance representations — complementary to our text-based approach with AGCA. If AGCA shows contrastive alignment helps, PALM's latent approach could be extended with similar alignment.\\n\\nCoA-VLA (ICCV 2025, arXiv 2412.20451): Fixed 4-type textual affordance reasoning via separate co-injection module with FiLM conditioning. Our fixed affordance condition (C) replicates this; OVA-VLA extends to open-vocabulary with AGCA.\\n\\nRoboInter (ICLR 2026, arXiv 2602.09973): 230K episodes with dense per-frame annotations including affordance boxes, contact points, grasp poses. Data source for AGCA contrastive targets AND trajectory-grounded affordance annotation.\\n\\nGST-VLA (arXiv 2603.09079): 3D Gaussian spatial tokens including grasp affordance. Geometric, not semantic.\\n\\nVLA-R1 (arXiv 2510.01623): Affordance-aligned CoT via GRPO RL with affordance GIoU reward.\\n\\nAffordance-R1 (AAAI 2026, arXiv 2508.06206): GRPO without SFT for affordance reasoning.\\n\\nRT-Affordance (ICRA 2025, arXiv 2411.02704): Visual affordance images in hierarchical pipeline.\\n\\n**Open-vocabulary affordance data:**\\n\\nAffogato (arXiv 2506.12009): 150K 3D objects, >450 classes, >350 affordance types. HuggingFace. Affordance vocabulary pre-training source.\\n\\nGLOVER++ (arXiv 2505.11865): HOVA-500K dataset.\\n\\n**Robustness benchmarks:**\\n\\nLIBERO-Plus (CVPR 2026, arXiv 2510.13626): 7 perturbation dimensions, 10,030 tasks. Current leaderboard: ProGAL-VLA 85.5%, SRPO 82.1%, OpenVLA-OFT+ 79.6%, GuidedVLA ~75.4%, AVA-VLA 74.7%.\\n\\nLIBERO-PRO (arXiv 2510.03827): 4 perturbation dimensions. Models collapse to 0%.\\n\\n**The specific gap:** (a) Altered Thoughts tested post-hoc corruption only — TRAP shows autoregressive generation genuinely controls actions, but no work tests whether TRAINING with affordance-specific content produces different representations than generic CoT; (b) ECoT-Lite identified representation learning as the mechanism but did not compare content types or test explicit mechanisms to amplify content-specific learning; (c) GuidedVLA validates supervised attention specialization but with generic task-relevant signals — no work creates an explicit contrastive mechanism linking the model's OWN affordance reasoning representations to contact-point visual features; (d) ProGAL-VLA achieves 85.5% through modular contrastive alignment on entity graphs — no work tests whether an integrated autoregressive approach with affordance-grounded contrastive attention achieves competitive robustness; (e) no work designs entity-reference-controlled experiments isolating whether affordance content provides value beyond entity naming under distribution shift.\",\n  \"approach\": \"We propose OVA-VLA, a method combining three contributions: (1) a novel Affordance-Grounded Contrastive Attention (AGCA) mechanism that explicitly links affordance reasoning representations to contact-relevant visual features, (2) the OVA pipeline for scalable open-vocabulary affordance supervision generation, and (3) a systematic entity-reference-controlled study testing whether affordance reasoning provides grounding beyond entity names under distribution shift.\\n\\n**Architectural contribution — Affordance-Grounded Contrastive Attention (AGCA):**\\n\\nThe key insight: TRAP shows autoregressive CoT generation genuinely governs actions, while ECoT-Lite shows representation learning is the mechanism. AGCA creates an explicit representation learning pathway linking affordance TEXT to affordance-relevant VISUAL features:\\n\\n(a) During training, when the model generates affordance reasoning tokens (e.g., 'curved handle affording lateral power grasp'), we extract hidden states at affordance-descriptive token positions from the language model backbone.\\n\\n(b) Using RoboInter-Data's per-frame contact point annotations and affordance box coordinates, we identify the visual tokens corresponding to contact-relevant regions in the image (the visual tokens whose spatial positions overlap with annotated contact points and affordance bounding boxes).\\n\\n(c) We apply an InfoNCE contrastive loss: for each affordance reasoning token's hidden state h_aff, the positive set consists of visual tokens within the corresponding contact/affordance region v+, and the negative set consists of visual tokens outside these regions v-:\\n\\nL_AGCA = -log[exp(sim(h_aff, v+)/τ) / (exp(sim(h_aff, v+)/τ) + Σ exp(sim(h_aff, v-)/τ))]\\n\\nwhere sim() is cosine similarity and τ is a learned temperature parameter.\\n\\n(d) This loss is added to the standard next-token prediction loss with a weighting coefficient λ_AGCA, tuned on a held-out validation set.\\n\\nAGCA differs from existing approaches:\\n- vs. GuidedVLA: AGCA uses the model's OWN generated reasoning representations as queries (self-reinforcing: better affordance text → better visual grounding → better affordance text), while GuidedVLA uses externally-defined supervision signals. AGCA is affordance-specific; GuidedVLA is generic.\\n- vs. ProGAL-VLA's GAC: AGCA operates within the autoregressive model on reasoning-to-visual alignment, not on a modular entity graph. No external detector (YOLO-World) or depth estimator (Metric3D) required.\\n- vs. RS-CL: AGCA aligns reasoning representations with visual contact features, not proprioceptive states.\\n- vs. PALM: AGCA uses explicit textual affordance descriptions enabling interpretable analysis; PALM uses latent representations.\\n\\n**Technical contribution — OVA Pipeline:**\\n\\n(1) Affordance vocabulary pre-training on Affogato's publicly available 150K open-vocabulary affordance annotations (>450 object classes, >350 affordance types, HuggingFace). Trains the model to generate diverse affordance descriptions from visual inputs.\\n\\n(2) Trajectory-grounded affordance annotation: Generate open-vocabulary affordance descriptions for ~60K RoboInter-Data trajectories using Qwen2.5-VL-72B API, conditioned on RGB frames AND RoboInter-Data's affordance box coordinates and contact point annotations. Descriptions validated against trajectory kinematics. Estimated API cost: ~$300-450.\\n\\n(3) Curriculum training: three-stage progression from structured (4-type CoA-VLA format) → semi-structured (8-10 dimensions) → fully open-vocabulary free-form descriptions.\\n\\nPipeline released as reusable toolkit: annotation prompts, validation scripts, curriculum schedule, 60K affordance-annotated trajectories, and AGCA implementation.\\n\\n**Backbone and conditions:** Built on Qwen2.5-VL-3B (following NORA's validated architecture), all conditions share the same backbone, LoRA configuration, training data, and compute budget:\\n\\n(A) No reasoning → action tokens (baseline)\\n(B) Generic CoT → action tokens (ECoT-style: plans, sub-tasks, motion descriptions)\\n(B-ent) Generic CoT with MATCHED entity references → action tokens (same object names as condition D, generic planning language)\\n(C) Fixed 4-type affordance → action tokens (CoA-VLA-style)\\n(D) Open-vocabulary affordance → action tokens (OVA-VLA without AGCA — isolates content effect)\\n(D+AGCA) Open-vocabulary affordance + AGCA → action tokens (full OVA-VLA — tests content + mechanism)\\n(D-ent) Affordance with SHUFFLED entity references → action tokens (entity-swap attack)\\n\\n**Entity-reference-controlled experiments (addressing Altered Thoughts + TRAP):**\\n\\nThe entity-reference-controlled design isolates content from naming:\\n\\n- (B) vs. (B-ent) on standard LIBERO: replicates Altered Thoughts finding (entity references dominate for generic CoT)\\n- (B-ent) vs. (D) on LIBERO-Plus/PRO: tests whether affordance CONTENT provides grounding beyond matched entity references under distribution shift\\n- (D) vs. (D+AGCA) on LIBERO-Plus/PRO: tests whether the explicit contrastive mechanism amplifies the affordance content effect — this is the key architectural test\\n- (D) vs. (D-ent): tests entity-reference dependence asymmetry for affordance reasoning\\n- (D+AGCA) vs. GuidedVLA-style baseline: tests affordance-specific contrastive alignment vs. generic task-relevant attention supervision (implemented using GuidedVLA's ControlNet-style adapter with RoboInter object masks as the object head signal)\\n\\n**Representation learning analysis (extending ECoT-Lite + TRAP insight):**\\n\\nECoT-Lite-style ablations test whether affordance content produces better representations:\\n(D-pretrain) Affordance pre-training only, no test-time generation (isolates representation learning)\\n(B-pretrain) Generic CoT pre-training only (control)\\n(D+AGCA-pretrain) Affordance + AGCA pre-training only (tests whether AGCA improves representations even without test-time generation)\\n\\nComparing (D-pretrain) vs. (B-pretrain) tests content-type representation quality. Comparing (D+AGCA-pretrain) vs. (D-pretrain) tests whether AGCA amplifies representation learning beyond content effects alone.\\n\\nAdditionally: CKA (Centered Kernel Alignment) analysis of internal representations between conditions, following TRAP's methodology of analyzing how CoT content shapes intermediate activations.\\n\\n**Primary evaluation:**\\n\\n- LIBERO-Plus (CVPR 2026): 7 perturbation dimensions. Per-dimension analysis. ProGAL-VLA 85.5% as discussion baseline (different approach: modular pipeline vs. our integrated autoregressive). We do NOT claim to beat ProGAL-VLA but analyze whether AGCA narrows the gap more than text-only affordance reasoning.\\n- LIBERO-PRO: 4 perturbation dimensions, focus on 'manipulated objects' and 'task instructions.'\\n- Standard LIBERO: Replication of Altered Thoughts entity-reference findings with our models.\\n- SimplerEnv: Cross-embodiment evaluation.\\n\\n**Operationalized hypotheses:**\\n\\n- H1 (Content beyond entity references under shift): On LIBERO-Plus/PRO, condition (D) outperforms entity-matched (B-ent) by ≥5%, while on standard LIBERO the gap is ≤2%. Stratified by perturbation type: largest advantage on 'manipulated objects' (LIBERO-PRO) and 'camera viewpoint' (LIBERO-Plus).\\n\\n- H2 (AGCA amplification): (D+AGCA) outperforms (D) by ≥3% on LIBERO-Plus, demonstrating that the explicit contrastive mechanism amplifies affordance grounding beyond text content alone. This is the key architectural hypothesis.\\n\\n- H3 (Representation learning quality): (D-pretrain) outperforms (B-pretrain) by ≥3% on LIBERO-Plus; (D+AGCA-pretrain) outperforms (D-pretrain) by ≥2%, showing AGCA improves representation quality even without test-time reasoning generation.\\n\\n- H4 (Language grounding): Under LIBERO-Plus 'language instruction' perturbation, (D+AGCA) shows less performance variance than (B), because affordance descriptions grounded to visual contact features provide instruction-independent physical grounding. Comparison point: ProGAL-VLA's 93.6% language perturbation score.\\n\\n- H5 (Entity-reference dependence asymmetry): On standard LIBERO, (D-ent) entity-swap causes LESS degradation than (B) entity-swap, because affordance descriptions + AGCA provide alternative grounding pathways.\\n\\n**Contingency plan — publishable under all outcomes:**\\n\\nScenario A (Affordance + AGCA >> Generic, ≥5% on LIBERO-Plus/PRO): Full method contribution (AGCA + OVA pipeline) + evidence that both reasoning content AND explicit contrastive grounding matter for robustness. Strongest paper.\\n\\nScenario B (AGCA helps but content alone doesn't, or vice versa): Disentangles content vs. mechanism effects — equally valuable. If AGCA helps but content doesn't: the mechanism (contrastive visual grounding) matters more than what text says — supports architectural approaches like GuidedVLA. If content helps but AGCA doesn't: representation learning from content alone suffices — extends ECoT-Lite with content-type evidence.\\n\\nScenario C (Affordance ≈ Generic across all SFT conditions, including AGCA): Proactive RL pivot — allocate remaining compute to testing whether GRPO differentially benefits affordance reasoning vs. generic CoT. Hypothesis: affordance descriptions provide richer verifiable reward signals (contact geometry, grasp success) than generic plans. Following VLA-R1's affordance GIoU reward and 'What Can RL Bring to VLA Generalization?' showing RL benefits differ across dimensions. This tests whether the representation learning pathway activated by affordance content enables better RL reward extraction even if SFT alone cannot differentiate. This makes the negative SFT result more actionable: 'affordance content doesn't differentiate under SFT but enables stronger RL refinement' is a novel finding directing future work toward RL-based affordance VLAs.\\n\\nRegardless of outcome: (a) OVA pipeline + 60K affordance-annotated trajectories released, (b) first entity-reference-controlled analysis under distribution shift (extending Altered Thoughts), (c) first TRAP-informed comparison of training-time content effects vs. post-hoc corruption effects, (d) AGCA implementation released.\\n\\nThe paper is framed as 'testing whether affordance reasoning provides grounding beyond entity references, and whether explicit contrastive alignment amplifies this effect' — a question whose answer is valuable regardless of direction.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~180h H100 (LoRA training 3B model: ~12h/run × 7 conditions [A,B,B-ent,C,D,D+AGCA,D-ent] × 2 seeds = 168h; Affogato pre-training: ~3h; evaluation: ~5h; AGCA adds ~1h/run for contrastive loss computation, included in 12h estimate. Note: representation ablations reuse pre-training runs)\",\n      \"gpu_utilization\": \"Low (~30-40%). GPU idle during annotation review and analysis.\",\n      \"timeline\": \"8-10 weeks\",\n      \"team\": \"1 researcher with VLA experience\",\n      \"annotation_cost\": \"$300-450 (Qwen2.5-VL-72B API for 60K trajectories + equivalent annotations for all conditions)\",\n      \"estimated_gpu_cost\": \"$360-720 (at $2-4/hr H100 rental)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~210h H100 (LoRA training: ~12h/run × 7 conditions × 2 seeds = 168h; 3 representation ablations: ~36h; Affogato pre-training: ~3h; evaluation LIBERO-Plus/PRO + standard LIBERO: ~12h; entity-reference + CKA analysis: ~5h; optional RL pivot: ~24h reserved)\",\n      \"gpu_utilization\": \"Moderate (~60-70%). Agent queues experiments, human reviews entity-reference and AGCA analysis.\",\n      \"timeline\": \"6-8 weeks\",\n      \"team\": \"1 researcher, ~30min/day review\",\n      \"annotation_cost\": \"$300-450 (API-based)\",\n      \"claude_api_cost\": \"$150-300 (~2000-4000 agent turns)\",\n      \"estimated_gpu_cost\": \"$420-840\",\n      \"risk_note\": \"AGCA requires extracting contact-point visual token indices from RoboInter-Data annotations — validation that spatial alignment between image tokens and annotated contact points is correct. Human spot-checks 500 samples.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~240h H100 (LoRA training: ~12h/run × 7 conditions × 2 seeds = 168h; 3 representation ablations: ~36h; Affogato pre-training: ~3h; evaluation LIBERO-Plus/PRO + standard LIBERO + SimplerEnv: ~16h; CKA analysis: ~5h; RL pivot (if Scenario C): ~24h for 2 GRPO conditions × 2 seeds; buffer: ~12h for AGCA λ hyperparameter sweep)\",\n      \"gpu_utilization\": \"High (~85-90%). Agent runs 24/7.\",\n      \"timeline\": \"12-16 days with 2 H100 GPUs\",\n      \"team\": \"0 (3-hour setup: download RoboInter-Data, Affogato, base model, configure API keys, install LIBERO-Plus/PRO, precompute contact-point-to-visual-token mappings)\",\n      \"annotation_cost\": \"$300-450 (API-based, runs in parallel with GPU training)\",\n      \"claude_api_cost\": \"$300-600 (~4000-8000 agent turns)\",\n      \"estimated_gpu_cost\": \"$480-960\",\n      \"speed_bottleneck\": \"Sequential LoRA training runs (7 conditions × 2 seeds = 14 runs + 3 ablations + optional RL = up to 21 runs). With 2 H100s, ~8-12 days for training. AGCA λ sweep parallelizable.\",\n      \"risk_note\": \"AGCA contrastive loss requires precomputing contact-point-to-visual-token spatial mappings for all 60K trajectories (~6h one-time preprocessing). Automated quality assessment flags misaligned mappings.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (abstract deadline July 21, paper deadline July 28, 2026; ~9 weeks from today; primary target; feasible with auto-research timeline of 12-16 days + 7 weeks for writing/analysis/supplementary)\",\n    \"ICLR 2027 (expected deadline Sep-Oct 2026; ~4-5 months; comfortable backup; allows full RL pivot experiments, additional GuidedVLA-style baseline comparison)\",\n    \"CoRL 2026 (INFEASIBLE — deadline passed)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Altered Thoughts, Altered Actions: Probing CoT Vulnerabilities in VLA Robotic Manipulation (arXiv 2603.12717, March 2026) — CENTRAL MOTIVATING FINDING: post-hoc entity-reference corruption is all that degrades generic CoT on standard LIBERO; 7 corruption types tested. Must be interpreted alongside TRAP.\",\n    \"TRAP: Hijacking VLA CoT-Reasoning via Adversarial Patches (arXiv 2603.23117, March 2026) — CRITICAL COMPLEMENTARY FINDING: adversarially-GENERATED CoT at autoregressive level strongly governs actions (GraspVLA: 94.20% with target CoT + mismatched instructions); 3 VLA architectures, 52.54% average attack success. Establishes that CoT generation pathway matters — post-hoc corruption (Altered Thoughts) vs. autoregressive generation are fundamentally different.\",\n    \"Do What You Say / SEAL (arXiv 2510.16281, ICRA 2026) — runtime reasoning-action alignment verification; up to 15% improvement; demonstrates reasoning-action faithfulness degrades under distribution shift; motivates our AGCA as an explicit representational bridge vs. runtime verification\",\n    \"Training Strategies for Efficient Embodied Reasoning / ECoT-Lite (arXiv 2505.08243, May 2025) — representation learning is the primary mechanism; thinking tokens hurt (-3.8%); we extend to content type comparison + AGCA amplification\",\n    \"GuidedVLA: Specifying Task-Relevant Factors via Plug-and-Play Action Attention Specialization (arXiv 2605.12369, May 2026) — CONCURRENT WORK: attention head specialization with generic task-relevant supervision (object masks, skill distributions, depth features); 75.4% LIBERO-Plus; ControlNet-style adapter. Our AGCA differs: affordance-specific, uses model's own generated reasoning as queries, contrastive not supervisory.\",\n    \"ProGAL-VLA: Grounded Alignment through Prospective Reasoning (arXiv 2604.09824, April 2026) — current LIBERO-Plus SOTA at 85.5%; modular pipeline; GAC contrastive loss on entity graphs. Discussion baseline for integrated vs. modular approaches.\",\n    \"SRPO: Self-Referential Policy Optimization (arXiv 2511.15605) — 82.1% LIBERO-Plus, 99.2% standard LIBERO via self-referential RL; RL-based robustness SOTA\",\n    \"PALM: Progress-Aware Policy Learning via Affordance Reasoning (arXiv 2601.07060, January 2026) — latent affordance VLA; 91.8% LIBERO-LONG; complementary approach\",\n    \"DeepThinkVLA (arXiv 2511.15669) — hybrid attention + SFT→RL; 97% LIBERO / 79% LIBERO-Plus; subject of Altered Thoughts study\",\n    \"AVA-VLA: Active Visual Attention (arXiv 2511.18960) — dynamic visual token reweighting; 74.7% LIBERO-Plus\",\n    \"Contrastive Representation Regularization / RS-CL (arXiv 2510.01711) — aligns VLA representations with proprioceptive states; our AGCA aligns with visual contact features instead\",\n    \"What Can RL Bring to VLA Generalization? (arXiv 2505.19789, May 2025) — RL benefits differ across dimensions: substantial in Execution, moderate in Semantics, comparable in Vision; PPO most effective; motivates RL pivot for Scenario C\",\n    \"CoA-VLA: Chain-of-Affordance for VLA Models (ICCV 2025, arXiv 2412.20451) — fixed 4-type affordance reasoning baseline; FiLM conditioning\",\n    \"RoboInter: Holistic Intermediate Representation Suite (ICLR 2026, arXiv 2602.09973) — 230K episodes with contact points, affordance boxes; data source for AGCA contrastive targets\",\n    \"ECoT: Embodied Chain-of-Thought Reasoning (arXiv 2407.08693) — generic CoT baseline\",\n    \"LangGap (arXiv 2603.00592, February 2026) — language grounding remains open\",\n    \"SimpleVLA-RL (ICLR 2026, arXiv 2509.09674) — 97.6% LIBERO-Long via RL\",\n    \"VLA-R1 (arXiv 2510.01623) — affordance-aligned CoT via GRPO; affordance GIoU reward\",\n    \"Affordance-R1 (AAAI 2026, arXiv 2508.06206) — GRPO without SFT for affordance reasoning\",\n    \"DualCoT-VLA (arXiv 2603.22280) — parallel visual-linguistic CoT\",\n    \"ACoT-VLA (CVPR 2026, arXiv 2601.11404) — action trajectory reasoning\",\n    \"CoT-VLA (arXiv 2503.22020) — visual subgoal reasoning\",\n    \"FlowVLA (arXiv 2508.18269) — optical flow CoT\",\n    \"LaRA-VLA (arXiv 2602.01166) — latent CoT, 90% latency reduction\",\n    \"GST-VLA (arXiv 2603.09079) — 3D Gaussian spatial tokens\",\n    \"SPR-VLA: See, Plan, Rewind (arXiv 2603.09292, March 2026) — progress-aware VLA with spatial subgoals and error recovery\",\n    \"Affogato (arXiv 2506.12009) — 150K open-vocabulary affordance annotations; pre-training source\",\n    \"GLOVER++ (arXiv 2505.11865) — HOVA-500K dataset\",\n    \"RT-Affordance (ICRA 2025, arXiv 2411.02704) — visual affordance in hierarchical pipeline\",\n    \"AffordGrasp (arXiv 2503.00778) — VLM in-context affordance reasoning\",\n    \"LIBERO-Plus (CVPR 2026, arXiv 2510.13626) — 7-dimension robustness benchmark; primary evaluation\",\n    \"LIBERO-PRO (arXiv 2510.03827) — 4-dimension robustness benchmark\",\n    \"NORA (arXiv 2504.19854) — Qwen2.5-VL-3B backbone reference\",\n    \"PosA-VLA (arXiv 2512.03724) — pose-conditioned anchor attention\",\n    \"ReconVLA (arXiv 2508.10333) — reconstructive visual grounding for VLAs\",\n    \"Concept-Gated Visual Distillation (arXiv 2603.10340) — overcoming visual clutter in VLAs\",\n    \"Context-Dependent Affordance Computation in VLMs (arXiv 2603.04419)\",\n    \"VLA Survey: An Action Tokenization Perspective (arXiv 2507.01925)\"\n  ],\n  \"description\": \"We propose OVA-VLA, combining a novel Affordance-Grounded Contrastive Attention (AGCA) mechanism with a scalable open-vocabulary affordance supervision pipeline and a systematic entity-reference-controlled study. Motivated by a critical distinction between two recent findings — 'Altered Thoughts' showing post-hoc CoT corruption only degrades entity references, vs. TRAP showing autoregressive CoT generation genuinely governs actions — we hypothesize that TRAINING models to generate affordance-specific content creates representational pathways that post-hoc analysis cannot detect, and that an explicit contrastive mechanism (AGCA) can amplify this effect. AGCA applies an InfoNCE loss aligning hidden states at affordance-reasoning token positions with contact-point visual features from RoboInter-Data annotations, creating a self-reinforcing loop: better affordance text → better visual grounding → better affordance text. This differs from GuidedVLA's generic attention supervision, ProGAL-VLA's modular entity-graph contrastive alignment, and RS-CL's proprioceptive alignment. We evaluate seven conditions on Qwen2.5-VL-3B with LoRA: no reasoning, generic CoT, entity-matched generic CoT, fixed 4-type affordance, open-vocabulary affordance (without AGCA), full OVA-VLA (with AGCA), and entity-swapped affordance — with representation learning ablations extending ECoT-Lite's mechanism analysis. Primary evaluation on LIBERO-Plus (ProGAL-VLA's 85.5% as discussion baseline) and LIBERO-PRO, with standard LIBERO for Altered Thoughts replication. A proactive RL pivot plan (GRPO with affordance GIoU reward) ensures publishable contributions even if SFT conditions show no differentiation. Total compute: ≤240 H100-hours; annotation cost: ~$300-450 via API.\",\n  \"project_name\": \"open_vocab_afford_vla\",\n  \"source\": \"web_research\"\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b7a0408-2125-48f6-b77a-f3c2d012dfde",
+  "isSidechain": false,
+  "requestId": "req_011CbAensdMeV8TLmkXFwhZA",
+  "type": "assistant",
+  "uuid": "ce58e84e-817e-44ed-ab29-7086f8836f27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RtWLjg1Z5Bwv771Cb8vRaR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1071,
+      "cache_read_input_tokens": 51963,
+      "output_tokens": 11446,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1071,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11446,
+          "cache_read_input_tokens": 51963,
+          "cache_creation_input_tokens": 1071,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1071
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-18T20:22:34.915Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Md4WHQhWEXsZeXa7h1xnEX`</summary>
+
+```text
+Claude requested permissions to write to /tmp/revised_idea.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce58e84e-817e-44ed-ab29-7086f8836f27",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "b5a0124e-791f-4901-aff9-ff85a6c3c645",
+  "toolUseResult": "Error: Claude requested permissions to write to /tmp/revised_idea.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "ce58e84e-817e-44ed-ab29-7086f8836f27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 97_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-18 (UTC).**  ## Original idea {   \"title\": \"OVA-VLA: Does Affordance-Specific Reasoning Ground VLA Action Decoders…",
+  "leafUuid": "b5a0124e-791f-4901-aff9-ff85a6c3c645",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OVA-VLA with affordance-attention architecture and RL pivot",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-18T20:25:44.329Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01DngqnSXyFiUgfuKu8ByLwM`</summary>
+
+```json
+{
+  "file_path": "/tmp/revised_idea.json",
+  "content": "{\n  \"title\": \"OVA-VLA: Affordance-Grounded Contrastive Attention for Robust VLA Reasoning Beyond Entity References\",\n  \"change_type\": \"major\",\n  \"core_problem\": \"Do affordance-specific reasoning tokens provide grounding to VLA action decoders BEYOND entity-reference integrity, and can an explicit representation learning mechanism amplify this effect? Three converging findings frame this question precisely:\\n\\n(1) 'Altered Thoughts, Altered Actions' (arXiv 2603.12717) shows that on standard LIBERO, post-hoc corruption of DeepThinkVLA's generated CoT only degrades performance when entity references are disrupted — sentence reordering, spatial-direction reversal, and LLM-crafted wrong reasoning have negligible impact. This suggests action decoders extract entity names from CoT text and ignore other content.\\n\\n(2) However, TRAP (arXiv 2603.23117) reveals the opposite when CoT is generated autoregressively: adversarial patches that induce specific CoT content at generation time STRONGLY govern action outputs — GraspVLA achieves 94.20% task success using adversarially-induced target CoT paired with mismatched instructions. This critical distinction — post-hoc text replacement vs. autoregressive generation — suggests that TRAINING the model to generate specific content creates representational pathways that post-hoc injection cannot. If the model learns to generate affordance descriptions, those descriptions may ground attention to contact-relevant visual features during the generation process itself.\\n\\n(3) ECoT-Lite (arXiv 2505.08243) confirms that reasoning benefits VLAs primarily through representation learning, not expressivity, and that non-semantic thinking tokens hurt performance (-3.8%). Together with TRAP, this implies: the VALUE of reasoning content lies in the representations it induces during training, and different content types should produce different representation quality.\\n\\nThis raises two linked questions: (a) Does affordance-specific content — encoding perturbation-invariant physical interaction properties (contact surfaces, grasp strategies, functional regions) — provide action-relevant grounding beyond entity names, especially under distribution shift where entity references become ambiguous? (b) Can an explicit contrastive mechanism that aligns affordance-reasoning hidden states with contact-point visual features AMPLIFY this grounding effect, creating an architectural pathway (not just different text) that links content to visual attention?\",\n  \"opportunity\": \"Four converging findings create a precise research gap with both empirical and architectural dimensions:\\n\\n(1) 'Altered Thoughts' establishes entity-reference dependence for post-hoc CoT corruption on standard LIBERO. But TRAP shows autoregressive CoT generation genuinely governs actions. Neither tested whether TRAINING with affordance-specific content produces different representations than generic CoT, nor whether this difference manifests under distribution shift. The Altered Thoughts / TRAP distinction motivates testing content effects at the TRAINING level (representation learning) rather than at the inference level (post-hoc corruption).\\n\\n(2) ECoT-Lite identifies representation learning as the primary mechanism but did not compare content types. If affordance descriptions force the model to attend to functionally-relevant visual features (contact surfaces, edges, handles), they should produce more transferable representations than generic CoT that attends to layout-specific features. No work has tested this content-type comparison.\\n\\n(3) 'Do What You Say' / SEAL (arXiv 2510.16281, ICRA 2026) shows that even correct textual reasoning can fail at action execution in OOD scenarios — reasoning-action faithfulness degrades under distribution shift, with up to 15% improvement from runtime alignment verification. This demonstrates that text-level reasoning alone is insufficient; an explicit representational bridge between reasoning content and visual features could improve faithfulness without requiring expensive runtime verification.\\n\\n(4) GuidedVLA (arXiv 2605.12369, May 2026) demonstrates that supervising attention heads with task-relevant auxiliary signals (object masks, skill distributions, depth features) improves robustness on LIBERO-Plus (75.4%). However, GuidedVLA uses generic task-relevant factors — not affordance-specific contact geometry. ProGAL-VLA (arXiv 2604.09824) achieves LIBERO-Plus SOTA at 85.5% through a modular pipeline with Grounding Alignment Contrastive loss. Both validate the principle of explicit visual grounding but through different mechanisms than affordance-reasoning-conditioned contrastive alignment.\\n\\nThe specific gap: (a) no work has tested whether the Altered Thoughts entity-reference-only pattern holds when models are TRAINED with affordance-specific content (the TRAP distinction), or under distribution shift; (b) no work has compared representation learning quality across reasoning content types (extending ECoT-Lite); (c) no work has created an explicit contrastive mechanism linking affordance REASONING hidden states to contact-point VISUAL features — GuidedVLA supervises attention with generic task signals, ProGAL-VLA uses modular contrastive alignment on entity graphs, but neither aligns the model's OWN generated reasoning representations with affordance-relevant visual regions; (d) no work has tested whether RL refinement differentially benefits affordance vs. generic reasoning content.\",\n  \"landscape\": \"**Entity-reference dependence, CoT control mechanisms, and reasoning faithfulness:**\\n\\nAltered Thoughts, Altered Actions (arXiv 2603.12717, March 2026): Tests 7 CoT corruption types on DeepThinkVLA across 40 standard LIBERO tasks via POST-HOC text replacement. Entity-name substitution causes -8.3pp overall (-19.3pp goal-conditioned, -45pp worst-case), while sentence reordering, spatial-direction reversal, random tokens, and LLM-crafted wrong reasoning have negligible impact. Establishes entity-reference dependence for post-hoc corruption. CENTRAL MOTIVATING FINDING — but must be interpreted alongside TRAP.\\n\\nTRAP: Hijacking VLA CoT-Reasoning via Adversarial Patches (arXiv 2603.23117, March 2026): Adversarial patches induce specific target CoT during AUTOREGRESSIVE GENERATION, demonstrating that 'CoT strongly governs action generation, even when semantically misaligned with input instructions.' GraspVLA achieves 94.20% task success using adversarially-induced target CoT paired with mismatched instructions. Tested on 3 VLA architectures (MolmoACT, GraspVLA, InstructVLA) across 3 CoT paradigms. Average 52.54% attack success rate. KEY DISTINCTION from Altered Thoughts: post-hoc text replacement vs. autoregressive generation. Supports our hypothesis that TRAINING the model to generate affordance-specific content creates representational pathways that post-hoc analysis cannot detect.\\n\\nDo What You Say / SEAL (arXiv 2510.16281, ICRA 2026): Runtime reasoning-action alignment verification for VLAs. Even with correct textual plans, actions fail in OOD scenarios — 'embodied CoT faithfulness' degrades under distribution shift. SEAL samples multiple candidate action sequences, predicts outcomes, and selects the one best aligned with the textual plan. Up to 15% improvement on behavior composition; Visual-Viewpoint OOD: 45% vs 25% baseline. Tested on pi-0. Demonstrates that text-level reasoning alone is insufficient for OOD robustness — motivates our AGCA approach that creates an explicit representational bridge rather than relying on runtime verification.\\n\\nECoT-Lite / Training Strategies for Efficient Embodied Reasoning (arXiv 2505.08243, May 2025): Tests 6 training variants including thinking tokens. Key findings: (a) representation learning is the primary mechanism, (b) non-semantic thinking tokens HURT performance (-3.8%), (c) reasoning dropout matches full ECoT (89.4% vs 90.8%). We extend to content type comparison AND add an explicit mechanism (AGCA) to amplify content-specific representation learning.\\n\\n**Robustness SOTA and visual grounding:**\\n\\nProGAL-VLA (arXiv 2604.09824, April 2026): Current LIBERO-Plus SOTA at 85.5% overall. Modular pipeline: Qwen2.5-VL-7B slow planner, YOLO-World, Metric3D, 3D entity-centric graph, Grounding Alignment Contrastive (GAC) loss. Per-dimension: Camera 93.2%, Robot 71.5%, Language 93.6%, Light 86.8%, Background 92.3%, Noise 74.8%, Layout 86.7%. Reduces language ignorance 3-4x. Uses contrastive alignment but on ENTITY GRAPHS from a modular pipeline — architecturally distinct from our AGCA that aligns affordance REASONING representations with contact-point visual features within an autoregressive model.\\n\\nSRPO (arXiv 2511.15605): Self-Referential Policy Optimization. 82.1% LIBERO-Plus average; 99.2% standard LIBERO from 48.9% SFT baseline in 200 RL steps. 167% improvement on LIBERO-Plus. RL-based SOTA for robustness. Demonstrates RL's power for VLA robustness but does not address reasoning content.\\n\\nGuidedVLA (arXiv 2605.12369, May 2026): Attention head specialization with auxiliary supervision for 3 task-relevant factors (object grounding via masks, skill recognition via KL-divergence, depth via frozen encoder). ControlNet-style residual adapter for plug-and-play integration. 75.4% LIBERO-Plus. KEY CONCURRENT WORK — validates the principle of supervised attention specialization, but uses generic task-relevant signals, not affordance-specific contrastive alignment. Our AGCA differs: (a) aligns the model's OWN generated reasoning representations (not external signals) with contact-point visual features, (b) is affordance-specific rather than generic, (c) creates a self-reinforcing loop where better affordance text leads to better visual attention leads to better affordance text.\\n\\nAVA-VLA (arXiv 2511.18960): Active Visual Attention dynamically reweighting visual tokens based on instruction and history. 74.7% LIBERO-Plus.\\n\\nContrastive Representation Regularization / RS-CL (arXiv 2510.01711): Aligns VLA representations with robot proprioceptive states using relative distances as soft supervision. Improves RoboCasa-Kitchen from 30.8% to 41.5%. Our AGCA differs: aligns with VISUAL contact features identified by affordance reasoning, not proprioceptive states.\\n\\nLangGap (arXiv 2603.00592, February 2026): pi0.5 ignores language instructions. Targeted data augmentation: 0% to 90% (single-task), 0% to 28% (multi-task).\\n\\n**Reasoning-augmented VLAs:**\\n\\nDeepThinkVLA (arXiv 2511.15669): Hybrid causal-bidirectional attention, SFT then RL. 97.0% standard LIBERO, 79.0% LIBERO-Plus. Subject of Altered Thoughts study.\\n\\nSimpleVLA-RL (ICLR 2026, arXiv 2509.09674): RL framework for VLAs, 97.6% LIBERO-Long.\\n\\nWhat Can RL Bring to VLA Generalization? (arXiv 2505.19789, May 2025): Systematic study showing RL benefits differ across dimensions: substantial gains in Execution, moderate in Semantics, comparable to SFT for Vision. PPO most effective. RL agents develop 'finer-grained control with unseen objects.' Motivates our RL pivot for Scenario C.\\n\\nECoT (arXiv 2407.08693): Free-form generic reasoning, 28% over OpenVLA.\\n\\nDualCoT-VLA (arXiv 2603.22280): Parallel visual-linguistic CoT, SOTA on LIBERO and RoboCasa.\\n\\nACoT-VLA (CVPR 2026, arXiv 2601.11404): Coarse action trajectory reasoning.\\n\\nCoT-VLA (arXiv 2503.22020): Visual subgoal images as reasoning.\\n\\nFlowVLA (arXiv 2508.18269): Optical flow as visual CoT.\\n\\nLaRA-VLA (arXiv 2602.01166): Latent CoT, 90% latency reduction.\\n\\n**Affordance-based VLA reasoning:**\\n\\nPALM (arXiv 2601.07060, January 2026): End-to-end affordance VLA with 4 latent affordance types via structured attention + diffusion policy. 91.8% LIBERO-LONG. Uses LATENT affordance representations — complementary.\\n\\nCoA-VLA (ICCV 2025, arXiv 2412.20451): Fixed 4-type textual affordance reasoning via separate co-injection module with FiLM conditioning.\\n\\nRoboInter (ICLR 2026, arXiv 2602.09973): 230K episodes with dense per-frame annotations including affordance boxes, contact points, grasp poses. Data source for AGCA contrastive targets AND trajectory-grounded affordance annotation.\\n\\nGST-VLA (arXiv 2603.09079): 3D Gaussian spatial tokens including grasp affordance.\\n\\nVLA-R1 (arXiv 2510.01623): Affordance-aligned CoT via GRPO with affordance GIoU reward.\\n\\nAffordance-R1 (AAAI 2026, arXiv 2508.06206): GRPO without SFT for affordance reasoning.\\n\\nRT-Affordance (ICRA 2025, arXiv 2411.02704): Visual affordance in hierarchical pipeline.\\n\\n**Open-vocabulary affordance data:**\\n\\nAffogato (arXiv 2506.12009): 150K 3D objects, >450 classes, >350 affordance types. HuggingFace.\\n\\nGLOVER++ (arXiv 2505.11865): HOVA-500K dataset.\\n\\n**Robustness benchmarks:**\\n\\nLIBERO-Plus (CVPR 2026, arXiv 2510.13626): 7 perturbation dimensions, 10,030 tasks. Leaderboard: ProGAL-VLA 85.5%, SRPO 82.1%, OpenVLA-OFT+ 79.6%, GuidedVLA ~75.4%, AVA-VLA 74.7%.\\n\\nLIBERO-PRO (arXiv 2510.03827): 4 perturbation dimensions. Models collapse to 0%.\\n\\n**The specific gap:** (a) Altered Thoughts tested post-hoc corruption only — TRAP shows autoregressive generation genuinely controls actions, but no work tests whether TRAINING with affordance-specific content produces different representations than generic CoT; (b) ECoT-Lite identified representation learning as the mechanism but did not compare content types or test explicit mechanisms to amplify content-specific learning; (c) GuidedVLA validates supervised attention specialization but with generic task-relevant signals — no work creates an explicit contrastive mechanism linking the model's OWN affordance reasoning representations to contact-point visual features; (d) ProGAL-VLA achieves 85.5% through modular contrastive alignment on entity graphs — no work tests whether an integrated autoregressive approach with affordance-grounded contrastive attention achieves competitive robustness; (e) no work designs entity-reference-controlled experiments isolating whether affordance content provides value beyond entity naming under distribution shift.\",\n  \"approach\": \"We propose OVA-VLA, a method combining three contributions: (1) a novel Affordance-Grounded Contrastive Attention (AGCA) mechanism that explicitly links affordance reasoning representations to contact-relevant visual features, (2) the OVA pipeline for scalable open-vocabulary affordance supervision generation, and (3) a systematic entity-reference-controlled study testing whether affordance reasoning provides grounding beyond entity names under distribution shift.\\n\\n**Architectural contribution — Affordance-Grounded Contrastive Attention (AGCA):**\\n\\nThe key insight: TRAP shows autoregressive CoT generation genuinely governs actions, while ECoT-Lite shows representation learning is the mechanism. AGCA creates an explicit representation learning pathway linking affordance TEXT to affordance-relevant VISUAL features:\\n\\n(a) During training, when the model generates affordance reasoning tokens (e.g., 'curved handle affording lateral power grasp'), we extract hidden states at affordance-descriptive token positions from the language model backbone.\\n\\n(b) Using RoboInter-Data's per-frame contact point annotations and affordance box coordinates, we identify the visual tokens corresponding to contact-relevant regions in the image (the visual tokens whose spatial positions overlap with annotated contact points and affordance bounding boxes).\\n\\n(c) We apply an InfoNCE contrastive loss: for each affordance reasoning token's hidden state h_aff, the positive set consists of visual tokens within the corresponding contact/affordance region v+, and the negative set consists of visual tokens outside these regions v-:\\n\\nL_AGCA = -log[exp(sim(h_aff, v+)/tau) / (exp(sim(h_aff, v+)/tau) + Sum exp(sim(h_aff, v-)/tau))]\\n\\nwhere sim() is cosine similarity and tau is a learned temperature parameter.\\n\\n(d) This loss is added to the standard next-token prediction loss with a weighting coefficient lambda_AGCA, tuned on a held-out validation set.\\n\\nAGCA differs from existing approaches:\\n- vs. GuidedVLA: AGCA uses the model's OWN generated reasoning representations as queries (self-reinforcing: better affordance text -> better visual grounding -> better affordance text), while GuidedVLA uses externally-defined supervision signals. AGCA is affordance-specific; GuidedVLA is generic.\\n- vs. ProGAL-VLA's GAC: AGCA operates within the autoregressive model on reasoning-to-visual alignment, not on a modular entity graph. No external detector (YOLO-World) or depth estimator (Metric3D) required.\\n- vs. RS-CL: AGCA aligns reasoning representations with visual contact features, not proprioceptive states.\\n- vs. PALM: AGCA uses explicit textual affordance descriptions enabling interpretable analysis; PALM uses latent representations.\\n\\n**Technical contribution — OVA Pipeline:**\\n\\n(1) Affordance vocabulary pre-training on Affogato's publicly available 150K open-vocabulary affordance annotations (>450 object classes, >350 affordance types, HuggingFace). Trains the model to generate diverse affordance descriptions from visual inputs.\\n\\n(2) Trajectory-grounded affordance annotation: Generate open-vocabulary affordance descriptions for ~60K RoboInter-Data trajectories using Qwen2.5-VL-72B API, conditioned on RGB frames AND RoboInter-Data's affordance box coordinates and contact point annotations. Descriptions validated against trajectory kinematics. Estimated API cost: ~$300-450.\\n\\n(3) Curriculum training: three-stage progression from structured (4-type CoA-VLA format) to semi-structured (8-10 dimensions) to fully open-vocabulary free-form descriptions.\\n\\nPipeline released as reusable toolkit: annotation prompts, validation scripts, curriculum schedule, 60K affordance-annotated trajectories, and AGCA implementation.\\n\\n**Backbone and conditions:** Built on Qwen2.5-VL-3B (following NORA's validated architecture), all conditions share the same backbone, LoRA configuration, training data, and compute budget:\\n\\n(A) No reasoning -> action tokens (baseline)\\n(B) Generic CoT -> action tokens (ECoT-style: plans, sub-tasks, motion descriptions)\\n(B-ent) Generic CoT with MATCHED entity references -> action tokens (same object names as condition D, generic planning language)\\n(C) Fixed 4-type affordance -> action tokens (CoA-VLA-style)\\n(D) Open-vocabulary affordance -> action tokens (OVA-VLA without AGCA — isolates content effect)\\n(D+AGCA) Open-vocabulary affordance + AGCA -> action tokens (full OVA-VLA — tests content + mechanism)\\n(D-ent) Affordance with SHUFFLED entity references -> action tokens (entity-swap attack)\\n\\n**Entity-reference-controlled experiments (addressing Altered Thoughts + TRAP):**\\n\\nThe entity-reference-controlled design isolates content from naming:\\n\\n- (B) vs. (B-ent) on standard LIBERO: replicates Altered Thoughts finding (entity references dominate for generic CoT)\\n- (B-ent) vs. (D) on LIBERO-Plus/PRO: tests whether affordance CONTENT provides grounding beyond matched entity references under distribution shift\\n- (D) vs. (D+AGCA) on LIBERO-Plus/PRO: tests whether the explicit contrastive mechanism amplifies the affordance content effect — this is the key architectural test\\n- (D) vs. (D-ent): tests entity-reference dependence asymmetry for affordance reasoning\\n- (D+AGCA) vs. GuidedVLA-style baseline: tests affordance-specific contrastive alignment vs. generic task-relevant attention supervision (implemented using GuidedVLA's ControlNet-style adapter with RoboInter object masks as the object head signal)\\n\\n**Representation learning analysis (extending ECoT-Lite + TRAP insight):**\\n\\nECoT-Lite-style ablations test whether affordance content produces better representations:\\n(D-pretrain) Affordance pre-training only, no test-time generation (isolates representation learning)\\n(B-pretrain) Generic CoT pre-training only (control)\\n(D+AGCA-pretrain) Affordance + AGCA pre-training only (tests whether AGCA improves representations even without test-time generation)\\n\\nComparing (D-pretrain) vs. (B-pretrain) tests content-type representation quality. Comparing (D+AGCA-pretrain) vs. (D-pretrain) tests whether AGCA amplifies representation learning beyond content effects alone.\\n\\nAdditionally: CKA (Centered Kernel Alignment) analysis of internal representations between conditions, following TRAP's methodology of analyzing how CoT content shapes intermediate activations.\\n\\n**Primary evaluation:**\\n\\n- LIBERO-Plus (CVPR 2026): 7 perturbation dimensions. Per-dimension analysis. ProGAL-VLA 85.5% as discussion baseline (different approach: modular pipeline vs. our integrated autoregressive). We do NOT claim to beat ProGAL-VLA but analyze whether AGCA narrows the gap more than text-only affordance reasoning.\\n- LIBERO-PRO: 4 perturbation dimensions, focus on 'manipulated objects' and 'task instructions.'\\n- Standard LIBERO: Replication of Altered Thoughts entity-reference findings with our models.\\n- SimplerEnv: Cross-embodiment evaluation.\\n\\n**Operationalized hypotheses:**\\n\\n- H1 (Content beyond entity references under shift): On LIBERO-Plus/PRO, condition (D) outperforms entity-matched (B-ent) by >=5%, while on standard LIBERO the gap is <=2%. Stratified by perturbation type: largest advantage on 'manipulated objects' (LIBERO-PRO) and 'camera viewpoint' (LIBERO-Plus).\\n\\n- H2 (AGCA amplification): (D+AGCA) outperforms (D) by >=3% on LIBERO-Plus, demonstrating that the explicit contrastive mechanism amplifies affordance grounding beyond text content alone. This is the key architectural hypothesis.\\n\\n- H3 (Representation learning quality): (D-pretrain) outperforms (B-pretrain) by >=3% on LIBERO-Plus; (D+AGCA-pretrain) outperforms (D-pretrain) by >=2%, showing AGCA improves representation quality even without test-time reasoning generation.\\n\\n- H4 (Language grounding): Under LIBERO-Plus 'language instruction' perturbation, (D+AGCA) shows less performance variance than (B), because affordance descriptions grounded to visual contact features provide instruction-independent physical grounding. Comparison point: ProGAL-VLA's 93.6% language perturbation score.\\n\\n- H5 (Entity-reference dependence asymmetry): On standard LIBERO, (D-ent) entity-swap causes LESS degradation than (B) entity-swap, because affordance descriptions + AGCA provide alternative grounding pathways.\\n\\n**Contingency plan — publishable under all outcomes:**\\n\\nScenario A (Affordance + AGCA >> Generic, >=5% on LIBERO-Plus/PRO): Full method contribution (AGCA + OVA pipeline) + evidence that both reasoning content AND explicit contrastive grounding matter for robustness. Strongest paper.\\n\\nScenario B (AGCA helps but content alone doesn't, or vice versa): Disentangles content vs. mechanism effects — equally valuable. If AGCA helps but content doesn't: the mechanism (contrastive visual grounding) matters more than what text says — supports architectural approaches like GuidedVLA. If content helps but AGCA doesn't: representation learning from content alone suffices — extends ECoT-Lite with content-type evidence.\\n\\nScenario C (Affordance approximately equals Generic across all SFT conditions, including AGCA): Proactive RL pivot — allocate remaining compute to testing whether GRPO differentially benefits affordance reasoning vs. generic CoT. Hypothesis: affordance descriptions provide richer verifiable reward signals (contact geometry, grasp success) than generic plans. Following VLA-R1's affordance GIoU reward and 'What Can RL Bring to VLA Generalization?' showing RL benefits differ across dimensions. This tests whether the representation learning pathway activated by affordance content enables better RL reward extraction even if SFT alone cannot differentiate. This makes the negative SFT result more actionable: 'affordance content does not differentiate under SFT but enables stronger RL refinement' is a novel finding directing future work toward RL-based affordance VLAs.\\n\\nRegardless of outcome: (a) OVA pipeline + 60K affordance-annotated trajectories released, (b) first entity-reference-controlled analysis under distribution shift (extending Altered Thoughts), (c) first TRAP-informed comparison of training-time content effects vs. post-hoc corruption effects, (d) AGCA implementation released.\\n\\nThe paper is framed as 'testing whether affordance reasoning provides grounding beyond entity references, and whether explicit contrastive alignment amplifies this effect' — a question whose answer is valuable regardless of direction.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~180h H100 (LoRA training 3B model: ~12h/run x 7 conditions [A,B,B-ent,C,D,D+AGCA,D-ent] x 2 seeds = 168h; Affogato pre-training: ~3h; evaluation: ~5h; AGCA adds ~1h/run for contrastive loss computation, included in 12h estimate. Note: representation ablations reuse pre-training runs)\",\n      \"gpu_utilization\": \"Low (~30-40%). GPU idle during annotation review and analysis.\",\n      \"timeline\": \"8-10 weeks\",\n      \"team\": \"1 researcher with VLA experience\",\n      \"annotation_cost\": \"$300-450 (Qwen2.5-VL-72B API for 60K trajectories + equivalent annotations for all conditions)\",\n      \"estimated_gpu_cost\": \"$360-720 (at $2-4/hr H100 rental)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~210h H100 (LoRA training: ~12h/run x 7 conditions x 2 seeds = 168h; 3 representation ablations: ~36h; Affogato pre-training: ~3h; evaluation LIBERO-Plus/PRO + standard LIBERO: ~12h; entity-reference + CKA analysis: ~5h; optional RL pivot: ~24h reserved)\",\n      \"gpu_utilization\": \"Moderate (~60-70%). Agent queues experiments, human reviews entity-reference and AGCA analysis.\",\n      \"timeline\": \"6-8 weeks\",\n      \"team\": \"1 researcher, ~30min/day review\",\n      \"annotation_cost\": \"$300-450 (API-based)\",\n      \"claude_api_cost\": \"$150-300 (~2000-4000 agent turns)\",\n      \"estimated_gpu_cost\": \"$420-840\",\n      \"risk_note\": \"AGCA requires extracting contact-point visual token indices from RoboInter-Data annotations — validation that spatial alignment between image tokens and annotated contact points is correct. Human spot-checks 500 samples.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~240h H100 (LoRA training: ~12h/run x 7 conditions x 2 seeds = 168h; 3 representation ablations: ~36h; Affogato pre-training: ~3h; evaluation LIBERO-Plus/PRO + standard LIBERO + SimplerEnv: ~16h; CKA analysis: ~5h; RL pivot (if Scenario C): ~24h for 2 GRPO conditions x 2 seeds; buffer: ~12h for AGCA lambda hyperparameter sweep)\",\n      \"gpu_utilization\": \"High (~85-90%). Agent runs 24/7.\",\n      \"timeline\": \"12-16 days with 2 H100 GPUs\",\n      \"team\": \"0 (3-hour setup: download RoboInter-Data, Affogato, base model, configure API keys, install LIBERO-Plus/PRO, precompute contact-point-to-visual-token mappings)\",\n      \"annotation_cost\": \"$300-450 (API-based, runs in parallel with GPU training)\",\n      \"claude_api_cost\": \"$300-600 (~4000-8000 agent turns)\",\n      \"estimated_gpu_cost\": \"$480-960\",\n      \"speed_bottleneck\": \"Sequential LoRA training runs (7 conditions x 2 seeds = 14 runs + 3 ablations + optional RL = up to 21 runs). With 2 H100s, ~8-12 days for training. AGCA lambda sweep parallelizable.\",\n      \"risk_note\": \"AGCA contrastive loss requires precomputing contact-point-to-visual-token spatial mappings for all 60K trajectories (~6h one-time preprocessing). Automated quality assessment flags misaligned mappings.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (abstract deadline July 21, paper deadline July 28, 2026; ~9 weeks from today; primary target; feasible with auto-research timeline of 12-16 days + 7 weeks for writing/analysis/supplementary)\",\n    \"ICLR 2027 (expected deadline Sep-Oct 2026; ~4-5 months; comfortable backup; allows full RL pivot experiments, additional GuidedVLA-style baseline comparison)\",\n    \"CoRL 2026 (INFEASIBLE — deadline passed)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Altered Thoughts, Altered Actions (arXiv 2603.12717, March 2026) — CENTRAL MOTIVATING FINDING: post-hoc entity-reference corruption is all that degrades generic CoT on standard LIBERO; must be interpreted alongside TRAP\",\n    \"TRAP: Hijacking VLA CoT-Reasoning via Adversarial Patches (arXiv 2603.23117, March 2026) — CRITICAL COMPLEMENTARY FINDING: adversarially-GENERATED CoT strongly governs actions (GraspVLA: 94.20%); 3 VLA architectures, 52.54% ASR; post-hoc vs. autoregressive distinction\",\n    \"Do What You Say / SEAL (arXiv 2510.16281, ICRA 2026) — runtime reasoning-action alignment; up to 15% improvement; motivates AGCA as representational bridge vs. runtime verification\",\n    \"ECoT-Lite (arXiv 2505.08243, May 2025) — representation learning is the primary mechanism; thinking tokens hurt (-3.8%); we extend to content type comparison + AGCA amplification\",\n    \"GuidedVLA (arXiv 2605.12369, May 2026) — CONCURRENT WORK: attention head specialization with generic task-relevant supervision; 75.4% LIBERO-Plus; our AGCA differs: affordance-specific, self-referencing reasoning representations\",\n    \"ProGAL-VLA (arXiv 2604.09824, April 2026) — current LIBERO-Plus SOTA at 85.5%; modular pipeline; GAC on entity graphs; discussion baseline\",\n    \"SRPO (arXiv 2511.15605) — 82.1% LIBERO-Plus, 99.2% standard LIBERO; RL-based robustness SOTA\",\n    \"PALM (arXiv 2601.07060, January 2026) — latent affordance VLA; 91.8% LIBERO-LONG\",\n    \"DeepThinkVLA (arXiv 2511.15669) — 97% LIBERO / 79% LIBERO-Plus; subject of Altered Thoughts study\",\n    \"AVA-VLA (arXiv 2511.18960) — active visual attention; 74.7% LIBERO-Plus\",\n    \"RS-CL (arXiv 2510.01711) — contrastive alignment with proprioceptive states; our AGCA aligns with visual contact features\",\n    \"What Can RL Bring to VLA Generalization? (arXiv 2505.19789) — RL benefits differ across dimensions; motivates RL pivot\",\n    \"CoA-VLA (ICCV 2025, arXiv 2412.20451) — fixed 4-type affordance reasoning baseline\",\n    \"RoboInter (ICLR 2026, arXiv 2602.09973) — 230K episodes with contact points; data source for AGCA targets\",\n    \"ECoT (arXiv 2407.08693) — generic CoT baseline\",\n    \"LangGap (arXiv 2603.00592) — language grounding remains open\",\n    \"SimpleVLA-RL (ICLR 2026, arXiv 2509.09674) — 97.6% LIBERO-Long\",\n    \"VLA-R1 (arXiv 2510.01623) — affordance-aligned GRPO; affordance GIoU reward\",\n    \"Affordance-R1 (AAAI 2026, arXiv 2508.06206) — GRPO for affordance reasoning\",\n    \"DualCoT-VLA (arXiv 2603.22280) — parallel visual-linguistic CoT\",\n    \"ACoT-VLA (CVPR 2026, arXiv 2601.11404) — action trajectory reasoning\",\n    \"CoT-VLA (arXiv 2503.22020) — visual subgoal reasoning\",\n    \"FlowVLA (arXiv 2508.18269) — optical flow CoT\",\n    \"LaRA-VLA (arXiv 2602.01166) — latent CoT\",\n    \"GST-VLA (arXiv 2603.09079) — 3D Gaussian spatial tokens\",\n    \"SPR-VLA (arXiv 2603.09292, March 2026) — progress-aware VLA with spatial subgoals\",\n    \"Affogato (arXiv 2506.12009) — 150K open-vocabulary affordance annotations\",\n    \"GLOVER++ (arXiv 2505.11865) — HOVA-500K dataset\",\n    \"RT-Affordance (ICRA 2025, arXiv 2411.02704)\",\n    \"AffordGrasp (arXiv 2503.00778)\",\n    \"LIBERO-Plus (CVPR 2026, arXiv 2510.13626) — 7-dimension robustness benchmark\",\n    \"LIBERO-PRO (arXiv 2510.03827) — 4-dimension robustness benchmark\",\n    \"NORA (arXiv 2504.19854) — Qwen2.5-VL-3B backbone\",\n    \"PosA-VLA (arXiv 2512.03724) — pose-conditioned anchor attention\",\n    \"ReconVLA (arXiv 2508.10333) — reconstructive visual grounding\",\n    \"Concept-Gated Visual Distillation (arXiv 2603.10340) — overcoming visual clutter\",\n    \"VLA Survey (arXiv 2507.01925)\"\n  ],\n  \"description\": \"We propose OVA-VLA, combining a novel Affordance-Grounded Contrastive Attention (AGCA) mechanism with a scalable open-vocabulary affordance supervision pipeline and a systematic entity-reference-controlled study. Motivated by a critical distinction between two recent findings — 'Altered Thoughts' showing post-hoc CoT corruption only degrades entity references, vs. TRAP showing autoregressive CoT generation genuinely governs actions — we hypothesize that TRAINING models to generate affordance-specific content creates representational pathways that post-hoc analysis cannot detect, and that an explicit contrastive mechanism (AGCA) can amplify this effect. AGCA applies an InfoNCE loss aligning hidden states at affordance-reasoning token positions with contact-point visual features from RoboInter-Data annotations, creating a self-reinforcing loop: better affordance text leads to better visual grounding leads to better affordance text. This differs from GuidedVLA's generic attention supervision (75.4% LIBERO-Plus), ProGAL-VLA's modular entity-graph contrastive alignment (85.5% LIBERO-Plus SOTA), and RS-CL's proprioceptive alignment. We evaluate seven conditions on Qwen2.5-VL-3B with LoRA: no reasoning, generic CoT, entity-matched generic CoT, fixed 4-type affordance, open-vocabulary affordance (without AGCA), full OVA-VLA (with AGCA), and entity-swapped affordance — with representation learning ablations extending ECoT-Lite's mechanism analysis. Primary evaluation on LIBERO-Plus and LIBERO-PRO, with standard LIBERO for Altered Thoughts replication. A proactive RL pivot plan (GRPO with affordance GIoU reward) ensures publishable contributions even if SFT conditions show no differentiation. Total compute: <=240 H100-hours; annotation cost: ~$300-450.\",\n  \"project_name\": \"open_vocab_afford_vla\",\n  \"source\": \"web_research\"\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5a0124e-791f-4901-aff9-ff85a6c3c645",
+  "isSidechain": false,
+  "requestId": "req_011CbAf6uxzqMrubjGEDpH2n",
+  "type": "assistant",
+  "uuid": "270b2683-8d9e-428e-84b9-2c14a7bc76f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SCFcWc2fo2PyiLDbyGeg4h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11486,
+      "cache_read_input_tokens": 53034,
+      "output_tokens": 9710,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11486,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9710,
+          "cache_read_input_tokens": 53034,
+          "cache_creation_input_tokens": 11486,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11486
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-18T20:25:44.338Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01DngqnSXyFiUgfuKu8ByLwM`</summary>
+
+```text
+Claude requested permissions to write to /tmp/revised_idea.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "270b2683-8d9e-428e-84b9-2c14a7bc76f7",
+  "isSidechain": false,
+  "promptId": "e2c4cff9-8be1-4c9b-b8c6-b43b23da1bc2",
+  "type": "user",
+  "uuid": "55336227-6970-436d-9b46-63b7c38edfa1",
+  "toolUseResult": "Error: Claude requested permissions to write to /tmp/revised_idea.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "270b2683-8d9e-428e-84b9-2c14a7bc76f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 101_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-18 (UTC).**  ## Original idea {   \"title\": \"OVA-VLA: Does Affordance-Specific Reasoning Ground VLA Action Decoders…",
+  "leafUuid": "55336227-6970-436d-9b46-63b7c38edfa1",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 102_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OVA-VLA with affordance-attention architecture and RL pivot",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 103 · 2026-05-18T20:28:23.810Z_
+
+The file write was denied. Let me output the revised idea directly as text instead.
+
+Here is the revised research idea (major revision):
+
+```json
+{
+  "title": "OVA-VLA: Affordance-Grounded Contrastive Attention for Robust VLA Reasoning Beyond Entity References",
+  "change_type": "major",
+  "core_problem": "Do affordance-specific reasoning tokens provide grounding to VLA action decoders BEYOND entity-reference integrity, and can an explicit representation learning mechanism amplify this effect? Three converging findings frame this question precisely:\n\n(1) 'Altered Thoughts, Altered Actions' (arXiv 2603.12717) shows that on standard LIBERO, post-hoc corruption of DeepThinkVLA's generated CoT only degrades performance when entity references are disrupted — sentence reordering, spatial-direction reversal, and LLM-crafted wrong reasoning have negligible impact. This suggests action decoders extract entity names from CoT text and ignore other content.\n\n(2) However, TRAP (arXiv 2603.23117) reveals the opposite when CoT is generated autoregressively: adversarial patches that induce specific CoT content at generation time STRONGLY govern action outputs — GraspVLA achieves 94.20% task success using adversarially-induced target CoT paired with mismatched instructions. This critical distinction — post-hoc text replacement vs. autoregressive generation — suggests that TRAINING the model to generate specific content creates representational pathways that post-hoc injection cannot. If the model learns to generate affordance descriptions, those descriptions may ground attention to contact-relevant visual features during the generation process itself.\n\n(3) ECoT-Lite (arXiv 2505.08243) confirms that reasoning benefits VLAs primarily through representation learning, not expressivity, and that non-semantic thinking tokens hurt performance (-3.8%). Together with TRAP, this implies: the VALUE of reasoning content lies in the representations it induces during training, and different content types should produce different representation quality.\n\nThis raises two linked questions: (a) Does affordance-specific content — encoding perturbation-invariant physical interaction properties (contact surfaces, grasp strategies, functional regions) — provide action-relevant grounding beyond entity names, especially under distribution shift where entity references become ambiguous? (b) Can an explicit contrastive mechanism that aligns affordance-reasoning hidden states with contact-point visual features AMPLIFY this grounding effect, creating an architectural pathway (not just different text) that links content to visual attention?",
+  "opportunity": "Four converging findings create a precise research gap with both empirical and architectural dimensions:\n\n(1) 'Altered Thoughts' establishes entity-reference dependence for post-hoc CoT corruption on standard LIBERO. But TRAP shows autoregressive CoT generation genuinely governs actions. Neither tested whether TRAINING with affordance-specific content produces different representations than generic CoT, nor whether this difference manifests under distribution shift. The Altered Thoughts → TRAP distinction motivates testing content effects at the TRAINING level (representation learning) rather than at the inference level (post-hoc corruption).\n\n(2) ECoT-Lite identifies representation learning as the primary mechanism but did not compare content types. If affordance descriptions force the model to attend to functionally-relevant visual features (contact surfaces, edges, handles), they should produce more transferable representations than generic CoT that attends to layout-specific features. No work has tested this content-type comparison.\n\n(3) 'Do What You Say' / SEAL (arXiv 2510.16281, ICRA 2026) shows that even correct textual reasoning can fail at action execution in OOD scenarios — reasoning-action faithfulness degrades under distribution shift, with up to 15% improvement from runtime alignment verification. This demonstrates that text-level reasoning alone is insufficient; an explicit representational bridge between reasoning content and visual features could improve faithfulness without requiring expensive runtime verification.\n\n(4) GuidedVLA (arXiv 2605.12369, May 2026) demonstrates that supervising attention heads with task-relevant auxiliary signals (object masks, skill distributions, depth features) improves robustness on LIBERO-Plus (75.4%). However, GuidedVLA uses generic task-relevant factors — not affordance-specific contact geometry. ProGAL-VLA (arXiv 2604.09824) achieves LIBERO-Plus SOTA at 85.5% through a modular pipeline with Grounding Alignment Contrastive loss. Both validate the principle of explicit visual grounding but through different mechanisms than affordance-reasoning-conditioned contrastive alignment.\n\nThe specific gap: (a) no work has tested whether the Altered Thoughts entity-reference-only pattern holds when models are TRAINED with affordance-specific content (the TRAP distinction), or under distribution shift; (b) no work has compared representation learning quality across reasoning content types (extending ECoT-Lite); (c) no work has created an explicit contrastive mechanism linking affordance REASONING hidden states to contact-point VISUAL features — GuidedVLA supervises attention with generic task signals, ProGAL-VLA uses modular contrastive alignment on entity graphs, but neither aligns the model's OWN generated reasoning representations with affordance-relevant visual regions; (d) no work has tested whether RL refinement differentially benefits affordance vs. generic reasoning content.",
+  "landscape": "**Entity-reference dependence, CoT control mechanisms, and reasoning faithfulness:**\n\nAltered Thoughts, Altered Actions (arXiv 2603.12717, March 2026): Tests 7 CoT corruption types on DeepThinkVLA across 40 standard LIBERO tasks via POST-HOC text replacement. Entity-name substitution causes -8.3pp overall (-19.3pp goal-conditioned, -45pp worst-case), while sentence reordering, spatial-direction reversal, random tokens, and LLM-crafted wrong reasoning have negligible impact. Establishes entity-reference dependence for post-hoc corruption. CENTRAL MOTIVATING FINDING — but must be interpreted alongside TRAP.\n\nTRAP: Hijacking VLA CoT-Reasoning via Adversarial Patches (arXiv 2603.23117, March 2026): Adversarial patches induce specific target CoT during AUTOREGRESSIVE GENERATION, demonstrating that 'CoT strongly governs action generation, even when semantically misaligned with input instructions.' GraspVLA achieves 94.20% task success using adversarially-induced target CoT paired with mismatched instructions. Tested on 3 VLA architectures (MolmoACT, GraspVLA, InstructVLA) across 3 CoT paradigms. Average 52.54% attack success rate. KEY DISTINCTION from Altered Thoughts: post-hoc text replacement vs. autoregressive generation. Supports our hypothesis that TRAINING the model to generate affordance-specific content creates representational pathways that post-hoc analysis cannot detect.\n\nDo What You Say / SEAL (arXiv 2510.16281, ICRA 2026): Runtime reasoning-action alignment verification for VLAs. Even with correct textual plans, actions fail in OOD scenarios — 'embodied CoT faithfulness' degrades under distribution shift. SEAL samples multiple candidate action sequences, predicts outcomes via simulation, and selects the one best aligned with the textual plan. Up to 15% improvement on behavior composition; Visual-Viewpoint OOD: 45% vs 25% baseline. Tested on π₀. Demonstrates text-level reasoning alone is insufficient for OOD robustness — motivates our AGCA approach that creates an explicit representational bridge rather than relying on runtime verification.\n\nECoT-Lite / Training Strategies for Efficient Embodied Reasoning (arXiv 2505.08243, May 2025): Tests 6 training variants including thinking tokens. Key findings: (a) representation learning is the primary mechanism, (b) non-semantic thinking tokens HURT performance (-3.8%), (c) reasoning dropout matches full ECoT (89.4% vs 90.8%). We extend to content type comparison AND add an explicit mechanism (AGCA) to amplify content-specific representation learning.\n\n**Robustness SOTA and visual grounding:**\n\nProGAL-VLA (arXiv 2604.09824, April 2026): Current LIBERO-Plus SOTA at 85.5% overall. Modular pipeline: Qwen2.5-VL-7B slow planner → YOLO-World → Metric3D → 3D entity-centric graph → Grounding Alignment Contrastive (GAC) loss. Per-dimension: Camera 93.2%, Robot 71.5%, Language 93.6%, Light 86.8%, Background 92.3%, Noise 74.8%, Layout 86.7%. Reduces language ignorance 3-4x. Uses contrastive alignment on ENTITY GRAPHS from a modular pipeline — architecturally distinct from our AGCA that aligns affordance REASONING representations with contact-point visual features within an autoregressive model.\n\nSRPO (arXiv 2511.15605): Self-Referential Policy Optimization. 82.1% LIBERO-Plus average; 99.2% standard LIBERO from 48.9% SFT baseline in 200 RL steps. RL-based SOTA for robustness.\n\nGuidedVLA (arXiv 2605.12369, May 2026): Attention head specialization with auxiliary supervision for 3 task-relevant factors (object grounding via masks, skill recognition via KL-divergence, depth via frozen encoder). ControlNet-style residual adapter for plug-and-play integration. 75.4% LIBERO-Plus. KEY CONCURRENT WORK — validates supervised attention specialization with generic task-relevant signals. Our AGCA differs: (a) aligns the model's OWN generated reasoning representations with contact-point visual features, (b) is affordance-specific rather than generic, (c) creates a self-reinforcing loop where better affordance text → better visual attention → better affordance text.\n\nAVA-VLA (arXiv 2511.18960): Active Visual Attention dynamically reweighting visual tokens based on instruction and history. 74.7% LIBERO-Plus.\n\nContrastive Representation Regularization / RS-CL (arXiv 2510.01711): Aligns VLA representations with robot proprioceptive states using relative distances as soft supervision. Our AGCA aligns with VISUAL contact features, not proprioceptive states.\n\nLangGap (arXiv 2603.00592, February 2026): π0.5 ignores language instructions. Language grounding remains open.\n\n**Reasoning-augmented VLAs:**\n\nDeepThinkVLA (arXiv 2511.15669): Hybrid causal-bidirectional attention, SFT→RL. 97.0% standard LIBERO, 79.0% LIBERO-Plus. Subject of Altered Thoughts study.\n\nSimpleVLA-RL (ICLR 2026, arXiv 2509.09674): RL framework, 97.6% LIBERO-Long.\n\nWhat Can RL Bring to VLA Generalization? (arXiv 2505.19789, May 2025): RL benefits differ across dimensions: substantial gains in Execution, moderate in Semantics, comparable to SFT for Vision. PPO most effective. Motivates RL pivot for Scenario C.\n\nECoT (arXiv 2407.08693): Generic reasoning, 28% over OpenVLA. DualCoT-VLA (arXiv 2603.22280): Parallel visual-linguistic CoT. ACoT-VLA (CVPR 2026, arXiv 2601.11404): Action trajectory reasoning. CoT-VLA (arXiv 2503.22020): Visual subgoal reasoning. FlowVLA (arXiv 2508.18269): Optical flow CoT. LaRA-VLA (arXiv 2602.01166): Latent CoT, 90% latency reduction.\n\n**Affordance-based VLA reasoning:**\n\nPALM (arXiv 2601.07060, January 2026): End-to-end affordance VLA with 4 latent affordance types + diffusion policy. 91.8% LIBERO-LONG. Latent representations — complementary to our text-based AGCA.\n\nCoA-VLA (ICCV 2025, arXiv 2412.20451): Fixed 4-type textual affordance via FiLM conditioning. Our condition (C) baseline.\n\nRoboInter (ICLR 2026, arXiv 2602.09973): 230K episodes with contact points, affordance boxes. Data source for AGCA contrastive targets AND affordance annotation.\n\nGST-VLA (arXiv 2603.09079): 3D Gaussian spatial tokens. VLA-R1 (arXiv 2510.01623): Affordance GRPO with GIoU reward. Affordance-R1 (AAAI 2026, arXiv 2508.06206): GRPO for affordance reasoning. RT-Affordance (ICRA 2025, arXiv 2411.02704): Visual affordance pipeline.\n\n**Open-vocabulary affordance data:** Affogato (arXiv 2506.12009): 150K annotations, HuggingFace. GLOVER++ (arXiv 2505.11865): HOVA-500K.\n\n**Robustness benchmarks:** LIBERO-Plus (CVPR 2026, arXiv 2510.13626): 7 dimensions. Leaderboard: ProGAL-VLA 85.5%, SRPO 82.1%, OpenVLA-OFT+ 79.6%, GuidedVLA ~75.4%, AVA-VLA 74.7%. LIBERO-PRO (arXiv 2510.03827): 4 dimensions, models collapse to 0%.\n\n**The specific gap:** (a) Altered Thoughts tested post-hoc only — TRAP shows autoregressive generation matters, but no work tests TRAINING with affordance content; (b) ECoT-Lite: no content-type comparison or explicit amplification mechanism; (c) GuidedVLA: generic signals, not affordance-reasoning-to-contact-visual contrastive alignment; (d) ProGAL-VLA: modular, not integrated autoregressive; (e) no entity-reference-controlled experiments under distribution shift.",
+  "approach": "We propose OVA-VLA, a method combining three contributions: (1) a novel Affordance-Grounded Contrastive Attention (AGCA) mechanism that explicitly links affordance reasoning representations to contact-relevant visual features, (2) the OVA pipeline for scalable open-vocabulary affordance supervision generation, and (3) a systematic entity-reference-controlled study testing whether affordance reasoning provides grounding beyond entity names under distribution shift.\n\n**Architectural contribution — Affordance-Grounded Contrastive Attention (AGCA):**\n\nThe key insight: TRAP shows autoregressive CoT generation genuinely governs actions, while ECoT-Lite shows representation learning is the mechanism. AGCA creates an explicit representation learning pathway linking affordance TEXT to affordance-relevant VISUAL features:\n\n(a) During training, when the model generates affordance reasoning tokens (e.g., 'curved handle affording lateral power grasp'), we extract hidden states at affordance-descriptive token positions from the language model backbone.\n\n(b) Using RoboInter-Data's per-frame contact point annotations and affordance box coordinates, we identify the visual tokens corresponding to contact-relevant regions in the image (visual tokens whose spatial positions overlap with annotated contact points and affordance bounding boxes).\n\n(c) We apply an InfoNCE contrastive loss: for each affordance reasoning token's hidden state h_aff, the positive set consists of visual tokens within the corresponding contact/affordance region v+, and the negative set consists of visual tokens outside these regions v−:\n\nL_AGCA = −log[exp(sim(h_aff, v+)/τ) / (exp(sim(h_aff, v+)/τ) + Σ exp(sim(h_aff, v−)/τ))]\n\nwhere sim() is cosine similarity and τ is a learned temperature parameter.\n\n(d) This loss is added to the standard next-token prediction loss with weighting λ_AGCA, tuned on a held-out validation set.\n\nAGCA differs from existing approaches:\n- vs. GuidedVLA: AGCA uses the model's OWN generated reasoning representations as queries (self-reinforcing: better affordance text → better visual grounding → better affordance text), while GuidedVLA uses externally-defined supervision signals. AGCA is affordance-specific; GuidedVLA is generic.\n- vs. ProGAL-VLA's GAC: AGCA operates within the autoregressive model on reasoning-to-visual alignment, not on a modular entity graph. No external detector or depth estimator required.\n- vs. RS-CL: AGCA aligns reasoning representations with visual contact features, not proprioceptive states.\n- vs. PALM: AGCA uses explicit textual affordance descriptions enabling interpretable analysis; PALM uses latent representations.\n\n**Technical contribution — OVA Pipeline:**\n\n(1) Affordance vocabulary pre-training on Affogato's 150K open-vocabulary affordance annotations (>450 object classes, >350 affordance types, HuggingFace).\n\n(2) Trajectory-grounded affordance annotation: Generate open-vocabulary affordance descriptions for ~60K RoboInter-Data trajectories using Qwen2.5-VL-72B API, conditioned on RGB frames AND RoboInter-Data's affordance box + contact point annotations. Validated against trajectory kinematics. Cost: ~$300-450.\n\n(3) Curriculum training: structured (4-type) → semi-structured (8-10 dimensions) → fully open-vocabulary.\n\nReleased as reusable toolkit with AGCA implementation.\n\n**Backbone and conditions:** Qwen2.5-VL-3B (NORA architecture), shared backbone/LoRA/data/compute:\n\n(A) No reasoning → action tokens (baseline)\n(B) Generic CoT → action tokens (ECoT-style)\n(B-ent) Generic CoT with MATCHED entity references → action tokens\n(C) Fixed 4-type affordance → action tokens (CoA-VLA-style)\n(D) Open-vocabulary affordance → action tokens (OVA without AGCA — isolates content)\n(D+AGCA) Open-vocabulary affordance + AGCA → action tokens (full OVA-VLA — content + mechanism)\n(D-ent) Affordance with SHUFFLED entity references → action tokens\n\n**Entity-reference-controlled experiments (Altered Thoughts + TRAP):**\n\n- (B) vs. (B-ent) on standard LIBERO: replicate Altered Thoughts (entity refs dominate for generic CoT)\n- (B-ent) vs. (D) on LIBERO-Plus/PRO: affordance CONTENT beyond matched entity refs under shift\n- (D) vs. (D+AGCA) on LIBERO-Plus/PRO: explicit contrastive mechanism amplification — KEY architectural test\n- (D) vs. (D-ent): entity-reference dependence asymmetry for affordance reasoning\n- (D+AGCA) vs. GuidedVLA-style baseline: affordance-specific contrastive vs. generic attention supervision\n\n**Representation learning analysis (ECoT-Lite + TRAP):**\n\n(D-pretrain) Affordance pre-training only, no test-time generation\n(B-pretrain) Generic CoT pre-training only\n(D+AGCA-pretrain) Affordance + AGCA pre-training only\n\nCKA analysis of internal representations across conditions.\n\n**Primary evaluation:**\n\n- LIBERO-Plus: 7 perturbation dimensions. ProGAL-VLA 85.5% as discussion baseline.\n- LIBERO-PRO: 4 perturbation dimensions.\n- Standard LIBERO: Altered Thoughts replication.\n- SimplerEnv: Cross-embodiment.\n\n**Operationalized hypotheses:**\n\n- H1 (Content beyond entity refs under shift): (D) outperforms (B-ent) by ≥5% on LIBERO-Plus/PRO, ≤2% gap on standard LIBERO. Largest on 'manipulated objects' and 'camera viewpoint.'\n- H2 (AGCA amplification): (D+AGCA) outperforms (D) by ≥3% on LIBERO-Plus. Key architectural test.\n- H3 (Representation quality): (D-pretrain) > (B-pretrain) by ≥3%; (D+AGCA-pretrain) > (D-pretrain) by ≥2%.\n- H4 (Language grounding): (D+AGCA) less variance on language perturbation than (B). Comparison: ProGAL-VLA 93.6%.\n- H5 (Entity-ref dependence asymmetry): (D-ent) entity-swap less degradation than (B) entity-swap.\n\n**Contingency plan:**\n\nScenario A (Affordance + AGCA >> Generic, ≥5%): Full method + evidence. Strongest paper.\n\nScenario B (AGCA helps but content alone doesn't, or vice versa): Disentangles content vs. mechanism. If AGCA helps but content doesn't → supports GuidedVLA-style architectures. If content helps but AGCA doesn't → extends ECoT-Lite.\n\nScenario C (Affordance ≈ Generic across all SFT conditions): Proactive RL pivot — test whether GRPO differentially benefits affordance reasoning via affordance GIoU reward (VLA-R1 style). Hypothesis: affordance descriptions provide richer verifiable reward signals. Following 'What Can RL Bring to VLA Generalization?' showing RL benefits differ across dimensions. Makes negative SFT result actionable: 'affordance content enables stronger RL refinement even when SFT doesn't differentiate.'\n\nRegardless: OVA pipeline + 60K annotations released, first entity-controlled analysis under shift, TRAP-informed training-vs-corruption comparison, AGCA implementation released.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~180h H100 (LoRA: ~12h/run × 7 conditions × 2 seeds = 168h; Affogato pre-training: ~3h; evaluation: ~5h; AGCA contrastive loss adds ~1h/run, included in 12h)",
+      "gpu_utilization": "Low (~30-40%)",
+      "timeline": "8-10 weeks",
+      "team": "1 researcher with VLA experience",
+      "annotation_cost": "$300-450 (Qwen2.5-VL-72B API)",
+      "estimated_gpu_cost": "$360-720"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~210h H100 (7 conditions × 2 seeds = 168h; 3 representation ablations: ~36h; pre-training: ~3h; evaluation: ~12h; CKA analysis: ~5h; RL pivot reserve: ~24h)",
+      "gpu_utilization": "Moderate (~60-70%)",
+      "timeline": "6-8 weeks",
+      "team": "1 researcher, ~30min/day review",
+      "annotation_cost": "$300-450",
+      "claude_api_cost": "$150-300",
+      "estimated_gpu_cost": "$420-840",
+      "risk_note": "AGCA requires spatial alignment validation between image tokens and RoboInter contact points. Human spot-checks 500 samples."
+    },
+    "auto_research": {
+      "gpu_hours": "~240h H100 (7 conditions × 2 seeds = 168h; 3 ablations: ~36h; pre-training: ~3h; evaluation: ~16h; CKA: ~5h; RL pivot: ~24h; AGCA λ sweep: ~12h)",
+      "gpu_utilization": "High (~85-90%)",
+      "timeline": "12-16 days with 2 H100 GPUs",
+      "team": "0 (3-hour setup)",
+      "annotation_cost": "$300-450",
+      "claude_api_cost": "$300-600",
+      "estimated_gpu_cost": "$480-960",
+      "speed_bottleneck": "Sequential LoRA runs (up to 21 with ablations + RL). With 2 H100s: ~8-12 days training.",
+      "risk_note": "AGCA preprocessing: ~6h one-time contact-point-to-visual-token spatial mapping for 60K trajectories."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (abstract July 21, paper July 28, 2026; ~9 weeks; primary target)",
+    "ICLR 2027 (expected Sep-Oct 2026; ~4-5 months; backup with full RL pivot)",
+    "CoRL 2026 (INFEASIBLE — deadline passed)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Altered Thoughts, Altered Actions (arXiv 2603.12717, March 2026) — post-hoc entity-reference corruption dominates; must interpret with TRAP",
+    "TRAP: Hijacking VLA CoT-Reasoning via Adversarial Patches (arXiv 2603.23117, March 2026) — autoregressive CoT governs actions (94.20% with target CoT); post-hoc vs generation distinction",
+    "Do What You Say / SEAL (arXiv 2510.16281, ICRA 2026) — runtime reasoning-action alignment; 15% improvement; motivates AGCA",
+    "ECoT-Lite (arXiv 2505.08243, May 2025) — representation learning primary mechanism; thinking tokens hurt; we extend to content types + AGCA",
+    "GuidedVLA (arXiv 2605.12369, May 2026) — CONCURRENT: generic attention head specialization; 75.4% LIBERO-Plus; our AGCA differs",
+    "ProGAL-VLA (arXiv 2604.09824, April 2026) — LIBERO-Plus SOTA 85.5%; modular GAC; discussion baseline",
+    "SRPO (arXiv 2511.15605) — 82.1% LIBERO-Plus; RL-based robustness SOTA",
+    "PALM (arXiv 2601.07060, January 2026) — latent affordance VLA; 91.8% LIBERO-LONG",
+    "DeepThinkVLA (arXiv 2511.15669) — 97%/79% LIBERO/Plus; Altered Thoughts subject",
+    "AVA-VLA (arXiv 2511.18960) — active visual attention; 74.7% LIBERO-Plus",
+    "RS-CL (arXiv 2510.01711) — contrastive with proprioceptive states; AGCA differs",
+    "What Can RL Bring to VLA Generalization? (arXiv 2505.19789) — RL benefits differ across dimensions; RL pivot motivation",
+    "CoA-VLA (ICCV 2025, arXiv 2412.20451) — fixed 4-type affordance baseline",
+    "RoboInter (ICLR 2026, arXiv 2602.09973) — 230K episodes; AGCA data source",
+    "ECoT (arXiv 2407.08693) — generic CoT baseline",
+    "LangGap (arXiv 2603.00592) — language grounding open",
+    "SimpleVLA-RL (ICLR 2026, arXiv 2509.09674) — 97.6% LIBERO-Long",
+    "VLA-R1 (arXiv 2510.01623) — affordance GRPO; GIoU reward",
+    "Affordance-R1 (AAAI 2026, arXiv 2508.06206) — GRPO affordance reasoning",
+    "DualCoT-VLA (arXiv 2603.22280)", "ACoT-VLA (CVPR 2026, arXiv 2601.11404)",
+    "CoT-VLA (arXiv 2503.22020)", "FlowVLA (arXiv 2508.18269)", "LaRA-VLA (arXiv 2602.01166)",
+    "GST-VLA (arXiv 2603.09079)", "SPR-VLA (arXiv 2603.09292, March 2026)",
+    "Affogato (arXiv 2506.12009) — 150K affordance annotations",
+    "GLOVER++ (arXiv 2505.11865)", "RT-Affordance (ICRA 2025, arXiv 2411.02704)",
+    "AffordGrasp (arXiv 2503.00778)",
+    "LIBERO-Plus (CVPR 2026, arXiv 2510.13626)", "LIBERO-PRO (arXiv 2510.03827)",
+    "NORA (arXiv 2504.19854)", "PosA-VLA (arXiv 2512.03724)", "ReconVLA (arXiv 2508.10333)",
+    "Concept-Gated Visual Distillation (arXiv 2603.10340)", "VLA Survey (arXiv 2507.01925)"
+  ],
+  "description": "We propose OVA-VLA, combining a novel Affordance-Grounded Contrastive Attention (AGCA) mechanism with a scalable open-vocabulary affordance supervision pipeline and a systematic entity-reference-controlled study. Motivated by a critical distinction between two recent findings — 'Altered Thoughts' showing post-hoc CoT corruption only degrades entity references, vs. TRAP showing autoregressive CoT generation genuinely governs actions — we hypothesize that TRAINING models to generate affordance-specific content creates representational pathways that post-hoc analysis cannot detect, and that an explicit contrastive mechanism (AGCA) can amplify this effect. AGCA applies an InfoNCE loss aligning hidden states at affordance-reasoning token positions with contact-point visual features from RoboInter-Data annotations, creating a self-reinforcing loop: better affordance text → better visual grounding → better affordance text. This differs from GuidedVLA's generic attention supervision (75.4% LIBERO-Plus), ProGAL-VLA's modular entity-graph contrastive alignment (85.5% SOTA), and RS-CL's proprioceptive alignment. We evaluate seven conditions on Qwen2.5-VL-3B with LoRA, with representation learning ablations extending ECoT-Lite. A proactive RL pivot (GRPO with affordance GIoU reward) ensures publishable contributions under all outcomes. Total: ≤240 H100-hours; ~$300-450 annotation cost.",
+  "project_name": "open_vocab_afford_vla",
+  "source": "web_research"
+}
+```
+
+---
+
+**Summary of changes (major revision) addressing each reviewer issue:**
+
+1. **Method contribution elevated** (Issue 1, 5): Added **AGCA (Affordance-Grounded Contrastive Attention)** — an InfoNCE loss aligning affordance reasoning token hidden states with contact-point visual features from RoboInter-Data. This transforms the paper from "ablation study + annotation pipeline" to "novel architectural mechanism + rigorous ablation study." AGCA is carefully distinguished from GuidedVLA (generic task-relevant supervision, May 2026), ProGAL-VLA's GAC (modular entity-graph contrastive), RS-CL (proprioceptive alignment), and PALM (latent representations). A new condition (D+AGCA) isolates the mechanism's contribution beyond text content alone.
+
+2. **TRAP incorporated** (Issue 2): The core problem framing now centers the Altered Thoughts ↔ TRAP distinction: post-hoc text corruption (entity refs only matter) vs. autoregressive generation (content genuinely governs actions, 94.20% with target CoT). This directly supports our hypothesis — training the model to *generate* affordance content creates representational pathways that post-hoc injection cannot, and AGCA amplifies this.
+
+3. **"Do What You Say"/SEAL incorporated** (Issue 2): Added as motivation for AGCA — SEAL shows text-level reasoning fails at action execution in OOD; our AGCA creates an explicit representational bridge vs. expensive runtime verification.
+
+4. **Scenario C strengthened** (Issue 4): Added proactive RL pivot with GRPO and affordance GIoU reward (following VLA-R1 + "What Can RL Bring to VLA Generalization?"). The negative SFT result becomes actionable: "affordance content enables stronger RL refinement even when SFT doesn't differentiate."
+
+5. **LIBERO-Plus SOTA updated**: ProGAL-VLA 85.5% confirmed, SRPO 82.1%, GuidedVLA ~75.4%, AVA-VLA 74.7% added to landscape.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55336227-6970-436d-9b46-63b7c38edfa1",
+  "isSidechain": false,
+  "requestId": "req_011CbAfLsiTQwx7KUEDhdQzd",
+  "type": "assistant",
+  "uuid": "4031edce-8c69-472d-b79c-847419df61fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hi6qyd8TYZ5M7FHLcidSZd",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9752,
+      "cache_read_input_tokens": 64520,
+      "output_tokens": 8288,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9752,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8288,
+          "cache_read_input_tokens": 64520,
+          "cache_creation_input_tokens": 9752,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9752
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 104_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-18 (UTC).**  ## Original idea {   \"title\": \"OVA-VLA: Does Affordance-Specific Reasoning Ground VLA Action Decoders…",
+  "leafUuid": "4031edce-8c69-472d-b79c-847419df61fc",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise OVA-VLA with affordance-attention architecture and RL pivot",
+  "sessionId": "98c0574c-97ec-4487-bfb9-77bfda3c289b"
+}
+```
+
+---

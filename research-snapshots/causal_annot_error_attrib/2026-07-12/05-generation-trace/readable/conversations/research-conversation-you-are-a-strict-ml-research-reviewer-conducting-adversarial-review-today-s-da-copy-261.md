@@ -1,0 +1,8911 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-15 (UTC).** Your job: indep
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 126
+- **Recorded user turns:** 1
+- **Tool calls:** 38
+- **Original source:** `logs/chats/exported-trajectories/account-3/49d0ab93-901f-44c0-919d-92703f3b1758.jsonl`
+- **Structured JSON:** [`f1a6b95ecb04ea0fb8ff.json`](../../sessions/f1/f1a6b95ecb04ea0fb8ff.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T13:26:17.862Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T13:26:17.862Z",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-15 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (11 days from today 2026-05-14). Track: Generation.\n\nDirection: Faithfulness, hallucination reduction, and calibrated uncertainty in LLM generation. In-scope: hallucination detection via internal representations (linear probes on hidden states, attention patterns, logit signatures), decoding-time interventions that suppress hallucinated content, calibration of verbalized confidence so model uncertainty matches actual accuracy, faithful chain-of-thought (CoT reflects actual computation, not post-hoc rationalization), attribution-aware generation with provenance to source spans, fine-grained atomic-claim verification during or after generation. Cross-cutting with Interpretability and Language Modeling tracks — the contribution must improve GENERATION quality, not just analyze model internals.\n\nContribution type: METHOD ONLY. Must propose a concrete detection algorithm, decoding-time intervention, training recipe, or calibration method. Pure analysis (\"we found models hallucinate when X\") is out of scope. Method + faithfulness analysis OK if analysis validates the method.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Hallucination work is mostly inference + lightweight probe training — budget for forward passes across many prompts + small classifier heads (linear probes, MLPs on hidden states). Avoid full SFT of large models.\n2. Time: ≤11 days. Use existing open models (Llama-3, Qwen3, DeepSeek-R1 distills, Mistral) + existing hallucination/faithfulness benchmarks. Build on interpretability toolkits (TransformerLens, nnsight) for hidden-state extraction if needed.\n3. Eval: TruthfulQA, HaluEval, FaithBench, FActScore, FELM, SimpleQA, LongFact for hallucination detection/reduction; ECE / Brier score / selective accuracy for calibration; faithfulness metrics on CoT (causal interventions, unlearning probes); attribution precision/recall on ELI5-attributed, ExpertQA. Must report both hallucination reduction AND utility preservation (MT-Bench, MMLU) — don't kill helpfulness while suppressing hallucinations.\n\nWhy this matters now: EMNLP 2025 awarded TWO Outstanding Papers in this space (\"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations\", \"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps\"), and the second annual Uncertainty Quantification workshop was held alongside. Hallucination is THE blocking issue for LLM deployment in high-stakes domains, and methods that exploit internal representations (rather than external retrieval or RLHF) are an emerging frontier. Look for: representation-level hallucination detectors that generalize across model families, decoding-time refusal/abstention mechanisms triggered by uncertainty features, calibration methods that work without holdout data, faithful-by-construction reasoning architectures (vs. post-hoc rationalization), atomic-fact-level verification integrated into generation. Avoid: yet another hallucination benchmark, RLHF-from-scratch calibration training, prompt-only \"say I don't know\" tricks, retrieval-augmented faithfulness (covered by Seed 2). Distinguish from existing Interpretability seed: that seed focuses on interpretability METHODS (circuits, probes as tools); this seed uses interpretability TECHNIQUES as means to improve generation faithfulness — output-quality contribution must be primary.**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-15?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 1/10)\n{\n  \"title\": \"Claim-Level Verbal Uncertainty Calibration for Long-Form Generation\",\n  \"core_problem\": \"LLMs express hallucinated claims in long-form outputs with uniformly high confidence, yet the only known method for calibrating verbal uncertainty via representation intervention (Ji et al., EMNLP 2025) operates at the response level on short-form QA — it cannot distinguish reliable from unreliable claims within a single long-form generation.\",\n  \"opportunity\": \"The Verbal Uncertainty Feature (VUF) is a single linear direction in representation space, making per-claim extraction and steering computationally cheap. Concurrent work (CURE, April 2026; CAG, May 2026) addresses claim-level calibration in long-form but requires multi-stage training or RL — a training-free, representation-intervention approach that extends VUF to claim-level granularity fills an open niche. The 11-day timeline is feasible because VUF extraction is well-documented, claim segmentation tools exist (FActScore decomposition), and evaluation benchmarks (FActScore, LongFact, ECE/Brier, MT-Bench) are established.\",\n  \"landscape\": \"Ji et al. (EMNLP 2025) discovered that verbal uncertainty is governed by a linear feature in LLM representation space and introduced MUC (Mechanistic Uncertainty Calibration), achieving ~30% reduction in confident hallucinations — but only on short-form answers. CURE (arxiv 2604.12046, April 2026) teaches claim-level confidence reasoning via a multi-stage training pipeline, improving claim accuracy by up to 39.9% on biography generation. 'Only Say What You Know' (arxiv 2605.01749, May 2026) proposes exploration-commitment decoupling with up to 13% factuality gain and 37% decoding speedup, but uses training. Atomic Calibration (arxiv 2410.13246, Findings of AACL-IJCNLP 2025) showed LLMs have poor claim-level calibration in long-form generation. CSS (arxiv 2604.17487, April 2026) introduces compositional selective specificity as a post-generation layer that decomposes answers into claims and backoffs uncertain ones, but relies on external verifiers rather than internal representations. Selective Abstraction (arxiv 2602.11908, February 2026) proposes trading specificity for reliability by replacing low-confidence atoms with confident abstractions. PCNET (arxiv 2605.05953, May 2026) uses probabilistic circuits over residual streams for hallucination detection but targets short-form QA. Semantic Entropy Probes (ICML 2024) showed linear probes can approximate semantic entropy from hidden states in a single forward pass, but only at the response level. No existing work applies training-free representation intervention at claim-level granularity for long-form outputs — the combination of VUF steering with per-claim semantic uncertainty estimation is unexplored.\",\n  \"approach\": \"Extract the Verbal Uncertainty Feature (VUF) direction from a target LLM (Qwen 3.5-27B as primary, Llama 4 Scout as secondary) using the contrastive-pair methodology from Ji et al. For long-form generation, decompose the output into atomic claims using FActScore/OpenFActScore decomposition, then for each claim: (1) extract the VUF projection magnitude at the claim's final token position as a verbal confidence score, (2) compute a per-claim semantic uncertainty estimate via Semantic Entropy Probes (linear probes trained on hidden states, avoiding expensive multi-sample SE). When VUF-semantic mismatch exceeds a calibrated threshold — high verbal confidence but high semantic uncertainty — apply targeted activation intervention along the VUF direction only at the token positions corresponding to that claim during a second-pass generation, steering the model to express appropriate hedging language. This yields a training-free, claim-level calibration pipeline: Decompose → Score → Steer, where steering is localized to unreliable claims while leaving confident-and-correct claims untouched.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~300h A100 80GB (VUF extraction ~20h, SEP training ~30h, long-form generation & evaluation across 2 models x 4 benchmarks ~200h, ablations ~50h)\",\n      \"gpu_utilization\": \"~15-25% effective utilization — GPU idles while researcher writes code, debugs decomposition pipeline, analyzes results, and iterates on threshold calibration\",\n      \"timeline\": \"2-4 months (1 researcher full-time)\",\n      \"team\": \"1-2 researchers with mechanistic interpretability experience\",\n      \"estimated_gpu_cost\": \"$450-750 (at ~$1.50-2.50/hr A100 80GB spot/on-demand)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~200h A100 80GB (agent handles code iteration and experiment execution, reducing idle; human approves VUF extraction methodology, threshold selection, and paper framing)\",\n      \"gpu_utilization\": \"~40-55% — agent queues experiments and processes results between human check-ins, but pauses for key architectural decisions\",\n      \"timeline\": \"3-5 weeks\",\n      \"team\": \"1 researcher, ~45min/day check-in for methodology approval and result interpretation\",\n      \"claude_api_cost\": \"$150-300 (~2000-4000 Opus turns for code generation, experiment orchestration, result analysis, and paper drafting)\",\n      \"estimated_gpu_cost\": \"$300-500\",\n      \"risk_note\": \"VUF extraction quality on newer architectures (Qwen 3.5, Llama 4) is unverified — the original VUF was demonstrated on older models; if the linear feature does not transfer cleanly, the entire approach may require significant adaptation or fail\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~500h A100 80GB (agent explores 3-5x more configurations: multiple layers for VUF extraction, multiple threshold strategies, multiple decomposition granularities, additional model sizes)\",\n      \"gpu_utilization\": \"~85-95% — agent runs continuous experiment pipeline with near-zero idle, automatically queuing next experiment as previous completes\",\n      \"timeline\": \"5-10 days with 2x A100 80GB GPUs running in parallel\",\n      \"team\": \"0 (only initial setup and final review)\",\n      \"claude_api_cost\": \"$300-600 (~4000-8000 Opus turns for full pipeline: code generation, experiment design, result analysis, ablation studies, paper writing)\",\n      \"estimated_gpu_cost\": \"$750-1250\",\n      \"speed_bottleneck\": \"GPU count (2x A100 80GB minimum for parallel model loading and generation; 4x would halve timeline) and long-form generation throughput (generating + evaluating thousands of long-form responses on FActScore/LongFact is the computational bottleneck)\",\n      \"risk_note\": \"Without human judgment, the agent may over-explore VUF extraction configurations that don't work on new architectures and under-invest in the claim-decomposition-to-steering alignment, which requires careful design choices about token position selection and intervention strength\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR May cycle, submission deadline May 25, 2026 — 10 days away; conference Oct 24-29, Budapest)\",\n    \"AAAI 2027 (abstract Jul 21, full paper Jul 28, 2026; conference Feb 16-23, Montréal)\",\n    \"ICLR 2027 (expected ~Oct 2026, not yet announced; conference ~Spring 2027)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (EMNLP 2025)\",\n    \"Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration [CURE] (arXiv 2604.12046, April 2026)\",\n    \"Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality [CAG] (arXiv 2605.01749, May 2026)\",\n    \"Atomic Calibration of LLMs in Long-Form Generations (Findings of AACL-IJCNLP 2025)\",\n    \"Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control for Agentic Systems [CSS] (arXiv 2604.17487, April 2026)\",\n    \"When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation (arXiv 2602.11908, February 2026)\",\n    \"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs (ICML 2024)\",\n    \"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation (EMNLP 2023)\",\n    \"Long-form Factuality in Large Language Models [LongFact/SAFE] (NeurIPS 2024)\",\n    \"Steering Language Models With Activation Engineering (arXiv 2308.10248, 2023)\"\n  ],\n  \"description\": \"We propose Claim-Level Mechanistic Uncertainty Calibration (CL-MUC), a training-free method that extends the Verbal Uncertainty Feature (VUF) discovered by Ji et al. (EMNLP 2025) from response-level short-form QA to claim-level long-form generation. The pipeline operates in three stages: (1) Decompose — segment long-form output into atomic claims using FActScore decomposition; (2) Score — for each claim, extract both the VUF projection magnitude (verbal confidence) and a Semantic Entropy Probe estimate (epistemic uncertainty) from the model's hidden states in a single forward pass; (3) Steer — for claims where verbal confidence is high but semantic uncertainty is also high (the hallucination-prone mismatch zone), apply targeted activation intervention along the VUF direction at claim-specific token positions during a second-pass generation to induce appropriate hedging. Unlike concurrent approaches (CURE, CAG) that require multi-stage training or RL, CL-MUC is entirely training-free and operates via lightweight linear probes and activation addition. We evaluate on Qwen 3.5-27B and Llama 4 Scout using FActScore, LongFact, and FactBench, measuring claim-level ECE, Brier score, AUROC, and factual precision. This fills the specific gap of training-free, representation-level, claim-granular uncertainty calibration for long-form generation.\",\n  \"project_name\": \"claim_level_vuf_calibration\",\n  \"source\": \"web_research\"\n}\n\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T13:26:17.870Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T13:26:17.870Z",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+## Round 1
+
+124 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T13:26:17.932Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-15 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (11 days from today 2026-05-14). Track: Generation.
+
+Direction: Faithfulness, hallucination reduction, and calibrated uncertainty in LLM generation. In-scope: hallucination detection via internal representations (linear probes on hidden states, attention patterns, logit signatures), decoding-time interventions that suppress hallucinated content, calibration of verbalized confidence so model uncertainty matches actual accuracy, faithful chain-of-thought (CoT reflects actual computation, not post-hoc rationalization), attribution-aware generation with provenance to source spans, fine-grained atomic-claim verification during or after generation. Cross-cutting with Interpretability and Language Modeling tracks — the contribution must improve GENERATION quality, not just analyze model internals.
+
+Contribution type: METHOD ONLY. Must propose a concrete detection algorithm, decoding-time intervention, training recipe, or calibration method. Pure analysis ("we found models hallucinate when X") is out of scope. Method + faithfulness analysis OK if analysis validates the method.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Hallucination work is mostly inference + lightweight probe training — budget for forward passes across many prompts + small classifier heads (linear probes, MLPs on hidden states). Avoid full SFT of large models.
+2. Time: ≤11 days. Use existing open models (Llama-3, Qwen3, DeepSeek-R1 distills, Mistral) + existing hallucination/faithfulness benchmarks. Build on interpretability toolkits (TransformerLens, nnsight) for hidden-state extraction if needed.
+3. Eval: TruthfulQA, HaluEval, FaithBench, FActScore, FELM, SimpleQA, LongFact for hallucination detection/reduction; ECE / Brier score / selective accuracy for calibration; faithfulness metrics on CoT (causal interventions, unlearning probes); attribution precision/recall on ELI5-attributed, ExpertQA. Must report both hallucination reduction AND utility preservation (MT-Bench, MMLU) — don't kill helpfulness while suppressing hallucinations.
+
+Why this matters now: EMNLP 2025 awarded TWO Outstanding Papers in this space ("Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations", "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps"), and the second annual Uncertainty Quantification workshop was held alongside. Hallucination is THE blocking issue for LLM deployment in high-stakes domains, and methods that exploit internal representations (rather than external retrieval or RLHF) are an emerging frontier. Look for: representation-level hallucination detectors that generalize across model families, decoding-time refusal/abstention mechanisms triggered by uncertainty features, calibration methods that work without holdout data, faithful-by-construction reasoning architectures (vs. post-hoc rationalization), atomic-fact-level verification integrated into generation. Avoid: yet another hallucination benchmark, RLHF-from-scratch calibration training, prompt-only "say I don't know" tricks, retrieval-augmented faithfulness (covered by Seed 2). Distinguish from existing Interpretability seed: that seed focuses on interpretability METHODS (circuits, probes as tools); this seed uses interpretability TECHNIQUES as means to improve generation faithfulness — output-quality contribution must be primary.**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-15?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 1/10)
+{
+  "title": "Claim-Level Verbal Uncertainty Calibration for Long-Form Generation",
+  "core_problem": "LLMs express hallucinated claims in long-form outputs with uniformly high confidence, yet the only known method for calibrating verbal uncertainty via representation intervention (Ji et al., EMNLP 2025) operates at the response level on short-form QA — it cannot distinguish reliable from unreliable claims within a single long-form generation.",
+  "opportunity": "The Verbal Uncertainty Feature (VUF) is a single linear direction in representation space, making per-claim extraction and steering computationally cheap. Concurrent work (CURE, April 2026; CAG, May 2026) addresses claim-level calibration in long-form but requires multi-stage training or RL — a training-free, representation-intervention approach that extends VUF to claim-level granularity fills an open niche. The 11-day timeline is feasible because VUF extraction is well-documented, claim segmentation tools exist (FActScore decomposition), and evaluation benchmarks (FActScore, LongFact, ECE/Brier, MT-Bench) are established.",
+  "landscape": "Ji et al. (EMNLP 2025) discovered that verbal uncertainty is governed by a linear feature in LLM representation space and introduced MUC (Mechanistic Uncertainty Calibration), achieving ~30% reduction in confident hallucinations — but only on short-form answers. CURE (arxiv 2604.12046, April 2026) teaches claim-level confidence reasoning via a multi-stage training pipeline, improving claim accuracy by up to 39.9% on biography generation. 'Only Say What You Know' (arxiv 2605.01749, May 2026) proposes exploration-commitment decoupling with up to 13% factuality gain and 37% decoding speedup, but uses training. Atomic Calibration (arxiv 2410.13246, Findings of AACL-IJCNLP 2025) showed LLMs have poor claim-level calibration in long-form generation. CSS (arxiv 2604.17487, April 2026) introduces compositional selective specificity as a post-generation layer that decomposes answers into claims and backoffs uncertain ones, but relies on external verifiers rather than internal representations. Selective Abstraction (arxiv 2602.11908, February 2026) proposes trading specificity for reliability by replacing low-confidence atoms with confident abstractions. PCNET (arxiv 2605.05953, May 2026) uses probabilistic circuits over residual streams for hallucination detection but targets short-form QA. Semantic Entropy Probes (ICML 2024) showed linear probes can approximate semantic entropy from hidden states in a single forward pass, but only at the response level. No existing work applies training-free representation intervention at claim-level granularity for long-form outputs — the combination of VUF steering with per-claim semantic uncertainty estimation is unexplored.",
+  "approach": "Extract the Verbal Uncertainty Feature (VUF) direction from a target LLM (Qwen 3.5-27B as primary, Llama 4 Scout as secondary) using the contrastive-pair methodology from Ji et al. For long-form generation, decompose the output into atomic claims using FActScore/OpenFActScore decomposition, then for each claim: (1) extract the VUF projection magnitude at the claim's final token position as a verbal confidence score, (2) compute a per-claim semantic uncertainty estimate via Semantic Entropy Probes (linear probes trained on hidden states, avoiding expensive multi-sample SE). When VUF-semantic mismatch exceeds a calibrated threshold — high verbal confidence but high semantic uncertainty — apply targeted activation intervention along the VUF direction only at the token positions corresponding to that claim during a second-pass generation, steering the model to express appropriate hedging language. This yields a training-free, claim-level calibration pipeline: Decompose → Score → Steer, where steering is localized to unreliable claims while leaving confident-and-correct claims untouched.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~300h A100 80GB (VUF extraction ~20h, SEP training ~30h, long-form generation & evaluation across 2 models x 4 benchmarks ~200h, ablations ~50h)",
+      "gpu_utilization": "~15-25% effective utilization — GPU idles while researcher writes code, debugs decomposition pipeline, analyzes results, and iterates on threshold calibration",
+      "timeline": "2-4 months (1 researcher full-time)",
+      "team": "1-2 researchers with mechanistic interpretability experience",
+      "estimated_gpu_cost": "$450-750 (at ~$1.50-2.50/hr A100 80GB spot/on-demand)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~200h A100 80GB (agent handles code iteration and experiment execution, reducing idle; human approves VUF extraction methodology, threshold selection, and paper framing)",
+      "gpu_utilization": "~40-55% — agent queues experiments and processes results between human check-ins, but pauses for key architectural decisions",
+      "timeline": "3-5 weeks",
+      "team": "1 researcher, ~45min/day check-in for methodology approval and result interpretation",
+      "claude_api_cost": "$150-300 (~2000-4000 Opus turns for code generation, experiment orchestration, result analysis, and paper drafting)",
+      "estimated_gpu_cost": "$300-500",
+      "risk_note": "VUF extraction quality on newer architectures (Qwen 3.5, Llama 4) is unverified — the original VUF was demonstrated on older models; if the linear feature does not transfer cleanly, the entire approach may require significant adaptation or fail"
+    },
+    "auto_research": {
+      "gpu_hours": "~500h A100 80GB (agent explores 3-5x more configurations: multiple layers for VUF extraction, multiple threshold strategies, multiple decomposition granularities, additional model sizes)",
+      "gpu_utilization": "~85-95% — agent runs continuous experiment pipeline with near-zero idle, automatically queuing next experiment as previous completes",
+      "timeline": "5-10 days with 2x A100 80GB GPUs running in parallel",
+      "team": "0 (only initial setup and final review)",
+      "claude_api_cost": "$300-600 (~4000-8000 Opus turns for full pipeline: code generation, experiment design, result analysis, ablation studies, paper writing)",
+      "estimated_gpu_cost": "$750-1250",
+      "speed_bottleneck": "GPU count (2x A100 80GB minimum for parallel model loading and generation; 4x would halve timeline) and long-form generation throughput (generating + evaluating thousands of long-form responses on FActScore/LongFact is the computational bottleneck)",
+      "risk_note": "Without human judgment, the agent may over-explore VUF extraction configurations that don't work on new architectures and under-invest in the claim-decomposition-to-steering alignment, which requires careful design choices about token position selection and intervention strength"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR May cycle, submission deadline May 25, 2026 — 10 days away; conference Oct 24-29, Budapest)",
+    "AAAI 2027 (abstract Jul 21, full paper Jul 28, 2026; conference Feb 16-23, Montréal)",
+    "ICLR 2027 (expected ~Oct 2026, not yet announced; conference ~Spring 2027)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (EMNLP 2025)",
+    "Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration [CURE] (arXiv 2604.12046, April 2026)",
+    "Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality [CAG] (arXiv 2605.01749, May 2026)",
+    "Atomic Calibration of LLMs in Long-Form Generations (Findings of AACL-IJCNLP 2025)",
+    "Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity Control for Agentic Systems [CSS] (arXiv 2604.17487, April 2026)",
+    "When Should LLMs Be Less Specific? Selective Abstraction for Reliable Long-Form Text Generation (arXiv 2602.11908, February 2026)",
+    "Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs (ICML 2024)",
+    "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation (EMNLP 2023)",
+    "Long-form Factuality in Large Language Models [LongFact/SAFE] (NeurIPS 2024)",
+    "Steering Language Models With Activation Engineering (arXiv 2308.10248, 2023)"
+  ],
+  "description": "We propose Claim-Level Mechanistic Uncertainty Calibration (CL-MUC), a training-free method that extends the Verbal Uncertainty Feature (VUF) discovered by Ji et al. (EMNLP 2025) from response-level short-form QA to claim-level long-form generation. The pipeline operates in three stages: (1) Decompose — segment long-form output into atomic claims using FActScore decomposition; (2) Score — for each claim, extract both the VUF projection magnitude (verbal confidence) and a Semantic Entropy Probe estimate (epistemic uncertainty) from the model's hidden states in a single forward pass; (3) Steer — for claims where verbal confidence is high but semantic uncertainty is also high (the hallucination-prone mismatch zone), apply targeted activation intervention along the VUF direction at claim-specific token positions during a second-pass generation to induce appropriate hedging. Unlike concurrent approaches (CURE, CAG) that require multi-stage training or RL, CL-MUC is entirely training-free and operates via lightweight linear probes and activation addition. We evaluate on Qwen 3.5-27B and Llama 4 Scout using FActScore, LongFact, and FactBench, measuring claim-level ECE, Brier score, AUROC, and factual precision. This fills the specific gap of training-free, representation-level, claim-granular uncertainty calibration for long-form generation.",
+  "project_name": "claim_level_vuf_calibration",
+  "source": "web_research"
+}
+
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "41a99c8a-93c6-4513-bd54-383dd9a2dfb5",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T13:26:17.928Z_
+
+```json
+{
+  "parentUuid": "41a99c8a-93c6-4513-bd54-383dd9a2dfb5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "63262437-a7d4-4f00-9b4f-30b88e3bc649",
+  "timestamp": "2026-05-15T13:26:17.928Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T13:26:17.928Z_
+
+```json
+{
+  "parentUuid": "63262437-a7d4-4f00-9b4f-30b88e3bc649",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "96729372-f659-495f-b921-54c0c3af3b95",
+  "timestamp": "2026-05-15T13:26:17.928Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-15 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "96729372-f659-495f-b921-54c0c3af3b95",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level uncertainty calibration via representation steering",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-15T13:26:23.480Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea by independently verifying its claims through web searches. I need to check:
+
+1. Whether the cited papers exist and are accurately described
+2. Whether the claimed research gap is real
+3. Whether there are competing/concurrent works the generator missed
+4. Whether the feasibility claims are realistic
+5. Whether the approach is novel enough for EMNLP 2026
+
+Let me start by searching for the key papers and claims.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96729372-f659-495f-b921-54c0c3af3b95",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Rw1Mdrhkfy882dCotc",
+  "type": "assistant",
+  "uuid": "a4b54115-8aed-4590-a6d2-3c7ac96845ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KJNLXHjfXbDdgDWUDH3f1H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12212,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 219,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12212,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 219,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12212,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12212
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-15T13:26:24.255Z_
+
+I'll conduct a thorough adversarial review of this idea. Let me independently verify the key claims through multiple search dimensions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4b54115-8aed-4590-a6d2-3c7ac96845ff",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Rw1Mdrhkfy882dCotc",
+  "type": "assistant",
+  "uuid": "11801ee5-53c3-49f6-952d-a5ca68f5e6bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KJNLXHjfXbDdgDWUDH3f1H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12212,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 219,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12212,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 219,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12212,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12212
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T13:26:24.400Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01D2VX4FVgM9G1noi92J2cdb`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11801ee5-53c3-49f6-952d-a5ca68f5e6bf",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Rw1Mdrhkfy882dCotc",
+  "type": "assistant",
+  "uuid": "6262d9a4-1a27-478b-8ddc-b490623ce76a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KJNLXHjfXbDdgDWUDH3f1H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12212,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 219,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12212,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 219,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12212,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12212
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T13:26:24.406Z_
+
+<details><summary>↩ Tool result · `toolu_01D2VX4FVgM9G1noi92J2cdb`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6262d9a4-1a27-478b-8ddc-b490623ce76a",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "a4918434-82f1-4b2c-9175-d0b8f7dd4ef5",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "6262d9a4-1a27-478b-8ddc-b490623ce76a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-15T13:26:29.045Z_
+
+Starting my adversarial review. I'll verify the key claims independently across multiple dimensions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4918434-82f1-4b2c-9175-d0b8f7dd4ef5",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RwV6VhZNX9D76EGYUY",
+  "type": "assistant",
+  "uuid": "670a4730-0d72-4524-ae5d-4a97abc6071f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KdqVF4HrKeTdbXivCwJ7zK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1239,
+      "cache_read_input_tokens": 24053,
+      "output_tokens": 268,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1239,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 24053,
+          "cache_creation_input_tokens": 1239,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1239
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T13:26:29.527Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EFZnYMA5MEDUtTWT4NFdRT`</summary>
+
+```json
+{
+  "query": "Ji \"Calibrating Verbal Uncertainty as a Linear Feature\" EMNLP 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "670a4730-0d72-4524-ae5d-4a97abc6071f",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RwV6VhZNX9D76EGYUY",
+  "type": "assistant",
+  "uuid": "c3281116-be1b-4ab5-92fd-5ad5f5793285",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KdqVF4HrKeTdbXivCwJ7zK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1239,
+      "cache_read_input_tokens": 24053,
+      "output_tokens": 268,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1239,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 24053,
+          "cache_creation_input_tokens": 1239,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1239
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T13:26:29.972Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018eFNzKA51JFq47EHo8D5km`</summary>
+
+```json
+{
+  "query": "CURE \"Think Through Uncertainty\" claim-level calibration long-form generation arxiv 2604.12046 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3281116-be1b-4ab5-92fd-5ad5f5793285",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RwV6VhZNX9D76EGYUY",
+  "type": "assistant",
+  "uuid": "20c69e64-8d99-4049-919d-d83842ec3528",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KdqVF4HrKeTdbXivCwJ7zK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1239,
+      "cache_read_input_tokens": 24053,
+      "output_tokens": 268,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1239,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 24053,
+          "cache_creation_input_tokens": 1239,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1239
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T13:26:30.596Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015whEWibodHFLdXCgrXKZ5U`</summary>
+
+```json
+{
+  "query": "\"Only Say What You Know\" calibration-aware generation long-form factuality arxiv 2605.01749 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "20c69e64-8d99-4049-919d-d83842ec3528",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RwV6VhZNX9D76EGYUY",
+  "type": "assistant",
+  "uuid": "48ccbd32-6440-42a6-aec3-5d893ff5d497",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KdqVF4HrKeTdbXivCwJ7zK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1239,
+      "cache_read_input_tokens": 24053,
+      "output_tokens": 268,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1239,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 24053,
+          "cache_creation_input_tokens": 1239,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1239
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T13:26:30.903Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012BgEBeFK5NaEGbCZRSG6xt`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR submission deadline May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "48ccbd32-6440-42a6-aec3-5d893ff5d497",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RwV6VhZNX9D76EGYUY",
+  "type": "assistant",
+  "uuid": "8841a1d9-0f48-418f-a7b8-29f107838ebb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KdqVF4HrKeTdbXivCwJ7zK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1239,
+      "cache_read_input_tokens": 24053,
+      "output_tokens": 268,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1239,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 24053,
+          "cache_creation_input_tokens": 1239,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1239
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T13:26:34.438Z_
+
+<details><summary>↩ Tool result · `toolu_018eFNzKA51JFq47EHo8D5km`</summary>
+
+```text
+Web search results for query: "CURE "Think Through Uncertainty" claim-level calibration long-form generation arxiv 2604.12046 2026"
+
+Links: [{"title":"[2604.12046] Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration","url":"https://arxiv.org/abs/2604.12046"},{"title":"Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration","url":"https://arxiv.org/html/2604.12046"}]
+
+I found the paper! Here are the search results:
+
+CURE is a framework that improves long-form factuality by teaching LLMs to reason about uncertainty at the claim level. Existing approaches mainly improve factuality through post-hoc revision or reinforcement learning (RL) with correctness-based rewards, but they do not teach the model to estimate which parts of its generation are reliable.
+
+The framework develops a multi-stage training pipeline that aligns model confidence with claims' correctness and then optimizes on factuality. The resulting calibrated confidence further enables selective prediction, allowing the model to abstain from uncertain claims at inference time.
+
+Experiments on four long-form factuality benchmarks show that CURE consistently improves factual accuracy over competitive supervised and RL baselines, while maintaining factual recall, with improvements in claim-level accuracy by up to 39.9% on Biography generation. These gains are accompanied by improved calibration, as reflected by a 16.0% increase in AUROC on FactBench.
+
+The paper was published on arXiv on April 13, 2026, by authors Xin Liu and Lu Wang from the University of Michigan.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "20c69e64-8d99-4049-919d-d83842ec3528",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "23557e9c-a12b-405c-8b71-8e5f1d75d451",
+  "toolUseResult": {
+    "query": "CURE \"Think Through Uncertainty\" claim-level calibration long-form generation arxiv 2604.12046 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017R6hQDLkPjMcajWKUhamPK",
+        "content": [
+          {
+            "title": "[2604.12046] Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration",
+            "url": "https://arxiv.org/abs/2604.12046"
+          },
+          {
+            "title": "Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration",
+            "url": "https://arxiv.org/html/2604.12046"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results:\n\nCURE is a framework that improves long-form factuality by teaching LLMs to reason about uncertainty at the claim level. Existing approaches mainly improve factuality through post-hoc revision or reinforcement learning (RL) with correctness-based rewards, but they do not teach the model to estimate which parts of its generation are reliable.\n\nThe framework develops a multi-stage training pipeline that aligns model confidence with claims' correctness and then optimizes on factuality. The resulting calibrated confidence further enables selective prediction, allowing the model to abstain from uncertain claims at inference time.\n\nExperiments on four long-form factuality benchmarks show that CURE consistently improves factual accuracy over competitive supervised and RL baselines, while maintaining factual recall, with improvements in claim-level accuracy by up to 39.9% on Biography generation. These gains are accompanied by improved calibration, as reflected by a 16.0% increase in AUROC on FactBench.\n\nThe paper was published on arXiv on April 13, 2026, by authors Xin Liu and Lu Wang from the University of Michigan."
+    ],
+    "durationSeconds": 4.462525656999999
+  },
+  "sourceToolAssistantUUID": "20c69e64-8d99-4049-919d-d83842ec3528",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T13:26:35.598Z_
+
+<details><summary>↩ Tool result · `toolu_012BgEBeFK5NaEGbCZRSG6xt`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR submission deadline May 2026"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"EMNLP 2026 2026 Deadlines — Submission, Rebuttal & Dates | Paperpin | Paperpin","url":"https://www.getpaperpin.com/deadlines/emnlp26"},{"title":"EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X","url":"https://x.com/emnlpmeeting/status/1892259536137785419"}]
+
+Based on the search results, here is the key information about the EMNLP 2026 ARR submission deadline for May 2026:
+
+The ARR Submission Deadline for EMNLP 2026 is May 25, 2026.
+
+Additionally, there are several important related deadlines and requirements:
+
+- All authors must complete the author registration form by May 27, 2026 EoD AoE
+- Authors must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026
+
+The conference will be held in Budapest, Hungary, with an acceptance notification date of August 20, 2026, camera-ready papers due September 20, 2026, and the main conference in October.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8841a1d9-0f48-418f-a7b8-29f107838ebb",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "f86e2899-be4e-4423-8291-1b7a8603499a",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR submission deadline May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E8Gub4k8bhW8w5419Nc6EQ",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 2026 Deadlines — Submission, Rebuttal & Dates | Paperpin | Paperpin",
+            "url": "https://www.getpaperpin.com/deadlines/emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X",
+            "url": "https://x.com/emnlpmeeting/status/1892259536137785419"
+          }
+        ]
+      },
+      "Based on the search results, here is the key information about the EMNLP 2026 ARR submission deadline for May 2026:\n\nThe ARR Submission Deadline for EMNLP 2026 is May 25, 2026.\n\nAdditionally, there are several important related deadlines and requirements:\n\n- All authors must complete the author registration form by May 27, 2026 EoD AoE\n- Authors must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026\n\nThe conference will be held in Budapest, Hungary, with an acceptance notification date of August 20, 2026, camera-ready papers due September 20, 2026, and the main conference in October."
+    ],
+    "durationSeconds": 4.692066486000002
+  },
+  "sourceToolAssistantUUID": "8841a1d9-0f48-418f-a7b8-29f107838ebb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T13:26:35.657Z_
+
+<details><summary>↩ Tool result · `toolu_01EFZnYMA5MEDUtTWT4NFdRT`</summary>
+
+```text
+Web search results for query: "Ji "Calibrating Verbal Uncertainty as a Linear Feature" EMNLP 2025"
+
+Links: [{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.187/"},{"title":"[2503.14477] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/abs/2503.14477"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/2025.emnlp-main.187@ACL"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to ...","url":"https://aclanthology.org/2025.emnlp-main.187.pdf"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://www.researchgate.net/publication/397424902_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/html/2503.14477v1"},{"title":"(PDF) Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://www.researchgate.net/publication/389947447_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"},{"title":"Awards - EMNLP 2025","url":"https://2025.emnlp.org/program/awards/"},{"title":"dblp: Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations.","url":"https://dblp.org/rec/journals/corr/abs-2503-14477.html"},{"title":"GitHub - facebookresearch/verbal_uncertainty_feature_calibration: Mechanistic uncertainty calibration of LLMs. · GitHub","url":"https://github.com/facebookresearch/verbal_uncertainty_feature_calibration"}]
+
+I found the paper! Here are the results for your search:
+
+## "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations"
+
+This paper by Ji, Ziwei, Lei Yu, Yeskendir Koishekenov, Yejin Bang, Anthony Hartshorn, Alan Schelten, Cheng Zhang, Pascale Fung, and Nicola Cancedda was published at the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP 2025) in November in Suzhou, China.
+
+### Main Contributions:
+
+The paper addresses the problem that LLMs often adopt an assertive language style even when making false claims, creating "overconfident hallucinations" that mislead users and erode trust.
+
+The key finding is that "verbal uncertainty" is governed by a single linear feature in the representation space of LLMs, and this has only moderate correlation with the actual "semantic uncertainty" of the model.
+
+The authors show that (1) the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone and (2) they can intervene on verbal uncertainty at inference time and reduce confident hallucinations on short-form answers, achieving an average relative reduction of ~30%.
+
+The paper is available on the ACL Anthology at https://aclanthology.org/2025.emnlp-main.187/ and on arXiv at https://arxiv.org/abs/2503.14477.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c3281116-be1b-4ab5-92fd-5ad5f5793285",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "334ff39c-001d-42a6-a01f-30343dc49a4d",
+  "toolUseResult": {
+    "query": "Ji \"Calibrating Verbal Uncertainty as a Linear Feature\" EMNLP 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014VLeEVDk1Pv3EXTHR2qCR6",
+        "content": [
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.187/"
+          },
+          {
+            "title": "[2503.14477] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/abs/2503.14477"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/2025.emnlp-main.187@ACL"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.187.pdf"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://www.researchgate.net/publication/397424902_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/html/2503.14477v1"
+          },
+          {
+            "title": "(PDF) Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://www.researchgate.net/publication/389947447_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"
+          },
+          {
+            "title": "Awards - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/awards/"
+          },
+          {
+            "title": "dblp: Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations.",
+            "url": "https://dblp.org/rec/journals/corr/abs-2503-14477.html"
+          },
+          {
+            "title": "GitHub - facebookresearch/verbal_uncertainty_feature_calibration: Mechanistic uncertainty calibration of LLMs. · GitHub",
+            "url": "https://github.com/facebookresearch/verbal_uncertainty_feature_calibration"
+          }
+        ]
+      },
+      "I found the paper! Here are the results for your search:\n\n## \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations\"\n\nThis paper by Ji, Ziwei, Lei Yu, Yeskendir Koishekenov, Yejin Bang, Anthony Hartshorn, Alan Schelten, Cheng Zhang, Pascale Fung, and Nicola Cancedda was published at the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP 2025) in November in Suzhou, China.\n\n### Main Contributions:\n\nThe paper addresses the problem that LLMs often adopt an assertive language style even when making false claims, creating \"overconfident hallucinations\" that mislead users and erode trust.\n\nThe key finding is that \"verbal uncertainty\" is governed by a single linear feature in the representation space of LLMs, and this has only moderate correlation with the actual \"semantic uncertainty\" of the model.\n\nThe authors show that (1) the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone and (2) they can intervene on verbal uncertainty at inference time and reduce confident hallucinations on short-form answers, achieving an average relative reduction of ~30%.\n\nThe paper is available on the ACL Anthology at https://aclanthology.org/2025.emnlp-main.187/ and on arXiv at https://arxiv.org/abs/2503.14477."
+    ],
+    "durationSeconds": 6.126567524
+  },
+  "sourceToolAssistantUUID": "c3281116-be1b-4ab5-92fd-5ad5f5793285",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T13:26:40.755Z_
+
+<details><summary>↩ Tool result · `toolu_015whEWibodHFLdXCgrXKZ5U`</summary>
+
+```text
+Web search results for query: ""Only Say What You Know" calibration-aware generation long-form factuality arxiv 2605.01749 2026"
+
+Links: [{"title":"[2605.01749] Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality","url":"https://arxiv.org/abs/2605.01749"},{"title":"Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality","url":"https://arxiv.org/html/2605.01749"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=1822&show=1000"},{"title":"Conformal Linguistic Calibration: Trading-off between Factuality and Specificity","url":"https://arxiv.org/html/2502.19110v1"},{"title":"Atomic Calibration of LLMs in Long-Form Generations","url":"https://arxiv.org/html/2410.13246v1"},{"title":"Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration","url":"https://arxiv.org/html/2604.12046"},{"title":"[2604.12046] Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration","url":"https://arxiv.org/abs/2604.12046"},{"title":"Calibrating Long-form Generations from Large Language Models","url":"https://arxiv.org/html/2402.06544v1"},{"title":"Linguistic Calibration of Long-Form Generations","url":"https://arxiv.org/html/2404.00474v2"},{"title":"[2404.00474] Linguistic Calibration of Long-Form Generations","url":"https://arxiv.org/abs/2404.00474"}]
+
+Based on the search results, here's the information about the paper with arxiv ID 2605.01749:
+
+## "Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality"
+
+Large Reasoning Models achieve strong performance on complex tasks but remain prone to hallucinations, particularly in long-form generation where errors compound across reasoning steps.
+
+### The Problem with Current Approaches
+
+Existing approaches to improving factuality, including abstention and factuality-driven optimization, follow a coupled exploration-commitment paradigm, in which intermediate reasoning is unconditionally propagated to the final output, limiting fine-grained control over information selection and integration.
+
+### The Proposed Solution
+
+The authors propose an Exploration-Commitment Decoupling paradigm that disentangles knowledge exploration from final commitment, enabling models to explore with awareness while answering cautiously. They instantiate the paradigm with Calibration-Aware Generation (CAG), a framework that equips models with end-to-end, calibration-aware generation capabilities, by augmenting intermediate reasoning with calibrated reliability estimates and prioritizing reliable content in final outputs.
+
+### Results
+
+Across five long-form factuality benchmarks and multiple model families, CAG improves factuality by up to 13%, while reducing decoding time by up to 37%.
+
+The paper was submitted on May 3, 2026, and represents a recent contribution to improving the reliability of language model generations through principled calibration methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "48ccbd32-6440-42a6-aec3-5d893ff5d497",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "2a924fd9-c304-4b50-9b1f-337860c87735",
+  "toolUseResult": {
+    "query": "\"Only Say What You Know\" calibration-aware generation long-form factuality arxiv 2605.01749 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UtrgdMFxwsDVVnLQMyrCEw",
+        "content": [
+          {
+            "title": "[2605.01749] Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality",
+            "url": "https://arxiv.org/abs/2605.01749"
+          },
+          {
+            "title": "Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality",
+            "url": "https://arxiv.org/html/2605.01749"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/recent?skip=1822&show=1000"
+          },
+          {
+            "title": "Conformal Linguistic Calibration: Trading-off between Factuality and Specificity",
+            "url": "https://arxiv.org/html/2502.19110v1"
+          },
+          {
+            "title": "Atomic Calibration of LLMs in Long-Form Generations",
+            "url": "https://arxiv.org/html/2410.13246v1"
+          },
+          {
+            "title": "Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration",
+            "url": "https://arxiv.org/html/2604.12046"
+          },
+          {
+            "title": "[2604.12046] Think Through Uncertainty: Improving Long-Form Generation Factuality via Reasoning Calibration",
+            "url": "https://arxiv.org/abs/2604.12046"
+          },
+          {
+            "title": "Calibrating Long-form Generations from Large Language Models",
+            "url": "https://arxiv.org/html/2402.06544v1"
+          },
+          {
+            "title": "Linguistic Calibration of Long-Form Generations",
+            "url": "https://arxiv.org/html/2404.00474v2"
+          },
+          {
+            "title": "[2404.00474] Linguistic Calibration of Long-Form Generations",
+            "url": "https://arxiv.org/abs/2404.00474"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about the paper with arxiv ID 2605.01749:\n\n## \"Only Say What You Know: Calibration-Aware Generation for Long-Form Factuality\"\n\nLarge Reasoning Models achieve strong performance on complex tasks but remain prone to hallucinations, particularly in long-form generation where errors compound across reasoning steps.\n\n### The Problem with Current Approaches\n\nExisting approaches to improving factuality, including abstention and factuality-driven optimization, follow a coupled exploration-commitment paradigm, in which intermediate reasoning is unconditionally propagated to the final output, limiting fine-grained control over information selection and integration.\n\n### The Proposed Solution\n\nThe authors propose an Exploration-Commitment Decoupling paradigm that disentangles knowledge exploration from final commitment, enabling models to explore with awareness while answering cautiously. They instantiate the paradigm with Calibration-Aware Generation (CAG), a framework that equips models with end-to-end, calibration-aware generation capabilities, by augmenting intermediate reasoning with calibrated reliability estimates and prioritizing reliable content in final outputs.\n\n### Results\n\nAcross five long-form factuality benchmarks and multiple model families, CAG improves factuality by up to 13%, while reducing decoding time by up to 37%.\n\nThe paper was submitted on May 3, 2026, and represents a recent contribution to improving the reliability of language model generations through principled calibration methods."
+    ],
+    "durationSeconds": 10.156864395000001
+  },
+  "sourceToolAssistantUUID": "48ccbd32-6440-42a6-aec3-5d893ff5d497",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-15 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2a924fd9-c304-4b50-9b1f-337860c87735",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level uncertainty calibration via representation steering",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-15T13:26:44.598Z_
+
+Good — the Ji et al. paper, CURE, CAG, and EMNLP 2026 deadline all verified. Now let me check additional claims and search for competing/missing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a924fd9-c304-4b50-9b1f-337860c87735",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Rxgbpg3rfoQ9GDnwKi",
+  "type": "assistant",
+  "uuid": "4f087f20-85ff-46c3-bb2b-f583e55f9fbb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KUGQ2MSxy52L9TYmGsnxVy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 928,
+      "cache_creation_input_tokens": 2454,
+      "cache_read_input_tokens": 25292,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2454,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 928,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 25292,
+          "cache_creation_input_tokens": 2454,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2454
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T13:26:45.602Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TY5bfX12iBxo7C6KX79tUE`</summary>
+
+```json
+{
+  "query": "Semantic Entropy Probes hallucination detection linear probes hidden states ICML 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f087f20-85ff-46c3-bb2b-f583e55f9fbb",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Rxgbpg3rfoQ9GDnwKi",
+  "type": "assistant",
+  "uuid": "aa1b1a2d-1c44-449d-a9aa-99d1ec849749",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KUGQ2MSxy52L9TYmGsnxVy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 928,
+      "cache_creation_input_tokens": 2454,
+      "cache_read_input_tokens": 25292,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2454,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 928,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 25292,
+          "cache_creation_input_tokens": 2454,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2454
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T13:26:46.610Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LtYVbbTh1gVwj6ri12N3QH`</summary>
+
+```json
+{
+  "query": "\"Atomic Calibration\" LLMs long-form generations AACL-IJCNLP 2025 arxiv 2410.13246"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa1b1a2d-1c44-449d-a9aa-99d1ec849749",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Rxgbpg3rfoQ9GDnwKi",
+  "type": "assistant",
+  "uuid": "bdaf8cf3-dbd8-42d5-870c-663b66ac7bde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KUGQ2MSxy52L9TYmGsnxVy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 928,
+      "cache_creation_input_tokens": 2454,
+      "cache_read_input_tokens": 25292,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2454,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 928,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 25292,
+          "cache_creation_input_tokens": 2454,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2454
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T13:26:47.082Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TkF8pcCfAimGcDcDQ8Csfy`</summary>
+
+```json
+{
+  "query": "claim-level hallucination detection internal representations activation steering 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bdaf8cf3-dbd8-42d5-870c-663b66ac7bde",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Rxgbpg3rfoQ9GDnwKi",
+  "type": "assistant",
+  "uuid": "3e6519ca-a793-4297-8fee-f8d354c73828",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KUGQ2MSxy52L9TYmGsnxVy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 928,
+      "cache_creation_input_tokens": 2454,
+      "cache_read_input_tokens": 25292,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2454,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 928,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 25292,
+          "cache_creation_input_tokens": 2454,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2454
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T13:26:47.882Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Cd4TsgTSTArRjrG3LfWp8u`</summary>
+
+```json
+{
+  "query": "PCNET probabilistic circuits residual streams hallucination detection arxiv 2605.05953"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e6519ca-a793-4297-8fee-f8d354c73828",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Rxgbpg3rfoQ9GDnwKi",
+  "type": "assistant",
+  "uuid": "92d5241c-e288-4594-9f35-b4d4ad597486",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KUGQ2MSxy52L9TYmGsnxVy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 928,
+      "cache_creation_input_tokens": 2454,
+      "cache_read_input_tokens": 25292,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2454,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 928,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 25292,
+          "cache_creation_input_tokens": 2454,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2454
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T13:26:52.974Z_
+
+<details><summary>↩ Tool result · `toolu_01LtYVbbTh1gVwj6ri12N3QH`</summary>
+
+```text
+Web search results for query: ""Atomic Calibration" LLMs long-form generations AACL-IJCNLP 2025 arxiv 2410.13246"
+
+Links: [{"title":"[2410.13246] Atomic Calibration of LLMs in Long-Form Generations","url":"https://arxiv.org/abs/2410.13246"},{"title":"Atomic Calibration of LLMs in Long-Form Generations","url":"https://arxiv.org/pdf/2410.13246"},{"title":"Atomic Calibration of LLMs in Long-Form Generations","url":"https://www.researchgate.net/publication/385010223_Atomic_Calibration_of_LLMs_in_Long-Form_Generations"},{"title":"Atomic Calibration of LLMs in Long-Form Generations - ACL Anthology","url":"https://aclanthology.org/2025.findings-ijcnlp.9/"},{"title":"open source AI","url":"https://bytez.com/docs/arxiv/2410.13246/paper"},{"title":"Atomic Calibration of LLMs in Long-Form Generations","url":"https://aclanthology.org/2025.findings-ijcnlp.9.pdf"},{"title":"Atomic Calibration of LLMs in Long-Form Generations | OpenReview","url":"https://openreview.net/forum?id=rzsjUC45xf"},{"title":"Atomic Consistency Preference Optimization for Long-Form Question Answering","url":"https://arxiv.org/html/2505.09039v1"},{"title":"Atomic Thinking of LLMs: Decoupling and Exploring Mathematical Reasoning Abilities","url":"https://arxiv.org/html/2509.25725v1"},{"title":"Simple Factuality Probes Detect Hallucinations in Long- ...","url":"https://aclanthology.org/2025.findings-emnlp.880.pdf"}]
+
+Based on the search results, I've found information about the paper you're looking for:
+
+## "Atomic Calibration of LLMs in Long-Form Generations"
+
+The paper "Atomic Calibration of LLMs in Long-Form Generations" by Caiqi Zhang and colleagues was published in the Proceedings of the 14th International Joint Conference on Natural Language Processing and the 4th Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics (AACL-IJCNLP 2025) in Mumbai, India, pages 148–169.
+
+### Key Contributions:
+
+The paper systematically studies atomic calibration, which evaluates factuality calibration at a fine-grained level by decomposing long responses into atomic claims. The authors categorize existing confidence elicitation methods into discriminative and generative types, and propose two new confidence fusion strategies to improve calibration.
+
+### Main Findings:
+
+The experiments demonstrate that LLMs exhibit poorer calibration at the atomic level during long-form generation. The atomic calibration approach uncovers insightful patterns regarding the alignment of confidence methods and the changes of confidence throughout generation.
+
+The arXiv identifier is **2410.13246**, and the paper addresses the challenge that prior work mainly focuses on short-form tasks using a single response-level score (macro calibration), which is insufficient for long-form outputs that may contain both accurate and inaccurate claims.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bdaf8cf3-dbd8-42d5-870c-663b66ac7bde",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "48eb477c-3d72-48ec-adec-93a43d8658c6",
+  "toolUseResult": {
+    "query": "\"Atomic Calibration\" LLMs long-form generations AACL-IJCNLP 2025 arxiv 2410.13246",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VDabJR4fVH3Jf1jByxtuQg",
+        "content": [
+          {
+            "title": "[2410.13246] Atomic Calibration of LLMs in Long-Form Generations",
+            "url": "https://arxiv.org/abs/2410.13246"
+          },
+          {
+            "title": "Atomic Calibration of LLMs in Long-Form Generations",
+            "url": "https://arxiv.org/pdf/2410.13246"
+          },
+          {
+            "title": "Atomic Calibration of LLMs in Long-Form Generations",
+            "url": "https://www.researchgate.net/publication/385010223_Atomic_Calibration_of_LLMs_in_Long-Form_Generations"
+          },
+          {
+            "title": "Atomic Calibration of LLMs in Long-Form Generations - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-ijcnlp.9/"
+          },
+          {
+            "title": "open source AI",
+            "url": "https://bytez.com/docs/arxiv/2410.13246/paper"
+          },
+          {
+            "title": "Atomic Calibration of LLMs in Long-Form Generations",
+            "url": "https://aclanthology.org/2025.findings-ijcnlp.9.pdf"
+          },
+          {
+            "title": "Atomic Calibration of LLMs in Long-Form Generations | OpenReview",
+            "url": "https://openreview.net/forum?id=rzsjUC45xf"
+          },
+          {
+            "title": "Atomic Consistency Preference Optimization for Long-Form Question Answering",
+            "url": "https://arxiv.org/html/2505.09039v1"
+          },
+          {
+            "title": "Atomic Thinking of LLMs: Decoupling and Exploring Mathematical Reasoning Abilities",
+            "url": "https://arxiv.org/html/2509.25725v1"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long- ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I've found information about the paper you're looking for:\n\n## \"Atomic Calibration of LLMs in Long-Form Generations\"\n\nThe paper \"Atomic Calibration of LLMs in Long-Form Generations\" by Caiqi Zhang and colleagues was published in the Proceedings of the 14th International Joint Conference on Natural Language Processing and the 4th Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics (AACL-IJCNLP 2025) in Mumbai, India, pages 148–169.\n\n### Key Contributions:\n\nThe paper systematically studies atomic calibration, which evaluates factuality calibration at a fine-grained level by decomposing long responses into atomic claims. The authors categorize existing confidence elicitation methods into discriminative and generative types, and propose two new confidence fusion strategies to improve calibration.\n\n### Main Findings:\n\nThe experiments demonstrate that LLMs exhibit poorer calibration at the atomic level during long-form generation. The atomic calibration approach uncovers insightful patterns regarding the alignment of confidence methods and the changes of confidence throughout generation.\n\nThe arXiv identifier is **2410.13246**, and the paper addresses the challenge that prior work mainly focuses on short-form tasks using a single response-level score (macro calibration), which is insufficient for long-form outputs that may contain both accurate and inaccurate claims."
+    ],
+    "durationSeconds": 6.360176185
+  },
+  "sourceToolAssistantUUID": "bdaf8cf3-dbd8-42d5-870c-663b66ac7bde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T13:26:54.003Z_
+
+<details><summary>↩ Tool result · `toolu_01TY5bfX12iBxo7C6KX79tUE`</summary>
+
+```text
+Web search results for query: "Semantic Entropy Probes hallucination detection linear probes hidden states ICML 2024"
+
+Links: [{"title":"ICML Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs","url":"https://icml.cc/virtual/2024/39442"},{"title":"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs","url":"https://arxiv.org/pdf/2406.15927"},{"title":"[2406.15927] Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs","url":"https://arxiv.org/abs/2406.15927"},{"title":"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs - OATML","url":"https://oatml.cs.ox.ac.uk/publications/20240621_KossenSemantic.html"},{"title":"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs | OpenReview","url":"https://openreview.net/forum?id=Zd0XLr6JKn"},{"title":"GitHub - OATML/semantic-entropy-probes · GitHub","url":"https://github.com/OATML/semantic-entropy-probes"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/html/2509.03531v1"},{"title":"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs | Request PDF","url":"https://www.researchgate.net/publication/381666455_Semantic_Entropy_Probes_Robust_and_Cheap_Hallucination_Detection_in_LLMs"},{"title":"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs | alphaXiv","url":"https://www.alphaxiv.org/overview/2406.15927v1"},{"title":"Semantic Entropy Probes for Hallucination Detection in LLMs","url":"https://www.emergentmind.com/papers/2406.15927"}]
+
+Based on the search results, I found detailed information about this research:
+
+## Semantic Entropy Probes: Overview
+
+Semantic entropy probes (SEPs) are a cheap and reliable method for uncertainty quantification in Large Language Models (LLMs). Hallucinations, which are plausible-sounding but factually incorrect and arbitrary model generations, present a major challenge to the practical adoption of LLMs.
+
+## The Problem and Solution
+
+Recent work proposes semantic entropy (SE), which can reliably detect hallucinations by quantifying the uncertainty over different generations by estimating entropy over semantically equivalent sets of outputs. However, the 5-to-10-fold increase in computation cost associated with SE computation hinders practical adoption.
+
+SEPs directly approximate SE from the hidden states of a single generation. SEPs are simple to train and do not require sampling multiple model generations at test time, reducing the overhead of semantic uncertainty quantification to almost zero.
+
+## Publication Details
+
+The work was presented at the ICML Workshop on Foundation Models in the Wild, 2024, and the authors include Jannik Kossen, Jiatong Han, Muhammed Razzak, Lisa Schut, Shreshth Malik, and Yarin Gal from the University of Oxford's OATML group.
+
+The paper is available on arXiv (2406.15927) with code made available on GitHub at OATML/semantic-entropy-probes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa1b1a2d-1c44-449d-a9aa-99d1ec849749",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "323e1417-9145-4b66-971b-5187a6961300",
+  "toolUseResult": {
+    "query": "Semantic Entropy Probes hallucination detection linear probes hidden states ICML 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TeuvhsrXoZESVHNMmEMwqA",
+        "content": [
+          {
+            "title": "ICML Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs",
+            "url": "https://icml.cc/virtual/2024/39442"
+          },
+          {
+            "title": "Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs",
+            "url": "https://arxiv.org/pdf/2406.15927"
+          },
+          {
+            "title": "[2406.15927] Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs",
+            "url": "https://arxiv.org/abs/2406.15927"
+          },
+          {
+            "title": "Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs - OATML",
+            "url": "https://oatml.cs.ox.ac.uk/publications/20240621_KossenSemantic.html"
+          },
+          {
+            "title": "Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=Zd0XLr6JKn"
+          },
+          {
+            "title": "GitHub - OATML/semantic-entropy-probes · GitHub",
+            "url": "https://github.com/OATML/semantic-entropy-probes"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/html/2509.03531v1"
+          },
+          {
+            "title": "Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs | Request PDF",
+            "url": "https://www.researchgate.net/publication/381666455_Semantic_Entropy_Probes_Robust_and_Cheap_Hallucination_Detection_in_LLMs"
+          },
+          {
+            "title": "Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2406.15927v1"
+          },
+          {
+            "title": "Semantic Entropy Probes for Hallucination Detection in LLMs",
+            "url": "https://www.emergentmind.com/papers/2406.15927"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about this research:\n\n## Semantic Entropy Probes: Overview\n\nSemantic entropy probes (SEPs) are a cheap and reliable method for uncertainty quantification in Large Language Models (LLMs). Hallucinations, which are plausible-sounding but factually incorrect and arbitrary model generations, present a major challenge to the practical adoption of LLMs.\n\n## The Problem and Solution\n\nRecent work proposes semantic entropy (SE), which can reliably detect hallucinations by quantifying the uncertainty over different generations by estimating entropy over semantically equivalent sets of outputs. However, the 5-to-10-fold increase in computation cost associated with SE computation hinders practical adoption.\n\nSEPs directly approximate SE from the hidden states of a single generation. SEPs are simple to train and do not require sampling multiple model generations at test time, reducing the overhead of semantic uncertainty quantification to almost zero.\n\n## Publication Details\n\nThe work was presented at the ICML Workshop on Foundation Models in the Wild, 2024, and the authors include Jannik Kossen, Jiatong Han, Muhammed Razzak, Lisa Schut, Shreshth Malik, and Yarin Gal from the University of Oxford's OATML group.\n\nThe paper is available on arXiv (2406.15927) with code made available on GitHub at OATML/semantic-entropy-probes."
+    ],
+    "durationSeconds": 8.396879610999997
+  },
+  "sourceToolAssistantUUID": "aa1b1a2d-1c44-449d-a9aa-99d1ec849749",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T13:26:54.794Z_
+
+<details><summary>↩ Tool result · `toolu_01Cd4TsgTSTArRjrG3LfWp8u`</summary>
+
+```text
+Web search results for query: "PCNET probabilistic circuits residual streams hallucination detection arxiv 2605.05953"
+
+Links: [{"title":"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits","url":"https://arxiv.org/html/2605.05953"},{"title":"[2605.05953] Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits","url":"https://arxiv.org/abs/2605.05953"},{"title":"[2605.07209] Hallucination Detection via Activations of Open-Weight Proxy Analyzers","url":"https://arxiv.org/abs/2605.07209"},{"title":"[2601.02170] Streaming Hallucination Detection in Long Chain-of-Thought Reasoning","url":"https://arxiv.org/abs/2601.02170"},{"title":"Computer Science Apr 2025","url":"https://www.arxiv.org/list/cs/2025-04?skip=5650&show=25"},{"title":"Hallucination Detection: A Probabilistic Framework Using Embeddings Distance Analysis","url":"https://arxiv.org/html/2502.08663v1"},{"title":"[2502.08663] Hallucination Detection: A Probabilistic Framework Using Embeddings Distance Analysis","url":"https://arxiv.org/abs/2502.08663"},{"title":"A Probabilistic Framework for LLM Hallucination Detection via Belief Tree Propagation","url":"https://arxiv.org/html/2406.06950v1"},{"title":"Hallucination Detection via Activations of Open-Weight Proxy Analyzers","url":"https://arxiv.org/html/2605.07209"},{"title":"Streaming Hallucination Detection in Long Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2601.02170v1"}]
+
+Based on the search results, here's what I found about the arxiv paper 2605.05953:
+
+## Paper Summary
+
+The paper proposes PCNet, a Probabilistic Circuit trained as a tractable density estimator over the LLM residual stream that detects hallucinations as geometric anomalies on the factual manifold via exact Negative Log-Likelihood computation, without needing sampling, external verifiers, or weight modifications.
+
+## Key Contributions
+
+PCNet is used as a dynamic gate to distinguish hallucinated from factual hidden states at each decoding step, triggering PC-LDCD (Probabilistic Circuit Latent Density Contrastive Decoding), which applies corrections only when latent geometry deviates from factual regions while leaving correct generations untouched.
+
+## Performance Results
+
+The method achieves near-perfect hallucination detection across CoQA, SQuAD v2.0, and TriviaQA, with AUROC reaching up to 99%, tested across four LLMs ranging from 1B to 8B models and four benchmarks covering conversational reasoning, knowledge-intensive QA, reading comprehension, and truthfulness. PC-LDCD obtains the highest True+Info, MC2, and MC3 scores on TruthfulQA in three out of four models compared with state-of-the-art baselines.
+
+The paper was published on May 7, 2026, and addresses the important problem of avoiding over-correction of already-correct model outputs while detecting hallucinations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "92d5241c-e288-4594-9f35-b4d4ad597486",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "27b8412b-2a86-481c-949e-ba98db28f33c",
+  "toolUseResult": {
+    "query": "PCNET probabilistic circuits residual streams hallucination detection arxiv 2605.05953",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01J26afQM5ZdkF146rJn7YYj",
+        "content": [
+          {
+            "title": "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits",
+            "url": "https://arxiv.org/html/2605.05953"
+          },
+          {
+            "title": "[2605.05953] Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits",
+            "url": "https://arxiv.org/abs/2605.05953"
+          },
+          {
+            "title": "[2605.07209] Hallucination Detection via Activations of Open-Weight Proxy Analyzers",
+            "url": "https://arxiv.org/abs/2605.07209"
+          },
+          {
+            "title": "[2601.02170] Streaming Hallucination Detection in Long Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/abs/2601.02170"
+          },
+          {
+            "title": "Computer Science Apr 2025",
+            "url": "https://www.arxiv.org/list/cs/2025-04?skip=5650&show=25"
+          },
+          {
+            "title": "Hallucination Detection: A Probabilistic Framework Using Embeddings Distance Analysis",
+            "url": "https://arxiv.org/html/2502.08663v1"
+          },
+          {
+            "title": "[2502.08663] Hallucination Detection: A Probabilistic Framework Using Embeddings Distance Analysis",
+            "url": "https://arxiv.org/abs/2502.08663"
+          },
+          {
+            "title": "A Probabilistic Framework for LLM Hallucination Detection via Belief Tree Propagation",
+            "url": "https://arxiv.org/html/2406.06950v1"
+          },
+          {
+            "title": "Hallucination Detection via Activations of Open-Weight Proxy Analyzers",
+            "url": "https://arxiv.org/html/2605.07209"
+          },
+          {
+            "title": "Streaming Hallucination Detection in Long Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2601.02170v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the arxiv paper 2605.05953:\n\n## Paper Summary\n\nThe paper proposes PCNet, a Probabilistic Circuit trained as a tractable density estimator over the LLM residual stream that detects hallucinations as geometric anomalies on the factual manifold via exact Negative Log-Likelihood computation, without needing sampling, external verifiers, or weight modifications.\n\n## Key Contributions\n\nPCNet is used as a dynamic gate to distinguish hallucinated from factual hidden states at each decoding step, triggering PC-LDCD (Probabilistic Circuit Latent Density Contrastive Decoding), which applies corrections only when latent geometry deviates from factual regions while leaving correct generations untouched.\n\n## Performance Results\n\nThe method achieves near-perfect hallucination detection across CoQA, SQuAD v2.0, and TriviaQA, with AUROC reaching up to 99%, tested across four LLMs ranging from 1B to 8B models and four benchmarks covering conversational reasoning, knowledge-intensive QA, reading comprehension, and truthfulness. PC-LDCD obtains the highest True+Info, MC2, and MC3 scores on TruthfulQA in three out of four models compared with state-of-the-art baselines.\n\nThe paper was published on May 7, 2026, and addresses the important problem of avoiding over-correction of already-correct model outputs while detecting hallucinations."
+    ],
+    "durationSeconds": 6.909093929999999
+  },
+  "sourceToolAssistantUUID": "92d5241c-e288-4594-9f35-b4d4ad597486",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T13:26:56.047Z_
+
+<details><summary>↩ Tool result · `toolu_01TkF8pcCfAimGcDcDQ8Csfy`</summary>
+
+```text
+Web search results for query: "claim-level hallucination detection internal representations activation steering 2026"
+
+Links: [{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"Internal Representations as Indicators of Hallucinations in Agent Tool Selection | OpenReview","url":"https://openreview.net/forum?id=QbuBZvwcDZ"},{"title":"Activation Steering Decoding: Mitigating Hallucination in ...","url":"https://aclanthology.org/2025.acl-long.634.pdf"},{"title":"Dynamic Multimodal Activation Steering for Hallucination ...","url":"https://arxiv.org/pdf/2602.21704"},{"title":"Logical Consistency as a Bridge: Improving LLM Hallucination Detection via Label Constraint Modeling between Responses and Self-Judgments","url":"https://arxiv.org/html/2605.03971v1"},{"title":"Mitigating Entangled Steering in Large Vision-Language Models for Hallucination Reduction | Request PDF","url":"https://www.researchgate.net/publication/403683244_Mitigating_Entangled_Steering_in_Large_Vision-Language_Models_for_Hallucination_Reduction"},{"title":"Activation Steering Decoding: Mitigating Hallucination in Large Vision-Language Models through Bidirectional Hidden State Intervention","url":"https://chatpaper.com/paper/176030"},{"title":"Hallucination Detection via Internal Representations: An Empirical Study","url":"https://huggingface.co/blog/krogoldAI/llm-hallucination-detection"},{"title":"Steering the Verifiability of Multimodal AI Hallucinations","url":"https://arxiv.org/html/2604.06714v1"},{"title":"A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202510.0540/v1"}]
+
+The search has returned comprehensive results on claim-level hallucination detection and activation steering techniques. Here's a summary of the key research findings from 2026:
+
+## Recent Research on Hallucination Detection and Activation Steering (2026)
+
+**Internal Representations for Detection:**
+Cross-Layer Attention Probing (CLAP) trains lightweight classifiers on the model's own activations to flag likely hallucinations in real time. Additionally, hallucination-relevant information is encoded in the model's activations, achieving approximately 84% accuracy with 91% AUC, and notably this signal is concentrated in specific mid-layers rather than distributed across the network.
+
+**Activation Steering Methods:**
+Anthropic's research demonstrates how internal "concept vectors" can be steered so that Claude learns when not to answer, turning refusal into a learned policy. Dynamic multimodal activation steering (DMAS) is a training-free approach that focuses on truthfulness-related and visual perception-related attention heads, explicitly modeling how truthfulness steering vectors vary across semantic contexts.
+
+**Agent-Level Hallucination Detection:**
+A computationally efficient framework detects tool-calling hallucinations in real-time by leveraging LLMs' internal representations during the same forward pass, demonstrating strong detection performance (up to 86.4% accuracy) while maintaining real-time inference capabilities.
+
+**Broader Context:**
+Research reframes hallucinations as a systemic incentive problem and introduces concrete ways to measure and reduce them across languages and even multimodal settings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3e6519ca-a793-4297-8fee-f8d354c73828",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "85f9f188-163f-420a-aca6-85a0495a21bf",
+  "toolUseResult": {
+    "query": "claim-level hallucination detection internal representations activation steering 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016U5oVyMKtbDSW8paHemSLR",
+        "content": [
+          {
+            "title": "LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.",
+            "url": "https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"
+          },
+          {
+            "title": "Internal Representations as Indicators of Hallucinations in Agent Tool Selection | OpenReview",
+            "url": "https://openreview.net/forum?id=QbuBZvwcDZ"
+          },
+          {
+            "title": "Activation Steering Decoding: Mitigating Hallucination in ...",
+            "url": "https://aclanthology.org/2025.acl-long.634.pdf"
+          },
+          {
+            "title": "Dynamic Multimodal Activation Steering for Hallucination ...",
+            "url": "https://arxiv.org/pdf/2602.21704"
+          },
+          {
+            "title": "Logical Consistency as a Bridge: Improving LLM Hallucination Detection via Label Constraint Modeling between Responses and Self-Judgments",
+            "url": "https://arxiv.org/html/2605.03971v1"
+          },
+          {
+            "title": "Mitigating Entangled Steering in Large Vision-Language Models for Hallucination Reduction | Request PDF",
+            "url": "https://www.researchgate.net/publication/403683244_Mitigating_Entangled_Steering_in_Large_Vision-Language_Models_for_Hallucination_Reduction"
+          },
+          {
+            "title": "Activation Steering Decoding: Mitigating Hallucination in Large Vision-Language Models through Bidirectional Hidden State Intervention",
+            "url": "https://chatpaper.com/paper/176030"
+          },
+          {
+            "title": "Hallucination Detection via Internal Representations: An Empirical Study",
+            "url": "https://huggingface.co/blog/krogoldAI/llm-hallucination-detection"
+          },
+          {
+            "title": "Steering the Verifiability of Multimodal AI Hallucinations",
+            "url": "https://arxiv.org/html/2604.06714v1"
+          },
+          {
+            "title": "A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org",
+            "url": "https://www.preprints.org/manuscript/202510.0540/v1"
+          }
+        ]
+      },
+      "The search has returned comprehensive results on claim-level hallucination detection and activation steering techniques. Here's a summary of the key research findings from 2026:\n\n## Recent Research on Hallucination Detection and Activation Steering (2026)\n\n**Internal Representations for Detection:**\nCross-Layer Attention Probing (CLAP) trains lightweight classifiers on the model's own activations to flag likely hallucinations in real time. Additionally, hallucination-relevant information is encoded in the model's activations, achieving approximately 84% accuracy with 91% AUC, and notably this signal is concentrated in specific mid-layers rather than distributed across the network.\n\n**Activation Steering Methods:**\nAnthropic's research demonstrates how internal \"concept vectors\" can be steered so that Claude learns when not to answer, turning refusal into a learned policy. Dynamic multimodal activation steering (DMAS) is a training-free approach that focuses on truthfulness-related and visual perception-related attention heads, explicitly modeling how truthfulness steering vectors vary across semantic contexts.\n\n**Agent-Level Hallucination Detection:**\nA computationally efficient framework detects tool-calling hallucinations in real-time by leveraging LLMs' internal representations during the same forward pass, demonstrating strong detection performance (up to 86.4% accuracy) while maintaining real-time inference capabilities.\n\n**Broader Context:**\nResearch reframes hallucinations as a systemic incentive problem and introduces concrete ways to measure and reduce them across languages and even multimodal settings."
+    ],
+    "durationSeconds": 8.962123644
+  },
+  "sourceToolAssistantUUID": "3e6519ca-a793-4297-8fee-f8d354c73828",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-15T13:26:56.050Z_
+
+```json
+{
+  "parentUuid": "85f9f188-163f-420a-aca6-85a0495a21bf",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "fda572a2-1973-4743-a0d9-6e22afcc2d40",
+  "timestamp": "2026-05-15T13:26:56.050Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-15 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "fda572a2-1973-4743-a0d9-6e22afcc2d40",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level uncertainty calibration via representation steering",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-15T13:27:05.149Z_
+
+All cited papers verified. Now let me search for competing work the generator may have missed, and check the activation steering for hallucination reduction space more carefully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fda572a2-1973-4743-a0d9-6e22afcc2d40",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RypAX2pYu8Fe3ZyVtw",
+  "type": "assistant",
+  "uuid": "40991eab-30e0-4407-8521-2f9ebd4b2445",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FBZs8oncitFSfXx7Q392Uo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 854,
+      "cache_creation_input_tokens": 4029,
+      "cache_read_input_tokens": 27746,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 854,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 27746,
+          "cache_creation_input_tokens": 4029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T13:27:11.332Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011cmuvLKUWVLud9SGV9AqV6`</summary>
+
+```json
+{
+  "query": "activation steering hallucination reduction claim-level long-form generation training-free 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40991eab-30e0-4407-8521-2f9ebd4b2445",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RypAX2pYu8Fe3ZyVtw",
+  "type": "assistant",
+  "uuid": "8639ad3c-d247-423b-bb1c-7057ce105284",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FBZs8oncitFSfXx7Q392Uo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 854,
+      "cache_creation_input_tokens": 4029,
+      "cache_read_input_tokens": 27746,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 854,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 27746,
+          "cache_creation_input_tokens": 4029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T13:27:12.058Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017ahPM1iy8GHSPYLEQunnTV`</summary>
+
+```json
+{
+  "query": "\"Activation Steering Decoding\" hallucination ACL 2025 hidden state intervention"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8639ad3c-d247-423b-bb1c-7057ce105284",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RypAX2pYu8Fe3ZyVtw",
+  "type": "assistant",
+  "uuid": "8a258b08-04dc-4be7-a82d-a8454ecbb785",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FBZs8oncitFSfXx7Q392Uo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 854,
+      "cache_creation_input_tokens": 4029,
+      "cache_read_input_tokens": 27746,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 854,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 27746,
+          "cache_creation_input_tokens": 4029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-15T13:27:12.592Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013PR6FuRjLmAkPatB7nxSST`</summary>
+
+```json
+{
+  "query": "representation intervention hallucination mitigation per-claim fine-grained 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a258b08-04dc-4be7-a82d-a8454ecbb785",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RypAX2pYu8Fe3ZyVtw",
+  "type": "assistant",
+  "uuid": "725f310c-c832-4cba-a852-5176f9f0d9d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FBZs8oncitFSfXx7Q392Uo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 854,
+      "cache_creation_input_tokens": 4029,
+      "cache_read_input_tokens": 27746,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 854,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 27746,
+          "cache_creation_input_tokens": 4029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T13:27:18.553Z_
+
+<details><summary>↩ Tool result · `toolu_017ahPM1iy8GHSPYLEQunnTV`</summary>
+
+```text
+Web search results for query: ""Activation Steering Decoding" hallucination ACL 2025 hidden state intervention"
+
+Links: [{"title":"Activation Steering Decoding: Mitigating Hallucination in Large Vision-Language Models through Bidirectional Hidden State Intervention - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.634/"},{"title":"Activation Steering Decoding: Mitigating Hallucination in ...","url":"https://aclanthology.org/2025.acl-long.634.pdf"},{"title":"Activation Steering Decoding: Mitigating Hallucination in Large Vision-Language Models through Bidirectional Hidden State Intervention","url":"https://chatpaper.com/paper/176030"},{"title":"Activation Steering Decoding: Mitigating Hallucination in Large Vision-Language Models through Bidirectional Hidden State Intervention | Underline","url":"https://underline.io/lecture/121289-activation-steering-decoding-mitigating-hallucination-in-large-vision-language-models-through-bidirectional-hidden-state-intervention"},{"title":"Activation Steering Decoding: Mitigating Hallucination in Large Vision-Language Models through Bidirectional Hidden State Intervention | Request PDF","url":"https://www.researchgate.net/publication/394298568_Activation_Steering_Decoding_Mitigating_Hallucination_in_Large_Vision-Language_Models_through_Bidirectional_Hidden_State_Intervention"},{"title":"Dynamic Multimodal Activation Steering for Hallucination ...","url":"https://arxiv.org/pdf/2602.21704"},{"title":"Mitigating Entangled Steering in Large Vision-Language Models for Hallucination Reduction | Request PDF","url":"https://www.researchgate.net/publication/403683244_Mitigating_Entangled_Steering_in_Large_Vision-Language_Models_for_Hallucination_Reduction"},{"title":"SteerVLM: Robust Model Control through Lightweight ...","url":"https://aclanthology.org/2025.findings-emnlp.1285.pdf"},{"title":"Activation Steering Decoding: Mitigating Hallucination in Large ...","url":"https://www.semanticscholar.org/paper/Activation-Steering-Decoding:-Mitigating-in-Large-Chen-Zhu/74e213aa78b90207652bf0e0f09b53c10b46fe00"},{"title":"Adaptive Residual-Update Steering for Low-Overhead Hallucination Mitigation in Large Vision Language Models","url":"https://arxiv.org/html/2511.10292"}]
+
+I found comprehensive information about the research paper you're looking for. Here are the key findings:
+
+## Activation Steering Decoding (ASD) - ACL 2025
+
+Activation Steering Decoding is a method for mitigating hallucination in Large Vision-Language Models through bidirectional hidden state intervention, published at the 63rd Annual Meeting of the Association for Computational Linguistics in July 2025.
+
+### Core Methodology
+
+The method identifies directional patterns of hallucination in the activation space using a small calibration set, then employs a contrast decoding mechanism that computes the difference between positive and negative steering predictions.
+
+Hallucinated content manifests as distinct, identifiable patterns in the model's intermediate activation, which the authors discovered through empirical investigation.
+
+### Key Advantages
+
+This approach effectively suppresses hallucination patterns while preserving the model's general capabilities, and extensive experiments demonstrate that the method significantly reduces hallucination across multiple benchmarks while maintaining performance on general visual understanding tasks.
+
+Notably, the approach requires no model re-training or architectural modifications, making it readily applicable to existing deployed models.
+
+### Authors and Citation
+
+The work was authored by Jingran Su, Jingfan Chen, Hongxin Li, Yuntao Chen, Li Qing, and Zhaoxiang Zhang, and was published in Vienna, Austria.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a258b08-04dc-4be7-a82d-a8454ecbb785",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "71578b47-9211-486d-9e9a-77e66fdea3b3",
+  "toolUseResult": {
+    "query": "\"Activation Steering Decoding\" hallucination ACL 2025 hidden state intervention",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BWwx7VNiNv4GwNTRq7obCB",
+        "content": [
+          {
+            "title": "Activation Steering Decoding: Mitigating Hallucination in Large Vision-Language Models through Bidirectional Hidden State Intervention - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.634/"
+          },
+          {
+            "title": "Activation Steering Decoding: Mitigating Hallucination in ...",
+            "url": "https://aclanthology.org/2025.acl-long.634.pdf"
+          },
+          {
+            "title": "Activation Steering Decoding: Mitigating Hallucination in Large Vision-Language Models through Bidirectional Hidden State Intervention",
+            "url": "https://chatpaper.com/paper/176030"
+          },
+          {
+            "title": "Activation Steering Decoding: Mitigating Hallucination in Large Vision-Language Models through Bidirectional Hidden State Intervention | Underline",
+            "url": "https://underline.io/lecture/121289-activation-steering-decoding-mitigating-hallucination-in-large-vision-language-models-through-bidirectional-hidden-state-intervention"
+          },
+          {
+            "title": "Activation Steering Decoding: Mitigating Hallucination in Large Vision-Language Models through Bidirectional Hidden State Intervention | Request PDF",
+            "url": "https://www.researchgate.net/publication/394298568_Activation_Steering_Decoding_Mitigating_Hallucination_in_Large_Vision-Language_Models_through_Bidirectional_Hidden_State_Intervention"
+          },
+          {
+            "title": "Dynamic Multimodal Activation Steering for Hallucination ...",
+            "url": "https://arxiv.org/pdf/2602.21704"
+          },
+          {
+            "title": "Mitigating Entangled Steering in Large Vision-Language Models for Hallucination Reduction | Request PDF",
+            "url": "https://www.researchgate.net/publication/403683244_Mitigating_Entangled_Steering_in_Large_Vision-Language_Models_for_Hallucination_Reduction"
+          },
+          {
+            "title": "SteerVLM: Robust Model Control through Lightweight ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.1285.pdf"
+          },
+          {
+            "title": "Activation Steering Decoding: Mitigating Hallucination in Large ...",
+            "url": "https://www.semanticscholar.org/paper/Activation-Steering-Decoding:-Mitigating-in-Large-Chen-Zhu/74e213aa78b90207652bf0e0f09b53c10b46fe00"
+          },
+          {
+            "title": "Adaptive Residual-Update Steering for Low-Overhead Hallucination Mitigation in Large Vision Language Models",
+            "url": "https://arxiv.org/html/2511.10292"
+          }
+        ]
+      },
+      "I found comprehensive information about the research paper you're looking for. Here are the key findings:\n\n## Activation Steering Decoding (ASD) - ACL 2025\n\nActivation Steering Decoding is a method for mitigating hallucination in Large Vision-Language Models through bidirectional hidden state intervention, published at the 63rd Annual Meeting of the Association for Computational Linguistics in July 2025.\n\n### Core Methodology\n\nThe method identifies directional patterns of hallucination in the activation space using a small calibration set, then employs a contrast decoding mechanism that computes the difference between positive and negative steering predictions.\n\nHallucinated content manifests as distinct, identifiable patterns in the model's intermediate activation, which the authors discovered through empirical investigation.\n\n### Key Advantages\n\nThis approach effectively suppresses hallucination patterns while preserving the model's general capabilities, and extensive experiments demonstrate that the method significantly reduces hallucination across multiple benchmarks while maintaining performance on general visual understanding tasks.\n\nNotably, the approach requires no model re-training or architectural modifications, making it readily applicable to existing deployed models.\n\n### Authors and Citation\n\nThe work was authored by Jingran Su, Jingfan Chen, Hongxin Li, Yuntao Chen, Li Qing, and Zhaoxiang Zhang, and was published in Vienna, Austria."
+    ],
+    "durationSeconds": 6.4918116510000035
+  },
+  "sourceToolAssistantUUID": "8a258b08-04dc-4be7-a82d-a8454ecbb785",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T13:27:18.724Z_
+
+<details><summary>↩ Tool result · `toolu_011cmuvLKUWVLud9SGV9AqV6`</summary>
+
+```text
+Web search results for query: "activation steering hallucination reduction claim-level long-form generation training-free 2025 2026"
+
+Links: [{"title":"Dynamic Multimodal Activation Steering for Hallucination Mitigation in Large Vision-Language Models","url":"https://arxiv.org/html/2602.21704v1"},{"title":"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories","url":"https://arxiv.org/html/2406.00034v2"},{"title":"Activation Steering Decoding: Mitigating Hallucination in Large Vision-Language Models through Bidirectional Hidden State Intervention - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.634/"},{"title":"Activation Steering Decoding: Mitigating Hallucination in ...","url":"https://aclanthology.org/2025.acl-long.634.pdf"},{"title":"Features as Rewards: Using Interpretability to Reduce Hallucinations","url":"https://www.goodfire.ai/research/rlfr"},{"title":"Dynamic Multimodal Activation Steering for Hallucination ...","url":"https://arxiv.org/pdf/2602.21704"},{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/html/2509.03531v1"},{"title":"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories | Proceedings of the ACM on Web Conference 2025","url":"https://dl.acm.org/doi/10.1145/3696410.3714640"},{"title":"[2602.21704] Dynamic Multimodal Activation Steering for Hallucination Mitigation in Large Vision-Language Models","url":"https://arxiv.org/abs/2602.21704"}]
+
+I found relevant research on activation steering for hallucination reduction. Here are the key findings from recent 2025-2026 papers:
+
+## Training-Free Activation Steering Methods
+
+Dynamic multimodal activation steering is a training-free approach to mitigate hallucination in Large Vision-Language Models (LVLMs) by dynamically intervening in attention heads during inference time. This method reduces hallucinations by 20.2 at the sentence level (CHAIRS) and by 3.8 at the image level (CHAIRI).
+
+Activation Steering Decoding (ASD) is a training-free approach that mitigates hallucination through targeted intervention in the model's intermediate activations.
+
+## Diverse Hallucination Categories
+
+Adaptive Activation Steering (ACT) is a tuning-free LLM truthfulness improvement method for diverse hallucination categories. ACT generates diverse steering vectors to enable customized interventions for various categories of hallucinations.
+
+## Long-Form Generation
+
+Recent work on hallucination detection in long-form generation includes a method for real-time identification of hallucinated tokens in long-form generations that targets entity-level hallucinations—e.g., fabricated names, dates, citations.
+
+## Claim-Level Analysis
+
+The most promising systems now add span-level verification: each generated claim is matched against retrieved evidence and flagged if unsupported, as shown in the REFIND SemEval 2025 benchmark.
+
+These papers represent recent advances in using activation steering as a training-free technique for reducing hallucinations across different granularity levels in language and vision-language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8639ad3c-d247-423b-bb1c-7057ce105284",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "28886c65-646e-4909-9378-a09077f9cb96",
+  "toolUseResult": {
+    "query": "activation steering hallucination reduction claim-level long-form generation training-free 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01F15kSfBm7VUzHg2sWFHksz",
+        "content": [
+          {
+            "title": "Dynamic Multimodal Activation Steering for Hallucination Mitigation in Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2602.21704v1"
+          },
+          {
+            "title": "Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories",
+            "url": "https://arxiv.org/html/2406.00034v2"
+          },
+          {
+            "title": "Activation Steering Decoding: Mitigating Hallucination in Large Vision-Language Models through Bidirectional Hidden State Intervention - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.634/"
+          },
+          {
+            "title": "Activation Steering Decoding: Mitigating Hallucination in ...",
+            "url": "https://aclanthology.org/2025.acl-long.634.pdf"
+          },
+          {
+            "title": "Features as Rewards: Using Interpretability to Reduce Hallucinations",
+            "url": "https://www.goodfire.ai/research/rlfr"
+          },
+          {
+            "title": "Dynamic Multimodal Activation Steering for Hallucination ...",
+            "url": "https://arxiv.org/pdf/2602.21704"
+          },
+          {
+            "title": "LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.",
+            "url": "https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/html/2509.03531v1"
+          },
+          {
+            "title": "Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories | Proceedings of the ACM on Web Conference 2025",
+            "url": "https://dl.acm.org/doi/10.1145/3696410.3714640"
+          },
+          {
+            "title": "[2602.21704] Dynamic Multimodal Activation Steering for Hallucination Mitigation in Large Vision-Language Models",
+            "url": "https://arxiv.org/abs/2602.21704"
+          }
+        ]
+      },
+      "I found relevant research on activation steering for hallucination reduction. Here are the key findings from recent 2025-2026 papers:\n\n## Training-Free Activation Steering Methods\n\nDynamic multimodal activation steering is a training-free approach to mitigate hallucination in Large Vision-Language Models (LVLMs) by dynamically intervening in attention heads during inference time. This method reduces hallucinations by 20.2 at the sentence level (CHAIRS) and by 3.8 at the image level (CHAIRI).\n\nActivation Steering Decoding (ASD) is a training-free approach that mitigates hallucination through targeted intervention in the model's intermediate activations.\n\n## Diverse Hallucination Categories\n\nAdaptive Activation Steering (ACT) is a tuning-free LLM truthfulness improvement method for diverse hallucination categories. ACT generates diverse steering vectors to enable customized interventions for various categories of hallucinations.\n\n## Long-Form Generation\n\nRecent work on hallucination detection in long-form generation includes a method for real-time identification of hallucinated tokens in long-form generations that targets entity-level hallucinations—e.g., fabricated names, dates, citations.\n\n## Claim-Level Analysis\n\nThe most promising systems now add span-level verification: each generated claim is matched against retrieved evidence and flagged if unsupported, as shown in the REFIND SemEval 2025 benchmark.\n\nThese papers represent recent advances in using activation steering as a training-free technique for reducing hallucinations across different granularity levels in language and vision-language models."
+    ],
+    "durationSeconds": 7.386984092999999
+  },
+  "sourceToolAssistantUUID": "8639ad3c-d247-423b-bb1c-7057ce105284",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T13:27:20.010Z_
+
+<details><summary>↩ Tool result · `toolu_013PR6FuRjLmAkPatB7nxSST`</summary>
+
+```text
+Web search results for query: "representation intervention hallucination mitigation per-claim fine-grained 2026 arxiv"
+
+Links: [{"title":"Steering the Verifiability of Multimodal AI Hallucinations","url":"https://arxiv.org/html/2604.06714v1"},{"title":"[2508.12495] Mitigating Hallucinations in Large Language Models via Causal Reasoning","url":"https://arxiv.org/abs/2508.12495"},{"title":"On-Policy Fine-grained Knowledge Feedback for Hallucination Mitigation","url":"https://arxiv.org/html/2406.12221v1"},{"title":"Mitigating Hallucinations in Large Vision-Language Models with Internal Fact-based Contrastive Decoding","url":"https://arxiv.org/html/2502.01056v1"},{"title":"[2410.06304] FG-PRM: Fine-grained Hallucination Detection and Mitigation in Language Model Mathematical Reasoning","url":"https://arxiv.org/abs/2410.06304"},{"title":"From Illusion to Insight: A Taxonomic Survey of Hallucination Mitigation Techniques in LLMs","url":"https://www.mdpi.com/2673-2688/6/10/260"},{"title":"[2604.06714v1] Steering the Verifiability of Multimodal AI Hallucinations","url":"https://arxiv.org/abs/2604.06714v1"},{"title":"Fine-grained Hallucination Detection and Mitigation in Language Model Mathematical Reasoning","url":"https://arxiv.org/html/2410.06304v1"},{"title":"A Comprehensive Survey of Hallucination in Large Language Models: Causes, Detection, and Mitigation","url":"https://arxiv.org/html/2510.06265v1"},{"title":"Fine-grained Hallucination Detection and Mitigation in Language Model Mathematical Reasoning | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/fg-prm-fine-grained-hallucination-detection-mitigation"}]
+
+Based on the search results, I found several relevant papers from arXiv published in 2026 and related timeframes that discuss hallucination mitigation with representation intervention and fine-grained approaches:
+
+## Key Findings
+
+The most directly relevant paper is "Steering the Verifiability of Multimodal AI Hallucinations," which proposes an activation-space intervention method that learns separate probes for obvious and elusive hallucinations, allowing for fine-grained control over the model's verifiability. The paper constructs a dataset from 4,470 human responses to AI-generated hallucinations and categorizes these hallucinations into obvious and elusive types based on their verifiability by human users.
+
+Additional related work includes:
+
+1. **Fine-Grained Process Reward Models**: FG-PRM (Fine-Grained Process Reward Model) is designed to detect and mitigate hallucinations in a fine-grained, step-level manner.
+
+2. **On-Policy Fine-grained Knowledge Feedback**: RLFH (Reinforcement Learning for Hallucination) is a fine-grained feedback-based online reinforcement learning method that decomposes the outcomes of large models into atomic facts, provides statement-level evaluation signals, and traces back the signals to the tokens of the original responses.
+
+3. **Comprehensive Survey**: A recent survey proposes detailed taxonomies for both hallucination detection and mitigation, with more fine-grained approaches compared to previous work.
+
+These papers represent various approaches to per-claim or fine-grained hallucination mitigation using representation-level interventions and targeted feedback mechanisms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "725f310c-c832-4cba-a852-5176f9f0d9d8",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "b54a5dbd-9231-480c-ad92-0c116856e514",
+  "toolUseResult": {
+    "query": "representation intervention hallucination mitigation per-claim fine-grained 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SkeUsxKYu6NL9ZiHpHiGpz",
+        "content": [
+          {
+            "title": "Steering the Verifiability of Multimodal AI Hallucinations",
+            "url": "https://arxiv.org/html/2604.06714v1"
+          },
+          {
+            "title": "[2508.12495] Mitigating Hallucinations in Large Language Models via Causal Reasoning",
+            "url": "https://arxiv.org/abs/2508.12495"
+          },
+          {
+            "title": "On-Policy Fine-grained Knowledge Feedback for Hallucination Mitigation",
+            "url": "https://arxiv.org/html/2406.12221v1"
+          },
+          {
+            "title": "Mitigating Hallucinations in Large Vision-Language Models with Internal Fact-based Contrastive Decoding",
+            "url": "https://arxiv.org/html/2502.01056v1"
+          },
+          {
+            "title": "[2410.06304] FG-PRM: Fine-grained Hallucination Detection and Mitigation in Language Model Mathematical Reasoning",
+            "url": "https://arxiv.org/abs/2410.06304"
+          },
+          {
+            "title": "From Illusion to Insight: A Taxonomic Survey of Hallucination Mitigation Techniques in LLMs",
+            "url": "https://www.mdpi.com/2673-2688/6/10/260"
+          },
+          {
+            "title": "[2604.06714v1] Steering the Verifiability of Multimodal AI Hallucinations",
+            "url": "https://arxiv.org/abs/2604.06714v1"
+          },
+          {
+            "title": "Fine-grained Hallucination Detection and Mitigation in Language Model Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2410.06304v1"
+          },
+          {
+            "title": "A Comprehensive Survey of Hallucination in Large Language Models: Causes, Detection, and Mitigation",
+            "url": "https://arxiv.org/html/2510.06265v1"
+          },
+          {
+            "title": "Fine-grained Hallucination Detection and Mitigation in Language Model Mathematical Reasoning | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/fg-prm-fine-grained-hallucination-detection-mitigation"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers from arXiv published in 2026 and related timeframes that discuss hallucination mitigation with representation intervention and fine-grained approaches:\n\n## Key Findings\n\nThe most directly relevant paper is \"Steering the Verifiability of Multimodal AI Hallucinations,\" which proposes an activation-space intervention method that learns separate probes for obvious and elusive hallucinations, allowing for fine-grained control over the model's verifiability. The paper constructs a dataset from 4,470 human responses to AI-generated hallucinations and categorizes these hallucinations into obvious and elusive types based on their verifiability by human users.\n\nAdditional related work includes:\n\n1. **Fine-Grained Process Reward Models**: FG-PRM (Fine-Grained Process Reward Model) is designed to detect and mitigate hallucinations in a fine-grained, step-level manner.\n\n2. **On-Policy Fine-grained Knowledge Feedback**: RLFH (Reinforcement Learning for Hallucination) is a fine-grained feedback-based online reinforcement learning method that decomposes the outcomes of large models into atomic facts, provides statement-level evaluation signals, and traces back the signals to the tokens of the original responses.\n\n3. **Comprehensive Survey**: A recent survey proposes detailed taxonomies for both hallucination detection and mitigation, with more fine-grained approaches compared to previous work.\n\nThese papers represent various approaches to per-claim or fine-grained hallucination mitigation using representation-level interventions and targeted feedback mechanisms."
+    ],
+    "durationSeconds": 7.415848529999995
+  },
+  "sourceToolAssistantUUID": "725f310c-c832-4cba-a852-5176f9f0d9d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-15T13:27:23.365Z_
+
+Important findings — Adaptive Activation Steering (ACT) and Activation Steering Decoding (ASD) are closely related. Let me dig deeper into the most critical potential competitors and the feasibility of the VUF transfer claim.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b54a5dbd-9231-480c-ad92-0c116856e514",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S1aS5VzXTJ6h6mkNJN",
+  "type": "assistant",
+  "uuid": "46a25514-4b59-483a-b1c4-8d353b41f882",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YEfxu5KhAEb7BzdgNWp9Ct",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3985,
+      "cache_read_input_tokens": 31775,
+      "output_tokens": 239,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3985,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 239,
+          "cache_read_input_tokens": 31775,
+          "cache_creation_input_tokens": 3985,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3985
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T13:27:24.255Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BUxmNHTqwVtcGWZJMjqscQ`</summary>
+
+```json
+{
+  "query": "\"Adaptive Activation Steering\" ACT tuning-free truthfulness hallucination diverse categories 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46a25514-4b59-483a-b1c4-8d353b41f882",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S1aS5VzXTJ6h6mkNJN",
+  "type": "assistant",
+  "uuid": "dfaaeac7-a380-4d21-a586-8284995e5d16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YEfxu5KhAEb7BzdgNWp9Ct",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3985,
+      "cache_read_input_tokens": 31775,
+      "output_tokens": 239,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3985,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 239,
+          "cache_read_input_tokens": 31775,
+          "cache_creation_input_tokens": 3985,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3985
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-15T13:27:25.255Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0195S2Ng31WRSBvftded8Mp1`</summary>
+
+```json
+{
+  "query": "verbal uncertainty feature VUF Qwen Llama transfer generalization across models 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dfaaeac7-a380-4d21-a586-8284995e5d16",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S1aS5VzXTJ6h6mkNJN",
+  "type": "assistant",
+  "uuid": "2fc6cc0e-de0e-4a53-ad8c-5b864bdf03bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YEfxu5KhAEb7BzdgNWp9Ct",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3985,
+      "cache_read_input_tokens": 31775,
+      "output_tokens": 239,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3985,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 239,
+          "cache_read_input_tokens": 31775,
+          "cache_creation_input_tokens": 3985,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3985
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T13:27:25.468Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015SLGx4mdLKrLM51e9SJz8K`</summary>
+
+```json
+{
+  "query": "\"Features as Rewards\" interpretability reduce hallucinations Goodfire 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2fc6cc0e-de0e-4a53-ad8c-5b864bdf03bd",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S1aS5VzXTJ6h6mkNJN",
+  "type": "assistant",
+  "uuid": "dae76ff6-fb1b-4690-8f74-5292497e97e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YEfxu5KhAEb7BzdgNWp9Ct",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3985,
+      "cache_read_input_tokens": 31775,
+      "output_tokens": 239,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3985,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 239,
+          "cache_read_input_tokens": 31775,
+          "cache_creation_input_tokens": 3985,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3985
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-15 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "dae76ff6-fb1b-4690-8f74-5292497e97e9",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level uncertainty calibration via representation steering",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T13:27:31.167Z_
+
+<details><summary>↩ Tool result · `toolu_01BUxmNHTqwVtcGWZJMjqscQ`</summary>
+
+```text
+Web search results for query: ""Adaptive Activation Steering" ACT tuning-free truthfulness hallucination diverse categories 2024 2025"
+
+Links: [{"title":"[2406.00034] Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories","url":"https://arxiv.org/abs/2406.00034"},{"title":"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories","url":"https://arxiv.org/html/2406.00034v2"},{"title":"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories | OpenReview","url":"https://openreview.net/forum?id=NBHOdQJ1VE"},{"title":"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories | Proceedings of the ACM on Web Conference 2025","url":"https://dl.acm.org/doi/10.1145/3696410.3714640"},{"title":"[Quick Review] Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories","url":"https://liner.com/review/adaptive-activation-steering-tuningfree-llm-truthfulness-improvement-method-for-diverse"},{"title":"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories - University of Edinburgh Research Explorer","url":"https://www.research.ed.ac.uk/en/publications/adaptive-activation-steering-a-tuning-free-llm-truthfulness-impro"},{"title":"[2406.00034] Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories","url":"https://ar5iv.labs.arxiv.org/html/2406.00034"},{"title":"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/adaptive-activation-steering-tuning-free-llm-truthfulness"},{"title":"[Literature Review] Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories","url":"https://www.themoonlight.io/en/review/adaptive-activation-steering-a-tuning-free-llm-truthfulness-improvement-method-for-diverse-hallucinations-categories"},{"title":"Adaptive Activation Steering: A Tuning-Free LLM Reliability Improvement Method for Diverse Hallucinations Categories | OpenReview","url":"https://openreview.net/forum?id=Z4jsbQZpmx"}]
+
+Based on the web search results, here's what I found about Adaptive Activation Steering (ACT):
+
+## Overview
+
+Adaptive Activation Steering (ACT) is a tuning-free method that adaptively shifts LLM's activations in the "truthful" direction during inference. Large Language Models harbor an inherent understanding of truthfulness, yet often fail to consistently express it and generate false statements, creating a gap between "knowing" and "telling".
+
+## Key Features
+
+**Addressing Diverse Hallucinations:** ACT addresses diverse categories of hallucinations by utilizing diverse truthfulness-related steering vectors and adjusting the steering intensity adaptively. Experimental results demonstrate that ACT consistently improves truthfulness across 38 categories of hallucinations on the TruthfulQA benchmark.
+
+**Core Components:** ACT first calculates the steering vector based on the difference between truthful and untruthful activations. ACT controls the steering intensity based on the truthfulness content of the activations, and it generates diverse steering vectors through unsupervised clustering to enable customized interventions for various categories of hallucinations.
+
+## Performance Results
+
+ACT significantly improves truthfulness in LLaMA (↑142%), LLaMA2 (↑24%), Alpaca (↑36%), Vicuna (↑28%), LLaMA2-Chat (↑19%), and LLaMA3 (↑34%). ACT's scalability has been verified across larger models (13B, 33B, 65B), underscoring the adaptability of ACT to large-scale language models.
+
+## Publication
+
+This research was published at the ACM Web Conference 2025 (WWW 2025), with the paper initially appearing on arXiv in June 2024 and receiving an update in February 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dfaaeac7-a380-4d21-a586-8284995e5d16",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "4ff1e595-659c-4b8d-a89a-bb6049a6a2cd",
+  "toolUseResult": {
+    "query": "\"Adaptive Activation Steering\" ACT tuning-free truthfulness hallucination diverse categories 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KTpWwnVXj9KwwzkhQMYknP",
+        "content": [
+          {
+            "title": "[2406.00034] Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories",
+            "url": "https://arxiv.org/abs/2406.00034"
+          },
+          {
+            "title": "Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories",
+            "url": "https://arxiv.org/html/2406.00034v2"
+          },
+          {
+            "title": "Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories | OpenReview",
+            "url": "https://openreview.net/forum?id=NBHOdQJ1VE"
+          },
+          {
+            "title": "Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories | Proceedings of the ACM on Web Conference 2025",
+            "url": "https://dl.acm.org/doi/10.1145/3696410.3714640"
+          },
+          {
+            "title": "[Quick Review] Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories",
+            "url": "https://liner.com/review/adaptive-activation-steering-tuningfree-llm-truthfulness-improvement-method-for-diverse"
+          },
+          {
+            "title": "Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories - University of Edinburgh Research Explorer",
+            "url": "https://www.research.ed.ac.uk/en/publications/adaptive-activation-steering-a-tuning-free-llm-truthfulness-impro"
+          },
+          {
+            "title": "[2406.00034] Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories",
+            "url": "https://ar5iv.labs.arxiv.org/html/2406.00034"
+          },
+          {
+            "title": "Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/adaptive-activation-steering-tuning-free-llm-truthfulness"
+          },
+          {
+            "title": "[Literature Review] Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories",
+            "url": "https://www.themoonlight.io/en/review/adaptive-activation-steering-a-tuning-free-llm-truthfulness-improvement-method-for-diverse-hallucinations-categories"
+          },
+          {
+            "title": "Adaptive Activation Steering: A Tuning-Free LLM Reliability Improvement Method for Diverse Hallucinations Categories | OpenReview",
+            "url": "https://openreview.net/forum?id=Z4jsbQZpmx"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about Adaptive Activation Steering (ACT):\n\n## Overview\n\nAdaptive Activation Steering (ACT) is a tuning-free method that adaptively shifts LLM's activations in the \"truthful\" direction during inference. Large Language Models harbor an inherent understanding of truthfulness, yet often fail to consistently express it and generate false statements, creating a gap between \"knowing\" and \"telling\".\n\n## Key Features\n\n**Addressing Diverse Hallucinations:** ACT addresses diverse categories of hallucinations by utilizing diverse truthfulness-related steering vectors and adjusting the steering intensity adaptively. Experimental results demonstrate that ACT consistently improves truthfulness across 38 categories of hallucinations on the TruthfulQA benchmark.\n\n**Core Components:** ACT first calculates the steering vector based on the difference between truthful and untruthful activations. ACT controls the steering intensity based on the truthfulness content of the activations, and it generates diverse steering vectors through unsupervised clustering to enable customized interventions for various categories of hallucinations.\n\n## Performance Results\n\nACT significantly improves truthfulness in LLaMA (↑142%), LLaMA2 (↑24%), Alpaca (↑36%), Vicuna (↑28%), LLaMA2-Chat (↑19%), and LLaMA3 (↑34%). ACT's scalability has been verified across larger models (13B, 33B, 65B), underscoring the adaptability of ACT to large-scale language models.\n\n## Publication\n\nThis research was published at the ACM Web Conference 2025 (WWW 2025), with the paper initially appearing on arXiv in June 2024 and receiving an update in February 2025."
+    ],
+    "durationSeconds": 6.906844744000002
+  },
+  "sourceToolAssistantUUID": "dfaaeac7-a380-4d21-a586-8284995e5d16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T13:27:32.856Z_
+
+<details><summary>↩ Tool result · `toolu_0195S2Ng31WRSBvftded8Mp1`</summary>
+
+```text
+Web search results for query: "verbal uncertainty feature VUF Qwen Llama transfer generalization across models 2025 2026"
+
+Links: [{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/html/2503.14477v1"},{"title":"When Can LLMs Learn to Reason with Weak Supervision?","url":"https://arxiv.org/html/2604.18574v1"},{"title":"GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub","url":"https://github.com/QwenLM/Qwen3.6"},{"title":"March 5, 2025 Qwen2.5-VL Technical Report Qwen Team, Alibaba Group","url":"https://arxiv.org/pdf/2502.13923"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to ...","url":"https://aclanthology.org/2025.emnlp-main.187.pdf"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/8cb240de90aa20207db944c6c88a7cc0-Paper-Conference.pdf"},{"title":"Pre-trained Uncertainty Quantification Heads for ...","url":"https://aclanthology.org/2025.emnlp-main.1809.pdf"},{"title":"Qwen2-VL: Enhancing Vision-Language Model’s Perception of the World at Any Resolution","url":"https://arxiv.org/html/2409.12191v1"},{"title":"THINKSLM: Towards Reasoning in Small Language Models","url":"https://aclanthology.org/2025.emnlp-main.1659.pdf"},{"title":"The Llama 4 herd: The beginning of a new era of natively multimodal AI innovation","url":"https://ai.meta.com/blog/llama-4-multimodal-intelligence/"}]
+
+Based on the web search results, I found highly relevant research on Verbal Uncertainty Features (VUF). Here are the key findings:
+
+## Verbal Uncertainty Feature (VUF) Research
+
+Researchers discovered the existence of a Verbal Uncertainty Feature (VUF), a single direction in the representation space that governs verbal uncertainty.
+
+### Transfer and Generalization Across Models
+
+The study examined three models: Llama3.1-8B-Instruct, Mistral-7B-Instruct-v0.3, and Qwen2.5-7B-Instruct, investigating whether VUF transfers across different architectures.
+
+The results showed high cosine similarity between VUFs from different datasets, particularly in the middle and subsequent layers, with this pattern being consistent across all models and datasets examined. Additionally, VUFs extracted from TriviaQA can control the verbal uncertainty level of other datasets: NQ-Open and PopQA.
+
+### Applications
+
+Two applications were developed: (1) a hallucination detection method that integrates semantic and verbal uncertainties, outperforming methods relying solely on semantic uncertainty; (2) a mitigation method called Mechanistic Uncertainty Calibration (MUC), based on aligning verbal uncertainty with the model's semantic uncertainty by steering activations along the VUF direction during inference.
+
+### Future Directions
+
+One potential direction for future work is to improve the generalizability of VUF across different LLM architectures and extend its application to long-form QA tasks.
+
+This research was published in March 2025 on arXiv and represents significant progress in understanding how uncertainty is expressed across different language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2fc6cc0e-de0e-4a53-ad8c-5b864bdf03bd",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "7f250e0d-3afa-4aa6-9cdc-867c74dad9b3",
+  "toolUseResult": {
+    "query": "verbal uncertainty feature VUF Qwen Llama transfer generalization across models 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KQAR7EQVz31vJeb9rxRUPB",
+        "content": [
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/html/2503.14477v1"
+          },
+          {
+            "title": "When Can LLMs Learn to Reason with Weak Supervision?",
+            "url": "https://arxiv.org/html/2604.18574v1"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3.6"
+          },
+          {
+            "title": "March 5, 2025 Qwen2.5-VL Technical Report Qwen Team, Alibaba Group",
+            "url": "https://arxiv.org/pdf/2502.13923"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.187.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/8cb240de90aa20207db944c6c88a7cc0-Paper-Conference.pdf"
+          },
+          {
+            "title": "Pre-trained Uncertainty Quantification Heads for ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.1809.pdf"
+          },
+          {
+            "title": "Qwen2-VL: Enhancing Vision-Language Model’s Perception of the World at Any Resolution",
+            "url": "https://arxiv.org/html/2409.12191v1"
+          },
+          {
+            "title": "THINKSLM: Towards Reasoning in Small Language Models",
+            "url": "https://aclanthology.org/2025.emnlp-main.1659.pdf"
+          },
+          {
+            "title": "The Llama 4 herd: The beginning of a new era of natively multimodal AI innovation",
+            "url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/"
+          }
+        ]
+      },
+      "Based on the web search results, I found highly relevant research on Verbal Uncertainty Features (VUF). Here are the key findings:\n\n## Verbal Uncertainty Feature (VUF) Research\n\nResearchers discovered the existence of a Verbal Uncertainty Feature (VUF), a single direction in the representation space that governs verbal uncertainty.\n\n### Transfer and Generalization Across Models\n\nThe study examined three models: Llama3.1-8B-Instruct, Mistral-7B-Instruct-v0.3, and Qwen2.5-7B-Instruct, investigating whether VUF transfers across different architectures.\n\nThe results showed high cosine similarity between VUFs from different datasets, particularly in the middle and subsequent layers, with this pattern being consistent across all models and datasets examined. Additionally, VUFs extracted from TriviaQA can control the verbal uncertainty level of other datasets: NQ-Open and PopQA.\n\n### Applications\n\nTwo applications were developed: (1) a hallucination detection method that integrates semantic and verbal uncertainties, outperforming methods relying solely on semantic uncertainty; (2) a mitigation method called Mechanistic Uncertainty Calibration (MUC), based on aligning verbal uncertainty with the model's semantic uncertainty by steering activations along the VUF direction during inference.\n\n### Future Directions\n\nOne potential direction for future work is to improve the generalizability of VUF across different LLM architectures and extend its application to long-form QA tasks.\n\nThis research was published in March 2025 on arXiv and represents significant progress in understanding how uncertainty is expressed across different language models."
+    ],
+    "durationSeconds": 7.598173442999992
+  },
+  "sourceToolAssistantUUID": "2fc6cc0e-de0e-4a53-ad8c-5b864bdf03bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T13:27:33.501Z_
+
+<details><summary>↩ Tool result · `toolu_015SLGx4mdLKrLM51e9SJz8K`</summary>
+
+```text
+Web search results for query: ""Features as Rewards" interpretability reduce hallucinations Goodfire 2026"
+
+Links: [{"title":"Features as Rewards: Using Interpretability to Reduce Hallucinations","url":"https://www.goodfire.ai/research/rlfr"},{"title":"AI Lab Goodfire Raises $150M at $1.25B Valuation to Design Models with Interpretability","url":"https://www.prnewswire.com/news-releases/ai-lab-goodfire-raises-150m-at-1-25b-valuation-to-design-models-with-interpretability-302680120.html"},{"title":"Goodfire AI","url":"https://www.goodfire.ai/"},{"title":"AI Learns To Self-Correct And Reduce False Claims Using Internal Knowledge","url":"https://quantumzeitgeist.com/ai-learns-self-correct-reduce-false/"},{"title":"Intentionally Designing the Future of AI","url":"https://www.goodfire.ai/blog/intentional-design"},{"title":"Understanding, Learning From, and Designing AI: Our Series B","url":"https://www.goodfire.ai/blog/our-series-b"},{"title":"Goodfire Raises $150M for AI Interpretability Research","url":"https://www.startupresearcher.com/news/ai-interpretability-startup-goodfire-secures-usd150-million-series-b"},{"title":"Longfact++ Rollout Viewer - Features as Rewards (RLFR)","url":"https://www.goodfire.ai/demos/hallucinations-viewer"},{"title":"AI Lab Goodfire Raises $150M at $1.25B Valuation to Design Models with Interpretability","url":"https://theaiinsider.tech/2026/02/11/ai-lab-goodfire-raises-150m-at-1-25b-valuation-to-design-models-with-interpretability/"},{"title":"This startup’s new mechanistic interpretability tool lets you debug LLMs | MIT Technology Review","url":"https://www.technologyreview.com/2026/04/30/1136721/this-startups-new-mechanistic-interpretability-tool-lets-you-debug-llms/"}]
+
+Based on the search results, I found comprehensive information about "Features as Rewards" from Goodfire in 2026:
+
+## Overview
+
+"Features as Rewards" (RLFR) is a reinforcement learning approach that leverages internal model features as reward functions for open-ended tasks. This work was conducted by researchers Aaditya Vikram Prasad, Connor Watts, and Jack Merullo from Goodfire AI, alongside collaborators.
+
+## Key Results on Hallucination Reduction
+
+Goodfire cut hallucinations in an LLM by 58% using interpretability to guide model training, with an approach that was ~90x lower cost per intervention than LLM-as-judge, and showed no degradation in standard benchmarks. More specifically, the pipeline was operationalized on Gemma-3-12B-IT and demonstrably decreased hallucinatory responses while maintaining performance on established benchmarks.
+
+## Technical Approach
+
+The study highlights that features encode abstract concepts, such as factuality and intent, traditionally used for monitoring or steering, but proposes their use as scalable supervision for open-ended tasks. These feature readouts are calibrated to reflect the model's confidence in the validity of claims, providing a dense and inexpensive supervision signal.
+
+## Interpretability Benefits
+
+The results establish an important prerequisite: interpretability can enable effective training-time supervision. This framework represents a novel paradigm in interpretability research, positioning features as oversight signals for intentionally designing models with desirable capabilities.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dae76ff6-fb1b-4690-8f74-5292497e97e9",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "113815c8-2ade-4b25-8a58-0a6a559d065b",
+  "toolUseResult": {
+    "query": "\"Features as Rewards\" interpretability reduce hallucinations Goodfire 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017ngoiz1DHQckcADKaTNeHx",
+        "content": [
+          {
+            "title": "Features as Rewards: Using Interpretability to Reduce Hallucinations",
+            "url": "https://www.goodfire.ai/research/rlfr"
+          },
+          {
+            "title": "AI Lab Goodfire Raises $150M at $1.25B Valuation to Design Models with Interpretability",
+            "url": "https://www.prnewswire.com/news-releases/ai-lab-goodfire-raises-150m-at-1-25b-valuation-to-design-models-with-interpretability-302680120.html"
+          },
+          {
+            "title": "Goodfire AI",
+            "url": "https://www.goodfire.ai/"
+          },
+          {
+            "title": "AI Learns To Self-Correct And Reduce False Claims Using Internal Knowledge",
+            "url": "https://quantumzeitgeist.com/ai-learns-self-correct-reduce-false/"
+          },
+          {
+            "title": "Intentionally Designing the Future of AI",
+            "url": "https://www.goodfire.ai/blog/intentional-design"
+          },
+          {
+            "title": "Understanding, Learning From, and Designing AI: Our Series B",
+            "url": "https://www.goodfire.ai/blog/our-series-b"
+          },
+          {
+            "title": "Goodfire Raises $150M for AI Interpretability Research",
+            "url": "https://www.startupresearcher.com/news/ai-interpretability-startup-goodfire-secures-usd150-million-series-b"
+          },
+          {
+            "title": "Longfact++ Rollout Viewer - Features as Rewards (RLFR)",
+            "url": "https://www.goodfire.ai/demos/hallucinations-viewer"
+          },
+          {
+            "title": "AI Lab Goodfire Raises $150M at $1.25B Valuation to Design Models with Interpretability",
+            "url": "https://theaiinsider.tech/2026/02/11/ai-lab-goodfire-raises-150m-at-1-25b-valuation-to-design-models-with-interpretability/"
+          },
+          {
+            "title": "This startup’s new mechanistic interpretability tool lets you debug LLMs | MIT Technology Review",
+            "url": "https://www.technologyreview.com/2026/04/30/1136721/this-startups-new-mechanistic-interpretability-tool-lets-you-debug-llms/"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about \"Features as Rewards\" from Goodfire in 2026:\n\n## Overview\n\n\"Features as Rewards\" (RLFR) is a reinforcement learning approach that leverages internal model features as reward functions for open-ended tasks. This work was conducted by researchers Aaditya Vikram Prasad, Connor Watts, and Jack Merullo from Goodfire AI, alongside collaborators.\n\n## Key Results on Hallucination Reduction\n\nGoodfire cut hallucinations in an LLM by 58% using interpretability to guide model training, with an approach that was ~90x lower cost per intervention than LLM-as-judge, and showed no degradation in standard benchmarks. More specifically, the pipeline was operationalized on Gemma-3-12B-IT and demonstrably decreased hallucinatory responses while maintaining performance on established benchmarks.\n\n## Technical Approach\n\nThe study highlights that features encode abstract concepts, such as factuality and intent, traditionally used for monitoring or steering, but proposes their use as scalable supervision for open-ended tasks. These feature readouts are calibrated to reflect the model's confidence in the validity of claims, providing a dense and inexpensive supervision signal.\n\n## Interpretability Benefits\n\nThe results establish an important prerequisite: interpretability can enable effective training-time supervision. This framework represents a novel paradigm in interpretability research, positioning features as oversight signals for intentionally designing models with desirable capabilities."
+    ],
+    "durationSeconds": 8.030986661000002
+  },
+  "sourceToolAssistantUUID": "dae76ff6-fb1b-4690-8f74-5292497e97e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-15T13:27:39.074Z_
+
+Critical findings. Let me now fetch the Ji et al. paper to verify the exact scope (short-form only?) and check the VUF models tested, and also check the Goodfire RLFR paper more closely as a major competitor.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "113815c8-2ade-4b25-8a58-0a6a559d065b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S2aCiBzLnrYzpetRAw",
+  "type": "assistant",
+  "uuid": "631ca616-5290-4096-9e37-e22e9a874242",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Bqum2Aj7zpVx3PoEij9ih",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3284,
+      "cache_read_input_tokens": 35760,
+      "output_tokens": 318,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 318,
+          "cache_read_input_tokens": 35760,
+          "cache_creation_input_tokens": 3284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-15T13:27:40.846Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SQPnBaVjaWBMCa4UZymbr7`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2503.14477",
+  "prompt": "What models were tested? Was VUF only tested on short-form QA or also on long-form? What were the specific results (numbers)? What are the stated limitations and future work directions? Does the paper discuss claim-level or per-claim calibration?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "631ca616-5290-4096-9e37-e22e9a874242",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S2aCiBzLnrYzpetRAw",
+  "type": "assistant",
+  "uuid": "e032dee0-3adb-4660-bfc5-1e78821f71f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Bqum2Aj7zpVx3PoEij9ih",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3284,
+      "cache_read_input_tokens": 35760,
+      "output_tokens": 318,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 318,
+          "cache_read_input_tokens": 35760,
+          "cache_creation_input_tokens": 3284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T13:27:42.311Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016HT35TtjooavZ11tZL8nve`</summary>
+
+```json
+{
+  "url": "https://www.goodfire.ai/research/rlfr",
+  "prompt": "What exactly does this method do for hallucination reduction? Is it training-free or training-based? Does it work at claim level or response level? What models and benchmarks are used? What is the relationship to activation steering and representation-level approaches? How does it compare to other approaches?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e032dee0-3adb-4660-bfc5-1e78821f71f4",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S2aCiBzLnrYzpetRAw",
+  "type": "assistant",
+  "uuid": "f444bb9f-0d7b-4ef2-8128-b853ad4decb0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Bqum2Aj7zpVx3PoEij9ih",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3284,
+      "cache_read_input_tokens": 35760,
+      "output_tokens": 318,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 318,
+          "cache_read_input_tokens": 35760,
+          "cache_creation_input_tokens": 3284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T13:27:45.682Z_
+
+<details><summary>↩ Tool result · `toolu_01SQPnBaVjaWBMCa4UZymbr7`</summary>
+
+```text
+# Paper Analysis: Calibrating Verbal Uncertainty
+
+Based on the provided arXiv page content, I cannot fully answer your questions because the abstract and metadata don't contain those specific details.
+
+## What I Can Confirm:
+
+**Models tested:** Not specified in the available content.
+
+**Testing scope:** The abstract mentions "short-form answers" specifically - "achieve an average relative reduction of ~30%" on these. Whether long-form evaluation occurred isn't disclosed in this excerpt.
+
+**Specific results:** Only one metric is given: "average relative reduction of ~30%" for confident hallucinations on short-form answers.
+
+**Limitations and future work:** Not included in the abstract or page metadata shown.
+
+**Claim-level calibration:** Not addressed in the available content.
+
+## What the Abstract Reveals:
+
+The researchers discovered that "verbal uncertainty" functions as "a single linear feature" in LLM representations, showing only moderate correlation with actual model uncertainty. Their intervention approach demonstrates that "the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone."
+
+To access complete methodological details, limitations, and experimental results across different text lengths, you would need to review the full PDF or HTML version of the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e032dee0-3adb-4660-bfc5-1e78821f71f4",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "425cec7e-f75c-42a5-90f1-453f2f049191",
+  "toolUseResult": {
+    "bytes": 45971,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Analysis: Calibrating Verbal Uncertainty\n\nBased on the provided arXiv page content, I cannot fully answer your questions because the abstract and metadata don't contain those specific details.\n\n## What I Can Confirm:\n\n**Models tested:** Not specified in the available content.\n\n**Testing scope:** The abstract mentions \"short-form answers\" specifically - \"achieve an average relative reduction of ~30%\" on these. Whether long-form evaluation occurred isn't disclosed in this excerpt.\n\n**Specific results:** Only one metric is given: \"average relative reduction of ~30%\" for confident hallucinations on short-form answers.\n\n**Limitations and future work:** Not included in the abstract or page metadata shown.\n\n**Claim-level calibration:** Not addressed in the available content.\n\n## What the Abstract Reveals:\n\nThe researchers discovered that \"verbal uncertainty\" functions as \"a single linear feature\" in LLM representations, showing only moderate correlation with actual model uncertainty. Their intervention approach demonstrates that \"the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone.\"\n\nTo access complete methodological details, limitations, and experimental results across different text lengths, you would need to review the full PDF or HTML version of the paper.",
+    "durationMs": 4831,
+    "url": "https://arxiv.org/abs/2503.14477"
+  },
+  "sourceToolAssistantUUID": "e032dee0-3adb-4660-bfc5-1e78821f71f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T13:27:48.904Z_
+
+<details><summary>↩ Tool result · `toolu_016HT35TtjooavZ11tZL8nve`</summary>
+
+```text
+# RLFR: Hallucination Reduction Through Feature-Based Rewards
+
+## What It Does
+
+RLFR (Reinforcement Learning from Feature Rewards) reduces hallucinations by leveraging lightweight probes on a model's internal representations as reward signals during training. The approach achieves a "58% reduction in hallucinations across the held-out test set" on Gemma-3-12B-IT.
+
+## Training-Based Approach
+
+This is decidedly **training-based**, not training-free. The method involves reinforcement learning optimization using probe-derived rewards over approximately 360 optimizer steps at roughly $2.5k cost.
+
+## Granularity: Multi-Level
+
+The approach operates across multiple levels:
+- **Token-level**: A localization probe identifies candidate entity spans
+- **Span-level**: A classification probe determines if entities are hallucinations
+- **Response-level**: The system generates inline corrections or retractions, with reward probes grading intervention quality
+
+## Models and Benchmarks
+
+- **Model**: Gemma-3-12B-IT
+- **Benchmark**: LongFact++ (approximately 20,000 knowledge-intensive prompts across eight domains including biography, science, and history)
+
+## Relationship to Representation-Level Approaches
+
+The method differs from steering approaches by not directly manipulating activations. Instead, probes "observe and evaluate" while "standard RL objective" drives training. Crucially, gradients flow through the RL objective, not through the frozen probes—the model learns to "produce tokens that score well on the probes, rather than activations that hack them."
+
+## Comparative Advantage
+
+At "~90× lower cost per intervention than the LLM-as-judge alternative," RLFR substantially outperforms traditional reward-model approaches while enabling test-time scaling capabilities.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f444bb9f-0d7b-4ef2-8128-b853ad4decb0",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "dedbd09f-a7db-4878-ab2a-0449b2e1af8d",
+  "toolUseResult": {
+    "bytes": 58491,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# RLFR: Hallucination Reduction Through Feature-Based Rewards\n\n## What It Does\n\nRLFR (Reinforcement Learning from Feature Rewards) reduces hallucinations by leveraging lightweight probes on a model's internal representations as reward signals during training. The approach achieves a \"58% reduction in hallucinations across the held-out test set\" on Gemma-3-12B-IT.\n\n## Training-Based Approach\n\nThis is decidedly **training-based**, not training-free. The method involves reinforcement learning optimization using probe-derived rewards over approximately 360 optimizer steps at roughly $2.5k cost.\n\n## Granularity: Multi-Level\n\nThe approach operates across multiple levels:\n- **Token-level**: A localization probe identifies candidate entity spans\n- **Span-level**: A classification probe determines if entities are hallucinations\n- **Response-level**: The system generates inline corrections or retractions, with reward probes grading intervention quality\n\n## Models and Benchmarks\n\n- **Model**: Gemma-3-12B-IT\n- **Benchmark**: LongFact++ (approximately 20,000 knowledge-intensive prompts across eight domains including biography, science, and history)\n\n## Relationship to Representation-Level Approaches\n\nThe method differs from steering approaches by not directly manipulating activations. Instead, probes \"observe and evaluate\" while \"standard RL objective\" drives training. Crucially, gradients flow through the RL objective, not through the frozen probes—the model learns to \"produce tokens that score well on the probes, rather than activations that hack them.\"\n\n## Comparative Advantage\n\nAt \"~90× lower cost per intervention than the LLM-as-judge alternative,\" RLFR substantially outperforms traditional reward-model approaches while enabling test-time scaling capabilities.",
+    "durationMs": 6590,
+    "url": "https://www.goodfire.ai/research/rlfr"
+  },
+  "sourceToolAssistantUUID": "f444bb9f-0d7b-4ef2-8128-b853ad4decb0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56 · 2026-05-15T13:27:48.908Z_
+
+```json
+{
+  "parentUuid": "dedbd09f-a7db-4878-ab2a-0449b2e1af8d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "8fee23e1-0d0b-442a-aef8-9bc5d1920395",
+  "timestamp": "2026-05-15T13:27:48.908Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-15 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "8fee23e1-0d0b-442a-aef8-9bc5d1920395",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level uncertainty calibration via representation steering",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-15T13:27:53.724Z_
+
+Good — RLFR is training-based, so it's a different niche from CL-MUC's training-free claim. Let me now verify the VUF paper's actual model scope and check for the most critical gap: whether anyone has already done claim-level VUF or representation-based steering for long-form generation.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8fee23e1-0d0b-442a-aef8-9bc5d1920395",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S3htqzjTbfTFYS7N8U",
+  "type": "assistant",
+  "uuid": "2ef388c8-736c-4cbb-9be6-40e19085a5ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PqK9oBGA7LTt1vXmjVhu29",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 39044,
+      "output_tokens": 324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1161,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 324,
+          "cache_read_input_tokens": 39044,
+          "cache_creation_input_tokens": 1161,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1161
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-15T13:27:56.248Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015kQeC9T8qNm4g63aaXTSVx`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2503.14477v1",
+  "prompt": "I need to know: 1) Which specific models were tested for VUF extraction (model names and sizes)? 2) Was VUF only evaluated on short-form QA? Are there any long-form experiments? 3) What are the stated limitations? 4) Does the paper discuss per-claim or claim-level calibration at all? 5) What future directions are mentioned? 6) What specific benchmarks were used? Please provide exact quotes where possible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ef388c8-736c-4cbb-9be6-40e19085a5ed",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S3htqzjTbfTFYS7N8U",
+  "type": "assistant",
+  "uuid": "9d36935e-53ff-4088-ad42-901aa7d032af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PqK9oBGA7LTt1vXmjVhu29",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 39044,
+      "output_tokens": 324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1161,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 324,
+          "cache_read_input_tokens": 39044,
+          "cache_creation_input_tokens": 1161,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1161
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-15T13:27:56.869Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QK8cLStC9L9eEqkABBFzeA`</summary>
+
+```json
+{
+  "query": "\"claim-level\" OR \"per-claim\" activation intervention steering long-form factuality calibration arxiv 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d36935e-53ff-4088-ad42-901aa7d032af",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S3htqzjTbfTFYS7N8U",
+  "type": "assistant",
+  "uuid": "20f9c568-7ac9-458a-bf9a-ac3a4694c956",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PqK9oBGA7LTt1vXmjVhu29",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 39044,
+      "output_tokens": 324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1161,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 324,
+          "cache_read_input_tokens": 39044,
+          "cache_creation_input_tokens": 1161,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1161
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T13:28:03.817Z_
+
+<details><summary>↩ Tool result · `toolu_015kQeC9T8qNm4g63aaXTSVx`</summary>
+
+```text
+# Analysis of VUF Research Paper
+
+## 1) Models Tested for VUF Extraction
+
+The paper tested three specific models:
+- **Llama3.1-8B-Instruct**
+- **Mistral-7B-Instruct-v0.3**
+- **Qwen2.5-7B-Instruct**
+
+Additionally, "Llama3.1-70B-Instruct" was used as the auxiliary evaluator for VU scoring.
+
+## 2) Evaluation Scope: Short-form vs. Long-form
+
+VUF evaluation was **exclusively limited to short-form QA**. The paper explicitly states this as a limitation: "our investigation is based on short-form (sentence-length) QA datasets, which may not fully capture the complexity of real-world scenarios."
+
+The authors acknowledge this constraint: "we aim to improve the generalizability of VUF across different LLM architectures and extend its application to long-form QA tasks."
+
+## 3) Stated Limitations
+
+The paper identifies four key limitations:
+
+- Restriction to "short-form (sentence-length) QA datasets"
+- "method's reliance on predefined probes and scores may limit its adaptability to unforeseen contexts"
+- The approach "does not necessarily lead to correcting hallucinated answers" but rather enhances uncertainty expression
+- Findings may not generalize across all architectures (noting "Qwen2.5 exhibits...significantly less sensitivity")
+
+## 4) Claim-level Calibration Discussion
+
+The paper does **not address per-claim or claim-level calibration**. The methodology operates at the response level, calculating overall VU and SU scores without granular claim-specific analysis.
+
+## 5) Future Directions Mentioned
+
+The authors propose three main future directions:
+
+- "improve the generalizability of VUF across different LLM architectures and extend its application to long-form QA tasks"
+- "investigating why activation steering sensitivity varies among LLM architectures"
+- "exploring how models represent uncertainty arising from various causes, such as underspecified questions, controversial topics, ethical dilemmas, and model ignorance"
+
+## 6) Specific Benchmarks Used
+
+Three datasets were evaluated:
+- **TriviaQA** (10,000 training + 1,000 validation/test samples)
+- **NQ-Open** (10,000 training + 1,000 validation/test samples)
+- **PopQA** (10,000 training + 1,000 validation/test samples)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9d36935e-53ff-4088-ad42-901aa7d032af",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "0db643c1-3c2a-45e4-ac5f-c0cb930a300e",
+  "toolUseResult": {
+    "bytes": 426130,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of VUF Research Paper\n\n## 1) Models Tested for VUF Extraction\n\nThe paper tested three specific models:\n- **Llama3.1-8B-Instruct**\n- **Mistral-7B-Instruct-v0.3**\n- **Qwen2.5-7B-Instruct**\n\nAdditionally, \"Llama3.1-70B-Instruct\" was used as the auxiliary evaluator for VU scoring.\n\n## 2) Evaluation Scope: Short-form vs. Long-form\n\nVUF evaluation was **exclusively limited to short-form QA**. The paper explicitly states this as a limitation: \"our investigation is based on short-form (sentence-length) QA datasets, which may not fully capture the complexity of real-world scenarios.\"\n\nThe authors acknowledge this constraint: \"we aim to improve the generalizability of VUF across different LLM architectures and extend its application to long-form QA tasks.\"\n\n## 3) Stated Limitations\n\nThe paper identifies four key limitations:\n\n- Restriction to \"short-form (sentence-length) QA datasets\"\n- \"method's reliance on predefined probes and scores may limit its adaptability to unforeseen contexts\"\n- The approach \"does not necessarily lead to correcting hallucinated answers\" but rather enhances uncertainty expression\n- Findings may not generalize across all architectures (noting \"Qwen2.5 exhibits...significantly less sensitivity\")\n\n## 4) Claim-level Calibration Discussion\n\nThe paper does **not address per-claim or claim-level calibration**. The methodology operates at the response level, calculating overall VU and SU scores without granular claim-specific analysis.\n\n## 5) Future Directions Mentioned\n\nThe authors propose three main future directions:\n\n- \"improve the generalizability of VUF across different LLM architectures and extend its application to long-form QA tasks\"\n- \"investigating why activation steering sensitivity varies among LLM architectures\"\n- \"exploring how models represent uncertainty arising from various causes, such as underspecified questions, controversial topics, ethical dilemmas, and model ignorance\"\n\n## 6) Specific Benchmarks Used\n\nThree datasets were evaluated:\n- **TriviaQA** (10,000 training + 1,000 validation/test samples)\n- **NQ-Open** (10,000 training + 1,000 validation/test samples)\n- **PopQA** (10,000 training + 1,000 validation/test samples)",
+    "durationMs": 7563,
+    "url": "https://arxiv.org/html/2503.14477v1"
+  },
+  "sourceToolAssistantUUID": "9d36935e-53ff-4088-ad42-901aa7d032af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-15T13:28:04.242Z_
+
+<details><summary>↩ Tool result · `toolu_01QK8cLStC9L9eEqkABBFzeA`</summary>
+
+```text
+Web search results for query: ""claim-level" OR "per-claim" activation intervention steering long-form factuality calibration arxiv 2025 2026"
+
+Links: [{"title":"Simple Factuality Probes Detect Hallucinations in Long- ...","url":"https://aclanthology.org/2025.findings-emnlp.880.pdf"},{"title":"Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity","url":"https://arxiv.org/pdf/2604.17487"}]
+
+I found relevant results for your search. Here are the papers that match your query:
+
+## 1. **Simple Factuality Probes Detect Hallucinations in Long-Form Generations**
+- **Source**: ACL Anthology (EMNLP Findings 2025)
+- **Key Content**: This work decomposes long-form generations into atomic claims, obtains hidden states for each claim, and applies a lightweight probe on hidden states to estimate claim-level factuality, then propagates claim-level factuality back to the long-form generation.
+
+## 2. **Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity**
+- **Source**: arXiv preprint
+- **Date**: April 21, 2026
+- **Key Content**: This paper proposes compositional selective specificity (CSS), which decomposes a draft answer into claims, constructs a specificity ladder for each claim with the original statement, a coarser backoff, and omission, and uses a support estimator to score which candidates appear justified by available evidence.
+
+Both papers address claim-level analysis and factuality calibration in long-form language model outputs, which aligns with your search query.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "20f9c568-7ac9-458a-bf9a-ac3a4694c956",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "10b366e8-f659-47a7-a2b3-8be85c9b68a4",
+  "toolUseResult": {
+    "query": "\"claim-level\" OR \"per-claim\" activation intervention steering long-form factuality calibration arxiv 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ULG7UstZYk3SbT62njnHkd",
+        "content": [
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long- ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880.pdf"
+          },
+          {
+            "title": "Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity",
+            "url": "https://arxiv.org/pdf/2604.17487"
+          }
+        ]
+      },
+      "I found relevant results for your search. Here are the papers that match your query:\n\n## 1. **Simple Factuality Probes Detect Hallucinations in Long-Form Generations**\n- **Source**: ACL Anthology (EMNLP Findings 2025)\n- **Key Content**: This work decomposes long-form generations into atomic claims, obtains hidden states for each claim, and applies a lightweight probe on hidden states to estimate claim-level factuality, then propagates claim-level factuality back to the long-form generation.\n\n## 2. **Answer Only as Precisely as Justified: Calibrated Claim-Level Specificity**\n- **Source**: arXiv preprint\n- **Date**: April 21, 2026\n- **Key Content**: This paper proposes compositional selective specificity (CSS), which decomposes a draft answer into claims, constructs a specificity ladder for each claim with the original statement, a coarser backoff, and omission, and uses a support estimator to score which candidates appear justified by available evidence.\n\nBoth papers address claim-level analysis and factuality calibration in long-form language model outputs, which aligns with your search query."
+    ],
+    "durationSeconds": 7.370492975999994
+  },
+  "sourceToolAssistantUUID": "20f9c568-7ac9-458a-bf9a-ac3a4694c956",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-15T13:28:08.154Z_
+
+Critical finding — "Simple Factuality Probes Detect Hallucinations in Long-Form Generations" (EMNLP Findings 2025) is potentially very close to this idea. Let me fetch it and also search more specifically for it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10b366e8-f659-47a7-a2b3-8be85c9b68a4",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S4qUXwpQLfksKKpm3d",
+  "type": "assistant",
+  "uuid": "e24c8bec-cf19-43a8-bcf5-c5507aa6f821",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WjdH1b2arZt7RxyQ5FdAor",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1386,
+      "cache_read_input_tokens": 40205,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1386,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 40205,
+          "cache_creation_input_tokens": 1386,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1386
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T13:28:10.508Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FBH57VKuqG4XPZWpj1bqFT`</summary>
+
+```json
+{
+  "url": "https://aclanthology.org/2025.findings-emnlp.880.pdf",
+  "prompt": "What is the full title? What is the method? Does it use hidden states / probes at the claim level for long-form generation? Does it do intervention/steering or just detection? What models and benchmarks are used? What are the results? How close is this to combining VUF/semantic entropy probes with claim-level decomposition for long-form hallucination mitigation?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e24c8bec-cf19-43a8-bcf5-c5507aa6f821",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S4qUXwpQLfksKKpm3d",
+  "type": "assistant",
+  "uuid": "999b15cb-cda4-408b-adaf-8006e4c65f2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WjdH1b2arZt7RxyQ5FdAor",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1386,
+      "cache_read_input_tokens": 40205,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1386,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 40205,
+          "cache_creation_input_tokens": 1386,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1386
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-15T13:28:11.091Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MA7CVzCi2kiJ2qGg2KhYFo`</summary>
+
+```json
+{
+  "query": "\"Simple Factuality Probes\" hallucinations long-form generations EMNLP 2025 claim-level hidden states"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "999b15cb-cda4-408b-adaf-8006e4c65f2d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S4qUXwpQLfksKKpm3d",
+  "type": "assistant",
+  "uuid": "0ac98348-897f-45b6-a507-ea6f1e89868d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WjdH1b2arZt7RxyQ5FdAor",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1386,
+      "cache_read_input_tokens": 40205,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1386,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 40205,
+          "cache_creation_input_tokens": 1386,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1386
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-15T13:28:17.795Z_
+
+<details><summary>↩ Tool result · `toolu_01FBH57VKuqG4XPZWpj1bqFT`</summary>
+
+```text
+I cannot provide a reliable answer based on the PDF content provided. The text appears to be heavily compressed/encoded in a PDF stream format that hasn't been properly decompressed into readable text. While the document structure indicates this is an EMNLP 2025 findings paper (ID 2898), I cannot accurately extract:
+
+- The full title
+- The methodology details
+- Whether it uses hidden states/probes at claim level
+- Whether it performs intervention/steering versus detection
+- Specific models, benchmarks, or results
+- How it relates to VUF/semantic entropy approaches
+
+To answer your questions accurately, I would need either:
+1. A properly decoded/rendered version of the PDF text
+2. The paper's abstract or introduction in plain text format
+3. Access to the paper through a research database
+
+I recommend downloading the paper directly from the EMNLP proceedings or the authors' repository for detailed analysis of these technical aspects.
+
+[Binary content (application/pdf, 551.8KB) also saved to /home/ubuntu/.claude-account-3/projects/-/49d0ab93-901f-44c0-919d-92703f3b1758/tool-results/webfetch-1778851692174-39sx1s.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "999b15cb-cda4-408b-adaf-8006e4c65f2d",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "7b5c8a4e-ca8e-421a-933c-a259714ecff7",
+  "toolUseResult": {
+    "bytes": 565032,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot provide a reliable answer based on the PDF content provided. The text appears to be heavily compressed/encoded in a PDF stream format that hasn't been properly decompressed into readable text. While the document structure indicates this is an EMNLP 2025 findings paper (ID 2898), I cannot accurately extract:\n\n- The full title\n- The methodology details\n- Whether it uses hidden states/probes at claim level\n- Whether it performs intervention/steering versus detection\n- Specific models, benchmarks, or results\n- How it relates to VUF/semantic entropy approaches\n\nTo answer your questions accurately, I would need either:\n1. A properly decoded/rendered version of the PDF text\n2. The paper's abstract or introduction in plain text format\n3. Access to the paper through a research database\n\nI recommend downloading the paper directly from the EMNLP proceedings or the authors' repository for detailed analysis of these technical aspects.\n\n[Binary content (application/pdf, 551.8KB) also saved to /home/ubuntu/.claude-account-3/projects/-/49d0ab93-901f-44c0-919d-92703f3b1758/tool-results/webfetch-1778851692174-39sx1s.pdf]",
+    "durationMs": 7283,
+    "url": "https://aclanthology.org/2025.findings-emnlp.880.pdf"
+  },
+  "sourceToolAssistantUUID": "999b15cb-cda4-408b-adaf-8006e4c65f2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T13:28:18.812Z_
+
+<details><summary>↩ Tool result · `toolu_01MA7CVzCi2kiJ2qGg2KhYFo`</summary>
+
+```text
+Web search results for query: ""Simple Factuality Probes" hallucinations long-form generations EMNLP 2025 claim-level hidden states"
+
+Links: [{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.880/"},{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/2025.findings-emnlp.880@ACL"},{"title":"Simple Factuality Probes Detect Hallucinations in Long- ...","url":"https://aclanthology.org/2025.findings-emnlp.880.pdf"},{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Request PDF","url":"https://www.researchgate.net/publication/397419109_Simple_Factuality_Probes_Detect_Hallucinations_in_Long-Form_Natural_Language_Generation"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/html/2509.03531v1"},{"title":"HalluLens: LLM Hallucination Benchmark","url":"https://aclanthology.org/2025.acl-long.1176.pdf"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation | OpenReview","url":"https://openreview.net/forum?id=YxJEMTflww"},{"title":"An Empirical Study on Hallucinations in Embodied Agents ...","url":"https://aclanthology.org/2025.findings-emnlp.1158.pdf"},{"title":"LLMs Hallucinate with Certainty Despite Knowing the Answer","url":"https://aclanthology.org/2025.findings-emnlp.792.pdf"},{"title":"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub","url":"https://github.com/EdinburghNLP/awesome-hallucination-detection"}]
+
+Based on the search results, I found comprehensive information about the paper you're looking for:
+
+"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation" was published in Findings of the Association for Computational Linguistics: EMNLP 2025, pages 16209–16226, in Suzhou, China.
+
+The paper is authored by Jiatong Han, Neil Band, Muhammed Razzak, Jannik Kossen, Tim G. J. Rudner, and Yarin Gal.
+
+**Key Findings:**
+
+The paper presents a simple baseline for detecting hallucinations in long-form LLM generations, with performance comparable to expensive multi-sample approaches while drawing only a single sample from the LLM generator.
+
+The key finding is that LLM hidden states are highly predictive of factuality in long-form natural language generation and that this information can be efficiently extracted at inference time using a lightweight probe.
+
+**Performance and Generalization:**
+
+The approach achieves competitive performance with up to 100x fewer FLOPs across open-weight models up to 405B parameters, and the probes generalize to out-of-distribution model outputs, evaluated using hidden states of smaller open-source models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0ac98348-897f-45b6-a507-ea6f1e89868d",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "ded580e0-e695-4ea0-8537-423eadcdf9f6",
+  "toolUseResult": {
+    "query": "\"Simple Factuality Probes\" hallucinations long-form generations EMNLP 2025 claim-level hidden states",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0184cuwi9BkUEmQi7L1GYZ3Z",
+        "content": [
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880/"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/2025.findings-emnlp.880@ACL"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long- ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880.pdf"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Request PDF",
+            "url": "https://www.researchgate.net/publication/397419109_Simple_Factuality_Probes_Detect_Hallucinations_in_Long-Form_Natural_Language_Generation"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/html/2509.03531v1"
+          },
+          {
+            "title": "HalluLens: LLM Hallucination Benchmark",
+            "url": "https://aclanthology.org/2025.acl-long.1176.pdf"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation | OpenReview",
+            "url": "https://openreview.net/forum?id=YxJEMTflww"
+          },
+          {
+            "title": "An Empirical Study on Hallucinations in Embodied Agents ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.1158.pdf"
+          },
+          {
+            "title": "LLMs Hallucinate with Certainty Despite Knowing the Answer",
+            "url": "https://aclanthology.org/2025.findings-emnlp.792.pdf"
+          },
+          {
+            "title": "GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub",
+            "url": "https://github.com/EdinburghNLP/awesome-hallucination-detection"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the paper you're looking for:\n\n\"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation\" was published in Findings of the Association for Computational Linguistics: EMNLP 2025, pages 16209–16226, in Suzhou, China.\n\nThe paper is authored by Jiatong Han, Neil Band, Muhammed Razzak, Jannik Kossen, Tim G. J. Rudner, and Yarin Gal.\n\n**Key Findings:**\n\nThe paper presents a simple baseline for detecting hallucinations in long-form LLM generations, with performance comparable to expensive multi-sample approaches while drawing only a single sample from the LLM generator.\n\nThe key finding is that LLM hidden states are highly predictive of factuality in long-form natural language generation and that this information can be efficiently extracted at inference time using a lightweight probe.\n\n**Performance and Generalization:**\n\nThe approach achieves competitive performance with up to 100x fewer FLOPs across open-weight models up to 405B parameters, and the probes generalize to out-of-distribution model outputs, evaluated using hidden states of smaller open-source models."
+    ],
+    "durationSeconds": 7.718310383000004
+  },
+  "sourceToolAssistantUUID": "0ac98348-897f-45b6-a507-ea6f1e89868d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-15T13:28:22.843Z_
+
+This is a very important finding. "Simple Factuality Probes" (Han et al., EMNLP Findings 2025) by the same Oxford group as Semantic Entropy Probes already does claim-level probe-based hallucination detection in long-form generation. This significantly narrows the novelty gap. Let me search more and also verify the resource constraints.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ded580e0-e695-4ea0-8537-423eadcdf9f6",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S5uoGVQiLo84UZ28LR",
+  "type": "assistant",
+  "uuid": "a4945ca2-0c6c-44ea-ac24-03447a004a1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0168pA91AXt1NoPfZZ11DyDG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1493,
+      "cache_read_input_tokens": 41591,
+      "output_tokens": 275,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1493,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 275,
+          "cache_read_input_tokens": 41591,
+          "cache_creation_input_tokens": 1493,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1493
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-15T13:28:23.846Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Jpb2QxPMjqFWZ2SSdhX684`</summary>
+
+```json
+{
+  "query": "Han \"Simple Factuality Probes\" long-form hallucination detection claim-level intervention steering mitigation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4945ca2-0c6c-44ea-ac24-03447a004a1e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S5uoGVQiLo84UZ28LR",
+  "type": "assistant",
+  "uuid": "d21b28c0-2257-460c-8bbf-6f890adca685",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0168pA91AXt1NoPfZZ11DyDG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1493,
+      "cache_read_input_tokens": 41591,
+      "output_tokens": 275,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1493,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 275,
+          "cache_read_input_tokens": 41591,
+          "cache_creation_input_tokens": 1493,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1493
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-15T13:28:24.366Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013KZ9Rc52tBDiD7k7q6njXv`</summary>
+
+```json
+{
+  "query": "\"Real-Time Detection of Hallucinated Entities\" long-form generation arxiv 2509.03531 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d21b28c0-2257-460c-8bbf-6f890adca685",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S5uoGVQiLo84UZ28LR",
+  "type": "assistant",
+  "uuid": "303792e4-9948-465a-b913-410a3a1c47fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0168pA91AXt1NoPfZZ11DyDG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1493,
+      "cache_read_input_tokens": 41591,
+      "output_tokens": 275,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1493,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 275,
+          "cache_read_input_tokens": 41591,
+          "cache_creation_input_tokens": 1493,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1493
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-15T13:28:24.916Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DQLNYxxwjPX4a4P2M8uoZN`</summary>
+
+```json
+{
+  "query": "Qwen 3.5 27B model release availability huggingface 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "303792e4-9948-465a-b913-410a3a1c47fb",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S5uoGVQiLo84UZ28LR",
+  "type": "assistant",
+  "uuid": "59beb28b-49c4-499c-b1b2-68d79799cff3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0168pA91AXt1NoPfZZ11DyDG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1493,
+      "cache_read_input_tokens": 41591,
+      "output_tokens": 275,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1493,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 275,
+          "cache_read_input_tokens": 41591,
+          "cache_creation_input_tokens": 1493,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1493
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-15 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "59beb28b-49c4-499c-b1b2-68d79799cff3",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level uncertainty calibration via representation steering",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-15T13:28:31.790Z_
+
+<details><summary>↩ Tool result · `toolu_01DQLNYxxwjPX4a4P2M8uoZN`</summary>
+
+```text
+Web search results for query: "Qwen 3.5 27B model release availability huggingface 2026"
+
+Links: [{"title":"Qwen/Qwen3.5-27B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.5-27B"},{"title":"Qwen/Qwen3.6-27B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.6-27B"},{"title":"Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled · Hugging Face","url":"https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled"},{"title":"Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-GGUF · Hugging Face","url":"https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-GGUF"},{"title":"mmangkad/Qwen3.6-27B-NVFP4 · Hugging Face","url":"https://huggingface.co/mmangkad/Qwen3.6-27B-NVFP4"},{"title":"Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model","url":"https://simonwillison.net/2026/Apr/22/qwen36-27b/"},{"title":"Qwen3.5 - a Qwen Collection","url":"https://huggingface.co/collections/Qwen/qwen35"},{"title":"lmstudio-community/Qwen3.5-27B-GGUF · Hugging Face","url":"https://huggingface.co/lmstudio-community/Qwen3.5-27B-GGUF"},{"title":"Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model","url":"https://qwen.ai/blog?id=qwen3.6-27b"},{"title":"batiai/Qwen3.6-27B-GGUF · Hugging Face","url":"https://huggingface.co/batiai/Qwen3.6-27B-GGUF"}]
+
+Based on the search results, here's what I found about the Qwen 3.5 27B model release and availability on Hugging Face:
+
+## Qwen3.5-27B Availability
+
+The Qwen3.5-27B model was released in February 2026 and is available on Hugging Face. The model has 28B parameters and achieved 3,389,203 downloads in the last month according to the Hugging Face model card.
+
+## Key Details
+
+The model is titled "Qwen3.5: Towards Native Multimodal Agents" and supports various deployment methods and features.
+
+## Community Interest
+
+Beyond the official release, there are also community-created variants available on Hugging Face, including fine-tuned versions such as distilled reasoning models that leverage the base Qwen3.5-27B architecture.
+
+The model appears to be actively available and widely used, with multiple quantized versions and fine-tuned variants accessible on the Hugging Face model hub for different deployment scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "59beb28b-49c4-499c-b1b2-68d79799cff3",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "378a6a92-ba2e-44eb-a4b4-63708c918231",
+  "toolUseResult": {
+    "query": "Qwen 3.5 27B model release availability huggingface 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FxEc1qdPdYxQzMviLyyF1h",
+        "content": [
+          {
+            "title": "Qwen/Qwen3.5-27B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.5-27B"
+          },
+          {
+            "title": "Qwen/Qwen3.6-27B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.6-27B"
+          },
+          {
+            "title": "Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled · Hugging Face",
+            "url": "https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled"
+          },
+          {
+            "title": "Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-GGUF · Hugging Face",
+            "url": "https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-GGUF"
+          },
+          {
+            "title": "mmangkad/Qwen3.6-27B-NVFP4 · Hugging Face",
+            "url": "https://huggingface.co/mmangkad/Qwen3.6-27B-NVFP4"
+          },
+          {
+            "title": "Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model",
+            "url": "https://simonwillison.net/2026/Apr/22/qwen36-27b/"
+          },
+          {
+            "title": "Qwen3.5 - a Qwen Collection",
+            "url": "https://huggingface.co/collections/Qwen/qwen35"
+          },
+          {
+            "title": "lmstudio-community/Qwen3.5-27B-GGUF · Hugging Face",
+            "url": "https://huggingface.co/lmstudio-community/Qwen3.5-27B-GGUF"
+          },
+          {
+            "title": "Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model",
+            "url": "https://qwen.ai/blog?id=qwen3.6-27b"
+          },
+          {
+            "title": "batiai/Qwen3.6-27B-GGUF · Hugging Face",
+            "url": "https://huggingface.co/batiai/Qwen3.6-27B-GGUF"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the Qwen 3.5 27B model release and availability on Hugging Face:\n\n## Qwen3.5-27B Availability\n\nThe Qwen3.5-27B model was released in February 2026 and is available on Hugging Face. The model has 28B parameters and achieved 3,389,203 downloads in the last month according to the Hugging Face model card.\n\n## Key Details\n\nThe model is titled \"Qwen3.5: Towards Native Multimodal Agents\" and supports various deployment methods and features.\n\n## Community Interest\n\nBeyond the official release, there are also community-created variants available on Hugging Face, including fine-tuned versions such as distilled reasoning models that leverage the base Qwen3.5-27B architecture.\n\nThe model appears to be actively available and widely used, with multiple quantized versions and fine-tuned variants accessible on the Hugging Face model hub for different deployment scenarios."
+    ],
+    "durationSeconds": 6.8713559559999995
+  },
+  "sourceToolAssistantUUID": "59beb28b-49c4-499c-b1b2-68d79799cff3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T13:28:31.825Z_
+
+<details><summary>↩ Tool result · `toolu_01Jpb2QxPMjqFWZ2SSdhX684`</summary>
+
+```text
+Web search results for query: "Han "Simple Factuality Probes" long-form hallucination detection claim-level intervention steering mitigation"
+
+Links: [{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.880/"},{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Request PDF","url":"https://www.researchgate.net/publication/397419109_Simple_Factuality_Probes_Detect_Hallucinations_in_Long-Form_Natural_Language_Generation"},{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/2025.findings-emnlp.880@ACL"},{"title":"Simple Factuality Probes Detect Hallucinations in Long- ...","url":"https://aclanthology.org/2025.findings-emnlp.880.pdf"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/html/2509.03531v1"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://www.hallucination-probes.com/"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation | OpenReview","url":"https://openreview.net/forum?id=YxJEMTflww"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://www.rivista.ai/wp-content/uploads/2025/09/2509.03531v1.pdf"},{"title":"Extrinsic Hallucinations in LLMs | Lil'Log","url":"https://lilianweng.github.io/posts/2024-07-07-hallucination/"},{"title":"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub","url":"https://github.com/EdinburghNLP/awesome-hallucination-detection"}]
+
+I found results for Han's "Simple Factuality Probes" paper. Here's what the research demonstrates:
+
+## Key Findings
+
+Han et al. present a simple baseline for detecting hallucinations in long-form LLM generations with performance comparable to expensive multi-sample approaches while drawing only a single sample. Their key finding is that LLM hidden states are highly predictive of factuality in long-form natural language generation and this information can be efficiently extracted at inference time using a lightweight probe.
+
+## Performance
+
+The approach achieves competitive performance across open-weight models up to 405B parameters with up to 100x fewer FLOPs. The probes generalize to out-of-distribution model outputs, evaluated using hidden states of smaller open-source models.
+
+## Claim-Level Analysis and Steering
+
+The research identifies a subset of neurons predominantly responsible for encoding common factuality, locating neuron activations such that supported and unsupported claims can be linearly separated by some threshold. 
+
+By clamping neuron activations to the tail range of their "supported" class activation values, they can causally reduce hallucinations in model outputs. This neuron-level steering approach significantly improves factuality across all evaluated LLMs on diverse topics, presenting valuable opportunities for enhancing LLM factuality through activation steering during inference, without requiring additional prompting or fine-tuning.
+
+The paper was published in the Findings of the Association for Computational Linguistics: EMNLP 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d21b28c0-2257-460c-8bbf-6f890adca685",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "2c642bf5-c365-4ec7-af92-801343e8558c",
+  "toolUseResult": {
+    "query": "Han \"Simple Factuality Probes\" long-form hallucination detection claim-level intervention steering mitigation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CP23z1purPG4ryFPgtaPUw",
+        "content": [
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880/"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Request PDF",
+            "url": "https://www.researchgate.net/publication/397419109_Simple_Factuality_Probes_Detect_Hallucinations_in_Long-Form_Natural_Language_Generation"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/2025.findings-emnlp.880@ACL"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long- ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880.pdf"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/html/2509.03531v1"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://www.hallucination-probes.com/"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation | OpenReview",
+            "url": "https://openreview.net/forum?id=YxJEMTflww"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://www.rivista.ai/wp-content/uploads/2025/09/2509.03531v1.pdf"
+          },
+          {
+            "title": "Extrinsic Hallucinations in LLMs | Lil'Log",
+            "url": "https://lilianweng.github.io/posts/2024-07-07-hallucination/"
+          },
+          {
+            "title": "GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub",
+            "url": "https://github.com/EdinburghNLP/awesome-hallucination-detection"
+          }
+        ]
+      },
+      "I found results for Han's \"Simple Factuality Probes\" paper. Here's what the research demonstrates:\n\n## Key Findings\n\nHan et al. present a simple baseline for detecting hallucinations in long-form LLM generations with performance comparable to expensive multi-sample approaches while drawing only a single sample. Their key finding is that LLM hidden states are highly predictive of factuality in long-form natural language generation and this information can be efficiently extracted at inference time using a lightweight probe.\n\n## Performance\n\nThe approach achieves competitive performance across open-weight models up to 405B parameters with up to 100x fewer FLOPs. The probes generalize to out-of-distribution model outputs, evaluated using hidden states of smaller open-source models.\n\n## Claim-Level Analysis and Steering\n\nThe research identifies a subset of neurons predominantly responsible for encoding common factuality, locating neuron activations such that supported and unsupported claims can be linearly separated by some threshold. \n\nBy clamping neuron activations to the tail range of their \"supported\" class activation values, they can causally reduce hallucinations in model outputs. This neuron-level steering approach significantly improves factuality across all evaluated LLMs on diverse topics, presenting valuable opportunities for enhancing LLM factuality through activation steering during inference, without requiring additional prompting or fine-tuning.\n\nThe paper was published in the Findings of the Association for Computational Linguistics: EMNLP 2025."
+    ],
+    "durationSeconds": 7.970839485999997
+  },
+  "sourceToolAssistantUUID": "d21b28c0-2257-460c-8bbf-6f890adca685",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-15T13:28:33.424Z_
+
+<details><summary>↩ Tool result · `toolu_013KZ9Rc52tBDiD7k7q6njXv`</summary>
+
+```text
+Web search results for query: ""Real-Time Detection of Hallucinated Entities" long-form generation arxiv 2509.03531 2025"
+
+Links: [{"title":"[2509.03531] Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/abs/2509.03531"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/html/2509.03531v1"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://www.hallucination-probes.com/"},{"title":"GitHub - obalcells/hallucination_probes: Real-Time Detection of Hallucinated Entities in Long-Form Generation · GitHub","url":"https://github.com/obalcells/hallucination_probes"},{"title":"[2509.03531v1] Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/abs/2509.03531v1"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://www.researchgate.net/publication/395270424_Real-Time_Detection_of_Hallucinated_Entities_in_Long-Form_Generation"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation | alphaXiv","url":"https://www.alphaxiv.org/overview/2509.03531"},{"title":"Paper Review: Real-Time Detection of Hallucinated Entities in Long-Form Generation - AI Research - Sophos AI - Sophos Community - Connect, Learn, and Stay Secure","url":"https://community.sophos.com/sophos-ai/b/ai-research/posts/paper_2d00_review_2d00_hallucination_2d00_detection"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://www.rivista.ai/wp-content/uploads/2025/09/2509.03531v1.pdf"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form ...","url":"https://bytez.com/docs/arxiv/2509.03531/paper"}]
+
+I found the research paper you're looking for! Here's a summary of the key information about arxiv 2509.03531:
+
+## Real-Time Detection of Hallucinated Entities in Long-Form Generation
+
+The paper presents a cheap, scalable method for real-time identification of hallucinated tokens in long-form generations, scaled effectively to 70B parameter models.
+
+### Main Approach
+
+The approach targets entity-level hallucinations—e.g., fabricated names, dates, citations—rather than claim-level, thereby naturally mapping to token-level labels and enabling streaming detection. The authors develop an annotation methodology that leverages web search to annotate model responses with grounded labels indicating which tokens correspond to fabricated entities.
+
+### Key Results
+
+Evaluating across four model families, their classifiers consistently outperform baselines on long-form responses, including more expensive methods such as semantic entropy (e.g., AUC 0.90 vs 0.71 for Llama-3.3-70B), and are also an improvement in short-form question-answering settings.
+
+### Generalization
+
+Despite being trained only to detect hallucinated entities, the probes effectively detect incorrect answers in mathematical reasoning tasks, indicating generalization beyond entities.
+
+### Authors and Release
+
+The paper was submitted on August 26, 2025, with a revised version on February 5, 2026, and is authored by Oscar Obeso, Andy Arditi, Javier Ferrando, Joshua Freeman, Cameron Holmes, and Neel Nanda. The authors have publicly released their datasets to facilitate reuse.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "303792e4-9948-465a-b913-410a3a1c47fb",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "4a4a4642-e2ad-4cf5-b178-9e6f89c57f2d",
+  "toolUseResult": {
+    "query": "\"Real-Time Detection of Hallucinated Entities\" long-form generation arxiv 2509.03531 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CWCkyeArVrkxtGq51ZYFYR",
+        "content": [
+          {
+            "title": "[2509.03531] Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/abs/2509.03531"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/html/2509.03531v1"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://www.hallucination-probes.com/"
+          },
+          {
+            "title": "GitHub - obalcells/hallucination_probes: Real-Time Detection of Hallucinated Entities in Long-Form Generation · GitHub",
+            "url": "https://github.com/obalcells/hallucination_probes"
+          },
+          {
+            "title": "[2509.03531v1] Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/abs/2509.03531v1"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://www.researchgate.net/publication/395270424_Real-Time_Detection_of_Hallucinated_Entities_in_Long-Form_Generation"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2509.03531"
+          },
+          {
+            "title": "Paper Review: Real-Time Detection of Hallucinated Entities in Long-Form Generation - AI Research - Sophos AI - Sophos Community - Connect, Learn, and Stay Secure",
+            "url": "https://community.sophos.com/sophos-ai/b/ai-research/posts/paper_2d00_review_2d00_hallucination_2d00_detection"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://www.rivista.ai/wp-content/uploads/2025/09/2509.03531v1.pdf"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form ...",
+            "url": "https://bytez.com/docs/arxiv/2509.03531/paper"
+          }
+        ]
+      },
+      "I found the research paper you're looking for! Here's a summary of the key information about arxiv 2509.03531:\n\n## Real-Time Detection of Hallucinated Entities in Long-Form Generation\n\nThe paper presents a cheap, scalable method for real-time identification of hallucinated tokens in long-form generations, scaled effectively to 70B parameter models.\n\n### Main Approach\n\nThe approach targets entity-level hallucinations—e.g., fabricated names, dates, citations—rather than claim-level, thereby naturally mapping to token-level labels and enabling streaming detection. The authors develop an annotation methodology that leverages web search to annotate model responses with grounded labels indicating which tokens correspond to fabricated entities.\n\n### Key Results\n\nEvaluating across four model families, their classifiers consistently outperform baselines on long-form responses, including more expensive methods such as semantic entropy (e.g., AUC 0.90 vs 0.71 for Llama-3.3-70B), and are also an improvement in short-form question-answering settings.\n\n### Generalization\n\nDespite being trained only to detect hallucinated entities, the probes effectively detect incorrect answers in mathematical reasoning tasks, indicating generalization beyond entities.\n\n### Authors and Release\n\nThe paper was submitted on August 26, 2025, with a revised version on February 5, 2026, and is authored by Oscar Obeso, Andy Arditi, Javier Ferrando, Joshua Freeman, Cameron Holmes, and Neel Nanda. The authors have publicly released their datasets to facilitate reuse."
+    ],
+    "durationSeconds": 9.055488142999994
+  },
+  "sourceToolAssistantUUID": "303792e4-9948-465a-b913-410a3a1c47fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 78 · 2026-05-15T13:28:33.429Z_
+
+```json
+{
+  "parentUuid": "4a4a4642-e2ad-4cf5-b178-9e6f89c57f2d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f63418c2-87f4-4d27-92da-9e23c32113b6",
+  "timestamp": "2026-05-15T13:28:33.429Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-15T13:28:38.114Z_
+
+This is a major finding. Han et al. (EMNLP Findings 2025) — "Simple Factuality Probes" — already does claim-level factuality probing on long-form generations AND demonstrates causal neuron clamping to reduce hallucinations. This substantially overlaps with the proposed CL-MUC idea. Let me verify the exact overlap and check Llama 4 Scout availability.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f63418c2-87f4-4d27-92da-9e23c32113b6",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S6zU5Zp3nC8fJZvNBY",
+  "type": "assistant",
+  "uuid": "355b4cf0-0ced-4c94-be18-cbd94b0346d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A83vK2exkdrPUWdD45tYBA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 902,
+      "cache_creation_input_tokens": 2265,
+      "cache_read_input_tokens": 43084,
+      "output_tokens": 327,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2265,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 902,
+          "output_tokens": 327,
+          "cache_read_input_tokens": 43084,
+          "cache_creation_input_tokens": 2265,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2265
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-15T13:28:40.096Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PQGGK8jmuBEeA7GKKwA8Lv`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2509.03531",
+  "prompt": "Does this paper do claim-level or entity-level detection? Does it use activation steering/intervention to reduce hallucinations or only detect them? What models are tested? How does it compare to semantic entropy probes?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "355b4cf0-0ced-4c94-be18-cbd94b0346d9",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S6zU5Zp3nC8fJZvNBY",
+  "type": "assistant",
+  "uuid": "e2ddd4c6-392a-42d0-932e-5c924ae615f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A83vK2exkdrPUWdD45tYBA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 902,
+      "cache_creation_input_tokens": 2265,
+      "cache_read_input_tokens": 43084,
+      "output_tokens": 327,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2265,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 902,
+          "output_tokens": 327,
+          "cache_read_input_tokens": 43084,
+          "cache_creation_input_tokens": 2265,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2265
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-15T13:28:40.488Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RzfTG3HeiryL4zrP4oUBgx`</summary>
+
+```json
+{
+  "query": "Llama 4 Scout model availability huggingface open weights 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2ddd4c6-392a-42d0-932e-5c924ae615f5",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S6zU5Zp3nC8fJZvNBY",
+  "type": "assistant",
+  "uuid": "85b0dd5b-0ae8-4501-a674-ebacfa29c867",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A83vK2exkdrPUWdD45tYBA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 902,
+      "cache_creation_input_tokens": 2265,
+      "cache_read_input_tokens": 43084,
+      "output_tokens": 327,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2265,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 902,
+          "output_tokens": 327,
+          "cache_read_input_tokens": 43084,
+          "cache_creation_input_tokens": 2265,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2265
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-15T13:28:40.961Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WVZn8rvmVALLnE4wzt6jtH`</summary>
+
+```json
+{
+  "query": "FActScore OpenFActScore claim decomposition pipeline open source 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85b0dd5b-0ae8-4501-a674-ebacfa29c867",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S6zU5Zp3nC8fJZvNBY",
+  "type": "assistant",
+  "uuid": "0af84df1-2d15-4a40-bc14-2d3f2e99af4e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A83vK2exkdrPUWdD45tYBA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 902,
+      "cache_creation_input_tokens": 2265,
+      "cache_read_input_tokens": 43084,
+      "output_tokens": 327,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2265,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 902,
+          "output_tokens": 327,
+          "cache_read_input_tokens": 43084,
+          "cache_creation_input_tokens": 2265,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2265
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-15T13:28:44.995Z_
+
+<details><summary>↩ Tool result · `toolu_01PQGGK8jmuBEeA7GKKwA8Lv`</summary>
+
+```text
+# Analysis of the Paper
+
+**Detection Level:**
+The paper focuses on entity-level rather than claim-level detection. As stated: "Our approach targets entity-level hallucinations-e.g., fabricated names, dates, citations-rather than claim-level."
+
+**Intervention vs. Detection:**
+This work is detection-only. The abstract describes "real-time identification of hallucinated tokens" and developing "hallucination classifiers," with no mention of steering or intervention techniques to prevent hallucinations from occurring.
+
+**Models Tested:**
+The research evaluates across multiple model families, with specific mention of scaling "effectively to 70B parameter models." The results reference "Llama-3.3-70B" as a benchmark case, but the exact roster of all tested models isn't fully detailed in this excerpt.
+
+**Comparison to Semantic Entropy:**
+The method substantially outperforms semantic entropy approaches. The paper reports their classifiers achieve "AUC 0.90 vs 0.71 for Llama-3.3-70B" when compared to semantic entropy baselines, demonstrating meaningful improvement on long-form responses.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e2ddd4c6-392a-42d0-932e-5c924ae615f5",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "95cdb2d9-5743-494a-beb5-dcb075ca47a0",
+  "toolUseResult": {
+    "bytes": 48009,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of the Paper\n\n**Detection Level:**\nThe paper focuses on entity-level rather than claim-level detection. As stated: \"Our approach targets entity-level hallucinations-e.g., fabricated names, dates, citations-rather than claim-level.\"\n\n**Intervention vs. Detection:**\nThis work is detection-only. The abstract describes \"real-time identification of hallucinated tokens\" and developing \"hallucination classifiers,\" with no mention of steering or intervention techniques to prevent hallucinations from occurring.\n\n**Models Tested:**\nThe research evaluates across multiple model families, with specific mention of scaling \"effectively to 70B parameter models.\" The results reference \"Llama-3.3-70B\" as a benchmark case, but the exact roster of all tested models isn't fully detailed in this excerpt.\n\n**Comparison to Semantic Entropy:**\nThe method substantially outperforms semantic entropy approaches. The paper reports their classifiers achieve \"AUC 0.90 vs 0.71 for Llama-3.3-70B\" when compared to semantic entropy baselines, demonstrating meaningful improvement on long-form responses.",
+    "durationMs": 4896,
+    "url": "https://arxiv.org/abs/2509.03531"
+  },
+  "sourceToolAssistantUUID": "e2ddd4c6-392a-42d0-932e-5c924ae615f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-15T13:28:48.131Z_
+
+<details><summary>↩ Tool result · `toolu_01WVZn8rvmVALLnE4wzt6jtH`</summary>
+
+```text
+Web search results for query: "FActScore OpenFActScore claim decomposition pipeline open source 2025 2026"
+
+Links: [{"title":"FactScore: Factual Evaluation Framework","url":"https://www.emergentmind.com/topics/factscore-113e12f4-d246-433f-8289-063e105dc511"},{"title":"GitHub - lflage/OpenFActScore: A package to evaluate factuality of long-form generation using open usage models.","url":"https://github.com/lflage/OpenFActScore"},{"title":"FActScore: Metric for Factual Precision in LLMs","url":"https://www.emergentmind.com/topics/factscore"},{"title":"ü \u0007\u0007\u0007\u0007 VERIFASTSCORE: Speeding up long-form factuality evaluation","url":"https://arxiv.org/pdf/2505.16973"},{"title":"MedScore: Factuality Evaluation of Free-Form Medical Answers","url":"https://arxiv.org/html/2505.18452v1"},{"title":"OpenFActScore: Open-Source Atomic Evaluation of Factuality in Text Generation - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250705965F/abstract"},{"title":"VeriScore: Evaluating the factuality of verifiable claims in long-form text generation","url":"https://arxiv.org/html/2406.19276v1"},{"title":"[2505.16973] VeriFastScore: Speeding up long-form factuality evaluation","url":"https://arxiv.org/abs/2505.16973"},{"title":"OpenFActScore: Open-Source Atomic Evaluation of Factuality in Text Generation","url":"https://arxiv.org/html/2507.05965v1"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=FActScore"}]
+
+Based on the search results, here's what I found about FActScore, OpenFActScore, and the claim decomposition pipeline:
+
+## Overview
+
+OpenFActScore is an open-source implementation of the FActScore framework for evaluating the factuality of text generated by large language models (LLMs). FActScore evaluates the factual accuracy of long-form text by using Atomic Fact Generation (AFG) to extract individual factual claims and Atomic Fact Validation (AFV) to verify each claim against a trusted knowledge source.
+
+## Claim Decomposition Pipeline
+
+The evaluation pipeline operates in distinct stages:
+
+Claim/Fact Extraction involves segmenting model output into atomic, independently verifiable facts, often involving LLM-assisted decomposition at or below the sentence level for text. For each fact, relevant evidence is retrieved from the knowledge base (e.g., Wikipedia, PubMed, ground-truth label sets), and each atomic fact is individually verified against retrieved evidence, yielding a binary label.
+
+## Open-Source Implementation (2025)
+
+OpenFActScore supports Hugging Face-compatible LLMs for both atomic fact generation and validation. While the original FActScore relies on closed-source and commercial models such as InstructGPT and ChatGPT, OpenFActScore enables the use of any Hugging Face-compatible model for both AFG and AFV.
+
+Open models can approximate the performance of closed-source systems, with Gemma achieving the best overall performance, and the final setup obtaining a 0.99 Pearson correlation with the original FActScore experiments.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0af84df1-2d15-4a40-bc14-2d3f2e99af4e",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "cb120f84-9094-479d-9ca0-d1b7657ea695",
+  "toolUseResult": {
+    "query": "FActScore OpenFActScore claim decomposition pipeline open source 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JUg1uNQxVA6tnj1EYzqCqr",
+        "content": [
+          {
+            "title": "FactScore: Factual Evaluation Framework",
+            "url": "https://www.emergentmind.com/topics/factscore-113e12f4-d246-433f-8289-063e105dc511"
+          },
+          {
+            "title": "GitHub - lflage/OpenFActScore: A package to evaluate factuality of long-form generation using open usage models.",
+            "url": "https://github.com/lflage/OpenFActScore"
+          },
+          {
+            "title": "FActScore: Metric for Factual Precision in LLMs",
+            "url": "https://www.emergentmind.com/topics/factscore"
+          },
+          {
+            "title": "ü \u0007\u0007\u0007\u0007 VERIFASTSCORE: Speeding up long-form factuality evaluation",
+            "url": "https://arxiv.org/pdf/2505.16973"
+          },
+          {
+            "title": "MedScore: Factuality Evaluation of Free-Form Medical Answers",
+            "url": "https://arxiv.org/html/2505.18452v1"
+          },
+          {
+            "title": "OpenFActScore: Open-Source Atomic Evaluation of Factuality in Text Generation - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250705965F/abstract"
+          },
+          {
+            "title": "VeriScore: Evaluating the factuality of verifiable claims in long-form text generation",
+            "url": "https://arxiv.org/html/2406.19276v1"
+          },
+          {
+            "title": "[2505.16973] VeriFastScore: Speeding up long-form factuality evaluation",
+            "url": "https://arxiv.org/abs/2505.16973"
+          },
+          {
+            "title": "OpenFActScore: Open-Source Atomic Evaluation of Factuality in Text Generation",
+            "url": "https://arxiv.org/html/2507.05965v1"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=FActScore"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about FActScore, OpenFActScore, and the claim decomposition pipeline:\n\n## Overview\n\nOpenFActScore is an open-source implementation of the FActScore framework for evaluating the factuality of text generated by large language models (LLMs). FActScore evaluates the factual accuracy of long-form text by using Atomic Fact Generation (AFG) to extract individual factual claims and Atomic Fact Validation (AFV) to verify each claim against a trusted knowledge source.\n\n## Claim Decomposition Pipeline\n\nThe evaluation pipeline operates in distinct stages:\n\nClaim/Fact Extraction involves segmenting model output into atomic, independently verifiable facts, often involving LLM-assisted decomposition at or below the sentence level for text. For each fact, relevant evidence is retrieved from the knowledge base (e.g., Wikipedia, PubMed, ground-truth label sets), and each atomic fact is individually verified against retrieved evidence, yielding a binary label.\n\n## Open-Source Implementation (2025)\n\nOpenFActScore supports Hugging Face-compatible LLMs for both atomic fact generation and validation. While the original FActScore relies on closed-source and commercial models such as InstructGPT and ChatGPT, OpenFActScore enables the use of any Hugging Face-compatible model for both AFG and AFV.\n\nOpen models can approximate the performance of closed-source systems, with Gemma achieving the best overall performance, and the final setup obtaining a 0.99 Pearson correlation with the original FActScore experiments."
+    ],
+    "durationSeconds": 7.167362357000005
+  },
+  "sourceToolAssistantUUID": "0af84df1-2d15-4a40-bc14-2d3f2e99af4e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-15 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "cb120f84-9094-479d-9ca0-d1b7657ea695",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level uncertainty calibration via representation steering",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-15T13:28:50.597Z_
+
+<details><summary>↩ Tool result · `toolu_01RzfTG3HeiryL4zrP4oUBgx`</summary>
+
+```text
+Web search results for query: "Llama 4 Scout model availability huggingface open weights 2026"
+
+Links: [{"title":"Welcome Llama 4 Maverick & Scout on Hugging Face","url":"https://huggingface.co/blog/llama4-release"},{"title":"meta-llama/Llama-4-Scout-17B-16E · Hugging Face","url":"https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E"},{"title":"The Llama 4 herd: The beginning of a new era of natively multimodal AI innovation","url":"https://ai.meta.com/blog/llama-4-multimodal-intelligence/"},{"title":"meta-llama/Llama-4-Scout-17B-16E-Instruct · Hugging Face","url":"https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct"},{"title":"Meta Launches Llama 4 Scout and Maverick: First Open-Weight Multimodal MoE Models | Evermx","url":"https://evermx.com/case/meta-llama-4-scout-maverick-multimodal-moe-launch"},{"title":"Llama 4 Behemoth Release Date 2026: Scout & Maverick Status Update | Serenities AI","url":"https://serenitiesai.com/articles/llama-4-behemoth-maverick-scout-review-2026"},{"title":"nvidia/Llama-4-Scout-17B-16E-Instruct-FP8 · Hugging Face","url":"https://huggingface.co/nvidia/Llama-4-Scout-17B-16E-Instruct-FP8"},{"title":"nvidia/Llama-4-Scout-17B-16E-Instruct-NVFP4 · Hugging Face","url":"https://huggingface.co/nvidia/Llama-4-Scout-17B-16E-Instruct-NVFP4"},{"title":"Welcome Llama 4 Maverick & Scout on Hugging Face","url":"https://github.com/huggingface/blog/blob/main/llama4-release.md"},{"title":"Llama4 · Hugging Face","url":"https://huggingface.co/docs/transformers/en/model_doc/llama4"}]
+
+Based on the search results, here's what I found about Llama 4 Scout model availability on Hugging Face as open-weight models:
+
+## Availability on Hugging Face
+
+Both Llama 4 Maverick and Llama 4 Scout model weights are available directly on the Hugging Face Hub under the meta-llama organization. This includes both base and instruction tuned variants.
+
+## Model Specifications
+
+Llama 4 Scout is the smaller of the two models, with 17 billion active parameters spread across 16 experts and 109 billion total parameters. Scout is the best multimodal model in the world in its class while fitting in a single NVIDIA H100 GPU and offers an industry-leading context window of 10M.
+
+## Release and Deployment
+
+Both models can process text, images, and video inputs, and both are available as open-weight downloads on Hugging Face and llama.com. The Llama 4 Scout model is released as BF16 weights, but can fit within a single H100 GPU with on-the-fly int4 quantization.
+
+## Licensing
+
+Llama 4 Scout and Maverick are available under Meta's Llama license, which permits commercial use for most companies, though companies with over 700 million monthly active users need a special license from Meta, and EU-domiciled users and companies are currently prohibited from using or distributing the models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "85b0dd5b-0ae8-4501-a674-ebacfa29c867",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "7254cc6a-46a3-4688-9c29-ed834531f45d",
+  "toolUseResult": {
+    "query": "Llama 4 Scout model availability huggingface open weights 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VmenN5u2RbZcCiNmiNzPJY",
+        "content": [
+          {
+            "title": "Welcome Llama 4 Maverick & Scout on Hugging Face",
+            "url": "https://huggingface.co/blog/llama4-release"
+          },
+          {
+            "title": "meta-llama/Llama-4-Scout-17B-16E · Hugging Face",
+            "url": "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E"
+          },
+          {
+            "title": "The Llama 4 herd: The beginning of a new era of natively multimodal AI innovation",
+            "url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/"
+          },
+          {
+            "title": "meta-llama/Llama-4-Scout-17B-16E-Instruct · Hugging Face",
+            "url": "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct"
+          },
+          {
+            "title": "Meta Launches Llama 4 Scout and Maverick: First Open-Weight Multimodal MoE Models | Evermx",
+            "url": "https://evermx.com/case/meta-llama-4-scout-maverick-multimodal-moe-launch"
+          },
+          {
+            "title": "Llama 4 Behemoth Release Date 2026: Scout & Maverick Status Update | Serenities AI",
+            "url": "https://serenitiesai.com/articles/llama-4-behemoth-maverick-scout-review-2026"
+          },
+          {
+            "title": "nvidia/Llama-4-Scout-17B-16E-Instruct-FP8 · Hugging Face",
+            "url": "https://huggingface.co/nvidia/Llama-4-Scout-17B-16E-Instruct-FP8"
+          },
+          {
+            "title": "nvidia/Llama-4-Scout-17B-16E-Instruct-NVFP4 · Hugging Face",
+            "url": "https://huggingface.co/nvidia/Llama-4-Scout-17B-16E-Instruct-NVFP4"
+          },
+          {
+            "title": "Welcome Llama 4 Maverick & Scout on Hugging Face",
+            "url": "https://github.com/huggingface/blog/blob/main/llama4-release.md"
+          },
+          {
+            "title": "Llama4 · Hugging Face",
+            "url": "https://huggingface.co/docs/transformers/en/model_doc/llama4"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Llama 4 Scout model availability on Hugging Face as open-weight models:\n\n## Availability on Hugging Face\n\nBoth Llama 4 Maverick and Llama 4 Scout model weights are available directly on the Hugging Face Hub under the meta-llama organization. This includes both base and instruction tuned variants.\n\n## Model Specifications\n\nLlama 4 Scout is the smaller of the two models, with 17 billion active parameters spread across 16 experts and 109 billion total parameters. Scout is the best multimodal model in the world in its class while fitting in a single NVIDIA H100 GPU and offers an industry-leading context window of 10M.\n\n## Release and Deployment\n\nBoth models can process text, images, and video inputs, and both are available as open-weight downloads on Hugging Face and llama.com. The Llama 4 Scout model is released as BF16 weights, but can fit within a single H100 GPU with on-the-fly int4 quantization.\n\n## Licensing\n\nLlama 4 Scout and Maverick are available under Meta's Llama license, which permits commercial use for most companies, though companies with over 700 million monthly active users need a special license from Meta, and EU-domiciled users and companies are currently prohibited from using or distributing the models."
+    ],
+    "durationSeconds": 10.105595810999978
+  },
+  "sourceToolAssistantUUID": "85b0dd5b-0ae8-4501-a674-ebacfa29c867",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88 · 2026-05-15T13:28:54.977Z_
+
+Now I have a critical issue to investigate. Let me check the "Simple Factuality Probes" paper more closely — it already does claim-level probes + neuron clamping for long-form. This is the biggest novelty threat.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7254cc6a-46a3-4688-9c29-ed834531f45d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S8FqadnGgYi49gGKVN",
+  "type": "assistant",
+  "uuid": "6effc51b-f5ea-4358-a419-44bbd4e0100c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHsMyVpMdteyxYUtUgyEeL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 887,
+      "cache_creation_input_tokens": 2484,
+      "cache_read_input_tokens": 45349,
+      "output_tokens": 309,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2484,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 887,
+          "output_tokens": 309,
+          "cache_read_input_tokens": 45349,
+          "cache_creation_input_tokens": 2484,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2484
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-15T13:29:00.505Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XUSVZHQnv2Vsdd8XvCCqoW`</summary>
+
+```json
+{
+  "url": "https://aclanthology.org/2025.findings-emnlp.880/",
+  "prompt": "I need the full details: 1) Does this paper decompose long-form outputs into claims and train probes per-claim on hidden states? 2) Does it do activation steering/intervention or just detection? 3) What is the \"neuron clamping\" approach - does it steer during generation? 4) What models and benchmarks are used? 5) How does this compare to semantic entropy probes? 6) What are the limitations?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6effc51b-f5ea-4358-a419-44bbd4e0100c",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S8FqadnGgYi49gGKVN",
+  "type": "assistant",
+  "uuid": "f0b9e9d4-db3a-4c50-9141-eb368d0fabbf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHsMyVpMdteyxYUtUgyEeL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 887,
+      "cache_creation_input_tokens": 2484,
+      "cache_read_input_tokens": 45349,
+      "output_tokens": 309,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2484,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 887,
+          "output_tokens": 309,
+          "cache_read_input_tokens": 45349,
+          "cache_creation_input_tokens": 2484,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2484
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-15T13:29:00.562Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B6EX7NrfqyUAirbNEeBmDN`</summary>
+
+```json
+{
+  "query": "Han Kossen Gal \"Simple Factuality Probes\" neuron clamping activation steering claim-level long-form hallucination reduction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0b9e9d4-db3a-4c50-9141-eb368d0fabbf",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S8FqadnGgYi49gGKVN",
+  "type": "assistant",
+  "uuid": "7699b5f9-52c1-4b42-abbd-a691729e0b61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHsMyVpMdteyxYUtUgyEeL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 887,
+      "cache_creation_input_tokens": 2484,
+      "cache_read_input_tokens": 45349,
+      "output_tokens": 309,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2484,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 887,
+          "output_tokens": 309,
+          "cache_read_input_tokens": 45349,
+          "cache_creation_input_tokens": 2484,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2484
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-15T13:29:08.536Z_
+
+<details><summary>↩ Tool result · `toolu_01B6EX7NrfqyUAirbNEeBmDN`</summary>
+
+```text
+Web search results for query: "Han Kossen Gal "Simple Factuality Probes" neuron clamping activation steering claim-level long-form hallucination reduction"
+
+Links: [{"title":"Simple Factuality Probes Detect Hallucinations in Long- ...","url":"https://aclanthology.org/2025.findings-emnlp.880.pdf"},{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.880/"},{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Request PDF","url":"https://www.researchgate.net/publication/397419109_Simple_Factuality_Probes_Detect_Hallucinations_in_Long-Form_Natural_Language_Generation"},{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/2025.findings-emnlp.880@ACL"},{"title":"Encoding Semantic Uncertainty in the Latent Space of LLMs","url":"https://openreview.net/pdf?id=BbZKxrZCNn"},{"title":"GitHub - OATML/semantic-entropy-probes · GitHub","url":"https://github.com/OATML/semantic-entropy-probes"},{"title":"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs | Request PDF","url":"https://www.researchgate.net/publication/381666455_Semantic_Entropy_Probes_Robust_and_Cheap_Hallucination_Detection_in_LLMs"},{"title":"INTERPRETABLE STEERING OF LARGE LANGUAGE ...","url":"https://openreview.net/pdf?id=swRxS7s4rB"},{"title":"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs","url":"https://arxiv.org/pdf/2406.15927"},{"title":"Evidence from Pre-CoT Probes and Activation Steering","url":"https://www.researchgate.net/publication/401470114_Decoding_Answers_Before_Chain-of-Thought_Evidence_from_Pre-CoT_Probes_and_Activation_Steering"}]
+
+I found the research you're looking for. Here's what the search returned:
+
+## Overview
+
+The paper is titled "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation" by Jiatong Han, Neil Band, Muhammed Razzak, Jannik Kossen, Tim G. J. Rudner, and Yarin Gal. It was published in the Findings of the Association for Computational Linguistics: EMNLP 2025, pages 16209–16226, Suzhou, China.
+
+## Key Claims
+
+The paper's central finding is that LLM hidden states are highly predictive of factuality in long-form natural language generation and that this information can be efficiently extracted at inference time using a lightweight probe.
+
+## Neuron Clamping and Activation Steering
+
+Regarding the neuron clamping approach you asked about: By clamping neuron activations to the tail range of their "supported" class activation values, they can causally reduce hallucinations in model outputs. This neuron-level steering approach significantly improves factuality across all evaluated LLMs.
+
+## Claim-Level and Long-Form Hallucination Reduction
+
+The paper specifically addresses claim-level analysis: Given a long-form generation from a frontier LLM, they decompose it into atomic claims, obtain hidden states for each claim using either the frontier LLM or a smaller LM, and apply a lightweight probe on hidden states to estimate claim-level factuality. By attributing atomic claims to token spans, they propagate claim-level factuality back to the long-form generation, providing users with a natural visualization of factuality throughout a long-form generation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7699b5f9-52c1-4b42-abbd-a691729e0b61",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "2d970ea3-ab4d-4757-801a-713dc5597802",
+  "toolUseResult": {
+    "query": "Han Kossen Gal \"Simple Factuality Probes\" neuron clamping activation steering claim-level long-form hallucination reduction",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E8ZwEWPmw7fXBm68DX2heo",
+        "content": [
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long- ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880.pdf"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880/"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Request PDF",
+            "url": "https://www.researchgate.net/publication/397419109_Simple_Factuality_Probes_Detect_Hallucinations_in_Long-Form_Natural_Language_Generation"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/2025.findings-emnlp.880@ACL"
+          },
+          {
+            "title": "Encoding Semantic Uncertainty in the Latent Space of LLMs",
+            "url": "https://openreview.net/pdf?id=BbZKxrZCNn"
+          },
+          {
+            "title": "GitHub - OATML/semantic-entropy-probes · GitHub",
+            "url": "https://github.com/OATML/semantic-entropy-probes"
+          },
+          {
+            "title": "Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs | Request PDF",
+            "url": "https://www.researchgate.net/publication/381666455_Semantic_Entropy_Probes_Robust_and_Cheap_Hallucination_Detection_in_LLMs"
+          },
+          {
+            "title": "INTERPRETABLE STEERING OF LARGE LANGUAGE ...",
+            "url": "https://openreview.net/pdf?id=swRxS7s4rB"
+          },
+          {
+            "title": "Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs",
+            "url": "https://arxiv.org/pdf/2406.15927"
+          },
+          {
+            "title": "Evidence from Pre-CoT Probes and Activation Steering",
+            "url": "https://www.researchgate.net/publication/401470114_Decoding_Answers_Before_Chain-of-Thought_Evidence_from_Pre-CoT_Probes_and_Activation_Steering"
+          }
+        ]
+      },
+      "I found the research you're looking for. Here's what the search returned:\n\n## Overview\n\nThe paper is titled \"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation\" by Jiatong Han, Neil Band, Muhammed Razzak, Jannik Kossen, Tim G. J. Rudner, and Yarin Gal. It was published in the Findings of the Association for Computational Linguistics: EMNLP 2025, pages 16209–16226, Suzhou, China.\n\n## Key Claims\n\nThe paper's central finding is that LLM hidden states are highly predictive of factuality in long-form natural language generation and that this information can be efficiently extracted at inference time using a lightweight probe.\n\n## Neuron Clamping and Activation Steering\n\nRegarding the neuron clamping approach you asked about: By clamping neuron activations to the tail range of their \"supported\" class activation values, they can causally reduce hallucinations in model outputs. This neuron-level steering approach significantly improves factuality across all evaluated LLMs.\n\n## Claim-Level and Long-Form Hallucination Reduction\n\nThe paper specifically addresses claim-level analysis: Given a long-form generation from a frontier LLM, they decompose it into atomic claims, obtain hidden states for each claim using either the frontier LLM or a smaller LM, and apply a lightweight probe on hidden states to estimate claim-level factuality. By attributing atomic claims to token spans, they propagate claim-level factuality back to the long-form generation, providing users with a natural visualization of factuality throughout a long-form generation."
+    ],
+    "durationSeconds": 7.970409951999987
+  },
+  "sourceToolAssistantUUID": "7699b5f9-52c1-4b42-abbd-a691729e0b61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-15T13:29:08.698Z_
+
+<details><summary>↩ Tool result · `toolu_01XUSVZHQnv2Vsdd8XvCCqoW`</summary>
+
+```text
+I can only provide information based on the webpage content provided, which contains the paper's abstract and metadata but not the full paper details.
+
+From what's available:
+
+**1) Claim decomposition & per-claim probes:** Not specified in the abstract provided.
+
+**2) Activation steering vs. detection:** The abstract indicates this is detection-focused: "Our key finding is that LLM hidden states are highly predictive of factuality" and mentions "lightweight probe" for extraction—suggesting detection rather than intervention.
+
+**3) Neuron clamping approach:** Not mentioned in the available content.
+
+**4) Models and benchmarks:** The abstract states testing across "open-weight models up to 405B parameters" but specific model names and benchmark datasets aren't detailed in this excerpt.
+
+**5) Semantic entropy comparison:** Not addressed in the provided material.
+
+**6) Limitations:** Not discussed in the abstract or metadata shown.
+
+**To get complete answers**, you'd need to review the full PDF (linked as https://aclanthology.org/2025.findings-emnlp.880.pdf), which would contain the methodology section, experimental setup, results, and discussion of limitations. The webpage only provides bibliographic information and a brief summary of the approach's core contribution regarding hidden state-based hallucination detection.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f0b9e9d4-db3a-4c50-9141-eb368d0fabbf",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "2959f6fc-2bfa-4025-8a52-e136570571bc",
+  "toolUseResult": {
+    "bytes": 41333,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I can only provide information based on the webpage content provided, which contains the paper's abstract and metadata but not the full paper details.\n\nFrom what's available:\n\n**1) Claim decomposition & per-claim probes:** Not specified in the abstract provided.\n\n**2) Activation steering vs. detection:** The abstract indicates this is detection-focused: \"Our key finding is that LLM hidden states are highly predictive of factuality\" and mentions \"lightweight probe\" for extraction—suggesting detection rather than intervention.\n\n**3) Neuron clamping approach:** Not mentioned in the available content.\n\n**4) Models and benchmarks:** The abstract states testing across \"open-weight models up to 405B parameters\" but specific model names and benchmark datasets aren't detailed in this excerpt.\n\n**5) Semantic entropy comparison:** Not addressed in the provided material.\n\n**6) Limitations:** Not discussed in the abstract or metadata shown.\n\n**To get complete answers**, you'd need to review the full PDF (linked as https://aclanthology.org/2025.findings-emnlp.880.pdf), which would contain the methodology section, experimental setup, results, and discussion of limitations. The webpage only provides bibliographic information and a brief summary of the approach's core contribution regarding hidden state-based hallucination detection.",
+    "durationMs": 8187,
+    "url": "https://aclanthology.org/2025.findings-emnlp.880/"
+  },
+  "sourceToolAssistantUUID": "f0b9e9d4-db3a-4c50-9141-eb368d0fabbf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93 · 2026-05-15T13:29:13.312Z_
+
+This is the critical competitor. Han et al. (EMNLP Findings 2025) already:
+1. Decomposes long-form into atomic claims
+2. Uses hidden-state probes for claim-level factuality
+3. Does neuron clamping for causal hallucination reduction
+
+This substantially overlaps with CL-MUC. Let me now check the compute constraints and look for the last few missing pieces.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2959f6fc-2bfa-4025-8a52-e136570571bc",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S9bZGgs873sD3KqxD7",
+  "type": "assistant",
+  "uuid": "59a1aeb2-8e82-4bc0-8680-5fbfc9c93e62",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PxhnKgK1a5hsYH6WHsuS5k",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1026,
+      "cache_creation_input_tokens": 1511,
+      "cache_read_input_tokens": 47833,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1511,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1026,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 47833,
+          "cache_creation_input_tokens": 1511,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1511
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-15T13:29:14.292Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Qj9sYJx4wae94vdk3oeUaH`</summary>
+
+```json
+{
+  "query": "Llama 4 Scout MoE 109B parameters TransformerLens nnsight support interpretability probes 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59a1aeb2-8e82-4bc0-8680-5fbfc9c93e62",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S9bZGgs873sD3KqxD7",
+  "type": "assistant",
+  "uuid": "b92c1e28-8da3-475d-a127-7390e8f02fcc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PxhnKgK1a5hsYH6WHsuS5k",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1026,
+      "cache_creation_input_tokens": 1511,
+      "cache_read_input_tokens": 47833,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1511,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1026,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 47833,
+          "cache_creation_input_tokens": 1511,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1511
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-15T13:29:15.084Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TzjoyLzV2iEBSEuvJbTmfP`</summary>
+
+```json
+{
+  "query": "VUF verbal uncertainty feature second-pass generation two-pass decoding activation intervention feasibility overhead"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b92c1e28-8da3-475d-a127-7390e8f02fcc",
+  "isSidechain": false,
+  "requestId": "req_011Cb4S9bZGgs873sD3KqxD7",
+  "type": "assistant",
+  "uuid": "a319403c-3632-4bcc-b621-7ed5feb24fee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PxhnKgK1a5hsYH6WHsuS5k",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1026,
+      "cache_creation_input_tokens": 1511,
+      "cache_read_input_tokens": 47833,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1511,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1026,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 47833,
+          "cache_creation_input_tokens": 1511,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1511
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-15T13:29:21.570Z_
+
+<details><summary>↩ Tool result · `toolu_01Qj9sYJx4wae94vdk3oeUaH`</summary>
+
+```text
+Web search results for query: "Llama 4 Scout MoE 109B parameters TransformerLens nnsight support interpretability probes 2026"
+
+Links: [{"title":"nnsight and nnterp | Learn Mechanistic Interpretability","url":"https://learnmechinterp.com/topics/nnsight-and-nnterp/"},{"title":"Llama 4 Scout (109B) MoE Transformer","url":"https://www.emergentmind.com/topics/llama-4-scout-109b"},{"title":"The Llama 4 herd: The beginning of a new era of natively multimodal AI innovation","url":"https://ai.meta.com/blog/llama-4-multimodal-intelligence/"},{"title":"llama4:scout","url":"https://ollama.com/library/llama4:scout"},{"title":"Welcome Llama 4 Maverick & Scout on Hugging Face","url":"https://huggingface.co/blog/llama4-release"},{"title":"Llama 4 Scout: 10M Context, 109B MoE — Local Setup Guide | Local AI Master","url":"https://localaimaster.com/models/llama-4-scout"},{"title":"aravhawk/llama4:109b","url":"https://ollama.com/aravhawk/llama4:109b"},{"title":"Llama 4 (Scout & Maverick) | Guides | Clore.ai","url":"https://docs.clore.ai/guides/language-models/llama4"},{"title":"llama-4-scout-17b-16e-instruct: Open-Source Powerhouse with MoE, Multimodality & 10M-Token Memory","url":"https://blog.promptlayer.com/llama-4-scout-17b-16e-instruct-open-source-powerhouse-with-moe-multimodality-10m-token-memory/"},{"title":"meta-llama/Llama-4-Scout-17B-16E-Instruct · Hugging Face","url":"https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct"}]
+
+Based on the search results, here's what I found:
+
+## Llama 4 Scout Model Specifications
+
+Llama 4 Scout is approximately 109B parameters, and it's a 17 billion active parameter model with 16 experts. It uses a Mixture-of-Experts Transformer architecture.
+
+## TransformerLens and nnsight Support
+
+The search results confirm that both TransformerLens and nnsight are important tools for mechanistic interpretability research. TransformerLens provides clean access to model internals, but its approach of reimplementing each architecture from scratch creates a bottleneck, as every new model family requires conversion code, testing, and maintenance compatibility.
+
+nnsight works with any PyTorch model but uses each model's native naming conventions, and code written for one model does not transfer to another without rewriting all the module paths.
+
+## Interpretability Tools Ecosystem (2026)
+
+As of early 2026, nnsight and nnterp are complementary tools for interpretability research that work directly with HuggingFace models -- nnsight for flexible model inspection and intervention, and nnterp for a standardized interface across architectures.
+
+However, I could not find specific information in the search results about TransformerLens or nnsight support specifically for Llama 4 Scout, or details about interpretability probes designed for this model.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b92c1e28-8da3-475d-a127-7390e8f02fcc",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "182385ad-d870-42e0-9742-07ed7a4bd179",
+  "toolUseResult": {
+    "query": "Llama 4 Scout MoE 109B parameters TransformerLens nnsight support interpretability probes 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017uFAn7UkuQ5NE3Yh5PeSxH",
+        "content": [
+          {
+            "title": "nnsight and nnterp | Learn Mechanistic Interpretability",
+            "url": "https://learnmechinterp.com/topics/nnsight-and-nnterp/"
+          },
+          {
+            "title": "Llama 4 Scout (109B) MoE Transformer",
+            "url": "https://www.emergentmind.com/topics/llama-4-scout-109b"
+          },
+          {
+            "title": "The Llama 4 herd: The beginning of a new era of natively multimodal AI innovation",
+            "url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/"
+          },
+          {
+            "title": "llama4:scout",
+            "url": "https://ollama.com/library/llama4:scout"
+          },
+          {
+            "title": "Welcome Llama 4 Maverick & Scout on Hugging Face",
+            "url": "https://huggingface.co/blog/llama4-release"
+          },
+          {
+            "title": "Llama 4 Scout: 10M Context, 109B MoE — Local Setup Guide | Local AI Master",
+            "url": "https://localaimaster.com/models/llama-4-scout"
+          },
+          {
+            "title": "aravhawk/llama4:109b",
+            "url": "https://ollama.com/aravhawk/llama4:109b"
+          },
+          {
+            "title": "Llama 4 (Scout & Maverick) | Guides | Clore.ai",
+            "url": "https://docs.clore.ai/guides/language-models/llama4"
+          },
+          {
+            "title": "llama-4-scout-17b-16e-instruct: Open-Source Powerhouse with MoE, Multimodality & 10M-Token Memory",
+            "url": "https://blog.promptlayer.com/llama-4-scout-17b-16e-instruct-open-source-powerhouse-with-moe-multimodality-10m-token-memory/"
+          },
+          {
+            "title": "meta-llama/Llama-4-Scout-17B-16E-Instruct · Hugging Face",
+            "url": "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found:\n\n## Llama 4 Scout Model Specifications\n\nLlama 4 Scout is approximately 109B parameters, and it's a 17 billion active parameter model with 16 experts. It uses a Mixture-of-Experts Transformer architecture.\n\n## TransformerLens and nnsight Support\n\nThe search results confirm that both TransformerLens and nnsight are important tools for mechanistic interpretability research. TransformerLens provides clean access to model internals, but its approach of reimplementing each architecture from scratch creates a bottleneck, as every new model family requires conversion code, testing, and maintenance compatibility.\n\nnnsight works with any PyTorch model but uses each model's native naming conventions, and code written for one model does not transfer to another without rewriting all the module paths.\n\n## Interpretability Tools Ecosystem (2026)\n\nAs of early 2026, nnsight and nnterp are complementary tools for interpretability research that work directly with HuggingFace models -- nnsight for flexible model inspection and intervention, and nnterp for a standardized interface across architectures.\n\nHowever, I could not find specific information in the search results about TransformerLens or nnsight support specifically for Llama 4 Scout, or details about interpretability probes designed for this model."
+    ],
+    "durationSeconds": 7.275329903000006
+  },
+  "sourceToolAssistantUUID": "b92c1e28-8da3-475d-a127-7390e8f02fcc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 97_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-15 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "182385ad-d870-42e0-9742-07ed7a4bd179",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level uncertainty calibration via representation steering",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-15T13:29:22.047Z_
+
+<details><summary>↩ Tool result · `toolu_01TzjoyLzV2iEBSEuvJbTmfP`</summary>
+
+```text
+Web search results for query: "VUF verbal uncertainty feature second-pass generation two-pass decoding activation intervention feasibility overhead"
+
+Links: [{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/html/2503.14477v1"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to ...","url":"https://aclanthology.org/2025.emnlp-main.187.pdf"},{"title":"2 Pass Encoding.... Why? at DVinfo.net","url":"https://www.dvinfo.net/forum/what-happens-vegas/64309-2-pass-encoding-why.html"},{"title":"Speculative Decoding - vLLM","url":"https://docs.vllm.ai/en/latest/features/spec_decode/"},{"title":"How do LLMs Compute Verbal Confidence?","url":"https://arxiv.org/html/2603.17839v1"},{"title":"Two-Pass Encoding | Cloudinary","url":"https://cloudinary.com/glossary/two-pass-encoding"},{"title":"Stop the Flip-Flop: Context-Preserving Verification for Fast ...","url":"https://www.arxiv.org/pdf/2602.06161"},{"title":"[1908.10992] Two-Pass End-to-End Speech Recognition","url":"https://arxiv.org/abs/1908.10992"},{"title":"An Introduction to Speculative Decoding for Reducing Latency in AI Inference | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/an-introduction-to-speculative-decoding-for-reducing-latency-in-ai-inference/"},{"title":"Fastest Speculative Decoding in vLLM with Arctic Inference and Arctic Training","url":"https://www.snowflake.com/en/engineering-blog/fast-speculative-decoding-vllm-arctic/"}]
+
+I found relevant results about VUF (Verbal Uncertainty Feature). Here's what the search revealed:
+
+A linear verbal uncertainty feature (VUF) controls model expression of uncertainty and can be used to detect hallucinations arising from miscalibration between high semantic uncertainty and low verbal uncertainty, as well as to mitigate hallucinations by intervening on activations along the VUF direction at inference time to make verbal uncertainty more aligned with the model's semantic uncertainty.
+
+It is possible to predict a high risk of hallucination already after the prefill stage of decoding, before starting autoregressive generation. This indicates that VUF-based interventions can be applied early without requiring a full second-pass generation in many cases.
+
+Regarding universal VUFs extracted from middle layers to the last layer enable modulation of the degree of verbal uncertainty in model responses.
+
+The research demonstrates Mechanistic Uncertainty Calibration (MUC), which leverages VUFs to calibrate verbal uncertainty with semantic uncertainty.
+
+The search results come from a recent paper (March 2025) on "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations." However, the specific details about two-pass decoding overhead and activation intervention feasibility metrics aren't explicitly detailed in these particular excerpts. For more granular information on those specific aspects, you may want to access the full paper directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a319403c-3632-4bcc-b621-7ed5feb24fee",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "58d1acbb-05f0-4ab9-bac0-cbcbf475038b",
+  "toolUseResult": {
+    "query": "VUF verbal uncertainty feature second-pass generation two-pass decoding activation intervention feasibility overhead",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018PhNwX4Ns3fEmogD7s9vDr",
+        "content": [
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/html/2503.14477v1"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.187.pdf"
+          },
+          {
+            "title": "2 Pass Encoding.... Why? at DVinfo.net",
+            "url": "https://www.dvinfo.net/forum/what-happens-vegas/64309-2-pass-encoding-why.html"
+          },
+          {
+            "title": "Speculative Decoding - vLLM",
+            "url": "https://docs.vllm.ai/en/latest/features/spec_decode/"
+          },
+          {
+            "title": "How do LLMs Compute Verbal Confidence?",
+            "url": "https://arxiv.org/html/2603.17839v1"
+          },
+          {
+            "title": "Two-Pass Encoding | Cloudinary",
+            "url": "https://cloudinary.com/glossary/two-pass-encoding"
+          },
+          {
+            "title": "Stop the Flip-Flop: Context-Preserving Verification for Fast ...",
+            "url": "https://www.arxiv.org/pdf/2602.06161"
+          },
+          {
+            "title": "[1908.10992] Two-Pass End-to-End Speech Recognition",
+            "url": "https://arxiv.org/abs/1908.10992"
+          },
+          {
+            "title": "An Introduction to Speculative Decoding for Reducing Latency in AI Inference | NVIDIA Technical Blog",
+            "url": "https://developer.nvidia.com/blog/an-introduction-to-speculative-decoding-for-reducing-latency-in-ai-inference/"
+          },
+          {
+            "title": "Fastest Speculative Decoding in vLLM with Arctic Inference and Arctic Training",
+            "url": "https://www.snowflake.com/en/engineering-blog/fast-speculative-decoding-vllm-arctic/"
+          }
+        ]
+      },
+      "I found relevant results about VUF (Verbal Uncertainty Feature). Here's what the search revealed:\n\nA linear verbal uncertainty feature (VUF) controls model expression of uncertainty and can be used to detect hallucinations arising from miscalibration between high semantic uncertainty and low verbal uncertainty, as well as to mitigate hallucinations by intervening on activations along the VUF direction at inference time to make verbal uncertainty more aligned with the model's semantic uncertainty.\n\nIt is possible to predict a high risk of hallucination already after the prefill stage of decoding, before starting autoregressive generation. This indicates that VUF-based interventions can be applied early without requiring a full second-pass generation in many cases.\n\nRegarding universal VUFs extracted from middle layers to the last layer enable modulation of the degree of verbal uncertainty in model responses.\n\nThe research demonstrates Mechanistic Uncertainty Calibration (MUC), which leverages VUFs to calibrate verbal uncertainty with semantic uncertainty.\n\nThe search results come from a recent paper (March 2025) on \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations.\" However, the specific details about two-pass decoding overhead and activation intervention feasibility metrics aren't explicitly detailed in these particular excerpts. For more granular information on those specific aspects, you may want to access the full paper directly."
+    ],
+    "durationSeconds": 6.960778653999994
+  },
+  "sourceToolAssistantUUID": "a319403c-3632-4bcc-b621-7ed5feb24fee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 100 · 2026-05-15T13:29:22.054Z_
+
+```json
+{
+  "parentUuid": "58d1acbb-05f0-4ab9-bac0-cbcbf475038b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "456103ae-96c8-4fa7-9e3c-39c85d39c61d",
+  "timestamp": "2026-05-15T13:29:22.054Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 101 · 2026-05-15T13:29:24.914Z_
+
+Found another relevant paper. Let me check "How do LLMs Compute Verbal Confidence?" and do one last round of competitor searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "456103ae-96c8-4fa7-9e3c-39c85d39c61d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SAaBhSLti9YxvpWki7",
+  "type": "assistant",
+  "uuid": "d1c3f2ac-6307-4a38-a1ec-716e7770fd73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RnS1n2RcGtbZvpSEvsy89E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3094,
+      "cache_read_input_tokens": 49344,
+      "output_tokens": 218,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3094,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 218,
+          "cache_read_input_tokens": 49344,
+          "cache_creation_input_tokens": 3094,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3094
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-15T13:29:25.894Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012aD6kDihEAUtuGZvY7QgFc`</summary>
+
+```json
+{
+  "query": "\"How do LLMs Compute Verbal Confidence\" arxiv 2603 2026 mechanistic interpretability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1c3f2ac-6307-4a38-a1ec-716e7770fd73",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SAaBhSLti9YxvpWki7",
+  "type": "assistant",
+  "uuid": "e546f122-ae49-4730-adc5-82996579382b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RnS1n2RcGtbZvpSEvsy89E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3094,
+      "cache_read_input_tokens": 49344,
+      "output_tokens": 218,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3094,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 218,
+          "cache_read_input_tokens": 49344,
+          "cache_creation_input_tokens": 3094,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3094
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-15T13:29:26.833Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HFjqziqy2eX2J4Nx3R41NQ`</summary>
+
+```json
+{
+  "query": "claim-level uncertainty calibration representation steering training-free long-form 2026 concurrent work"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e546f122-ae49-4730-adc5-82996579382b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SAaBhSLti9YxvpWki7",
+  "type": "assistant",
+  "uuid": "f022970b-f58f-4353-bb09-9c99ee51d214",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RnS1n2RcGtbZvpSEvsy89E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3094,
+      "cache_read_input_tokens": 49344,
+      "output_tokens": 218,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3094,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 218,
+          "cache_read_input_tokens": 49344,
+          "cache_creation_input_tokens": 3094,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3094
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104 · 2026-05-15T13:29:27.401Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01C1vt1jfY5pP9wwijSD3Aid`</summary>
+
+```json
+{
+  "query": "H100 GPU hours cost 200 hours hallucination probes activation steering experiment budget 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f022970b-f58f-4353-bb09-9c99ee51d214",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SAaBhSLti9YxvpWki7",
+  "type": "assistant",
+  "uuid": "1bb789b7-f04c-4ffc-8f50-0329a85d454a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RnS1n2RcGtbZvpSEvsy89E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3094,
+      "cache_read_input_tokens": 49344,
+      "output_tokens": 218,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3094,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 218,
+          "cache_read_input_tokens": 49344,
+          "cache_creation_input_tokens": 3094,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3094
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-15T13:29:31.626Z_
+
+<details><summary>↩ Tool result · `toolu_012aD6kDihEAUtuGZvY7QgFc`</summary>
+
+```text
+Web search results for query: ""How do LLMs Compute Verbal Confidence" arxiv 2603 2026 mechanistic interpretability"
+
+Links: [{"title":"How do LLMs Compute Verbal Confidence?","url":"https://arxiv.org/html/2603.17839v1"},{"title":"[2603.17839] How do LLMs Compute Verbal Confidence","url":"https://arxiv.org/abs/2603.17839"},{"title":"[2603.25052v1] Closing the Confidence-Faithfulness Gap in Large Language Models","url":"https://arxiv.org/abs/2603.25052v1"},{"title":"Closing the Confidence-Faithfulness Gap in Large Language Models","url":"https://arxiv.org/html/2603.25052v1"},{"title":"[2603.25052] Closing the Confidence-Faithfulness Gap in Large Language Models","url":"https://arxiv.org/abs/2603.25052"},{"title":"How do LLMs Compute Verbal Confidence | Computing Research Repository | DeepDyve","url":"https://www.deepdyve.com/lp/arxiv/how-do-llms-compute-verbal-confidence-gRipbFraNC"},{"title":"LLM Assertiveness can be Mechanistically Decomposed into Emotional and Logical Components","url":"https://arxiv.org/html/2508.17182v1"},{"title":"Confidence is Not Competence | OpenReview","url":"https://openreview.net/forum?id=Mf8envGWlT"},{"title":"Are LLM Decisions Faithful to Verbal Confidence? - ADS","url":"https://ui.adsabs.harvard.edu/abs/2026arXiv260107767W/abstract"},{"title":"[2601.07767] Are LLM Decisions Faithful to Verbal Confidence?","url":"https://arxiv.org/abs/2601.07767"}]
+
+I found your paper! Here's what I found:
+
+"How do LLMs Compute Verbal Confidence" addresses how LLMs internally generate confidence scores when prompted to state their confidence as a number or category, even though this mechanism remains unknown.
+
+The paper focuses on confidence—defined as a model's estimate that its answer is correct—which is critical to LLM reliability. Despite growing interest in verbal confidence as a practical measure of LLM uncertainty, little is understood about how such scores are internally generated. Understanding how LLMs compute confidence is important because mechanistic insight could reveal whether verbal confidence reflects meaningful self-evaluation of answer quality or merely surface-level correlates of generation fluency.
+
+The paper (arxiv 2603.17839) was published on March 18, 2026, by Dharshan Kumaran and co-authors. It uses mechanistic interpretability techniques to investigate the internal mechanisms underlying how LLMs produce verbal confidence estimates.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e546f122-ae49-4730-adc5-82996579382b",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "0fdd0396-3f9e-4d5f-a1c4-862b789aa8bf",
+  "toolUseResult": {
+    "query": "\"How do LLMs Compute Verbal Confidence\" arxiv 2603 2026 mechanistic interpretability",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01J6mwHdEA6hXR9mF6mY9HMW",
+        "content": [
+          {
+            "title": "How do LLMs Compute Verbal Confidence?",
+            "url": "https://arxiv.org/html/2603.17839v1"
+          },
+          {
+            "title": "[2603.17839] How do LLMs Compute Verbal Confidence",
+            "url": "https://arxiv.org/abs/2603.17839"
+          },
+          {
+            "title": "[2603.25052v1] Closing the Confidence-Faithfulness Gap in Large Language Models",
+            "url": "https://arxiv.org/abs/2603.25052v1"
+          },
+          {
+            "title": "Closing the Confidence-Faithfulness Gap in Large Language Models",
+            "url": "https://arxiv.org/html/2603.25052v1"
+          },
+          {
+            "title": "[2603.25052] Closing the Confidence-Faithfulness Gap in Large Language Models",
+            "url": "https://arxiv.org/abs/2603.25052"
+          },
+          {
+            "title": "How do LLMs Compute Verbal Confidence | Computing Research Repository | DeepDyve",
+            "url": "https://www.deepdyve.com/lp/arxiv/how-do-llms-compute-verbal-confidence-gRipbFraNC"
+          },
+          {
+            "title": "LLM Assertiveness can be Mechanistically Decomposed into Emotional and Logical Components",
+            "url": "https://arxiv.org/html/2508.17182v1"
+          },
+          {
+            "title": "Confidence is Not Competence | OpenReview",
+            "url": "https://openreview.net/forum?id=Mf8envGWlT"
+          },
+          {
+            "title": "Are LLM Decisions Faithful to Verbal Confidence? - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv260107767W/abstract"
+          },
+          {
+            "title": "[2601.07767] Are LLM Decisions Faithful to Verbal Confidence?",
+            "url": "https://arxiv.org/abs/2601.07767"
+          }
+        ]
+      },
+      "I found your paper! Here's what I found:\n\n\"How do LLMs Compute Verbal Confidence\" addresses how LLMs internally generate confidence scores when prompted to state their confidence as a number or category, even though this mechanism remains unknown.\n\nThe paper focuses on confidence—defined as a model's estimate that its answer is correct—which is critical to LLM reliability. Despite growing interest in verbal confidence as a practical measure of LLM uncertainty, little is understood about how such scores are internally generated. Understanding how LLMs compute confidence is important because mechanistic insight could reveal whether verbal confidence reflects meaningful self-evaluation of answer quality or merely surface-level correlates of generation fluency.\n\nThe paper (arxiv 2603.17839) was published on March 18, 2026, by Dharshan Kumaran and co-authors. It uses mechanistic interpretability techniques to investigate the internal mechanisms underlying how LLMs produce verbal confidence estimates."
+    ],
+    "durationSeconds": 5.727058649999992
+  },
+  "sourceToolAssistantUUID": "e546f122-ae49-4730-adc5-82996579382b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-15T13:29:33.994Z_
+
+<details><summary>↩ Tool result · `toolu_01C1vt1jfY5pP9wwijSD3Aid`</summary>
+
+```text
+Web search results for query: "H100 GPU hours cost 200 hours hallucination probes activation steering experiment budget 2026"
+
+Links: [{"title":"H100 Cloud Pricing: Compare 41+ Providers (2026)","url":"https://getdeploying.com/gpus/nvidia-h100"},{"title":"NVIDIA H100: Price, Specs, Benchmarks & Decision Guide","url":"https://www.clarifai.com/blog/nvidia-h100"},{"title":"NVIDIA H100 Price Guide 2026: GPU Costs, Cloud Pricing ...","url":"https://jarvislabs.ai/blog/h100-price"},{"title":"H100 GPU Pricing | Try Voltage Park","url":"https://www.voltagepark.com/pricing"},{"title":"NVIDIA H100 Pricing (May 2026): Cheapest Cloud GPU Rates","url":"https://www.thundercompute.com/blog/nvidia-h100-pricing"},{"title":"How much does an NVIDIA H100 GPU cost? | Blog — Northflank","url":"https://northflank.com/blog/how-much-does-an-nvidia-h100-gpu-cost"},{"title":"NVIDIA AI GPU Prices: H100 ($27K-$40K) & H200 ($315K/8-GPU) Cost Guide | IntuitionLabs","url":"https://intuitionlabs.ai/articles/nvidia-ai-gpu-pricing-guide"},{"title":"H100 GPU | NVIDIA","url":"https://www.nvidia.com/en-us/data-center/h100/"},{"title":"NVIDIA H100 GPU: Price, Full Specs, and Cloud Rates 2026","url":"https://www.aitooldiscovery.com/ai-infra/nvidia-h100-specs-price"},{"title":"NVIDIA H100 Deep Dive: Specs, Pricing, Best Uses, and Where to Run It (2026) - Fluence","url":"https://www.fluence.network/blog/nvidia-h100-deep-dive/"}]
+
+Based on the search results, I found information about H100 GPU pricing for 200 hours, though I did not find specific research about hallucination probes, activation steering experiments, or 2026 budget details in these results.
+
+## H100 GPU Cost for 200 Hours
+
+H100 pricing currently ranges from $1.25/hr to $14.90/hr per GPU, depending on the provider, instance type, and billing model.
+
+For 200 hours of GPU time, this would translate to:
+- **Low end**: 200 hours × $1.25/hr = **$250**
+- **High end**: 200 hours × $14.90/hr = **$2,980**
+- **Average**: 200 hours × $3.66/hr ≈ **$732**
+
+More recent pricing data shows on-demand pricing by late 2025 ranged from about $3.00/GPU-hr on Google Cloud to $3.93/GPU-hr on AWS, while smaller vendors like Lambda Labs offered H100 at $2.99/hr and RunPod spot instances at $1.99/hr.
+
+At these rates, 200 hours would cost between **$398-$786** for standard pricing, or as low as **$250** for spot instances.
+
+However, the search results did not contain specific information about hallucination probes, activation steering experiments, or detailed 2026 budget allocations for these specific research areas. If you're looking for information about these specific research applications, you may want to search for recent AI safety or mechanistic interpretability research papers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1bb789b7-f04c-4ffc-8f50-0329a85d454a",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "1b9b4362-7b92-49ac-82cf-2c8c6dbc9c51",
+  "toolUseResult": {
+    "query": "H100 GPU hours cost 200 hours hallucination probes activation steering experiment budget 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LBfB5NpQPrR1oXVPhrLtW6",
+        "content": [
+          {
+            "title": "H100 Cloud Pricing: Compare 41+ Providers (2026)",
+            "url": "https://getdeploying.com/gpus/nvidia-h100"
+          },
+          {
+            "title": "NVIDIA H100: Price, Specs, Benchmarks & Decision Guide",
+            "url": "https://www.clarifai.com/blog/nvidia-h100"
+          },
+          {
+            "title": "NVIDIA H100 Price Guide 2026: GPU Costs, Cloud Pricing ...",
+            "url": "https://jarvislabs.ai/blog/h100-price"
+          },
+          {
+            "title": "H100 GPU Pricing | Try Voltage Park",
+            "url": "https://www.voltagepark.com/pricing"
+          },
+          {
+            "title": "NVIDIA H100 Pricing (May 2026): Cheapest Cloud GPU Rates",
+            "url": "https://www.thundercompute.com/blog/nvidia-h100-pricing"
+          },
+          {
+            "title": "How much does an NVIDIA H100 GPU cost? | Blog — Northflank",
+            "url": "https://northflank.com/blog/how-much-does-an-nvidia-h100-gpu-cost"
+          },
+          {
+            "title": "NVIDIA AI GPU Prices: H100 ($27K-$40K) & H200 ($315K/8-GPU) Cost Guide | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/nvidia-ai-gpu-pricing-guide"
+          },
+          {
+            "title": "H100 GPU | NVIDIA",
+            "url": "https://www.nvidia.com/en-us/data-center/h100/"
+          },
+          {
+            "title": "NVIDIA H100 GPU: Price, Full Specs, and Cloud Rates 2026",
+            "url": "https://www.aitooldiscovery.com/ai-infra/nvidia-h100-specs-price"
+          },
+          {
+            "title": "NVIDIA H100 Deep Dive: Specs, Pricing, Best Uses, and Where to Run It (2026) - Fluence",
+            "url": "https://www.fluence.network/blog/nvidia-h100-deep-dive/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about H100 GPU pricing for 200 hours, though I did not find specific research about hallucination probes, activation steering experiments, or 2026 budget details in these results.\n\n## H100 GPU Cost for 200 Hours\n\nH100 pricing currently ranges from $1.25/hr to $14.90/hr per GPU, depending on the provider, instance type, and billing model.\n\nFor 200 hours of GPU time, this would translate to:\n- **Low end**: 200 hours × $1.25/hr = **$250**\n- **High end**: 200 hours × $14.90/hr = **$2,980**\n- **Average**: 200 hours × $3.66/hr ≈ **$732**\n\nMore recent pricing data shows on-demand pricing by late 2025 ranged from about $3.00/GPU-hr on Google Cloud to $3.93/GPU-hr on AWS, while smaller vendors like Lambda Labs offered H100 at $2.99/hr and RunPod spot instances at $1.99/hr.\n\nAt these rates, 200 hours would cost between **$398-$786** for standard pricing, or as low as **$250** for spot instances.\n\nHowever, the search results did not contain specific information about hallucination probes, activation steering experiments, or detailed 2026 budget allocations for these specific research areas. If you're looking for information about these specific research applications, you may want to search for recent AI safety or mechanistic interpretability research papers."
+    ],
+    "durationSeconds": 6.5899816799999975
+  },
+  "sourceToolAssistantUUID": "1bb789b7-f04c-4ffc-8f50-0329a85d454a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-15T13:29:36.888Z_
+
+<details><summary>↩ Tool result · `toolu_01HFjqziqy2eX2J4Nx3R41NQ`</summary>
+
+```text
+Web search results for query: "claim-level uncertainty calibration representation steering training-free long-form 2026 concurrent work"
+
+Links: [{"title":"[2601.15703] Agentic Uncertainty Quantification","url":"https://arxiv.org/abs/2601.15703"},{"title":"LLM Uncertainty Quantification Should Be More Human- ...","url":"https://arxiv.org/pdf/2506.07461"},{"title":"A Survey on Uncertainty Quantification of Large Language ...","url":"https://dl.acm.org/doi/pdf/10.1145/3744238"},{"title":"Benchmarking LLM Uncertainty and Calibration with ...","url":"https://aclanthology.org/2026.eacl-long.106.pdf"},{"title":"arXiv:2502.19649v3 [cs.LG] 12 Mar 2025 - Jan Wehner","url":"https://janwehner.com/files/representation_engineering.pdf"},{"title":"Statistical Frameworks for Uncertainty in Agentic Systems | ICML 2026 Workshop","url":"https://agentic-uncertainty-icml2026.github.io/"},{"title":"ICLR 2026 Schedule","url":"https://iclr.cc/virtual/2026/calendar"},{"title":"SteerConf: Steering LLMs for Confidence Elicitation","url":"https://arxiv.org/html/2503.02863v2"},{"title":"Addressing Uncertainty in LLM Outputs for Trust Calibration ...","url":"https://www.visible-language.org/Issue-59-2/addressing-uncertainty-in-llm-outputs-for-trust-calibration-through-visualization-and-user-interface-design.pdf"},{"title":"Uncertainty aware training to improve deep learning model calibration for classification of cardiac MR images - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S1361841523001214"}]
+
+I found several relevant results for your search query. Here are the key findings:
+
+## Main Results:
+
+A unified Dual-Process Agentic UQ (AUQ) framework has been proposed that transforms verbalized uncertainty into active, bi-directional control signals, with two complementary mechanisms: System 1 (Uncertainty-Aware Memory, UAM), which implicitly propagates verbalized confidence and semantic explanations, and System 2 (Uncertainty-Aware Reflection, UAR), which utilizes these explanations as rational cues to trigger targeted inference-time resolution. This training-free approach achieves superior performance and trajectory-level calibration on closed-loop benchmarks and open-ended deep research tasks.
+
+## Related Work:
+
+SteerConf operates without additional training, and comprehensive experiments across seven benchmarks demonstrate that it significantly outperforms vanilla verbalized confidence and existing calibration methods.
+
+Representation Engineering (RepE) works by identifying how human-understandable concepts are represented in models' activation space and steering those representations to control behavior; since no training is required, RepE can be cheaper, more data efficient, and more flexible to different users and situations than other methods.
+
+## Concurrent Work Context:
+
+A concurrent survey on uncertainty quantification of LLMs categorizes existing uncertainty quantification methods within traditional classes, which do not consider the unique architecture and characteristics of LLMs.
+
+The search results include recent work from 2025-2026 addressing uncertainty calibration, representation steering, and training-free approaches for long-form language model outputs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f022970b-f58f-4353-bb09-9c99ee51d214",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "40215d45-c063-49e5-be9b-8afd1a1bc747",
+  "toolUseResult": {
+    "query": "claim-level uncertainty calibration representation steering training-free long-form 2026 concurrent work",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Vq6myUGpQ8ug5sRVQQLeKA",
+        "content": [
+          {
+            "title": "[2601.15703] Agentic Uncertainty Quantification",
+            "url": "https://arxiv.org/abs/2601.15703"
+          },
+          {
+            "title": "LLM Uncertainty Quantification Should Be More Human- ...",
+            "url": "https://arxiv.org/pdf/2506.07461"
+          },
+          {
+            "title": "A Survey on Uncertainty Quantification of Large Language ...",
+            "url": "https://dl.acm.org/doi/pdf/10.1145/3744238"
+          },
+          {
+            "title": "Benchmarking LLM Uncertainty and Calibration with ...",
+            "url": "https://aclanthology.org/2026.eacl-long.106.pdf"
+          },
+          {
+            "title": "arXiv:2502.19649v3 [cs.LG] 12 Mar 2025 - Jan Wehner",
+            "url": "https://janwehner.com/files/representation_engineering.pdf"
+          },
+          {
+            "title": "Statistical Frameworks for Uncertainty in Agentic Systems | ICML 2026 Workshop",
+            "url": "https://agentic-uncertainty-icml2026.github.io/"
+          },
+          {
+            "title": "ICLR 2026 Schedule",
+            "url": "https://iclr.cc/virtual/2026/calendar"
+          },
+          {
+            "title": "SteerConf: Steering LLMs for Confidence Elicitation",
+            "url": "https://arxiv.org/html/2503.02863v2"
+          },
+          {
+            "title": "Addressing Uncertainty in LLM Outputs for Trust Calibration ...",
+            "url": "https://www.visible-language.org/Issue-59-2/addressing-uncertainty-in-llm-outputs-for-trust-calibration-through-visualization-and-user-interface-design.pdf"
+          },
+          {
+            "title": "Uncertainty aware training to improve deep learning model calibration for classification of cardiac MR images - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S1361841523001214"
+          }
+        ]
+      },
+      "I found several relevant results for your search query. Here are the key findings:\n\n## Main Results:\n\nA unified Dual-Process Agentic UQ (AUQ) framework has been proposed that transforms verbalized uncertainty into active, bi-directional control signals, with two complementary mechanisms: System 1 (Uncertainty-Aware Memory, UAM), which implicitly propagates verbalized confidence and semantic explanations, and System 2 (Uncertainty-Aware Reflection, UAR), which utilizes these explanations as rational cues to trigger targeted inference-time resolution. This training-free approach achieves superior performance and trajectory-level calibration on closed-loop benchmarks and open-ended deep research tasks.\n\n## Related Work:\n\nSteerConf operates without additional training, and comprehensive experiments across seven benchmarks demonstrate that it significantly outperforms vanilla verbalized confidence and existing calibration methods.\n\nRepresentation Engineering (RepE) works by identifying how human-understandable concepts are represented in models' activation space and steering those representations to control behavior; since no training is required, RepE can be cheaper, more data efficient, and more flexible to different users and situations than other methods.\n\n## Concurrent Work Context:\n\nA concurrent survey on uncertainty quantification of LLMs categorizes existing uncertainty quantification methods within traditional classes, which do not consider the unique architecture and characteristics of LLMs.\n\nThe search results include recent work from 2025-2026 addressing uncertainty calibration, representation steering, and training-free approaches for long-form language model outputs."
+    ],
+    "durationSeconds": 10.052081041999976
+  },
+  "sourceToolAssistantUUID": "f022970b-f58f-4353-bb09-9c99ee51d214",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 108 · 2026-05-15T13:29:40.089Z_
+
+Let me now look more carefully at the feasibility issues — especially the two-pass generation approach and the Llama 4 Scout MoE issue for hidden state extraction.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40215d45-c063-49e5-be9b-8afd1a1bc747",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SBfZBTSJwdEaKM4qbn",
+  "type": "assistant",
+  "uuid": "bb325d94-695d-4c48-8ee0-a8728f032ebe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011zSpj945WgvTR5exyKx9nq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 901,
+      "cache_creation_input_tokens": 1816,
+      "cache_read_input_tokens": 52438,
+      "output_tokens": 171,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1816,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 901,
+          "output_tokens": 171,
+          "cache_read_input_tokens": 52438,
+          "cache_creation_input_tokens": 1816,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1816
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-15T13:29:40.565Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013JYA6gnGBAsRfUGzZdY5Ut`</summary>
+
+```json
+{
+  "query": "Llama 4 Scout MoE architecture hidden state extraction interpretability challenges mixture of experts probes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb325d94-695d-4c48-8ee0-a8728f032ebe",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SBfZBTSJwdEaKM4qbn",
+  "type": "assistant",
+  "uuid": "58c09622-6570-4200-a3dc-ee2546a9bb3e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011zSpj945WgvTR5exyKx9nq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 901,
+      "cache_creation_input_tokens": 1816,
+      "cache_read_input_tokens": 52438,
+      "output_tokens": 171,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1816,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 901,
+          "output_tokens": 171,
+          "cache_read_input_tokens": 52438,
+          "cache_creation_input_tokens": 1816,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1816
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110 · 2026-05-15T13:29:41.154Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Bm81Q1Ufbf1QfCCFwcFVHm`</summary>
+
+```json
+{
+  "query": "\"Closing the Confidence-Faithfulness Gap\" arxiv 2603.25052 2026 verbal confidence"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58c09622-6570-4200-a3dc-ee2546a9bb3e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SBfZBTSJwdEaKM4qbn",
+  "type": "assistant",
+  "uuid": "32b1a704-bd86-4c32-ad1b-577aa4f766bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011zSpj945WgvTR5exyKx9nq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 901,
+      "cache_creation_input_tokens": 1816,
+      "cache_read_input_tokens": 52438,
+      "output_tokens": 171,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1816,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 901,
+          "output_tokens": 171,
+          "cache_read_input_tokens": 52438,
+          "cache_creation_input_tokens": 1816,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1816
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 111_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-15 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "32b1a704-bd86-4c32-ad1b-577aa4f766bc",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 112_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level uncertainty calibration via representation steering",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-15T13:29:47.446Z_
+
+<details><summary>↩ Tool result · `toolu_013JYA6gnGBAsRfUGzZdY5Ut`</summary>
+
+```text
+Web search results for query: "Llama 4 Scout MoE architecture hidden state extraction interpretability challenges mixture of experts probes"
+
+Links: [{"title":"Llama 4 Technical Analysis: Decoding the Architecture Behind Meta’s Multimodal MoE Revolution | by Karan_bhutani | Medium","url":"https://medium.com/@karanbhutani477/llama-4-technical-analysis-decoding-the-architecture-behind-metas-multimodal-moe-revolution-535b2775d07d"},{"title":"The Llama 4 herd: The beginning of a new era of natively multimodal AI innovation","url":"https://ai.meta.com/blog/llama-4-multimodal-intelligence/"},{"title":"Llama 4’s Architecture Deconstructed: MoE, iRoPE, and Early Fusion Explained | by Mandeep Singh | Medium","url":"https://medium.com/@mandeep0405/llama-4s-architecture-deconstructed-moe-irope-and-early-fusion-explained-e58eb9403067"},{"title":"Llama 4: The Challenges of Creating a Frontier-Level LLM","url":"https://cameronrwolfe.substack.com/p/llama-4"},{"title":"meta-llama/Llama-4-Scout-17B-16E-Instruct · Hugging Face","url":"https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct"},{"title":"meta-llama/Llama-4-Scout-17B-16E · Hugging Face","url":"https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E"},{"title":"Llama 4 Scout: A Technical Analysis of Native Multimodality, Sparse Architecture, and the 10-Million Token Context Frontier | Uplatz Blog","url":"https://uplatz.com/blog/llama-4-scout-a-technical-analysis-of-native-multimodality-sparse-architecture-and-the-10-million-token-context-frontier/"},{"title":"llama-4-scout-17b-16e-instruct: Open-Source Powerhouse with MoE, Multimodality & 10M-Token Memory","url":"https://blog.promptlayer.com/llama-4-scout-17b-16e-instruct-open-source-powerhouse-with-moe-multimodality-10m-token-memory/"},{"title":"Welcome Llama 4 Maverick & Scout on Hugging Face","url":"https://huggingface.co/blog/llama4-release"},{"title":"Efficient Speculative Decoding for Llama at Scale: Challenges and Solutions","url":"https://arxiv.org/html/2508.08192v1"}]
+
+Based on the search results, I found information about Llama 4 Scout's MoE architecture, though the results don't specifically address hidden state extraction, interpretability challenges, or probes. Here's what I found:
+
+## Llama 4 Scout MoE Architecture Overview
+
+Llama 4 models are the first models that use a mixture of experts (MoE) architecture. Specifically, Llama 4 Scout is a 17 billion active parameter model with 16 experts.
+
+### Architecture Design
+
+The MoE architecture replaces standard feed-forward networks in transformer blocks with a gating mechanism that routes tokens to selected experts based on router network decisions. A shared expert processes all tokens regardless of routing decisions, ensuring baseline performance, while the top-k gating system selects specialist experts based on token requirements.
+
+### Key Challenges
+
+One notable challenge in MoE training is expert collapse, where the router converges to utilizing only a few experts for all tokens, effectively turning the sparse model back into a smaller dense model and wasting the remaining parameters. To mitigate this, Llama 4 likely incorporates auxiliary loss functions during training to encourage load balancing, ensuring that tokens are distributed relatively evenly across the 16 experts of Scout.
+
+However, the search results don't contain specific information about hidden state extraction techniques, interpretability challenges related to hidden states, or the use of probes for analyzing the Llama 4 Scout model. These would likely be topics covered in academic research papers rather than the technical documentation and blog posts that appeared in these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "58c09622-6570-4200-a3dc-ee2546a9bb3e",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "2e70e8a5-1e9c-4749-a08d-458f510a2554",
+  "toolUseResult": {
+    "query": "Llama 4 Scout MoE architecture hidden state extraction interpretability challenges mixture of experts probes",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012NJwSdDQ2BdS8a2XfP7YJP",
+        "content": [
+          {
+            "title": "Llama 4 Technical Analysis: Decoding the Architecture Behind Meta’s Multimodal MoE Revolution | by Karan_bhutani | Medium",
+            "url": "https://medium.com/@karanbhutani477/llama-4-technical-analysis-decoding-the-architecture-behind-metas-multimodal-moe-revolution-535b2775d07d"
+          },
+          {
+            "title": "The Llama 4 herd: The beginning of a new era of natively multimodal AI innovation",
+            "url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/"
+          },
+          {
+            "title": "Llama 4’s Architecture Deconstructed: MoE, iRoPE, and Early Fusion Explained | by Mandeep Singh | Medium",
+            "url": "https://medium.com/@mandeep0405/llama-4s-architecture-deconstructed-moe-irope-and-early-fusion-explained-e58eb9403067"
+          },
+          {
+            "title": "Llama 4: The Challenges of Creating a Frontier-Level LLM",
+            "url": "https://cameronrwolfe.substack.com/p/llama-4"
+          },
+          {
+            "title": "meta-llama/Llama-4-Scout-17B-16E-Instruct · Hugging Face",
+            "url": "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct"
+          },
+          {
+            "title": "meta-llama/Llama-4-Scout-17B-16E · Hugging Face",
+            "url": "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E"
+          },
+          {
+            "title": "Llama 4 Scout: A Technical Analysis of Native Multimodality, Sparse Architecture, and the 10-Million Token Context Frontier | Uplatz Blog",
+            "url": "https://uplatz.com/blog/llama-4-scout-a-technical-analysis-of-native-multimodality-sparse-architecture-and-the-10-million-token-context-frontier/"
+          },
+          {
+            "title": "llama-4-scout-17b-16e-instruct: Open-Source Powerhouse with MoE, Multimodality & 10M-Token Memory",
+            "url": "https://blog.promptlayer.com/llama-4-scout-17b-16e-instruct-open-source-powerhouse-with-moe-multimodality-10m-token-memory/"
+          },
+          {
+            "title": "Welcome Llama 4 Maverick & Scout on Hugging Face",
+            "url": "https://huggingface.co/blog/llama4-release"
+          },
+          {
+            "title": "Efficient Speculative Decoding for Llama at Scale: Challenges and Solutions",
+            "url": "https://arxiv.org/html/2508.08192v1"
+          }
+        ]
+      },
+      "Based on the search results, I found information about Llama 4 Scout's MoE architecture, though the results don't specifically address hidden state extraction, interpretability challenges, or probes. Here's what I found:\n\n## Llama 4 Scout MoE Architecture Overview\n\nLlama 4 models are the first models that use a mixture of experts (MoE) architecture. Specifically, Llama 4 Scout is a 17 billion active parameter model with 16 experts.\n\n### Architecture Design\n\nThe MoE architecture replaces standard feed-forward networks in transformer blocks with a gating mechanism that routes tokens to selected experts based on router network decisions. A shared expert processes all tokens regardless of routing decisions, ensuring baseline performance, while the top-k gating system selects specialist experts based on token requirements.\n\n### Key Challenges\n\nOne notable challenge in MoE training is expert collapse, where the router converges to utilizing only a few experts for all tokens, effectively turning the sparse model back into a smaller dense model and wasting the remaining parameters. To mitigate this, Llama 4 likely incorporates auxiliary loss functions during training to encourage load balancing, ensuring that tokens are distributed relatively evenly across the 16 experts of Scout.\n\nHowever, the search results don't contain specific information about hidden state extraction techniques, interpretability challenges related to hidden states, or the use of probes for analyzing the Llama 4 Scout model. These would likely be topics covered in academic research papers rather than the technical documentation and blog posts that appeared in these results."
+    ],
+    "durationSeconds": 6.876143439000007
+  },
+  "sourceToolAssistantUUID": "58c09622-6570-4200-a3dc-ee2546a9bb3e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-15T13:29:51.110Z_
+
+<details><summary>↩ Tool result · `toolu_01Bm81Q1Ufbf1QfCCFwcFVHm`</summary>
+
+```text
+Web search results for query: ""Closing the Confidence-Faithfulness Gap" arxiv 2603.25052 2026 verbal confidence"
+
+Links: [{"title":"[2603.25052] Closing the Confidence-Faithfulness Gap in Large Language Models","url":"https://arxiv.org/abs/2603.25052"},{"title":"[2603.25052v1] Closing the Confidence-Faithfulness Gap in Large Language Models","url":"https://arxiv.org/abs/2603.25052v1"},{"title":"Closing the Confidence-Faithfulness Gap in Large Language Models","url":"https://arxiv.org/html/2603.25052"},{"title":"Closing the Confidence-Faithfulness Gap in Large ...","url":"https://arxiv.org/pdf/2603.25052"},{"title":"Closing the Confidence-Faithfulness Gap in Large ...","url":"https://x.com/HEI/status/2037535763399651595"},{"title":"Computation Metacognition Precedes Verbal Confidence ...","url":"https://www.preprints.org/frontend/manuscript/a37d44d697d27a98bc0338abef3ab5f8/download_pub"},{"title":"[2603.24725] Confidence-Based Mesh Extraction from 3D Gaussians","url":"https://arxiv.org/abs/2603.24725"},{"title":"Faithfulness-Aware Uncertainty Quantification for Fact-Checking the Output of Retrieval Augmented Generation","url":"https://arxiv.org/html/2505.21072v1"},{"title":"Toward Faithful Segmentation Attribution via Benchmarking and Dual-Evidence Fusion","url":"https://arxiv.org/html/2603.22624"},{"title":"Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Open-Weight Reasoning Models?","url":"https://arxiv.org/html/2603.22582v1"}]
+
+I found the paper you were searching for! Here's what I found about "Closing the Confidence-Faithfulness Gap" (arxiv 2603.25052):
+
+## Paper Overview
+
+Large language models (LLMs) tend to verbalize confidence scores that are largely detached from their actual accuracy, yet the geometric relationship governing this behavior remain poorly understood.
+
+## Key Findings
+
+The research uses linear probes and contrastive activation addition (CAA) steering to show that calibration and verbalized confidence signals are encoded linearly but are orthogonal to one another -- a finding consistent across three open-weight models and four datasets.
+
+### The Reasoning Contamination Effect
+
+When models are prompted to simultaneously reason through a problem and verbalize a confidence score, the reasoning process disrupts the verbalized confidence direction, exacerbating miscalibration. This phenomenon is termed the "Reasoning Contamination Effect."
+
+## Authors and Publication
+
+The paper is authored by Miranda Muqing Miao and Lyle Ungar from the University of Pennsylvania, with the latest version (v2) submitted on April 1, 2026.
+
+## Proposed Solution
+
+The authors introduce a two-stage adaptive steering pipeline that reads the model's internal accuracy estimate and steers verbalized output to match it.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "32b1a704-bd86-4c32-ad1b-577aa4f766bc",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "b3bac18b-8a51-47de-bd75-c86ee6ff793d",
+  "toolUseResult": {
+    "query": "\"Closing the Confidence-Faithfulness Gap\" arxiv 2603.25052 2026 verbal confidence",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0161er7QZxUaKocXv1s9Q8iZ",
+        "content": [
+          {
+            "title": "[2603.25052] Closing the Confidence-Faithfulness Gap in Large Language Models",
+            "url": "https://arxiv.org/abs/2603.25052"
+          },
+          {
+            "title": "[2603.25052v1] Closing the Confidence-Faithfulness Gap in Large Language Models",
+            "url": "https://arxiv.org/abs/2603.25052v1"
+          },
+          {
+            "title": "Closing the Confidence-Faithfulness Gap in Large Language Models",
+            "url": "https://arxiv.org/html/2603.25052"
+          },
+          {
+            "title": "Closing the Confidence-Faithfulness Gap in Large ...",
+            "url": "https://arxiv.org/pdf/2603.25052"
+          },
+          {
+            "title": "Closing the Confidence-Faithfulness Gap in Large ...",
+            "url": "https://x.com/HEI/status/2037535763399651595"
+          },
+          {
+            "title": "Computation Metacognition Precedes Verbal Confidence ...",
+            "url": "https://www.preprints.org/frontend/manuscript/a37d44d697d27a98bc0338abef3ab5f8/download_pub"
+          },
+          {
+            "title": "[2603.24725] Confidence-Based Mesh Extraction from 3D Gaussians",
+            "url": "https://arxiv.org/abs/2603.24725"
+          },
+          {
+            "title": "Faithfulness-Aware Uncertainty Quantification for Fact-Checking the Output of Retrieval Augmented Generation",
+            "url": "https://arxiv.org/html/2505.21072v1"
+          },
+          {
+            "title": "Toward Faithful Segmentation Attribution via Benchmarking and Dual-Evidence Fusion",
+            "url": "https://arxiv.org/html/2603.22624"
+          },
+          {
+            "title": "Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Open-Weight Reasoning Models?",
+            "url": "https://arxiv.org/html/2603.22582v1"
+          }
+        ]
+      },
+      "I found the paper you were searching for! Here's what I found about \"Closing the Confidence-Faithfulness Gap\" (arxiv 2603.25052):\n\n## Paper Overview\n\nLarge language models (LLMs) tend to verbalize confidence scores that are largely detached from their actual accuracy, yet the geometric relationship governing this behavior remain poorly understood.\n\n## Key Findings\n\nThe research uses linear probes and contrastive activation addition (CAA) steering to show that calibration and verbalized confidence signals are encoded linearly but are orthogonal to one another -- a finding consistent across three open-weight models and four datasets.\n\n### The Reasoning Contamination Effect\n\nWhen models are prompted to simultaneously reason through a problem and verbalize a confidence score, the reasoning process disrupts the verbalized confidence direction, exacerbating miscalibration. This phenomenon is termed the \"Reasoning Contamination Effect.\"\n\n## Authors and Publication\n\nThe paper is authored by Miranda Muqing Miao and Lyle Ungar from the University of Pennsylvania, with the latest version (v2) submitted on April 1, 2026.\n\n## Proposed Solution\n\nThe authors introduce a two-stage adaptive steering pipeline that reads the model's internal accuracy estimate and steers verbalized output to match it."
+    ],
+    "durationSeconds": 9.952147315999987
+  },
+  "sourceToolAssistantUUID": "32b1a704-bd86-4c32-ad1b-577aa4f766bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 115 · 2026-05-15T13:29:54.917Z_
+
+This is another very important finding. "Closing the Confidence-Faithfulness Gap" (Miao & Ungar, March 2026) already does CAA steering to align verbalized confidence with internal accuracy — very close to VUF-based calibration. Let me fetch more details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3bac18b-8a51-47de-bd75-c86ee6ff793d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SCiPcRyqxwo9sQKrRt",
+  "type": "assistant",
+  "uuid": "c281ce3b-c484-47e7-8810-e042d0f97ebe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ERL1jpKXFd7qE6hhnLoxrp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2978,
+      "cache_read_input_tokens": 54254,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 54254,
+          "cache_creation_input_tokens": 2978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116 · 2026-05-15T13:29:57.831Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_018VPfF3epDr8tWeKQz8ZjnD`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.25052",
+  "prompt": "What exactly does this paper do? Does it: 1) Use contrastive activation addition for confidence calibration? 2) Work on short-form or long-form outputs? 3) What models are tested? 4) How does this compare to VUF/MUC from Ji et al.? 5) Does it operate at claim level? 6) What are the key results?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c281ce3b-c484-47e7-8810-e042d0f97ebe",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SCiPcRyqxwo9sQKrRt",
+  "type": "assistant",
+  "uuid": "ee315fb7-3769-44b0-8001-69550556a075",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ERL1jpKXFd7qE6hhnLoxrp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2978,
+      "cache_read_input_tokens": 54254,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 54254,
+          "cache_creation_input_tokens": 2978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-15T13:29:58.008Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FWoiNjR6vo7jcx4WKh8Tq9`</summary>
+
+```json
+{
+  "query": "SteerConf steering LLMs confidence elicitation arxiv 2503.02863 training-free calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee315fb7-3769-44b0-8001-69550556a075",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SCiPcRyqxwo9sQKrRt",
+  "type": "assistant",
+  "uuid": "01415136-6088-4a76-8f37-850c89ab6a20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ERL1jpKXFd7qE6hhnLoxrp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2978,
+      "cache_read_input_tokens": 54254,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 54254,
+          "cache_creation_input_tokens": 2978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-15T13:30:02.528Z_
+
+<details><summary>↩ Tool result · `toolu_018VPfF3epDr8tWeKQz8ZjnD`</summary>
+
+```text
+# Summary of "Closing the Confidence-Faithfulness Gap in Large Language Models"
+
+**What it does:**
+This research investigates why LLM confidence statements diverge from actual accuracy. The authors use mechanistic interpretability techniques to analyze how models encode calibration signals.
+
+**1) Contrastive activation addition for calibration:**
+Yes. The paper employs "contrastive activation addition (CAA) steering" alongside linear probes to examine confidence encoding and subsequently steer models toward better calibration.
+
+**2) Output format:**
+The abstract doesn't specify whether findings apply to short or long-form outputs, only mentioning that "reasoning through a problem and verbalize a confidence score" can disrupt calibration.
+
+**3) Models tested:**
+The work evaluates "three open-weight models and four datasets," though specific model names aren't listed in the provided content.
+
+**4) Comparison to VUF/MUC:**
+No comparison to Ji et al.'s methods appears in this excerpt.
+
+**5) Claim-level operation:**
+Not discussed in the available abstract.
+
+**6) Key findings:**
+The paper identifies that "calibration and verbalized confidence signals are encoded linearly but are orthogonal to one another." It introduces a "Reasoning Contamination Effect" where problem-solving disrupts confidence expression, and proposes a "two-stage adaptive steering pipeline" that substantially improves calibration alignment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee315fb7-3769-44b0-8001-69550556a075",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "787ba4e1-97c6-4a8f-8cc3-470ab9dc7f7c",
+  "toolUseResult": {
+    "bytes": 45525,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Summary of \"Closing the Confidence-Faithfulness Gap in Large Language Models\"\n\n**What it does:**\nThis research investigates why LLM confidence statements diverge from actual accuracy. The authors use mechanistic interpretability techniques to analyze how models encode calibration signals.\n\n**1) Contrastive activation addition for calibration:**\nYes. The paper employs \"contrastive activation addition (CAA) steering\" alongside linear probes to examine confidence encoding and subsequently steer models toward better calibration.\n\n**2) Output format:**\nThe abstract doesn't specify whether findings apply to short or long-form outputs, only mentioning that \"reasoning through a problem and verbalize a confidence score\" can disrupt calibration.\n\n**3) Models tested:**\nThe work evaluates \"three open-weight models and four datasets,\" though specific model names aren't listed in the provided content.\n\n**4) Comparison to VUF/MUC:**\nNo comparison to Ji et al.'s methods appears in this excerpt.\n\n**5) Claim-level operation:**\nNot discussed in the available abstract.\n\n**6) Key findings:**\nThe paper identifies that \"calibration and verbalized confidence signals are encoded linearly but are orthogonal to one another.\" It introduces a \"Reasoning Contamination Effect\" where problem-solving disrupts confidence expression, and proposes a \"two-stage adaptive steering pipeline\" that substantially improves calibration alignment.",
+    "durationMs": 4693,
+    "url": "https://arxiv.org/abs/2603.25052"
+  },
+  "sourceToolAssistantUUID": "ee315fb7-3769-44b0-8001-69550556a075",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-15T13:30:06.541Z_
+
+<details><summary>↩ Tool result · `toolu_01FWoiNjR6vo7jcx4WKh8Tq9`</summary>
+
+```text
+Web search results for query: "SteerConf steering LLMs confidence elicitation arxiv 2503.02863 training-free calibration"
+
+Links: [{"title":"[2503.02863] SteerConf: Steering LLMs for Confidence Elicitation","url":"https://arxiv.org/abs/2503.02863"},{"title":"SteerConf: Steering LLMs for Confidence Elicitation - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250302863Z/abstract"},{"title":"SteerConf: Steering LLMs for Confidence Elicitation","url":"https://arxiv.org/html/2503.02863v2"},{"title":"GitHub - scottjiao/SteerConf · GitHub","url":"https://github.com/scottjiao/SteerConf"},{"title":"SteerConf: Steering LLMs for Confidence Elicitation | OpenReview","url":"https://openreview.net/forum?id=5sgK63Zshg"},{"title":"NeurIPS Poster SteerConf: Steering LLMs for Confidence Elicitation","url":"https://neurips.cc/virtual/2025/poster/119826"},{"title":"SteerConf: Steering LLMs for Confidence Elicitation","url":"https://www.alphaxiv.org/overview/2503.02863v2"},{"title":"SteerConf: Steering LLMs for Confidence Elicitation","url":"https://www.semanticscholar.org/paper/SteerConf:-Steering-LLMs-for-Confidence-Elicitation-Zhou-Jin/f0178fb7253f4a963d9c34bbe1547ad8c387878d"},{"title":"SteerConf: Steering LLMs for Confidence Elicitation Ziang Zhou","url":"https://openreview.net/pdf/2dea5d57488bdb780105be0720fc4b246ed074ec.pdf"},{"title":"ADVICE: Answer-Dependent Verbalized Confidence Estimation","url":"https://arxiv.org/html/2510.10913v2"}]
+
+Based on the search results, here's what I found about SteerConf (arxiv 2503.02863):
+
+## Overview
+
+SteerConf addresses the problem that Large Language Models (LLMs) often suffer from overconfidence, limiting their reliability in critical applications, and proposes a novel framework that systematically steers LLMs' confidence scores to improve their calibration and reliability.
+
+## Key Components
+
+SteerConf introduces three key components: (1) a steering prompt strategy that guides LLMs to produce confidence scores in specified directions (e.g., conservative or optimistic) by leveraging prompts with varying steering levels; (2) a steered confidence consistency measure that quantifies alignment across multiple steered confidences to enhance calibration; and (3) a steered confidence calibration method that aggregates confidence scores using consistency measures and applies linear quantization for answer selection.
+
+## Training-Free Approach
+
+SteerConf operates without additional training or fine-tuning, making it broadly applicable to existing LLMs.
+
+## Evaluation Results
+
+Experiments on seven benchmarks spanning professional knowledge, common sense, ethics, and reasoning tasks, using advanced LLM models (GPT-3.5, LLaMA 3, GPT-4), demonstrate that SteerConf significantly outperforms existing methods, often by a significant margin.
+
+## Publication Status
+
+SteerConf has been accepted by NeurIPS 25, and the code is available on GitHub at https://github.com/scottjiao/SteerConf.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "01415136-6088-4a76-8f37-850c89ab6a20",
+  "isSidechain": false,
+  "promptId": "d4c981e6-c650-4e2a-8e3e-eab87793d591",
+  "type": "user",
+  "uuid": "f1bc2b9b-754b-40c3-85eb-ff9097a9fa1a",
+  "toolUseResult": {
+    "query": "SteerConf steering LLMs confidence elicitation arxiv 2503.02863 training-free calibration",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MUXt3ourotbfP6ap7yLEjx",
+        "content": [
+          {
+            "title": "[2503.02863] SteerConf: Steering LLMs for Confidence Elicitation",
+            "url": "https://arxiv.org/abs/2503.02863"
+          },
+          {
+            "title": "SteerConf: Steering LLMs for Confidence Elicitation - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250302863Z/abstract"
+          },
+          {
+            "title": "SteerConf: Steering LLMs for Confidence Elicitation",
+            "url": "https://arxiv.org/html/2503.02863v2"
+          },
+          {
+            "title": "GitHub - scottjiao/SteerConf · GitHub",
+            "url": "https://github.com/scottjiao/SteerConf"
+          },
+          {
+            "title": "SteerConf: Steering LLMs for Confidence Elicitation | OpenReview",
+            "url": "https://openreview.net/forum?id=5sgK63Zshg"
+          },
+          {
+            "title": "NeurIPS Poster SteerConf: Steering LLMs for Confidence Elicitation",
+            "url": "https://neurips.cc/virtual/2025/poster/119826"
+          },
+          {
+            "title": "SteerConf: Steering LLMs for Confidence Elicitation",
+            "url": "https://www.alphaxiv.org/overview/2503.02863v2"
+          },
+          {
+            "title": "SteerConf: Steering LLMs for Confidence Elicitation",
+            "url": "https://www.semanticscholar.org/paper/SteerConf:-Steering-LLMs-for-Confidence-Elicitation-Zhou-Jin/f0178fb7253f4a963d9c34bbe1547ad8c387878d"
+          },
+          {
+            "title": "SteerConf: Steering LLMs for Confidence Elicitation Ziang Zhou",
+            "url": "https://openreview.net/pdf/2dea5d57488bdb780105be0720fc4b246ed074ec.pdf"
+          },
+          {
+            "title": "ADVICE: Answer-Dependent Verbalized Confidence Estimation",
+            "url": "https://arxiv.org/html/2510.10913v2"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SteerConf (arxiv 2503.02863):\n\n## Overview\n\nSteerConf addresses the problem that Large Language Models (LLMs) often suffer from overconfidence, limiting their reliability in critical applications, and proposes a novel framework that systematically steers LLMs' confidence scores to improve their calibration and reliability.\n\n## Key Components\n\nSteerConf introduces three key components: (1) a steering prompt strategy that guides LLMs to produce confidence scores in specified directions (e.g., conservative or optimistic) by leveraging prompts with varying steering levels; (2) a steered confidence consistency measure that quantifies alignment across multiple steered confidences to enhance calibration; and (3) a steered confidence calibration method that aggregates confidence scores using consistency measures and applies linear quantization for answer selection.\n\n## Training-Free Approach\n\nSteerConf operates without additional training or fine-tuning, making it broadly applicable to existing LLMs.\n\n## Evaluation Results\n\nExperiments on seven benchmarks spanning professional knowledge, common sense, ethics, and reasoning tasks, using advanced LLM models (GPT-3.5, LLaMA 3, GPT-4), demonstrate that SteerConf significantly outperforms existing methods, often by a significant margin.\n\n## Publication Status\n\nSteerConf has been accepted by NeurIPS 25, and the code is available on GitHub at https://github.com/scottjiao/SteerConf."
+    ],
+    "durationSeconds": 8.530173097999999
+  },
+  "sourceToolAssistantUUID": "01415136-6088-4a76-8f37-850c89ab6a20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 120 · 2026-05-15T13:30:06.545Z_
+
+```json
+{
+  "parentUuid": "f1bc2b9b-754b-40c3-85eb-ff9097a9fa1a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e8f9154c-3bb4-452d-b0f8-3063ec2e7cd0",
+  "timestamp": "2026-05-15T13:30:06.545Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 121 · 2026-05-15T13:30:59.703Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now synthesize everything I've found to form my review. Here are the critical findings:
+
+## Critical Issues Found
+
+### 1. Major Novelty Threat: "Simple Factuality Probes" (Han et al., EMNLP Findings 2025)
+This paper, from the same Oxford group as Semantic Entropy Probes, ALREADY:
+- Decomposes long-form outputs into atomic claims
+- Uses hidden-state probes at claim level for factuality detection
+- Applies neuron clamping to causally reduce hallucinations
+- Works across models up to 405B parameters
+
+
+- Operates without any training overhead
+
+The core pipeline—decomposing outputs, probing hidden states per claim, then intervening—is essentially identical to what CL-MUC proposes. The main distinctions are superficial: Han et al. use factuality probes with neuron clamping for hallucination reduction, while CL-MUC swaps in VUF with Semantic Entropy Probes and direction steering instead. Han et al. prioritize factuality detection with intervention as a secondary benefit, whereas CL-MUC targets calibration through hedging language. But the fundamental framework is the same, and the generator completely overlooked this work.
+
+### 2. Novelty Threat: "Closing the Confidence-Faithfulness Gap" (Miao & Ungar, March 2026
+
+)
+
+This one's also problematic—it already demonstrates CAA steering for confidence calibration, establishing that calibration and confidence operate as orthogonal linear features in LLMs. Though it reads as a short paper, it's essentially doing VUF-based calibration.
+
+### 3. Additional Related Work Not Cited:
+
+There's a whole cluster of papers I'm noticing weren't mentioned: work on how LLMs compute verbal confidence, SteerConf from NeurIPS 2025 for confidence elicitation, entity-level hallucination detection in longer outputs, tuning-free steering approaches, and interpretability-based reward frameworks. These all touch on overlapping problems.
+
+### 4. Feasibility Concerns:
+
+The Llama 4 Scout MoE architecture creates real obstacles here. With 109B parameters spread across 16 experts and only 17B active per token, I'm uncertain which hidden states to extract—the active experts shift token by token. VUF was only validated on dense models like Llama 3.1 and Mistral, so whether it exists as a clean linear feature in MoE is completely unknown. Plus there's the question of whether TransformerLens and nnsight even support Llama 4 Scout properly. Beyond that, the two-pass generation approach stacks computational costs: generate, decompose into claims, score each one, then regenerate.
+
+The real cost issue is that this isn't cheap despite being training-free—I'm looking at minimum 2x generation overhead plus decomposition work, which adds up fast for 27B models on long-form text. VUF transfer is another unknown. It was tested on 7-8B models and already showed reduced sensitivity on Qwen2.5, so scaling to Qwen 3.5-27B or MoE architectures is uncharted territory. Against the 200 H100-hour budget, these unknowns and computational demands create serious risk.
+
+The timeline is brutal too. Even the most optimistic estimate hits the budget ceiling, and that's before accounting for the actual work: extracting VUF on new models (which could require heavy debugging if it doesn't transfer), training SEP on long-form data, integrating the decomposition pipeline, implementing two-pass generation, and running evaluation across benchmarks. All in 11 days while simultaneously probing Qwen 3.5-27B and Llama 4 Scout together is pushing the limits of what's feasible.
+
+There's also a fundamental mismatch in the approach itself. VUF was found at the response level, but projecting it at a claim's final token position assumes clean per-claim signals — except hidden states during generation are influenced by all preceding tokens, and the claim decomposition happens after the fact. Then there's the steering problem: the second pass assumes claims regenerate in the same positions, but steering changes the distribution, so they'll likely appear elsewhere. And combining semantic entropy probes with VUF adds another layer of complexity that hasn't been validated together.
+
+The resource constraints are also concerning. The generator estimates 300 A100-hours (roughly 150-200 H100-hours), which barely fits the budget, but running full evaluations across multiple benchmarks and models with the two-pass generation approach would likely exceed it — especially since regenerating everything doubles the generation cost for every sample.
+
+The novelty is limited since Han et al. already demonstrated the core decompose-and-probe-per-claim approach, and while combining VUF with SEP is somewhat different, the fundamental framework isn't new. There are also several related works on calibration steering that the generator overlooked.
+
+Feasibility has serious issues: VUF transfer to larger models hasn't been validated, the two-pass generation creates a circular dependency problem, the compute budget is probably too tight, and the 11-day timeline leaves almost no room for the unknowns around MoE compatibility with interpretability tools. The idea itself is clearly presented with well-defined pipeline stages, though.
+
+The problem of claim-level calibration in long-form generation matters, but the two-pass approach is computationally expensive and may not be practical in reality. Since Han et al. already showed that simpler probes with neuron clamping can reduce hallucinations effectively, the incremental contribution feels limited. Averaging the scores gives 2.75, which points to revising the proposal. The core issue is that the novelty gap relative to Han et al. is substantial enough that the work needs significant repositioning to justify the added complexity and compute costs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8f9154c-3bb4-452d-b0f8-3063ec2e7cd0",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SDrN7tN13Ynw21b4ca",
+  "type": "assistant",
+  "uuid": "d4a858bc-609c-4c71-95dc-89bae78235ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0141CnwzQCPA42SYeVsR4WY6",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1656,
+      "cache_read_input_tokens": 57232,
+      "output_tokens": 4927,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1656,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4927,
+          "cache_read_input_tokens": 57232,
+          "cache_creation_input_tokens": 1656,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1656
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 122 · 2026-05-15T13:31:46.373Z_
+
+I now have sufficient evidence to render my verdict. Let me consolidate my findings.
+
+**Key discoveries from my independent investigation:**
+
+1. **Critical missed competitor: Han et al. "Simple Factuality Probes" (EMNLP Findings 2025)** — already decomposes long-form into atomic claims, trains probes on hidden states per-claim, AND applies neuron clamping for causal hallucination reduction. The core CL-MUC pipeline (decompose → probe → intervene) is essentially already published.
+
+2. **"Closing the Confidence-Faithfulness Gap" (Miao & Ungar, March 2026)** — uses CAA steering for confidence calibration, showing calibration and verbalized confidence are orthogonal linear directions. Very close to VUF-based calibration.
+
+3. **Llama 4 Scout is a 109B MoE model** — VUF was only tested on small dense models (7-8B). MoE creates serious complications for hidden state extraction and linear feature identification.
+
+4. **VUF paper itself noted Qwen2.5 showed "significantly less sensitivity"** to steering — model transfer is not guaranteed even within dense architectures.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 2, "rationale": "Han et al. (EMNLP Findings 2025) already implements the core pipeline — claim-level decomposition + hidden-state probes + neuron-clamping intervention for long-form hallucination reduction. 'Closing the Confidence-Faithfulness Gap' (Mar 2026) already does CAA steering for confidence calibration. The specific VUF+SEP combination is technically different but the conceptual framework is not new, and multiple highly relevant works were missed."},
+    "feasibility": {"score": 2, "rationale": "Multiple red flags: (1) VUF was only validated on 7-8B dense models, transfer to Qwen3.5-27B is unverified and to Llama 4 Scout (109B MoE with 16 experts) is completely unknown and likely problematic; (2) the two-pass generation approach has a chicken-and-egg problem — steering changes token positions, so claims identified in pass 1 won't appear at the same positions in pass 2; (3) the resource estimate of 300h A100 exceeds the user's ≤200 H100-hour budget; (4) 11-day timeline is unrealistic given unverified VUF transfer to new architectures."},
+    "clarity": {"score": 4, "rationale": "The three-stage pipeline (Decompose → Score → Steer) is well-articulated and the description is detailed with clear evaluation plans. Minor issue: the 'claim's final token position' VUF projection mechanism is hand-waved without discussing how continuous generation creates entangled hidden states across claims."},
+    "impact": {"score": 3, "rationale": "Claim-level calibration for long-form generation is genuinely important, but the two-pass approach is expensive and impractical for deployment. Han et al. showed simpler probes + neuron clamping already work for long-form hallucination reduction, reducing the marginal contribution. The 'training-free' advantage over CURE/CAG is real but the practical overhead of two-pass generation is a different form of cost."}
+  },
+  "issues": [
+    "CRITICAL MISSING COMPETITOR: Han et al. 'Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation' (EMNLP Findings 2025) — same Oxford group as Semantic Entropy Probes — already does claim-level hidden-state probing + neuron clamping for causal hallucination reduction in long-form generation. This is the closest existing work and was completely missed.",
+    "MISSING COMPETITOR: Miao & Ungar 'Closing the Confidence-Faithfulness Gap in LLMs' (arXiv 2603.25052, March 2026) uses CAA steering for confidence calibration, finding calibration and verbalized confidence are orthogonal linear features. Their two-stage adaptive steering pipeline is closely related.",
+    "MISSING WORK: 'How do LLMs Compute Verbal Confidence?' (arXiv 2603.17839, March 2026) provides mechanistic analysis of verbal confidence computation; SteerConf (NeurIPS 2025) does training-free steering for confidence calibration; Adaptive Activation Steering (ACT, WWW 2025) does tuning-free diverse steering vectors for truthfulness; 'Real-Time Detection of Hallucinated Entities' (Obeso et al., 2025) does entity-level probes in long-form. None cited.",
+    "VUF was validated ONLY on 7-8B dense models (Llama3.1-8B, Mistral-7B, Qwen2.5-7B). The paper itself notes Qwen2.5 shows 'significantly less sensitivity' to VUF steering. Transfer to Qwen3.5-27B is unverified, and transfer to Llama 4 Scout (109B MoE, 16 experts) is extremely unlikely to work cleanly — MoE architectures route different tokens through different experts, making linear feature identification fundamentally harder.",
+    "Two-pass generation has a chicken-and-egg problem: pass 1 identifies claims and their token positions; steering in pass 2 changes the generation, so claims will appear at different positions or be entirely different. The approach assumes regeneration reproduces the same claims in the same positions, which activation steering specifically disrupts.",
+    "Resource estimate (300h A100 manual, 200h A100 HIL, 500h auto) exceeds the user's hard constraint of ≤200 H100-hours total. Even the HIL estimate at 200h A100 ≈ 130-150h H100 equivalent is optimistic given the need for two-pass generation across multiple benchmarks with 27B+ models.",
+    "Semantic Entropy Probes were designed for response-level uncertainty approximation. Adapting them to claim-level semantic uncertainty in long-form contexts requires new training data and potentially different probe architectures — this is not a trivial adaptation and the '~30h' SEP training estimate is likely too low.",
+    "The 'claim's final token position' VUF projection assumes clean per-claim signals, but in autoregressive generation, hidden states at position i are conditioned on ALL preceding tokens. The VUF signal at a claim's last token reflects the entire prefix, not just that claim — extraction may not give meaningful per-claim uncertainty."
+  ],
+  "feedback": "The idea has a clear and appealing structure, but faces critical novelty and feasibility problems that must be addressed:\n\n**Novelty — differentiate from Han et al. (2025):** This is the single most important fix. Han et al. already showed that simple linear probes on hidden states detect hallucinations at claim level in long-form generation AND that neuron clamping causally reduces hallucinations. You MUST: (1) cite this paper prominently as the closest prior work, (2) articulate what VUF+SEP dual-signal scoring adds over simple factuality probes (e.g., better calibration vs. binary factuality, verbal hedging rather than deletion/clamping), (3) run head-to-head comparisons. Also cite Miao & Ungar (2026) on CAA steering for calibration.\n\n**Feasibility — drop Llama 4 Scout, fix the two-pass problem:**\n- Replace Llama 4 Scout with a dense model (Llama 3.1-70B, Qwen2.5-72B, or stick with Qwen3.5-27B only). MoE models are too risky for VUF extraction in 11 days.\n- Rethink the two-pass approach: consider single-pass with streaming claim detection (detect uncertainty signals during generation and intervene in real-time using a sliding window), or adopt a post-hoc rewriting/hedging approach that doesn't require position-aligned regeneration.\n- Reduce scope to 1 model with ablations rather than 2 models × 4 benchmarks.\n\n**Compute — stay within budget:**\n- The ≤200 H100-hour constraint means roughly 1 model, 2-3 benchmarks max with focused experiments.\n- Drop extensive ablation sweeps in favor of one clean comparison: CL-MUC vs. Han et al.'s probes vs. CURE/CAG.\n\n**Technical — address the claim-level VUF signal problem:**\n- Provide evidence or pilot results that VUF projection at claim-final tokens gives meaningful per-claim uncertainty, or pivot to a different extraction strategy (e.g., aggregate VUF across all tokens in a claim span).",
+  "reason": "Core pipeline (claim decomposition + hidden-state probes + intervention for long-form hallucination reduction) already published by Han et al. (EMNLP Findings 2025); VUF transfer to target models unverified; two-pass generation has fundamental chicken-and-egg problem."
+}
+```
+
+Sources:
+- [Ji et al. "Calibrating Verbal Uncertainty as a Linear Feature" (EMNLP 2025)](https://aclanthology.org/2025.emnlp-main.187/)
+- [Han et al. "Simple Factuality Probes" (EMNLP Findings 2025)](https://aclanthology.org/2025.findings-emnlp.880/)
+- [CURE: Think Through Uncertainty (arXiv 2604.12046)](https://arxiv.org/abs/2604.12046)
+- [Only Say What You Know / CAG (arXiv 2605.01749)](https://arxiv.org/abs/2605.01749)
+- [Miao & Ungar "Closing the Confidence-Faithfulness Gap" (arXiv 2603.25052)](https://arxiv.org/abs/2603.25052)
+- [Adaptive Activation Steering (ACT, WWW 2025)](https://arxiv.org/abs/2406.00034)
+- [SteerConf (NeurIPS 2025)](https://arxiv.org/abs/2503.02863)
+- [Semantic Entropy Probes (ICML 2024)](https://arxiv.org/abs/2406.15927)
+- [PCNET (arXiv 2605.05953)](https://arxiv.org/abs/2605.05953)
+- [Real-Time Detection of Hallucinated Entities (arXiv 2509.03531)](https://arxiv.org/abs/2509.03531)
+- [How do LLMs Compute Verbal Confidence (arXiv 2603.17839)](https://arxiv.org/abs/2603.17839)
+- [Features as Rewards / RLFR (Goodfire)](https://www.goodfire.ai/research/rlfr)
+- [EMNLP 2026 CFP](https://2026.emnlp.org/calls/main_conference_papers/)
+- [Llama 4 Scout on HuggingFace](https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E)
+- [Qwen3.5-27B on HuggingFace](https://huggingface.co/Qwen/Qwen3.5-27B)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4a858bc-609c-4c71-95dc-89bae78235ab",
+  "isSidechain": false,
+  "requestId": "req_011Cb4SDrN7tN13Ynw21b4ca",
+  "type": "assistant",
+  "uuid": "2e73423c-6053-4814-8a0f-e6ab52ab29dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0141CnwzQCPA42SYeVsR4WY6",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1656,
+      "cache_read_input_tokens": 57232,
+      "output_tokens": 4927,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1656,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4927,
+          "cache_read_input_tokens": 57232,
+          "cache_creation_input_tokens": 1656,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1656
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 123_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-15 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2e73423c-6053-4814-8a0f-e6ab52ab29dd",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 124_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level uncertainty calibration via representation steering",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 125_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-15 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2e73423c-6053-4814-8a0f-e6ab52ab29dd",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 126_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Claim-level uncertainty calibration via representation steering",
+  "sessionId": "49d0ab93-901f-44c0-919d-92703f3b1758"
+}
+```
+
+---

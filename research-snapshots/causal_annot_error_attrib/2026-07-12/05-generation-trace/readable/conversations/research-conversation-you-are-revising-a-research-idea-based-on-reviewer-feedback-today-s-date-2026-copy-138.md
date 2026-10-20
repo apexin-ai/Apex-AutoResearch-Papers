@@ -1,0 +1,6984 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-28 (UTC).** ## Original idea { "cha
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 103
+- **Recorded user turns:** 1
+- **Tool calls:** 33
+- **Original source:** `logs/chats/exported-trajectories/account-2/d1378e4d-9894-41fe-b6e9-aceebb85e7a9.jsonl`
+- **Structured JSON:** [`8ccaa7dc178a4cdd9602.json`](../../sessions/8c/8ccaa7dc178a4cdd9602.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-28T02:53:28.051Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T02:53:28.051Z",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-28 (UTC).**\n\n## Original idea\n{\n  \"change_summary\": \"Major revision addressing 4 round-3 reviewer concerns plus strategic restructuring to raise impact above 4.0 threshold: (1) Added CPMI (arXiv 2604.10660, ACL 2026) to landscape and opportunity — but research reveals CPMI actually strengthens RCB's case rather than undermining it: CPMI achieves only 25.6 F1 on ProcessBench OmniMATH (vs. 66.3 for supervised discriminative PRMs), and the paper explicitly excludes 'extremely difficult problems' because 'PRMs fail to extract meaningful learning signals when all step-wise rewards collapse to zero.' CPMI relies on model probability calibration which degrades on frontier-hard problems where the model has low solve rates. Positioned CPMI as complementary for easy-moderate problems while RCB addresses the frontier-hard regime where both standard MC and probability-based methods fail. (2) Fixed citation source: verified that 'Is PRM Necessary?' (2505.11227) DOES correctly report Qwen2.5-Math-PRM-7B scores (66.3/67.5) alongside the weaker Qwen2.5-Math-7B-PRM800K (44.3/50.7) in the same table — attribution was correct, but now explicitly distinguish these two models (22-point gap on OmniMATH) to prevent reviewer confusion. Added R-PRM (EMNLP 2025, Table 1) as corroborating source. (3) Flagged ICLR 2027 deadline as estimated/projected since not officially announced. (4) Strategically elevated RCB-annotated data for generative PRM training from stretch goal to co-primary contribution — the key insight is that RCB produces higher-quality MC step labels specifically on frontier-hard problems, benefiting both discriminative PRM training (primary track) and generative PRM fine-tuning (new secondary track). This dual-track evaluation tests the broader hypothesis that annotation quality on hard problems is a bottleneck across the PRM paradigm, not just for discriminative models. Target for secondary track: improve GenPRM/ThinkPRM fine-tuning on frontier-hard subsets using RCB annotations vs. standard MC annotations, testing whether label quality matters for generative PRMs too. This restructuring addresses the novelty ceiling concern by making the contribution about label quality on hard problems as a general principle, not just a curriculum trick for discriminative PRMs.\",\n  \"core_problem\": \"Can we overcome the cold-start problem in Monte Carlo process reward estimation — where the completer rarely solves hard problems, making MC estimates uninformative — by bootstrapping PRM accuracy from late steps backward to early steps via a reverse difficulty curriculum? The underlying intuition is elementary: MC rollout success rates should increase at later step positions because fewer reasoning decisions remain (a basic property of Markov chain completion probability). But two critical empirical questions are unanswered: (1) Is the magnitude of this position-dependent success-rate gradient large enough on frontier-hard problems to produce meaningfully informative labels? (2) For which mathematical problem types (algebra, combinatorics, number theory, geometry) does the gradient hold, and where does it break down (e.g., single-key-insight problems)? Answering these questions would both validate the curriculum approach and provide the first systematic empirical characterization of MC signal quality as a function of step position — an independently valuable contribution to the process supervision literature. Recent rollout-free alternatives like CPMI (ACL 2026) bypass MC estimation entirely via contrastive mutual information on model probabilities, but achieve only 25.6 F1 on ProcessBench OmniMATH — far below supervised discriminative PRMs (66.3-71.1 F1) — because model probability calibration degrades on frontier-hard problems. This confirms that label quality on hard problems remains a fundamental bottleneck that cannot be sidestepped by cheaper estimation methods. If the position-dependent gradient is validated, the resulting high-quality MC annotations serve a dual purpose: (a) training efficient discriminative PRMs that fill a critical deployment gap in online RL training loops where generative PRMs are prohibitively expensive (Setlur et al. 2025: GenRM needs 8-512× the compute of self-consistency), and (b) providing better fine-tuning data for generative PRMs on frontier-hard problems, testing the broader hypothesis that annotation quality on hard problems is a bottleneck across the entire PRM paradigm.\",\n  \"opportunity\": \"The MC cold-start problem in PRM training remains a critical bottleneck. OmegaPRM acknowledges it 'requires verifiable gold answers, making it inapplicable when the completer rarely solves' hard problems. Two research directions have emerged to bypass MC estimation, but both have significant limitations on frontier-hard problems. **Direction 1: Generative PRMs** (GenPRM, R-PRM, ThinkPRM, RM-R1) use inference-time reasoning, achieving strong results (ThinkPRM-14B: 85.7 F1 on ProcessBench OmniMATH; GenPRM-7B Maj@8: ~80.5 avg F1). However, they incur substantially higher per-step verification costs: Setlur et al. (2025) show GenRM requires 8× the compute of self-consistency merely to match SC performance, and 64-512× for marginal improvements; ThinkPRM generates 1,000-5,000 tokens of chain-of-thought reasoning per step evaluation vs. a discriminative PRM's single scalar output in one forward pass. This cost differential creates a critical deployment gap in online RL training loops (GRPO/PPO for reasoning), where the PRM is called on every rollout at every training step — typically 1,000+ trajectories per step with ~20 reasoning steps each, yielding ~20,000 PRM evaluations per training step across thousands of steps. Fast-Slow Thinking RM (2026) explicitly identifies generative RM reasoning costs as 'orders of magnitude higher.' PRIME (2025) derives implicit process rewards from the policy model itself to avoid external PRM overhead. SPRO (2025) achieves 3.4× higher training efficiency with 15% of PRIME's GPU hours. DeepSeek R1 abandoned learned reward models entirely. **Direction 2: Rollout-free label generation.** CPMI (ACL 2026) bypasses MC rollouts entirely via contrastive pointwise mutual information on model log-probabilities, reducing annotation cost by 84% and token generation by 98%. However, CPMI achieves only 25.6 F1 on ProcessBench OmniMATH with a Qwen3-4B backbone — compared to 66.3 F1 for the supervised Qwen2.5-Math-PRM-7B — a gap of over 40 F1 points. The CPMI authors explicitly exclude 'extremely difficult problems, as PRMs fail to extract meaningful learning signals when all step-wise rewards collapse to zero,' and acknowledge 'CPMI rewards at initial reasoning steps tend to be noisy, as the model is far from the answer space and exhibits high uncertainty.' This confirms a fundamental limitation: probability-based methods require calibrated model confidence, which degrades precisely on frontier-hard problems where the model has low solve rates. **The gap RCB fills:** No existing approach produces high-quality step-level annotations on frontier-hard problems efficiently. MC estimation fails (near-zero success rates), CPMI fails (uncalibrated probabilities), and generative PRMs are too expensive for RL deployment. The key observation enabling RCB is elementary probability theory: in a Markov chain, the probability of reaching a target state increases as the number of remaining transitions decreases. ComMCS (AAAI 2026) demonstrates a related insight — compounding MC estimates across adjacent steps reduces variance via a TD(λ)-style combination — but its theoretical framework treats all step positions symmetrically and does not analyze position-dependent informativeness. No work has empirically characterized how MC success rates vary as a function of step position on frontier-hard problems, nor proposed exploiting this gradient for PRM training. RCB exploits the position-dependent gradient to produce informative MC annotations exactly where other methods fail, enabling both efficient discriminative PRMs for RL deployment and higher-quality training data for generative PRMs.\",\n  \"landscape\": \"**Generative PRMs (dominant recent trend):** GenPRM (AAAI 2026) reframes process reward modeling as a generative task using Relative Progress Estimation, achieving ~80.5 avg F1 on ProcessBench with a 7B model via Maj@8 — surpassing the 72B Qwen2.5-Math-PRM (78.3 avg F1). R-PRM (EMNLP 2025) activates reasoning in the PRM via seed data generation and self-improvement, achieving +11.9 F1 on ProcessBench and +8.5 F1 on PRMBench over baselines. RM-R1 (ICLR 2026) introduces chain-of-rubrics reasoning reward models generating up to 8,192 tokens per evaluation. ThinkPRM (TMLR 2026; arXiv 2504.16828) uses chain-of-thought verification trained on only 1K examples, reaching 85.7 F1 on ProcessBench OmniMATH and 87.3 on OlympiadBench — the current highest reported scores on these hard subsets, generating 1,000-5,000 tokens per verification chain. ThinkPRM-7B achieves 74.0 F1 on OmniMATH and 73.4 on OlympiadBench. All generative PRMs trade training-time data requirements for inference-time compute. **Discriminative PRM SOTA (critical model distinction):** Qwen2.5-Math-PRM-7B achieves 66.3 F1 on OmniMATH and 67.5 on OlympiadBench; Qwen2.5-Math-PRM-72B achieves 71.1 and 74.3 respectively (reported in both R-PRM EMNLP 2025 Table 1 and 'Is PRM Necessary?' arXiv 2505.11227 Table 1). Note: these are distinct from the weaker Qwen2.5-Math-7B-PRM800K (44.3 OmniMATH, 50.7 OlympiadBench), which is fine-tuned only on PRM800K — a 22-point gap on OmniMATH demonstrates that training data quality and scale are decisive for discriminative PRM accuracy. The discriminative-to-generative gap on OmniMATH is ~14.6 F1 points (71.1 vs 85.7 at 72B/14B respectively). **Rollout-free label generation:** CPMI (arXiv 2604.10660, ACL 2026) uses contrastive pointwise mutual information to generate step-level reward labels from model log-probabilities without MC rollouts, reducing annotation time by 84% and token generation by 98% vs. MC estimation. However, CPMI-trained PRMs (Qwen3-4B backbone) achieve only 25.6 F1 on ProcessBench OmniMATH and 28.7 on OlympiadBench — far below supervised discriminative PRMs trained on MC-based labels (66.3/67.5). The authors explicitly exclude extremely difficult problems and note early-step reward noise due to model uncertainty. CPMI is effective for problems within the model's competence range but cannot produce meaningful labels on frontier-hard problems where model probabilities are poorly calibrated. This establishes that annotation quality — not just annotation cost — is the primary bottleneck for PRM accuracy on hard problems. **Generative PRM cost analysis:** 'When To Solve, When To Verify' (Setlur et al., 2025) provides the definitive quantification: GenRM-FT requires 8× compute to match self-consistency, 128× to beat it by 3.8% on MATH (Llama-8B); up to 512× for Qwen-7B. The paper concludes 'SC is more compute-efficient than GenRM for most practical inference budgets.' **MC estimation improvements:** ComMCS (AAAI 2026) reduces MC estimator variance via compounding estimates across adjacent step positions (TD(λ)-style) without extra inference, gaining +2.8 best-of-N points. Its Theorem 4.2 establishes MC estimation as the MVUE given single-step information, and Theorem 4.3 provides a general compound variance formula treating all step positions symmetrically. SCAN (NeurIPS 2025) addresses MC annotation noise via self-denoising. Math-Shepherd (ACL 2024) and OmegaPRM (arXiv 2024) established MC-based PRM annotation but flag the cold-start problem without solution. **Co-evolutionary approaches:** RL Tango (NeurIPS 2025) co-evolves a generator and generative verifier via interleaved RL without process-level annotations, achieving SOTA among 7B/8B models on ProcessBench and 25.5% avg relative improvement on competition math. Its verifier is generative (expensive at inference for RL reward computation), and co-training two LLMs has significant compute overhead. **Unsupervised verification:** uPRM (arXiv 2605.10158, May 2026) constructs process reward models without supervision via LLM next-token probability scoring, achieving 39.8 F1 on ProcessBench OmniMATH — far below supervised discriminative PRMs (66.3-71.1 F1), demonstrating that supervision quality still matters substantially. Together with CPMI (25.6 F1), unsupervised/rollout-free approaches consistently underperform supervised MC-based PRMs on hard problems by 27-41 F1 points. **Fast PRM motivation:** Fast-Slow Thinking RM (arXiv 2603.20212, 2026) proposes a hybrid scalar/generative RM using dual-confidence activation, explicitly motivated by generative RM costs being 'orders of magnitude higher.' PRIME (arXiv 2502.01456, 2025) derives implicit process rewards from the policy model, achieving 2.5× faster training. SPRO (arXiv 2507.01551, 2025) achieves 3.4× higher training efficiency with 15% of PRIME's GPU hours. 'GRPO is Secretly a PRM' (arXiv 2509.21154) shows GRPO implicitly performs MC-based process reward estimation. **Dual-process verification:** Dyve (EMNLP 2025) dynamically allocates verification effort, reaching 49.0/47.2 F1 on OlympiadBench/OmniMATH. **Curriculum approaches for reasoning:** SCRL (arXiv 2605.22074, May 2026) decomposes hard problems into verifiable subproblems for policy RL, +8.1 on AIME'25 over GRPO. R³ (ICML 2024) applies reverse curriculum RL for policy training. AURORA (arXiv 2025) uses reverse verification via reference answers without step-position-aware curriculum. **Gap:** No existing work (a) empirically characterizes MC success-rate curves as a function of step position on frontier-hard problems, (b) proposes a step-position-aware reverse curriculum for PRM training, (c) produces efficient discriminative PRMs via such a curriculum for RL deployment, or (d) tests whether higher-quality MC annotations from the frontier-hard regime improve generative PRM training — addressing annotation quality as a paradigm-wide bottleneck.\",\n  \"inspired_by\": \"Field gap: process supervision for problems at or beyond the model's capability frontier, where MC estimation produces degenerate near-zero-variance estimates and probability-based methods (CPMI) produce uncalibrated scores. Theoretical foundation: elementary Markov chain completion probability — fewer remaining transitions increase target-reaching probability. The key empirical contribution is systematic measurement of effect magnitude and problem-type dependence, which is untested despite the straightforward underlying intuition. Deployment motivation: the growing and well-documented need for efficient discriminative PRMs in online RL training loops (GRPO/PPO), where generative PRMs are orders of magnitude too expensive (Setlur et al. 2025; Fast-Slow Thinking RM 2026; DeepSeek R1's avoidance of learned RMs; PRIME and SPRO's implicit reward workarounds). Broader impact motivation: the consistent 27-41 F1 gap between unsupervised/rollout-free methods (CPMI at 25.6, uPRM at 39.8) and supervised MC-based PRMs (66.3-71.1) on OmniMATH demonstrates that annotation quality is the decisive bottleneck — improving MC annotation quality on hard problems should benefit the entire PRM ecosystem, including generative models. Innovation pattern: converting a basic theoretical observation into a novel training curriculum that produces high-quality annotations serving both discriminative and generative PRM paradigms. Complementarity: CPMI for easy-moderate problems (cheap, well-calibrated), RCB for frontier-hard problems (more expensive but uniquely informative), generative PRMs for highest-accuracy test-time verification.\",\n  \"approach\": \"We propose Reverse-Curriculum Bootstrapping (RCB), a multi-phase annotation and training algorithm with a mandatory validation protocol, producing both (A) efficient discriminative PRMs for deployment as reward signals in online RL training, and (B) high-quality MC annotations for improving generative PRM training on frontier-hard problems. **Phase 0 — Pilot Validation (weeks 1-3):** Before committing to the full pipeline, we address two prerequisites. (0a) Completer baseline evaluation (~50 H100-hours): evaluate Qwen3-235B-A22B on the full Omni-MATH dataset (4,428 problems) to establish ground-truth difficulty distribution, as no published Omni-MATH results exist for Qwen3 models (confirmed absent from Qwen3 technical report; current public SOTA: o1-mini at 60.5%, QwQ-32B at 49.6%). This determines the pool of frontier-hard problems (<10% pass@8) for subsequent phases. (0b) MC success-rate curve characterization (~150 H100-hours): select 200 problems spanning difficulty levels from Omni-MATH, generate 8-12-step candidate solutions using Qwen3-32B, and run N=64 MC rollouts from each step position k using Qwen3-32B as completer. Measure success rate as a function of normalized step position (k/K), stratified by both problem difficulty (pass@1 bins) and mathematical domain (algebra, combinatorics, number theory, geometry). Produce success-rate curves with bootstrap confidence intervals. Go/no-go criteria (domain-stratified): (i) Full-go: for ≥40% of frontier-hard problems (pass@1 < 5%), late-step rollouts (k/K > 0.8) achieve success rates ≥10% (sufficient for meaningful label estimation with N=64 rollouts, giving ≥6 expected correct rollouts for Bernoulli estimation); (ii) Partial-go: if 20-40% of frontier-hard problems meet criterion (i), proceed with RCB restricted to qualifying problem types and report domain-specific applicability; (iii) No-go: if <20% qualify, pivot to ComMCS-enhanced compounding estimators combined with problem-difficulty curriculum. The Phase 0 analysis — the first systematic empirical characterization of MC signal quality as a function of step position on frontier-hard problems — constitutes a standalone contribution publishable regardless of go/no-go outcome. As an additional Phase 0 analysis, we compare CPMI label quality against MC labels at each step position, testing the hypothesis that probability-based methods are less reliable than rollout-based methods specifically at frontier difficulty. Total Phase 0 cost: ~200 H100-hours. **Problem Curation (weeks 3-4):** Curate frontier-hard problems from Omni-MATH and filtered AIME/AMC (#13-15 difficulty slots), selecting those where Qwen3-235B-A22B achieves <10% pass@8 (pool size determined by Phase 0a evaluation). Generate candidate solutions decomposed into discrete steps using Qwen3-32B as the policy model. **Phase 1 (weeks 4-6):** Run MC rollouts exclusively from late step positions (normalized position k/K > 0.75) where the pilot confirmed non-trivial success rates (>5%), using Qwen3-235B-A22B as completer. Produce informative step-level correctness labels and train PRM_0 (Qwen3-7B base) on these annotations. **Phases 2-5 (weeks 6-14, ~2 weeks each):** In phase i, use PRM_{i-1} to guide rollouts from the next earlier step window via best-of-16 selection, boosting completer success rates at those positions. Retrain PRM_i on accumulated annotations across all covered step positions. **Early termination criterion:** If phase i PRM-guided rollouts at the new step window do not achieve ≥2 absolute percentage points higher success rate than unguided rollouts, terminate — the PRM is not providing sufficient guidance. Fall back to training the final PRM on all accumulated data. **Track B — Generative PRM fine-tuning (weeks 12-16, parallel with late RCB phases):** Fine-tune GenPRM-style and ThinkPRM-style models on RCB-annotated data (high-quality MC labels from frontier-hard problems) vs. standard MC annotations from the same problems. This tests the hypothesis that annotation quality is the bottleneck for generative PRMs on hard problems, not just for discriminative PRMs. If RCB annotations improve generative PRM accuracy on frontier-hard subsets, this demonstrates that the curriculum's value extends beyond the discriminative paradigm — label quality on hard problems is a paradigm-wide bottleneck. This dual-track evaluation (discriminative + generative) substantially broadens impact. **Ablations (weeks 14-16):** (1) RCB vs. uniform MC estimation (standard approach, no curriculum); (2) RCB vs. stronger completer only (Qwen3-235B as both policy and completer with higher rollout budget, testing if raw compute suffices without curriculum); (3) CPMI labels vs. RCB MC labels at matched problem difficulty, testing the annotation quality hypothesis directly — we predict RCB MC labels significantly outperform CPMI labels on frontier-hard problems while CPMI is competitive on moderate-difficulty problems, validating the complementary deployment strategy; (4) Inference speed and deployment cost comparison: measure wall-clock time per ProcessBench evaluation for RCB-trained discriminative PRM vs. GenPRM (Maj@8), ThinkPRM, and RM-R1, and compute cost for a representative GRPO training scenario (1,000 prompts × 16 rollouts × 20 steps = 320,000 PRM evaluations per epoch) to quantify the practical deployment advantage. **Evaluation (weeks 16-18):** Track A (discriminative): ProcessBench (focus on OmniMATH subset: discriminative baseline 66.3 F1 for 7B, 71.1 for 72B; and OlympiadBench: 67.5 for 7B, 74.3 for 72B), PRMBench, and best-of-N accuracy on Omni-MATH hard-filtered problems and AIME 2025/2026 hardest problems (#13-15). Track B (generative): ProcessBench OmniMATH and OlympiadBench for GenPRM/ThinkPRM fine-tuned on RCB annotations vs. standard MC annotations. **Track A targets:** On ProcessBench OmniMATH, improve 7B discriminative PRM F1 from 66.3 baseline (Qwen2.5-Math-PRM-7B) to 72-76 F1 — matching or exceeding Qwen2.5-Math-PRM-72B (71.1 F1) at 1/10th the parameters, and approaching ThinkPRM-7B's 74.0 F1 without generative inference overhead (orders of magnitude faster per evaluation). On OlympiadBench, target 72-78 F1 vs. 67.5 baseline. **Track B targets:** Demonstrate ≥2 F1 improvement on ProcessBench OmniMATH for GenPRM/ThinkPRM fine-tuned on RCB annotations vs. standard MC annotations, with a stretch target of reaching 87+ F1 for ThinkPRM-14B (from 85.7 baseline). **Failure mode analysis:** (F1) Pilot invalidation — late-step advantage insufficient, with partial-go and no-go pathways defined; (F2) Bootstrap cascade failure — noisy PRM_0 provides unhelpful guidance, caught by early termination criterion at phase boundary; (F3) Key-insight ceiling — problems where a single critical insight determines correctness at all subsequent steps, limiting RCB's applicability to a problem subset; (F4) Track B null result — if RCB annotations do not improve generative PRM accuracy, this is an informative negative result (generative PRMs learn to verify via their own reasoning rather than training data quality), and Track A discriminative results remain the primary contribution. We characterize which Omni-MATH domains (algebra vs. combinatorics vs. number theory vs. geometry) benefit from RCB vs. requiring generative verification, informing a practical three-tier deployment: CPMI-trained PRM for moderate-difficulty problems (cheapest), RCB-trained discriminative PRM for frontier-hard process supervision in online RL training loops, generative PRM for high-stakes test-time verification where inference budget permits.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"6200 H100-hours (200 for Phase 0 including completer evaluation + MC pilot + CPMI comparison, 3200 for MC rollout generation across Phases 1-5 using Qwen3-235B-A22B, 1200 for iterative discriminative PRM fine-tuning on Qwen3-7B across 5 rounds, 700 for Track B generative PRM fine-tuning and CPMI ablation, 500 for remaining ablations, 400 for evaluation and inference speed benchmarking)\",\n      \"timeline\": \"17-18 weeks (3 weeks Phase 0 pilot + completer evaluation + go/no-go, 1 week problem curation, 10 weeks for 5 iterative rollout-train phases at ~2 weeks each with Track B parallel from week 12, 2 weeks ablations, 1-2 weeks evaluation/writing)\",\n      \"estimated_gpu_cost\": \"$17,670 (at ~$2.85/H100-hour; multi-GPU inference for Qwen3-235B requires 4-8 H100s per instance)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"5400 H100-hours (efficiency gains from Claude-assisted pilot analysis, automated hyperparameter tuning, and ablation design reducing wasted runs by ~13%)\",\n      \"timeline\": \"14-15 weeks (Claude accelerates pilot analysis and go/no-go decision, experiment scripting, result analysis, and ablation design, saving ~3 weeks; fits estimated ICLR 2027 deadline starting June 1)\",\n      \"claude_api_cost\": \"$1,050 (primarily Sonnet 4.6 for code generation, pilot data analysis, experiment orchestration, Track B design, and paper drafting; ~250M input + 52M output tokens)\",\n      \"estimated_gpu_cost\": \"$15,390\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"7200 H100-hours (additional compute for automated hyperparameter sweeps, systematic ablation execution, Track B generative PRM fine-tuning sweeps, CPMI comparison, and architecture search)\",\n      \"timeline\": \"10-11 weeks (fully automated pipeline with parallel within-phase rollout generation and parallel Track B fine-tuning; pilot phase still requires ~2.5 weeks due to sequential completer evaluation + analysis)\",\n      \"claude_api_cost\": \"$3,800 (heavy Opus 4.7 usage for autonomous experiment design, pilot go/no-go analysis, phase transition decisions, Track B experiment design, and adaptive protocol modification; ~400M input + 105M output tokens)\",\n      \"estimated_gpu_cost\": \"$20,520\",\n      \"speed_bottleneck\": \"MC rollout generation with Qwen3-235B-A22B completer requires multi-node inference (4-8x H100 per instance); phases are inherently sequential since each PRM_i depends on PRM_{i-1}; parallelism limited to within-phase rollout generation across problems and Track B fine-tuning (independent of RCB phases after Phase 3). Phase 0a (completer evaluation) adds ~50 H100-hours but can run concurrently with solution generation setup.\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (estimated deadline: ~September 2026, projected from ICLR 2026 schedule; not officially announced as of May 2026) — primary target, 14-15 week human-in-loop timeline fits starting June 1\",\n    \"AISTATS 2027 (estimated deadline: October 2026) — backup if additional time needed\",\n    \"ICML 2027 (full paper estimated: ~January 2027) — comfortable deadline for full manual timeline\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Let's Verify Step by Step (ICLR 2024)\",\n    \"Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations (ACL 2024)\",\n    \"Improve Mathematical Reasoning in Language Models by Automated Process Supervision [OmegaPRM] (arXiv 2024)\",\n    \"Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters (ICLR 2025)\",\n    \"rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking (ICML 2025)\",\n    \"Training Large Language Models for Reasoning through Reverse Curriculum Reinforcement Learning [R3] (ICML 2024)\",\n    \"SCAN: Self-Denoising Monte Carlo Annotation for Robust Process Reward Learning (NeurIPS 2025)\",\n    \"Process Reward Models That Think [ThinkPRM] (TMLR 2026; arXiv 2504.16828)\",\n    \"The Lessons of Developing Process Reward Models in Mathematical Reasoning (ACL Findings 2025)\",\n    \"ProcessBench: Identifying Process Errors in Mathematical Reasoning (ACL 2025)\",\n    \"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026)\",\n    \"R-PRM: Reasoning-Driven Process Reward Modeling (EMNLP 2025)\",\n    \"Dyve: Thinking Fast and Slow for Dynamic Process Verification (EMNLP 2025)\",\n    \"RM-R1: Reward Modeling as Reasoning (ICLR 2026)\",\n    \"SCRL: From Reasoning Chains to Verifiable Subproblems — Curriculum RL Enables Credit Assignment for LLM Reasoning (arXiv 2605.22074, 2026)\",\n    \"ComMCS: Improving Value-based Process Verifier via Low-Cost Variance Reduction (AAAI 2026)\",\n    \"Omni-MATH: A Universal Olympiad Level Mathematic Benchmark For Large Language Models (arXiv 2024)\",\n    \"AURORA: Automated Process Reward Model Training via Reverse Verification (arXiv 2025)\",\n    \"RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning (NeurIPS 2025)\",\n    \"Unsupervised Process Reward Models [uPRM] (arXiv 2605.10158, 2026)\",\n    \"Fast-Slow Thinking RM: Efficient Integration of Scalar and Generative Reward Models (arXiv 2603.20212, 2026)\",\n    \"PRIME: Process Reinforcement through Implicit Rewards (arXiv 2502.01456, 2025)\",\n    \"Is PRM Necessary? Problem-Solving RL Implicitly Induces PRM Capability in LLMs (arXiv 2505.11227, 2025)\",\n    \"When To Solve, When To Verify: Compute-Optimal Problem Solving and Verification (Setlur et al., arXiv 2504.01005, 2025)\",\n    \"Cog-DRIFT: Exploration on Adaptively Reformulated Instances Enables Learning from Hard Reasoning Problems (arXiv 2026)\",\n    \"Efficient Process Reward Modeling via Contrastive Mutual Information [CPMI] (arXiv 2604.10660, ACL 2026)\"\n  ],\n  \"description\": \"This project addresses the Monte Carlo cold-start problem in process reward model training while producing both efficient discriminative PRMs for online RL deployment and higher-quality annotations for generative PRM training — testing the hypothesis that annotation quality on frontier-hard problems is a paradigm-wide bottleneck. On problems at the model's capability frontier, MC rollout completions from early reasoning steps almost never reach correct answers, making step-level reward estimates uninformative. While generative PRMs bypass MC estimation via inference-time reasoning (ThinkPRM-14B: 85.7 F1 on ProcessBench OmniMATH), they generate 1,000-5,000 tokens per step — infeasible as reward signals in GRPO/PPO training where millions of evaluations are needed per run (Setlur et al. 2025: GenRM needs 8-512× the compute of self-consistency). Rollout-free alternatives like CPMI (ACL 2026) reduce annotation cost by 84% but achieve only 25.6 F1 on OmniMATH — far below supervised PRMs (66.3-71.1 F1) — because model probability calibration degrades on frontier-hard problems. Together with uPRM (39.8 F1), these results demonstrate a consistent 27-41 F1 gap between unsupervised/rollout-free and supervised MC-based approaches on hard problems, confirming that label quality remains the decisive bottleneck. We propose Reverse-Curriculum Bootstrapping (RCB), exploiting an elementary probability observation: MC rollouts from late solution steps should achieve higher success rates because fewer reasoning decisions remain. While this intuition is straightforward, no work has empirically characterized the magnitude and problem-type dependence of this effect, nor exploited it as a training curriculum. The project begins with a mandatory Phase 0 (~200 H100-hours): evaluating Qwen3-235B-A22B on Omni-MATH to establish difficulty baselines, measuring MC success-rate curves by step position across 200 problems stratified by domain, and comparing against CPMI label quality — with domain-aware go/no-go criteria including a partial-go pathway. This empirical analysis constitutes a standalone contribution regardless of outcome. If validated, RCB trains PRMs in iterative phases: Phase 1 collects informative MC annotations from late-step positions; subsequent phases use each PRM to guide rollouts at progressively earlier positions via best-of-N selection. Dual evaluation tracks: Track A trains a 7B discriminative PRM targeting 72-76 F1 on ProcessBench OmniMATH (matching Qwen2.5-Math-PRM-72B at 71.1 F1 with 1/10th parameters, approaching ThinkPRM-7B at 74.0 F1 without generative overhead); Track B fine-tunes generative PRMs on RCB annotations vs. standard MC annotations to test whether higher-quality labels improve the generative paradigm too, targeting ≥2 F1 improvement with a stretch goal of 87+ F1. Note on ProcessBench baselines: Qwen2.5-Math-PRM-7B (66.3 OmniMATH, 67.5 OlympiadBench) is distinct from the weaker Qwen2.5-Math-7B-PRM800K (44.3, 50.7) — a 22-point gap showing training data quality is decisive (scores reported in R-PRM EMNLP 2025 Table 1 and 'Is PRM Necessary?' 2505.11227 Table 1). Ablations include CPMI vs. RCB label quality comparison at matched difficulty levels, inference speed benchmarking for RL deployment (320,000 evaluations per GRPO epoch), and the three-tier deployment framework: CPMI for moderate problems, RCB discriminative PRM for frontier-hard RL training, generative PRM for high-stakes verification.\",\n  \"project_name\": \"reverse_curr_prm_bootstrap\",\n  \"source\": \"web_research\",\n  \"title\": \"Reverse-Curriculum Bootstrapping for Process Verification at the Capability Frontier\"\n}\n\n## Reviewer feedback (round 4)\nIssues: [\"Missing AMCS (arXiv 2509.24351, ICLR 2026): 'From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision' adaptively allocates more rollout samples to uncertain reasoning steps, achieving improved PRM training. While AMCS optimizes per-step rollout budget based on uncertainty rather than exploiting position-dependent gradients, it addresses the same fundamental problem (improving MC annotation quality/efficiency) and is published at a top venue. It should be discussed as a related approach and potential combined baseline (AMCS + RCB could be complementary — AMCS for adaptive budget within each step, RCB for curriculum across step positions).\", \"Missing Hard2Verify benchmark (arXiv 2510.13744): This evaluation benchmark shows Qwen2.5-Math-PRM-72B drops from 78.3 F1 on ProcessBench to 37.3 on frontier-hard problems — a dramatic collapse that directly supports the proposal's core argument about discriminative PRM quality degradation on hard problems. Citing this would substantially strengthen the motivation.\", \"Novelty/impact ceiling remains the fundamental barrier to clearing 4.0: The average score (3.625) is below threshold. The proposal has been iteratively refined to near-optimal clarity and feasibility, but the core contribution — applying an elementary probability observation as a training curriculum — cannot be made more novel through framing alone. Track B elevation to co-primary helps but with ≥2 F1 targets, the expected contribution to generative PRMs is slim.\", \"Minor: CPMI backbone specification could be more precise — the labeling model is Qwen3-8B-Base while the PRM training backbone is Qwen3-4B-Base. The proposal says 'Qwen3-4B backbone' which is correct for the PRM but could be misleading about the labeling quality.\"]\nFeedback: The round-4 revision successfully addressed all round-3 issues (CPMI integration, citation verification, ICLR deadline flagging, Track B elevation). All major factual claims verified correctly through independent search — the proposal's scholarly rigor is exceptional. However, the average score (3.625) remains below the 4.0 threshold due to the novelty/impact ceiling. To cross 4.0, consider these strategies:\n\n(1) **Add AMCS (ICLR 2026)** as related work and propose the combination: AMCS adaptively allocates rollout budget per-step based on uncertainty, while RCB exploits position-dependent success rate gradients across steps. These are orthogonal and complementary. Testing AMCS+RCB as a combined method could strengthen both novelty and impact.\n\n(2) **Strengthen Track B ambition**: Currently ≥2 F1 improvement is too modest to constitute a meaningful co-primary contribution. Consider: (a) testing RCB annotations as fine-tuning data for multiple generative PRM architectures (GenPRM, ThinkPRM, R-PRM, RM-R1) to make the 'annotation quality is a paradigm-wide bottleneck' claim more convincing, or (b) using RCB annotations to train discriminative PRMs that then serve as cheap teachers for knowledge distillation into generative PRMs — a novel training pipeline.\n\n(3) **Add Hard2Verify as an evaluation target**: The Qwen2.5-Math-PRM-72B collapse from 78.3→37.3 on Hard2Verify directly validates RCB's premise and adds a challenging evaluation that would differentiate from ProcessBench-only results.\n\n(4) **Consider a theoretical contribution**: The Phase 0 empirical findings could support a formal characterization of MC estimation informativeness as a function of step position, problem difficulty, and mathematical domain — e.g., sufficient conditions for when RCB is guaranteed to improve over uniform MC estimation. This would elevate the contribution from 'clever engineering' to 'foundational understanding.'\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.\n- Address each issue specifically.\n\n## 深度调研要求\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。\n3. **深度思考**：\n   - 核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach？\n4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。\n\n## 针对 Review 意见的定向搜索\n\n1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点\n2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline\n3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现\n4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot\n\n- You have full freedom: minor fix, major revision, or pivot.\n- Include a \"change_type\" field: \"minor\", \"major\", or \"pivot\".\n- Output a COMPLETE JSON object with ALL fields."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T02:53:28.055Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-28T02:53:28.055Z",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+## Round 1
+
+101 recorded events
+
+### User
+
+_source line 3 · 2026-05-28T02:53:28.071Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-28 (UTC).**
+
+## Original idea
+{
+  "change_summary": "Major revision addressing 4 round-3 reviewer concerns plus strategic restructuring to raise impact above 4.0 threshold: (1) Added CPMI (arXiv 2604.10660, ACL 2026) to landscape and opportunity — but research reveals CPMI actually strengthens RCB's case rather than undermining it: CPMI achieves only 25.6 F1 on ProcessBench OmniMATH (vs. 66.3 for supervised discriminative PRMs), and the paper explicitly excludes 'extremely difficult problems' because 'PRMs fail to extract meaningful learning signals when all step-wise rewards collapse to zero.' CPMI relies on model probability calibration which degrades on frontier-hard problems where the model has low solve rates. Positioned CPMI as complementary for easy-moderate problems while RCB addresses the frontier-hard regime where both standard MC and probability-based methods fail. (2) Fixed citation source: verified that 'Is PRM Necessary?' (2505.11227) DOES correctly report Qwen2.5-Math-PRM-7B scores (66.3/67.5) alongside the weaker Qwen2.5-Math-7B-PRM800K (44.3/50.7) in the same table — attribution was correct, but now explicitly distinguish these two models (22-point gap on OmniMATH) to prevent reviewer confusion. Added R-PRM (EMNLP 2025, Table 1) as corroborating source. (3) Flagged ICLR 2027 deadline as estimated/projected since not officially announced. (4) Strategically elevated RCB-annotated data for generative PRM training from stretch goal to co-primary contribution — the key insight is that RCB produces higher-quality MC step labels specifically on frontier-hard problems, benefiting both discriminative PRM training (primary track) and generative PRM fine-tuning (new secondary track). This dual-track evaluation tests the broader hypothesis that annotation quality on hard problems is a bottleneck across the PRM paradigm, not just for discriminative models. Target for secondary track: improve GenPRM/ThinkPRM fine-tuning on frontier-hard subsets using RCB annotations vs. standard MC annotations, testing whether label quality matters for generative PRMs too. This restructuring addresses the novelty ceiling concern by making the contribution about label quality on hard problems as a general principle, not just a curriculum trick for discriminative PRMs.",
+  "core_problem": "Can we overcome the cold-start problem in Monte Carlo process reward estimation — where the completer rarely solves hard problems, making MC estimates uninformative — by bootstrapping PRM accuracy from late steps backward to early steps via a reverse difficulty curriculum? The underlying intuition is elementary: MC rollout success rates should increase at later step positions because fewer reasoning decisions remain (a basic property of Markov chain completion probability). But two critical empirical questions are unanswered: (1) Is the magnitude of this position-dependent success-rate gradient large enough on frontier-hard problems to produce meaningfully informative labels? (2) For which mathematical problem types (algebra, combinatorics, number theory, geometry) does the gradient hold, and where does it break down (e.g., single-key-insight problems)? Answering these questions would both validate the curriculum approach and provide the first systematic empirical characterization of MC signal quality as a function of step position — an independently valuable contribution to the process supervision literature. Recent rollout-free alternatives like CPMI (ACL 2026) bypass MC estimation entirely via contrastive mutual information on model probabilities, but achieve only 25.6 F1 on ProcessBench OmniMATH — far below supervised discriminative PRMs (66.3-71.1 F1) — because model probability calibration degrades on frontier-hard problems. This confirms that label quality on hard problems remains a fundamental bottleneck that cannot be sidestepped by cheaper estimation methods. If the position-dependent gradient is validated, the resulting high-quality MC annotations serve a dual purpose: (a) training efficient discriminative PRMs that fill a critical deployment gap in online RL training loops where generative PRMs are prohibitively expensive (Setlur et al. 2025: GenRM needs 8-512× the compute of self-consistency), and (b) providing better fine-tuning data for generative PRMs on frontier-hard problems, testing the broader hypothesis that annotation quality on hard problems is a bottleneck across the entire PRM paradigm.",
+  "opportunity": "The MC cold-start problem in PRM training remains a critical bottleneck. OmegaPRM acknowledges it 'requires verifiable gold answers, making it inapplicable when the completer rarely solves' hard problems. Two research directions have emerged to bypass MC estimation, but both have significant limitations on frontier-hard problems. **Direction 1: Generative PRMs** (GenPRM, R-PRM, ThinkPRM, RM-R1) use inference-time reasoning, achieving strong results (ThinkPRM-14B: 85.7 F1 on ProcessBench OmniMATH; GenPRM-7B Maj@8: ~80.5 avg F1). However, they incur substantially higher per-step verification costs: Setlur et al. (2025) show GenRM requires 8× the compute of self-consistency merely to match SC performance, and 64-512× for marginal improvements; ThinkPRM generates 1,000-5,000 tokens of chain-of-thought reasoning per step evaluation vs. a discriminative PRM's single scalar output in one forward pass. This cost differential creates a critical deployment gap in online RL training loops (GRPO/PPO for reasoning), where the PRM is called on every rollout at every training step — typically 1,000+ trajectories per step with ~20 reasoning steps each, yielding ~20,000 PRM evaluations per training step across thousands of steps. Fast-Slow Thinking RM (2026) explicitly identifies generative RM reasoning costs as 'orders of magnitude higher.' PRIME (2025) derives implicit process rewards from the policy model itself to avoid external PRM overhead. SPRO (2025) achieves 3.4× higher training efficiency with 15% of PRIME's GPU hours. DeepSeek R1 abandoned learned reward models entirely. **Direction 2: Rollout-free label generation.** CPMI (ACL 2026) bypasses MC rollouts entirely via contrastive pointwise mutual information on model log-probabilities, reducing annotation cost by 84% and token generation by 98%. However, CPMI achieves only 25.6 F1 on ProcessBench OmniMATH with a Qwen3-4B backbone — compared to 66.3 F1 for the supervised Qwen2.5-Math-PRM-7B — a gap of over 40 F1 points. The CPMI authors explicitly exclude 'extremely difficult problems, as PRMs fail to extract meaningful learning signals when all step-wise rewards collapse to zero,' and acknowledge 'CPMI rewards at initial reasoning steps tend to be noisy, as the model is far from the answer space and exhibits high uncertainty.' This confirms a fundamental limitation: probability-based methods require calibrated model confidence, which degrades precisely on frontier-hard problems where the model has low solve rates. **The gap RCB fills:** No existing approach produces high-quality step-level annotations on frontier-hard problems efficiently. MC estimation fails (near-zero success rates), CPMI fails (uncalibrated probabilities), and generative PRMs are too expensive for RL deployment. The key observation enabling RCB is elementary probability theory: in a Markov chain, the probability of reaching a target state increases as the number of remaining transitions decreases. ComMCS (AAAI 2026) demonstrates a related insight — compounding MC estimates across adjacent steps reduces variance via a TD(λ)-style combination — but its theoretical framework treats all step positions symmetrically and does not analyze position-dependent informativeness. No work has empirically characterized how MC success rates vary as a function of step position on frontier-hard problems, nor proposed exploiting this gradient for PRM training. RCB exploits the position-dependent gradient to produce informative MC annotations exactly where other methods fail, enabling both efficient discriminative PRMs for RL deployment and higher-quality training data for generative PRMs.",
+  "landscape": "**Generative PRMs (dominant recent trend):** GenPRM (AAAI 2026) reframes process reward modeling as a generative task using Relative Progress Estimation, achieving ~80.5 avg F1 on ProcessBench with a 7B model via Maj@8 — surpassing the 72B Qwen2.5-Math-PRM (78.3 avg F1). R-PRM (EMNLP 2025) activates reasoning in the PRM via seed data generation and self-improvement, achieving +11.9 F1 on ProcessBench and +8.5 F1 on PRMBench over baselines. RM-R1 (ICLR 2026) introduces chain-of-rubrics reasoning reward models generating up to 8,192 tokens per evaluation. ThinkPRM (TMLR 2026; arXiv 2504.16828) uses chain-of-thought verification trained on only 1K examples, reaching 85.7 F1 on ProcessBench OmniMATH and 87.3 on OlympiadBench — the current highest reported scores on these hard subsets, generating 1,000-5,000 tokens per verification chain. ThinkPRM-7B achieves 74.0 F1 on OmniMATH and 73.4 on OlympiadBench. All generative PRMs trade training-time data requirements for inference-time compute. **Discriminative PRM SOTA (critical model distinction):** Qwen2.5-Math-PRM-7B achieves 66.3 F1 on OmniMATH and 67.5 on OlympiadBench; Qwen2.5-Math-PRM-72B achieves 71.1 and 74.3 respectively (reported in both R-PRM EMNLP 2025 Table 1 and 'Is PRM Necessary?' arXiv 2505.11227 Table 1). Note: these are distinct from the weaker Qwen2.5-Math-7B-PRM800K (44.3 OmniMATH, 50.7 OlympiadBench), which is fine-tuned only on PRM800K — a 22-point gap on OmniMATH demonstrates that training data quality and scale are decisive for discriminative PRM accuracy. The discriminative-to-generative gap on OmniMATH is ~14.6 F1 points (71.1 vs 85.7 at 72B/14B respectively). **Rollout-free label generation:** CPMI (arXiv 2604.10660, ACL 2026) uses contrastive pointwise mutual information to generate step-level reward labels from model log-probabilities without MC rollouts, reducing annotation time by 84% and token generation by 98% vs. MC estimation. However, CPMI-trained PRMs (Qwen3-4B backbone) achieve only 25.6 F1 on ProcessBench OmniMATH and 28.7 on OlympiadBench — far below supervised discriminative PRMs trained on MC-based labels (66.3/67.5). The authors explicitly exclude extremely difficult problems and note early-step reward noise due to model uncertainty. CPMI is effective for problems within the model's competence range but cannot produce meaningful labels on frontier-hard problems where model probabilities are poorly calibrated. This establishes that annotation quality — not just annotation cost — is the primary bottleneck for PRM accuracy on hard problems. **Generative PRM cost analysis:** 'When To Solve, When To Verify' (Setlur et al., 2025) provides the definitive quantification: GenRM-FT requires 8× compute to match self-consistency, 128× to beat it by 3.8% on MATH (Llama-8B); up to 512× for Qwen-7B. The paper concludes 'SC is more compute-efficient than GenRM for most practical inference budgets.' **MC estimation improvements:** ComMCS (AAAI 2026) reduces MC estimator variance via compounding estimates across adjacent step positions (TD(λ)-style) without extra inference, gaining +2.8 best-of-N points. Its Theorem 4.2 establishes MC estimation as the MVUE given single-step information, and Theorem 4.3 provides a general compound variance formula treating all step positions symmetrically. SCAN (NeurIPS 2025) addresses MC annotation noise via self-denoising. Math-Shepherd (ACL 2024) and OmegaPRM (arXiv 2024) established MC-based PRM annotation but flag the cold-start problem without solution. **Co-evolutionary approaches:** RL Tango (NeurIPS 2025) co-evolves a generator and generative verifier via interleaved RL without process-level annotations, achieving SOTA among 7B/8B models on ProcessBench and 25.5% avg relative improvement on competition math. Its verifier is generative (expensive at inference for RL reward computation), and co-training two LLMs has significant compute overhead. **Unsupervised verification:** uPRM (arXiv 2605.10158, May 2026) constructs process reward models without supervision via LLM next-token probability scoring, achieving 39.8 F1 on ProcessBench OmniMATH — far below supervised discriminative PRMs (66.3-71.1 F1), demonstrating that supervision quality still matters substantially. Together with CPMI (25.6 F1), unsupervised/rollout-free approaches consistently underperform supervised MC-based PRMs on hard problems by 27-41 F1 points. **Fast PRM motivation:** Fast-Slow Thinking RM (arXiv 2603.20212, 2026) proposes a hybrid scalar/generative RM using dual-confidence activation, explicitly motivated by generative RM costs being 'orders of magnitude higher.' PRIME (arXiv 2502.01456, 2025) derives implicit process rewards from the policy model, achieving 2.5× faster training. SPRO (arXiv 2507.01551, 2025) achieves 3.4× higher training efficiency with 15% of PRIME's GPU hours. 'GRPO is Secretly a PRM' (arXiv 2509.21154) shows GRPO implicitly performs MC-based process reward estimation. **Dual-process verification:** Dyve (EMNLP 2025) dynamically allocates verification effort, reaching 49.0/47.2 F1 on OlympiadBench/OmniMATH. **Curriculum approaches for reasoning:** SCRL (arXiv 2605.22074, May 2026) decomposes hard problems into verifiable subproblems for policy RL, +8.1 on AIME'25 over GRPO. R³ (ICML 2024) applies reverse curriculum RL for policy training. AURORA (arXiv 2025) uses reverse verification via reference answers without step-position-aware curriculum. **Gap:** No existing work (a) empirically characterizes MC success-rate curves as a function of step position on frontier-hard problems, (b) proposes a step-position-aware reverse curriculum for PRM training, (c) produces efficient discriminative PRMs via such a curriculum for RL deployment, or (d) tests whether higher-quality MC annotations from the frontier-hard regime improve generative PRM training — addressing annotation quality as a paradigm-wide bottleneck.",
+  "inspired_by": "Field gap: process supervision for problems at or beyond the model's capability frontier, where MC estimation produces degenerate near-zero-variance estimates and probability-based methods (CPMI) produce uncalibrated scores. Theoretical foundation: elementary Markov chain completion probability — fewer remaining transitions increase target-reaching probability. The key empirical contribution is systematic measurement of effect magnitude and problem-type dependence, which is untested despite the straightforward underlying intuition. Deployment motivation: the growing and well-documented need for efficient discriminative PRMs in online RL training loops (GRPO/PPO), where generative PRMs are orders of magnitude too expensive (Setlur et al. 2025; Fast-Slow Thinking RM 2026; DeepSeek R1's avoidance of learned RMs; PRIME and SPRO's implicit reward workarounds). Broader impact motivation: the consistent 27-41 F1 gap between unsupervised/rollout-free methods (CPMI at 25.6, uPRM at 39.8) and supervised MC-based PRMs (66.3-71.1) on OmniMATH demonstrates that annotation quality is the decisive bottleneck — improving MC annotation quality on hard problems should benefit the entire PRM ecosystem, including generative models. Innovation pattern: converting a basic theoretical observation into a novel training curriculum that produces high-quality annotations serving both discriminative and generative PRM paradigms. Complementarity: CPMI for easy-moderate problems (cheap, well-calibrated), RCB for frontier-hard problems (more expensive but uniquely informative), generative PRMs for highest-accuracy test-time verification.",
+  "approach": "We propose Reverse-Curriculum Bootstrapping (RCB), a multi-phase annotation and training algorithm with a mandatory validation protocol, producing both (A) efficient discriminative PRMs for deployment as reward signals in online RL training, and (B) high-quality MC annotations for improving generative PRM training on frontier-hard problems. **Phase 0 — Pilot Validation (weeks 1-3):** Before committing to the full pipeline, we address two prerequisites. (0a) Completer baseline evaluation (~50 H100-hours): evaluate Qwen3-235B-A22B on the full Omni-MATH dataset (4,428 problems) to establish ground-truth difficulty distribution, as no published Omni-MATH results exist for Qwen3 models (confirmed absent from Qwen3 technical report; current public SOTA: o1-mini at 60.5%, QwQ-32B at 49.6%). This determines the pool of frontier-hard problems (<10% pass@8) for subsequent phases. (0b) MC success-rate curve characterization (~150 H100-hours): select 200 problems spanning difficulty levels from Omni-MATH, generate 8-12-step candidate solutions using Qwen3-32B, and run N=64 MC rollouts from each step position k using Qwen3-32B as completer. Measure success rate as a function of normalized step position (k/K), stratified by both problem difficulty (pass@1 bins) and mathematical domain (algebra, combinatorics, number theory, geometry). Produce success-rate curves with bootstrap confidence intervals. Go/no-go criteria (domain-stratified): (i) Full-go: for ≥40% of frontier-hard problems (pass@1 < 5%), late-step rollouts (k/K > 0.8) achieve success rates ≥10% (sufficient for meaningful label estimation with N=64 rollouts, giving ≥6 expected correct rollouts for Bernoulli estimation); (ii) Partial-go: if 20-40% of frontier-hard problems meet criterion (i), proceed with RCB restricted to qualifying problem types and report domain-specific applicability; (iii) No-go: if <20% qualify, pivot to ComMCS-enhanced compounding estimators combined with problem-difficulty curriculum. The Phase 0 analysis — the first systematic empirical characterization of MC signal quality as a function of step position on frontier-hard problems — constitutes a standalone contribution publishable regardless of go/no-go outcome. As an additional Phase 0 analysis, we compare CPMI label quality against MC labels at each step position, testing the hypothesis that probability-based methods are less reliable than rollout-based methods specifically at frontier difficulty. Total Phase 0 cost: ~200 H100-hours. **Problem Curation (weeks 3-4):** Curate frontier-hard problems from Omni-MATH and filtered AIME/AMC (#13-15 difficulty slots), selecting those where Qwen3-235B-A22B achieves <10% pass@8 (pool size determined by Phase 0a evaluation). Generate candidate solutions decomposed into discrete steps using Qwen3-32B as the policy model. **Phase 1 (weeks 4-6):** Run MC rollouts exclusively from late step positions (normalized position k/K > 0.75) where the pilot confirmed non-trivial success rates (>5%), using Qwen3-235B-A22B as completer. Produce informative step-level correctness labels and train PRM_0 (Qwen3-7B base) on these annotations. **Phases 2-5 (weeks 6-14, ~2 weeks each):** In phase i, use PRM_{i-1} to guide rollouts from the next earlier step window via best-of-16 selection, boosting completer success rates at those positions. Retrain PRM_i on accumulated annotations across all covered step positions. **Early termination criterion:** If phase i PRM-guided rollouts at the new step window do not achieve ≥2 absolute percentage points higher success rate than unguided rollouts, terminate — the PRM is not providing sufficient guidance. Fall back to training the final PRM on all accumulated data. **Track B — Generative PRM fine-tuning (weeks 12-16, parallel with late RCB phases):** Fine-tune GenPRM-style and ThinkPRM-style models on RCB-annotated data (high-quality MC labels from frontier-hard problems) vs. standard MC annotations from the same problems. This tests the hypothesis that annotation quality is the bottleneck for generative PRMs on hard problems, not just for discriminative PRMs. If RCB annotations improve generative PRM accuracy on frontier-hard subsets, this demonstrates that the curriculum's value extends beyond the discriminative paradigm — label quality on hard problems is a paradigm-wide bottleneck. This dual-track evaluation (discriminative + generative) substantially broadens impact. **Ablations (weeks 14-16):** (1) RCB vs. uniform MC estimation (standard approach, no curriculum); (2) RCB vs. stronger completer only (Qwen3-235B as both policy and completer with higher rollout budget, testing if raw compute suffices without curriculum); (3) CPMI labels vs. RCB MC labels at matched problem difficulty, testing the annotation quality hypothesis directly — we predict RCB MC labels significantly outperform CPMI labels on frontier-hard problems while CPMI is competitive on moderate-difficulty problems, validating the complementary deployment strategy; (4) Inference speed and deployment cost comparison: measure wall-clock time per ProcessBench evaluation for RCB-trained discriminative PRM vs. GenPRM (Maj@8), ThinkPRM, and RM-R1, and compute cost for a representative GRPO training scenario (1,000 prompts × 16 rollouts × 20 steps = 320,000 PRM evaluations per epoch) to quantify the practical deployment advantage. **Evaluation (weeks 16-18):** Track A (discriminative): ProcessBench (focus on OmniMATH subset: discriminative baseline 66.3 F1 for 7B, 71.1 for 72B; and OlympiadBench: 67.5 for 7B, 74.3 for 72B), PRMBench, and best-of-N accuracy on Omni-MATH hard-filtered problems and AIME 2025/2026 hardest problems (#13-15). Track B (generative): ProcessBench OmniMATH and OlympiadBench for GenPRM/ThinkPRM fine-tuned on RCB annotations vs. standard MC annotations. **Track A targets:** On ProcessBench OmniMATH, improve 7B discriminative PRM F1 from 66.3 baseline (Qwen2.5-Math-PRM-7B) to 72-76 F1 — matching or exceeding Qwen2.5-Math-PRM-72B (71.1 F1) at 1/10th the parameters, and approaching ThinkPRM-7B's 74.0 F1 without generative inference overhead (orders of magnitude faster per evaluation). On OlympiadBench, target 72-78 F1 vs. 67.5 baseline. **Track B targets:** Demonstrate ≥2 F1 improvement on ProcessBench OmniMATH for GenPRM/ThinkPRM fine-tuned on RCB annotations vs. standard MC annotations, with a stretch target of reaching 87+ F1 for ThinkPRM-14B (from 85.7 baseline). **Failure mode analysis:** (F1) Pilot invalidation — late-step advantage insufficient, with partial-go and no-go pathways defined; (F2) Bootstrap cascade failure — noisy PRM_0 provides unhelpful guidance, caught by early termination criterion at phase boundary; (F3) Key-insight ceiling — problems where a single critical insight determines correctness at all subsequent steps, limiting RCB's applicability to a problem subset; (F4) Track B null result — if RCB annotations do not improve generative PRM accuracy, this is an informative negative result (generative PRMs learn to verify via their own reasoning rather than training data quality), and Track A discriminative results remain the primary contribution. We characterize which Omni-MATH domains (algebra vs. combinatorics vs. number theory vs. geometry) benefit from RCB vs. requiring generative verification, informing a practical three-tier deployment: CPMI-trained PRM for moderate-difficulty problems (cheapest), RCB-trained discriminative PRM for frontier-hard process supervision in online RL training loops, generative PRM for high-stakes test-time verification where inference budget permits.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "6200 H100-hours (200 for Phase 0 including completer evaluation + MC pilot + CPMI comparison, 3200 for MC rollout generation across Phases 1-5 using Qwen3-235B-A22B, 1200 for iterative discriminative PRM fine-tuning on Qwen3-7B across 5 rounds, 700 for Track B generative PRM fine-tuning and CPMI ablation, 500 for remaining ablations, 400 for evaluation and inference speed benchmarking)",
+      "timeline": "17-18 weeks (3 weeks Phase 0 pilot + completer evaluation + go/no-go, 1 week problem curation, 10 weeks for 5 iterative rollout-train phases at ~2 weeks each with Track B parallel from week 12, 2 weeks ablations, 1-2 weeks evaluation/writing)",
+      "estimated_gpu_cost": "$17,670 (at ~$2.85/H100-hour; multi-GPU inference for Qwen3-235B requires 4-8 H100s per instance)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "5400 H100-hours (efficiency gains from Claude-assisted pilot analysis, automated hyperparameter tuning, and ablation design reducing wasted runs by ~13%)",
+      "timeline": "14-15 weeks (Claude accelerates pilot analysis and go/no-go decision, experiment scripting, result analysis, and ablation design, saving ~3 weeks; fits estimated ICLR 2027 deadline starting June 1)",
+      "claude_api_cost": "$1,050 (primarily Sonnet 4.6 for code generation, pilot data analysis, experiment orchestration, Track B design, and paper drafting; ~250M input + 52M output tokens)",
+      "estimated_gpu_cost": "$15,390"
+    },
+    "auto_research": {
+      "gpu_hours": "7200 H100-hours (additional compute for automated hyperparameter sweeps, systematic ablation execution, Track B generative PRM fine-tuning sweeps, CPMI comparison, and architecture search)",
+      "timeline": "10-11 weeks (fully automated pipeline with parallel within-phase rollout generation and parallel Track B fine-tuning; pilot phase still requires ~2.5 weeks due to sequential completer evaluation + analysis)",
+      "claude_api_cost": "$3,800 (heavy Opus 4.7 usage for autonomous experiment design, pilot go/no-go analysis, phase transition decisions, Track B experiment design, and adaptive protocol modification; ~400M input + 105M output tokens)",
+      "estimated_gpu_cost": "$20,520",
+      "speed_bottleneck": "MC rollout generation with Qwen3-235B-A22B completer requires multi-node inference (4-8x H100 per instance); phases are inherently sequential since each PRM_i depends on PRM_{i-1}; parallelism limited to within-phase rollout generation across problems and Track B fine-tuning (independent of RCB phases after Phase 3). Phase 0a (completer evaluation) adds ~50 H100-hours but can run concurrently with solution generation setup."
+    }
+  },
+  "target_venues": [
+    "ICLR 2027 (estimated deadline: ~September 2026, projected from ICLR 2026 schedule; not officially announced as of May 2026) — primary target, 14-15 week human-in-loop timeline fits starting June 1",
+    "AISTATS 2027 (estimated deadline: October 2026) — backup if additional time needed",
+    "ICML 2027 (full paper estimated: ~January 2027) — comfortable deadline for full manual timeline"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Let's Verify Step by Step (ICLR 2024)",
+    "Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations (ACL 2024)",
+    "Improve Mathematical Reasoning in Language Models by Automated Process Supervision [OmegaPRM] (arXiv 2024)",
+    "Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters (ICLR 2025)",
+    "rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking (ICML 2025)",
+    "Training Large Language Models for Reasoning through Reverse Curriculum Reinforcement Learning [R3] (ICML 2024)",
+    "SCAN: Self-Denoising Monte Carlo Annotation for Robust Process Reward Learning (NeurIPS 2025)",
+    "Process Reward Models That Think [ThinkPRM] (TMLR 2026; arXiv 2504.16828)",
+    "The Lessons of Developing Process Reward Models in Mathematical Reasoning (ACL Findings 2025)",
+    "ProcessBench: Identifying Process Errors in Mathematical Reasoning (ACL 2025)",
+    "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026)",
+    "R-PRM: Reasoning-Driven Process Reward Modeling (EMNLP 2025)",
+    "Dyve: Thinking Fast and Slow for Dynamic Process Verification (EMNLP 2025)",
+    "RM-R1: Reward Modeling as Reasoning (ICLR 2026)",
+    "SCRL: From Reasoning Chains to Verifiable Subproblems — Curriculum RL Enables Credit Assignment for LLM Reasoning (arXiv 2605.22074, 2026)",
+    "ComMCS: Improving Value-based Process Verifier via Low-Cost Variance Reduction (AAAI 2026)",
+    "Omni-MATH: A Universal Olympiad Level Mathematic Benchmark For Large Language Models (arXiv 2024)",
+    "AURORA: Automated Process Reward Model Training via Reverse Verification (arXiv 2025)",
+    "RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning (NeurIPS 2025)",
+    "Unsupervised Process Reward Models [uPRM] (arXiv 2605.10158, 2026)",
+    "Fast-Slow Thinking RM: Efficient Integration of Scalar and Generative Reward Models (arXiv 2603.20212, 2026)",
+    "PRIME: Process Reinforcement through Implicit Rewards (arXiv 2502.01456, 2025)",
+    "Is PRM Necessary? Problem-Solving RL Implicitly Induces PRM Capability in LLMs (arXiv 2505.11227, 2025)",
+    "When To Solve, When To Verify: Compute-Optimal Problem Solving and Verification (Setlur et al., arXiv 2504.01005, 2025)",
+    "Cog-DRIFT: Exploration on Adaptively Reformulated Instances Enables Learning from Hard Reasoning Problems (arXiv 2026)",
+    "Efficient Process Reward Modeling via Contrastive Mutual Information [CPMI] (arXiv 2604.10660, ACL 2026)"
+  ],
+  "description": "This project addresses the Monte Carlo cold-start problem in process reward model training while producing both efficient discriminative PRMs for online RL deployment and higher-quality annotations for generative PRM training — testing the hypothesis that annotation quality on frontier-hard problems is a paradigm-wide bottleneck. On problems at the model's capability frontier, MC rollout completions from early reasoning steps almost never reach correct answers, making step-level reward estimates uninformative. While generative PRMs bypass MC estimation via inference-time reasoning (ThinkPRM-14B: 85.7 F1 on ProcessBench OmniMATH), they generate 1,000-5,000 tokens per step — infeasible as reward signals in GRPO/PPO training where millions of evaluations are needed per run (Setlur et al. 2025: GenRM needs 8-512× the compute of self-consistency). Rollout-free alternatives like CPMI (ACL 2026) reduce annotation cost by 84% but achieve only 25.6 F1 on OmniMATH — far below supervised PRMs (66.3-71.1 F1) — because model probability calibration degrades on frontier-hard problems. Together with uPRM (39.8 F1), these results demonstrate a consistent 27-41 F1 gap between unsupervised/rollout-free and supervised MC-based approaches on hard problems, confirming that label quality remains the decisive bottleneck. We propose Reverse-Curriculum Bootstrapping (RCB), exploiting an elementary probability observation: MC rollouts from late solution steps should achieve higher success rates because fewer reasoning decisions remain. While this intuition is straightforward, no work has empirically characterized the magnitude and problem-type dependence of this effect, nor exploited it as a training curriculum. The project begins with a mandatory Phase 0 (~200 H100-hours): evaluating Qwen3-235B-A22B on Omni-MATH to establish difficulty baselines, measuring MC success-rate curves by step position across 200 problems stratified by domain, and comparing against CPMI label quality — with domain-aware go/no-go criteria including a partial-go pathway. This empirical analysis constitutes a standalone contribution regardless of outcome. If validated, RCB trains PRMs in iterative phases: Phase 1 collects informative MC annotations from late-step positions; subsequent phases use each PRM to guide rollouts at progressively earlier positions via best-of-N selection. Dual evaluation tracks: Track A trains a 7B discriminative PRM targeting 72-76 F1 on ProcessBench OmniMATH (matching Qwen2.5-Math-PRM-72B at 71.1 F1 with 1/10th parameters, approaching ThinkPRM-7B at 74.0 F1 without generative overhead); Track B fine-tunes generative PRMs on RCB annotations vs. standard MC annotations to test whether higher-quality labels improve the generative paradigm too, targeting ≥2 F1 improvement with a stretch goal of 87+ F1. Note on ProcessBench baselines: Qwen2.5-Math-PRM-7B (66.3 OmniMATH, 67.5 OlympiadBench) is distinct from the weaker Qwen2.5-Math-7B-PRM800K (44.3, 50.7) — a 22-point gap showing training data quality is decisive (scores reported in R-PRM EMNLP 2025 Table 1 and 'Is PRM Necessary?' 2505.11227 Table 1). Ablations include CPMI vs. RCB label quality comparison at matched difficulty levels, inference speed benchmarking for RL deployment (320,000 evaluations per GRPO epoch), and the three-tier deployment framework: CPMI for moderate problems, RCB discriminative PRM for frontier-hard RL training, generative PRM for high-stakes verification.",
+  "project_name": "reverse_curr_prm_bootstrap",
+  "source": "web_research",
+  "title": "Reverse-Curriculum Bootstrapping for Process Verification at the Capability Frontier"
+}
+
+## Reviewer feedback (round 4)
+Issues: ["Missing AMCS (arXiv 2509.24351, ICLR 2026): 'From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision' adaptively allocates more rollout samples to uncertain reasoning steps, achieving improved PRM training. While AMCS optimizes per-step rollout budget based on uncertainty rather than exploiting position-dependent gradients, it addresses the same fundamental problem (improving MC annotation quality/efficiency) and is published at a top venue. It should be discussed as a related approach and potential combined baseline (AMCS + RCB could be complementary — AMCS for adaptive budget within each step, RCB for curriculum across step positions).", "Missing Hard2Verify benchmark (arXiv 2510.13744): This evaluation benchmark shows Qwen2.5-Math-PRM-72B drops from 78.3 F1 on ProcessBench to 37.3 on frontier-hard problems — a dramatic collapse that directly supports the proposal's core argument about discriminative PRM quality degradation on hard problems. Citing this would substantially strengthen the motivation.", "Novelty/impact ceiling remains the fundamental barrier to clearing 4.0: The average score (3.625) is below threshold. The proposal has been iteratively refined to near-optimal clarity and feasibility, but the core contribution — applying an elementary probability observation as a training curriculum — cannot be made more novel through framing alone. Track B elevation to co-primary helps but with ≥2 F1 targets, the expected contribution to generative PRMs is slim.", "Minor: CPMI backbone specification could be more precise — the labeling model is Qwen3-8B-Base while the PRM training backbone is Qwen3-4B-Base. The proposal says 'Qwen3-4B backbone' which is correct for the PRM but could be misleading about the labeling quality."]
+Feedback: The round-4 revision successfully addressed all round-3 issues (CPMI integration, citation verification, ICLR deadline flagging, Track B elevation). All major factual claims verified correctly through independent search — the proposal's scholarly rigor is exceptional. However, the average score (3.625) remains below the 4.0 threshold due to the novelty/impact ceiling. To cross 4.0, consider these strategies:
+
+(1) **Add AMCS (ICLR 2026)** as related work and propose the combination: AMCS adaptively allocates rollout budget per-step based on uncertainty, while RCB exploits position-dependent success rate gradients across steps. These are orthogonal and complementary. Testing AMCS+RCB as a combined method could strengthen both novelty and impact.
+
+(2) **Strengthen Track B ambition**: Currently ≥2 F1 improvement is too modest to constitute a meaningful co-primary contribution. Consider: (a) testing RCB annotations as fine-tuning data for multiple generative PRM architectures (GenPRM, ThinkPRM, R-PRM, RM-R1) to make the 'annotation quality is a paradigm-wide bottleneck' claim more convincing, or (b) using RCB annotations to train discriminative PRMs that then serve as cheap teachers for knowledge distillation into generative PRMs — a novel training pipeline.
+
+(3) **Add Hard2Verify as an evaluation target**: The Qwen2.5-Math-PRM-72B collapse from 78.3→37.3 on Hard2Verify directly validates RCB's premise and adds a challenging evaluation that would differentiate from ProcessBench-only results.
+
+(4) **Consider a theoretical contribution**: The Phase 0 empirical findings could support a formal characterization of MC estimation informativeness as a function of step position, problem difficulty, and mathematical domain — e.g., sufficient conditions for when RCB is guaranteed to improve over uniform MC estimation. This would elevate the contribution from 'clever engineering' to 'foundational understanding.'
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.
+- Address each issue specifically.
+
+## 深度调研要求
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。
+3. **深度思考**：
+   - 核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach？
+4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。
+
+## 针对 Review 意见的定向搜索
+
+1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点
+2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline
+3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现
+4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot
+
+- You have full freedom: minor fix, major revision, or pivot.
+- Include a "change_type" field: "minor", "major", or "pivot".
+- Output a COMPLETE JSON object with ALL fields.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "98c4d81f-4f97-4bab-9b71-f280bd3ef6bf",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-28T02:53:28.069Z_
+
+```json
+{
+  "parentUuid": "98c4d81f-4f97-4bab-9b71-f280bd3ef6bf",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "b2502ebe-3d4e-4c7c-aa36-2969f7a9018e",
+  "timestamp": "2026-05-28T02:53:28.069Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-28T02:53:28.069Z_
+
+```json
+{
+  "parentUuid": "b2502ebe-3d4e-4c7c-aa36-2969f7a9018e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "784af1b8-1177-4ce0-bc8d-5db92d13f3c5",
+  "timestamp": "2026-05-28T02:53:28.069Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"change_summary\": \"Major revision addressing 4 round-3 reviewer concerns plus st…",
+  "leafUuid": "784af1b8-1177-4ce0-bc8d-5db92d13f3c5",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising process supervision research with novel hard-problem curriculum",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-28T02:53:35.349Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully:
+
+1. **Missing AMCS (ICLR 2026)** - Need to research this paper and integrate it
+2. **Missing Hard2Verify benchmark** - Need to research this and add as evaluation target
+3. **Novelty/impact ceiling** - Score is 3.625, below 4.0 threshold. Need substantial changes
+4. **Minor CPMI backbone clarification** - Easy fix
+
+The reviewer suggests:
+- Add AMCS and propose AMCS+RCB combination
+
+
+- Strengthen Track B ambition
+- Add Hard2Verify as evaluation target
+- Consider a theoretical contribution
+
+I need to research AMCS and Hard2Verify papers first to understand how they fit with the current work, then figure out how to meaningfully integrate them and address the novelty gap.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "784af1b8-1177-4ce0-bc8d-5db92d13f3c5",
+  "isSidechain": false,
+  "requestId": "req_011CbUDBz8TZr5QzgvmLey9q",
+  "type": "assistant",
+  "uuid": "ea78e57a-be97-4e00-9495-0f85154fd208",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QbebbaZkM5i57yHbtDeRK8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11729,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 319,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 319,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 11729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-28T02:53:35.363Z_
+
+I'll research the key papers and issues raised by the reviewers before making revisions. Let me start with deep research on AMCS, Hard2Verify, and explore ways to address the novelty/impact ceiling.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea78e57a-be97-4e00-9495-0f85154fd208",
+  "isSidechain": false,
+  "requestId": "req_011CbUDBz8TZr5QzgvmLey9q",
+  "type": "assistant",
+  "uuid": "0daccd96-cd40-4c47-89d9-8c0e9d29ee76",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QbebbaZkM5i57yHbtDeRK8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11729,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 319,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 319,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 11729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-28T02:53:35.508Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Tb9dMNBY88SEB7xsSEKeMC`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0daccd96-cd40-4c47-89d9-8c0e9d29ee76",
+  "isSidechain": false,
+  "requestId": "req_011CbUDBz8TZr5QzgvmLey9q",
+  "type": "assistant",
+  "uuid": "1f834af2-fcb6-45d9-b664-3cd54782ae4d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QbebbaZkM5i57yHbtDeRK8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11729,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 319,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 319,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 11729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-28T02:53:35.516Z_
+
+<details><summary>↩ Tool result · `toolu_01Tb9dMNBY88SEB7xsSEKeMC`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f834af2-fcb6-45d9-b664-3cd54782ae4d",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "fe8add13-660b-4d37-8195-64fc0d9c7111",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "1f834af2-fcb6-45d9-b664-3cd54782ae4d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-28T02:53:37.838Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me research the key papers and topics in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe8add13-660b-4d37-8195-64fc0d9c7111",
+  "isSidechain": false,
+  "requestId": "req_011CbUDCY2rMuUoFLSoWaNr6",
+  "type": "assistant",
+  "uuid": "c1d81886-e7ca-4c0f-8e6d-3f57ce1bc3e3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TLF6ghN7SNWxUGBEPJWCcs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1339,
+      "cache_read_input_tokens": 22743,
+      "output_tokens": 120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1339,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 120,
+          "cache_read_input_tokens": 22743,
+          "cache_creation_input_tokens": 1339,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1339
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-28T02:53:38.361Z_
+
+Let me research all the key papers and topics simultaneously.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1d81886-e7ca-4c0f-8e6d-3f57ce1bc3e3",
+  "isSidechain": false,
+  "requestId": "req_011CbUDCY2rMuUoFLSoWaNr6",
+  "type": "assistant",
+  "uuid": "95494ead-d4b3-4e72-ae3b-c3dbfa3dcadd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TLF6ghN7SNWxUGBEPJWCcs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1339,
+      "cache_read_input_tokens": 22743,
+      "output_tokens": 120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1339,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 120,
+          "cache_read_input_tokens": 22743,
+          "cache_creation_input_tokens": 1339,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1339
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-28T02:53:39.209Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HgVLPRggxySzoqGcnvpmxV`</summary>
+
+```json
+{
+  "query": "AMCS \"Adaptive Monte Carlo Search\" mathematical process supervision arXiv 2509.24351 ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "95494ead-d4b3-4e72-ae3b-c3dbfa3dcadd",
+  "isSidechain": false,
+  "requestId": "req_011CbUDCY2rMuUoFLSoWaNr6",
+  "type": "assistant",
+  "uuid": "e7db033d-e453-42cc-8283-73bf2529b80f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TLF6ghN7SNWxUGBEPJWCcs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1339,
+      "cache_read_input_tokens": 22743,
+      "output_tokens": 120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1339,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 120,
+          "cache_read_input_tokens": 22743,
+          "cache_creation_input_tokens": 1339,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1339
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-28T02:53:48.027Z_
+
+<details><summary>↩ Tool result · `toolu_01HgVLPRggxySzoqGcnvpmxV`</summary>
+
+```text
+Web search results for query: "AMCS "Adaptive Monte Carlo Search" mathematical process supervision arXiv 2509.24351 ICLR 2026"
+
+Links: [{"title":"[2509.24351] From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision","url":"https://arxiv.org/abs/2509.24351"},{"title":"From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision","url":"https://arxiv.org/html/2509.24351"},{"title":"Adaptive Monte Carlo search for conjecture refutation in graph theory","url":"https://arxiv.org/html/2306.07956"},{"title":"adaptive monte carlo search for mathematical process su","url":"https://arxiv.org/pdf/2509.24351"},{"title":"[2306.07956] Adaptive Monte Carlo Search for Conjecture Refutation in Graph Theory","url":"https://arxiv.org/abs/2306.07956"},{"title":"[2509.26435] Adaptive Planning for Multi-Attribute Controllable Summarization with Monte Carlo Tree Search","url":"https://arxiv.org/abs/2509.26435"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision
+
+**arXiv:** 2509.24351
+
+**Summary:**
+AMCS is a framework that transforms data generation from fixed, static to adaptive, dynamic search at the level of node value estimation and path expansion.
+
+**Key Features:**
+
+1. **Adaptive Estimation:** AMCS adaptively refines estimation by allocating more samples to uncertain reasoning steps while using fewer samples for those that are easier to estimate. It monitors evaluation uncertainty in real time and dynamically assigns more sampling resources to nodes whose estimates remain uncertain, while reducing computational effort for nodes that have already converged to reliable estimates.
+
+2. **Purpose:** The quality of process data plays a key role in training a Process Reward Model (PRM), which can enhance the complex mathematical reasoning capability of large language models.
+
+3. **Dataset and Results:** With AMCS, a large-scale dataset MathSearch-200K of about 200K process supervision examples was constructed for training PRMs.
+
+**Authors:** Jie Ma, Shihao Qi, Rui Xing, Ziang Yin, Bifan Wei, Jun Liu, and Tongliang Liu
+
+**Submission Date:** September 29, 2025
+
+The paper addresses inefficiencies in existing fixed-budget sampling strategies for automated data generation in mathematical reasoning tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e7db033d-e453-42cc-8283-73bf2529b80f",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "09f80944-8995-4096-bef2-c80d26eb4ae4",
+  "toolUseResult": {
+    "query": "AMCS \"Adaptive Monte Carlo Search\" mathematical process supervision arXiv 2509.24351 ICLR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01A6aLL6u5QNBVdaL8Mm5VLZ",
+        "content": [
+          {
+            "title": "[2509.24351] From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision",
+            "url": "https://arxiv.org/abs/2509.24351"
+          },
+          {
+            "title": "From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision",
+            "url": "https://arxiv.org/html/2509.24351"
+          },
+          {
+            "title": "Adaptive Monte Carlo search for conjecture refutation in graph theory",
+            "url": "https://arxiv.org/html/2306.07956"
+          },
+          {
+            "title": "adaptive monte carlo search for mathematical process su",
+            "url": "https://arxiv.org/pdf/2509.24351"
+          },
+          {
+            "title": "[2306.07956] Adaptive Monte Carlo Search for Conjecture Refutation in Graph Theory",
+            "url": "https://arxiv.org/abs/2306.07956"
+          },
+          {
+            "title": "[2509.26435] Adaptive Planning for Multi-Attribute Controllable Summarization with Monte Carlo Tree Search",
+            "url": "https://arxiv.org/abs/2509.26435"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision\n\n**arXiv:** 2509.24351\n\n**Summary:**\nAMCS is a framework that transforms data generation from fixed, static to adaptive, dynamic search at the level of node value estimation and path expansion.\n\n**Key Features:**\n\n1. **Adaptive Estimation:** AMCS adaptively refines estimation by allocating more samples to uncertain reasoning steps while using fewer samples for those that are easier to estimate. It monitors evaluation uncertainty in real time and dynamically assigns more sampling resources to nodes whose estimates remain uncertain, while reducing computational effort for nodes that have already converged to reliable estimates.\n\n2. **Purpose:** The quality of process data plays a key role in training a Process Reward Model (PRM), which can enhance the complex mathematical reasoning capability of large language models.\n\n3. **Dataset and Results:** With AMCS, a large-scale dataset MathSearch-200K of about 200K process supervision examples was constructed for training PRMs.\n\n**Authors:** Jie Ma, Shihao Qi, Rui Xing, Ziang Yin, Bifan Wei, Jun Liu, and Tongliang Liu\n\n**Submission Date:** September 29, 2025\n\nThe paper addresses inefficiencies in existing fixed-budget sampling strategies for automated data generation in mathematical reasoning tasks."
+    ],
+    "durationSeconds": 8.813762200000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e7db033d-e453-42cc-8283-73bf2529b80f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-28T02:53:50.413Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Fztti3RkgNdT6hUm2zYHo7`</summary>
+
+```json
+{
+  "query": "Hard2Verify benchmark arXiv 2510.13744 process reward model frontier-hard problems evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09f80944-8995-4096-bef2-c80d26eb4ae4",
+  "isSidechain": false,
+  "requestId": "req_011CbUDDTDATJMKS6gNAEvWu",
+  "type": "assistant",
+  "uuid": "0c868833-af21-458d-b2a0-4d72ca26edc5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4Pq9h3gufznBWrD7xRTcs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 746,
+      "cache_read_input_tokens": 24082,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 746,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 24082,
+          "cache_creation_input_tokens": 746,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 746
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-28T02:53:56.566Z_
+
+<details><summary>↩ Tool result · `toolu_01Fztti3RkgNdT6hUm2zYHo7`</summary>
+
+```text
+Web search results for query: "Hard2Verify benchmark arXiv 2510.13744 process reward model frontier-hard problems evaluation"
+
+Links: [{"title":"[2510.13744] Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/abs/2510.13744"},{"title":"[2510.13744v1] Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/abs/2510.13744v1"},{"title":"(PDF) Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://www.researchgate.net/publication/396517985_Hard2Verify_A_Step-Level_Verification_Benchmark_for_Open-Ended_Frontier_Math"},{"title":"Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.13744v1"},{"title":"PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models | Request PDF","url":"https://www.researchgate.net/publication/394270805_PRMBench_A_Fine-grained_and_Challenging_Benchmark_for_Process-Level_Reward_Models"},{"title":"Hard2Verify: A Step-Level Verification Benchmark for Open ...","url":"https://arxiv.org/pdf/2510.13744"},{"title":"Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/html/2510.13744v1"}]
+
+Based on the search results, here's what I found about the Hard2Verify benchmark:
+
+## Overview
+
+Hard2Verify is a human-annotated, step-level verification benchmark produced with over 500 hours of human labor, designed to rigorously assess step-level verifiers at the frontier by requiring verifiers to provide step-level annotations or identify the first error in responses generated by frontier LLMs for very recent, challenging, and open-ended math questions.
+
+## Evaluation
+
+The paper evaluates 29 generative critics and process reward models, demonstrating that, beyond a few standouts, open-source verifiers lag closed source models.
+
+## Difficulty Level
+
+The benchmark represents a significant difficulty increase compared to existing benchmarks. On the same error identification task, Qwen2.5-Math-PRM-72B performance drops from ProcessBench state-of-the-art at 78.3 to 37.3 on Hard2Verify. Models capable of scoring 60%+ on ProcessBench are unable to crack 20% on Hard2Verify.
+
+## Motivation
+
+LLM-based reasoning systems have recently achieved gold medal-level performance in the IMO 2025 competition, writing mathematical proofs where each step must be correct and sufficiently supported. To train LLM-based reasoners in such challenging, open-ended settings, strong verifiers capable of catching step-level mistakes are necessary prerequisites.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0c868833-af21-458d-b2a0-4d72ca26edc5",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "e165affa-c00f-4498-9e20-00bd8e535e82",
+  "toolUseResult": {
+    "query": "Hard2Verify benchmark arXiv 2510.13744 process reward model frontier-hard problems evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015ncxp57SV4M52fvRErKvjA",
+        "content": [
+          {
+            "title": "[2510.13744] Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/abs/2510.13744"
+          },
+          {
+            "title": "[2510.13744v1] Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/abs/2510.13744v1"
+          },
+          {
+            "title": "(PDF) Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://www.researchgate.net/publication/396517985_Hard2Verify_A_Step-Level_Verification_Benchmark_for_Open-Ended_Frontier_Math"
+          },
+          {
+            "title": "Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2510.13744v1"
+          },
+          {
+            "title": "PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models | Request PDF",
+            "url": "https://www.researchgate.net/publication/394270805_PRMBench_A_Fine-grained_and_Challenging_Benchmark_for_Process-Level_Reward_Models"
+          },
+          {
+            "title": "Hard2Verify: A Step-Level Verification Benchmark for Open ...",
+            "url": "https://arxiv.org/pdf/2510.13744"
+          },
+          {
+            "title": "Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/html/2510.13744v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the Hard2Verify benchmark:\n\n## Overview\n\nHard2Verify is a human-annotated, step-level verification benchmark produced with over 500 hours of human labor, designed to rigorously assess step-level verifiers at the frontier by requiring verifiers to provide step-level annotations or identify the first error in responses generated by frontier LLMs for very recent, challenging, and open-ended math questions.\n\n## Evaluation\n\nThe paper evaluates 29 generative critics and process reward models, demonstrating that, beyond a few standouts, open-source verifiers lag closed source models.\n\n## Difficulty Level\n\nThe benchmark represents a significant difficulty increase compared to existing benchmarks. On the same error identification task, Qwen2.5-Math-PRM-72B performance drops from ProcessBench state-of-the-art at 78.3 to 37.3 on Hard2Verify. Models capable of scoring 60%+ on ProcessBench are unable to crack 20% on Hard2Verify.\n\n## Motivation\n\nLLM-based reasoning systems have recently achieved gold medal-level performance in the IMO 2025 competition, writing mathematical proofs where each step must be correct and sufficiently supported. To train LLM-based reasoners in such challenging, open-ended settings, strong verifiers capable of catching step-level mistakes are necessary prerequisites."
+    ],
+    "durationSeconds": 6.148403417000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0c868833-af21-458d-b2a0-4d72ca26edc5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-28T02:54:03.073Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_018cb4HKdjgDoiXpVjb9Cbmv`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2509.24351",
+  "prompt": "Extract: (1) The full abstract, (2) Main method details - how does AMCS adaptively allocate rollout samples? What uncertainty measure is used? (3) Key experimental results - what benchmarks, what scores? (4) Comparison with standard MC estimation baselines. (5) Any discussion of step-position effects or position-dependent success rates. (6) Dataset details (MathSearch-200K). (7) Which venue was it accepted to?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e165affa-c00f-4498-9e20-00bd8e535e82",
+  "isSidechain": false,
+  "requestId": "req_011CbUDE5jcSAj38VDNFHZ92",
+  "type": "assistant",
+  "uuid": "7b65ae0a-7fae-4596-9496-d37cb161d525",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F6jSBo1ymD9G4jF8DDbEHD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 845,
+      "cache_read_input_tokens": 24828,
+      "output_tokens": 183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 845,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 183,
+          "cache_read_input_tokens": 24828,
+          "cache_creation_input_tokens": 845,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 845
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-28T02:54:11.493Z_
+
+<details><summary>↩ Tool result · `toolu_018cb4HKdjgDoiXpVjb9Cbmv`</summary>
+
+```text
+# Extraction Summary
+
+## (1) Full Abstract
+"The quality of process data plays a key role in training a Process Reward Model (PRM), which can enhance the complex mathematical reasoning capability of large language models. Existing methods estimate the quality of reasoning steps based on a fixed-budget sampling strategy and navigate a vast search space to perform path expansion during the automated data generation process, resulting in their inefficiency and inflexibility. To address these issues, we propose Adaptive Monte Carlo Search (AMCS), a framework that transforms data generation from fixed, static to adaptive, dynamic search at the level of node value estimation and path expansion. On one hand, AMCS adaptively refines estimation by allocating more samples to uncertain reasoning steps while using fewer samples for those that are easier to estimate. On the other hand, it enhances the path expansion through a Monte Carlo algorithm with a temporally adaptive policy that begins with broad exploration and gradually shifts toward exploiting the most promising directions. With AMCS, we construct a large-scale dataset MathSearch-200K of about 200K process supervision examples for training PRMs. To verify the effectiveness of our method, we conduct extensive experiments on four mathematical reasoning benchmarks. Experimental results show that Qwen2.5-Math-7B-PRM-AMCS achieves up to 76.2% accuracy on MATH500 with GLM-4-9B, outperforming all baseline PRMs. Notably, a 7B model supervised by Qwen2.5-Math-7B-PRM-AMCS surpasses a 72B model with weaker supervision. Moreover, Qwen2.5-Math-7B-PRM-AMCS maintains consistent advantages on out-of-distribution problems, demonstrating strong generalization capability. Our code is available at [this https URL](https://github.com/reml-group/AMCS)."
+
+## (2) Main Method Details
+The abstract describes that AMCS "adaptively refines estimation by allocating more samples to uncertain reasoning steps while using fewer samples for those that are easier to estimate." However, the specific uncertainty measure employed is not detailed in the provided content.
+
+## (3) Key Experimental Results
+The Qwen2.5-Math-7B-PRM-AMCS model achieved "up to 76.2% accuracy on MATH500 with GLM-4-9B, outperforming all baseline PRMs." Testing involved four mathematical reasoning benchmarks with strong out-of-distribution generalization demonstrated.
+
+## (4) Comparison with Standard MC Estimation Baselines
+Not discussed in the provided content.
+
+## (5) Step-Position Effects Discussion
+No discussion of position-dependent success rates appears in the provided material.
+
+## (6) MathSearch-200K Dataset
+"About 200K process supervision examples" constructed for training PRMs.
+
+## (7) Venue Acceptance
+The document is an arXiv preprint (submitted September 29, 2025). No peer-reviewed venue acceptance information is provided.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7b65ae0a-7fae-4596-9496-d37cb161d525",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "2e32dab2-dd5a-4912-be6d-44a110244ef4",
+  "toolUseResult": {
+    "bytes": 48062,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Extraction Summary\n\n## (1) Full Abstract\n\"The quality of process data plays a key role in training a Process Reward Model (PRM), which can enhance the complex mathematical reasoning capability of large language models. Existing methods estimate the quality of reasoning steps based on a fixed-budget sampling strategy and navigate a vast search space to perform path expansion during the automated data generation process, resulting in their inefficiency and inflexibility. To address these issues, we propose Adaptive Monte Carlo Search (AMCS), a framework that transforms data generation from fixed, static to adaptive, dynamic search at the level of node value estimation and path expansion. On one hand, AMCS adaptively refines estimation by allocating more samples to uncertain reasoning steps while using fewer samples for those that are easier to estimate. On the other hand, it enhances the path expansion through a Monte Carlo algorithm with a temporally adaptive policy that begins with broad exploration and gradually shifts toward exploiting the most promising directions. With AMCS, we construct a large-scale dataset MathSearch-200K of about 200K process supervision examples for training PRMs. To verify the effectiveness of our method, we conduct extensive experiments on four mathematical reasoning benchmarks. Experimental results show that Qwen2.5-Math-7B-PRM-AMCS achieves up to 76.2% accuracy on MATH500 with GLM-4-9B, outperforming all baseline PRMs. Notably, a 7B model supervised by Qwen2.5-Math-7B-PRM-AMCS surpasses a 72B model with weaker supervision. Moreover, Qwen2.5-Math-7B-PRM-AMCS maintains consistent advantages on out-of-distribution problems, demonstrating strong generalization capability. Our code is available at [this https URL](https://github.com/reml-group/AMCS).\"\n\n## (2) Main Method Details\nThe abstract describes that AMCS \"adaptively refines estimation by allocating more samples to uncertain reasoning steps while using fewer samples for those that are easier to estimate.\" However, the specific uncertainty measure employed is not detailed in the provided content.\n\n## (3) Key Experimental Results\nThe Qwen2.5-Math-7B-PRM-AMCS model achieved \"up to 76.2% accuracy on MATH500 with GLM-4-9B, outperforming all baseline PRMs.\" Testing involved four mathematical reasoning benchmarks with strong out-of-distribution generalization demonstrated.\n\n## (4) Comparison with Standard MC Estimation Baselines\nNot discussed in the provided content.\n\n## (5) Step-Position Effects Discussion\nNo discussion of position-dependent success rates appears in the provided material.\n\n## (6) MathSearch-200K Dataset\n\"About 200K process supervision examples\" constructed for training PRMs.\n\n## (7) Venue Acceptance\nThe document is an arXiv preprint (submitted September 29, 2025). No peer-reviewed venue acceptance information is provided.",
+    "durationMs": 8416,
+    "url": "https://arxiv.org/abs/2509.24351"
+  },
+  "sourceToolAssistantUUID": "7b65ae0a-7fae-4596-9496-d37cb161d525",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-28T02:54:16.665Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Rw96iHECmSJePk6znpPiD7`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2509.24351",
+  "prompt": "Extract in detail: (1) The uncertainty measure used for adaptive sample allocation - how does AMCS decide which steps need more rollouts? (2) The temporally adaptive policy for path expansion. (3) Full experimental results table - all benchmarks, all baselines, all scores. (4) ProcessBench results if any. (5) Any analysis of step position effects on MC estimation quality. (6) Comparison with Math-Shepherd, OmegaPRM, ComMCS or other MC-based methods. (7) Computational cost comparison. (8) Which base model is used for the PRM? (9) Any discussion of hard problems or frontier difficulty?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e32dab2-dd5a-4912-be6d-44a110244ef4",
+  "isSidechain": false,
+  "requestId": "req_011CbUDFBa7ua7cwvNwJj5rA",
+  "type": "assistant",
+  "uuid": "edee0065-2279-4a28-8731-f801de1bd9da",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TMaKp6VZXTaRdBsB98t8KJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 862,
+      "cache_read_input_tokens": 25673,
+      "output_tokens": 226,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 862,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 226,
+          "cache_read_input_tokens": 25673,
+          "cache_creation_input_tokens": 862,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 862
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"change_summary\": \"Major revision addressing 4 round-3 reviewer concerns plus st…",
+  "leafUuid": "edee0065-2279-4a28-8731-f801de1bd9da",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising process supervision research with novel hard-problem curriculum",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-28T02:54:29.108Z_
+
+<details><summary>↩ Tool result · `toolu_01Rw96iHECmSJePk6znpPiD7`</summary>
+
+```text
+# AMCS: Adaptive Monte Carlo Search for Mathematical Process Supervision - Key Details
+
+## (1) Uncertainty Measure for Adaptive Sample Allocation
+
+AMCS uses the **Wilson score interval** to quantify cluster-level uncertainty. The uncertainty measure δⱼ for each cluster is:
+
+> "half the width of its Wilson confidence interval"
+
+This formulation automatically handles edge cases: small sample sizes yield large uncertainty values, while larger samples produce smaller uncertainty measures. The node-level uncertainty δ_node aggregates cluster uncertainties using:
+
+> "weighted combination reflects both individual uncertainty inherent in each cluster's success probability estimate and proportional influence"
+
+The system selects the cluster with maximum uncertainty for additional sampling, allocating rollouts proportionally: nodes in the μ∈[0.4,0.6] range receive ~20 rollouts versus ~7 for confident nodes (μ<0.2 or μ>0.8).
+
+## (2) Temporally Adaptive Policy for Path Expansion
+
+AMCS employs dynamic weighting between exploitation and exploration through:
+
+> "exponentially decaying weight wₜ ensures exploration dominates during initial iterations...then progressively yields to exploitation"
+
+The expansion score is: πₜ(s,r) = (1−wₜ)Q(s,r) + wₜU(s,r), where wₜ = exp(−t/T). This contrasts with fixed weighting in prior methods.
+
+## (3) Full Experimental Results
+
+**Table 1** presents comprehensive results across:
+- Four actor models (GLM-4-9B, Phi-4-mini-Instruct, Llama-3.2-3B, Qwen3-8B)
+- Three search strategies (Beam Search, Best-of-N, MCTS)
+- Four benchmarks (AIME, MATH500, Olympiad-Bench, OmniMATH)
+
+Peak performance: **76.2% on MATH500** (GLM-4-9B with MCTS), outperforming all baselines including PRM800K and Math-Shepherd.
+
+## (4) ProcessBench Results
+
+No ProcessBench results are included in this paper.
+
+## (5) Step Position Effects Analysis
+
+The paper doesn't provide explicit analysis of step position effects on Monte Carlo estimation quality. However, Figure 5 shows AMCS allocates varying search depths (3.1-5.1 nodes) based on node uncertainty rather than position.
+
+## (6) Comparisons with Other MC-Based Methods
+
+The paper compares against:
+- **Math-Shepherd**: Qwen2.5-AMCS achieves 61.4% vs Math-Shepherd's 54.5% on MATH (Beam Search, Llama-3.2)
+- **PRM800K**: Consistent improvements across all settings
+- **Deepseek-PRM**: Substantial gaps, especially on harder benchmarks
+
+No comparisons with ComMCS or OmegaPRM are provided.
+
+## (7) Computational Cost Comparison
+
+Training details indicate: ~one week on four Tesla A800 GPUs for data generation; ~three days for PRM training. No direct cost comparison with baselines is provided.
+
+## (8) Base Model for PRM
+
+> "initialized the PRM with Qwen2.5-Math-7B-Instruct to leverage its strong mathematical reasoning capabilities"
+
+The final model is **Qwen2.5-Math-7B-PRM-AMCS**.
+
+## (9) Hard Problem Analysis
+
+The paper notes that improvements are "more pronounced on challenging benchmarks such as AIME and Olympiad-Bench," suggesting the method particularly benefits complex multi-step reasoning. Figure 3 shows a 7B PRM-AMCS model outperforms a 72B model with weaker supervision, indicating quality matters more than scale for frontier difficulty.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "edee0065-2279-4a28-8731-f801de1bd9da",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "4c23c3b5-d72a-4db6-9003-ec66e8a2869e",
+  "toolUseResult": {
+    "bytes": 211283,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# AMCS: Adaptive Monte Carlo Search for Mathematical Process Supervision - Key Details\n\n## (1) Uncertainty Measure for Adaptive Sample Allocation\n\nAMCS uses the **Wilson score interval** to quantify cluster-level uncertainty. The uncertainty measure δⱼ for each cluster is:\n\n> \"half the width of its Wilson confidence interval\"\n\nThis formulation automatically handles edge cases: small sample sizes yield large uncertainty values, while larger samples produce smaller uncertainty measures. The node-level uncertainty δ_node aggregates cluster uncertainties using:\n\n> \"weighted combination reflects both individual uncertainty inherent in each cluster's success probability estimate and proportional influence\"\n\nThe system selects the cluster with maximum uncertainty for additional sampling, allocating rollouts proportionally: nodes in the μ∈[0.4,0.6] range receive ~20 rollouts versus ~7 for confident nodes (μ<0.2 or μ>0.8).\n\n## (2) Temporally Adaptive Policy for Path Expansion\n\nAMCS employs dynamic weighting between exploitation and exploration through:\n\n> \"exponentially decaying weight wₜ ensures exploration dominates during initial iterations...then progressively yields to exploitation\"\n\nThe expansion score is: πₜ(s,r) = (1−wₜ)Q(s,r) + wₜU(s,r), where wₜ = exp(−t/T). This contrasts with fixed weighting in prior methods.\n\n## (3) Full Experimental Results\n\n**Table 1** presents comprehensive results across:\n- Four actor models (GLM-4-9B, Phi-4-mini-Instruct, Llama-3.2-3B, Qwen3-8B)\n- Three search strategies (Beam Search, Best-of-N, MCTS)\n- Four benchmarks (AIME, MATH500, Olympiad-Bench, OmniMATH)\n\nPeak performance: **76.2% on MATH500** (GLM-4-9B with MCTS), outperforming all baselines including PRM800K and Math-Shepherd.\n\n## (4) ProcessBench Results\n\nNo ProcessBench results are included in this paper.\n\n## (5) Step Position Effects Analysis\n\nThe paper doesn't provide explicit analysis of step position effects on Monte Carlo estimation quality. However, Figure 5 shows AMCS allocates varying search depths (3.1-5.1 nodes) based on node uncertainty rather than position.\n\n## (6) Comparisons with Other MC-Based Methods\n\nThe paper compares against:\n- **Math-Shepherd**: Qwen2.5-AMCS achieves 61.4% vs Math-Shepherd's 54.5% on MATH (Beam Search, Llama-3.2)\n- **PRM800K**: Consistent improvements across all settings\n- **Deepseek-PRM**: Substantial gaps, especially on harder benchmarks\n\nNo comparisons with ComMCS or OmegaPRM are provided.\n\n## (7) Computational Cost Comparison\n\nTraining details indicate: ~one week on four Tesla A800 GPUs for data generation; ~three days for PRM training. No direct cost comparison with baselines is provided.\n\n## (8) Base Model for PRM\n\n> \"initialized the PRM with Qwen2.5-Math-7B-Instruct to leverage its strong mathematical reasoning capabilities\"\n\nThe final model is **Qwen2.5-Math-7B-PRM-AMCS**.\n\n## (9) Hard Problem Analysis\n\nThe paper notes that improvements are \"more pronounced on challenging benchmarks such as AIME and Olympiad-Bench,\" suggesting the method particularly benefits complex multi-step reasoning. Figure 3 shows a 7B PRM-AMCS model outperforms a 72B model with weaker supervision, indicating quality matters more than scale for frontier difficulty.",
+    "durationMs": 12438,
+    "url": "https://arxiv.org/html/2509.24351"
+  },
+  "sourceToolAssistantUUID": "edee0065-2279-4a28-8731-f801de1bd9da",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-28T02:54:35.032Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013tGZNjypEVhckyRLajjFjD`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.13744",
+  "prompt": "Extract: (1) Full abstract, (2) Key results - especially Qwen2.5-Math-PRM-72B scores on Hard2Verify vs ProcessBench, (3) What models were evaluated and their scores, (4) How the benchmark was constructed, (5) Problem difficulty characteristics - what makes it \"hard\", (6) Any analysis of discriminative vs generative PRM performance gap on Hard2Verify, (7) Venue acceptance status, (8) Number of problems in the benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c23c3b5-d72a-4db6-9003-ec66e8a2869e",
+  "isSidechain": false,
+  "requestId": "req_011CbUDGUuhAEbEL7ucXy984",
+  "type": "assistant",
+  "uuid": "50bee8fb-edac-41e3-820c-77b9cdaf8c83",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QR2cFtYbyFYJgs7d8cG7L5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1127,
+      "cache_read_input_tokens": 26535,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1127,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 26535,
+          "cache_creation_input_tokens": 1127,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1127
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-28T02:54:42.242Z_
+
+<details><summary>↩ Tool result · `toolu_013tGZNjypEVhckyRLajjFjD`</summary>
+
+```text
+# Hard2Verify Benchmark Analysis
+
+## (1) Full Abstract
+"Large language model (LLM)-based reasoning systems have recently achieved gold medal-level performance in the IMO 2025 competition, writing mathematical proofs where, to receive full credit, each step must be not only correct but also sufficiently supported. To train LLM-based reasoners in such challenging, open-ended settings, strong verifiers capable of catching step-level mistakes are necessary prerequisites. We introduce Hard2Verify, a human-annotated, step-level verification benchmark produced with over 500 hours of human labor. Hard2Verify is designed to rigorously assess step-level verifiers at the frontier: Verifiers must provide step-level annotations or identify the first error in responses generated by frontier LLMs for very recent, challenging, and open-ended math questions. We evaluate 29 generative critics and process reward models, demonstrating that, beyond a few standouts, open-source verifiers lag closed source models. We subsequently analyze what drives poor performance in step-level verification, the impacts of scaling verifier compute, as well as fundamental questions such as self-verification and verification-generation dynamics."
+
+## (2)-(3) Models Evaluated & Key Results
+The paper evaluated **29 generative critics and process reward models**. However, specific performance scores for Qwen2.5-Math-PRM-72B or comparisons between Hard2Verify and ProcessBench are not provided in the webpage content.
+
+## (4) Benchmark Construction
+Human annotators created the benchmark using "over 500 hours of human labor." Verifiers must annotate steps or identify initial errors in frontier LLM responses to recent, challenging mathematical problems.
+
+## (5)-(6) Problem Difficulty & Performance Analysis
+The content doesn't specify the number of problems or provide detailed analysis of discriminative versus generative PRM performance gaps beyond noting that "open-source verifiers lag closed source models."
+
+## (7) Venue Acceptance Status
+No acceptance information provided; this is a preprint submitted October 15, 2025.
+
+## (8) Benchmark Size
+The total number of problems in the benchmark is not disclosed in the available webpage content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50bee8fb-edac-41e3-820c-77b9cdaf8c83",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "4991621c-f425-4472-bd23-0d78a9e23b71",
+  "toolUseResult": {
+    "bytes": 46653,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Hard2Verify Benchmark Analysis\n\n## (1) Full Abstract\n\"Large language model (LLM)-based reasoning systems have recently achieved gold medal-level performance in the IMO 2025 competition, writing mathematical proofs where, to receive full credit, each step must be not only correct but also sufficiently supported. To train LLM-based reasoners in such challenging, open-ended settings, strong verifiers capable of catching step-level mistakes are necessary prerequisites. We introduce Hard2Verify, a human-annotated, step-level verification benchmark produced with over 500 hours of human labor. Hard2Verify is designed to rigorously assess step-level verifiers at the frontier: Verifiers must provide step-level annotations or identify the first error in responses generated by frontier LLMs for very recent, challenging, and open-ended math questions. We evaluate 29 generative critics and process reward models, demonstrating that, beyond a few standouts, open-source verifiers lag closed source models. We subsequently analyze what drives poor performance in step-level verification, the impacts of scaling verifier compute, as well as fundamental questions such as self-verification and verification-generation dynamics.\"\n\n## (2)-(3) Models Evaluated & Key Results\nThe paper evaluated **29 generative critics and process reward models**. However, specific performance scores for Qwen2.5-Math-PRM-72B or comparisons between Hard2Verify and ProcessBench are not provided in the webpage content.\n\n## (4) Benchmark Construction\nHuman annotators created the benchmark using \"over 500 hours of human labor.\" Verifiers must annotate steps or identify initial errors in frontier LLM responses to recent, challenging mathematical problems.\n\n## (5)-(6) Problem Difficulty & Performance Analysis\nThe content doesn't specify the number of problems or provide detailed analysis of discriminative versus generative PRM performance gaps beyond noting that \"open-source verifiers lag closed source models.\"\n\n## (7) Venue Acceptance Status\nNo acceptance information provided; this is a preprint submitted October 15, 2025.\n\n## (8) Benchmark Size\nThe total number of problems in the benchmark is not disclosed in the available webpage content.",
+    "durationMs": 7206,
+    "url": "https://arxiv.org/abs/2510.13744"
+  },
+  "sourceToolAssistantUUID": "50bee8fb-edac-41e3-820c-77b9cdaf8c83",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-28T02:54:49.467Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Hh6LnpJUWUxhNAxNuTV3Hh`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2510.13744v1",
+  "prompt": "Extract in detail: (1) Qwen2.5-Math-PRM-72B scores on Hard2Verify - the 37.3 score mentioned in reviews, (2) ProcessBench comparison - the 78.3 to 37.3 drop, (3) Full results table for all models evaluated, (4) Performance of generative PRMs like ThinkPRM on Hard2Verify, (5) Performance of discriminative PRMs vs generative PRMs, (6) Benchmark statistics - number of problems, difficulty distribution, math domains, (7) Any analysis of what makes verification hard on these problems, (8) Any discussion of MC estimation quality on hard problems"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4991621c-f425-4472-bd23-0d78a9e23b71",
+  "isSidechain": false,
+  "requestId": "req_011CbUDHT84p3ss2fZEuarvU",
+  "type": "assistant",
+  "uuid": "2581dfcd-10ce-4a34-8ae0-e7d06bce8b00",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013AWEbtFEvSdxbozTCgXjMV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 687,
+      "cache_read_input_tokens": 27662,
+      "output_tokens": 234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 687,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 234,
+          "cache_read_input_tokens": 27662,
+          "cache_creation_input_tokens": 687,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 687
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-28T02:54:58.058Z_
+
+<details><summary>↩ Tool result · `toolu_01Hh6LnpJUWUxhNAxNuTV3Hh`</summary>
+
+```text
+# Hard2Verify Benchmark: Key Findings
+
+## 1. Qwen2.5-Math-PRM-72B Performance
+
+The model achieves **37.28% Balanced F1** on Hard2Verify's error identification task, representing a dramatic decline from its ProcessBench results.
+
+## 2. ProcessBench vs. Hard2Verify Comparison
+
+Figure 1 illustrates the performance gap: "Qwen2.5-Math-PRM-72B performance drops from ProcessBench state-of-the-art at 78.3 to 37.3 on Hard2Verify," demonstrating that frontier-level mathematical reasoning requires substantially more sophisticated verification capabilities.
+
+## 3. Complete Evaluation Results
+
+Table 2 presents comprehensive metrics across 29 models:
+- **Best performers**: GPT-5 (86.53% step-level accuracy), Gemini 2.5 Pro (83.37%)
+- **Open-weight standouts**: gpt-oss-120B (78.10%), DeepSeek-R1 (68.92%)
+- **PRM struggles**: All tested process reward models score below 65.82% on step-level tasks
+
+## 4. Generative vs. Discriminative Models
+
+The benchmark evaluated both generative critics and process reward models. Notably, "state-of-the-art PRMs, like the Qwen2.5-Math-PRM series struggle immensely on Hard2Verify, performing significantly below random guess performance in error identification."
+
+## 5. Benchmark Statistics
+
+- **80 frontier-level problems** from recent Olympiads (IMO, Putnam, INMO)
+- **1,860 annotated steps** across 200 model responses
+- **58% correct steps** (1,080); 42% incorrect (780)
+- **78.5% open-ended problems** requiring multi-step proofs
+
+## 6. Verification Difficulty Analysis
+
+Weaker verifiers exhibit systematic failures: "TNR drops quickly to near 0, while TPR rises gradually to almost 1. This indicates that almost all steps are labeled as correct, revealing that weaker verifiers cannot catch errors."
+
+## 7. Key Challenge Patterns
+
+Common verification failures include:
+- Accepting under-justified claims as complete
+- Missing incomplete proof-by-cases analysis
+- Failing to verify theorem invocations meet stated assumptions
+- Not catching generalization claims proven only for specific instances
+
+Human annotators identified these issues through rigorous step-by-step examination requiring "over 500 hours of manual human labor."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2581dfcd-10ce-4a34-8ae0-e7d06bce8b00",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "8571b2a3-2876-4c9c-804a-135b27f76b77",
+  "toolUseResult": {
+    "bytes": 213451,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Hard2Verify Benchmark: Key Findings\n\n## 1. Qwen2.5-Math-PRM-72B Performance\n\nThe model achieves **37.28% Balanced F1** on Hard2Verify's error identification task, representing a dramatic decline from its ProcessBench results.\n\n## 2. ProcessBench vs. Hard2Verify Comparison\n\nFigure 1 illustrates the performance gap: \"Qwen2.5-Math-PRM-72B performance drops from ProcessBench state-of-the-art at 78.3 to 37.3 on Hard2Verify,\" demonstrating that frontier-level mathematical reasoning requires substantially more sophisticated verification capabilities.\n\n## 3. Complete Evaluation Results\n\nTable 2 presents comprehensive metrics across 29 models:\n- **Best performers**: GPT-5 (86.53% step-level accuracy), Gemini 2.5 Pro (83.37%)\n- **Open-weight standouts**: gpt-oss-120B (78.10%), DeepSeek-R1 (68.92%)\n- **PRM struggles**: All tested process reward models score below 65.82% on step-level tasks\n\n## 4. Generative vs. Discriminative Models\n\nThe benchmark evaluated both generative critics and process reward models. Notably, \"state-of-the-art PRMs, like the Qwen2.5-Math-PRM series struggle immensely on Hard2Verify, performing significantly below random guess performance in error identification.\"\n\n## 5. Benchmark Statistics\n\n- **80 frontier-level problems** from recent Olympiads (IMO, Putnam, INMO)\n- **1,860 annotated steps** across 200 model responses\n- **58% correct steps** (1,080); 42% incorrect (780)\n- **78.5% open-ended problems** requiring multi-step proofs\n\n## 6. Verification Difficulty Analysis\n\nWeaker verifiers exhibit systematic failures: \"TNR drops quickly to near 0, while TPR rises gradually to almost 1. This indicates that almost all steps are labeled as correct, revealing that weaker verifiers cannot catch errors.\"\n\n## 7. Key Challenge Patterns\n\nCommon verification failures include:\n- Accepting under-justified claims as complete\n- Missing incomplete proof-by-cases analysis\n- Failing to verify theorem invocations meet stated assumptions\n- Not catching generalization claims proven only for specific instances\n\nHuman annotators identified these issues through rigorous step-by-step examination requiring \"over 500 hours of manual human labor.\"",
+    "durationMs": 8586,
+    "url": "https://arxiv.org/html/2510.13744v1"
+  },
+  "sourceToolAssistantUUID": "2581dfcd-10ce-4a34-8ae0-e7d06bce8b00",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-28T02:55:00.477Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WskLLimsbSaQryEe7iCsPc`</summary>
+
+```json
+{
+  "query": "AMCS \"adaptive Monte Carlo search\" ICLR 2026 accepted venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8571b2a3-2876-4c9c-804a-135b27f76b77",
+  "isSidechain": false,
+  "requestId": "req_011CbUDJcg4uNhoQef5Q2URy",
+  "type": "assistant",
+  "uuid": "d5b28287-e35e-4c1d-902a-7031c282d744",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DzUGRwXZRMCz4B8y8EW2gs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 832,
+      "cache_read_input_tokens": 28349,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 832,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 28349,
+          "cache_creation_input_tokens": 832,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 832
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-28T02:55:06.835Z_
+
+<details><summary>↩ Tool result · `toolu_01WskLLimsbSaQryEe7iCsPc`</summary>
+
+```text
+Web search results for query: "AMCS "adaptive Monte Carlo search" ICLR 2026 accepted venue"
+
+Links: [{"title":"From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision | OpenReview","url":"https://openreview.net/forum?id=hbkD7hvzBv"},{"title":"From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision","url":"https://arxiv.org/html/2509.24351"},{"title":"From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision","url":"https://arxiv.org/pdf/2509.24351"},{"title":"Adaptive Monte Carlo search for conjecture refutation in graph theory","url":"https://arxiv.org/html/2306.07956"},{"title":"1 Adaptive Monte Carlo search for conjecture refutation in graph theory","url":"https://www.researchgate.net/profile/Valentino-Vito/publication/371536904_Adaptive_Monte_Carlo_Search_for_Conjecture_Refutation_in_Graph_Theory/links/648febde95bbbe0c6ed8c98c/Adaptive-Monte-Carlo-Search-for-Conjecture-Refutation-in-Graph-Theory.pdf?origin=scientificContributions"},{"title":"Adaptive Parallel Monte Carlo Tree Search for Efficient Test-time Compute Scaling","url":"https://arxiv.org/pdf/2604.00510"}]
+
+Based on the search results, I found information about AMCS (Adaptive Monte Carlo Search) and its submission status:
+
+AMCS is a framework that transforms data generation from fixed, static to adaptive, dynamic search at the level of node value estimation and path expansion. The paper is titled "From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision."
+
+However, regarding its venue status: The paper was submitted to ICLR 2026 as a withdrawn submission (dated 03 Sept 2025, modified 03 Jan 2026). This means the paper was not accepted to ICLR 2026—it was withdrawn from consideration.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d5b28287-e35e-4c1d-902a-7031c282d744",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "03d7d8e8-e4be-4976-9396-c816f5f5f9c7",
+  "toolUseResult": {
+    "query": "AMCS \"adaptive Monte Carlo search\" ICLR 2026 accepted venue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014mq7rgDuuupg9yqwb66ENJ",
+        "content": [
+          {
+            "title": "From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision | OpenReview",
+            "url": "https://openreview.net/forum?id=hbkD7hvzBv"
+          },
+          {
+            "title": "From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision",
+            "url": "https://arxiv.org/html/2509.24351"
+          },
+          {
+            "title": "From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision",
+            "url": "https://arxiv.org/pdf/2509.24351"
+          },
+          {
+            "title": "Adaptive Monte Carlo search for conjecture refutation in graph theory",
+            "url": "https://arxiv.org/html/2306.07956"
+          },
+          {
+            "title": "1 Adaptive Monte Carlo search for conjecture refutation in graph theory",
+            "url": "https://www.researchgate.net/profile/Valentino-Vito/publication/371536904_Adaptive_Monte_Carlo_Search_for_Conjecture_Refutation_in_Graph_Theory/links/648febde95bbbe0c6ed8c98c/Adaptive-Monte-Carlo-Search-for-Conjecture-Refutation-in-Graph-Theory.pdf?origin=scientificContributions"
+          },
+          {
+            "title": "Adaptive Parallel Monte Carlo Tree Search for Efficient Test-time Compute Scaling",
+            "url": "https://arxiv.org/pdf/2604.00510"
+          }
+        ]
+      },
+      "Based on the search results, I found information about AMCS (Adaptive Monte Carlo Search) and its submission status:\n\nAMCS is a framework that transforms data generation from fixed, static to adaptive, dynamic search at the level of node value estimation and path expansion. The paper is titled \"From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision.\"\n\nHowever, regarding its venue status: The paper was submitted to ICLR 2026 as a withdrawn submission (dated 03 Sept 2025, modified 03 Jan 2026). This means the paper was not accepted to ICLR 2026—it was withdrawn from consideration."
+    ],
+    "durationSeconds": 6.354224552,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d5b28287-e35e-4c1d-902a-7031c282d744",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-28T02:55:06.839Z_
+
+```json
+{
+  "parentUuid": "03d7d8e8-e4be-4976-9396-c816f5f5f9c7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1e236cf2-b339-452b-82d6-59987f44f1e5",
+  "timestamp": "2026-05-28T02:55:06.839Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-28T02:55:09.822Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015dARnBkh5MTSnhVTdt6ooW`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=hbkD7hvzBv",
+  "prompt": "What is the venue status of this paper? Was it accepted, rejected, or withdrawn from ICLR 2026? What were the review scores? Any reviewer feedback?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e236cf2-b339-452b-82d6-59987f44f1e5",
+  "isSidechain": false,
+  "requestId": "req_011CbUDKGC3gXgSgZgSmFbzZ",
+  "type": "assistant",
+  "uuid": "82e068fe-3b74-4398-a8a8-e04c0be321c6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C2GjJBkKkbSuXXczQpLcJX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 694,
+      "cache_read_input_tokens": 29181,
+      "output_tokens": 125,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 694,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 125,
+          "cache_read_input_tokens": 29181,
+          "cache_creation_input_tokens": 694,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 694
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-28T02:55:11.996Z_
+
+<details><summary>↩ Tool result · `toolu_015dARnBkh5MTSnhVTdt6ooW`</summary>
+
+```text
+Based on the webpage content provided, the paper was **withdrawn from ICLR 2026**. The page explicitly states "ICLR 2026 Conference Withdrawn Submission."
+
+However, the document does not contain any review scores or reviewer feedback. The page shows the paper's abstract, author information, and keywords, but no peer review comments or numerical ratings are included in the content provided.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "82e068fe-3b74-4398-a8a8-e04c0be321c6",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "4b869572-a10c-4f17-9c8c-18b7b1e08141",
+  "toolUseResult": {
+    "bytes": 88292,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the webpage content provided, the paper was **withdrawn from ICLR 2026**. The page explicitly states \"ICLR 2026 Conference Withdrawn Submission.\"\n\nHowever, the document does not contain any review scores or reviewer feedback. The page shows the paper's abstract, author information, and keywords, but no peer review comments or numerical ratings are included in the content provided.",
+    "durationMs": 2169,
+    "url": "https://openreview.net/forum?id=hbkD7hvzBv"
+  },
+  "sourceToolAssistantUUID": "82e068fe-3b74-4398-a8a8-e04c0be321c6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-28T02:55:14.852Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting - AMCS was withdrawn from ICLR 2026, not accepted. The reviewer said it was "published at a top venue" but it was actually withdrawn. Let me search for whether it was accepted elsewhere.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b869572-a10c-4f17-9c8c-18b7b1e08141",
+  "isSidechain": false,
+  "requestId": "req_011CbUDKeJKwW5m8XeZ7fQXe",
+  "type": "assistant",
+  "uuid": "7b116130-923d-4b93-8a13-e3896cc42c73",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011mytz42oVVcfL3WdAxfiqe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 221,
+      "cache_read_input_tokens": 29875,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 221,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 29875,
+          "cache_creation_input_tokens": 221,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 221
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-28T02:55:15.840Z_
+
+Important finding - AMCS was withdrawn from ICLR 2026, not accepted. Let me verify its actual venue status and continue researching.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b116130-923d-4b93-8a13-e3896cc42c73",
+  "isSidechain": false,
+  "requestId": "req_011CbUDKeJKwW5m8XeZ7fQXe",
+  "type": "assistant",
+  "uuid": "6312927a-76e2-43f9-8999-2c28c25ae2a5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011mytz42oVVcfL3WdAxfiqe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 221,
+      "cache_read_input_tokens": 29875,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 221,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 29875,
+          "cache_creation_input_tokens": 221,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 221
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-28T02:55:16.083Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Vbx4JJyLWyj23Q9GURK7fJ`</summary>
+
+```json
+{
+  "query": "AMCS \"adaptive Monte Carlo search\" \"process supervision\" accepted 2026 conference publication"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6312927a-76e2-43f9-8999-2c28c25ae2a5",
+  "isSidechain": false,
+  "requestId": "req_011CbUDKeJKwW5m8XeZ7fQXe",
+  "type": "assistant",
+  "uuid": "c44681bf-b9a7-44b8-861d-89cb719057d6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011mytz42oVVcfL3WdAxfiqe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 221,
+      "cache_read_input_tokens": 29875,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 221,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 29875,
+          "cache_creation_input_tokens": 221,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 221
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"change_summary\": \"Major revision addressing 4 round-3 reviewer concerns plus st…",
+  "leafUuid": "c44681bf-b9a7-44b8-861d-89cb719057d6",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising process supervision research with novel hard-problem curriculum",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-28T02:55:23.876Z_
+
+<details><summary>↩ Tool result · `toolu_01Vbx4JJyLWyj23Q9GURK7fJ`</summary>
+
+```text
+Web search results for query: "AMCS "adaptive Monte Carlo search" "process supervision" accepted 2026 conference publication"
+
+Links: [{"title":"From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision | OpenReview","url":"https://openreview.net/forum?id=hbkD7hvzBv"},{"title":"[2509.24351] From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision","url":"https://arxiv.org/abs/2509.24351"},{"title":"From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision","url":"https://arxiv.org/html/2509.24351"},{"title":"adaptive monte carlo search for mathematical process su","url":"https://arxiv.org/pdf/2509.24351"},{"title":"Adaptive Monte Carlo search for conjecture refutation in graph theory","url":"https://arxiv.org/html/2306.07956"},{"title":"Adaptive Parallel Monte Carlo Tree Search for Efficient Test-time Compute Scaling","url":"https://arxiv.org/pdf/2604.00510"}]
+
+Based on the search results, I found relevant information about AMCS and process supervision:
+
+Adaptive Monte Carlo Search (AMCS) is a framework that transforms data generation from fixed, static to adaptive, dynamic search at the level of node value estimation and path expansion. The quality of process data plays a key role in training a Process Reward Model (PRM), which can enhance the complex mathematical reasoning capability of large language models.
+
+AMCS adaptively refines estimation by allocating more samples to uncertain reasoning steps while using fewer samples for those that are easier to estimate. With AMCS, the researchers construct a large-scale dataset MathSearch-200K of about 200K process supervision examples for training PRMs.
+
+Experimental results show that Qwen2.5-Math-7B-PRM-AMCS achieves up to 76.2% accuracy on MATH500 with GLM-4-9B, outperforming all baseline PRMs.
+
+However, the search results show this paper is currently on OpenReview (posted October 8, 2025) and arXiv (September 29, 2025), but do not explicitly indicate acceptance at a 2026 conference. The results show these are recent preprints rather than confirmed conference publications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c44681bf-b9a7-44b8-861d-89cb719057d6",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "69fa38fc-ab61-4dd6-8147-784da88b04bd",
+  "toolUseResult": {
+    "query": "AMCS \"adaptive Monte Carlo search\" \"process supervision\" accepted 2026 conference publication",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KtEinNh5EBBWpJ4oTLeSQh",
+        "content": [
+          {
+            "title": "From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision | OpenReview",
+            "url": "https://openreview.net/forum?id=hbkD7hvzBv"
+          },
+          {
+            "title": "[2509.24351] From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision",
+            "url": "https://arxiv.org/abs/2509.24351"
+          },
+          {
+            "title": "From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision",
+            "url": "https://arxiv.org/html/2509.24351"
+          },
+          {
+            "title": "adaptive monte carlo search for mathematical process su",
+            "url": "https://arxiv.org/pdf/2509.24351"
+          },
+          {
+            "title": "Adaptive Monte Carlo search for conjecture refutation in graph theory",
+            "url": "https://arxiv.org/html/2306.07956"
+          },
+          {
+            "title": "Adaptive Parallel Monte Carlo Tree Search for Efficient Test-time Compute Scaling",
+            "url": "https://arxiv.org/pdf/2604.00510"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about AMCS and process supervision:\n\nAdaptive Monte Carlo Search (AMCS) is a framework that transforms data generation from fixed, static to adaptive, dynamic search at the level of node value estimation and path expansion. The quality of process data plays a key role in training a Process Reward Model (PRM), which can enhance the complex mathematical reasoning capability of large language models.\n\nAMCS adaptively refines estimation by allocating more samples to uncertain reasoning steps while using fewer samples for those that are easier to estimate. With AMCS, the researchers construct a large-scale dataset MathSearch-200K of about 200K process supervision examples for training PRMs.\n\nExperimental results show that Qwen2.5-Math-7B-PRM-AMCS achieves up to 76.2% accuracy on MATH500 with GLM-4-9B, outperforming all baseline PRMs.\n\nHowever, the search results show this paper is currently on OpenReview (posted October 8, 2025) and arXiv (September 29, 2025), but do not explicitly indicate acceptance at a 2026 conference. The results show these are recent preprints rather than confirmed conference publications."
+    ],
+    "durationSeconds": 7.789786877999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c44681bf-b9a7-44b8-861d-89cb719057d6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-28T02:55:26.827Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SzotxCQgMWt6zHip33GsUG`</summary>
+
+```json
+{
+  "query": "Hard2Verify benchmark venue accepted NeurIPS ICML 2026 step-level verification"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69fa38fc-ab61-4dd6-8147-784da88b04bd",
+  "isSidechain": false,
+  "requestId": "req_011CbUDLX3Y9rTVHizZ6XSba",
+  "type": "assistant",
+  "uuid": "5c32bb37-ada4-448f-a797-713612fa39f8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ta36b5VUqUMcUnpjDQvqtt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 737,
+      "cache_read_input_tokens": 30096,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 737,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 30096,
+          "cache_creation_input_tokens": 737,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 737
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-28T02:55:32.279Z_
+
+<details><summary>↩ Tool result · `toolu_01SzotxCQgMWt6zHip33GsUG`</summary>
+
+```text
+Web search results for query: "Hard2Verify benchmark venue accepted NeurIPS ICML 2026 step-level verification"
+
+Links: [{"title":"Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/pdf/2510.13744"},{"title":"Performance of o1 pro and GPT-4 in self-assessment questions for nephrology board renewal","url":"https://www.medrxiv.org/content/10.1101/2025.01.14.25320525.full.pdf"},{"title":"VerifyBench: A Systematic Benchmark for Evaluating Reasoning Verifiers Across Domains","url":"https://arxiv.org/pdf/2507.09884"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"},{"title":"A Cybersecurity NER Method Based on Hard and Easy Labeled Training Data Discrimination","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12737055/"}]
+
+Based on the search results, I found information about the Hard2Verify benchmark. Hard2Verify is a human-annotated, step-level verification benchmark designed to rigorously assess step-level verifiers. Verifiers must provide step-level annotations or identify the first error in responses generated by frontier LLMs for very recent, challenging, and open-ended math questions.
+
+However, the search results do not contain specific information about which venue (NeurIPS or ICML 2026) accepted the Hard2Verify benchmark paper. The arxiv paper I found (arXiv:2510.13744) appears to be a preprint, but I cannot determine from these results whether it has been accepted to NeurIPS 2026, ICML 2026, or another venue for 2026.
+
+If you need confirmation about the specific venue acceptance, you may want to check the official NeurIPS 2026 or ICML 2026 conference websites or the arxiv page directly for acceptance notifications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c32bb37-ada4-448f-a797-713612fa39f8",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "24991f47-d699-44aa-8917-fc3c34faf39f",
+  "toolUseResult": {
+    "query": "Hard2Verify benchmark venue accepted NeurIPS ICML 2026 step-level verification",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014DtprnPP2JQPx2EYunf79j",
+        "content": [
+          {
+            "title": "Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/pdf/2510.13744"
+          },
+          {
+            "title": "Performance of o1 pro and GPT-4 in self-assessment questions for nephrology board renewal",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.01.14.25320525.full.pdf"
+          },
+          {
+            "title": "VerifyBench: A Systematic Benchmark for Evaluating Reasoning Verifiers Across Domains",
+            "url": "https://arxiv.org/pdf/2507.09884"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          },
+          {
+            "title": "A Cybersecurity NER Method Based on Hard and Easy Labeled Training Data Discrimination",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12737055/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the Hard2Verify benchmark. Hard2Verify is a human-annotated, step-level verification benchmark designed to rigorously assess step-level verifiers. Verifiers must provide step-level annotations or identify the first error in responses generated by frontier LLMs for very recent, challenging, and open-ended math questions.\n\nHowever, the search results do not contain specific information about which venue (NeurIPS or ICML 2026) accepted the Hard2Verify benchmark paper. The arxiv paper I found (arXiv:2510.13744) appears to be a preprint, but I cannot determine from these results whether it has been accepted to NeurIPS 2026, ICML 2026, or another venue for 2026.\n\nIf you need confirmation about the specific venue acceptance, you may want to check the official NeurIPS 2026 or ICML 2026 conference websites or the arxiv page directly for acceptance notifications."
+    ],
+    "durationSeconds": 5.446358506999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5c32bb37-ada4-448f-a797-713612fa39f8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-28T02:55:34.214Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XKFovAyx6QPgXL92K2NzvT`</summary>
+
+```json
+{
+  "query": "Hard2Verify arXiv 2510.13744 ICML 2026 accepted openreview"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24991f47-d699-44aa-8917-fc3c34faf39f",
+  "isSidechain": false,
+  "requestId": "req_011CbUDM911aLAMPporgyNTR",
+  "type": "assistant",
+  "uuid": "ad726acb-a8dc-4c4e-96f7-a4c91f9a926d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXnoPArwoqA5rTHt7HasN5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 597,
+      "cache_read_input_tokens": 30833,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 597,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 30833,
+          "cache_creation_input_tokens": 597,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 597
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-28T02:55:41.592Z_
+
+<details><summary>↩ Tool result · `toolu_01XKFovAyx6QPgXL92K2NzvT`</summary>
+
+```text
+Web search results for query: "Hard2Verify arXiv 2510.13744 ICML 2026 accepted openreview"
+
+Links: [{"title":"[2510.13744v1] Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/abs/2510.13744v1"},{"title":"[2510.13744] Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/abs/2510.13744"},{"title":"Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/html/2510.13744"},{"title":"Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.13744v1"},{"title":"Preprint | Salesforce AI Research HARD2VERIFY: A STEP-LEVEL VERIFICATION","url":"https://arxiv.org/pdf/2510.13744"},{"title":"2025-11-18 Scaling Generative Verifiers For Natural Language","url":"https://arxiv.org/pdf/2511.13027"}]
+
+Based on the search results, here's what I found about Hard2Verify arXiv 2510.13744:
+
+## Paper Overview
+
+Hard2Verify is a human-annotated, step-level verification benchmark produced with over 500 hours of human labor. The paper was submitted on October 15, 2025.
+
+## Main Focus
+
+Hard2Verify is designed to rigorously assess step-level verifiers at the frontier: Verifiers must provide step-level annotations or identify the first error in responses generated by frontier LLMs for very recent, challenging, and open-ended math questions.
+
+The benchmark uses challenging problems from recent international mathematics competitions like IMO and Putnam, which are used to sample responses from three top-tier LLMs: GPT-5 (high), Gemini 2.5 Pro, and Claude Sonnet 4 (thinking).
+
+## Key Findings
+
+The researchers evaluate 29 generative critics and process reward models, demonstrating that, beyond a few standouts, open-source verifiers lag closed source models.
+
+**Note:** The search results do not contain information about ICML 2026 acceptance or OpenReview details for this paper. The paper appears to be available on arXiv but I couldn't confirm its acceptance status to ICML 2026 through these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad726acb-a8dc-4c4e-96f7-a4c91f9a926d",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "feceb615-d204-4c17-9392-6f3e222d6384",
+  "toolUseResult": {
+    "query": "Hard2Verify arXiv 2510.13744 ICML 2026 accepted openreview",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GqViKmFG2U3R6C6Vo1sMVy",
+        "content": [
+          {
+            "title": "[2510.13744v1] Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/abs/2510.13744v1"
+          },
+          {
+            "title": "[2510.13744] Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/abs/2510.13744"
+          },
+          {
+            "title": "Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/html/2510.13744"
+          },
+          {
+            "title": "Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2510.13744v1"
+          },
+          {
+            "title": "Preprint | Salesforce AI Research HARD2VERIFY: A STEP-LEVEL VERIFICATION",
+            "url": "https://arxiv.org/pdf/2510.13744"
+          },
+          {
+            "title": "2025-11-18 Scaling Generative Verifiers For Natural Language",
+            "url": "https://arxiv.org/pdf/2511.13027"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Hard2Verify arXiv 2510.13744:\n\n## Paper Overview\n\nHard2Verify is a human-annotated, step-level verification benchmark produced with over 500 hours of human labor. The paper was submitted on October 15, 2025.\n\n## Main Focus\n\nHard2Verify is designed to rigorously assess step-level verifiers at the frontier: Verifiers must provide step-level annotations or identify the first error in responses generated by frontier LLMs for very recent, challenging, and open-ended math questions.\n\nThe benchmark uses challenging problems from recent international mathematics competitions like IMO and Putnam, which are used to sample responses from three top-tier LLMs: GPT-5 (high), Gemini 2.5 Pro, and Claude Sonnet 4 (thinking).\n\n## Key Findings\n\nThe researchers evaluate 29 generative critics and process reward models, demonstrating that, beyond a few standouts, open-source verifiers lag closed source models.\n\n**Note:** The search results do not contain information about ICML 2026 acceptance or OpenReview details for this paper. The paper appears to be available on arXiv but I couldn't confirm its acceptance status to ICML 2026 through these results."
+    ],
+    "durationSeconds": 7.375212081000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ad726acb-a8dc-4c4e-96f7-a4c91f9a926d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-28T02:55:44.270Z_
+
+Now let me search for theoretical frameworks around MC estimation quality and step position, and research the knowledge distillation angle the reviewer suggested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "feceb615-d204-4c17-9392-6f3e222d6384",
+  "isSidechain": false,
+  "requestId": "req_011CbUDMpnR2gMbJn5PTC6sp",
+  "type": "assistant",
+  "uuid": "8d7d28b6-ea17-44db-b620-39763ea6afd1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VMrPuWpmt1eQewasWdbeim",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 720,
+      "cache_read_input_tokens": 31430,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 720,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 31430,
+          "cache_creation_input_tokens": 720,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 720
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-28T02:55:44.820Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014WLvPvCBSvE3LBF2BUWfv8`</summary>
+
+```json
+{
+  "query": "Monte Carlo estimation informativeness step position Markov chain completion probability theoretical bounds"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d7d28b6-ea17-44db-b620-39763ea6afd1",
+  "isSidechain": false,
+  "requestId": "req_011CbUDMpnR2gMbJn5PTC6sp",
+  "type": "assistant",
+  "uuid": "43a00008-8b8a-4c79-9c62-0a25b9c5d1e3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VMrPuWpmt1eQewasWdbeim",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 720,
+      "cache_read_input_tokens": 31430,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 720,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 31430,
+          "cache_creation_input_tokens": 720,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 720
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-28T02:55:51.707Z_
+
+<details><summary>↩ Tool result · `toolu_014WLvPvCBSvE3LBF2BUWfv8`</summary>
+
+```text
+Web search results for query: "Monte Carlo estimation informativeness step position Markov chain completion probability theoretical bounds"
+
+Links: [{"title":"Perturbation Bounds for Monte Carlo within Metropolis via Restricted   Approximations","url":"https://arxiv.org/pdf/1809.09547"},{"title":"Perturbation bounds for Monte Carlo within Metropolis via restricted approximations","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7074005/"},{"title":"Error bounds for computing the expectation by Markov chain Monte Carlo","url":"https://arxiv.org/pdf/0906.2359"},{"title":"Nonasymptotic bounds on the estimation error for regenerative MCMC   algorithms","url":"https://arxiv.org/pdf/0907.4915"},{"title":"Convergence Bounds for Monte Carlo Markov Chains","url":"https://arxiv.org/pdf/2409.14656"},{"title":"Explicit error bounds for Markov chain Monte Carlo","url":"https://arxiv.org/pdf/1108.3201"}]
+
+Based on the search results, here are the key findings related to your query:
+
+## Monte Carlo Estimation and Markov Chain Theoretical Bounds
+
+The search results reveal several important theoretical developments in this area:
+
+**Error Bounds and Step Distributions:**
+Explicit estimates of the difference between the nth step distributions of perturbed and unperturbed chains can be derived when the unperturbed Markov chain is geometrically ergodic. These bounds are based on novel perturbation results for Markov chains.
+
+**Convergence Analysis:**
+Methods can be used to construct bounds on the distance between the distribution of a Markov chain at a given time point and the chain's stationary distribution. Non-asymptotic error bounds for Monte Carlo estimators can be derived based on convergence bounds.
+
+**Practical Applications:**
+The burn-in (warm up period) determines the number of steps needed to get close to the target distribution, after which the algorithm approximates expectations via time averages.
+
+**Ergodicity Conditions:**
+Results can be derived in terms of asymptotic variance and bounds on this variance for both uniformly ergodic and geometrically ergodic Markov chains.
+
+The research emphasizes the importance of theoretical guarantees for establishing the reliability of Monte Carlo Markov Chain methods in practice.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "43a00008-8b8a-4c79-9c62-0a25b9c5d1e3",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "d2941a0e-82cf-430b-a6b9-ba093c2c4d70",
+  "toolUseResult": {
+    "query": "Monte Carlo estimation informativeness step position Markov chain completion probability theoretical bounds",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Hs9uLNGHA76dbzavEGTcpk",
+        "content": [
+          {
+            "title": "Perturbation Bounds for Monte Carlo within Metropolis via Restricted   Approximations",
+            "url": "https://arxiv.org/pdf/1809.09547"
+          },
+          {
+            "title": "Perturbation bounds for Monte Carlo within Metropolis via restricted approximations",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7074005/"
+          },
+          {
+            "title": "Error bounds for computing the expectation by Markov chain Monte Carlo",
+            "url": "https://arxiv.org/pdf/0906.2359"
+          },
+          {
+            "title": "Nonasymptotic bounds on the estimation error for regenerative MCMC   algorithms",
+            "url": "https://arxiv.org/pdf/0907.4915"
+          },
+          {
+            "title": "Convergence Bounds for Monte Carlo Markov Chains",
+            "url": "https://arxiv.org/pdf/2409.14656"
+          },
+          {
+            "title": "Explicit error bounds for Markov chain Monte Carlo",
+            "url": "https://arxiv.org/pdf/1108.3201"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings related to your query:\n\n## Monte Carlo Estimation and Markov Chain Theoretical Bounds\n\nThe search results reveal several important theoretical developments in this area:\n\n**Error Bounds and Step Distributions:**\nExplicit estimates of the difference between the nth step distributions of perturbed and unperturbed chains can be derived when the unperturbed Markov chain is geometrically ergodic. These bounds are based on novel perturbation results for Markov chains.\n\n**Convergence Analysis:**\nMethods can be used to construct bounds on the distance between the distribution of a Markov chain at a given time point and the chain's stationary distribution. Non-asymptotic error bounds for Monte Carlo estimators can be derived based on convergence bounds.\n\n**Practical Applications:**\nThe burn-in (warm up period) determines the number of steps needed to get close to the target distribution, after which the algorithm approximates expectations via time averages.\n\n**Ergodicity Conditions:**\nResults can be derived in terms of asymptotic variance and bounds on this variance for both uniformly ergodic and geometrically ergodic Markov chains.\n\nThe research emphasizes the importance of theoretical guarantees for establishing the reliability of Monte Carlo Markov Chain methods in practice."
+    ],
+    "durationSeconds": 6.881572416999989,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "43a00008-8b8a-4c79-9c62-0a25b9c5d1e3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-28T02:55:53.917Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QEpB4CqbR3NfGmKQ48UhgE`</summary>
+
+```json
+{
+  "query": "knowledge distillation discriminative to generative reward model process supervision 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2941a0e-82cf-430b-a6b9-ba093c2c4d70",
+  "isSidechain": false,
+  "requestId": "req_011CbUDNa7PifdmV7jfr2Fso",
+  "type": "assistant",
+  "uuid": "50586e0a-64e7-49c5-b5e5-d6581b501af3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTjWwjwVsmjC5vNrq7PnRo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 674,
+      "cache_read_input_tokens": 32150,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 674,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 32150,
+          "cache_creation_input_tokens": 674,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 674
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-28T02:56:01.797Z_
+
+<details><summary>↩ Tool result · `toolu_01QEpB4CqbR3NfGmKQ48UhgE`</summary>
+
+```text
+Web search results for query: "knowledge distillation discriminative to generative reward model process supervision 2025 2026"
+
+Links: [{"title":"RM-Distiller: Exploiting Generative LLM for Reward Model Distillation","url":"https://arxiv.org/html/2601.14032"},{"title":"RM-Distiller: Exploiting Generative LLM for Reward Model Distillation","url":"https://arxiv.org/pdf/2601.14032"},{"title":"DISTILLATION FOR LARGE LANGUAGE MODELS","url":"https://openreview.net/pdf?id=31wkVZXEaJ"},{"title":"Knowledge Distillation Meets Reinforcement Learning: A Cluster-Driven Approach to Image Processing - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12788330/"},{"title":"Preprint. A Survey of On-Policy Distillation for Large Language Models","url":"https://arxiv.org/pdf/2604.00626"},{"title":"Reinforcement Learning-based Knowledge Distillation with LLM-as-a-Judge","url":"https://arxiv.org/pdf/2604.02621"}]
+
+Based on the web search results, here's what I found about knowledge distillation from discriminative to generative reward models with process supervision in 2025-2026:
+
+## Key Findings
+
+**RM-Distiller Approach**: This is the first systematic research on RM distillation from generative LLMs. The approach exploits three capabilities of generative LLMs—refinement, scoring, and generation—to provide comprehensive supervision for training reward models.
+
+**Current Challenges**: Despite strong preference modeling capabilities of generative LLMs, their practical use is limited by high API costs and inference latency, so recent work has proposed to distill discriminative RMs from generative LLMs.
+
+**Traditional Distillation Methods**: Traditional methods typically employ the LLM as an annotator to assign binary preference labels to response pairs, with the resulting preference data used to train RMs.
+
+**Enhanced Distillation with Process Information**: SynRM integrates natural language critiques into RMs by appending teacher-generated justifications to the responses during both training and inference, representing an effort to incorporate richer supervision signals beyond binary labels.
+
+**Related On-Policy Distillation Advances**: Recent advances in on-policy distillation provide dense token-level supervision from a teacher model and have demonstrated superior sample efficiency by combining distributional realism of on-policy training with dense supervision.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50586e0a-64e7-49c5-b5e5-d6581b501af3",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "17ab56e7-f7d6-4cf7-9fc9-ba0d8bd1fbd5",
+  "toolUseResult": {
+    "query": "knowledge distillation discriminative to generative reward model process supervision 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0199Fcwbm5n9uVeuhuC7HxN5",
+        "content": [
+          {
+            "title": "RM-Distiller: Exploiting Generative LLM for Reward Model Distillation",
+            "url": "https://arxiv.org/html/2601.14032"
+          },
+          {
+            "title": "RM-Distiller: Exploiting Generative LLM for Reward Model Distillation",
+            "url": "https://arxiv.org/pdf/2601.14032"
+          },
+          {
+            "title": "DISTILLATION FOR LARGE LANGUAGE MODELS",
+            "url": "https://openreview.net/pdf?id=31wkVZXEaJ"
+          },
+          {
+            "title": "Knowledge Distillation Meets Reinforcement Learning: A Cluster-Driven Approach to Image Processing - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12788330/"
+          },
+          {
+            "title": "Preprint. A Survey of On-Policy Distillation for Large Language Models",
+            "url": "https://arxiv.org/pdf/2604.00626"
+          },
+          {
+            "title": "Reinforcement Learning-based Knowledge Distillation with LLM-as-a-Judge",
+            "url": "https://arxiv.org/pdf/2604.02621"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about knowledge distillation from discriminative to generative reward models with process supervision in 2025-2026:\n\n## Key Findings\n\n**RM-Distiller Approach**: This is the first systematic research on RM distillation from generative LLMs. The approach exploits three capabilities of generative LLMs—refinement, scoring, and generation—to provide comprehensive supervision for training reward models.\n\n**Current Challenges**: Despite strong preference modeling capabilities of generative LLMs, their practical use is limited by high API costs and inference latency, so recent work has proposed to distill discriminative RMs from generative LLMs.\n\n**Traditional Distillation Methods**: Traditional methods typically employ the LLM as an annotator to assign binary preference labels to response pairs, with the resulting preference data used to train RMs.\n\n**Enhanced Distillation with Process Information**: SynRM integrates natural language critiques into RMs by appending teacher-generated justifications to the responses during both training and inference, representing an effort to incorporate richer supervision signals beyond binary labels.\n\n**Related On-Policy Distillation Advances**: Recent advances in on-policy distillation provide dense token-level supervision from a teacher model and have demonstrated superior sample efficiency by combining distributional realism of on-policy training with dense supervision."
+    ],
+    "durationSeconds": 7.876514104000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "50586e0a-64e7-49c5-b5e5-d6581b501af3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-28T02:56:06.580Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_018nnZbsCusLdfsUtykjxU6L`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.14032",
+  "prompt": "Extract: (1) Full abstract, (2) How does RM-Distiller work - what's the distillation direction (generative to discriminative?), (3) Key results, (4) Which benchmarks, (5) Does it discuss process reward models? (6) Venue acceptance status"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17ab56e7-f7d6-4cf7-9fc9-ba0d8bd1fbd5",
+  "isSidechain": false,
+  "requestId": "req_011CbUDPKBzKK2m7JDw2xsQZ",
+  "type": "assistant",
+  "uuid": "4f339a47-737c-4dfc-86b3-21f7a4d65d1a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HcD7MPVam183PBpFnmdi2N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 702,
+      "cache_read_input_tokens": 32824,
+      "output_tokens": 148,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 702,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 148,
+          "cache_read_input_tokens": 32824,
+          "cache_creation_input_tokens": 702,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 702
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"change_summary\": \"Major revision addressing 4 round-3 reviewer concerns plus st…",
+  "leafUuid": "4f339a47-737c-4dfc-86b3-21f7a4d65d1a",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising process supervision research with novel hard-problem curriculum",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-28T02:56:12.168Z_
+
+<details><summary>↩ Tool result · `toolu_018nnZbsCusLdfsUtykjxU6L`</summary>
+
+```text
+# RM-Distiller Paper Summary
+
+## (1) Full Abstract
+"Reward models (RMs) play a pivotal role in aligning large language models (LLMs) with human preferences. Due to the difficulty of obtaining high-quality human preference annotations, distilling preferences from generative LLMs has emerged as a standard practice. However, existing approaches predominantly treat teacher models as simple binary annotators, failing to fully exploit the rich knowledge and capabilities for RM distillation. To address this, we propose RM-Distiller, a framework designed to systematically exploit the multifaceted capabilities of teacher LLMs: (1) Refinement capability, which synthesizes highly correlated response pairs to create fine-grained and contrastive signals. (2) Scoring capability, which guides the RM in capturing precise preference strength via a margin-aware optimization objective. (3) Generation capability, which incorporates the teacher's generative distribution to regularize the RM to preserve its fundamental linguistic knowledge."
+
+## (2) Distillation Direction
+Yes, RM-Distiller transfers knowledge from generative LLMs (teachers) to discriminative reward models (students). The framework extracts preference signals from generative models rather than human annotators.
+
+## (3) Key Results
+The paper states that "RM-Distiller significantly outperforms traditional distillation methods both on RM benchmarks and reinforcement learning-based alignment."
+
+## (4) Benchmarks
+The abstract mentions "RM benchmarks and reinforcement learning-based alignment" testing but doesn't specify particular benchmark names.
+
+## (5) Process Reward Models
+Not discussed in the content provided.
+
+## (6) Venue Acceptance Status
+The paper was submitted January 20, 2026 to arXiv (preprint server). No acceptance at a peer-reviewed venue is mentioned in this content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f339a47-737c-4dfc-86b3-21f7a4d65d1a",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "d947738a-6566-4118-b2ab-078bd263bdff",
+  "toolUseResult": {
+    "bytes": 47353,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# RM-Distiller Paper Summary\n\n## (1) Full Abstract\n\"Reward models (RMs) play a pivotal role in aligning large language models (LLMs) with human preferences. Due to the difficulty of obtaining high-quality human preference annotations, distilling preferences from generative LLMs has emerged as a standard practice. However, existing approaches predominantly treat teacher models as simple binary annotators, failing to fully exploit the rich knowledge and capabilities for RM distillation. To address this, we propose RM-Distiller, a framework designed to systematically exploit the multifaceted capabilities of teacher LLMs: (1) Refinement capability, which synthesizes highly correlated response pairs to create fine-grained and contrastive signals. (2) Scoring capability, which guides the RM in capturing precise preference strength via a margin-aware optimization objective. (3) Generation capability, which incorporates the teacher's generative distribution to regularize the RM to preserve its fundamental linguistic knowledge.\"\n\n## (2) Distillation Direction\nYes, RM-Distiller transfers knowledge from generative LLMs (teachers) to discriminative reward models (students). The framework extracts preference signals from generative models rather than human annotators.\n\n## (3) Key Results\nThe paper states that \"RM-Distiller significantly outperforms traditional distillation methods both on RM benchmarks and reinforcement learning-based alignment.\"\n\n## (4) Benchmarks\nThe abstract mentions \"RM benchmarks and reinforcement learning-based alignment\" testing but doesn't specify particular benchmark names.\n\n## (5) Process Reward Models\nNot discussed in the content provided.\n\n## (6) Venue Acceptance Status\nThe paper was submitted January 20, 2026 to arXiv (preprint server). No acceptance at a peer-reviewed venue is mentioned in this content.",
+    "durationMs": 5584,
+    "url": "https://arxiv.org/abs/2601.14032"
+  },
+  "sourceToolAssistantUUID": "4f339a47-737c-4dfc-86b3-21f7a4d65d1a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-28T02:56:14.931Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MemaU1r8s7S1P88RPpv4v5`</summary>
+
+```json
+{
+  "query": "Bernoulli estimation variance reduction step position mathematical reasoning MC rollout success rate later steps"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d947738a-6566-4118-b2ab-078bd263bdff",
+  "isSidechain": false,
+  "requestId": "req_011CbUDQ5YESa5Z946JC35to",
+  "type": "assistant",
+  "uuid": "659faf39-20bf-4e3c-865f-0f988b36ffbf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WcR6ZYQDUijoRuFVP2QhcP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 568,
+      "cache_read_input_tokens": 33526,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 568,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 33526,
+          "cache_creation_input_tokens": 568,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 568
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-28T02:56:23.699Z_
+
+<details><summary>↩ Tool result · `toolu_01MemaU1r8s7S1P88RPpv4v5`</summary>
+
+```text
+Web search results for query: "Bernoulli estimation variance reduction step position mathematical reasoning MC rollout success rate later steps"
+
+Links: [{"title":"Minimum-Variance Importance-Sampling Bernoulli ...","url":"https://arxiv.org/pdf/1311.1372"},{"title":"(PDF) Minimum-Variance Importance-Sampling Bernoulli Estimator for Fast Simulation of Linear Block Codes over Binary Symmetric Channels","url":"https://www.researchgate.net/publication/258279240_Minimum-Variance_Importance-Sampling_Bernoulli_Estimator_for_Fast_Simulation_of_Linear_Block_Codes_over_Binary_Symmetric_Channels"},{"title":"Variance reduction for Markov chains with application to MCMC | Statistics and Computing | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11222-020-09931-z"},{"title":"Variance reduction for Markov chains with application to MCMC","url":"https://arxiv.org/pdf/1910.03643"},{"title":"Variance Reduction Technique - an overview | ScienceDirect Topics","url":"https://www.sciencedirect.com/topics/mathematics/variance-reduction-technique"},{"title":"Discounted Beta--Bernoulli Reward Estimation for Sample-Efficient Reinforcement Learning with Verifiable Rewards","url":"https://arxiv.org/pdf/2603.18444"},{"title":"Minimum-Variance Importance-Sampling Bernoulli Estimator for Fast Simulation of Linear Block Codes Over Binary Symmetric Channels - ADS","url":"https://ui.adsabs.harvard.edu/abs/2014ITWC...13..486R/abstract"}]
+
+Based on the web search results, I found relevant information related to your query. The search returned results on Bernoulli estimation and variance reduction techniques, with some particularly relevant recent work on reinforcement learning.
+
+The most closely matching result to your specific query appears to be recent research on variance reduction in reinforcement learning. Discounted Beta-Bernoulli (DBB) reward estimation leverages historical reward statistics for nonstationary distributions, and although biased, the resulting estimator exhibits reduced and stable variance and achieves lower mean squared error than standard point estimation. This approach appears to address challenges in sample efficiency when dealing with rollouts.
+
+Additionally, the search found classical work on Bernoulli-based importance sampling for variance reduction. The Bernoulli distribution can be used as a biased distribution for importance sampling Monte-Carlo simulation, with optimal IS Bernoulli distributions derived analytically to calculate the variance of corresponding IS estimators.
+
+Your specific query about "step position mathematical reasoning MC rollout success rate later steps" appears to be quite specialized. The results I found focus on Bernoulli estimation and variance reduction techniques, but may not directly address the exact combination of topics you're looking for. If you could clarify what specific domain or application context you're interested in (e.g., reinforcement learning, communications, Bayesian inference), I could perform a more targeted search.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "659faf39-20bf-4e3c-865f-0f988b36ffbf",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "4b4cf7eb-11ff-4807-a42f-e988eb955a77",
+  "toolUseResult": {
+    "query": "Bernoulli estimation variance reduction step position mathematical reasoning MC rollout success rate later steps",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UWYQYi3BSnbGAYq6NkrpUX",
+        "content": [
+          {
+            "title": "Minimum-Variance Importance-Sampling Bernoulli ...",
+            "url": "https://arxiv.org/pdf/1311.1372"
+          },
+          {
+            "title": "(PDF) Minimum-Variance Importance-Sampling Bernoulli Estimator for Fast Simulation of Linear Block Codes over Binary Symmetric Channels",
+            "url": "https://www.researchgate.net/publication/258279240_Minimum-Variance_Importance-Sampling_Bernoulli_Estimator_for_Fast_Simulation_of_Linear_Block_Codes_over_Binary_Symmetric_Channels"
+          },
+          {
+            "title": "Variance reduction for Markov chains with application to MCMC | Statistics and Computing | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11222-020-09931-z"
+          },
+          {
+            "title": "Variance reduction for Markov chains with application to MCMC",
+            "url": "https://arxiv.org/pdf/1910.03643"
+          },
+          {
+            "title": "Variance Reduction Technique - an overview | ScienceDirect Topics",
+            "url": "https://www.sciencedirect.com/topics/mathematics/variance-reduction-technique"
+          },
+          {
+            "title": "Discounted Beta--Bernoulli Reward Estimation for Sample-Efficient Reinforcement Learning with Verifiable Rewards",
+            "url": "https://arxiv.org/pdf/2603.18444"
+          },
+          {
+            "title": "Minimum-Variance Importance-Sampling Bernoulli Estimator for Fast Simulation of Linear Block Codes Over Binary Symmetric Channels - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2014ITWC...13..486R/abstract"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant information related to your query. The search returned results on Bernoulli estimation and variance reduction techniques, with some particularly relevant recent work on reinforcement learning.\n\nThe most closely matching result to your specific query appears to be recent research on variance reduction in reinforcement learning. Discounted Beta-Bernoulli (DBB) reward estimation leverages historical reward statistics for nonstationary distributions, and although biased, the resulting estimator exhibits reduced and stable variance and achieves lower mean squared error than standard point estimation. This approach appears to address challenges in sample efficiency when dealing with rollouts.\n\nAdditionally, the search found classical work on Bernoulli-based importance sampling for variance reduction. The Bernoulli distribution can be used as a biased distribution for importance sampling Monte-Carlo simulation, with optimal IS Bernoulli distributions derived analytically to calculate the variance of corresponding IS estimators.\n\nYour specific query about \"step position mathematical reasoning MC rollout success rate later steps\" appears to be quite specialized. The results I found focus on Bernoulli estimation and variance reduction techniques, but may not directly address the exact combination of topics you're looking for. If you could clarify what specific domain or application context you're interested in (e.g., reinforcement learning, communications, Bayesian inference), I could perform a more targeted search."
+    ],
+    "durationSeconds": 8.764935702000017,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "659faf39-20bf-4e3c-865f-0f988b36ffbf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54 · 2026-05-28T02:56:23.705Z_
+
+```json
+{
+  "parentUuid": "4b4cf7eb-11ff-4807-a42f-e988eb955a77",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "fbdef952-453e-435a-8ee9-273e73ea6bcb",
+  "timestamp": "2026-05-28T02:56:23.705Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-28T02:56:28.887Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JmXaf1fCibgGxir744ba8p`</summary>
+
+```json
+{
+  "query": "process reward model training data quality annotation bottleneck discriminative generative 2026 survey"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fbdef952-453e-435a-8ee9-273e73ea6bcb",
+  "isSidechain": false,
+  "requestId": "req_011CbUDQvypAeB74fVqeeAUK",
+  "type": "assistant",
+  "uuid": "b21f4543-7c58-4cb2-a888-c8a4276c1972",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014UsAKYuceVvRSgyJRrSbBF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 34094,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 914,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 34094,
+          "cache_creation_input_tokens": 914,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 914
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-28T02:56:37.376Z_
+
+<details><summary>↩ Tool result · `toolu_01JmXaf1fCibgGxir744ba8p`</summary>
+
+```text
+Web search results for query: "process reward model training data quality annotation bottleneck discriminative generative 2026 survey"
+
+Links: [{"title":"A Survey of Process Reward Models: From Outcome Signals to Process","url":"https://arxiv.org/pdf/2510.08049"},{"title":"Process Reward Models: Step-Level Feedback for LLMs","url":"https://www.emergentmind.com/topics/process-reward-models-prm"},{"title":"Process Reward Models That Think | OpenReview","url":"https://openreview.net/forum?id=V727xqBYIW"},{"title":"Process-supervised Reward Models (PRMs)","url":"https://www.emergentmind.com/topics/process-supervised-reward-models-prm"},{"title":"Fake it till You Make it: Reward Modeling as Discriminative Prediction","url":"https://arxiv.org/pdf/2506.13846"},{"title":"Efficient Process Reward Model Training via Active Learning","url":"https://arxiv.org/pdf/2504.10559"},{"title":"Process Reward Models That Think","url":"https://arxiv.org/pdf/2504.16828"},{"title":"[2504.16828] Process Reward Models That Think - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2504.16828"}]
+
+I found comprehensive search results on process reward models. Here's what the current research reveals:
+
+## Data Quality and Annotation Bottlenecks
+
+The main challenge in training Process Reward Models (PRMs) lies in obtaining fine-grained step-level annotations, which remain prohibitively expensive. Training discriminative PRMs requires access to process labels, i.e., step-level annotations, which either require extensive human annotation, gold step-by-step solutions, or compute-intensive rollouts.
+
+## Addressing the Annotation Bottleneck
+
+Recent approaches have emerged to tackle this challenge:
+
+- Step boundaries and step types are carefully designed, often leveraging domain expertise for optimal granularity or by merging steps in a coarse-to-fine regime to address redundancy.
+
+- Active Learning reduces labeling costs while focusing supervision on challenging or ambiguous samples.
+
+- Data-efficient strategies such as active learning, entropy-guided selection, and consistency filtering have dramatically reduced the barrier to large-scale process supervision, with methods demonstrating an order of magnitude reduction in requisite labeling.
+
+## Discriminative vs. Generative Approaches
+
+ThinkPRM, trained on 8K process labels or 1K synthetic examples, outperforms discriminative PRMs trained on about 100x more data. Generative PRMs function as verbalized step-wise reward models that verify every step in the solution by generating a verification chain-of-thought, requiring orders of magnitude fewer process labels than discriminative PRMs.
+
+However, PRM training remains sensitive to label quality, domain alignment, and overfitting to synthetic or LLM-generated errors.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b21f4543-7c58-4cb2-a888-c8a4276c1972",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "bcbfbf80-be87-4912-a4bd-e20c18cc3e34",
+  "toolUseResult": {
+    "query": "process reward model training data quality annotation bottleneck discriminative generative 2026 survey",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01An43hTTHUT2E4DS6J5RFcH",
+        "content": [
+          {
+            "title": "A Survey of Process Reward Models: From Outcome Signals to Process",
+            "url": "https://arxiv.org/pdf/2510.08049"
+          },
+          {
+            "title": "Process Reward Models: Step-Level Feedback for LLMs",
+            "url": "https://www.emergentmind.com/topics/process-reward-models-prm"
+          },
+          {
+            "title": "Process Reward Models That Think | OpenReview",
+            "url": "https://openreview.net/forum?id=V727xqBYIW"
+          },
+          {
+            "title": "Process-supervised Reward Models (PRMs)",
+            "url": "https://www.emergentmind.com/topics/process-supervised-reward-models-prm"
+          },
+          {
+            "title": "Fake it till You Make it: Reward Modeling as Discriminative Prediction",
+            "url": "https://arxiv.org/pdf/2506.13846"
+          },
+          {
+            "title": "Efficient Process Reward Model Training via Active Learning",
+            "url": "https://arxiv.org/pdf/2504.10559"
+          },
+          {
+            "title": "Process Reward Models That Think",
+            "url": "https://arxiv.org/pdf/2504.16828"
+          },
+          {
+            "title": "[2504.16828] Process Reward Models That Think - ar5iv - arXiv",
+            "url": "https://ar5iv.labs.arxiv.org/html/2504.16828"
+          }
+        ]
+      },
+      "I found comprehensive search results on process reward models. Here's what the current research reveals:\n\n## Data Quality and Annotation Bottlenecks\n\nThe main challenge in training Process Reward Models (PRMs) lies in obtaining fine-grained step-level annotations, which remain prohibitively expensive. Training discriminative PRMs requires access to process labels, i.e., step-level annotations, which either require extensive human annotation, gold step-by-step solutions, or compute-intensive rollouts.\n\n## Addressing the Annotation Bottleneck\n\nRecent approaches have emerged to tackle this challenge:\n\n- Step boundaries and step types are carefully designed, often leveraging domain expertise for optimal granularity or by merging steps in a coarse-to-fine regime to address redundancy.\n\n- Active Learning reduces labeling costs while focusing supervision on challenging or ambiguous samples.\n\n- Data-efficient strategies such as active learning, entropy-guided selection, and consistency filtering have dramatically reduced the barrier to large-scale process supervision, with methods demonstrating an order of magnitude reduction in requisite labeling.\n\n## Discriminative vs. Generative Approaches\n\nThinkPRM, trained on 8K process labels or 1K synthetic examples, outperforms discriminative PRMs trained on about 100x more data. Generative PRMs function as verbalized step-wise reward models that verify every step in the solution by generating a verification chain-of-thought, requiring orders of magnitude fewer process labels than discriminative PRMs.\n\nHowever, PRM training remains sensitive to label quality, domain alignment, and overfitting to synthetic or LLM-generated errors."
+    ],
+    "durationSeconds": 8.48299188300001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b21f4543-7c58-4cb2-a888-c8a4276c1972",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-28T02:56:41.536Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016ugg22YXAsakjKQiXBhEVh`</summary>
+
+```json
+{
+  "query": "\"sufficient conditions\" MC estimation quality step position \"process reward\" OR \"reward model\" theoretical analysis"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bcbfbf80-be87-4912-a4bd-e20c18cc3e34",
+  "isSidechain": false,
+  "requestId": "req_011CbUDRwNAPHhKuoeHJ8HE4",
+  "type": "assistant",
+  "uuid": "274c554b-c7bf-4de6-ad7a-9dbf40b3c16e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NE5qhSkuFhqJ6f8VSRKk9T",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 787,
+      "cache_read_input_tokens": 35008,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 787,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 35008,
+          "cache_creation_input_tokens": 787,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 787
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-28T02:56:47.935Z_
+
+<details><summary>↩ Tool result · `toolu_016ugg22YXAsakjKQiXBhEVh`</summary>
+
+```text
+Web search results for query: ""sufficient conditions" MC estimation quality step position "process reward" OR "reward model" theoretical analysis"
+
+Links: [{"title":"Process Reward Model with Q-Value Rankings","url":"https://arxiv.org/html/2410.11287v1"},{"title":"Process Reward Model in Decision-Making","url":"https://www.emergentmind.com/topics/process-reward-model"},{"title":"process reward model with qvalue rankings","url":"https://arxiv.org/pdf/2410.11287"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=Process+Reward+Models+%28PRMs%29"},{"title":"The Lessons of Developing Process Reward Models in Mathematical Reasoning","url":"https://arxiv.org/pdf/2501.07301"},{"title":"SCAN: Self-Denoising Monte Carlo Annotation for Robust Process Reward Learning","url":"https://arxiv.org/pdf/2509.16548"},{"title":"Towards Robust Process Reward Modeling via Noise-aware Learning","url":"https://arxiv.org/pdf/2601.12748"}]
+
+The search results show several relevant findings about Monte Carlo (MC) estimation and process reward models (PRMs):
+
+**Key Findings:**
+
+Monte Carlo (MC) estimation-based data synthesis for PRMs typically yields inferior performance and generalization compared to LLM-as-a-judge and human annotation methods.
+
+MC estimation relies on completion models to evaluate current-step correctness, which can generate correct answers from incorrect steps or incorrect answers from correct steps, leading to inaccurate step verification.
+
+**Theoretical Analysis:**
+
+Under optimal conditions, PQM orderings of stepwise Q-values yield necessary and sufficient assignments for achieving correct solutions, generalizing the classic PRM as a limiting case when all step-level continuations are deterministic.
+
+**Addressing MC Estimation Quality:**
+
+Research has proposed solutions to improve MC estimation quality: Self-Denoising Monte Carlo Annotation (SCAN) is an efficient data synthesis and noise-tolerant learning framework where even lightweight models can produce high-quality annotations through a self-denoising strategy.
+
+Additionally, there is a fundamental conflict between MC estimation and process rewards due to label noise, as the estimated label depends on the future behavior of the sampling policy rather than the intrinsic correctness of the step.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "274c554b-c7bf-4de6-ad7a-9dbf40b3c16e",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "2f41e880-a8b0-4946-9968-3200716220f2",
+  "toolUseResult": {
+    "query": "\"sufficient conditions\" MC estimation quality step position \"process reward\" OR \"reward model\" theoretical analysis",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016JCvtAERSA1BgxjMSLTSYk",
+        "content": [
+          {
+            "title": "Process Reward Model with Q-Value Rankings",
+            "url": "https://arxiv.org/html/2410.11287v1"
+          },
+          {
+            "title": "Process Reward Model in Decision-Making",
+            "url": "https://www.emergentmind.com/topics/process-reward-model"
+          },
+          {
+            "title": "process reward model with qvalue rankings",
+            "url": "https://arxiv.org/pdf/2410.11287"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=Process+Reward+Models+%28PRMs%29"
+          },
+          {
+            "title": "The Lessons of Developing Process Reward Models in Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2501.07301"
+          },
+          {
+            "title": "SCAN: Self-Denoising Monte Carlo Annotation for Robust Process Reward Learning",
+            "url": "https://arxiv.org/pdf/2509.16548"
+          },
+          {
+            "title": "Towards Robust Process Reward Modeling via Noise-aware Learning",
+            "url": "https://arxiv.org/pdf/2601.12748"
+          }
+        ]
+      },
+      "The search results show several relevant findings about Monte Carlo (MC) estimation and process reward models (PRMs):\n\n**Key Findings:**\n\nMonte Carlo (MC) estimation-based data synthesis for PRMs typically yields inferior performance and generalization compared to LLM-as-a-judge and human annotation methods.\n\nMC estimation relies on completion models to evaluate current-step correctness, which can generate correct answers from incorrect steps or incorrect answers from correct steps, leading to inaccurate step verification.\n\n**Theoretical Analysis:**\n\nUnder optimal conditions, PQM orderings of stepwise Q-values yield necessary and sufficient assignments for achieving correct solutions, generalizing the classic PRM as a limiting case when all step-level continuations are deterministic.\n\n**Addressing MC Estimation Quality:**\n\nResearch has proposed solutions to improve MC estimation quality: Self-Denoising Monte Carlo Annotation (SCAN) is an efficient data synthesis and noise-tolerant learning framework where even lightweight models can produce high-quality annotations through a self-denoising strategy.\n\nAdditionally, there is a fundamental conflict between MC estimation and process rewards due to label noise, as the estimated label depends on the future behavior of the sampling policy rather than the intrinsic correctness of the step."
+    ],
+    "durationSeconds": 6.394785969000019,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "274c554b-c7bf-4de6-ad7a-9dbf40b3c16e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-28T02:56:50.855Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HqKQz8fVihGJ8HabnmDpAC`</summary>
+
+```json
+{
+  "query": "ComMCS compound Monte Carlo step variance reduction theorem position AAAI 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f41e880-a8b0-4946-9968-3200716220f2",
+  "isSidechain": false,
+  "requestId": "req_011CbUDSiW2bPJz2CSDCbEqs",
+  "type": "assistant",
+  "uuid": "b38362ad-256c-4c14-bd98-1b8d75140c9d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuYzhr56otaufkKcczKWEA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 648,
+      "cache_read_input_tokens": 35795,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 648,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 35795,
+          "cache_creation_input_tokens": 648,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 648
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-28T02:56:56.300Z_
+
+<details><summary>↩ Tool result · `toolu_01HqKQz8fVihGJ8HabnmDpAC`</summary>
+
+```text
+Web search results for query: "ComMCS compound Monte Carlo step variance reduction theorem position AAAI 2026"
+
+Links: [{"title":"On the Theory of Variance Reduction for Stochastic Gradient Monte Carlo","url":"http://proceedings.mlr.press/v80/chatterji18a/chatterji18a-supp.pdf"},{"title":"On the Theory of Variance Reduction for Stochastic Gradient Monte Carlo","url":"https://arxiv.org/pdf/1802.05431"},{"title":"Variance Reduction in Monte Carlo Counterfactual Regret Minimization (VR-MCCFR) for Extensive Form Games Using Baselines | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://aaai.org/ojs/index.php/AAAI/article/view/4048"},{"title":"Variance reduction for Markov chains with application to MCMC","url":"https://arxiv.org/pdf/1910.03643"},{"title":"Monte Carlo integration of $C^r$ functions with adaptive variance   reduction: an asymptotic analysis","url":"https://arxiv.org/pdf/2206.03125"},{"title":"Knots and variance ordering of sequential Monte Carlo algorithms","url":"https://arxiv.org/html/2510.01901"},{"title":"Randomized Dimension Reduction for Monte Carlo Simulations","url":"https://arxiv.org/pdf/1708.07466"},{"title":"Control functionals for Monte Carlo integration","url":"https://arxiv.org/pdf/1410.2392"}]
+
+The search results do not contain specific information about "ComMCS compound Monte Carlo step variance reduction theorem position AAAI 2026." The results show various papers on variance reduction techniques in Monte Carlo and MCMC methods, as well as a 2019 AAAI paper on variance reduction, but none of them match the specific paper or conference submission you're asking about.
+
+This could be because:
+1. The paper may be very recent or a 2026 submission that hasn't been widely indexed yet
+2. The exact terminology might be slightly different than what was searched
+3. It may be a pre-print or working paper not yet published
+
+If you're looking for more information about this specific work, you might want to:
+- Check the AAAI 2026 conference proceedings directly
+- Search for the authors' names if you know them
+- Try searching on arXiv or other preprint servers with slightly different terminology
+
+Would you like me to try a different search with alternative keywords?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b38362ad-256c-4c14-bd98-1b8d75140c9d",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "a347e5f0-3e51-4623-ba58-5b5adc2dc673",
+  "toolUseResult": {
+    "query": "ComMCS compound Monte Carlo step variance reduction theorem position AAAI 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011U6p4VRZo2MpeF1KVDpzGh",
+        "content": [
+          {
+            "title": "On the Theory of Variance Reduction for Stochastic Gradient Monte Carlo",
+            "url": "http://proceedings.mlr.press/v80/chatterji18a/chatterji18a-supp.pdf"
+          },
+          {
+            "title": "On the Theory of Variance Reduction for Stochastic Gradient Monte Carlo",
+            "url": "https://arxiv.org/pdf/1802.05431"
+          },
+          {
+            "title": "Variance Reduction in Monte Carlo Counterfactual Regret Minimization (VR-MCCFR) for Extensive Form Games Using Baselines | Proceedings of the AAAI Conference on Artificial Intelligence",
+            "url": "https://aaai.org/ojs/index.php/AAAI/article/view/4048"
+          },
+          {
+            "title": "Variance reduction for Markov chains with application to MCMC",
+            "url": "https://arxiv.org/pdf/1910.03643"
+          },
+          {
+            "title": "Monte Carlo integration of $C^r$ functions with adaptive variance   reduction: an asymptotic analysis",
+            "url": "https://arxiv.org/pdf/2206.03125"
+          },
+          {
+            "title": "Knots and variance ordering of sequential Monte Carlo algorithms",
+            "url": "https://arxiv.org/html/2510.01901"
+          },
+          {
+            "title": "Randomized Dimension Reduction for Monte Carlo Simulations",
+            "url": "https://arxiv.org/pdf/1708.07466"
+          },
+          {
+            "title": "Control functionals for Monte Carlo integration",
+            "url": "https://arxiv.org/pdf/1410.2392"
+          }
+        ]
+      },
+      "The search results do not contain specific information about \"ComMCS compound Monte Carlo step variance reduction theorem position AAAI 2026.\" The results show various papers on variance reduction techniques in Monte Carlo and MCMC methods, as well as a 2019 AAAI paper on variance reduction, but none of them match the specific paper or conference submission you're asking about.\n\nThis could be because:\n1. The paper may be very recent or a 2026 submission that hasn't been widely indexed yet\n2. The exact terminology might be slightly different than what was searched\n3. It may be a pre-print or working paper not yet published\n\nIf you're looking for more information about this specific work, you might want to:\n- Check the AAAI 2026 conference proceedings directly\n- Search for the authors' names if you know them\n- Try searching on arXiv or other preprint servers with slightly different terminology\n\nWould you like me to try a different search with alternative keywords?"
+    ],
+    "durationSeconds": 5.441518081000017,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b38362ad-256c-4c14-bd98-1b8d75140c9d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"change_summary\": \"Major revision addressing 4 round-3 reviewer concerns plus st…",
+  "leafUuid": "a347e5f0-3e51-4623-ba58-5b5adc2dc673",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising process supervision research with novel hard-problem curriculum",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-28T02:56:58.658Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CkQ2W1nFtzMGSddMcmvmg8`</summary>
+
+```json
+{
+  "query": "ComMCS \"Improving Value-based Process Verifier\" \"Low-Cost Variance Reduction\" compounding estimates"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a347e5f0-3e51-4623-ba58-5b5adc2dc673",
+  "isSidechain": false,
+  "requestId": "req_011CbUDTLD7WGhz3Dvi3Tnsd",
+  "type": "assistant",
+  "uuid": "dfdd1e78-0d8d-41ad-8d58-444dd44a7782",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Q9tR5PXHVzAqwUx86eqd9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 694,
+      "cache_read_input_tokens": 36443,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 694,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 36443,
+          "cache_creation_input_tokens": 694,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 694
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-28T02:57:08.624Z_
+
+<details><summary>↩ Tool result · `toolu_01CkQ2W1nFtzMGSddMcmvmg8`</summary>
+
+```text
+Web search results for query: "ComMCS "Improving Value-based Process Verifier" "Low-Cost Variance Reduction" compounding estimates"
+
+Links: [{"title":"[2508.10539] Improving Value-based Process Verifier via Low-Cost Variance Reduction","url":"https://arxiv.org/abs/2508.10539"},{"title":"Improving Value-based Process Verifier via Low-Cost Variance Reduction","url":"https://ojs.aaai.org/index.php/AAAI/article/download/40600/44561"},{"title":"Improving Value-based Process Verifier via Low-Cost Variance Reduction","url":"https://arxiv.org/pdf/2508.10539"},{"title":"Improving Value-based Process Verifier via Structural Prior Injection","url":"https://arxiv.org/html/2502.17498"},{"title":"Improving Value-based Process Verifier via Structural Prior Injection","url":"https://arxiv.org/pdf/2502.17498"},{"title":"[2502.17498] Improving Value-based Process Verifier via Structural Prior Injection","url":"https://arxiv.org/abs/2502.17498"}]
+
+I found the paper you were looking for! Here are the key details:
+
+## "Improving Value-based Process Verifier via Low-Cost Variance Reduction"
+
+Value-based process verifiers estimate the probability of a partial reasoning chain leading to a correct solution, and are a promising approach for improving reasoning. However, their effectiveness is often hindered by estimation error in their training annotations, a consequence of the limited number of Monte Carlo (MC) samples feasible due to the high cost of LLM inference.
+
+### The ComMCS Method
+
+The paper proposes the Compound Monte Carlo Sampling (ComMCS) method, which constructs an unbiased estimator by linearly combining the MC estimators from the current and subsequent steps. The authors identify that the estimation error primarily arises from high variance rather than bias, and the MC estimator is a Minimum Variance Unbiased Estimator (MVUE).
+
+### Key Results
+
+ComMCS outperforms regression-based optimization method by 2.8 points and the non-variance-reduced baseline by 2.2 points on MATH-500 in Best-of-32 sampling experiments. The method is validated empirically on the MATH-500 and GSM8K benchmarks.
+
+The paper is available on arXiv (2508.10539) and was last updated in January 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dfdd1e78-0d8d-41ad-8d58-444dd44a7782",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "77cd9991-5972-48c7-a70a-a29c23999d9c",
+  "toolUseResult": {
+    "query": "ComMCS \"Improving Value-based Process Verifier\" \"Low-Cost Variance Reduction\" compounding estimates",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018VtuNYX2mMidxwiexXsRQv",
+        "content": [
+          {
+            "title": "[2508.10539] Improving Value-based Process Verifier via Low-Cost Variance Reduction",
+            "url": "https://arxiv.org/abs/2508.10539"
+          },
+          {
+            "title": "Improving Value-based Process Verifier via Low-Cost Variance Reduction",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/download/40600/44561"
+          },
+          {
+            "title": "Improving Value-based Process Verifier via Low-Cost Variance Reduction",
+            "url": "https://arxiv.org/pdf/2508.10539"
+          },
+          {
+            "title": "Improving Value-based Process Verifier via Structural Prior Injection",
+            "url": "https://arxiv.org/html/2502.17498"
+          },
+          {
+            "title": "Improving Value-based Process Verifier via Structural Prior Injection",
+            "url": "https://arxiv.org/pdf/2502.17498"
+          },
+          {
+            "title": "[2502.17498] Improving Value-based Process Verifier via Structural Prior Injection",
+            "url": "https://arxiv.org/abs/2502.17498"
+          }
+        ]
+      },
+      "I found the paper you were looking for! Here are the key details:\n\n## \"Improving Value-based Process Verifier via Low-Cost Variance Reduction\"\n\nValue-based process verifiers estimate the probability of a partial reasoning chain leading to a correct solution, and are a promising approach for improving reasoning. However, their effectiveness is often hindered by estimation error in their training annotations, a consequence of the limited number of Monte Carlo (MC) samples feasible due to the high cost of LLM inference.\n\n### The ComMCS Method\n\nThe paper proposes the Compound Monte Carlo Sampling (ComMCS) method, which constructs an unbiased estimator by linearly combining the MC estimators from the current and subsequent steps. The authors identify that the estimation error primarily arises from high variance rather than bias, and the MC estimator is a Minimum Variance Unbiased Estimator (MVUE).\n\n### Key Results\n\nComMCS outperforms regression-based optimization method by 2.8 points and the non-variance-reduced baseline by 2.2 points on MATH-500 in Best-of-32 sampling experiments. The method is validated empirically on the MATH-500 and GSM8K benchmarks.\n\nThe paper is available on arXiv (2508.10539) and was last updated in January 2026."
+    ],
+    "durationSeconds": 9.959461729999981,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "dfdd1e78-0d8d-41ad-8d58-444dd44a7782",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-28T02:57:11.017Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JL6hEJec1ap6hN1Hwc1CER`</summary>
+
+```json
+{
+  "query": "SPRO \"3.4x training efficiency\" process reward implicit 2025 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77cd9991-5972-48c7-a70a-a29c23999d9c",
+  "isSidechain": false,
+  "requestId": "req_011CbUDUExdL95GRBkkWfutD",
+  "type": "assistant",
+  "uuid": "e31b74b3-b644-4787-b7be-fc66a31de512",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dxxmn64YvMUWeWkbgoMgNt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 700,
+      "cache_read_input_tokens": 37137,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 700,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 37137,
+          "cache_creation_input_tokens": 700,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 700
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-28T02:57:18.217Z_
+
+<details><summary>↩ Tool result · `toolu_01JL6hEJec1ap6hN1Hwc1CER`</summary>
+
+```text
+Web search results for query: "SPRO "3.4x training efficiency" process reward implicit 2025 arXiv"
+
+Links: [{"title":"Self-Guided Process Reward Optimization with Redefined Step-wise Advantage for Process Reinforcement Learning","url":"https://arxiv.org/html/2507.01551v2"},{"title":"[2507.01551] Self-Guided Process Reward Optimization with Redefined Step-wise Advantage for Process Reinforcement Learning","url":"https://arxiv.org/abs/2507.01551"},{"title":"[2507.01551v2] Self-Guided Process Reward Optimization with Redefined Step-wise Advantage for Process Reinforcement Learning","url":"https://arxiv.org/abs/2507.01551v2"},{"title":"[2507.01551v1] Self-Guided Process Reward Optimization with Masked Step Advantage for Process Reinforcement Learning","url":"https://arxiv.org/abs/2507.01551v1"},{"title":"Self-Guided Process Reward Optimization with Masked Step Advantage for Process Reinforcement Learning","url":"https://arxiv.org/html/2507.01551v1"},{"title":"arXiv:2507.01551v2 [cs.LG] 3 Jul 2025 Preprint.","url":"https://openreview.net/pdf?id=YRytEkDTU8"},{"title":"arXiv:2507.01551v2 [cs.LG] 3 Jul 2025 Preprint.","url":"https://arxiv.org/pdf/2507.01551"},{"title":"[2502.01456] Process Reinforcement through Implicit Rewards","url":"https://arxiv.org/abs/2502.01456"},{"title":"Process Reinforcement through Implicit Rewards","url":"https://arxiv.org/html/2502.01456v2"}]
+
+Based on the search results, I found information about SPRO and process reward optimization:
+
+## SPRO: Self-Guided Process Reward Optimization
+
+SPRO is a novel framework that enables process-aware reinforcement learning through two key innovations: (1) demonstrating that process rewards can be derived intrinsically from the policy model itself, and (2) introducing well-defined cumulative process rewards and Masked Step Advantage (MSA) for rigorous step-wise action advantage estimation within shared-prompt sampling groups.
+
+### Key Results
+
+SPRO outperforms vanilla GRPO with 3.4x higher training efficiency and a 17.5% test accuracy improvement. SPRO maintains stable and elevated policy entropy throughout training while reducing the average response length by approximately 1/3, evidencing sufficient exploration and prevention of reward hacking.
+
+### How It Works
+
+The Cumulative Process Reward (CPR) implicitly aggregates the process rewards from all preceding steps in the prefix sequence as a surrogate for process rewards, enabling more accurate expected return estimation at each timestep.
+
+The paper (arXiv:2507.01551) was published in July 2025 and represents an advancement in process reinforcement learning for large language models by eliminating the need for external process reward models while maintaining computational efficiency.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e31b74b3-b644-4787-b7be-fc66a31de512",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "51f9a140-278c-4fd5-a791-d19fe280a8bc",
+  "toolUseResult": {
+    "query": "SPRO \"3.4x training efficiency\" process reward implicit 2025 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015QhrRY9w3jUEXjjkzBEgGF",
+        "content": [
+          {
+            "title": "Self-Guided Process Reward Optimization with Redefined Step-wise Advantage for Process Reinforcement Learning",
+            "url": "https://arxiv.org/html/2507.01551v2"
+          },
+          {
+            "title": "[2507.01551] Self-Guided Process Reward Optimization with Redefined Step-wise Advantage for Process Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2507.01551"
+          },
+          {
+            "title": "[2507.01551v2] Self-Guided Process Reward Optimization with Redefined Step-wise Advantage for Process Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2507.01551v2"
+          },
+          {
+            "title": "[2507.01551v1] Self-Guided Process Reward Optimization with Masked Step Advantage for Process Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2507.01551v1"
+          },
+          {
+            "title": "Self-Guided Process Reward Optimization with Masked Step Advantage for Process Reinforcement Learning",
+            "url": "https://arxiv.org/html/2507.01551v1"
+          },
+          {
+            "title": "arXiv:2507.01551v2 [cs.LG] 3 Jul 2025 Preprint.",
+            "url": "https://openreview.net/pdf?id=YRytEkDTU8"
+          },
+          {
+            "title": "arXiv:2507.01551v2 [cs.LG] 3 Jul 2025 Preprint.",
+            "url": "https://arxiv.org/pdf/2507.01551"
+          },
+          {
+            "title": "[2502.01456] Process Reinforcement through Implicit Rewards",
+            "url": "https://arxiv.org/abs/2502.01456"
+          },
+          {
+            "title": "Process Reinforcement through Implicit Rewards",
+            "url": "https://arxiv.org/html/2502.01456v2"
+          }
+        ]
+      },
+      "Based on the search results, I found information about SPRO and process reward optimization:\n\n## SPRO: Self-Guided Process Reward Optimization\n\nSPRO is a novel framework that enables process-aware reinforcement learning through two key innovations: (1) demonstrating that process rewards can be derived intrinsically from the policy model itself, and (2) introducing well-defined cumulative process rewards and Masked Step Advantage (MSA) for rigorous step-wise action advantage estimation within shared-prompt sampling groups.\n\n### Key Results\n\nSPRO outperforms vanilla GRPO with 3.4x higher training efficiency and a 17.5% test accuracy improvement. SPRO maintains stable and elevated policy entropy throughout training while reducing the average response length by approximately 1/3, evidencing sufficient exploration and prevention of reward hacking.\n\n### How It Works\n\nThe Cumulative Process Reward (CPR) implicitly aggregates the process rewards from all preceding steps in the prefix sequence as a surrogate for process rewards, enabling more accurate expected return estimation at each timestep.\n\nThe paper (arXiv:2507.01551) was published in July 2025 and represents an advancement in process reinforcement learning for large language models by eliminating the need for external process reward models while maintaining computational efficiency."
+    ],
+    "durationSeconds": 7.19508272799998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e31b74b3-b644-4787-b7be-fc66a31de512",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-28T02:57:20.946Z_
+
+Now let me do deeper research on how to strengthen the theoretical contribution and the AMCS+RCB combination angle.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51f9a140-278c-4fd5-a791-d19fe280a8bc",
+  "isSidechain": false,
+  "requestId": "req_011CbUDUwtVke6wEvZDE6Gfd",
+  "type": "assistant",
+  "uuid": "f73610b2-e6ee-40e2-a024-93e916ae28eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019yV7v5R3EPNZG7cr1iQXEX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 853,
+      "cache_read_input_tokens": 37837,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 853,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 37837,
+          "cache_creation_input_tokens": 853,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 853
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-28T02:57:21.691Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0147izQkVQEu3qwRNpPh5kea`</summary>
+
+```json
+{
+  "query": "MC rollout completion probability step position difficulty mathematical reasoning empirical analysis 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f73610b2-e6ee-40e2-a024-93e916ae28eb",
+  "isSidechain": false,
+  "requestId": "req_011CbUDUwtVke6wEvZDE6Gfd",
+  "type": "assistant",
+  "uuid": "589684be-214a-4155-90f7-7e90e86bd9dd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019yV7v5R3EPNZG7cr1iQXEX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 853,
+      "cache_read_input_tokens": 37837,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 853,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 37837,
+          "cache_creation_input_tokens": 853,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 853
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-28T02:57:28.758Z_
+
+<details><summary>↩ Tool result · `toolu_0147izQkVQEu3qwRNpPh5kea`</summary>
+
+```text
+Web search results for query: "MC rollout completion probability step position difficulty mathematical reasoning empirical analysis 2025 2026"
+
+Links: [{"title":"The Lessons of Developing Process Reward Models in Mathematical Reasoning","url":"https://arxiv.org/pdf/2501.07301"},{"title":"MC-NEST: Enhancing Mathematical Reasoning in Large Language Models leveraging a Monte Carlo Self-Refine Tree","url":"https://arxiv.org/pdf/2411.15645"},{"title":"2025 AMC 8 Problem Analysis: Your Guide to 2026 Success - Pengi AI","url":"https://pengi.ai/blog/2025-amc-8-problem-analysis-your-guide-2026-success"},{"title":"Advancing LLM Reasoning Capabilities via Adaptive ...","url":"https://aclanthology.org/2025.emnlp-main.336.pdf"},{"title":"2025 AMC 8 Problem Analysis: Your Guide to 2026 Success - Math Competitions | Think Academy US","url":"https://www.thethinkacademy.com/blog/amc-8-problem-analysis-your-guide-to-math-competition-success/"},{"title":"Evaluating Step-by-step Reasoning Traces: A Survey","url":"https://aclanthology.org/2025.findings-emnlp.94.pdf"},{"title":"Can I Have Your Order? Monte-Carlo Tree Search for Slot Filling Ordering in Diffusion Language Models","url":"https://arxiv.org/pdf/2602.12586"}]
+
+Based on the web search results, I found several relevant papers on Monte Carlo methods and mathematical reasoning from 2025-2026:
+
+GPT-4.0, when paired with MC-NEST at a rollout of 16 and utilizing an Importance Sampling Policy, achieves an overall improvement of 39% in accuracy in mathematical reasoning tasks. This advancement highlights MC-NEST's superior adaptability and decision-making capacity in intricate, multi-step reasoning tasks.
+
+Additionally, MC estimation relies on completion models to evaluate current step correctness, which can generate correct answers from incorrect steps or incorrect answers from correct steps, leading to inaccurate step verification. Researchers have developed solutions to this problem: A consensus filtering mechanism effectively integrates MC estimation with LLM-as-a-judge and advocates a more comprehensive evaluation framework that combines response-level and step-level metrics.
+
+The search results also reveal recent work on step-by-step reasoning evaluation. McDiffuSE consistently outperforms current MDMs across six reasoning benchmarks, achieving absolute accuracy gains of 19.45% on MBPP and 4.9% on MATH500.
+
+These findings demonstrate active research into Monte Carlo rollout methods for improving mathematical reasoning in language models during 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "589684be-214a-4155-90f7-7e90e86bd9dd",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "adb10a9d-6e93-422a-b9cb-7d1c383d248e",
+  "toolUseResult": {
+    "query": "MC rollout completion probability step position difficulty mathematical reasoning empirical analysis 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01F2yshmxPaHyiXQ8LDKQNdB",
+        "content": [
+          {
+            "title": "The Lessons of Developing Process Reward Models in Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2501.07301"
+          },
+          {
+            "title": "MC-NEST: Enhancing Mathematical Reasoning in Large Language Models leveraging a Monte Carlo Self-Refine Tree",
+            "url": "https://arxiv.org/pdf/2411.15645"
+          },
+          {
+            "title": "2025 AMC 8 Problem Analysis: Your Guide to 2026 Success - Pengi AI",
+            "url": "https://pengi.ai/blog/2025-amc-8-problem-analysis-your-guide-2026-success"
+          },
+          {
+            "title": "Advancing LLM Reasoning Capabilities via Adaptive ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.336.pdf"
+          },
+          {
+            "title": "2025 AMC 8 Problem Analysis: Your Guide to 2026 Success - Math Competitions | Think Academy US",
+            "url": "https://www.thethinkacademy.com/blog/amc-8-problem-analysis-your-guide-to-math-competition-success/"
+          },
+          {
+            "title": "Evaluating Step-by-step Reasoning Traces: A Survey",
+            "url": "https://aclanthology.org/2025.findings-emnlp.94.pdf"
+          },
+          {
+            "title": "Can I Have Your Order? Monte-Carlo Tree Search for Slot Filling Ordering in Diffusion Language Models",
+            "url": "https://arxiv.org/pdf/2602.12586"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers on Monte Carlo methods and mathematical reasoning from 2025-2026:\n\nGPT-4.0, when paired with MC-NEST at a rollout of 16 and utilizing an Importance Sampling Policy, achieves an overall improvement of 39% in accuracy in mathematical reasoning tasks. This advancement highlights MC-NEST's superior adaptability and decision-making capacity in intricate, multi-step reasoning tasks.\n\nAdditionally, MC estimation relies on completion models to evaluate current step correctness, which can generate correct answers from incorrect steps or incorrect answers from correct steps, leading to inaccurate step verification. Researchers have developed solutions to this problem: A consensus filtering mechanism effectively integrates MC estimation with LLM-as-a-judge and advocates a more comprehensive evaluation framework that combines response-level and step-level metrics.\n\nThe search results also reveal recent work on step-by-step reasoning evaluation. McDiffuSE consistently outperforms current MDMs across six reasoning benchmarks, achieving absolute accuracy gains of 19.45% on MBPP and 4.9% on MATH500.\n\nThese findings demonstrate active research into Monte Carlo rollout methods for improving mathematical reasoning in language models during 2025-2026."
+    ],
+    "durationSeconds": 7.062407338999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "589684be-214a-4155-90f7-7e90e86bd9dd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-28T02:57:31.256Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AqnBp5L2n8AoPHs9ZkkMcu`</summary>
+
+```json
+{
+  "query": "\"position dependent\" OR \"step position\" success rate rollout completion process reward model annotation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "adb10a9d-6e93-422a-b9cb-7d1c383d248e",
+  "isSidechain": false,
+  "requestId": "req_011CbUDVj1sSwFX24aB2bsUJ",
+  "type": "assistant",
+  "uuid": "8e88c6e9-5c10-4e8e-8e85-f9865b8a8f7e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WrcTeCTPyA48WnG5gMhYyJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 779,
+      "cache_read_input_tokens": 38690,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 779,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 38690,
+          "cache_creation_input_tokens": 779,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 779
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-28T02:57:39.877Z_
+
+<details><summary>↩ Tool result · `toolu_01AqnBp5L2n8AoPHs9ZkkMcu`</summary>
+
+```text
+Web search results for query: ""position dependent" OR "step position" success rate rollout completion process reward model annotation"
+
+Links: [{"title":"Discovering Process–Outcome Credit in Multi-Step LLM Reasoning","url":"https://arxiv.org/html/2602.01034"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=Process+Reward+Models+%28PRMs%29"},{"title":"SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation","url":"https://arxiv.org/pdf/2509.25358"},{"title":"Online Process Reward Leanring for Agentic Reinforcement Learning","url":"https://arxiv.org/html/2509.19199v1"},{"title":"Process Reward Model in Decision-Making","url":"https://www.emergentmind.com/topics/process-reward-model"},{"title":"Training Data Efficiency in Multimodal Process Reward Models","url":"https://arxiv.org/pdf/2602.04145"},{"title":"Robo-Dopamine: General Process Reward Modeling for High-Precision Robotic Manipulation","url":"https://arxiv.org/pdf/2512.23703"},{"title":"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress","url":"https://arxiv.org/html/2511.08325v1"},{"title":"FreePRM: Training Process Reward Models Without Ground Truth Process Labels","url":"https://arxiv.org/pdf/2506.03570"},{"title":"Process Reward Models - Stephen Diehl","url":"https://www.stephendiehl.com/posts/process_reward/"}]
+
+Based on the search results, I found several relevant papers and discussions related to process reward models, step-wise evaluation, success rates, and rollout completion processes. Here are the key findings:
+
+## Key Concepts Found:
+
+**Process Reward Models (PRMs)**: Process Reward Models (PRMs) aim to improve multi-step reasoning in Large Language Models (LLMs) by supervising intermediate steps and identifying errors.
+
+**Step-Level Annotation and Success Rates**: Research uses datasets where each reasoning step is annotated with an MC-estimated success rate from N=16 sampled continuations, with step labels binarized so that a step is labeled as positive if the MC score is greater than 0.
+
+**Position-Dependent Approaches**: Some models account for both the promise (probability of each step achieving the goal) and the progress (the interdependence between sequential steps). A key limitation of naive approaches is the disregard for temporal dependencies within solution trajectories—erroneous early steps may poison later stages, leading to suboptimal reward assignment because errors can propagate.
+
+**Rollout-Based Completion Processes**: A common methodology involves sampling multiple possible completions (around 16 per step) for each intermediate step in a trajectory, evaluating each completion, and labeling steps as positive if any completion reaches the correct final answer.
+
+**Online Process Reward Learning**: One approach trains an online PRM by reusing the same on-policy rollouts that are generated to update the agent's policy, using a DPO-style objective to convert trajectory-level preferences into dense, step-level rewards.
+
+The search results cover recent research on process reward modeling, including methods for handling position-dependent annotations and step-wise success rate estimation in multi-step reasoning tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8e88c6e9-5c10-4e8e-8e85-f9865b8a8f7e",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "7b87e64c-31ff-444f-8e20-c221e8037d02",
+  "toolUseResult": {
+    "query": "\"position dependent\" OR \"step position\" success rate rollout completion process reward model annotation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017HRDFx3ChEEhtzxne5AK9v",
+        "content": [
+          {
+            "title": "Discovering Process–Outcome Credit in Multi-Step LLM Reasoning",
+            "url": "https://arxiv.org/html/2602.01034"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=Process+Reward+Models+%28PRMs%29"
+          },
+          {
+            "title": "SARM: Stage-Aware Reward Modeling for Long Horizon Robot Manipulation",
+            "url": "https://arxiv.org/pdf/2509.25358"
+          },
+          {
+            "title": "Online Process Reward Leanring for Agentic Reinforcement Learning",
+            "url": "https://arxiv.org/html/2509.19199v1"
+          },
+          {
+            "title": "Process Reward Model in Decision-Making",
+            "url": "https://www.emergentmind.com/topics/process-reward-model"
+          },
+          {
+            "title": "Training Data Efficiency in Multimodal Process Reward Models",
+            "url": "https://arxiv.org/pdf/2602.04145"
+          },
+          {
+            "title": "Robo-Dopamine: General Process Reward Modeling for High-Precision Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2512.23703"
+          },
+          {
+            "title": "AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress",
+            "url": "https://arxiv.org/html/2511.08325v1"
+          },
+          {
+            "title": "FreePRM: Training Process Reward Models Without Ground Truth Process Labels",
+            "url": "https://arxiv.org/pdf/2506.03570"
+          },
+          {
+            "title": "Process Reward Models - Stephen Diehl",
+            "url": "https://www.stephendiehl.com/posts/process_reward/"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and discussions related to process reward models, step-wise evaluation, success rates, and rollout completion processes. Here are the key findings:\n\n## Key Concepts Found:\n\n**Process Reward Models (PRMs)**: Process Reward Models (PRMs) aim to improve multi-step reasoning in Large Language Models (LLMs) by supervising intermediate steps and identifying errors.\n\n**Step-Level Annotation and Success Rates**: Research uses datasets where each reasoning step is annotated with an MC-estimated success rate from N=16 sampled continuations, with step labels binarized so that a step is labeled as positive if the MC score is greater than 0.\n\n**Position-Dependent Approaches**: Some models account for both the promise (probability of each step achieving the goal) and the progress (the interdependence between sequential steps). A key limitation of naive approaches is the disregard for temporal dependencies within solution trajectories—erroneous early steps may poison later stages, leading to suboptimal reward assignment because errors can propagate.\n\n**Rollout-Based Completion Processes**: A common methodology involves sampling multiple possible completions (around 16 per step) for each intermediate step in a trajectory, evaluating each completion, and labeling steps as positive if any completion reaches the correct final answer.\n\n**Online Process Reward Learning**: One approach trains an online PRM by reusing the same on-policy rollouts that are generated to update the agent's policy, using a DPO-style objective to convert trajectory-level preferences into dense, step-level rewards.\n\nThe search results cover recent research on process reward modeling, including methods for handling position-dependent annotations and step-wise success rate estimation in multi-step reasoning tasks."
+    ],
+    "durationSeconds": 8.616876501999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8e88c6e9-5c10-4e8e-8e85-f9865b8a8f7e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-28T02:57:43.091Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GkgTnjyckEbM1obYbFJoGq`</summary>
+
+```json
+{
+  "query": "AMCS MathSearch-200K ProcessBench results OmniMATH discriminative PRM performance hard problems"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b87e64c-31ff-444f-8e20-c221e8037d02",
+  "isSidechain": false,
+  "requestId": "req_011CbUDWYa6Y48DVYoFJDKux",
+  "type": "assistant",
+  "uuid": "18e4ad0b-4adb-4ce0-9e4e-65ddac3c4261",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eju9iojfbKrwXMxpAy4iSe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 897,
+      "cache_read_input_tokens": 39469,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 39469,
+          "cache_creation_input_tokens": 897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"change_summary\": \"Major revision addressing 4 round-3 reviewer concerns plus st…",
+  "leafUuid": "18e4ad0b-4adb-4ce0-9e4e-65ddac3c4261",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising process supervision research with novel hard-problem curriculum",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-28T02:57:50.556Z_
+
+<details><summary>↩ Tool result · `toolu_01GkgTnjyckEbM1obYbFJoGq`</summary>
+
+```text
+Web search results for query: "AMCS MathSearch-200K ProcessBench results OmniMATH discriminative PRM performance hard problems"
+
+Links: [{"title":"From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision","url":"https://arxiv.org/html/2509.24351"},{"title":"From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision","url":"https://arxiv.org/pdf/2509.24351"},{"title":"Process Reward Models That Think","url":"https://arxiv.org/pdf/2504.16828"},{"title":"ProcessBench: Identifying Process Errors in Mathematical Reasoning","url":"https://arxiv.org/pdf/2412.06559"},{"title":"ProcessBench: Identifying Process Errors in Mathematical Reasoning","url":"https://www.researchgate.net/publication/394269497_ProcessBench_Identifying_Process_Errors_in_Mathematical_Reasoning"},{"title":"Papers Explained 368: ThinkPRM. ThinkPRM, a long CoT verifier… | by Ritvik Rastogi | Medium","url":"https://ritvik19.medium.com/papers-explained-368-thinkprm-0f530cc98ca4"}]
+
+Based on the web search results, here's what I found regarding AMCS, MathSearch-200K, ProcessBench results, OmniMATH, discriminative PRM performance, and hard problems:
+
+## AMCS and MathSearch-200K
+
+The Adaptive Monte Carlo Search (AMCS) framework reimagines the generation of process supervision data by shifting from fixed, static procedures to adaptive, dynamic search. AMCS was used to curate MathSearch-200K, a dataset comprising 200K annotated reasoning trajectories, which was then used to train a process reward model.
+
+## ProcessBench and OmniMATH Results
+
+The AMCS framework was tested on AIME 2024/2025, MATH, Olympiad-Bench, and Omni-MATH. Experimental results show that the combination of PRM-AMCS and GLM-4-9B consistently outperforms existing baselines, achieving 15.0%, 76.2%, 22.1%, and 19.0%, respectively.
+
+## Discriminative PRM Performance on Hard Problems
+
+Regarding discriminative PRM performance on hard problems, existing PRMs typically fail to generalize to more challenging math problems beyond GSM8K and MATH, underperforming both critic models and a PRM straightforwardly fine-tuned on the PRM800K dataset. Additionally, F1-scores are reported over the two most challenging subsets of ProcessBench: OlympiadBench and OmniMath, each comprising 1K problem-prefix pairs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "18e4ad0b-4adb-4ce0-9e4e-65ddac3c4261",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "656cf5eb-06f0-4dcd-bdd2-7146ddbdcea7",
+  "toolUseResult": {
+    "query": "AMCS MathSearch-200K ProcessBench results OmniMATH discriminative PRM performance hard problems",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NNzzvDecwVgRScN2DYLGnG",
+        "content": [
+          {
+            "title": "From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision",
+            "url": "https://arxiv.org/html/2509.24351"
+          },
+          {
+            "title": "From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision",
+            "url": "https://arxiv.org/pdf/2509.24351"
+          },
+          {
+            "title": "Process Reward Models That Think",
+            "url": "https://arxiv.org/pdf/2504.16828"
+          },
+          {
+            "title": "ProcessBench: Identifying Process Errors in Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2412.06559"
+          },
+          {
+            "title": "ProcessBench: Identifying Process Errors in Mathematical Reasoning",
+            "url": "https://www.researchgate.net/publication/394269497_ProcessBench_Identifying_Process_Errors_in_Mathematical_Reasoning"
+          },
+          {
+            "title": "Papers Explained 368: ThinkPRM. ThinkPRM, a long CoT verifier… | by Ritvik Rastogi | Medium",
+            "url": "https://ritvik19.medium.com/papers-explained-368-thinkprm-0f530cc98ca4"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding AMCS, MathSearch-200K, ProcessBench results, OmniMATH, discriminative PRM performance, and hard problems:\n\n## AMCS and MathSearch-200K\n\nThe Adaptive Monte Carlo Search (AMCS) framework reimagines the generation of process supervision data by shifting from fixed, static procedures to adaptive, dynamic search. AMCS was used to curate MathSearch-200K, a dataset comprising 200K annotated reasoning trajectories, which was then used to train a process reward model.\n\n## ProcessBench and OmniMATH Results\n\nThe AMCS framework was tested on AIME 2024/2025, MATH, Olympiad-Bench, and Omni-MATH. Experimental results show that the combination of PRM-AMCS and GLM-4-9B consistently outperforms existing baselines, achieving 15.0%, 76.2%, 22.1%, and 19.0%, respectively.\n\n## Discriminative PRM Performance on Hard Problems\n\nRegarding discriminative PRM performance on hard problems, existing PRMs typically fail to generalize to more challenging math problems beyond GSM8K and MATH, underperforming both critic models and a PRM straightforwardly fine-tuned on the PRM800K dataset. Additionally, F1-scores are reported over the two most challenging subsets of ProcessBench: OlympiadBench and OmniMath, each comprising 1K problem-prefix pairs."
+    ],
+    "durationSeconds": 7.459939298999961,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "18e4ad0b-4adb-4ce0-9e4e-65ddac3c4261",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-28T02:57:53.316Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015nwkFf5qMaxdGRPmuMTcbW`</summary>
+
+```json
+{
+  "query": "AMCS \"Qwen2.5-Math-7B-PRM-AMCS\" ProcessBench OmniMATH OlympiadBench F1 score"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "656cf5eb-06f0-4dcd-bdd2-7146ddbdcea7",
+  "isSidechain": false,
+  "requestId": "req_011CbUDXLEieEUv5D3unXGPw",
+  "type": "assistant",
+  "uuid": "37c1440d-53a6-4af5-b53e-d7493f56608f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EAA4kEyz9vpeePQQe5QHcr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 755,
+      "cache_read_input_tokens": 40366,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 755,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 40366,
+          "cache_creation_input_tokens": 755,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 755
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-28T02:58:00.327Z_
+
+<details><summary>↩ Tool result · `toolu_015nwkFf5qMaxdGRPmuMTcbW`</summary>
+
+```text
+Web search results for query: "AMCS "Qwen2.5-Math-7B-PRM-AMCS" ProcessBench OmniMATH OlympiadBench F1 score"
+
+Links: [{"title":"2025-05-27 PROCESSBENCH: Identifying Process Errors in Mathematical Reasoning","url":"https://arxiv.org/pdf/2412.06559"},{"title":"From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision","url":"https://arxiv.org/pdf/2509.24351"},{"title":"Towards Effective Process Supervision in Mathematical Reasoning | Qwen","url":"https://qwenlm.github.io/blog/qwen2.5-math-prm/"},{"title":"Omni-MATH: A Universal Olympiad Level Mathematic Benchmark for Large Language Models","url":"https://arxiv.org/html/2410.07985v1"},{"title":"Qwen 2.5 Math 7B | Open Laboratory","url":"https://openlaboratory.ai/models/qwen-2_5-math-7b"},{"title":"Qwen2.5-Math Technical Report: Toward Mathematical Expert Model via Self-Improvement","url":"https://arxiv.org/html/2409.12122v1"}]
+
+Based on the search results, I found relevant information about the AMCS (Adaptive Monte Carlo Search) method and the Qwen2.5-Math-7B-PRM-AMCS model:
+
+Qwen2.5-Math-7B-PRM-AMCS achieves up to 76.2% accuracy on MATH500 with GLM-4-9B, outperforming all baseline PRMs. Qwen2.5-Math-7B-PRM-AMCS maintains consistent advantages on out-of-distribution problems, demonstrating strong generalization capability.
+
+The search results also indicate that AMCS constructs a large-scale dataset MathSearch-200K of about 200K process supervision examples for training PRMs, and extensive experiments are conducted on four mathematical reasoning benchmarks (which would include ProcessBench, OmniMATH, and OlympiadBench).
+
+However, the search results don't contain the specific F1 score values for the Qwen2.5-Math-7B-PRM-AMCS model on ProcessBench, OmniMATH, or OlympiadBench. For those specific metrics, you would need to consult the full research paper directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "37c1440d-53a6-4af5-b53e-d7493f56608f",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "a129b3c9-d5d6-4863-826a-493023148f95",
+  "toolUseResult": {
+    "query": "AMCS \"Qwen2.5-Math-7B-PRM-AMCS\" ProcessBench OmniMATH OlympiadBench F1 score",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UiuWiVojsurwrsK8P34ua8",
+        "content": [
+          {
+            "title": "2025-05-27 PROCESSBENCH: Identifying Process Errors in Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2412.06559"
+          },
+          {
+            "title": "From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision",
+            "url": "https://arxiv.org/pdf/2509.24351"
+          },
+          {
+            "title": "Towards Effective Process Supervision in Mathematical Reasoning | Qwen",
+            "url": "https://qwenlm.github.io/blog/qwen2.5-math-prm/"
+          },
+          {
+            "title": "Omni-MATH: A Universal Olympiad Level Mathematic Benchmark for Large Language Models",
+            "url": "https://arxiv.org/html/2410.07985v1"
+          },
+          {
+            "title": "Qwen 2.5 Math 7B | Open Laboratory",
+            "url": "https://openlaboratory.ai/models/qwen-2_5-math-7b"
+          },
+          {
+            "title": "Qwen2.5-Math Technical Report: Toward Mathematical Expert Model via Self-Improvement",
+            "url": "https://arxiv.org/html/2409.12122v1"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the AMCS (Adaptive Monte Carlo Search) method and the Qwen2.5-Math-7B-PRM-AMCS model:\n\nQwen2.5-Math-7B-PRM-AMCS achieves up to 76.2% accuracy on MATH500 with GLM-4-9B, outperforming all baseline PRMs. Qwen2.5-Math-7B-PRM-AMCS maintains consistent advantages on out-of-distribution problems, demonstrating strong generalization capability.\n\nThe search results also indicate that AMCS constructs a large-scale dataset MathSearch-200K of about 200K process supervision examples for training PRMs, and extensive experiments are conducted on four mathematical reasoning benchmarks (which would include ProcessBench, OmniMATH, and OlympiadBench).\n\nHowever, the search results don't contain the specific F1 score values for the Qwen2.5-Math-7B-PRM-AMCS model on ProcessBench, OmniMATH, or OlympiadBench. For those specific metrics, you would need to consult the full research paper directly."
+    ],
+    "durationSeconds": 7.005569048999983,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "37c1440d-53a6-4af5-b53e-d7493f56608f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 78 · 2026-05-28T02:58:00.334Z_
+
+```json
+{
+  "parentUuid": "a129b3c9-d5d6-4863-826a-493023148f95",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "7c220584-dba6-4054-a4fc-9d31f87670f2",
+  "timestamp": "2026-05-28T02:58:00.334Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-28T02:58:05.694Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017j1YbwMsqkXj3CrP4burB8`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2509.24351",
+  "prompt": "I need the FULL experimental results tables. Specifically: (1) What are the AMCS results on ProcessBench - any F1 scores? (2) What are the detailed best-of-N results on all benchmarks including OmniMATH and OlympiadBench? (3) Are there any ProcessBench F1 results at all? (4) What ablation studies are reported? (5) How does AMCS compare to Math-Shepherd and OmegaPRM quantitatively? (6) The adaptive sampling details - how many rollouts per step on average, and the range?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c220584-dba6-4054-a4fc-9d31f87670f2",
+  "isSidechain": false,
+  "requestId": "req_011CbUDY3ywivj3Rx2DruJqP",
+  "type": "assistant",
+  "uuid": "a20d0e67-8aa3-453b-9464-d0ce3cba08df",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015jcEKyq4nPZ8MVnLtvGoPz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 815,
+      "cache_read_input_tokens": 41121,
+      "output_tokens": 218,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 815,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 218,
+          "cache_read_input_tokens": 41121,
+          "cache_creation_input_tokens": 815,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 815
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-28T02:58:11.909Z_
+
+<details><summary>↩ Tool result · `toolu_017j1YbwMsqkXj3CrP4burB8`</summary>
+
+```text
+# AMCS Experimental Results Analysis
+
+Based on the provided document, here are the findings regarding your specific questions:
+
+## ProcessBench and F1 Scores
+**Not addressed in this paper.** The document contains no mention of ProcessBench or F1 score evaluations. The benchmarks evaluated are limited to MATH500, AIME, Olympiad-Bench, OmniMATH, and GSM8K.
+
+## Best-of-N Results
+Complete Best-of-N results are provided in Table 1:
+- **MATH500**: Qwen2.5-Math-7B-PRM-AMCS achieves 77.8% with GLM-4-9B
+- **AIME**: 11.7%
+- **Olympiad-Bench**: 19.3%
+- **OmniMATH**: 17.8%
+
+## Baseline Comparisons
+The paper provides quantitative comparisons showing that "Qwen2.5-Math-7B-PRM-AMCS achieves up to 76.2% accuracy on MATH500," outperforming Math-Shepherd-Mistral-7B and Qwen2.5-Math-7B-PRM800K across multiple search strategies.
+
+## Ablation Studies
+**Minimal ablation reporting.** The document lacks traditional ablation studies isolating individual components. Analysis focuses on adaptive allocation patterns rather than component isolation.
+
+## Adaptive Sampling Details
+According to Figure 5 analysis: "AMCS allocates significantly more rollouts to uncertain nodes (μ∈[0.4,0.6]: 20.0 rollouts) compared to confident ones (μ<0.2: 6.9 rollouts; μ>0.8: 7.1 rollouts)." Initial sampling uses k_init=6 with maximum budget k_max=32.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a20d0e67-8aa3-453b-9464-d0ce3cba08df",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "a4df4bfa-9437-41e2-aa24-4ddb3447f8c5",
+  "toolUseResult": {
+    "bytes": 211283,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# AMCS Experimental Results Analysis\n\nBased on the provided document, here are the findings regarding your specific questions:\n\n## ProcessBench and F1 Scores\n**Not addressed in this paper.** The document contains no mention of ProcessBench or F1 score evaluations. The benchmarks evaluated are limited to MATH500, AIME, Olympiad-Bench, OmniMATH, and GSM8K.\n\n## Best-of-N Results\nComplete Best-of-N results are provided in Table 1:\n- **MATH500**: Qwen2.5-Math-7B-PRM-AMCS achieves 77.8% with GLM-4-9B\n- **AIME**: 11.7%\n- **Olympiad-Bench**: 19.3%\n- **OmniMATH**: 17.8%\n\n## Baseline Comparisons\nThe paper provides quantitative comparisons showing that \"Qwen2.5-Math-7B-PRM-AMCS achieves up to 76.2% accuracy on MATH500,\" outperforming Math-Shepherd-Mistral-7B and Qwen2.5-Math-7B-PRM800K across multiple search strategies.\n\n## Ablation Studies\n**Minimal ablation reporting.** The document lacks traditional ablation studies isolating individual components. Analysis focuses on adaptive allocation patterns rather than component isolation.\n\n## Adaptive Sampling Details\nAccording to Figure 5 analysis: \"AMCS allocates significantly more rollouts to uncertain nodes (μ∈[0.4,0.6]: 20.0 rollouts) compared to confident ones (μ<0.2: 6.9 rollouts; μ>0.8: 7.1 rollouts).\" Initial sampling uses k_init=6 with maximum budget k_max=32.",
+    "durationMs": 6210,
+    "url": "https://arxiv.org/html/2509.24351"
+  },
+  "sourceToolAssistantUUID": "a20d0e67-8aa3-453b-9464-d0ce3cba08df",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-28T02:58:14.331Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BuyrQb2nQz8SbinzJc3Zjj`</summary>
+
+```json
+{
+  "query": "Bernoulli trial sample size variance estimation Monte Carlo annotation quality step-level reward informativeness lower bound"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4df4bfa-9437-41e2-aa24-4ddb3447f8c5",
+  "isSidechain": false,
+  "requestId": "req_011CbUDYuh9EY6zsooJGmKEH",
+  "type": "assistant",
+  "uuid": "b32ddd11-7a3c-423c-a73a-a49e794ea487",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RPaCQ8utwQHXgWG1xsZroF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 660,
+      "cache_read_input_tokens": 41936,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 660,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 41936,
+          "cache_creation_input_tokens": 660,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 660
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-28T02:58:21.142Z_
+
+<details><summary>↩ Tool result · `toolu_01BuyrQb2nQz8SbinzJc3Zjj`</summary>
+
+```text
+Web search results for query: "Bernoulli trial sample size variance estimation Monte Carlo annotation quality step-level reward informativeness lower bound"
+
+Links: [{"title":"Bayesian sample size determination for Bernoulli trials","url":"https://chuckyee.github.io/bayesian-ssd-bernoulli/"},{"title":"SCAN: Self-Denoising Monte Carlo Annotation for Robust Process Reward Learning","url":"https://arxiv.org/pdf/2509.16548"},{"title":"8.3: Estimation in the Bernoulli Model - Statistics LibreTexts","url":"https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/08:_Set_Estimation/8.03:_Estimation_in_the_Bernoulli_Model"},{"title":"Sample Size Estimation and Monte Carlo Simulations | by Sandorellana | Medium","url":"https://medium.com/@sorellanamontini/sample-size-estimation-and-monte-carlo-simulations-e2ff4783664a"},{"title":"What Is a Bernoulli Distribution? A Deep Dive | DataCamp","url":"https://www.datacamp.com/tutorial/bernoulli-distribution"},{"title":"3. Estimation in the Bernoulli Model","url":"https://www.randomservices.org/random/interval/Bernoulli.html"}]
+
+Based on the search results, I found some relevant information about your query topics:
+
+**Monte Carlo Annotation and Step-Level Rewards:**
+
+Research has identified that annotation models tend to both underestimate and overestimate step correctness, and proposes Self-Denoising Monte Carlo Annotation (SCAN), an efficient data synthesis and noise-tolerant learning framework. Process reward models offer fine-grained, step-level evaluations that facilitate iterative self-refinement and exploration of solution spaces.
+
+**Informativeness in Bernoulli Trials:**
+
+The closer p is to 0.5, the more information each trial provides, as outcomes are less predictable. The variance informs sample size decisions in experimental design, with higher variance typically requiring larger sample sizes to achieve the same level of precision in estimates.
+
+**Bayesian Approach:**
+
+While Bayesian approaches usually require Monte Carlo simulations due to the intractibility of the formulas to analytic methods, the case of Bernoulli trials is amenable to analytic manipulation.
+
+The search results contain general information about these topics, but may not fully capture specialized research that combines all these elements (Bernoulli trials, sample size determination, variance estimation, and annotation quality assessment together).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b32ddd11-7a3c-423c-a73a-a49e794ea487",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "90943e17-ea30-4ac0-bd87-cc78f447c0de",
+  "toolUseResult": {
+    "query": "Bernoulli trial sample size variance estimation Monte Carlo annotation quality step-level reward informativeness lower bound",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VwwW2a6vc1fV9btN2qn82r",
+        "content": [
+          {
+            "title": "Bayesian sample size determination for Bernoulli trials",
+            "url": "https://chuckyee.github.io/bayesian-ssd-bernoulli/"
+          },
+          {
+            "title": "SCAN: Self-Denoising Monte Carlo Annotation for Robust Process Reward Learning",
+            "url": "https://arxiv.org/pdf/2509.16548"
+          },
+          {
+            "title": "8.3: Estimation in the Bernoulli Model - Statistics LibreTexts",
+            "url": "https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/08:_Set_Estimation/8.03:_Estimation_in_the_Bernoulli_Model"
+          },
+          {
+            "title": "Sample Size Estimation and Monte Carlo Simulations | by Sandorellana | Medium",
+            "url": "https://medium.com/@sorellanamontini/sample-size-estimation-and-monte-carlo-simulations-e2ff4783664a"
+          },
+          {
+            "title": "What Is a Bernoulli Distribution? A Deep Dive | DataCamp",
+            "url": "https://www.datacamp.com/tutorial/bernoulli-distribution"
+          },
+          {
+            "title": "3. Estimation in the Bernoulli Model",
+            "url": "https://www.randomservices.org/random/interval/Bernoulli.html"
+          }
+        ]
+      },
+      "Based on the search results, I found some relevant information about your query topics:\n\n**Monte Carlo Annotation and Step-Level Rewards:**\n\nResearch has identified that annotation models tend to both underestimate and overestimate step correctness, and proposes Self-Denoising Monte Carlo Annotation (SCAN), an efficient data synthesis and noise-tolerant learning framework. Process reward models offer fine-grained, step-level evaluations that facilitate iterative self-refinement and exploration of solution spaces.\n\n**Informativeness in Bernoulli Trials:**\n\nThe closer p is to 0.5, the more information each trial provides, as outcomes are less predictable. The variance informs sample size decisions in experimental design, with higher variance typically requiring larger sample sizes to achieve the same level of precision in estimates.\n\n**Bayesian Approach:**\n\nWhile Bayesian approaches usually require Monte Carlo simulations due to the intractibility of the formulas to analytic methods, the case of Bernoulli trials is amenable to analytic manipulation.\n\nThe search results contain general information about these topics, but may not fully capture specialized research that combines all these elements (Bernoulli trials, sample size determination, variance estimation, and annotation quality assessment together)."
+    ],
+    "durationSeconds": 6.804649803999986,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b32ddd11-7a3c-423c-a73a-a49e794ea487",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-28T02:58:24.761Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VkuS3Q47uCJtBJ9hki7yUg`</summary>
+
+```json
+{
+  "query": "Hard2Verify ICML 2026 NeurIPS 2026 \"step-level\" benchmark frontier math accepted"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90943e17-ea30-4ac0-bd87-cc78f447c0de",
+  "isSidechain": false,
+  "requestId": "req_011CbUDZazn8p1uVmPcofrui",
+  "type": "assistant",
+  "uuid": "9a101b98-ab95-446a-a9ed-58353005e4db",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SfDLRdjMSZ6DakMcLkigV1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 723,
+      "cache_read_input_tokens": 42596,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 723,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 42596,
+          "cache_creation_input_tokens": 723,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 723
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-28T02:58:29.514Z_
+
+<details><summary>↩ Tool result · `toolu_01VkuS3Q47uCJtBJ9hki7yUg`</summary>
+
+```text
+Web search results for query: "Hard2Verify ICML 2026 NeurIPS 2026 "step-level" benchmark frontier math accepted"
+
+Links: [{"title":"Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/html/2510.13744v1"},{"title":"(PDF) Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://www.researchgate.net/publication/396517985_Hard2Verify_A_Step-Level_Verification_Benchmark_for_Open-Ended_Frontier_Math"},{"title":"Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.13744v1"},{"title":"Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/pdf/2510.13744"},{"title":"[2510.13744] Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/abs/2510.13744"},{"title":"[2510.13744v1] Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/abs/2510.13744v1"}]
+
+Great! I found information about Hard2Verify. Based on the search results, here's what I found:
+
+Hard2Verify is a human-annotated, step-level verification benchmark produced with over 500 hours of human labor. It is designed to rigorously assess step-level verifiers at the frontier: Verifiers must provide step-level annotations or identify the first error in responses generated by frontier LLMs for very recent, challenging, and open-ended math questions.
+
+The paper was created by researchers from Salesforce AI Research, including Shrey Pandit and Austin Xu. The benchmark evaluates 29 generative critics and process reward models, demonstrating that, beyond a few standouts, open-source verifiers lag closed source models.
+
+The paper appears to be an arXiv submission dated October 15, 2025. However, the search results I found do not contain specific information about acceptance to ICML 2026 or NeurIPS 2026. If you're looking for information about whether this paper has been accepted to either of those conferences, I would need to perform an additional search to find that status.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9a101b98-ab95-446a-a9ed-58353005e4db",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "b8076232-4529-438d-b703-7bb21d143362",
+  "toolUseResult": {
+    "query": "Hard2Verify ICML 2026 NeurIPS 2026 \"step-level\" benchmark frontier math accepted",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KhsdognY4LQubtMPu5Z7yM",
+        "content": [
+          {
+            "title": "Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/html/2510.13744v1"
+          },
+          {
+            "title": "(PDF) Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://www.researchgate.net/publication/396517985_Hard2Verify_A_Step-Level_Verification_Benchmark_for_Open-Ended_Frontier_Math"
+          },
+          {
+            "title": "Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2510.13744v1"
+          },
+          {
+            "title": "Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/pdf/2510.13744"
+          },
+          {
+            "title": "[2510.13744] Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/abs/2510.13744"
+          },
+          {
+            "title": "[2510.13744v1] Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/abs/2510.13744v1"
+          }
+        ]
+      },
+      "Great! I found information about Hard2Verify. Based on the search results, here's what I found:\n\nHard2Verify is a human-annotated, step-level verification benchmark produced with over 500 hours of human labor. It is designed to rigorously assess step-level verifiers at the frontier: Verifiers must provide step-level annotations or identify the first error in responses generated by frontier LLMs for very recent, challenging, and open-ended math questions.\n\nThe paper was created by researchers from Salesforce AI Research, including Shrey Pandit and Austin Xu. The benchmark evaluates 29 generative critics and process reward models, demonstrating that, beyond a few standouts, open-source verifiers lag closed source models.\n\nThe paper appears to be an arXiv submission dated October 15, 2025. However, the search results I found do not contain specific information about acceptance to ICML 2026 or NeurIPS 2026. If you're looking for information about whether this paper has been accepted to either of those conferences, I would need to perform an additional search to find that status."
+    ],
+    "durationSeconds": 4.74903878599999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9a101b98-ab95-446a-a9ed-58353005e4db",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-28T02:58:31.853Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MNqhPhdXhWmBJgsFccnf5a`</summary>
+
+```json
+{
+  "query": "Hard2Verify openreview ICML 2026 accepted"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8076232-4529-438d-b703-7bb21d143362",
+  "isSidechain": false,
+  "requestId": "req_011CbUDaCj78RagZNd9cDAbQ",
+  "type": "assistant",
+  "uuid": "90531e5b-7b7e-49f3-8763-07dba558b7a3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D38cFcJAB3Q4WLhdjq3Jbw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 716,
+      "cache_read_input_tokens": 43319,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 716,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 43319,
+          "cache_creation_input_tokens": 716,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 716
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-28T02:58:36.571Z_
+
+<details><summary>↩ Tool result · `toolu_01MNqhPhdXhWmBJgsFccnf5a`</summary>
+
+```text
+Web search results for query: "Hard2Verify openreview ICML 2026 accepted"
+
+Links: [{"title":"ICML 2026 | OpenReview","url":"https://openreview.net/group?id=ICML.cc%2F2026"},{"title":"ICML 2026 Author Instructions","url":"https://icml.cc/Conferences/2026/AuthorInstructions"},{"title":"ICML 2026 Conference | OpenReview","url":"https://openreview.net/group?id=ICML.cc%2F2026%2FConference"},{"title":"ICML 2026 Workshop | OpenReview","url":"https://openreview.net/group?id=ICML.cc%2F2026%2FWorkshop"},{"title":"ICML 2026 Call for Papers","url":"https://icml.cc/Conferences/2026/CallForPapers"},{"title":"ICML 2026 Peer Review FAQ","url":"https://icml.cc/Conferences/2026/PeerReviewFAQ"},{"title":"Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/pdf/2510.13744"}]
+
+Based on the search results, I found information about Hard2Verify. Hard2Verify is a human-annotated, step-level verification benchmark for open-ended frontier math, produced with over 500 hours of human labor.
+
+However, the search results do not contain specific information about whether Hard2Verify was accepted to ICML 2026. The search returned the ICML 2026 OpenReview pages and a paper about Hard2Verify from arXiv, but there is no confirmation of acceptance status to ICML 2026 in these results. 
+
+To find this specific information, you may want to:
+1. Check the ICML 2026 OpenReview acceptance page directly at openreview.net
+2. Look for an announcement on the paper's official project page or the authors' institutions
+3. Search for recent news about ICML 2026 acceptances
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "90531e5b-7b7e-49f3-8763-07dba558b7a3",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "84c67189-3257-46e6-a672-a98f1e20d4b0",
+  "toolUseResult": {
+    "query": "Hard2Verify openreview ICML 2026 accepted",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Nnm2MW3j2S1tBHTfkBMsK2",
+        "content": [
+          {
+            "title": "ICML 2026 | OpenReview",
+            "url": "https://openreview.net/group?id=ICML.cc%2F2026"
+          },
+          {
+            "title": "ICML 2026 Author Instructions",
+            "url": "https://icml.cc/Conferences/2026/AuthorInstructions"
+          },
+          {
+            "title": "ICML 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=ICML.cc%2F2026%2FConference"
+          },
+          {
+            "title": "ICML 2026 Workshop | OpenReview",
+            "url": "https://openreview.net/group?id=ICML.cc%2F2026%2FWorkshop"
+          },
+          {
+            "title": "ICML 2026 Call for Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "ICML 2026 Peer Review FAQ",
+            "url": "https://icml.cc/Conferences/2026/PeerReviewFAQ"
+          },
+          {
+            "title": "Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/pdf/2510.13744"
+          }
+        ]
+      },
+      "Based on the search results, I found information about Hard2Verify. Hard2Verify is a human-annotated, step-level verification benchmark for open-ended frontier math, produced with over 500 hours of human labor.\n\nHowever, the search results do not contain specific information about whether Hard2Verify was accepted to ICML 2026. The search returned the ICML 2026 OpenReview pages and a paper about Hard2Verify from arXiv, but there is no confirmation of acceptance status to ICML 2026 in these results. \n\nTo find this specific information, you may want to:\n1. Check the ICML 2026 OpenReview acceptance page directly at openreview.net\n2. Look for an announcement on the paper's official project page or the authors' institutions\n3. Search for recent news about ICML 2026 acceptances"
+    ],
+    "durationSeconds": 4.714860955999989,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "90531e5b-7b7e-49f3-8763-07dba558b7a3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"change_summary\": \"Major revision addressing 4 round-3 reviewer concerns plus st…",
+  "leafUuid": "84c67189-3257-46e6-a672-a98f1e20d4b0",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising process supervision research with novel hard-problem curriculum",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-28T02:58:38.668Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011kLLdfmftr1ymBmSYWRfZJ`</summary>
+
+```json
+{
+  "query": "\"reverse curriculum\" OR \"backward curriculum\" training annotation quality improvement theoretical guarantee convergence"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84c67189-3257-46e6-a672-a98f1e20d4b0",
+  "isSidechain": false,
+  "requestId": "req_011CbUDaitpEMoDMf5RXdA8X",
+  "type": "assistant",
+  "uuid": "8ef0ec53-3c63-465b-a454-b32e6711b9fe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014rA7VgJ9DT3V7n5cAmrjEo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 607,
+      "cache_read_input_tokens": 44035,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 607,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 44035,
+          "cache_creation_input_tokens": 607,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 607
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-28T02:58:46.873Z_
+
+<details><summary>↩ Tool result · `toolu_011kLLdfmftr1ymBmSYWRfZJ`</summary>
+
+```text
+Web search results for query: ""reverse curriculum" OR "backward curriculum" training annotation quality improvement theoretical guarantee convergence"
+
+Links: [{"title":"REVERSE FORWARD CURRICULUM LEARNING FOR ...","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/cd062f8003e38f55dcb93df55b2683d6-Paper-Conference.pdf"},{"title":"Reverse Forward Curriculum Learning for Extreme Sample and Demo Efficiency","url":"https://arxiv.org/html/2405.03379v1"},{"title":"Reverse Forward Curriculum Learning for Extreme Demo Efficiency in RL","url":"https://reverseforward-cl.github.io/"},{"title":"Reverse Forward Curriculum Learning for Extreme Sample and Demo Efficiency | OpenReview","url":"https://openreview.net/forum?id=w4rODxXsmM"},{"title":"Training Large Language Models for Reasoning through Reverse Curriculum   Reinforcement Learning","url":"https://arxiv.org/pdf/2402.05808"}]
+
+I found several relevant results about reverse curriculum learning approaches. Here's what the search revealed:
+
+## Reverse Forward Curriculum Learning
+
+The primary approach consists of a reverse curriculum followed by a forward curriculum, with the ability to efficiently leverage multiple demonstrations via a per-demonstration reverse curriculum generated via state resets. The reverse curriculum produces an initial policy that performs well on a narrow initial state distribution and helps overcome difficult exploration problems, while a forward curriculum accelerates training to perform well on the full initial state distribution and improves demonstration and sample efficiency.
+
+## Key Contribution to Training Efficiency
+
+A per-demonstration reverse curriculum improves sample-efficiency compared to prior work that uses other kinds of reverse curriculums or demonstration state resets. This approach has been applied to reinforcement learning in robotics tasks and reasoning tasks for large language models.
+
+## Applications
+
+The research covers applications to:
+- **Robotics**: Demonstrated improvements on tasks like PickCube, StackCube, and PegInsertionSide with limited demonstrations
+- **Language Models**: A reverse curriculum reinforcement learning approach (R³) for large language models shows improvements of 5.4 points over supervised fine-tuning and 4.1 points over RL baselines, with notably larger 11.4-point improvements on program-based reasoning.
+
+The search results focus primarily on empirical improvements rather than theoretical guarantees or convergence proofs. If you're looking for specific theoretical convergence guarantees, you may need to consult the full papers in the references provided.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8ef0ec53-3c63-465b-a454-b32e6711b9fe",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "e4e064e9-66fc-4ed3-b05e-b882963dab8e",
+  "toolUseResult": {
+    "query": "\"reverse curriculum\" OR \"backward curriculum\" training annotation quality improvement theoretical guarantee convergence",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HzikkHWXzT9i1MUNFBjH7r",
+        "content": [
+          {
+            "title": "REVERSE FORWARD CURRICULUM LEARNING FOR ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/cd062f8003e38f55dcb93df55b2683d6-Paper-Conference.pdf"
+          },
+          {
+            "title": "Reverse Forward Curriculum Learning for Extreme Sample and Demo Efficiency",
+            "url": "https://arxiv.org/html/2405.03379v1"
+          },
+          {
+            "title": "Reverse Forward Curriculum Learning for Extreme Demo Efficiency in RL",
+            "url": "https://reverseforward-cl.github.io/"
+          },
+          {
+            "title": "Reverse Forward Curriculum Learning for Extreme Sample and Demo Efficiency | OpenReview",
+            "url": "https://openreview.net/forum?id=w4rODxXsmM"
+          },
+          {
+            "title": "Training Large Language Models for Reasoning through Reverse Curriculum   Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2402.05808"
+          }
+        ]
+      },
+      "I found several relevant results about reverse curriculum learning approaches. Here's what the search revealed:\n\n## Reverse Forward Curriculum Learning\n\nThe primary approach consists of a reverse curriculum followed by a forward curriculum, with the ability to efficiently leverage multiple demonstrations via a per-demonstration reverse curriculum generated via state resets. The reverse curriculum produces an initial policy that performs well on a narrow initial state distribution and helps overcome difficult exploration problems, while a forward curriculum accelerates training to perform well on the full initial state distribution and improves demonstration and sample efficiency.\n\n## Key Contribution to Training Efficiency\n\nA per-demonstration reverse curriculum improves sample-efficiency compared to prior work that uses other kinds of reverse curriculums or demonstration state resets. This approach has been applied to reinforcement learning in robotics tasks and reasoning tasks for large language models.\n\n## Applications\n\nThe research covers applications to:\n- **Robotics**: Demonstrated improvements on tasks like PickCube, StackCube, and PegInsertionSide with limited demonstrations\n- **Language Models**: A reverse curriculum reinforcement learning approach (R³) for large language models shows improvements of 5.4 points over supervised fine-tuning and 4.1 points over RL baselines, with notably larger 11.4-point improvements on program-based reasoning.\n\nThe search results focus primarily on empirical improvements rather than theoretical guarantees or convergence proofs. If you're looking for specific theoretical convergence guarantees, you may need to consult the full papers in the references provided."
+    ],
+    "durationSeconds": 8.200721881000034,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8ef0ec53-3c63-465b-a454-b32e6711b9fe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91 · 2026-05-28T02:58:50.339Z_
+
+Now let me search for one more important angle - the knowledge distillation idea and any recent work on using discriminative PRMs to improve generative ones.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4e064e9-66fc-4ed3-b05e-b882963dab8e",
+  "isSidechain": false,
+  "requestId": "req_011CbUDbUxT4WeJv2Ck11eHh",
+  "type": "assistant",
+  "uuid": "3351c340-c04b-406d-8527-86379c94c135",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AeNx7f32NXNgEN7Wz9ve8W",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 675,
+      "cache_read_input_tokens": 44642,
+      "output_tokens": 109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 675,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 109,
+          "cache_read_input_tokens": 44642,
+          "cache_creation_input_tokens": 675,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 675
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-28T02:58:50.985Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0181kEViXLu272dtz7sc1VQ2`</summary>
+
+```json
+{
+  "query": "discriminative PRM teacher generative PRM student distillation cheap fast reward model knowledge transfer 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3351c340-c04b-406d-8527-86379c94c135",
+  "isSidechain": false,
+  "requestId": "req_011CbUDbUxT4WeJv2Ck11eHh",
+  "type": "assistant",
+  "uuid": "109648bb-56ba-400f-9daf-dce48e4b6f29",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AeNx7f32NXNgEN7Wz9ve8W",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 675,
+      "cache_read_input_tokens": 44642,
+      "output_tokens": 109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 675,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 109,
+          "cache_read_input_tokens": 44642,
+          "cache_creation_input_tokens": 675,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 675
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-28T02:58:58.431Z_
+
+<details><summary>↩ Tool result · `toolu_0181kEViXLu272dtz7sc1VQ2`</summary>
+
+```text
+Web search results for query: "discriminative PRM teacher generative PRM student distillation cheap fast reward model knowledge transfer 2025 2026"
+
+Links: [{"title":"Self-Distilled Reasoner: On-Policy Self-Distillation for Large Language Models","url":"https://siyan-zhao.github.io/assets/img/opsd/opsd_v3.pdf"},{"title":"Task-free continual generative modelling via dynamic teacher-student framework - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0957417425034888"},{"title":"Process-supervised Reward Models (PRMs)","url":"https://www.emergentmind.com/topics/process-supervised-reward-models-prm"},{"title":"Black-Box On-Policy Distillation of Large Language Models","url":"https://arxiv.org/pdf/2511.10643"},{"title":"RM-Distiller: Exploiting Generative LLM for Reward Model Distillation","url":"https://arxiv.org/pdf/2601.14032"},{"title":"RM-Distiller: Exploiting Generative LLM for Reward Model Distillation","url":"https://arxiv.org/html/2601.14032"},{"title":"Who Taught You That? Tracing Teachers in Model Distillation","url":"https://arxiv.org/pdf/2502.06659"},{"title":"GitHub - nick7nlp/Awesome-LLM-On-Policy-Distillation: A curated collection of papers and resources on On-Policy Distillation for Large Language Models. · GitHub","url":"https://github.com/nick7nlp/Awesome-LLM-On-Policy-Distillation"}]
+
+Based on the search results, I found several relevant papers and resources on this topic:
+
+## Key Findings on Discriminative PRM Teacher to Generative PRM Student Distillation:
+
+**Recent Research on Reward Model Distillation (2025-2026):**
+
+RM-Distiller appears to be the first systematic research on reward model distillation from generative LLMs. Recent work has proposed to distill discriminative RMs from generative LLMs, with distilling RMs from powerful generative LLMs offering a cost-effective and scalable alternative to human annotation.
+
+**Generative Adversarial Distillation Approach:**
+
+Generative Adversarial Distillation (GAD) enables on-policy and black-box distillation by framing the student LLM as a generator and training a discriminator to distinguish its responses from the teacher LLM's, with the discriminator acting as an on-policy reward model that co-evolves with the student.
+
+**Process Reward Model Advances:**
+
+Recent advances decouple token-level reward modeling from generative probabilities by learning discriminative Q-functions (Q-RM), eliminating reward-probability conflicts and substantially speeding up convergence and improving sample efficiency.
+
+**On-Policy Distillation Paradigm:**
+
+On-policy distillation solves distribution shift by forcing the student to generate trajectories from its own distribution, and then evaluating those trajectories using a teacher model, reward model, or verifier. This has become the indispensable post-training paradigm for scaling reasoning, adopted by frontier models like DeepSeek-V4, Qwen3, Gemma-2, Nemotron, and MiMo.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "109648bb-56ba-400f-9daf-dce48e4b6f29",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "00be4778-91b3-46e2-b227-6347dbfcb340",
+  "toolUseResult": {
+    "query": "discriminative PRM teacher generative PRM student distillation cheap fast reward model knowledge transfer 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015ak4Mgb68qA7qoGhvKuQXt",
+        "content": [
+          {
+            "title": "Self-Distilled Reasoner: On-Policy Self-Distillation for Large Language Models",
+            "url": "https://siyan-zhao.github.io/assets/img/opsd/opsd_v3.pdf"
+          },
+          {
+            "title": "Task-free continual generative modelling via dynamic teacher-student framework - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0957417425034888"
+          },
+          {
+            "title": "Process-supervised Reward Models (PRMs)",
+            "url": "https://www.emergentmind.com/topics/process-supervised-reward-models-prm"
+          },
+          {
+            "title": "Black-Box On-Policy Distillation of Large Language Models",
+            "url": "https://arxiv.org/pdf/2511.10643"
+          },
+          {
+            "title": "RM-Distiller: Exploiting Generative LLM for Reward Model Distillation",
+            "url": "https://arxiv.org/pdf/2601.14032"
+          },
+          {
+            "title": "RM-Distiller: Exploiting Generative LLM for Reward Model Distillation",
+            "url": "https://arxiv.org/html/2601.14032"
+          },
+          {
+            "title": "Who Taught You That? Tracing Teachers in Model Distillation",
+            "url": "https://arxiv.org/pdf/2502.06659"
+          },
+          {
+            "title": "GitHub - nick7nlp/Awesome-LLM-On-Policy-Distillation: A curated collection of papers and resources on On-Policy Distillation for Large Language Models. · GitHub",
+            "url": "https://github.com/nick7nlp/Awesome-LLM-On-Policy-Distillation"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and resources on this topic:\n\n## Key Findings on Discriminative PRM Teacher to Generative PRM Student Distillation:\n\n**Recent Research on Reward Model Distillation (2025-2026):**\n\nRM-Distiller appears to be the first systematic research on reward model distillation from generative LLMs. Recent work has proposed to distill discriminative RMs from generative LLMs, with distilling RMs from powerful generative LLMs offering a cost-effective and scalable alternative to human annotation.\n\n**Generative Adversarial Distillation Approach:**\n\nGenerative Adversarial Distillation (GAD) enables on-policy and black-box distillation by framing the student LLM as a generator and training a discriminator to distinguish its responses from the teacher LLM's, with the discriminator acting as an on-policy reward model that co-evolves with the student.\n\n**Process Reward Model Advances:**\n\nRecent advances decouple token-level reward modeling from generative probabilities by learning discriminative Q-functions (Q-RM), eliminating reward-probability conflicts and substantially speeding up convergence and improving sample efficiency.\n\n**On-Policy Distillation Paradigm:**\n\nOn-policy distillation solves distribution shift by forcing the student to generate trajectories from its own distribution, and then evaluating those trajectories using a teacher model, reward model, or verifier. This has become the indispensable post-training paradigm for scaling reasoning, adopted by frontier models like DeepSeek-V4, Qwen3, Gemma-2, Nemotron, and MiMo."
+    ],
+    "durationSeconds": 7.442968821000017,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "109648bb-56ba-400f-9daf-dce48e4b6f29",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-28T02:59:00.861Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FxnSQnCXHUYdJHVLnCgCej`</summary>
+
+```json
+{
+  "query": "AMCS \"2509.24351\" accepted ICML 2026 ACL NeurIPS venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "00be4778-91b3-46e2-b227-6347dbfcb340",
+  "isSidechain": false,
+  "requestId": "req_011CbUDcLR2DUWZqfxcjXDQp",
+  "type": "assistant",
+  "uuid": "6b9b4a3d-ea87-482d-95f1-5bb286b6235a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V81cq7ju3mhTzfPcwbjMC1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 958,
+      "cache_read_input_tokens": 45317,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 958,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 45317,
+          "cache_creation_input_tokens": 958,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 958
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-28T02:59:05.789Z_
+
+<details><summary>↩ Tool result · `toolu_01FxnSQnCXHUYdJHVLnCgCej`</summary>
+
+```text
+Web search results for query: "AMCS "2509.24351" accepted ICML 2026 ACL NeurIPS venue"
+
+Links: [{"title":"ICML 2026 Peer Review FAQ","url":"https://icml.cc/Conferences/2026/PeerReviewFAQ"},{"title":"GitHub - khairulislam/ML-conferences: List of ML conferences with important dates and accepted paper list · GitHub","url":"https://github.com/khairulislam/ML-conferences"},{"title":"ACME: Pan-specific peptide-MHC class I binding prediction through attention-based deep neural networks","url":"https://www.biorxiv.org/content/10.1101/468363.full.pdf"},{"title":"Automating ACMG Variant Classifications Using BIAS-2015: An Algorithm Overview and Benchmark Against the FDA-Approved eRepo Dataset","url":"https://www.medrxiv.org/content/10.1101/2024.09.18.24313916.full.pdf"},{"title":"Attitudes and Perceptions of Biomedical Journal Editors-in-Chief Towards the Use of Artificial Intelligence Chatbots in the Scholarly Publishing Process: A Cross-Sectional Survey","url":"https://www.medrxiv.org/content/10.1101/2025.05.26.25328101.full.pdf"}]
+
+The search results don't contain information about a paper with ID "2509.24351" or details about it being accepted to ICML 2026, ACL, or NeurIPS. The results include general information about ICML 2026 and NeurIPS venues, but not the specific paper you're asking about.
+
+Would you like me to try a different search approach? For example, I could search for the arXiv ID directly, or search for information about AMCS specifically if that's a paper title or author acronym.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6b9b4a3d-ea87-482d-95f1-5bb286b6235a",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "85a6eb82-7abd-47e7-9e1a-7b69ab079924",
+  "toolUseResult": {
+    "query": "AMCS \"2509.24351\" accepted ICML 2026 ACL NeurIPS venue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Kw5UR99qGAyV2J1FeNRoTJ",
+        "content": [
+          {
+            "title": "ICML 2026 Peer Review FAQ",
+            "url": "https://icml.cc/Conferences/2026/PeerReviewFAQ"
+          },
+          {
+            "title": "GitHub - khairulislam/ML-conferences: List of ML conferences with important dates and accepted paper list · GitHub",
+            "url": "https://github.com/khairulislam/ML-conferences"
+          },
+          {
+            "title": "ACME: Pan-specific peptide-MHC class I binding prediction through attention-based deep neural networks",
+            "url": "https://www.biorxiv.org/content/10.1101/468363.full.pdf"
+          },
+          {
+            "title": "Automating ACMG Variant Classifications Using BIAS-2015: An Algorithm Overview and Benchmark Against the FDA-Approved eRepo Dataset",
+            "url": "https://www.medrxiv.org/content/10.1101/2024.09.18.24313916.full.pdf"
+          },
+          {
+            "title": "Attitudes and Perceptions of Biomedical Journal Editors-in-Chief Towards the Use of Artificial Intelligence Chatbots in the Scholarly Publishing Process: A Cross-Sectional Survey",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.05.26.25328101.full.pdf"
+          }
+        ]
+      },
+      "The search results don't contain information about a paper with ID \"2509.24351\" or details about it being accepted to ICML 2026, ACL, or NeurIPS. The results include general information about ICML 2026 and NeurIPS venues, but not the specific paper you're asking about.\n\nWould you like me to try a different search approach? For example, I could search for the arXiv ID directly, or search for information about AMCS specifically if that's a paper title or author acronym."
+    ],
+    "durationSeconds": 4.923349210999964,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6b9b4a3d-ea87-482d-95f1-5bb286b6235a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-28T02:59:09.745Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XJcg8HTpsvxdfJt4bmJEHZ`</summary>
+
+```json
+{
+  "query": "AMCS adaptive Monte Carlo search MathSearch ICML 2026 accepted paper mathematical process supervision Jie Ma"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85a6eb82-7abd-47e7-9e1a-7b69ab079924",
+  "isSidechain": false,
+  "requestId": "req_011CbUDcsqt37aHsqsETsJUd",
+  "type": "assistant",
+  "uuid": "2fb23a53-bd37-499f-9b2e-2bd6ad28980a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JRbM6tYELzFhsdvyesbqi9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 560,
+      "cache_read_input_tokens": 46275,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 560,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 46275,
+          "cache_creation_input_tokens": 560,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 560
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-28T02:59:17.273Z_
+
+<details><summary>↩ Tool result · `toolu_01XJcg8HTpsvxdfJt4bmJEHZ`</summary>
+
+```text
+Web search results for query: "AMCS adaptive Monte Carlo search MathSearch ICML 2026 accepted paper mathematical process supervision Jie Ma"
+
+Links: [{"title":"From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision","url":"https://arxiv.org/pdf/2509.24351"},{"title":"Adaptive Parallel Monte Carlo Tree Search for Efficient Test-time Compute Scaling","url":"https://arxiv.org/pdf/2604.00510"},{"title":"Amplifying Exploration in Monte-Carlo Tree Search by Focusing on the   Unknown","url":"https://arxiv.org/pdf/2402.08511"},{"title":"Langevin type limiting processes for Adaptive MCMC","url":"https://arxiv.org/pdf/1201.1433"},{"title":"Adaptive Parallel Monte Carlo Tree Search for Efficient Test-time Compute Scaling","url":"https://arxiv.org/html/2604.00510"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**"From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision"** by Jie Ma and colleagues appears to be the paper matching your query.
+
+Here are the key details:
+
+**Main Contributions:**
+The paper proposes Adaptive Monte Carlo Search (AMCS), a framework that transforms data generation from fixed, static to adaptive, dynamic search at the level of node value estimation and path expansion.
+
+**Key Features:**
+- AMCS adaptively refines estimation by allocating more samples to uncertain reasoning steps while using fewer samples for easier ones, and enhances path expansion through a Monte Carlo algorithm with a temporally adaptive policy that begins with broad exploration and gradually shifts toward exploiting the most promising directions.
+
+**Dataset and Results:**
+- The work constructs a large-scale dataset MathSearch-200K of about 200K process supervision examples for training PRMs.
+- Experimental results show that Qwen2.5-Math-7B-PRM-AMCS achieves up to 76.2% accuracy on MATH500 with GLM-4-9B, outperforming all baseline PRMs.
+
+The paper focuses on improving Process Reward Models (PRMs) for mathematical reasoning in large language models through more efficient data generation and supervision.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2fb23a53-bd37-499f-9b2e-2bd6ad28980a",
+  "isSidechain": false,
+  "promptId": "8768e14f-ca2d-45a2-aa88-e4815981b80d",
+  "type": "user",
+  "uuid": "ec37c23c-2a8d-4763-ad13-ff3d3fd3da27",
+  "toolUseResult": {
+    "query": "AMCS adaptive Monte Carlo search MathSearch ICML 2026 accepted paper mathematical process supervision Jie Ma",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VvKfD3CGstkfxFyajYCvHZ",
+        "content": [
+          {
+            "title": "From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision",
+            "url": "https://arxiv.org/pdf/2509.24351"
+          },
+          {
+            "title": "Adaptive Parallel Monte Carlo Tree Search for Efficient Test-time Compute Scaling",
+            "url": "https://arxiv.org/pdf/2604.00510"
+          },
+          {
+            "title": "Amplifying Exploration in Monte-Carlo Tree Search by Focusing on the   Unknown",
+            "url": "https://arxiv.org/pdf/2402.08511"
+          },
+          {
+            "title": "Langevin type limiting processes for Adaptive MCMC",
+            "url": "https://arxiv.org/pdf/1201.1433"
+          },
+          {
+            "title": "Adaptive Parallel Monte Carlo Tree Search for Efficient Test-time Compute Scaling",
+            "url": "https://arxiv.org/html/2604.00510"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**\"From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision\"** by Jie Ma and colleagues appears to be the paper matching your query.\n\nHere are the key details:\n\n**Main Contributions:**\nThe paper proposes Adaptive Monte Carlo Search (AMCS), a framework that transforms data generation from fixed, static to adaptive, dynamic search at the level of node value estimation and path expansion.\n\n**Key Features:**\n- AMCS adaptively refines estimation by allocating more samples to uncertain reasoning steps while using fewer samples for easier ones, and enhances path expansion through a Monte Carlo algorithm with a temporally adaptive policy that begins with broad exploration and gradually shifts toward exploiting the most promising directions.\n\n**Dataset and Results:**\n- The work constructs a large-scale dataset MathSearch-200K of about 200K process supervision examples for training PRMs.\n- Experimental results show that Qwen2.5-Math-7B-PRM-AMCS achieves up to 76.2% accuracy on MATH500 with GLM-4-9B, outperforming all baseline PRMs.\n\nThe paper focuses on improving Process Reward Models (PRMs) for mathematical reasoning in large language models through more efficient data generation and supervision."
+    ],
+    "durationSeconds": 7.524252437999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2fb23a53-bd37-499f-9b2e-2bd6ad28980a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 98 · 2026-05-28T03:01:27.910Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now synthesize all my research findings and think deeply about how to address the reviewer feedback.
+
+## Key research findings:
+
+1. **AMCS (arXiv 2509.24351)**: 
+   - Was WITHDRAWN from ICLR 2026 (not accepted as reviewer claimed)
+   - Uses Wilson score interval to measure uncertainty per step and allocates more rollouts to uncertain steps
+   - Uncertainty based: μ∈[0.4,0.6] gets ~20 rollouts vs ~7 for confident nodes
+   - No ProcessBench F1 results - evaluated on best-of-N accuracy (MATH500, AIME, OmniMATH, OlympiadBench)
+   - Built on Qwen2.5-Math-7B-Instruct with adaptive per-step rollout budgeting based on uncertainty
+   - This approach is orthogonal to RCB's position-dependent curriculum—AMCS tunes rollout allocation within a phase while RCB determines which step positions to annotate across phases, so combining them could leverage adaptive sampling within each RCB phase
+
+2. **Hard2Verify (arXiv 2510.13744)**:
+   - 80 frontier-level Olympiad problems with 1,860 annotated steps across 200 model responses
+   - Qwen2.5-Math-PRM-72B shows a severe performance drop from 78.3 F1 on ProcessBench down to 37.3 on Hard2Verify, while even the best performers like GPT-5 (86.53%) and Gemini 2.5 Pro (83.37%) struggle, with all tested PRMs falling below 65.82% on step-level tasks—this dramatic collapse strongly validates RCB's core motivation
+   - Both AMCS and Hard2Verify remain arXiv preprints without confirmed venue acceptances
+
+, so they should be cited accordingly
+   - RM-Distiller uses generative-to-discriminative distillation rather than the reverse, and no process reward model variant exists
+
+The real bottleneck is the novelty ceiling at 3.625 when I need 4.0. The reviewer's suggestions point toward combining AMCS with RCB, strengthening Track B, adding Hard2Verify evaluation, and finding theoretical grounding. But here's the core tension: the position-dependent gradient insight is fundamentally straightforward—it's basic Markov chain theory—and the curriculum approach follows naturally once you see it, so no amount of framing will make the core contribution feel more novel.
+
+To genuinely break through, I need to add substantive new work rather than repackage what exists. The key insight is that AMCS and RCB are actually orthogonal contributions: AMCS determines how many rollouts to allocate per step using uncertainty estimates, while RCB determines which steps to prioritize for annotation based on the success rate gradient. Combining them creates a genuine 2D optimization problem—deciding both step position and rollout budget—which is a novel method in its own right, not just a reframing of existing ideas.
+
+Beyond that, I could strengthen the empirical case by evaluating on Hard2Verify, the hardest benchmark available with 80 IMO and Putnam problems, which would show whether RCB-trained PRMs actually hold up under extreme difficulty rather than just on ProcessBench. And on the theory side, I could formalize the Phase 0 findings into a framework showing when MC estimation informativeness depends on step position, problem difficulty, and domain, then derive conditions for when RCB beats uniform sampling under a simplified error model. The variance ratio grows exponentially with K-k for moderate error probabilities, making RCB dramatically more efficient than uniform sampling in deep reasoning chains. I can derive a concrete threshold—RCB outperforms when p exceeds 1-(ε/N)^{1/K}—which gives me a testable criterion using Phase 0 data to decide upfront whether to invest in this approach. Now I'm considering how to strengthen the generative reward model track by testing multiple architectures and adding knowledge distillation to better leverage the RCB-collected data.
+
+The core revision strategy crystallizes around four moves: incorporating AMCS as related work and exploring it as a combined variant, adding Hard2Verify as a third benchmark to show the dramatic performance collapse, formalizing the theoretical conditions for when RCB wins, and expanding Track B with multi-architecture evaluation and a novel pipeline where discriminative models trained on RCB data distill into generative ones.
+
+Now I'm working through the theoretical angle more carefully. The key insight is modeling K-step solutions where each step has an independent correctness probability, and showing how Monte Carlo estimation from intermediate steps compounds errors across the remaining steps—this gives me a formal lens for why RCB's step-level verification should outperform naive sampling. since p_{k-1} < 1, success rates increase monotonically across steps. Given a minimum per-step accuracy p_min, I can bound the success probability at step k as at least p_min^{K-k}, which lets me derive the critical threshold k* = K - ⌊log(c/N)/log(p_min)⌋—this pinpoints exactly where the RCB frontier begins. RCB outperforms uniform Monte Carlo allocation whenever k* > 1, meaning the problem is hard enough that early steps yield uninformative estimates.
+
+The key insight is that this threshold depends only on the per-step accuracy, rollout budget, and informativeness threshold, giving a clean criterion for when RCB helps. I can extend this framework to account for domain-specific correctness rates across different problem types, how intermediate guidance improves effective accuracy at earlier steps, and connections to variance reduction techniques like ComMCS.
+
+Now I'm seeing how AMCS and RCB operate on different principles: AMCS adapts rollout allocation based on estimation uncertainty using confidence intervals, allocating more samples to steps near 50% success and fewer to steps near 0% or 100%. But on hard frontier problems where early steps have extremely low success rates, AMCS ends up allocating fewer rollouts to these steps since they're confidently near zero—which saves compute but misses training signal. RCB takes a different approach by skipping early steps entirely and focusing annotation effort on later steps where success rates are more moderate and informative.
+
+The synergy emerges when combining them: RCB determines which step windows to annotate based on the optimal frontier position, while AMCS handles the within-window allocation of rollouts based on uncertainty. This creates a two-dimensional resource optimization problem—deciding both which steps to focus on and how many samples each needs. Within each RCB phase, AMCS's adaptive allocation efficiently estimates step values while respecting the curriculum structure, using fewer rollouts for steps that converge quickly and more for uncertain ones.
+
+For Track B, the current approach of fine-tuning generative PRMs on RCB annotations versus standard MC annotations with a ≥2 F1 improvement target feels too conservative as a co-primary objective, so I need to think about how to strengthen this into something more ambitious.
+
+The most promising direction is using the discriminative PRM trained by RCB as a teacher for generative models. Rather than just comparing annotation sources, I'd leverage the discriminative PRM's strength on hard problems to generate cheap step-level labels at scale—a single forward pass per step instead of expensive rollouts. These labels then fine-tune generative PRMs, letting them absorb the discriminative model's hard-problem knowledge without the computational burden. I could also test this across multiple generative architectures and potentially create a feedback loop where better generative PRMs produce better annotations, amplifying quality iteratively.
+
+Now I need to finalize the JSON and double-check the AMCS venue claim—the OpenReview page shows it was withdrawn from ICLR 2026, not actually published at a top venue as the reviewer stated.  Hard2Verify also appears to be an arXiv preprint without confirmed acceptance elsewhere. For change_type, this qualifies as a major revision since I'm adding the AMCS-RCB combination method, the Hard2Verify evaluation benchmark, formal theoretical conditions, an enhanced distillation pipeline for Track B, and clarifying the CPMI backbone—substantial extensions beyond the core idea.
+
+Now I'm estimating the resource impact: the AMCS-RCB ablation adds roughly 300-400 H100-hours, Hard2Verify evaluation is lightweight since it's inference-only, the Track B distillation pipeline requires about 200 H100-hours, and the theoretical analysis can happen in parallel with Phase 0 data work. That brings the total compute from 6200 to around 6800 H100-hours. The timeline works because the theoretical framework runs alongside Phase 0, the AMCS-RCB ablation overlaps with standard RCB training, and Hard2Verify evaluation is a final quick pass.
+
+As I draft the revision, I need to be careful about the venue claims—AMCS was withdrawn, Hard2Verify is an arXiv preprint—and make sure the theoretical contribution feels genuine rather than forced. The core question is whether these additions actually push toward a 4.0 rating. The reviewer's point about the elementary probability observation stands, but the theoretical framework providing sufficient conditions for RCB does shift this from clever engineering to foundational understanding. Combined with AMCS-RCB as a genuine 2D resource optimization method, the Hard2Verify benchmark as a differentiating evaluation, and the discriminative-to-generative distillation pipeline, there's real methodological novelty here.
+
+The paper becomes less of a one-trick contribution and more of a comprehensive framework spanning theory, method combination, and a novel evaluation pipeline. With three benchmarks and dual-track results, plus the first formal characterization of MC estimation informativeness, this should be substantive enough. Let me start writing the full revision now.
+
+I should also verify the AMCS publication status one more time—it was withdrawn from ICLR 2026 and the latest arXiv version is from January 2026, with no evidence of acceptance elsewhere, so I'll cite it conservatively as an arXiv preprint without overstating its status.
+
+For Track B, I'm reconsidering the F1 targets since the reviewer flagged ≥2 as too conservative. I'll differentiate the targets across architectures: GenPRM fine-tuned on RCB annotations should aim for ≥3 F1 improvement on Hard2Verify where the performance gap is most pronounced, while ThinkPRM fine-tuned on the same annotations targets ≥2 F1 on ProcessBench.
+
+The distillation pipeline should demonstrate faster convergence, ideally requiring at least 2x fewer training examples. But I need to be careful not to overcommit—the real strength here is that testing across multiple architectures validates the paradigm-wide bottleneck claim regardless of the exact magnitude, and the distillation approach itself is novel enough to stand on its own.
+
+Now I'm structuring the revision with clear priorities. The problem framing needs the Hard2Verify collapse as concrete evidence of discriminative PRM failure, AMCS as related work with proper venue attribution, theoretical grounding around MC informativeness, and the CPMI backbone specification corrected. For the methods section, I'm positioning the AMCS-RCB combination as the core contribution.
+
+The evaluation strategy is getting stronger: adding Hard2Verify as a third benchmark, expanding Track B with multi-architecture validation plus the distillation pipeline, and including AMCS-RCB comparisons in the ablations. This requires modest additional resources but significantly strengthens the claims.
+
+For the theoretical framework, I'm defining MC informativeness precisely—an estimate is ε-informative when it achieves sufficient rollouts to keep estimation error below 5% at 95% confidence, which translates to a threshold of 6 successes. Then I'm building the propositions on top of this foundation. , the earliest informative step under uniform MC is k* = K - ⌊log(c/N)/log(p_min)⌋, and steps before that have uninformative estimates regardless of how many rollouts we use.
+
+The difficulty threshold for when RCB becomes beneficial is 1 - (c/N)^{1/K}, which decreases as solutions get longer and increases with more rollouts. Now I'm seeing how AMCS and RCB work together—AMCS adaptively allocates rollouts per step while RCB determines which steps to annotate, creating a two-dimensional optimization problem. Now I'm mapping out the remaining sections that need updates—the metadata fields and any other supporting details that should reflect the new theoretical framework and experimental design.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec37c23c-2a8d-4763-ad13-ff3d3fd3da27",
+  "isSidechain": false,
+  "requestId": "req_011CbUDdivPGze6HLStqvAZp",
+  "type": "assistant",
+  "uuid": "390491a2-76ea-43af-871e-4572be1ac75b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CJERHzqV6emQYdQKQXRj3F",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 629,
+      "cache_read_input_tokens": 46835,
+      "output_tokens": 15946,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 15946,
+          "cache_read_input_tokens": 46835,
+          "cache_creation_input_tokens": 629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99 · 2026-05-28T03:05:29.444Z_
+
+Now I have comprehensive research findings. Let me synthesize and draft the revision.
+
+**Key research findings:**
+
+1. **AMCS** was **withdrawn** from ICLR 2026 (not accepted as reviewer claimed) — OpenReview confirms "ICLR 2026 Conference Withdrawn Submission." Uses Wilson score interval for adaptive rollout allocation: uncertain steps (μ∈[0.4,0.6]) get ~20 rollouts vs ~7 for confident steps. No ProcessBench F1 results — evaluated on best-of-N accuracy only. Orthogonal to RCB (AMCS varies rollout *budget* per step; RCB varies which *steps* to annotate first).
+
+2. **Hard2Verify**: 80 frontier Olympiad problems, 1,860 steps, 200 responses. Qwen2.5-Math-PRM-72B drops 78.3→37.3 — devastating collapse. All PRMs below 65.82%. Best: GPT-5 (86.53%). ArXiv preprint (Oct 2025), no confirmed venue.
+
+3. **Theoretical angle**: Clean formalization possible — under independent-step Markov model, MC success rate at step k is ∏(p_j) from k to K, giving exponential gradient. Sufficient condition for when RCB helps is derivable.
+
+4. **RM-Distiller**: Goes generative→discriminative (opposite direction). A discriminative→generative pipeline would be novel.
+
+Now let me compose the complete revised research idea:
+
+```json
+{
+  "change_type": "major",
+  "change_summary": "Major revision addressing all 4 round-4 issues plus strategic restructuring to cross the 4.0 impact threshold through four substantive additions: (1) AMCS integration with corrected venue status: AMCS (arXiv 2509.24351) was WITHDRAWN from ICLR 2026 (confirmed via OpenReview), not accepted as reviewer stated. Integrated as related work and proposed AMCS-RCB as a combined method variant: AMCS optimizes per-step rollout budget via Wilson score interval uncertainty, RCB optimizes which step positions to annotate via curriculum — together they solve a 2D resource allocation problem (step selection × rollout budget) that neither addresses alone. (2) Hard2Verify benchmark (arXiv 2510.13744) added as third evaluation target: the Qwen2.5-Math-PRM-72B collapse from 78.3 to 37.3 F1 (a 41-point drop) devastatingly validates RCB's premise that discriminative PRM quality degrades catastrophically on frontier-hard problems. Added as evaluation benchmark alongside ProcessBench and best-of-N. (3) Formal theoretical framework added: Theorem providing sufficient conditions for when RCB improves over uniform MC estimation, based on per-step correctness probability and solution length. Under the independent-step Markov model, MC success rate from step k is ∏_{j=k}^{K} p_j ≈ p_min^{K-k}, giving exponential growth toward later steps. The critical step threshold k* = K − ⌊log(c/N)/log(p_min)⌋ tells exactly which steps are informative, and RCB is strictly beneficial whenever K > log(c/N)/log(p_min). This is testable with Phase 0 data and provides the first formal characterization of MC estimation informativeness — elevating from 'clever engineering' to 'foundational understanding.' (4) Track B substantially strengthened: expanded from single-architecture fine-tuning to (a) multi-architecture testing across GenPRM, ThinkPRM, and R-PRM, (b) a novel discriminative-to-generative distillation pipeline where the RCB-trained discriminative PRM serves as a cheap labeler (single forward pass per step) to generate massive step-level supervision for generative PRM training — the reverse direction from RM-Distiller (2026), and (c) Hard2Verify evaluation for generative PRMs. Targets raised from ≥2 F1 to differentiated targets: ≥3 F1 on Hard2Verify, ≥2 F1 on ProcessBench OmniMATH, plus 2x data efficiency for distillation pipeline. (5) CPMI backbone specification corrected: labeling model is Qwen3-8B-Base, PRM training backbone is Qwen3-4B-Base. (6) Resource estimates updated for AMCS-RCB ablation (+400 H100-hours), expanded Track B (+300 H100-hours), and Hard2Verify evaluation (+100 H100-hours).",
+  "core_problem": "Can we overcome the cold-start problem in Monte Carlo process reward estimation — where the completer rarely solves hard problems, making MC estimates uninformative — by bootstrapping PRM accuracy from late steps backward to early steps via a reverse difficulty curriculum? The underlying intuition rests on elementary probability theory: in a Markov chain completion, the probability of reaching a target state increases as the number of remaining transitions decreases. Under an independent-step model with per-step correctness probability p, the MC success rate from step k in a K-step solution is approximately p^{K-k} — an exponential gradient that grows sharply toward later steps, especially for hard problems (low p). But three critical empirical and theoretical questions are unanswered: (1) Is the magnitude of this position-dependent success-rate gradient large enough on frontier-hard problems to produce meaningfully informative labels, and can we formalize sufficient conditions for when RCB outperforms uniform MC estimation? (2) For which mathematical problem types (algebra, combinatorics, number theory, geometry) does the gradient hold, and where does it break down? (3) How does this gradient interact with adaptive rollout budget allocation (AMCS-style per-step uncertainty-based sampling)? The severity of the problem is empirically confirmed by Hard2Verify (arXiv 2510.13744): Qwen2.5-Math-PRM-72B drops from 78.3 F1 on ProcessBench to 37.3 on frontier-hard Olympiad problems — a catastrophic 41-point collapse showing that current discriminative PRMs trained with standard MC annotations are fundamentally inadequate at the capability frontier. Rollout-free alternatives like CPMI (ACL 2026) bypass MC estimation via contrastive mutual information on model probabilities (using Qwen3-8B-Base for labeling, Qwen3-4B-Base for PRM training), but achieve only 25.6 F1 on ProcessBench OmniMATH — far below supervised discriminative PRMs (66.3-71.1 F1) — because model probability calibration degrades on frontier-hard problems. AMCS (arXiv 2509.24351) adaptively allocates rollout budget per-step based on estimation uncertainty (Wilson score interval), improving annotation efficiency, but does not address the fundamental issue that early-step MC estimates on hard problems are uninformative regardless of rollout budget — they converge to near-zero. If the position-dependent gradient is validated and formalized, the resulting high-quality MC annotations serve a triple purpose: (a) training efficient discriminative PRMs for online RL deployment, (b) providing better fine-tuning data for generative PRMs across architectures, and (c) enabling a novel discriminative-to-generative distillation pipeline where the fast RCB-trained PRM serves as a cheap labeler for training generative PRMs at scale.",
+  "opportunity": "The MC cold-start problem in PRM training remains a critical bottleneck, now quantified by Hard2Verify: the best discriminative PRM (Qwen2.5-Math-PRM-72B) collapses from 78.3 F1 on ProcessBench to 37.3 on frontier-hard Olympiad problems — a 41-point drop demonstrating catastrophic degradation precisely where strong verification is most needed. OmegaPRM acknowledges it 'requires verifiable gold answers, making it inapplicable when the completer rarely solves' hard problems. Three research directions have emerged, but all have significant limitations. **Direction 1: Generative PRMs** (GenPRM, R-PRM, ThinkPRM, RM-R1) achieve strong results (ThinkPRM-14B: 85.7 F1 on ProcessBench OmniMATH) but incur substantially higher per-step verification costs: Setlur et al. (2025) show GenRM requires 8-512× compute of self-consistency; ThinkPRM generates 1,000-5,000 tokens per step vs. a discriminative PRM's single scalar output. This cost differential creates a critical deployment gap in online RL training loops (GRPO/PPO), where millions of PRM evaluations are needed per training run. Fast-Slow Thinking RM (2026) explicitly identifies generative RM reasoning costs as 'orders of magnitude higher.' **Direction 2: Rollout-free label generation.** CPMI (ACL 2026) bypasses MC rollouts via contrastive pointwise mutual information using Qwen3-8B-Base for labeling and Qwen3-4B-Base for PRM training, reducing annotation cost by 84% and token generation by 98%. However, CPMI achieves only 25.6 F1 on ProcessBench OmniMATH — the authors explicitly exclude 'extremely difficult problems' because model probability calibration degrades at frontier difficulty. Together with uPRM (39.8 F1), unsupervised/rollout-free methods consistently underperform supervised MC-based PRMs by 27-41 F1 points on hard problems. **Direction 3: Adaptive MC estimation.** AMCS (arXiv 2509.24351) allocates rollout budget adaptively per-step based on Wilson score interval uncertainty — uncertain steps (success rate μ∈[0.4,0.6]) receive ~20 rollouts vs ~7 for confident steps — improving annotation efficiency. However, AMCS treats all step positions symmetrically and does not exploit the position-dependent success rate gradient: on frontier-hard problems, early steps are not merely 'uncertain' but uninformative (μ≈0), so even maximum-budget AMCS rollouts yield near-zero successes. **The gap RCB fills:** No existing approach (a) provides formal conditions characterizing when MC estimation becomes informative as a function of step position, (b) exploits the position-dependent gradient as a training curriculum, or (c) combines step-position-aware curriculum with adaptive per-step budget allocation. RCB addresses all three: the theoretical framework formalizes informativeness conditions (Theorem 1), the curriculum exploits the gradient, and AMCS-RCB combines position curriculum with adaptive allocation. The resulting annotations serve both discriminative PRM training and a novel discriminative-to-generative distillation pipeline, addressing label quality as a paradigm-wide bottleneck. ComMCS (AAAI 2026) demonstrates a related insight — compounding MC estimates across adjacent steps reduces variance — but its theoretical framework treats all step positions symmetrically.",
+  "landscape": "**Generative PRMs (dominant recent trend):** GenPRM (AAAI 2026) reframes process reward modeling as a generative task using Relative Progress Estimation, achieving ~80.5 avg F1 on ProcessBench with a 7B model via Maj@8 — surpassing the 72B Qwen2.5-Math-PRM (78.3 avg F1). R-PRM (EMNLP 2025) activates reasoning in the PRM via seed data generation and self-improvement, achieving +11.9 F1 on ProcessBench and +8.5 F1 on PRMBench over baselines. RM-R1 (ICLR 2026) introduces chain-of-rubrics reasoning reward models generating up to 8,192 tokens per evaluation. ThinkPRM (TMLR 2026; arXiv 2504.16828) uses chain-of-thought verification trained on only 1K examples, reaching 85.7 F1 on ProcessBench OmniMATH and 87.3 on OlympiadBench — the current highest reported scores on these hard subsets. All generative PRMs trade training-time data requirements for inference-time compute. **Discriminative PRM SOTA and frontier-hard collapse:** Qwen2.5-Math-PRM-7B achieves 66.3 F1 on OmniMATH and 67.5 on OlympiadBench; Qwen2.5-Math-PRM-72B achieves 71.1 and 74.3 respectively (reported in R-PRM EMNLP 2025 Table 1 and 'Is PRM Necessary?' arXiv 2505.11227 Table 1). Note: these are distinct from the weaker Qwen2.5-Math-7B-PRM800K (44.3 OmniMATH, 50.7 OlympiadBench) — a 22-point gap demonstrating that training data quality is decisive. Critically, Hard2Verify (arXiv 2510.13744) reveals catastrophic degradation at the true frontier: Qwen2.5-Math-PRM-72B drops from 78.3 F1 on ProcessBench to 37.3 on Hard2Verify's 80 IMO/Putnam-level problems (1,860 annotated steps) — a 41-point collapse. All tested PRMs score below 65.82% on step-level tasks. 'State-of-the-art PRMs struggle immensely on Hard2Verify, performing significantly below random guess performance in error identification.' This collapse directly motivates improving MC annotation quality on hard problems. **Rollout-free label generation:** CPMI (arXiv 2604.10660, ACL 2026) uses contrastive pointwise mutual information with Qwen3-8B-Base as the labeling model and Qwen3-4B-Base as the PRM training backbone to generate step-level reward labels without MC rollouts, reducing annotation time by 84%. However, CPMI-trained PRMs achieve only 25.6 F1 on ProcessBench OmniMATH — the authors explicitly exclude extremely difficult problems. **Adaptive MC estimation:** AMCS (arXiv 2509.24351; withdrawn from ICLR 2026) adaptively allocates rollout samples per-step based on Wilson score interval uncertainty, allocating ~20 rollouts to uncertain steps (μ∈[0.4,0.6]) vs ~7 for confident steps. Trains Qwen2.5-Math-7B-PRM-AMCS on MathSearch-200K, achieving 76.2% accuracy on MATH500 with GLM-4-9B. Key limitation: treats all step positions symmetrically — does not analyze or exploit position-dependent success rate gradients. No ProcessBench F1 results reported. **Generative PRM cost analysis:** Setlur et al. (2025) show GenRM-FT requires 8× compute to match self-consistency, 128× to beat it by 3.8%. **MC estimation improvements:** ComMCS (AAAI 2026) reduces MC estimator variance via compounding estimates across adjacent step positions (TD(λ)-style) without extra inference, gaining +2.8 best-of-N points. Theorem 4.2 establishes MC estimation as the MVUE given single-step information. SCAN (NeurIPS 2025) addresses MC annotation noise via self-denoising. Math-Shepherd (ACL 2024) and OmegaPRM (arXiv 2024) established MC-based PRM annotation but flag the cold-start problem without solution. **Reward model distillation:** RM-Distiller (arXiv 2601.14032, 2026) systematically distills from generative LLMs to discriminative reward models via refinement, scoring, and generation capabilities. The reverse direction — discriminative PRM to generative PRM distillation — remains unexplored. **Fast PRM motivation:** Fast-Slow Thinking RM (arXiv 2603.20212, 2026) proposes hybrid scalar/generative RM. PRIME (arXiv 2502.01456, 2025) derives implicit process rewards, achieving 2.5× faster training. SPRO (arXiv 2507.01551, 2025) achieves 3.4× higher training efficiency. **Frontier-hard verification benchmarks:** Hard2Verify (arXiv 2510.13744, 2025) provides 80 frontier Olympiad problems with 1,860 human-annotated steps; the best open-source model (DeepSeek-R1) achieves 68.92% step-level accuracy; GPT-5 leads at 86.53%. **Co-evolutionary and curriculum approaches:** RL Tango (NeurIPS 2025) co-evolves generator and generative verifier. SCRL (arXiv 2605.22074, 2026) decomposes hard problems into verifiable subproblems. R³ (ICML 2024) applies reverse curriculum RL for policy training. AURORA (arXiv 2025) uses reverse verification. **Gap:** No existing work (a) formally characterizes sufficient conditions for MC informativeness as a function of step position and problem difficulty, (b) proposes a step-position-aware reverse curriculum for PRM training, (c) combines position-aware curriculum with adaptive per-step rollout allocation, (d) produces efficient discriminative PRMs that resist Hard2Verify-level collapse, or (e) tests discriminative-to-generative PRM distillation as a paradigm for leveraging cheap discriminative labels to improve expensive generative verification.",
+  "inspired_by": "Field gap: process supervision for problems at or beyond the model's capability frontier, where MC estimation produces degenerate near-zero-variance estimates, probability-based methods (CPMI) produce uncalibrated scores, and current discriminative PRMs collapse catastrophically (78.3→37.3 F1 on Hard2Verify). Theoretical foundation: elementary Markov chain completion probability — the MC success rate from step k in a K-step solution is approximately p^{K-k} under an independent-step model, giving an exponential gradient that is sharper for harder problems. The key intellectual contribution is formalizing this into sufficient conditions (Theorem 1) and systematic empirical characterization — untested despite the straightforward underlying intuition. Methodological innovation: (1) the AMCS-RCB combination addresses a 2D resource allocation problem (which steps to annotate × how many rollouts per step) that neither approach solves alone — AMCS (adaptive budget via Wilson score uncertainty) is orthogonal to RCB (curriculum over step positions via success rate gradient); (2) the discriminative-to-generative distillation pipeline reverses the typical RM-Distiller direction, using RCB-trained discriminative PRMs as cheap labelers to generate massive training data for generative PRMs — novel because discriminative PRMs produce labels at ~1000× lower cost per step than generative PRMs. Deployment motivation: the well-documented need for efficient discriminative PRMs in online RL training loops (GRPO/PPO), where generative PRMs are prohibitively expensive (Setlur et al. 2025; Fast-Slow Thinking RM 2026; PRIME and SPRO workarounds). Broader impact: the consistent 27-41 F1 gap between unsupervised/rollout-free methods and supervised MC-based PRMs on OmniMATH, plus the Hard2Verify collapse, demonstrate that annotation quality is the decisive bottleneck. Complementarity: CPMI for easy-moderate problems (cheap, well-calibrated), AMCS-RCB for frontier-hard problems (efficient and uniquely informative), generative PRMs for highest-accuracy test-time verification.",
+  "approach": "We propose Reverse-Curriculum Bootstrapping (RCB), a theoretically grounded annotation and training framework with four contributions: (I) a formal characterization of MC estimation informativeness, (II) a position-aware reverse curriculum for PRM training, (III) an AMCS-RCB combined method integrating adaptive per-step rollout allocation, and (IV) a discriminative-to-generative distillation pipeline. **Contribution I — Theoretical Framework (weeks 1-2, concurrent with Phase 0):** We formalize the position-dependent MC informativeness under an independent-step Markov model. Definition: an MC estimate at step k with N rollouts is c-informative if E[successes] = N·μ_k ≥ c, where μ_k = ∏_{j=k}^{K} p_j is the completion success rate. Proposition 1 (Monotonicity): μ_k ≤ μ_{k+1} for all k — informativeness is non-decreasing with step position. Proposition 2 (Exponential Gradient): if per-step correctness p_j ∈ [p_min, p_max], then μ_k ∈ [p_min^{K-k}, p_max^{K-k}], giving approximately exponential growth toward later steps on hard problems. Theorem 1 (RCB Sufficient Condition): RCB produces strictly more informative annotations than uniform MC estimation whenever K > log(c/N)/log(p_min), with the earliest informative step at k* = K − ⌊log(c/N)/log(p_min)⌋. Corollary (Difficulty Threshold): RCB is beneficial when problem difficulty exceeds 1 − (c/N)^{1/K}. These results are validated empirically in Phase 0 and provide actionable a priori criteria for practitioners. We connect to ComMCS's compound variance formula (Theorem 4.3) by showing that RCB's position-aware annotation focuses variance reduction where it matters most. **Phase 0 — Pilot Validation (weeks 1-3):** Before committing to the full pipeline, we address three prerequisites. (0a) Completer baseline evaluation (~50 H100-hours): evaluate Qwen3-235B-A22B on the full Omni-MATH dataset (4,428 problems) to establish ground-truth difficulty distribution, as no published Omni-MATH results exist for Qwen3 models. (0b) MC success-rate curve characterization (~150 H100-hours): select 200 problems spanning difficulty levels from Omni-MATH, generate 8-12-step candidate solutions using Qwen3-32B, and run N=64 MC rollouts from each step position k using Qwen3-32B as completer. Measure success rate as a function of normalized step position (k/K), stratified by problem difficulty and mathematical domain. Empirically estimate p_min per domain and validate Theorem 1's predictions. Produce success-rate curves with bootstrap confidence intervals. (0c) AMCS baseline comparison (~50 H100-hours): implement AMCS-style adaptive allocation (Wilson score interval, k_init=6, k_max=32) on the same 200 problems to quantify efficiency gains from adaptive budgeting alone, establishing the baseline for AMCS-RCB comparison. Go/no-go criteria (domain-stratified): (i) Full-go: for ≥40% of frontier-hard problems (pass@1 < 5%), late-step rollouts (k/K > 0.8) achieve success rates ≥10%; (ii) Partial-go: 20-40% meet criterion (i), proceed with RCB restricted to qualifying domains; (iii) No-go: <20% qualify, pivot to AMCS-enhanced compounding estimators combined with difficulty curriculum. As additional Phase 0 analyses: compare CPMI label quality (using Qwen3-8B-Base labeler) against MC labels at each step position; fit the independent-step model to empirical data and test Theorem 1's predictions; analyze domain-specific p_min estimates. The Phase 0 analysis — the first systematic empirical characterization of MC signal quality as a function of step position on frontier-hard problems, combined with the theoretical framework — constitutes a standalone contribution. Total Phase 0 cost: ~250 H100-hours. **Problem Curation (weeks 3-4):** Curate frontier-hard problems from Omni-MATH and filtered AIME/AMC, selecting those where Qwen3-235B-A22B achieves <10% pass@8. **Contribution II — RCB Curriculum (weeks 4-14):** Phase 1 (weeks 4-6): Run MC rollouts from late step positions (k/K > 0.75) where the pilot confirmed non-trivial success rates, using Qwen3-235B-A22B as completer. Train PRM_0 (Qwen3-7B base). Phases 2-5 (weeks 6-14): Each phase i uses PRM_{i-1} to guide rollouts at progressively earlier step windows via best-of-16 selection. Early termination: if PRM-guided rollouts do not achieve ≥2pp higher success rate than unguided. **Contribution III — AMCS-RCB Combined Method (weeks 4-14, parallel variant):** Within each RCB phase, replace the fixed rollout budget (N=64) with AMCS-style adaptive allocation: use Wilson score interval to allocate k_init=6 to k_max=32 rollouts per step based on estimation uncertainty. This addresses the 2D resource allocation problem: RCB determines *which steps to annotate* (step position curriculum), AMCS determines *how many rollouts per step* (uncertainty-adaptive budget). Theoretical connection: Theorem 1 determines the informative step range; AMCS optimizes rollout allocation within that range. We train a parallel PRM track (PRM_AMCS-RCB) and compare annotation quality, compute efficiency, and downstream PRM accuracy against pure RCB and pure AMCS baselines. Expected benefit: 20-30% compute reduction with equivalent or better label quality, because AMCS avoids over-sampling at step positions where estimates converge quickly (near-0 or near-1 success rates). **Contribution IV — Dual-Track Evaluation and Distillation Pipeline:** Track A (discriminative, weeks 4-16): Train 7B discriminative PRM via RCB and AMCS-RCB curricula. Evaluate on ProcessBench (OmniMATH, OlympiadBench), Hard2Verify, PRMBench, and best-of-N accuracy on Omni-MATH hard-filtered and AIME 2025/2026 hardest problems. Track B (generative + distillation, weeks 12-18): Three sub-tracks: (B1) Multi-architecture fine-tuning: fine-tune GenPRM, ThinkPRM, and R-PRM architectures on RCB-annotated data vs. standard MC annotations from the same problems, testing whether annotation quality is a paradigm-wide bottleneck across generative PRM architectures, not just discriminative. (B2) Novel discriminative-to-generative distillation pipeline: use the RCB-trained discriminative PRM (fast, single forward pass per step) to generate step-level correctness labels on a large corpus of solution traces (100K+ traces), then use these cheap labels to fine-tune generative PRMs. This reverses the typical RM-Distiller direction (generative→discriminative) and exploits the ~1000× cost advantage of discriminative inference to provide massive hard-problem supervision that would be prohibitively expensive via MC rollouts or generative PRM labeling. (B3) Hard2Verify generative evaluation: evaluate RCB-fine-tuned generative PRMs on Hard2Verify to test whether improved training data quality translates to improved frontier-hard verification. **Ablations (weeks 14-17):** (1) RCB vs. uniform MC estimation; (2) RCB vs. stronger completer only (Qwen3-235B with higher rollout budget); (3) AMCS-RCB vs. pure AMCS vs. pure RCB — the key contribution III comparison; (4) CPMI labels vs. RCB MC labels at matched difficulty, testing complementarity; (5) Inference speed comparison: wall-clock time per evaluation for RCB discriminative PRM vs. GenPRM, ThinkPRM, RM-R1, for a representative GRPO scenario (1,000 prompts × 16 rollouts × 20 steps = 320,000 evaluations per epoch); (6) Distillation efficiency: compare generative PRM trained on discriminative-PRM labels vs. same model trained on MC labels vs. same model trained on RCB-MC labels, at matched data scale. **Evaluation (weeks 17-19):** Track A targets — ProcessBench OmniMATH: improve 7B discriminative PRM F1 from 66.3 baseline to 72-76 F1, approaching ThinkPRM-7B (74.0 F1) without generative overhead; OlympiadBench: 72-78 F1 vs. 67.5 baseline; Hard2Verify: target ≥50 F1 (from 37.3 baseline for 72B model — demonstrating that RCB-trained 7B PRM resists catastrophic frontier-hard collapse). Track B targets — ProcessBench OmniMATH for RCB-fine-tuned generative PRMs: ≥3 F1 improvement on Hard2Verify, ≥2 F1 on ProcessBench OmniMATH across at least 2 of 3 tested architectures; distillation pipeline: achieve ≥90% of MC-trained generative PRM accuracy with 10× less labeling compute, demonstrating discriminative-to-generative knowledge transfer. **Failure mode analysis:** (F1) Pilot invalidation — theoretical gradient insufficient, with partial-go and no-go pathways; (F2) Bootstrap cascade failure — caught by early termination criterion; (F3) Key-insight ceiling — problems where single critical insight determines correctness at all subsequent steps; (F4) AMCS-RCB overhead — if adaptive allocation overhead exceeds compute savings, pure RCB may dominate; (F5) Track B null result — if annotation quality does not improve generative PRMs, this is an informative negative result (generative PRMs learn via reasoning rather than training data quality), and Track A + distillation pipeline + theoretical contribution remain primary. **Practical deployment framework (three-tier):** CPMI-trained PRM for moderate-difficulty problems (cheapest), AMCS-RCB-trained discriminative PRM for frontier-hard RL training, generative PRM (optionally distillation-enhanced) for high-stakes test-time verification.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "7000 H100-hours (250 for Phase 0 including completer evaluation + MC pilot + AMCS baseline + CPMI comparison, 3200 for MC rollout generation across Phases 1-5, 1200 for iterative discriminative PRM fine-tuning, 400 for AMCS-RCB parallel track, 1000 for Track B multi-architecture generative PRM fine-tuning + distillation pipeline, 500 for ablations, 450 for evaluation including Hard2Verify benchmarking and inference speed measurement)",
+      "timeline": "18-19 weeks (2 weeks theoretical framework + Phase 0 pilot concurrent, 1 week go/no-go + curation, 10 weeks for 5 RCB phases with AMCS-RCB parallel, 4 weeks Track B parallel from week 12, 2 weeks ablations, 1-2 weeks evaluation/writing)",
+      "estimated_gpu_cost": "$19,950 (at ~$2.85/H100-hour)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "6100 H100-hours (efficiency gains from Claude-assisted theoretical analysis, pilot data fitting, automated hyperparameter tuning, and ablation design reducing wasted runs by ~13%)",
+      "timeline": "15-16 weeks (Claude accelerates theoretical framework development, pilot analysis, Phase 0 model fitting, experiment scripting, and paper drafting, saving ~3 weeks; fits estimated ICLR 2027 deadline starting June 1)",
+      "claude_api_cost": "$1,250 (Sonnet 4.6 for code generation, theoretical proof verification, pilot data analysis, experiment orchestration, Track B design, and paper drafting; ~290M input + 60M output tokens)",
+      "estimated_gpu_cost": "$17,385"
+    },
+    "auto_research": {
+      "gpu_hours": "8100 H100-hours (additional compute for AMCS-RCB hyperparameter sweeps, multi-architecture Track B fine-tuning, distillation pipeline optimization, systematic ablation execution, and theoretical model validation)",
+      "timeline": "11-12 weeks (fully automated pipeline with parallel RCB + AMCS-RCB tracks and parallel Track B; pilot phase still requires ~2.5 weeks for sequential completer evaluation + analysis)",
+      "claude_api_cost": "$4,200 (heavy Opus 4.7 usage for autonomous experiment design, theoretical framework development, pilot go/no-go analysis, AMCS-RCB integration, distillation pipeline design, and adaptive protocol modification; ~450M input + 120M output tokens)",
+      "estimated_gpu_cost": "$23,085",
+      "speed_bottleneck": "MC rollout generation with Qwen3-235B-A22B completer requires multi-node inference; RCB phases are inherently sequential; AMCS-RCB runs in parallel with pure RCB track; Track B independent from week 12. Distillation pipeline requires completed Track A discriminative PRM."
+    }
+  },
+  "target_venues": [
+    "ICLR 2027 (estimated deadline: ~September 2026, projected from ICLR 2026 schedule; not officially announced as of May 2026) — primary target, 15-16 week human-in-loop timeline fits starting June 1",
+    "AISTATS 2027 (estimated deadline: October 2026) — backup if additional time needed",
+    "ICML 2027 (full paper estimated: ~January 2027) — comfortable deadline for full manual timeline"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Let's Verify Step by Step (ICLR 2024)",
+    "Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations (ACL 2024)",
+    "Improve Mathematical Reasoning in Language Models by Automated Process Supervision [OmegaPRM] (arXiv 2024)",
+    "Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters (ICLR 2025)",
+    "rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking (ICML 2025)",
+    "Training Large Language Models for Reasoning through Reverse Curriculum Reinforcement Learning [R3] (ICML 2024)",
+    "SCAN: Self-Denoising Monte Carlo Annotation for Robust Process Reward Learning (NeurIPS 2025)",
+    "Process Reward Models That Think [ThinkPRM] (TMLR 2026; arXiv 2504.16828)",
+    "The Lessons of Developing Process Reward Models in Mathematical Reasoning (ACL Findings 2025)",
+    "ProcessBench: Identifying Process Errors in Mathematical Reasoning (ACL 2025)",
+    "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026)",
+    "R-PRM: Reasoning-Driven Process Reward Modeling (EMNLP 2025)",
+    "Dyve: Thinking Fast and Slow for Dynamic Process Verification (EMNLP 2025)",
+    "RM-R1: Reward Modeling as Reasoning (ICLR 2026)",
+    "SCRL: From Reasoning Chains to Verifiable Subproblems — Curriculum RL Enables Credit Assignment for LLM Reasoning (arXiv 2605.22074, 2026)",
+    "ComMCS: Improving Value-based Process Verifier via Low-Cost Variance Reduction (AAAI 2026)",
+    "Omni-MATH: A Universal Olympiad Level Mathematic Benchmark For Large Language Models (arXiv 2024)",
+    "AURORA: Automated Process Reward Model Training via Reverse Verification (arXiv 2025)",
+    "RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning (NeurIPS 2025)",
+    "Unsupervised Process Reward Models [uPRM] (arXiv 2605.10158, 2026)",
+    "Fast-Slow Thinking RM: Efficient Integration of Scalar and Generative Reward Models (arXiv 2603.20212, 2026)",
+    "PRIME: Process Reinforcement through Implicit Rewards (arXiv 2502.01456, 2025)",
+    "Is PRM Necessary? Problem-Solving RL Implicitly Induces PRM Capability in LLMs (arXiv 2505.11227, 2025)",
+    "When To Solve, When To Verify: Compute-Optimal Problem Solving and Verification (Setlur et al., arXiv 2504.01005, 2025)",
+    "Cog-DRIFT: Exploration on Adaptively Reformulated Instances Enables Learning from Hard Reasoning Problems (arXiv 2026)",
+    "Efficient Process Reward Modeling via Contrastive Mutual Information [CPMI] (arXiv 2604.10660, ACL 2026)",
+    "From Static to Dynamic: Adaptive Monte Carlo Search for Mathematical Process Supervision [AMCS] (arXiv 2509.24351, 2025)",
+    "Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math (arXiv 2510.13744, 2025)",
+    "RM-Distiller: Exploiting Generative LLM for Reward Model Distillation (arXiv 2601.14032, 2026)",
+    "SPRO: Self-Guided Process Reward Optimization with Redefined Step-wise Advantage (arXiv 2507.01551, 2025)"
+  ],
+  "description": "This project addresses the Monte Carlo cold-start problem in process reward model training through four integrated contributions: (I) a theoretical framework formalizing MC estimation informativeness as a function of step position, (II) a reverse-curriculum bootstrapping (RCB) annotation algorithm, (III) a combined AMCS-RCB method integrating adaptive per-step rollout allocation with position-aware curriculum, and (IV) a novel discriminative-to-generative PRM distillation pipeline. The severity of the problem is now quantified by Hard2Verify: Qwen2.5-Math-PRM-72B collapses from 78.3 F1 on ProcessBench to 37.3 on frontier-hard Olympiad problems — a catastrophic 41-point drop. While generative PRMs bypass MC estimation via inference-time reasoning (ThinkPRM-14B: 85.7 F1), they generate 1,000-5,000 tokens per step — infeasible for RL training (Setlur et al. 2025: GenRM needs 8-512× compute). Rollout-free alternatives (CPMI at 25.6 F1 using Qwen3-8B-Base labeler/Qwen3-4B-Base PRM; uPRM at 39.8 F1) consistently underperform supervised PRMs by 27-41 F1 points on hard problems. AMCS (arXiv 2509.24351) adaptively allocates rollout budget per-step via Wilson score interval uncertainty but treats all step positions symmetrically and does not address the fundamental uninformativeness of early-step MC estimates on hard problems. **Contribution I** formalizes the position-dependent MC gradient: under an independent-step model, the success rate from step k is approximately p^{K-k}, giving exponential growth toward later steps. Theorem 1 provides sufficient conditions for when RCB outperforms uniform MC: whenever K > log(c/N)/log(p_min), early steps are uninformative regardless of rollout budget, and RCB's curriculum is strictly better. This is validated with Phase 0 empirical data. **Contribution II** (RCB) exploits this gradient: Phase 1 collects informative MC annotations from late steps; subsequent phases bootstrap earlier positions using PRM-guided rollouts. **Contribution III** (AMCS-RCB) combines position curriculum (RCB) with adaptive rollout allocation (AMCS) — addressing the 2D resource optimization that neither method solves alone: RCB determines *which steps to annotate*, AMCS determines *how many rollouts per step*. Expected: 20-30% compute reduction with equivalent label quality. **Contribution IV** introduces dual-track evaluation: Track A trains a 7B discriminative PRM targeting 72-76 F1 on ProcessBench OmniMATH and ≥50 F1 on Hard2Verify (vs. 37.3 baseline for 72B model); Track B (a) fine-tunes multiple generative PRM architectures (GenPRM, ThinkPRM, R-PRM) on RCB annotations to test the paradigm-wide bottleneck hypothesis, and (b) introduces a novel discriminative-to-generative distillation pipeline where the fast RCB-trained PRM generates massive step-level labels at ~1000× lower cost than generative verification — reversing RM-Distiller's direction (generative→discriminative) to enable cheap hard-problem supervision for generative PRMs. Note on ProcessBench baselines: Qwen2.5-Math-PRM-7B (66.3/67.5) is distinct from Qwen2.5-Math-7B-PRM800K (44.3/50.7) — the 22-point gap on OmniMATH demonstrates training data quality is decisive (reported in R-PRM EMNLP 2025 Table 1 and 'Is PRM Necessary?' 2505.11227 Table 1). Evaluation on three benchmarks (ProcessBench, Hard2Verify, best-of-N), both paradigms (discriminative + generative), and the three-tier deployment framework: CPMI for moderate problems, AMCS-RCB discriminative PRM for frontier-hard RL training, generative PRM for high-stakes verification.",
+  "project_name": "reverse_curr_prm_bootstrap",
+  "source": "web_research",
+  "title": "Reverse-Curriculum Bootstrapping for Process Verification at the Capability Frontier"
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "390491a2-76ea-43af-871e-4572be1ac75b",
+  "isSidechain": false,
+  "requestId": "req_011CbUDdivPGze6HLStqvAZp",
+  "type": "assistant",
+  "uuid": "ca8177f5-f24f-4857-9ec5-06f88bb0f494",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CJERHzqV6emQYdQKQXRj3F",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 629,
+      "cache_read_input_tokens": 46835,
+      "output_tokens": 15946,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 15946,
+          "cache_read_input_tokens": 46835,
+          "cache_creation_input_tokens": 629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 100_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"change_summary\": \"Major revision addressing 4 round-3 reviewer concerns plus st…",
+  "leafUuid": "ca8177f5-f24f-4857-9ec5-06f88bb0f494",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 101_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising process supervision research with novel hard-problem curriculum",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 102_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"change_summary\": \"Major revision addressing 4 round-3 reviewer concerns plus st…",
+  "leafUuid": "ca8177f5-f24f-4857-9ec5-06f88bb0f494",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 103_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revising process supervision research with novel hard-problem curriculum",
+  "sessionId": "d1378e4d-9894-41fe-b6e9-aceebb85e7a9"
+}
+```
+
+---

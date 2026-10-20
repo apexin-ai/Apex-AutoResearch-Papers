@@ -1,0 +1,5837 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-16 (UTC).** ## Original idea { "tit
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 92
+- **Recorded user turns:** 1
+- **Tool calls:** 25
+- **Original source:** `logs/chats/exported-trajectories/account-2/de2cbaeb-7a25-4ce3-918d-4f85f5dc6777.jsonl`
+- **Structured JSON:** [`bf70617da802a75aea5a.json`](../../sessions/bf/bf70617da802a75aea5a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T09:25:14.712Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T09:25:14.712Z",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-16 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Claim-Level Selective Activation Steering for Factual Hallucination Suppression in Long-Form Generation\",\n  \"core_problem\": \"Factual hallucination in LLMs has spurred a proliferation of geometry-aware detection and activation steering methods, yet a fundamental granularity mismatch persists: detection and intervention operate at token level, while factual evaluation operates at claim/sentence level. PCNet (May 2026) exemplifies this—its probabilistic-circuit gating achieves near-perfect detection AUROC yet still corrupts 53.7% of originally correct generations when intervening at every deviant token, because token-level decisions cannot distinguish 'this token is anomalous within an otherwise correct claim' from 'this claim is genuinely hallucinated.' FASB (NeurIPS 2025) addresses selective steering but operates correctively—detecting deviation after tokens are generated, then backtracking 10 tokens—which wastes compute and splits coherent claims. Spherical Steering (ICML 2026) applies per-token rotation with continuous vMF-gated intensity, achieving strong TruthfulQA gains but intervening indiscriminately across all claims. The Attractor Geometry paper (May 2026) demonstrates that Euclidean geometric margin separates correct recall from hallucination (AUROC 0.858 on TruthfulQA vs. entropy 0.656), but this result is detection-only and measured at first-digit positions on factoid completion—translation into targeted intervention at appropriate granularity during multi-sentence generation remains the open challenge.\",\n  \"opportunity\": \"The unexploited sweet spot is pre-emptive claim-level gating: sentences are the natural unit of factual claims—the granularity FActScore evaluates, the granularity humans judge, and the granularity at which LLMs integrate context before next-sentence planning (supported by 'Think in Sentences,' April 2026). The key evidence that this granularity matters comes from PCNet's results: despite near-perfect token-level detection (AUROC up to 99% on extractive QA), its token-level intervention still corrupts 53.7% of correct generations and preserves only 79.3%. This is because anomaly at individual token positions does not reliably indicate that the entire claim is hallucinated—a high-NLL token may be stylistically unusual but factually correct, or may be part of a partially correct claim that token-level correction damages. A system that makes binary steer/skip decisions at sentence boundaries—preserving entire correct claims untouched while steering only claims where the model lacks factual grounding—can achieve higher preservation rates by avoiding sub-claim intervention entirely. The three-part framework (when: sentence boundaries; whether: geometric distance trigger; how much: per-layer intensity) addresses limitations in all current methods: PCNet's token-level corruption, FASB's corrective backtracking overhead, Spherical Steering's indiscriminate application, and Hallucination Basins' per-sequence uniformity.\",\n  \"landscape\": \"**Selective geometric gating (primary competitors):**\\n\\n*PCNet (arXiv 2605.05953, May 2026)* is the closest concurrent work sharing the 'detect geometric anomaly → selectively intervene' paradigm. PCNet trains a Probabilistic Circuit as a density estimator over MLP-compressed residual stream states (4096→128 dims), computes exact NLL as anomaly score, and triggers PC-LDCD (contrastive decoding) only at deviant tokens. Results: TruthfulQA MC1 0.51 / MC2 0.65 on Llama-3.1-8B; near-perfect detection AUROC on extractive QA; corruption rate 53.7%, preservation rate 79.3%. Overhead: <2% for PC scoring, but 3.3–6.2 additional block evaluations per anomalous token for lookahead. CLSAS differs in three fundamental ways: (a) Granularity: sentence-level binary decisions preserve entire correct claims and avoid sub-claim corruption. PCNet evaluates NLL at every token, meaning intervention can damage partially correct claims—evidenced by its 53.7% corruption rate despite near-perfect detection. CLSAS's claim-level atomicity should achieve substantially lower corruption. (b) Intervention mechanism: activation steering shifts the model's own generation distribution toward factual attractors in a single forward pass, while contrastive decoding requires maintaining lookahead evaluations for top-k candidates at every anomalous position (PCNet's IGR ranges 0.41–0.78, meaning lookahead triggers at 41–78% of tokens). On long-form generation where many tokens are flagged, CLSAS's steering-only approach avoids this per-token lookahead cost. (c) Trigger interpretability: Euclidean/Mahalanobis distance from factual cluster centroids has a clear geometric interpretation (distance in representation space), while NLL from a trained probabilistic circuit is a learned density estimate whose failure modes are less transparent.\\n\\n*FASB (arXiv 2508.17621, NeurIPS 2025)* is the most direct prior work on 'when to steer,' using linear probes trained on attention head activations. It monitors concatenated question-and-generated-content states, triggers intervention when deviation is detected, and backtracks s=10 tokens to regenerate with steering. MC1 48.71% on TruthfulQA (LLaMA-2-7B-Chat). CLSAS differs in: (a) pre-emptive gating at sentence boundaries (no wasted tokens, no rollback) vs. FASB's corrective backtracking; (b) geometric distance trigger measuring knowledge absence vs. learned directional alignment on attention heads; (c) atomic claim-level decisions vs. token-level cuts that may split coherent claims. FASB's backtracking overhead scales linearly with intervention frequency—compounding on hallucination-dense long-form passages.\\n\\n**Geometry-aware steering (per-token):** Spherical Steering (arXiv 2602.08169, ICML 2026) uses geodesic rotation with a von Mises-Fisher confidence gate, achieving MC1 +15.80% on TruthfulQA (Llama-3.1-8B) with single-layer intervention (layer 24). Code released at github.com/chili-lab/Spherical-Steering. Per-token with continuous intensity—no claim-level selectivity. Hallucination Basins (arXiv 2604.04743, April 2026) proposes Adaptive Geometry-Aware Steering using Euclidean distance triggers and logistic-regression scalar maps at per-sequence granularity (uniform across all claims). Tested on 1B–8B models. CLSAS advances beyond both via within-sequence sentence-level selectivity.\\n\\n**Context-dependent directions:** Steering Vector Fields (SVF, arXiv 2602.01654, Feb 2026) learns differentiable concept-scoring MLPs for context-aware steering directions refreshed every K steps. Always steers—no gating. Complementary to CLSAS (CLSAS decides whether; SVF decides in which direction).\\n\\n**Utility preservation:** COAST (arXiv 2605.01167, May 2026) formalizes collateral damage as unintended feature-direction shifts and optimizes the steering vector via constrained optimization. Complementary to CLSAS (COAST optimizes the vector; CLSAS optimizes when to apply it).\\n\\n**Nonlinear geometry:** Curveball Steering (arXiv 2603.09313, March 2026) demonstrates substantial geometric distortion in activation spaces, supporting covariance-aware (Mahalanobis) over Euclidean distance.\\n\\n**Detection-only:** Attractor Geometry of Transformer Memory (arXiv 2605.05686, May 2026) demonstrates hallucination = basin absence with Euclidean geometric margin AUROC 0.858 on TruthfulQA (vs. entropy 0.656), 0.993 on controlled factoid tasks. All measurements at first-digit positions before autoregressive dynamics compound; the paper explicitly states 'transfer to open-domain settings requires further study.' Where Does Reasoning Break? (arXiv 2605.13772, May 2026) detects step-level hallucination via transport geometry. DRIFT (arXiv 2601.14210, Jan 2026) detects representational instability.\\n\\n**Calibration:** Calibrating Verbal Uncertainty (Ji et al., EMNLP 2025 Outstanding Paper) achieves ~31.9% reduction in confident hallucinations via linear-feature intervention—calibrates expression, does not correct generation.\\n\\n**Other steering:** ACT (WWW 2025), ODESteer (ICLR 2026, +5.7% over ACT), Guiding Giants/WAS (arXiv 2505.20309), SADI (arXiv 2410.12299), HELIX/Tethered Reasoning (arXiv 2602.17691). FLAS (arXiv 2605.05892, May 2026) learns concept-conditioned velocity fields for multi-step activation transport.\\n\\n**Supporting evidence:** Hallucination as Trajectory Commitment (arXiv 2604.15400, April 2026) provides causal evidence for early commitment with asymmetric attractor dynamics—supporting timely intervention before commitment propagates. Think in Sentences (arXiv 2604.10135, April 2026) demonstrates sentence boundary attention concentration patterns.\",\n  \"approach\": \"We propose Claim-Level Selective Activation Steering (CLSAS), a method that bridges the granularity gap between token-level detection/intervention and claim-level factual evaluation. The central insight is that intervention granularity should match evaluation granularity: since factuality is assessed per-claim (FActScore, human judgment), steering decisions should be made per-claim—preserving entire correct sentences untouched while steering only sentences where the model lacks factual grounding.\\n\\n**Stage 1: TRIGGER (Geometric Distance at Sentence Boundaries)**\\nDuring generation, at each sentence boundary (period/newline tokens), extract hidden-state activations at the boundary token across layers using nnsight intervention hooks. Compute geometric distance from factual cluster centroids:\\n(a) Offline: From a calibration set (~2K examples from TruthfulQA + FELM correct-answer forward passes), collect hidden states at factual completion positions. Apply PCA to project from full hidden dimension (d=4096) to top-k principal components (k=256), yielding a well-conditioned 256×256 covariance matrix.\\n(b) Online: Project the boundary token's activation into the PCA subspace. Compute distance to nearest factual centroid. We evaluate two distance metrics: (i) Euclidean distance δ_E(x) = ||h_pca − μ_pca||₂, matching the Attractor Geometry paper's validated metric (AUROC 0.858 on TruthfulQA); (ii) Mahalanobis distance δ_M(x) = √((h_pca − μ_pca)ᵀ Σ_pca⁻¹ (h_pca − μ_pca)), a hypothesized improvement motivated by OOD detection literature (Lee et al., NeurIPS 2018) that accounts for directional anisotropy in representation space.\\n(c) When distance exceeds a calibrated threshold (set via precision-recall analysis targeting high precision ≥0.85 to minimize false interventions), flag the upcoming sentence for steering.\\n\\n**Critical clarification:** The 0.858 AUROC motivating this trigger was achieved with Euclidean distance on first-digit positions during factoid completion (Attractor Geometry, May 2026). Our application to sentence boundaries during multi-sentence open-ended generation is an extrapolation that we explicitly validate as Milestone 1. The Attractor Geometry authors note 'transfer to open-domain settings requires further study.' If Mahalanobis does not significantly outperform Euclidean in our ablation, the primary novelty contribution rests on claim-level selective gating itself—which remains differentiated from all baselines regardless of distance metric.\\n\\n**Timing Hypothesis Validation (Milestone 1, Days 1-2):**\\nWe explicitly frame the following as a testable hypothesis: geometric distance at sentence boundary N is predictive of factual accuracy in sentence N+1. Validation protocol: (1) Generate 500 multi-sentence responses on LongFact/FActScore prompts using Llama-3.1-8B-Instruct. (2) Compute both Euclidean and Mahalanobis distance at every sentence boundary. (3) Annotate each subsequent sentence with FActScore. (4) Measure Spearman correlation between boundary distance and next-sentence factuality, and AUROC for binary classification. If AUROC < 0.70, we implement a look-ahead variant: extract distance from the first 3 generated tokens of the new sentence (before committing via speculative-style buffering). The look-ahead variant adds ~15% latency overhead but operates before the sentence is visible to the user. If look-ahead also fails (AUROC < 0.65), we fall back to a sliding-window approach using the mean distance over the last 5 tokens before the boundary.\\n\\n**Comparison to PCNet's trigger:** PCNet uses NLL from a trained probabilistic circuit as its anomaly score, evaluated at every token. This achieves near-perfect detection on extractive QA but still yields 53.7% corruption on correct generations. We hypothesize this is because token-level anomaly conflates stylistic deviation with factual error. Our sentence-level trigger aggregates geometric information at natural claim boundaries, making a single binary decision per claim—either the model has factual grounding for this claim (skip) or it doesn't (steer). This avoids sub-claim intervention entirely.\\n\\n**Stage 2: DIRECTION (Centroid-Directed Steering Vector)**\\nCompute the steering direction as the unit vector from the current activation toward the factual cluster centroid at each layer in the PCA subspace, then project back to full space: v_steer = (μ_pca − h_pca) / ||μ_pca − h_pca||, lifted back to full dimensionality via PCA inverse transform. This yields an input-specific correction direction toward regions of successful fact recall.\\n\\n**Stage 3: INTENSITY (Per-Layer Weighted Steering)**\\nA lightweight 2-layer MLP controller (hidden dim 64, inspired by Guiding Giants/WAS) takes [geometric_distance, layer_index/L, distance_velocity] as input (3D feature vector) and predicts per-layer steering weight λ_ℓ. Trained on a calibration set (~2K examples) to maximize FActScore on steered outputs while minimizing perplexity increase on non-flagged outputs. Steering: h_steered(ℓ) = h(ℓ) + λ_ℓ · v_steer(ℓ) at layers where λ_ℓ > ε.\\n\\n**Minimum Viable Scope (9 days, May 16–25):**\\n- Days 1-2 (May 16-17): Timing hypothesis validation on Llama-3.1-8B-Instruct. This is the critical-path milestone—if it fails, immediately implement look-ahead variant.\\n- Days 3-4 (May 18-19): Core CLSAS implementation + calibration. Run TruthfulQA and SimpleQA.\\n- Days 5-6 (May 20-21): Run baselines (Spherical Steering from released code, FASB from released code). Run FActScore and MT-Bench on CLSAS.\\n- Days 7-8 (May 22-23): Key ablations: 2×2 grid (Euclidean vs Mahalanobis × sentence-level vs token-level gating) on 4-benchmark core set. PCNet comparison if code is available; otherwise use reported numbers with matched model.\\n- Day 9 (May 24): Writing, formatting, submission buffer.\\n- Dropped from scope: COAST combination experiment, Qwen3-8B (secondary model), full 7-benchmark suite for ablations, GTS-FASB-trigger ablation.\\n\\n**Ablation Design (MVP):**\\n- CLSAS-full vs. CLSAS-Euclidean (isolate Mahalanobis contribution)\\n- CLSAS-full vs. CLSAS-pertoken (apply continuous per-token gating with our distance metric, matching PCNet/Spherical Steering's granularity—isolates the claim-level contribution)\\n- CLSAS-full vs. CLSAS-sequence (single decision per sequence, matching Hallucination Basins' granularity)\\n- CLSAS-full vs. CLSAS-scalar (replace per-layer MLP with single scalar, isolating controller contribution)\\n- Direct comparison: CLSAS-full vs. Spherical Steering vs. FASB vs. PCNet (reported numbers if code unavailable)\\n\\n**Primary evaluation metrics:**\\n- Corruption rate and preservation rate (matching PCNet's protocol): fraction of correct claims degraded / preserved by intervention\\n- FActScore on long-form biographies (primary benchmark where claim-level advantage should be largest)\\n- TruthfulQA MC1/MC2, SimpleQA accuracy, MT-Bench score\\n- Intervention rate: fraction of sentences steered (lower is better for comparable factuality gains)\\n- Latency overhead vs. baselines\\n\\nImplementation uses nnsight 0.7 on Llama-3.1-8B-Instruct. Qwen3-8B included only if time permits after MVP completion.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~120h H100 80GB\",\n      \"gpu_utilization\": \"Low (~15-20%)\",\n      \"timeline\": \"3-4 months\",\n      \"team\": \"1-2 researchers with mechanistic interpretability + geometric ML experience\",\n      \"estimated_gpu_cost\": \"$360-400\",\n      \"factScore_api_cost\": \"$100-200\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~130h H100 80GB\",\n      \"gpu_utilization\": \"Moderate (45-55%)\",\n      \"timeline\": \"2-3 weeks\",\n      \"team\": \"1 researcher, ~30min/day reviewing proposals\",\n      \"claude_api_cost\": \"$150-250\",\n      \"estimated_gpu_cost\": \"$390-430\",\n      \"factScore_api_cost\": \"$100-200\",\n      \"risk_note\": \"Timing hypothesis validation is critical-path. If it fails (AUROC < 0.70), look-ahead fallback adds ~3 days.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~140h H100 80GB\",\n      \"gpu_utilization\": \"High (~85-90%)\",\n      \"timeline\": \"9 days (May 16-25) with 2 H100 GPUs. Minimum viable paper scope: single model (Llama-3.1-8B), 4-benchmark core set for ablations, full baselines on FActScore+TruthfulQA+SimpleQA+MT-Bench.\",\n      \"team\": \"0 (initial setup: provision GPUs, configure nnsight 0.7, clone Spherical Steering + FASB repos)\",\n      \"claude_api_cost\": \"$250-350 (est. 3000-4000 turns)\",\n      \"estimated_gpu_cost\": \"$420-450\",\n      \"factScore_api_cost\": \"$100-200\",\n      \"speed_bottleneck\": \"Timing hypothesis validation (days 1-2) is critical path. If it fails, look-ahead variant must be implemented immediately. Secondary: FActScore GPT-4 API calls.\",\n      \"resource_optimization\": \"Budget achieved via: (1) single model (Llama-3.1-8B) for all experiments; (2) 4-benchmark core set (TruthfulQA, FActScore, SimpleQA, MT-Bench); (3) 2×2 ablation grid (distance metric × gating granularity) instead of separate sweeps; (4) use Spherical Steering and FASB released code directly; (5) PCNet comparison using reported numbers if code unavailable.\",\n      \"minimum_viable_paper\": \"If timing hypothesis fails AND look-ahead also fails: pivot to a detection-only contribution (sentence-level geometric detection benchmark) comparing Euclidean/Mahalanobis at sentence boundaries vs. PCNet's token-level NLL. This is publishable as a shorter paper (findings track).\",\n      \"risk_note\": \"Primary risk: timing hypothesis may fail (Attractor Geometry paper validated only on factoid completion at first-digit positions, explicitly disclaiming open-domain transfer). Mitigation: look-ahead variant, then sliding-window fallback. Secondary risk: claim-level gating may not outperform PCNet's token-level gating on short-form QA—advantage expected primarily on long-form generation (FActScore, LongFact). Tertiary risk: 9-day timeline leaves zero buffer for unexpected implementation issues.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits (PCNet, arXiv 2605.05953, May 2026)\",\n    \"Steering When Necessary: Flexible Steering Large Language Models with Backtracking (FASB, arXiv 2508.17621, NeurIPS 2025)\",\n    \"Spherical Steering: Geometry-Aware Activation Rotation for Language Models (arXiv 2602.08169, ICML 2026)\",\n    \"Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (arXiv 2605.05686, May 2026)\",\n    \"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (arXiv 2604.04743, April 2026)\",\n    \"Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models (SVF, arXiv 2602.01654, Feb 2026)\",\n    \"Curveball Steering: The Right Direction To Steer Isn't Always Linear (arXiv 2603.09313, March 2026)\",\n    \"Minimizing Collateral Damage in Activation Steering (COAST, arXiv 2605.01167, May 2026)\",\n    \"Beyond Steering Vector: Flow-based Activation Steering for Inference-Time Intervention (FLAS, arXiv 2605.05892, May 2026)\",\n    \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (Ji et al., EMNLP 2025 Outstanding Paper, arXiv 2503.14477)\",\n    \"Tethered Reasoning (HELIX): Decoupling Entropy from Hallucination in Quantized LLMs via Manifold Steering (arXiv 2602.17691, Feb 2026)\",\n    \"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method (ACT, WWW 2025)\",\n    \"ODESteer: A Unified ODE-Based Steering Framework for LLM Alignment (ICLR 2026, arXiv 2602.17560)\",\n    \"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arXiv 2605.13772, May 2026)\",\n    \"DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness (arXiv 2601.14210, Jan 2026)\",\n    \"Guiding Giants: Lightweight Controllers for Weighted Activation Steering in LLMs (arXiv 2505.20309, May 2025)\",\n    \"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics (arXiv 2604.15400, April 2026)\",\n    \"Think in Sentences: Explicit Sentence Boundaries Enhance Language Model's Capabilities (arXiv 2604.10135, April 2026)\",\n    \"A Simple Unified Framework for Detecting Out-of-Distribution Samples and Adversarial Attacks (Lee et al., NeurIPS 2018)\",\n    \"Semantics-Adaptive Activation Intervention for LLMs via Dynamic Steering Vectors (SADI, arXiv 2410.12299, 2024)\",\n    \"Dynamic Multimodal Activation Steering for Hallucination Mitigation in Large Vision-Language Models (ICLR 2026)\"\n  ],\n  \"description\": \"We propose Claim-Level Selective Activation Steering (CLSAS), a method that bridges the granularity gap between token-level hallucination detection/intervention and claim-level factual evaluation. The central insight is that intervention granularity should match evaluation granularity: since factuality is assessed per-claim (FActScore, human judgment), steering decisions should be per-claim—preserving entire correct sentences untouched while steering only claims where the model lacks factual grounding.\\n\\nThe motivation is concrete: PCNet (May 2026), the state-of-the-art in selective geometric gating, achieves near-perfect token-level hallucination detection (AUROC up to 99% on extractive QA) yet still corrupts 53.7% of originally correct generations when intervening token-by-token via contrastive decoding. We hypothesize this corruption stems from the granularity mismatch—token-level anomaly conflates stylistic deviation with factual error, and sub-claim interventions damage partially correct claims.\\n\\nCLSAS monitors geometric distance from residual stream activations to factual cluster centroids at sentence boundaries during generation. Building on the finding that Euclidean geometric margin separates correct recall from hallucination (AUROC 0.858 on TruthfulQA; Attractor Geometry, May 2026), we evaluate both Euclidean and Mahalanobis distance triggers—the latter a hypothesized improvement motivated by OOD detection literature (Lee et al., NeurIPS 2018) that we validate via ablation. When distance indicates basin absence, CLSAS computes an input-specific steering vector toward the factual centroid and applies it with per-layer weights from a lightweight MLP controller. Sentences within a factual basin are left entirely untouched.\\n\\nCLSAS addresses limitations in the closest concurrent work: (1) vs. PCNet (May 2026, MC1 0.51 on Llama-3.1-8B), CLSAS makes sentence-level binary decisions that avoid sub-claim corruption. PCNet's token-level NLL gating triggers at 41-78% of tokens (IGR), requiring costly lookahead evaluations at each; CLSAS intervenes only at sentence boundaries. (2) vs. FASB (NeurIPS 2025, MC1 48.71% on LLaMA-2-7B-Chat), CLSAS is pre-emptive—gating before generation rather than detecting deviation and rolling back 10 tokens. (3) vs. Spherical Steering (ICML 2026, +15% MC1), CLSAS makes binary claim-level steer/skip decisions rather than continuous per-token rotation, enabling complete preservation of correct claims. (4) vs. Hallucination Basins (April 2026), CLSAS provides within-sequence selectivity rather than uniform per-sequence correction.\\n\\nWe explicitly validate the timing hypothesis (distance at boundary N predicts factuality of sentence N+1) as Milestone 1 with a correlation study, noting the Attractor Geometry paper's disclaimer that results were measured at first-digit positions and 'transfer to open-domain settings requires further study.' A look-ahead fallback is specified if correlation is insufficient. We hypothesize CLSAS's advantage over token-level methods will be strongest on long-form generation (FActScore) where multiple claims coexist and token-level corruption compounds.\\n\\nMinimum viable scope for 9 remaining days: single model (Llama-3.1-8B-Instruct), 4-benchmark evaluation (TruthfulQA, FActScore, SimpleQA, MT-Bench), 2×2 ablation grid (distance metric × gating granularity), direct comparison with Spherical Steering and FASB using released code. Total budget: ≤140 H100-hours.\",\n  \"project_name\": \"claim_level_selective_steering\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 6)\nIssues: [\"MISSED CRITICAL COMPETITOR: MERA ('To Steer or Not to Steer? Mechanistic Error Reduction with Abstention', arXiv 2510.13290, ICML 2025) explicitly addresses 'when and how much to steer' with calibrated abstention when no confident correction is possible. Published at a top venue with available code (github.com/annahedstroem/MERA-steering). While MERA operates at token level as a general framework rather than claim-level with geometric triggers, it shares the core 'selective steering with abstention' contribution and must be cited and positioned against.\", \"MISSED SUPPORTING EVIDENCE: 'Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation' (Han et al., EMNLP 2025 Findings) demonstrates that hidden-state probes achieve competitive claim-level factuality detection in long-form generation with 100x fewer FLOPs than multi-sample methods. This paper validates CLSAS's core assumption (hidden states encode claim-level factuality) and should be cited as supporting evidence. It also represents a natural baseline for the detection component.\", \"CONCERNING NEGATIVE EVIDENCE FOR GEOMETRIC TRIGGER: 'Geometric Deviation as an Unsupervised Pre-Generation Reliability Signal' (arXiv 2605.03196, May 2026) explicitly tests centroid-distance deviation as a factuality signal on Llama-3.1-8B and finds 'no reliable geometric signal emerges for factual prompts' (works only for math, ROC-AUC 0.78-0.84). While this measures pre-generation query-level signals (vs. CLSAS's during-generation boundary signals), it raises doubt about whether geometric distance from factual centroids generalizes. The proposal must acknowledge this paper and explain why sentence-boundary signals (after context encoding + partial generation) differ from pre-generation query signals.\", \"FEASIBILITY RISK COMPOUNDING: Three sources of evidence now suggest the timing hypothesis is uncertain: (1) Attractor Geometry paper's own disclaimer ('transfer to open-domain settings requires further study'); (2) Geometric Deviation paper's negative result for factuality; (3) The Attractor Geometry AUROC 0.858 was measured at first-digit positions during factoid completion, not sentence boundaries during multi-sentence generation. The look-ahead fallback mitigates this, but if all variants fail (boundary + look-ahead + sliding window), the minimum viable pivot to detection-only findings paper represents a significant downgrade from the claimed contribution.\"]\nFeedback: The proposal is very close to passing and needs only targeted additions:\n\n1. **Cite and position against MERA (ICML 2025)**: Add: 'MERA (Hedström et al., ICML 2025) provides a general-purpose framework for calibrating when and how much to steer, with principled abstention when no confident correction is possible. CLSAS differs in specificity: (a) MERA operates at token level as a model-agnostic wrapper; CLSAS makes claim-level binary decisions that preserve entire sentences. (b) MERA's abstention is learned from probe confidence on general correctness; CLSAS's trigger is a geometric distance measuring factual knowledge absence specifically. (c) MERA is complementary—its intensity calibration could optimize steering strength within CLSAS-flagged claims.' Consider adding MERA as an additional baseline in ablations.\n\n2. **Cite Simple Factuality Probes (EMNLP 2025 Findings)**: Add: 'Han et al. (EMNLP 2025 Findings) demonstrate that lightweight probes on hidden states detect claim-level factuality in long-form generation with competitive performance, validating that the signal CLSAS's trigger requires exists in residual stream representations. Their work is detection-only; CLSAS extends this insight to pre-emptive intervention.'\n\n3. **Address the Geometric Deviation negative result**: Add a paragraph: 'Du (arXiv 2605.03196, May 2026) finds no reliable geometric signal for factuality when measuring query-level centroid deviation pre-generation. We note a critical setup difference: pre-generation signals reflect query answerability (whether the model has ever seen relevant facts), while CLSAS measures boundary signals during generation (whether the model is currently accessing factual attractors for the next claim). The Attractor Geometry paper's 0.858 AUROC validates that this during-generation signal exists—the question is whether it persists at sentence boundaries rather than first-digit positions. Our Milestone 1 validation directly tests this.' This framing turns a potential weakness into motivated methodology.\n\n4. **Minor: Impact framing**: Strengthen the impact argument by noting that TruthfulQA (short-form) may understate CLSAS's advantage—the primary contribution should manifest on FActScore/LongFact where multiple claims coexist and token-level corruption compounds across sentences. Consider leading with FActScore as the primary benchmark rather than TruthfulQA.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T09:25:14.717Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T09:25:14.717Z",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+## Round 1
+
+90 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T09:25:14.750Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-16 (UTC).**
+
+## Original idea
+{
+  "title": "Claim-Level Selective Activation Steering for Factual Hallucination Suppression in Long-Form Generation",
+  "core_problem": "Factual hallucination in LLMs has spurred a proliferation of geometry-aware detection and activation steering methods, yet a fundamental granularity mismatch persists: detection and intervention operate at token level, while factual evaluation operates at claim/sentence level. PCNet (May 2026) exemplifies this—its probabilistic-circuit gating achieves near-perfect detection AUROC yet still corrupts 53.7% of originally correct generations when intervening at every deviant token, because token-level decisions cannot distinguish 'this token is anomalous within an otherwise correct claim' from 'this claim is genuinely hallucinated.' FASB (NeurIPS 2025) addresses selective steering but operates correctively—detecting deviation after tokens are generated, then backtracking 10 tokens—which wastes compute and splits coherent claims. Spherical Steering (ICML 2026) applies per-token rotation with continuous vMF-gated intensity, achieving strong TruthfulQA gains but intervening indiscriminately across all claims. The Attractor Geometry paper (May 2026) demonstrates that Euclidean geometric margin separates correct recall from hallucination (AUROC 0.858 on TruthfulQA vs. entropy 0.656), but this result is detection-only and measured at first-digit positions on factoid completion—translation into targeted intervention at appropriate granularity during multi-sentence generation remains the open challenge.",
+  "opportunity": "The unexploited sweet spot is pre-emptive claim-level gating: sentences are the natural unit of factual claims—the granularity FActScore evaluates, the granularity humans judge, and the granularity at which LLMs integrate context before next-sentence planning (supported by 'Think in Sentences,' April 2026). The key evidence that this granularity matters comes from PCNet's results: despite near-perfect token-level detection (AUROC up to 99% on extractive QA), its token-level intervention still corrupts 53.7% of correct generations and preserves only 79.3%. This is because anomaly at individual token positions does not reliably indicate that the entire claim is hallucinated—a high-NLL token may be stylistically unusual but factually correct, or may be part of a partially correct claim that token-level correction damages. A system that makes binary steer/skip decisions at sentence boundaries—preserving entire correct claims untouched while steering only claims where the model lacks factual grounding—can achieve higher preservation rates by avoiding sub-claim intervention entirely. The three-part framework (when: sentence boundaries; whether: geometric distance trigger; how much: per-layer intensity) addresses limitations in all current methods: PCNet's token-level corruption, FASB's corrective backtracking overhead, Spherical Steering's indiscriminate application, and Hallucination Basins' per-sequence uniformity.",
+  "landscape": "**Selective geometric gating (primary competitors):**\n\n*PCNet (arXiv 2605.05953, May 2026)* is the closest concurrent work sharing the 'detect geometric anomaly → selectively intervene' paradigm. PCNet trains a Probabilistic Circuit as a density estimator over MLP-compressed residual stream states (4096→128 dims), computes exact NLL as anomaly score, and triggers PC-LDCD (contrastive decoding) only at deviant tokens. Results: TruthfulQA MC1 0.51 / MC2 0.65 on Llama-3.1-8B; near-perfect detection AUROC on extractive QA; corruption rate 53.7%, preservation rate 79.3%. Overhead: <2% for PC scoring, but 3.3–6.2 additional block evaluations per anomalous token for lookahead. CLSAS differs in three fundamental ways: (a) Granularity: sentence-level binary decisions preserve entire correct claims and avoid sub-claim corruption. PCNet evaluates NLL at every token, meaning intervention can damage partially correct claims—evidenced by its 53.7% corruption rate despite near-perfect detection. CLSAS's claim-level atomicity should achieve substantially lower corruption. (b) Intervention mechanism: activation steering shifts the model's own generation distribution toward factual attractors in a single forward pass, while contrastive decoding requires maintaining lookahead evaluations for top-k candidates at every anomalous position (PCNet's IGR ranges 0.41–0.78, meaning lookahead triggers at 41–78% of tokens). On long-form generation where many tokens are flagged, CLSAS's steering-only approach avoids this per-token lookahead cost. (c) Trigger interpretability: Euclidean/Mahalanobis distance from factual cluster centroids has a clear geometric interpretation (distance in representation space), while NLL from a trained probabilistic circuit is a learned density estimate whose failure modes are less transparent.\n\n*FASB (arXiv 2508.17621, NeurIPS 2025)* is the most direct prior work on 'when to steer,' using linear probes trained on attention head activations. It monitors concatenated question-and-generated-content states, triggers intervention when deviation is detected, and backtracks s=10 tokens to regenerate with steering. MC1 48.71% on TruthfulQA (LLaMA-2-7B-Chat). CLSAS differs in: (a) pre-emptive gating at sentence boundaries (no wasted tokens, no rollback) vs. FASB's corrective backtracking; (b) geometric distance trigger measuring knowledge absence vs. learned directional alignment on attention heads; (c) atomic claim-level decisions vs. token-level cuts that may split coherent claims. FASB's backtracking overhead scales linearly with intervention frequency—compounding on hallucination-dense long-form passages.\n\n**Geometry-aware steering (per-token):** Spherical Steering (arXiv 2602.08169, ICML 2026) uses geodesic rotation with a von Mises-Fisher confidence gate, achieving MC1 +15.80% on TruthfulQA (Llama-3.1-8B) with single-layer intervention (layer 24). Code released at github.com/chili-lab/Spherical-Steering. Per-token with continuous intensity—no claim-level selectivity. Hallucination Basins (arXiv 2604.04743, April 2026) proposes Adaptive Geometry-Aware Steering using Euclidean distance triggers and logistic-regression scalar maps at per-sequence granularity (uniform across all claims). Tested on 1B–8B models. CLSAS advances beyond both via within-sequence sentence-level selectivity.\n\n**Context-dependent directions:** Steering Vector Fields (SVF, arXiv 2602.01654, Feb 2026) learns differentiable concept-scoring MLPs for context-aware steering directions refreshed every K steps. Always steers—no gating. Complementary to CLSAS (CLSAS decides whether; SVF decides in which direction).\n\n**Utility preservation:** COAST (arXiv 2605.01167, May 2026) formalizes collateral damage as unintended feature-direction shifts and optimizes the steering vector via constrained optimization. Complementary to CLSAS (COAST optimizes the vector; CLSAS optimizes when to apply it).\n\n**Nonlinear geometry:** Curveball Steering (arXiv 2603.09313, March 2026) demonstrates substantial geometric distortion in activation spaces, supporting covariance-aware (Mahalanobis) over Euclidean distance.\n\n**Detection-only:** Attractor Geometry of Transformer Memory (arXiv 2605.05686, May 2026) demonstrates hallucination = basin absence with Euclidean geometric margin AUROC 0.858 on TruthfulQA (vs. entropy 0.656), 0.993 on controlled factoid tasks. All measurements at first-digit positions before autoregressive dynamics compound; the paper explicitly states 'transfer to open-domain settings requires further study.' Where Does Reasoning Break? (arXiv 2605.13772, May 2026) detects step-level hallucination via transport geometry. DRIFT (arXiv 2601.14210, Jan 2026) detects representational instability.\n\n**Calibration:** Calibrating Verbal Uncertainty (Ji et al., EMNLP 2025 Outstanding Paper) achieves ~31.9% reduction in confident hallucinations via linear-feature intervention—calibrates expression, does not correct generation.\n\n**Other steering:** ACT (WWW 2025), ODESteer (ICLR 2026, +5.7% over ACT), Guiding Giants/WAS (arXiv 2505.20309), SADI (arXiv 2410.12299), HELIX/Tethered Reasoning (arXiv 2602.17691). FLAS (arXiv 2605.05892, May 2026) learns concept-conditioned velocity fields for multi-step activation transport.\n\n**Supporting evidence:** Hallucination as Trajectory Commitment (arXiv 2604.15400, April 2026) provides causal evidence for early commitment with asymmetric attractor dynamics—supporting timely intervention before commitment propagates. Think in Sentences (arXiv 2604.10135, April 2026) demonstrates sentence boundary attention concentration patterns.",
+  "approach": "We propose Claim-Level Selective Activation Steering (CLSAS), a method that bridges the granularity gap between token-level detection/intervention and claim-level factual evaluation. The central insight is that intervention granularity should match evaluation granularity: since factuality is assessed per-claim (FActScore, human judgment), steering decisions should be made per-claim—preserving entire correct sentences untouched while steering only sentences where the model lacks factual grounding.\n\n**Stage 1: TRIGGER (Geometric Distance at Sentence Boundaries)**\nDuring generation, at each sentence boundary (period/newline tokens), extract hidden-state activations at the boundary token across layers using nnsight intervention hooks. Compute geometric distance from factual cluster centroids:\n(a) Offline: From a calibration set (~2K examples from TruthfulQA + FELM correct-answer forward passes), collect hidden states at factual completion positions. Apply PCA to project from full hidden dimension (d=4096) to top-k principal components (k=256), yielding a well-conditioned 256×256 covariance matrix.\n(b) Online: Project the boundary token's activation into the PCA subspace. Compute distance to nearest factual centroid. We evaluate two distance metrics: (i) Euclidean distance δ_E(x) = ||h_pca − μ_pca||₂, matching the Attractor Geometry paper's validated metric (AUROC 0.858 on TruthfulQA); (ii) Mahalanobis distance δ_M(x) = √((h_pca − μ_pca)ᵀ Σ_pca⁻¹ (h_pca − μ_pca)), a hypothesized improvement motivated by OOD detection literature (Lee et al., NeurIPS 2018) that accounts for directional anisotropy in representation space.\n(c) When distance exceeds a calibrated threshold (set via precision-recall analysis targeting high precision ≥0.85 to minimize false interventions), flag the upcoming sentence for steering.\n\n**Critical clarification:** The 0.858 AUROC motivating this trigger was achieved with Euclidean distance on first-digit positions during factoid completion (Attractor Geometry, May 2026). Our application to sentence boundaries during multi-sentence open-ended generation is an extrapolation that we explicitly validate as Milestone 1. The Attractor Geometry authors note 'transfer to open-domain settings requires further study.' If Mahalanobis does not significantly outperform Euclidean in our ablation, the primary novelty contribution rests on claim-level selective gating itself—which remains differentiated from all baselines regardless of distance metric.\n\n**Timing Hypothesis Validation (Milestone 1, Days 1-2):**\nWe explicitly frame the following as a testable hypothesis: geometric distance at sentence boundary N is predictive of factual accuracy in sentence N+1. Validation protocol: (1) Generate 500 multi-sentence responses on LongFact/FActScore prompts using Llama-3.1-8B-Instruct. (2) Compute both Euclidean and Mahalanobis distance at every sentence boundary. (3) Annotate each subsequent sentence with FActScore. (4) Measure Spearman correlation between boundary distance and next-sentence factuality, and AUROC for binary classification. If AUROC < 0.70, we implement a look-ahead variant: extract distance from the first 3 generated tokens of the new sentence (before committing via speculative-style buffering). The look-ahead variant adds ~15% latency overhead but operates before the sentence is visible to the user. If look-ahead also fails (AUROC < 0.65), we fall back to a sliding-window approach using the mean distance over the last 5 tokens before the boundary.\n\n**Comparison to PCNet's trigger:** PCNet uses NLL from a trained probabilistic circuit as its anomaly score, evaluated at every token. This achieves near-perfect detection on extractive QA but still yields 53.7% corruption on correct generations. We hypothesize this is because token-level anomaly conflates stylistic deviation with factual error. Our sentence-level trigger aggregates geometric information at natural claim boundaries, making a single binary decision per claim—either the model has factual grounding for this claim (skip) or it doesn't (steer). This avoids sub-claim intervention entirely.\n\n**Stage 2: DIRECTION (Centroid-Directed Steering Vector)**\nCompute the steering direction as the unit vector from the current activation toward the factual cluster centroid at each layer in the PCA subspace, then project back to full space: v_steer = (μ_pca − h_pca) / ||μ_pca − h_pca||, lifted back to full dimensionality via PCA inverse transform. This yields an input-specific correction direction toward regions of successful fact recall.\n\n**Stage 3: INTENSITY (Per-Layer Weighted Steering)**\nA lightweight 2-layer MLP controller (hidden dim 64, inspired by Guiding Giants/WAS) takes [geometric_distance, layer_index/L, distance_velocity] as input (3D feature vector) and predicts per-layer steering weight λ_ℓ. Trained on a calibration set (~2K examples) to maximize FActScore on steered outputs while minimizing perplexity increase on non-flagged outputs. Steering: h_steered(ℓ) = h(ℓ) + λ_ℓ · v_steer(ℓ) at layers where λ_ℓ > ε.\n\n**Minimum Viable Scope (9 days, May 16–25):**\n- Days 1-2 (May 16-17): Timing hypothesis validation on Llama-3.1-8B-Instruct. This is the critical-path milestone—if it fails, immediately implement look-ahead variant.\n- Days 3-4 (May 18-19): Core CLSAS implementation + calibration. Run TruthfulQA and SimpleQA.\n- Days 5-6 (May 20-21): Run baselines (Spherical Steering from released code, FASB from released code). Run FActScore and MT-Bench on CLSAS.\n- Days 7-8 (May 22-23): Key ablations: 2×2 grid (Euclidean vs Mahalanobis × sentence-level vs token-level gating) on 4-benchmark core set. PCNet comparison if code is available; otherwise use reported numbers with matched model.\n- Day 9 (May 24): Writing, formatting, submission buffer.\n- Dropped from scope: COAST combination experiment, Qwen3-8B (secondary model), full 7-benchmark suite for ablations, GTS-FASB-trigger ablation.\n\n**Ablation Design (MVP):**\n- CLSAS-full vs. CLSAS-Euclidean (isolate Mahalanobis contribution)\n- CLSAS-full vs. CLSAS-pertoken (apply continuous per-token gating with our distance metric, matching PCNet/Spherical Steering's granularity—isolates the claim-level contribution)\n- CLSAS-full vs. CLSAS-sequence (single decision per sequence, matching Hallucination Basins' granularity)\n- CLSAS-full vs. CLSAS-scalar (replace per-layer MLP with single scalar, isolating controller contribution)\n- Direct comparison: CLSAS-full vs. Spherical Steering vs. FASB vs. PCNet (reported numbers if code unavailable)\n\n**Primary evaluation metrics:**\n- Corruption rate and preservation rate (matching PCNet's protocol): fraction of correct claims degraded / preserved by intervention\n- FActScore on long-form biographies (primary benchmark where claim-level advantage should be largest)\n- TruthfulQA MC1/MC2, SimpleQA accuracy, MT-Bench score\n- Intervention rate: fraction of sentences steered (lower is better for comparable factuality gains)\n- Latency overhead vs. baselines\n\nImplementation uses nnsight 0.7 on Llama-3.1-8B-Instruct. Qwen3-8B included only if time permits after MVP completion.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~120h H100 80GB",
+      "gpu_utilization": "Low (~15-20%)",
+      "timeline": "3-4 months",
+      "team": "1-2 researchers with mechanistic interpretability + geometric ML experience",
+      "estimated_gpu_cost": "$360-400",
+      "factScore_api_cost": "$100-200"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~130h H100 80GB",
+      "gpu_utilization": "Moderate (45-55%)",
+      "timeline": "2-3 weeks",
+      "team": "1 researcher, ~30min/day reviewing proposals",
+      "claude_api_cost": "$150-250",
+      "estimated_gpu_cost": "$390-430",
+      "factScore_api_cost": "$100-200",
+      "risk_note": "Timing hypothesis validation is critical-path. If it fails (AUROC < 0.70), look-ahead fallback adds ~3 days."
+    },
+    "auto_research": {
+      "gpu_hours": "~140h H100 80GB",
+      "gpu_utilization": "High (~85-90%)",
+      "timeline": "9 days (May 16-25) with 2 H100 GPUs. Minimum viable paper scope: single model (Llama-3.1-8B), 4-benchmark core set for ablations, full baselines on FActScore+TruthfulQA+SimpleQA+MT-Bench.",
+      "team": "0 (initial setup: provision GPUs, configure nnsight 0.7, clone Spherical Steering + FASB repos)",
+      "claude_api_cost": "$250-350 (est. 3000-4000 turns)",
+      "estimated_gpu_cost": "$420-450",
+      "factScore_api_cost": "$100-200",
+      "speed_bottleneck": "Timing hypothesis validation (days 1-2) is critical path. If it fails, look-ahead variant must be implemented immediately. Secondary: FActScore GPT-4 API calls.",
+      "resource_optimization": "Budget achieved via: (1) single model (Llama-3.1-8B) for all experiments; (2) 4-benchmark core set (TruthfulQA, FActScore, SimpleQA, MT-Bench); (3) 2×2 ablation grid (distance metric × gating granularity) instead of separate sweeps; (4) use Spherical Steering and FASB released code directly; (5) PCNet comparison using reported numbers if code unavailable.",
+      "minimum_viable_paper": "If timing hypothesis fails AND look-ahead also fails: pivot to a detection-only contribution (sentence-level geometric detection benchmark) comparing Euclidean/Mahalanobis at sentence boundaries vs. PCNet's token-level NLL. This is publishable as a shorter paper (findings track).",
+      "risk_note": "Primary risk: timing hypothesis may fail (Attractor Geometry paper validated only on factoid completion at first-digit positions, explicitly disclaiming open-domain transfer). Mitigation: look-ahead variant, then sliding-window fallback. Secondary risk: claim-level gating may not outperform PCNet's token-level gating on short-form QA—advantage expected primarily on long-form generation (FActScore, LongFact). Tertiary risk: 9-day timeline leaves zero buffer for unexpected implementation issues."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits (PCNet, arXiv 2605.05953, May 2026)",
+    "Steering When Necessary: Flexible Steering Large Language Models with Backtracking (FASB, arXiv 2508.17621, NeurIPS 2025)",
+    "Spherical Steering: Geometry-Aware Activation Rotation for Language Models (arXiv 2602.08169, ICML 2026)",
+    "Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (arXiv 2605.05686, May 2026)",
+    "Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (arXiv 2604.04743, April 2026)",
+    "Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models (SVF, arXiv 2602.01654, Feb 2026)",
+    "Curveball Steering: The Right Direction To Steer Isn't Always Linear (arXiv 2603.09313, March 2026)",
+    "Minimizing Collateral Damage in Activation Steering (COAST, arXiv 2605.01167, May 2026)",
+    "Beyond Steering Vector: Flow-based Activation Steering for Inference-Time Intervention (FLAS, arXiv 2605.05892, May 2026)",
+    "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (Ji et al., EMNLP 2025 Outstanding Paper, arXiv 2503.14477)",
+    "Tethered Reasoning (HELIX): Decoupling Entropy from Hallucination in Quantized LLMs via Manifold Steering (arXiv 2602.17691, Feb 2026)",
+    "Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method (ACT, WWW 2025)",
+    "ODESteer: A Unified ODE-Based Steering Framework for LLM Alignment (ICLR 2026, arXiv 2602.17560)",
+    "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arXiv 2605.13772, May 2026)",
+    "DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness (arXiv 2601.14210, Jan 2026)",
+    "Guiding Giants: Lightweight Controllers for Weighted Activation Steering in LLMs (arXiv 2505.20309, May 2025)",
+    "Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics (arXiv 2604.15400, April 2026)",
+    "Think in Sentences: Explicit Sentence Boundaries Enhance Language Model's Capabilities (arXiv 2604.10135, April 2026)",
+    "A Simple Unified Framework for Detecting Out-of-Distribution Samples and Adversarial Attacks (Lee et al., NeurIPS 2018)",
+    "Semantics-Adaptive Activation Intervention for LLMs via Dynamic Steering Vectors (SADI, arXiv 2410.12299, 2024)",
+    "Dynamic Multimodal Activation Steering for Hallucination Mitigation in Large Vision-Language Models (ICLR 2026)"
+  ],
+  "description": "We propose Claim-Level Selective Activation Steering (CLSAS), a method that bridges the granularity gap between token-level hallucination detection/intervention and claim-level factual evaluation. The central insight is that intervention granularity should match evaluation granularity: since factuality is assessed per-claim (FActScore, human judgment), steering decisions should be per-claim—preserving entire correct sentences untouched while steering only claims where the model lacks factual grounding.\n\nThe motivation is concrete: PCNet (May 2026), the state-of-the-art in selective geometric gating, achieves near-perfect token-level hallucination detection (AUROC up to 99% on extractive QA) yet still corrupts 53.7% of originally correct generations when intervening token-by-token via contrastive decoding. We hypothesize this corruption stems from the granularity mismatch—token-level anomaly conflates stylistic deviation with factual error, and sub-claim interventions damage partially correct claims.\n\nCLSAS monitors geometric distance from residual stream activations to factual cluster centroids at sentence boundaries during generation. Building on the finding that Euclidean geometric margin separates correct recall from hallucination (AUROC 0.858 on TruthfulQA; Attractor Geometry, May 2026), we evaluate both Euclidean and Mahalanobis distance triggers—the latter a hypothesized improvement motivated by OOD detection literature (Lee et al., NeurIPS 2018) that we validate via ablation. When distance indicates basin absence, CLSAS computes an input-specific steering vector toward the factual centroid and applies it with per-layer weights from a lightweight MLP controller. Sentences within a factual basin are left entirely untouched.\n\nCLSAS addresses limitations in the closest concurrent work: (1) vs. PCNet (May 2026, MC1 0.51 on Llama-3.1-8B), CLSAS makes sentence-level binary decisions that avoid sub-claim corruption. PCNet's token-level NLL gating triggers at 41-78% of tokens (IGR), requiring costly lookahead evaluations at each; CLSAS intervenes only at sentence boundaries. (2) vs. FASB (NeurIPS 2025, MC1 48.71% on LLaMA-2-7B-Chat), CLSAS is pre-emptive—gating before generation rather than detecting deviation and rolling back 10 tokens. (3) vs. Spherical Steering (ICML 2026, +15% MC1), CLSAS makes binary claim-level steer/skip decisions rather than continuous per-token rotation, enabling complete preservation of correct claims. (4) vs. Hallucination Basins (April 2026), CLSAS provides within-sequence selectivity rather than uniform per-sequence correction.\n\nWe explicitly validate the timing hypothesis (distance at boundary N predicts factuality of sentence N+1) as Milestone 1 with a correlation study, noting the Attractor Geometry paper's disclaimer that results were measured at first-digit positions and 'transfer to open-domain settings requires further study.' A look-ahead fallback is specified if correlation is insufficient. We hypothesize CLSAS's advantage over token-level methods will be strongest on long-form generation (FActScore) where multiple claims coexist and token-level corruption compounds.\n\nMinimum viable scope for 9 remaining days: single model (Llama-3.1-8B-Instruct), 4-benchmark evaluation (TruthfulQA, FActScore, SimpleQA, MT-Bench), 2×2 ablation grid (distance metric × gating granularity), direct comparison with Spherical Steering and FASB using released code. Total budget: ≤140 H100-hours.",
+  "project_name": "claim_level_selective_steering",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 6)
+Issues: ["MISSED CRITICAL COMPETITOR: MERA ('To Steer or Not to Steer? Mechanistic Error Reduction with Abstention', arXiv 2510.13290, ICML 2025) explicitly addresses 'when and how much to steer' with calibrated abstention when no confident correction is possible. Published at a top venue with available code (github.com/annahedstroem/MERA-steering). While MERA operates at token level as a general framework rather than claim-level with geometric triggers, it shares the core 'selective steering with abstention' contribution and must be cited and positioned against.", "MISSED SUPPORTING EVIDENCE: 'Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation' (Han et al., EMNLP 2025 Findings) demonstrates that hidden-state probes achieve competitive claim-level factuality detection in long-form generation with 100x fewer FLOPs than multi-sample methods. This paper validates CLSAS's core assumption (hidden states encode claim-level factuality) and should be cited as supporting evidence. It also represents a natural baseline for the detection component.", "CONCERNING NEGATIVE EVIDENCE FOR GEOMETRIC TRIGGER: 'Geometric Deviation as an Unsupervised Pre-Generation Reliability Signal' (arXiv 2605.03196, May 2026) explicitly tests centroid-distance deviation as a factuality signal on Llama-3.1-8B and finds 'no reliable geometric signal emerges for factual prompts' (works only for math, ROC-AUC 0.78-0.84). While this measures pre-generation query-level signals (vs. CLSAS's during-generation boundary signals), it raises doubt about whether geometric distance from factual centroids generalizes. The proposal must acknowledge this paper and explain why sentence-boundary signals (after context encoding + partial generation) differ from pre-generation query signals.", "FEASIBILITY RISK COMPOUNDING: Three sources of evidence now suggest the timing hypothesis is uncertain: (1) Attractor Geometry paper's own disclaimer ('transfer to open-domain settings requires further study'); (2) Geometric Deviation paper's negative result for factuality; (3) The Attractor Geometry AUROC 0.858 was measured at first-digit positions during factoid completion, not sentence boundaries during multi-sentence generation. The look-ahead fallback mitigates this, but if all variants fail (boundary + look-ahead + sliding window), the minimum viable pivot to detection-only findings paper represents a significant downgrade from the claimed contribution."]
+Feedback: The proposal is very close to passing and needs only targeted additions:
+
+1. **Cite and position against MERA (ICML 2025)**: Add: 'MERA (Hedström et al., ICML 2025) provides a general-purpose framework for calibrating when and how much to steer, with principled abstention when no confident correction is possible. CLSAS differs in specificity: (a) MERA operates at token level as a model-agnostic wrapper; CLSAS makes claim-level binary decisions that preserve entire sentences. (b) MERA's abstention is learned from probe confidence on general correctness; CLSAS's trigger is a geometric distance measuring factual knowledge absence specifically. (c) MERA is complementary—its intensity calibration could optimize steering strength within CLSAS-flagged claims.' Consider adding MERA as an additional baseline in ablations.
+
+2. **Cite Simple Factuality Probes (EMNLP 2025 Findings)**: Add: 'Han et al. (EMNLP 2025 Findings) demonstrate that lightweight probes on hidden states detect claim-level factuality in long-form generation with competitive performance, validating that the signal CLSAS's trigger requires exists in residual stream representations. Their work is detection-only; CLSAS extends this insight to pre-emptive intervention.'
+
+3. **Address the Geometric Deviation negative result**: Add a paragraph: 'Du (arXiv 2605.03196, May 2026) finds no reliable geometric signal for factuality when measuring query-level centroid deviation pre-generation. We note a critical setup difference: pre-generation signals reflect query answerability (whether the model has ever seen relevant facts), while CLSAS measures boundary signals during generation (whether the model is currently accessing factual attractors for the next claim). The Attractor Geometry paper's 0.858 AUROC validates that this during-generation signal exists—the question is whether it persists at sentence boundaries rather than first-digit positions. Our Milestone 1 validation directly tests this.' This framing turns a potential weakness into motivated methodology.
+
+4. **Minor: Impact framing**: Strengthen the impact argument by noting that TruthfulQA (short-form) may understate CLSAS's advantage—the primary contribution should manifest on FActScore/LongFact where multiple claims coexist and token-level corruption compounds across sentences. Consider leading with FActScore as the primary benchmark rather than TruthfulQA.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "585f0d4f-470e-4734-9eeb-4eb1bbdbded6",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T09:25:14.747Z_
+
+```json
+{
+  "parentUuid": "585f0d4f-470e-4734-9eeb-4eb1bbdbded6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "82909b18-ff24-4a5f-808b-2582176638c9",
+  "timestamp": "2026-05-16T09:25:14.747Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T09:25:14.748Z_
+
+```json
+{
+  "parentUuid": "82909b18-ff24-4a5f-808b-2582176638c9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "c22460f8-109c-4b4a-9de4-b1051139c37c",
+  "timestamp": "2026-05-16T09:25:14.748Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Claim-Level Selective Activation Steering for Factual Hallucination Su…",
+  "leafUuid": "c22460f8-109c-4b4a-9de4-b1051139c37c",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise idea with claim-level steering trigger validation",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T09:25:25.431Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully before doing any research:
+
+1. **MERA (ICML 2025)** - A critical competitor that addresses "when and how much to steer" with calibrated abstention. Need to read this paper and position against it.
+
+2. **Simple Factuality Probes (EMNLP 2025 Findings)** - Supporting evidence that hidden states encode claim-level factuality. Need to cite and use as validation.
+
+3. **Geometric Deviation paper (arXiv 2605.03196)** - Negative evidence showing no reliable geometric signal for factuality pre-generation. 
+
+The reviewer also flagged feasibility risks around the timing hypothesis and potential compounding uncertainties, but the feedback suggests the work is close to acceptance and just needs targeted refinements. I should search for these papers to understand the specific concerns and verify whether my approach can adequately address them.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c22460f8-109c-4b4a-9de4-b1051139c37c",
+  "isSidechain": false,
+  "requestId": "req_011Cb61MmxGnw3dm1YqgzNJx",
+  "type": "assistant",
+  "uuid": "a94fb407-10a6-44c9-9e0d-9c46cde125bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ryq8kN7GcKtStR5GeFmiTx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14463,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 344,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14463,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 344,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14463,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14463
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T09:25:25.733Z_
+
+I'll research the specific papers and issues the reviewer flagged before making revisions. Let me search for all three papers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a94fb407-10a6-44c9-9e0d-9c46cde125bb",
+  "isSidechain": false,
+  "requestId": "req_011Cb61MmxGnw3dm1YqgzNJx",
+  "type": "assistant",
+  "uuid": "9a6db22a-ad26-448f-b368-44d60aaa9dbb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ryq8kN7GcKtStR5GeFmiTx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14463,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 344,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14463,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 344,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14463,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14463
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T09:25:25.887Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FQGu5tqFwyitMjAHjh72xd`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9a6db22a-ad26-448f-b368-44d60aaa9dbb",
+  "isSidechain": false,
+  "requestId": "req_011Cb61MmxGnw3dm1YqgzNJx",
+  "type": "assistant",
+  "uuid": "c5ab91e4-4e7e-45df-a947-cd166aa34a25",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ryq8kN7GcKtStR5GeFmiTx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14463,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 344,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14463,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 344,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14463,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14463
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T09:25:25.893Z_
+
+<details><summary>↩ Tool result · `toolu_01FQGu5tqFwyitMjAHjh72xd`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c5ab91e4-4e7e-45df-a947-cd166aa34a25",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "c081a19f-3246-4058-9e8c-839d16c07bfd",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "c5ab91e4-4e7e-45df-a947-cd166aa34a25",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-16T09:25:29.446Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for all three papers the reviewer mentioned, plus do some additional research on the geometric deviation concern.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c081a19f-3246-4058-9e8c-839d16c07bfd",
+  "isSidechain": false,
+  "requestId": "req_011Cb61NbeSFsyWcakwsu8km",
+  "type": "assistant",
+  "uuid": "f21c3a2e-f0b0-4328-b74a-40480a778893",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018gUN827ECYfdtMLXPej9R2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1364,
+      "cache_read_input_tokens": 26304,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1364,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 26304,
+          "cache_creation_input_tokens": 1364,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1364
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-16T09:25:29.930Z_
+
+Let me search for all the papers and issues the reviewer flagged in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f21c3a2e-f0b0-4328-b74a-40480a778893",
+  "isSidechain": false,
+  "requestId": "req_011Cb61NbeSFsyWcakwsu8km",
+  "type": "assistant",
+  "uuid": "d3b8255a-11ad-42db-93db-de97e81a3434",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018gUN827ECYfdtMLXPej9R2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1364,
+      "cache_read_input_tokens": 26304,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1364,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 26304,
+          "cache_creation_input_tokens": 1364,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1364
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T09:25:31.053Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01F226eN2r5PctykU3Yd8MYz`</summary>
+
+```json
+{
+  "query": "MERA \"To Steer or Not to Steer\" mechanistic error reduction abstention arXiv 2510.13290 ICML 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3b8255a-11ad-42db-93db-de97e81a3434",
+  "isSidechain": false,
+  "requestId": "req_011Cb61NbeSFsyWcakwsu8km",
+  "type": "assistant",
+  "uuid": "a769e179-c2db-4e0a-b5a5-2442c8806189",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018gUN827ECYfdtMLXPej9R2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1364,
+      "cache_read_input_tokens": 26304,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1364,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 26304,
+          "cache_creation_input_tokens": 1364,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1364
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T09:25:38.222Z_
+
+<details><summary>↩ Tool result · `toolu_01F226eN2r5PctykU3Yd8MYz`</summary>
+
+```text
+Web search results for query: "MERA "To Steer or Not to Steer" mechanistic error reduction abstention arXiv 2510.13290 ICML 2025"
+
+Links: [{"title":"[2510.13290] To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models","url":"https://arxiv.org/abs/2510.13290"},{"title":"To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models","url":"https://arxiv.org/html/2510.13290v1"},{"title":"(PDF) To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models","url":"https://www.researchgate.net/publication/396517741_To_Steer_or_Not_to_Steer_Mechanistic_Error_Reduction_with_Abstention_for_Language_Models"},{"title":"To Steer or Not to Steer? Mechanistic Error Reduction with ...","url":"https://arxiv.org/pdf/2510.13290"},{"title":"To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models | OpenReview","url":"https://openreview.net/forum?id=fUCPq5RvmH"},{"title":"ICML Poster To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models","url":"https://icml.cc/virtual/2025/poster/44524"},{"title":"To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models","url":"https://proceedings.mlr.press/v267/hedstrom25a.html"},{"title":"GitHub - annahedstroem/MERA-steering: Code and notebooks for Mechanistic Error Reduction with Abstention (MERA) — for effective and safe language model steering 🔥","url":"https://github.com/annahedstroem/MERA-steering"},{"title":"Steer Like the LLM: Activation Steering that Mimics Prompting","url":"https://arxiv.org/html/2605.03907v1"}]
+
+I found the paper successfully! Here's what I found about the search query:
+
+## "To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models"
+
+MERA (Mechanistic Error Reduction with Abstention) is a principled framework for steering language models (LMs) to mitigate errors through selective, adaptive interventions.
+
+**Key Features:**
+
+Unlike existing methods that rely on fixed, manually tuned steering strengths, MERA addresses these limitations by optimising the intervention direction and calibrating when and how much to steer, thereby provably improving performance or abstaining when no confident correction is possible.
+
+MERA can be applied on top of existing steering techniques to further enhance their performance, establishing it as a general-purpose and efficient approach to mechanistic activation steering.
+
+**Paper Details:**
+- **arXiv ID:** 2510.13290
+- **Submitted:** October 15, 2025
+- **Authors:** Anna Hedström, Salim I. Amoukou, Tom Bewley, Saumitra Mishra, and Manuela Veloso
+- Published in: Proceedings of the 42nd International Conference on Machine Learning (ICML 2025), PMLR 267:22924-22945
+
+Experiments across diverse datasets and LM families demonstrate safe, effective, non-degrading error correction, and that MERA outperforms existing baselines.
+
+The paper is also available on GitHub at https://github.com/annahedstroem/MERA-steering
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a769e179-c2db-4e0a-b5a5-2442c8806189",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "e702de0d-bbc4-416d-848b-96c5174dc49c",
+  "toolUseResult": {
+    "query": "MERA \"To Steer or Not to Steer\" mechanistic error reduction abstention arXiv 2510.13290 ICML 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01B2kcUKd7JSQ8iiQABgFT4j",
+        "content": [
+          {
+            "title": "[2510.13290] To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models",
+            "url": "https://arxiv.org/abs/2510.13290"
+          },
+          {
+            "title": "To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models",
+            "url": "https://arxiv.org/html/2510.13290v1"
+          },
+          {
+            "title": "(PDF) To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models",
+            "url": "https://www.researchgate.net/publication/396517741_To_Steer_or_Not_to_Steer_Mechanistic_Error_Reduction_with_Abstention_for_Language_Models"
+          },
+          {
+            "title": "To Steer or Not to Steer? Mechanistic Error Reduction with ...",
+            "url": "https://arxiv.org/pdf/2510.13290"
+          },
+          {
+            "title": "To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=fUCPq5RvmH"
+          },
+          {
+            "title": "ICML Poster To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models",
+            "url": "https://icml.cc/virtual/2025/poster/44524"
+          },
+          {
+            "title": "To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models",
+            "url": "https://proceedings.mlr.press/v267/hedstrom25a.html"
+          },
+          {
+            "title": "GitHub - annahedstroem/MERA-steering: Code and notebooks for Mechanistic Error Reduction with Abstention (MERA) — for effective and safe language model steering 🔥",
+            "url": "https://github.com/annahedstroem/MERA-steering"
+          },
+          {
+            "title": "Steer Like the LLM: Activation Steering that Mimics Prompting",
+            "url": "https://arxiv.org/html/2605.03907v1"
+          }
+        ]
+      },
+      "I found the paper successfully! Here's what I found about the search query:\n\n## \"To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models\"\n\nMERA (Mechanistic Error Reduction with Abstention) is a principled framework for steering language models (LMs) to mitigate errors through selective, adaptive interventions.\n\n**Key Features:**\n\nUnlike existing methods that rely on fixed, manually tuned steering strengths, MERA addresses these limitations by optimising the intervention direction and calibrating when and how much to steer, thereby provably improving performance or abstaining when no confident correction is possible.\n\nMERA can be applied on top of existing steering techniques to further enhance their performance, establishing it as a general-purpose and efficient approach to mechanistic activation steering.\n\n**Paper Details:**\n- **arXiv ID:** 2510.13290\n- **Submitted:** October 15, 2025\n- **Authors:** Anna Hedström, Salim I. Amoukou, Tom Bewley, Saumitra Mishra, and Manuela Veloso\n- Published in: Proceedings of the 42nd International Conference on Machine Learning (ICML 2025), PMLR 267:22924-22945\n\nExperiments across diverse datasets and LM families demonstrate safe, effective, non-degrading error correction, and that MERA outperforms existing baselines.\n\nThe paper is also available on GitHub at https://github.com/annahedstroem/MERA-steering"
+    ],
+    "durationSeconds": 7.164425763
+  },
+  "sourceToolAssistantUUID": "a769e179-c2db-4e0a-b5a5-2442c8806189",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T09:25:41.852Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01D7KxJHt1yTdV5Tax45jC86`</summary>
+
+```json
+{
+  "query": "\"Simple Factuality Probes Detect Hallucinations\" Han EMNLP 2025 long-form generation hidden states"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e702de0d-bbc4-416d-848b-96c5174dc49c",
+  "isSidechain": false,
+  "requestId": "req_011Cb61PW7anXfqRgapvUath",
+  "type": "assistant",
+  "uuid": "b7d67aeb-563a-4d10-b16c-e1313da028a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UFYVMy9bxJna3G1MFktxX7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 27668,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1075,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 27668,
+          "cache_creation_input_tokens": 1075,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1075
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T09:25:49.199Z_
+
+<details><summary>↩ Tool result · `toolu_01D7KxJHt1yTdV5Tax45jC86`</summary>
+
+```text
+Web search results for query: ""Simple Factuality Probes Detect Hallucinations" Han EMNLP 2025 long-form generation hidden states"
+
+Links: [{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.880/"},{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/2025.findings-emnlp.880@ACL"},{"title":"Simple Factuality Probes Detect Hallucinations in Long- ...","url":"https://aclanthology.org/2025.findings-emnlp.880.pdf"},{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Request PDF","url":"https://www.researchgate.net/publication/397419109_Simple_Factuality_Probes_Detect_Hallucinations_in_Long-Form_Natural_Language_Generation"},{"title":"An Empirical Study on Hallucinations in Embodied Agents ...","url":"https://aclanthology.org/2025.findings-emnlp.1158.pdf"},{"title":"The Mirage of Hallucination Detection","url":"https://aclanthology.org/2025.findings-emnlp.1035.pdf"},{"title":"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub","url":"https://github.com/EdinburghNLP/awesome-hallucination-detection"},{"title":"Hallucination Detection in LLMs Using Spectral Features of ...","url":"https://aclanthology.org/2025.emnlp-main.1239.pdf"},{"title":"LLMs Hallucinate with Certainty Despite Knowing the Answer","url":"https://aclanthology.org/2025.findings-emnlp.792.pdf"},{"title":"Mitigating Hallucination of LLMs with Shared-Private ...","url":"https://aclanthology.org/2025.emnlp-main.549.pdf"}]
+
+Based on the search results, I found detailed information about the paper "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation" by Han et al. at EMNLP 2025.
+
+## Overview
+
+The paper by Jiatong Han, Neil Band, Muhammed Razzak, Jannik Kossen, Tim G. J. Rudner, and Yarin Gal was published in the Findings of the Association for Computational Linguistics: EMNLP 2025 (pages 16209–16226, Suzhou, China).
+
+## Key Contribution
+
+Large language models (LLMs) often mislead users with confident hallucinations. Current approaches to detect hallucination require many samples from the LLM generator, which is computationally infeasible as frontier model sizes and generation lengths continue to grow. The authors present a remarkably simple baseline for detecting hallucinations in long-form LLM generations, with performance comparable to expensive multi-sample approaches while drawing only a single sample from the LLM generator.
+
+## Hidden States and Factuality Probes
+
+The key finding is that LLM hidden states are highly predictive of factuality in long-form natural language generation and that this information can be efficiently extracted at inference time using a lightweight probe.
+
+## Additional Insights
+
+The work identifies a subset of neurons predominantly responsible for encoding factuality. By locating neuron activations such that supported and unsupported claims can be linearly separated, and by clamping neuron activations to the tail range of their "supported" class activation values, the researchers can causally reduce hallucinations in model outputs, significantly improving factuality across all evaluated LLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b7d67aeb-563a-4d10-b16c-e1313da028a1",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "12bf6ab5-6bcb-463d-acd4-badf3f3d7694",
+  "toolUseResult": {
+    "query": "\"Simple Factuality Probes Detect Hallucinations\" Han EMNLP 2025 long-form generation hidden states",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01P22paXzNyyJWB7R1vu3H1z",
+        "content": [
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880/"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/2025.findings-emnlp.880@ACL"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long- ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880.pdf"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Request PDF",
+            "url": "https://www.researchgate.net/publication/397419109_Simple_Factuality_Probes_Detect_Hallucinations_in_Long-Form_Natural_Language_Generation"
+          },
+          {
+            "title": "An Empirical Study on Hallucinations in Embodied Agents ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.1158.pdf"
+          },
+          {
+            "title": "The Mirage of Hallucination Detection",
+            "url": "https://aclanthology.org/2025.findings-emnlp.1035.pdf"
+          },
+          {
+            "title": "GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub",
+            "url": "https://github.com/EdinburghNLP/awesome-hallucination-detection"
+          },
+          {
+            "title": "Hallucination Detection in LLMs Using Spectral Features of ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.1239.pdf"
+          },
+          {
+            "title": "LLMs Hallucinate with Certainty Despite Knowing the Answer",
+            "url": "https://aclanthology.org/2025.findings-emnlp.792.pdf"
+          },
+          {
+            "title": "Mitigating Hallucination of LLMs with Shared-Private ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.549.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the paper \"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation\" by Han et al. at EMNLP 2025.\n\n## Overview\n\nThe paper by Jiatong Han, Neil Band, Muhammed Razzak, Jannik Kossen, Tim G. J. Rudner, and Yarin Gal was published in the Findings of the Association for Computational Linguistics: EMNLP 2025 (pages 16209–16226, Suzhou, China).\n\n## Key Contribution\n\nLarge language models (LLMs) often mislead users with confident hallucinations. Current approaches to detect hallucination require many samples from the LLM generator, which is computationally infeasible as frontier model sizes and generation lengths continue to grow. The authors present a remarkably simple baseline for detecting hallucinations in long-form LLM generations, with performance comparable to expensive multi-sample approaches while drawing only a single sample from the LLM generator.\n\n## Hidden States and Factuality Probes\n\nThe key finding is that LLM hidden states are highly predictive of factuality in long-form natural language generation and that this information can be efficiently extracted at inference time using a lightweight probe.\n\n## Additional Insights\n\nThe work identifies a subset of neurons predominantly responsible for encoding factuality. By locating neuron activations such that supported and unsupported claims can be linearly separated, and by clamping neuron activations to the tail range of their \"supported\" class activation values, the researchers can causally reduce hallucinations in model outputs, significantly improving factuality across all evaluated LLMs."
+    ],
+    "durationSeconds": 7.343370403000001
+  },
+  "sourceToolAssistantUUID": "b7d67aeb-563a-4d10-b16c-e1313da028a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T09:25:57.345Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013Ha5TYnNb7yKGnBNmg8HW6`</summary>
+
+```json
+{
+  "query": "\"Geometric Deviation\" unsupervised pre-generation reliability signal arXiv 2605.03196 centroid distance factuality"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12bf6ab5-6bcb-463d-acd4-badf3f3d7694",
+  "isSidechain": false,
+  "requestId": "req_011Cb61QK2cEYkwz8aptX4cC",
+  "type": "assistant",
+  "uuid": "4d57a72f-377c-4377-bcfb-612b2b6dd5e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Si2baz2YCk3pDmt1MmbE9A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1055,
+      "cache_read_input_tokens": 28743,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1055,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 28743,
+          "cache_creation_input_tokens": 1055,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1055
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T09:26:04.597Z_
+
+<details><summary>↩ Tool result · `toolu_013Ha5TYnNb7yKGnBNmg8HW6`</summary>
+
+```text
+Web search results for query: ""Geometric Deviation" unsupervised pre-generation reliability signal arXiv 2605.03196 centroid distance factuality"
+
+Links: [{"title":"[2605.03196] Geometric Deviation as an Unsupervised Pre-Generation Reliability Signal: Probing LLM Representations for Answerability","url":"https://arxiv.org/abs/2605.03196"},{"title":"Geometric Deviation as an Unsupervised Pre-Generation Reliability Signal: Probing LLM Representations for Answerability","url":"https://arxiv.org/html/2605.03196"},{"title":"Catchup results for eess from Wed, 10 Jul 2024","url":"https://arxiv.org/catchup?smonth=7&sday=10&group=grp_&archive=eess&num=2000&order=reverse&method=without&syear=2024"},{"title":"Catchup results for eess from Sat, 7 Oct 2023","url":"https://arxiv.org/catchup?smonth=10&group=grp_&sday=7&num=2000&archive=eess&order=reverse&method=without&syear=2023"},{"title":"[2605.01889] Sensing-Constrained Diversity-Multiplexing Tradeoff in MIMO ISAC: A Geometric Approach","url":"https://arxiv.org/abs/2605.01889"},{"title":"Machine Learning Jun 2025","url":"https://www.arxiv.org/list/cs.LG/2025-06?skip=325&show=2000"},{"title":"Machine Learning Jan 2025","url":"https://arxiv.org/list/cs.LG/2025-01?skip=2050&show=1000"},{"title":"Machine Learning Jul 2025","url":"https://www.arxiv.org/list/cs.LG/2025-07?skip=1025&show=2000"},{"title":"Machine Learning Sep 2025","url":"https://www.arxiv.org/list/cs.LG/2025-09?skip=250&show=2000"},{"title":"[2605.07819] Probabilistic denoising for reliable signal extraction in spectroscopy","url":"https://arxiv.org/abs/2605.07819"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## "Geometric Deviation as an Unsupervised Pre-Generation Reliability Signal" (arXiv 2605.03196)
+
+The paper investigates whether representation geometry can provide a pre-generation signal to indicate when a query falls outside a language model's knowledge, by measuring the deviation of hidden states from an answerable reference set, requiring no labeled failure data and no access to model outputs.
+
+**Key Findings:**
+
+The research evaluates three instruction-tuned models (Llama 3.1-8B, Qwen 2.5-7B, and Mistral-7B-Instruct) across three prompt forms (Math, Fact, Code), finding that geometry primarily encodes task form.
+
+Within mathematical prompts, unanswerable inputs consistently deviate from the answerable centroid, yielding strong separation (ROC-AUC 0.78-0.84). This single-pass pre-generation signal outperforms a simple refusal baseline, compares favorably to self-consistency, and captures cases where models do not explicitly refuse.
+
+**Important Limitations:**
+
+However, no reliable geometric signal emerges for factual prompts, indicating that the effect is form-conditional rather than universal.
+
+Overall, geometric deviation can serve as a lightweight pre-generation signal that is reliable in structured domains with formal answerability constraints, with clear boundaries on where it generalizes.
+
+The paper was submitted on May 4, 2026, and is authored by Yucheng Du from the University of Southern California.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d57a72f-377c-4377-bcfb-612b2b6dd5e9",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "e449e67c-7708-4c05-84dd-5cf1310b5209",
+  "toolUseResult": {
+    "query": "\"Geometric Deviation\" unsupervised pre-generation reliability signal arXiv 2605.03196 centroid distance factuality",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QMGYY3yPq7VBWx893mrfc5",
+        "content": [
+          {
+            "title": "[2605.03196] Geometric Deviation as an Unsupervised Pre-Generation Reliability Signal: Probing LLM Representations for Answerability",
+            "url": "https://arxiv.org/abs/2605.03196"
+          },
+          {
+            "title": "Geometric Deviation as an Unsupervised Pre-Generation Reliability Signal: Probing LLM Representations for Answerability",
+            "url": "https://arxiv.org/html/2605.03196"
+          },
+          {
+            "title": "Catchup results for eess from Wed, 10 Jul 2024",
+            "url": "https://arxiv.org/catchup?smonth=7&sday=10&group=grp_&archive=eess&num=2000&order=reverse&method=without&syear=2024"
+          },
+          {
+            "title": "Catchup results for eess from Sat, 7 Oct 2023",
+            "url": "https://arxiv.org/catchup?smonth=10&group=grp_&sday=7&num=2000&archive=eess&order=reverse&method=without&syear=2023"
+          },
+          {
+            "title": "[2605.01889] Sensing-Constrained Diversity-Multiplexing Tradeoff in MIMO ISAC: A Geometric Approach",
+            "url": "https://arxiv.org/abs/2605.01889"
+          },
+          {
+            "title": "Machine Learning Jun 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-06?skip=325&show=2000"
+          },
+          {
+            "title": "Machine Learning Jan 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-01?skip=2050&show=1000"
+          },
+          {
+            "title": "Machine Learning Jul 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-07?skip=1025&show=2000"
+          },
+          {
+            "title": "Machine Learning Sep 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-09?skip=250&show=2000"
+          },
+          {
+            "title": "[2605.07819] Probabilistic denoising for reliable signal extraction in spectroscopy",
+            "url": "https://arxiv.org/abs/2605.07819"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## \"Geometric Deviation as an Unsupervised Pre-Generation Reliability Signal\" (arXiv 2605.03196)\n\nThe paper investigates whether representation geometry can provide a pre-generation signal to indicate when a query falls outside a language model's knowledge, by measuring the deviation of hidden states from an answerable reference set, requiring no labeled failure data and no access to model outputs.\n\n**Key Findings:**\n\nThe research evaluates three instruction-tuned models (Llama 3.1-8B, Qwen 2.5-7B, and Mistral-7B-Instruct) across three prompt forms (Math, Fact, Code), finding that geometry primarily encodes task form.\n\nWithin mathematical prompts, unanswerable inputs consistently deviate from the answerable centroid, yielding strong separation (ROC-AUC 0.78-0.84). This single-pass pre-generation signal outperforms a simple refusal baseline, compares favorably to self-consistency, and captures cases where models do not explicitly refuse.\n\n**Important Limitations:**\n\nHowever, no reliable geometric signal emerges for factual prompts, indicating that the effect is form-conditional rather than universal.\n\nOverall, geometric deviation can serve as a lightweight pre-generation signal that is reliable in structured domains with formal answerability constraints, with clear boundaries on where it generalizes.\n\nThe paper was submitted on May 4, 2026, and is authored by Yucheng Du from the University of Southern California."
+    ],
+    "durationSeconds": 7.247747970999997
+  },
+  "sourceToolAssistantUUID": "4d57a72f-377c-4377-bcfb-612b2b6dd5e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Claim-Level Selective Activation Steering for Factual Hallucination Su…",
+  "leafUuid": "e449e67c-7708-4c05-84dd-5cf1310b5209",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise idea with claim-level steering trigger validation",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-16T09:26:09.741Z_
+
+Good, I found all three papers. Now let me read them in detail to understand the specific methods and results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e449e67c-7708-4c05-84dd-5cf1310b5209",
+  "isSidechain": false,
+  "requestId": "req_011Cb61RSrvtBi7UT32ydn8K",
+  "type": "assistant",
+  "uuid": "ccb07fe4-3b55-4254-9f1a-9234e2221008",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XtWvSLmJm9baZ4f3PH8hZC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1034,
+      "cache_read_input_tokens": 29798,
+      "output_tokens": 165,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1034,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 165,
+          "cache_read_input_tokens": 29798,
+          "cache_creation_input_tokens": 1034,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1034
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T09:26:12.301Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Wtk7CzhNV4GX6gM8pXEh5D`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.13290",
+  "prompt": "Extract the full abstract, key methodology details (how MERA decides when to steer and when to abstain), main results (benchmarks, metrics, improvements), and any details about token-level vs claim-level operation. What models were tested? What is the abstention mechanism?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ccb07fe4-3b55-4254-9f1a-9234e2221008",
+  "isSidechain": false,
+  "requestId": "req_011Cb61RSrvtBi7UT32ydn8K",
+  "type": "assistant",
+  "uuid": "ddb96f4c-dbd0-46c5-8665-0bb37f969a40",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XtWvSLmJm9baZ4f3PH8hZC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1034,
+      "cache_read_input_tokens": 29798,
+      "output_tokens": 165,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1034,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 165,
+          "cache_read_input_tokens": 29798,
+          "cache_creation_input_tokens": 1034,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1034
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T09:26:17.999Z_
+
+<details><summary>↩ Tool result · `toolu_01Wtk7CzhNV4GX6gM8pXEh5D`</summary>
+
+```text
+# MERA Paper Summary
+
+## Full Abstract
+"MERA introduces a principled framework for steering language models to mitigate errors through selective, adaptive interventions. Unlike existing methods that rely on fixed, manually tuned steering strengths, often resulting in under or oversteering, MERA addresses these limitations by (i) optimising the intervention direction, and (ii) calibrating when, and how much to steer, thereby provably improving performance or abstaining when no confident correction is possible."
+
+## Key Methodology
+The framework operates through two primary mechanisms:
+
+1. **Intervention Optimization**: MERA determines optimal steering directions rather than using preset values
+2. **Adaptive Calibration**: The system decides dynamically whether to intervene and calibrates intervention intensity, with the option to abstain when insufficient confidence exists for correction
+
+## Results & Testing
+- Demonstrated effectiveness across diverse datasets and multiple language model families
+- Achieved "safe, effective, non-degrading error correction"
+- Outperformed existing baseline approaches
+- Functions as a composable layer—can enhance performance when applied on top of existing steering techniques
+
+## Models & Implementation Details
+The webpage does not specify which particular language model architectures were evaluated, specific benchmark names, quantitative improvement metrics, or clarify whether operations occur at token or claim level.
+
+## Abstention Mechanism
+The system abstains when unable to generate confident corrections, preventing harmful steering interventions rather than forcing adjustments with uncertain outcomes.
+
+**Publication**: ICML 2025 (22 pages, 16 figures, 5 tables)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ddb96f4c-dbd0-46c5-8665-0bb37f969a40",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "3c0b6908-c8e6-471b-9219-f8fa8b868202",
+  "toolUseResult": {
+    "bytes": 46663,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# MERA Paper Summary\n\n## Full Abstract\n\"MERA introduces a principled framework for steering language models to mitigate errors through selective, adaptive interventions. Unlike existing methods that rely on fixed, manually tuned steering strengths, often resulting in under or oversteering, MERA addresses these limitations by (i) optimising the intervention direction, and (ii) calibrating when, and how much to steer, thereby provably improving performance or abstaining when no confident correction is possible.\"\n\n## Key Methodology\nThe framework operates through two primary mechanisms:\n\n1. **Intervention Optimization**: MERA determines optimal steering directions rather than using preset values\n2. **Adaptive Calibration**: The system decides dynamically whether to intervene and calibrates intervention intensity, with the option to abstain when insufficient confidence exists for correction\n\n## Results & Testing\n- Demonstrated effectiveness across diverse datasets and multiple language model families\n- Achieved \"safe, effective, non-degrading error correction\"\n- Outperformed existing baseline approaches\n- Functions as a composable layer—can enhance performance when applied on top of existing steering techniques\n\n## Models & Implementation Details\nThe webpage does not specify which particular language model architectures were evaluated, specific benchmark names, quantitative improvement metrics, or clarify whether operations occur at token or claim level.\n\n## Abstention Mechanism\nThe system abstains when unable to generate confident corrections, preventing harmful steering interventions rather than forcing adjustments with uncertain outcomes.\n\n**Publication**: ICML 2025 (22 pages, 16 figures, 5 tables)",
+    "durationMs": 5694,
+    "url": "https://arxiv.org/abs/2510.13290"
+  },
+  "sourceToolAssistantUUID": "ddb96f4c-dbd0-46c5-8665-0bb37f969a40",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T09:26:26.869Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01AEi7RpsXp4ptWXPiNX5V6T`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2510.13290v1",
+  "prompt": "Extract detailed methodology: How does MERA decide when to steer vs abstain? What is the mathematical formulation? What probes or metrics does it use? What are the key experimental results with specific numbers (accuracy improvements, benchmarks)? Does it operate at token level or sequence level? What models were tested? What is the \"calibrated abstention\" mechanism specifically? How does it compare to baselines like ITI, ActAdd, etc.?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c0b6908-c8e6-471b-9219-f8fa8b868202",
+  "isSidechain": false,
+  "requestId": "req_011Cb61SSKxj3NpAL6a2EhLT",
+  "type": "assistant",
+  "uuid": "d2476a6a-03bc-4715-8082-1de35e21ff30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVWBUEf5VcoFVXvPUisgGn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 517,
+      "cache_read_input_tokens": 30832,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 517,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 30832,
+          "cache_creation_input_tokens": 517,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 517
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T09:26:42.076Z_
+
+<details><summary>↩ Tool result · `toolu_01AEi7RpsXp4ptWXPiNX5V6T`</summary>
+
+````text
+# MERA: Mechanistic Error Reduction with Abstention - Methodology Overview
+
+## Decision Framework: When to Steer vs. Abstain
+
+MERA employs a **threshold-based calibration mechanism** to determine whether intervention is beneficial. The system trains linear error estimators (probes) that predict model errors from activations, then derives an optimal steering threshold α* through constrained optimization on a calibration dataset.
+
+The key principle: "if calibration indicates that no α offers improvement beyond a baseline ϵ, we refrain from intervening altogether." This prevents both understeering (insufficient correction) and oversteering (unnecessary degradation).
+
+## Mathematical Formulation
+
+**Core Optimization Problem:**
+The method solves a constrained optimization for steering vectors:
+
+minimize ||v||₂² subject to p̂(h+v) ≤ α
+
+where p̂(h) is a linear error estimator and α is the target error threshold.
+
+**Closed-Form Solution (Linear Case):**
+```
+v* = {
+  0,                          if w^T h ≤ α
+  ((α - w^T h)/||w||₂²) w,   if w^T h > α
+}
+```
+
+Equivalently: λ* = max(0, (α - w^T h)/||w||₂²)
+
+This yields **adaptive steering strength** proportional to predicted error magnitude.
+
+## Probes and Metrics
+
+**Error Estimators:**
+- Linear regression probes trained to predict E(a) ∈ [0,1] from activations
+- Trained on activation-error pairs at the "exact" token position (first token matching ground truth label)
+- Applied to residual stream across all layers
+- Sparsity regularization applied during training
+
+**Performance Metrics:**
+- Root Mean Squared Error (RMSE) for probe quality
+- Accuracy (A) for task performance
+- Steering Performance Impact (SPI) - a normalized metric: captures relative improvement/degradation bounded in [-1, 1]
+
+## Calibration Mechanism
+
+The calibration step selects α* by:
+
+1. Discretizing [0,1] into K candidate values
+2. Computing empirical performance Δcal(α) on calibration data for each candidate
+3. Applying statistical significance testing with Bonferroni correction
+4. Selecting: α* = arg max Δcal(α) where Δcal(α) > ε + b(δ,K,N)
+
+The bound b(δ,K,N) = √(log(2K/δ)/(2N)) ensures with probability ≥ 1-δ that "the selected α* yields genuine performance improvement exceeding ε."
+
+This provides **theoretical guarantees** against spurious improvements.
+
+## Operational Granularity
+
+MERA operates at **token and layer levels simultaneously**:
+- Extracts activations at the exact token position for each of L layers
+- Trains separate linear probes per layer
+- Applies steering conditionally at each layer-token combination where p̂(h) > α
+
+## Models Tested
+
+The paper evaluated steering across:
+- **LLaMA-3.2-1B** (base and instruction-tuned variants)
+- **Gemma-2-2B** (base and instruction-tuned)
+- **Qwen-2.5-3B** (base and instruction-tuned)
+
+## Experimental Results (Key Numbers)
+
+**Binary Task Performance (SMS Spam, Yes/No):**
+- MERA achieved SPI gains up to **+0.87** (representing ~87% error recovery)
+- Contrastive steering baseline without MERA: -0.05 to -0.09 SPI
+- With MERA enhancement: improved to +0.21 to +0.52 SPI
+
+**Multi-class Tasks (Sentiment, MMLU subsets):**
+- Variable performance; base models benefited more than instruction-tuned
+- MMLU-hs/prof subsets remained difficult to steer (SPI near 0.00)
+
+**Comparative Results:**
+- BASE-p̂ (probe without optimization): negligible gains (+0.00 SPI typically)
+- MERA-p̂ (with calibrated thresholds): best performer, +0.49 to +0.64 SPI on sentiment tasks
+- Logistic probe variants showed instability (-0.85 to +0.87 SPI) without MERA
+
+## Key Differentiators from Baselines
+
+| Aspect | ITI/ActAdd Style | MERA |
+|--------|------------------|------|
+| Steering Strength | Fixed or grid-swept | Adaptive, derived from error predictions |
+| Abstention | No | Yes, with statistical guarantees |
+| Calibration | Ad-hoc hyperparameter tuning | Principled threshold selection |
+| Error Target | Binary concepts (toxic/helpful) | Continuous error minimization |
+
+MERA's novelty centers on **using error magnitude as a steering signal**, enabling proportional interventions rather than uniform application across cases.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "d2476a6a-03bc-4715-8082-1de35e21ff30",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "383c8353-e6c3-4bd3-bfc8-c04e00319526",
+  "toolUseResult": {
+    "bytes": 727336,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# MERA: Mechanistic Error Reduction with Abstention - Methodology Overview\n\n## Decision Framework: When to Steer vs. Abstain\n\nMERA employs a **threshold-based calibration mechanism** to determine whether intervention is beneficial. The system trains linear error estimators (probes) that predict model errors from activations, then derives an optimal steering threshold α* through constrained optimization on a calibration dataset.\n\nThe key principle: \"if calibration indicates that no α offers improvement beyond a baseline ϵ, we refrain from intervening altogether.\" This prevents both understeering (insufficient correction) and oversteering (unnecessary degradation).\n\n## Mathematical Formulation\n\n**Core Optimization Problem:**\nThe method solves a constrained optimization for steering vectors:\n\nminimize ||v||₂² subject to p̂(h+v) ≤ α\n\nwhere p̂(h) is a linear error estimator and α is the target error threshold.\n\n**Closed-Form Solution (Linear Case):**\n```\nv* = {\n  0,                          if w^T h ≤ α\n  ((α - w^T h)/||w||₂²) w,   if w^T h > α\n}\n```\n\nEquivalently: λ* = max(0, (α - w^T h)/||w||₂²)\n\nThis yields **adaptive steering strength** proportional to predicted error magnitude.\n\n## Probes and Metrics\n\n**Error Estimators:**\n- Linear regression probes trained to predict E(a) ∈ [0,1] from activations\n- Trained on activation-error pairs at the \"exact\" token position (first token matching ground truth label)\n- Applied to residual stream across all layers\n- Sparsity regularization applied during training\n\n**Performance Metrics:**\n- Root Mean Squared Error (RMSE) for probe quality\n- Accuracy (A) for task performance\n- Steering Performance Impact (SPI) - a normalized metric: captures relative improvement/degradation bounded in [-1, 1]\n\n## Calibration Mechanism\n\nThe calibration step selects α* by:\n\n1. Discretizing [0,1] into K candidate values\n2. Computing empirical performance Δcal(α) on calibration data for each candidate\n3. Applying statistical significance testing with Bonferroni correction\n4. Selecting: α* = arg max Δcal(α) where Δcal(α) > ε + b(δ,K,N)\n\nThe bound b(δ,K,N) = √(log(2K/δ)/(2N)) ensures with probability ≥ 1-δ that \"the selected α* yields genuine performance improvement exceeding ε.\"\n\nThis provides **theoretical guarantees** against spurious improvements.\n\n## Operational Granularity\n\nMERA operates at **token and layer levels simultaneously**:\n- Extracts activations at the exact token position for each of L layers\n- Trains separate linear probes per layer\n- Applies steering conditionally at each layer-token combination where p̂(h) > α\n\n## Models Tested\n\nThe paper evaluated steering across:\n- **LLaMA-3.2-1B** (base and instruction-tuned variants)\n- **Gemma-2-2B** (base and instruction-tuned)\n- **Qwen-2.5-3B** (base and instruction-tuned)\n\n## Experimental Results (Key Numbers)\n\n**Binary Task Performance (SMS Spam, Yes/No):**\n- MERA achieved SPI gains up to **+0.87** (representing ~87% error recovery)\n- Contrastive steering baseline without MERA: -0.05 to -0.09 SPI\n- With MERA enhancement: improved to +0.21 to +0.52 SPI\n\n**Multi-class Tasks (Sentiment, MMLU subsets):**\n- Variable performance; base models benefited more than instruction-tuned\n- MMLU-hs/prof subsets remained difficult to steer (SPI near 0.00)\n\n**Comparative Results:**\n- BASE-p̂ (probe without optimization): negligible gains (+0.00 SPI typically)\n- MERA-p̂ (with calibrated thresholds): best performer, +0.49 to +0.64 SPI on sentiment tasks\n- Logistic probe variants showed instability (-0.85 to +0.87 SPI) without MERA\n\n## Key Differentiators from Baselines\n\n| Aspect | ITI/ActAdd Style | MERA |\n|--------|------------------|------|\n| Steering Strength | Fixed or grid-swept | Adaptive, derived from error predictions |\n| Abstention | No | Yes, with statistical guarantees |\n| Calibration | Ad-hoc hyperparameter tuning | Principled threshold selection |\n| Error Target | Binary concepts (toxic/helpful) | Continuous error minimization |\n\nMERA's novelty centers on **using error magnitude as a steering signal**, enabling proportional interventions rather than uniform application across cases.",
+    "durationMs": 15203,
+    "url": "https://arxiv.org/html/2510.13290v1"
+  },
+  "sourceToolAssistantUUID": "d2476a6a-03bc-4715-8082-1de35e21ff30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T09:26:48.568Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01F69qikakuwbsFyLRiDpbdm`</summary>
+
+```json
+{
+  "url": "https://aclanthology.org/2025.findings-emnlp.880/",
+  "prompt": "Extract the full abstract, key methodology (what probes are used, what hidden states, what layers), main results (detection performance, FLOPs comparison, models tested), and any details about claim-level vs token-level detection. What benchmarks were used? What is the causal intervention result?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "383c8353-e6c3-4bd3-bfc8-c04e00319526",
+  "isSidechain": false,
+  "requestId": "req_011Cb61ULjv3vy46AQPHnEGx",
+  "type": "assistant",
+  "uuid": "72e027ee-f796-4092-a5e2-9953055a33e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019fabnN3KsA6UjEgvF7k94H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1375,
+      "cache_read_input_tokens": 31349,
+      "output_tokens": 152,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1375,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 152,
+          "cache_read_input_tokens": 31349,
+          "cache_creation_input_tokens": 1375,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1375
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T09:26:54.109Z_
+
+<details><summary>↩ Tool result · `toolu_01F69qikakuwbsFyLRiDpbdm`</summary>
+
+```text
+# Paper Summary: Simple Factuality Probes for Hallucination Detection
+
+## Abstract
+The paper addresses LLM hallucination detection through lightweight probes. As stated, "LLM hidden states are highly predictive of factuality in long-form natural language generation and that this information can be efficiently extracted at inference time using a lightweight probe."
+
+## Key Methodology
+The document confirms the approach uses hidden state analysis from LLMs, but the provided content does not specify:
+- Which particular layers are targeted
+- The exact probe architecture details
+- Whether detection operates at claim-level or token-level granularity
+
+## Main Results
+The paper demonstrates several key findings:
+- **Efficiency**: The method achieves "competitive performance with up to 100x fewer FLOPs" compared to multi-sample approaches
+- **Single Sample**: Works with only one LLM sample, unlike baseline methods requiring many samples
+- **Model Scale**: Benchmarked "across open-weight models up to 405B parameters"
+- **Generalization**: Probes generalize to "out-of-distribution model outputs, evaluated using hidden states of smaller open-source models"
+
+## Missing Details
+The provided webpage excerpt does not include:
+- Specific detection performance metrics (accuracy, F1 scores, etc.)
+- Details about causal intervention experiments
+- Benchmark dataset names
+- Precise probe architecture specifications
+- Claim-level vs. token-level detection methodology
+
+For these details, consulting the full PDF would be necessary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "72e027ee-f796-4092-a5e2-9953055a33e9",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "a40374cf-3345-481f-8a07-bb40442594da",
+  "toolUseResult": {
+    "bytes": 41333,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary: Simple Factuality Probes for Hallucination Detection\n\n## Abstract\nThe paper addresses LLM hallucination detection through lightweight probes. As stated, \"LLM hidden states are highly predictive of factuality in long-form natural language generation and that this information can be efficiently extracted at inference time using a lightweight probe.\"\n\n## Key Methodology\nThe document confirms the approach uses hidden state analysis from LLMs, but the provided content does not specify:\n- Which particular layers are targeted\n- The exact probe architecture details\n- Whether detection operates at claim-level or token-level granularity\n\n## Main Results\nThe paper demonstrates several key findings:\n- **Efficiency**: The method achieves \"competitive performance with up to 100x fewer FLOPs\" compared to multi-sample approaches\n- **Single Sample**: Works with only one LLM sample, unlike baseline methods requiring many samples\n- **Model Scale**: Benchmarked \"across open-weight models up to 405B parameters\"\n- **Generalization**: Probes generalize to \"out-of-distribution model outputs, evaluated using hidden states of smaller open-source models\"\n\n## Missing Details\nThe provided webpage excerpt does not include:\n- Specific detection performance metrics (accuracy, F1 scores, etc.)\n- Details about causal intervention experiments\n- Benchmark dataset names\n- Precise probe architecture specifications\n- Claim-level vs. token-level detection methodology\n\nFor these details, consulting the full PDF would be necessary.",
+    "durationMs": 5538,
+    "url": "https://aclanthology.org/2025.findings-emnlp.880/"
+  },
+  "sourceToolAssistantUUID": "72e027ee-f796-4092-a5e2-9953055a33e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-16T09:26:54.115Z_
+
+```json
+{
+  "parentUuid": "a40374cf-3345-481f-8a07-bb40442594da",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "42c1553a-d30c-4055-a406-aa475176dc9f",
+  "timestamp": "2026-05-16T09:26:54.115Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T09:27:00.557Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0177CvKsM48QEP3bqxwPBkD5`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.03196",
+  "prompt": "Extract the full abstract, key methodology, main results with specific numbers (ROC-AUC for factual vs math prompts), what models were tested, and the specific negative finding about factual prompts. How exactly did they measure geometric deviation? What distance metric? What reference set? Why did it fail for factual prompts specifically?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42c1553a-d30c-4055-a406-aa475176dc9f",
+  "isSidechain": false,
+  "requestId": "req_011Cb61V6be2EhVM3VVtt1D4",
+  "type": "assistant",
+  "uuid": "bb746ccb-b382-44d1-a2e8-88ca304944fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LnZneQp1RipVzsiZJrLS6u",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 596,
+      "cache_read_input_tokens": 32724,
+      "output_tokens": 153,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 596,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 153,
+          "cache_read_input_tokens": 32724,
+          "cache_creation_input_tokens": 596,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 596
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T09:27:05.737Z_
+
+<details><summary>↩ Tool result · `toolu_0177CvKsM48QEP3bqxwPBkD5`</summary>
+
+```text
+# Paper Analysis: Geometric Deviation for LLM Reliability
+
+## Full Abstract
+"A reliable language model should be able to signal, prior to generation, when a query falls outside its knowledge" by measuring hidden state deviation from an answerable reference set without labeled failure data.
+
+## Models Tested
+Three instruction-tuned models: Llama 3.1-8B, Qwen 2.5-7B, and Mistral-7B-Instruct across three prompt forms (Math, Fact, Code).
+
+## Key Methodology
+The paper measures how much hidden states deviate from an "answerable centroid" or reference set. However, the document doesn't specify the exact distance metric used or provide technical details about reference set construction beyond describing it as "answerable."
+
+## Main Results with Specifics
+- **Math prompts**: Strong separation with ROC-AUC of 0.78-0.84
+- **Factual prompts**: "no reliable geometric signal emerges"
+- The signal outperforms simple refusal baselines and compares favorably to self-consistency
+- Signal arises in early layers and attenuates toward output
+
+## Critical Negative Finding
+The method failed for factual prompts specifically because "the effect is form-conditional rather than universal." Mathematical domains with formal answerability constraints enabled the technique, while factual knowledge proved unsuitable.
+
+## Limitation
+The abstract doesn't explain *why* factual prompts failed mechanistically—only that they did.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bb746ccb-b382-44d1-a2e8-88ca304944fa",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "e4a193cb-6ab0-4dbb-856e-3269032926c3",
+  "toolUseResult": {
+    "bytes": 47593,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Analysis: Geometric Deviation for LLM Reliability\n\n## Full Abstract\n\"A reliable language model should be able to signal, prior to generation, when a query falls outside its knowledge\" by measuring hidden state deviation from an answerable reference set without labeled failure data.\n\n## Models Tested\nThree instruction-tuned models: Llama 3.1-8B, Qwen 2.5-7B, and Mistral-7B-Instruct across three prompt forms (Math, Fact, Code).\n\n## Key Methodology\nThe paper measures how much hidden states deviate from an \"answerable centroid\" or reference set. However, the document doesn't specify the exact distance metric used or provide technical details about reference set construction beyond describing it as \"answerable.\"\n\n## Main Results with Specifics\n- **Math prompts**: Strong separation with ROC-AUC of 0.78-0.84\n- **Factual prompts**: \"no reliable geometric signal emerges\"\n- The signal outperforms simple refusal baselines and compares favorably to self-consistency\n- Signal arises in early layers and attenuates toward output\n\n## Critical Negative Finding\nThe method failed for factual prompts specifically because \"the effect is form-conditional rather than universal.\" Mathematical domains with formal answerability constraints enabled the technique, while factual knowledge proved unsuitable.\n\n## Limitation\nThe abstract doesn't explain *why* factual prompts failed mechanistically—only that they did.",
+    "durationMs": 5177,
+    "url": "https://arxiv.org/abs/2605.03196"
+  },
+  "sourceToolAssistantUUID": "bb746ccb-b382-44d1-a2e8-88ca304944fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T09:27:13.513Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016Wgp2kT9H45ABhPvMSQJup`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.03196",
+  "prompt": "Extract detailed methodology and results: (1) What distance metric is used (Euclidean, Mahalanobis, cosine)? (2) How is the reference centroid constructed? (3) What specific ROC-AUC numbers for factual prompts? (4) WHY does the geometric signal fail for factual prompts - what is the explanation? (5) Is this measured pre-generation (before any output tokens) or during generation? (6) What layers show the signal? (7) Any discussion of how this relates to during-generation signals vs pre-generation signals?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4a193cb-6ab0-4dbb-856e-3269032926c3",
+  "isSidechain": false,
+  "requestId": "req_011Cb61VxKqQReKk8g7oLNAw",
+  "type": "assistant",
+  "uuid": "31fe2667-1505-4fae-8ac3-cc0f703a5183",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GjEcqvHVoJ2gfh5ceE5s31",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 493,
+      "cache_read_input_tokens": 33320,
+      "output_tokens": 211,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 493,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 211,
+          "cache_read_input_tokens": 33320,
+          "cache_creation_input_tokens": 493,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 493
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T09:27:22.062Z_
+
+<details><summary>↩ Tool result · `toolu_016Wgp2kT9H45ABhPvMSQJup`</summary>
+
+```text
+# Research Methodology & Results Summary
+
+## (1) Distance Metric
+**Cosine distance** is the primary metric. The authors state: "All distances are cosine distances (1−cos⁡θ)." They apply mean-centering to address representation anisotropy before computing distances.
+
+## (2) Reference Centroid Construction
+The centroid is computed exclusively from answerable (A-labeled) prompts within each task form. As noted: "Centroids are computed from the A-labeled prompts only, so no U-label information enters the score construction." This enables unsupervised deployment using only a reference set of known-answerable queries.
+
+## (3) Factual Prompt ROC-AUC
+Factual results are modest across all three models:
+- Llama: 0.690
+- Qwen: 0.660
+- Mistral: 0.710
+
+Permutation tests show no statistical significance (p > 0.34).
+
+## (4) Why Geometric Signal Fails for Factual Prompts
+The explanation centers on **structural form**: "Factual unanswerability (future events, counterfactuals) is syntactically indistinguishable from ordinary factual questions and does not disrupt the Fact cluster geometry." Unlike mathematical undefined operations that violate mathematical structure, factual unknowability creates no representational anomaly.
+
+## (5) Pre-generation vs. Generation Timing
+The approach operates **strictly pre-generation**: "it operates strictly before generation (no output tokens needed)." No tokens are sampled; only input representations are extracted.
+
+## (6) Layer-wise Signal Location
+The signal peaks in **early layers (2–5)** and attenuates toward output. Specifically: "All three models peak at layers 2–5 and generally decrease toward the last layer." Math-A representations drift toward the answerable centroid in deeper layers, narrowing the gap from below rather than above.
+
+## (7) Pre- vs. During-Generation Discussion
+The authors argue early-layer signals provide advantages: "a layer-wise analysis reveals the signal _peaks at early layers_ and generally attenuates toward the output." This suggests potential for lightweight monitoring without full forward-pass extraction, useful for latency-sensitive deployments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "31fe2667-1505-4fae-8ac3-cc0f703a5183",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "a7e9a855-468e-4eaf-a96d-dc27d684a2a3",
+  "toolUseResult": {
+    "bytes": 183781,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Research Methodology & Results Summary\n\n## (1) Distance Metric\n**Cosine distance** is the primary metric. The authors state: \"All distances are cosine distances (1−cos⁡θ).\" They apply mean-centering to address representation anisotropy before computing distances.\n\n## (2) Reference Centroid Construction\nThe centroid is computed exclusively from answerable (A-labeled) prompts within each task form. As noted: \"Centroids are computed from the A-labeled prompts only, so no U-label information enters the score construction.\" This enables unsupervised deployment using only a reference set of known-answerable queries.\n\n## (3) Factual Prompt ROC-AUC\nFactual results are modest across all three models:\n- Llama: 0.690\n- Qwen: 0.660\n- Mistral: 0.710\n\nPermutation tests show no statistical significance (p > 0.34).\n\n## (4) Why Geometric Signal Fails for Factual Prompts\nThe explanation centers on **structural form**: \"Factual unanswerability (future events, counterfactuals) is syntactically indistinguishable from ordinary factual questions and does not disrupt the Fact cluster geometry.\" Unlike mathematical undefined operations that violate mathematical structure, factual unknowability creates no representational anomaly.\n\n## (5) Pre-generation vs. Generation Timing\nThe approach operates **strictly pre-generation**: \"it operates strictly before generation (no output tokens needed).\" No tokens are sampled; only input representations are extracted.\n\n## (6) Layer-wise Signal Location\nThe signal peaks in **early layers (2–5)** and attenuates toward output. Specifically: \"All three models peak at layers 2–5 and generally decrease toward the last layer.\" Math-A representations drift toward the answerable centroid in deeper layers, narrowing the gap from below rather than above.\n\n## (7) Pre- vs. During-Generation Discussion\nThe authors argue early-layer signals provide advantages: \"a layer-wise analysis reveals the signal _peaks at early layers_ and generally attenuates toward the output.\" This suggests potential for lightweight monitoring without full forward-pass extraction, useful for latency-sensitive deployments.",
+    "durationMs": 8547,
+    "url": "https://arxiv.org/html/2605.03196"
+  },
+  "sourceToolAssistantUUID": "31fe2667-1505-4fae-8ac3-cc0f703a5183",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Claim-Level Selective Activation Steering for Factual Hallucination Su…",
+  "leafUuid": "a7e9a855-468e-4eaf-a96d-dc27d684a2a3",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise idea with claim-level steering trigger validation",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-16T09:27:33.114Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very important. The Geometric Deviation paper uses **cosine distance** (not Euclidean or Mahalanobis), operates **pre-generation** (before any tokens are generated), and finds factual ROC-AUC of only 0.66-0.71 (not statistically significant). The key reason for failure: "Factual unanswerability is syntactically indistinguishable from ordinary factual questions and does not disrupt the Fact cluster geometry."
+
+This is a critical distinction from CLSAS's approach:
+1. Pre-generation vs during-generation: CLSAS measures at sentence boundaries DURING generation, after the model has already processed context and begun generating
+
+
+2. The Attractor Geometry paper shows that measuring during generation (at first-digit positions) achieves 0.858 AUROC, whereas the Geometric Deviation paper's failure stems from trying to detect answerability from the input query representation alone, before the model's generation-time activations even come into play
+
+Let me search for more evidence to solidify this distinction.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a7e9a855-468e-4eaf-a96d-dc27d684a2a3",
+  "isSidechain": false,
+  "requestId": "req_011Cb61XA5nzfE7Zt8tuhuVs",
+  "type": "assistant",
+  "uuid": "b9da198e-56ea-44cf-8a47-ba6a27e855ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KsPtiLsKgmsBmmDn3EHBpX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 730,
+      "cache_read_input_tokens": 33813,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 730,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 33813,
+          "cache_creation_input_tokens": 730,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 730
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-16T09:27:33.115Z_
+
+Now let me do additional targeted searches to strengthen the revision.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b9da198e-56ea-44cf-8a47-ba6a27e855ed",
+  "isSidechain": false,
+  "requestId": "req_011Cb61XA5nzfE7Zt8tuhuVs",
+  "type": "assistant",
+  "uuid": "d1217c0b-fec1-4275-bb6a-101f07ca5e28",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KsPtiLsKgmsBmmDn3EHBpX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 730,
+      "cache_read_input_tokens": 33813,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 730,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 33813,
+          "cache_creation_input_tokens": 730,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 730
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-16T09:27:33.122Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TrKAGqM1M7Kp4ViVBU57j1`</summary>
+
+```json
+{
+  "query": "MERA steering cited by follow-up work selective activation steering abstention 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1217c0b-fec1-4275-bb6a-101f07ca5e28",
+  "isSidechain": false,
+  "requestId": "req_011Cb61XA5nzfE7Zt8tuhuVs",
+  "type": "assistant",
+  "uuid": "00741edb-5621-40eb-abe5-1673299bc9dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KsPtiLsKgmsBmmDn3EHBpX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 730,
+      "cache_read_input_tokens": 33813,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 730,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 33813,
+          "cache_creation_input_tokens": 730,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 730
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T09:27:39.931Z_
+
+<details><summary>↩ Tool result · `toolu_01TrKAGqM1M7Kp4ViVBU57j1`</summary>
+
+```text
+Web search results for query: "MERA steering cited by follow-up work selective activation steering abstention 2025 2026"
+
+Links: [{"title":"To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models | OpenReview","url":"https://openreview.net/forum?id=fUCPq5RvmH"},{"title":"[2510.13290] To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models","url":"https://arxiv.org/abs/2510.13290"},{"title":"ICML Poster To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models","url":"https://icml.cc/virtual/2025/poster/44524"},{"title":"To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models","url":"https://proceedings.mlr.press/v267/hedstrom25a.html"},{"title":"To Steer or Not to Steer? Mechanistic Error Reduction with ...","url":"https://arxiv.org/pdf/2510.13290"},{"title":"(PDF) To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models","url":"https://www.researchgate.net/publication/396517741_To_Steer_or_Not_to_Steer_Mechanistic_Error_Reduction_with_Abstention_for_Language_Models"},{"title":"Activation Steering in 2026: A Practitioner's Field Guide | Subhadip Mitra","url":"https://subhadipmitra.com/blog/2026/activation-steering-field-guide/"},{"title":"To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models","url":"https://arxiv.org/html/2510.13290"},{"title":"Multi-property Steering of Large Language Models with Dynamic Activation Composition | Request PDF","url":"https://www.researchgate.net/publication/386204042_Multi-property_Steering_of_Large_Language_Models_with_Dynamic_Activation_Composition"},{"title":"With probe steering, on average 3-5% of the latent features are... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/With-probe-steering-on-average-3-5-of-the-latent-features-are-employed-for-steering_fig7_396517741"}]
+
+Based on the search results, I found information about MERA (Mechanistic Error Reduction with Abstention) and its relationship to steering research:
+
+## MERA Overview
+
+MERA is a principled framework for steering language models to mitigate errors through selective, adaptive interventions. Unlike existing methods that rely on fixed, manually tuned steering strengths, MERA optimizes the intervention direction and calibrates when and how much to steer, thereby provably improving performance or abstaining when no confident correction is possible.
+
+## How MERA Works
+
+MERA uses a lightweight helper model to first estimate how likely the LM is to be wrong, and then gently shifts the model's internal activity to reduce the probability of an error being made. If the input is already predicted to be correct, then MERA does nothing. But if the helper model is confident that the language model will make a mistake, MERA steers the LM.
+
+## Follow-up Work and Citations
+
+Lee et al. (2025) also explore conditional steering, but differ from MERA's approach in that they trigger interventions based on cosine similarity with condition vectors, use PCA on contrastive examples to define steering directions, and select intervention strength via grid search rather than a closed-form solution.
+
+## Integration with Other Steering Methods
+
+MERA can be applied on top of existing steering techniques to further enhance their performance, establishing it as a general-purpose and efficient approach to mechanistic activation steering.
+
+The paper was published at ICML 2025 and has become part of an active research ecosystem exploring selective and conditional activation steering approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "00741edb-5621-40eb-abe5-1673299bc9dd",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "5cf4e89c-34a4-4c72-9009-874e5ece6cd9",
+  "toolUseResult": {
+    "query": "MERA steering cited by follow-up work selective activation steering abstention 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0195tyyAGvTzMeXkEiXTkLNq",
+        "content": [
+          {
+            "title": "To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=fUCPq5RvmH"
+          },
+          {
+            "title": "[2510.13290] To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models",
+            "url": "https://arxiv.org/abs/2510.13290"
+          },
+          {
+            "title": "ICML Poster To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models",
+            "url": "https://icml.cc/virtual/2025/poster/44524"
+          },
+          {
+            "title": "To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models",
+            "url": "https://proceedings.mlr.press/v267/hedstrom25a.html"
+          },
+          {
+            "title": "To Steer or Not to Steer? Mechanistic Error Reduction with ...",
+            "url": "https://arxiv.org/pdf/2510.13290"
+          },
+          {
+            "title": "(PDF) To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models",
+            "url": "https://www.researchgate.net/publication/396517741_To_Steer_or_Not_to_Steer_Mechanistic_Error_Reduction_with_Abstention_for_Language_Models"
+          },
+          {
+            "title": "Activation Steering in 2026: A Practitioner's Field Guide | Subhadip Mitra",
+            "url": "https://subhadipmitra.com/blog/2026/activation-steering-field-guide/"
+          },
+          {
+            "title": "To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models",
+            "url": "https://arxiv.org/html/2510.13290"
+          },
+          {
+            "title": "Multi-property Steering of Large Language Models with Dynamic Activation Composition | Request PDF",
+            "url": "https://www.researchgate.net/publication/386204042_Multi-property_Steering_of_Large_Language_Models_with_Dynamic_Activation_Composition"
+          },
+          {
+            "title": "With probe steering, on average 3-5% of the latent features are... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/With-probe-steering-on-average-3-5-of-the-latent-features-are-employed-for-steering_fig7_396517741"
+          }
+        ]
+      },
+      "Based on the search results, I found information about MERA (Mechanistic Error Reduction with Abstention) and its relationship to steering research:\n\n## MERA Overview\n\nMERA is a principled framework for steering language models to mitigate errors through selective, adaptive interventions. Unlike existing methods that rely on fixed, manually tuned steering strengths, MERA optimizes the intervention direction and calibrates when and how much to steer, thereby provably improving performance or abstaining when no confident correction is possible.\n\n## How MERA Works\n\nMERA uses a lightweight helper model to first estimate how likely the LM is to be wrong, and then gently shifts the model's internal activity to reduce the probability of an error being made. If the input is already predicted to be correct, then MERA does nothing. But if the helper model is confident that the language model will make a mistake, MERA steers the LM.\n\n## Follow-up Work and Citations\n\nLee et al. (2025) also explore conditional steering, but differ from MERA's approach in that they trigger interventions based on cosine similarity with condition vectors, use PCA on contrastive examples to define steering directions, and select intervention strength via grid search rather than a closed-form solution.\n\n## Integration with Other Steering Methods\n\nMERA can be applied on top of existing steering techniques to further enhance their performance, establishing it as a general-purpose and efficient approach to mechanistic activation steering.\n\nThe paper was published at ICML 2025 and has become part of an active research ecosystem exploring selective and conditional activation steering approaches."
+    ],
+    "durationSeconds": 6.803895493999996
+  },
+  "sourceToolAssistantUUID": "00741edb-5621-40eb-abe5-1673299bc9dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-16T09:27:43.987Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B8UJTmWixFbMUyptg5tXvi`</summary>
+
+```json
+{
+  "query": "claim-level sentence-level hallucination detection intervention LLM 2025 2026 factuality steering granularity"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5cf4e89c-34a4-4c72-9009-874e5ece6cd9",
+  "isSidechain": false,
+  "requestId": "req_011Cb61YUXasxcsp22tfwC1n",
+  "type": "assistant",
+  "uuid": "8397e614-7d51-404d-b18d-7e0001c80d43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PVutfV71zY31JS6dzMiMCn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1329,
+      "cache_read_input_tokens": 34543,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1329,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 34543,
+          "cache_creation_input_tokens": 1329,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1329
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T09:27:51.662Z_
+
+<details><summary>↩ Tool result · `toolu_01B8UJTmWixFbMUyptg5tXvi`</summary>
+
+```text
+Web search results for query: "claim-level sentence-level hallucination detection intervention LLM 2025 2026 factuality steering granularity"
+
+Links: [{"title":"Detecting hallucinations in large language models using semantic entropy | Nature","url":"https://www.nature.com/articles/s41586-024-07421-0"},{"title":"Simple Factuality Probes Detect Hallucinations in Long- ...","url":"https://aclanthology.org/2025.findings-emnlp.880.pdf"},{"title":"Constructing Benchmarks and Interventions for Combating Hallucinations in LLMs","url":"https://arxiv.org/pdf/2404.09971"},{"title":"A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions | ACM Transactions on Information Systems","url":"https://dl.acm.org/doi/10.1145/3703155"},{"title":"Frontiers | Survey and analysis of hallucinations in large language models: attribution to prompting strategies or model behavior","url":"https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1622292/full"},{"title":"A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202510.0540/v1"},{"title":"New tool, dataset help detect hallucinations in large language models - Amazon Science","url":"https://www.amazon.science/blog/new-tool-dataset-help-detect-hallucinations-in-large-language-models"},{"title":"Hallucination to Truth: A Review of Fact-Checking and Factuality Evaluation in Large Language Models","url":"https://arxiv.org/html/2508.03860"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/html/2509.03531v1"},{"title":"Large Language Models Hallucination: A Comprehensive Survey","url":"https://arxiv.org/html/2510.06265v2"}]
+
+Based on the web search results, here's what I found on claim-level and sentence-level hallucination detection with intervention and factuality steering in LLMs for 2025-2026:
+
+## Recent Research Findings
+
+Recent work on factuality probes decomposes long-form generations into atomic claims, obtains hidden states for each claim, and applies lightweight probes on hidden states to estimate claim-level factuality, then propagates this factuality back to the long-form generation for visualization throughout the text.
+
+Neuron-level steering approaches have been shown to significantly improve factuality across evaluated LLMs on diverse topics, presenting valuable opportunities for enhancing LLM factuality through activation steering during inference without requiring additional prompting or fine-tuning.
+
+## Granularity in Hallucination Detection
+
+The field is moving toward finer-grained detection methods. Tools like RefChecker decompose LLM responses into knowledge triplets rather than analyzing paragraphs or sentences, allowing testing of the factualness of individual knowledge points while providing more informative and precise insights.
+
+However, there's variation in approaches: Some recent work introduces token-level hallucination detection as a token-labeling task, focusing on entity-level hallucinations (fabricated names, dates, citations) rather than claim-level, enabling streaming detection while capturing factual errors.
+
+## Broader Context
+
+Advanced inference-time interventions that require no parameter updates are being developed, including Retrieval-Augmented Generation pipelines and advanced decoding strategies that intervene in a model's internal activations to steer it toward more truthful outputs.
+
+The research landscape shows a focus on multiple granularity levels (token, entity, claim, sentence) with various steering and intervention techniques emerging in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8397e614-7d51-404d-b18d-7e0001c80d43",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "2c0261df-9338-4009-871c-dc111c00ca30",
+  "toolUseResult": {
+    "query": "claim-level sentence-level hallucination detection intervention LLM 2025 2026 factuality steering granularity",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01G9CcVXfBZYv4PHcCHybywf",
+        "content": [
+          {
+            "title": "Detecting hallucinations in large language models using semantic entropy | Nature",
+            "url": "https://www.nature.com/articles/s41586-024-07421-0"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long- ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880.pdf"
+          },
+          {
+            "title": "Constructing Benchmarks and Interventions for Combating Hallucinations in LLMs",
+            "url": "https://arxiv.org/pdf/2404.09971"
+          },
+          {
+            "title": "A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions | ACM Transactions on Information Systems",
+            "url": "https://dl.acm.org/doi/10.1145/3703155"
+          },
+          {
+            "title": "Frontiers | Survey and analysis of hallucinations in large language models: attribution to prompting strategies or model behavior",
+            "url": "https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1622292/full"
+          },
+          {
+            "title": "A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org",
+            "url": "https://www.preprints.org/manuscript/202510.0540/v1"
+          },
+          {
+            "title": "New tool, dataset help detect hallucinations in large language models - Amazon Science",
+            "url": "https://www.amazon.science/blog/new-tool-dataset-help-detect-hallucinations-in-large-language-models"
+          },
+          {
+            "title": "Hallucination to Truth: A Review of Fact-Checking and Factuality Evaluation in Large Language Models",
+            "url": "https://arxiv.org/html/2508.03860"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/html/2509.03531v1"
+          },
+          {
+            "title": "Large Language Models Hallucination: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2510.06265v2"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found on claim-level and sentence-level hallucination detection with intervention and factuality steering in LLMs for 2025-2026:\n\n## Recent Research Findings\n\nRecent work on factuality probes decomposes long-form generations into atomic claims, obtains hidden states for each claim, and applies lightweight probes on hidden states to estimate claim-level factuality, then propagates this factuality back to the long-form generation for visualization throughout the text.\n\nNeuron-level steering approaches have been shown to significantly improve factuality across evaluated LLMs on diverse topics, presenting valuable opportunities for enhancing LLM factuality through activation steering during inference without requiring additional prompting or fine-tuning.\n\n## Granularity in Hallucination Detection\n\nThe field is moving toward finer-grained detection methods. Tools like RefChecker decompose LLM responses into knowledge triplets rather than analyzing paragraphs or sentences, allowing testing of the factualness of individual knowledge points while providing more informative and precise insights.\n\nHowever, there's variation in approaches: Some recent work introduces token-level hallucination detection as a token-labeling task, focusing on entity-level hallucinations (fabricated names, dates, citations) rather than claim-level, enabling streaming detection while capturing factual errors.\n\n## Broader Context\n\nAdvanced inference-time interventions that require no parameter updates are being developed, including Retrieval-Augmented Generation pipelines and advanced decoding strategies that intervene in a model's internal activations to steer it toward more truthful outputs.\n\nThe research landscape shows a focus on multiple granularity levels (token, entity, claim, sentence) with various steering and intervention techniques emerging in 2025-2026."
+    ],
+    "durationSeconds": 7.670468550000019
+  },
+  "sourceToolAssistantUUID": "8397e614-7d51-404d-b18d-7e0001c80d43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-16T09:27:55.802Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NHLRdv7iYVSSD6DHNPYR51`</summary>
+
+```json
+{
+  "query": "FActScore long-form generation factuality evaluation hidden states during generation sentence boundary signal 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c0261df-9338-4009-871c-dc111c00ca30",
+  "isSidechain": false,
+  "requestId": "req_011Cb61ZLebUMNjLQhh8tcdc",
+  "type": "assistant",
+  "uuid": "887055c4-e93e-4871-babf-be3e60eb6971",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HAXAiz9r2EkEoPXGwbfMQZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1024,
+      "cache_read_input_tokens": 35872,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1024,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 35872,
+          "cache_creation_input_tokens": 1024,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1024
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-16T09:28:03.207Z_
+
+<details><summary>↩ Tool result · `toolu_01NHLRdv7iYVSSD6DHNPYR51`</summary>
+
+```text
+Web search results for query: "FActScore long-form generation factuality evaluation hidden states during generation sentence boundary signal 2025 2026"
+
+Links: [{"title":"FactScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Research - AI at Meta","url":"https://ai.meta.com/research/publications/factscore-fine-grained-atomic-evaluation-of-factual-precision-in-long-form-text-generation/"},{"title":"[2305.14251] FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation","url":"https://arxiv.org/abs/2305.14251"},{"title":"GitHub - shmsw25/FActScore: A package to evaluate factuality of long-form generation. Original implementation of our EMNLP 2023 paper \"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation\" · GitHub","url":"https://github.com/shmsw25/FActScore"},{"title":"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation - ACL Anthology","url":"https://aclanthology.org/2023.emnlp-main.741/"},{"title":"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | OpenReview","url":"https://openreview.net/forum?id=GLA4ablO3M"},{"title":"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Request PDF","url":"https://www.researchgate.net/publication/370981225_FActScore_Fine-grained_Atomic_Evaluation_of_Factual_Precision_in_Long_Form_Text_Generation"},{"title":"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation","url":"https://arxiv.org/html/2305.14251"},{"title":"FActScore: Metric for Factual Precision in LLMs","url":"https://www.emergentmind.com/topics/factscore"},{"title":"ü \u0007\u0007\u0007\u0007 VERIFASTSCORE: Speeding up long-form factuality evaluation","url":"https://arxiv.org/pdf/2505.16973"},{"title":"[PDF] FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/FActScore:-Fine-grained-Atomic-Evaluation-of-in-Min-Krishna/bd5deadc58ee45b5e004378ba1d54a96bc947b4a"}]
+
+I found comprehensive information about FActScore. Here are the search results:
+
+## FActScore Overview
+
+FActScore is an evaluation metric that breaks a generation into a series of atomic facts and computes the percentage of atomic facts supported by a reliable knowledge source.
+
+## Application to Long-Form Generation
+
+Evaluating the factuality of long-form text generated by large language models is non-trivial because generations often contain a mixture of supported and unsupported pieces of information, making binary judgments of quality inadequate.
+
+## Automated Evaluation
+
+An automated model estimates FActScore using retrieval and a strong language model, with less than a 2% error rate. In evaluations of state-of-the-art commercial models, ChatGPT only achieves 58%.
+
+## Recent Developments (2025-2026)
+
+The search results reveal recent advances in this area. Recent variants like FactScore rely on a pipelined approach using LLMs to decompose text into atomic claims and verify each against retrieved evidence. Newer approaches propose single-pass factuality evaluators that simultaneously perform claim decomposition and verification over long-form input.
+
+Regarding the specific aspects you mentioned (hidden states during generation and sentence boundary signals), the search results focused primarily on the evaluation methodology rather than those technical details. The search results don't contain information about hidden states analysis or sentence boundary signal detection in 2025-2026 research. You may want to search more specifically for recent papers on those technical aspects if they are your primary focus.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "887055c4-e93e-4871-babf-be3e60eb6971",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "a47d0a5e-9810-4636-9db3-3f826fe13ffa",
+  "toolUseResult": {
+    "query": "FActScore long-form generation factuality evaluation hidden states during generation sentence boundary signal 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01F6rqtfj2KJTWi4ucmkmJkF",
+        "content": [
+          {
+            "title": "FactScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Research - AI at Meta",
+            "url": "https://ai.meta.com/research/publications/factscore-fine-grained-atomic-evaluation-of-factual-precision-in-long-form-text-generation/"
+          },
+          {
+            "title": "[2305.14251] FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation",
+            "url": "https://arxiv.org/abs/2305.14251"
+          },
+          {
+            "title": "GitHub - shmsw25/FActScore: A package to evaluate factuality of long-form generation. Original implementation of our EMNLP 2023 paper \"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation\" · GitHub",
+            "url": "https://github.com/shmsw25/FActScore"
+          },
+          {
+            "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation - ACL Anthology",
+            "url": "https://aclanthology.org/2023.emnlp-main.741/"
+          },
+          {
+            "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | OpenReview",
+            "url": "https://openreview.net/forum?id=GLA4ablO3M"
+          },
+          {
+            "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Request PDF",
+            "url": "https://www.researchgate.net/publication/370981225_FActScore_Fine-grained_Atomic_Evaluation_of_Factual_Precision_in_Long_Form_Text_Generation"
+          },
+          {
+            "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation",
+            "url": "https://arxiv.org/html/2305.14251"
+          },
+          {
+            "title": "FActScore: Metric for Factual Precision in LLMs",
+            "url": "https://www.emergentmind.com/topics/factscore"
+          },
+          {
+            "title": "ü \u0007\u0007\u0007\u0007 VERIFASTSCORE: Speeding up long-form factuality evaluation",
+            "url": "https://arxiv.org/pdf/2505.16973"
+          },
+          {
+            "title": "[PDF] FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/FActScore:-Fine-grained-Atomic-Evaluation-of-in-Min-Krishna/bd5deadc58ee45b5e004378ba1d54a96bc947b4a"
+          }
+        ]
+      },
+      "I found comprehensive information about FActScore. Here are the search results:\n\n## FActScore Overview\n\nFActScore is an evaluation metric that breaks a generation into a series of atomic facts and computes the percentage of atomic facts supported by a reliable knowledge source.\n\n## Application to Long-Form Generation\n\nEvaluating the factuality of long-form text generated by large language models is non-trivial because generations often contain a mixture of supported and unsupported pieces of information, making binary judgments of quality inadequate.\n\n## Automated Evaluation\n\nAn automated model estimates FActScore using retrieval and a strong language model, with less than a 2% error rate. In evaluations of state-of-the-art commercial models, ChatGPT only achieves 58%.\n\n## Recent Developments (2025-2026)\n\nThe search results reveal recent advances in this area. Recent variants like FactScore rely on a pipelined approach using LLMs to decompose text into atomic claims and verify each against retrieved evidence. Newer approaches propose single-pass factuality evaluators that simultaneously perform claim decomposition and verification over long-form input.\n\nRegarding the specific aspects you mentioned (hidden states during generation and sentence boundary signals), the search results focused primarily on the evaluation methodology rather than those technical details. The search results don't contain information about hidden states analysis or sentence boundary signal detection in 2025-2026 research. You may want to search more specifically for recent papers on those technical aspects if they are your primary focus."
+    ],
+    "durationSeconds": 7.40122132099999
+  },
+  "sourceToolAssistantUUID": "887055c4-e93e-4871-babf-be3e60eb6971",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Claim-Level Selective Activation Steering for Factual Hallucination Su…",
+  "leafUuid": "a47d0a5e-9810-4636-9db3-3f826fe13ffa",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise idea with claim-level steering trigger validation",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-16T09:28:09.032Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CEH1obsHSdPjLrmW5y1Uu6`</summary>
+
+```json
+{
+  "query": "hidden states factuality prediction during generation vs pre-generation LLM residual stream hallucination 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a47d0a5e-9810-4636-9db3-3f826fe13ffa",
+  "isSidechain": false,
+  "requestId": "req_011Cb61aByjLPkKtS2Kof3iH",
+  "type": "assistant",
+  "uuid": "73b003c2-18b0-4a9c-afcf-b2e3e86c6a6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RxjMyT9DJwETbSCbjjoZeY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1110,
+      "cache_read_input_tokens": 36896,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1110,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 36896,
+          "cache_creation_input_tokens": 1110,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1110
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T09:28:17.202Z_
+
+<details><summary>↩ Tool result · `toolu_01CEH1obsHSdPjLrmW5y1Uu6`</summary>
+
+```text
+Web search results for query: "hidden states factuality prediction during generation vs pre-generation LLM residual stream hallucination 2026"
+
+Links: [{"title":"A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions | ACM Transactions on Information Systems","url":"https://dl.acm.org/doi/10.1145/3703155"},{"title":"Are the Hidden States Hiding Something? Testing the Limits of Factuality-Encoding Capabilities in LLMs - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.304/"},{"title":"Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs","url":"https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full.pdf"},{"title":"Detection of Hallucinations Based on the Internal States of Large Language Models | Automatic Documentation and Mathematical Linguistics | Springer Nature Link","url":"https://link.springer.com/article/10.3103/S0005105525701456"},{"title":"(PDF) Are the Hidden States Hiding Something? Testing the Limits of Factuality-Encoding Capabilities in LLMs","url":"https://www.researchgate.net/publication/391991645_Are_the_Hidden_States_Hiding_Something_Testing_the_Limits_of_Factuality-Encoding_Capabilities_in_LLMs"},{"title":"LLM Hallucination Detection: A Fast Fourier Transform Method Based on Hidden Layer Temporal Signals Citation: Authors. Title. Pages…. DOI:000000/11111.","url":"https://arxiv.org/html/2509.13154"},{"title":"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub","url":"https://github.com/EdinburghNLP/awesome-hallucination-detection"},{"title":"Towards Unification of Hallucination Detection and Fact ...","url":"https://arxiv.org/pdf/2512.02772"},{"title":"Published as a conference paper at ICLR 2025 REDEEP: DETECTING HALLUCINATION IN","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/7daf60e805e596c3bd1e843e72ea5560-Paper-Conference.pdf"},{"title":"From Illusion to Insight: A Taxonomic Survey of Hallucination Mitigation Techniques in LLMs","url":"https://www.mdpi.com/2673-2688/6/10/260"}]
+
+Based on the search results, I found several relevant studies on hidden states, factuality prediction, and LLM hallucinations. Here are the key findings:
+
+## Hidden States and Factuality Encoding
+
+Recent studies suggest that when generating false statements, the internal states of LLMs encode information about truthfulness. However, analysis of two open-source LLMs reveals that while the findings from previous studies are partially validated, generalization to LLM-generated datasets remains challenging.
+
+## Pre-Generation vs. During-Generation Approaches
+
+An emerging research direction focuses on pre-generation detection. A lightweight classifier detects hallucinations preemptively conditioning only on the input hidden states, before any text is generated. When hallucinations are predicted, it intervenes in these hidden states to steer the model toward more factual outputs.
+
+## Residual Stream Analysis
+
+Internal representations (residual stream, attention outputs, and MLP outputs) are extracted from any combination of layers from a frozen transformer as it processes training examples. These representations are pooled, concatenated, and used to train lightweight probe networks that learn to map internal states to calibrated predictions.
+
+## Temporal Dynamics During Generation
+
+A novel hallucination detection framework models the temporal dynamics of hidden representations during autoregressive generation. This approach constructs hidden-layer signals by sampling activations across layers, applies Fast Fourier Transform (FFT) to obtain frequency-domain representations, and extracts the strongest non-DC frequency component as spectral features.
+
+## Knowledge vs. Hallucination Signals
+
+When the LLM knows the truthful answer, copying heads more accurately capture and utilize external knowledge, and knowledge FFNs add less parametric knowledge to the residual stream compared to hallucination scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "73b003c2-18b0-4a9c-afcf-b2e3e86c6a6b",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "97225214-880f-4a95-b95b-acdf7208fcfd",
+  "toolUseResult": {
+    "query": "hidden states factuality prediction during generation vs pre-generation LLM residual stream hallucination 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016WfZMH3TLoH5xxe3W7YkHY",
+        "content": [
+          {
+            "title": "A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions | ACM Transactions on Information Systems",
+            "url": "https://dl.acm.org/doi/10.1145/3703155"
+          },
+          {
+            "title": "Are the Hidden States Hiding Something? Testing the Limits of Factuality-Encoding Capabilities in LLMs - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.304/"
+          },
+          {
+            "title": "Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full.pdf"
+          },
+          {
+            "title": "Detection of Hallucinations Based on the Internal States of Large Language Models | Automatic Documentation and Mathematical Linguistics | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.3103/S0005105525701456"
+          },
+          {
+            "title": "(PDF) Are the Hidden States Hiding Something? Testing the Limits of Factuality-Encoding Capabilities in LLMs",
+            "url": "https://www.researchgate.net/publication/391991645_Are_the_Hidden_States_Hiding_Something_Testing_the_Limits_of_Factuality-Encoding_Capabilities_in_LLMs"
+          },
+          {
+            "title": "LLM Hallucination Detection: A Fast Fourier Transform Method Based on Hidden Layer Temporal Signals Citation: Authors. Title. Pages…. DOI:000000/11111.",
+            "url": "https://arxiv.org/html/2509.13154"
+          },
+          {
+            "title": "GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub",
+            "url": "https://github.com/EdinburghNLP/awesome-hallucination-detection"
+          },
+          {
+            "title": "Towards Unification of Hallucination Detection and Fact ...",
+            "url": "https://arxiv.org/pdf/2512.02772"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 REDEEP: DETECTING HALLUCINATION IN",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/7daf60e805e596c3bd1e843e72ea5560-Paper-Conference.pdf"
+          },
+          {
+            "title": "From Illusion to Insight: A Taxonomic Survey of Hallucination Mitigation Techniques in LLMs",
+            "url": "https://www.mdpi.com/2673-2688/6/10/260"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant studies on hidden states, factuality prediction, and LLM hallucinations. Here are the key findings:\n\n## Hidden States and Factuality Encoding\n\nRecent studies suggest that when generating false statements, the internal states of LLMs encode information about truthfulness. However, analysis of two open-source LLMs reveals that while the findings from previous studies are partially validated, generalization to LLM-generated datasets remains challenging.\n\n## Pre-Generation vs. During-Generation Approaches\n\nAn emerging research direction focuses on pre-generation detection. A lightweight classifier detects hallucinations preemptively conditioning only on the input hidden states, before any text is generated. When hallucinations are predicted, it intervenes in these hidden states to steer the model toward more factual outputs.\n\n## Residual Stream Analysis\n\nInternal representations (residual stream, attention outputs, and MLP outputs) are extracted from any combination of layers from a frozen transformer as it processes training examples. These representations are pooled, concatenated, and used to train lightweight probe networks that learn to map internal states to calibrated predictions.\n\n## Temporal Dynamics During Generation\n\nA novel hallucination detection framework models the temporal dynamics of hidden representations during autoregressive generation. This approach constructs hidden-layer signals by sampling activations across layers, applies Fast Fourier Transform (FFT) to obtain frequency-domain representations, and extracts the strongest non-DC frequency component as spectral features.\n\n## Knowledge vs. Hallucination Signals\n\nWhen the LLM knows the truthful answer, copying heads more accurately capture and utilize external knowledge, and knowledge FFNs add less parametric knowledge to the residual stream compared to hallucination scenarios."
+    ],
+    "durationSeconds": 8.165794760000018
+  },
+  "sourceToolAssistantUUID": "73b003c2-18b0-4a9c-afcf-b2e3e86c6a6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-16T09:28:28.254Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PMHCXxygKiWQ8r3tgpFQ99`</summary>
+
+```json
+{
+  "query": "\"attractor geometry\" transformer memory hallucination during generation activation distance factoid completion arXiv 2605.05686"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97225214-880f-4a95-b95b-acdf7208fcfd",
+  "isSidechain": false,
+  "requestId": "req_011Cb61bDoe1PUXu55aSXeTq",
+  "type": "assistant",
+  "uuid": "a06164fe-32b5-4e31-9064-97b29c87a14f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JbcepvW7VuZXaF9XvrADWj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1130,
+      "cache_read_input_tokens": 38006,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1130,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 38006,
+          "cache_creation_input_tokens": 1130,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1130
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T09:28:35.046Z_
+
+<details><summary>↩ Tool result · `toolu_01PMHCXxygKiWQ8r3tgpFQ99`</summary>
+
+```text
+Web search results for query: ""attractor geometry" transformer memory hallucination during generation activation distance factoid completion arXiv 2605.05686"
+
+Links: [{"title":"[2605.05686] Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination","url":"https://arxiv.org/abs/2605.05686"},{"title":"Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination","url":"https://arxiv.org/html/2605.05686"},{"title":"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation","url":"https://arxiv.org/html/2604.15400"},{"title":"[2604.15400] Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation","url":"https://arxiv.org/abs/2604.15400"},{"title":"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations","url":"https://arxiv.org/html/2604.04743"},{"title":"Memory-Augmented Transformers: A Systematic Review from Neuroscience Principles to Technical Solutions","url":"https://arxiv.org/html/2508.10824v1"},{"title":"[2605.12466] Solve the Loop: Attractor Models for Language and Reasoning","url":"https://arxiv.org/abs/2605.12466"},{"title":"From Dispersion to Attraction: Spectral Dynamics of Hallucination Across Whisper Model Scales","url":"https://arxiv.org/html/2604.08591v1"},{"title":"[2605.13772] Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry","url":"https://arxiv.org/abs/2605.13772"},{"title":"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits","url":"https://arxiv.org/html/2605.05953"}]
+
+I found the paper! Here are the key details about arXiv 2605.05686:
+
+**Title:** Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination
+
+**Main Contribution:**
+In the hidden-state space of autoregressive generation, learned facts form attractor basins. Conflict is basin competition: WM disrupts convergence to the correct basin without raising output entropy. Hallucination is basin absence: the hidden state drifts freely when no memorized basin exists.
+
+**Key Findings:**
+- Geometric margin--the hidden state's distance to the nearest memorized basin--reads this geometry directly and separates correct recall from hallucination far more cleanly than output entropy, with zero false refusals where entropy-based detection cannot avoid rejecting the vast majority of correct outputs.
+
+- The separation holds on natural-language factual queries from the pretrained model with no adaptation, confirming attractor geometry is structural rather than a fine-tuning artifact.
+
+- The fraction of confident hallucinations follows a scaling law C = exp(-c/Δ̄), growing with scale even as overall error rates fall.
+
+The paper was published on May 7, 2026, by Qiyao Liang, Risto Miikkulainen, and Ila Fiete.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a06164fe-32b5-4e31-9064-97b29c87a14f",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "c97027c8-c5f7-4d94-88c3-c47b61909978",
+  "toolUseResult": {
+    "query": "\"attractor geometry\" transformer memory hallucination during generation activation distance factoid completion arXiv 2605.05686",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013apMTaSTXfAaasudM1rz9d",
+        "content": [
+          {
+            "title": "[2605.05686] Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination",
+            "url": "https://arxiv.org/abs/2605.05686"
+          },
+          {
+            "title": "Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination",
+            "url": "https://arxiv.org/html/2605.05686"
+          },
+          {
+            "title": "Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation",
+            "url": "https://arxiv.org/html/2604.15400"
+          },
+          {
+            "title": "[2604.15400] Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation",
+            "url": "https://arxiv.org/abs/2604.15400"
+          },
+          {
+            "title": "Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations",
+            "url": "https://arxiv.org/html/2604.04743"
+          },
+          {
+            "title": "Memory-Augmented Transformers: A Systematic Review from Neuroscience Principles to Technical Solutions",
+            "url": "https://arxiv.org/html/2508.10824v1"
+          },
+          {
+            "title": "[2605.12466] Solve the Loop: Attractor Models for Language and Reasoning",
+            "url": "https://arxiv.org/abs/2605.12466"
+          },
+          {
+            "title": "From Dispersion to Attraction: Spectral Dynamics of Hallucination Across Whisper Model Scales",
+            "url": "https://arxiv.org/html/2604.08591v1"
+          },
+          {
+            "title": "[2605.13772] Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry",
+            "url": "https://arxiv.org/abs/2605.13772"
+          },
+          {
+            "title": "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits",
+            "url": "https://arxiv.org/html/2605.05953"
+          }
+        ]
+      },
+      "I found the paper! Here are the key details about arXiv 2605.05686:\n\n**Title:** Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination\n\n**Main Contribution:**\nIn the hidden-state space of autoregressive generation, learned facts form attractor basins. Conflict is basin competition: WM disrupts convergence to the correct basin without raising output entropy. Hallucination is basin absence: the hidden state drifts freely when no memorized basin exists.\n\n**Key Findings:**\n- Geometric margin--the hidden state's distance to the nearest memorized basin--reads this geometry directly and separates correct recall from hallucination far more cleanly than output entropy, with zero false refusals where entropy-based detection cannot avoid rejecting the vast majority of correct outputs.\n\n- The separation holds on natural-language factual queries from the pretrained model with no adaptation, confirming attractor geometry is structural rather than a fine-tuning artifact.\n\n- The fraction of confident hallucinations follows a scaling law C = exp(-c/Δ̄), growing with scale even as overall error rates fall.\n\nThe paper was published on May 7, 2026, by Qiyao Liang, Risto Miikkulainen, and Ila Fiete."
+    ],
+    "durationSeconds": 6.788829918000003
+  },
+  "sourceToolAssistantUUID": "a06164fe-32b5-4e31-9064-97b29c87a14f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-16T09:28:38.116Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JeaLWCo1rFciQFC3DudV2q`</summary>
+
+```json
+{
+  "query": "Simple Factuality Probes hallucination long-form generation Han EMNLP 2025 methodology layers probe architecture claim detection"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c97027c8-c5f7-4d94-88c3-c47b61909978",
+  "isSidechain": false,
+  "requestId": "req_011Cb61cY7FhpGyeCS6b1Mog",
+  "type": "assistant",
+  "uuid": "e56b9ac3-1a09-47a3-8c23-5e59c55e197f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KRu9nZm3sKFdkSvuMRdiiy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 917,
+      "cache_read_input_tokens": 39136,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 917,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 39136,
+          "cache_creation_input_tokens": 917,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 917
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-16T09:28:47.187Z_
+
+<details><summary>↩ Tool result · `toolu_01JeaLWCo1rFciQFC3DudV2q`</summary>
+
+```text
+Web search results for query: "Simple Factuality Probes hallucination long-form generation Han EMNLP 2025 methodology layers probe architecture claim detection"
+
+Links: [{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.880/"},{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/2025.findings-emnlp.880@ACL"},{"title":"Simple Factuality Probes Detect Hallucinations in Long- ...","url":"https://aclanthology.org/2025.findings-emnlp.880.pdf"},{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Request PDF","url":"https://www.researchgate.net/publication/397419109_Simple_Factuality_Probes_Detect_Hallucinations_in_Long-Form_Natural_Language_Generation"},{"title":"An Empirical Study on Hallucinations in Embodied Agents ...","url":"https://aclanthology.org/2025.findings-emnlp.1158.pdf"},{"title":"The Law of Knowledge Overshadowing","url":"https://aclanthology.org/2025.findings-acl.1199.pdf"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/html/2509.03531v1"},{"title":"Survey of Hallucination in Natural Language Generation | ACM Computing Surveys","url":"https://dl.acm.org/doi/10.1145/3571730"},{"title":"Survey of Hallucination in Natural Language Generation","url":"https://arxiv.org/pdf/2202.03629"},{"title":"Jiatong Han","url":"https://scholar.google.com/citations?user=x7JqW14AAAAJ&hl=en"}]
+
+Based on the search results, I found comprehensive information about the "Simple Factuality Probes" paper. Here's a detailed overview:
+
+## Overview
+
+"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation" was published in Findings of the Association for Computational Linguistics: EMNLP 2025 (pages 16209–16226, Suzhou, China). The paper is authored by Jiatong Han, Neil Band, Muhammed Razzak, Jannik Kossen, Tim G. J. Rudner, and Yarin Gal.
+
+## Problem and Motivation
+
+Large language models (LLMs) often mislead users with confident hallucinations. Current approaches to detect hallucination require many samples from the LLM generator, which is computationally infeasible as frontier model sizes and generation lengths continue to grow.
+
+## Methodology and Key Findings
+
+The authors present a remarkably simple baseline for detecting hallucinations in long-form LLM generations, with performance comparable to expensive multi-sample approaches while drawing only a single sample from the LLM generator. 
+
+Their key finding is that LLM hidden states are highly predictive of factuality in long-form natural language generation and that this information can be efficiently extracted at inference time using a lightweight probe.
+
+## Probe Architecture and Claim Detection
+
+The researchers identify a subset of neurons predominantly responsible for encoding common factuality and locate neuron activations such that supported and unsupported claims can be linearly separated by some threshold. Using only sparse neuron activations they can train probes performing comparably well, with sparse probes having comparable validation AUROC as compared with full-neuron probes.
+
+## Causality and Practical Applications
+
+By clamping neuron activations to the tail range of their "supported" class activation values, the researchers can causally reduce hallucinations in model outputs. This neuron-level steering approach significantly improves factuality across all evaluated LLMs on diverse topics, presenting opportunities for enhancing LLM factuality through activation steering during inference without requiring additional prompting or fine-tuning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e56b9ac3-1a09-47a3-8c23-5e59c55e197f",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "e6eb64bd-fd7a-4744-9f08-e79fbe8f53b0",
+  "toolUseResult": {
+    "query": "Simple Factuality Probes hallucination long-form generation Han EMNLP 2025 methodology layers probe architecture claim detection",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MGV3WY1V4pfhuttqwesdHL",
+        "content": [
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880/"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/2025.findings-emnlp.880@ACL"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long- ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880.pdf"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Request PDF",
+            "url": "https://www.researchgate.net/publication/397419109_Simple_Factuality_Probes_Detect_Hallucinations_in_Long-Form_Natural_Language_Generation"
+          },
+          {
+            "title": "An Empirical Study on Hallucinations in Embodied Agents ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.1158.pdf"
+          },
+          {
+            "title": "The Law of Knowledge Overshadowing",
+            "url": "https://aclanthology.org/2025.findings-acl.1199.pdf"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/html/2509.03531v1"
+          },
+          {
+            "title": "Survey of Hallucination in Natural Language Generation | ACM Computing Surveys",
+            "url": "https://dl.acm.org/doi/10.1145/3571730"
+          },
+          {
+            "title": "Survey of Hallucination in Natural Language Generation",
+            "url": "https://arxiv.org/pdf/2202.03629"
+          },
+          {
+            "title": "Jiatong Han",
+            "url": "https://scholar.google.com/citations?user=x7JqW14AAAAJ&hl=en"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the \"Simple Factuality Probes\" paper. Here's a detailed overview:\n\n## Overview\n\n\"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation\" was published in Findings of the Association for Computational Linguistics: EMNLP 2025 (pages 16209–16226, Suzhou, China). The paper is authored by Jiatong Han, Neil Band, Muhammed Razzak, Jannik Kossen, Tim G. J. Rudner, and Yarin Gal.\n\n## Problem and Motivation\n\nLarge language models (LLMs) often mislead users with confident hallucinations. Current approaches to detect hallucination require many samples from the LLM generator, which is computationally infeasible as frontier model sizes and generation lengths continue to grow.\n\n## Methodology and Key Findings\n\nThe authors present a remarkably simple baseline for detecting hallucinations in long-form LLM generations, with performance comparable to expensive multi-sample approaches while drawing only a single sample from the LLM generator. \n\nTheir key finding is that LLM hidden states are highly predictive of factuality in long-form natural language generation and that this information can be efficiently extracted at inference time using a lightweight probe.\n\n## Probe Architecture and Claim Detection\n\nThe researchers identify a subset of neurons predominantly responsible for encoding common factuality and locate neuron activations such that supported and unsupported claims can be linearly separated by some threshold. Using only sparse neuron activations they can train probes performing comparably well, with sparse probes having comparable validation AUROC as compared with full-neuron probes.\n\n## Causality and Practical Applications\n\nBy clamping neuron activations to the tail range of their \"supported\" class activation values, the researchers can causally reduce hallucinations in model outputs. This neuron-level steering approach significantly improves factuality across all evaluated LLMs on diverse topics, presenting opportunities for enhancing LLM factuality through activation steering during inference without requiring additional prompting or fine-tuning."
+    ],
+    "durationSeconds": 9.06308114699999
+  },
+  "sourceToolAssistantUUID": "e56b9ac3-1a09-47a3-8c23-5e59c55e197f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-16T09:28:52.240Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of all three papers. Let me also fetch the full PDF of the Simple Factuality Probes paper to get specific numbers and methodology details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6eb64bd-fd7a-4744-9f08-e79fbe8f53b0",
+  "isSidechain": false,
+  "requestId": "req_011Cb61dS4PrngCtQqPUE18H",
+  "type": "assistant",
+  "uuid": "132e10f9-5e8b-4b14-937e-e05e82c9ddc1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BhMZDMJ81z7LATiXLCab7u",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1096,
+      "cache_read_input_tokens": 40053,
+      "output_tokens": 284,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1096,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 284,
+          "cache_read_input_tokens": 40053,
+          "cache_creation_input_tokens": 1096,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1096
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-16T09:28:53.569Z_
+
+Let me get more specific numbers from the Simple Factuality Probes paper and check for any recent work on during-generation geometric signals.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "132e10f9-5e8b-4b14-937e-e05e82c9ddc1",
+  "isSidechain": false,
+  "requestId": "req_011Cb61dS4PrngCtQqPUE18H",
+  "type": "assistant",
+  "uuid": "18cb9fdf-b90e-463f-8931-64a6847b8e55",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BhMZDMJ81z7LATiXLCab7u",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1096,
+      "cache_read_input_tokens": 40053,
+      "output_tokens": 284,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1096,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 284,
+          "cache_read_input_tokens": 40053,
+          "cache_creation_input_tokens": 1096,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1096
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-16T09:28:57.697Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TDwcZ9UrQY6ZhzEG5BE1Vs`</summary>
+
+```json
+{
+  "url": "https://aclanthology.org/2025.findings-emnlp.880.pdf",
+  "prompt": "Extract: (1) Specific AUROC or accuracy numbers for claim-level factuality detection. (2) What models were tested and at what scale? (3) How are claims extracted - at sentence level or atomic fact level? (4) Which layers' hidden states are most informative? (5) The causal intervention results - how much does factuality improve when clamping neurons? (6) Comparison to multi-sample baselines (semantic entropy etc) with specific numbers. (7) Any mention of FActScore evaluation."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18cb9fdf-b90e-463f-8931-64a6847b8e55",
+  "isSidechain": false,
+  "requestId": "req_011Cb61dS4PrngCtQqPUE18H",
+  "type": "assistant",
+  "uuid": "7e18e187-3893-465d-8922-1d4f1c02279b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BhMZDMJ81z7LATiXLCab7u",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1096,
+      "cache_read_input_tokens": 40053,
+      "output_tokens": 284,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1096,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 284,
+          "cache_read_input_tokens": 40053,
+          "cache_creation_input_tokens": 1096,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1096
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Claim-Level Selective Activation Steering for Factual Hallucination Su…",
+  "leafUuid": "7e18e187-3893-465d-8922-1d4f1c02279b",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise idea with claim-level steering trigger validation",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-16T09:29:03.872Z_
+
+<details><summary>↩ Tool result · `toolu_01TDwcZ9UrQY6ZhzEG5BE1Vs`</summary>
+
+```text
+# Factuality Detection and Intervention Study - Key Findings
+
+I cannot extract the specific information you requested from this PDF document. The content appears to be a compressed/encoded PDF file with embedded streams, and the text data present in the object stream doesn't contain the experimental results, model specifications, or numerical performance metrics you're asking about.
+
+The document appears to be an academic paper (reference to "EMNLP2025/findings/papers/2898.pdf"), but the actual readable content in this format is limited to structural metadata and encoded image data rather than the paper's main text and results sections.
+
+**To obtain the specific data you need:**
+- Access a readable version of the PDF or the paper's text
+- Look for: Results tables, experimental setup sections, and appendices containing ablation studies
+- Check for mentions of datasets used (likely related to factuality evaluation)
+
+If you can provide the paper's text content directly or a different format, I'd be happy to extract the specific AUROC scores, model specifications, claim extraction methods, neuron-clamping results, and baseline comparisons you're seeking.
+
+[Binary content (application/pdf, 551.8KB) also saved to /home/ubuntu/.claude-account-2/projects/-/de2cbaeb-7a25-4ce3-918d-4f85f5dc6777/tool-results/webfetch-1778923739063-2dpklh.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e18e187-3893-465d-8922-1d4f1c02279b",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "77bfb3e5-2cc4-4d73-af4a-8a6d66c18e55",
+  "toolUseResult": {
+    "bytes": 565032,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Factuality Detection and Intervention Study - Key Findings\n\nI cannot extract the specific information you requested from this PDF document. The content appears to be a compressed/encoded PDF file with embedded streams, and the text data present in the object stream doesn't contain the experimental results, model specifications, or numerical performance metrics you're asking about.\n\nThe document appears to be an academic paper (reference to \"EMNLP2025/findings/papers/2898.pdf\"), but the actual readable content in this format is limited to structural metadata and encoded image data rather than the paper's main text and results sections.\n\n**To obtain the specific data you need:**\n- Access a readable version of the PDF or the paper's text\n- Look for: Results tables, experimental setup sections, and appendices containing ablation studies\n- Check for mentions of datasets used (likely related to factuality evaluation)\n\nIf you can provide the paper's text content directly or a different format, I'd be happy to extract the specific AUROC scores, model specifications, claim extraction methods, neuron-clamping results, and baseline comparisons you're seeking.\n\n[Binary content (application/pdf, 551.8KB) also saved to /home/ubuntu/.claude-account-2/projects/-/de2cbaeb-7a25-4ce3-918d-4f85f5dc6777/tool-results/webfetch-1778923739063-2dpklh.pdf]",
+    "durationMs": 6171,
+    "url": "https://aclanthology.org/2025.findings-emnlp.880.pdf"
+  },
+  "sourceToolAssistantUUID": "7e18e187-3893-465d-8922-1d4f1c02279b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58 · 2026-05-16T09:29:03.880Z_
+
+```json
+{
+  "parentUuid": "77bfb3e5-2cc4-4d73-af4a-8a6d66c18e55",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "7773a049-087a-4251-88cf-b918c28296cc",
+  "timestamp": "2026-05-16T09:29:03.880Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T09:29:07.873Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01WVPGn3e8PEyT4FT4xCVpsE`</summary>
+
+```json
+{
+  "url": "https://papers.cool/venue/2025.findings-emnlp.880@ACL",
+  "prompt": "Extract detailed results: (1) AUROC numbers for claim-level factuality detection. (2) Models tested. (3) How claims are extracted. (4) Causal intervention results. (5) FActScore evaluation numbers. (6) Comparison numbers vs multi-sample baselines."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7773a049-087a-4251-88cf-b918c28296cc",
+  "isSidechain": false,
+  "requestId": "req_011Cb61efMsT83yqH6n32pga",
+  "type": "assistant",
+  "uuid": "2f6f6c38-a12a-4a66-8549-2e2e739c7ef0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0135y2WZaDHF6j2kq722Q8rP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 716,
+      "cache_read_input_tokens": 41149,
+      "output_tokens": 153,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 716,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 153,
+          "cache_read_input_tokens": 41149,
+          "cache_creation_input_tokens": 716,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 716
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-16T09:29:11.647Z_
+
+<details><summary>↩ Tool result · `toolu_01WVPGn3e8PEyT4FT4xCVpsE`</summary>
+
+```text
+# Limited Information Available
+
+The webpage content provided is a **landing page summary** rather than the full paper, so I cannot extract the specific results you requested.
+
+What I can confirm from the page:
+
+**Available Information:**
+- The paper presents "a remarkably simple baseline for detecting hallucinations" using LLM hidden states
+- It claims "competitive performance with up to 100x fewer FLOPs" compared to multi-sample approaches
+- Models tested include "open-weight models up to 405B parameters"
+- The approach uses "a lightweight probe" applied at inference time
+
+**Missing Information:**
+The webpage does not contain:
+1. AUROC numbers for claim-level factuality detection
+2. Specific model names tested
+3. Claim extraction methodology details
+4. Causal intervention results
+5. FactScore evaluation numbers
+6. Detailed comparison metrics vs multi-sample baselines
+
+**Recommendation:**
+To obtain these detailed results, you would need to access the full PDF paper at the ACL Anthology link provided on the page (https://aclanthology.org/2025.findings-emnlp.880/).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2f6f6c38-a12a-4a66-8549-2e2e739c7ef0",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "e265406c-e018-4b91-9a79-207d7864cd27",
+  "toolUseResult": {
+    "bytes": 15235,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Limited Information Available\n\nThe webpage content provided is a **landing page summary** rather than the full paper, so I cannot extract the specific results you requested.\n\nWhat I can confirm from the page:\n\n**Available Information:**\n- The paper presents \"a remarkably simple baseline for detecting hallucinations\" using LLM hidden states\n- It claims \"competitive performance with up to 100x fewer FLOPs\" compared to multi-sample approaches\n- Models tested include \"open-weight models up to 405B parameters\"\n- The approach uses \"a lightweight probe\" applied at inference time\n\n**Missing Information:**\nThe webpage does not contain:\n1. AUROC numbers for claim-level factuality detection\n2. Specific model names tested\n3. Claim extraction methodology details\n4. Causal intervention results\n5. FactScore evaluation numbers\n6. Detailed comparison metrics vs multi-sample baselines\n\n**Recommendation:**\nTo obtain these detailed results, you would need to access the full PDF paper at the ACL Anthology link provided on the page (https://aclanthology.org/2025.findings-emnlp.880/).",
+    "durationMs": 3770,
+    "url": "https://papers.cool/venue/2025.findings-emnlp.880@ACL"
+  },
+  "sourceToolAssistantUUID": "2f6f6c38-a12a-4a66-8549-2e2e739c7ef0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-16T09:29:17.343Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XKvwcqDA8j4HSkzuB5LeKp`</summary>
+
+```json
+{
+  "url": "https://www.researchgate.net/publication/397419109_Simple_Factuality_Probes_Detect_Hallucinations_in_Long-Form_Natural_Language_Generation",
+  "prompt": "Extract any specific numerical results: AUROC, accuracy, FActScore improvements, models tested, claim extraction method, comparison to baselines. Any details about the probe methodology, which layers are used, and the causal intervention results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e265406c-e018-4b91-9a79-207d7864cd27",
+  "isSidechain": false,
+  "requestId": "req_011Cb61fEd7U41so7Lp3rh7G",
+  "type": "assistant",
+  "uuid": "ea38f118-6098-466a-8f26-a6594323a0cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Df36EfrTZ4Xyq2HHnANKfK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 414,
+      "cache_read_input_tokens": 41865,
+      "output_tokens": 160,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 414,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 160,
+          "cache_read_input_tokens": 41865,
+          "cache_creation_input_tokens": 414,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 414
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-16T09:29:17.573Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01XKvwcqDA8j4HSkzuB5LeKp`</summary>
+
+```text
+Request failed with status code 403
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ea38f118-6098-466a-8f26-a6594323a0cc",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "a3ff7009-713c-4920-9f73-a1bd9d680cdd",
+  "toolUseResult": "Error: Request failed with status code 403",
+  "sourceToolAssistantUUID": "ea38f118-6098-466a-8f26-a6594323a0cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-16T09:29:31.145Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EnXjvg8NyLW1akyT9Eq9DC`</summary>
+
+```json
+{
+  "query": "Han et al \"simple factuality probes\" AUROC results Llama models claim-level probe hidden states hallucination detection performance numbers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3ff7009-713c-4920-9f73-a1bd9d680cdd",
+  "isSidechain": false,
+  "requestId": "req_011Cb61ffxN3rgByUD74kqFc",
+  "type": "assistant",
+  "uuid": "43052963-449c-4f70-a36c-f8e2708eea23",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0161EPGRWKPU8Wzu1rqgemDj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 187,
+      "cache_read_input_tokens": 42279,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 187,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 42279,
+          "cache_creation_input_tokens": 187,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 187
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T09:29:37.626Z_
+
+<details><summary>↩ Tool result · `toolu_01EnXjvg8NyLW1akyT9Eq9DC`</summary>
+
+```text
+Web search results for query: "Han et al "simple factuality probes" AUROC results Llama models claim-level probe hidden states hallucination detection performance numbers"
+
+Links: [{"title":"Simple Factuality Probes Detect Hallucinations in Long- ...","url":"https://aclanthology.org/2025.findings-emnlp.880.pdf"},{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.880/"},{"title":"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Request PDF","url":"https://www.researchgate.net/publication/397419109_Simple_Factuality_Probes_Detect_Hallucinations_in_Long-Form_Natural_Language_Generation"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/html/2509.03531v1"},{"title":"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs","url":"https://arxiv.org/pdf/2406.15927"},{"title":"A Probabilistic Framework for LLM Hallucination Detection ...","url":"https://aclanthology.org/2025.naacl-long.158.pdf"},{"title":"HaloScope: Harnessing Unlabeled LLM Generations for Hallucination Detection","url":"https://arxiv.org/pdf/2409.17504"},{"title":"Re-evaluating Hallucination Detection in LLMs","url":"https://aclanthology.org/2025.emnlp-main.1761.pdf"},{"title":"HalluLens: LLM Hallucination Benchmark","url":"https://aclanthology.org/2025.acl-long.1176.pdf"},{"title":"The Law of Knowledge Overshadowing","url":"https://aclanthology.org/2025.findings-acl.1199.pdf"}]
+
+I found a research paper on "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation" by Han et al. (2025). Based on the search results, here's what I found regarding AUROC performance and Llama models:
+
+Probes trained on smaller, open-weight models achieve promising AUROC scores when detecting hallucinations in outputs from proprietary models. Importantly, the 3B Llama model's probes rival those of the 70B variant, suggesting efficient lightweight probing solutions remain viable even for evaluating closed-source models.
+
+The paper demonstrates that LLM hidden states are highly predictive of factuality in long-form natural language generation and that this information can be efficiently extracted at inference time using a lightweight probe.
+
+Regarding the claim-level probe methodology, probing the hidden states of the last tokens of the claims yields the best performances.
+
+The search results indicate this is a recent publication from the ACL Anthology (Findings 2025, November 2025), but the specific numerical AUROC values for different Llama model sizes at the claim level are not detailed in the accessible portions of the document. For the exact performance numbers you're looking for, you would need to access the full paper PDF directly, which appears to be available at the ACL Anthology link.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "43052963-449c-4f70-a36c-f8e2708eea23",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "e288d344-f3a4-45e4-b73f-29611570ddbc",
+  "toolUseResult": {
+    "query": "Han et al \"simple factuality probes\" AUROC results Llama models claim-level probe hidden states hallucination detection performance numbers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01En2u8NXty31JQsKMgHTbjj",
+        "content": [
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long- ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880.pdf"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880/"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation | Request PDF",
+            "url": "https://www.researchgate.net/publication/397419109_Simple_Factuality_Probes_Detect_Hallucinations_in_Long-Form_Natural_Language_Generation"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/html/2509.03531v1"
+          },
+          {
+            "title": "Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs",
+            "url": "https://arxiv.org/pdf/2406.15927"
+          },
+          {
+            "title": "A Probabilistic Framework for LLM Hallucination Detection ...",
+            "url": "https://aclanthology.org/2025.naacl-long.158.pdf"
+          },
+          {
+            "title": "HaloScope: Harnessing Unlabeled LLM Generations for Hallucination Detection",
+            "url": "https://arxiv.org/pdf/2409.17504"
+          },
+          {
+            "title": "Re-evaluating Hallucination Detection in LLMs",
+            "url": "https://aclanthology.org/2025.emnlp-main.1761.pdf"
+          },
+          {
+            "title": "HalluLens: LLM Hallucination Benchmark",
+            "url": "https://aclanthology.org/2025.acl-long.1176.pdf"
+          },
+          {
+            "title": "The Law of Knowledge Overshadowing",
+            "url": "https://aclanthology.org/2025.findings-acl.1199.pdf"
+          }
+        ]
+      },
+      "I found a research paper on \"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation\" by Han et al. (2025). Based on the search results, here's what I found regarding AUROC performance and Llama models:\n\nProbes trained on smaller, open-weight models achieve promising AUROC scores when detecting hallucinations in outputs from proprietary models. Importantly, the 3B Llama model's probes rival those of the 70B variant, suggesting efficient lightweight probing solutions remain viable even for evaluating closed-source models.\n\nThe paper demonstrates that LLM hidden states are highly predictive of factuality in long-form natural language generation and that this information can be efficiently extracted at inference time using a lightweight probe.\n\nRegarding the claim-level probe methodology, probing the hidden states of the last tokens of the claims yields the best performances.\n\nThe search results indicate this is a recent publication from the ACL Anthology (Findings 2025, November 2025), but the specific numerical AUROC values for different Llama model sizes at the claim level are not detailed in the accessible portions of the document. For the exact performance numbers you're looking for, you would need to access the full paper PDF directly, which appears to be available at the ACL Anthology link."
+    ],
+    "durationSeconds": 6.475177244999999
+  },
+  "sourceToolAssistantUUID": "43052963-449c-4f70-a36c-f8e2708eea23",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-16T09:29:46.294Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have enough information now to make the revision. Let me also do one more search to see if there are any other recent works on during-generation geometric signals that could strengthen my argument about the distinction between pre-generation and during-generation signals.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e288d344-f3a4-45e4-b73f-29611570ddbc",
+  "isSidechain": false,
+  "requestId": "req_011Cb61hAGEer3mqb154a3ov",
+  "type": "assistant",
+  "uuid": "abf85760-28fc-4354-a2b8-c7f8d3b6de0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013vUyMwvCVT7RS4iAmKDZd9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 911,
+      "cache_read_input_tokens": 42466,
+      "output_tokens": 521,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 911,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 521,
+          "cache_read_input_tokens": 42466,
+          "cache_creation_input_tokens": 911,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 911
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-16T09:29:57.402Z_
+
+Now I have sufficient information. Let me synthesize what I've learned and compose the revised idea.
+
+Key findings from my research:
+
+1. **MERA (ICML 2025)**: Token-level, model-agnostic framework with calibrated abstention via linear error probes. Closed-form solution for steering intensity. Tested on smaller models (1B-3B). Operates at token+layer level. Key differentiator from CLSAS: MERA is a general-purpose wrapper optimizing steering intensity; CLSAS is claim-level with geometric triggers specific to factuality.
+
+2. **Simple Factuality Probes (Han et al., EMNLP 2025 Findings)**: Probes on hidden states at last tokens of claims detect factuality in long-form generation. Competitive with multi-sample methods at 100x fewer FLOPs. Models up to 405B. Causal intervention via neuron clamping improves factuality. Validates that hidden states encode claim-level factuality.
+
+3. **Geometric Deviation (Du, arXiv 2605.03196)**: Uses **cosine distance** (not Euclidean/Mahalanobis) from answerable centroid, **pre-generation** (no output tokens), at **early layers (2-5)**. Factual prompt ROC-AUC: 0.66-0.71 (not significant). Fails because factual unanswerability is syntactically indistinguishable from answerable queries. Critical distinction: this is about query-level answerability before generation, NOT during-generation factual grounding.
+
+Let me now compose the complete revised idea.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "abf85760-28fc-4354-a2b8-c7f8d3b6de0f",
+  "isSidechain": false,
+  "requestId": "req_011Cb61hAGEer3mqb154a3ov",
+  "type": "assistant",
+  "uuid": "f1ba7af3-41a5-4b59-8d1f-003859542819",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013vUyMwvCVT7RS4iAmKDZd9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 911,
+      "cache_read_input_tokens": 42466,
+      "output_tokens": 521,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 911,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 521,
+          "cache_read_input_tokens": 42466,
+          "cache_creation_input_tokens": 911,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 911
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-16T09:29:58.166Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01D8MVAgCxXJfRvdCho9MKfR`</summary>
+
+```json
+{
+  "query": "MERA steering ICML 2025 TruthfulQA results benchmark performance numbers accuracy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1ba7af3-41a5-4b59-8d1f-003859542819",
+  "isSidechain": false,
+  "requestId": "req_011Cb61hAGEer3mqb154a3ov",
+  "type": "assistant",
+  "uuid": "0f62e867-6743-4b85-a8aa-82b1c6216b88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013vUyMwvCVT7RS4iAmKDZd9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 911,
+      "cache_read_input_tokens": 42466,
+      "output_tokens": 521,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 911,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 521,
+          "cache_read_input_tokens": 42466,
+          "cache_creation_input_tokens": 911,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 911
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-16T09:30:03.515Z_
+
+<details><summary>↩ Tool result · `toolu_01D8MVAgCxXJfRvdCho9MKfR`</summary>
+
+```text
+Web search results for query: "MERA steering ICML 2025 TruthfulQA results benchmark performance numbers accuracy"
+
+Links: [{"title":"ICML Poster To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models","url":"https://icml.cc/virtual/2025/poster/44524"},{"title":"To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models | OpenReview","url":"https://openreview.net/forum?id=fUCPq5RvmH"},{"title":"TruthfulQA Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/truthfulqa"},{"title":"Bench: Graduate-level Multi-disciplinary Benchmarks for ...","url":"https://cg.cs.tsinghua.edu.cn/papers/ICML-2025-RBench.pdf"},{"title":"ICML 2025 Papers","url":"https://icml.cc/virtual/2025/papers.html"},{"title":"MERA Benchmark Suite Overview","url":"https://www.emergentmind.com/topics/mera-benchmark"},{"title":"ICML Poster Focus On This, Not That! Steering LLMs with Adaptive Feature Specification","url":"https://icml.cc/virtual/2025/poster/43885"},{"title":"ICML Probing and Steering Evaluation Awareness of Language Models","url":"https://icml.cc/virtual/2025/49631"},{"title":"ICML Steering Language Model Refusal with Sparse Autoencoders","url":"https://icml.cc/virtual/2025/50928"},{"title":"[2510.13290] To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models","url":"https://arxiv.org/abs/2510.13290"}]
+
+Based on the search results, I found information about MERA at ICML 2025, though the results don't contain specific numerical performance numbers for TruthfulQA:
+
+MERA (Mechanistic Error Reduction with Abstention) is a framework for steering language models to mitigate errors through selective, adaptive interventions that optimizes the intervention direction and calibrates when and how much to steer. Experiments across diverse datasets and LM families demonstrate safe, effective, non-degrading error correction and that MERA outperforms existing baselines.
+
+MERA uses a lightweight helper model to estimate how likely the language model is to be wrong, and then gently shifts the model's internal activity to reduce the probability of an error being made. The approach was tested on simple multi-choice tasks across several language models and found to generally help improve accuracy.
+
+However, the search results don't contain specific TruthfulQA benchmark performance numbers or accuracy metrics for the MERA paper. To find those detailed results, you would need to access the full ICML 2025 paper directly through the OpenReview link (https://openreview.net/forum?id=fUCPq5RvmH) or the arXiv preprint (https://arxiv.org/abs/2510.13290), where the complete experimental results and performance numbers should be documented.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0f62e867-6743-4b85-a8aa-82b1c6216b88",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "68b94fc2-d45f-4ad3-93ec-a43c5e2284af",
+  "toolUseResult": {
+    "query": "MERA steering ICML 2025 TruthfulQA results benchmark performance numbers accuracy",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Nq9gxinMVq7kqo6qK4Hrph",
+        "content": [
+          {
+            "title": "ICML Poster To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models",
+            "url": "https://icml.cc/virtual/2025/poster/44524"
+          },
+          {
+            "title": "To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=fUCPq5RvmH"
+          },
+          {
+            "title": "TruthfulQA Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/truthfulqa"
+          },
+          {
+            "title": "Bench: Graduate-level Multi-disciplinary Benchmarks for ...",
+            "url": "https://cg.cs.tsinghua.edu.cn/papers/ICML-2025-RBench.pdf"
+          },
+          {
+            "title": "ICML 2025 Papers",
+            "url": "https://icml.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "MERA Benchmark Suite Overview",
+            "url": "https://www.emergentmind.com/topics/mera-benchmark"
+          },
+          {
+            "title": "ICML Poster Focus On This, Not That! Steering LLMs with Adaptive Feature Specification",
+            "url": "https://icml.cc/virtual/2025/poster/43885"
+          },
+          {
+            "title": "ICML Probing and Steering Evaluation Awareness of Language Models",
+            "url": "https://icml.cc/virtual/2025/49631"
+          },
+          {
+            "title": "ICML Steering Language Model Refusal with Sparse Autoencoders",
+            "url": "https://icml.cc/virtual/2025/50928"
+          },
+          {
+            "title": "[2510.13290] To Steer or Not to Steer? Mechanistic Error Reduction with Abstention for Language Models",
+            "url": "https://arxiv.org/abs/2510.13290"
+          }
+        ]
+      },
+      "Based on the search results, I found information about MERA at ICML 2025, though the results don't contain specific numerical performance numbers for TruthfulQA:\n\nMERA (Mechanistic Error Reduction with Abstention) is a framework for steering language models to mitigate errors through selective, adaptive interventions that optimizes the intervention direction and calibrates when and how much to steer. Experiments across diverse datasets and LM families demonstrate safe, effective, non-degrading error correction and that MERA outperforms existing baselines.\n\nMERA uses a lightweight helper model to estimate how likely the language model is to be wrong, and then gently shifts the model's internal activity to reduce the probability of an error being made. The approach was tested on simple multi-choice tasks across several language models and found to generally help improve accuracy.\n\nHowever, the search results don't contain specific TruthfulQA benchmark performance numbers or accuracy metrics for the MERA paper. To find those detailed results, you would need to access the full ICML 2025 paper directly through the OpenReview link (https://openreview.net/forum?id=fUCPq5RvmH) or the arXiv preprint (https://arxiv.org/abs/2510.13290), where the complete experimental results and performance numbers should be documented."
+    ],
+    "durationSeconds": 5.344978296999995
+  },
+  "sourceToolAssistantUUID": "0f62e867-6743-4b85-a8aa-82b1c6216b88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-16T09:30:09.088Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CfqL53wXN7jDyhXv1Cef9H`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2510.13290v1",
+  "prompt": "Find specific benchmark results: What benchmarks/datasets were used? Were TruthfulQA, FActScore, or other factuality benchmarks tested? What were the specific accuracy or SPI numbers on each benchmark? What models were tested and at what sizes? Focus on finding tables with results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "68b94fc2-d45f-4ad3-93ec-a43c5e2284af",
+  "isSidechain": false,
+  "requestId": "req_011Cb61j4PpVJV8TibkwzaVL",
+  "type": "assistant",
+  "uuid": "ad8ffef9-3214-4b23-a002-0aab9665b9d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CDhBva2uRDTPrhayPF9wPz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1320,
+      "cache_read_input_tokens": 43377,
+      "output_tokens": 145,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1320,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 145,
+          "cache_read_input_tokens": 43377,
+          "cache_creation_input_tokens": 1320,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1320
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-16T09:30:14.147Z_
+
+<details><summary>↩ Tool result · `toolu_01CfqL53wXN7jDyhXv1Cef9H`</summary>
+
+```text
+# Benchmark Results from MERA Paper
+
+## Datasets Tested
+
+The paper evaluated MERA on five supervised classification tasks:
+
+1. **SMS Spam** - binary classification (2,600 training samples)
+2. **Yes/No** - binary classification
+3. **Sentiment** - ternary classification
+4. **MMLU-hs** - high school level multiple choice questions
+5. **MMLU-prof** - professional level multiple choice questions
+
+The datasets ranged from balanced to highly imbalanced with "30% used for validation" according to the experimental setup.
+
+## Models Evaluated
+
+Testing covered six language model variants:
+- LLaMA-3.2-1B (base and instruction-tuned)
+- Gemma-2-2B (base and instruction-tuned)
+- Qwen-2.5-3B (base and instruction-tuned)
+
+## Key Performance Results
+
+Table 1 presents Steering Performance Impact (SPI) scores with δ=0.01. Notable findings include:
+
+- **SMS Spam (LLaMA-3.2-1B)**: MERA achieved "+0.87" SPI in exact evaluation mode
+- **Yes/No (Qwen-2.5-3B)**: MERA reached "+0.52" SPI
+- **Sentiment (Gemma-2-2B)**: MERA scored "+0.49" SPI
+
+The paper notes that "base models benefit more from MERA steering compared to instruction-tuned models" and that MMLU subsets proved generally difficult to steer across all methods.
+
+**No TruthfulQA or FActScore benchmarks were included** in this evaluation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad8ffef9-3214-4b23-a002-0aab9665b9d4",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "77fd9cb5-ad10-46e9-87d7-b37593ac13fe",
+  "toolUseResult": {
+    "bytes": 727336,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Benchmark Results from MERA Paper\n\n## Datasets Tested\n\nThe paper evaluated MERA on five supervised classification tasks:\n\n1. **SMS Spam** - binary classification (2,600 training samples)\n2. **Yes/No** - binary classification\n3. **Sentiment** - ternary classification\n4. **MMLU-hs** - high school level multiple choice questions\n5. **MMLU-prof** - professional level multiple choice questions\n\nThe datasets ranged from balanced to highly imbalanced with \"30% used for validation\" according to the experimental setup.\n\n## Models Evaluated\n\nTesting covered six language model variants:\n- LLaMA-3.2-1B (base and instruction-tuned)\n- Gemma-2-2B (base and instruction-tuned)\n- Qwen-2.5-3B (base and instruction-tuned)\n\n## Key Performance Results\n\nTable 1 presents Steering Performance Impact (SPI) scores with δ=0.01. Notable findings include:\n\n- **SMS Spam (LLaMA-3.2-1B)**: MERA achieved \"+0.87\" SPI in exact evaluation mode\n- **Yes/No (Qwen-2.5-3B)**: MERA reached \"+0.52\" SPI\n- **Sentiment (Gemma-2-2B)**: MERA scored \"+0.49\" SPI\n\nThe paper notes that \"base models benefit more from MERA steering compared to instruction-tuned models\" and that MMLU subsets proved generally difficult to steer across all methods.\n\n**No TruthfulQA or FActScore benchmarks were included** in this evaluation.",
+    "durationMs": 5057,
+    "url": "https://arxiv.org/html/2510.13290v1"
+  },
+  "sourceToolAssistantUUID": "ad8ffef9-3214-4b23-a002-0aab9665b9d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Claim-Level Selective Activation Steering for Factual Hallucination Su…",
+  "leafUuid": "77fd9cb5-ad10-46e9-87d7-b37593ac13fe",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise idea with claim-level steering trigger validation",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Assistant
+
+_source line 73 · 2026-05-16T09:30:33.917Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, so MERA was tested on relatively simple classification tasks (SMS spam, Yes/No, sentiment, MMLU subsets) with smaller models (1B-3B). It was NOT tested on TruthfulQA or FActScore. This is important for positioning - MERA is a general-purpose framework that hasn't been validated on factuality-specific benchmarks or long-form generation.
+
+Now I have all the information I need to compose the revised idea. Let me think through the key changes:
+
+1. **MERA positioning**: Add MERA to landscape and explain differences (token-level general wrapper vs. 
+
+claim-level factuality-specific). Note it's complementary - MERA's intensity calibration could optimize within CLSAS-flagged claims. Consider adding as baseline.
+
+2. **Simple Factuality Probes**: Cite as supporting evidence that hidden states encode claim-level factuality. Detection-only; CLSAS extends to intervention. The fact that probing last tokens of claims works validates our approach of measuring at sentence boundaries.
+
+3. **Geometric Deviation negative result**: The critical distinction is that Du's approach uses cosine distance measured pre-generation at early layers to assess query answerability, whereas our method operates differently in scope and timing.
+
+CLSAS uses Euclidean or Mahalanobis distance during generation at sentence boundaries to measure factual grounding. The Attractor Geometry paper supports that during-generation signals are detectable with strong performance, so the real insight is that pre-generation query representations don't capture factuality—but during-generation activation patterns do, which actually validates our positioning.
+
+4. **Impact framing**: Lead with FActScore as the primary benchmark rather than TruthfulQA.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77fd9cb5-ad10-46e9-87d7-b37593ac13fe",
+  "isSidechain": false,
+  "requestId": "req_011Cb61jqmptxHR8Pg2uf29B",
+  "type": "assistant",
+  "uuid": "bdfd22a6-60a9-4f97-bad7-57c2acc41285",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01818Xmv8BDH9qrv3QaoKzMg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 543,
+      "cache_read_input_tokens": 44697,
+      "output_tokens": 9790,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 543,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9790,
+          "cache_read_input_tokens": 44697,
+          "cache_creation_input_tokens": 543,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 543
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-16T09:30:37.402Z_
+
+I now have thorough understanding of all three papers. Let me compose the complete revised idea, addressing each reviewer concern.
+
+Key distinctions I've identified:
+- **MERA**: General-purpose token-level wrapper, tested on small classification tasks (SMS spam, sentiment, MMLU) on 1-3B models. Not tested on TruthfulQA/FActScore. Complementary to CLSAS.
+- **Simple Factuality Probes**: Probes on last tokens of claims detect factuality — directly validates CLSAS's assumption that boundary-position hidden states encode claim-level factuality.
+- **Geometric Deviation**: Uses **cosine distance**, **pre-generation** (no output tokens), at **early layers (2-5)**. Fails for factuality because query-level answerability ≠ during-generation factual grounding. The Attractor Geometry paper's 0.858 AUROC validates that during-generation signals exist.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bdfd22a6-60a9-4f97-bad7-57c2acc41285",
+  "isSidechain": false,
+  "requestId": "req_011Cb61jqmptxHR8Pg2uf29B",
+  "type": "assistant",
+  "uuid": "f7a53b1f-77fd-44a9-80ed-05c45a036498",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01818Xmv8BDH9qrv3QaoKzMg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 543,
+      "cache_read_input_tokens": 44697,
+      "output_tokens": 9790,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 543,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9790,
+          "cache_read_input_tokens": 44697,
+          "cache_creation_input_tokens": 543,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 543
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-16T09:34:17.639Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_012AUJzMZrEuz1U9Js9WMkgn`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/revised_idea.json",
+  "content": "{\n  \"change_type\": \"minor\",\n  \"title\": \"Claim-Level Selective Activation Steering for Factual Hallucination Suppression in Long-Form Generation\",\n  \"core_problem\": \"Factual hallucination in LLMs has spurred a proliferation of geometry-aware detection and activation steering methods, yet a fundamental granularity mismatch persists: detection and intervention operate at token level, while factual evaluation operates at claim/sentence level. PCNet (May 2026) exemplifies this—its probabilistic-circuit gating achieves near-perfect detection AUROC yet still corrupts 53.7% of originally correct generations when intervening at every deviant token, because token-level decisions cannot distinguish 'this token is anomalous within an otherwise correct claim' from 'this claim is genuinely hallucinated.' MERA (Hedström et al., ICML 2025) introduced principled calibration of when and how much to steer with provable abstention guarantees, but operates at token level as a general-purpose framework—it does not address the granularity mismatch between token-level intervention and claim-level evaluation. FASB (NeurIPS 2025) addresses selective steering but operates correctively—detecting deviation after tokens are generated, then backtracking 10 tokens—which wastes compute and splits coherent claims. Spherical Steering (ICML 2026) applies per-token rotation with continuous vMF-gated intensity, achieving strong TruthfulQA gains but intervening indiscriminately across all claims. The Attractor Geometry paper (May 2026) demonstrates that Euclidean geometric margin separates correct recall from hallucination during generation (AUROC 0.858 on TruthfulQA vs. entropy 0.656), and Han et al. (EMNLP 2025 Findings) show that hidden states at claim-terminal positions are highly predictive of factuality in long-form generation—but both results are detection-only. Translation into targeted intervention at appropriate granularity during multi-sentence generation remains the open challenge.\",\n  \"opportunity\": \"The unexploited sweet spot is pre-emptive claim-level gating: sentences are the natural unit of factual claims—the granularity FActScore evaluates, the granularity humans judge, and the granularity at which LLMs integrate context before next-sentence planning (supported by 'Think in Sentences,' April 2026). Two independent lines of evidence confirm that hidden states encode claim-level factuality at or near claim boundaries: (1) Attractor Geometry (May 2026) shows Euclidean geometric margin during generation achieves AUROC 0.858 at factoid positions; (2) Han et al. (EMNLP 2025 Findings) demonstrate that probing hidden states at the last tokens of claims detects factuality in long-form generation with competitive performance at 100× fewer FLOPs than multi-sample methods, and that neuron-level clamping at these positions causally reduces hallucinations.\\n\\nThe key evidence that claim-level granularity matters comes from PCNet's results: despite near-perfect token-level detection (AUROC up to 99% on extractive QA), its token-level intervention still corrupts 53.7% of correct generations and preserves only 79.3%. This is because anomaly at individual token positions does not reliably indicate that the entire claim is hallucinated—a high-NLL token may be stylistically unusual but factually correct, or may be part of a partially correct claim that token-level correction damages. A system that makes binary steer/skip decisions at sentence boundaries—preserving entire correct claims untouched while steering only claims where the model lacks factual grounding—can achieve higher preservation rates by avoiding sub-claim intervention entirely.\\n\\nWe note that Du (arXiv 2605.03196, May 2026) finds no reliable geometric signal for factuality when measuring query-level centroid deviation pre-generation using cosine distance at early layers. However, this negative result concerns a fundamentally different setup: pre-generation signals reflect query answerability (whether the model recognizes the query form), while during-generation signals at sentence boundaries reflect whether the model is currently accessing factual attractors after processing context and partial generation. The Attractor Geometry paper's 0.858 AUROC validates that this during-generation signal exists—the question is whether it persists at sentence boundaries rather than first-digit positions. Our Milestone 1 validation directly tests this.\\n\\nThe three-part framework (when: sentence boundaries; whether: geometric distance trigger; how much: per-layer intensity) addresses limitations in all current methods: PCNet's token-level corruption, MERA's task-general token-level operation, FASB's corrective backtracking overhead, Spherical Steering's indiscriminate application, and Hallucination Basins' per-sequence uniformity.\",\n  \"landscape\": \"**Selective steering with abstention (primary competitors):**\\n\\n*MERA (Hedström et al., arXiv 2510.13290, ICML 2025)* is the most directly relevant published framework for 'when and how much to steer.' MERA trains linear error probes on activations, derives a closed-form steering solution v* = max(0, (α − wᵀh)/||w||²₂)·w with a calibrated threshold α* selected via statistical significance testing with Bonferroni correction. It provides provable guarantees: intervention improves performance or abstains. Tested on LLaMA-3.2-1B, Gemma-2-2B, Qwen-2.5-3B across classification tasks (SMS spam, Yes/No, sentiment, MMLU subsets), achieving SPI up to +0.87. Code available at github.com/annahedstroem/MERA-steering. CLSAS differs from MERA in three ways: (a) Granularity: MERA operates at token×layer level with continuous intensity; CLSAS makes binary claim-level decisions, preserving entire correct sentences untouched. (b) Trigger specificity: MERA's linear probes predict general task error from activations; CLSAS's geometric distance measures factual knowledge absence specifically, exploiting the attractor geometry of factual recall. (c) Domain: MERA was validated on classification tasks (1-3B models); CLSAS targets long-form factual generation where claim-level granularity matters most. MERA is complementary—its intensity calibration framework could optimize steering strength within CLSAS-flagged claims, and we consider this as a potential enhancement.\\n\\n*PCNet (arXiv 2605.05953, May 2026)* is the closest concurrent work sharing the 'detect geometric anomaly → selectively intervene' paradigm. PCNet trains a Probabilistic Circuit as a density estimator over MLP-compressed residual stream states (4096→128 dims), computes exact NLL as anomaly score, and triggers PC-LDCD (contrastive decoding) only at deviant tokens. Results: TruthfulQA MC1 0.51 / MC2 0.65 on Llama-3.1-8B; near-perfect detection AUROC on extractive QA; corruption rate 53.7%, preservation rate 79.3%. Overhead: <2% for PC scoring, but 3.3–6.2 additional block evaluations per anomalous token for lookahead. CLSAS differs in three fundamental ways: (a) Granularity: sentence-level binary decisions preserve entire correct claims and avoid sub-claim corruption. PCNet evaluates NLL at every token, meaning intervention can damage partially correct claims—evidenced by its 53.7% corruption rate despite near-perfect detection. CLSAS's claim-level atomicity should achieve substantially lower corruption. (b) Intervention mechanism: activation steering shifts the model's own generation distribution toward factual attractors in a single forward pass, while contrastive decoding requires maintaining lookahead evaluations for top-k candidates at every anomalous position (PCNet's IGR ranges 0.41–0.78, meaning lookahead triggers at 41–78% of tokens). On long-form generation where many tokens are flagged, CLSAS's steering-only approach avoids this per-token lookahead cost. (c) Trigger interpretability: Euclidean/Mahalanobis distance from factual cluster centroids has a clear geometric interpretation (distance in representation space), while NLL from a trained probabilistic circuit is a learned density estimate whose failure modes are less transparent.\\n\\n*FASB (arXiv 2508.17621, NeurIPS 2025)* is the most direct prior work on 'when to steer,' using linear probes trained on attention head activations. It monitors concatenated question-and-generated-content states, triggers intervention when deviation is detected, and backtracks s=10 tokens to regenerate with steering. MC1 48.71% on TruthfulQA (LLaMA-2-7B-Chat). CLSAS differs in: (a) pre-emptive gating at sentence boundaries (no wasted tokens, no rollback) vs. FASB's corrective backtracking; (b) geometric distance trigger measuring knowledge absence vs. learned directional alignment on attention heads; (c) atomic claim-level decisions vs. token-level cuts that may split coherent claims. FASB's backtracking overhead scales linearly with intervention frequency—compounding on hallucination-dense long-form passages.\\n\\n**Geometry-aware steering (per-token):** Spherical Steering (arXiv 2602.08169, ICML 2026) uses geodesic rotation with a von Mises-Fisher confidence gate, achieving MC1 +15.80% on TruthfulQA (Llama-3.1-8B) with single-layer intervention (layer 24). Code released at github.com/chili-lab/Spherical-Steering. Per-token with continuous intensity—no claim-level selectivity. Hallucination Basins (arXiv 2604.04743, April 2026) proposes Adaptive Geometry-Aware Steering using Euclidean distance triggers and logistic-regression scalar maps at per-sequence granularity (uniform across all claims). Tested on 1B–8B models. CLSAS advances beyond both via within-sequence sentence-level selectivity.\\n\\n**Supporting evidence for claim-level hidden-state signal:** Han et al. (EMNLP 2025 Findings) demonstrate that lightweight probes on hidden states at the last tokens of claims detect factuality in long-form generation with competitive performance at 100× fewer FLOPs than multi-sample methods (e.g., semantic entropy), tested on models up to 405B parameters. Their causal intervention via neuron clamping at claim-terminal positions improves factuality, directly validating that the signal CLSAS's trigger requires exists in residual stream representations at claim boundaries. Their work is detection-only with causal neuron clamping; CLSAS extends this insight to pre-emptive geometric-distance-triggered activation steering with per-layer intensity control.\\n\\n**Negative evidence and scope clarification:** Du (arXiv 2605.03196, May 2026) finds no reliable geometric signal for factuality when measuring pre-generation query-level centroid deviation using cosine distance on Llama-3.1-8B (ROC-AUC 0.66–0.71, not statistically significant; works for math at 0.78–0.84). This is a fundamentally different setup from CLSAS: Du measures cosine distance at early layers (2–5) before any generation, testing whether query representations encode answerability. CLSAS measures Euclidean/Mahalanobis distance during generation at sentence boundaries, testing whether the model is currently accessing factual attractors after context encoding and partial generation. The distinction matters: Du's own analysis shows the geometric signal 'attenuates toward output' layers, while the Attractor Geometry paper demonstrates strong during-generation factual separation (AUROC 0.858) at output-proximate positions.\\n\\n**Context-dependent directions:** Steering Vector Fields (SVF, arXiv 2602.01654, Feb 2026) learns differentiable concept-scoring MLPs for context-aware steering directions refreshed every K steps. Always steers—no gating. Complementary to CLSAS (CLSAS decides whether; SVF decides in which direction).\\n\\n**Utility preservation:** COAST (arXiv 2605.01167, May 2026) formalizes collateral damage as unintended feature-direction shifts and optimizes the steering vector via constrained optimization. Complementary to CLSAS (COAST optimizes the vector; CLSAS optimizes when to apply it).\\n\\n**Nonlinear geometry:** Curveball Steering (arXiv 2603.09313, March 2026) demonstrates substantial geometric distortion in activation spaces, supporting covariance-aware (Mahalanobis) over Euclidean distance.\\n\\n**Detection-only:** Attractor Geometry of Transformer Memory (arXiv 2605.05686, May 2026) demonstrates hallucination = basin absence with Euclidean geometric margin AUROC 0.858 on TruthfulQA (vs. entropy 0.656), 0.993 on controlled factoid tasks. All measurements at first-digit positions before autoregressive dynamics compound; the paper explicitly states 'transfer to open-domain settings requires further study.' Where Does Reasoning Break? (arXiv 2605.13772, May 2026) detects step-level hallucination via transport geometry. DRIFT (arXiv 2601.14210, Jan 2026) detects representational instability.\\n\\n**Calibration:** Calibrating Verbal Uncertainty (Ji et al., EMNLP 2025 Outstanding Paper) achieves ~31.9% reduction in confident hallucinations via linear-feature intervention—calibrates expression, does not correct generation.\\n\\n**Other steering:** ACT (WWW 2025), ODESteer (ICLR 2026, +5.7% over ACT), Guiding Giants/WAS (arXiv 2505.20309), SADI (arXiv 2410.12299), HELIX/Tethered Reasoning (arXiv 2602.17691). FLAS (arXiv 2605.05892, May 2026) learns concept-conditioned velocity fields for multi-step activation transport.\\n\\n**Supporting evidence:** Hallucination as Trajectory Commitment (arXiv 2604.15400, April 2026) provides causal evidence for early commitment with asymmetric attractor dynamics—supporting timely intervention before commitment propagates. Think in Sentences (arXiv 2604.10135, April 2026) demonstrates sentence boundary attention concentration patterns.\",\n  \"approach\": \"We propose Claim-Level Selective Activation Steering (CLSAS), a method that bridges the granularity gap between token-level detection/intervention and claim-level factual evaluation. The central insight is that intervention granularity should match evaluation granularity: since factuality is assessed per-claim (FActScore, human judgment), steering decisions should be made per-claim—preserving entire correct sentences untouched while steering only sentences where the model lacks factual grounding.\\n\\n**Stage 1: TRIGGER (Geometric Distance at Sentence Boundaries)**\\nDuring generation, at each sentence boundary (period/newline tokens), extract hidden-state activations at the boundary token across layers using nnsight intervention hooks. Compute geometric distance from factual cluster centroids:\\n(a) Offline: From a calibration set (~2K examples from TruthfulQA + FELM correct-answer forward passes), collect hidden states at factual completion positions. Apply PCA to project from full hidden dimension (d=4096) to top-k principal components (k=256), yielding a well-conditioned 256×256 covariance matrix.\\n(b) Online: Project the boundary token's activation into the PCA subspace. Compute distance to nearest factual centroid. We evaluate two distance metrics: (i) Euclidean distance δ_E(x) = ||h_pca − μ_pca||₂, matching the Attractor Geometry paper's validated metric (AUROC 0.858 on TruthfulQA); (ii) Mahalanobis distance δ_M(x) = √((h_pca − μ_pca)ᵀ Σ_pca⁻¹ (h_pca − μ_pca)), a hypothesized improvement motivated by OOD detection literature (Lee et al., NeurIPS 2018) that accounts for directional anisotropy in representation space.\\n(c) When distance exceeds a calibrated threshold (set via precision-recall analysis targeting high precision ≥0.85 to minimize false interventions), flag the upcoming sentence for steering.\\n\\n**Critical clarification on geometric signals:** The 0.858 AUROC motivating this trigger was achieved with Euclidean distance during generation at first-digit positions (Attractor Geometry, May 2026). Han et al. (EMNLP 2025 Findings) independently validate that hidden states at claim-terminal positions encode factuality in long-form generation. Du (arXiv 2605.03196) finds no reliable geometric signal pre-generation for factuality, but this concerns a fundamentally different measurement: cosine distance at early layers (2–5) before any output tokens, testing query answerability rather than during-generation factual grounding. The failure is expected—pre-generation representations encode query form, not the model's factual state during generation. CLSAS measures at sentence boundaries during generation, where the model has already processed context and produced partial output, placing the activation in the regime where Attractor Geometry demonstrates strong factual separation. Our Milestone 1 explicitly validates this extrapolation from first-digit to sentence-boundary positions.\\n\\n**Timing Hypothesis Validation (Milestone 1, Days 1-2):**\\nWe explicitly frame the following as a testable hypothesis: geometric distance at sentence boundary N is predictive of factual accuracy in sentence N+1. Validation protocol: (1) Generate 500 multi-sentence responses on LongFact/FActScore prompts using Llama-3.1-8B-Instruct. (2) Compute both Euclidean and Mahalanobis distance at every sentence boundary. (3) Annotate each subsequent sentence with FActScore. (4) Measure Spearman correlation between boundary distance and next-sentence factuality, and AUROC for binary classification. If AUROC < 0.70, we implement a look-ahead variant: extract distance from the first 3 generated tokens of the new sentence (before committing via speculative-style buffering). The look-ahead variant adds ~15% latency overhead but operates before the sentence is visible to the user. If look-ahead also fails (AUROC < 0.65), we fall back to a sliding-window approach using the mean distance over the last 5 tokens before the boundary.\\n\\n**Comparison to other triggers:** PCNet uses NLL from a trained probabilistic circuit, evaluated at every token—achieving near-perfect detection but 53.7% corruption on correct generations due to sub-claim intervention. MERA uses linear error probes for general task error prediction with closed-form intensity calibration—principled but task-agnostic and token-level. FASB uses attention-head probes with corrective backtracking. CLSAS's trigger is factuality-specific (geometric distance from factual attractors), operates at claim granularity (single binary decision per sentence), and is pre-emptive (no wasted tokens or rollback).\\n\\n**Stage 2: DIRECTION (Centroid-Directed Steering Vector)**\\nCompute the steering direction as the unit vector from the current activation toward the factual cluster centroid at each layer in the PCA subspace, then project back to full space: v_steer = (μ_pca − h_pca) / ||μ_pca − h_pca||, lifted back to full dimensionality via PCA inverse transform. This yields an input-specific correction direction toward regions of successful fact recall.\\n\\n**Stage 3: INTENSITY (Per-Layer Weighted Steering)**\\nA lightweight 2-layer MLP controller (hidden dim 64, inspired by Guiding Giants/WAS) takes [geometric_distance, layer_index/L, distance_velocity] as input (3D feature vector) and predicts per-layer steering weight λ_ℓ. Trained on a calibration set (~2K examples) to maximize FActScore on steered outputs while minimizing perplexity increase on non-flagged outputs. Steering: h_steered(ℓ) = h(ℓ) + λ_ℓ · v_steer(ℓ) at layers where λ_ℓ > ε. We note that MERA's closed-form intensity calibration could serve as an alternative to the learned MLP controller; we compare these in ablations.\\n\\n**Minimum Viable Scope (9 days, May 16–25):**\\n- Days 1-2 (May 16-17): Timing hypothesis validation on Llama-3.1-8B-Instruct. This is the critical-path milestone—if it fails, immediately implement look-ahead variant.\\n- Days 3-4 (May 18-19): Core CLSAS implementation + calibration. Run TruthfulQA and SimpleQA.\\n- Days 5-6 (May 20-21): Run baselines (Spherical Steering from released code, FASB from released code, MERA from released code). Run FActScore and MT-Bench on CLSAS.\\n- Days 7-8 (May 22-23): Key ablations: 2×2 grid (Euclidean vs Mahalanobis × sentence-level vs token-level gating) on 4-benchmark core set. PCNet comparison if code is available; otherwise use reported numbers with matched model.\\n- Day 9 (May 24): Writing, formatting, submission buffer.\\n- Dropped from scope: COAST combination experiment, Qwen3-8B (secondary model), full 7-benchmark suite for ablations, GTS-FASB-trigger ablation.\\n\\n**Ablation Design (MVP):**\\n- CLSAS-full vs. CLSAS-Euclidean (isolate Mahalanobis contribution)\\n- CLSAS-full vs. CLSAS-pertoken (apply continuous per-token gating with our distance metric, matching PCNet/Spherical Steering's granularity—isolates the claim-level contribution)\\n- CLSAS-full vs. CLSAS-sequence (single decision per sequence, matching Hallucination Basins' granularity)\\n- CLSAS-full vs. CLSAS-scalar (replace per-layer MLP with single scalar, isolating controller contribution)\\n- CLSAS-full vs. CLSAS-MERA-intensity (replace MLP controller with MERA's closed-form calibration within flagged claims)\\n- Direct comparison: CLSAS-full vs. Spherical Steering vs. FASB vs. MERA vs. PCNet (reported numbers if code unavailable)\\n\\n**Primary evaluation metrics (FActScore-led):**\\n- FActScore on long-form biographies (primary benchmark where claim-level advantage should be largest—multiple claims coexist and token-level corruption compounds across sentences)\\n- Corruption rate and preservation rate (matching PCNet's protocol): fraction of correct claims degraded / preserved by intervention\\n- TruthfulQA MC1/MC2, SimpleQA accuracy, MT-Bench score\\n- Intervention rate: fraction of sentences steered (lower is better for comparable factuality gains)\\n- Latency overhead vs. baselines\\n\\nWe note that TruthfulQA (short-form, single-claim) may understate CLSAS's advantage over token-level methods. The primary contribution should manifest on FActScore/LongFact where multiple claims coexist within a single generation and token-level corruption compounds across sentences—each incorrectly intervened token can cascade into downstream claim damage. We therefore lead with FActScore as the primary benchmark.\\n\\nImplementation uses nnsight 0.7 on Llama-3.1-8B-Instruct. Qwen3-8B included only if time permits after MVP completion.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~120h H100 80GB\",\n      \"gpu_utilization\": \"Low (~15-20%)\",\n      \"timeline\": \"3-4 months\",\n      \"team\": \"1-2 researchers with mechanistic interpretability + geometric ML experience\",\n      \"estimated_gpu_cost\": \"$360-400\",\n      \"factScore_api_cost\": \"$100-200\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~130h H100 80GB\",\n      \"gpu_utilization\": \"Moderate (45-55%)\",\n      \"timeline\": \"2-3 weeks\",\n      \"team\": \"1 researcher, ~30min/day reviewing proposals\",\n      \"claude_api_cost\": \"$150-250\",\n      \"estimated_gpu_cost\": \"$390-430\",\n      \"factScore_api_cost\": \"$100-200\",\n      \"risk_note\": \"Timing hypothesis validation is critical-path. If it fails (AUROC < 0.70), look-ahead fallback adds ~3 days.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~140h H100 80GB\",\n      \"gpu_utilization\": \"High (~85-90%)\",\n      \"timeline\": \"9 days (May 16-25) with 2 H100 GPUs. Minimum viable paper scope: single model (Llama-3.1-8B), 4-benchmark core set for ablations, full baselines on FActScore+TruthfulQA+SimpleQA+MT-Bench.\",\n      \"team\": \"0 (initial setup: provision GPUs, configure nnsight 0.7, clone Spherical Steering + FASB + MERA repos)\",\n      \"claude_api_cost\": \"$250-350 (est. 3000-4000 turns)\",\n      \"estimated_gpu_cost\": \"$420-450\",\n      \"factScore_api_cost\": \"$100-200\",\n      \"speed_bottleneck\": \"Timing hypothesis validation (days 1-2) is critical path. If it fails, look-ahead variant must be implemented immediately. Secondary: FActScore GPT-4 API calls.\",\n      \"resource_optimization\": \"Budget achieved via: (1) single model (Llama-3.1-8B) for all experiments; (2) 4-benchmark core set (TruthfulQA, FActScore, SimpleQA, MT-Bench); (3) 2×2 ablation grid (distance metric × gating granularity) instead of separate sweeps; (4) use Spherical Steering, FASB, and MERA released code directly; (5) PCNet comparison using reported numbers if code unavailable.\",\n      \"minimum_viable_paper\": \"If timing hypothesis fails AND look-ahead also fails: pivot to a detection-only contribution (sentence-level geometric detection benchmark) comparing Euclidean/Mahalanobis at sentence boundaries vs. PCNet's token-level NLL vs. Han et al.'s factuality probes. This is publishable as a shorter paper (findings track).\",\n      \"risk_note\": \"Primary risk: timing hypothesis may fail (Attractor Geometry paper validated only on factoid completion at first-digit positions, explicitly disclaiming open-domain transfer; Du 2605.03196 finds no pre-generation geometric signal for factuality, though this concerns a different measurement regime). Mitigation: (1) Han et al.'s independent validation that claim-terminal hidden states encode factuality reduces this risk; (2) look-ahead variant extracts signal from first generated tokens rather than boundary; (3) sliding-window fallback. Secondary risk: claim-level gating may not outperform PCNet's token-level gating on short-form QA—advantage expected primarily on long-form generation (FActScore, LongFact). Tertiary risk: 9-day timeline leaves zero buffer for unexpected implementation issues.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits (PCNet, arXiv 2605.05953, May 2026)\",\n    \"To Steer or Not to Steer? Mechanistic Error Reduction with Abstention (MERA, Hedström et al., arXiv 2510.13290, ICML 2025)\",\n    \"Steering When Necessary: Flexible Steering Large Language Models with Backtracking (FASB, arXiv 2508.17621, NeurIPS 2025)\",\n    \"Spherical Steering: Geometry-Aware Activation Rotation for Language Models (arXiv 2602.08169, ICML 2026)\",\n    \"Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (arXiv 2605.05686, May 2026)\",\n    \"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation (Han et al., EMNLP 2025 Findings)\",\n    \"Geometric Deviation as an Unsupervised Pre-Generation Reliability Signal (Du, arXiv 2605.03196, May 2026)\",\n    \"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (arXiv 2604.04743, April 2026)\",\n    \"Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models (SVF, arXiv 2602.01654, Feb 2026)\",\n    \"Curveball Steering: The Right Direction To Steer Isn't Always Linear (arXiv 2603.09313, March 2026)\",\n    \"Minimizing Collateral Damage in Activation Steering (COAST, arXiv 2605.01167, May 2026)\",\n    \"Beyond Steering Vector: Flow-based Activation Steering for Inference-Time Intervention (FLAS, arXiv 2605.05892, May 2026)\",\n    \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (Ji et al., EMNLP 2025 Outstanding Paper, arXiv 2503.14477)\",\n    \"Tethered Reasoning (HELIX): Decoupling Entropy from Hallucination in Quantized LLMs via Manifold Steering (arXiv 2602.17691, Feb 2026)\",\n    \"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method (ACT, WWW 2025)\",\n    \"ODESteer: A Unified ODE-Based Steering Framework for LLM Alignment (ICLR 2026, arXiv 2602.17560)\",\n    \"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arXiv 2605.13772, May 2026)\",\n    \"DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness (arXiv 2601.14210, Jan 2026)\",\n    \"Guiding Giants: Lightweight Controllers for Weighted Activation Steering in LLMs (arXiv 2505.20309, May 2025)\",\n    \"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics (arXiv 2604.15400, April 2026)\",\n    \"Think in Sentences: Explicit Sentence Boundaries Enhance Language Model's Capabilities (arXiv 2604.10135, April 2026)\",\n    \"A Simple Unified Framework for Detecting Out-of-Distribution Samples and Adversarial Attacks (Lee et al., NeurIPS 2018)\",\n    \"Semantics-Adaptive Activation Intervention for LLMs via Dynamic Steering Vectors (SADI, arXiv 2410.12299, 2024)\",\n    \"Dynamic Multimodal Activation Steering for Hallucination Mitigation in Large Vision-Language Models (ICLR 2026)\"\n  ],\n  \"description\": \"We propose Claim-Level Selective Activation Steering (CLSAS), a method that bridges the granularity gap between token-level hallucination detection/intervention and claim-level factual evaluation. The central insight is that intervention granularity should match evaluation granularity: since factuality is assessed per-claim (FActScore, human judgment), steering decisions should be per-claim—preserving entire correct sentences untouched while steering only claims where the model lacks factual grounding.\\n\\nThe motivation is concrete: PCNet (May 2026), the state-of-the-art in selective geometric gating, achieves near-perfect token-level hallucination detection (AUROC up to 99% on extractive QA) yet still corrupts 53.7% of originally correct generations when intervening token-by-token via contrastive decoding. We hypothesize this corruption stems from the granularity mismatch—token-level anomaly conflates stylistic deviation with factual error, and sub-claim interventions damage partially correct claims. MERA (Hedström et al., ICML 2025) introduced principled calibration of when and how much to steer with provable abstention guarantees, but operates at token level as a general-purpose framework tested on classification tasks—it does not address the claim-level granularity needed for long-form factual generation.\\n\\nCLSAS monitors geometric distance from residual stream activations to factual cluster centroids at sentence boundaries during generation. Building on the finding that Euclidean geometric margin separates correct recall from hallucination during generation (AUROC 0.858 on TruthfulQA; Attractor Geometry, May 2026), and that hidden states at claim-terminal positions encode factuality in long-form generation (Han et al., EMNLP 2025 Findings), we evaluate both Euclidean and Mahalanobis distance triggers—the latter a hypothesized improvement motivated by OOD detection literature (Lee et al., NeurIPS 2018) that we validate via ablation. When distance indicates basin absence, CLSAS computes an input-specific steering vector toward the factual centroid and applies it with per-layer weights from a lightweight MLP controller. Sentences within a factual basin are left entirely untouched.\\n\\nWe address a potential concern raised by Du (arXiv 2605.03196, May 2026), who finds no reliable geometric signal for factuality when measuring query-level centroid deviation pre-generation using cosine distance at early layers. This negative result concerns a fundamentally different measurement regime: pre-generation query representations encode question form and answerability, not the model's current factual state during generation. CLSAS measures at sentence boundaries during generation—after context encoding and partial output—placing activations in the regime where both Attractor Geometry (AUROC 0.858) and Han et al.'s factuality probes demonstrate strong factual signal. Our Milestone 1 validation directly tests whether this signal persists at sentence boundaries rather than first-digit positions.\\n\\nCLSAS addresses limitations in the closest concurrent and prior work: (1) vs. PCNet (May 2026, MC1 0.51 on Llama-3.1-8B), CLSAS makes sentence-level binary decisions that avoid sub-claim corruption. PCNet's token-level NLL gating triggers at 41-78% of tokens (IGR), requiring costly lookahead evaluations at each; CLSAS intervenes only at sentence boundaries. (2) vs. MERA (ICML 2025), CLSAS provides factuality-specific geometric triggers at claim granularity rather than task-general error probes at token granularity; MERA's intensity calibration is complementary and could optimize steering within CLSAS-flagged claims. (3) vs. FASB (NeurIPS 2025, MC1 48.71% on LLaMA-2-7B-Chat), CLSAS is pre-emptive—gating before generation rather than detecting deviation and rolling back 10 tokens. (4) vs. Spherical Steering (ICML 2026, +15% MC1), CLSAS makes binary claim-level steer/skip decisions rather than continuous per-token rotation, enabling complete preservation of correct claims. (5) vs. Hallucination Basins (April 2026), CLSAS provides within-sequence selectivity rather than uniform per-sequence correction.\\n\\nWe lead with FActScore on long-form biographies as the primary benchmark, where CLSAS's claim-level advantage should be largest: multiple claims coexist within each generation, and token-level corruption from methods like PCNet compounds across sentences. TruthfulQA (short-form, typically single-claim) may understate CLSAS's advantage over token-level methods.\\n\\nMinimum viable scope for 9 remaining days: single model (Llama-3.1-8B-Instruct), 4-benchmark evaluation (FActScore, TruthfulQA, SimpleQA, MT-Bench), 2×2 ablation grid (distance metric × gating granularity), direct comparison with Spherical Steering, FASB, and MERA using released code. Total budget: ≤140 H100-hours.\",\n  \"project_name\": \"claim_level_selective_steering\",\n  \"source\": \"web_research\"\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7a53b1f-77fd-44a9-80ed-05c45a036498",
+  "isSidechain": false,
+  "requestId": "req_011Cb61jqmptxHR8Pg2uf29B",
+  "type": "assistant",
+  "uuid": "81a99987-db3f-47aa-983c-0b810bc52142",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01818Xmv8BDH9qrv3QaoKzMg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 543,
+      "cache_read_input_tokens": 44697,
+      "output_tokens": 9790,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 543,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9790,
+          "cache_read_input_tokens": 44697,
+          "cache_creation_input_tokens": 543,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 543
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-16T09:34:17.653Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_012AUJzMZrEuz1U9Js9WMkgn`</summary>
+
+```text
+Claude requested permissions to write to /home/ubuntu/revised_idea.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "81a99987-db3f-47aa-983c-0b810bc52142",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "45eaeb25-a7d6-454c-9bd0-2af26b553362",
+  "toolUseResult": "Error: Claude requested permissions to write to /home/ubuntu/revised_idea.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "81a99987-db3f-47aa-983c-0b810bc52142",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Claim-Level Selective Activation Steering for Factual Hallucination Su…",
+  "leafUuid": "45eaeb25-a7d6-454c-9bd0-2af26b553362",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise idea with claim-level steering trigger validation",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-16T09:37:53.266Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01KvVhNMTRHc2qrUhjD11zDZ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/revised_idea.json",
+  "content": "{\n  \"change_type\": \"minor\",\n  \"title\": \"Claim-Level Selective Activation Steering for Factual Hallucination Suppression in Long-Form Generation\",\n  \"core_problem\": \"Factual hallucination in LLMs has spurred a proliferation of geometry-aware detection and activation steering methods, yet a fundamental granularity mismatch persists: detection and intervention operate at token level, while factual evaluation operates at claim/sentence level. PCNet (May 2026) exemplifies this—its probabilistic-circuit gating achieves near-perfect detection AUROC yet still corrupts 53.7% of originally correct generations when intervening at every deviant token, because token-level decisions cannot distinguish 'this token is anomalous within an otherwise correct claim' from 'this claim is genuinely hallucinated.' MERA (Hedström et al., ICML 2025) introduced principled calibration of when and how much to steer with provable abstention guarantees, but operates at token level as a general-purpose framework—it does not address the granularity mismatch between token-level intervention and claim-level evaluation. FASB (NeurIPS 2025) addresses selective steering but operates correctively—detecting deviation after tokens are generated, then backtracking 10 tokens—which wastes compute and splits coherent claims. Spherical Steering (ICML 2026) applies per-token rotation with continuous vMF-gated intensity, achieving strong TruthfulQA gains but intervening indiscriminately across all claims. The Attractor Geometry paper (May 2026) demonstrates that Euclidean geometric margin separates correct recall from hallucination during generation (AUROC 0.858 on TruthfulQA vs. entropy 0.656), and Han et al. (EMNLP 2025 Findings) show that hidden states at claim-terminal positions are highly predictive of factuality in long-form generation—but both results are detection-only. Translation into targeted intervention at appropriate granularity during multi-sentence generation remains the open challenge.\",\n  \"opportunity\": \"The unexploited sweet spot is pre-emptive claim-level gating: sentences are the natural unit of factual claims—the granularity FActScore evaluates, the granularity humans judge, and the granularity at which LLMs integrate context before next-sentence planning (supported by 'Think in Sentences,' April 2026). Two independent lines of evidence confirm that hidden states encode claim-level factuality at or near claim boundaries: (1) Attractor Geometry (May 2026) shows Euclidean geometric margin during generation achieves AUROC 0.858 at factoid positions; (2) Han et al. (EMNLP 2025 Findings) demonstrate that probing hidden states at the last tokens of claims detects factuality in long-form generation with competitive performance at 100x fewer FLOPs than multi-sample methods, and that neuron-level clamping at these positions causally reduces hallucinations.\\n\\nThe key evidence that claim-level granularity matters comes from PCNet's results: despite near-perfect token-level detection (AUROC up to 99% on extractive QA), its token-level intervention still corrupts 53.7% of correct generations and preserves only 79.3%. This is because anomaly at individual token positions does not reliably indicate that the entire claim is hallucinated—a high-NLL token may be stylistically unusual but factually correct, or may be part of a partially correct claim that token-level correction damages. A system that makes binary steer/skip decisions at sentence boundaries—preserving entire correct claims untouched while steering only claims where the model lacks factual grounding—can achieve higher preservation rates by avoiding sub-claim intervention entirely.\\n\\nWe note that Du (arXiv 2605.03196, May 2026) finds no reliable geometric signal for factuality when measuring query-level centroid deviation pre-generation using cosine distance at early layers. However, this negative result concerns a fundamentally different setup: pre-generation signals reflect query answerability (whether the model recognizes the query form), while during-generation signals at sentence boundaries reflect whether the model is currently accessing factual attractors after processing context and partial generation. The Attractor Geometry paper's 0.858 AUROC validates that this during-generation signal exists—the question is whether it persists at sentence boundaries rather than first-digit positions. Our Milestone 1 validation directly tests this.\\n\\nThe three-part framework (when: sentence boundaries; whether: geometric distance trigger; how much: per-layer intensity) addresses limitations in all current methods: PCNet's token-level corruption, MERA's task-general token-level operation, FASB's corrective backtracking overhead, Spherical Steering's indiscriminate application, and Hallucination Basins' per-sequence uniformity.\",\n  \"landscape\": \"**Selective steering with abstention (primary competitors):**\\n\\n*MERA (Hedström et al., arXiv 2510.13290, ICML 2025)* is the most directly relevant published framework for 'when and how much to steer.' MERA trains linear error probes on activations, derives a closed-form steering solution v* = max(0, (α − wᵀh)/||w||²₂)·w with a calibrated threshold α* selected via statistical significance testing with Bonferroni correction. It provides provable guarantees: intervention improves performance or abstains. Tested on LLaMA-3.2-1B, Gemma-2-2B, Qwen-2.5-3B across classification tasks (SMS spam, Yes/No, sentiment, MMLU subsets), achieving SPI up to +0.87. Code available at github.com/annahedstroem/MERA-steering. CLSAS differs from MERA in three ways: (a) Granularity: MERA operates at token×layer level with continuous intensity; CLSAS makes binary claim-level decisions, preserving entire correct sentences untouched. (b) Trigger specificity: MERA's linear probes predict general task error from activations; CLSAS's geometric distance measures factual knowledge absence specifically, exploiting the attractor geometry of factual recall. (c) Domain: MERA was validated on classification tasks (1-3B models); CLSAS targets long-form factual generation where claim-level granularity matters most. MERA is complementary—its intensity calibration framework could optimize steering strength within CLSAS-flagged claims, and we consider this as a potential enhancement.\\n\\n*PCNet (arXiv 2605.05953, May 2026)* is the closest concurrent work sharing the 'detect geometric anomaly → selectively intervene' paradigm. PCNet trains a Probabilistic Circuit as a density estimator over MLP-compressed residual stream states (4096→128 dims), computes exact NLL as anomaly score, and triggers PC-LDCD (contrastive decoding) only at deviant tokens. Results: TruthfulQA MC1 0.51 / MC2 0.65 on Llama-3.1-8B; near-perfect detection AUROC on extractive QA; corruption rate 53.7%, preservation rate 79.3%. Overhead: <2% for PC scoring, but 3.3–6.2 additional block evaluations per anomalous token for lookahead. CLSAS differs in three fundamental ways: (a) Granularity: sentence-level binary decisions preserve entire correct claims and avoid sub-claim corruption. PCNet evaluates NLL at every token, meaning intervention can damage partially correct claims—evidenced by its 53.7% corruption rate despite near-perfect detection. CLSAS's claim-level atomicity should achieve substantially lower corruption. (b) Intervention mechanism: activation steering shifts the model's own generation distribution toward factual attractors in a single forward pass, while contrastive decoding requires maintaining lookahead evaluations for top-k candidates at every anomalous position (PCNet's IGR ranges 0.41–0.78, meaning lookahead triggers at 41–78% of tokens). On long-form generation where many tokens are flagged, CLSAS's steering-only approach avoids this per-token lookahead cost. (c) Trigger interpretability: Euclidean/Mahalanobis distance from factual cluster centroids has a clear geometric interpretation (distance in representation space), while NLL from a trained probabilistic circuit is a learned density estimate whose failure modes are less transparent.\\n\\n*FASB (arXiv 2508.17621, NeurIPS 2025)* is the most direct prior work on 'when to steer,' using linear probes trained on attention head activations. It monitors concatenated question-and-generated-content states, triggers intervention when deviation is detected, and backtracks s=10 tokens to regenerate with steering. MC1 48.71% on TruthfulQA (LLaMA-2-7B-Chat). CLSAS differs in: (a) pre-emptive gating at sentence boundaries (no wasted tokens, no rollback) vs. FASB's corrective backtracking; (b) geometric distance trigger measuring knowledge absence vs. learned directional alignment on attention heads; (c) atomic claim-level decisions vs. token-level cuts that may split coherent claims. FASB's backtracking overhead scales linearly with intervention frequency—compounding on hallucination-dense long-form passages.\\n\\n**Geometry-aware steering (per-token):** Spherical Steering (arXiv 2602.08169, ICML 2026) uses geodesic rotation with a von Mises-Fisher confidence gate, achieving MC1 +15.80% on TruthfulQA (Llama-3.1-8B) with single-layer intervention (layer 24). Code released at github.com/chili-lab/Spherical-Steering. Per-token with continuous intensity—no claim-level selectivity. Hallucination Basins (arXiv 2604.04743, April 2026) proposes Adaptive Geometry-Aware Steering using Euclidean distance triggers and logistic-regression scalar maps at per-sequence granularity (uniform across all claims). Tested on 1B–8B models. CLSAS advances beyond both via within-sequence sentence-level selectivity.\\n\\n**Supporting evidence for claim-level hidden-state signal:** Han et al. (EMNLP 2025 Findings) demonstrate that lightweight probes on hidden states at the last tokens of claims detect factuality in long-form generation with competitive performance at 100x fewer FLOPs than multi-sample methods (e.g., semantic entropy), tested on models up to 405B parameters. Their causal intervention via neuron clamping at claim-terminal positions improves factuality, directly validating that the signal CLSAS's trigger requires exists in residual stream representations at claim boundaries. Their work is detection-only with causal neuron clamping; CLSAS extends this insight to pre-emptive geometric-distance-triggered activation steering with per-layer intensity control.\\n\\n**Negative evidence and scope clarification:** Du (arXiv 2605.03196, May 2026) finds no reliable geometric signal for factuality when measuring pre-generation query-level centroid deviation using cosine distance on Llama-3.1-8B (ROC-AUC 0.66–0.71, not statistically significant; works for math at 0.78–0.84). This is a fundamentally different setup from CLSAS: Du measures cosine distance at early layers (2–5) before any generation, testing whether query representations encode answerability. CLSAS measures Euclidean/Mahalanobis distance during generation at sentence boundaries, testing whether the model is currently accessing factual attractors after context encoding and partial generation. The distinction matters: Du's own analysis shows the geometric signal 'attenuates toward output' layers, while the Attractor Geometry paper demonstrates strong during-generation factual separation (AUROC 0.858) at output-proximate positions.\\n\\n**Context-dependent directions:** Steering Vector Fields (SVF, arXiv 2602.01654, Feb 2026) learns differentiable concept-scoring MLPs for context-aware steering directions refreshed every K steps. Always steers—no gating. Complementary to CLSAS (CLSAS decides whether; SVF decides in which direction).\\n\\n**Utility preservation:** COAST (arXiv 2605.01167, May 2026) formalizes collateral damage as unintended feature-direction shifts and optimizes the steering vector via constrained optimization. Complementary to CLSAS (COAST optimizes the vector; CLSAS optimizes when to apply it).\\n\\n**Nonlinear geometry:** Curveball Steering (arXiv 2603.09313, March 2026) demonstrates substantial geometric distortion in activation spaces, supporting covariance-aware (Mahalanobis) over Euclidean distance.\\n\\n**Detection-only:** Attractor Geometry of Transformer Memory (arXiv 2605.05686, May 2026) demonstrates hallucination = basin absence with Euclidean geometric margin AUROC 0.858 on TruthfulQA (vs. entropy 0.656), 0.993 on controlled factoid tasks. All measurements at first-digit positions before autoregressive dynamics compound; the paper explicitly states 'transfer to open-domain settings requires further study.' Where Does Reasoning Break? (arXiv 2605.13772, May 2026) detects step-level hallucination via transport geometry. DRIFT (arXiv 2601.14210, Jan 2026) detects representational instability.\\n\\n**Calibration:** Calibrating Verbal Uncertainty (Ji et al., EMNLP 2025 Outstanding Paper) achieves ~31.9% reduction in confident hallucinations via linear-feature intervention—calibrates expression, does not correct generation.\\n\\n**Other steering:** ACT (WWW 2025), ODESteer (ICLR 2026, +5.7% over ACT), Guiding Giants/WAS (arXiv 2505.20309), SADI (arXiv 2410.12299), HELIX/Tethered Reasoning (arXiv 2602.17691). FLAS (arXiv 2605.05892, May 2026) learns concept-conditioned velocity fields for multi-step activation transport.\\n\\n**Supporting evidence:** Hallucination as Trajectory Commitment (arXiv 2604.15400, April 2026) provides causal evidence for early commitment with asymmetric attractor dynamics—supporting timely intervention before commitment propagates. Think in Sentences (arXiv 2604.10135, April 2026) demonstrates sentence boundary attention concentration patterns.\",\n  \"approach\": \"We propose Claim-Level Selective Activation Steering (CLSAS), a method that bridges the granularity gap between token-level detection/intervention and claim-level factual evaluation. The central insight is that intervention granularity should match evaluation granularity: since factuality is assessed per-claim (FActScore, human judgment), steering decisions should be made per-claim—preserving entire correct sentences untouched while steering only sentences where the model lacks factual grounding.\\n\\n**Stage 1: TRIGGER (Geometric Distance at Sentence Boundaries)**\\nDuring generation, at each sentence boundary (period/newline tokens), extract hidden-state activations at the boundary token across layers using nnsight intervention hooks. Compute geometric distance from factual cluster centroids:\\n(a) Offline: From a calibration set (~2K examples from TruthfulQA + FELM correct-answer forward passes), collect hidden states at factual completion positions. Apply PCA to project from full hidden dimension (d=4096) to top-k principal components (k=256), yielding a well-conditioned 256x256 covariance matrix.\\n(b) Online: Project the boundary token's activation into the PCA subspace. Compute distance to nearest factual centroid. We evaluate two distance metrics: (i) Euclidean distance δ_E(x) = ||h_pca − μ_pca||₂, matching the Attractor Geometry paper's validated metric (AUROC 0.858 on TruthfulQA); (ii) Mahalanobis distance δ_M(x) = √((h_pca − μ_pca)ᵀ Σ_pca⁻¹ (h_pca − μ_pca)), a hypothesized improvement motivated by OOD detection literature (Lee et al., NeurIPS 2018) that accounts for directional anisotropy in representation space.\\n(c) When distance exceeds a calibrated threshold (set via precision-recall analysis targeting high precision ≥0.85 to minimize false interventions), flag the upcoming sentence for steering.\\n\\n**Critical clarification on geometric signals:** The 0.858 AUROC motivating this trigger was achieved with Euclidean distance during generation at first-digit positions (Attractor Geometry, May 2026). Han et al. (EMNLP 2025 Findings) independently validate that hidden states at claim-terminal positions encode factuality in long-form generation. Du (arXiv 2605.03196) finds no reliable geometric signal pre-generation for factuality, but this concerns a fundamentally different measurement: cosine distance at early layers (2–5) before any output tokens, testing query answerability rather than during-generation factual grounding. The failure is expected—pre-generation representations encode query form, not the model's factual state during generation. CLSAS measures at sentence boundaries during generation, where the model has already processed context and produced partial output, placing the activation in the regime where Attractor Geometry demonstrates strong factual separation. Our Milestone 1 explicitly validates this extrapolation from first-digit to sentence-boundary positions.\\n\\n**Timing Hypothesis Validation (Milestone 1, Days 1-2):**\\nWe explicitly frame the following as a testable hypothesis: geometric distance at sentence boundary N is predictive of factual accuracy in sentence N+1. Validation protocol: (1) Generate 500 multi-sentence responses on LongFact/FActScore prompts using Llama-3.1-8B-Instruct. (2) Compute both Euclidean and Mahalanobis distance at every sentence boundary. (3) Annotate each subsequent sentence with FActScore. (4) Measure Spearman correlation between boundary distance and next-sentence factuality, and AUROC for binary classification. If AUROC < 0.70, we implement a look-ahead variant: extract distance from the first 3 generated tokens of the new sentence (before committing via speculative-style buffering). The look-ahead variant adds ~15% latency overhead but operates before the sentence is visible to the user. If look-ahead also fails (AUROC < 0.65), we fall back to a sliding-window approach using the mean distance over the last 5 tokens before the boundary.\\n\\n**Comparison to other triggers:** PCNet uses NLL from a trained probabilistic circuit, evaluated at every token—achieving near-perfect detection but 53.7% corruption on correct generations due to sub-claim intervention. MERA uses linear error probes for general task error prediction with closed-form intensity calibration—principled but task-agnostic and token-level. FASB uses attention-head probes with corrective backtracking. CLSAS's trigger is factuality-specific (geometric distance from factual attractors), operates at claim granularity (single binary decision per sentence), and is pre-emptive (no wasted tokens or rollback).\\n\\n**Stage 2: DIRECTION (Centroid-Directed Steering Vector)**\\nCompute the steering direction as the unit vector from the current activation toward the factual cluster centroid at each layer in the PCA subspace, then project back to full space: v_steer = (μ_pca − h_pca) / ||μ_pca − h_pca||, lifted back to full dimensionality via PCA inverse transform. This yields an input-specific correction direction toward regions of successful fact recall.\\n\\n**Stage 3: INTENSITY (Per-Layer Weighted Steering)**\\nA lightweight 2-layer MLP controller (hidden dim 64, inspired by Guiding Giants/WAS) takes [geometric_distance, layer_index/L, distance_velocity] as input (3D feature vector) and predicts per-layer steering weight λ_ℓ. Trained on a calibration set (~2K examples) to maximize FActScore on steered outputs while minimizing perplexity increase on non-flagged outputs. Steering: h_steered(ℓ) = h(ℓ) + λ_ℓ · v_steer(ℓ) at layers where λ_ℓ > ε. We note that MERA's closed-form intensity calibration could serve as an alternative to the learned MLP controller; we compare these in ablations.\\n\\n**Minimum Viable Scope (9 days, May 16–25):**\\n- Days 1-2 (May 16-17): Timing hypothesis validation on Llama-3.1-8B-Instruct. This is the critical-path milestone—if it fails, immediately implement look-ahead variant.\\n- Days 3-4 (May 18-19): Core CLSAS implementation + calibration. Run TruthfulQA and SimpleQA.\\n- Days 5-6 (May 20-21): Run baselines (Spherical Steering from released code, FASB from released code, MERA from released code). Run FActScore and MT-Bench on CLSAS.\\n- Days 7-8 (May 22-23): Key ablations: 2x2 grid (Euclidean vs Mahalanobis × sentence-level vs token-level gating) on 4-benchmark core set. PCNet comparison if code is available; otherwise use reported numbers with matched model.\\n- Day 9 (May 24): Writing, formatting, submission buffer.\\n- Dropped from scope: COAST combination experiment, Qwen3-8B (secondary model), full 7-benchmark suite for ablations, GTS-FASB-trigger ablation.\\n\\n**Ablation Design (MVP):**\\n- CLSAS-full vs. CLSAS-Euclidean (isolate Mahalanobis contribution)\\n- CLSAS-full vs. CLSAS-pertoken (apply continuous per-token gating with our distance metric, matching PCNet/Spherical Steering's granularity—isolates the claim-level contribution)\\n- CLSAS-full vs. CLSAS-sequence (single decision per sequence, matching Hallucination Basins' granularity)\\n- CLSAS-full vs. CLSAS-scalar (replace per-layer MLP with single scalar, isolating controller contribution)\\n- CLSAS-full vs. CLSAS-MERA-intensity (replace MLP controller with MERA's closed-form calibration within flagged claims)\\n- Direct comparison: CLSAS-full vs. Spherical Steering vs. FASB vs. MERA vs. PCNet (reported numbers if code unavailable)\\n\\n**Primary evaluation metrics (FActScore-led):**\\n- FActScore on long-form biographies (primary benchmark where claim-level advantage should be largest—multiple claims coexist and token-level corruption compounds across sentences)\\n- Corruption rate and preservation rate (matching PCNet's protocol): fraction of correct claims degraded / preserved by intervention\\n- TruthfulQA MC1/MC2, SimpleQA accuracy, MT-Bench score\\n- Intervention rate: fraction of sentences steered (lower is better for comparable factuality gains)\\n- Latency overhead vs. baselines\\n\\nWe note that TruthfulQA (short-form, single-claim) may understate CLSAS's advantage over token-level methods. The primary contribution should manifest on FActScore/LongFact where multiple claims coexist within a single generation and token-level corruption compounds across sentences—each incorrectly intervened token can cascade into downstream claim damage. We therefore lead with FActScore as the primary benchmark.\\n\\nImplementation uses nnsight 0.7 on Llama-3.1-8B-Instruct. Qwen3-8B included only if time permits after MVP completion.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~120h H100 80GB\",\n      \"gpu_utilization\": \"Low (~15-20%)\",\n      \"timeline\": \"3-4 months\",\n      \"team\": \"1-2 researchers with mechanistic interpretability + geometric ML experience\",\n      \"estimated_gpu_cost\": \"$360-400\",\n      \"factScore_api_cost\": \"$100-200\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~130h H100 80GB\",\n      \"gpu_utilization\": \"Moderate (45-55%)\",\n      \"timeline\": \"2-3 weeks\",\n      \"team\": \"1 researcher, ~30min/day reviewing proposals\",\n      \"claude_api_cost\": \"$150-250\",\n      \"estimated_gpu_cost\": \"$390-430\",\n      \"factScore_api_cost\": \"$100-200\",\n      \"risk_note\": \"Timing hypothesis validation is critical-path. If it fails (AUROC < 0.70), look-ahead fallback adds ~3 days.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~140h H100 80GB\",\n      \"gpu_utilization\": \"High (~85-90%)\",\n      \"timeline\": \"9 days (May 16-25) with 2 H100 GPUs. Minimum viable paper scope: single model (Llama-3.1-8B), 4-benchmark core set for ablations, full baselines on FActScore+TruthfulQA+SimpleQA+MT-Bench.\",\n      \"team\": \"0 (initial setup: provision GPUs, configure nnsight 0.7, clone Spherical Steering + FASB + MERA repos)\",\n      \"claude_api_cost\": \"$250-350 (est. 3000-4000 turns)\",\n      \"estimated_gpu_cost\": \"$420-450\",\n      \"factScore_api_cost\": \"$100-200\",\n      \"speed_bottleneck\": \"Timing hypothesis validation (days 1-2) is critical path. If it fails, look-ahead variant must be implemented immediately. Secondary: FActScore GPT-4 API calls.\",\n      \"resource_optimization\": \"Budget achieved via: (1) single model (Llama-3.1-8B) for all experiments; (2) 4-benchmark core set (TruthfulQA, FActScore, SimpleQA, MT-Bench); (3) 2x2 ablation grid (distance metric × gating granularity) instead of separate sweeps; (4) use Spherical Steering, FASB, and MERA released code directly; (5) PCNet comparison using reported numbers if code unavailable.\",\n      \"minimum_viable_paper\": \"If timing hypothesis fails AND look-ahead also fails: pivot to a detection-only contribution (sentence-level geometric detection benchmark) comparing Euclidean/Mahalanobis at sentence boundaries vs. PCNet's token-level NLL vs. Han et al.'s factuality probes. This is publishable as a shorter paper (findings track).\",\n      \"risk_note\": \"Primary risk: timing hypothesis may fail (Attractor Geometry paper validated only on factoid completion at first-digit positions, explicitly disclaiming open-domain transfer; Du 2605.03196 finds no pre-generation geometric signal for factuality, though this concerns a different measurement regime). Mitigation: (1) Han et al.'s independent validation that claim-terminal hidden states encode factuality reduces this risk; (2) look-ahead variant extracts signal from first generated tokens rather than boundary; (3) sliding-window fallback. Secondary risk: claim-level gating may not outperform PCNet's token-level gating on short-form QA—advantage expected primarily on long-form generation (FActScore, LongFact). Tertiary risk: 9-day timeline leaves zero buffer for unexpected implementation issues.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits (PCNet, arXiv 2605.05953, May 2026)\",\n    \"To Steer or Not to Steer? Mechanistic Error Reduction with Abstention (MERA, Hedström et al., arXiv 2510.13290, ICML 2025)\",\n    \"Steering When Necessary: Flexible Steering Large Language Models with Backtracking (FASB, arXiv 2508.17621, NeurIPS 2025)\",\n    \"Spherical Steering: Geometry-Aware Activation Rotation for Language Models (arXiv 2602.08169, ICML 2026)\",\n    \"Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (arXiv 2605.05686, May 2026)\",\n    \"Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation (Han et al., EMNLP 2025 Findings)\",\n    \"Geometric Deviation as an Unsupervised Pre-Generation Reliability Signal (Du, arXiv 2605.03196, May 2026)\",\n    \"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (arXiv 2604.04743, April 2026)\",\n    \"Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models (SVF, arXiv 2602.01654, Feb 2026)\",\n    \"Curveball Steering: The Right Direction To Steer Isn't Always Linear (arXiv 2603.09313, March 2026)\",\n    \"Minimizing Collateral Damage in Activation Steering (COAST, arXiv 2605.01167, May 2026)\",\n    \"Beyond Steering Vector: Flow-based Activation Steering for Inference-Time Intervention (FLAS, arXiv 2605.05892, May 2026)\",\n    \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (Ji et al., EMNLP 2025 Outstanding Paper, arXiv 2503.14477)\",\n    \"Tethered Reasoning (HELIX): Decoupling Entropy from Hallucination in Quantized LLMs via Manifold Steering (arXiv 2602.17691, Feb 2026)\",\n    \"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method (ACT, WWW 2025)\",\n    \"ODESteer: A Unified ODE-Based Steering Framework for LLM Alignment (ICLR 2026, arXiv 2602.17560)\",\n    \"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arXiv 2605.13772, May 2026)\",\n    \"DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness (arXiv 2601.14210, Jan 2026)\",\n    \"Guiding Giants: Lightweight Controllers for Weighted Activation Steering in LLMs (arXiv 2505.20309, May 2025)\",\n    \"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics (arXiv 2604.15400, April 2026)\",\n    \"Think in Sentences: Explicit Sentence Boundaries Enhance Language Model's Capabilities (arXiv 2604.10135, April 2026)\",\n    \"A Simple Unified Framework for Detecting Out-of-Distribution Samples and Adversarial Attacks (Lee et al., NeurIPS 2018)\",\n    \"Semantics-Adaptive Activation Intervention for LLMs via Dynamic Steering Vectors (SADI, arXiv 2410.12299, 2024)\",\n    \"Dynamic Multimodal Activation Steering for Hallucination Mitigation in Large Vision-Language Models (ICLR 2026)\"\n  ],\n  \"description\": \"We propose Claim-Level Selective Activation Steering (CLSAS), a method that bridges the granularity gap between token-level hallucination detection/intervention and claim-level factual evaluation. The central insight is that intervention granularity should match evaluation granularity: since factuality is assessed per-claim (FActScore, human judgment), steering decisions should be per-claim—preserving entire correct sentences untouched while steering only claims where the model lacks factual grounding.\\n\\nThe motivation is concrete: PCNet (May 2026), the state-of-the-art in selective geometric gating, achieves near-perfect token-level hallucination detection (AUROC up to 99% on extractive QA) yet still corrupts 53.7% of originally correct generations when intervening token-by-token via contrastive decoding. We hypothesize this corruption stems from the granularity mismatch—token-level anomaly conflates stylistic deviation with factual error, and sub-claim interventions damage partially correct claims. MERA (Hedström et al., ICML 2025) introduced principled calibration of when and how much to steer with provable abstention guarantees, but operates at token level as a general-purpose framework tested on classification tasks—it does not address the claim-level granularity needed for long-form factual generation.\\n\\nCLSAS monitors geometric distance from residual stream activations to factual cluster centroids at sentence boundaries during generation. Building on the finding that Euclidean geometric margin separates correct recall from hallucination during generation (AUROC 0.858 on TruthfulQA; Attractor Geometry, May 2026), and that hidden states at claim-terminal positions encode factuality in long-form generation (Han et al., EMNLP 2025 Findings), we evaluate both Euclidean and Mahalanobis distance triggers—the latter a hypothesized improvement motivated by OOD detection literature (Lee et al., NeurIPS 2018) that we validate via ablation. When distance indicates basin absence, CLSAS computes an input-specific steering vector toward the factual centroid and applies it with per-layer weights from a lightweight MLP controller. Sentences within a factual basin are left entirely untouched.\\n\\nWe address a potential concern raised by Du (arXiv 2605.03196, May 2026), who finds no reliable geometric signal for factuality when measuring query-level centroid deviation pre-generation using cosine distance at early layers. This negative result concerns a fundamentally different measurement regime: pre-generation query representations encode question form and answerability, not the model's current factual state during generation. CLSAS measures at sentence boundaries during generation—after context encoding and partial output—placing activations in the regime where both Attractor Geometry (AUROC 0.858) and Han et al.'s factuality probes demonstrate strong factual signal. Our Milestone 1 validation directly tests whether this signal persists at sentence boundaries rather than first-digit positions.\\n\\nCLSAS addresses limitations in the closest concurrent and prior work: (1) vs. PCNet (May 2026, MC1 0.51 on Llama-3.1-8B), CLSAS makes sentence-level binary decisions that avoid sub-claim corruption. PCNet's token-level NLL gating triggers at 41-78% of tokens (IGR), requiring costly lookahead evaluations at each; CLSAS intervenes only at sentence boundaries. (2) vs. MERA (ICML 2025), CLSAS provides factuality-specific geometric triggers at claim granularity rather than task-general error probes at token granularity; MERA's intensity calibration is complementary and could optimize steering within CLSAS-flagged claims. (3) vs. FASB (NeurIPS 2025, MC1 48.71% on LLaMA-2-7B-Chat), CLSAS is pre-emptive—gating before generation rather than detecting deviation and rolling back 10 tokens. (4) vs. Spherical Steering (ICML 2026, +15% MC1), CLSAS makes binary claim-level steer/skip decisions rather than continuous per-token rotation, enabling complete preservation of correct claims. (5) vs. Hallucination Basins (April 2026), CLSAS provides within-sequence selectivity rather than uniform per-sequence correction.\\n\\nWe lead with FActScore on long-form biographies as the primary benchmark, where CLSAS's claim-level advantage should be largest: multiple claims coexist within each generation, and token-level corruption from methods like PCNet compounds across sentences. TruthfulQA (short-form, typically single-claim) may understate CLSAS's advantage over token-level methods.\\n\\nMinimum viable scope for 9 remaining days: single model (Llama-3.1-8B-Instruct), 4-benchmark evaluation (FActScore, TruthfulQA, SimpleQA, MT-Bench), 2x2 ablation grid (distance metric × gating granularity), direct comparison with Spherical Steering, FASB, and MERA using released code. Total budget: ≤140 H100-hours.\",\n  \"project_name\": \"claim_level_selective_steering\",\n  \"source\": \"web_research\"\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45eaeb25-a7d6-454c-9bd0-2af26b553362",
+  "isSidechain": false,
+  "requestId": "req_011Cb623nvve9x5PeMF844oS",
+  "type": "assistant",
+  "uuid": "2ffd4f90-f1a6-4385-ad19-8998f303294f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YQts66i3GJYiXcZQNxdkHc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9833,
+      "cache_read_input_tokens": 45240,
+      "output_tokens": 9134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9833,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9134,
+          "cache_read_input_tokens": 45240,
+          "cache_creation_input_tokens": 9833,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9833
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-16T09:37:53.273Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01KvVhNMTRHc2qrUhjD11zDZ`</summary>
+
+```text
+Claude requested permissions to write to /home/ubuntu/revised_idea.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2ffd4f90-f1a6-4385-ad19-8998f303294f",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "b5008b65-2762-4f46-93f5-0ba57112393d",
+  "toolUseResult": "Error: Claude requested permissions to write to /home/ubuntu/revised_idea.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "2ffd4f90-f1a6-4385-ad19-8998f303294f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Claim-Level Selective Activation Steering for Factual Hallucination Su…",
+  "leafUuid": "b5008b65-2762-4f46-93f5-0ba57112393d",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise idea with claim-level steering trigger validation",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-16T09:37:58.858Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019ErFfxtXJyVCp6JARc6qns`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/",
+  "description": "List files in home directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5008b65-2762-4f46-93f5-0ba57112393d",
+  "isSidechain": false,
+  "requestId": "req_011Cb62KgyCTHSfFusVSmKnu",
+  "type": "assistant",
+  "uuid": "6934bd27-7127-4a06-ad23-ac4fc7d06cf2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Ykyxq78fiUpZYwjZpJZeS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9178,
+      "cache_read_input_tokens": 55073,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9178,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 55073,
+          "cache_creation_input_tokens": 9178,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9178
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-16T09:37:59.020Z_
+
+<details><summary>↩ Tool result · `toolu_019ErFfxtXJyVCp6JARc6qns`</summary>
+
+```text
+agent-ml-research
+agent-ml-server.log
+be-backup.log
+be_backup_script.py
+idea_review
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6934bd27-7127-4a06-ad23-ac4fc7d06cf2",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "2d36ac51-618c-4c59-933a-ee1d97a1e96e",
+  "toolUseResult": {
+    "stdout": "agent-ml-research\nagent-ml-server.log\nbe-backup.log\nbe_backup_script.py\nidea_review",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "6934bd27-7127-4a06-ad23-ac4fc7d06cf2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85 · 2026-05-16T09:37:59.022Z_
+
+```json
+{
+  "parentUuid": "2d36ac51-618c-4c59-933a-ee1d97a1e96e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2ccbc522-2671-4d37-a278-17d0699aa2ba",
+  "timestamp": "2026-05-16T09:37:59.022Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-16T09:38:02.948Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01W4Nm3ihzSdwYjHXtTNrbsj`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/idea_review/",
+  "description": "List files in idea_review directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ccbc522-2671-4d37-a278-17d0699aa2ba",
+  "isSidechain": false,
+  "requestId": "req_011Cb62L7QNVQiwWnB9M3sYi",
+  "type": "assistant",
+  "uuid": "ec52ccfa-983b-43bb-86ba-2b35a954bf15",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VAbZf9eYTBmNi3UbCMniH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 224,
+      "cache_read_input_tokens": 64251,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 224,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 64251,
+          "cache_creation_input_tokens": 224,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 224
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-16T09:38:02.999Z_
+
+<details><summary>↩ Tool result · `toolu_01W4Nm3ihzSdwYjHXtTNrbsj`</summary>
+
+```text
+dispatch
+test_account.py
+审idea的agent
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec52ccfa-983b-43bb-86ba-2b35a954bf15",
+  "isSidechain": false,
+  "promptId": "a45ad344-3e28-4b5d-8f03-b32e74f23422",
+  "type": "user",
+  "uuid": "454b6870-ed85-455f-920b-b75f879bf9f9",
+  "toolUseResult": {
+    "stdout": "dispatch\ntest_account.py\n审idea的agent",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "ec52ccfa-983b-43bb-86ba-2b35a954bf15",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88 · 2026-05-16T09:41:31.081Z_
+
+Here is the complete revised idea as a JSON object. I'll output it directly since file write isn't available:
+
+```json
+{
+  "change_type": "minor",
+  "title": "Claim-Level Selective Activation Steering for Factual Hallucination Suppression in Long-Form Generation",
+  "core_problem": "Factual hallucination in LLMs has spurred a proliferation of geometry-aware detection and activation steering methods, yet a fundamental granularity mismatch persists: detection and intervention operate at token level, while factual evaluation operates at claim/sentence level. PCNet (May 2026) exemplifies this—its probabilistic-circuit gating achieves near-perfect detection AUROC yet still corrupts 53.7% of originally correct generations when intervening at every deviant token, because token-level decisions cannot distinguish 'this token is anomalous within an otherwise correct claim' from 'this claim is genuinely hallucinated.' MERA (Hedström et al., ICML 2025) introduced principled calibration of when and how much to steer with provable abstention guarantees, but operates at token level as a general-purpose framework—it does not address the granularity mismatch between token-level intervention and claim-level evaluation. FASB (NeurIPS 2025) addresses selective steering but operates correctively—detecting deviation after tokens are generated, then backtracking 10 tokens—which wastes compute and splits coherent claims. Spherical Steering (ICML 2026) applies per-token rotation with continuous vMF-gated intensity, achieving strong TruthfulQA gains but intervening indiscriminately across all claims. The Attractor Geometry paper (May 2026) demonstrates that Euclidean geometric margin separates correct recall from hallucination during generation (AUROC 0.858 on TruthfulQA vs. entropy 0.656), and Han et al. (EMNLP 2025 Findings) show that hidden states at claim-terminal positions are highly predictive of factuality in long-form generation—but both results are detection-only. Translation into targeted intervention at appropriate granularity during multi-sentence generation remains the open challenge.",
+  "opportunity": "The unexploited sweet spot is pre-emptive claim-level gating: sentences are the natural unit of factual claims—the granularity FActScore evaluates, the granularity humans judge, and the granularity at which LLMs integrate context before next-sentence planning (supported by 'Think in Sentences,' April 2026). Two independent lines of evidence confirm that hidden states encode claim-level factuality at or near claim boundaries: (1) Attractor Geometry (May 2026) shows Euclidean geometric margin during generation achieves AUROC 0.858 at factoid positions; (2) Han et al. (EMNLP 2025 Findings) demonstrate that probing hidden states at the last tokens of claims detects factuality in long-form generation with competitive performance at 100× fewer FLOPs than multi-sample methods, and that neuron-level clamping at these positions causally reduces hallucinations.\n\nThe key evidence that claim-level granularity matters comes from PCNet's results: despite near-perfect token-level detection (AUROC up to 99% on extractive QA), its token-level intervention still corrupts 53.7% of correct generations and preserves only 79.3%. This is because anomaly at individual token positions does not reliably indicate that the entire claim is hallucinated—a high-NLL token may be stylistically unusual but factually correct, or may be part of a partially correct claim that token-level correction damages. A system that makes binary steer/skip decisions at sentence boundaries—preserving entire correct claims untouched while steering only claims where the model lacks factual grounding—can achieve higher preservation rates by avoiding sub-claim intervention entirely.\n\nWe note that Du (arXiv 2605.03196, May 2026) finds no reliable geometric signal for factuality when measuring query-level centroid deviation pre-generation using cosine distance at early layers. However, this negative result concerns a fundamentally different setup: pre-generation signals reflect query answerability (whether the model recognizes the query form), while during-generation signals at sentence boundaries reflect whether the model is currently accessing factual attractors after processing context and partial generation. The Attractor Geometry paper's 0.858 AUROC validates that this during-generation signal exists—the question is whether it persists at sentence boundaries rather than first-digit positions. Our Milestone 1 validation directly tests this.\n\nThe three-part framework (when: sentence boundaries; whether: geometric distance trigger; how much: per-layer intensity) addresses limitations in all current methods: PCNet's token-level corruption, MERA's task-general token-level operation, FASB's corrective backtracking overhead, Spherical Steering's indiscriminate application, and Hallucination Basins' per-sequence uniformity.",
+  "landscape": "**Selective steering with abstention (primary competitors):**\n\n*MERA (Hedström et al., arXiv 2510.13290, ICML 2025)* is the most directly relevant published framework for 'when and how much to steer.' MERA trains linear error probes on activations, derives a closed-form steering solution v* = max(0, (α − wᵀh)/||w||²₂)·w with a calibrated threshold α* selected via statistical significance testing with Bonferroni correction. It provides provable guarantees: intervention improves performance or abstains. Tested on LLaMA-3.2-1B, Gemma-2-2B, Qwen-2.5-3B across classification tasks (SMS spam, Yes/No, sentiment, MMLU subsets), achieving SPI up to +0.87. Code available at github.com/annahedstroem/MERA-steering. CLSAS differs from MERA in three ways: (a) Granularity: MERA operates at token×layer level with continuous intensity; CLSAS makes binary claim-level decisions, preserving entire correct sentences untouched. (b) Trigger specificity: MERA's linear probes predict general task error from activations; CLSAS's geometric distance measures factual knowledge absence specifically, exploiting the attractor geometry of factual recall. (c) Domain: MERA was validated on classification tasks (1-3B models); CLSAS targets long-form factual generation where claim-level granularity matters most. MERA is complementary—its intensity calibration framework could optimize steering strength within CLSAS-flagged claims, and we consider this as a potential enhancement.\n\n*PCNet (arXiv 2605.05953, May 2026)* is the closest concurrent work sharing the 'detect geometric anomaly → selectively intervene' paradigm. PCNet trains a Probabilistic Circuit as a density estimator over MLP-compressed residual stream states (4096→128 dims), computes exact NLL as anomaly score, and triggers PC-LDCD (contrastive decoding) only at deviant tokens. Results: TruthfulQA MC1 0.51 / MC2 0.65 on Llama-3.1-8B; near-perfect detection AUROC on extractive QA; corruption rate 53.7%, preservation rate 79.3%. Overhead: <2% for PC scoring, but 3.3–6.2 additional block evaluations per anomalous token for lookahead. CLSAS differs in three fundamental ways: (a) Granularity: sentence-level binary decisions preserve entire correct claims and avoid sub-claim corruption. PCNet evaluates NLL at every token, meaning intervention can damage partially correct claims—evidenced by its 53.7% corruption rate despite near-perfect detection. CLSAS's claim-level atomicity should achieve substantially lower corruption. (b) Intervention mechanism: activation steering shifts the model's own generation distribution toward factual attractors in a single forward pass, while contrastive decoding requires maintaining lookahead evaluations for top-k candidates at every anomalous position (PCNet's IGR ranges 0.41–0.78, meaning lookahead triggers at 41–78% of tokens). On long-form generation where many tokens are flagged, CLSAS's steering-only approach avoids this per-token lookahead cost. (c) Trigger interpretability: Euclidean/Mahalanobis distance from factual cluster centroids has a clear geometric interpretation (distance in representation space), while NLL from a trained probabilistic circuit is a learned density estimate whose failure modes are less transparent.\n\n*FASB (arXiv 2508.17621, NeurIPS 2025)* is the most direct prior work on 'when to steer,' using linear probes trained on attention head activations. It monitors concatenated question-and-generated-content states, triggers intervention when deviation is detected, and backtracks s=10 tokens to regenerate with steering. MC1 48.71% on TruthfulQA (LLaMA-2-7B-Chat). CLSAS differs in: (a) pre-emptive gating at sentence boundaries (no wasted tokens, no rollback) vs. FASB's corrective backtracking; (b) geometric distance trigger measuring knowledge absence vs. learned directional alignment on attention heads; (c) atomic claim-level decisions vs. token-level cuts that may split coherent claims. FASB's backtracking overhead scales linearly with intervention frequency—compounding on hallucination-dense long-form passages.\n\n**Geometry-aware steering (per-token):** Spherical Steering (arXiv 2602.08169, ICML 2026) uses geodesic rotation with a von Mises-Fisher confidence gate, achieving MC1 +15.80% on TruthfulQA (Llama-3.1-8B) with single-layer intervention (layer 24). Code released at github.com/chili-lab/Spherical-Steering. Per-token with continuous intensity—no claim-level selectivity. Hallucination Basins (arXiv 2604.04743, April 2026) proposes Adaptive Geometry-Aware Steering using Euclidean distance triggers and logistic-regression scalar maps at per-sequence granularity (uniform across all claims). Tested on 1B–8B models. CLSAS advances beyond both via within-sequence sentence-level selectivity.\n\n**Supporting evidence for claim-level hidden-state signal:** Han et al. (EMNLP 2025 Findings) demonstrate that lightweight probes on hidden states at the last tokens of claims detect factuality in long-form generation with competitive performance at 100× fewer FLOPs than multi-sample methods (e.g., semantic entropy), tested on models up to 405B parameters. Their causal intervention via neuron clamping at claim-terminal positions improves factuality, directly validating that the signal CLSAS's trigger requires exists in residual stream representations at claim boundaries. Their work is detection-only with causal neuron clamping; CLSAS extends this insight to pre-emptive geometric-distance-triggered activation steering with per-layer intensity control.\n\n**Negative evidence and scope clarification:** Du (arXiv 2605.03196, May 2026) finds no reliable geometric signal for factuality when measuring pre-generation query-level centroid deviation using cosine distance on Llama-3.1-8B (ROC-AUC 0.66–0.71, not statistically significant; works for math at 0.78–0.84). This is a fundamentally different setup from CLSAS: Du measures cosine distance at early layers (2–5) before any generation, testing whether query representations encode answerability. CLSAS measures Euclidean/Mahalanobis distance during generation at sentence boundaries, testing whether the model is currently accessing factual attractors after context encoding and partial generation. The distinction matters: Du's own analysis shows the geometric signal 'attenuates toward output' layers, while the Attractor Geometry paper demonstrates strong during-generation factual separation (AUROC 0.858) at output-proximate positions.\n\n**Context-dependent directions:** Steering Vector Fields (SVF, arXiv 2602.01654, Feb 2026) learns differentiable concept-scoring MLPs for context-aware steering directions refreshed every K steps. Always steers—no gating. Complementary to CLSAS (CLSAS decides whether; SVF decides in which direction).\n\n**Utility preservation:** COAST (arXiv 2605.01167, May 2026) formalizes collateral damage as unintended feature-direction shifts and optimizes the steering vector via constrained optimization. Complementary to CLSAS (COAST optimizes the vector; CLSAS optimizes when to apply it).\n\n**Nonlinear geometry:** Curveball Steering (arXiv 2603.09313, March 2026) demonstrates substantial geometric distortion in activation spaces, supporting covariance-aware (Mahalanobis) over Euclidean distance.\n\n**Detection-only:** Attractor Geometry of Transformer Memory (arXiv 2605.05686, May 2026) demonstrates hallucination = basin absence with Euclidean geometric margin AUROC 0.858 on TruthfulQA (vs. entropy 0.656), 0.993 on controlled factoid tasks. All measurements at first-digit positions before autoregressive dynamics compound; the paper explicitly states 'transfer to open-domain settings requires further study.' Where Does Reasoning Break? (arXiv 2605.13772, May 2026) detects step-level hallucination via transport geometry. DRIFT (arXiv 2601.14210, Jan 2026) detects representational instability.\n\n**Calibration:** Calibrating Verbal Uncertainty (Ji et al., EMNLP 2025 Outstanding Paper) achieves ~31.9% reduction in confident hallucinations via linear-feature intervention—calibrates expression, does not correct generation.\n\n**Other steering:** ACT (WWW 2025), ODESteer (ICLR 2026, +5.7% over ACT), Guiding Giants/WAS (arXiv 2505.20309), SADI (arXiv 2410.12299), HELIX/Tethered Reasoning (arXiv 2602.17691). FLAS (arXiv 2605.05892, May 2026) learns concept-conditioned velocity fields for multi-step activation transport.\n\n**Supporting evidence:** Hallucination as Trajectory Commitment (arXiv 2604.15400, April 2026) provides causal evidence for early commitment with asymmetric attractor dynamics—supporting timely intervention before commitment propagates. Think in Sentences (arXiv 2604.10135, April 2026) demonstrates sentence boundary attention concentration patterns.",
+  "approach": "We propose Claim-Level Selective Activation Steering (CLSAS), a method that bridges the granularity gap between token-level detection/intervention and claim-level factual evaluation. The central insight is that intervention granularity should match evaluation granularity: since factuality is assessed per-claim (FActScore, human judgment), steering decisions should be made per-claim—preserving entire correct sentences untouched while steering only sentences where the model lacks factual grounding.\n\n**Stage 1: TRIGGER (Geometric Distance at Sentence Boundaries)**\nDuring generation, at each sentence boundary (period/newline tokens), extract hidden-state activations at the boundary token across layers using nnsight intervention hooks. Compute geometric distance from factual cluster centroids:\n(a) Offline: From a calibration set (~2K examples from TruthfulQA + FELM correct-answer forward passes), collect hidden states at factual completion positions. Apply PCA to project from full hidden dimension (d=4096) to top-k principal components (k=256), yielding a well-conditioned 256×256 covariance matrix.\n(b) Online: Project the boundary token's activation into the PCA subspace. Compute distance to nearest factual centroid. We evaluate two distance metrics: (i) Euclidean distance δ_E(x) = ||h_pca − μ_pca||₂, matching the Attractor Geometry paper's validated metric (AUROC 0.858 on TruthfulQA); (ii) Mahalanobis distance δ_M(x) = √((h_pca − μ_pca)ᵀ Σ_pca⁻¹ (h_pca − μ_pca)), a hypothesized improvement motivated by OOD detection literature (Lee et al., NeurIPS 2018) that accounts for directional anisotropy in representation space.\n(c) When distance exceeds a calibrated threshold (set via precision-recall analysis targeting high precision ≥0.85 to minimize false interventions), flag the upcoming sentence for steering.\n\n**Critical clarification on geometric signals:** The 0.858 AUROC motivating this trigger was achieved with Euclidean distance during generation at first-digit positions (Attractor Geometry, May 2026). Han et al. (EMNLP 2025 Findings) independently validate that hidden states at claim-terminal positions encode factuality in long-form generation. Du (arXiv 2605.03196) finds no reliable geometric signal pre-generation for factuality, but this concerns a fundamentally different measurement: cosine distance at early layers (2–5) before any output tokens, testing query answerability rather than during-generation factual grounding. The failure is expected—pre-generation representations encode query form, not the model's factual state during generation. CLSAS measures at sentence boundaries during generation, where the model has already processed context and produced partial output, placing the activation in the regime where Attractor Geometry demonstrates strong factual separation. Our Milestone 1 explicitly validates this extrapolation from first-digit to sentence-boundary positions.\n\n**Timing Hypothesis Validation (Milestone 1, Days 1-2):**\nWe explicitly frame the following as a testable hypothesis: geometric distance at sentence boundary N is predictive of factual accuracy in sentence N+1. Validation protocol: (1) Generate 500 multi-sentence responses on LongFact/FActScore prompts using Llama-3.1-8B-Instruct. (2) Compute both Euclidean and Mahalanobis distance at every sentence boundary. (3) Annotate each subsequent sentence with FActScore. (4) Measure Spearman correlation between boundary distance and next-sentence factuality, and AUROC for binary classification. If AUROC < 0.70, we implement a look-ahead variant: extract distance from the first 3 generated tokens of the new sentence (before committing via speculative-style buffering). The look-ahead variant adds ~15% latency overhead but operates before the sentence is visible to the user. If look-ahead also fails (AUROC < 0.65), we fall back to a sliding-window approach using the mean distance over the last 5 tokens before the boundary.\n\n**Comparison to other triggers:** PCNet uses NLL from a trained probabilistic circuit, evaluated at every token—achieving near-perfect detection but 53.7% corruption on correct generations due to sub-claim intervention. MERA uses linear error probes for general task error prediction with closed-form intensity calibration—principled but task-agnostic and token-level. FASB uses attention-head probes with corrective backtracking. CLSAS's trigger is factuality-specific (geometric distance from factual attractors), operates at claim granularity (single binary decision per sentence), and is pre-emptive (no wasted tokens or rollback).\n\n**Stage 2: DIRECTION (Centroid-Directed Steering Vector)**\nCompute the steering direction as the unit vector from the current activation toward the factual cluster centroid at each layer in the PCA subspace, then project back to full space: v_steer = (μ_pca − h_pca) / ||μ_pca − h_pca||, lifted back to full dimensionality via PCA inverse transform. This yields an input-specific correction direction toward regions of successful fact recall.\n\n**Stage 3: INTENSITY (Per-Layer Weighted Steering)**\nA lightweight 2-layer MLP controller (hidden dim 64, inspired by Guiding Giants/WAS) takes [geometric_distance, layer_index/L, distance_velocity] as input (3D feature vector) and predicts per-layer steering weight λ_ℓ. Trained on a calibration set (~2K examples) to maximize FActScore on steered outputs while minimizing perplexity increase on non-flagged outputs. Steering: h_steered(ℓ) = h(ℓ) + λ_ℓ · v_steer(ℓ) at layers where λ_ℓ > ε. We note that MERA's closed-form intensity calibration could serve as an alternative to the learned MLP controller; we compare these in ablations.\n\n**Minimum Viable Scope (9 days, May 16–25):**\n- Days 1-2 (May 16-17): Timing hypothesis validation on Llama-3.1-8B-Instruct. This is the critical-path milestone—if it fails, immediately implement look-ahead variant.\n- Days 3-4 (May 18-19): Core CLSAS implementation + calibration. Run TruthfulQA and SimpleQA.\n- Days 5-6 (May 20-21): Run baselines (Spherical Steering from released code, FASB from released code, MERA from released code). Run FActScore and MT-Bench on CLSAS.\n- Days 7-8 (May 22-23): Key ablations: 2×2 grid (Euclidean vs Mahalanobis × sentence-level vs token-level gating) on 4-benchmark core set. PCNet comparison if code is available; otherwise use reported numbers with matched model.\n- Day 9 (May 24): Writing, formatting, submission buffer.\n- Dropped from scope: COAST combination experiment, Qwen3-8B (secondary model), full 7-benchmark suite for ablations, GTS-FASB-trigger ablation.\n\n**Ablation Design (MVP):**\n- CLSAS-full vs. CLSAS-Euclidean (isolate Mahalanobis contribution)\n- CLSAS-full vs. CLSAS-pertoken (apply continuous per-token gating with our distance metric, matching PCNet/Spherical Steering's granularity—isolates the claim-level contribution)\n- CLSAS-full vs. CLSAS-sequence (single decision per sequence, matching Hallucination Basins' granularity)\n- CLSAS-full vs. CLSAS-scalar (replace per-layer MLP with single scalar, isolating controller contribution)\n- CLSAS-full vs. CLSAS-MERA-intensity (replace MLP controller with MERA's closed-form calibration within flagged claims)\n- Direct comparison: CLSAS-full vs. Spherical Steering vs. FASB vs. MERA vs. PCNet (reported numbers if code unavailable)\n\n**Primary evaluation metrics (FActScore-led):**\n- FActScore on long-form biographies (primary benchmark where claim-level advantage should be largest—multiple claims coexist and token-level corruption compounds across sentences)\n- Corruption rate and preservation rate (matching PCNet's protocol): fraction of correct claims degraded / preserved by intervention\n- TruthfulQA MC1/MC2, SimpleQA accuracy, MT-Bench score\n- Intervention rate: fraction of sentences steered (lower is better for comparable factuality gains)\n- Latency overhead vs. baselines\n\nWe note that TruthfulQA (short-form, single-claim) may understate CLSAS's advantage over token-level methods. The primary contribution should manifest on FActScore/LongFact where multiple claims coexist within a single generation and token-level corruption compounds across sentences—each incorrectly intervened token can cascade into downstream claim damage. We therefore lead with FActScore as the primary benchmark.\n\nImplementation uses nnsight 0.7 on Llama-3.1-8B-Instruct. Qwen3-8B included only if time permits after MVP completion.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~120h H100 80GB",
+      "gpu_utilization": "Low (~15-20%)",
+      "timeline": "3-4 months",
+      "team": "1-2 researchers with mechanistic interpretability + geometric ML experience",
+      "estimated_gpu_cost": "$360-400",
+      "factScore_api_cost": "$100-200"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~130h H100 80GB",
+      "gpu_utilization": "Moderate (45-55%)",
+      "timeline": "2-3 weeks",
+      "team": "1 researcher, ~30min/day reviewing proposals",
+      "claude_api_cost": "$150-250",
+      "estimated_gpu_cost": "$390-430",
+      "factScore_api_cost": "$100-200",
+      "risk_note": "Timing hypothesis validation is critical-path. If it fails (AUROC < 0.70), look-ahead fallback adds ~3 days."
+    },
+    "auto_research": {
+      "gpu_hours": "~140h H100 80GB",
+      "gpu_utilization": "High (~85-90%)",
+      "timeline": "9 days (May 16-25) with 2 H100 GPUs. Minimum viable paper scope: single model (Llama-3.1-8B), 4-benchmark core set for ablations, full baselines on FActScore+TruthfulQA+SimpleQA+MT-Bench.",
+      "team": "0 (initial setup: provision GPUs, configure nnsight 0.7, clone Spherical Steering + FASB + MERA repos)",
+      "claude_api_cost": "$250-350 (est. 3000-4000 turns)",
+      "estimated_gpu_cost": "$420-450",
+      "factScore_api_cost": "$100-200",
+      "speed_bottleneck": "Timing hypothesis validation (days 1-2) is critical path. If it fails, look-ahead variant must be implemented immediately. Secondary: FActScore GPT-4 API calls.",
+      "resource_optimization": "Budget achieved via: (1) single model (Llama-3.1-8B) for all experiments; (2) 4-benchmark core set (TruthfulQA, FActScore, SimpleQA, MT-Bench); (3) 2×2 ablation grid (distance metric × gating granularity) instead of separate sweeps; (4) use Spherical Steering, FASB, and MERA released code directly; (5) PCNet comparison using reported numbers if code unavailable.",
+      "minimum_viable_paper": "If timing hypothesis fails AND look-ahead also fails: pivot to a detection-only contribution (sentence-level geometric detection benchmark) comparing Euclidean/Mahalanobis at sentence boundaries vs. PCNet's token-level NLL vs. Han et al.'s factuality probes. This is publishable as a shorter paper (findings track).",
+      "risk_note": "Primary risk: timing hypothesis may fail (Attractor Geometry paper validated only on factoid completion at first-digit positions, explicitly disclaiming open-domain transfer; Du 2605.03196 finds no pre-generation geometric signal for factuality, though this concerns a different measurement regime). Mitigation: (1) Han et al.'s independent validation that claim-terminal hidden states encode factuality reduces this risk; (2) look-ahead variant extracts signal from first generated tokens rather than boundary; (3) sliding-window fallback. Secondary risk: claim-level gating may not outperform PCNet's token-level gating on short-form QA—advantage expected primarily on long-form generation (FActScore, LongFact). Tertiary risk: 9-day timeline leaves zero buffer for unexpected implementation issues."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits (PCNet, arXiv 2605.05953, May 2026)",
+    "To Steer or Not to Steer? Mechanistic Error Reduction with Abstention (MERA, Hedström et al., arXiv 2510.13290, ICML 2025)",
+    "Steering When Necessary: Flexible Steering Large Language Models with Backtracking (FASB, arXiv 2508.17621, NeurIPS 2025)",
+    "Spherical Steering: Geometry-Aware Activation Rotation for Language Models (arXiv 2602.08169, ICML 2026)",
+    "Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (arXiv 2605.05686, May 2026)",
+    "Simple Factuality Probes Detect Hallucinations in Long-Form Natural Language Generation (Han et al., EMNLP 2025 Findings)",
+    "Geometric Deviation as an Unsupervised Pre-Generation Reliability Signal (Du, arXiv 2605.03196, May 2026)",
+    "Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (arXiv 2604.04743, April 2026)",
+    "Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models (SVF, arXiv 2602.01654, Feb 2026)",
+    "Curveball Steering: The Right Direction To Steer Isn't Always Linear (arXiv 2603.09313, March 2026)",
+    "Minimizing Collateral Damage in Activation Steering (COAST, arXiv 2605.01167, May 2026)",
+    "Beyond Steering Vector: Flow-based Activation Steering for Inference-Time Intervention (FLAS, arXiv 2605.05892, May 2026)",
+    "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (Ji et al., EMNLP 2025 Outstanding Paper, arXiv 2503.14477)",
+    "Tethered Reasoning (HELIX): Decoupling Entropy from Hallucination in Quantized LLMs via Manifold Steering (arXiv 2602.17691, Feb 2026)",
+    "Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method (ACT, WWW 2025)",
+    "ODESteer: A Unified ODE-Based Steering Framework for LLM Alignment (ICLR 2026, arXiv 2602.17560)",
+    "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arXiv 2605.13772, May 2026)",
+    "DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness (arXiv 2601.14210, Jan 2026)",
+    "Guiding Giants: Lightweight Controllers for Weighted Activation Steering in LLMs (arXiv 2505.20309, May 2025)",
+    "Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics (arXiv 2604.15400, April 2026)",
+    "Think in Sentences: Explicit Sentence Boundaries Enhance Language Model's Capabilities (arXiv 2604.10135, April 2026)",
+    "A Simple Unified Framework for Detecting Out-of-Distribution Samples and Adversarial Attacks (Lee et al., NeurIPS 2018)",
+    "Semantics-Adaptive Activation Intervention for LLMs via Dynamic Steering Vectors (SADI, arXiv 2410.12299, 2024)",
+    "Dynamic Multimodal Activation Steering for Hallucination Mitigation in Large Vision-Language Models (ICLR 2026)"
+  ],
+  "description": "We propose Claim-Level Selective Activation Steering (CLSAS), a method that bridges the granularity gap between token-level hallucination detection/intervention and claim-level factual evaluation. The central insight is that intervention granularity should match evaluation granularity: since factuality is assessed per-claim (FActScore, human judgment), steering decisions should be per-claim—preserving entire correct sentences untouched while steering only claims where the model lacks factual grounding.\n\nThe motivation is concrete: PCNet (May 2026), the state-of-the-art in selective geometric gating, achieves near-perfect token-level hallucination detection (AUROC up to 99% on extractive QA) yet still corrupts 53.7% of originally correct generations when intervening token-by-token via contrastive decoding. We hypothesize this corruption stems from the granularity mismatch—token-level anomaly conflates stylistic deviation with factual error, and sub-claim interventions damage partially correct claims. MERA (Hedström et al., ICML 2025) introduced principled calibration of when and how much to steer with provable abstention guarantees, but operates at token level as a general-purpose framework tested on classification tasks—it does not address the claim-level granularity needed for long-form factual generation.\n\nCLSAS monitors geometric distance from residual stream activations to factual cluster centroids at sentence boundaries during generation. Building on the finding that Euclidean geometric margin separates correct recall from hallucination during generation (AUROC 0.858 on TruthfulQA; Attractor Geometry, May 2026), and that hidden states at claim-terminal positions encode factuality in long-form generation (Han et al., EMNLP 2025 Findings), we evaluate both Euclidean and Mahalanobis distance triggers—the latter a hypothesized improvement motivated by OOD detection literature (Lee et al., NeurIPS 2018) that we validate via ablation. When distance indicates basin absence, CLSAS computes an input-specific steering vector toward the factual centroid and applies it with per-layer weights from a lightweight MLP controller. Sentences within a factual basin are left entirely untouched.\n\nWe address a potential concern raised by Du (arXiv 2605.03196, May 2026), who finds no reliable geometric signal for factuality when measuring query-level centroid deviation pre-generation using cosine distance at early layers. This negative result concerns a fundamentally different measurement regime: pre-generation query representations encode question form and answerability, not the model's current factual state during generation. CLSAS measures at sentence boundaries during generation—after context encoding and partial output—placing activations in the regime where both Attractor Geometry (AUROC 0.858) and Han et al.'s factuality probes demonstrate strong factual signal. Our Milestone 1 validation directly tests whether this signal persists at sentence boundaries rather than first-digit positions.\n\nCLSAS addresses limitations in the closest concurrent and prior work: (1) vs. PCNet (May 2026, MC1 0.51 on Llama-3.1-8B), CLSAS makes sentence-level binary decisions that avoid sub-claim corruption. PCNet's token-level NLL gating triggers at 41-78% of tokens (IGR), requiring costly lookahead evaluations at each; CLSAS intervenes only at sentence boundaries. (2) vs. MERA (ICML 2025), CLSAS provides factuality-specific geometric triggers at claim granularity rather than task-general error probes at token granularity; MERA's intensity calibration is complementary and could optimize steering within CLSAS-flagged claims. (3) vs. FASB (NeurIPS 2025, MC1 48.71% on LLaMA-2-7B-Chat), CLSAS is pre-emptive—gating before generation rather than detecting deviation and rolling back 10 tokens. (4) vs. Spherical Steering (ICML 2026, +15% MC1), CLSAS makes binary claim-level steer/skip decisions rather than continuous per-token rotation, enabling complete preservation of correct claims. (5) vs. Hallucination Basins (April 2026), CLSAS provides within-sequence selectivity rather than uniform per-sequence correction.\n\nWe lead with FActScore on long-form biographies as the primary benchmark, where CLSAS's claim-level advantage should be largest: multiple claims coexist within each generation, and token-level corruption from methods like PCNet compounds across sentences. TruthfulQA (short-form, typically single-claim) may understate CLSAS's advantage over token-level methods.\n\nMinimum viable scope for 9 remaining days: single model (Llama-3.1-8B-Instruct), 4-benchmark evaluation (FActScore, TruthfulQA, SimpleQA, MT-Bench), 2×2 ablation grid (distance metric × gating granularity), direct comparison with Spherical Steering, FASB, and MERA using released code. Total budget: ≤140 H100-hours.",
+  "project_name": "claim_level_selective_steering",
+  "source": "web_research"
+}
+```
+
+---
+
+## Summary of changes addressing each reviewer issue:
+
+**1. MERA (ICML 2025) — cited and positioned throughout:**
+- Added to `core_problem` as a key method that addresses when/how-much but not the granularity gap
+- Full positioning in `landscape` as first entry under "Selective steering with abstention" with three-way differentiation: (a) granularity (token vs claim), (b) trigger specificity (general error vs factual geometry), (c) domain (classification tasks on 1-3B models vs long-form generation on 8B)
+- Noted as complementary — MERA's intensity calibration could optimize within CLSAS-flagged claims
+- Added MERA as baseline in ablations (`CLSAS-MERA-intensity` variant) and direct comparisons
+- Added MERA repo to setup requirements in resource estimate
+
+**2. Simple Factuality Probes (Han et al., EMNLP 2025 Findings) — cited as supporting evidence:**
+- Added to `core_problem` and `opportunity` as independent validation that claim-terminal hidden states encode factuality
+- Dedicated paragraph in `landscape` under "Supporting evidence for claim-level hidden-state signal"
+- Cited in `approach` critical clarification as converging evidence alongside Attractor Geometry
+- Used in risk assessment: Han et al.'s validation reduces the timing hypothesis risk
+- Added to minimum viable pivot (detection-only findings paper)
+
+**3. Geometric Deviation negative result (Du, arXiv 2605.03196) — addressed with precise technical distinction:**
+- Full paragraph in `opportunity` explaining the fundamental setup difference: pre-generation cosine distance at early layers (2-5) testing query answerability ≠ during-generation Euclidean/Mahalanobis at sentence boundaries testing factual grounding
+- Dedicated paragraph in `landscape` under "Negative evidence and scope clarification" with specific numbers (ROC-AUC 0.66-0.71)
+- Addressed in `approach` critical clarification section, turning the weakness into motivated methodology
+- Key insight: Du's signal attenuates toward output layers, while Attractor Geometry's signal is strong at output-proximate positions during generation
+- Integrated into risk assessment in resource estimate
+
+**4. Impact framing — FActScore-led:**
+- Reordered primary evaluation metrics to lead with FActScore
+- Added explicit argument that TruthfulQA (short-form, single-claim) understates CLSAS's advantage
+- FActScore framed as primary benchmark throughout description
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "454b6870-ed85-455f-920b-b75f879bf9f9",
+  "isSidechain": false,
+  "requestId": "req_011Cb62LQXm8heidmjwh9BLX",
+  "type": "assistant",
+  "uuid": "c254beba-1abf-4fcd-bf2f-bb634e6957a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JSMshN5jb3yLQpibzr6f2L",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 108,
+      "cache_read_input_tokens": 64475,
+      "output_tokens": 9684,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9684,
+          "cache_read_input_tokens": 64475,
+          "cache_creation_input_tokens": 108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Claim-Level Selective Activation Steering for Factual Hallucination Su…",
+  "leafUuid": "c254beba-1abf-4fcd-bf2f-bb634e6957a5",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise idea with claim-level steering trigger validation",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 91_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Claim-Level Selective Activation Steering for Factual Hallucination Su…",
+  "leafUuid": "c254beba-1abf-4fcd-bf2f-bb634e6957a5",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 92_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise idea with claim-level steering trigger validation",
+  "sessionId": "de2cbaeb-7a25-4ce3-918d-4f85f5dc6777"
+}
+```
+
+---

@@ -1,0 +1,3358 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-17 (UTC).** Your job: indep
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 39
+- **Recorded user turns:** 1
+- **Tool calls:** 7
+- **Original source:** `logs/chats/exported-trajectories/account-2/123ec6d7-284e-40f8-ac0c-5ea10aa885ae.jsonl`
+- **Structured JSON:** [`3a966c4828cbc484b3ea.json`](../../sessions/3a/3a966c4828cbc484b3ea.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-17T09:07:23.889Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T09:07:23.889Z",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-17 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission. Track: Machine Learning for NLP / Question Answering.\n\nDirection: Training-time mechanistic fix for contextual entrainment — teaching LLMs to\nselectively suppress irrelevant-context influence while preserving in-context learning,\nby targeting the shared attention circuit that enables both. LLMs exhibit \"contextual\nentrainment\": attention heads mechanistically assign higher logits to ANY token previously\nseen in context, regardless of task relevance (ACL 2025, \"Llama See, Llama Do\"). This\nis the same mechanism that powers in-context learning — creating a fundamental double-bind\nwhere suppressing entrainment destroys ICL. Existing training fixes (DPO on distractor\ndata, RARE reward, data augmentation) are purely behavioral: they teach models to produce\ncorrect outputs DESPITE entrainment still occurring internally. These behavioral fixes\ndo not generalize to novel distractor types, require task-specific distractor exposure\nduring training, and fail on complex reasoning (SFT fails entirely; even RL-based RARE\nshows limited transfer). No training method targets the entrainment circuit itself to\nmake it relevance-conditional.\n\nSeed Papers:\n- \"Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction\n  in LLMs\" (ACL 2025) — identifies the mechanism: specific \"entrainment heads\" boost\n  logits for all context-seen tokens; these SAME heads enable in-context learning;\n  proposes inference-time head masking but no training fix\n- \"Focus Directions Make Your Language Models Pay More Attention to Relevant Contexts\"\n  (arXiv:2503.23306, Mar 2025) — identifies \"contextual heads\" and \"focus directions\"\n  in key/query space that control attention routing; proposes activation steering at\n  inference time only\n- \"Lost in the Noise: How Reasoning Models Fail with Contextual Distractors\"\n  (arXiv:2601.07226, Jan 2026) — proves SFT and outcome-reward RL FAIL for complex\n  reasoning under distraction; only RARE (rationale-aware reward) partially works;\n  reveals inverse scaling where more test-time compute worsens distraction vulnerability\n- \"How Is LLM Reasoning Distracted by Irrelevant Context?\" (EMNLP 2025 Oral,\n  arXiv:2505.18761) — GSM-DC benchmark; shows continued pretraining with distractors\n  helps on simple math but generalizes poorly; full fine-tuning > LoRA\n- \"Adaptive Distraction\" (NeurIPS 2025, arXiv:2502.01609) — DPO on synthetic adversarial\n  distractors; behavioral fix that improves robustness but does not modify the entrainment\n  circuit; requires exposure to specific distractor types during training\n- \"Reducing Distraction in Long-Context Language Models by Focused Learning\"\n  (arXiv:2411.05928, Nov 2024) — contrastive learning between full-context and\n  retrieved-relevant-only contexts; closest to mechanistic but does not specifically\n  target entrainment heads or the ICL-distraction shared circuit\n\nKnown Gaps:\n- No training method targets the ENTRAINMENT CIRCUIT (the specific attention heads\n  identified in \"Llama See, Llama Do\") — all existing fixes are behavioral\n- The fundamental double-bind is unaddressed: entrainment heads enable BOTH ICL and\n  distraction vulnerability; no principled mechanism exists to make them relevance-conditional\n- Behavioral fixes (DPO, RARE) do not generalize: they work for distractor types seen\n  during training but fail on novel distraction patterns (proven by transfer experiments)\n- SFT completely fails for complex reasoning under distraction (Jan 2026) — simple\n  data augmentation is insufficient\n- The inverse scaling finding (more test-time compute = more distraction vulnerability)\n  suggests the problem is architectural, not behavioral\n- No training loss directly penalizes the entrainment pattern while preserving the\n  ICL pattern in the same heads\n\nIn-scope: Training-time interventions that modify the entrainment circuit's behavior\nto become relevance-conditional, rather than teaching downstream reasoning to compensate.\nSpecifically: attention regularization that penalizes entrainment strength on tokens\nprovably irrelevant to the task while preserving it for relevant tokens, contrastive\nhead training where the same passage appears as relevant (for one query) and irrelevant\n(for another query) and entrainment heads must modulate accordingly, relevance-gated\nentrainment where the model learns a query-dependent gating mechanism on entrainment\nheads during training, circuit-level DPO where preferences target internal attention\npatterns (not just output correctness), progressive training from strong distractors\n(lexically unrelated) to subtle distractors (semantically adjacent but irrelevant).\n\nNOT in-scope: Inference-time activation steering (Focus Directions already does this),\npure data augmentation with distractors (proven insufficient for complex tasks), DPO/RARE\nthat only targets output behavior without modifying the entrainment mechanism, methods\nrequiring explicit relevance labels at inference time, post-hoc detection and regeneration,\nprompt engineering for distractor resistance.\n\nContribution type: METHOD ONLY. Must propose a concrete training-time intervention that\nmodifies the entrainment circuit to become relevance-conditional. The method must\ndemonstrate: (1) improved distractor robustness compared to behavioral baselines (DPO,\nRARE), (2) preserved in-context learning ability (ICL benchmarks must not degrade),\n(3) generalization to novel distractor types NOT seen during training (the key advantage\nover behavioral fixes), (4) no reliance on explicit relevance signals at inference time.\n\nEVAL PROTOCOL:\nTRAIN: Fine-tune from existing checkpoints (Llama-3-8B, Qwen2.5-7B/14B) with\nentrainment-aware training objective.\nEVALUATE on:\n- Distractor robustness: GSM-DC, GSM-NoOp, custom distractor benchmarks across\n  difficulty levels\n- ICL preservation: standard few-shot benchmarks (MMLU, BBH, ARC) must NOT degrade\n- Generalization to novel distractors: test on distractor types NOT in training data\n  (lexical, semantic, structural, adversarial)\n- Comparison against behavioral baselines: DPO (NeurIPS 2025), RARE (Jan 2026),\n  SFT on distractor data, vanilla model\n- Comparison against inference-time fixes: Focus Directions, entrainment head masking\n- Mechanistic analysis: entrainment head activation before/after training, showing\n  selective suppression for irrelevant context\n- Transfer: does fixing entrainment on math distractors transfer to reading comprehension\n  distractors? (behavioral fixes don't transfer well)\n- Ablation: which training signal components drive generalization vs. in-domain improvement\n- Inverse scaling test: does the fix resolve the \"more compute = more vulnerable\" pattern?\n\nBuilding blocks: Open models (Llama-3-8B, Qwen2.5-7B/14B), mechanistic analysis tools\n(attention head probing from \"Llama See, Llama Do\"), Focus Directions implementation\nfor comparison, GSM-DC/GSM-NoOp benchmarks, synthetic distractor generation, DPO/RLHF\ninfrastructure, ICL evaluation suites.\n\nHARD CONSTRAINTS:\nCompute: ≤200 H100-hours total. Fine-tune from existing checkpoints.\nEval: Must report BOTH distractor robustness AND ICL preservation. A method that\neliminates distraction by destroying ICL is NOT acceptable (this is the double-bind).\nMust demonstrate generalization to UNSEEN distractor types — this is the key metric\nthat distinguishes mechanistic fixes from behavioral ones.\nMust include mechanistic analysis showing entrainment head behavior change (not just\noutput accuracy improvement).\n\nLook for: Query-conditional gating on entrainment heads that learns to modulate\nentrainment strength based on query-context alignment (the heads remain active for ICL\nbut suppress for irrelevant context); contrastive training at the ATTENTION level where\nthe same document is presented as relevant-context (for query A) and irrelevant-context\n(for query B) and the model's entrainment heads must respond differently; progressive\nrelevance curriculum starting from easy discrimination (completely unrelated distractors)\nto hard discrimination (topically related but task-irrelevant context); circuit-level\npreference learning where DPO targets not just output correctness but internal attention\ndistribution over relevant vs. irrelevant context tokens.\n\nAvoid: Pure data augmentation with distractors (EMNLP 2025 already shows this is\ninsufficient), standard DPO on output behavior only (NeurIPS 2025 already does this),\ninference-time steering (Focus Directions already does this), methods that require\nknowing which context is irrelevant at inference time (must be internalized), simple\nattention regularization without query-conditioning (would destroy ICL), approaches\nthat only work on math/arithmetic distractors.\n\nIDEA GENERATION QUALITY CONSTRAINTS (hard rules from historical bad cases):\n\n1. No strawman problems: The entrainment mechanism must cite \"Llama See, Llama Do\"\n   specifically. The failure of behavioral fixes must cite \"Lost in the Noise\" (Jan 2026)\n   and NeurIPS 2025 DPO paper. The ICL-distraction shared circuit claim must be grounded\n   in the mechanistic evidence from the ACL 2025 paper.\n\n2. No observation-only ideas: Discovering new distractor failure modes is NOT a\n   contribution. Must propose a complete training method targeting the entrainment circuit.\n\n3. No mediocre methods: Your method MUST answer:\n   - Core Insight: What structural property of the entrainment circuit makes it possible\n     to selectively suppress distraction without killing ICL?\n   - Why Not Obvious: Why doesn't DPO/RARE already solve this? (Hint: they fix behavior\n     not mechanism, so they don't generalize to novel distractors)\n   - Information Exploited: What signal about \"this context is irrelevant\" do you use\n     during training that behavioral methods don't? How do you get this signal without\n     requiring relevance labels at inference time?\n   - Mechanistic Argument: From the entrainment head mechanism, explain WHY your\n     intervention makes these heads query-conditional rather than unconditionally boosting\n     all context tokens.\n   \"Add distractor data to training\" is REJECTED (EMNLP 2025 already proves this is\n   insufficient). \"Do DPO with distractor preferences\" is REJECTED (NeurIPS 2025 already\n   does this — behavioral fix). Must explain what is structurally different about your\n   approach at the CIRCUIT level.\n\n4. No rehashing: Search \"contextual entrainment training fix\", \"distraction robustness\n   training LLM\", \"attention head regularization relevance\" with 3+ queries. Differentiate\n   from: DPO distractor training (behavioral), RARE (behavioral RL), Focus Directions\n   (inference-time), data augmentation (insufficient for complex tasks).\n\n5. No experiment-padding: The insight must explain the structural relationship between\n   entrainment heads, ICL, and distraction — and why your intervention can surgically\n   modify one function (distraction) without destroying the other (ICL). This is the\n   theoretical contribution.\n\n6. Method pattern restrictions: \"Train with more distractors\" REJECTED (proven\n   insufficient). \"DPO on distractor outputs\" REJECTED (already exists, behavioral only).\n   \"Regularize attention heads\" needs justification for why this doesn't destroy ICL.\n   \"Contrastive learning\" needs explanation of what makes the contrastive signal operate\n   at the CIRCUIT level rather than the behavioral level.\n\nTHEORETICAL ANCHOR: The fundamental problem is that contextual entrainment is a\nDUAL-USE mechanism: the same attention heads that boost logits for context-seen tokens\n(causing distraction) ALSO enable in-context learning (where boosting context-seen tokens\nIS the correct behavior). The training fix must make this mechanism QUERY-CONDITIONAL:\nactive when context is relevant to the current query (ICL mode) and suppressed when\ncontext is irrelevant (distraction resistance mode). The key difficulty is that\n\"relevance\" is not a fixed property of context — the same passage can be relevant for\none query and irrelevant for another. Therefore, the gating cannot be a static property\nof the context; it must be dynamically computed from query-context interaction. Possible\napproaches: (1) train a relevance-gating layer that modulates entrainment head output\nbased on query-key alignment scores (learned during training, internalized at inference),\n(2) contrastive training at the HEAD level where the same context appears in relevant\nand irrelevant roles, forcing the model to develop query-conditional entrainment,\n(3) progressive curriculum from easy relevance discrimination to hard (topically similar\nbut task-irrelevant), (4) auxiliary loss on entrainment head attention patterns that\npenalizes uniform boosting and rewards selective boosting correlated with downstream\ntask relevance.\n\nCRITICAL DIFFERENTIATION from existing work:\n- vs. DPO/RARE (behavioral): Your method modifies the entrainment CIRCUIT, not just\n  output behavior. Key evidence: generalization to unseen distractor types.\n- vs. Focus Directions (inference-time): Your method internalizes relevance-gating\n  during training; no steering needed at inference time.\n- vs. Data augmentation (EMNLP 2025): Your method provides a TRAINING SIGNAL at the\n  attention head level, not just more examples. Key evidence: works on complex reasoning\n  where data augmentation fails.\n- vs. Entrainment head masking (ACL 2025): Your method preserves the heads but makes\n  them conditional, rather than ablating them entirely (which destroys ICL).\n\nTag: direction=contextual_entrainment_fix, contribution_type=method,\nsub_direction=relevance_conditional_entrainment, target_venues=[\"EMNLP 2026\", \"ACL 2026\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-17?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 4/10)\n{\n  \"title\": \"Entrainment-Aware Gated Fine-Tuning: Query-Conditional Head Gates for Adaptive Context Utilization\",\n  \"core_problem\": \"LLMs' vulnerability to irrelevant context (distraction) is mechanistically localized to entrainment heads (2.9-10.7% of attention heads per relation, ACL 2025 Outstanding Paper). Static ablation of these heads effectively reduces distraction with only 0.2-3% ICL degradation, confirming they are not part of the core ICL circuit. However, static ablation is a permanent, binary intervention: it unconditionally removes context-sensitivity from these heads regardless of whether the context is relevant or irrelevant. The ACL 2025 paper explicitly acknowledges (Finding 2) that context can be beneficial when relevant — e.g., related-domain context steers generation toward correct answers — yet never evaluates ablation's impact on this capability. In real deployment scenarios (RAG with correct retrievals, long-context QA where context IS the answer source, grounded generation), permanently disabling context-sensitivity is counterproductive. Recent work on RAG head reweighting (PEAR, ACM Web 2025) demonstrates that context-suppressing heads should be continuously attenuated rather than removed, and that learned coefficients outperform binary decisions. Dynamic head selection methods (MoH, ICML 2025; QAdA, 2025) further show that adaptive per-query head activation consistently outperforms static head pruning. The gap: no method combines mechanistic entrainment head identification with query-conditional per-head gating to enable adaptive context utilization — suppressing distraction when context is irrelevant while preserving context-sensitivity when context is helpful.\",\n  \"opportunity\": \"Three building blocks now exist but remain uncombined: (1) The ACL 2025 entrainment paper provides differentiable masking for head discovery across 15 knowledge relations, with code available at github.com/frankniujc/entrainment, and crucially identifies heads whose context-sensitivity is harmful for irrelevant context but potentially beneficial for relevant context; (2) The NeurIPS 2025 Best Paper on gated attention proved that query-dependent per-head sigmoid gates (G1 design: query-projected, post-SDPA) enable heads to modulate their output from full contribution to zero, with per-head gating identified as the single most important design choice; (3) PEAR (ACM Web 2025) demonstrated that learned continuous coefficients on context-affecting heads outperform binary ablation for RAG, validating the premise that learned gating is superior to static head removal. The opportunity is to synthesize these into a fine-tuning intervention that adds query-conditional gates ONLY to mechanistically-identified entrainment heads, training with a dual-objective loss to produce a permanently modified model that adaptively modulates context-sensitivity per query. This requires no inference-time steering, adds negligible parameter overhead (<0.1%), and negligible inference overhead (one linear+sigmoid per gated head).\",\n  \"landscape\": \"**Training-based distraction defense (whole-model):** NoisyInstruct + RARE reward (arXiv:2601.07226, Jan 2026) trains models via SFT+RL on noisy data, achieving strong robustness gains but modifying all parameters without mechanistic targeting. Distractor Injection Attacks defense (arXiv:2510.16259) similarly uses SFT+RL on synthetic adversarial data. GSM-DC (EMNLP 2025) showed continued pretraining with distractors is effective for reasoning robustness. **Training-based (layer-level gating):** Grft (ACL 2025, arXiv:2502.14100) is a key baseline — a gated representation fine-tuning approach applying sigmoid gating at a single layer (layer 7 in Llama-2-7B). Grft achieves strong helpful-context preservation (98.23% short, 97.03% long — nearly matching the ~97% baseline) with meaningful adversarial robustness gains (60-73% without requery, 82-98% with requery). Its actual limitations are: (a) operates at layer-level granularity rather than at mechanistically-identified heads, (b) trained exclusively on knowledge-conflict scenarios (ConflictQA/COUNTERFACT) — untested on reasoning distractors (GSM-DC, NoisyBench), (c) gate is hidden-state-conditional rather than query-conditional, (d) limited to single-context evaluation. Only 36.9K parameters (0.0005% of model). **Learned head reweighting for RAG:** PEAR (ACM Web 2025) identifies context-suppressing attention heads and learns continuous reweighting coefficients via a context-copying proxy task, achieving improved RAG accuracy with zero inference overhead. ADR similarly detects and reweights RAG-suppressing heads. Both validate that learned continuous modulation of head outputs outperforms binary decisions, but neither uses mechanistic head identification or query-conditional gating — coefficients are fixed after training. **Dynamic head selection:** MoH (ICML 2025) treats attention heads as MoE experts with a learned router, achieving +2.4% accuracy over LLaMA3-8B on 14 benchmarks using only 75% of heads. QAdA demonstrates that adaptive per-query head selection outperforms even static oracle selection on long-context tasks. SeerAttention (Microsoft, 2025) shows learned attention gating significantly outperforms static/heuristic sparse attention methods. These demonstrate the superiority of dynamic over static head decisions but are general-purpose, not targeted at distraction resistance. **Inference-time methods:** HAVE (arXiv:2509.06596) applies head-adaptive gating at decoding time for hallucination mitigation — parameter-free but incurs per-query overhead. Focus Directions (arXiv:2503.23306) and ContextFocus (arXiv:2601.04131) steer activations at inference without model modification. All require intervention at every forward pass. **Mechanistic fine-tuning (different targets):** ABFT (arXiv:2505.14233) modifies WQ/WK matrices of induction heads to improve ICL — targets different heads with different goals. **Gated attention (new models only):** NeurIPS 2025 Best Paper and Differential Gated Self-Attention (NeurIPS 2025) are architectural innovations for training new models from scratch — not applicable as fine-tuning interventions. **Our unique position:** EAGT is the first to (1) add learnable query-conditional gates specifically to mechanistically-identified entrainment heads (vs. Grft's layer-level intervention, PEAR's fixed coefficients, or MoH's general-purpose routing), (2) train with explicit adaptive context utilization objectives covering both distraction resistance AND relevant-context preservation (vs. Grft's knowledge-conflict-only training), and (3) leverage the NeurIPS 2025 G1 gate design as a surgical fine-tuning tool targeted by mechanistic analysis.\",\n  \"approach\": \"We propose Entrainment-Aware Gated Fine-Tuning (EAGT) in three phases:\\n\\n**Phase 1: Multi-Relation Entrainment Head Discovery.** Using the differentiable masking procedure from the ACL 2025 paper (Gumbel-sigmoid with straight-through estimation, 500 epochs AdamW, sparsity regularization), we identify entrainment heads in Llama-3.1-8B (32 layers × 32 heads = 1024 heads) across the 15 LRE relations used in the original paper. We take the UNION of discovered heads across all relations. Based on the original paper's findings (2.9-10.7% per relation with partial overlap), we estimate the union set at ~15-20% of heads. This is deliberately broader than any single relation's set — the per-head gate mechanism will learn query-specific activation patterns within this candidate set. We also validate on Qwen3-8B as a secondary model, acknowledging that the differentiable masking procedure has not been previously applied to Qwen architectures and may require hyperparameter adjustment.\\n\\n**Phase 2: Gate Insertion and Fine-Tuning.** We surgically insert G1-style gates (following the NeurIPS 2025 gated attention design) exclusively at union-set heads. Each gate is: g_i = σ(W_g · q_i + b_g) where q_i is the query projection for head i at sequence position i, W_g ∈ ℝ^(1×d_head) is a learnable weight, and b_g is bias. The gate produces a scalar per head per sequence position, modulating the ENTIRE attention output of that head at that position: head_output_i = g_i · Attn(Q_i, K_i, V_i). Critically, this is a per-position decision (whether the model uses attended context at position i), NOT a per-attended-token filter — the gate cannot selectively suppress attention to specific key tokens within a single head's computation. Gates are initialized to output ~1.0 (bias initialized to +3.0) to preserve pretrained behavior.\\n\\nFine-tuning uses a three-component loss with corrected per-position semantics:\\n(L_CLM) Standard causal LM loss on clean data to maintain general capabilities.\\n(L_suppress) At answer/reasoning positions in distractor-augmented examples, penalize high gate values: L_suppress = Σ_{i ∈ S_distracted} g_i², where S_distracted is the set of positions where the model should rely on parametric knowledge rather than distractor-contaminated attention. This teaches entrainment head gates to close when their attention output would propagate irrelevant context.\\n(L_preserve) At answer positions in relevant-context examples (ICL demonstrations, RAG with correct retrievals), penalize low gate values: L_preserve = Σ_{i ∈ S_relevant} (1 - g_i)², where S_relevant is the set of positions where the model should use attended context. This teaches gates to stay open when context IS the answer source.\\n\\nOnly gate parameters and optional rank-4 LoRA on entrainment heads' value projections are updated (<0.1% of total parameters).\\n\\n**Phase 3: Training Data Construction.** Following established synthetic distractor methodology: (a) GSM-DC-style symbolic graph problems with controlled distractor injection for math reasoning, with ground-truth distractor positions known by construction; (b) NoisyInstruct-style augmentation with random documents, irrelevant chat histories, and LLM-generated hard negatives for general QA; (c) Clean versions of (a) and (b) without distractors, plus few-shot ICL demonstrations and RAG examples with verified-correct retrievals, for the preservation objective. The key training signal is positional: at answer-generation positions, should the model rely on attention (gate open) or bypass it (gate closed)?\\n\\n**Evaluation — expanded to directly test the static-ablation gap:**\\n(1) Distraction robustness: GSM-NoOp (ICLR 2025), GSM-DC (EMNLP 2025), NoisyBench (arXiv:2601.07226).\\n(2) **Relevant-context utilization (critical new evaluation):** Performance on RAG benchmarks with correct retrievals (Natural Questions open-domain, TriviaQA with gold passages), long-context QA where context contains the answer (NarrativeQA, QuALITY), and few-shot ICL (SST-2, AGNews, DBPedia). We compare EAGT vs. static ablation vs. no intervention on these tasks to quantify the cost of permanent context-sensitivity removal.\\n(3) General capabilities: MMLU, HellaSwag, ARC-Challenge.\\n(4) Ablations: gate-only vs. gate+LoRA, union-set vs. per-relation gating, gate initialization sensitivity, loss weight sweep, static ablation baseline on all benchmarks.\\n(5) Gate behavior analysis: visualization of learned gate patterns across distractor vs. relevant-context examples, per-relation gate specialization analysis.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~200-280h A100 80GB (entrainment discovery on Llama-3.1-8B: ~30h across 15 relations; Qwen3-8B discovery: ~35h with potential hyperparameter iteration; gate training sweeps: ~80h; expanded evaluation suite including RAG benchmarks: ~50h; ablations: ~60h)\",\n      \"gpu_utilization\": \"~25-35% effective; GPU idles during debugging, result analysis, and experiment design\",\n      \"timeline\": \"8-10 weeks (targeting AAAI 2027 July 28 abstract deadline with comfortable buffer)\",\n      \"team\": \"1-2 researchers with mechanistic interpretability experience\",\n      \"estimated_gpu_cost\": \"$300-$420 at ~$1.50/h\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~280-380h A100 80GB (agent runs systematic discovery across all 15 relations, comprehensive loss-weight sweeps, RAG evaluation)\",\n      \"gpu_utilization\": \"~55-65%; agent batches experiments but pauses for human review of union-set topology and gate training stability\",\n      \"timeline\": \"5-7 weeks (comfortably targeting AAAI 2027 July 28 abstract deadline)\",\n      \"team\": \"1 researcher, ~30min/day for reviewing entrainment head maps and loss diagnostics\",\n      \"claude_api_cost\": \"$250-$400 (~3000-5000 turns)\",\n      \"estimated_gpu_cost\": \"$420-$570 at ~$1.50/h\",\n      \"risk_note\": \"Union-set size may require iteration: if too large (>25%), may need overlap-thresholding; if too sparse (<10%), the positional gate signal may be weak. Qwen3-8B discovery may need architecture-specific adjustments to differentiable masking hyperparameters.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~650-950h A100 80GB (exhaustive multi-relation discovery, full gate-design ablations, cross-model validation, Grft reproduction, static ablation baseline across all benchmarks, RAG evaluation suite)\",\n      \"gpu_utilization\": \"~85-95%; agent continuously pipelines experiments with near-zero idle\",\n      \"timeline\": \"2-3 weeks with 4-8 parallel A100 GPUs\",\n      \"team\": \"0 (initial setup ~3h for environment, datasets, and relation probe data)\",\n      \"claude_api_cost\": \"$550-$950 (~6500-12000 turns)\",\n      \"estimated_gpu_cost\": \"$975-$1,425 at ~$1.50/h\",\n      \"speed_bottleneck\": \"Sequential dependency between discovery phase (per model) and gate training phase; 15-relation discovery parallelizes well across GPUs\",\n      \"risk_note\": \"Agent may over-explore gate architectures (MLP vs linear, shared vs independent bias); estimated 15-20% compute on low-value ablations. Risk of reproducing Grft baseline incorrectly due to limited implementation details in the paper.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (abstract deadline July 21, paper deadline July 28, 2026; strong venue for methodological contributions combining mechanistic interpretability + architectural innovation; comfortable timeline for all execution modes; venue change from originally-requested EMNLP 2026 is necessary because the May 25 ARR deadline is too tight for this major revision; AAAI is well-suited for this work's emphasis on novel AI methodology)\",\n    \"EACL 2027 (ARR deadline August 3, 2026; top European NLP venue; only one ARR cycle available for this conference; strong fit for NLP + interpretability work)\",\n    \"ICLR 2027 (deadline expected ~Sep-Oct 2026, not yet announced; highest-tier ML venue; extra time provides buffer for comprehensive experiments and Qwen3 validation)\"\n  ],\n  \"level\": \"solid-to-strong\",\n  \"key_references\": [\n    \"Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs (ACL 2025, Outstanding Paper, arXiv:2505.09338) — entrainment head discovery via differentiable masking; Finding 2: context can be beneficial when relevant; static ablation causes only 0.2-3% ICL degradation, confirming heads are not ICL circuit\",\n    \"Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free (NeurIPS 2025, Best Paper, arXiv:2505.06708) — G1 gate design: query-conditional, post-SDPA sigmoid gates producing per-position per-head scalars; per-head gating identified as most important design choice\",\n    \"Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach (ACL 2025, arXiv:2502.14100) — KEY BASELINE: layer-level gated fine-tuning for context robustness; achieves 98.23%/97.03% on helpful contexts (comparable to baseline); trained on ConflictQA/COUNTERFACT only; hidden-state-conditional gate\",\n    \"PEAR: Position-Embedding-Agnostic Attention Re-weighting Enhances RAG with Zero Inference Overhead (ACM Web Conference 2025, arXiv:2409.19745) — learned continuous reweighting of context-suppressing heads for RAG; validates that learned coefficients outperform binary ablation; fixed post-training coefficients\",\n    \"MoH: Multi-Head Attention as Mixture-of-Head Attention (ICML 2025, arXiv:2410.11842) — dynamic head selection via learned routing achieves +2.4% over LLaMA3-8B with 75% of heads; demonstrates adaptive head selection > static decisions\",\n    \"Unveiling Simplicities of Attention: Adaptive Long-Context Head Identification (QAdA, arXiv:2502.09647) — adaptive per-query head selection outperforms static oracle criterion on long-context benchmarks\",\n    \"Mechanistic Fine-tuning for In-context Learning (arXiv:2505.14233) — ABFT modifies WQ/WK of induction heads; complementary target and method\",\n    \"Lost in the Noise: How Reasoning Models Fail with Contextual Distractors (arXiv:2601.07226, Jan 2026) — NoisyBench evaluation + NoisyInstruct training methodology + RARE reward\",\n    \"GSM-DC: How Is LLM Reasoning Distracted by Irrelevant Context? (EMNLP 2025) — synthetic DAG-based distractor injection benchmark\",\n    \"GSM-Symbolic: Understanding the Limitations of Mathematical Reasoning in LLMs (ICLR 2025) — GSM-NoOp benchmark showing up to 65% drops from irrelevant information\",\n    \"Distractor Injection Attacks on Large Reasoning Models: Characterization and Defense (arXiv:2510.16259) — SFT+RL defense baseline on synthetic adversarial data\",\n    \"Focus Directions Make Your Language Models Pay More Attention to Relevant Contexts (arXiv:2503.23306) — inference-time steering baseline\",\n    \"HAVE: Head-Adaptive Gating and ValuE Calibration for Hallucination Mitigation (arXiv:2509.06596) — inference-time head-adaptive gating baseline\",\n    \"SeerAttention: Learning Intrinsic Sparse Attention in Your LLMs (Microsoft, arXiv:2410.13276) — learned attention gating significantly outperforms static/heuristic sparse attention\",\n    \"On the Role of Attention Heads in Large Language Model Safety (ICLR 2025, arXiv:2410.13708) — static ablation of safety heads destroys safety while general benchmarks show no degradation; demonstrates hidden costs of static ablation\",\n    \"Differential Gated Self-Attention (NeurIPS 2025, arXiv:2505.24054) — excitatory/inhibitory gating for new model training; per-token per-head attention weight modulation\"\n  ],\n  \"description\": \"Entrainment-Aware Gated Fine-Tuning (EAGT) addresses the limitations of static ablation as a defense against LLM distraction. While static ablation of entrainment heads (ACL 2025) effectively reduces distraction with minimal ICL cost (0.2-3%), it permanently removes context-sensitivity — a capability that is essential when context IS relevant, such as in RAG with correct retrievals, long-context QA, and grounded generation. The ACL 2025 paper itself acknowledges (Finding 2) that related context can be beneficial, steering generation toward correct answers, yet never evaluates ablation's impact on this beneficial capability. PEAR (ACM Web 2025) independently validates that context-affecting heads require continuous learned modulation rather than binary removal, and MoH (ICML 2025) demonstrates that dynamic head selection outperforms static decisions by +2.4%. EAGT fills the gap between static ablation (always suppress) and no intervention (always vulnerable) by: (1) discovering the union set of entrainment heads across 15 knowledge relations via differentiable masking (~15-20% of heads), (2) inserting query-conditional sigmoid gates (NeurIPS 2025 G1 design) exclusively at these heads, initialized to preserve pretrained behavior, and (3) fine-tuning with a positionally-supervised loss — gate suppression at answer positions in distractor-augmented examples, and gate preservation at answer positions in relevant-context examples (RAG with gold passages, ICL demonstrations). The gate operates per-position per-head: at each sequence position, it modulates the entire attention output of the gated head, controlling whether the model uses attended context or relies on the residual stream. Key advantages over Grft: head-level vs layer-level granularity, query-conditional gating, mechanistic targeting, and training on both reasoning distractors and knowledge conflicts (vs. Grft's ConflictQA-only training). Key advantages over static ablation: adaptive per-query context-sensitivity modulation with zero permanent capability loss. Key advantages over inference-time methods (HAVE, Focus Directions): no per-query overhead, permanently improved model. Evaluation on Llama-3.1-8B (primary) and Qwen3-8B (secondary, with acknowledged validation risk) across distraction benchmarks (GSM-NoOp, GSM-DC, NoisyBench), relevant-context benchmarks (NQ open-domain, TriviaQA with gold passages, NarrativeQA), ICL tasks, and general capabilities (MMLU, HellaSwag) will demonstrate that EAGT achieves distraction resistance comparable to static ablation while preserving context utilization that static ablation sacrifices.\",\n  \"project_name\": \"entrainment_gated_ft\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL: EMNLP 2026 ARR deadline is May 25, 2026 (8 days from today). Even the auto-research estimate of 1-2 weeks makes this impossible. The manual estimate (3-5 months) and human-in-loop (4-6 weeks) are completely incompatible with this target.\", \"Llama 4 Scout-17B-16E is a Mixture-of-Experts model, but the 'Llama See, Llama Do' entrainment head discovery method was only validated on dense models (GPT-2 XL, Llama-2, Llama-3.1-8B). It is unknown whether entrainment heads exist or are identifiable in the same way in MoE architectures.\", \"Entrainment heads are RELATION-SPECIFIC: the ACL 2025 paper found different heads for different knowledge relations (2.9% for 'country language' vs 10.7% for 'product by company'). The proposal assumes a fixed set of entrainment heads to gate, but in reality you need to either identify a task-general union set or run discovery per-task, significantly complicating the method.\", \"'NaturalQuestions-distractor' is not an existing benchmark — it would need to be constructed. CounterFact is a knowledge editing benchmark, not primarily designed for distraction robustness evaluation. The evaluation plan needs standard distraction benchmarks (GSM-DC, GSM-IC, NoisyBench).\", \"The claim of 'no inference-time overhead' is slightly misleading — the added gate (linear projection + sigmoid per head) adds small but non-zero compute at inference. More accurate: 'negligible inference overhead.'\", \"The proposal does not address how to obtain training signals for the gate-suppress loss: how do you automatically label which context tokens are 'irrelevant' during training? This labeling pipeline is critical but underspecified.\"]\nFeedback: The core idea — applying gated attention as a surgical fine-tuning intervention on entrainment heads — is sound and the gap is real. However, several revisions are needed:\n\n1. **Fix the venue target**: EMNLP 2026 ARR deadline (May 25) is 8 days away — impossible. Target AAAI 2027 (Aug 2026) or ICLR 2027 (Sep-Oct 2026) as primary. Drop EMNLP 2026 from feasible targets.\n\n2. **Replace Llama 4 Scout with a dense model**: Use Llama-3.1-8B (directly validated by the entrainment paper) and Qwen3-8B. If MoE is desired, frame it as a secondary extension with explicit acknowledgment that entrainment head discovery in MoE is unvalidated.\n\n3. **Address relation-specificity of entrainment heads**: Propose a concrete strategy — e.g., run discovery across multiple relations and gate the UNION set of entrainment heads, or show that a task-general entrainment set exists. This is actually an interesting sub-contribution.\n\n4. **Specify the distractor labeling pipeline**: How does the L_suppress loss know which context is irrelevant? Likely answer: construct training pairs where you know ground truth (e.g., inject synthetic distractors into clean problems). Be explicit about this.\n\n5. **Fix evaluation benchmarks**: Replace 'NaturalQuestions-distractor' (doesn't exist) with established distractor benchmarks: GSM-DC, GSM-IC (Google), NoisyBench (from 'Lost in the Noise'), GSM-NoOp. Drop CounterFact unless specifically justified.\n\n6. **Strengthen differentiation from ABFT**: ABFT (arXiv:2505.14233) builds training objectives on attention scores of specific heads. Your method adds NEW parameters (gates) rather than modifying existing weights. Make this distinction sharper — explain why adding gates is better than ABFT-style weight modification for the distraction problem specifically.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"CRITICAL: The 'double-bind' core motivation is contradicted by the source paper. The ACL 2025 paper explicitly states: 'this circuit of entrainment heads collectively corresponds to contextual entrainment rather than other capabilities... and is not strongly related to how LMs process and utilise contextual information or perform ICL more broadly.' Disabling entrainment heads causes only 0.2-3% ICL degradation. The proposal's central claim that 'suppressing entrainment destroys ICL' is factually incorrect, undermining the need for query-conditional gating over simple static ablation.\", \"CRITICAL: The Grft helpful-context accuracy claim is factually wrong. The proposal states 'Grft has poor preservation of helpful context utilization (80-92% vs 97%+ baseline).' The actual Grft paper (Table 1) shows Grft achieves 98.23% (short) and 97.03% (long) on helpful contexts — nearly identical to the baseline. The 80-92% figures are from the ICL BASELINE method, not Grft. This misattribution is central to the competitive differentiation story and must be corrected.\", \"IMPORTANT: If static ablation already preserves ICL with minimal cost (0.2-3%), the proposal needs a much stronger justification for why query-conditional gating is necessary. What SPECIFIC capability does static ablation harm that gating preserves? Is it relevant-context utilization in RAG? Context-dependent reasoning? This must be empirically grounded, not assumed.\", \"MODERATE: The venue has been changed from the user's requested EMNLP 2026 ARR to AAAI 2027. While this is necessary (EMNLP 2026 ARR deadline ~May 25 has passed), the proposal should explicitly acknowledge this venue change and explain why AAAI 2027 is a suitable alternative for this NLP-focused work.\", \"MODERATE: The tri-objective loss (L_suppress + L_preserve + L_CLM) operates at the gate-value level (MSE on gate outputs), but gate values are per-head scalars applied uniformly across all tokens in a sequence position. The L_suppress loss 'penalizing gate values > 0 on distractor tokens' implies per-token gate values, but the G1 gate formula g_i = σ(W_g · q_i + b_g) produces a scalar per query position per head — it cannot distinguish between attending to a distractor token vs. a relevant token within the same attention computation. This architectural mismatch needs to be addressed.\", \"MINOR: Qwen3-8B is unvalidated for entrainment head discovery. The ACL 2025 method was tested only on GPT-2 XL, Llama-2, and Llama-3.1-8B. Qwen3-8B uses a different architecture. While it likely works, this adds risk that should be acknowledged.\"]\nFeedback: The core synthesis (mechanistic head identification + learned per-head gating + fine-tuning) remains novel and promising, but two factual errors and a motivation problem need fixing:\n\n1. **Fix the double-bind narrative.** The ACL 2025 paper shows entrainment heads are NOT the ICL circuit (0.2-3% ICL impact from ablation). Reframe the motivation: the problem isn't 'static ablation destroys ICL' but rather 'static ablation is a blunt instrument that permanently removes context-sensitivity, which may hurt performance on tasks requiring relevant-context utilization (e.g., RAG with good retrievals, long-context QA where context IS relevant).' Design an experiment that specifically measures this cost: compare static ablation vs. EAGT on tasks where the context IS relevant and helpful, not just ICL benchmarks.\n\n2. **Correct the Grft accuracy claim.** Grft achieves 97-98% on helpful contexts, not 80-92%. The actual weaknesses of Grft are: (a) layer-level granularity (less precise), (b) trained only on knowledge-conflict scenarios (ConflictQA/COUNTERFACT), not on reasoning distractors (GSM-DC/NoisyBench), (c) gate is hidden-state-conditional rather than query-conditional. Differentiate on THESE actual weaknesses.\n\n3. **Fix the gate-token mismatch.** The G1 gate g_i = σ(W_g · q_i + b_g) produces a per-head scalar for each sequence position. It modulates the ENTIRE attention output of that head for that query position — it cannot selectively suppress attention to specific distractor tokens while preserving attention to relevant tokens within the same head's computation. The L_suppress and L_preserve losses need to be reformulated to operate on the gate's actual semantics (per-position, not per-attended-token). One approach: L_suppress penalizes high gate values at positions where the model should ignore all context (e.g., the answer token position when distractors are present), and L_preserve penalizes low gate values at positions where the model should attend to context.\n\n4. **Strengthen the 'why not just ablate' argument.** If you can simply zero out entrainment heads with 0.2-3% ICL cost, why add gates? The answer should be: (a) static ablation is all-or-nothing per head, while gating allows continuous modulation, (b) the 0.2-3% ICL cost was measured on limited tasks — broader context-dependent tasks may show larger costs, (c) gating enables the model to use the same heads for ICL when context IS relevant. But this last point needs empirical support.\n\n5. **Consider targeting EMNLP 2026 rolling ARR** if there's a later cycle (check June/July ARR deadlines), or explicitly justify AAAI 2027 as the primary venue despite the user's EMNLP preference.\n\n### Round 3 review\nVerdict: error\nIssues: []\nFeedback: Review subprocess failed (timeout or parse error)\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-17T09:07:23.893Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T09:07:23.893Z",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae"
+}
+```
+
+---
+
+## Round 1
+
+37 recorded events
+
+### User
+
+_source line 3 · 2026-05-17T09:07:23.941Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-17 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission. Track: Machine Learning for NLP / Question Answering.
+
+Direction: Training-time mechanistic fix for contextual entrainment — teaching LLMs to
+selectively suppress irrelevant-context influence while preserving in-context learning,
+by targeting the shared attention circuit that enables both. LLMs exhibit "contextual
+entrainment": attention heads mechanistically assign higher logits to ANY token previously
+seen in context, regardless of task relevance (ACL 2025, "Llama See, Llama Do"). This
+is the same mechanism that powers in-context learning — creating a fundamental double-bind
+where suppressing entrainment destroys ICL. Existing training fixes (DPO on distractor
+data, RARE reward, data augmentation) are purely behavioral: they teach models to produce
+correct outputs DESPITE entrainment still occurring internally. These behavioral fixes
+do not generalize to novel distractor types, require task-specific distractor exposure
+during training, and fail on complex reasoning (SFT fails entirely; even RL-based RARE
+shows limited transfer). No training method targets the entrainment circuit itself to
+make it relevance-conditional.
+
+Seed Papers:
+- "Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction
+  in LLMs" (ACL 2025) — identifies the mechanism: specific "entrainment heads" boost
+  logits for all context-seen tokens; these SAME heads enable in-context learning;
+  proposes inference-time head masking but no training fix
+- "Focus Directions Make Your Language Models Pay More Attention to Relevant Contexts"
+  (arXiv:2503.23306, Mar 2025) — identifies "contextual heads" and "focus directions"
+  in key/query space that control attention routing; proposes activation steering at
+  inference time only
+- "Lost in the Noise: How Reasoning Models Fail with Contextual Distractors"
+  (arXiv:2601.07226, Jan 2026) — proves SFT and outcome-reward RL FAIL for complex
+  reasoning under distraction; only RARE (rationale-aware reward) partially works;
+  reveals inverse scaling where more test-time compute worsens distraction vulnerability
+- "How Is LLM Reasoning Distracted by Irrelevant Context?" (EMNLP 2025 Oral,
+  arXiv:2505.18761) — GSM-DC benchmark; shows continued pretraining with distractors
+  helps on simple math but generalizes poorly; full fine-tuning > LoRA
+- "Adaptive Distraction" (NeurIPS 2025, arXiv:2502.01609) — DPO on synthetic adversarial
+  distractors; behavioral fix that improves robustness but does not modify the entrainment
+  circuit; requires exposure to specific distractor types during training
+- "Reducing Distraction in Long-Context Language Models by Focused Learning"
+  (arXiv:2411.05928, Nov 2024) — contrastive learning between full-context and
+  retrieved-relevant-only contexts; closest to mechanistic but does not specifically
+  target entrainment heads or the ICL-distraction shared circuit
+
+Known Gaps:
+- No training method targets the ENTRAINMENT CIRCUIT (the specific attention heads
+  identified in "Llama See, Llama Do") — all existing fixes are behavioral
+- The fundamental double-bind is unaddressed: entrainment heads enable BOTH ICL and
+  distraction vulnerability; no principled mechanism exists to make them relevance-conditional
+- Behavioral fixes (DPO, RARE) do not generalize: they work for distractor types seen
+  during training but fail on novel distraction patterns (proven by transfer experiments)
+- SFT completely fails for complex reasoning under distraction (Jan 2026) — simple
+  data augmentation is insufficient
+- The inverse scaling finding (more test-time compute = more distraction vulnerability)
+  suggests the problem is architectural, not behavioral
+- No training loss directly penalizes the entrainment pattern while preserving the
+  ICL pattern in the same heads
+
+In-scope: Training-time interventions that modify the entrainment circuit's behavior
+to become relevance-conditional, rather than teaching downstream reasoning to compensate.
+Specifically: attention regularization that penalizes entrainment strength on tokens
+provably irrelevant to the task while preserving it for relevant tokens, contrastive
+head training where the same passage appears as relevant (for one query) and irrelevant
+(for another query) and entrainment heads must modulate accordingly, relevance-gated
+entrainment where the model learns a query-dependent gating mechanism on entrainment
+heads during training, circuit-level DPO where preferences target internal attention
+patterns (not just output correctness), progressive training from strong distractors
+(lexically unrelated) to subtle distractors (semantically adjacent but irrelevant).
+
+NOT in-scope: Inference-time activation steering (Focus Directions already does this),
+pure data augmentation with distractors (proven insufficient for complex tasks), DPO/RARE
+that only targets output behavior without modifying the entrainment mechanism, methods
+requiring explicit relevance labels at inference time, post-hoc detection and regeneration,
+prompt engineering for distractor resistance.
+
+Contribution type: METHOD ONLY. Must propose a concrete training-time intervention that
+modifies the entrainment circuit to become relevance-conditional. The method must
+demonstrate: (1) improved distractor robustness compared to behavioral baselines (DPO,
+RARE), (2) preserved in-context learning ability (ICL benchmarks must not degrade),
+(3) generalization to novel distractor types NOT seen during training (the key advantage
+over behavioral fixes), (4) no reliance on explicit relevance signals at inference time.
+
+EVAL PROTOCOL:
+TRAIN: Fine-tune from existing checkpoints (Llama-3-8B, Qwen2.5-7B/14B) with
+entrainment-aware training objective.
+EVALUATE on:
+- Distractor robustness: GSM-DC, GSM-NoOp, custom distractor benchmarks across
+  difficulty levels
+- ICL preservation: standard few-shot benchmarks (MMLU, BBH, ARC) must NOT degrade
+- Generalization to novel distractors: test on distractor types NOT in training data
+  (lexical, semantic, structural, adversarial)
+- Comparison against behavioral baselines: DPO (NeurIPS 2025), RARE (Jan 2026),
+  SFT on distractor data, vanilla model
+- Comparison against inference-time fixes: Focus Directions, entrainment head masking
+- Mechanistic analysis: entrainment head activation before/after training, showing
+  selective suppression for irrelevant context
+- Transfer: does fixing entrainment on math distractors transfer to reading comprehension
+  distractors? (behavioral fixes don't transfer well)
+- Ablation: which training signal components drive generalization vs. in-domain improvement
+- Inverse scaling test: does the fix resolve the "more compute = more vulnerable" pattern?
+
+Building blocks: Open models (Llama-3-8B, Qwen2.5-7B/14B), mechanistic analysis tools
+(attention head probing from "Llama See, Llama Do"), Focus Directions implementation
+for comparison, GSM-DC/GSM-NoOp benchmarks, synthetic distractor generation, DPO/RLHF
+infrastructure, ICL evaluation suites.
+
+HARD CONSTRAINTS:
+Compute: ≤200 H100-hours total. Fine-tune from existing checkpoints.
+Eval: Must report BOTH distractor robustness AND ICL preservation. A method that
+eliminates distraction by destroying ICL is NOT acceptable (this is the double-bind).
+Must demonstrate generalization to UNSEEN distractor types — this is the key metric
+that distinguishes mechanistic fixes from behavioral ones.
+Must include mechanistic analysis showing entrainment head behavior change (not just
+output accuracy improvement).
+
+Look for: Query-conditional gating on entrainment heads that learns to modulate
+entrainment strength based on query-context alignment (the heads remain active for ICL
+but suppress for irrelevant context); contrastive training at the ATTENTION level where
+the same document is presented as relevant-context (for query A) and irrelevant-context
+(for query B) and the model's entrainment heads must respond differently; progressive
+relevance curriculum starting from easy discrimination (completely unrelated distractors)
+to hard discrimination (topically related but task-irrelevant context); circuit-level
+preference learning where DPO targets not just output correctness but internal attention
+distribution over relevant vs. irrelevant context tokens.
+
+Avoid: Pure data augmentation with distractors (EMNLP 2025 already shows this is
+insufficient), standard DPO on output behavior only (NeurIPS 2025 already does this),
+inference-time steering (Focus Directions already does this), methods that require
+knowing which context is irrelevant at inference time (must be internalized), simple
+attention regularization without query-conditioning (would destroy ICL), approaches
+that only work on math/arithmetic distractors.
+
+IDEA GENERATION QUALITY CONSTRAINTS (hard rules from historical bad cases):
+
+1. No strawman problems: The entrainment mechanism must cite "Llama See, Llama Do"
+   specifically. The failure of behavioral fixes must cite "Lost in the Noise" (Jan 2026)
+   and NeurIPS 2025 DPO paper. The ICL-distraction shared circuit claim must be grounded
+   in the mechanistic evidence from the ACL 2025 paper.
+
+2. No observation-only ideas: Discovering new distractor failure modes is NOT a
+   contribution. Must propose a complete training method targeting the entrainment circuit.
+
+3. No mediocre methods: Your method MUST answer:
+   - Core Insight: What structural property of the entrainment circuit makes it possible
+     to selectively suppress distraction without killing ICL?
+   - Why Not Obvious: Why doesn't DPO/RARE already solve this? (Hint: they fix behavior
+     not mechanism, so they don't generalize to novel distractors)
+   - Information Exploited: What signal about "this context is irrelevant" do you use
+     during training that behavioral methods don't? How do you get this signal without
+     requiring relevance labels at inference time?
+   - Mechanistic Argument: From the entrainment head mechanism, explain WHY your
+     intervention makes these heads query-conditional rather than unconditionally boosting
+     all context tokens.
+   "Add distractor data to training" is REJECTED (EMNLP 2025 already proves this is
+   insufficient). "Do DPO with distractor preferences" is REJECTED (NeurIPS 2025 already
+   does this — behavioral fix). Must explain what is structurally different about your
+   approach at the CIRCUIT level.
+
+4. No rehashing: Search "contextual entrainment training fix", "distraction robustness
+   training LLM", "attention head regularization relevance" with 3+ queries. Differentiate
+   from: DPO distractor training (behavioral), RARE (behavioral RL), Focus Directions
+   (inference-time), data augmentation (insufficient for complex tasks).
+
+5. No experiment-padding: The insight must explain the structural relationship between
+   entrainment heads, ICL, and distraction — and why your intervention can surgically
+   modify one function (distraction) without destroying the other (ICL). This is the
+   theoretical contribution.
+
+6. Method pattern restrictions: "Train with more distractors" REJECTED (proven
+   insufficient). "DPO on distractor outputs" REJECTED (already exists, behavioral only).
+   "Regularize attention heads" needs justification for why this doesn't destroy ICL.
+   "Contrastive learning" needs explanation of what makes the contrastive signal operate
+   at the CIRCUIT level rather than the behavioral level.
+
+THEORETICAL ANCHOR: The fundamental problem is that contextual entrainment is a
+DUAL-USE mechanism: the same attention heads that boost logits for context-seen tokens
+(causing distraction) ALSO enable in-context learning (where boosting context-seen tokens
+IS the correct behavior). The training fix must make this mechanism QUERY-CONDITIONAL:
+active when context is relevant to the current query (ICL mode) and suppressed when
+context is irrelevant (distraction resistance mode). The key difficulty is that
+"relevance" is not a fixed property of context — the same passage can be relevant for
+one query and irrelevant for another. Therefore, the gating cannot be a static property
+of the context; it must be dynamically computed from query-context interaction. Possible
+approaches: (1) train a relevance-gating layer that modulates entrainment head output
+based on query-key alignment scores (learned during training, internalized at inference),
+(2) contrastive training at the HEAD level where the same context appears in relevant
+and irrelevant roles, forcing the model to develop query-conditional entrainment,
+(3) progressive curriculum from easy relevance discrimination to hard (topically similar
+but task-irrelevant), (4) auxiliary loss on entrainment head attention patterns that
+penalizes uniform boosting and rewards selective boosting correlated with downstream
+task relevance.
+
+CRITICAL DIFFERENTIATION from existing work:
+- vs. DPO/RARE (behavioral): Your method modifies the entrainment CIRCUIT, not just
+  output behavior. Key evidence: generalization to unseen distractor types.
+- vs. Focus Directions (inference-time): Your method internalizes relevance-gating
+  during training; no steering needed at inference time.
+- vs. Data augmentation (EMNLP 2025): Your method provides a TRAINING SIGNAL at the
+  attention head level, not just more examples. Key evidence: works on complex reasoning
+  where data augmentation fails.
+- vs. Entrainment head masking (ACL 2025): Your method preserves the heads but makes
+  them conditional, rather than ablating them entirely (which destroys ICL).
+
+Tag: direction=contextual_entrainment_fix, contribution_type=method,
+sub_direction=relevance_conditional_entrainment, target_venues=["EMNLP 2026", "ACL 2026"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-17?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 4/10)
+{
+  "title": "Entrainment-Aware Gated Fine-Tuning: Query-Conditional Head Gates for Adaptive Context Utilization",
+  "core_problem": "LLMs' vulnerability to irrelevant context (distraction) is mechanistically localized to entrainment heads (2.9-10.7% of attention heads per relation, ACL 2025 Outstanding Paper). Static ablation of these heads effectively reduces distraction with only 0.2-3% ICL degradation, confirming they are not part of the core ICL circuit. However, static ablation is a permanent, binary intervention: it unconditionally removes context-sensitivity from these heads regardless of whether the context is relevant or irrelevant. The ACL 2025 paper explicitly acknowledges (Finding 2) that context can be beneficial when relevant — e.g., related-domain context steers generation toward correct answers — yet never evaluates ablation's impact on this capability. In real deployment scenarios (RAG with correct retrievals, long-context QA where context IS the answer source, grounded generation), permanently disabling context-sensitivity is counterproductive. Recent work on RAG head reweighting (PEAR, ACM Web 2025) demonstrates that context-suppressing heads should be continuously attenuated rather than removed, and that learned coefficients outperform binary decisions. Dynamic head selection methods (MoH, ICML 2025; QAdA, 2025) further show that adaptive per-query head activation consistently outperforms static head pruning. The gap: no method combines mechanistic entrainment head identification with query-conditional per-head gating to enable adaptive context utilization — suppressing distraction when context is irrelevant while preserving context-sensitivity when context is helpful.",
+  "opportunity": "Three building blocks now exist but remain uncombined: (1) The ACL 2025 entrainment paper provides differentiable masking for head discovery across 15 knowledge relations, with code available at github.com/frankniujc/entrainment, and crucially identifies heads whose context-sensitivity is harmful for irrelevant context but potentially beneficial for relevant context; (2) The NeurIPS 2025 Best Paper on gated attention proved that query-dependent per-head sigmoid gates (G1 design: query-projected, post-SDPA) enable heads to modulate their output from full contribution to zero, with per-head gating identified as the single most important design choice; (3) PEAR (ACM Web 2025) demonstrated that learned continuous coefficients on context-affecting heads outperform binary ablation for RAG, validating the premise that learned gating is superior to static head removal. The opportunity is to synthesize these into a fine-tuning intervention that adds query-conditional gates ONLY to mechanistically-identified entrainment heads, training with a dual-objective loss to produce a permanently modified model that adaptively modulates context-sensitivity per query. This requires no inference-time steering, adds negligible parameter overhead (<0.1%), and negligible inference overhead (one linear+sigmoid per gated head).",
+  "landscape": "**Training-based distraction defense (whole-model):** NoisyInstruct + RARE reward (arXiv:2601.07226, Jan 2026) trains models via SFT+RL on noisy data, achieving strong robustness gains but modifying all parameters without mechanistic targeting. Distractor Injection Attacks defense (arXiv:2510.16259) similarly uses SFT+RL on synthetic adversarial data. GSM-DC (EMNLP 2025) showed continued pretraining with distractors is effective for reasoning robustness. **Training-based (layer-level gating):** Grft (ACL 2025, arXiv:2502.14100) is a key baseline — a gated representation fine-tuning approach applying sigmoid gating at a single layer (layer 7 in Llama-2-7B). Grft achieves strong helpful-context preservation (98.23% short, 97.03% long — nearly matching the ~97% baseline) with meaningful adversarial robustness gains (60-73% without requery, 82-98% with requery). Its actual limitations are: (a) operates at layer-level granularity rather than at mechanistically-identified heads, (b) trained exclusively on knowledge-conflict scenarios (ConflictQA/COUNTERFACT) — untested on reasoning distractors (GSM-DC, NoisyBench), (c) gate is hidden-state-conditional rather than query-conditional, (d) limited to single-context evaluation. Only 36.9K parameters (0.0005% of model). **Learned head reweighting for RAG:** PEAR (ACM Web 2025) identifies context-suppressing attention heads and learns continuous reweighting coefficients via a context-copying proxy task, achieving improved RAG accuracy with zero inference overhead. ADR similarly detects and reweights RAG-suppressing heads. Both validate that learned continuous modulation of head outputs outperforms binary decisions, but neither uses mechanistic head identification or query-conditional gating — coefficients are fixed after training. **Dynamic head selection:** MoH (ICML 2025) treats attention heads as MoE experts with a learned router, achieving +2.4% accuracy over LLaMA3-8B on 14 benchmarks using only 75% of heads. QAdA demonstrates that adaptive per-query head selection outperforms even static oracle selection on long-context tasks. SeerAttention (Microsoft, 2025) shows learned attention gating significantly outperforms static/heuristic sparse attention methods. These demonstrate the superiority of dynamic over static head decisions but are general-purpose, not targeted at distraction resistance. **Inference-time methods:** HAVE (arXiv:2509.06596) applies head-adaptive gating at decoding time for hallucination mitigation — parameter-free but incurs per-query overhead. Focus Directions (arXiv:2503.23306) and ContextFocus (arXiv:2601.04131) steer activations at inference without model modification. All require intervention at every forward pass. **Mechanistic fine-tuning (different targets):** ABFT (arXiv:2505.14233) modifies WQ/WK matrices of induction heads to improve ICL — targets different heads with different goals. **Gated attention (new models only):** NeurIPS 2025 Best Paper and Differential Gated Self-Attention (NeurIPS 2025) are architectural innovations for training new models from scratch — not applicable as fine-tuning interventions. **Our unique position:** EAGT is the first to (1) add learnable query-conditional gates specifically to mechanistically-identified entrainment heads (vs. Grft's layer-level intervention, PEAR's fixed coefficients, or MoH's general-purpose routing), (2) train with explicit adaptive context utilization objectives covering both distraction resistance AND relevant-context preservation (vs. Grft's knowledge-conflict-only training), and (3) leverage the NeurIPS 2025 G1 gate design as a surgical fine-tuning tool targeted by mechanistic analysis.",
+  "approach": "We propose Entrainment-Aware Gated Fine-Tuning (EAGT) in three phases:\n\n**Phase 1: Multi-Relation Entrainment Head Discovery.** Using the differentiable masking procedure from the ACL 2025 paper (Gumbel-sigmoid with straight-through estimation, 500 epochs AdamW, sparsity regularization), we identify entrainment heads in Llama-3.1-8B (32 layers × 32 heads = 1024 heads) across the 15 LRE relations used in the original paper. We take the UNION of discovered heads across all relations. Based on the original paper's findings (2.9-10.7% per relation with partial overlap), we estimate the union set at ~15-20% of heads. This is deliberately broader than any single relation's set — the per-head gate mechanism will learn query-specific activation patterns within this candidate set. We also validate on Qwen3-8B as a secondary model, acknowledging that the differentiable masking procedure has not been previously applied to Qwen architectures and may require hyperparameter adjustment.\n\n**Phase 2: Gate Insertion and Fine-Tuning.** We surgically insert G1-style gates (following the NeurIPS 2025 gated attention design) exclusively at union-set heads. Each gate is: g_i = σ(W_g · q_i + b_g) where q_i is the query projection for head i at sequence position i, W_g ∈ ℝ^(1×d_head) is a learnable weight, and b_g is bias. The gate produces a scalar per head per sequence position, modulating the ENTIRE attention output of that head at that position: head_output_i = g_i · Attn(Q_i, K_i, V_i). Critically, this is a per-position decision (whether the model uses attended context at position i), NOT a per-attended-token filter — the gate cannot selectively suppress attention to specific key tokens within a single head's computation. Gates are initialized to output ~1.0 (bias initialized to +3.0) to preserve pretrained behavior.\n\nFine-tuning uses a three-component loss with corrected per-position semantics:\n(L_CLM) Standard causal LM loss on clean data to maintain general capabilities.\n(L_suppress) At answer/reasoning positions in distractor-augmented examples, penalize high gate values: L_suppress = Σ_{i ∈ S_distracted} g_i², where S_distracted is the set of positions where the model should rely on parametric knowledge rather than distractor-contaminated attention. This teaches entrainment head gates to close when their attention output would propagate irrelevant context.\n(L_preserve) At answer positions in relevant-context examples (ICL demonstrations, RAG with correct retrievals), penalize low gate values: L_preserve = Σ_{i ∈ S_relevant} (1 - g_i)², where S_relevant is the set of positions where the model should use attended context. This teaches gates to stay open when context IS the answer source.\n\nOnly gate parameters and optional rank-4 LoRA on entrainment heads' value projections are updated (<0.1% of total parameters).\n\n**Phase 3: Training Data Construction.** Following established synthetic distractor methodology: (a) GSM-DC-style symbolic graph problems with controlled distractor injection for math reasoning, with ground-truth distractor positions known by construction; (b) NoisyInstruct-style augmentation with random documents, irrelevant chat histories, and LLM-generated hard negatives for general QA; (c) Clean versions of (a) and (b) without distractors, plus few-shot ICL demonstrations and RAG examples with verified-correct retrievals, for the preservation objective. The key training signal is positional: at answer-generation positions, should the model rely on attention (gate open) or bypass it (gate closed)?\n\n**Evaluation — expanded to directly test the static-ablation gap:**\n(1) Distraction robustness: GSM-NoOp (ICLR 2025), GSM-DC (EMNLP 2025), NoisyBench (arXiv:2601.07226).\n(2) **Relevant-context utilization (critical new evaluation):** Performance on RAG benchmarks with correct retrievals (Natural Questions open-domain, TriviaQA with gold passages), long-context QA where context contains the answer (NarrativeQA, QuALITY), and few-shot ICL (SST-2, AGNews, DBPedia). We compare EAGT vs. static ablation vs. no intervention on these tasks to quantify the cost of permanent context-sensitivity removal.\n(3) General capabilities: MMLU, HellaSwag, ARC-Challenge.\n(4) Ablations: gate-only vs. gate+LoRA, union-set vs. per-relation gating, gate initialization sensitivity, loss weight sweep, static ablation baseline on all benchmarks.\n(5) Gate behavior analysis: visualization of learned gate patterns across distractor vs. relevant-context examples, per-relation gate specialization analysis.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200-280h A100 80GB (entrainment discovery on Llama-3.1-8B: ~30h across 15 relations; Qwen3-8B discovery: ~35h with potential hyperparameter iteration; gate training sweeps: ~80h; expanded evaluation suite including RAG benchmarks: ~50h; ablations: ~60h)",
+      "gpu_utilization": "~25-35% effective; GPU idles during debugging, result analysis, and experiment design",
+      "timeline": "8-10 weeks (targeting AAAI 2027 July 28 abstract deadline with comfortable buffer)",
+      "team": "1-2 researchers with mechanistic interpretability experience",
+      "estimated_gpu_cost": "$300-$420 at ~$1.50/h"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~280-380h A100 80GB (agent runs systematic discovery across all 15 relations, comprehensive loss-weight sweeps, RAG evaluation)",
+      "gpu_utilization": "~55-65%; agent batches experiments but pauses for human review of union-set topology and gate training stability",
+      "timeline": "5-7 weeks (comfortably targeting AAAI 2027 July 28 abstract deadline)",
+      "team": "1 researcher, ~30min/day for reviewing entrainment head maps and loss diagnostics",
+      "claude_api_cost": "$250-$400 (~3000-5000 turns)",
+      "estimated_gpu_cost": "$420-$570 at ~$1.50/h",
+      "risk_note": "Union-set size may require iteration: if too large (>25%), may need overlap-thresholding; if too sparse (<10%), the positional gate signal may be weak. Qwen3-8B discovery may need architecture-specific adjustments to differentiable masking hyperparameters."
+    },
+    "auto_research": {
+      "gpu_hours": "~650-950h A100 80GB (exhaustive multi-relation discovery, full gate-design ablations, cross-model validation, Grft reproduction, static ablation baseline across all benchmarks, RAG evaluation suite)",
+      "gpu_utilization": "~85-95%; agent continuously pipelines experiments with near-zero idle",
+      "timeline": "2-3 weeks with 4-8 parallel A100 GPUs",
+      "team": "0 (initial setup ~3h for environment, datasets, and relation probe data)",
+      "claude_api_cost": "$550-$950 (~6500-12000 turns)",
+      "estimated_gpu_cost": "$975-$1,425 at ~$1.50/h",
+      "speed_bottleneck": "Sequential dependency between discovery phase (per model) and gate training phase; 15-relation discovery parallelizes well across GPUs",
+      "risk_note": "Agent may over-explore gate architectures (MLP vs linear, shared vs independent bias); estimated 15-20% compute on low-value ablations. Risk of reproducing Grft baseline incorrectly due to limited implementation details in the paper."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (abstract deadline July 21, paper deadline July 28, 2026; strong venue for methodological contributions combining mechanistic interpretability + architectural innovation; comfortable timeline for all execution modes; venue change from originally-requested EMNLP 2026 is necessary because the May 25 ARR deadline is too tight for this major revision; AAAI is well-suited for this work's emphasis on novel AI methodology)",
+    "EACL 2027 (ARR deadline August 3, 2026; top European NLP venue; only one ARR cycle available for this conference; strong fit for NLP + interpretability work)",
+    "ICLR 2027 (deadline expected ~Sep-Oct 2026, not yet announced; highest-tier ML venue; extra time provides buffer for comprehensive experiments and Qwen3 validation)"
+  ],
+  "level": "solid-to-strong",
+  "key_references": [
+    "Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs (ACL 2025, Outstanding Paper, arXiv:2505.09338) — entrainment head discovery via differentiable masking; Finding 2: context can be beneficial when relevant; static ablation causes only 0.2-3% ICL degradation, confirming heads are not ICL circuit",
+    "Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free (NeurIPS 2025, Best Paper, arXiv:2505.06708) — G1 gate design: query-conditional, post-SDPA sigmoid gates producing per-position per-head scalars; per-head gating identified as most important design choice",
+    "Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach (ACL 2025, arXiv:2502.14100) — KEY BASELINE: layer-level gated fine-tuning for context robustness; achieves 98.23%/97.03% on helpful contexts (comparable to baseline); trained on ConflictQA/COUNTERFACT only; hidden-state-conditional gate",
+    "PEAR: Position-Embedding-Agnostic Attention Re-weighting Enhances RAG with Zero Inference Overhead (ACM Web Conference 2025, arXiv:2409.19745) — learned continuous reweighting of context-suppressing heads for RAG; validates that learned coefficients outperform binary ablation; fixed post-training coefficients",
+    "MoH: Multi-Head Attention as Mixture-of-Head Attention (ICML 2025, arXiv:2410.11842) — dynamic head selection via learned routing achieves +2.4% over LLaMA3-8B with 75% of heads; demonstrates adaptive head selection > static decisions",
+    "Unveiling Simplicities of Attention: Adaptive Long-Context Head Identification (QAdA, arXiv:2502.09647) — adaptive per-query head selection outperforms static oracle criterion on long-context benchmarks",
+    "Mechanistic Fine-tuning for In-context Learning (arXiv:2505.14233) — ABFT modifies WQ/WK of induction heads; complementary target and method",
+    "Lost in the Noise: How Reasoning Models Fail with Contextual Distractors (arXiv:2601.07226, Jan 2026) — NoisyBench evaluation + NoisyInstruct training methodology + RARE reward",
+    "GSM-DC: How Is LLM Reasoning Distracted by Irrelevant Context? (EMNLP 2025) — synthetic DAG-based distractor injection benchmark",
+    "GSM-Symbolic: Understanding the Limitations of Mathematical Reasoning in LLMs (ICLR 2025) — GSM-NoOp benchmark showing up to 65% drops from irrelevant information",
+    "Distractor Injection Attacks on Large Reasoning Models: Characterization and Defense (arXiv:2510.16259) — SFT+RL defense baseline on synthetic adversarial data",
+    "Focus Directions Make Your Language Models Pay More Attention to Relevant Contexts (arXiv:2503.23306) — inference-time steering baseline",
+    "HAVE: Head-Adaptive Gating and ValuE Calibration for Hallucination Mitigation (arXiv:2509.06596) — inference-time head-adaptive gating baseline",
+    "SeerAttention: Learning Intrinsic Sparse Attention in Your LLMs (Microsoft, arXiv:2410.13276) — learned attention gating significantly outperforms static/heuristic sparse attention",
+    "On the Role of Attention Heads in Large Language Model Safety (ICLR 2025, arXiv:2410.13708) — static ablation of safety heads destroys safety while general benchmarks show no degradation; demonstrates hidden costs of static ablation",
+    "Differential Gated Self-Attention (NeurIPS 2025, arXiv:2505.24054) — excitatory/inhibitory gating for new model training; per-token per-head attention weight modulation"
+  ],
+  "description": "Entrainment-Aware Gated Fine-Tuning (EAGT) addresses the limitations of static ablation as a defense against LLM distraction. While static ablation of entrainment heads (ACL 2025) effectively reduces distraction with minimal ICL cost (0.2-3%), it permanently removes context-sensitivity — a capability that is essential when context IS relevant, such as in RAG with correct retrievals, long-context QA, and grounded generation. The ACL 2025 paper itself acknowledges (Finding 2) that related context can be beneficial, steering generation toward correct answers, yet never evaluates ablation's impact on this beneficial capability. PEAR (ACM Web 2025) independently validates that context-affecting heads require continuous learned modulation rather than binary removal, and MoH (ICML 2025) demonstrates that dynamic head selection outperforms static decisions by +2.4%. EAGT fills the gap between static ablation (always suppress) and no intervention (always vulnerable) by: (1) discovering the union set of entrainment heads across 15 knowledge relations via differentiable masking (~15-20% of heads), (2) inserting query-conditional sigmoid gates (NeurIPS 2025 G1 design) exclusively at these heads, initialized to preserve pretrained behavior, and (3) fine-tuning with a positionally-supervised loss — gate suppression at answer positions in distractor-augmented examples, and gate preservation at answer positions in relevant-context examples (RAG with gold passages, ICL demonstrations). The gate operates per-position per-head: at each sequence position, it modulates the entire attention output of the gated head, controlling whether the model uses attended context or relies on the residual stream. Key advantages over Grft: head-level vs layer-level granularity, query-conditional gating, mechanistic targeting, and training on both reasoning distractors and knowledge conflicts (vs. Grft's ConflictQA-only training). Key advantages over static ablation: adaptive per-query context-sensitivity modulation with zero permanent capability loss. Key advantages over inference-time methods (HAVE, Focus Directions): no per-query overhead, permanently improved model. Evaluation on Llama-3.1-8B (primary) and Qwen3-8B (secondary, with acknowledged validation risk) across distraction benchmarks (GSM-NoOp, GSM-DC, NoisyBench), relevant-context benchmarks (NQ open-domain, TriviaQA with gold passages, NarrativeQA), ICL tasks, and general capabilities (MMLU, HellaSwag) will demonstrate that EAGT achieves distraction resistance comparable to static ablation while preserving context utilization that static ablation sacrifices.",
+  "project_name": "entrainment_gated_ft",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL: EMNLP 2026 ARR deadline is May 25, 2026 (8 days from today). Even the auto-research estimate of 1-2 weeks makes this impossible. The manual estimate (3-5 months) and human-in-loop (4-6 weeks) are completely incompatible with this target.", "Llama 4 Scout-17B-16E is a Mixture-of-Experts model, but the 'Llama See, Llama Do' entrainment head discovery method was only validated on dense models (GPT-2 XL, Llama-2, Llama-3.1-8B). It is unknown whether entrainment heads exist or are identifiable in the same way in MoE architectures.", "Entrainment heads are RELATION-SPECIFIC: the ACL 2025 paper found different heads for different knowledge relations (2.9% for 'country language' vs 10.7% for 'product by company'). The proposal assumes a fixed set of entrainment heads to gate, but in reality you need to either identify a task-general union set or run discovery per-task, significantly complicating the method.", "'NaturalQuestions-distractor' is not an existing benchmark — it would need to be constructed. CounterFact is a knowledge editing benchmark, not primarily designed for distraction robustness evaluation. The evaluation plan needs standard distraction benchmarks (GSM-DC, GSM-IC, NoisyBench).", "The claim of 'no inference-time overhead' is slightly misleading — the added gate (linear projection + sigmoid per head) adds small but non-zero compute at inference. More accurate: 'negligible inference overhead.'", "The proposal does not address how to obtain training signals for the gate-suppress loss: how do you automatically label which context tokens are 'irrelevant' during training? This labeling pipeline is critical but underspecified."]
+Feedback: The core idea — applying gated attention as a surgical fine-tuning intervention on entrainment heads — is sound and the gap is real. However, several revisions are needed:
+
+1. **Fix the venue target**: EMNLP 2026 ARR deadline (May 25) is 8 days away — impossible. Target AAAI 2027 (Aug 2026) or ICLR 2027 (Sep-Oct 2026) as primary. Drop EMNLP 2026 from feasible targets.
+
+2. **Replace Llama 4 Scout with a dense model**: Use Llama-3.1-8B (directly validated by the entrainment paper) and Qwen3-8B. If MoE is desired, frame it as a secondary extension with explicit acknowledgment that entrainment head discovery in MoE is unvalidated.
+
+3. **Address relation-specificity of entrainment heads**: Propose a concrete strategy — e.g., run discovery across multiple relations and gate the UNION set of entrainment heads, or show that a task-general entrainment set exists. This is actually an interesting sub-contribution.
+
+4. **Specify the distractor labeling pipeline**: How does the L_suppress loss know which context is irrelevant? Likely answer: construct training pairs where you know ground truth (e.g., inject synthetic distractors into clean problems). Be explicit about this.
+
+5. **Fix evaluation benchmarks**: Replace 'NaturalQuestions-distractor' (doesn't exist) with established distractor benchmarks: GSM-DC, GSM-IC (Google), NoisyBench (from 'Lost in the Noise'), GSM-NoOp. Drop CounterFact unless specifically justified.
+
+6. **Strengthen differentiation from ABFT**: ABFT (arXiv:2505.14233) builds training objectives on attention scores of specific heads. Your method adds NEW parameters (gates) rather than modifying existing weights. Make this distinction sharper — explain why adding gates is better than ABFT-style weight modification for the distraction problem specifically.
+
+### Round 2 review
+Verdict: revise
+Issues: ["CRITICAL: The 'double-bind' core motivation is contradicted by the source paper. The ACL 2025 paper explicitly states: 'this circuit of entrainment heads collectively corresponds to contextual entrainment rather than other capabilities... and is not strongly related to how LMs process and utilise contextual information or perform ICL more broadly.' Disabling entrainment heads causes only 0.2-3% ICL degradation. The proposal's central claim that 'suppressing entrainment destroys ICL' is factually incorrect, undermining the need for query-conditional gating over simple static ablation.", "CRITICAL: The Grft helpful-context accuracy claim is factually wrong. The proposal states 'Grft has poor preservation of helpful context utilization (80-92% vs 97%+ baseline).' The actual Grft paper (Table 1) shows Grft achieves 98.23% (short) and 97.03% (long) on helpful contexts — nearly identical to the baseline. The 80-92% figures are from the ICL BASELINE method, not Grft. This misattribution is central to the competitive differentiation story and must be corrected.", "IMPORTANT: If static ablation already preserves ICL with minimal cost (0.2-3%), the proposal needs a much stronger justification for why query-conditional gating is necessary. What SPECIFIC capability does static ablation harm that gating preserves? Is it relevant-context utilization in RAG? Context-dependent reasoning? This must be empirically grounded, not assumed.", "MODERATE: The venue has been changed from the user's requested EMNLP 2026 ARR to AAAI 2027. While this is necessary (EMNLP 2026 ARR deadline ~May 25 has passed), the proposal should explicitly acknowledge this venue change and explain why AAAI 2027 is a suitable alternative for this NLP-focused work.", "MODERATE: The tri-objective loss (L_suppress + L_preserve + L_CLM) operates at the gate-value level (MSE on gate outputs), but gate values are per-head scalars applied uniformly across all tokens in a sequence position. The L_suppress loss 'penalizing gate values > 0 on distractor tokens' implies per-token gate values, but the G1 gate formula g_i = σ(W_g · q_i + b_g) produces a scalar per query position per head — it cannot distinguish between attending to a distractor token vs. a relevant token within the same attention computation. This architectural mismatch needs to be addressed.", "MINOR: Qwen3-8B is unvalidated for entrainment head discovery. The ACL 2025 method was tested only on GPT-2 XL, Llama-2, and Llama-3.1-8B. Qwen3-8B uses a different architecture. While it likely works, this adds risk that should be acknowledged."]
+Feedback: The core synthesis (mechanistic head identification + learned per-head gating + fine-tuning) remains novel and promising, but two factual errors and a motivation problem need fixing:
+
+1. **Fix the double-bind narrative.** The ACL 2025 paper shows entrainment heads are NOT the ICL circuit (0.2-3% ICL impact from ablation). Reframe the motivation: the problem isn't 'static ablation destroys ICL' but rather 'static ablation is a blunt instrument that permanently removes context-sensitivity, which may hurt performance on tasks requiring relevant-context utilization (e.g., RAG with good retrievals, long-context QA where context IS relevant).' Design an experiment that specifically measures this cost: compare static ablation vs. EAGT on tasks where the context IS relevant and helpful, not just ICL benchmarks.
+
+2. **Correct the Grft accuracy claim.** Grft achieves 97-98% on helpful contexts, not 80-92%. The actual weaknesses of Grft are: (a) layer-level granularity (less precise), (b) trained only on knowledge-conflict scenarios (ConflictQA/COUNTERFACT), not on reasoning distractors (GSM-DC/NoisyBench), (c) gate is hidden-state-conditional rather than query-conditional. Differentiate on THESE actual weaknesses.
+
+3. **Fix the gate-token mismatch.** The G1 gate g_i = σ(W_g · q_i + b_g) produces a per-head scalar for each sequence position. It modulates the ENTIRE attention output of that head for that query position — it cannot selectively suppress attention to specific distractor tokens while preserving attention to relevant tokens within the same head's computation. The L_suppress and L_preserve losses need to be reformulated to operate on the gate's actual semantics (per-position, not per-attended-token). One approach: L_suppress penalizes high gate values at positions where the model should ignore all context (e.g., the answer token position when distractors are present), and L_preserve penalizes low gate values at positions where the model should attend to context.
+
+4. **Strengthen the 'why not just ablate' argument.** If you can simply zero out entrainment heads with 0.2-3% ICL cost, why add gates? The answer should be: (a) static ablation is all-or-nothing per head, while gating allows continuous modulation, (b) the 0.2-3% ICL cost was measured on limited tasks — broader context-dependent tasks may show larger costs, (c) gating enables the model to use the same heads for ICL when context IS relevant. But this last point needs empirical support.
+
+5. **Consider targeting EMNLP 2026 rolling ARR** if there's a later cycle (check June/July ARR deadlines), or explicitly justify AAAI 2027 as the primary venue despite the user's EMNLP preference.
+
+### Round 3 review
+Verdict: error
+Issues: []
+Feedback: Review subprocess failed (timeout or parse error)
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "type": "user",
+  "uuid": "dfb66085-4461-4453-a609-d804045f1822",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-17T09:07:23.939Z_
+
+```json
+{
+  "parentUuid": "dfb66085-4461-4453-a609-d804045f1822",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "b93779e2-3d91-42d1-99ec-7cbf45d2c75d",
+  "timestamp": "2026-05-17T09:07:23.939Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-17T09:07:23.939Z_
+
+```json
+{
+  "parentUuid": "b93779e2-3d91-42d1-99ec-7cbf45d2c75d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "ba711fda-6aa6-4a08-b68d-ecead3f36482",
+  "timestamp": "2026-05-17T09:07:23.939Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-17 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ba711fda-6aa6-4a08-b68d-ecead3f36482",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Mechanistic entrainment head targeting via learned query-conditional gating",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-17T09:07:33.593Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea for EMNLP 2026 (now retargeted to AAAI 2027/EACL 2027/ICLR 2027). This is round 4/10, and previous reviews identified critical issues around:
+
+1. The "double-bind" narrative being contradicted by the source paper (entrainment heads are NOT the ICL circuit)
+2. Grft accuracy claims being wrong (now corrected in this revision)
+3. Gate-token mismatch (G1 gate is per-position, not per-token)
+4. Venue issues (EMNLP 2026 deadline passed)
+
+
+Now I need to independently verify the key claims in this revision—checking the ACL 2025 and NeurIPS 2025 papers, validating the Grft results, looking for competing work, and confirming the venue deadlines and feasibility.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba711fda-6aa6-4a08-b68d-ecead3f36482",
+  "isSidechain": false,
+  "requestId": "req_011Cb7sokq74foEKarLJTvBi",
+  "type": "assistant",
+  "uuid": "1fc754a4-99ef-4d2f-935d-d44c89976370",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CGV3CupAfu59hR714ojjvQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20082,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1719,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1719,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-17T09:07:33.605Z_
+
+I'll conduct an independent verification of the key claims in this proposal. Let me search for the core papers and competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1fc754a4-99ef-4d2f-935d-d44c89976370",
+  "isSidechain": false,
+  "requestId": "req_011Cb7sokq74foEKarLJTvBi",
+  "type": "assistant",
+  "uuid": "7f10b87f-4b93-428a-9c34-f114844d3709",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CGV3CupAfu59hR714ojjvQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20082,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1719,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1719,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-17T09:07:39.148Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01SEpfprvhYS9AmKohM2rb6h`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify ACL 2025 entrainment paper",
+  "prompt": "Search the web for the paper \"Llama See, Llama Do\" (ACL 2025, arXiv:2505.09338) about contextual entrainment in LLMs. I need to verify these specific claims:\n1. That it identifies \"entrainment heads\" that boost logits for context-seen tokens\n2. That static ablation of these heads causes only 0.2-3% ICL degradation\n3. That the paper states these heads are NOT strongly related to ICL (i.e., they're separate from the ICL circuit)\n4. That it mentions \"Finding 2\" about context being beneficial when relevant\n5. That the paper identifies 2.9-10.7% of heads per relation as entrainment heads\n6. That code is available at github.com/frankniujc/entrainment\n7. Whether it won an Outstanding Paper award at ACL 2025\n\nUse WebSearch and WebFetch to find and read this paper. Report exact quotes if possible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7f10b87f-4b93-428a-9c34-f114844d3709",
+  "isSidechain": false,
+  "requestId": "req_011Cb7sokq74foEKarLJTvBi",
+  "type": "assistant",
+  "uuid": "788618c3-4bdd-41fa-9e4e-49e1fc11d88b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CGV3CupAfu59hR714ojjvQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20082,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1719,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1719,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T09:07:44.838Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01YEC6779rySQfUZAy9V8LnE`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify Grft paper claims",
+  "prompt": "Search the web for the paper \"Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach\" (also called \"Grft\", arXiv:2502.14100, ACL 2025). I need to verify:\n1. That it applies sigmoid gating at a layer level (not head level)\n2. What accuracy it achieves on \"helpful contexts\" — specifically looking for numbers like 98.23% and 97.03%\n3. That it was trained on ConflictQA/COUNTERFACT datasets\n4. Whether the gate is \"hidden-state-conditional\" vs \"query-conditional\"\n5. The parameter count (claimed to be 36.9K, 0.0005% of model)\n6. Whether it was tested on reasoning distractor tasks (GSM-DC, NoisyBench) or only knowledge conflicts\n\nUse WebSearch and WebFetch to find and read this paper's abstract and results tables."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "788618c3-4bdd-41fa-9e4e-49e1fc11d88b",
+  "isSidechain": false,
+  "requestId": "req_011Cb7sokq74foEKarLJTvBi",
+  "type": "assistant",
+  "uuid": "d7c7d90c-069f-4f06-ae50-dfeb46a2e8ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CGV3CupAfu59hR714ojjvQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20082,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1719,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1719,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T09:07:53.489Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_012vWFDD8AQ4BzQMhdGDodZ7`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search competing work on attention gating",
+  "prompt": "Search for recent papers (2025-2026) that combine mechanistic interpretability with fine-tuning interventions on attention heads for distraction/context robustness. I need to find work that might be concurrent/competing with the idea of \"adding learnable gates to specific attention heads identified via mechanistic analysis.\" \n\nSearch queries to use:\n1. \"attention head gating fine-tuning distraction robustness 2025 2026\"\n2. \"mechanistic interpretability training intervention attention heads\"\n3. \"query-conditional attention head gating LLM\"\n4. \"entrainment heads training fix\" \n5. \"attention head regularization relevance-conditional 2025 2026\"\n6. \"circuit-level fine-tuning attention heads LLM\"\n7. \"PEAR attention reweighting RAG\" (verify this paper exists and its claims)\n8. \"MoH mixture of head attention ICML 2025\"\n\nFor each search, report the most relevant papers found, their venues, and whether they overlap with the proposed EAGT method. I'm particularly looking for any paper that:\n- Adds learnable gates to mechanistically-identified attention heads\n- Does query-conditional gating of specific heads for robustness\n- Combines entrainment/distraction head identification with training-time fixes\n\nUse WebSearch for all queries and WebFetch for the most relevant 2-3 papers found."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7c7d90c-069f-4f06-ae50-dfeb46a2e8ea",
+  "isSidechain": false,
+  "requestId": "req_011Cb7sokq74foEKarLJTvBi",
+  "type": "assistant",
+  "uuid": "f0580e0e-a064-4558-94d4-3d10cea8ce94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CGV3CupAfu59hR714ojjvQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20082,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1719,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1719,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T09:08:00.880Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_016W7jFjyXfYTaRcSyiRuRrU`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify venue deadlines and NeurIPS paper",
+  "prompt": "I need to verify two things:\n\n1. **Venue deadlines**: Search for:\n   - AAAI 2027 submission deadline (the proposal claims \"abstract deadline July 21, paper deadline July 28, 2026\")\n   - EACL 2027 ARR deadline (claimed \"August 3, 2026\")\n   - ICLR 2027 deadline (claimed \"expected Sep-Oct 2026\")\n   - Also check: is there an ARR cycle after May 2026 that could feed into EMNLP 2026? (The user originally wanted EMNLP 2026)\n\n2. **NeurIPS 2025 Best Paper on Gated Attention**: Search for \"Gated Attention for Large Language Models Non-linearity Sparsity Attention-Sink-Free\" (arXiv:2505.06708). Verify:\n   - Did it actually win NeurIPS 2025 Best Paper?\n   - Does it describe a \"G1 gate design\" that is query-conditional, post-SDPA, sigmoid?\n   - Is the gate formula g_i = σ(W_g · q_i + b_g) accurate?\n   - Is \"per-head gating identified as most important design choice\" an accurate claim?\n\nUse WebSearch and WebFetch to verify these."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0580e0e-a064-4558-94d4-3d10cea8ce94",
+  "isSidechain": false,
+  "requestId": "req_011Cb7sokq74foEKarLJTvBi",
+  "type": "assistant",
+  "uuid": "fb00935a-4ba7-425c-aa7b-9d854afeba2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CGV3CupAfu59hR714ojjvQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20082,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1719,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1719,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T09:08:56.781Z_
+
+<details><summary>↩ Tool result · `toolu_01YEC6779rySQfUZAy9V8LnE`</summary>
+
+```text
+I now have enough information to provide a comprehensive answer. Here is my findings report:
+
+---
+
+## Verification Results for "Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach" (arXiv:2502.14100, ACL 2025)
+
+### 1. Sigmoid gating at layer level (not head level) -- CONFIRMED
+
+The paper applies gating at the **layer level** on hidden representations. The gate formula is:
+
+`Gate(h_l) = sigma(W_g * h_l + b_g)`
+
+where `h_l` is the full hidden state vector at layer `l`, and the output is a scalar (0-1) controlling intervention strength. This is explicitly a per-layer mechanism operating on full hidden states, **not** at the attention head level.
+
+### 2. Accuracy on helpful contexts -- CONFIRMED
+
+The paper reports:
+- **98.23%** accuracy on helpful contexts (long form)
+- **97.03%** accuracy on helpful contexts (short form)
+
+These numbers match what you cited. They demonstrate that the gate correctly avoids unnecessary interventions when context is already helpful (matching the unmodified LLM baseline).
+
+### 3. Training on ConflictQA/COUNTERFACT -- CONFIRMED (with nuance)
+
+- **Primary training**: ConflictQA (built on PopQA with synthetic contradictions) -- 100 known + 100 unknown questions (200 total, 400 samples after augmentation)
+- **Generalization testing**: COUNTERFACT and Natural Questions (NQ) were used for out-of-distribution evaluation, not primary training
+
+### 4. Hidden-state-conditional vs. query-conditional -- It is HIDDEN-STATE-CONDITIONAL
+
+The gate takes as input the hidden representation `h_l` which encodes both the context and the query together (as processed by the model up to layer `l`). It is **not** query-conditional in the sense of operating only on the query -- it examines the combined representation of the full input (context + query) at a given layer.
+
+### 5. Parameter count -- PARTIALLY CONFIRMED (discrepancy noted)
+
+- The **abstract** claims **0.0004%** of model size
+- The **detailed results in the paper body** report **36.9K trainable parameters** which equals **0.0005%** of a 7B model
+- The gate function itself adds only **4.1K parameters** beyond the base ReFT (representation fine-tuning) adapters
+
+Your cited figure of "36.9K, 0.0005%" matches the paper body's detailed breakdown. The abstract rounds down to 0.0004%. This is a minor inconsistency within the paper itself.
+
+### 6. Reasoning distractor tasks (GSM-DC, NoisyBench) -- NOT TESTED
+
+GRFT was evaluated **exclusively on knowledge conflict tasks** -- specifically contradictory contexts, unhelpful/irrelevant contexts, and matched/helpful contexts. There is **no evaluation** on reasoning distractor tasks like GSM-DC or NoisyBench in this paper. Its scope is limited to the knowledge conflict setting (when should the model trust its parametric knowledge vs. retrieved context).
+
+---
+
+Sources:
+- [arXiv:2502.14100 Abstract](https://arxiv.org/abs/2502.14100)
+- [arXiv:2502.14100 HTML Full Paper](https://arxiv.org/html/2502.14100)
+- [ACL Anthology: ACL 2025 Long Paper 506](https://aclanthology.org/2025.acl-long.506/)
+
+agentId: acfaeb8c9207aae4f (use SendMessage with to: 'acfaeb8c9207aae4f' to continue this agent)
+&lt;usage>total_tokens: 15577
+tool_uses: 7
+duration_ms: 71940&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7c7d90c-069f-4f06-ae50-dfeb46a2e8ea",
+  "isSidechain": false,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "type": "user",
+  "uuid": "c192dfc3-490b-4a75-b9b7-ef19f806cea3",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for the paper \"Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach\" (also called \"Grft\", arXiv:2502.14100, ACL 2025). I need to verify:\n1. That it applies sigmoid gating at a layer level (not head level)\n2. What accuracy it achieves on \"helpful contexts\" — specifically looking for numbers like 98.23% and 97.03%\n3. That it was trained on ConflictQA/COUNTERFACT datasets\n4. Whether the gate is \"hidden-state-conditional\" vs \"query-conditional\"\n5. The parameter count (claimed to be 36.9K, 0.0005% of model)\n6. Whether it was tested on reasoning distractor tasks (GSM-DC, NoisyBench) or only knowledge conflicts\n\nUse WebSearch and WebFetch to find and read this paper's abstract and results tables.",
+    "agentId": "acfaeb8c9207aae4f",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have enough information to provide a comprehensive answer. Here is my findings report:\n\n---\n\n## Verification Results for \"Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach\" (arXiv:2502.14100, ACL 2025)\n\n### 1. Sigmoid gating at layer level (not head level) -- CONFIRMED\n\nThe paper applies gating at the **layer level** on hidden representations. The gate formula is:\n\n`Gate(h_l) = sigma(W_g * h_l + b_g)`\n\nwhere `h_l` is the full hidden state vector at layer `l`, and the output is a scalar (0-1) controlling intervention strength. This is explicitly a per-layer mechanism operating on full hidden states, **not** at the attention head level.\n\n### 2. Accuracy on helpful contexts -- CONFIRMED\n\nThe paper reports:\n- **98.23%** accuracy on helpful contexts (long form)\n- **97.03%** accuracy on helpful contexts (short form)\n\nThese numbers match what you cited. They demonstrate that the gate correctly avoids unnecessary interventions when context is already helpful (matching the unmodified LLM baseline).\n\n### 3. Training on ConflictQA/COUNTERFACT -- CONFIRMED (with nuance)\n\n- **Primary training**: ConflictQA (built on PopQA with synthetic contradictions) -- 100 known + 100 unknown questions (200 total, 400 samples after augmentation)\n- **Generalization testing**: COUNTERFACT and Natural Questions (NQ) were used for out-of-distribution evaluation, not primary training\n\n### 4. Hidden-state-conditional vs. query-conditional -- It is HIDDEN-STATE-CONDITIONAL\n\nThe gate takes as input the hidden representation `h_l` which encodes both the context and the query together (as processed by the model up to layer `l`). It is **not** query-conditional in the sense of operating only on the query -- it examines the combined representation of the full input (context + query) at a given layer.\n\n### 5. Parameter count -- PARTIALLY CONFIRMED (discrepancy noted)\n\n- The **abstract** claims **0.0004%** of model size\n- The **detailed results in the paper body** report **36.9K trainable parameters** which equals **0.0005%** of a 7B model\n- The gate function itself adds only **4.1K parameters** beyond the base ReFT (representation fine-tuning) adapters\n\nYour cited figure of \"36.9K, 0.0005%\" matches the paper body's detailed breakdown. The abstract rounds down to 0.0004%. This is a minor inconsistency within the paper itself.\n\n### 6. Reasoning distractor tasks (GSM-DC, NoisyBench) -- NOT TESTED\n\nGRFT was evaluated **exclusively on knowledge conflict tasks** -- specifically contradictory contexts, unhelpful/irrelevant contexts, and matched/helpful contexts. There is **no evaluation** on reasoning distractor tasks like GSM-DC or NoisyBench in this paper. Its scope is limited to the knowledge conflict setting (when should the model trust its parametric knowledge vs. retrieved context).\n\n---\n\nSources:\n- [arXiv:2502.14100 Abstract](https://arxiv.org/abs/2502.14100)\n- [arXiv:2502.14100 HTML Full Paper](https://arxiv.org/html/2502.14100)\n- [ACL Anthology: ACL 2025 Long Paper 506](https://aclanthology.org/2025.acl-long.506/)"
+      }
+    ],
+    "totalDurationMs": 71940,
+    "totalTokens": 15577,
+    "totalToolUseCount": 7,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 442,
+      "cache_read_input_tokens": 14292,
+      "output_tokens": 842,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 442
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 842,
+          "cache_read_input_tokens": 14292,
+          "cache_creation_input_tokens": 442,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 442,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 7
+    }
+  },
+  "sourceToolAssistantUUID": "d7c7d90c-069f-4f06-ae50-dfeb46a2e8ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T09:09:01.895Z_
+
+<details><summary>↩ Tool result · `toolu_01SEpfprvhYS9AmKohM2rb6h`</summary>
+
+```text
+I now have all the information needed. Here is my comprehensive report:
+
+---
+
+## Verification Results for "Llama See, Llama Do" (arXiv:2505.09338)
+
+### Claim 1: Identifies "entrainment heads" that boost logits for context-seen tokens
+**VERIFIED.** The abstract states: "LMs assign significantly higher logits (or probabilities) to any tokens that have previously appeared in the context prompt, even for random tokens." The paper hypothesizes a "circuit of attention heads -- the entrainment heads -- that corresponds to the contextual entrainment phenomenon" and uses differentiable masking to identify them.
+
+### Claim 2: Static ablation of these heads causes only 0.2-3% ICL degradation
+**PARTIALLY VERIFIED.** The paper states (exact quote): "After removing the entrainment heads, the model exhibits only a small performance decrease (0.2~3%) and continues demonstrate strong ICL capabilities." However, the paper does NOT use the term "static ablation" -- it uses language like "turning off," "removing," and "setting outputs to zero."
+
+### Claim 3: These heads are NOT strongly related to ICL (separate from the ICL circuit)
+**VERIFIED.** Exact quote: "this 'circuit' of entrainment heads collectively corresponds to contextual entrainment rather than other capabilities and phenomena, such as factual recall, and is not strongly related to how LMs process and utilise contextual information or perform ICL more broadly."
+
+### Claim 4: Mentions "Finding 2" about context being beneficial when relevant
+**VERIFIED.** Exact heading: "Finding 2: 'Distracting' context prompts can be beneficial when relevant." The paper shows that while distracting tokens consistently gain higher probabilities, relevant distracting context can implicitly guide models toward correct answers.
+
+### Claim 5: Identifies 2.9-10.7% of heads per relation as entrainment heads
+**VERIFIED.** From Table 3 in the paper: entrainment heads range from 2.9% to 10.7% across different relations (e.g., country-language at 2.9%, product-by-company at 10.7%).
+
+### Claim 6: Code is available at github.com/frankniujc/entrainment
+**VERIFIED.** The repository exists at https://github.com/frankniujc/entrainment, licensed under MIT. It contains `entrainment.ipynb` (all paper findings) and `head_search.py` (entrainment head identification). Written primarily in Jupyter Notebook (90.1%) with Python (9.9%).
+
+### Claim 7: Won an Outstanding Paper award at ACL 2025
+**VERIFIED.** The paper received an Outstanding Paper award at ACL 2025 (not a Best Paper award -- those went to four other papers). This is confirmed on both the ACL 2025 awards page and the ACL Anthology entry. The conference was held in Vienna, Austria in July 2025.
+
+---
+
+**Paper details:** Authors are Jingcheng Niu, Xingdi Yuan, Tong Wang, Hamidreza Saghir, and Amir H. Abdi. Published in ACL 2025 Long Papers (pages 16218-16239).
+
+Sources:
+- [arXiv:2505.09338 Abstract](https://arxiv.org/abs/2505.09338)
+- [Full HTML version](https://arxiv.org/html/2505.09338)
+- [ACL Anthology Entry](https://aclanthology.org/2025.acl-long.791/)
+- [ACL 2025 Awards Page](https://2025.aclweb.org/program/awards/)
+- [GitHub Repository](https://github.com/frankniujc/entrainment)
+
+agentId: a8799fae6209a629e (use SendMessage with to: 'a8799fae6209a629e' to continue this agent)
+&lt;usage>total_tokens: 16909
+tool_uses: 9
+duration_ms: 82741&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "788618c3-4bdd-41fa-9e4e-49e1fc11d88b",
+  "isSidechain": false,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "type": "user",
+  "uuid": "703c02cb-41fb-4ead-998f-94ce0e2f0eb2",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for the paper \"Llama See, Llama Do\" (ACL 2025, arXiv:2505.09338) about contextual entrainment in LLMs. I need to verify these specific claims:\n1. That it identifies \"entrainment heads\" that boost logits for context-seen tokens\n2. That static ablation of these heads causes only 0.2-3% ICL degradation\n3. That the paper states these heads are NOT strongly related to ICL (i.e., they're separate from the ICL circuit)\n4. That it mentions \"Finding 2\" about context being beneficial when relevant\n5. That the paper identifies 2.9-10.7% of heads per relation as entrainment heads\n6. That code is available at github.com/frankniujc/entrainment\n7. Whether it won an Outstanding Paper award at ACL 2025\n\nUse WebSearch and WebFetch to find and read this paper. Report exact quotes if possible.",
+    "agentId": "a8799fae6209a629e",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have all the information needed. Here is my comprehensive report:\n\n---\n\n## Verification Results for \"Llama See, Llama Do\" (arXiv:2505.09338)\n\n### Claim 1: Identifies \"entrainment heads\" that boost logits for context-seen tokens\n**VERIFIED.** The abstract states: \"LMs assign significantly higher logits (or probabilities) to any tokens that have previously appeared in the context prompt, even for random tokens.\" The paper hypothesizes a \"circuit of attention heads -- the entrainment heads -- that corresponds to the contextual entrainment phenomenon\" and uses differentiable masking to identify them.\n\n### Claim 2: Static ablation of these heads causes only 0.2-3% ICL degradation\n**PARTIALLY VERIFIED.** The paper states (exact quote): \"After removing the entrainment heads, the model exhibits only a small performance decrease (0.2~3%) and continues demonstrate strong ICL capabilities.\" However, the paper does NOT use the term \"static ablation\" -- it uses language like \"turning off,\" \"removing,\" and \"setting outputs to zero.\"\n\n### Claim 3: These heads are NOT strongly related to ICL (separate from the ICL circuit)\n**VERIFIED.** Exact quote: \"this 'circuit' of entrainment heads collectively corresponds to contextual entrainment rather than other capabilities and phenomena, such as factual recall, and is not strongly related to how LMs process and utilise contextual information or perform ICL more broadly.\"\n\n### Claim 4: Mentions \"Finding 2\" about context being beneficial when relevant\n**VERIFIED.** Exact heading: \"Finding 2: 'Distracting' context prompts can be beneficial when relevant.\" The paper shows that while distracting tokens consistently gain higher probabilities, relevant distracting context can implicitly guide models toward correct answers.\n\n### Claim 5: Identifies 2.9-10.7% of heads per relation as entrainment heads\n**VERIFIED.** From Table 3 in the paper: entrainment heads range from 2.9% to 10.7% across different relations (e.g., country-language at 2.9%, product-by-company at 10.7%).\n\n### Claim 6: Code is available at github.com/frankniujc/entrainment\n**VERIFIED.** The repository exists at https://github.com/frankniujc/entrainment, licensed under MIT. It contains `entrainment.ipynb` (all paper findings) and `head_search.py` (entrainment head identification). Written primarily in Jupyter Notebook (90.1%) with Python (9.9%).\n\n### Claim 7: Won an Outstanding Paper award at ACL 2025\n**VERIFIED.** The paper received an Outstanding Paper award at ACL 2025 (not a Best Paper award -- those went to four other papers). This is confirmed on both the ACL 2025 awards page and the ACL Anthology entry. The conference was held in Vienna, Austria in July 2025.\n\n---\n\n**Paper details:** Authors are Jingcheng Niu, Xingdi Yuan, Tong Wang, Hamidreza Saghir, and Amir H. Abdi. Published in ACL 2025 Long Papers (pages 16218-16239).\n\nSources:\n- [arXiv:2505.09338 Abstract](https://arxiv.org/abs/2505.09338)\n- [Full HTML version](https://arxiv.org/html/2505.09338)\n- [ACL Anthology Entry](https://aclanthology.org/2025.acl-long.791/)\n- [ACL 2025 Awards Page](https://2025.aclweb.org/program/awards/)\n- [GitHub Repository](https://github.com/frankniujc/entrainment)"
+      }
+    ],
+    "totalDurationMs": 82741,
+    "totalTokens": 16909,
+    "totalToolUseCount": 9,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 554,
+      "cache_read_input_tokens": 15452,
+      "output_tokens": 902,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 554
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 902,
+          "cache_read_input_tokens": 15452,
+          "cache_creation_input_tokens": 554,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 554,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 9
+    }
+  },
+  "sourceToolAssistantUUID": "788618c3-4bdd-41fa-9e4e-49e1fc11d88b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T09:10:23.582Z_
+
+<details><summary>↩ Tool result · `toolu_016W7jFjyXfYTaRcSyiRuRrU`</summary>
+
+```text
+I now have enough information to provide a comprehensive verification. Here is my summary:
+
+---
+
+## Verification Results
+
+### 1. Venue Deadlines
+
+**AAAI 2027 -- CONFIRMED**
+- Abstract deadline: **July 21, 2026** (11:59 PM UTC-12) -- matches the claim exactly
+- Full paper deadline: **July 28, 2026** (11:59 PM UTC-12) -- matches the claim exactly
+- Supplementary materials: July 31, 2026
+- Conference: February 16-23, 2027, Montreal, Canada
+- Source: [AAAI-27 Main Technical Track](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)
+
+**EACL 2027 ARR deadline -- CONFIRMED**
+- ARR submission deadline: **August 3, 2026** -- matches the claim exactly
+- Note: This was corrected from a previously announced August 6 date. EACL 2027 is earlier than usual, making this the **only viable ARR cycle** for the conference.
+- Commitment deadline: October 11, 2026
+- Conference: March 9-14, 2027, Athens, Greece
+- Sources: [EACL 2027](https://2027.eacl.org/), [EACL Twitter correction](https://x.com/eaclmeeting/status/2051971432171688436)
+
+**ICLR 2027 -- PARTIALLY CONFIRMED (estimated)**
+- The official ICLR 2027 call for papers has not yet been formally announced on iclr.cc.
+- However, based on ICLR 2026 deadlines (abstract Sep 19, 2025; paper Sep 24, 2025) and the conference deadline aggregator trybibby.com, ICLR 2027 is **predicted** to have an abstract deadline around **September 19, 2026** and paper deadline around **September 24, 2026**.
+- The claim of "expected Sep-Oct 2026" is a reasonable estimate consistent with the historical pattern.
+- Conference expected: April/May 2027
+- Sources: [ICLR 2026 Dates](https://iclr.cc/Conferences/2026/Dates), [trybibby.com](https://trybibby.com/conference-deadlines)
+
+**EMNLP 2026 and ARR cycles -- IMPORTANT FINDING**
+- The ARR submission deadline for EMNLP 2026 is **May 25, 2026** (the ARR May 2026 cycle).
+- **There is NO later ARR cycle that can feed into EMNLP 2026.** The call for papers explicitly states: "Papers must be submitted, at latest, by the ARR 2026 May cycle."
+- The commitment deadline is August 2, 2026.
+- Since today is May 17, 2026, the May 25 submission deadline is only 8 days away. If a paper hasn't already been prepared for this cycle, EMNLP 2026 is effectively out of reach.
+- Additional note: EMNLP and AACL share the May cycle, so authors must declare their target conference at submission time (binding choice).
+- Sources: [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/), [ARR Dates](http://aclrollingreview.org/dates)
+
+---
+
+### 2. NeurIPS 2025 Best Paper -- "Gated Attention for Large Language Models"
+
+**Did it win NeurIPS 2025 Best Paper? -- YES, CONFIRMED**
+- The paper "Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free" (arXiv:2505.06708) **won a NeurIPS 2025 Best Paper Award**.
+- Verified from the official [NeurIPS 2025 Awards page](https://neurips.cc/virtual/2025/awards_detail). It is listed as one of the Best Papers (not a runner-up).
+- The GitHub repo also labels it as "[NeurIPS2025 Oral]".
+- Source: [NeurIPS 2025 Awards](https://neurips.cc/virtual/2025/awards_detail), [Alibaba/Alizila announcement](https://www.alizila.com/alibaba-qwen-wins-neurips-2025-best-paper-award-for-breakthrough-in-attention-mechanisms/)
+
+**Does it describe a "G1 gate design" that is query-conditional, post-SDPA, sigmoid? -- YES, CONFIRMED**
+- The paper systematically examines 5 gating positions (G1-G5): G4/G3/G2 are after query/key/value projections, **G1 is after the SDPA output** (the most effective position), and G5 is after the final dense output layer.
+- G1 is explicitly described as post-SDPA, sigmoid-activated, and query-dependent (the gating scores are derived from hidden states corresponding to the current query position).
+- Source: [ar5iv HTML version of paper](https://ar5iv.labs.arxiv.org/html/2505.06708)
+
+**Is the gate formula g_i = sigma(W_g * q_i + b_g) accurate? -- PARTIALLY ACCURATE / SIMPLIFIED**
+- The paper's general gating formula is: **Y' = Y odot sigma(X W_theta)** where Y is the SDPA output, X is the input hidden state (post-normalization), W_theta are learnable parameters, and sigma is sigmoid.
+- The formula `g_i = sigma(W_g * q_i + b_g)` appears to be a **simplified/paraphrased version**. The paper uses the hidden state X (which is the same input that produces the query via projection) rather than the query q_i itself. A bias term is not explicitly highlighted in the general formula but may be included in the implementation. The spirit of the formula is correct (sigmoid of a linear projection of the query-position hidden state), but the exact notation differs from what the paper uses.
+
+**Is "per-head gating identified as most important design choice"? -- YES, CONFIRMED**
+- The paper explicitly states that "Head-Specific Gating Matters" -- applying headwise gating introduces very few additional parameters (less than 2M for the MoE-15A2B model) but delivers substantial improvements.
+- Head-shared variants significantly underperform their head-specific counterparts.
+- The optimal configuration is described as "element-wise, head-specific gating applied specifically to the SDPA output."
+- Source: [ar5iv HTML version](https://ar5iv.labs.arxiv.org/html/2505.06708), [ArXivIQ summary](https://arxiviq.substack.com/p/neurips-2025-gated-attention-for)
+
+---
+
+### Summary Table
+
+| Claim | Verdict |
+|-------|---------|
+| AAAI 2027: abstract Jul 21, paper Jul 28, 2026 | **Confirmed** |
+| EACL 2027 ARR: August 3, 2026 | **Confirmed** |
+| ICLR 2027: expected Sep-Oct 2026 | **Reasonable estimate** (predicted ~Sep 19-24 based on pattern; not yet officially announced) |
+| ARR cycle after May 2026 for EMNLP 2026? | **No -- May 25, 2026 is the final and only eligible cycle** |
+| Gated Attention won NeurIPS 2025 Best Paper | **Confirmed** |
+| G1 gate: query-conditional, post-SDPA, sigmoid | **Confirmed** |
+| Formula g_i = sigma(W_g * q_i + b_g) | **Approximately correct** (paper notation is Y' = Y odot sigma(X*W_theta); the input X at position i drives the gate, not q_i directly, but conceptually equivalent) |
+| Per-head gating = most important design choice | **Confirmed** |
+
+agentId: a661152c97ff7e24b (use SendMessage with to: 'a661152c97ff7e24b' to continue this agent)
+&lt;usage>total_tokens: 26076
+tool_uses: 22
+duration_ms: 142698&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb00935a-4ba7-425c-aa7b-9d854afeba2a",
+  "isSidechain": false,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "type": "user",
+  "uuid": "b87a79c4-2f2d-4851-8e02-85c66387a3a4",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify two things:\n\n1. **Venue deadlines**: Search for:\n   - AAAI 2027 submission deadline (the proposal claims \"abstract deadline July 21, paper deadline July 28, 2026\")\n   - EACL 2027 ARR deadline (claimed \"August 3, 2026\")\n   - ICLR 2027 deadline (claimed \"expected Sep-Oct 2026\")\n   - Also check: is there an ARR cycle after May 2026 that could feed into EMNLP 2026? (The user originally wanted EMNLP 2026)\n\n2. **NeurIPS 2025 Best Paper on Gated Attention**: Search for \"Gated Attention for Large Language Models Non-linearity Sparsity Attention-Sink-Free\" (arXiv:2505.06708). Verify:\n   - Did it actually win NeurIPS 2025 Best Paper?\n   - Does it describe a \"G1 gate design\" that is query-conditional, post-SDPA, sigmoid?\n   - Is the gate formula g_i = σ(W_g · q_i + b_g) accurate?\n   - Is \"per-head gating identified as most important design choice\" an accurate claim?\n\nUse WebSearch and WebFetch to verify these.",
+    "agentId": "a661152c97ff7e24b",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have enough information to provide a comprehensive verification. Here is my summary:\n\n---\n\n## Verification Results\n\n### 1. Venue Deadlines\n\n**AAAI 2027 -- CONFIRMED**\n- Abstract deadline: **July 21, 2026** (11:59 PM UTC-12) -- matches the claim exactly\n- Full paper deadline: **July 28, 2026** (11:59 PM UTC-12) -- matches the claim exactly\n- Supplementary materials: July 31, 2026\n- Conference: February 16-23, 2027, Montreal, Canada\n- Source: [AAAI-27 Main Technical Track](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)\n\n**EACL 2027 ARR deadline -- CONFIRMED**\n- ARR submission deadline: **August 3, 2026** -- matches the claim exactly\n- Note: This was corrected from a previously announced August 6 date. EACL 2027 is earlier than usual, making this the **only viable ARR cycle** for the conference.\n- Commitment deadline: October 11, 2026\n- Conference: March 9-14, 2027, Athens, Greece\n- Sources: [EACL 2027](https://2027.eacl.org/), [EACL Twitter correction](https://x.com/eaclmeeting/status/2051971432171688436)\n\n**ICLR 2027 -- PARTIALLY CONFIRMED (estimated)**\n- The official ICLR 2027 call for papers has not yet been formally announced on iclr.cc.\n- However, based on ICLR 2026 deadlines (abstract Sep 19, 2025; paper Sep 24, 2025) and the conference deadline aggregator trybibby.com, ICLR 2027 is **predicted** to have an abstract deadline around **September 19, 2026** and paper deadline around **September 24, 2026**.\n- The claim of \"expected Sep-Oct 2026\" is a reasonable estimate consistent with the historical pattern.\n- Conference expected: April/May 2027\n- Sources: [ICLR 2026 Dates](https://iclr.cc/Conferences/2026/Dates), [trybibby.com](https://trybibby.com/conference-deadlines)\n\n**EMNLP 2026 and ARR cycles -- IMPORTANT FINDING**\n- The ARR submission deadline for EMNLP 2026 is **May 25, 2026** (the ARR May 2026 cycle).\n- **There is NO later ARR cycle that can feed into EMNLP 2026.** The call for papers explicitly states: \"Papers must be submitted, at latest, by the ARR 2026 May cycle.\"\n- The commitment deadline is August 2, 2026.\n- Since today is May 17, 2026, the May 25 submission deadline is only 8 days away. If a paper hasn't already been prepared for this cycle, EMNLP 2026 is effectively out of reach.\n- Additional note: EMNLP and AACL share the May cycle, so authors must declare their target conference at submission time (binding choice).\n- Sources: [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/), [ARR Dates](http://aclrollingreview.org/dates)\n\n---\n\n### 2. NeurIPS 2025 Best Paper -- \"Gated Attention for Large Language Models\"\n\n**Did it win NeurIPS 2025 Best Paper? -- YES, CONFIRMED**\n- The paper \"Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free\" (arXiv:2505.06708) **won a NeurIPS 2025 Best Paper Award**.\n- Verified from the official [NeurIPS 2025 Awards page](https://neurips.cc/virtual/2025/awards_detail). It is listed as one of the Best Papers (not a runner-up).\n- The GitHub repo also labels it as \"[NeurIPS2025 Oral]\".\n- Source: [NeurIPS 2025 Awards](https://neurips.cc/virtual/2025/awards_detail), [Alibaba/Alizila announcement](https://www.alizila.com/alibaba-qwen-wins-neurips-2025-best-paper-award-for-breakthrough-in-attention-mechanisms/)\n\n**Does it describe a \"G1 gate design\" that is query-conditional, post-SDPA, sigmoid? -- YES, CONFIRMED**\n- The paper systematically examines 5 gating positions (G1-G5): G4/G3/G2 are after query/key/value projections, **G1 is after the SDPA output** (the most effective position), and G5 is after the final dense output layer.\n- G1 is explicitly described as post-SDPA, sigmoid-activated, and query-dependent (the gating scores are derived from hidden states corresponding to the current query position).\n- Source: [ar5iv HTML version of paper](https://ar5iv.labs.arxiv.org/html/2505.06708)\n\n**Is the gate formula g_i = sigma(W_g * q_i + b_g) accurate? -- PARTIALLY ACCURATE / SIMPLIFIED**\n- The paper's general gating formula is: **Y' = Y odot sigma(X W_theta)** where Y is the SDPA output, X is the input hidden state (post-normalization), W_theta are learnable parameters, and sigma is sigmoid.\n- The formula `g_i = sigma(W_g * q_i + b_g)` appears to be a **simplified/paraphrased version**. The paper uses the hidden state X (which is the same input that produces the query via projection) rather than the query q_i itself. A bias term is not explicitly highlighted in the general formula but may be included in the implementation. The spirit of the formula is correct (sigmoid of a linear projection of the query-position hidden state), but the exact notation differs from what the paper uses.\n\n**Is \"per-head gating identified as most important design choice\"? -- YES, CONFIRMED**\n- The paper explicitly states that \"Head-Specific Gating Matters\" -- applying headwise gating introduces very few additional parameters (less than 2M for the MoE-15A2B model) but delivers substantial improvements.\n- Head-shared variants significantly underperform their head-specific counterparts.\n- The optimal configuration is described as \"element-wise, head-specific gating applied specifically to the SDPA output.\"\n- Source: [ar5iv HTML version](https://ar5iv.labs.arxiv.org/html/2505.06708), [ArXivIQ summary](https://arxiviq.substack.com/p/neurips-2025-gated-attention-for)\n\n---\n\n### Summary Table\n\n| Claim | Verdict |\n|-------|---------|\n| AAAI 2027: abstract Jul 21, paper Jul 28, 2026 | **Confirmed** |\n| EACL 2027 ARR: August 3, 2026 | **Confirmed** |\n| ICLR 2027: expected Sep-Oct 2026 | **Reasonable estimate** (predicted ~Sep 19-24 based on pattern; not yet officially announced) |\n| ARR cycle after May 2026 for EMNLP 2026? | **No -- May 25, 2026 is the final and only eligible cycle** |\n| Gated Attention won NeurIPS 2025 Best Paper | **Confirmed** |\n| G1 gate: query-conditional, post-SDPA, sigmoid | **Confirmed** |\n| Formula g_i = sigma(W_g * q_i + b_g) | **Approximately correct** (paper notation is Y' = Y odot sigma(X*W_theta); the input X at position i drives the gate, not q_i directly, but conceptually equivalent) |\n| Per-head gating = most important design choice | **Confirmed** |"
+      }
+    ],
+    "totalDurationMs": 142698,
+    "totalTokens": 26076,
+    "totalToolUseCount": 22,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 550,
+      "cache_read_input_tokens": 23543,
+      "output_tokens": 1982,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 550
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1982,
+          "cache_read_input_tokens": 23543,
+          "cache_creation_input_tokens": 550,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 550,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 22
+    }
+  },
+  "sourceToolAssistantUUID": "fb00935a-4ba7-425c-aa7b-9d854afeba2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-17 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b87a79c4-2f2d-4851-8e02-85c66387a3a4",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Mechanistic entrainment head targeting via learned query-conditional gating",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae"
+}
+```
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T09:11:18.780Z_
+
+<details><summary>↩ Tool result · `toolu_012vWFDD8AQ4BzQMhdGDodZ7`</summary>
+
+```text
+Based on my comprehensive search across all 8 queries and follow-up investigations, here is my full report:
+
+---
+
+## Search Results: Concurrent/Competing Work to EAGT (Entrainment-Aware Gated Training)
+
+### MOST DIRECTLY RELEVANT PAPERS (High Overlap with EAGT)
+
+---
+
+#### 1. PEAR: Position-Embedding-Agnostic Attention Re-weighting (2024-2025)
+- **Authors:** Tao Tan, Yining Qian, Ang Lv, et al.
+- **Venue:** ACM Web Conference 2025 (TheWebConf/WWW 2025)
+- **URL:** https://arxiv.org/abs/2409.19745
+- **Overlap with EAGT:** HIGH
+
+**Method:** Identifies attention heads that suppress context awareness on a proxy context-copying task, then applies **learnable scalar coefficients** (gates) to those heads' outputs. The LLM parameters are frozen; only the coefficients are trained.
+
+**Key differences from EAGT:**
+- Gates are **static** (not query-conditional) -- same coefficient applied regardless of input
+- Focused on RAG context utilization, not distraction/entrainment robustness per se
+- No mechanistic interpretability framing (pragmatic head detection via proxy task)
+- Zero inference overhead (coefficients baked into weights)
+
+**Verdict:** This is the closest existing work to EAGT. It adds learnable gates to specific identified heads. However, it lacks query-conditionality and mechanistic grounding in entrainment circuits.
+
+---
+
+#### 2. ADR: Attention Head Detection and Reweighting (2025)
+- **Venue:** *Information* journal, October 2025
+- **URL:** https://www.mdpi.com/2078-2489/16/10/900
+- **Overlap with EAGT:** HIGH
+
+**Method:** Very similar to PEAR -- detects RAG-suppressing heads via a recognition task, applies reweighted coefficients. Claims to be positional-encoding-agnostic and compatible with fine-tuned models.
+
+**Key differences from EAGT:**
+- Appears to be a variant/extension of PEAR's framework
+- Static reweighting, not query-conditional
+- No entrainment head analysis
+
+---
+
+#### 3. "Llama See, Llama Do" (ACL 2025 Outstanding Paper)
+- **Authors:** Jingcheng Niu, Xingdi Yuan, Tong Wang, Hamidreza Saghir, Amir H. Abdi
+- **Venue:** ACL 2025 (Outstanding Paper Award)
+- **URL:** https://aclanthology.org/2025.acl-long.791/
+- **Overlap with EAGT:** MODERATE-HIGH (identifies the problem EAGT claims to solve)
+
+**Method:** Discovers "entrainment heads" via differentiable masking -- a small circuit (3.2-10.7% of heads) responsible for contextual entrainment/distraction. Demonstrates that zeroing these heads eliminates the distraction effect.
+
+**Critical finding for EAGT:** This paper identifies the problem and the heads but does NOT propose a training-time fix. It only demonstrates diagnostic ablation (zero-out). This is the obvious precursor paper that EAGT would build on.
+
+**Key gap left open:** The paper explicitly leaves the training-time intervention as future work. An EAGT-style method (adding learnable query-conditional gates to these identified entrainment heads) would be a natural follow-up.
+
+---
+
+### ARCHITECTURALLY RELATED PAPERS (Moderate Overlap)
+
+---
+
+#### 4. Gated Attention for LLMs (NeurIPS 2025 Best Paper)
+- **Authors:** Qwen team (Alibaba)
+- **Venue:** NeurIPS 2025 (Best Paper Award, 1 of 4)
+- **URL:** https://arxiv.org/abs/2505.06708
+- **Overlap with EAGT:** MODERATE
+
+**Method:** Adds a head-specific sigmoid gate after SDPA, computed from the query representation. This is **query-conditional** gating that introduces input-dependent sparsity and eliminates attention sinks.
+
+**Key differences from EAGT:**
+- This is an **architectural modification** applied to ALL heads during pre-training from scratch (Qwen3-Next)
+- Not a post-hoc intervention on specific mechanistically-identified heads
+- Not targeted at distraction/entrainment specifically
+- Cannot be applied to existing models without full retraining
+
+**Relevance:** Demonstrates that query-conditional per-head gating is effective. EAGT could cite this as architectural validation that the gating mechanism works, while differentiating by targeting only entrainment heads in existing models.
+
+---
+
+#### 5. MoH: Mixture-of-Head Attention (ICML 2025)
+- **Authors:** Peng Jin, Bo Zhu, Li Yuan, Shuicheng Yan (Skywork AI)
+- **Venue:** ICML 2025
+- **URL:** https://arxiv.org/abs/2410.11842
+- **Overlap with EAGT:** MODERATE
+
+**Method:** Treats attention heads as MoE experts with token-dependent routing. Each token selects which heads to use. Pre-trained models (LLaMA3-8B) can be continue-tuned into MoH models using only 50-90% of heads.
+
+**Key differences from EAGT:**
+- Input-dependent head selection (similar in spirit) but applied to ALL heads
+- No mechanistic identification of problematic heads
+- Goal is efficiency, not robustness/distraction mitigation
+- Requires continued pre-training
+
+---
+
+#### 6. Circuit-tuning (2025)
+- **Authors:** Yueyan Li et al. (Beijing Univ. of Posts and Telecommunications)
+- **URL:** https://arxiv.org/abs/2502.06106
+- **Overlap with EAGT:** MODERATE
+
+**Method:** Two-stage approach: (1) identify minimal circuits via causal mediation analysis, (2) fine-tune only parameters within discovered circuits. Achieves performance matching or exceeding full fine-tuning with ~7-9% of parameters.
+
+**Key differences from EAGT:**
+- Fine-tunes existing parameters in circuits (no new gates added)
+- Not targeted at distraction/robustness
+- General-purpose circuit-guided fine-tuning framework
+
+---
+
+### TANGENTIALLY RELATED PAPERS (Lower Overlap)
+
+---
+
+#### 7. Sparse Attention Post-Training for Mechanistic Interpretability (Dec 2025)
+- **Authors:** Florent Draye, Anson Lei, Hsiao-Ru Pan, Ingmar Posner, Bernhard Scholkopf
+- **URL:** https://arxiv.org/abs/2512.05865
+- **Overlap with EAGT:** LOW-MODERATE
+
+Sparsifies attention to ~0.4% of edges while preserving performance, enabling clearer circuit identification. Does not add gates to specific heads but makes circuits visible for potential intervention.
+
+---
+
+#### 8. AIR: Post-training Data Selection via Attention Head Influence (Dec 2025)
+- **URL:** https://arxiv.org/abs/2512.13279
+- **Overlap with EAGT:** LOW
+
+Uses reasoning-critical attention heads to score training data quality. Identifies heads but uses them for data selection rather than architectural intervention.
+
+---
+
+#### 9. The Atlas of In-Context Learning (NeurIPS 2025)
+- **Authors:** Patrick Kahardipraja et al.
+- **URL:** https://arxiv.org/abs/2505.15807
+- **Overlap with EAGT:** LOW-MODERATE
+
+Maps specialized attention heads for in-context retrieval augmentation (in-context heads vs. parametric heads). Could inform which heads to target but does not propose gating interventions.
+
+---
+
+#### 10. Adaptive Distraction (NeurIPS 2025)
+- **URL:** https://arxiv.org/abs/2502.01609
+- **Overlap with EAGT:** LOW (problem definition overlap)
+
+Generates adaptive distractions to probe LLM robustness. Found that DPO training significantly enhances contextual robustness. Does not intervene on specific heads.
+
+---
+
+### SUMMARY: GAP ANALYSIS FOR EAGT
+
+| Feature | PEAR/ADR | Llama See Llama Do | Qwen Gated Attn | MoH | Circuit-tuning | **EAGT (proposed)** |
+|---------|----------|-------------------|-----------------|-----|---------------|-------------------|
+| Learnable gates on heads | Yes (static) | No (ablation only) | Yes (all heads) | Yes (all heads) | No | Yes (specific) |
+| Query-conditional | No | N/A | Yes | Yes | N/A | Yes |
+| Targets specific mech. heads | Partially | Yes (identifies) | No (all heads) | No | Yes | Yes |
+| Distraction/entrainment focus | Partial (RAG) | Yes | No | No | No | Yes |
+| Training-time fix | Yes | No | Pre-training | Continue-train | Yes | Yes |
+
+**Key finding:** No existing paper combines ALL of:
+1. Mechanistic identification of entrainment/distraction heads (a la "Llama See, Llama Do")
+2. Query-conditional learnable gates (a la Qwen's Gated Attention)
+3. Applied as a targeted fine-tuning intervention for robustness
+
+PEAR/ADR come closest but use static (non-conditional) gates without mechanistic grounding in entrainment circuits. "Llama See, Llama Do" identifies the exact heads but proposes no training fix. Qwen's Gated Attention proves query-conditional gating works but applies it universally during pre-training.
+
+**The EAGT proposal sits in a genuine gap** -- but the gap is narrowing quickly. The combination of "Llama See, Llama Do" (ACL 2025 Outstanding Paper) + PEAR/ADR methodology is an obvious next step that multiple groups could pursue.
+
+Sources:
+- [PEAR - arxiv](https://arxiv.org/abs/2409.19745)
+- [PEAR - ACM Web Conference 2025](https://dl.acm.org/doi/10.1145/3696410.3714795)
+- [ADR - MDPI Information](https://www.mdpi.com/2078-2489/16/10/900)
+- [Llama See, Llama Do - ACL 2025](https://aclanthology.org/2025.acl-long.791/)
+- [Gated Attention for LLMs - NeurIPS 2025](https://arxiv.org/abs/2505.06708)
+- [Gated Attention - OpenReview](https://openreview.net/forum?id=1b7whO4SfY)
+- [MoH - ICML 2025](https://arxiv.org/abs/2410.11842)
+- [MoH - ICML proceedings](https://proceedings.mlr.press/v267/jin25l.html)
+- [Circuit-tuning](https://arxiv.org/html/2502.06106v2)
+- [Sparse Attention Post-Training](https://arxiv.org/abs/2512.05865)
+- [AIR - Attention Head Influence](https://arxiv.org/abs/2512.13279)
+- [Atlas of In-Context Learning - NeurIPS 2025](https://arxiv.org/abs/2505.15807)
+- [Adaptive Distraction - NeurIPS 2025](https://arxiv.org/abs/2502.01609)
+- [Interpreting Transformers Through Attention Head Intervention](https://arxiv.org/html/2601.04398v3)
+- [Awesome Attention Heads survey](https://github.com/IAAR-Shanghai/Awesome-Attention-Heads)
+
+agentId: a25361e0692ba2578 (use SendMessage with to: 'a25361e0692ba2578' to continue this agent)
+&lt;usage>total_tokens: 36064
+tool_uses: 26
+duration_ms: 205288&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f0580e0e-a064-4558-94d4-3d10cea8ce94",
+  "isSidechain": false,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "type": "user",
+  "uuid": "068a1ef5-49c8-4fbc-90c8-301d57d097e4",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for recent papers (2025-2026) that combine mechanistic interpretability with fine-tuning interventions on attention heads for distraction/context robustness. I need to find work that might be concurrent/competing with the idea of \"adding learnable gates to specific attention heads identified via mechanistic analysis.\" \n\nSearch queries to use:\n1. \"attention head gating fine-tuning distraction robustness 2025 2026\"\n2. \"mechanistic interpretability training intervention attention heads\"\n3. \"query-conditional attention head gating LLM\"\n4. \"entrainment heads training fix\" \n5. \"attention head regularization relevance-conditional 2025 2026\"\n6. \"circuit-level fine-tuning attention heads LLM\"\n7. \"PEAR attention reweighting RAG\" (verify this paper exists and its claims)\n8. \"MoH mixture of head attention ICML 2025\"\n\nFor each search, report the most relevant papers found, their venues, and whether they overlap with the proposed EAGT method. I'm particularly looking for any paper that:\n- Adds learnable gates to mechanistically-identified attention heads\n- Does query-conditional gating of specific heads for robustness\n- Combines entrainment/distraction head identification with training-time fixes\n\nUse WebSearch for all queries and WebFetch for the most relevant 2-3 papers found.",
+    "agentId": "a25361e0692ba2578",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Based on my comprehensive search across all 8 queries and follow-up investigations, here is my full report:\n\n---\n\n## Search Results: Concurrent/Competing Work to EAGT (Entrainment-Aware Gated Training)\n\n### MOST DIRECTLY RELEVANT PAPERS (High Overlap with EAGT)\n\n---\n\n#### 1. PEAR: Position-Embedding-Agnostic Attention Re-weighting (2024-2025)\n- **Authors:** Tao Tan, Yining Qian, Ang Lv, et al.\n- **Venue:** ACM Web Conference 2025 (TheWebConf/WWW 2025)\n- **URL:** https://arxiv.org/abs/2409.19745\n- **Overlap with EAGT:** HIGH\n\n**Method:** Identifies attention heads that suppress context awareness on a proxy context-copying task, then applies **learnable scalar coefficients** (gates) to those heads' outputs. The LLM parameters are frozen; only the coefficients are trained.\n\n**Key differences from EAGT:**\n- Gates are **static** (not query-conditional) -- same coefficient applied regardless of input\n- Focused on RAG context utilization, not distraction/entrainment robustness per se\n- No mechanistic interpretability framing (pragmatic head detection via proxy task)\n- Zero inference overhead (coefficients baked into weights)\n\n**Verdict:** This is the closest existing work to EAGT. It adds learnable gates to specific identified heads. However, it lacks query-conditionality and mechanistic grounding in entrainment circuits.\n\n---\n\n#### 2. ADR: Attention Head Detection and Reweighting (2025)\n- **Venue:** *Information* journal, October 2025\n- **URL:** https://www.mdpi.com/2078-2489/16/10/900\n- **Overlap with EAGT:** HIGH\n\n**Method:** Very similar to PEAR -- detects RAG-suppressing heads via a recognition task, applies reweighted coefficients. Claims to be positional-encoding-agnostic and compatible with fine-tuned models.\n\n**Key differences from EAGT:**\n- Appears to be a variant/extension of PEAR's framework\n- Static reweighting, not query-conditional\n- No entrainment head analysis\n\n---\n\n#### 3. \"Llama See, Llama Do\" (ACL 2025 Outstanding Paper)\n- **Authors:** Jingcheng Niu, Xingdi Yuan, Tong Wang, Hamidreza Saghir, Amir H. Abdi\n- **Venue:** ACL 2025 (Outstanding Paper Award)\n- **URL:** https://aclanthology.org/2025.acl-long.791/\n- **Overlap with EAGT:** MODERATE-HIGH (identifies the problem EAGT claims to solve)\n\n**Method:** Discovers \"entrainment heads\" via differentiable masking -- a small circuit (3.2-10.7% of heads) responsible for contextual entrainment/distraction. Demonstrates that zeroing these heads eliminates the distraction effect.\n\n**Critical finding for EAGT:** This paper identifies the problem and the heads but does NOT propose a training-time fix. It only demonstrates diagnostic ablation (zero-out). This is the obvious precursor paper that EAGT would build on.\n\n**Key gap left open:** The paper explicitly leaves the training-time intervention as future work. An EAGT-style method (adding learnable query-conditional gates to these identified entrainment heads) would be a natural follow-up.\n\n---\n\n### ARCHITECTURALLY RELATED PAPERS (Moderate Overlap)\n\n---\n\n#### 4. Gated Attention for LLMs (NeurIPS 2025 Best Paper)\n- **Authors:** Qwen team (Alibaba)\n- **Venue:** NeurIPS 2025 (Best Paper Award, 1 of 4)\n- **URL:** https://arxiv.org/abs/2505.06708\n- **Overlap with EAGT:** MODERATE\n\n**Method:** Adds a head-specific sigmoid gate after SDPA, computed from the query representation. This is **query-conditional** gating that introduces input-dependent sparsity and eliminates attention sinks.\n\n**Key differences from EAGT:**\n- This is an **architectural modification** applied to ALL heads during pre-training from scratch (Qwen3-Next)\n- Not a post-hoc intervention on specific mechanistically-identified heads\n- Not targeted at distraction/entrainment specifically\n- Cannot be applied to existing models without full retraining\n\n**Relevance:** Demonstrates that query-conditional per-head gating is effective. EAGT could cite this as architectural validation that the gating mechanism works, while differentiating by targeting only entrainment heads in existing models.\n\n---\n\n#### 5. MoH: Mixture-of-Head Attention (ICML 2025)\n- **Authors:** Peng Jin, Bo Zhu, Li Yuan, Shuicheng Yan (Skywork AI)\n- **Venue:** ICML 2025\n- **URL:** https://arxiv.org/abs/2410.11842\n- **Overlap with EAGT:** MODERATE\n\n**Method:** Treats attention heads as MoE experts with token-dependent routing. Each token selects which heads to use. Pre-trained models (LLaMA3-8B) can be continue-tuned into MoH models using only 50-90% of heads.\n\n**Key differences from EAGT:**\n- Input-dependent head selection (similar in spirit) but applied to ALL heads\n- No mechanistic identification of problematic heads\n- Goal is efficiency, not robustness/distraction mitigation\n- Requires continued pre-training\n\n---\n\n#### 6. Circuit-tuning (2025)\n- **Authors:** Yueyan Li et al. (Beijing Univ. of Posts and Telecommunications)\n- **URL:** https://arxiv.org/abs/2502.06106\n- **Overlap with EAGT:** MODERATE\n\n**Method:** Two-stage approach: (1) identify minimal circuits via causal mediation analysis, (2) fine-tune only parameters within discovered circuits. Achieves performance matching or exceeding full fine-tuning with ~7-9% of parameters.\n\n**Key differences from EAGT:**\n- Fine-tunes existing parameters in circuits (no new gates added)\n- Not targeted at distraction/robustness\n- General-purpose circuit-guided fine-tuning framework\n\n---\n\n### TANGENTIALLY RELATED PAPERS (Lower Overlap)\n\n---\n\n#### 7. Sparse Attention Post-Training for Mechanistic Interpretability (Dec 2025)\n- **Authors:** Florent Draye, Anson Lei, Hsiao-Ru Pan, Ingmar Posner, Bernhard Scholkopf\n- **URL:** https://arxiv.org/abs/2512.05865\n- **Overlap with EAGT:** LOW-MODERATE\n\nSparsifies attention to ~0.4% of edges while preserving performance, enabling clearer circuit identification. Does not add gates to specific heads but makes circuits visible for potential intervention.\n\n---\n\n#### 8. AIR: Post-training Data Selection via Attention Head Influence (Dec 2025)\n- **URL:** https://arxiv.org/abs/2512.13279\n- **Overlap with EAGT:** LOW\n\nUses reasoning-critical attention heads to score training data quality. Identifies heads but uses them for data selection rather than architectural intervention.\n\n---\n\n#### 9. The Atlas of In-Context Learning (NeurIPS 2025)\n- **Authors:** Patrick Kahardipraja et al.\n- **URL:** https://arxiv.org/abs/2505.15807\n- **Overlap with EAGT:** LOW-MODERATE\n\nMaps specialized attention heads for in-context retrieval augmentation (in-context heads vs. parametric heads). Could inform which heads to target but does not propose gating interventions.\n\n---\n\n#### 10. Adaptive Distraction (NeurIPS 2025)\n- **URL:** https://arxiv.org/abs/2502.01609\n- **Overlap with EAGT:** LOW (problem definition overlap)\n\nGenerates adaptive distractions to probe LLM robustness. Found that DPO training significantly enhances contextual robustness. Does not intervene on specific heads.\n\n---\n\n### SUMMARY: GAP ANALYSIS FOR EAGT\n\n| Feature | PEAR/ADR | Llama See Llama Do | Qwen Gated Attn | MoH | Circuit-tuning | **EAGT (proposed)** |\n|---------|----------|-------------------|-----------------|-----|---------------|-------------------|\n| Learnable gates on heads | Yes (static) | No (ablation only) | Yes (all heads) | Yes (all heads) | No | Yes (specific) |\n| Query-conditional | No | N/A | Yes | Yes | N/A | Yes |\n| Targets specific mech. heads | Partially | Yes (identifies) | No (all heads) | No | Yes | Yes |\n| Distraction/entrainment focus | Partial (RAG) | Yes | No | No | No | Yes |\n| Training-time fix | Yes | No | Pre-training | Continue-train | Yes | Yes |\n\n**Key finding:** No existing paper combines ALL of:\n1. Mechanistic identification of entrainment/distraction heads (a la \"Llama See, Llama Do\")\n2. Query-conditional learnable gates (a la Qwen's Gated Attention)\n3. Applied as a targeted fine-tuning intervention for robustness\n\nPEAR/ADR come closest but use static (non-conditional) gates without mechanistic grounding in entrainment circuits. \"Llama See, Llama Do\" identifies the exact heads but proposes no training fix. Qwen's Gated Attention proves query-conditional gating works but applies it universally during pre-training.\n\n**The EAGT proposal sits in a genuine gap** -- but the gap is narrowing quickly. The combination of \"Llama See, Llama Do\" (ACL 2025 Outstanding Paper) + PEAR/ADR methodology is an obvious next step that multiple groups could pursue.\n\nSources:\n- [PEAR - arxiv](https://arxiv.org/abs/2409.19745)\n- [PEAR - ACM Web Conference 2025](https://dl.acm.org/doi/10.1145/3696410.3714795)\n- [ADR - MDPI Information](https://www.mdpi.com/2078-2489/16/10/900)\n- [Llama See, Llama Do - ACL 2025](https://aclanthology.org/2025.acl-long.791/)\n- [Gated Attention for LLMs - NeurIPS 2025](https://arxiv.org/abs/2505.06708)\n- [Gated Attention - OpenReview](https://openreview.net/forum?id=1b7whO4SfY)\n- [MoH - ICML 2025](https://arxiv.org/abs/2410.11842)\n- [MoH - ICML proceedings](https://proceedings.mlr.press/v267/jin25l.html)\n- [Circuit-tuning](https://arxiv.org/html/2502.06106v2)\n- [Sparse Attention Post-Training](https://arxiv.org/abs/2512.05865)\n- [AIR - Attention Head Influence](https://arxiv.org/abs/2512.13279)\n- [Atlas of In-Context Learning - NeurIPS 2025](https://arxiv.org/abs/2505.15807)\n- [Adaptive Distraction - NeurIPS 2025](https://arxiv.org/abs/2502.01609)\n- [Interpreting Transformers Through Attention Head Intervention](https://arxiv.org/html/2601.04398v3)\n- [Awesome Attention Heads survey](https://github.com/IAAR-Shanghai/Awesome-Attention-Heads)"
+      }
+    ],
+    "totalDurationMs": 205288,
+    "totalTokens": 36064,
+    "totalToolUseCount": 26,
+    "usage": {
+      "input_tokens": 1040,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 31079,
+      "output_tokens": 2896,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1049
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1040,
+          "output_tokens": 2896,
+          "cache_read_input_tokens": 31079,
+          "cache_creation_input_tokens": 1049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1049,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 26
+    }
+  },
+  "sourceToolAssistantUUID": "f0580e0e-a064-4558-94d4-3d10cea8ce94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-17T09:11:23.358Z_
+
+Good. Now let me verify the key remaining claims and check for any additional competing work I might have missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "068a1ef5-49c8-4fbc-90c8-301d57d097e4",
+  "isSidechain": false,
+  "requestId": "req_011Cb7t75E7hZeBGPRrkQtCn",
+  "type": "assistant",
+  "uuid": "b93509cc-7ad8-4df6-9229-777af78cd647",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0197cCq4ApWbCMK57XMGwFTt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2083,
+      "cache_creation_input_tokens": 6650,
+      "cache_read_input_tokens": 31923,
+      "output_tokens": 838,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6650,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2083,
+          "output_tokens": 838,
+          "cache_read_input_tokens": 31923,
+          "cache_creation_input_tokens": 6650,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6650
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T09:11:34.615Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01LWw4FbsK1xbQKh1xtcfzMd`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Check static ablation limitations",
+  "prompt": "I need to verify a specific claim about the \"Llama See, Llama Do\" (ACL 2025) paper on contextual entrainment.\n\nThe claim is: \"Static ablation of entrainment heads causes only 0.2-3% ICL degradation\" — meaning it's very cheap to just remove these heads permanently. A research proposal argues that despite this low ICL cost, static ablation has a HIDDEN cost: it permanently removes context-sensitivity, which hurts performance on tasks where context IS relevant (RAG with correct retrievals, long-context QA).\n\nI need to check:\n1. What specific ICL benchmarks were used to measure the 0.2-3% degradation? Were they comprehensive?\n2. Did the paper test ablation impact on RAG tasks or context-dependent QA where context is the answer source?\n3. Is there any evidence (in this paper or others) that permanently disabling context-sensitivity in specific heads harms RAG or retrieval-augmented tasks?\n\nAlso search for:\n4. \"ICLR 2025 attention head safety\" paper (arXiv:2410.13708) about hidden costs of static ablation — the proposal cites this as evidence that static ablation can have hidden costs not captured by standard benchmarks.\n5. \"QAdA adaptive head selection long context\" — verify this paper exists and its claims about adaptive vs static head selection.\n\nUse WebSearch and WebFetch where needed."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b93509cc-7ad8-4df6-9229-777af78cd647",
+  "isSidechain": false,
+  "requestId": "req_011Cb7t75E7hZeBGPRrkQtCn",
+  "type": "assistant",
+  "uuid": "dd34a29a-a552-4e9a-9d26-24637fc44e86",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0197cCq4ApWbCMK57XMGwFTt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2083,
+      "cache_creation_input_tokens": 6650,
+      "cache_read_input_tokens": 31923,
+      "output_tokens": 838,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6650,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2083,
+          "output_tokens": 838,
+          "cache_read_input_tokens": 31923,
+          "cache_creation_input_tokens": 6650,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6650
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-17T09:11:42.709Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01QQyaFTaxkaN6sCzT9ZSSUu`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search for ABFT and circuit-tuning overlap",
+  "prompt": "Search for papers that propose training-time modifications targeting specific mechanistically-identified attention heads in LLMs. I need to assess whether the proposed \"EAGT\" idea (adding query-conditional gates to entrainment heads) has been anticipated by recent work.\n\nSpecific searches:\n1. \"ABFT mechanistic fine-tuning in-context learning\" (arXiv:2505.14233) — verify this paper exists, what it does, and how it differs from adding gates to entrainment heads\n2. \"HAVE head adaptive gating value calibration hallucination\" (arXiv:2509.06596) — verify this exists. It reportedly does per-head gating at inference time for hallucination reduction. How close is it to EAGT?\n3. \"ContextFocus\" (arXiv:2601.04131) — verify existence and method\n4. Search for any 2025-2026 paper that specifically proposes \"training entrainment heads\" or \"fine-tuning distraction heads\" or \"learning to gate attention heads for context robustness\"\n5. Search \"attention head pruning vs gating fine-tuning 2025 2026\" \n\nFor each paper found, briefly note: what heads they target, whether they add new parameters (gates) or modify existing weights, and whether it's inference-time or training-time.\n\nUse WebSearch for all queries."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dd34a29a-a552-4e9a-9d26-24637fc44e86",
+  "isSidechain": false,
+  "requestId": "req_011Cb7t75E7hZeBGPRrkQtCn",
+  "type": "assistant",
+  "uuid": "489b04e6-060d-4b16-9f5b-9550ce015eed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0197cCq4ApWbCMK57XMGwFTt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2083,
+      "cache_creation_input_tokens": 6650,
+      "cache_read_input_tokens": 31923,
+      "output_tokens": 838,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6650,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2083,
+          "output_tokens": 838,
+          "cache_read_input_tokens": 31923,
+          "cache_creation_input_tokens": 6650,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6650
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T09:13:59.766Z_
+
+<details><summary>↩ Tool result · `toolu_01LWw4FbsK1xbQKh1xtcfzMd`</summary>
+
+```text
+I now have all the information needed to provide a comprehensive answer. Here is my analysis:
+
+---
+
+## Verification Results
+
+### 1. ICL Benchmarks Used to Measure the 0.2-3% Degradation
+
+The "Llama See, Llama Do" paper used a **very narrow set of ICL benchmarks** to measure degradation after ablating entrainment heads:
+
+- **Arithmetic** (0-shot)
+- **Spelling correction** (1-shot, 2-shot, 5-shot)
+- **Translation** (1-shot, 2-shot, 5-shot)
+- Additionally, 15 LRE (Linear Relational Embeddings) relations for factual recall
+
+Specific results from Table 4:
+- Spelling correction 1-shot: 73.6% -> 72.0% (1.6% drop)
+- Translation 1-shot: 74.4% -> 73.0% (1.4% drop)
+- Arithmetic 0-shot: maintained 100%
+
+**Assessment: These benchmarks are NOT comprehensive.** They are simple, controlled ICL tasks that do not test complex reasoning, long-context retrieval, or RAG scenarios. The 0.2-3% claim is technically accurate *within these narrow benchmarks* but does not generalize to broader capability assessment.
+
+Only **Llama-3.1-8B** was tested.
+
+---
+
+### 2. Did the Paper Test Ablation on RAG or Context-Dependent QA?
+
+**No.** The paper explicitly acknowledges this gap. The authors state they "conducted experiments using only the LRE dataset" and did NOT use "standard RAG datasets (e.g., SimpleQA)" because such datasets are "difficult to control and compare fairly." They encourage future work to validate their findings on RAG benchmarks.
+
+This is a critical limitation: the entrainment heads are, by definition, the mechanism through which context influences model output. The paper only tested ablation on tasks where *context is not the primary answer source* (factual recall, arithmetic, translation). They did not test what happens when you actually NEED the model to attend to and use context.
+
+---
+
+### 3. Evidence That Static Ablation of Context-Processing Heads Harms RAG
+
+The paper itself provides no direct evidence, but **strong corroborating evidence exists from other papers:**
+
+**a) "Retrieval Heads are Dynamic" (arXiv:2602.11162, 2026)**
+- Demonstrates retrieval heads vary per generation timestep (Jaccard similarity with static heads: only 0.18-0.46)
+- Ablating dynamically-identified retrieval heads causes **near-complete failure** (accuracy near 0.0 on NIAH task), while ablating static retrieval heads shows only partial degradation
+- On HotpotQA, dynamic head strategy outperformed static by ~10% F1-score
+- Proves static head identification is fundamentally insufficient for retrieval tasks
+
+**b) "The Atlas of In-Context Learning" (arXiv:2505.15807, NeurIPS 2025)**
+- Removing 100 identified in-context heads caused **44-69% performance drop** on open-book QA
+- Even removing just 20 in-context heads caused 14-64% degradation on context-dependent tasks
+- Crucially revealed a "hidden cost": ablating in-context heads also caused **non-negligible degradation on closed-book QA**, because these heads serve dual functions (they also interpret instruction semantics)
+
+**c) QAdA paper (arXiv:2502.09647, 2025)**
+- Showed adaptive oracle allows up to 90% of heads to be labeled local vs only 60% for static criteria
+- On context-dependent tasks, QAdA labels significantly fewer heads as local compared to context-independent tasks
+- Static methods sacrifice either efficiency or capability because head behavior is fundamentally query-dependent
+
+---
+
+### 4. ICLR 2025 Paper on Attention Head Safety (arXiv:2410.13708)
+
+**Confirmed: This paper exists and was published as an ORAL at ICLR 2025.**
+
+Title: "On the Role of Attention Heads in Large Language Model Safety"
+
+Key findings relevant to hidden costs:
+- Ablating a **single** safety head increased Attack Success Rate from 0.04 to 0.64 (16x) while modifying only 0.006% of parameters
+- The paper evaluated on 5 zero-shot benchmarks (BoolQ, RTE, WinoGrande, ARC Challenge, OpenBookQA) and found "little helpfulness compromise"
+- However, they acknowledge that "neurons in LLMs exhibit superposition and polysemanticity," implying components handle multiple functions
+- Their evaluation was limited to those 5 benchmarks — they did NOT comprehensively test whether safety head ablation harms other capabilities not covered by their benchmark suite
+
+**Assessment for the research proposal's citation:** The paper is a valid citation for the principle that heads can be ablated with minimal impact *on measured benchmarks* while having dramatic effects on unmeasured capabilities (safety). However, it does NOT directly demonstrate that safety head ablation harms RAG tasks. The analogy being drawn (static ablation looks cheap on standard benchmarks but has hidden costs) is a reasonable extrapolation but not a direct finding of this paper.
+
+---
+
+### 5. QAdA Paper Verification
+
+**Confirmed: The paper exists.**
+
+Title: "Unveiling Simplicities of Attention: Adaptive Long-Context Head Identification" (arXiv:2502.09647, March 2025)
+
+Core claims verified:
+- Head behavior is query-dependent: some heads "swing between attending to local and long-context information depending on the query"
+- QAdA uses second-order statistics of keys to predict per-query which heads need full context vs local windows
+- Adaptive selection achieves ~90% sparsity vs ~60% for static without performance loss
+- On RULER and LongBench benchmarks, adaptive consistently matches or outperforms static oracle
+- The paper directly proves that static head classification is fundamentally suboptimal for long-context tasks
+
+---
+
+## Summary Assessment of the Research Proposal's Claims
+
+| Claim | Verdict |
+|-------|---------|
+| "0.2-3% ICL degradation from static ablation" | **Accurate but misleading** — sourced from narrow benchmarks (arithmetic, spelling, translation) that don't require context as the answer source |
+| "Static ablation has a hidden cost: permanently removes context-sensitivity" | **Well-supported inference** — not directly proven in the original paper, but strongly supported by "Retrieval Heads are Dynamic" (2602.11162), "Atlas of ICL" (2505.15807), and QAdA (2502.09647) |
+| "Hurts RAG/long-context QA" | **Very likely correct** — Atlas of ICL shows 44-69% degradation on open-book QA when in-context heads are removed; Dynamic Retrieval Heads paper shows static ablation misses the heads that actually matter at inference time |
+| ICLR 2025 safety paper as evidence of hidden costs | **Valid analogy but indirect** — demonstrates the principle (cheap-looking ablation on standard benchmarks masks dramatic effects elsewhere) but doesn't directly address RAG |
+| QAdA shows adaptive > static | **Directly confirmed** — 90% vs 60% sparsity achievable, with consistent performance advantages on RULER and LongBench |
+
+The research proposal's core argument is sound: the "Llama See, Llama Do" paper's 0.2-3% figure comes from benchmarks that do NOT test the very capability that entrainment heads provide (context sensitivity). The paper itself acknowledges this limitation explicitly. Multiple independent papers from 2025-2026 provide strong evidence that static head ablation is insufficient for retrieval/context-dependent tasks.
+
+---
+
+Sources:
+- [Llama See, Llama Do - ACL Anthology](https://aclanthology.org/2025.acl-long.791/)
+- [Llama See, Llama Do - arXiv](https://arxiv.org/abs/2505.09338)
+- [On the Role of Attention Heads in LLM Safety - arXiv](https://arxiv.org/abs/2410.13708)
+- [On the Role of Attention Heads in LLM Safety - ICLR 2025 Oral](https://iclr.cc/virtual/2025/oral/31798)
+- [QAdA: Unveiling Simplicities of Attention - arXiv](https://arxiv.org/abs/2502.09647)
+- [Retrieval Heads are Dynamic - arXiv](https://arxiv.org/html/2602.11162v1)
+- [The Atlas of In-Context Learning - arXiv](https://arxiv.org/abs/2505.15807)
+- [DuoAttention: Retrieval and Streaming Heads](https://arxiv.org/html/2410.10819v1)
+
+agentId: abf1738407bed38e1 (use SendMessage with to: 'abf1738407bed38e1' to continue this agent)
+&lt;usage>total_tokens: 24855
+tool_uses: 16
+duration_ms: 145145&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dd34a29a-a552-4e9a-9d26-24637fc44e86",
+  "isSidechain": false,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "type": "user",
+  "uuid": "f3e26a27-6dcd-4cb4-a5fa-da2a8b09642a",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify a specific claim about the \"Llama See, Llama Do\" (ACL 2025) paper on contextual entrainment.\n\nThe claim is: \"Static ablation of entrainment heads causes only 0.2-3% ICL degradation\" — meaning it's very cheap to just remove these heads permanently. A research proposal argues that despite this low ICL cost, static ablation has a HIDDEN cost: it permanently removes context-sensitivity, which hurts performance on tasks where context IS relevant (RAG with correct retrievals, long-context QA).\n\nI need to check:\n1. What specific ICL benchmarks were used to measure the 0.2-3% degradation? Were they comprehensive?\n2. Did the paper test ablation impact on RAG tasks or context-dependent QA where context is the answer source?\n3. Is there any evidence (in this paper or others) that permanently disabling context-sensitivity in specific heads harms RAG or retrieval-augmented tasks?\n\nAlso search for:\n4. \"ICLR 2025 attention head safety\" paper (arXiv:2410.13708) about hidden costs of static ablation — the proposal cites this as evidence that static ablation can have hidden costs not captured by standard benchmarks.\n5. \"QAdA adaptive head selection long context\" — verify this paper exists and its claims about adaptive vs static head selection.\n\nUse WebSearch and WebFetch where needed.",
+    "agentId": "abf1738407bed38e1",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have all the information needed to provide a comprehensive answer. Here is my analysis:\n\n---\n\n## Verification Results\n\n### 1. ICL Benchmarks Used to Measure the 0.2-3% Degradation\n\nThe \"Llama See, Llama Do\" paper used a **very narrow set of ICL benchmarks** to measure degradation after ablating entrainment heads:\n\n- **Arithmetic** (0-shot)\n- **Spelling correction** (1-shot, 2-shot, 5-shot)\n- **Translation** (1-shot, 2-shot, 5-shot)\n- Additionally, 15 LRE (Linear Relational Embeddings) relations for factual recall\n\nSpecific results from Table 4:\n- Spelling correction 1-shot: 73.6% -> 72.0% (1.6% drop)\n- Translation 1-shot: 74.4% -> 73.0% (1.4% drop)\n- Arithmetic 0-shot: maintained 100%\n\n**Assessment: These benchmarks are NOT comprehensive.** They are simple, controlled ICL tasks that do not test complex reasoning, long-context retrieval, or RAG scenarios. The 0.2-3% claim is technically accurate *within these narrow benchmarks* but does not generalize to broader capability assessment.\n\nOnly **Llama-3.1-8B** was tested.\n\n---\n\n### 2. Did the Paper Test Ablation on RAG or Context-Dependent QA?\n\n**No.** The paper explicitly acknowledges this gap. The authors state they \"conducted experiments using only the LRE dataset\" and did NOT use \"standard RAG datasets (e.g., SimpleQA)\" because such datasets are \"difficult to control and compare fairly.\" They encourage future work to validate their findings on RAG benchmarks.\n\nThis is a critical limitation: the entrainment heads are, by definition, the mechanism through which context influences model output. The paper only tested ablation on tasks where *context is not the primary answer source* (factual recall, arithmetic, translation). They did not test what happens when you actually NEED the model to attend to and use context.\n\n---\n\n### 3. Evidence That Static Ablation of Context-Processing Heads Harms RAG\n\nThe paper itself provides no direct evidence, but **strong corroborating evidence exists from other papers:**\n\n**a) \"Retrieval Heads are Dynamic\" (arXiv:2602.11162, 2026)**\n- Demonstrates retrieval heads vary per generation timestep (Jaccard similarity with static heads: only 0.18-0.46)\n- Ablating dynamically-identified retrieval heads causes **near-complete failure** (accuracy near 0.0 on NIAH task), while ablating static retrieval heads shows only partial degradation\n- On HotpotQA, dynamic head strategy outperformed static by ~10% F1-score\n- Proves static head identification is fundamentally insufficient for retrieval tasks\n\n**b) \"The Atlas of In-Context Learning\" (arXiv:2505.15807, NeurIPS 2025)**\n- Removing 100 identified in-context heads caused **44-69% performance drop** on open-book QA\n- Even removing just 20 in-context heads caused 14-64% degradation on context-dependent tasks\n- Crucially revealed a \"hidden cost\": ablating in-context heads also caused **non-negligible degradation on closed-book QA**, because these heads serve dual functions (they also interpret instruction semantics)\n\n**c) QAdA paper (arXiv:2502.09647, 2025)**\n- Showed adaptive oracle allows up to 90% of heads to be labeled local vs only 60% for static criteria\n- On context-dependent tasks, QAdA labels significantly fewer heads as local compared to context-independent tasks\n- Static methods sacrifice either efficiency or capability because head behavior is fundamentally query-dependent\n\n---\n\n### 4. ICLR 2025 Paper on Attention Head Safety (arXiv:2410.13708)\n\n**Confirmed: This paper exists and was published as an ORAL at ICLR 2025.**\n\nTitle: \"On the Role of Attention Heads in Large Language Model Safety\"\n\nKey findings relevant to hidden costs:\n- Ablating a **single** safety head increased Attack Success Rate from 0.04 to 0.64 (16x) while modifying only 0.006% of parameters\n- The paper evaluated on 5 zero-shot benchmarks (BoolQ, RTE, WinoGrande, ARC Challenge, OpenBookQA) and found \"little helpfulness compromise\"\n- However, they acknowledge that \"neurons in LLMs exhibit superposition and polysemanticity,\" implying components handle multiple functions\n- Their evaluation was limited to those 5 benchmarks — they did NOT comprehensively test whether safety head ablation harms other capabilities not covered by their benchmark suite\n\n**Assessment for the research proposal's citation:** The paper is a valid citation for the principle that heads can be ablated with minimal impact *on measured benchmarks* while having dramatic effects on unmeasured capabilities (safety). However, it does NOT directly demonstrate that safety head ablation harms RAG tasks. The analogy being drawn (static ablation looks cheap on standard benchmarks but has hidden costs) is a reasonable extrapolation but not a direct finding of this paper.\n\n---\n\n### 5. QAdA Paper Verification\n\n**Confirmed: The paper exists.**\n\nTitle: \"Unveiling Simplicities of Attention: Adaptive Long-Context Head Identification\" (arXiv:2502.09647, March 2025)\n\nCore claims verified:\n- Head behavior is query-dependent: some heads \"swing between attending to local and long-context information depending on the query\"\n- QAdA uses second-order statistics of keys to predict per-query which heads need full context vs local windows\n- Adaptive selection achieves ~90% sparsity vs ~60% for static without performance loss\n- On RULER and LongBench benchmarks, adaptive consistently matches or outperforms static oracle\n- The paper directly proves that static head classification is fundamentally suboptimal for long-context tasks\n\n---\n\n## Summary Assessment of the Research Proposal's Claims\n\n| Claim | Verdict |\n|-------|---------|\n| \"0.2-3% ICL degradation from static ablation\" | **Accurate but misleading** — sourced from narrow benchmarks (arithmetic, spelling, translation) that don't require context as the answer source |\n| \"Static ablation has a hidden cost: permanently removes context-sensitivity\" | **Well-supported inference** — not directly proven in the original paper, but strongly supported by \"Retrieval Heads are Dynamic\" (2602.11162), \"Atlas of ICL\" (2505.15807), and QAdA (2502.09647) |\n| \"Hurts RAG/long-context QA\" | **Very likely correct** — Atlas of ICL shows 44-69% degradation on open-book QA when in-context heads are removed; Dynamic Retrieval Heads paper shows static ablation misses the heads that actually matter at inference time |\n| ICLR 2025 safety paper as evidence of hidden costs | **Valid analogy but indirect** — demonstrates the principle (cheap-looking ablation on standard benchmarks masks dramatic effects elsewhere) but doesn't directly address RAG |\n| QAdA shows adaptive > static | **Directly confirmed** — 90% vs 60% sparsity achievable, with consistent performance advantages on RULER and LongBench |\n\nThe research proposal's core argument is sound: the \"Llama See, Llama Do\" paper's 0.2-3% figure comes from benchmarks that do NOT test the very capability that entrainment heads provide (context sensitivity). The paper itself acknowledges this limitation explicitly. Multiple independent papers from 2025-2026 provide strong evidence that static head ablation is insufficient for retrieval/context-dependent tasks.\n\n---\n\nSources:\n- [Llama See, Llama Do - ACL Anthology](https://aclanthology.org/2025.acl-long.791/)\n- [Llama See, Llama Do - arXiv](https://arxiv.org/abs/2505.09338)\n- [On the Role of Attention Heads in LLM Safety - arXiv](https://arxiv.org/abs/2410.13708)\n- [On the Role of Attention Heads in LLM Safety - ICLR 2025 Oral](https://iclr.cc/virtual/2025/oral/31798)\n- [QAdA: Unveiling Simplicities of Attention - arXiv](https://arxiv.org/abs/2502.09647)\n- [Retrieval Heads are Dynamic - arXiv](https://arxiv.org/html/2602.11162v1)\n- [The Atlas of In-Context Learning - arXiv](https://arxiv.org/abs/2505.15807)\n- [DuoAttention: Retrieval and Streaming Heads](https://arxiv.org/html/2410.10819v1)"
+      }
+    ],
+    "totalDurationMs": 145145,
+    "totalTokens": 24855,
+    "totalToolUseCount": 16,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1059,
+      "cache_read_input_tokens": 21669,
+      "output_tokens": 2126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1059
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2126,
+          "cache_read_input_tokens": 21669,
+          "cache_creation_input_tokens": 1059,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1059,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 16
+    }
+  },
+  "sourceToolAssistantUUID": "dd34a29a-a552-4e9a-9d26-24637fc44e86",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-17 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f3e26a27-6dcd-4cb4-a5fa-da2a8b09642a",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Mechanistic entrainment head targeting via learned query-conditional gating",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae"
+}
+```
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T09:14:02.854Z_
+
+<details><summary>↩ Tool result · `toolu_01QQyaFTaxkaN6sCzT9ZSSUu`</summary>
+
+```text
+I now have comprehensive information to provide a detailed assessment. Here is my synthesis:
+
+---
+
+## Assessment: Has "EAGT" (Adding Query-Conditional Gates to Entrainment Heads) Been Anticipated?
+
+### 1. ABFT -- Mechanistic Fine-tuning for In-context Learning (arXiv:2505.14233)
+
+**Confirmed to exist.** By Hakaze Cho, Peng Luo, Mariko Kato, Rin Kaenbyou, Naoya Inoue (May 2025).
+
+| Dimension | Details |
+|-----------|---------|
+| Heads targeted | Induction heads (identified by attention focus on label tokens) |
+| New parameters or modified weights? | Modifies existing weights -- fine-tunes only the W_Q projection matrices of each attention head |
+| Inference-time or training-time? | Training-time (fine-tuning with ~0.01% data cost) |
+| Mechanism | Builds a loss directly on the attention scores of induction heads, punishing attention to wrong-label tokens and rewarding attention to correct-label tokens |
+
+**Difference from EAGT:** ABFT does not add new gate parameters. It modifies the existing query projections of induction heads using an attention-score-level loss. It targets ICL performance (correct label copying), not context robustness or entrainment suppression. No query-conditional gating mechanism is introduced.
+
+---
+
+### 2. HAVE -- Head-Adaptive Gating and ValuE Calibration (arXiv:2509.06596)
+
+**Confirmed to exist.** By Xin Tong, Zhi Lin, Jingya Wang, Bo Jin (September 2025).
+
+| Dimension | Details |
+|-----------|---------|
+| Heads targeted | All attention heads, reweighted per-instance based on computed importance |
+| New parameters or modified weights? | Neither -- parameter-free; computes instance-level soft reweighting dynamically |
+| Inference-time or training-time? | Inference-time only (single forward pass, no fine-tuning) |
+| Mechanism | (1) Head-adaptive gating: instance-level soft reweighting of attention heads based on input-dependent importance scores. (2) Value calibration: augments attention with value-vector magnitudes to approximate write-back contribution |
+
+**Difference from EAGT:** HAVE is the closest conceptual relative -- it performs per-head, query-conditional (instance-dependent) gating. However, it is purely inference-time, introduces no trainable parameters, does not specifically target entrainment heads, and is aimed at hallucination reduction rather than context robustness. EAGT's distinguishing contribution would be: (a) targeting specifically mechanistically-identified entrainment heads, (b) adding learned gate parameters conditioned on the query, and (c) training those gates to suppress entrainment. HAVE demonstrates the idea "works" at inference time but does not learn or internalize the gating.
+
+---
+
+### 3. ContextFocus -- Activation Steering for Contextual Faithfulness (arXiv:2601.04131)
+
+**Confirmed to exist.** By Nikhil Anand, Shwetha Somasundaram, Anirudh Phukan, Apoorv Saxena, Koyel Mukherjee (January 2026).
+
+| Dimension | Details |
+|-----------|---------|
+| Heads targeted | Not head-level -- operates on hidden-state activations at specific layers |
+| New parameters or modified weights? | Neither -- applies a fixed steering vector at inference time (no new learned params) |
+| Inference-time or training-time? | Inference-time (activation steering with a multiplier at identified layers) |
+| Mechanism | Computes a steering direction by contrasting context-faithful vs. unfaithful activations, then adds this direction at inference time to bias generation toward contextual faithfulness |
+
+**Difference from EAGT:** ContextFocus works at the residual-stream level, not at individual attention heads. It uses no learned gates and requires no training. It addresses the same downstream problem (context faithfulness in knowledge-conflict settings) but via a fundamentally different mechanism (representation-space steering vs. head-level gating).
+
+---
+
+### 4. "Llama See, Llama Do" -- Entrainment and Distraction Heads (arXiv:2505.09338, ACL 2025)
+
+**Confirmed to exist.** By Jingcheng Niu, Xingdi Yuan, Tong Wang, Hamidreza Saghir, Amir H. Abdi. Published at ACL 2025.
+
+| Dimension | Details |
+|-----------|---------|
+| Heads targeted | Entrainment heads (discovered via differentiable masking; ~36 out of 1024 heads in Llama-3.1-8B) |
+| New parameters or modified weights? | Analysis-only -- they zero-out head outputs as an intervention but do not propose trainable modifications |
+| Inference-time or training-time? | Analysis paper; ablation interventions are inference-time |
+| Mechanism | Discovers entrainment heads via differentiable masking; shows that zeroing these heads attenuates contextual entrainment |
+
+**Relevance to EAGT:** This is the foundational paper that EAGT would build upon. It identifies the entrainment heads and shows that ablating them helps, but it stops short of proposing a trainable gating mechanism. The paper frames this as "a key step towards mechanistic analysis and mitigation" -- implicitly leaving the door open for exactly the kind of training-time intervention EAGT proposes. Critically, this paper does NOT propose adding learnable gates.
+
+---
+
+### 5. Causal Head Gating (CHG) (arXiv:2505.13737, May 2025)
+
+**Confirmed to exist.**
+
+| Dimension | Details |
+|-----------|---------|
+| Heads targeted | All heads -- learns soft gates to classify heads as facilitating, interfering, or irrelevant |
+| New parameters or modified weights? | Adds learnable gating values (soft ablation parameters) per head |
+| Inference-time or training-time? | Training-time (learns gates via next-token prediction loss) |
+| Mechanism | Fits per-head gating values using standard next-token prediction, so facilitating heads remain unaltered while interfering heads are suppressed |
+
+**Difference from EAGT:** CHG learns per-head gates, but these are NOT query-conditional -- they are static per-task scalars. CHG is primarily an interpretability tool (discovering which heads facilitate/interfere) rather than a deployment mechanism. It does not target entrainment heads specifically and does not condition gates on the input query.
+
+---
+
+### 6. Qwen "Gated Attention" (NeurIPS 2025 Best Paper)
+
+**Confirmed to exist.** "Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free" by the Qwen team.
+
+| Dimension | Details |
+|-----------|---------|
+| Heads targeted | All heads uniformly (architectural modification, not targeting specific functional heads) |
+| New parameters or modified weights? | Adds per-head sigmoid gates as a permanent architectural component |
+| Inference-time or training-time? | Pre-training from scratch (architectural change) |
+| Mechanism | Applies a head-specific sigmoid gate after Scaled Dot-Product Attention, trained jointly during pre-training |
+
+**Difference from EAGT:** Qwen's gated attention is a pre-training architectural modification applied to ALL heads uniformly. It is not targeted at mechanistically-identified heads, not query-conditional in the sense EAGT proposes, and not a fine-tuning intervention. It solves a different problem (training stability, attention sinks) rather than context robustness.
+
+---
+
+### 7. RHIO -- Retrieval Heads-Induced Optimization (arXiv:2501.13573, ACL 2025)
+
+**Confirmed to exist.** January 2025.
+
+| Dimension | Details |
+|-----------|---------|
+| Heads targeted | Retrieval heads (heads responsible for retrieving contextual information) |
+| New parameters or modified weights? | Modifies existing weights via fine-tuning (not new gate parameters) |
+| Inference-time or training-time? | Training-time (fine-tuning with augmented data) + inference-time (contrastive decoding with control tokens) |
+| Mechanism | Masks retrieval heads to generate unfaithful examples, trains the model to distinguish faithful/unfaithful outputs using control tokens, then uses contrastive decoding at inference |
+
+**Difference from EAGT:** RHIO uses mechanistically-identified heads (retrieval heads) but only to create training data (by masking them to simulate unfaithfulness). It does not add gates to those heads. The training modifies the full model to be more faithful, rather than surgically adding parameters to specific heads.
+
+---
+
+## Summary Assessment
+
+**No existing paper proposes exactly what EAGT describes** -- i.e., adding trainable, query-conditional gate parameters specifically to mechanistically-identified entrainment heads to suppress context-entrainment during fine-tuning.
+
+The closest neighbors are:
+
+1. **HAVE** (2509.06596) -- does per-head, instance-conditional gating, but inference-only and parameter-free. Does not target entrainment heads.
+2. **CHG** (2505.13737) -- learns per-head gates during training, but they are static (not query-conditional) and used for interpretability.
+3. **"Llama See, Llama Do"** (2505.09338) -- identifies the exact entrainment heads EAGT would target, but proposes only zero-ablation, not learned gating.
+4. **ABFT** (2505.14233) -- trains modifications to specific mechanistically-identified heads (induction heads), but modifies W_Q rather than adding gates, and targets ICL, not entrainment.
+5. **Qwen Gated Attention** (NeurIPS 2025) -- adds sigmoid gates to all heads but as an architectural pre-training choice, not a targeted fine-tuning intervention.
+
+**The gap EAGT fills**: The combination of (a) targeting specifically entrainment heads identified via mechanistic interpretability, (b) adding new learnable gate parameters that are query-conditional, and (c) training those gates (fine-tuning) to suppress entrainment for context robustness -- this specific combination appears novel as of my search results through early 2026.
+
+The most obvious "prior art" objection would cite HAVE for the gating concept and "Llama See, Llama Do" for entrainment head identification, arguing EAGT is a straightforward combination. A strong response would emphasize that (1) making the gating trainable rather than heuristic is non-trivial, (2) query-conditioning requires architectural design choices, and (3) the training signal for entrainment suppression is itself a contribution.
+
+---
+
+Sources:
+- [Mechanistic Fine-tuning for In-context Learning (ABFT)](https://arxiv.org/abs/2505.14233)
+- [HAVE: Head-Adaptive Gating and ValuE Calibration](https://arxiv.org/abs/2509.06596)
+- [ContextFocus: Activation Steering for Contextual Faithfulness](https://arxiv.org/abs/2601.04131)
+- [Llama See, Llama Do: Contextual Entrainment and Distraction](https://arxiv.org/abs/2505.09338)
+- [Causal Head Gating (CHG)](https://arxiv.org/abs/2505.13737)
+- [Qwen Gated Attention - NeurIPS 2025](https://openreview.net/forum?id=1b7whO4SfY)
+- [RHIO: Retrieval Heads-Induced Optimization](https://arxiv.org/abs/2501.13573)
+- [NeurIPS 2025 Best Paper Review: Qwen's Attention Gating](https://towardsdatascience.com/neurips-2025-best-paper-review-qwens-systematic-exploration-of-attention-gating/)
+- [ACL 2025 Entrainment Paper](https://aclanthology.org/2025.acl-long.791/)
+
+agentId: a6d56c9c8cef2a2a9 (use SendMessage with to: 'a6d56c9c8cef2a2a9' to continue this agent)
+&lt;usage>total_tokens: 29107
+tool_uses: 16
+duration_ms: 140143&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "489b04e6-060d-4b16-9f5b-9550ce015eed",
+  "isSidechain": false,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "type": "user",
+  "uuid": "08be72aa-2cc9-490a-bfa1-5103bfa2cf75",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for papers that propose training-time modifications targeting specific mechanistically-identified attention heads in LLMs. I need to assess whether the proposed \"EAGT\" idea (adding query-conditional gates to entrainment heads) has been anticipated by recent work.\n\nSpecific searches:\n1. \"ABFT mechanistic fine-tuning in-context learning\" (arXiv:2505.14233) — verify this paper exists, what it does, and how it differs from adding gates to entrainment heads\n2. \"HAVE head adaptive gating value calibration hallucination\" (arXiv:2509.06596) — verify this exists. It reportedly does per-head gating at inference time for hallucination reduction. How close is it to EAGT?\n3. \"ContextFocus\" (arXiv:2601.04131) — verify existence and method\n4. Search for any 2025-2026 paper that specifically proposes \"training entrainment heads\" or \"fine-tuning distraction heads\" or \"learning to gate attention heads for context robustness\"\n5. Search \"attention head pruning vs gating fine-tuning 2025 2026\" \n\nFor each paper found, briefly note: what heads they target, whether they add new parameters (gates) or modify existing weights, and whether it's inference-time or training-time.\n\nUse WebSearch for all queries.",
+    "agentId": "a6d56c9c8cef2a2a9",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have comprehensive information to provide a detailed assessment. Here is my synthesis:\n\n---\n\n## Assessment: Has \"EAGT\" (Adding Query-Conditional Gates to Entrainment Heads) Been Anticipated?\n\n### 1. ABFT -- Mechanistic Fine-tuning for In-context Learning (arXiv:2505.14233)\n\n**Confirmed to exist.** By Hakaze Cho, Peng Luo, Mariko Kato, Rin Kaenbyou, Naoya Inoue (May 2025).\n\n| Dimension | Details |\n|-----------|---------|\n| Heads targeted | Induction heads (identified by attention focus on label tokens) |\n| New parameters or modified weights? | Modifies existing weights -- fine-tunes only the W_Q projection matrices of each attention head |\n| Inference-time or training-time? | Training-time (fine-tuning with ~0.01% data cost) |\n| Mechanism | Builds a loss directly on the attention scores of induction heads, punishing attention to wrong-label tokens and rewarding attention to correct-label tokens |\n\n**Difference from EAGT:** ABFT does not add new gate parameters. It modifies the existing query projections of induction heads using an attention-score-level loss. It targets ICL performance (correct label copying), not context robustness or entrainment suppression. No query-conditional gating mechanism is introduced.\n\n---\n\n### 2. HAVE -- Head-Adaptive Gating and ValuE Calibration (arXiv:2509.06596)\n\n**Confirmed to exist.** By Xin Tong, Zhi Lin, Jingya Wang, Bo Jin (September 2025).\n\n| Dimension | Details |\n|-----------|---------|\n| Heads targeted | All attention heads, reweighted per-instance based on computed importance |\n| New parameters or modified weights? | Neither -- parameter-free; computes instance-level soft reweighting dynamically |\n| Inference-time or training-time? | Inference-time only (single forward pass, no fine-tuning) |\n| Mechanism | (1) Head-adaptive gating: instance-level soft reweighting of attention heads based on input-dependent importance scores. (2) Value calibration: augments attention with value-vector magnitudes to approximate write-back contribution |\n\n**Difference from EAGT:** HAVE is the closest conceptual relative -- it performs per-head, query-conditional (instance-dependent) gating. However, it is purely inference-time, introduces no trainable parameters, does not specifically target entrainment heads, and is aimed at hallucination reduction rather than context robustness. EAGT's distinguishing contribution would be: (a) targeting specifically mechanistically-identified entrainment heads, (b) adding learned gate parameters conditioned on the query, and (c) training those gates to suppress entrainment. HAVE demonstrates the idea \"works\" at inference time but does not learn or internalize the gating.\n\n---\n\n### 3. ContextFocus -- Activation Steering for Contextual Faithfulness (arXiv:2601.04131)\n\n**Confirmed to exist.** By Nikhil Anand, Shwetha Somasundaram, Anirudh Phukan, Apoorv Saxena, Koyel Mukherjee (January 2026).\n\n| Dimension | Details |\n|-----------|---------|\n| Heads targeted | Not head-level -- operates on hidden-state activations at specific layers |\n| New parameters or modified weights? | Neither -- applies a fixed steering vector at inference time (no new learned params) |\n| Inference-time or training-time? | Inference-time (activation steering with a multiplier at identified layers) |\n| Mechanism | Computes a steering direction by contrasting context-faithful vs. unfaithful activations, then adds this direction at inference time to bias generation toward contextual faithfulness |\n\n**Difference from EAGT:** ContextFocus works at the residual-stream level, not at individual attention heads. It uses no learned gates and requires no training. It addresses the same downstream problem (context faithfulness in knowledge-conflict settings) but via a fundamentally different mechanism (representation-space steering vs. head-level gating).\n\n---\n\n### 4. \"Llama See, Llama Do\" -- Entrainment and Distraction Heads (arXiv:2505.09338, ACL 2025)\n\n**Confirmed to exist.** By Jingcheng Niu, Xingdi Yuan, Tong Wang, Hamidreza Saghir, Amir H. Abdi. Published at ACL 2025.\n\n| Dimension | Details |\n|-----------|---------|\n| Heads targeted | Entrainment heads (discovered via differentiable masking; ~36 out of 1024 heads in Llama-3.1-8B) |\n| New parameters or modified weights? | Analysis-only -- they zero-out head outputs as an intervention but do not propose trainable modifications |\n| Inference-time or training-time? | Analysis paper; ablation interventions are inference-time |\n| Mechanism | Discovers entrainment heads via differentiable masking; shows that zeroing these heads attenuates contextual entrainment |\n\n**Relevance to EAGT:** This is the foundational paper that EAGT would build upon. It identifies the entrainment heads and shows that ablating them helps, but it stops short of proposing a trainable gating mechanism. The paper frames this as \"a key step towards mechanistic analysis and mitigation\" -- implicitly leaving the door open for exactly the kind of training-time intervention EAGT proposes. Critically, this paper does NOT propose adding learnable gates.\n\n---\n\n### 5. Causal Head Gating (CHG) (arXiv:2505.13737, May 2025)\n\n**Confirmed to exist.**\n\n| Dimension | Details |\n|-----------|---------|\n| Heads targeted | All heads -- learns soft gates to classify heads as facilitating, interfering, or irrelevant |\n| New parameters or modified weights? | Adds learnable gating values (soft ablation parameters) per head |\n| Inference-time or training-time? | Training-time (learns gates via next-token prediction loss) |\n| Mechanism | Fits per-head gating values using standard next-token prediction, so facilitating heads remain unaltered while interfering heads are suppressed |\n\n**Difference from EAGT:** CHG learns per-head gates, but these are NOT query-conditional -- they are static per-task scalars. CHG is primarily an interpretability tool (discovering which heads facilitate/interfere) rather than a deployment mechanism. It does not target entrainment heads specifically and does not condition gates on the input query.\n\n---\n\n### 6. Qwen \"Gated Attention\" (NeurIPS 2025 Best Paper)\n\n**Confirmed to exist.** \"Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free\" by the Qwen team.\n\n| Dimension | Details |\n|-----------|---------|\n| Heads targeted | All heads uniformly (architectural modification, not targeting specific functional heads) |\n| New parameters or modified weights? | Adds per-head sigmoid gates as a permanent architectural component |\n| Inference-time or training-time? | Pre-training from scratch (architectural change) |\n| Mechanism | Applies a head-specific sigmoid gate after Scaled Dot-Product Attention, trained jointly during pre-training |\n\n**Difference from EAGT:** Qwen's gated attention is a pre-training architectural modification applied to ALL heads uniformly. It is not targeted at mechanistically-identified heads, not query-conditional in the sense EAGT proposes, and not a fine-tuning intervention. It solves a different problem (training stability, attention sinks) rather than context robustness.\n\n---\n\n### 7. RHIO -- Retrieval Heads-Induced Optimization (arXiv:2501.13573, ACL 2025)\n\n**Confirmed to exist.** January 2025.\n\n| Dimension | Details |\n|-----------|---------|\n| Heads targeted | Retrieval heads (heads responsible for retrieving contextual information) |\n| New parameters or modified weights? | Modifies existing weights via fine-tuning (not new gate parameters) |\n| Inference-time or training-time? | Training-time (fine-tuning with augmented data) + inference-time (contrastive decoding with control tokens) |\n| Mechanism | Masks retrieval heads to generate unfaithful examples, trains the model to distinguish faithful/unfaithful outputs using control tokens, then uses contrastive decoding at inference |\n\n**Difference from EAGT:** RHIO uses mechanistically-identified heads (retrieval heads) but only to create training data (by masking them to simulate unfaithfulness). It does not add gates to those heads. The training modifies the full model to be more faithful, rather than surgically adding parameters to specific heads.\n\n---\n\n## Summary Assessment\n\n**No existing paper proposes exactly what EAGT describes** -- i.e., adding trainable, query-conditional gate parameters specifically to mechanistically-identified entrainment heads to suppress context-entrainment during fine-tuning.\n\nThe closest neighbors are:\n\n1. **HAVE** (2509.06596) -- does per-head, instance-conditional gating, but inference-only and parameter-free. Does not target entrainment heads.\n2. **CHG** (2505.13737) -- learns per-head gates during training, but they are static (not query-conditional) and used for interpretability.\n3. **\"Llama See, Llama Do\"** (2505.09338) -- identifies the exact entrainment heads EAGT would target, but proposes only zero-ablation, not learned gating.\n4. **ABFT** (2505.14233) -- trains modifications to specific mechanistically-identified heads (induction heads), but modifies W_Q rather than adding gates, and targets ICL, not entrainment.\n5. **Qwen Gated Attention** (NeurIPS 2025) -- adds sigmoid gates to all heads but as an architectural pre-training choice, not a targeted fine-tuning intervention.\n\n**The gap EAGT fills**: The combination of (a) targeting specifically entrainment heads identified via mechanistic interpretability, (b) adding new learnable gate parameters that are query-conditional, and (c) training those gates (fine-tuning) to suppress entrainment for context robustness -- this specific combination appears novel as of my search results through early 2026.\n\nThe most obvious \"prior art\" objection would cite HAVE for the gating concept and \"Llama See, Llama Do\" for entrainment head identification, arguing EAGT is a straightforward combination. A strong response would emphasize that (1) making the gating trainable rather than heuristic is non-trivial, (2) query-conditioning requires architectural design choices, and (3) the training signal for entrainment suppression is itself a contribution.\n\n---\n\nSources:\n- [Mechanistic Fine-tuning for In-context Learning (ABFT)](https://arxiv.org/abs/2505.14233)\n- [HAVE: Head-Adaptive Gating and ValuE Calibration](https://arxiv.org/abs/2509.06596)\n- [ContextFocus: Activation Steering for Contextual Faithfulness](https://arxiv.org/abs/2601.04131)\n- [Llama See, Llama Do: Contextual Entrainment and Distraction](https://arxiv.org/abs/2505.09338)\n- [Causal Head Gating (CHG)](https://arxiv.org/abs/2505.13737)\n- [Qwen Gated Attention - NeurIPS 2025](https://openreview.net/forum?id=1b7whO4SfY)\n- [RHIO: Retrieval Heads-Induced Optimization](https://arxiv.org/abs/2501.13573)\n- [NeurIPS 2025 Best Paper Review: Qwen's Attention Gating](https://towardsdatascience.com/neurips-2025-best-paper-review-qwens-systematic-exploration-of-attention-gating/)\n- [ACL 2025 Entrainment Paper](https://aclanthology.org/2025.acl-long.791/)"
+      }
+    ],
+    "totalDurationMs": 140143,
+    "totalTokens": 29107,
+    "totalToolUseCount": 16,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1837,
+      "cache_read_input_tokens": 24314,
+      "output_tokens": 2955,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1837
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2955,
+          "cache_read_input_tokens": 24314,
+          "cache_creation_input_tokens": 1837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1837,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 16
+    }
+  },
+  "sourceToolAssistantUUID": "489b04e6-060d-4b16-9f5b-9550ce015eed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-17T09:15:16.859Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent. I now have comprehensive verification data. Let me synthesize my findings and assess this proposal.
+
+## Key Findings from My Research:
+
+### 1. Paper Verification
+- **"Llama See, Llama Do" (ACL 2025)**: VERIFIED. Outstanding Paper (not Best Paper). All key claims about entrainment heads, 0.2-3% ICL degradation, code availability, and Finding 2 are confirmed.
+- **Grft (ACL 2025)**: VERIFIED. 98.23%/97.03% on helpful contexts confirmed. Layer-level gating, ConflictQA-only training, hidden-state-conditional gate. 
+
+The proposal's claims about Grft are now correct after fixing previous errors. I've verified the remaining papers as well: the NeurIPS 2025 Gated Attention work won Best Paper with its per-head gating design, PEAR uses learned static reweighting of heads, MoH implements dynamic routing-based selection, QAdA shows adaptive per-query selection beats static approaches, HAVE provides parameter-free inference-time gating, and ABFT modifies the query projection matrix.
+
+Looking at venue deadlines, AAAI 2027 and EACL 2027 ARR are both feasible targets, ICLR 2027 timing seems reasonable, but EMNLP 2026 is impossible given the timeline. The novelty gap is genuine—no existing work combines mechanistic identification of entrainment heads with query-conditional learnable gates applied at training time for robustness, whereas PEAR only does static gating and HAVE is inference-only without learnable parameters.
+
+The motivation has substantially improved from the previous version. Rather than making the unsupported claim that static ablation destroys in-context learning entirely, the argument now correctly focuses on how static ablation permanently removes context-sensitivity, which matters for RAG and long-context applications. This distinction is backed up by the fact that prior work like "Llama See, Llama Do" only validated ablation on narrow benchmarks like arithmetic and spelling, not on context-dependent tasks where adaptive approaches like QAdA demonstrate clear advantages.
+
+Now looking at the technical soundness, the G1 gate design draws from solid grounding in the NeurIPS 2025 paper, and the per-position semantics are now accurately characterized—the gate modulates the entire attention output at a position rather than individual tokens. The loss functions operate at the right level too, targeting answer positions where the model should or shouldn't depend on context. The approach of targeting the union across 15 relations is sensible, overhead is negligible, and the evaluation plan hits the key tests for distraction robustness and context utilization while preserving general capabilities.
+
+However, there's a venue shift from EMNLP 2026 to AAAI/EACL/ICLR 2027 due to the tight timeline—only 8 days until the EMNLP deadline—which the proposal does acknowledge but the user may not appreciate. More substantively, the gate operates per-position per-head, so closing it at an answer position blocks all attended context for that head, both relevant and irrelevant, which the proposal frames as a trade-off in how the model uses attended context.
+
+The proposal's reasoning for adaptive over static ablation is now well-grounded in the literature—showing that adaptive methods outperform static ones on context-dependent tasks—but the empirical evidence that static ablation specifically harms RAG performance is still indirect, drawn from adjacent work on retrieval and in-context heads rather than direct testing on entrainment head ablation. So establishing this gap empirically would be a key contribution.
+
+On the compute side, the 200-280h A100 estimate breaks down reasonably: discovering entrainment patterns across 15 relations should take around 30h, Qwen3 discovery another 35h, gate training sweeps 80h, evaluation 50h, and ablations 60h. The timeline seems feasible for the scope, though some hyperparameter iteration could push things higher if the method doesn't transfer smoothly between models.
+
+The main vulnerability is the "combination paper" critique—EAGT layers three existing components together, and while the training signal design, gate behavior analysis, and loss balancing add some novelty, reviewers might still see this as incremental. There's also a gap: I need to compare against Causal Head Gating from a recent arXiv paper, which appears to tackle a similar problem.
+
+The Qwen3-8B experiment carries some risk since entrainment has only been validated on GPT-2 XL and Llama models, though the paper remains solid if it only works on Llama-3.1-8B. The core contribution is methodological rather than purely empirical, addressing a genuine problem as RAG systems scale, but the scope is somewhat limited.
+
+The proposal has genuine novelty in combining these three components, with sound technical design and realistic resource estimates. Previous feedback has been incorporated well. The main concern is whether reviewers see this as a straightforward combination rather than a fundamental advance, and whether the per-position gate granularity prevents distinguishing truly relevant from irrelevant context with theoretical precision.
+
+The strongest existing baseline already achieves 97-98% accuracy on helpful contexts, so I need to convincingly demonstrate that head-level gating provides meaningful gains over layer-level approaches. The venue shift away from EMNLP 2026 is unavoidable given timeline constraints, and I'm missing a comparison to Causal Head Gating as a static baseline. There's also a tension with recent work showing that retrieval heads vary significantly between static and dynamic settings (Jaccard similarity 0.18-0.46), which suggests even finer-grained gating than what I'm proposing might be necessary.
+
+The core contribution combines three existing techniques—mechanistic head identification, G1 gates, and contrastive training—in a way that's novel but not groundbreaking; a strict reviewer could frame this as the obvious next step from recent ACL and NeurIPS papers, though the training signal design itself is a genuine contribution. All the building blocks are available and the compute is reasonable, but there's real risk that query-conditional gating on a fixed head set might not behave as intended—the gates could collapse to always-open or always-closed rather than learning meaningful conditional behavior, and extending to Qwen3-8B introduces additional uncertainty. The proposal is well-structured and technically sound with proper loss function semantics and thorough landscape analysis, though the impact remains moderate given the incremental nature of the combination.
+
+Averaging the scores puts this at 3.75, just below the 4.0 pass threshold. The fixable issues are the novelty risk of combining existing papers, the narrow scope of the impact, the missing CHG baseline comparison, and the granularity limitation of the gating mechanism. This warrants a revise verdict with specific, actionable feedback to address each concern.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "08be72aa-2cc9-490a-bfa1-5103bfa2cf75",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tKAs2w1AihRaD7HvUa",
+  "type": "assistant",
+  "uuid": "5611732f-f901-4899-92e4-2d8afbbdaf6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FqZW91ngrz6X7UQAsGyG2m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8211,
+      "cache_read_input_tokens": 38573,
+      "output_tokens": 3235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8211,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3235,
+          "cache_read_input_tokens": 38573,
+          "cache_creation_input_tokens": 8211,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8211
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-17T09:15:17.108Z_
+
+Now let me do one final check on a paper the proposal may have missed that's highly relevant.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5611732f-f901-4899-92e4-2d8afbbdaf6e",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tKAs2w1AihRaD7HvUa",
+  "type": "assistant",
+  "uuid": "5153aa15-fd89-4c46-9945-0231ee7d9899",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FqZW91ngrz6X7UQAsGyG2m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8211,
+      "cache_read_input_tokens": 38573,
+      "output_tokens": 3235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8211,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3235,
+          "cache_read_input_tokens": 38573,
+          "cache_creation_input_tokens": 8211,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8211
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T09:15:25.412Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01NxvfFjLAsMaxkd1idYRGFT`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Check CHG and dynamic heads papers",
+  "prompt": "Search for these specific papers and verify their existence and claims:\n\n1. \"Causal Head Gating\" (arXiv:2505.13737, May 2025) — reportedly learns per-head static gating values via next-token prediction. I need to know:\n   - Does it propose adding learnable gates to specific heads?\n   - Are the gates static or query-conditional?\n   - What task/problem does it target?\n   - Could it serve as a baseline for the \"EAGT\" proposal?\n\n2. \"Retrieval Heads are Dynamic\" (arXiv:2602.11162, 2026) — reportedly shows that static head identification has Jaccard similarity 0.18-0.46 with dynamic (per-query) identification. I need to verify:\n   - Does this paper exist?\n   - What are its key findings about static vs dynamic retrieval head identification?\n   - What implications does it have for methods that target a FIXED set of heads?\n\n3. Search for \"RHIO retrieval heads induced optimization\" (arXiv:2501.13573) — reportedly uses retrieval heads identification for training. How similar is it to EAGT?\n\n4. Also search: \"entrainment head training gating 2026\" and \"context robustness attention head fine-tuning 2026\" to see if anyone has already published the EAGT idea between January-May 2026.\n\nUse WebSearch for all queries."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5153aa15-fd89-4c46-9945-0231ee7d9899",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tKAs2w1AihRaD7HvUa",
+  "type": "assistant",
+  "uuid": "a8eeb9a9-23ab-49a9-bd55-8f48587a7c9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FqZW91ngrz6X7UQAsGyG2m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8211,
+      "cache_read_input_tokens": 38573,
+      "output_tokens": 3235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8211,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3235,
+          "cache_read_input_tokens": 38573,
+          "cache_creation_input_tokens": 8211,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8211
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-17 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "a8eeb9a9-23ab-49a9-bd55-8f48587a7c9c",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Mechanistic entrainment head targeting via learned query-conditional gating",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae"
+}
+```
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T09:17:07.840Z_
+
+<details><summary>↩ Tool result · `toolu_01NxvfFjLAsMaxkd1idYRGFT`</summary>
+
+```text
+Here is my comprehensive report on all four search queries:
+
+---
+
+## 1. "Causal Head Gating" (arXiv:2505.13737, May 2025)
+
+**Confirmed to exist.** Presented at NeurIPS 2025.
+
+**Key findings:**
+
+- **Does it propose adding learnable gates to specific heads?** Yes. CHG learns soft gates over attention heads using standard next-token prediction as the training signal. These gates assign each head a causal taxonomy: facilitating, interfering, or irrelevant for a given task.
+- **Are the gates static or query-conditional?** The gates are learned per-task via next-token prediction on a dataset, making them **static per task** (not per-query/per-token conditional). They are dataset-level statistics, not dynamically computed at inference for each input.
+- **What task/problem does it target?** It is an **interpretability framework** for understanding head roles, not a training/fine-tuning method. It evaluates across syntax, commonsense, and mathematical reasoning tasks in Llama 3 models.
+- **Could it serve as a baseline for EAGT?** Partially. CHG provides a mechanism for identifying which heads matter for a task (via learned gating scores), but it is purely analytical/interpretive -- it does not modify the model or train gating parameters for downstream improvement. It could serve as a **head-selection baseline** (i.e., "use CHG scores to pick which heads to target"), but not as a training method baseline.
+
+---
+
+## 2. "Retrieval Heads are Dynamic" (arXiv:2602.11162, Feb 2026)
+
+**Confirmed to exist.** Submitted January 7, 2026.
+
+**Key findings on static vs. dynamic identification:**
+
+- **Jaccard similarity with static heads:** Ranges from **0.18 to 0.46** (confirmed). This means at any given generation step, only 18-46% of the dynamically-active retrieval heads overlap with the top-20 static retrieval heads identified via dataset-level aggregation.
+- **Adjacent Jaccard (consecutive timesteps):** Ranges from 0.28 to 0.51, showing high turnover even between consecutive tokens.
+- **Core finding:** Dynamic retrieval heads originate from a broad, long-tail distribution of attention heads, not a fixed subset. The model frequently changes which heads are actively retrieving at each token.
+- **Irreplaceability claim:** Dynamic retrieval heads are specific at each timestep and cannot be effectively replaced by static retrieval heads.
+- **Internal planning signal:** The model's hidden state encodes a predictive signal for future retrieval head patterns.
+
+**Implications for methods targeting a FIXED set of heads:** This paper directly undermines approaches that identify a fixed set of "retrieval heads" and then permanently gate/mask/upweight them. Any method (including a hypothetical EAGT) that applies static gating to a predetermined set of heads would miss 54-82% of the dynamically-relevant heads at any given step. This strongly argues for **query-conditional / token-conditional gating** rather than static head selection.
+
+---
+
+## 3. RHIO (arXiv:2501.13573, Jan 2025)
+
+**Confirmed to exist.** Published at ACL 2025 (Long).
+
+**Full title:** "Improving Contextual Faithfulness of Large Language Models via Retrieval Heads-Induced Optimization"
+
+**Method summary:**
+1. **Identifies** retrieval heads (statically, via dataset-level aggregation)
+2. **Masks** retrieval heads to generate unfaithful outputs that simulate realistic model-intrinsic errors
+3. **Trains** the model with control tokens ([POS]/[NEG]) to discriminate faithful vs. unfaithful generations
+4. **Decodes** using contrastive decoding between the [POS]- and [NEG]-conditioned outputs
+
+**Similarity to EAGT:** RHIO uses retrieval head identification as a mechanism to **generate training data** (unfaithful samples via masking), not to directly gate heads during inference. It does not add learnable gating parameters to the model. If EAGT proposes learning per-head gates that are trained end-to-end to improve context faithfulness, that would be a fundamentally different approach -- RHIO's gating is binary (on/off masking for data augmentation), not learned soft gates applied at inference.
+
+---
+
+## 4. Search for Prior Art on the "EAGT" Idea (Jan-May 2026)
+
+**No direct match for "EAGT" (Entrainment-Augmented Gating Training) was found.** However, several closely related papers from this period are relevant:
+
+- **"From Interpretability to Performance: Optimizing Retrieval Heads for Long-Context Language Models"** (arXiv:2601.11020, Jan 2026) -- Proposes **RetMask**, which generates training signals by contrasting normal outputs with retrieval-head-masked outputs. Uses SFT and DPO. Achieves +2.28 on HELMET at 128K. This is the closest published work to an EAGT-like idea -- it bridges retrieval head identification with training, though it uses masking-based contrastive signal generation rather than learned gating.
+
+- **"HAVE: Head-Adaptive Gating and ValuE Calibration"** (arXiv:2509.06596, Sep 2025) -- A parameter-free decoding framework that does **instance-level soft reweighting of attention heads** at inference. No fine-tuning. This implements dynamic, query-conditional head gating but only at decode time (not trained).
+
+- **"Gated Attention for Large Language Models"** (arXiv:2505.06708, NeurIPS 2025 Oral) -- Adds a head-specific sigmoid gate after scaled dot-product attention, trained from scratch. Architectural modification, not a fine-tuning method for existing models.
+
+**No paper matching "entrainment head training gating" or "context robustness attention head fine-tuning" with a 2026 date was found that describes the specific EAGT proposal.**
+
+---
+
+## Summary Assessment for EAGT Positioning
+
+| Paper | Relationship to EAGT |
+|-------|---------------------|
+| CHG (2505.13737) | Provides head identification method; interpretive only, not training |
+| Retrieval Heads are Dynamic (2602.11162) | **Critical challenge** -- argues static head targeting is insufficient |
+| RHIO (2501.13573) | Uses head masking for data augmentation, not learned gating |
+| RetMask (2601.11020) | **Closest prior art** -- trains using retrieval head contrast signals |
+| HAVE (2509.06596) | Dynamic head reweighting at decode time, no training |
+| Gated Attention (2505.06708) | Architectural gates trained from scratch, not fine-tuning |
+
+The strongest differentiation for EAGT would need to address the "Retrieval Heads are Dynamic" finding by proposing **query-conditional** (not static) gating. RetMask (Jan 2026) is the most direct prior art for "use retrieval heads to improve training."
+
+---
+
+Sources:
+- [Causal Head Gating (arXiv:2505.13737)](https://arxiv.org/abs/2505.13737)
+- [Retrieval Heads are Dynamic (arXiv:2602.11162)](https://arxiv.org/abs/2602.11162)
+- [RHIO (arXiv:2501.13573)](https://arxiv.org/abs/2501.13573)
+- [From Interpretability to Performance: Optimizing Retrieval Heads (arXiv:2601.11020)](https://arxiv.org/abs/2601.11020)
+- [HAVE: Head-Adaptive Gating and ValuE Calibration (arXiv:2509.06596)](https://arxiv.org/abs/2509.06596)
+- [Gated Attention for LLMs (arXiv:2505.06708)](https://arxiv.org/abs/2505.06708)
+- [NeurIPS 2025 Poster for CHG](https://neurips.cc/virtual/2025/loc/san-diego/poster/116358)
+
+agentId: ae1e216570009d328 (use SendMessage with to: 'ae1e216570009d328' to continue this agent)
+&lt;usage>total_tokens: 23102
+tool_uses: 12
+duration_ms: 102424&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a8eeb9a9-23ab-49a9-bd55-8f48587a7c9c",
+  "isSidechain": false,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "type": "user",
+  "uuid": "020fa00a-0e96-436e-9c38-dc68788accf4",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for these specific papers and verify their existence and claims:\n\n1. \"Causal Head Gating\" (arXiv:2505.13737, May 2025) — reportedly learns per-head static gating values via next-token prediction. I need to know:\n   - Does it propose adding learnable gates to specific heads?\n   - Are the gates static or query-conditional?\n   - What task/problem does it target?\n   - Could it serve as a baseline for the \"EAGT\" proposal?\n\n2. \"Retrieval Heads are Dynamic\" (arXiv:2602.11162, 2026) — reportedly shows that static head identification has Jaccard similarity 0.18-0.46 with dynamic (per-query) identification. I need to verify:\n   - Does this paper exist?\n   - What are its key findings about static vs dynamic retrieval head identification?\n   - What implications does it have for methods that target a FIXED set of heads?\n\n3. Search for \"RHIO retrieval heads induced optimization\" (arXiv:2501.13573) — reportedly uses retrieval heads identification for training. How similar is it to EAGT?\n\n4. Also search: \"entrainment head training gating 2026\" and \"context robustness attention head fine-tuning 2026\" to see if anyone has already published the EAGT idea between January-May 2026.\n\nUse WebSearch for all queries.",
+    "agentId": "ae1e216570009d328",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is my comprehensive report on all four search queries:\n\n---\n\n## 1. \"Causal Head Gating\" (arXiv:2505.13737, May 2025)\n\n**Confirmed to exist.** Presented at NeurIPS 2025.\n\n**Key findings:**\n\n- **Does it propose adding learnable gates to specific heads?** Yes. CHG learns soft gates over attention heads using standard next-token prediction as the training signal. These gates assign each head a causal taxonomy: facilitating, interfering, or irrelevant for a given task.\n- **Are the gates static or query-conditional?** The gates are learned per-task via next-token prediction on a dataset, making them **static per task** (not per-query/per-token conditional). They are dataset-level statistics, not dynamically computed at inference for each input.\n- **What task/problem does it target?** It is an **interpretability framework** for understanding head roles, not a training/fine-tuning method. It evaluates across syntax, commonsense, and mathematical reasoning tasks in Llama 3 models.\n- **Could it serve as a baseline for EAGT?** Partially. CHG provides a mechanism for identifying which heads matter for a task (via learned gating scores), but it is purely analytical/interpretive -- it does not modify the model or train gating parameters for downstream improvement. It could serve as a **head-selection baseline** (i.e., \"use CHG scores to pick which heads to target\"), but not as a training method baseline.\n\n---\n\n## 2. \"Retrieval Heads are Dynamic\" (arXiv:2602.11162, Feb 2026)\n\n**Confirmed to exist.** Submitted January 7, 2026.\n\n**Key findings on static vs. dynamic identification:**\n\n- **Jaccard similarity with static heads:** Ranges from **0.18 to 0.46** (confirmed). This means at any given generation step, only 18-46% of the dynamically-active retrieval heads overlap with the top-20 static retrieval heads identified via dataset-level aggregation.\n- **Adjacent Jaccard (consecutive timesteps):** Ranges from 0.28 to 0.51, showing high turnover even between consecutive tokens.\n- **Core finding:** Dynamic retrieval heads originate from a broad, long-tail distribution of attention heads, not a fixed subset. The model frequently changes which heads are actively retrieving at each token.\n- **Irreplaceability claim:** Dynamic retrieval heads are specific at each timestep and cannot be effectively replaced by static retrieval heads.\n- **Internal planning signal:** The model's hidden state encodes a predictive signal for future retrieval head patterns.\n\n**Implications for methods targeting a FIXED set of heads:** This paper directly undermines approaches that identify a fixed set of \"retrieval heads\" and then permanently gate/mask/upweight them. Any method (including a hypothetical EAGT) that applies static gating to a predetermined set of heads would miss 54-82% of the dynamically-relevant heads at any given step. This strongly argues for **query-conditional / token-conditional gating** rather than static head selection.\n\n---\n\n## 3. RHIO (arXiv:2501.13573, Jan 2025)\n\n**Confirmed to exist.** Published at ACL 2025 (Long).\n\n**Full title:** \"Improving Contextual Faithfulness of Large Language Models via Retrieval Heads-Induced Optimization\"\n\n**Method summary:**\n1. **Identifies** retrieval heads (statically, via dataset-level aggregation)\n2. **Masks** retrieval heads to generate unfaithful outputs that simulate realistic model-intrinsic errors\n3. **Trains** the model with control tokens ([POS]/[NEG]) to discriminate faithful vs. unfaithful generations\n4. **Decodes** using contrastive decoding between the [POS]- and [NEG]-conditioned outputs\n\n**Similarity to EAGT:** RHIO uses retrieval head identification as a mechanism to **generate training data** (unfaithful samples via masking), not to directly gate heads during inference. It does not add learnable gating parameters to the model. If EAGT proposes learning per-head gates that are trained end-to-end to improve context faithfulness, that would be a fundamentally different approach -- RHIO's gating is binary (on/off masking for data augmentation), not learned soft gates applied at inference.\n\n---\n\n## 4. Search for Prior Art on the \"EAGT\" Idea (Jan-May 2026)\n\n**No direct match for \"EAGT\" (Entrainment-Augmented Gating Training) was found.** However, several closely related papers from this period are relevant:\n\n- **\"From Interpretability to Performance: Optimizing Retrieval Heads for Long-Context Language Models\"** (arXiv:2601.11020, Jan 2026) -- Proposes **RetMask**, which generates training signals by contrasting normal outputs with retrieval-head-masked outputs. Uses SFT and DPO. Achieves +2.28 on HELMET at 128K. This is the closest published work to an EAGT-like idea -- it bridges retrieval head identification with training, though it uses masking-based contrastive signal generation rather than learned gating.\n\n- **\"HAVE: Head-Adaptive Gating and ValuE Calibration\"** (arXiv:2509.06596, Sep 2025) -- A parameter-free decoding framework that does **instance-level soft reweighting of attention heads** at inference. No fine-tuning. This implements dynamic, query-conditional head gating but only at decode time (not trained).\n\n- **\"Gated Attention for Large Language Models\"** (arXiv:2505.06708, NeurIPS 2025 Oral) -- Adds a head-specific sigmoid gate after scaled dot-product attention, trained from scratch. Architectural modification, not a fine-tuning method for existing models.\n\n**No paper matching \"entrainment head training gating\" or \"context robustness attention head fine-tuning\" with a 2026 date was found that describes the specific EAGT proposal.**\n\n---\n\n## Summary Assessment for EAGT Positioning\n\n| Paper | Relationship to EAGT |\n|-------|---------------------|\n| CHG (2505.13737) | Provides head identification method; interpretive only, not training |\n| Retrieval Heads are Dynamic (2602.11162) | **Critical challenge** -- argues static head targeting is insufficient |\n| RHIO (2501.13573) | Uses head masking for data augmentation, not learned gating |\n| RetMask (2601.11020) | **Closest prior art** -- trains using retrieval head contrast signals |\n| HAVE (2509.06596) | Dynamic head reweighting at decode time, no training |\n| Gated Attention (2505.06708) | Architectural gates trained from scratch, not fine-tuning |\n\nThe strongest differentiation for EAGT would need to address the \"Retrieval Heads are Dynamic\" finding by proposing **query-conditional** (not static) gating. RetMask (Jan 2026) is the most direct prior art for \"use retrieval heads to improve training.\"\n\n---\n\nSources:\n- [Causal Head Gating (arXiv:2505.13737)](https://arxiv.org/abs/2505.13737)\n- [Retrieval Heads are Dynamic (arXiv:2602.11162)](https://arxiv.org/abs/2602.11162)\n- [RHIO (arXiv:2501.13573)](https://arxiv.org/abs/2501.13573)\n- [From Interpretability to Performance: Optimizing Retrieval Heads (arXiv:2601.11020)](https://arxiv.org/abs/2601.11020)\n- [HAVE: Head-Adaptive Gating and ValuE Calibration (arXiv:2509.06596)](https://arxiv.org/abs/2509.06596)\n- [Gated Attention for LLMs (arXiv:2505.06708)](https://arxiv.org/abs/2505.06708)\n- [NeurIPS 2025 Poster for CHG](https://neurips.cc/virtual/2025/loc/san-diego/poster/116358)"
+      }
+    ],
+    "totalDurationMs": 102424,
+    "totalTokens": 23102,
+    "totalToolUseCount": 12,
+    "usage": {
+      "input_tokens": 783,
+      "cache_creation_input_tokens": 1072,
+      "cache_read_input_tokens": 19277,
+      "output_tokens": 1970,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1072
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 783,
+          "output_tokens": 1970,
+          "cache_read_input_tokens": 19277,
+          "cache_creation_input_tokens": 1072,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1072,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 12
+    }
+  },
+  "sourceToolAssistantUUID": "a8eeb9a9-23ab-49a9-bd55-8f48587a7c9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-17T09:17:07.848Z_
+
+```json
+{
+  "parentUuid": "020fa00a-0e96-436e-9c38-dc68788accf4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "4be34608-db0f-4ab4-b656-cf56f7927579",
+  "timestamp": "2026-05-17T09:17:07.848Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-17T09:17:59.289Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have comprehensive verification data. Let me synthesize my findings and produce my review.
+
+## Summary of Findings:
+
+### Paper Verification: ALL CONFIRMED
+- "Llama See, Llama Do" (ACL 2025 Outstanding Paper) — all claims verified
+- Grft (ACL 2025) — claims now correctly stated (98.23%/97.03% on helpful contexts)
+- NeurIPS 2025 Gated Attention — confirmed Best Paper, G1 design verified
+- PEAR — confirmed, static gates
+- MoH — confirmed, ICML 2025
+
+
+- QAdA, HAVE, and ABFT all confirmed as well, with HAVE operating at inference time and ABFT targeting induction heads through W_Q modification
+
+### Venue Deadlines: CONFIRMED
+- AAAI 2027: July 21/28, 2026 ✓
+- EACL 2027: August 3, 2026 ✓
+- ICLR 2027: ~Sep-Oct 2026 (reasonable estimate)
+- EMNLP 2026: May 25 — only 8 days away, impossible
+
+### Novelty: GENUINE GAP EXISTS
+No existing paper combines all three mechanisms together, so there's a real opportunity here.
+
+But I'm realizing two critical papers got overlooked. RetMask from January 2026 is doing something very similar—it identifies retrieval heads mechanistically and then uses them as signals for contrastive training with SFT and DPO. That's probably the closest existing work to what we're proposing. Then there's the February paper showing that static head identification only has 18-46% overlap with dynamic identification, which actually cuts both ways: it's a problem for static ablation approaches, but it also motivates why we need something like adaptive gating to handle that variability.
+
+Looking at the technical assessment now, the core strengths are solid—the motivation is sound, the gate architecture is well-grounded, the loss functions are at the right granularity, and we've addressed previous reviewer feedback. But RetMask is a glaring omission that reviewers will definitely catch, since it's doing mechanistic head identification for training improvement, just with masking instead of learned gates.
+
+The bigger conceptual threat is the dynamic heads problem: if retrieval heads shift per token with low Jaccard overlap, entrainment heads might too. EAGT locks in a fixed set with dynamic gates, which could be fundamentally limited if the relevant heads themselves change per query. I can defend this by arguing that entrainment heads identified through differentiable masking over specific relations are probably more stable than retrieval heads found via attention heuristics, but I need to make that argument explicit rather than hoping it holds.
+
+And CHG is a critical missing baseline—it learns static per-head gates for next-token prediction, so comparing our query-conditional gates directly against that would really clarify what the dynamic gating buys us.
+
+The combination concern is real too. We're taking entrainment head identification, bolting on the G1 gate architecture, and adding a dual-objective loss. It's novel and the pieces don't fit together trivially, but I need to articulate exactly why—especially around the training signal design and the tension between suppressing irrelevant heads and preserving the ones we need.
+
+There's also the venue shift: the user asked for EMNLP 2026 ARR, but we've moved to AAAI/EACL/ICLR 2027 because EMNLP's deadline is already past.
+
+One more technical limitation: the per-position gating can only do all-or-nothing decisions on each head's entire attention output at a given position. If a head is attending to both relevant and irrelevant tokens, the gate can't split the difference. That said, with 15-20% of heads being gated and each having distinct attention patterns, the model should have enough flexibility to learn useful behavior across the ensemble.
+
+On novelty, we're sitting around 3.5/5—the gap is real and verified, nobody's combined these three pieces before, but RetMask from January 2026 is uncomfortably close.
+
+The feasibility score is 4/5. All the components exist and have code available, the compute estimates look reasonable. The real risks are whether extending to Qwen3-8B requires heavy hyperparameter tuning, whether the gate learns to just stay open or closed, and whether the finding that retrieval heads are dynamic means a fixed head set is fundamentally limited.
+
+Clarity comes in at 4/5—the proposal is well-structured and technically sound, though the landscape analysis could've caught RetMask and CHG.
+
+Impact is 3.5/5. It tackles a real problem that matters more as RAG scales, but the scope is narrow—it's a fine-tuning technique for one specific failure mode, and whether it actually generalizes is still an open question.
+
+That averages to 3.75, which falls short of 4.0, so the verdict is to revise. The path forward is clear: add RetMask and CHG as baselines, directly address the dynamic retrieval heads finding and whether a fixed head set makes sense given that, and make a stronger case for why combining these elements isn't trivial.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4be34608-db0f-4ab4-b656-cf56f7927579",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tYoATBkMLibDC8o65U",
+  "type": "assistant",
+  "uuid": "d927f395-2f7e-4904-9bed-9513dd761776",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VnjUQnmYRfdQfp2vv7mMQ5",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5378,
+      "cache_read_input_tokens": 46784,
+      "output_tokens": 3353,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3353,
+          "cache_read_input_tokens": 46784,
+          "cache_creation_input_tokens": 5378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-17T09:18:31.166Z_
+
+Based on my comprehensive independent verification, here is my assessment:
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3.5, "rationale": "The gap is real and verified — no paper combines mechanistic entrainment head identification + query-conditional learnable gates + training-time dual-objective loss. However, RetMask (arXiv:2601.11020, Jan 2026) bridges head identification with training improvement via masking-based contrastive signals, and the overall approach reads as a 'natural next step' combination of ACL 2025 + NeurIPS 2025 building blocks."},
+    "feasibility": {"score": 4, "rationale": "All building blocks have verified open-source implementations, compute estimates are realistic (200-280h A100), and venue deadlines (AAAI 2027 July 28) provide adequate timeline. Main risk: 'Retrieval Heads are Dynamic' (Feb 2026) shows static head sets have only 0.18-0.46 Jaccard overlap with per-query dynamic sets, potentially undermining the fixed-head-set premise."},
+    "clarity": {"score": 4, "rationale": "Well-structured with correct gate semantics, properly scoped loss functions, and thorough landscape analysis that accurately represents Grft, PEAR, and the ACL 2025 source paper. Missing two important papers (RetMask, CHG) but otherwise comprehensive."},
+    "impact": {"score": 3.5, "rationale": "Addresses a real and growing problem (RAG/long-context distraction) with a principled mechanistic approach. However, scope is narrow (fine-tuning intervention for one failure mode), and Grft already achieves 97-98% on helpful contexts — the marginal gain from head-level vs. layer-level gating needs to be convincingly large to matter practically."}
+  },
+  "issues": [
+    "IMPORTANT: Missing key baseline — RetMask (arXiv:2601.11020, Jan 2026) trains models using retrieval head masking-based contrastive signals (SFT+DPO), achieving +2.28 on HELMET at 128K. This is the closest published work to EAGT's premise of 'use mechanistically-identified heads to improve training' and must be discussed as a primary baseline.",
+    "IMPORTANT: 'Retrieval Heads are Dynamic' (arXiv:2602.11162, Feb 2026) shows that at any generation step, only 18-46% of dynamically-active retrieval heads overlap with statically-identified top-20 heads. If entrainment heads exhibit similar dynamism, EAGT's approach of targeting a FIXED union set (even with dynamic gates) may be fundamentally limited. The proposal must either argue why entrainment heads are more stable than retrieval heads (plausible: causal identification via differentiable masking vs. heuristic attention-pattern identification) or acknowledge this as a limitation.",
+    "MODERATE: Causal Head Gating (CHG, arXiv:2505.13737, NeurIPS 2025) learns per-head static gating values via next-token prediction. This is the natural ablation baseline: comparing EAGT's query-conditional gates against CHG-style static gates directly demonstrates the value of query-conditioning. Currently missing from the baselines.",
+    "MODERATE: The 'combination paper' risk is not sufficiently addressed. The proposal combines (A) entrainment head identification + (B) G1 gate design + (C) dual-objective loss. Each building block is from a top-venue paper. Reviewers will ask: 'What is non-trivial about this combination?' The answer should focus on the training signal design challenge — specifically, why positional supervision (gate suppression at answer positions) produces query-conditional behavior rather than collapsing to a static gate value, and what prevents trivial solutions.",
+    "MINOR: The user explicitly requested EMNLP 2026 ARR. While the venue change is necessary (May 25 deadline is 8 days away), consider targeting EACL 2027 (ARR August 3) as the PRIMARY venue since it's the closest NLP venue with adequate timeline, rather than AAAI 2027 which is an AI/general venue."
+  ],
+  "feedback": "The proposal has substantially improved from previous rounds — the motivation is now correctly framed (static ablation's hidden cost on relevant-context tasks rather than the disproven 'destroys ICL' claim), the gate semantics are properly specified, and the Grft comparison is accurate. Two key additions needed:\n\n1. **Add RetMask (arXiv:2601.11020) as a primary baseline.** RetMask also bridges 'head identification → training improvement' but uses masking for contrastive data generation rather than learned gating. Differentiate: EAGT adds permanent query-conditional gates (architectural modification), while RetMask uses head masking only to generate training signal (behavioral modification via SFT/DPO). EAGT's gates produce a permanently modified model with no inference overhead beyond the gate computation; RetMask trains the full model.\n\n2. **Address the 'dynamic heads' challenge.** Cite 'Retrieval Heads are Dynamic' (arXiv:2602.11162) and argue that entrainment heads, identified via causal differentiable masking (gradient-based, functional), may be more stable than retrieval heads identified via attention-pattern heuristics (activation-based, correlational). The entrainment heads implement a specific mechanism (logit boosting for context-seen tokens) that is architecturally localized, whereas 'retrieval heads' are defined by behavioral patterns that may shift per input. This is actually a STRENGTH of your approach — you target a causally-identified circuit, not a correlational pattern.\n\n3. **Add CHG as a static-gate ablation.** Run EAGT with static (non-query-conditional) per-head gate values as an ablation. If query-conditional gates significantly outperform static gates on the relevant-context preservation task while matching on distraction suppression, this demonstrates the core contribution.\n\n4. **Strengthen the 'non-trivial combination' argument.** Address why the dual-objective loss doesn't collapse to a trivial solution. Key insight: the SAME head appears in both L_suppress (when context is irrelevant) and L_preserve (when context is relevant), so the gate MUST learn query-conditional behavior to minimize both losses simultaneously — it cannot settle on a fixed value. This is the theoretical crux that makes the combination non-trivial.",
+  "reason": "Genuine novelty gap verified, but two important missing baselines (RetMask, CHG) and one fundamental challenge ('Retrieval Heads are Dynamic') need to be addressed before passing. Average score 3.75 is below the 4.0 threshold."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d927f395-2f7e-4904-9bed-9513dd761776",
+  "isSidechain": false,
+  "requestId": "req_011Cb7tYoATBkMLibDC8o65U",
+  "type": "assistant",
+  "uuid": "e3bfe547-8f1f-4de3-9f47-d38c02121cd5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VnjUQnmYRfdQfp2vv7mMQ5",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5378,
+      "cache_read_input_tokens": 46784,
+      "output_tokens": 3353,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3353,
+          "cache_read_input_tokens": 46784,
+          "cache_creation_input_tokens": 5378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-17 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e3bfe547-8f1f-4de3-9f47-d38c02121cd5",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Mechanistic entrainment head targeting via learned query-conditional gating",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-17 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e3bfe547-8f1f-4de3-9f47-d38c02121cd5",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Mechanistic entrainment head targeting via learned query-conditional gating",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae"
+}
+```
+
+---

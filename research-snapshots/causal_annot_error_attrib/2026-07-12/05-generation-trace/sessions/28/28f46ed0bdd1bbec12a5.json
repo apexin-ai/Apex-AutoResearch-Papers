@@ -1,0 +1,2173 @@
+{
+  "schema_version": "1.0",
+  "id": "28f46ed0bdd1bbec12a5",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search the web for the paper \"Enhancing Hallucination Detection through Noise Injection\" by Liu et al., arxiv 2502.03799",
+  "task_key": "agent-add7131eef563085e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-add7131eef563085e.jsonl",
+    "occurrence": 1,
+    "bytes": 72179,
+    "sha256": "0bf3fa885dcc10efe273ab81598f749b2440a0d293973c0ab929fc6308daf51e"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 1,
+    "tool_calls": 18,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 18,
+      "tool_result": 18,
+      "assistant": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T09:44:28.098Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search the web for the paper \"Enhancing Hallucination Detection through Noise Injection\" by Liu et al., arxiv 2502.03799, claimed to be at ICLR 2026. I need to verify: (1) does this paper exist, (2) what exactly does it do (noise injection into activations, measuring what metric), (3) was it accepted at ICLR 2026. Use WebSearch and WebFetch on the arxiv page. Report exactly what the method does and what metrics it measures."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "2cd1ef62-f714-49ef-8afe-ff0cd834f1ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T09:44:28.100Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "2cd1ef62-f714-49ef-8afe-ff0cd834f1ce",
+                "isSidechain": true,
+                "agentId": "add7131eef563085e",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "3bbf793e-d7a3-4f62-a4e3-f2b5d4aed63a",
+                "timestamp": "2026-05-16T09:44:28.100Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T09:44:31.351Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ed5cWbyj7PGiBqfgLgs44D",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3bbf793e-d7a3-4f62-a4e3-f2b5d4aed63a",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62pnry1q3rciMywMoQN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f78b38ba-96b4-4fac-b0d9-783aa5271c33",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019BJ7jYBkf7SUGtLhzcKJuZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 670,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 80,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 670
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 80,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 670,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 670,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T09:44:31.354Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Ed5cWbyj7PGiBqfgLgs44D",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f78b38ba-96b4-4fac-b0d9-783aa5271c33",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "38f7fafd-106e-4df2-8dfd-039bcafa202e",
+            "sourceToolAssistantUUID": "f78b38ba-96b4-4fac-b0d9-783aa5271c33",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T09:44:35.805Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F7ThaYGEHmr6eKUG1sDiFW",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2502.03799 \"Enhancing Hallucination Detection through Noise Injection\" Liu"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38f7fafd-106e-4df2-8dfd-039bcafa202e",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62q2s5hJwMyweasYHah",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2c25c86a-c9dc-44aa-b439-7c79c588b309",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011nwWm3iG2Nw2XWakpLsz8K",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1888,
+                "cache_read_input_tokens": 8893,
+                "output_tokens": 127,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1888
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 127,
+                    "cache_read_input_tokens": 8893,
+                    "cache_creation_input_tokens": 1888,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1888,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T09:44:35.812Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CERjsLopwUpKMp1L3iCkMJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2502.03799 ICLR 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2c25c86a-c9dc-44aa-b439-7c79c588b309",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62q2s5hJwMyweasYHah",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f287b8f9-0ef5-471f-bd02-701ea1bd1142",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011nwWm3iG2Nw2XWakpLsz8K",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1888,
+                "cache_read_input_tokens": 8893,
+                "output_tokens": 127,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1888
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 127,
+                    "cache_read_input_tokens": 8893,
+                    "cache_creation_input_tokens": 1888,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1888,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T09:44:41.185Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CERjsLopwUpKMp1L3iCkMJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2502.03799 ICLR 2026\"\n\nLinks: [{\"title\":\"[2502.03799] Enhancing Hallucination Detection through Noise Injection\",\"url\":\"https://arxiv.org/abs/2502.03799\"},{\"title\":\"Computer Science Feb 2025\",\"url\":\"https://arxiv.org/list/cs/2025-02?skip=1875&show=2000\"},{\"title\":\"ICLR 2026 Call for Papers\",\"url\":\"https://iclr.cc/Conferences/2026/CallForPapers\"},{\"title\":\"ICLR 2026 Author Guide\",\"url\":\"https://iclr.cc/Conferences/2026/AuthorGuide\"},{\"title\":\"ICLR 2026 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=ICLR.cc%2F2026%2FConference\"},{\"title\":\"ICLR 2026 Papers\",\"url\":\"https://iclr.cc/virtual/2026/papers.html\"},{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://iclr.cc/Conferences/2026/Dates\"},{\"title\":\"ICLR Workshop 2026\",\"url\":\"https://sites.google.com/view/icbinb-2026/home\"},{\"title\":\"ICLR 2026\",\"url\":\"https://iclr.cc/\"},{\"title\":\"ICLR 2025 Papers\",\"url\":\"https://iclr.cc/virtual/2025/papers.html\"}]\n\nBased on the search results, I found information about arxiv paper 2502.03799:\n\nThe paper titled \"Enhancing Hallucination Detection through Noise Injection\" by Litian Liu, Reza Pourreza, Sunny Panchal, Apratim Bhattacharyya, Yubing Jian, Yao Qin, and Roland Memisevic is an ICLR 2026 main conference paper.\n\nThe paper addresses how Large Language Models (LLMs) are prone to generating plausible yet incorrect responses, known as hallucinations, and that effectively detecting hallucinations is crucial for the safe deployment of LLMs. \n\nThe authors propose a simple, training-free approach based on perturbing an appropriate subset of model parameters, or equivalently hidden unit activations, during sampling.\n\nThe paper was originally submitted on February 6, 2025, and the most recent version (v3) was revised on March 1, 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f287b8f9-0ef5-471f-bd02-701ea1bd1142",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "44b2b88d-0284-44c0-84ec-49ba5f37eae3",
+            "sourceToolAssistantUUID": "f287b8f9-0ef5-471f-bd02-701ea1bd1142",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T09:44:42.819Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F7ThaYGEHmr6eKUG1sDiFW",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2502.03799 \"Enhancing Hallucination Detection through Noise Injection\" Liu\"\n\nLinks: [{\"title\":\"[2502.03799] Enhancing Hallucination Detection through Noise Injection\",\"url\":\"https://arxiv.org/abs/2502.03799\"},{\"title\":\"Enhancing Hallucination Detection through Noise Injection\",\"url\":\"https://arxiv.org/html/2502.03799\"},{\"title\":\"Enhancing Hallucination Detection through Noise Injection | alphaXiv\",\"url\":\"https://www.alphaxiv.org/ja/overview/2502.03799v1\"},{\"title\":\"Computer Science Feb 2025\",\"url\":\"https://arxiv.org/list/cs/2025-02?skip=1875&show=2000\"},{\"title\":\"Noise Augmented Fine Tuning for Mitigating Hallucinations in Large Language Models\",\"url\":\"https://arxiv.org/html/2504.03302v2\"},{\"title\":\"Enhancing Hallucination Detection with Noise Injection | OpenReview\",\"url\":\"https://openreview.net/forum?id=2bWf4M5tRo\"},{\"title\":\"Hallucination Detection: A Probabilistic Framework Using Embeddings Distance Analysis\",\"url\":\"https://arxiv.org/html/2502.08663v1\"},{\"title\":\"Enhancing Hallucination Detection through Perturbation-Based Synthetic Data Generation in System Responses\",\"url\":\"https://arxiv.org/html/2407.05474v1\"},{\"title\":\"Hallucination Detection in LLMs Using Spectral Features of Attention Maps\",\"url\":\"https://arxiv.org/html/2502.17598v2\"},{\"title\":\"Hallucination Detection and Mitigation in Large Language Models\",\"url\":\"https://arxiv.org/html/2601.09929v1\"}]\n\nI've successfully found the paper you searched for. Here's a summary of the research:\n\n## \"Enhancing Hallucination Detection through Noise Injection\" (arXiv 2502.03799)\n\nLarge Language Models (LLMs) are prone to generating plausible yet incorrect responses, known as hallucinations, and effectively detecting hallucinations is therefore crucial for the safe deployment of LLMs.\n\n**The Problem:**\nRecent research has linked hallucinations to model uncertainty, suggesting that hallucinations can be detected by measuring dispersion over answer distributions obtained from multiple samples drawn from a model. However, drawing from the distribution over tokens defined by the model is a natural way to obtain samples, but in this work, the authors argue that it is suboptimal for the purpose of detecting hallucinations.\n\n**The Solution:**\nThe researchers propose a very simple, training-free approach based on perturbing an appropriate subset of model parameters, or equivalently hidden unit activations, during sampling. They show that detection can be improved significantly by taking into account model uncertainty in the Bayesian sense.\n\n**Results:**\nThe approach significantly improves inference-time hallucination detection over standard sampling across diverse datasets, model architectures, and uncertainty metrics.\n\n**Authors:**\nThe paper is authored by Litian Liu, Reza Pourreza, Sunny Panchal, Apratim Bhattacharyya, Yubing Jian, Yao Qin, and Roland Memisevic. It was accepted as an ICLR 2026 main conference paper.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2c25c86a-c9dc-44aa-b439-7c79c588b309",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "324e4896-5069-4016-a73c-b607e223cf8c",
+            "sourceToolAssistantUUID": "2c25c86a-c9dc-44aa-b439-7c79c588b309",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T09:44:46.007Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me fetch the actual arxiv page and the OpenReview page for more detailed information."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "324e4896-5069-4016-a73c-b607e223cf8c",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62qsnf9mA4K2r3VMUHp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b0c3d4c9-d66e-4314-82e4-5ed05e846489",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CBc8rskNvEuzn9YmPJtatK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 656,
+                "cache_creation_input_tokens": 979,
+                "cache_read_input_tokens": 10781,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 979,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T09:44:48.953Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TuZfFxgRoWoCBnjy9mD2gE",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2502.03799",
+                "prompt": "Extract all details about this paper: full title, all authors, abstract in full, what method it proposes (noise injection details - where exactly is noise injected, what type of noise, into activations or parameters), what metrics it measures, what datasets it uses, and any mention of conference acceptance (ICLR 2026 or other)."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0c3d4c9-d66e-4314-82e4-5ed05e846489",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62qsnf9mA4K2r3VMUHp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b13b9a13-585e-467e-87a7-ae383989a627",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CBc8rskNvEuzn9YmPJtatK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 656,
+                "cache_creation_input_tokens": 979,
+                "cache_read_input_tokens": 10781,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 979,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T09:44:50.154Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WdAQATT9d941Ht2pjf5Zt2",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://openreview.net/forum?id=2bWf4M5tRo",
+                "prompt": "Extract all details about this paper submission: title, authors, venue, acceptance decision, reviewer scores, and any summary of the method and results. Is this paper accepted at ICLR 2026?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b13b9a13-585e-467e-87a7-ae383989a627",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62qsnf9mA4K2r3VMUHp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e08654d1-d493-44be-aa4c-0063ef4a38ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CBc8rskNvEuzn9YmPJtatK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 656,
+                "cache_creation_input_tokens": 979,
+                "cache_read_input_tokens": 10781,
+                "output_tokens": 291,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 979
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 656,
+                    "output_tokens": 291,
+                    "cache_read_input_tokens": 10781,
+                    "cache_creation_input_tokens": 979,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 979,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T09:44:53.487Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TuZfFxgRoWoCBnjy9mD2gE",
+              "type": "tool_result",
+              "content": "# Paper Details: Hallucination Detection through Noise Injection\n\n**Full Title:** \"Enhancing Hallucination Detection through Noise Injection\"\n\n**Authors:** Litian Liu, Reza Pourreza, Sunny Panchal, Apratim Bhattacharyya, Yubing Jian, Yao Qin, Roland Memisevic\n\n**Abstract Summary:**\nThe paper addresses hallucinations in Large Language Models by proposing a method to detect them through uncertainty measurement. Rather than sampling from the model's token distribution alone, the authors introduce perturbations to \"an appropriate subset of model parameters, or equivalently hidden unit activations, during sampling\" to better capture Bayesian uncertainty. Their approach requires no training and reportedly enhances detection performance.\n\n**Method - Noise Injection Details:**\nThe technique perturbs either model parameters or hidden unit activations (these are described as equivalent approaches). The method operates at inference time and is characterized as \"training-free.\"\n\n**Metrics & Datasets:**\nThe abstract indicates testing across \"diverse datasets, model architectures, and uncertainty metrics,\" but specific names aren't provided in this excerpt.\n\n**Conference Acceptance:**\nThe paper indicates acceptance to \"ICLR 2026 main conference paper,\" with submission dates spanning February 2025 to March 2026."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b13b9a13-585e-467e-87a7-ae383989a627",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "fce7c7d4-7c82-4169-91da-fdd7f957587c",
+            "sourceToolAssistantUUID": "b13b9a13-585e-467e-87a7-ae383989a627",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T09:44:54.187Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WdAQATT9d941Ht2pjf5Zt2",
+              "type": "tool_result",
+              "content": "# Paper Submission Details\n\n**Title:** \"Enhancing Hallucination Detection with Noise Injection\"\n\n**Authors:** Litian Liu, Reza Pourreza, Sunny Panchal, Apratim Bhattacharyya, Yao Qin, Roland Memisevic\n\n**Venue:** ICLR 2025 Conference\n\n**Submission Number:** 12340\n\n**Submission Date:** 27 September 2024 (modified 5 February 2025)\n\n## Acceptance Status\n\n**Not determined from this content.** The webpage does not indicate whether the paper was accepted or rejected. It appears to be a submission record on OpenReview showing the paper is under review.\n\n## Core Method\n\nThe authors propose that measuring uncertainty through \"perturbing hidden unit activations in intermediate layers\" offers a complementary approach to traditional sampling methods for detecting hallucinations in large language models, yielding \"significantly improved detection accuracy.\"\n\n## Keywords and Primary Area\n\n- Keywords: Hallucination Detection; Robustness\n- Primary Area: Foundation or frontier models, including LLMs\n\nThe submission includes supplementary material and adheres to ICLR's code of ethics and submission guidelines."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e08654d1-d493-44be-aa4c-0063ef4a38ee",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "b98a1400-7fa7-4800-a23f-db5c31e6b291",
+            "sourceToolAssistantUUID": "e08654d1-d493-44be-aa4c-0063ef4a38ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T09:44:57.611Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Interesting - the OpenReview page shows this was submitted to ICLR 2025, not 2026. Let me dig deeper into the arxiv HTML version for the full method details, and check the ICLR 2026 OpenReview to clarify the venue."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b98a1400-7fa7-4800-a23f-db5c31e6b291",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62riNQ1bj2s4VCrhSgQ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "790e3367-d671-4247-a3db-cae1fc132ac7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YCH8nudB15iKcBocdF6N9K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1572,
+                "cache_read_input_tokens": 11760,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1572,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T09:45:00.581Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SxS2DjjFQaXhAKmWwoDGUP",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2502.03799",
+                "prompt": "Extract the full detailed method description: What exactly is the noise injection procedure? What type of noise (Gaussian, etc.)? Where exactly is it injected (which layers, activations, parameters)? What uncertainty metrics are computed (entropy, semantic entropy, eigenvalues, etc.)? What datasets are used for evaluation? What are the main results? Also look for any mention of ICLR acceptance."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "790e3367-d671-4247-a3db-cae1fc132ac7",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62riNQ1bj2s4VCrhSgQ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "94d873e0-5532-433d-be46-e6dcf5f082c3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YCH8nudB15iKcBocdF6N9K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1572,
+                "cache_read_input_tokens": 11760,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1572,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T09:45:01.487Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E1Vb2mFPhVMv7mqDbcQ6sz",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://www.alphaxiv.org/ja/overview/2502.03799v1",
+                "prompt": "Extract all information about this paper: method details, metrics, datasets, conference acceptance status (ICLR 2025 or 2026), and any discussion about the paper."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94d873e0-5532-433d-be46-e6dcf5f082c3",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62riNQ1bj2s4VCrhSgQ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0d6199b8-c52c-44c8-bfb2-8c7aa7a0ec29",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YCH8nudB15iKcBocdF6N9K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1572,
+                "cache_read_input_tokens": 11760,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1572,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T09:45:05.571Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E1Vb2mFPhVMv7mqDbcQ6sz",
+              "type": "tool_result",
+              "content": "# Paper Analysis: Enhancing Hallucination Detection through Noise Injection\n\nBased on the webpage content provided, I can only extract limited information:\n\n## Available Information\n\n**Title:** \"Enhancing Hallucination Detection through Noise Injection\"\n\n**Paper ID:** 2502.03799v1\n\n**Available Resources:**\n- Abstract/Paper page\n- Blog post\n- Audio version\n\n## Unable to Determine From Current Content\n\nThe webpage snippet provided does not contain:\n- **Method details** - The specific noise injection techniques or mechanisms\n- **Metrics** - Performance measurements or evaluation results\n- **Datasets** - Which datasets were used for evaluation\n- **Conference status** - Whether this was accepted to ICLR 2025, 2026, or another venue\n- **Discussion content** - The actual research discussion or findings\n\n## Recommendation\n\nTo gather the requested information, you would need to:\n1. Access the full paper (via the `/abs/2502.03799v1` link)\n2. Read the blog post overview\n3. Review any associated discussion or comments sections\n\nThe current webpage excerpt appears to be a navigation/header page rather than a content-rich summary."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0d6199b8-c52c-44c8-bfb2-8c7aa7a0ec29",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "019926dc-dc51-478f-adcf-3e761afb28e9",
+            "sourceToolAssistantUUID": "0d6199b8-c52c-44c8-bfb2-8c7aa7a0ec29",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T09:45:09.765Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SxS2DjjFQaXhAKmWwoDGUP",
+              "type": "tool_result",
+              "content": "# Noise Injection for Hallucination Detection - Method Summary\n\n## Noise Injection Procedure\n\nThe method injects **uniform noise sampled from U(0,α)** into MLP activations during inference. Rather than perturbing model parameters directly, the approach approximates parameter perturbations through activation perturbations, enabling efficient batch processing. The same noise vector is reused across selected layers to prevent cancellation from skip connections.\n\n## Noise Type and Location\n\n- **Noise type**: Uniform distribution U(0,α), with magnitude α typically ranging from 0.01 to 0.11\n- **Injection location**: Approximately the top third of transformer layers (e.g., layers 20-32 for 32-layer models)\n- **Alternative tested**: Bounded Gaussian noise and attention block perturbations showed comparable results\n\n## Uncertainty Metrics Evaluated\n\nThe paper employs multiple uncertainty quantification approaches:\n\n- **Answer Entropy** (primary): \"counting the occurrence of each answer string\" for formatted answers\n- **Semantic Entropy**: Clustering semantically similar responses before entropy computation\n- **Predictive Entropy**: Length-normalized entropy across token predictions\n- **Lexical Similarity**: ROUGE-L based similarity scores\n- **EigenScore**: Entropy computed in embedding space\n- **selfCheckGPT-NLI**: Contradiction detection using natural language inference\n\n## Evaluation Datasets\n\nThree datasets with different characteristics:\n- **GSM8K**: Mathematical reasoning (1,319 test questions)\n- **CommonsenseQA (CSQA)**: Multiple-choice knowledge questions (1,221 validation examples)\n- **TriviaQA**: Factual QA with free-form answers (18,669 questions from rc.nocontext subset)\n\n## Main Results\n\nAcross diverse models (Gemma-2B through Llama-2-13B):\n\n- AUROC improvements ranging from 1-6 percentage points with noise injection\n- Greatest gains on reasoning tasks (GSM8K: 71.56→76.14 AUROC for Llama-2-7B-chat)\n- Modest improvements on factual QA tasks\n- Noise injection maintains or improves generation accuracy while enhancing detection\n\n## Publication Status\n\nThe document header indicates **arXiv:2502.03799v3 [cs.CL]** dated March 1, 2026. No explicit mention of ICLR acceptance appears in the provided content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94d873e0-5532-433d-be46-e6dcf5f082c3",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "8b4f4e25-d1e9-4f9d-9c8d-02a935dc57d7",
+            "sourceToolAssistantUUID": "94d873e0-5532-433d-be46-e6dcf5f082c3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T09:45:13.053Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the ICLR 2026 OpenReview page specifically for this paper to verify acceptance there (the earlier OpenReview result showed ICLR 2025 submission)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8b4f4e25-d1e9-4f9d-9c8d-02a935dc57d7",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62sryr3bSfUorKArHBa",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "85e0de11-53f7-4028-a90a-4c7463744113",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YBxPPrc1V5cf5yT9A5Mo7F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 292,
+                "cache_creation_input_tokens": 928,
+                "cache_read_input_tokens": 13332,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 928,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T09:45:13.189Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L1Uo8jgC8WBapGAG7jXCUu",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Enhancing Hallucination Detection\" \"Noise Injection\" ICLR 2026 accepted openreview"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85e0de11-53f7-4028-a90a-4c7463744113",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62sryr3bSfUorKArHBa",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "413ec5b7-fbea-4b49-8c5f-04e2e6d6f34e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YBxPPrc1V5cf5yT9A5Mo7F",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 292,
+                "cache_creation_input_tokens": 928,
+                "cache_read_input_tokens": 13332,
+                "output_tokens": 123,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 928
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 292,
+                    "output_tokens": 123,
+                    "cache_read_input_tokens": 13332,
+                    "cache_creation_input_tokens": 928,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 928,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T09:45:18.982Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L1Uo8jgC8WBapGAG7jXCUu",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Enhancing Hallucination Detection\" \"Noise Injection\" ICLR 2026 accepted openreview\"\n\nLinks: [{\"title\":\"ENHANCING HALLUCINATION DETECTION THROUGH NOISE ...\",\"url\":\"https://openreview.net/pdf/3b6046ad04595a4d9727eb07c453d6e468556a24.pdf\"},{\"title\":\"Enhancing Hallucination Detection with Noise Injection | OpenReview\",\"url\":\"https://openreview.net/forum?id=2bWf4M5tRo\"},{\"title\":\"[2502.03799] Enhancing Hallucination Detection through Noise Injection\",\"url\":\"https://arxiv.org/abs/2502.03799\"},{\"title\":\"Enhancing Hallucination Detection through Noise Injection\",\"url\":\"https://arxiv.org/html/2502.03799\"},{\"title\":\"HALLUCINATION MITIGATION IN LARGE VISION\",\"url\":\"https://openreview.net/pdf?id=Km4l2Fi2lc\"},{\"title\":\"Will ICLR 2026 Recover? 50 Out of 300 Submissions Contain Hallucinations, Even Citations to example.com Passed Review | by Beck Moulton | Feb, 2026 | Medium\",\"url\":\"https://beckmoulton.medium.com/will-iclr-2026-recover-51ea977e9db2\"},{\"title\":\"HaDeMiF: Hallucination Detection and Mitigation in Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=VwOYxPScxB\"},{\"title\":\"HADEMIF: HALLUCINATION DETECTION AND MITI\",\"url\":\"https://openreview.net/pdf?id=VwOYxPScxB\"},{\"title\":\"ICLR 2026 Papers\",\"url\":\"https://iclr.cc/virtual/2026/papers.html\"},{\"title\":\"Over fifty new hallucinations in ICLR 2026 submissions | Hacker News\",\"url\":\"https://news.ycombinator.com/item?id=46181466\"}]\n\nBased on the search results, I found information about the paper \"Enhancing Hallucination Detection through Noise Injection\":\n\nLarge Language Models (LLMs) are prone to generating plausible yet incorrect responses, known as hallucinations, and effectively detecting hallucinations is crucial for the safe deployment of LLMs.\n\nRecent research has linked hallucinations to model uncertainty, suggesting that hallucinations can be detected by measuring dispersion over answer distributions obtained from multiple samples drawn from a model, though drawing from the distribution over tokens defined by the model is suboptimal for the purpose of detecting hallucinations. The paper shows that detection can be improved significantly by taking into account model uncertainty in the Bayesian sense.\n\nThe paper proposes a simple, training-free approach based on perturbing an appropriate subset of model parameters, or equivalently hidden unit activations, during sampling.\n\nThe paper appears to be available on both arXiv and OpenReview. According to the search results, the paper was submitted to ICLR 2026 and was also posted on arXiv in February 2025, with a final version in March 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "413ec5b7-fbea-4b49-8c5f-04e2e6d6f34e",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "cd188e35-d607-4177-9e2f-f5698c8ab1e3",
+            "sourceToolAssistantUUID": "413ec5b7-fbea-4b49-8c5f-04e2e6d6f34e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T09:45:23.175Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TtioiXX95WV38Jt6RgQQca",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://openreview.net/forum?id=2bWf4M5tRo",
+                "prompt": "What venue is this paper submitted to? Is it ICLR 2025 or ICLR 2026? What is the acceptance decision? Is it marked as accepted, oral, spotlight, poster, or rejected? Look for any decision or status information."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd188e35-d607-4177-9e2f-f5698c8ab1e3",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62tYQRGah5KszAXDNbx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a47e5720-b813-4281-a7ac-0115f4162945",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QFQ8enu5jmnMywKVaZZiAU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1318,
+                "cache_read_input_tokens": 14260,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1318,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T09:45:23.768Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0174Ufw7NSioiqeQSW76TEsT",
+              "name": "WebSearch",
+              "input": {
+                "query": "openreview \"Enhancing Hallucination Detection\" \"Noise Injection\" Litian Liu ICLR 2026 conference"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a47e5720-b813-4281-a7ac-0115f4162945",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62tYQRGah5KszAXDNbx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cdf24121-163f-41e0-83e4-8a39722b4e58",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QFQ8enu5jmnMywKVaZZiAU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1318,
+                "cache_read_input_tokens": 14260,
+                "output_tokens": 211,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1318
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 211,
+                    "cache_read_input_tokens": 14260,
+                    "cache_creation_input_tokens": 1318,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1318,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T09:45:25.320Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TtioiXX95WV38Jt6RgQQca",
+              "type": "tool_result",
+              "content": "Based on the webpage content:\n\n**Venue:** The paper is submitted to \"ICLR 2025 Conference\" as indicated by the navigation link stating \"Go to ICLR 2025 Conference homepage.\"\n\n**Acceptance Decision:** No acceptance decision or status is displayed on this page. The submission appears to be under review, with a submission date of \"27 Sept 2024 (modified: 05 Feb 2025)\" and no visible acceptance, rejection, or presentation tier designation (oral, spotlight, poster, etc.). The page simply shows the paper details and metadata typical of a submission in the review process."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a47e5720-b813-4281-a7ac-0115f4162945",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "46a2e44d-230b-4020-998b-a19a337dd39d",
+            "sourceToolAssistantUUID": "a47e5720-b813-4281-a7ac-0115f4162945",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T09:45:27.891Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0174Ufw7NSioiqeQSW76TEsT",
+              "type": "tool_result",
+              "content": "Web search results for query: \"openreview \"Enhancing Hallucination Detection\" \"Noise Injection\" Litian Liu ICLR 2026 conference\"\n\nLinks: [{\"title\":\"[2502.03799] Enhancing Hallucination Detection through Noise Injection\",\"url\":\"https://arxiv.org/abs/2502.03799\"},{\"title\":\"Enhancing Hallucination Detection with Noise Injection | OpenReview\",\"url\":\"https://openreview.net/forum?id=2bWf4M5tRo\"},{\"title\":\"ENHANCING HALLUCINATION DETECTION THROUGH NOISE ...\",\"url\":\"https://openreview.net/pdf/3b6046ad04595a4d9727eb07c453d6e468556a24.pdf\"}]\n\nBased on the search results, I found the paper you're looking for:\n\nThe paper \"Enhancing Hallucination Detection Through Noise Injection\" is under review as a conference paper at ICLR 2026. The authors include Litian Liu, Reza Pourreza, and others.\n\nThe research shows that an alternative way to measure uncertainty—by perturbing hidden unit activations in intermediate layers of the model—is complementary to sampling, and can significantly improve detection accuracy over mere sampling.\n\nThe paper is available on OpenReview at: https://openreview.net/forum?id=2bWf4M5tRo\n\nIt's also available on arXiv: https://arxiv.org/abs/2502.03799\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cdf24121-163f-41e0-83e4-8a39722b4e58",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "766ab4ba-1def-42e5-99c8-5bf2bc0c29ab",
+            "sourceToolAssistantUUID": "cdf24121-163f-41e0-83e4-8a39722b4e58",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T09:45:30.746Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018Wyq9vFKw6WPEmNmN2tR5C",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:openreview.net \"Enhancing Hallucination Detection\" \"Noise Injection\" ICLR.cc/2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "766ab4ba-1def-42e5-99c8-5bf2bc0c29ab",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62uCTPzNuzg7zWDtopg",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3821cca4-8209-4767-bafb-e2f89285ed31",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KeFGcE8WFHmLsppU9vg6hx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 785,
+                "cache_read_input_tokens": 15578,
+                "output_tokens": 83,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 785
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 83,
+                    "cache_read_input_tokens": 15578,
+                    "cache_creation_input_tokens": 785,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 785,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T09:45:34.669Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018Wyq9vFKw6WPEmNmN2tR5C",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:openreview.net \"Enhancing Hallucination Detection\" \"Noise Injection\" ICLR.cc/2026\"\n\nLinks: [{\"title\":\"Enhancing Hallucination Detection with Noise Injection | OpenReview\",\"url\":\"https://openreview.net/forum?id=2bWf4M5tRo\"},{\"title\":\"ENHANCING HALLUCINATION DETECTION THROUGH NOISE ...\",\"url\":\"https://openreview.net/pdf/3b6046ad04595a4d9727eb07c453d6e468556a24.pdf\"}]\n\nI found the paper you're searching for! Here are the results:\n\nThe paper addresses how Large Language Models (LLMs) generate plausible yet incorrect responses known as hallucinations, and the importance of effectively detecting such instances for safe LLM deployment.\n\nThe research proposes an alternative way to measure uncertainty by perturbing hidden unit activations in intermediate layers of the model, which is complementary to sampling and can significantly improve detection accuracy.\n\nThe paper is available on OpenReview at: https://openreview.net/forum?id=2bWf4M5tRo\n\nIt is under review as a conference paper at ICLR 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3821cca4-8209-4767-bafb-e2f89285ed31",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "a996374f-806c-44b1-ab4d-8d5a3208a328",
+            "sourceToolAssistantUUID": "3821cca4-8209-4767-bafb-e2f89285ed31",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T09:45:38.522Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J1gHtv1J5soA36hVzchEep",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://iclr.cc/virtual/2026/papers.html",
+                "prompt": "Search for any paper by Litian Liu or titled \"Enhancing Hallucination Detection through Noise Injection\" or \"Noise Injection\" in the list. Is this paper listed as an accepted paper at ICLR 2026?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a996374f-806c-44b1-ab4d-8d5a3208a328",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62uhRvbmck7tds9D6NK",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8a568ca1-cee3-4a67-a5b4-511877374980",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012BXNk9ZLG5axTu2Uk7SHvQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 409,
+                "cache_read_input_tokens": 16363,
+                "output_tokens": 138,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 409
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 138,
+                    "cache_read_input_tokens": 16363,
+                    "cache_creation_input_tokens": 409,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 409,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T09:45:44.110Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J1gHtv1J5soA36hVzchEep",
+              "type": "tool_result",
+              "content": "Based on the web page content provided, I cannot confirm whether this paper is listed as an accepted paper at ICLR 2026. The page displays navigation menus and interface elements, but does not show the actual list of papers or search results. To find this information, you would need to access the actual papers list or search functionality on the ICLR 2026 website, likely through the \"Papers\" link mentioned in the navigation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8a568ca1-cee3-4a67-a5b4-511877374980",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "deb17999-7668-4d8f-9656-cf0187dd0189",
+            "sourceToolAssistantUUID": "8a568ca1-cee3-4a67-a5b4-511877374980",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T09:45:46.729Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019FaF1cSa54kTLGfCGfgoGe",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Enhancing Hallucination Detection\" \"Noise Injection\" Litian Liu accepted poster oral spotlight 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "deb17999-7668-4d8f-9656-cf0187dd0189",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62vPp3mfxmAzGUeHZuF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a9c75b82-b414-4aeb-8cd1-7ee3d2da0ecb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uj3kqb3qCoAi9xWmiQRjaR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 242,
+                "cache_read_input_tokens": 16772,
+                "output_tokens": 78,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 242
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 78,
+                    "cache_read_input_tokens": 16772,
+                    "cache_creation_input_tokens": 242,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 242,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T09:45:56.256Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019FaF1cSa54kTLGfCGfgoGe",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Enhancing Hallucination Detection\" \"Noise Injection\" Litian Liu accepted poster oral spotlight 2026\"\n\nLinks: [{\"title\":\"[2502.03799] Enhancing Hallucination Detection through Noise Injection\",\"url\":\"https://arxiv.org/abs/2502.03799\"},{\"title\":\"Enhancing Hallucination Detection through Noise Injection\",\"url\":\"https://arxiv.org/html/2502.03799\"},{\"title\":\"Litian Liu\",\"url\":\"https://litianliu.github.io/\"},{\"title\":\"Litian Liu - Senior Machine Learning Researcher at ...\",\"url\":\"https://www.linkedin.com/in/litian-liu-4892b892/\"},{\"title\":\"Enhancing Hallucination Detection with Noise Injection | OpenReview\",\"url\":\"https://openreview.net/forum?id=2bWf4M5tRo\"},{\"title\":\"dblp: Litian Liu\",\"url\":\"https://dblp.org/pid/06/5817.html\"},{\"title\":\"Noise Augmented Fine Tuning for Mitigating Hallucinations in Large Language Models\",\"url\":\"https://arxiv.org/html/2504.03302\"},{\"title\":\"Enhancing Hallucination Detection through Noise Injection | alphaXiv\",\"url\":\"https://www.alphaxiv.org/ja/overview/2502.03799v1\"},{\"title\":\"A hallucination detection and mitigation framework for faithful text summarization using LLMs | Scientific Reports\",\"url\":\"https://www.nature.com/articles/s41598-025-31075-1\"},{\"title\":\"ENHANCING HALLUCINATION DETECTION THROUGH NOISE ...\",\"url\":\"https://openreview.net/pdf/3b6046ad04595a4d9727eb07c453d6e468556a24.pdf\"}]\n\nBased on the search results, I found information about your query:\n\n\"Enhancing Hallucination Detection through Noise Injection\" is a paper presented at ICLR 2026. The paper is by Litian Liu and 6 other authors, with co-authors including Reza Pourreza, Sunny Panchal, Apratim Bhattacharyya, Yubing Jian, Yao Qin, and Roland Memisevic.\n\nThe paper proposes a training-free approach based on perturbing an appropriate subset of model parameters, or equivalently hidden unit activations, during sampling to improve hallucination detection in Large Language Models.\n\nLitian Liu presented this work at a conference (Pavilion 4, April 23), discussing how injecting noise enables a training-free Bayesian ensemble that captures both aleatoric and epistemic uncertainty to improve accuracy and hallucination detection.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2502.03799.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a9c75b82-b414-4aeb-8cd1-7ee3d2da0ecb",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "55cf7725-9362-4891-ba0d-2008cbd81864",
+            "sourceToolAssistantUUID": "a9c75b82-b414-4aeb-8cd1-7ee3d2da0ecb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T09:46:01.179Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019Jy8fLyZfnmWGeqBtuA5G8",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://litianliu.github.io/",
+                "prompt": "Find any mention of the paper \"Enhancing Hallucination Detection through Noise Injection\" and its venue. Was it accepted at ICLR 2025 or ICLR 2026? What presentation type (poster, oral, spotlight)?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55cf7725-9362-4891-ba0d-2008cbd81864",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62wHjxGsHhwthzdGtPo",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c2a455d3-a25a-49ed-9c86-2348e6e0a14c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeL5NcKTQatYQ2ruEB4qwr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 789,
+                "cache_read_input_tokens": 17014,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 789,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T09:46:05.625Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019Jy8fLyZfnmWGeqBtuA5G8",
+              "type": "tool_result",
+              "content": "Based on the webpage content provided, the paper \"Enhancing Hallucination Detection through Noise Injection\" is listed as a \"_Preprint_, 2025\" with no conference venue specified. \n\nThe document does not indicate acceptance at ICLR 2025, ICLR 2026, or any other conference, nor does it mention a presentation type (poster, oral, or spotlight). The paper currently appears to be in preprint status only, with an arXiv link provided."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c2a455d3-a25a-49ed-9c86-2348e6e0a14c",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "0057eeed-daf2-4a17-8145-48e67c8d370b",
+            "sourceToolAssistantUUID": "c2a455d3-a25a-49ed-9c86-2348e6e0a14c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T09:46:09.632Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GM2snHUQTrji5FyBUr1omb",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://openreview.net/pdf/3b6046ad04595a4d9727eb07c453d6e468556a24.pdf",
+                "prompt": "What conference is this paper submitted to? Is it ICLR 2025 or ICLR 2026? Look for any header, footer, or watermark indicating the venue. Also extract the full abstract and method details."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0057eeed-daf2-4a17-8145-48e67c8d370b",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62wyoUcqGbBqNqt4GJE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b3cd9f1b-c9bb-4745-a4bb-600fa0d59f97",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GXkkmCtWoqEgxXkf9LRDdL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 254,
+                "cache_read_input_tokens": 17803,
+                "output_tokens": 152,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 254
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 152,
+                    "cache_read_input_tokens": 17803,
+                    "cache_creation_input_tokens": 254,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 254,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T09:46:09.809Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Request failed with status code 404",
+              "is_error": true,
+              "tool_use_id": "toolu_01GM2snHUQTrji5FyBUr1omb"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3cd9f1b-c9bb-4745-a4bb-600fa0d59f97",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "eee35450-dd39-47f7-924c-32d197937449",
+            "toolUseResult": "Error: Request failed with status code 404",
+            "sourceToolAssistantUUID": "b3cd9f1b-c9bb-4745-a4bb-600fa0d59f97",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T09:46:12.835Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WTnyERdZUcbShAr89ioAc4",
+              "name": "WebSearch",
+              "input": {
+                "query": "openreview.net ICLR 2026 \"Enhancing Hallucination Detection\" decision accept"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eee35450-dd39-47f7-924c-32d197937449",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62xHgWDCSHHsZB61iUk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "eea7a112-9b99-4932-ba8d-0f7c967fe338",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FFGtEYaEUjqwjJtCFsbyfg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 179,
+                "cache_read_input_tokens": 18057,
+                "output_tokens": 76,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 179
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 76,
+                    "cache_read_input_tokens": 18057,
+                    "cache_creation_input_tokens": 179,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 179,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T09:46:17.557Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WTnyERdZUcbShAr89ioAc4",
+              "type": "tool_result",
+              "content": "Web search results for query: \"openreview.net ICLR 2026 \"Enhancing Hallucination Detection\" decision accept\"\n\nLinks: [{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://openreview.net/pdf/ab590ed2597d25ba57ecb61af6c9c0835dd152cb.pdf\"},{\"title\":\"HALLUCINATION MITIGATION IN LARGE VISION\",\"url\":\"https://openreview.net/pdf?id=Km4l2Fi2lc\"},{\"title\":\"HADEMIF: HALLUCINATION DETECTION AND MITI\",\"url\":\"https://openreview.net/pdf?id=VwOYxPScxB\"},{\"title\":\"A Retrospective on the ICLR 2026 Review Process – ICLR Blog\",\"url\":\"https://blog.iclr.cc/2026/03/31/a-retrospective-on-the-iclr-2026-review-process/\"},{\"title\":\"HaDeMiF: Hallucination Detection and Mitigation in Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=VwOYxPScxB\"},{\"title\":\"GPTZero uncovers 50+ Hallucinations in ICLR 2026\",\"url\":\"https://gptzero.me/news/iclr-2026/\"},{\"title\":\"Mitigating Hallucination in Multimodal Reasoning via Functional Attention Control | OpenReview\",\"url\":\"https://openreview.net/forum?id=qnTqZNZpqt\"},{\"title\":\"ICLR 2026 | OpenReview\",\"url\":\"https://openreview.net/group?id=ICLR.cc%2F2026\"},{\"title\":\"Over fifty new hallucinations in ICLR 2026 submissions | Hacker News\",\"url\":\"https://news.ycombinator.com/item?id=46181466\"},{\"title\":\"ICLR 2026 Conference Submissions\",\"url\":\"https://openreview.net/submissions?page=617&venue=ICLR.cc/2026/Conference\"}]\n\nBased on the web search results, I found relevant information about hallucination detection research at ICLR 2026:\n\nOne paper titled \"Enhancing Hallucination Detection\" was published as a conference paper at ICLR 2026. The paper addresses hallucination span detection as a complex multi-step decision making process that requires analyzing model output to extract facts and verifying whether each fact is supported by the input context.\n\nThe search also revealed other hallucination-related work accepted at ICLR 2026. For context, 5,355 papers were accepted at ICLR 2026, representing an acceptance rate of 27.4%.\n\nThe results show several papers dealing with hallucination detection and mitigation at the conference, including work on hallucination span detection using reasoning approaches and various mitigation techniques for large language models.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eea7a112-9b99-4932-ba8d-0f7c967fe338",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "7fde9434-997b-4c75-b0b8-66fe772a627b",
+            "sourceToolAssistantUUID": "eea7a112-9b99-4932-ba8d-0f7c967fe338",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T09:46:22.169Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011joHgc5tCMaYNG6jByaHF8",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://openreview.net/pdf/ab590ed2597d25ba57ecb61af6c9c0835dd152cb.pdf",
+                "prompt": "What is the title of this paper? Is this \"Enhancing Hallucination Detection through Noise Injection\" by Liu et al.? Or a different paper? Extract the title, authors, and first paragraph of the abstract."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7fde9434-997b-4c75-b0b8-66fe772a627b",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62xrpZRAFY9rYpDtMx4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b7e4acf1-58ba-4f4a-9c60-cc4e4d48a500",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0141mSTKReEWeshNQgBQELGU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 820,
+                "cache_read_input_tokens": 18236,
+                "output_tokens": 150,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 820
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 150,
+                    "cache_read_input_tokens": 18236,
+                    "cache_creation_input_tokens": 820,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 820,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T09:46:26.187Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011joHgc5tCMaYNG6jByaHF8",
+              "type": "tool_result",
+              "content": "I cannot extract the requested information from the provided content. The text appears to be a PDF file in raw binary/compressed format (containing PDF stream objects with FlateDecode compression), rather than readable plain text.\n\nTo answer your question about the paper's title, authors, and abstract, I would need the content to be:\n1. Properly decompressed and decoded, or\n2. Provided as plain text or HTML\n\nIf you have access to the PDF, please either:\n- Convert it to plain text format, or\n- Copy and paste the readable text content from the document\n\nThen I'll be happy to identify whether this is the Liu et al. paper on hallucination detection and extract the requested information.\n\n[Binary content (application/pdf, 502.1KB) also saved to /home/ubuntu/.claude-account-3/projects/-/1c70a808-ac42-40e9-b451-f24d9f6e7546/tool-results/webfetch-1778924782991-pcdtmi.pdf]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b7e4acf1-58ba-4f4a-9c60-cc4e4d48a500",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "7d6360ec-67dd-4881-8974-ac4ff9ff828a",
+            "sourceToolAssistantUUID": "b7e4acf1-58ba-4f4a-9c60-cc4e4d48a500",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T09:46:33.928Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on the first search result title \"Published as a conference paper at ICLR 2026\" linking to an OpenReview PDF, let me check if this is actually the noise injection paper or a different one."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d6360ec-67dd-4881-8974-ac4ff9ff828a",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62yVjKtcuNk3KWv6LXo",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a9b897c2-3026-4e7d-81cd-02da0a293be3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RbQVJczdX8nqAVmTNar6Wi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 392,
+                "cache_read_input_tokens": 19056,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T09:46:34.452Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0127EAhnhPaNjJCYZNxdEsnv",
+              "name": "WebSearch",
+              "input": {
+                "query": "openreview.net/forum \"Enhancing Hallucination Detection through Noise Injection\" \"Published as a conference paper at ICLR 2026\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a9b897c2-3026-4e7d-81cd-02da0a293be3",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62yVjKtcuNk3KWv6LXo",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cf91e57d-510c-4fdc-be39-d9651a5cbfcd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RbQVJczdX8nqAVmTNar6Wi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 392,
+                "cache_read_input_tokens": 19056,
+                "output_tokens": 135,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 392
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 135,
+                    "cache_read_input_tokens": 19056,
+                    "cache_creation_input_tokens": 392,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 392,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T09:46:38.096Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0127EAhnhPaNjJCYZNxdEsnv",
+              "type": "tool_result",
+              "content": "Web search results for query: \"openreview.net/forum \"Enhancing Hallucination Detection through Noise Injection\" \"Published as a conference paper at ICLR 2026\"\"\n\nNo links found.\n\nThe search didn't return any results. This could mean that either:\n\n1. The paper with this exact title and publication status may not be indexed or publicly available on OpenReview yet\n2. The title or publication status may be slightly different from what was searched\n3. The paper may not exist with these exact specifications\n\nIf you're looking for this paper, you might try:\n- Searching directly on [openreview.net](https://openreview.net) with partial keywords like \"Hallucination Detection Noise Injection\"\n- Checking ICLR 2026's official proceedings\n- Searching for the authors' names if you know them\n\nWould you like me to try a different search query?\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cf91e57d-510c-4fdc-be39-d9651a5cbfcd",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "add7131eef563085e",
+            "type": "user",
+            "uuid": "f5a78d17-b4cc-49b5-bd67-6bbd11436bc0",
+            "sourceToolAssistantUUID": "cf91e57d-510c-4fdc-be39-d9651a5cbfcd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T09:47:07.864Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on my extensive research, here is my comprehensive report:\n\n---\n\n## Findings on \"Enhancing Hallucination Detection through Noise Injection\" (arXiv 2502.03799)\n\n### (1) Does this paper exist?\n\n**Yes.** The paper exists on arXiv at `2502.03799`, originally submitted February 2025, with a v3 revision dated March 1, 2026. It also has an OpenReview submission page at `openreview.net/forum?id=2bWf4M5tRo`.\n\n**Authors:** Litian Liu, Reza Pourreza, Sunny Panchal, Apratim Bhattacharyya, Yubing Jian, Yao Qin, Roland Memisevic\n\n---\n\n### (2) What exactly does the method do?\n\nThe paper proposes a **training-free, inference-time** method for detecting hallucinations in LLMs by injecting noise into model activations to better capture Bayesian uncertainty:\n\n**Noise injection procedure:**\n- **Type of noise:** Uniform noise sampled from U(0, alpha), where alpha typically ranges from 0.01 to 0.11. (Bounded Gaussian noise was also tested with comparable results.)\n- **Where injected:** Into **MLP activations** in approximately the **top third of transformer layers** (e.g., layers 20-32 for a 32-layer model). The same noise vector is reused across selected layers to prevent cancellation from skip connections.\n- **Rationale:** Rather than just sampling from the model's token distribution (which captures aleatoric uncertainty only), perturbing activations approximates a Bayesian ensemble over parameters, capturing **epistemic uncertainty** -- i.e., model uncertainty about what it \"knows\" vs. what it doesn't.\n\n**Metrics measured (uncertainty quantification):**\n- **Answer Entropy** (primary) -- counting occurrence of each distinct answer string\n- **Semantic Entropy** -- clustering semantically similar responses before computing entropy\n- **Predictive Entropy** -- length-normalized entropy across token predictions\n- **Lexical Similarity** -- ROUGE-L based similarity scores\n- **EigenScore** -- entropy computed in embedding space\n- **selfCheckGPT-NLI** -- contradiction detection using NLI\n\n**Evaluation datasets:**\n- GSM8K (mathematical reasoning, 1,319 test questions)\n- CommonsenseQA (multiple-choice knowledge, 1,221 validation examples)\n- TriviaQA (factual QA, 18,669 questions from rc.nocontext subset)\n\n**Results:** AUROC improvements of 1-6 percentage points over standard sampling. Greatest gains on reasoning tasks (e.g., GSM8K: 71.56 to 76.14 AUROC for Llama-2-7B-chat).\n\n---\n\n### (3) Was it accepted at ICLR 2026?\n\n**The evidence is mixed and I cannot definitively confirm acceptance:**\n\n- The arxiv page metadata (from web search snippets) states it is an \"ICLR 2026 main conference paper.\"\n- The OpenReview page (`2bWf4M5tRo`) appears to show a submission to **ICLR 2025** (submitted September 2024), with no visible acceptance decision.\n- The first author's personal website (`litianliu.github.io`) lists it only as a \"Preprint, 2025\" with no conference venue mentioned.\n- A web search result references \"Published as a conference paper at ICLR 2026\" in a PDF link from OpenReview, but I could not confirm this PDF corresponds to this specific paper (it may be a different hallucination detection paper).\n- One search snippet mentions Litian Liu presenting \"at Pavilion 4, April 23\" at a conference discussing this work.\n\n**Conclusion on venue:** The paper was likely rejected from ICLR 2025 (submitted Sept 2024, no acceptance shown) and then resubmitted and accepted at **ICLR 2026**. The arxiv v3 revision (March 2026) is consistent with a camera-ready update after ICLR 2026 acceptance decisions. However, the author's own website has not been updated to reflect this, so there is some uncertainty. The weight of evidence (arxiv metadata, search snippets, presentation reference) suggests it **was accepted at ICLR 2026**, but I cannot find an unambiguous official \"accept\" decision on OpenReview for the ICLR 2026 submission specifically.\n\n---\n\nSources:\n- [arXiv page: 2502.03799](https://arxiv.org/abs/2502.03799)\n- [arXiv HTML version](https://arxiv.org/html/2502.03799)\n- [OpenReview submission](https://openreview.net/forum?id=2bWf4M5tRo)\n- [alphaXiv overview](https://www.alphaxiv.org/ja/overview/2502.03799v1)\n- [Litian Liu personal page](https://litianliu.github.io/)\n- [ICLR 2026 Papers](https://iclr.cc/virtual/2026/papers.html)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f5a78d17-b4cc-49b5-bd67-6bbd11436bc0",
+            "isSidechain": true,
+            "agentId": "add7131eef563085e",
+            "requestId": "req_011Cb62zNdxo3n664KZNXxAy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1fe76065-2264-4308-b5e3-006fdec885f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014qfCauXczU2T544RGLi9ne",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 476,
+                "cache_read_input_tokens": 19448,
+                "output_tokens": 1241,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 476
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1241,
+                    "cache_read_input_tokens": 19448,
+                    "cache_creation_input_tokens": 476,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 476,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        }
+      ],
+      "message_count": 43
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-the-web-for-the-paper-enhancing-hallucination-detection-through-noise-i.md"
+}

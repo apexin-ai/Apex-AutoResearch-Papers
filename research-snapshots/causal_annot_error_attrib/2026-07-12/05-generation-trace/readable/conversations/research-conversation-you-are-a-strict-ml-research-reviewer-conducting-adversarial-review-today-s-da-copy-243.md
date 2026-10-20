@@ -1,0 +1,2050 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-16 (UTC).** Your job: indep
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 25
+- **Recorded user turns:** 1
+- **Tool calls:** 3
+- **Original source:** `logs/chats/exported-trajectories/account-3/ccc52dcc-cc79-453f-9054-79b496aeebe2.jsonl`
+- **Structured JSON:** [`9d99c278a527f9f1bba7.json`](../../sessions/9d/9d99c278a527f9f1bba7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T06:06:03.755Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T06:06:03.755Z",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-16 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (9 days from today 2026-05-16). Track: NLP and Code Models.\n\nDirection: Code understanding and generation — repo-level comprehension, program repair, code reasoning, debugging, test generation, code-to-documentation, cross-language code transfer. NOT just code completion — focus on higher-level code reasoning tasks.\n\nContribution type: METHOD ONLY. Propose new training methods, retrieval-augmented code repair, or inference algorithms for code tasks. Not a new benchmark or leaderboard entry.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Code models are often evaluated zero-shot or few-shot — budget goes to SFT/LoRA if fine-tuning.\n2. Time: ≤16 days. Build on existing code models (DeepSeek-Coder-V2, StarCoder2, CodeLlama, Qwen2.5-Coder) and frameworks (aider, SWE-agent, Moatless).\n3. Eval: SWE-bench Verified, HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, CodeContests.\n\nLook for: repo-level context compression for code understanding, retrieval-augmented repair with semantic code search, code reasoning via execution feedback, cross-repo transfer learning. Avoid: simple prompt templates for code completion.\n\nTag: direction=code_models, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-16?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 2/10)\n{\n  \"title\": \"Divergence-Focused Contrastive Execution Evidence for Code LLM Reasoning\",\n  \"core_problem\": \"Execution traces theoretically contain rich debugging signals, but empirical evidence (Haque et al., arXiv 2505.04441) shows they provide limited improvement for LLM-based repair—succeeding in only 2/6 configurations—because raw traces overwhelm model context with irrelevant detail as complexity grows. The fundamental challenge is not whether to provide execution information, but HOW to structure it so LLMs can reason effectively about runtime behavior.\",\n  \"opportunity\": \"We observe that contrastive comparison between passing and failing execution traces serves as a natural compression mechanism: by aligning two traces and extracting only divergence points, we eliminate the vast majority of irrelevant execution detail that makes raw traces ineffective. This converts the information-overload problem identified by Haque et al. into a focused comparison task that (1) fits within practical context windows, (2) directly highlights the root cause semantics, and (3) aligns with LLMs' demonstrated strength in comparative reasoning. No existing work provides LLMs with structured behavioral deltas at inference time—ConCoder (COLING 2025) uses contrastive signals only during training, iFix (OOPSLA 2025) targets human visualization, and ContrastRepair (TOSEM 2025) contrasts test source text without collecting execution traces.\",\n  \"landscape\": \"ContrastRepair (TOSEM 2025) provides LLMs with contrastive test case PAIRS as source text, achieving strong results (143/337 Defects4J) but requiring the LLM to INFER behavioral differences from code alone. ConCoder (COLING 2025) uses contrastive execution feedback during training via contrastive loss to teach models to distinguish correct from incorrect code—a weight-update approach orthogonal to inference-time evidence provision. iFix (OOPSLA 2025) aligns runtime values across patch candidates for human-interactive visualization, reducing developer debugging time by 36%, but is not designed for LLM consumption. TraceCoder (arXiv 2602.06875) uses causal scoring across historical trace pools—statistical analysis, not per-instance contrastive reasoning. Haque et al. (arXiv 2505.04441) systematically evaluate execution traces for LLM repair, finding that raw traces help in only 2/6 configurations and that LLM-optimized (summarized) traces perform most consistently—directly motivating structured trace abstraction. TAAF (ICSE 2026) introduces hierarchical trace abstraction via knowledge graphs for system traces, validating the principle that structured abstraction outperforms raw trace feeding. The EMNLP 2025 paper 'Do Code Semantics Help?' evaluates execution trace integration with code LLMs via fine-tuning, finding benefits with parameter-efficient adaptation. EffiPair (arXiv 2604.05137) applies relative contrastive feedback for code efficiency but not correctness repair. LDB (ACL 2024) verifies execution step-by-step but only for failing runs. DynaFix captures runtime states for failing runs only. Differential debugging (Zeller, ESEC/FSE 1999) is the classic SE inspiration but was never formalized as structured LLM reasoning input.\",\n  \"approach\": \"We propose Divergence-Focused Contrastive Execution (DFCE), a method that provides code LLMs with structured behavioral deltas extracted from aligned passing/failing execution trace pairs. DFCE addresses the trace complexity problem through three innovations:\\n\\n(1) **Divergence-focused abstraction**: Rather than providing full traces, DFCE aligns execution points across passing and failing runs by function signature and source location, then extracts ONLY the first divergence region—differing variable states, unexpected branch decisions, and anomalous return values within a bounded window around the divergence point. This naturally compresses traces by 10-50× compared to raw execution logs.\\n\\n(2) **Hierarchical granularity selection**: DFCE operates at three levels—function-call level (coarsest, always fits context), block-level (moderate), and statement-level (finest, for small programs). An automatic selector chooses granularity based on program complexity and available context budget, addressing the key finding from Haque et al. that complexity degrades trace effectiveness.\\n\\n(3) **Reference scenario selection**: For each failing test, we identify a contrastive reference via: (a) coverage-similarity matching to find the passing test with maximal code-path overlap, or (b) same-test replay on a known-correct version (prior commit or ground-truth solution).\\n\\nWe frame this as a code reasoning study: RQ1—Does contrastive execution evidence improve code LLM reasoning over raw traces and no traces? RQ2—What granularity of divergence abstraction maximizes reasoning improvement? RQ3—How does the benefit scale across model sizes (7B→32B)? RQ4—Does contrastive evidence help more for complex bugs where raw traces fail?\\n\\nWe evaluate primarily on DebugBench (4,253 instances, C++/Java/Python debugging, ACL 2024) as the primary NLP-venue-aligned benchmark, with HumanEval/MBPP for iterative repair after failed generation, CodeContests for competitive programming debugging, and CrossCodeEval/RepoBench as cross-file reasoning controls. Models: Qwen2.5-Coder-7B and Qwen2.5-Coder-32B (primary), DeepSeek-Coder-V2-16B (secondary), CodeLlama-34B and StarCoder2-15B (ablations). All experiments are inference-time prompting with optional LoRA fine-tuning on the 7B model to measure whether contrastive evidence also benefits adapted models.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~120h H100\",\n      \"gpu_utilization\": \"Moderate (~50% utilized). Idle during trace collection scripting, prompt engineering, and result analysis.\",\n      \"timeline\": \"6-8 weeks\",\n      \"team\": \"2 researchers (1 systems/instrumentation, 1 NLP/evaluation)\",\n      \"estimated_gpu_cost\": \"$360-480 (at ~$3/hr H100 spot)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~150h H100\",\n      \"gpu_utilization\": \"Good (~65-70% utilized). Agent runs inference continuously between daily check-ins; trace collection runs on CPU.\",\n      \"timeline\": \"3-4 weeks\",\n      \"team\": \"1 researcher, ~45min/day for granularity calibration and result interpretation\",\n      \"claude_api_cost\": \"$200-350 (~2500 turns for implementation, experiment orchestration, and analysis)\",\n      \"estimated_gpu_cost\": \"$450-500\",\n      \"risk_note\": \"Granularity selection heuristic needs empirical calibration—if too coarse, deltas miss the bug; if too fine, context overflow on complex programs. Human judgment needed to define complexity thresholds.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~190h H100 (explores 3× more granularity/prompt/model configurations than manual, within budget)\",\n      \"gpu_utilization\": \"High (~85%+ utilized). Agent pipelines trace collection, inference, and evaluation continuously.\",\n      \"timeline\": \"8-12 days with 2 concurrent H100 GPUs\",\n      \"team\": \"0 (initial setup: benchmark environments, model downloads, trace instrumentation framework)\",\n      \"claude_api_cost\": \"$400-550 (~4000-5000 turns)\",\n      \"estimated_gpu_cost\": \"$570-620\",\n      \"speed_bottleneck\": \"DebugBench evaluation (4253 instances × multiple configurations) and Qwen2.5-Coder-32B inference throughput\",\n      \"risk_note\": \"Auto mode may over-optimize prompt formatting without testing whether the contrastive principle generalizes across bug types. Risk of benchmark-specific tuning.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission: May 25, 2026; commitment: August 2, 2026)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"ContrastRepair: Enhancing Conversation-Based Automated Program Repair via Contrastive Test Case Pairs (TOSEM 2025)\",\n    \"Extracting the Essence and Discarding the Dross: Enhancing Code Generation with Contrastive Execution Feedback [ConCoder] (COLING 2025)\",\n    \"Show Me Why It's Correct: Saving 1/3 of Debugging Time in Program Repair with Interactive Runtime Comparison [iFix] (OOPSLA 2025)\",\n    \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs (arXiv 2505.04441)\",\n    \"TAAF: A Trace Abstraction and Analysis Framework Synergizing Knowledge Graphs and LLMs (ICSE 2026)\",\n    \"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code LLMs (EMNLP Findings 2025)\",\n    \"DebugBench: Evaluating Debugging Capability of Large Language Models (ACL Findings 2024)\",\n    \"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging (arXiv 2026)\",\n    \"Debug like a Human: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step [LDB] (ACL Findings 2024)\",\n    \"Yesterday, my program worked. Today, it does not. Why? (ESEC/FSE 1999)\",\n    \"EffiPair: Improving the Efficiency of LLM-generated Code with Relative Contrastive Feedback (arXiv 2026)\",\n    \"Agentless: Demystifying LLM-based Software Engineering Agents (FSE 2025)\"\n  ],\n  \"description\": \"We present Divergence-Focused Contrastive Execution (DFCE), a structured evidence method that addresses a key empirical puzzle: execution traces contain rich debugging signals, yet providing them to LLMs yields inconsistent improvements (helping in only 2/6 configurations per Haque et al. 2025). Our core insight is that CONTRASTIVE trace comparison naturally solves the information-overload problem—by aligning passing and failing execution traces and extracting only the divergence region, we compress trace information by 10-50× while concentrating semantic content on the root cause. Unlike ConCoder (COLING 2025) which uses contrastive execution signals during training, DFCE operates purely at inference time as structured prompting evidence. Unlike iFix (OOPSLA 2025) which visualizes runtime differences for humans, DFCE structures behavioral deltas specifically for LLM consumption. Unlike ContrastRepair (TOSEM 2025) which contrasts test source text, DFCE contrasts actual execution behavior. We introduce hierarchical granularity selection (function/block/statement level) with automatic complexity-aware routing to prevent context overflow on complex programs. Evaluated on DebugBench (4,253 instances), HumanEval/MBPP, CodeContests, CrossCodeEval, and RepoBench using Qwen2.5-Coder (7B/32B), DeepSeek-Coder-V2-16B, CodeLlama-34B, and StarCoder2-15B. Framed as an NLP contribution studying how structured contrastive evidence improves code LLM reasoning, targeting the 'NLP and Code Models' track at EMNLP 2026.\",\n  \"project_name\": \"contrastive_exec_repair\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL VENUE MISMATCH: The user requires EMNLP 2026 (ARR deadline May 25, 2026) targeting 'NLP and Code Models' track. The idea instead targets ICSE 2027 (June 30) and AAAI 2027 (August 1). This must be corrected.\", \"FACTUAL ERROR: DeepSeek V4 Pro scores 80.6% on SWE-bench Verified, not the claimed 85%. Current SOTA is Claude Mythos Preview at ~93.9% and Claude Opus 4.7 at ~87.6%.\", \"MISSING CRITICAL RELATED WORK: ConCoder ('Extracting the Essence and Discarding the Dross: Enhancing Code Generation with Contrastive Execution Feedback', COLING 2025) already uses contrastive execution feedback from passing vs. failing runs. iFix ('Show Me Why It's Correct', OOPSLA 2025) performs runtime comparison of passing vs. failing for patch understanding. These severely weaken the 'first' novelty claim.\", \"EMPIRICAL COUNTER-EVIDENCE: arXiv 2505.04441 ('Towards Effectively Leveraging Execution Traces for Program Repair') finds trace effectiveness diminishes with complexity, succeeding in only 2/6 configurations. The idea does not adequately address how CEA overcomes this well-documented limitation for complex SWE-bench instances.\", \"EVAL MISMATCH: User requires evaluation on HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, CodeContests. The idea only proposes SWE-bench Verified and Defects4J, missing most required benchmarks.\", \"MODEL MISMATCH: User specified building on DeepSeek-Coder-V2, StarCoder2, CodeLlama, Qwen2.5-Coder. The idea uses DeepSeek V4 Pro and Qwen3.6-27B instead.\", \"RESOURCE BUDGET VIOLATION: User constraint is ≤200 H100-hours total. Auto mode estimates 550h A100 (roughly equivalent to ~400+ H100-hours), far exceeding budget. Even manual mode at 200h A100 is at the boundary.\", \"ENGINEERING COMPLEXITY UNDERESTIMATED: Consistently instrumenting 500 diverse Python projects in SWE-bench Docker environments for fine-grained trace collection (variable states at function boundaries, branch decisions) requires solving project-specific instrumentation challenges that the resource estimate does not account for.\"]\nFeedback: This idea has a reasonable technical core but fails to meet user requirements on multiple critical dimensions and has significant novelty and feasibility gaps. To revise:\n\n1. **Fix venue targeting**: Reframe for EMNLP 2026 (ARR May 25 deadline). This means framing as an NLP/code models contribution, not a pure SE contribution. Emphasize the 'code reasoning' angle—how structured contrastive evidence improves LLM reasoning about code, not just repair accuracy.\n\n2. **Address ConCoder and iFix**: These are the closest prior works the generator missed. ConCoder (COLING 2025) uses contrastive execution feedback during training; iFix (OOPSLA 2025) does runtime comparison of passing/failing. CEA must clearly differentiate: (a) inference-time vs. training-time (vs. ConCoder), (b) LLM-targeted structured delta vs. human-interactive visualization (vs. iFix), (c) trace-level behavioral delta vs. test-text-level contrast (vs. ContrastRepair).\n\n3. **Address the trace complexity problem head-on**: The 2505.04441 finding that trace effectiveness diminishes with complexity is the biggest empirical threat. The revision should propose concrete solutions: trace summarization, hierarchical alignment at different granularities, or filtering to only the divergence region. This should be an explicit research question, not hand-waved.\n\n4. **Fix model/eval alignment**: Use the models and benchmarks the user specified. Include HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench evaluations. Build on DeepSeek-Coder-V2 or Qwen2.5-Coder for fine-tuning experiments.\n\n5. **Fix resource estimates**: Stay within ≤200 H100-hours. Consider focusing on a smaller eval suite first and using API-based models to reduce GPU needs.\n\n6. **Correct the DeepSeek V4 Pro score**: 80.6%, not 85%.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T06:06:03.760Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T06:06:03.760Z",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2"
+}
+```
+
+---
+
+## Round 1
+
+23 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T06:06:03.791Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-16 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (9 days from today 2026-05-16). Track: NLP and Code Models.
+
+Direction: Code understanding and generation — repo-level comprehension, program repair, code reasoning, debugging, test generation, code-to-documentation, cross-language code transfer. NOT just code completion — focus on higher-level code reasoning tasks.
+
+Contribution type: METHOD ONLY. Propose new training methods, retrieval-augmented code repair, or inference algorithms for code tasks. Not a new benchmark or leaderboard entry.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Code models are often evaluated zero-shot or few-shot — budget goes to SFT/LoRA if fine-tuning.
+2. Time: ≤16 days. Build on existing code models (DeepSeek-Coder-V2, StarCoder2, CodeLlama, Qwen2.5-Coder) and frameworks (aider, SWE-agent, Moatless).
+3. Eval: SWE-bench Verified, HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, CodeContests.
+
+Look for: repo-level context compression for code understanding, retrieval-augmented repair with semantic code search, code reasoning via execution feedback, cross-repo transfer learning. Avoid: simple prompt templates for code completion.
+
+Tag: direction=code_models, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-16?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 2/10)
+{
+  "title": "Divergence-Focused Contrastive Execution Evidence for Code LLM Reasoning",
+  "core_problem": "Execution traces theoretically contain rich debugging signals, but empirical evidence (Haque et al., arXiv 2505.04441) shows they provide limited improvement for LLM-based repair—succeeding in only 2/6 configurations—because raw traces overwhelm model context with irrelevant detail as complexity grows. The fundamental challenge is not whether to provide execution information, but HOW to structure it so LLMs can reason effectively about runtime behavior.",
+  "opportunity": "We observe that contrastive comparison between passing and failing execution traces serves as a natural compression mechanism: by aligning two traces and extracting only divergence points, we eliminate the vast majority of irrelevant execution detail that makes raw traces ineffective. This converts the information-overload problem identified by Haque et al. into a focused comparison task that (1) fits within practical context windows, (2) directly highlights the root cause semantics, and (3) aligns with LLMs' demonstrated strength in comparative reasoning. No existing work provides LLMs with structured behavioral deltas at inference time—ConCoder (COLING 2025) uses contrastive signals only during training, iFix (OOPSLA 2025) targets human visualization, and ContrastRepair (TOSEM 2025) contrasts test source text without collecting execution traces.",
+  "landscape": "ContrastRepair (TOSEM 2025) provides LLMs with contrastive test case PAIRS as source text, achieving strong results (143/337 Defects4J) but requiring the LLM to INFER behavioral differences from code alone. ConCoder (COLING 2025) uses contrastive execution feedback during training via contrastive loss to teach models to distinguish correct from incorrect code—a weight-update approach orthogonal to inference-time evidence provision. iFix (OOPSLA 2025) aligns runtime values across patch candidates for human-interactive visualization, reducing developer debugging time by 36%, but is not designed for LLM consumption. TraceCoder (arXiv 2602.06875) uses causal scoring across historical trace pools—statistical analysis, not per-instance contrastive reasoning. Haque et al. (arXiv 2505.04441) systematically evaluate execution traces for LLM repair, finding that raw traces help in only 2/6 configurations and that LLM-optimized (summarized) traces perform most consistently—directly motivating structured trace abstraction. TAAF (ICSE 2026) introduces hierarchical trace abstraction via knowledge graphs for system traces, validating the principle that structured abstraction outperforms raw trace feeding. The EMNLP 2025 paper 'Do Code Semantics Help?' evaluates execution trace integration with code LLMs via fine-tuning, finding benefits with parameter-efficient adaptation. EffiPair (arXiv 2604.05137) applies relative contrastive feedback for code efficiency but not correctness repair. LDB (ACL 2024) verifies execution step-by-step but only for failing runs. DynaFix captures runtime states for failing runs only. Differential debugging (Zeller, ESEC/FSE 1999) is the classic SE inspiration but was never formalized as structured LLM reasoning input.",
+  "approach": "We propose Divergence-Focused Contrastive Execution (DFCE), a method that provides code LLMs with structured behavioral deltas extracted from aligned passing/failing execution trace pairs. DFCE addresses the trace complexity problem through three innovations:\n\n(1) **Divergence-focused abstraction**: Rather than providing full traces, DFCE aligns execution points across passing and failing runs by function signature and source location, then extracts ONLY the first divergence region—differing variable states, unexpected branch decisions, and anomalous return values within a bounded window around the divergence point. This naturally compresses traces by 10-50× compared to raw execution logs.\n\n(2) **Hierarchical granularity selection**: DFCE operates at three levels—function-call level (coarsest, always fits context), block-level (moderate), and statement-level (finest, for small programs). An automatic selector chooses granularity based on program complexity and available context budget, addressing the key finding from Haque et al. that complexity degrades trace effectiveness.\n\n(3) **Reference scenario selection**: For each failing test, we identify a contrastive reference via: (a) coverage-similarity matching to find the passing test with maximal code-path overlap, or (b) same-test replay on a known-correct version (prior commit or ground-truth solution).\n\nWe frame this as a code reasoning study: RQ1—Does contrastive execution evidence improve code LLM reasoning over raw traces and no traces? RQ2—What granularity of divergence abstraction maximizes reasoning improvement? RQ3—How does the benefit scale across model sizes (7B→32B)? RQ4—Does contrastive evidence help more for complex bugs where raw traces fail?\n\nWe evaluate primarily on DebugBench (4,253 instances, C++/Java/Python debugging, ACL 2024) as the primary NLP-venue-aligned benchmark, with HumanEval/MBPP for iterative repair after failed generation, CodeContests for competitive programming debugging, and CrossCodeEval/RepoBench as cross-file reasoning controls. Models: Qwen2.5-Coder-7B and Qwen2.5-Coder-32B (primary), DeepSeek-Coder-V2-16B (secondary), CodeLlama-34B and StarCoder2-15B (ablations). All experiments are inference-time prompting with optional LoRA fine-tuning on the 7B model to measure whether contrastive evidence also benefits adapted models.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~120h H100",
+      "gpu_utilization": "Moderate (~50% utilized). Idle during trace collection scripting, prompt engineering, and result analysis.",
+      "timeline": "6-8 weeks",
+      "team": "2 researchers (1 systems/instrumentation, 1 NLP/evaluation)",
+      "estimated_gpu_cost": "$360-480 (at ~$3/hr H100 spot)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~150h H100",
+      "gpu_utilization": "Good (~65-70% utilized). Agent runs inference continuously between daily check-ins; trace collection runs on CPU.",
+      "timeline": "3-4 weeks",
+      "team": "1 researcher, ~45min/day for granularity calibration and result interpretation",
+      "claude_api_cost": "$200-350 (~2500 turns for implementation, experiment orchestration, and analysis)",
+      "estimated_gpu_cost": "$450-500",
+      "risk_note": "Granularity selection heuristic needs empirical calibration—if too coarse, deltas miss the bug; if too fine, context overflow on complex programs. Human judgment needed to define complexity thresholds."
+    },
+    "auto_research": {
+      "gpu_hours": "~190h H100 (explores 3× more granularity/prompt/model configurations than manual, within budget)",
+      "gpu_utilization": "High (~85%+ utilized). Agent pipelines trace collection, inference, and evaluation continuously.",
+      "timeline": "8-12 days with 2 concurrent H100 GPUs",
+      "team": "0 (initial setup: benchmark environments, model downloads, trace instrumentation framework)",
+      "claude_api_cost": "$400-550 (~4000-5000 turns)",
+      "estimated_gpu_cost": "$570-620",
+      "speed_bottleneck": "DebugBench evaluation (4253 instances × multiple configurations) and Qwen2.5-Coder-32B inference throughput",
+      "risk_note": "Auto mode may over-optimize prompt formatting without testing whether the contrastive principle generalizes across bug types. Risk of benchmark-specific tuning."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission: May 25, 2026; commitment: August 2, 2026)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "ContrastRepair: Enhancing Conversation-Based Automated Program Repair via Contrastive Test Case Pairs (TOSEM 2025)",
+    "Extracting the Essence and Discarding the Dross: Enhancing Code Generation with Contrastive Execution Feedback [ConCoder] (COLING 2025)",
+    "Show Me Why It's Correct: Saving 1/3 of Debugging Time in Program Repair with Interactive Runtime Comparison [iFix] (OOPSLA 2025)",
+    "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs (arXiv 2505.04441)",
+    "TAAF: A Trace Abstraction and Analysis Framework Synergizing Knowledge Graphs and LLMs (ICSE 2026)",
+    "Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code LLMs (EMNLP Findings 2025)",
+    "DebugBench: Evaluating Debugging Capability of Large Language Models (ACL Findings 2024)",
+    "TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging (arXiv 2026)",
+    "Debug like a Human: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step [LDB] (ACL Findings 2024)",
+    "Yesterday, my program worked. Today, it does not. Why? (ESEC/FSE 1999)",
+    "EffiPair: Improving the Efficiency of LLM-generated Code with Relative Contrastive Feedback (arXiv 2026)",
+    "Agentless: Demystifying LLM-based Software Engineering Agents (FSE 2025)"
+  ],
+  "description": "We present Divergence-Focused Contrastive Execution (DFCE), a structured evidence method that addresses a key empirical puzzle: execution traces contain rich debugging signals, yet providing them to LLMs yields inconsistent improvements (helping in only 2/6 configurations per Haque et al. 2025). Our core insight is that CONTRASTIVE trace comparison naturally solves the information-overload problem—by aligning passing and failing execution traces and extracting only the divergence region, we compress trace information by 10-50× while concentrating semantic content on the root cause. Unlike ConCoder (COLING 2025) which uses contrastive execution signals during training, DFCE operates purely at inference time as structured prompting evidence. Unlike iFix (OOPSLA 2025) which visualizes runtime differences for humans, DFCE structures behavioral deltas specifically for LLM consumption. Unlike ContrastRepair (TOSEM 2025) which contrasts test source text, DFCE contrasts actual execution behavior. We introduce hierarchical granularity selection (function/block/statement level) with automatic complexity-aware routing to prevent context overflow on complex programs. Evaluated on DebugBench (4,253 instances), HumanEval/MBPP, CodeContests, CrossCodeEval, and RepoBench using Qwen2.5-Coder (7B/32B), DeepSeek-Coder-V2-16B, CodeLlama-34B, and StarCoder2-15B. Framed as an NLP contribution studying how structured contrastive evidence improves code LLM reasoning, targeting the 'NLP and Code Models' track at EMNLP 2026.",
+  "project_name": "contrastive_exec_repair",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL VENUE MISMATCH: The user requires EMNLP 2026 (ARR deadline May 25, 2026) targeting 'NLP and Code Models' track. The idea instead targets ICSE 2027 (June 30) and AAAI 2027 (August 1). This must be corrected.", "FACTUAL ERROR: DeepSeek V4 Pro scores 80.6% on SWE-bench Verified, not the claimed 85%. Current SOTA is Claude Mythos Preview at ~93.9% and Claude Opus 4.7 at ~87.6%.", "MISSING CRITICAL RELATED WORK: ConCoder ('Extracting the Essence and Discarding the Dross: Enhancing Code Generation with Contrastive Execution Feedback', COLING 2025) already uses contrastive execution feedback from passing vs. failing runs. iFix ('Show Me Why It's Correct', OOPSLA 2025) performs runtime comparison of passing vs. failing for patch understanding. These severely weaken the 'first' novelty claim.", "EMPIRICAL COUNTER-EVIDENCE: arXiv 2505.04441 ('Towards Effectively Leveraging Execution Traces for Program Repair') finds trace effectiveness diminishes with complexity, succeeding in only 2/6 configurations. The idea does not adequately address how CEA overcomes this well-documented limitation for complex SWE-bench instances.", "EVAL MISMATCH: User requires evaluation on HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, CodeContests. The idea only proposes SWE-bench Verified and Defects4J, missing most required benchmarks.", "MODEL MISMATCH: User specified building on DeepSeek-Coder-V2, StarCoder2, CodeLlama, Qwen2.5-Coder. The idea uses DeepSeek V4 Pro and Qwen3.6-27B instead.", "RESOURCE BUDGET VIOLATION: User constraint is ≤200 H100-hours total. Auto mode estimates 550h A100 (roughly equivalent to ~400+ H100-hours), far exceeding budget. Even manual mode at 200h A100 is at the boundary.", "ENGINEERING COMPLEXITY UNDERESTIMATED: Consistently instrumenting 500 diverse Python projects in SWE-bench Docker environments for fine-grained trace collection (variable states at function boundaries, branch decisions) requires solving project-specific instrumentation challenges that the resource estimate does not account for."]
+Feedback: This idea has a reasonable technical core but fails to meet user requirements on multiple critical dimensions and has significant novelty and feasibility gaps. To revise:
+
+1. **Fix venue targeting**: Reframe for EMNLP 2026 (ARR May 25 deadline). This means framing as an NLP/code models contribution, not a pure SE contribution. Emphasize the 'code reasoning' angle—how structured contrastive evidence improves LLM reasoning about code, not just repair accuracy.
+
+2. **Address ConCoder and iFix**: These are the closest prior works the generator missed. ConCoder (COLING 2025) uses contrastive execution feedback during training; iFix (OOPSLA 2025) does runtime comparison of passing/failing. CEA must clearly differentiate: (a) inference-time vs. training-time (vs. ConCoder), (b) LLM-targeted structured delta vs. human-interactive visualization (vs. iFix), (c) trace-level behavioral delta vs. test-text-level contrast (vs. ContrastRepair).
+
+3. **Address the trace complexity problem head-on**: The 2505.04441 finding that trace effectiveness diminishes with complexity is the biggest empirical threat. The revision should propose concrete solutions: trace summarization, hierarchical alignment at different granularities, or filtering to only the divergence region. This should be an explicit research question, not hand-waved.
+
+4. **Fix model/eval alignment**: Use the models and benchmarks the user specified. Include HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench evaluations. Build on DeepSeek-Coder-V2 or Qwen2.5-Coder for fine-tuning experiments.
+
+5. **Fix resource estimates**: Stay within ≤200 H100-hours. Consider focusing on a smaller eval suite first and using API-based models to reduce GPU needs.
+
+6. **Correct the DeepSeek V4 Pro score**: 80.6%, not 85%.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "bdc81629-7d73-429e-a592-8973c7b54805",
+  "type": "user",
+  "uuid": "3f6124b9-63d5-4702-a7c5-aaa8edeb08b2",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T06:06:03.789Z_
+
+```json
+{
+  "parentUuid": "3f6124b9-63d5-4702-a7c5-aaa8edeb08b2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "53eabb41-adc8-45d0-baaa-19f92cada510",
+  "timestamp": "2026-05-16T06:06:03.789Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T06:06:03.789Z_
+
+```json
+{
+  "parentUuid": "53eabb41-adc8-45d0-baaa-19f92cada510",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "f9410ccb-4563-4e7e-9d9c-a47f57df41c8",
+  "timestamp": "2026-05-16T06:06:03.789Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f9410ccb-4563-4e7e-9d9c-a47f57df41c8",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Divergence-Focused Contrastive Execution Evidence for Code LLM Reasoning",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T06:06:07.833Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea - "Divergence-Focused Contrastive Execution Evidence for Code LLM Reasoning" (DFCE). This is round 2/10, so the generator has revised based on round 1 feedback. Let me systematically verify the claims and assess quality.
+
+Let me start by searching for the key related works and current SOTA to independently verify the claims.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9410ccb-4563-4e7e-9d9c-a47f57df41c8",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kApW233jBbTGMtY9e5",
+  "type": "assistant",
+  "uuid": "18a2afef-dfe3-43df-905c-4cdf780f2a1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QTvQxkEFur9GY1cQoFGQFw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13097,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 673,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13097,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 673,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13097,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13097
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T06:06:08.903Z_
+
+I'll conduct a thorough independent review of this revised idea. Let me start by verifying the key claims, checking for competing work, and assessing feasibility.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18a2afef-dfe3-43df-905c-4cdf780f2a1d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kApW233jBbTGMtY9e5",
+  "type": "assistant",
+  "uuid": "fcd5f34a-cd29-4ac3-a936-bf7471ddec6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QTvQxkEFur9GY1cQoFGQFw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13097,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 673,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13097,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 673,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13097,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13097
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T06:06:15.429Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01VZ6CHoTQdoP66YgFnNehNG`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify key references exist",
+  "prompt": "Use WebSearch to verify that the following papers actually exist and check their details. For each paper, search for its title and confirm venue/year. Report what you find for each:\n\n1. \"ContrastRepair: Enhancing Conversation-Based Automated Program Repair via Contrastive Test Case Pairs\" (claimed TOSEM 2025) - verify venue, year, and what it does\n2. \"Extracting the Essence and Discarding the Dross: Enhancing Code Generation with Contrastive Execution Feedback\" aka ConCoder (claimed COLING 2025) - verify venue, year, and what it does\n3. \"Show Me Why It's Correct: Saving 1/3 of Debugging Time in Program Repair with Interactive Runtime Comparison\" aka iFix (claimed OOPSLA 2025) - verify venue, year\n4. \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\" (claimed arXiv 2505.04441) - verify it exists, check key findings\n5. \"TAAF: A Trace Abstraction and Analysis Framework Synergizing Knowledge Graphs and LLMs\" (claimed ICSE 2026) - verify existence\n6. \"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging\" (claimed arXiv 2026) - verify existence and ID 2602.06875\n7. \"DebugBench: Evaluating Debugging Capability of Large Language Models\" (claimed ACL Findings 2024) - verify\n8. \"EffiPair: Improving the Efficiency of LLM-generated Code with Relative Contrastive Feedback\" (claimed arXiv 2026, ID 2604.05137)\n\nFor each, report: exists (yes/no), correct venue/year, brief description of what it does. Be thorough - search for each individually."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fcd5f34a-cd29-4ac3-a936-bf7471ddec6d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kApW233jBbTGMtY9e5",
+  "type": "assistant",
+  "uuid": "abb94edc-5fb1-4411-98ad-ae44a6ee4fb1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QTvQxkEFur9GY1cQoFGQFw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13097,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 673,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13097,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 673,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13097,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13097
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T06:07:48.845Z_
+
+<details><summary>↩ Tool result · `toolu_01VZ6CHoTQdoP66YgFnNehNG`</summary>
+
+```text
+I now have comprehensive information on all eight papers. Here is the full report:
+
+---
+
+## Verification Results for All 8 Papers
+
+### 1. ContrastRepair (claimed TOSEM 2025)
+- **Exists:** YES
+- **Correct venue/year:** Published in ACM Transactions on Software Engineering and Methodology (TOSEM), Volume 34, Issue 8, with DOI 10.1145/3719345. The ACM publication date appears to be October 2025, so the venue claim of "TOSEM 2025" is **correct**. An arXiv preprint (2403.01971) was posted in March 2024.
+- **What it does:** Enhances conversation-based automated program repair (APR) by providing LLMs with contrastive test case pairs -- a failing test paired with a minimally different passing test. Uses a similarity-guided selection process inspired by Delta Debugging to isolate failure causes. Correctly repaired 143/337 bugs on Defects4J benchmarks vs. 124 for the best baseline.
+
+### 2. ConCoder / "Extracting the Essence and Discarding the Dross" (claimed COLING 2025)
+- **Exists:** YES
+- **Correct venue/year:** Published at COLING 2025 (31st International Conference on Computational Linguistics), pages 10569-10575. Available at ACL Anthology: `2025.coling-main.704`. The claim is **correct**.
+- **What it does:** A contrastive learning-based code generation model that uses execution feedback to help the model differentiate erroneous code from correct code. The training emphasizes learning from the causes of errors, enabling the model to produce accurate code from the outset and rectify/optimize incorrect code.
+
+### 3. iFix / "Show Me Why It's Correct" (claimed OOPSLA 2025)
+- **Exists:** YES
+- **Correct venue/year:** Published in Proceedings of the ACM on Programming Languages, Vol. 9, OOPSLA1, Article 145, April 2025. Also listed at SPLASH 2025. The claim is **correct**. ArXiv preprint: 2503.00618.
+- **What it does:** An interactive tool for patch understanding in automated program repair. Performs static analysis to identify runtime variables related to buggy statements, captures their runtime values, and aligns values across patch candidates for comparison. A user study with 28 participants showed it reduced debugging task completion time by 33-36% and improved confidence by 20-50%. Also improved correct patch ranking by at least 39%.
+
+### 4. "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs" (claimed arXiv 2505.04441)
+- **Exists:** YES
+- **Correct ID:** arXiv:2505.04441 is **correct**. Submitted May 7, 2025.
+- **Key findings:** Investigated augmenting LLM-based APR prompts with program execution traces. Found that simply incorporating execution traces provides **limited performance improvement** -- only helped in 2 out of 6 dataset/model configurations. Effectiveness diminishes as trace complexity increases. However, LLM-optimized prompts help outperform trace-free prompts more consistently, and trace-based prompting was superior to fine-tuning a smaller LLM on small-scale data. Presented at the 4th International Workshop on Knowledge-Augmented Methods for NLP.
+
+### 5. TAAF: Trace Abstraction and Analysis Framework (claimed ICSE 2026)
+- **Exists:** YES
+- **Correct venue/year:** Accepted at ICSE 2026 (48th IEEE/ACM International Conference on Software Engineering, April 12-18, 2026, Rio de Janeiro, Brazil). ArXiv preprint: 2601.02632. The claim is **correct**.
+- **What it does:** Combines time-indexing, knowledge graphs (KGs), and LLMs to transform raw trace data into actionable insights. Constructs a time-indexed KG from trace events capturing relationships among threads, CPUs, and system resources. An LLM interprets query-specific subgraphs to answer natural-language questions. Introduces TraceQA-100 benchmark (100 questions grounded in real kernel traces). Improves answer accuracy by up to 31.2%, especially for multi-hop and causal reasoning.
+
+### 6. TraceCoder (claimed arXiv 2026, ID 2602.06875)
+- **Exists:** YES
+- **Correct ID and year:** arXiv:2602.06875, submitted February 6, 2026. The arXiv ID is **correct**. Additionally, TraceCoder has been **accepted to the ICSE 2026 Research Track** (not just an arXiv preprint as claimed -- it was accepted at a top venue).
+- **What it does:** A multi-agent framework for automated debugging of LLM-generated code. Three agents: Instrumentation Agent (captures fine-grained runtime traces), Analysis Agent (causal reasoning with a Historical Lesson Learning Mechanism), and Repair Agent (executes repair plan). Achieves up to 34.43% relative improvement in Pass@1 on BigCodeBench, ClassEval, and HumanEval+.
+
+### 7. DebugBench (claimed ACL Findings 2024)
+- **Exists:** YES
+- **Correct venue/year:** Published in Findings of the Association for Computational Linguistics: ACL 2024, pages 4173-4198, Bangkok, Thailand. The claim is **correct**. ArXiv preprint: 2401.04621.
+- **What it does:** A benchmark for evaluating LLM debugging capability. Contains 4,253 instances covering 4 major bug categories and 18 minor types across C++, Java, and Python. Code snippets collected from LeetCode, bugs implanted with GPT-4, with rigorous quality checks. Found that closed-source models are inferior to humans in debugging, and that runtime feedback does not always help.
+
+### 8. EffiPair (claimed arXiv 2026, ID 2604.05137)
+- **Exists:** YES
+- **Correct ID and year:** arXiv:2604.05137, published April 6, 2026. The claim is **correct**.
+- **What it does:** Proposes Relative Contrastive Feedback (RCF), an inference-time mechanism (no fine-tuning needed) that compares two structurally similar programs and highlights differences associated with better efficiency. EffiPair generates multiple candidate solutions, identifies program pairs with large efficiency gaps, summarizes their execution differences into lightweight feedback, and iteratively refines. With DeepSeek-Chat V3.2, achieves up to 1.5x speedup while reducing token usage by 90%+ compared to prior work. Authors from Columbia University.
+
+---
+
+## Summary
+
+**All 8 papers exist and are verified.** The venue/year claims are accurate for all of them, with one minor note: TraceCoder was claimed as "arXiv 2026" but has actually been accepted at ICSE 2026 Research Track (a stronger venue than just arXiv).
+
+Sources:
+- [ContrastRepair - ACM DL](https://dl.acm.org/doi/10.1145/3719345)
+- [ContrastRepair - arXiv](https://arxiv.org/abs/2403.01971)
+- [ConCoder - ACL Anthology](https://aclanthology.org/2025.coling-main.704/)
+- [iFix - ACM DL](https://dl.acm.org/doi/10.1145/3720510)
+- [iFix - arXiv](https://arxiv.org/abs/2503.00618)
+- [Execution Traces for Program Repair - arXiv](https://arxiv.org/abs/2505.04441)
+- [TAAF - arXiv](https://arxiv.org/abs/2601.02632)
+- [TraceCoder - arXiv](https://arxiv.org/abs/2602.06875)
+- [TraceCoder - ICSE 2026 Program](https://conf.researchr.org/details/icse-2026/icse-2026-research-track/145/TraceCoder-A-Trace-Driven-Multi-Agent-Framework-for-Automated-Debugging-of-LLM-Gener)
+- [DebugBench - ACL Anthology](https://aclanthology.org/2024.findings-acl.247/)
+- [DebugBench - GitHub](https://github.com/thunlp/DebugBench)
+- [EffiPair - arXiv](https://arxiv.org/abs/2604.05137)
+
+agentId: a293d57baf763b777 (use SendMessage with to: 'a293d57baf763b777' to continue this agent)
+&lt;usage>total_tokens: 23802
+tool_uses: 12
+duration_ms: 93410&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "abb94edc-5fb1-4411-98ad-ae44a6ee4fb1",
+  "isSidechain": false,
+  "promptId": "bdc81629-7d73-429e-a592-8973c7b54805",
+  "type": "user",
+  "uuid": "8ec1b324-8113-4fa1-839a-199864a6ede0",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Use WebSearch to verify that the following papers actually exist and check their details. For each paper, search for its title and confirm venue/year. Report what you find for each:\n\n1. \"ContrastRepair: Enhancing Conversation-Based Automated Program Repair via Contrastive Test Case Pairs\" (claimed TOSEM 2025) - verify venue, year, and what it does\n2. \"Extracting the Essence and Discarding the Dross: Enhancing Code Generation with Contrastive Execution Feedback\" aka ConCoder (claimed COLING 2025) - verify venue, year, and what it does\n3. \"Show Me Why It's Correct: Saving 1/3 of Debugging Time in Program Repair with Interactive Runtime Comparison\" aka iFix (claimed OOPSLA 2025) - verify venue, year\n4. \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\" (claimed arXiv 2505.04441) - verify it exists, check key findings\n5. \"TAAF: A Trace Abstraction and Analysis Framework Synergizing Knowledge Graphs and LLMs\" (claimed ICSE 2026) - verify existence\n6. \"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging\" (claimed arXiv 2026) - verify existence and ID 2602.06875\n7. \"DebugBench: Evaluating Debugging Capability of Large Language Models\" (claimed ACL Findings 2024) - verify\n8. \"EffiPair: Improving the Efficiency of LLM-generated Code with Relative Contrastive Feedback\" (claimed arXiv 2026, ID 2604.05137)\n\nFor each, report: exists (yes/no), correct venue/year, brief description of what it does. Be thorough - search for each individually.",
+    "agentId": "a293d57baf763b777",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have comprehensive information on all eight papers. Here is the full report:\n\n---\n\n## Verification Results for All 8 Papers\n\n### 1. ContrastRepair (claimed TOSEM 2025)\n- **Exists:** YES\n- **Correct venue/year:** Published in ACM Transactions on Software Engineering and Methodology (TOSEM), Volume 34, Issue 8, with DOI 10.1145/3719345. The ACM publication date appears to be October 2025, so the venue claim of \"TOSEM 2025\" is **correct**. An arXiv preprint (2403.01971) was posted in March 2024.\n- **What it does:** Enhances conversation-based automated program repair (APR) by providing LLMs with contrastive test case pairs -- a failing test paired with a minimally different passing test. Uses a similarity-guided selection process inspired by Delta Debugging to isolate failure causes. Correctly repaired 143/337 bugs on Defects4J benchmarks vs. 124 for the best baseline.\n\n### 2. ConCoder / \"Extracting the Essence and Discarding the Dross\" (claimed COLING 2025)\n- **Exists:** YES\n- **Correct venue/year:** Published at COLING 2025 (31st International Conference on Computational Linguistics), pages 10569-10575. Available at ACL Anthology: `2025.coling-main.704`. The claim is **correct**.\n- **What it does:** A contrastive learning-based code generation model that uses execution feedback to help the model differentiate erroneous code from correct code. The training emphasizes learning from the causes of errors, enabling the model to produce accurate code from the outset and rectify/optimize incorrect code.\n\n### 3. iFix / \"Show Me Why It's Correct\" (claimed OOPSLA 2025)\n- **Exists:** YES\n- **Correct venue/year:** Published in Proceedings of the ACM on Programming Languages, Vol. 9, OOPSLA1, Article 145, April 2025. Also listed at SPLASH 2025. The claim is **correct**. ArXiv preprint: 2503.00618.\n- **What it does:** An interactive tool for patch understanding in automated program repair. Performs static analysis to identify runtime variables related to buggy statements, captures their runtime values, and aligns values across patch candidates for comparison. A user study with 28 participants showed it reduced debugging task completion time by 33-36% and improved confidence by 20-50%. Also improved correct patch ranking by at least 39%.\n\n### 4. \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\" (claimed arXiv 2505.04441)\n- **Exists:** YES\n- **Correct ID:** arXiv:2505.04441 is **correct**. Submitted May 7, 2025.\n- **Key findings:** Investigated augmenting LLM-based APR prompts with program execution traces. Found that simply incorporating execution traces provides **limited performance improvement** -- only helped in 2 out of 6 dataset/model configurations. Effectiveness diminishes as trace complexity increases. However, LLM-optimized prompts help outperform trace-free prompts more consistently, and trace-based prompting was superior to fine-tuning a smaller LLM on small-scale data. Presented at the 4th International Workshop on Knowledge-Augmented Methods for NLP.\n\n### 5. TAAF: Trace Abstraction and Analysis Framework (claimed ICSE 2026)\n- **Exists:** YES\n- **Correct venue/year:** Accepted at ICSE 2026 (48th IEEE/ACM International Conference on Software Engineering, April 12-18, 2026, Rio de Janeiro, Brazil). ArXiv preprint: 2601.02632. The claim is **correct**.\n- **What it does:** Combines time-indexing, knowledge graphs (KGs), and LLMs to transform raw trace data into actionable insights. Constructs a time-indexed KG from trace events capturing relationships among threads, CPUs, and system resources. An LLM interprets query-specific subgraphs to answer natural-language questions. Introduces TraceQA-100 benchmark (100 questions grounded in real kernel traces). Improves answer accuracy by up to 31.2%, especially for multi-hop and causal reasoning.\n\n### 6. TraceCoder (claimed arXiv 2026, ID 2602.06875)\n- **Exists:** YES\n- **Correct ID and year:** arXiv:2602.06875, submitted February 6, 2026. The arXiv ID is **correct**. Additionally, TraceCoder has been **accepted to the ICSE 2026 Research Track** (not just an arXiv preprint as claimed -- it was accepted at a top venue).\n- **What it does:** A multi-agent framework for automated debugging of LLM-generated code. Three agents: Instrumentation Agent (captures fine-grained runtime traces), Analysis Agent (causal reasoning with a Historical Lesson Learning Mechanism), and Repair Agent (executes repair plan). Achieves up to 34.43% relative improvement in Pass@1 on BigCodeBench, ClassEval, and HumanEval+.\n\n### 7. DebugBench (claimed ACL Findings 2024)\n- **Exists:** YES\n- **Correct venue/year:** Published in Findings of the Association for Computational Linguistics: ACL 2024, pages 4173-4198, Bangkok, Thailand. The claim is **correct**. ArXiv preprint: 2401.04621.\n- **What it does:** A benchmark for evaluating LLM debugging capability. Contains 4,253 instances covering 4 major bug categories and 18 minor types across C++, Java, and Python. Code snippets collected from LeetCode, bugs implanted with GPT-4, with rigorous quality checks. Found that closed-source models are inferior to humans in debugging, and that runtime feedback does not always help.\n\n### 8. EffiPair (claimed arXiv 2026, ID 2604.05137)\n- **Exists:** YES\n- **Correct ID and year:** arXiv:2604.05137, published April 6, 2026. The claim is **correct**.\n- **What it does:** Proposes Relative Contrastive Feedback (RCF), an inference-time mechanism (no fine-tuning needed) that compares two structurally similar programs and highlights differences associated with better efficiency. EffiPair generates multiple candidate solutions, identifies program pairs with large efficiency gaps, summarizes their execution differences into lightweight feedback, and iteratively refines. With DeepSeek-Chat V3.2, achieves up to 1.5x speedup while reducing token usage by 90%+ compared to prior work. Authors from Columbia University.\n\n---\n\n## Summary\n\n**All 8 papers exist and are verified.** The venue/year claims are accurate for all of them, with one minor note: TraceCoder was claimed as \"arXiv 2026\" but has actually been accepted at ICSE 2026 Research Track (a stronger venue than just arXiv).\n\nSources:\n- [ContrastRepair - ACM DL](https://dl.acm.org/doi/10.1145/3719345)\n- [ContrastRepair - arXiv](https://arxiv.org/abs/2403.01971)\n- [ConCoder - ACL Anthology](https://aclanthology.org/2025.coling-main.704/)\n- [iFix - ACM DL](https://dl.acm.org/doi/10.1145/3720510)\n- [iFix - arXiv](https://arxiv.org/abs/2503.00618)\n- [Execution Traces for Program Repair - arXiv](https://arxiv.org/abs/2505.04441)\n- [TAAF - arXiv](https://arxiv.org/abs/2601.02632)\n- [TraceCoder - arXiv](https://arxiv.org/abs/2602.06875)\n- [TraceCoder - ICSE 2026 Program](https://conf.researchr.org/details/icse-2026/icse-2026-research-track/145/TraceCoder-A-Trace-Driven-Multi-Agent-Framework-for-Automated-Debugging-of-LLM-Gener)\n- [DebugBench - ACL Anthology](https://aclanthology.org/2024.findings-acl.247/)\n- [DebugBench - GitHub](https://github.com/thunlp/DebugBench)\n- [EffiPair - arXiv](https://arxiv.org/abs/2604.05137)"
+      }
+    ],
+    "totalDurationMs": 93410,
+    "totalTokens": 23802,
+    "totalToolUseCount": 12,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1680,
+      "cache_read_input_tokens": 20020,
+      "output_tokens": 2101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1680
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2101,
+          "cache_read_input_tokens": 20020,
+          "cache_creation_input_tokens": 1680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1680,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 12
+    }
+  },
+  "sourceToolAssistantUUID": "abb94edc-5fb1-4411-98ad-ae44a6ee4fb1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-16T06:07:52.362Z_
+
+All 8 references verified. Now let me search for competing work the generator may have missed and verify the SOTA claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ec1b324-8113-4fa1-839a-199864a6ede0",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kJZz7TbEDY5WXhJtTh",
+  "type": "assistant",
+  "uuid": "c33a6714-b8e7-4bdb-b6bf-9f3d9328ea30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011CdcV9fnfYKHNYnx25dBmg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2850,
+      "cache_read_input_tokens": 24938,
+      "output_tokens": 551,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2850,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 551,
+          "cache_read_input_tokens": 24938,
+          "cache_creation_input_tokens": 2850,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2850
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T06:08:02.415Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01GpPuTusCKmCwJt9Xd96R7U`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search for competing/missed work on contrastive execution for code repair",
+  "prompt": "I'm reviewing a paper idea called \"Divergence-Focused Contrastive Execution Evidence\" (DFCE) for code LLM reasoning. The idea proposes aligning passing and failing execution traces and extracting divergence points to help LLMs debug code. \n\nI need to find competing work the authors may have missed. Please search extensively for:\n\n1. Search: \"contrastive execution trace\" code repair 2025 2026\n2. Search: \"passing failing trace comparison\" LLM debugging 2025 2026\n3. Search: \"differential debugging\" LLM code 2025 2026\n4. Search: \"execution feedback\" code LLM reasoning 2025 2026 (beyond the papers already cited: ConCoder, ContrastRepair, iFix, Haque et al.)\n5. Search: \"trace alignment\" program repair 2025 2026\n6. Search: \"runtime comparison\" automated program repair LLM\n7. Search: site:arxiv.org \"execution trace\" \"code generation\" OR \"program repair\" 2026\n8. Search: \"behavioral delta\" OR \"execution delta\" code LLM\n9. Search: ACL 2025 OR EMNLP 2025 \"execution trace\" code\n10. Search: \"spectrum-based fault localization\" LLM 2025 2026\n\nFor each search, report the most relevant papers found that the idea doesn't already cite. Focus especially on anything from the last 6 months (Nov 2025 - May 2026) that could be concurrent work.\n\nAlso search for: \"Do Code Semantics Help\" EMNLP 2025 - this is cited but I want to verify what it actually found about execution traces with code LLMs.\n\nReport ALL potentially competing papers with title, venue, date, and brief description of relevance."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c33a6714-b8e7-4bdb-b6bf-9f3d9328ea30",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kJZz7TbEDY5WXhJtTh",
+  "type": "assistant",
+  "uuid": "36198038-ddad-4aba-bd78-61a882a2be87",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011CdcV9fnfYKHNYnx25dBmg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2850,
+      "cache_read_input_tokens": 24938,
+      "output_tokens": 551,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2850,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 551,
+          "cache_read_input_tokens": 24938,
+          "cache_creation_input_tokens": 2850,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2850
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T06:12:31.218Z_
+
+<details><summary>↩ Tool result · `toolu_01GpPuTusCKmCwJt9Xd96R7U`</summary>
+
+```text
+Now I have a comprehensive picture. Here is my complete report:
+
+---
+
+## Competing and Related Work for DFCE (Divergence-Focused Contrastive Execution Evidence)
+
+Below is a comprehensive catalog of potentially competing papers, organized by relevance to the DFCE proposal. I have focused on work from the last 6 months (Nov 2025 -- May 2026) where possible, and flagged earlier work that the authors should be aware of.
+
+---
+
+### TIER 1: HIGHEST RELEVANCE -- Directly Competing or Near-Identical Ideas
+
+**1. TraceRepair (April 2026)**
+- Title: "Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate"
+- Venue: arXiv preprint (April 3, 2026)
+- URL: [arxiv.org/abs/2604.02647](https://arxiv.org/abs/2604.02647)
+- Relevance: **Very high -- likely concurrent work.** TraceRepair injects diagnostic probes into buggy programs to collect runtime execution traces, then uses them as "objective evidence" in a multi-agent debate where repair agents with distinct reasoning perspectives (defensive, causal, semantic) generate and cross-validate patch candidates against observed runtime state. The core idea of grounding repair in what the program "actually did" rather than static analysis is extremely close to DFCE's motivation. TraceRepair fixes 392 bugs on Defects4J, outperforming all prior LLM-based APR methods. The key difference is that TraceRepair uses multi-agent debate as its mechanism rather than divergence-point extraction, but the input signal (execution traces from passing/failing runs) overlaps significantly.
+
+**2. TraceCoder (February 2026, ICSE 2026)**
+- Title: "TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code"
+- Venue: ICSE 2026 Research Track
+- URL: [arxiv.org/abs/2602.06875](https://arxiv.org/abs/2602.06875)
+- Relevance: **Very high -- accepted at a top venue, concurrent work.** TraceCoder uses three specialized agents: an Instrumentation Agent that inserts diagnostic probes for fine-grained runtime traces, an Analysis Agent that performs causal reasoning over traces to localize faults, and a Repair Agent. It includes a Historical Lesson Learning Mechanism and Rollback Mechanism. Achieves up to 34.43% relative improvement in Pass@1 over baselines. The causal reasoning over traces for fault localization is conceptually very close to DFCE's divergence-point extraction.
+
+**3. Haque et al. (May 2025) -- "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs"**
+- Venue: KnowledgeNLP Workshop at ACL 2025
+- URL: [arxiv.org/abs/2505.04441](https://arxiv.org/abs/2505.04441)
+- Relevance: **Very high -- DFCE likely already cites this but it's critical.** This paper found that simply incorporating execution traces into APR prompts provides only limited improvement (in only 2 out of 6 configurations). Trace effectiveness diminishes as complexity increases. LLM-optimized prompts help. This is both a challenge paper for DFCE and a motivation -- DFCE needs to clearly differentiate why its divergence-focused approach overcomes the limitations Haque et al. identified.
+
+**4. InspectCoder (October 2025)**
+- Title: "InspectCoder: Dynamic Analysis-Enabled Self Repair through Interactive LLM-Debugger Collaboration"
+- Venue: arXiv preprint
+- URL: [arxiv.org/abs/2510.18327](https://arxiv.org/abs/2510.18327)
+- Relevance: **High.** First agentic repair system enabling LLMs to actively conduct dynamic analysis via interactive debugger control (breakpoints, state inspection, runtime experimentation). Achieves 5.10%--60.37% relative improvement over baselines. Unlike DFCE which pre-extracts divergence points, InspectCoder lets the LLM adaptively explore runtime state, which is a different but related philosophy. Includes the InspectWare middleware for stateful debugging sessions.
+
+---
+
+### TIER 2: HIGH RELEVANCE -- Closely Related Approaches
+
+**5. Wang et al. -- "Do Code Semantics Help?" (Findings of EMNLP 2025)**
+- Title: "Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models"
+- Venue: Findings of EMNLP 2025, Suzhou, China (pp. 10367--10385)
+- URL: [aclanthology.org/2025.findings-emnlp.548](https://aclanthology.org/2025.findings-emnlp.548/)
+- Relevance: **High -- DFCE cites this but the findings are critical context.** The paper's conclusion is that semantic information (including execution traces) has **limited usefulness** for SFT and test-time scaling of Code LLMs. This is a potential challenge to DFCE's premise. The authors introduce a generic framework for integrating semantic information into code task prompts and test it comprehensively. DFCE must address why its divergence-focused approach would succeed where generic trace integration fails.
+
+**6. Code World Model / CWM (Meta FAIR, September--October 2025)**
+- Title: "CWM: An Open-Weights LLM for Research on Code Generation with World Models"
+- Venue: arXiv, released September 2025
+- URL: [arxiv.org/abs/2510.02387](https://arxiv.org/abs/2510.02387)
+- Relevance: **High.** Meta's 32B-parameter model trained on Python interpreter traces that record local variable states after each executed line, plus agentic interactions. CWM can predict stack frames and execution states as a "neural debugger" without live execution. Achieves 65.8% on SWE-bench Verified. The execution-trace grounding approach is philosophically aligned with DFCE's motivation though CWM focuses on training while DFCE focuses on inference-time prompting.
+
+**7. Debugging Code World Models (February 2026)**
+- Title: "Debugging code world models"
+- Venue: arXiv preprint (February 2026)
+- URL: [arxiv.org/abs/2602.07672](https://arxiv.org/abs/2602.07672)
+- Relevance: **Moderate-High.** Identifies failure modes of Code World Models' execution trace representations, particularly token budget exhaustion on long traces and string-handling issues due to subword tokenization. These findings are relevant to DFCE because they identify practical challenges with trace-based approaches that DFCE's divergence focusing could potentially address (by reducing trace length to just the divergence neighborhood).
+
+**8. SemCoder (NeurIPS 2024)**
+- Title: "SemCoder: Training Code Language Models with Comprehensive Semantics Reasoning"
+- Venue: NeurIPS 2024
+- URL: [arxiv.org/abs/2406.01006](https://arxiv.org/abs/2406.01006)
+- Relevance: **Moderate-High.** Introduces "monologue reasoning" to train Code LLMs on comprehensive program semantics including execution states (forward and backward). Achieves 79.3% on HumanEval. The forward monologue (explaining each line's impact, executed lines, variable changes) is conceptually related to DFCE's trace alignment idea, though SemCoder focuses on training-time rather than inference-time.
+
+**9. NExT (ICML 2024)**
+- Title: "NExT: Teaching Large Language Models to Reason about Code Execution"
+- Venue: ICML 2024
+- URL: [arxiv.org/abs/2404.14662](https://arxiv.org/abs/2404.14662)
+- Relevance: **Moderate-High.** Teaches LLMs to inspect execution traces and reason about runtime behavior through chain-of-thought rationales via self-training. Uses traces as compact inline comments within code. Improves fix rate by 26.1% on MBPP, 10.3% on HumanEval. DFCE should cite this as a related but different approach to leveraging traces for repair.
+
+**10. LDB (ACL 2024 Findings)**
+- Title: "Debug like a Human: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step"
+- Venue: ACL 2024 Findings
+- URL: [arxiv.org/abs/2402.16906](https://arxiv.org/abs/2402.16906)
+- Relevance: **Moderate-High.** Decomposes programs into basic blocks based on control flow, tracks intermediate variable values after each block, then has LLMs verify correctness block-by-block against the task description. This block-by-block verification of runtime states is conceptually similar to DFCE's trace alignment and divergence detection.
+
+**11. MGDebugger (November 2025)**
+- Title: "From Code to Correctness: Closing the Last Mile of Code Generation with Hierarchical Debugging"
+- Venue: arXiv preprint (November 2025)
+- URL: [arxiv.org/abs/2410.01215](https://arxiv.org/abs/2410.01215)
+- Relevance: **Moderate.** Hierarchical debugging approach that decomposes code into subfunctions and debugs bottom-up. Uses an LLM-simulated Python executor to trace execution and track variable states. The hierarchical granularity idea could complement or compete with DFCE's divergence-point approach.
+
+---
+
+### TIER 3: MODERATE RELEVANCE -- Related Paradigms
+
+**12. RLEF (ICML 2025)**
+- Title: "RLEF: Grounding Code LLMs in Execution Feedback with Reinforcement Learning"
+- Venue: ICML 2025
+- URL: [arxiv.org/abs/2410.02089](https://arxiv.org/abs/2410.02089)
+- Relevance: **Moderate.** Uses RL to train models to leverage execution feedback for multi-turn code generation. Achieves state-of-the-art with both 8B and 70B models. Different paradigm (training-time RL vs inference-time prompting) but addresses the same core problem of grounding LLMs in execution evidence.
+
+**13. Code Execution as Grounded Supervision (EMNLP 2025)**
+- Title: "Code Execution as Grounded Supervision for LLM Reasoning"
+- Authors: Dongwon Jung, Wenxuan Zhou, Muhao Chen
+- Venue: EMNLP 2025 Main Conference
+- URL: [aclanthology.org/2025.emnlp-main.1260](https://aclanthology.org/2025.emnlp-main.1260/)
+- Relevance: **Moderate.** Uses Python's Snoop debugging tool to record line-by-line execution signals, transforming them into natural language CoT reasoning for training data. Focuses on general reasoning rather than code repair specifically, but the execution-trace-to-reasoning pipeline is related.
+
+**14. TRACED (ICSE 2024)**
+- Title: "TRACED: Execution-aware Pre-training for Source Code"
+- Venue: ICSE 2024
+- URL: [arxiv.org/abs/2306.07487](https://arxiv.org/abs/2306.07487)
+- Relevance: **Moderate.** Combines source code, executable inputs, and execution traces using bimodal contrastive learning for pre-training. Improves execution path prediction by 12.4% and variable value prediction by 25.2%. The contrastive learning on execution traces concept is related to DFCE's contrastive framing.
+
+**15. tHinter (January 2025)**
+- Title: "Guided Debugging of Auto-Translated Code Using Differential Testing"
+- Venue: arXiv preprint (January 2025)
+- URL: [arxiv.org/abs/2501.09475](https://arxiv.org/abs/2501.09475)
+- Relevance: **Moderate.** Uses differential testing between source and translated code (same input should produce same output) to locate translation errors. The idea that divergent outputs from equivalent-intent executions reveal bugs is philosophically aligned with DFCE's divergence approach, though applied to code translation rather than general repair.
+
+**16. RGFL (January 2026)**
+- Title: "RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models"
+- Venue: arXiv preprint (January 2026)
+- URL: [arxiv.org/abs/2601.18044](https://arxiv.org/abs/2601.18044)
+- Relevance: **Moderate.** Hierarchical reasoning module for structured fault localization. Improves file-level Hit@1 from 71.4% to 85%. The reasoning-guided fault localization could compete with DFCE's divergence-based localization as an alternative approach to the same problem.
+
+**17. HAFixAgent (November 2025)**
+- Title: "HAFixAgent: History-Aware Program Repair Agent"
+- Venue: arXiv preprint (November 2025)
+- URL: [arxiv.org/abs/2511.01047](https://arxiv.org/abs/2511.01047)
+- Relevance: **Moderate.** Uses repository history (blame, commit diffs) rather than execution traces for repair context. Outperforms RepairAgent by 56.6%. Different signal source but same goal of providing richer context for LLM-based repair.
+
+**18. Delta Debugging for LLM-integrated Systems (ICSE 2026 SEIP)**
+- Title: "Delta Debugging for LLM-integrated Systems"
+- Venue: ICSE 2026 SEIP track (April 15, 2026)
+- URL: [conf.researchr.org/details/icse-2026/...](https://conf.researchr.org/details/icse-2026/icse-2026-software-engineering-in-practice/5/Delta-Debugging-for-LLM-integrated-Systems)
+- Relevance: **Moderate.** Applies delta debugging to isolate problematic parts of LLM inputs. Uses semantic markers as instrumentation. Different application (debugging LLM prompts vs debugging code), but the delta debugging concept of minimizing failure-inducing inputs is conceptually related.
+
+**19. ExeCoder (EMNLP 2025)**
+- Title: "ExeCoder: Empowering Large Language Models with Executability Representation for Code Translation"
+- Venue: EMNLP 2025 Main Conference
+- URL: [aclanthology.org/2025.emnlp-main.362](https://aclanthology.org/2025.emnlp-main.362/)
+- Relevance: **Low-Moderate.** Encodes functional semantics, AST, and data flow graphs for code translation. Surpasses GPT-4o on code translation. Tangentially related through its use of executability representations.
+
+**20. AuditRepairBench (May 2026)**
+- Title: "AuditRepairBench: A Paired-Execution Trace Corpus for Evaluator-Channel Ranking Instability in Agent Repair"
+- Venue: arXiv preprint (very recent, ~May 8, 2026)
+- URL: [arxiv.org/abs/2605.04624](https://arxiv.org/abs/2605.04624)
+- Relevance: **Low-Moderate.** A benchmark of 576K paired execution trace cells for evaluating agent repair systems. The paired-trace corpus format could be relevant as evaluation infrastructure for DFCE, and the focus on trace-pair analysis overlaps conceptually.
+
+**21. Mokav (2024)**
+- Title: "Mokav: Execution-driven Differential Testing with LLMs"
+- Venue: arXiv preprint
+- URL: [arxiv.org/abs/2406.10375](https://arxiv.org/abs/2406.10375)
+- Relevance: **Low-Moderate.** Uses LLMs to generate difference-exposing tests between program pairs with execution-based feedback. The differential execution concept is tangentially related.
+
+**22. On the Role of Fault Localization Context (April 2026)**
+- Title: "On the Role of Fault Localization Context for LLM-Based Program Repair"
+- Venue: arXiv preprint (April 2026)
+- URL: [arxiv.org/abs/2604.05481](https://arxiv.org/abs/2604.05481)
+- Relevance: **Moderate.** Finds that more context does not consistently improve repair; element/line-level expansion can degrade performance through noise. This is directly relevant to DFCE's design: it suggests that DFCE's focused divergence points could outperform naive trace inclusion, but also warns about noise from overly detailed context.
+
+**23. The Double Life of Code World Models (December 2025)**
+- Title: "The Double Life of Code World Models: Provably Unmasking Malicious Behavior Through Execution Traces"
+- Venue: arXiv preprint (December 2025)
+- URL: [arxiv.org/abs/2512.13821](https://arxiv.org/abs/2512.13821)
+- Relevance: **Low.** Uses cross-trace verification to detect backdoors by analyzing consistency of execution trace predictions across equivalent program transformations. Different application (security) but uses multi-trace comparison.
+
+**24. Characterizing Multi-Hunk Patches: Divergence, Proximity, and LLM Repair Challenges (2025)**
+- Venue: ResearchGate (2025)
+- URL: [researchgate.net/publication/392466057](https://www.researchgate.net/publication/392466057_Characterizing_Multi-Hunk_Patches_Divergence_Proximity_and_LLM_Repair_Challenges)
+- Relevance: **Low-Moderate.** Proposes "hunk divergence" as a metric capturing lexical, structural, and file-level differences in patches. Finds that LLM success rates decline with increased divergence. The "divergence" terminology and concept overlap with DFCE, though this addresses code diff divergence rather than execution trace divergence.
+
+**25. LocAgent (ACL 2025)**
+- Title: "LocAgent: Graph-Guided LLM Agents for Code Localization"
+- Venue: ACL 2025 Main Conference
+- URL: [aclanthology.org/2025.acl-long.426](https://aclanthology.org/2025.acl-long.426/)
+- Relevance: **Low-Moderate.** Graph-based code localization for fault finding. Different signal (static graphs vs dynamic traces) but competing approach to the localization sub-problem.
+
+---
+
+### VERIFICATION: "Do Code Semantics Help?" (Wang et al., EMNLP 2025 Findings)
+
+As requested, here is what this paper actually found:
+
+The paper introduces a generic framework for integrating execution-trace-based semantic information into Code LLM prompts and conducts a comprehensive study. Their key (and somewhat surprising) finding is that **semantic information including execution traces has limited usefulness for supervised fine-tuning and test-time scaling of Code LLMs**. This contradicts some prior assumptions in the field. The authors extract runtime execution messages using a "trace adapter" from an Execution Behavior Dataset. The paper appears in Findings of EMNLP 2025, pages 10367--10385. This is an important challenge paper for DFCE -- the authors should explicitly address why their divergence-focused approach would succeed where generic trace integration was found to be limited.
+
+---
+
+### KEY RECOMMENDATIONS FOR THE DFCE AUTHORS
+
+1. **TraceRepair and TraceCoder are the most direct competitors** -- both from early 2026, both using execution traces for LLM-based repair, both accepted/submitted to top venues. DFCE must differentiate its divergence-point extraction from TraceRepair's multi-agent debate and TraceCoder's causal reasoning.
+
+2. **The "traces don't help much" challenge**: Both Haque et al. (2025) and Wang et al. (EMNLP 2025) found that naive trace inclusion has limited benefit. DFCE's divergence-focused approach needs to be explicitly positioned as solving this problem by filtering traces to only the informative divergence points.
+
+3. **InspectCoder's interactive debugging** represents an alternative philosophy (adaptive exploration vs pre-extracted divergence) that should be discussed.
+
+4. **The Code World Model ecosystem** (Meta CWM, Debugging CWM) represents a training-time approach to execution grounding that is complementary to DFCE's inference-time approach.
+
+5. **The fault localization context paper** (Sepidband et al., April 2026) provides empirical evidence that more context can hurt -- this actually supports DFCE's focused divergence approach.
+
+Sources:
+- [TraceRepair (2604.02647)](https://arxiv.org/abs/2604.02647)
+- [TraceCoder at ICSE 2026](https://conf.researchr.org/details/icse-2026/icse-2026-research-track/145/TraceCoder-A-Trace-Driven-Multi-Agent-Framework-for-Automated-Debugging-of-LLM-Gener)
+- [Haque et al. (2505.04441)](https://arxiv.org/abs/2505.04441)
+- [InspectCoder (2510.18327)](https://arxiv.org/abs/2510.18327)
+- [Wang et al. - Do Code Semantics Help (EMNLP 2025)](https://aclanthology.org/2025.findings-emnlp.548/)
+- [Code World Model (2510.02387)](https://arxiv.org/abs/2510.02387)
+- [Debugging Code World Models (2602.07672)](https://arxiv.org/abs/2602.07672)
+- [SemCoder (NeurIPS 2024)](https://arxiv.org/abs/2406.01006)
+- [NExT (ICML 2024)](https://arxiv.org/abs/2404.14662)
+- [LDB (ACL 2024)](https://arxiv.org/abs/2402.16906)
+- [MGDebugger (2410.01215)](https://arxiv.org/abs/2410.01215)
+- [RLEF (ICML 2025)](https://arxiv.org/abs/2410.02089)
+- [Code Execution as Grounded Supervision (EMNLP 2025)](https://aclanthology.org/2025.emnlp-main.1260/)
+- [TRACED (ICSE 2024)](https://arxiv.org/abs/2306.07487)
+- [tHinter (2501.09475)](https://arxiv.org/abs/2501.09475)
+- [RGFL (2601.18044)](https://arxiv.org/abs/2601.18044)
+- [HAFixAgent (2511.01047)](https://arxiv.org/abs/2511.01047)
+- [Delta Debugging for LLM-integrated Systems (ICSE 2026)](https://conf.researchr.org/details/icse-2026/icse-2026-software-engineering-in-practice/5/Delta-Debugging-for-LLM-integrated-Systems)
+- [ExeCoder (EMNLP 2025)](https://aclanthology.org/2025.emnlp-main.362/)
+- [AuditRepairBench (2605.04624)](https://arxiv.org/abs/2605.04624)
+- [Mokav (2406.10375)](https://arxiv.org/abs/2406.10375)
+- [On the Role of FL Context (2604.05481)](https://arxiv.org/abs/2604.05481)
+- [Double Life of CWMs (2512.13821)](https://arxiv.org/abs/2512.13821)
+- [Multi-Hunk Divergence](https://www.researchgate.net/publication/392466057_Characterizing_Multi-Hunk_Patches_Divergence_Proximity_and_LLM_Repair_Challenges)
+- [LocAgent (ACL 2025)](https://aclanthology.org/2025.acl-long.426/)
+- [FaR-Loc (2509.20552)](https://arxiv.org/abs/2509.20552)
+- [RGFL (2601.18044)](https://arxiv.org/abs/2601.18044)
+- [LLM-based APR Survey (TOSEM 2026)](https://github.com/iSEngLab/AwesomeLLM4APR)
+
+agentId: a62d7107dc5ff7f7e (use SendMessage with to: 'a62d7107dc5ff7f7e' to continue this agent)
+&lt;usage>total_tokens: 56699
+tool_uses: 41
+duration_ms: 268797&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36198038-ddad-4aba-bd78-61a882a2be87",
+  "isSidechain": false,
+  "promptId": "bdc81629-7d73-429e-a592-8973c7b54805",
+  "type": "user",
+  "uuid": "bd956fbb-76cf-4ddb-a495-d85d9007f5a3",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I'm reviewing a paper idea called \"Divergence-Focused Contrastive Execution Evidence\" (DFCE) for code LLM reasoning. The idea proposes aligning passing and failing execution traces and extracting divergence points to help LLMs debug code. \n\nI need to find competing work the authors may have missed. Please search extensively for:\n\n1. Search: \"contrastive execution trace\" code repair 2025 2026\n2. Search: \"passing failing trace comparison\" LLM debugging 2025 2026\n3. Search: \"differential debugging\" LLM code 2025 2026\n4. Search: \"execution feedback\" code LLM reasoning 2025 2026 (beyond the papers already cited: ConCoder, ContrastRepair, iFix, Haque et al.)\n5. Search: \"trace alignment\" program repair 2025 2026\n6. Search: \"runtime comparison\" automated program repair LLM\n7. Search: site:arxiv.org \"execution trace\" \"code generation\" OR \"program repair\" 2026\n8. Search: \"behavioral delta\" OR \"execution delta\" code LLM\n9. Search: ACL 2025 OR EMNLP 2025 \"execution trace\" code\n10. Search: \"spectrum-based fault localization\" LLM 2025 2026\n\nFor each search, report the most relevant papers found that the idea doesn't already cite. Focus especially on anything from the last 6 months (Nov 2025 - May 2026) that could be concurrent work.\n\nAlso search for: \"Do Code Semantics Help\" EMNLP 2025 - this is cited but I want to verify what it actually found about execution traces with code LLMs.\n\nReport ALL potentially competing papers with title, venue, date, and brief description of relevance.",
+    "agentId": "a62d7107dc5ff7f7e",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have a comprehensive picture. Here is my complete report:\n\n---\n\n## Competing and Related Work for DFCE (Divergence-Focused Contrastive Execution Evidence)\n\nBelow is a comprehensive catalog of potentially competing papers, organized by relevance to the DFCE proposal. I have focused on work from the last 6 months (Nov 2025 -- May 2026) where possible, and flagged earlier work that the authors should be aware of.\n\n---\n\n### TIER 1: HIGHEST RELEVANCE -- Directly Competing or Near-Identical Ideas\n\n**1. TraceRepair (April 2026)**\n- Title: \"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate\"\n- Venue: arXiv preprint (April 3, 2026)\n- URL: [arxiv.org/abs/2604.02647](https://arxiv.org/abs/2604.02647)\n- Relevance: **Very high -- likely concurrent work.** TraceRepair injects diagnostic probes into buggy programs to collect runtime execution traces, then uses them as \"objective evidence\" in a multi-agent debate where repair agents with distinct reasoning perspectives (defensive, causal, semantic) generate and cross-validate patch candidates against observed runtime state. The core idea of grounding repair in what the program \"actually did\" rather than static analysis is extremely close to DFCE's motivation. TraceRepair fixes 392 bugs on Defects4J, outperforming all prior LLM-based APR methods. The key difference is that TraceRepair uses multi-agent debate as its mechanism rather than divergence-point extraction, but the input signal (execution traces from passing/failing runs) overlaps significantly.\n\n**2. TraceCoder (February 2026, ICSE 2026)**\n- Title: \"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code\"\n- Venue: ICSE 2026 Research Track\n- URL: [arxiv.org/abs/2602.06875](https://arxiv.org/abs/2602.06875)\n- Relevance: **Very high -- accepted at a top venue, concurrent work.** TraceCoder uses three specialized agents: an Instrumentation Agent that inserts diagnostic probes for fine-grained runtime traces, an Analysis Agent that performs causal reasoning over traces to localize faults, and a Repair Agent. It includes a Historical Lesson Learning Mechanism and Rollback Mechanism. Achieves up to 34.43% relative improvement in Pass@1 over baselines. The causal reasoning over traces for fault localization is conceptually very close to DFCE's divergence-point extraction.\n\n**3. Haque et al. (May 2025) -- \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\"**\n- Venue: KnowledgeNLP Workshop at ACL 2025\n- URL: [arxiv.org/abs/2505.04441](https://arxiv.org/abs/2505.04441)\n- Relevance: **Very high -- DFCE likely already cites this but it's critical.** This paper found that simply incorporating execution traces into APR prompts provides only limited improvement (in only 2 out of 6 configurations). Trace effectiveness diminishes as complexity increases. LLM-optimized prompts help. This is both a challenge paper for DFCE and a motivation -- DFCE needs to clearly differentiate why its divergence-focused approach overcomes the limitations Haque et al. identified.\n\n**4. InspectCoder (October 2025)**\n- Title: \"InspectCoder: Dynamic Analysis-Enabled Self Repair through Interactive LLM-Debugger Collaboration\"\n- Venue: arXiv preprint\n- URL: [arxiv.org/abs/2510.18327](https://arxiv.org/abs/2510.18327)\n- Relevance: **High.** First agentic repair system enabling LLMs to actively conduct dynamic analysis via interactive debugger control (breakpoints, state inspection, runtime experimentation). Achieves 5.10%--60.37% relative improvement over baselines. Unlike DFCE which pre-extracts divergence points, InspectCoder lets the LLM adaptively explore runtime state, which is a different but related philosophy. Includes the InspectWare middleware for stateful debugging sessions.\n\n---\n\n### TIER 2: HIGH RELEVANCE -- Closely Related Approaches\n\n**5. Wang et al. -- \"Do Code Semantics Help?\" (Findings of EMNLP 2025)**\n- Title: \"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\"\n- Venue: Findings of EMNLP 2025, Suzhou, China (pp. 10367--10385)\n- URL: [aclanthology.org/2025.findings-emnlp.548](https://aclanthology.org/2025.findings-emnlp.548/)\n- Relevance: **High -- DFCE cites this but the findings are critical context.** The paper's conclusion is that semantic information (including execution traces) has **limited usefulness** for SFT and test-time scaling of Code LLMs. This is a potential challenge to DFCE's premise. The authors introduce a generic framework for integrating semantic information into code task prompts and test it comprehensively. DFCE must address why its divergence-focused approach would succeed where generic trace integration fails.\n\n**6. Code World Model / CWM (Meta FAIR, September--October 2025)**\n- Title: \"CWM: An Open-Weights LLM for Research on Code Generation with World Models\"\n- Venue: arXiv, released September 2025\n- URL: [arxiv.org/abs/2510.02387](https://arxiv.org/abs/2510.02387)\n- Relevance: **High.** Meta's 32B-parameter model trained on Python interpreter traces that record local variable states after each executed line, plus agentic interactions. CWM can predict stack frames and execution states as a \"neural debugger\" without live execution. Achieves 65.8% on SWE-bench Verified. The execution-trace grounding approach is philosophically aligned with DFCE's motivation though CWM focuses on training while DFCE focuses on inference-time prompting.\n\n**7. Debugging Code World Models (February 2026)**\n- Title: \"Debugging code world models\"\n- Venue: arXiv preprint (February 2026)\n- URL: [arxiv.org/abs/2602.07672](https://arxiv.org/abs/2602.07672)\n- Relevance: **Moderate-High.** Identifies failure modes of Code World Models' execution trace representations, particularly token budget exhaustion on long traces and string-handling issues due to subword tokenization. These findings are relevant to DFCE because they identify practical challenges with trace-based approaches that DFCE's divergence focusing could potentially address (by reducing trace length to just the divergence neighborhood).\n\n**8. SemCoder (NeurIPS 2024)**\n- Title: \"SemCoder: Training Code Language Models with Comprehensive Semantics Reasoning\"\n- Venue: NeurIPS 2024\n- URL: [arxiv.org/abs/2406.01006](https://arxiv.org/abs/2406.01006)\n- Relevance: **Moderate-High.** Introduces \"monologue reasoning\" to train Code LLMs on comprehensive program semantics including execution states (forward and backward). Achieves 79.3% on HumanEval. The forward monologue (explaining each line's impact, executed lines, variable changes) is conceptually related to DFCE's trace alignment idea, though SemCoder focuses on training-time rather than inference-time.\n\n**9. NExT (ICML 2024)**\n- Title: \"NExT: Teaching Large Language Models to Reason about Code Execution\"\n- Venue: ICML 2024\n- URL: [arxiv.org/abs/2404.14662](https://arxiv.org/abs/2404.14662)\n- Relevance: **Moderate-High.** Teaches LLMs to inspect execution traces and reason about runtime behavior through chain-of-thought rationales via self-training. Uses traces as compact inline comments within code. Improves fix rate by 26.1% on MBPP, 10.3% on HumanEval. DFCE should cite this as a related but different approach to leveraging traces for repair.\n\n**10. LDB (ACL 2024 Findings)**\n- Title: \"Debug like a Human: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step\"\n- Venue: ACL 2024 Findings\n- URL: [arxiv.org/abs/2402.16906](https://arxiv.org/abs/2402.16906)\n- Relevance: **Moderate-High.** Decomposes programs into basic blocks based on control flow, tracks intermediate variable values after each block, then has LLMs verify correctness block-by-block against the task description. This block-by-block verification of runtime states is conceptually similar to DFCE's trace alignment and divergence detection.\n\n**11. MGDebugger (November 2025)**\n- Title: \"From Code to Correctness: Closing the Last Mile of Code Generation with Hierarchical Debugging\"\n- Venue: arXiv preprint (November 2025)\n- URL: [arxiv.org/abs/2410.01215](https://arxiv.org/abs/2410.01215)\n- Relevance: **Moderate.** Hierarchical debugging approach that decomposes code into subfunctions and debugs bottom-up. Uses an LLM-simulated Python executor to trace execution and track variable states. The hierarchical granularity idea could complement or compete with DFCE's divergence-point approach.\n\n---\n\n### TIER 3: MODERATE RELEVANCE -- Related Paradigms\n\n**12. RLEF (ICML 2025)**\n- Title: \"RLEF: Grounding Code LLMs in Execution Feedback with Reinforcement Learning\"\n- Venue: ICML 2025\n- URL: [arxiv.org/abs/2410.02089](https://arxiv.org/abs/2410.02089)\n- Relevance: **Moderate.** Uses RL to train models to leverage execution feedback for multi-turn code generation. Achieves state-of-the-art with both 8B and 70B models. Different paradigm (training-time RL vs inference-time prompting) but addresses the same core problem of grounding LLMs in execution evidence.\n\n**13. Code Execution as Grounded Supervision (EMNLP 2025)**\n- Title: \"Code Execution as Grounded Supervision for LLM Reasoning\"\n- Authors: Dongwon Jung, Wenxuan Zhou, Muhao Chen\n- Venue: EMNLP 2025 Main Conference\n- URL: [aclanthology.org/2025.emnlp-main.1260](https://aclanthology.org/2025.emnlp-main.1260/)\n- Relevance: **Moderate.** Uses Python's Snoop debugging tool to record line-by-line execution signals, transforming them into natural language CoT reasoning for training data. Focuses on general reasoning rather than code repair specifically, but the execution-trace-to-reasoning pipeline is related.\n\n**14. TRACED (ICSE 2024)**\n- Title: \"TRACED: Execution-aware Pre-training for Source Code\"\n- Venue: ICSE 2024\n- URL: [arxiv.org/abs/2306.07487](https://arxiv.org/abs/2306.07487)\n- Relevance: **Moderate.** Combines source code, executable inputs, and execution traces using bimodal contrastive learning for pre-training. Improves execution path prediction by 12.4% and variable value prediction by 25.2%. The contrastive learning on execution traces concept is related to DFCE's contrastive framing.\n\n**15. tHinter (January 2025)**\n- Title: \"Guided Debugging of Auto-Translated Code Using Differential Testing\"\n- Venue: arXiv preprint (January 2025)\n- URL: [arxiv.org/abs/2501.09475](https://arxiv.org/abs/2501.09475)\n- Relevance: **Moderate.** Uses differential testing between source and translated code (same input should produce same output) to locate translation errors. The idea that divergent outputs from equivalent-intent executions reveal bugs is philosophically aligned with DFCE's divergence approach, though applied to code translation rather than general repair.\n\n**16. RGFL (January 2026)**\n- Title: \"RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models\"\n- Venue: arXiv preprint (January 2026)\n- URL: [arxiv.org/abs/2601.18044](https://arxiv.org/abs/2601.18044)\n- Relevance: **Moderate.** Hierarchical reasoning module for structured fault localization. Improves file-level Hit@1 from 71.4% to 85%. The reasoning-guided fault localization could compete with DFCE's divergence-based localization as an alternative approach to the same problem.\n\n**17. HAFixAgent (November 2025)**\n- Title: \"HAFixAgent: History-Aware Program Repair Agent\"\n- Venue: arXiv preprint (November 2025)\n- URL: [arxiv.org/abs/2511.01047](https://arxiv.org/abs/2511.01047)\n- Relevance: **Moderate.** Uses repository history (blame, commit diffs) rather than execution traces for repair context. Outperforms RepairAgent by 56.6%. Different signal source but same goal of providing richer context for LLM-based repair.\n\n**18. Delta Debugging for LLM-integrated Systems (ICSE 2026 SEIP)**\n- Title: \"Delta Debugging for LLM-integrated Systems\"\n- Venue: ICSE 2026 SEIP track (April 15, 2026)\n- URL: [conf.researchr.org/details/icse-2026/...](https://conf.researchr.org/details/icse-2026/icse-2026-software-engineering-in-practice/5/Delta-Debugging-for-LLM-integrated-Systems)\n- Relevance: **Moderate.** Applies delta debugging to isolate problematic parts of LLM inputs. Uses semantic markers as instrumentation. Different application (debugging LLM prompts vs debugging code), but the delta debugging concept of minimizing failure-inducing inputs is conceptually related.\n\n**19. ExeCoder (EMNLP 2025)**\n- Title: \"ExeCoder: Empowering Large Language Models with Executability Representation for Code Translation\"\n- Venue: EMNLP 2025 Main Conference\n- URL: [aclanthology.org/2025.emnlp-main.362](https://aclanthology.org/2025.emnlp-main.362/)\n- Relevance: **Low-Moderate.** Encodes functional semantics, AST, and data flow graphs for code translation. Surpasses GPT-4o on code translation. Tangentially related through its use of executability representations.\n\n**20. AuditRepairBench (May 2026)**\n- Title: \"AuditRepairBench: A Paired-Execution Trace Corpus for Evaluator-Channel Ranking Instability in Agent Repair\"\n- Venue: arXiv preprint (very recent, ~May 8, 2026)\n- URL: [arxiv.org/abs/2605.04624](https://arxiv.org/abs/2605.04624)\n- Relevance: **Low-Moderate.** A benchmark of 576K paired execution trace cells for evaluating agent repair systems. The paired-trace corpus format could be relevant as evaluation infrastructure for DFCE, and the focus on trace-pair analysis overlaps conceptually.\n\n**21. Mokav (2024)**\n- Title: \"Mokav: Execution-driven Differential Testing with LLMs\"\n- Venue: arXiv preprint\n- URL: [arxiv.org/abs/2406.10375](https://arxiv.org/abs/2406.10375)\n- Relevance: **Low-Moderate.** Uses LLMs to generate difference-exposing tests between program pairs with execution-based feedback. The differential execution concept is tangentially related.\n\n**22. On the Role of Fault Localization Context (April 2026)**\n- Title: \"On the Role of Fault Localization Context for LLM-Based Program Repair\"\n- Venue: arXiv preprint (April 2026)\n- URL: [arxiv.org/abs/2604.05481](https://arxiv.org/abs/2604.05481)\n- Relevance: **Moderate.** Finds that more context does not consistently improve repair; element/line-level expansion can degrade performance through noise. This is directly relevant to DFCE's design: it suggests that DFCE's focused divergence points could outperform naive trace inclusion, but also warns about noise from overly detailed context.\n\n**23. The Double Life of Code World Models (December 2025)**\n- Title: \"The Double Life of Code World Models: Provably Unmasking Malicious Behavior Through Execution Traces\"\n- Venue: arXiv preprint (December 2025)\n- URL: [arxiv.org/abs/2512.13821](https://arxiv.org/abs/2512.13821)\n- Relevance: **Low.** Uses cross-trace verification to detect backdoors by analyzing consistency of execution trace predictions across equivalent program transformations. Different application (security) but uses multi-trace comparison.\n\n**24. Characterizing Multi-Hunk Patches: Divergence, Proximity, and LLM Repair Challenges (2025)**\n- Venue: ResearchGate (2025)\n- URL: [researchgate.net/publication/392466057](https://www.researchgate.net/publication/392466057_Characterizing_Multi-Hunk_Patches_Divergence_Proximity_and_LLM_Repair_Challenges)\n- Relevance: **Low-Moderate.** Proposes \"hunk divergence\" as a metric capturing lexical, structural, and file-level differences in patches. Finds that LLM success rates decline with increased divergence. The \"divergence\" terminology and concept overlap with DFCE, though this addresses code diff divergence rather than execution trace divergence.\n\n**25. LocAgent (ACL 2025)**\n- Title: \"LocAgent: Graph-Guided LLM Agents for Code Localization\"\n- Venue: ACL 2025 Main Conference\n- URL: [aclanthology.org/2025.acl-long.426](https://aclanthology.org/2025.acl-long.426/)\n- Relevance: **Low-Moderate.** Graph-based code localization for fault finding. Different signal (static graphs vs dynamic traces) but competing approach to the localization sub-problem.\n\n---\n\n### VERIFICATION: \"Do Code Semantics Help?\" (Wang et al., EMNLP 2025 Findings)\n\nAs requested, here is what this paper actually found:\n\nThe paper introduces a generic framework for integrating execution-trace-based semantic information into Code LLM prompts and conducts a comprehensive study. Their key (and somewhat surprising) finding is that **semantic information including execution traces has limited usefulness for supervised fine-tuning and test-time scaling of Code LLMs**. This contradicts some prior assumptions in the field. The authors extract runtime execution messages using a \"trace adapter\" from an Execution Behavior Dataset. The paper appears in Findings of EMNLP 2025, pages 10367--10385. This is an important challenge paper for DFCE -- the authors should explicitly address why their divergence-focused approach would succeed where generic trace integration was found to be limited.\n\n---\n\n### KEY RECOMMENDATIONS FOR THE DFCE AUTHORS\n\n1. **TraceRepair and TraceCoder are the most direct competitors** -- both from early 2026, both using execution traces for LLM-based repair, both accepted/submitted to top venues. DFCE must differentiate its divergence-point extraction from TraceRepair's multi-agent debate and TraceCoder's causal reasoning.\n\n2. **The \"traces don't help much\" challenge**: Both Haque et al. (2025) and Wang et al. (EMNLP 2025) found that naive trace inclusion has limited benefit. DFCE's divergence-focused approach needs to be explicitly positioned as solving this problem by filtering traces to only the informative divergence points.\n\n3. **InspectCoder's interactive debugging** represents an alternative philosophy (adaptive exploration vs pre-extracted divergence) that should be discussed.\n\n4. **The Code World Model ecosystem** (Meta CWM, Debugging CWM) represents a training-time approach to execution grounding that is complementary to DFCE's inference-time approach.\n\n5. **The fault localization context paper** (Sepidband et al., April 2026) provides empirical evidence that more context can hurt -- this actually supports DFCE's focused divergence approach.\n\nSources:\n- [TraceRepair (2604.02647)](https://arxiv.org/abs/2604.02647)\n- [TraceCoder at ICSE 2026](https://conf.researchr.org/details/icse-2026/icse-2026-research-track/145/TraceCoder-A-Trace-Driven-Multi-Agent-Framework-for-Automated-Debugging-of-LLM-Gener)\n- [Haque et al. (2505.04441)](https://arxiv.org/abs/2505.04441)\n- [InspectCoder (2510.18327)](https://arxiv.org/abs/2510.18327)\n- [Wang et al. - Do Code Semantics Help (EMNLP 2025)](https://aclanthology.org/2025.findings-emnlp.548/)\n- [Code World Model (2510.02387)](https://arxiv.org/abs/2510.02387)\n- [Debugging Code World Models (2602.07672)](https://arxiv.org/abs/2602.07672)\n- [SemCoder (NeurIPS 2024)](https://arxiv.org/abs/2406.01006)\n- [NExT (ICML 2024)](https://arxiv.org/abs/2404.14662)\n- [LDB (ACL 2024)](https://arxiv.org/abs/2402.16906)\n- [MGDebugger (2410.01215)](https://arxiv.org/abs/2410.01215)\n- [RLEF (ICML 2025)](https://arxiv.org/abs/2410.02089)\n- [Code Execution as Grounded Supervision (EMNLP 2025)](https://aclanthology.org/2025.emnlp-main.1260/)\n- [TRACED (ICSE 2024)](https://arxiv.org/abs/2306.07487)\n- [tHinter (2501.09475)](https://arxiv.org/abs/2501.09475)\n- [RGFL (2601.18044)](https://arxiv.org/abs/2601.18044)\n- [HAFixAgent (2511.01047)](https://arxiv.org/abs/2511.01047)\n- [Delta Debugging for LLM-integrated Systems (ICSE 2026)](https://conf.researchr.org/details/icse-2026/icse-2026-software-engineering-in-practice/5/Delta-Debugging-for-LLM-integrated-Systems)\n- [ExeCoder (EMNLP 2025)](https://aclanthology.org/2025.emnlp-main.362/)\n- [AuditRepairBench (2605.04624)](https://arxiv.org/abs/2605.04624)\n- [Mokav (2406.10375)](https://arxiv.org/abs/2406.10375)\n- [On the Role of FL Context (2604.05481)](https://arxiv.org/abs/2604.05481)\n- [Double Life of CWMs (2512.13821)](https://arxiv.org/abs/2512.13821)\n- [Multi-Hunk Divergence](https://www.researchgate.net/publication/392466057_Characterizing_Multi-Hunk_Patches_Divergence_Proximity_and_LLM_Repair_Challenges)\n- [LocAgent (ACL 2025)](https://aclanthology.org/2025.acl-long.426/)\n- [FaR-Loc (2509.20552)](https://arxiv.org/abs/2509.20552)\n- [RGFL (2601.18044)](https://arxiv.org/abs/2601.18044)\n- [LLM-based APR Survey (TOSEM 2026)](https://github.com/iSEngLab/AwesomeLLM4APR)"
+      }
+    ],
+    "totalDurationMs": 268797,
+    "totalTokens": 56699,
+    "totalToolUseCount": 41,
+    "usage": {
+      "input_tokens": 970,
+      "cache_creation_input_tokens": 5891,
+      "cache_read_input_tokens": 43693,
+      "output_tokens": 6145,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5891
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 970,
+          "output_tokens": 6145,
+          "cache_read_input_tokens": 43693,
+          "cache_creation_input_tokens": 5891,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5891,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 41
+    }
+  },
+  "sourceToolAssistantUUID": "36198038-ddad-4aba-bd78-61a882a2be87",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "bd956fbb-76cf-4ddb-a495-d85d9007f5a3",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Divergence-Focused Contrastive Execution Evidence for Code LLM Reasoning",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-16T06:12:34.477Z_
+
+Excellent — comprehensive competing work found. Now let me verify the ARR deadline and check a few more critical details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd956fbb-76cf-4ddb-a495-d85d9007f5a3",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kfNj2dE1JZSVrJx2YD",
+  "type": "assistant",
+  "uuid": "bb9ee3eb-116c-41cf-96d7-305160e544c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZwmquctZHTQPu3nerQBzg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6776,
+      "cache_read_input_tokens": 27788,
+      "output_tokens": 486,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6776,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 486,
+          "cache_read_input_tokens": 27788,
+          "cache_creation_input_tokens": 6776,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6776
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T06:12:42.868Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01GAcQfhEfpY3V49t2umsJoF`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify ARR deadline and model availability",
+  "prompt": "Please search for and verify the following:\n\n1. ARR (ACL Rolling Review) submission deadline for May 2026 cycle. Search: \"ACL Rolling Review May 2026 deadline\" and \"ARR 2026 submission dates\". The idea claims ARR deadline is May 25, 2026. Verify this.\n\n2. Search for current DebugBench SOTA results. What are the best scores on DebugBench as of 2026? Search: \"DebugBench results 2026\" and \"DebugBench SOTA\". Also check site:paperswithcode.com DebugBench.\n\n3. Verify Qwen2.5-Coder model availability: Are Qwen2.5-Coder-7B and Qwen2.5-Coder-32B publicly available for download? Search: \"Qwen2.5-Coder-32B huggingface\" and \"Qwen2.5-Coder release\"\n\n4. Search for: \"TraceRepair runtime execution traces multi-agent debate program repair\" arxiv 2026 - I need to verify TraceRepair (arxiv 2604.02647) exists and understand what it does, as it may be a critical competitor.\n\n5. Search for: \"InspectCoder dynamic analysis self repair LLM debugger\" - verify this paper exists\n\n6. Search: \"execution trace compression\" OR \"trace summarization\" LLM 2025 2026 - are there existing methods for compressing traces for LLMs?\n\nReport findings for each query."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb9ee3eb-116c-41cf-96d7-305160e544c9",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kfNj2dE1JZSVrJx2YD",
+  "type": "assistant",
+  "uuid": "3a3ff2a3-b5bc-4b51-a01d-e6297b98fdeb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZwmquctZHTQPu3nerQBzg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6776,
+      "cache_read_input_tokens": 27788,
+      "output_tokens": 486,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6776,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 486,
+          "cache_read_input_tokens": 27788,
+          "cache_creation_input_tokens": 6776,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6776
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T06:15:03.807Z_
+
+<details><summary>↩ Tool result · `toolu_01GAcQfhEfpY3V49t2umsJoF`</summary>
+
+```text
+Now I have comprehensive results for all queries. Here is the full report:
+
+---
+
+## Findings Report
+
+### 1. ARR (ACL Rolling Review) May 2026 Submission Deadline
+
+**VERIFIED: The May 25, 2026 deadline is correct.**
+
+The official ACL Rolling Review dates page confirms the following 2026 cycles:
+
+| Cycle | Submission Deadline | Cycle End |
+|-------|-------------------|-----------|
+| March 2026 | March 16 | May 24 |
+| **May 2026** | **May 25** | **August 2** |
+| August 2026 | August 3 | October 11 |
+| October 2026 | October 12 | December 20 |
+
+ARR switched from 8-week to 10-week review cycles starting May 2025, resulting in 4-5 cycles per year instead of 6. All deadlines are 11:59 PM UTC-12:00 (Anywhere on Earth).
+
+Sources:
+- [ACL Rolling Review Dates](http://aclrollingreview.org/dates)
+- [GitHub acl-org/aclrollingreview dates.md](https://github.com/acl-org/aclrollingreview/blob/main/dates.md)
+
+---
+
+### 2. DebugBench SOTA Results
+
+**No centralized, up-to-date leaderboard exists.** DebugBench does not appear on Papers with Code as a tracked benchmark. The best publicly documented results are:
+
+**Original paper results (2024, zero-shot):**
+- **GPT-4**: 75.0% pass rate (best reported)
+- **GPT-3.5-turbo**: 62.1% pass rate
+- **CodeLlama-34b / CodeLlama-34b-Instruct / BLOOM**: 0% pass rate (zero-shot)
+- **Human experts**: well above GPT-4's score
+
+**Later evaluation (September 2024, arxiv 2409.03031):**
+- Open-source LLMs ranged from 43.9% to 66.6%
+- **DeepSeek-Coder** achieved the best open-source score across all three languages (C++, Java, Python)
+
+**No 2025 or 2026 model results** (Claude, GPT-4o, GPT-5, etc.) have been published on DebugBench. The benchmark was last updated October 15, 2025 on EmergentMind, but no new model evaluations were posted. This means there is an opportunity to report fresh results on this benchmark with current models.
+
+The benchmark consists of 4,253 instances across C++, Java, and Python, covering 4 major bug categories (Syntax, Reference, Logic, Multiple) and 18 minor types.
+
+Sources:
+- [DebugBench paper (arxiv 2401.04621)](https://arxiv.org/abs/2401.04621)
+- [DebugBench GitHub (thunlp/DebugBench)](https://github.com/thunlp/DebugBench)
+- [EmergentMind DebugBench topic](https://www.emergentmind.com/topics/debugbench)
+- [Open-source LLM debugging evaluation (arxiv 2409.03031)](https://arxiv.org/abs/2409.03031)
+
+---
+
+### 3. Qwen2.5-Coder Model Availability
+
+**VERIFIED: Both Qwen2.5-Coder-7B and Qwen2.5-Coder-32B are publicly available.**
+
+- **Qwen2.5-Coder-7B**: Released September 19, 2024. Available on [Hugging Face](https://huggingface.co/Qwen/Qwen2.5-Coder-7B) and [Ollama](https://ollama.com/library/qwen2.5-coder:7b).
+- **Qwen2.5-Coder-32B**: Released November 12, 2024. Available on [Hugging Face](https://huggingface.co/Qwen/Qwen2.5-Coder-32B) and [Ollama](https://ollama.com/library/qwen2.5-coder:32b).
+
+Both base and Instruct variants exist, plus GGUF quantized versions. The full size lineup includes 0.5B/1.5B/3B/7B/14B/32B parameters.
+
+**Licensing**: 0.5B/1.5B/7B/14B/32B are **Apache 2.0** (fully permissive for research). The 3B model uses the more restrictive Qwen-Research license.
+
+Qwen2.5-Coder-32B-Instruct has been described as SOTA among open-source code models, matching GPT-4o coding capabilities at the time of release.
+
+Sources:
+- [Qwen2.5-Coder-32B on Hugging Face](https://huggingface.co/Qwen/Qwen2.5-Coder-32B)
+- [Qwen2.5-Coder-32B-Instruct on Hugging Face](https://huggingface.co/Qwen/Qwen2.5-Coder-32B-Instruct)
+- [Qwen2.5-Coder-7B on Hugging Face](https://huggingface.co/Qwen/Qwen2.5-Coder-7B)
+- [Qwen2.5-Coder Family Blog Post](https://qwenlm.github.io/blog/qwen2.5-coder-family/)
+
+---
+
+### 4. TraceRepair (arxiv 2604.02647)
+
+**VERIFIED: The paper exists and is a significant competitor.**
+
+**Title**: "Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate"
+
+**Authors**: Jiaqing Wu, Tong Wu, Manqing Zhang, Yunwei Dong, Bo Shen
+
+**Core approach**: TraceRepair injects diagnostic probes into buggy programs via an autonomous Probe Agent to collect runtime execution traces (variable snapshots). It then initializes multiple repair agents with different reasoning perspectives (defensive, causal, semantic) that engage in iterative multi-agent debate. A Judge Agent arbitrates and synthesizes the final fix. The key innovation is using execution traces as "active logical filters" -- every patch candidate must be consistent with observed runtime state.
+
+**Results on Defects4J** (the primary Java APR benchmark):
+
+| Approach | Correct Fixes (total) |
+|----------|----------------------|
+| **TraceRepairDSV3.2** | **392** |
+| REINFIX (GPT-4o) | 291 |
+| REINFIX (GPT-3.5) | 241 |
+| TraceRepairGPT3.5 | 224 |
+| ThinkRepair | 205 |
+| RepairAgent | 164 |
+| ChatRepair | 162 |
+
+TraceRepair uniquely fixed **107 defects** that all other baselines missed, demonstrating strength on logic-dependent failures requiring runtime analysis. It also claims to substantially reduce token consumption compared to existing conversational/agentic baselines.
+
+**Also evaluated on**: Recent-Java (a newly constructed dataset of recent bugs to test generalization beyond training data contamination).
+
+**Why it matters as a competitor**: It directly combines execution traces + multi-agent debate for program repair, which overlaps with any system using traces + LLM reasoning for debugging.
+
+A closely related paper is **TraceCoder** (arxiv 2602.06875, accepted at ICSE 2026), which also uses trace-driven multi-agent debugging but focuses on LLM-generated code repair with a different architecture (Instrumentation Agent + Analysis Agent + Repair Agent + Rollback Mechanism). TraceCoder achieves up to 34.43% relative improvement in Pass@1 on class-level benchmarks.
+
+Sources:
+- [TraceRepair (arxiv 2604.02647)](https://arxiv.org/abs/2604.02647)
+- [TraceRepair HTML](https://arxiv.org/html/2604.02647v1)
+- [TraceCoder (arxiv 2602.06875)](https://arxiv.org/abs/2602.06875)
+- [TraceCoder at ICSE 2026](https://conf.researchr.org/details/icse-2026/icse-2026-research-track/145/TraceCoder-A-Trace-Driven-Multi-Agent-Framework-for-Automated-Debugging-of-LLM-Gener)
+
+---
+
+### 5. InspectCoder
+
+**VERIFIED: The paper exists.**
+
+**Title**: "InspectCoder: Dynamic Analysis-Enabled Self Repair through Interactive LLM-Debugger Collaboration"
+
+**Authors**: Yunkun Wang, Yue Zhang, Guochang Li, Chen Zhi, Binhua Li, Fei Huang, Yongbin Li, Shuiguang Deng
+
+**Published**: October 21, 2025 (arxiv 2510.18327)
+
+**Core approach**: A dual-agent framework where a Program Inspector agent interacts with actual debugger tools (breakpoints, state inspection, runtime experimentation) within stateful debugging sessions, and a Patch Coder agent produces and validates patches. This is the first agentic repair system that empowers LLMs to actively control a debugger.
+
+They also released **InspectWare**, an open-source middleware abstracting debugger complexities across mainstream Python testing frameworks.
+
+**Key results**:
+- 5.10% to 60.37% relative improvement in repair accuracy over the strongest baseline
+- 1.67x to 2.24x superior bug-fix efficiency
+- Evaluated on **BigCodeBench-R** and **LiveCodeBench-R**
+
+**Why it matters**: It demonstrates the value of interactive dynamic analysis (as opposed to static trace collection), positioning it as a competitor to any approach that uses execution information for program repair.
+
+Sources:
+- [InspectCoder (arxiv 2510.18327)](https://arxiv.org/abs/2510.18327)
+- [InspectCoder HTML](https://arxiv.org/html/2510.18327v1)
+- [EmergentMind InspectCoder topic](https://www.emergentmind.com/topics/inspectcoder)
+
+---
+
+### 6. Execution Trace Compression / Trace Summarization for LLMs
+
+**Yes, existing methods exist. Key findings:**
+
+**Most directly relevant paper**: "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs" (arxiv 2505.04441, May 2025) by Mirazul Haque, Petr Babkin, Farima Farmahinifarahani, Manuela Veloso.
+
+Key findings from this paper:
+- Simply incorporating raw execution traces into prompts provides **limited performance improvement** (only 2 of 6 configurations showed gains)
+- Performance gains **diminish as trace complexity increases** -- a critical finding for any trace-based approach
+- **LLM-optimized trace representations** outperform naive trace inclusion more consistently
+- They explore three trace representations: collated format, LLM-optimized traces, and conditionally-selected traces based on LLM confidence
+- Few-shot prompts with traces can greatly exceed context windows (e.g., 8k tokens), making compression essential
+
+**General prompt compression techniques** (applicable to traces):
+- **LLMLingua family** (Microsoft Research): up to 20x compression with only 1.5% performance loss on reasoning tasks -- current SOTA for prompt compression
+- **Hard prompt methods**: remove redundant tokens from natural language while retaining semantic meaning
+- **ACON** (OpenReview): agent-focused context compression validated on multi-step benchmarks (AppWorld, OfficeBench), achieving 26-54% reduction in peak tokens while preserving task success
+
+**Important caveat from the research**: Generic summarization methods easily lose critical details essential for long-horizon reasoning. Agent-focused compression methods tend to be narrowly applicable or rely on brittle heuristics. This is an open problem.
+
+Sources:
+- [Execution Traces for Program Repair (arxiv 2505.04441)](https://arxiv.org/abs/2505.04441)
+- [ACL Anthology version](https://aclanthology.org/2025.knowledgenlp-1.17.pdf)
+- [Code Semantics study (EMNLP 2025)](https://aclanthology.org/2025.findings-emnlp.548.pdf)
+- [ACON paper (OpenReview)](https://openreview.net/pdf?id=7JbSwX6bNL)
+
+agentId: a21e959fdcb4e3260 (use SendMessage with to: 'a21e959fdcb4e3260' to continue this agent)
+&lt;usage>total_tokens: 32712
+tool_uses: 23
+duration_ms: 140934&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3a3ff2a3-b5bc-4b51-a01d-e6297b98fdeb",
+  "isSidechain": false,
+  "promptId": "bdc81629-7d73-429e-a592-8973c7b54805",
+  "type": "user",
+  "uuid": "ce0c3422-ea65-4444-a4fd-ef4f3be4f382",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Please search for and verify the following:\n\n1. ARR (ACL Rolling Review) submission deadline for May 2026 cycle. Search: \"ACL Rolling Review May 2026 deadline\" and \"ARR 2026 submission dates\". The idea claims ARR deadline is May 25, 2026. Verify this.\n\n2. Search for current DebugBench SOTA results. What are the best scores on DebugBench as of 2026? Search: \"DebugBench results 2026\" and \"DebugBench SOTA\". Also check site:paperswithcode.com DebugBench.\n\n3. Verify Qwen2.5-Coder model availability: Are Qwen2.5-Coder-7B and Qwen2.5-Coder-32B publicly available for download? Search: \"Qwen2.5-Coder-32B huggingface\" and \"Qwen2.5-Coder release\"\n\n4. Search for: \"TraceRepair runtime execution traces multi-agent debate program repair\" arxiv 2026 - I need to verify TraceRepair (arxiv 2604.02647) exists and understand what it does, as it may be a critical competitor.\n\n5. Search for: \"InspectCoder dynamic analysis self repair LLM debugger\" - verify this paper exists\n\n6. Search: \"execution trace compression\" OR \"trace summarization\" LLM 2025 2026 - are there existing methods for compressing traces for LLMs?\n\nReport findings for each query.",
+    "agentId": "a21e959fdcb4e3260",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have comprehensive results for all queries. Here is the full report:\n\n---\n\n## Findings Report\n\n### 1. ARR (ACL Rolling Review) May 2026 Submission Deadline\n\n**VERIFIED: The May 25, 2026 deadline is correct.**\n\nThe official ACL Rolling Review dates page confirms the following 2026 cycles:\n\n| Cycle | Submission Deadline | Cycle End |\n|-------|-------------------|-----------|\n| March 2026 | March 16 | May 24 |\n| **May 2026** | **May 25** | **August 2** |\n| August 2026 | August 3 | October 11 |\n| October 2026 | October 12 | December 20 |\n\nARR switched from 8-week to 10-week review cycles starting May 2025, resulting in 4-5 cycles per year instead of 6. All deadlines are 11:59 PM UTC-12:00 (Anywhere on Earth).\n\nSources:\n- [ACL Rolling Review Dates](http://aclrollingreview.org/dates)\n- [GitHub acl-org/aclrollingreview dates.md](https://github.com/acl-org/aclrollingreview/blob/main/dates.md)\n\n---\n\n### 2. DebugBench SOTA Results\n\n**No centralized, up-to-date leaderboard exists.** DebugBench does not appear on Papers with Code as a tracked benchmark. The best publicly documented results are:\n\n**Original paper results (2024, zero-shot):**\n- **GPT-4**: 75.0% pass rate (best reported)\n- **GPT-3.5-turbo**: 62.1% pass rate\n- **CodeLlama-34b / CodeLlama-34b-Instruct / BLOOM**: 0% pass rate (zero-shot)\n- **Human experts**: well above GPT-4's score\n\n**Later evaluation (September 2024, arxiv 2409.03031):**\n- Open-source LLMs ranged from 43.9% to 66.6%\n- **DeepSeek-Coder** achieved the best open-source score across all three languages (C++, Java, Python)\n\n**No 2025 or 2026 model results** (Claude, GPT-4o, GPT-5, etc.) have been published on DebugBench. The benchmark was last updated October 15, 2025 on EmergentMind, but no new model evaluations were posted. This means there is an opportunity to report fresh results on this benchmark with current models.\n\nThe benchmark consists of 4,253 instances across C++, Java, and Python, covering 4 major bug categories (Syntax, Reference, Logic, Multiple) and 18 minor types.\n\nSources:\n- [DebugBench paper (arxiv 2401.04621)](https://arxiv.org/abs/2401.04621)\n- [DebugBench GitHub (thunlp/DebugBench)](https://github.com/thunlp/DebugBench)\n- [EmergentMind DebugBench topic](https://www.emergentmind.com/topics/debugbench)\n- [Open-source LLM debugging evaluation (arxiv 2409.03031)](https://arxiv.org/abs/2409.03031)\n\n---\n\n### 3. Qwen2.5-Coder Model Availability\n\n**VERIFIED: Both Qwen2.5-Coder-7B and Qwen2.5-Coder-32B are publicly available.**\n\n- **Qwen2.5-Coder-7B**: Released September 19, 2024. Available on [Hugging Face](https://huggingface.co/Qwen/Qwen2.5-Coder-7B) and [Ollama](https://ollama.com/library/qwen2.5-coder:7b).\n- **Qwen2.5-Coder-32B**: Released November 12, 2024. Available on [Hugging Face](https://huggingface.co/Qwen/Qwen2.5-Coder-32B) and [Ollama](https://ollama.com/library/qwen2.5-coder:32b).\n\nBoth base and Instruct variants exist, plus GGUF quantized versions. The full size lineup includes 0.5B/1.5B/3B/7B/14B/32B parameters.\n\n**Licensing**: 0.5B/1.5B/7B/14B/32B are **Apache 2.0** (fully permissive for research). The 3B model uses the more restrictive Qwen-Research license.\n\nQwen2.5-Coder-32B-Instruct has been described as SOTA among open-source code models, matching GPT-4o coding capabilities at the time of release.\n\nSources:\n- [Qwen2.5-Coder-32B on Hugging Face](https://huggingface.co/Qwen/Qwen2.5-Coder-32B)\n- [Qwen2.5-Coder-32B-Instruct on Hugging Face](https://huggingface.co/Qwen/Qwen2.5-Coder-32B-Instruct)\n- [Qwen2.5-Coder-7B on Hugging Face](https://huggingface.co/Qwen/Qwen2.5-Coder-7B)\n- [Qwen2.5-Coder Family Blog Post](https://qwenlm.github.io/blog/qwen2.5-coder-family/)\n\n---\n\n### 4. TraceRepair (arxiv 2604.02647)\n\n**VERIFIED: The paper exists and is a significant competitor.**\n\n**Title**: \"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate\"\n\n**Authors**: Jiaqing Wu, Tong Wu, Manqing Zhang, Yunwei Dong, Bo Shen\n\n**Core approach**: TraceRepair injects diagnostic probes into buggy programs via an autonomous Probe Agent to collect runtime execution traces (variable snapshots). It then initializes multiple repair agents with different reasoning perspectives (defensive, causal, semantic) that engage in iterative multi-agent debate. A Judge Agent arbitrates and synthesizes the final fix. The key innovation is using execution traces as \"active logical filters\" -- every patch candidate must be consistent with observed runtime state.\n\n**Results on Defects4J** (the primary Java APR benchmark):\n\n| Approach | Correct Fixes (total) |\n|----------|----------------------|\n| **TraceRepairDSV3.2** | **392** |\n| REINFIX (GPT-4o) | 291 |\n| REINFIX (GPT-3.5) | 241 |\n| TraceRepairGPT3.5 | 224 |\n| ThinkRepair | 205 |\n| RepairAgent | 164 |\n| ChatRepair | 162 |\n\nTraceRepair uniquely fixed **107 defects** that all other baselines missed, demonstrating strength on logic-dependent failures requiring runtime analysis. It also claims to substantially reduce token consumption compared to existing conversational/agentic baselines.\n\n**Also evaluated on**: Recent-Java (a newly constructed dataset of recent bugs to test generalization beyond training data contamination).\n\n**Why it matters as a competitor**: It directly combines execution traces + multi-agent debate for program repair, which overlaps with any system using traces + LLM reasoning for debugging.\n\nA closely related paper is **TraceCoder** (arxiv 2602.06875, accepted at ICSE 2026), which also uses trace-driven multi-agent debugging but focuses on LLM-generated code repair with a different architecture (Instrumentation Agent + Analysis Agent + Repair Agent + Rollback Mechanism). TraceCoder achieves up to 34.43% relative improvement in Pass@1 on class-level benchmarks.\n\nSources:\n- [TraceRepair (arxiv 2604.02647)](https://arxiv.org/abs/2604.02647)\n- [TraceRepair HTML](https://arxiv.org/html/2604.02647v1)\n- [TraceCoder (arxiv 2602.06875)](https://arxiv.org/abs/2602.06875)\n- [TraceCoder at ICSE 2026](https://conf.researchr.org/details/icse-2026/icse-2026-research-track/145/TraceCoder-A-Trace-Driven-Multi-Agent-Framework-for-Automated-Debugging-of-LLM-Gener)\n\n---\n\n### 5. InspectCoder\n\n**VERIFIED: The paper exists.**\n\n**Title**: \"InspectCoder: Dynamic Analysis-Enabled Self Repair through Interactive LLM-Debugger Collaboration\"\n\n**Authors**: Yunkun Wang, Yue Zhang, Guochang Li, Chen Zhi, Binhua Li, Fei Huang, Yongbin Li, Shuiguang Deng\n\n**Published**: October 21, 2025 (arxiv 2510.18327)\n\n**Core approach**: A dual-agent framework where a Program Inspector agent interacts with actual debugger tools (breakpoints, state inspection, runtime experimentation) within stateful debugging sessions, and a Patch Coder agent produces and validates patches. This is the first agentic repair system that empowers LLMs to actively control a debugger.\n\nThey also released **InspectWare**, an open-source middleware abstracting debugger complexities across mainstream Python testing frameworks.\n\n**Key results**:\n- 5.10% to 60.37% relative improvement in repair accuracy over the strongest baseline\n- 1.67x to 2.24x superior bug-fix efficiency\n- Evaluated on **BigCodeBench-R** and **LiveCodeBench-R**\n\n**Why it matters**: It demonstrates the value of interactive dynamic analysis (as opposed to static trace collection), positioning it as a competitor to any approach that uses execution information for program repair.\n\nSources:\n- [InspectCoder (arxiv 2510.18327)](https://arxiv.org/abs/2510.18327)\n- [InspectCoder HTML](https://arxiv.org/html/2510.18327v1)\n- [EmergentMind InspectCoder topic](https://www.emergentmind.com/topics/inspectcoder)\n\n---\n\n### 6. Execution Trace Compression / Trace Summarization for LLMs\n\n**Yes, existing methods exist. Key findings:**\n\n**Most directly relevant paper**: \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\" (arxiv 2505.04441, May 2025) by Mirazul Haque, Petr Babkin, Farima Farmahinifarahani, Manuela Veloso.\n\nKey findings from this paper:\n- Simply incorporating raw execution traces into prompts provides **limited performance improvement** (only 2 of 6 configurations showed gains)\n- Performance gains **diminish as trace complexity increases** -- a critical finding for any trace-based approach\n- **LLM-optimized trace representations** outperform naive trace inclusion more consistently\n- They explore three trace representations: collated format, LLM-optimized traces, and conditionally-selected traces based on LLM confidence\n- Few-shot prompts with traces can greatly exceed context windows (e.g., 8k tokens), making compression essential\n\n**General prompt compression techniques** (applicable to traces):\n- **LLMLingua family** (Microsoft Research): up to 20x compression with only 1.5% performance loss on reasoning tasks -- current SOTA for prompt compression\n- **Hard prompt methods**: remove redundant tokens from natural language while retaining semantic meaning\n- **ACON** (OpenReview): agent-focused context compression validated on multi-step benchmarks (AppWorld, OfficeBench), achieving 26-54% reduction in peak tokens while preserving task success\n\n**Important caveat from the research**: Generic summarization methods easily lose critical details essential for long-horizon reasoning. Agent-focused compression methods tend to be narrowly applicable or rely on brittle heuristics. This is an open problem.\n\nSources:\n- [Execution Traces for Program Repair (arxiv 2505.04441)](https://arxiv.org/abs/2505.04441)\n- [ACL Anthology version](https://aclanthology.org/2025.knowledgenlp-1.17.pdf)\n- [Code Semantics study (EMNLP 2025)](https://aclanthology.org/2025.findings-emnlp.548.pdf)\n- [ACON paper (OpenReview)](https://openreview.net/pdf?id=7JbSwX6bNL)"
+      }
+    ],
+    "totalDurationMs": 140934,
+    "totalTokens": 32712,
+    "totalToolUseCount": 23,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2798,
+      "cache_read_input_tokens": 26803,
+      "output_tokens": 3110,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2798
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3110,
+          "cache_read_input_tokens": 26803,
+          "cache_creation_input_tokens": 2798,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2798,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 23
+    }
+  },
+  "sourceToolAssistantUUID": "3a3ff2a3-b5bc-4b51-a01d-e6297b98fdeb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-16T06:16:02.230Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have extensive research results. Let me synthesize all findings to form my review.
+
+## Key Findings Summary
+
+### Reference Verification
+All 8 cited references verified as real. TraceCoder is actually ICSE 2026 (stronger than claimed "arXiv 2026").
+
+### Venue/Deadline
+ARR May 2026 deadline is indeed May 25, 2026 — confirmed.
+
+### Critical Competing Work the Generator MISSED
+
+1. **TraceRepair (arXiv 2604.02647, April 2026)** — Uses execution traces + multi-agent debate for repair. 
+
+392 bugs fixed on Defects4J, which is a major competitor that the generator completely overlooked.
+
+2. **InspectCoder (arXiv 2510.18327, Oct 2025)** — Interactive debugger-controlled LLM repair. Not cited.
+
+3. **NExT (ICML 2024)** — Teaches LLMs to reason about code execution via traces + CoT. Not cited.
+
+4. **SemCoder (NeurIPS 2024)** — Training with execution state reasoning (monologue). Not cited.
+
+5. **Code World Model / CWM (Meta, 2025)** — 32B model trained on Python traces. Not cited.
+
+6. **RLEF (ICML 2025)** — RL for grounding code LLMs in execution feedback. Not cited.
+
+7. **Code Execution as Grounded Supervision (EMNLP 2025)** — Uses execution traces for reasoning training. Not cited.
+
+8. **TRACED (ICSE 2024)** — Contrastive pre-training with execution traces. Not cited.
+
+The generator cites TraceCoder but misses TraceRepair, InspectCoder, NExT, SemCoder, CWM, RLEF, and several other execution-trace-based approaches.
+
+Looking at novelty, the core idea of aligning passing and failing traces to extract divergence points for LLM consumption is genuinely distinct from ContrastRepair, which contrasts test source text rather than execution traces, and from other existing methods.
+
+ConC uses contrastive execution during training rather than inference, iFix visualizes for humans not LLMs, TraceCoder applies causal reasoning over single runs instead of contrastive pairs, TraceRepair leverages traces in multi-agent debate rather than structured divergence extraction, LDB verifies execution step-by-step but only for failing runs, and InspectCoder is an interactive debugger exploration tool rather than pre-extracted divergence. The specific contribution of structured behavioral deltas from aligned passing and failing traces with hierarchical granularity selection does appear to fill a genuine gap, though the space is extremely crowded with at least 10+ papers in the last six months working on execution traces plus LLMs for code repair. The incremental novelty is moderate—it's a particular way of structuring trace information rather than a fundamentally new paradigm.
+
+Now assessing feasibility...
+
+the required models are available, DebugBench has enough instances to work with, and trace collection is straightforward for LeetCode-style problems using standard instrumentation tools. The computational budget of 120-190 H100-hours fits within the 200-hour constraint, and the 16-day timeline is tight but achievable with a prompting-based approach. The main challenge is generating passing test traces for datasets like HumanEval and MBPP where you don't have ground truth code—you'd need to generate those traces somehow during iterative repair, whereas DebugBench works cleanly since you have the correct version available.
+
+For CodeContests there's a similar issue, and the coverage-similarity matching for selecting reference scenarios adds engineering complexity. CrossCodeEval and RepoBench present a deeper problem since they're cross-file reasoning tasks where execution traces don't map cleanly onto code understanding and completion—these don't have failing tests in the traditional sense.
+
+The contribution could be meaningful if DFCE shows consistent gains over raw traces, positioning this as an NLP study on how to present structured evidence to code models. But the practical scope is limited—it only works when you have both passing and failing traces, many real debugging scenarios lack clean contrastive pairs, and the approach may be most effective on benchmarks with isolated bugs rather than complex, intertwined issues.
+
+The proposal itself is well-structured with clear research questions and good differentiation from prior work, especially the hierarchical granularity selection. But there are gaps: the 10-50× compression isn't backed up, the automatic granularity selector needs more detail, and it's unclear how DFCE actually applies to CrossCodeEval and RepoBench since those aren't debugging tasks. There's also a critical missing reference—TraceRepair from April 2026 uses execution traces with multi-agent debate for repair and fixes 392 bugs on Defects4J compared to ContrastRepair's 143, so DFCE needs to cite and clearly differentiate from that concurrent work.
+
+Beyond that, several related works are missing from the landscape—InspectCoder, NExT, SemCoder, Code World Model, RLEF, TRACED, and Code Execution as Grounded Supervision. The experimental design for CrossCodeEval and RepoBench is also hand-wavy; these are cross-file completion and understanding tasks, not debugging, so the paper needs to explain how contrastive execution traces actually help there. The compression claim is presented as fact without any supporting evidence or calculation. And the reference scenario selection approach has practical limitations that aren't addressed.
+
+For DebugBench specifically, the proposal assumes you can replay tests on a known-correct prior version, but that doesn't work for all benchmarks—HumanEval and MBPP iterative repair would require a previously-correct solution to compare against, which defeats the purpose if you already have it. The space is also getting crowded with TraceRepair, TraceCoder, InspectCoder, LDB, NExT, SemCoder, and others all combining execution traces with LLMs for code, so the differentiation needs to be much sharper. And the paper doesn't even state what the current SOTA is on DebugBench—GPT-4 hits around 75% zero-shot, but without that baseline, it's hard to assess the actual contribution.
+
+The resource timeline is tight too: 190 hours for auto mode leaves almost no buffer against the 200-hour budget. On novelty, the specific combination of contrastive trace alignment, divergence-point extraction, and hierarchical granularity selection is genuinely novel, but it's more of an incremental restructuring of trace information than a paradigm shift—moderate novelty in a very crowded space. Feasibility looks reasonable for DebugBench and HumanEval within the constraints, though the margin is thin.
+
+The proposal is well-structured with clear research questions and good differentiation from prior work, but the unsubstantiated compression claim and underspecified granularity selector create clarity gaps. Impact is meaningful but limited—it only applies when contrastive pairs exist, many benchmarks already have strong baselines, and the practical advantage over simpler approaches remains unclear.
+
+The average score of 3.375/5 falls below the acceptance threshold. The core idea is technically sound and tackles a real problem, but the review identifies several critical gaps: a missing competitor in TraceRepair, incomplete coverage of related work, unclear applicability to some benchmarks, and insufficient differentiation in a crowded research space. I'm drafting the final review now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce0c3422-ea65-4444-a4fd-ef4f3be4f382",
+  "isSidechain": false,
+  "requestId": "req_011Cb5krd5YG8DK6tAdXdrXC",
+  "type": "assistant",
+  "uuid": "a02ac04f-418b-4833-972a-cde76c572bca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AN5TXsAxj3jjtoi9AKN3aX",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3675,
+      "cache_read_input_tokens": 34564,
+      "output_tokens": 4610,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3675,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4610,
+          "cache_read_input_tokens": 34564,
+          "cache_creation_input_tokens": 3675,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3675
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-16T06:16:46.131Z_
+
+Now I have all the evidence I need. Let me synthesize my findings into the review.
+
+Key findings from my research:
+- All 8 references verified as real with correct venues
+- ARR May 2026 deadline confirmed as May 25, 2026
+- **Critical missing competitor found: TraceRepair (arXiv 2604.02647, April 2026)** — fixes 392 bugs on Defects4J using execution traces + multi-agent debate
+- **Multiple additional missing works**: InspectCoder, NExT (ICML 2024), SemCoder (NeurIPS 2024), Code World Model (Meta), RLEF (ICML 2025), TRACED (ICSE 2024), Code Execution as Grounded Supervision (EMNLP 2025)
+- Qwen2.5-Coder models confirmed available (Apache 2.0)
+- DebugBench has no centralized leaderboard; GPT-4 achieves ~75% zero-shot
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3, "rationale": "The specific combination of contrastive trace alignment + divergence extraction + hierarchical granularity is genuinely novel vs. cited works, but the space is far more crowded than acknowledged. TraceRepair (arXiv 2604.02647, April 2026) uses execution traces + multi-agent debate for repair (392 Defects4J fixes), InspectCoder enables interactive LLM-debugger sessions, NExT/SemCoder teach execution reasoning, and CWM trains on trace data—all uncited. The incremental contribution (structured divergence points vs. other ways of presenting traces) is moderate, not strong."},
+    "feasibility": {"score": 3, "rationale": "Core approach is implementable for DebugBench (implanted bugs with ground-truth corrections), but the proposal claims evaluation on CrossCodeEval/RepoBench (cross-file completion tasks with no failing tests or contrastive trace pairs—how does DFCE even apply?). Reference scenario selection via 'same-test replay on known-correct version' is circular for HumanEval/MBPP iterative repair (if you have the correct version, you don't need repair). The 16-day timeline for trace instrumentation across 3 languages + 5 benchmarks + 5 models is optimistic. Auto mode at 190h leaves no margin within the 200h budget."},
+    "clarity": {"score": 4, "rationale": "Well-structured proposal with clear RQs, good differentiation from known prior work (ConCoder, iFix, ContrastRepair), and a coherent technical narrative linking the Haque et al. finding to DFCE's design. The 10-50× compression claim is stated as fact without evidence, and the automatic granularity selector is underspecified."},
+    "impact": {"score": 3, "rationale": "If DFCE shows consistent improvement over raw traces on DebugBench (addressing the Haque et al. 2/6 finding), that's a meaningful contribution to the 'how to present execution info to LLMs' question. But the practical applicability is limited to scenarios where contrastive pairs exist, the expected effect size is unclear (what's the DebugBench ceiling?), and the finding from 'Do Code Semantics Help?' (EMNLP 2025) that execution trace integration has limited benefit for Code LLMs poses an empirical threat the proposal doesn't adequately address."}
+  },
+  "issues": [
+    "MISSING CRITICAL COMPETITOR: TraceRepair (arXiv 2604.02647, April 2026) uses execution traces with diagnostic probes + multi-agent debate for program repair, achieving 392 correct fixes on Defects4J (vs. ContrastRepair's 143). This is concurrent work from the same period that directly competes on 'execution traces for LLM-based repair.' DFCE must cite and explicitly differentiate—the key distinction would be that TraceRepair uses traces as debate evidence across agents while DFCE extracts structured divergence points for single-model prompting.",
+    "INCOMPLETE LANDSCAPE (6+ missing works): (1) InspectCoder (arXiv 2510.18327)—interactive LLM-debugger collaboration, (2) NExT (ICML 2024)—teaches LLMs to reason about execution traces via CoT, (3) SemCoder (NeurIPS 2024)—execution state monologue reasoning, (4) Code World Model/CWM (Meta, arXiv 2510.02387)—32B model trained on Python interpreter traces, (5) RLEF (ICML 2025)—RL for grounding code LLMs in execution feedback, (6) TRACED (ICSE 2024)—contrastive pre-training with execution traces, (7) Code Execution as Grounded Supervision (EMNLP 2025 Main)—execution signals as training supervision. This many omissions weakens the claim of thorough positioning.",
+    "BENCHMARK APPLICABILITY GAP: CrossCodeEval and RepoBench are cross-file code completion/understanding tasks that do not involve failing tests, execution traces, or debugging. The proposal lists them as 'cross-file reasoning controls' but never explains how DFCE's contrastive trace mechanism applies to code completion. Either drop these benchmarks or explain the experimental design for applying DFCE to completion tasks (e.g., iterative repair after failed generation attempt).",
+    "REFERENCE SCENARIO CIRCULARITY: For HumanEval/MBPP 'iterative repair after failed generation,' the 'same-test replay on known-correct version' requires having a correct solution—but if you have one, there's nothing to repair. Coverage-similarity matching to find a passing test is feasible but the proposal doesn't address what happens when no similar-enough passing test exists (which may be common for algorithmic problems with single test suites).",
+    "UNSUBSTANTIATED COMPRESSION CLAIM: The '10-50× compression compared to raw execution logs' is stated as fact but is entirely hypothetical. No calculation or empirical evidence supports this range. The actual compression ratio depends heavily on trace verbosity, program complexity, and divergence region size—it could be much less for programs where passing and failing paths diverge early.",
+    "EMPIRICAL THREAT FROM 'Do Code Semantics Help?' (EMNLP 2025 Findings): This cited paper concludes that execution trace information has 'limited usefulness' for Code LLM SFT and test-time scaling. The proposal acknowledges this paper but does not explain why DFCE's divergence-focused approach would overcome this finding. A strong rebuttal argument is needed—e.g., that the limitation applies to RAW traces but contrastive divergence points are qualitatively different because they are pre-processed to concentrate on root-cause-relevant information."
+  ],
+  "feedback": "The idea's technical core is sound and the revision from round 1 significantly improved venue alignment, model selection, and prior work coverage. However, three issues need attention before this can pass:\n\n1. **Address TraceRepair and complete the landscape**: TraceRepair (2604.02647) is the most critical omission—it's concurrent work using traces for LLM repair. Add it and the other 6+ missing works to the landscape. The key differentiator for DFCE is: it extracts STRUCTURED DIVERGENCE POINTS (a compressed, semantically-focused signal) rather than feeding full traces into debate (TraceRepair), interactive exploration (InspectCoder), or training objectives (ConCoder/SemCoder/CWM). Lean into this: DFCE is the only approach that provides LLMs with a MINIMAL, TARGETED behavioral delta at inference time.\n\n2. **Drop or properly integrate non-debugging benchmarks**: Either (a) drop CrossCodeEval/RepoBench from the eval plan, or (b) clearly explain how DFCE applies to completion tasks (e.g., 'we use DFCE in an iterative generate-test-repair loop where failed generations produce failing traces'). As-is, their inclusion looks like padding.\n\n3. **Sharpen the argument against the 'traces don't help' finding**: The 'Do Code Semantics Help?' paper is a direct empirical challenge. The rebuttal should be: raw traces fail because they overwhelm context with irrelevant detail (confirmed by Haque et al.); DFCE is specifically designed to solve this by extracting only the divergence region. Frame a dedicated RQ around this: 'Does contrastive divergence evidence overcome the limitations of raw trace provision identified in prior work?' This turns the threat into your primary research question and strengthens the contribution.\n\n4. **Remove or qualify the 10-50× compression claim**: Either provide a back-of-envelope calculation (e.g., 'for a typical DebugBench program with N trace lines, divergence regions average M lines, yielding N/M compression') or state it as a hypothesis to be validated experimentally.\n\n5. **Tighten resource estimates**: 190h auto mode is too close to 200h budget. Either reduce model/benchmark configurations or increase the estimate to acknowledge realistic overhead (failed runs, retries, trace collection compute).",
+  "reason": "Sound technical core with genuine novelty in divergence-focused trace extraction, but critical missing competitor (TraceRepair), incomplete landscape (6+ works), unclear applicability to 2/6 claimed benchmarks, and unsubstantiated compression claims keep this below the 4.0 threshold."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a02ac04f-418b-4833-972a-cde76c572bca",
+  "isSidechain": false,
+  "requestId": "req_011Cb5krd5YG8DK6tAdXdrXC",
+  "type": "assistant",
+  "uuid": "4dc3076f-8515-4085-895f-c996b182e880",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AN5TXsAxj3jjtoi9AKN3aX",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3675,
+      "cache_read_input_tokens": 34564,
+      "output_tokens": 4610,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3675,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4610,
+          "cache_read_input_tokens": 34564,
+          "cache_creation_input_tokens": 3675,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3675
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "4dc3076f-8515-4085-895f-c996b182e880",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Divergence-Focused Contrastive Execution Evidence for Code LLM Reasoning",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "4dc3076f-8515-4085-895f-c996b182e880",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Divergence-Focused Contrastive Execution Evidence for Code LLM Reasoning",
+  "sessionId": "ccc52dcc-cc79-453f-9054-79b496aeebe2"
+}
+```
+
+---

@@ -1,0 +1,2473 @@
+# Research conversation: Search for papers that propose training-time modifications targeting specific mechanistically-identified attention heads
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 1
+- **Tool calls:** 16
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-a6d56c9c8cef2a2a9.jsonl`
+- **Structured JSON:** [`1a65e1fd24b26ed2f213.json`](../../sessions/1a/1a65e1fd24b26ed2f213.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+37 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T09:11:42.710Z_
+
+Search for papers that propose training-time modifications targeting specific mechanistically-identified attention heads in LLMs. I need to assess whether the proposed "EAGT" idea (adding query-conditional gates to entrainment heads) has been anticipated by recent work.
+
+Specific searches:
+1. "ABFT mechanistic fine-tuning in-context learning" (arXiv:2505.14233) — verify this paper exists, what it does, and how it differs from adding gates to entrainment heads
+2. "HAVE head adaptive gating value calibration hallucination" (arXiv:2509.06596) — verify this exists. It reportedly does per-head gating at inference time for hallucination reduction. How close is it to EAGT?
+3. "ContextFocus" (arXiv:2601.04131) — verify existence and method
+4. Search for any 2025-2026 paper that specifically proposes "training entrainment heads" or "fine-tuning distraction heads" or "learning to gate attention heads for context robustness"
+5. Search "attention head pruning vs gating fine-tuning 2025 2026" 
+
+For each paper found, briefly note: what heads they target, whether they add new parameters (gates) or modify existing weights, and whether it's inference-time or training-time.
+
+Use WebSearch for all queries.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "50269071-b563-4023-8d01-bf7d5d424428",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-17T09:11:42.712Z_
+
+```json
+{
+  "parentUuid": "50269071-b563-4023-8d01-bf7d5d424428",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "0094cf4c-cc4a-4fc2-b1d4-aee7726c9933",
+  "timestamp": "2026-05-17T09:11:42.712Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T09:11:45.481Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01J5tVHooyBPkvCZanpf8SF9`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0094cf4c-cc4a-4fc2-b1d4-aee7726c9933",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7t8q1euofALXCDWHSuX",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4fb12dd2-9c2c-4b81-95f3-581aa8f7c7a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011UL65NJnG3Q8wpMnAeQy2a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 859,
+      "cache_read_input_tokens": 8223,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 859
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 8223,
+          "cache_creation_input_tokens": 859,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 859,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-17T09:11:45.486Z_
+
+<details><summary>↩ Tool result · `toolu_01J5tVHooyBPkvCZanpf8SF9`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4fb12dd2-9c2c-4b81-95f3-581aa8f7c7a7",
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "fae3a3ce-c21a-41ab-afc5-0d3c3864a3ad",
+  "sourceToolAssistantUUID": "4fb12dd2-9c2c-4b81-95f3-581aa8f7c7a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T09:11:49.178Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QWqu9KBc5Ku35UwGrJo9qB`</summary>
+
+```json
+{
+  "query": "arXiv 2505.14233 ABFT mechanistic fine-tuning in-context learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fae3a3ce-c21a-41ab-afc5-0d3c3864a3ad",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7t937BK5dPsUTFeJ6Sp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a1cbf337-a1f7-4397-af15-2a586de2a8c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WhCqfTfQGCSWbhVLCvwhwA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 9082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1392,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-17T09:11:49.651Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U3JmugoM7q59AsbRM9LprT`</summary>
+
+```json
+{
+  "query": "arXiv 2509.06596 HAVE head adaptive gating value calibration hallucination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a1cbf337-a1f7-4397-af15-2a586de2a8c9",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7t937BK5dPsUTFeJ6Sp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0140d42a-c443-400f-aa38-9bd41db4bd6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WhCqfTfQGCSWbhVLCvwhwA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 9082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1392,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T09:11:50.117Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BwUcA8QqA4ZJYt4dHmBDmN`</summary>
+
+```json
+{
+  "query": "arXiv 2601.04131 ContextFocus attention"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0140d42a-c443-400f-aa38-9bd41db4bd6d",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7t937BK5dPsUTFeJ6Sp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "dfd6708d-0adf-42a3-bb8c-bcd7a4095b46",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WhCqfTfQGCSWbhVLCvwhwA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 9082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1392,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T09:11:50.783Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WUt5M2hoCyT7aV99GdPG61`</summary>
+
+```json
+{
+  "query": "\"training entrainment heads\" OR \"fine-tuning distraction heads\" OR \"gating attention heads context robustness\" 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dfd6708d-0adf-42a3-bb8c-bcd7a4095b46",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7t937BK5dPsUTFeJ6Sp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8a20c01b-30d9-4d6d-9696-286f515f3b0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WhCqfTfQGCSWbhVLCvwhwA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 9082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1392,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T09:11:50.999Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MfhLdFQqB5jWSHpxzHTxAQ`</summary>
+
+```json
+{
+  "query": "attention head pruning vs gating fine-tuning LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a20c01b-30d9-4d6d-9696-286f515f3b0c",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7t937BK5dPsUTFeJ6Sp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e076c81d-3a17-446e-8585-1d98b4c5fe19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WhCqfTfQGCSWbhVLCvwhwA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 9082,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1392
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 9082,
+          "cache_creation_input_tokens": 1392,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1392,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T09:11:55.757Z_
+
+<details><summary>↩ Tool result · `toolu_01QWqu9KBc5Ku35UwGrJo9qB`</summary>
+
+```text
+Web search results for query: "arXiv 2505.14233 ABFT mechanistic fine-tuning in-context learning"
+
+Links: [{"title":"[2505.14233] Mechanistic Fine-tuning for In-context Learning","url":"https://arxiv.org/abs/2505.14233"},{"title":"Mechanistic Fine-tuning for In-context Learning","url":"https://arxiv.org/html/2505.14233v1"},{"title":"Mechanistic Fine-tuning for In-context Learning Hakaze Cho 1,✩ Peng Luo2","url":"https://arxiv.org/pdf/2505.14233"},{"title":"Computer Science May 2025","url":"https://www.arxiv.org/list/cs/2025-05?skip=6625&show=2000"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=6050&show=50"},{"title":"Fine-tuned In-Context Learners for Efficient Adaptation","url":"https://arxiv.org/html/2512.19879v1"},{"title":"Computation and Language May 2025","url":"http://arxiv.org/list/cs.CL/2025-05?skip=700&show=2000"},{"title":"Artificial Intelligence May 2025","url":"https://www.arxiv.org/list/cs.AI/2025-05?skip=2575&show=2000"},{"title":"Mechanistically analyzing the effects of fine-tuning on procedurally defined tasks","url":"https://arxiv.org/html/2311.12786"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=3050&show=2000"}]
+
+I found the arXiv paper you're looking for. Here's a summary of the research:
+
+## Paper: "Mechanistic Fine-tuning for In-context Learning"
+
+**Authors:** Hakaze Cho, Peng Luo, Mariko Kato, Rin Kaenbyou, and Naoya Inoue
+
+**arXiv ID:** 2505.14233
+
+### Overview
+
+In-context Learning (ICL) utilizes structured demonstration-query inputs to induce few-shot learning on Language Models (LMs), which are not originally pre-trained on ICL-style data.
+
+### Key Contribution: ABFT
+
+The authors propose Attention Behavior Fine-Tuning (ABFT), which uses insights from the inner mechanisms of ICL by building training objectives on attention scores instead of final outputs, forcing attention scores to focus on correct label tokens presented in the context and mitigating attention scores from wrong label tokens.
+
+### Results
+
+Experiments on 9 modern LMs and 8 datasets show that ABFT outperforms in performance, robustness, unbiasedness, and efficiency, with only around 0.01% data cost compared to previous methods.
+
+### Broader Implications
+
+The work demonstrates the possibility of controlling specific module sequences within LMs to improve their behavior, opening up future applications of mechanistic interpretability.
+
+The paper is 28 pages with 31 figures and 6 tables, and is available on arXiv in PDF and HTML formats.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a1cbf337-a1f7-4397-af15-2a586de2a8c9",
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "dd8ebc9e-90ad-469e-bb93-9675eaf599b4",
+  "sourceToolAssistantUUID": "a1cbf337-a1f7-4397-af15-2a586de2a8c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T09:11:57.293Z_
+
+<details><summary>↩ Tool result · `toolu_01U3JmugoM7q59AsbRM9LprT`</summary>
+
+```text
+Web search results for query: "arXiv 2509.06596 HAVE head adaptive gating value calibration hallucination"
+
+Links: [{"title":"[2509.06596] HAVE: Head-Adaptive Gating and ValuE Calibration for Hallucination Mitigation in Large Language Models","url":"https://arxiv.org/abs/2509.06596"},{"title":"HAVE: Head-Adaptive Gating and ValuE Calibration for Hallucination Mitigation in Large Language Models","url":"https://arxiv.org/html/2509.06596v1"},{"title":"HAVE: HEAD-ADAPTIVE GATING AND VALUE CALIBRATION","url":"https://arxiv.org/pdf/2509.06596"},{"title":"[2505.21472] Mitigating Hallucination in Large Vision-Language Models via Adaptive Attention Calibration","url":"https://arxiv.org/abs/2505.21472"},{"title":"Mitigating Hallucination in Large Vision-Language Models via Adaptive Attention Calibration","url":"https://arxiv.org/html/2505.21472"},{"title":"[2512.05546] Conscious Gaze: Adaptive Attention Mechanisms for Hallucination Mitigation in Vision-Language Models","url":"https://arxiv.org/abs/2512.05546"},{"title":"Cracking the Code of Hallucination in LVLMs with Vision-aware Head Divergence","url":"https://arxiv.org/html/2412.13949"},{"title":"[2506.21509] Mitigating Hallucination of Large Vision-Language Models via Dynamic Logits Calibration","url":"https://arxiv.org/abs/2506.21509"},{"title":"Mitigating Hallucinations in Vision-Language Models through Image-Guided Head Suppression","url":"https://arxiv.org/html/2505.16411v1"},{"title":"[2502.01969] Mitigating Object Hallucinations in Large Vision-Language Models via Attention Calibration","url":"https://arxiv.org/abs/2502.01969"}]
+
+Based on the search results, here's what I found about arXiv paper 2509.06596:
+
+**Paper Title:** HAVE: Head-Adaptive Gating and ValuE Calibration for Hallucination Mitigation in Large Language Models
+
+**Authors:** Xin Tong, Zhi Lin, Jingya Wang, and Bo Jin
+
+**Main Contribution:** HAVE is a parameter-free decoding framework that directly addresses hallucination challenges through head-adaptive gating, which performs instance-level soft reweighting of attention heads, and value calibration, which augments attention with the magnitude of value vectors to approximate write-back contribution.
+
+**Key Features:**
+- HAVE requires no finetuning and operates in a single forward pass, making it efficient and broadly applicable.
+- Experiments across multiple QA benchmarks and LLM families demonstrate that HAVE consistently reduces hallucinations and outperforms strong baselines, including DAGCD, with modest overhead.
+
+**Problem Addressed:** Large Language Models often produce hallucinations in retrieval-augmented or long-context generation, even when relevant evidence is present, stemming from issues where head importance is treated as input-agnostic, and raw attention weights poorly reflect each token's true contribution.
+
+The paper was submitted to arXiv on September 8, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0140d42a-c443-400f-aa38-9bd41db4bd6d",
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "bfbb649d-02a5-4935-a4a7-d03fe3aa1603",
+  "sourceToolAssistantUUID": "0140d42a-c443-400f-aa38-9bd41db4bd6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T09:11:58.297Z_
+
+<details><summary>↩ Tool result · `toolu_01BwUcA8QqA4ZJYt4dHmBDmN`</summary>
+
+```text
+Web search results for query: "arXiv 2601.04131 ContextFocus attention"
+
+Links: [{"title":"[2601.04131] ContextFocus: Activation Steering for Contextual Faithfulness in Large Language Models","url":"https://arxiv.org/abs/2601.04131"},{"title":"[2601.04131v1] ContextFocus: Activation Steering for Contextual Faithfulness in Large Language Models","url":"https://arxiv.org/abs/2601.04131v1"},{"title":"ContextFocus: Activation Steering for Contextual Faithfulness in Large Language Models","url":"https://arxiv.org/html/2601.04131v1"},{"title":"ContextFocus: Activation Steering for Contextual Faithfulness in Large","url":"https://arxiv.org/pdf/2601.04131"},{"title":"Robust Egocentric Visual Attention Prediction Through Language-guided Scene Context-aware Learning","url":"https://arxiv.org/html/2601.01818"},{"title":"Attention Needs to Focus: A Unified Perspective on Attention Allocation","url":"https://arxiv.org/html/2601.00919v2"},{"title":"[2601.08131] Attention Projection Mixing with Exogenous Anchors","url":"https://arxiv.org/abs/2601.08131"},{"title":"[2601.00919] Attention Needs to Focus: A Unified Perspective on Attention Allocation","url":"https://arxiv.org/abs/2601.00919"},{"title":"AttnTrace: Attention-based Context Traceback for Long-Context LLMs","url":"https://arxiv.org/html/2508.03793v1"},{"title":"Training Dynamics of In-Context Learning in Linear Attention","url":"https://arxiv.org/html/2501.16265v1"}]
+
+Based on the search results, here's what I found about arXiv paper 2601.04131:
+
+**ContextFocus: Activation Steering for Contextual Faithfulness in Large Language Models** is a paper by Nikhil Anand, Shwetha Somasundaram, Anirudh Phukan, Apoorv Saxena, and Koyel Mukherjee, submitted on January 7, 2026, with the latest version on January 12, 2026.
+
+## Overview
+
+ContextFocus is a lightweight activation steering approach that improves context faithfulness in knowledge-conflict settings while preserving fluency and efficiency. The problem it addresses is that when external evidence conflicts with an LLM's internal knowledge, LLMs often default to memorized facts, producing unfaithful outputs.
+
+## Key Features
+
+Unlike prior approaches, the solution requires no model finetuning and incurs minimal inference-time overhead, making it highly efficient. ContextFocus requires only a single forward pass at inference time and incurs minimal overhead, unlike decoding-time contrastive methods.
+
+## Evaluation
+
+ContextFocus was evaluated on the ConFiQA benchmark, comparing it against strong baselines including ContextDPO, COIECD, and prompting-based methods. The results show that ContextFocus achieves competitive or superior context-faithfulness compared to strong fine-tuning, decoding, and prompting baselines on standard knowledge-conflict benchmarks, while remaining effective on larger models and composing naturally with prompting strategies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dfd6708d-0adf-42a3-bb8c-bcd7a4095b46",
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "e2a739fc-e88a-48b2-b2df-d655f55ebd30",
+  "sourceToolAssistantUUID": "dfd6708d-0adf-42a3-bb8c-bcd7a4095b46",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T09:11:59.561Z_
+
+<details><summary>↩ Tool result · `toolu_01WUt5M2hoCyT7aV99GdPG61`</summary>
+
+```text
+Web search results for query: ""training entrainment heads" OR "fine-tuning distraction heads" OR "gating attention heads context robustness" 2025 2026"
+
+Links: [{"title":"A Mechanistic Perspective on Contextual Entrainment and ...","url":"https://aclanthology.org/2025.acl-long.791.pdf"},{"title":"NeurIPS 2025 Best Paper Review: Qwen’s Systematic Exploration of Attention Gating | Towards Data Science","url":"https://towardsdatascience.com/neurips-2025-best-paper-review-qwens-systematic-exploration-of-attention-gating/"},{"title":"Which Attention Heads Matter for In-Context Learning? | OpenReview","url":"https://openreview.net/forum?id=C7XmEByCFv"},{"title":"Published as a conference paper at ICLR 2025 RETRIEVAL HEAD MECHANISTICALLY","url":"https://openreview.net/pdf?id=EytBpUGB1Z"},{"title":"Computer Science May 2025","url":"https://arxiv.org/list/cs/2025-05?skip=4150&show=2000"},{"title":"The problem of induction (heads), pt. I - by Sean Trott","url":"https://seantrott.substack.com/p/the-problem-of-induction-heads-pt"},{"title":"Track: Poster Session 3 East","url":"https://icml.cc/virtual/2025/session/50265"},{"title":"[2505.13737] Causal Head Gating: A Framework for Interpreting Roles of Attention Heads in Transformers","url":"https://arxiv.org/abs/2505.13737"},{"title":"Induction Heads as an Essential Mechanism for Pattern ...","url":"https://aclanthology.org/2025.findings-naacl.283.pdf"},{"title":"(PDF) In-context Learning and Induction Heads","url":"https://www.researchgate.net/publication/363859214_In-context_Learning_and_Induction_Heads"}]
+
+Based on my search results, I found several relevant recent papers from 2025-2026 related to attention heads in language models:
+
+## Key Findings:
+
+**1. Entrainment and Distraction Heads (2025)**
+
+A paper titled "Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs" by Niu, Yuan, Wang, Saghir, and Abdi directly addresses your search topics. After setting the output of identified entrainment heads to zero, the effect of contextual entrainment is drastically attenuated. A small set of attention heads (3.2% to 10.7%) can substantially increase the gap between model capabilities.
+
+**2. Gating and Attention Head Robustness**
+
+Qwen's systematic exploration of attention gating can bring about enhanced training stability, the use of larger learning rates and improved scaling properties. Research addresses unanswered questions such as what internal dynamics change when a gate is added, and why this leads to the observed robustness across positional regimes.
+
+**3. Causal Head Gating Framework (May 2025)**
+
+A paper presents causal head gating (CHG), a scalable method for interpreting the functional roles of attention heads in transformer models, which learns soft gates over heads and assigns them a causal taxonomy - facilitating, interfering, or irrelevant.
+
+**4. In-Context Learning and Head Mechanisms (ICML 2025)**
+
+Few-shot ICL is driven primarily by FV heads, especially in larger models, and many FV heads start as induction heads during training before transitioning to the FV mechanism.
+
+These papers represent recent advances in understanding how specific attention head mechanisms contribute to model behavior, robustness, and susceptibility to contextual distraction.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a20c01b-30d9-4d6d-9696-286f515f3b0c",
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "def0734c-fde7-4482-8621-222b9b400638",
+  "sourceToolAssistantUUID": "8a20c01b-30d9-4d6d-9696-286f515f3b0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T09:11:59.978Z_
+
+<details><summary>↩ Tool result · `toolu_01MfhLdFQqB5jWSHpxzHTxAQ`</summary>
+
+```text
+Web search results for query: "attention head pruning vs gating fine-tuning LLM 2025 2026"
+
+Links: [{"title":"Efficient self-attention with smart pruning for sustainable large language models | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-92586-5"},{"title":"The impact of LLM pruning for fine-tuning Stanford CS224N Custom Project","url":"https://web.stanford.edu/class/cs224n/final-reports/256911740.pdf"},{"title":". . Latest updates: hps://dl.acm.org/doi/10.1145/3706418 . . SURVEY","url":"https://dl.acm.org/doi/pdf/10.1145/3706418"},{"title":"Simultaneous Fine-Tuning and Pruning of LLMs","url":"https://opt-ml.org/papers/2025/paper57.pdf"},{"title":"Efficient Compressing and Tuning Methods for Large Language Models: A Systematic Literature Review | ACM Computing Surveys","url":"https://dl.acm.org/doi/10.1145/3728636"},{"title":"LLM Fine-Tuning Architecture: Methods, Best Practices & Challenges | SaM Solutions","url":"https://sam-solutions.com/blog/llm-fine-tuning-architecture/"},{"title":"Under review as submission to TMLR High-Layer Attention Pruning with Rescaling","url":"https://openreview.net/pdf?id=jkPBIxYmWE"},{"title":"The State Of LLMs 2025: Progress, Progress, and Predictions","url":"https://magazine.sebastianraschka.com/p/state-of-llms-2025"},{"title":"Hardware-Aligned and Natively Trainable Sparse Attention","url":"https://aclanthology.org/2025.acl-long.1126.pdf"},{"title":"GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models","url":"https://arxiv.org/html/2604.19398"}]
+
+Based on the search results, here's what I found about attention head pruning vs gating fine-tuning for LLMs in 2025-2026:
+
+## Attention Head Pruning
+
+Pruning approaches have studied eliminating attention heads, layers, hidden states, rank reducing weight matrices, and sparse weight matrices. Recent methods have successfully compressed transformer layers by 99% and linear layers by 70%, resulting in an overall model compression of around 70%, while maintaining nearly the same accuracy.
+
+Channel-wise simultaneous fine-tuning and pruning (CSFP) introduces one parameter for each channel in the feed-forward network (FFN) and one for each head in the attention module of a transformer block. Additionally, movement pruning framework during fine-tuning results in the removal of entire model components, such as attention heads.
+
+## Gating-Based Fine-Tuning Approaches
+
+A related approach involves gating mechanisms. Mixture of Experts (MoE) architectures split a large model into many smaller "expert" subnetworks and use a gating mechanism to route each input to the most suitable expert, meaning only a fraction of the model is active for any given input.
+
+Recent gating-based methods like GRASPrune, a structured pruning framework, jointly prunes FFN channels and KV head groups under a single global budget using lightweight gate scores with a projected straight-through estimator that enforces a hard mask satisfying the budget at every step.
+
+## 2025-2026 Trends
+
+More drastic efficiency tweaks have targeted the attention mechanism to scale linearly with sequence length, including the Gated DeltaNets in Qwen3-Next and Kimi Linear, as well as the Mamba-2 layers in NVIDIA's Nemotron 3.
+
+Both approaches are actively being researched and deployed in 2025-2026 as complementary strategies for making LLMs more efficient.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e076c81d-3a17-446e-8585-1d98b4c5fe19",
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "0520f0d7-0cf5-46e9-bb54-b9d38a63551e",
+  "sourceToolAssistantUUID": "e076c81d-3a17-446e-8585-1d98b4c5fe19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-17T09:12:03.714Z_
+
+Now let me do follow-up searches to get more details on the most relevant papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0520f0d7-0cf5-46e9-bb54-b9d38a63551e",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7tA6rgAXJwzUMvENAp7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2d0647d7-08e6-4551-991b-0c7a716258e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EyuWpQx5WJrQufpfY18ttx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4812,
+      "cache_read_input_tokens": 10474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4812,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T09:12:04.187Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019Wvh7HCW4if6fXtHeKM6Q9`</summary>
+
+```json
+{
+  "query": "arXiv 2505.14233 ABFT attention behavior fine-tuning method details induction heads"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d0647d7-08e6-4551-991b-0c7a716258e6",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7tA6rgAXJwzUMvENAp7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "da4e3dc7-05a1-4df2-8f89-47069e43ce03",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EyuWpQx5WJrQufpfY18ttx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4812,
+      "cache_read_input_tokens": 10474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4812,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T09:12:04.656Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XPW3McphsaBMwgyjuJ4hiW`</summary>
+
+```json
+{
+  "query": "HAVE 2509.06596 head-adaptive gating inference time parameter-free method details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da4e3dc7-05a1-4df2-8f89-47069e43ce03",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7tA6rgAXJwzUMvENAp7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1fdf270f-c1e4-4622-ae6b-a841ffae7859",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EyuWpQx5WJrQufpfY18ttx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4812,
+      "cache_read_input_tokens": 10474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4812,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-17T09:12:05.592Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011xotZ6rNqHnhJ6iteYL8fF`</summary>
+
+```json
+{
+  "query": "ContextFocus 2601.04131 activation steering method how it works attention heads"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1fdf270f-c1e4-4622-ae6b-a841ffae7859",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7tA6rgAXJwzUMvENAp7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8da75a04-4671-49dd-b0df-670a6a5dc790",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EyuWpQx5WJrQufpfY18ttx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4812,
+      "cache_read_input_tokens": 10474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4812,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T09:12:06.080Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ERX12DAXm6StzN5WeZdorM`</summary>
+
+```json
+{
+  "query": "\"contextual entrainment\" \"distraction heads\" mechanistic LLM ACL 2025 training gating"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8da75a04-4671-49dd-b0df-670a6a5dc790",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7tA6rgAXJwzUMvENAp7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d75d2cbe-4ca7-421e-af52-2fae21c8a1d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EyuWpQx5WJrQufpfY18ttx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4812,
+      "cache_read_input_tokens": 10474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4812,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T09:12:07.528Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012oZLCTX1vfyVonZ8kmcyHN`</summary>
+
+```json
+{
+  "query": "arXiv 2505.13737 \"Causal Head Gating\" attention heads transformer learnable gates"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d75d2cbe-4ca7-421e-af52-2fae21c8a1d0",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7tA6rgAXJwzUMvENAp7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2f6db18a-1436-41f8-87f4-ae0f23a1901e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EyuWpQx5WJrQufpfY18ttx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4812,
+      "cache_read_input_tokens": 10474,
+      "output_tokens": 321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4812
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 321,
+          "cache_read_input_tokens": 10474,
+          "cache_creation_input_tokens": 4812,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4812,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T09:12:10.880Z_
+
+<details><summary>↩ Tool result · `toolu_01XPW3McphsaBMwgyjuJ4hiW`</summary>
+
+```text
+Web search results for query: "HAVE 2509.06596 head-adaptive gating inference time parameter-free method details"
+
+Links: [{"title":"[2509.06596] HAVE: Head-Adaptive Gating and ValuE Calibration for Hallucination Mitigation in Large Language Models","url":"https://arxiv.org/abs/2509.06596"},{"title":"HAVE: Head-Adaptive Gating and ValuE Calibration for Hallucination Mitigation in Large Language Models","url":"https://arxiv.org/html/2509.06596"},{"title":"HAVE: HEAD-ADAPTIVE GATING AND VALUE CALIBRATION","url":"https://arxiv.org/pdf/2509.06596"},{"title":"EG-MLA: Embedding-Gated Multi-head Latent Attention for Scalable and Efficient LLMs","url":"https://arxiv.org/html/2509.16686"},{"title":"Article Not peer-reviewed version Advancing Transformer Efficiency with","url":"https://www.preprints.org/manuscript/202503.1577/v1/download"},{"title":"Accelerating Distributed MoE Training and Inference with ...","url":"https://www.usenix.org/system/files/atc23-li-jiamin.pdf"},{"title":"Confidence-Gated Training for Efficient Early-Exit Neural Networks","url":"https://arxiv.org/html/2509.17885"},{"title":"Adapting Mixture‐of‐Experts(MoE) for efficient inference ...","url":"https://dr.lib.iastate.edu/bitstreams/73f0f9f7-e835-4fc6-ad91-fc94238e5a3c/download"},{"title":"AdapMoE: Adaptive Sensitivity-based Expert Gating and ...","url":"https://arxiv.org/pdf/2408.10284"},{"title":"Efficient Inference of Large Language Models through ...","url":"https://www.preprints.org/manuscript/202508.0192/v1/download"}]
+
+Based on the search results, here are the key details about HAVE (arXiv:2509.06596):
+
+## Overview
+HAVE is a parameter-free decoding framework that addresses hallucination challenges in large language models.
+
+## Head-Adaptive Gating Method
+HAVE introduces head-adaptive gating, which performs instance-level soft reweighing of attention heads, and value calibration, which augments attention with the magnitude of value vectors to approximate write-back contribution.
+
+## Key Features
+- **Parameter-Free**: HAVE requires no finetuning and operates in a single forward pass, making it efficient and broadly applicable.
+- **Efficiency**: It requires only the standard forward pass of the base model, introduces no new parameters, and is robust to grouped-query attention and sliding-window key–value caches.
+
+## Problem Addressed
+The method addresses two issues: head importance is treated as input-agnostic, and raw attention weights poorly reflect each token's true contribution.
+
+The paper was submitted to arXiv on September 8, 2025, and focuses on mitigating hallucinations in large language models, particularly in retrieval-augmented or long-context generation scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1fdf270f-c1e4-4622-ae6b-a841ffae7859",
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "81a67666-0ba0-427c-8c00-ea3da6c93143",
+  "sourceToolAssistantUUID": "1fdf270f-c1e4-4622-ae6b-a841ffae7859",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T09:12:12.353Z_
+
+<details><summary>↩ Tool result · `toolu_019Wvh7HCW4if6fXtHeKM6Q9`</summary>
+
+```text
+Web search results for query: "arXiv 2505.14233 ABFT attention behavior fine-tuning method details induction heads"
+
+Links: [{"title":"[2505.14233] Mechanistic Fine-tuning for In-context Learning","url":"https://arxiv.org/abs/2505.14233"},{"title":"Mechanistic Fine-tuning for In-context Learning","url":"https://arxiv.org/html/2505.14233"},{"title":"Mechanistic Fine-tuning for In-context Learning Hakaze Cho 1,✩ Peng Luo2","url":"https://arxiv.org/pdf/2505.14233"},{"title":"Supervised Fine-Tuning Achieve Rapid Task Adaption Via Alternating Attention Head Activation Patterns","url":"https://arxiv.org/html/2409.15820v2"},{"title":"[2410.02247] Theoretical Insights into Fine-Tuning Attention Mechanism: Generalization and Optimization","url":"https://arxiv.org/abs/2410.02247"},{"title":"[2410.02247] Theoretical Insights into Fine-Tuning Attention Mechanism: Generalization and Optimization","url":"https://ar5iv.labs.arxiv.org/html/2410.02247"},{"title":"[2409.15820] Supervised Fine-Tuning Achieve Rapid Task Adaption Via Alternating Attention Head Activation Patterns","url":"https://arxiv.org/abs/2409.15820"},{"title":"Theoretical Insights into Fine-Tuning Attention Mechanism: Generalization and Optimization | OpenReview","url":"https://openreview.net/forum?id=P98KMCf60l"},{"title":"Supervised Fine-Tuning: An Activation Pattern Optimization Process for Attention Heads","url":"https://arxiv.org/html/2409.15820v1"},{"title":"(PDF) Theoretical Insights into Fine-Tuning Attention Mechanism: Generalization and Optimization","url":"https://www.researchgate.net/publication/384630753_Theoretical_Insights_into_Fine-Tuning_Attention_Mechanism_Generalization_and_Optimization"}]
+
+Based on the search results, I found comprehensive information about arXiv 2505.14233 and the ABFT method. Here are the key details:
+
+## Paper Overview
+
+The paper is titled "Mechanistic Fine-tuning for In-context Learning" by Hakaze Cho, Peng Luo, Mariko Kato, Rin Kaenbyou, and Naoya Inoue.
+
+## ABFT Method Details
+
+The proposed Attention Behavior Fine-Tuning (ABFT) builds training objectives on the attention scores instead of the final outputs, forcing attention scores to focus on correct label tokens presented in the context and mitigating attention scores from wrong label tokens.
+
+### Induction Heads and Loss Calculation
+
+ABFT calculates the fine-tuning objective (loss function) only on the attention scores of induction heads, to mitigate "wrong" attention scores focusing on wrong label tokens and promote "correct" attention scores focusing on correct label tokens.
+
+Only attention heads producing attention scores with a significant focus on the label tokens can be identified as induction heads. The loss contains a punishment on "wrong" attention scores to wrong label tokens and a reward on "correct" attention scores to correct label tokens.
+
+### Implementation
+
+The method fine-tunes only the W_Q projection matrices of every attention head, with an ICL-style training set of only a few hundred samples and only a few million parameters with gradient activated.
+
+### Performance
+
+ABFT outperforms in performance, robustness, unbiasedness, and efficiency, with only around 0.01% data cost compared to previous methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "da4e3dc7-05a1-4df2-8f89-47069e43ce03",
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "975c659c-b94d-4ef5-8c58-f56b8f56b115",
+  "sourceToolAssistantUUID": "da4e3dc7-05a1-4df2-8f89-47069e43ce03",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T09:12:12.358Z_
+
+<details><summary>↩ Tool result · `toolu_011xotZ6rNqHnhJ6iteYL8fF`</summary>
+
+```text
+Web search results for query: "ContextFocus 2601.04131 activation steering method how it works attention heads"
+
+Links: [{"title":"[2601.04131] ContextFocus: Activation Steering for Contextual Faithfulness in Large Language Models","url":"https://arxiv.org/abs/2601.04131"},{"title":"[2601.04131v1] ContextFocus: Activation Steering for Contextual Faithfulness in Large Language Models","url":"https://arxiv.org/abs/2601.04131v1"},{"title":"ContextFocus: Activation Steering for Contextual Faithfulness in Large Language Models","url":"https://arxiv.org/html/2601.04131"},{"title":"ContextFocus: Activation Steering for Contextual Faithfulness in Large","url":"https://arxiv.org/pdf/2601.04131"},{"title":"ContextFocus: Activation Steering for Contextual Faithfulness in Large Language Models - Paper Detail","url":"https://deeplearn.org/arxiv/680647/contextfocus:-activation-steering-for-contextual-faithfulness-in-large-language-models"},{"title":"Surgical Activation Steering via Generative Causal Mediation","url":"https://arxiv.org/html/2602.16080v1"},{"title":"Activation Steering via Generative Causal Mediation","url":"https://arxiv.org/html/2602.16080"},{"title":"Sycophancy Hides Linearly in the Attention Heads","url":"https://arxiv.org/html/2601.16644"},{"title":"Don’t Lose Focus: Activation Steering via Key-Orthogonal Projections","url":"https://arxiv.org/html/2605.06342"},{"title":"Fine-Grained Activation Steering: Steering Less, Achieving More","url":"https://arxiv.org/html/2602.04428v1"}]
+
+Based on the search results, here's what ContextFocus is and how its activation steering method works:
+
+## Overview
+
+ContextFocus is a lightweight activation steering approach that improves context faithfulness in knowledge-conflict settings while preserving fluency and efficiency. The method addresses the problem where LLMs often default to memorized facts when evidence conflicts with the model's internal knowledge, producing unfaithful outputs.
+
+## How It Works
+
+ContextFocus is an activation steering approach that operates directly in the model's hidden representations to bias generation toward context-faithful behavior. 
+
+The method works by contrasting contextual evidence and system-level instruction to induce context-faithful behavior. During inference, steering is applied with a multiplier at specific layers (such as layer 13 for Llama-3.1-8B).
+
+## Key Advantages
+
+Unlike prior approaches, ContextFocus requires no model finetuning and incurs minimal inference-time overhead, making it highly efficient. Unlike decoding-time contrastive methods, ContextFocus requires only a single forward pass at inference time and incurs minimal overhead.
+
+## Performance
+
+Activation steering substantially improves context faithfulness while preserving fluency, composes naturally with prompting strategies, and scales effectively to larger models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8da75a04-4671-49dd-b0df-670a6a5dc790",
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "14d40e7f-5af9-4cbc-85c6-bc4afcfb4faa",
+  "sourceToolAssistantUUID": "8da75a04-4671-49dd-b0df-670a6a5dc790",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T09:12:14.552Z_
+
+<details><summary>↩ Tool result · `toolu_012oZLCTX1vfyVonZ8kmcyHN`</summary>
+
+```text
+Web search results for query: "arXiv 2505.13737 "Causal Head Gating" attention heads transformer learnable gates"
+
+Links: [{"title":"[2505.13737] Causal Head Gating: A Framework for Interpreting Roles of Attention Heads in Transformers","url":"https://arxiv.org/abs/2505.13737"},{"title":"Causal Head Gating: A Framework for Interpreting Roles of Attention Heads in Transformers","url":"https://arxiv.org/html/2505.13737v2"},{"title":"(PDF) Causal Head Gating: A Framework for Interpreting Roles of Attention Heads in Transformers","url":"https://www.researchgate.net/publication/391910662_Causal_Head_Gating_A_Framework_for_Interpreting_Roles_of_Attention_Heads_in_Transformers"},{"title":"Causal Head Gating: A Framework for Interpreting Roles of ...","url":"https://arxiv.org/pdf/2505.13737"},{"title":"[Literature Review] Causal Head Gating: A Framework for Interpreting Roles of Attention Heads in Transformers","url":"https://www.themoonlight.io/en/review/causal-head-gating-a-framework-for-interpreting-roles-of-attention-heads-in-transformers"},{"title":"Causal Head Gating: A Framework for Interpreting Roles of Attention Heads in Transformers | alphaXiv","url":"https://www.alphaxiv.org/overview/2505.13737v1"},{"title":"Causal Head Gating: A Framework for Interpreting Roles of Attention Heads in Transformers | OpenReview","url":"https://openreview.net/forum?id=kgmyjyDFrx"},{"title":"Causal Head Gating: A Framework for Interpreting Roles of Attention Heads in Transformers | Article Information | J-GLOBAL","url":"https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202502201892685900"},{"title":"Causal Modulated Attention Methods","url":"https://www.emergentmind.com/topics/causal-modulated-attention"},{"title":"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation","url":"https://arxiv.org/html/2505.15807"}]
+
+I found the paper you're looking for. Here's information about arXiv 2505.13737:
+
+## Causal Head Gating (CHG)
+
+Causal Head Gating (CHG) is a scalable method for interpreting the functional roles of attention heads in transformer models.
+
+### How It Works
+
+CHG learns soft gates over heads and assigns them a causal taxonomy - facilitating, interfering, or irrelevant - based on their impact on task performance. The method fits a set of gating values for each attention head that applies a soft ablation to its output using next-token prediction, so that task-facilitating heads remain unaltered while any task-interfering heads are suppressed.
+
+### Key Advantages
+
+Unlike prior approaches in mechanistic interpretability, which are hypothesis-driven and require prompt templates or target labels, CHG applies directly to any dataset using standard next-token prediction.
+
+### Evaluation
+
+The method was evaluated across multiple large language models (LLMs) in the Llama 3 model family and diverse tasks, including syntax, commonsense, and mathematical reasoning, and CHG scores yield causal, not merely correlational, insight validated via ablation and causal mediation analyses.
+
+### Additional Features
+
+The paper also introduces contrastive CHG, a variant that isolates sub-circuits for specific task components.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2f6db18a-1436-41f8-87f4-ae0f23a1901e",
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "303e1762-ae37-4b11-a641-8fe67a58c756",
+  "sourceToolAssistantUUID": "2f6db18a-1436-41f8-87f4-ae0f23a1901e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T09:12:14.608Z_
+
+<details><summary>↩ Tool result · `toolu_01ERX12DAXm6StzN5WeZdorM`</summary>
+
+```text
+Web search results for query: ""contextual entrainment" "distraction heads" mechanistic LLM ACL 2025 training gating"
+
+Links: [{"title":"Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.791/"},{"title":"A Mechanistic Perspective on Contextual Entrainment and ...","url":"https://aclanthology.org/2025.acl-long.791.pdf"},{"title":"GitHub - frankniujc/entrainment","url":"https://github.com/frankniujc/entrainment"},{"title":"[2505.09338] Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs","url":"https://arxiv.org/abs/2505.09338"},{"title":"Top 5 Trends in Outstanding Papers from ACL 2025 - AI Realist","url":"https://msukhareva.substack.com/p/top-five-trends-in-acl-2025-outstanding"},{"title":"Mechanistic Interpretability","url":"https://www.aussieai.com/research/mechanistic-interpretability"},{"title":"Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs","url":"https://arxiv.org/html/2505.09338"},{"title":"Record Breaking ACL 2025 Crowns Four Game-Changing Papers on Speed, Fairness & Safety for Next-Gen LLMs and Beyond | CSPaper","url":"https://cspaper.org/topic/116/record-breaking-acl-2025-crowns-four-game-changing-papers-on-speed-fairness-safety-for-next-gen-llms-and-beyond"},{"title":"[Literature Review] Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs","url":"https://www.themoonlight.io/en/review/llama-see-llama-do-a-mechanistic-perspective-on-contextual-entrainment-and-distraction-in-llms"},{"title":"Attention Tracker: Detecting Prompt Injection Attacks in LLMs","url":"https://aclanthology.org/2025.findings-naacl.123.pdf"}]
+
+Based on the search results, I found the paper you're looking for. Here are the key details:
+
+## Paper: "Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs"
+
+**Authors:** Jingcheng Niu, Xingdi Yuan, Tong Wang, Hamidreza Saghir, and Amir H. Abdi
+
+**Venue:** Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 16218–16239, Vienna, Austria
+
+### Key Findings:
+
+**Contextual Entrainment Phenomenon:** The paper observes a novel phenomenon called contextual entrainment across a wide range of language models, where LMs assign significantly higher logits or probabilities to any tokens that have previously appeared in the context prompt, even for random tokens.
+
+**Entrainment Heads:** The authors hypothesize that there is a circuit of attention heads -- the entrainment heads -- that corresponds to the contextual entrainment phenomenon, and they use a novel entrainment head discovery method based on differentiable masking to identify these heads across various settings.
+
+**Gating and Removal Effects:** When they "turn off" these heads by setting their outputs to zero, the effect of contextual entrainment is significantly attenuated, causing the model to generate output that capitulates to what it would produce if no distracting context were provided.
+
+**Semantic Modulation:** Counterfactual prompts have a greater effect compared to factual ones, suggesting that while contextual entrainment is a mechanistic phenomenon, it is modulated by semantic factors.
+
+The paper represents a key step towards the mechanistic analysis and mitigation of the distraction problem.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d75d2cbe-4ca7-421e-af52-2fae21c8a1d0",
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "11384e64-15f0-49e9-aeeb-a59b31a7e7d7",
+  "sourceToolAssistantUUID": "d75d2cbe-4ca7-421e-af52-2fae21c8a1d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-17T09:12:22.016Z_
+
+Now let me search for the Qwen attention gating NeurIPS paper and any other papers specifically proposing trainable gates on identified heads.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11384e64-15f0-49e9-aeeb-a59b31a7e7d7",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7tBBXzYwhPqfhQCZLXj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ee53dcd6-ccba-4b95-b2ce-6ac566d42766",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011F53UYdqZELbN5nbJUA7XF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 957,
+      "cache_creation_input_tokens": 3933,
+      "cache_read_input_tokens": 15286,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3933,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T09:12:22.628Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PSof3Cni5CwgWV4ADva6Tn`</summary>
+
+```json
+{
+  "query": "Qwen attention gating NeurIPS 2025 best paper systematic exploration training stability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee53dcd6-ccba-4b95-b2ce-6ac566d42766",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7tBBXzYwhPqfhQCZLXj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "859ffcd2-51db-4313-bfbd-9cf62272bc49",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011F53UYdqZELbN5nbJUA7XF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 957,
+      "cache_creation_input_tokens": 3933,
+      "cache_read_input_tokens": 15286,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3933,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-17T09:12:23.234Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017VLaUHZEs2o41JhRvYXykh`</summary>
+
+```json
+{
+  "query": "\"entrainment heads\" training fine-tuning gate learnable mitigation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "859ffcd2-51db-4313-bfbd-9cf62272bc49",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7tBBXzYwhPqfhQCZLXj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "369b32ac-2b7d-4472-aaac-7ac30c03c774",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011F53UYdqZELbN5nbJUA7XF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 957,
+      "cache_creation_input_tokens": 3933,
+      "cache_read_input_tokens": 15286,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3933
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 957,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 15286,
+          "cache_creation_input_tokens": 3933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3933,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T09:12:29.627Z_
+
+<details><summary>↩ Tool result · `toolu_017VLaUHZEs2o41JhRvYXykh`</summary>
+
+```text
+Web search results for query: ""entrainment heads" training fine-tuning gate learnable mitigation 2025 2026"
+
+Links: [{"title":"NeurIPS 2025 Best Paper Review: Qwen’s Systematic Exploration of Attention Gating | Towards Data Science","url":"https://towardsdatascience.com/neurips-2025-best-paper-review-qwens-systematic-exploration-of-attention-gating/"},{"title":"[NeurIPS 2025] Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free","url":"https://arxiviq.substack.com/p/neurips-2025-gated-attention-for"},{"title":"Didactic to Constructive: Turning Expert Solutions into Learnable Reasoning","url":"https://www.arxiv.org/pdf/2602.02405"},{"title":"GitHub - CUHK-AIM-Group/NeuroSTORM · GitHub","url":"https://github.com/CUHK-AIM-Group/NeuroSTORM"},{"title":"Published as a conference paper at ICLR 2026 FINE-TUNING WITH RAG","url":"https://www.arxiv.org/pdf/2510.01375"},{"title":"Fine-tuning LLMs with Cross-Attention-based Weight ...","url":"https://aclanthology.org/2025.findings-emnlp.854.pdf"},{"title":"Preprint version THINK-AT-HARD: SELECTIVE LATENT ITERATIONS TO","url":"https://nicsefc.ee.tsinghua.edu.cn/nics_file/pdf/c1a5580e-cabe-4d31-b7b3-f01d3d3ba6db.pdf"},{"title":"Pre-Training vs Fine Tuning: Choosing the Right Approach in 2026 | Label Your Data","url":"https://labelyourdata.com/articles/llm-fine-tuning/pre-training-vs-fine-tuning"},{"title":"The Fine-Tuning Landscape in 2025: A Comprehensive Analysis | by Pradeep Das | Medium","url":"https://medium.com/@pradeepdas/the-fine-tuning-landscape-in-2025-a-comprehensive-analysis-d650d24bed97"},{"title":"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey","url":"https://huajishe.fun/git/e2hang/Literature/raw/commit/bcdfe1d0acd46c5518d0aa640a8d5a804174215d/Reinforced-Learning/Survey-RL/The%20Landscape%20of%20Agentic%20Reinforcement.pdf"}]
+
+Based on the web search results, here's what I found regarding your query about "entrainment heads" with training, fine-tuning, gates, and learnable mitigation:
+
+The search results primarily reveal information about gated attention mechanisms that apply learnable, input-dependent sigmoid gates immediately after Scaled Dot-Product Attention (SDPA) output, modulating the attention output with a gate that introduces element-wise sparsity and non-linearity before the final output projection.
+
+Because gating weights are typically learnable parameters, the network can discover during training how to modulate internal signals in ways that minimize overall network loss, with the gate becoming a dynamic filter that adjusts internal information flow based on input context and the model's evolving parameters.
+
+Importantly, gating mechanistically eliminates the "Attention Sink" phenomenon and "Massive Activations" without requiring heuristic fixes like "sink tokens," thereby significantly improving long-context extrapolation.
+
+However, I should note that the search results don't specifically address "entrainment heads" as a distinct concept. The results focus on attention gating mechanisms in transformers from recent NeurIPS 2025 papers. If you're looking for information specifically about "entrainment heads," you may need to provide additional context or search terms to clarify what aspect of this topic you're interested in.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "369b32ac-2b7d-4472-aaac-7ac30c03c774",
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "e9010846-7dee-4495-a018-07b15799f06f",
+  "sourceToolAssistantUUID": "369b32ac-2b7d-4472-aaac-7ac30c03c774",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T09:12:32.001Z_
+
+<details><summary>↩ Tool result · `toolu_01PSof3Cni5CwgWV4ADva6Tn`</summary>
+
+```text
+Web search results for query: "Qwen attention gating NeurIPS 2025 best paper systematic exploration training stability"
+
+Links: [{"title":"NeurIPS 2025 Best Paper Review: Qwen’s Systematic Exploration of Attention Gating | Towards Data Science","url":"https://towardsdatascience.com/neurips-2025-best-paper-review-qwens-systematic-exploration-of-attention-gating/"},{"title":"NeurIPS 2025 Best Paper Review: Qwen’s Systematic Exploration of Attention Gating | by Sean Moran | Dec, 2025 | Medium","url":"https://medium.com/@sean.j.moran/neurips-2025-best-paper-review-qwens-systematic-exploration-of-attention-gating-aff91dd126cb"},{"title":"NeurIPS 2025 Best Paper Review: Qwen’s Systematic Exploration of Attention Gating - Dss Solutions","url":"https://dsssolutions.com/2025/12/13/neurips-2025-best-paper-review-qwens-systematic-exploration-of-attention-gating/"},{"title":"Alibaba Qwen Wins “NeurIPS 2025 Best Paper Award” for Breakthrough in Attention Mechanisms - Alibaba Cloud Community","url":"https://www.alibabacloud.com/blog/alibaba-qwen-wins-%E2%80%9Cneurips-2025-best-paper-award%E2%80%9D-for-breakthrough-in-attention-mechanisms_602708"},{"title":"Alibaba Qwen Wins “NeurIPS 2025 Best Paper Award” for Breakthrough in Attention Mechanisms | Alizila","url":"https://www.alizila.com/alibaba-qwen-wins-neurips-2025-best-paper-award-for-breakthrough-in-attention-mechanisms/"},{"title":"Exploring the Gated Attention Exploration Paper by Qwen : Best Paper Winner ar NeurIPS 2025","url":"https://abuhuzaifahbidin.substack.com/p/exploring-the-gated-attention-exploration"},{"title":"NeurIPS 2025 Best Paper Reveals How Gated Attention ...","url":"https://hyper.ai/en/headlines/db0c3cec8f3c506268072f3ce1d91bb1"},{"title":"[NeurIPS 2025] Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free","url":"https://arxiviq.substack.com/p/neurips-2025-gated-attention-for"},{"title":"GitHub - qiuzh20/gated_attention: The official implementation for [NeurIPS2025 Oral] Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free · GitHub","url":"https://github.com/qiuzh20/gated_attention"},{"title":"Announcing the NeurIPS 2025 Best Paper Awards – NeurIPS Blog","url":"https://blog.neurips.cc/2025/11/26/announcing-the-neurips-2025-best-paper-awards/"}]
+
+Based on the search results, here's what I found about the Qwen attention gating NeurIPS 2025 best paper:
+
+## Overview
+
+The Alibaba Qwen team received the NeurIPS 2025 Best Paper Award for their paper "Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free", which is the first in the industry to systematically examine how attention gating affects the performance and training of large models.
+
+## Key Findings
+
+The central finding is that applying a head-specific sigmoid gate after the Scaled Dot-Product Attention (SDPA) consistently improves performance, enhances training stability, tolerates larger learning rates, and improves scaling properties.
+
+## Systematic Exploration
+
+This finding is backed up by more than thirty experiments on different variants of gated softmax attention using 15B MoE and 1.7B dense models trained on large-scale datasets of 400B, 1T, or 3.5T tokens.
+
+## Training Stability Benefits
+
+This simple architectural modification yields profound stability improvements for large-scale training (eliminating loss spikes) and consistently improves perplexity on 15B MoE and 1.7B dense models. This stability allows for the use of larger learning rates (e.g., increasing max LR from 4.0×10−3 to 4.5×10−3), which in turn facilitates faster convergence and better final scaling laws.
+
+## Practical Impact
+
+These findings have already been incorporated into the Qwen3-Next model released in September 2025, which introduced architectural innovations by replacing standard attention with a combination of Gated DeltaNet and Gated Attention.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "859ffcd2-51db-4313-bfbd-9cf62272bc49",
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "fcc143a2-3b1a-4bb7-9c5a-b6244beef1f0",
+  "sourceToolAssistantUUID": "859ffcd2-51db-4313-bfbd-9cf62272bc49",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T09:12:35.394Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TcXMLahsqYGBqqPUay1yzC`</summary>
+
+```json
+{
+  "query": "\"Llama See Llama Do\" entrainment heads intervention training proposed future work"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fcc143a2-3b1a-4bb7-9c5a-b6244beef1f0",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7tCTooqBgL5R6vDd66V",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b280d59d-050a-4642-b5e2-8d828fe9d619",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UiVmPyfgJNFDM15PQuHm4m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1020,
+      "cache_creation_input_tokens": 2352,
+      "cache_read_input_tokens": 19219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2352,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-17T09:12:36.008Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01V7r4hL8aFzYNo5rf4UH3SJ`</summary>
+
+```json
+{
+  "query": "query-conditional gating attention heads LLM context faithfulness trainable 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b280d59d-050a-4642-b5e2-8d828fe9d619",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7tCTooqBgL5R6vDd66V",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4044c8b6-8cfa-4a5a-8878-455935131ac3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UiVmPyfgJNFDM15PQuHm4m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1020,
+      "cache_creation_input_tokens": 2352,
+      "cache_read_input_tokens": 19219,
+      "output_tokens": 125,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2352
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1020,
+          "output_tokens": 125,
+          "cache_read_input_tokens": 19219,
+          "cache_creation_input_tokens": 2352,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2352,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T09:12:43.380Z_
+
+<details><summary>↩ Tool result · `toolu_01V7r4hL8aFzYNo5rf4UH3SJ`</summary>
+
+```text
+Web search results for query: "query-conditional gating attention heads LLM context faithfulness trainable 2025 2026"
+
+Links: [{"title":"Advancements in Modern LLM Architectures | cbarkinozer | Softtech","url":"https://medium.com/softtechas/advancements-in-modern-llm-architectures-b204fe8f0ee8"},{"title":"Improving Contextual Faithfulness of Large Language ...","url":"https://aclanthology.org/2025.acl-long.826.pdf"},{"title":"[2501.13573] Improving Contextual Faithfulness of Large Language Models via Retrieval Heads-Induced Optimization","url":"https://arxiv.org/abs/2501.13573"},{"title":"Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free | OpenReview","url":"https://openreview.net/forum?id=1b7whO4SfY"},{"title":"CSAttention: Centroid-Scoring Attention for Accelerating LLM Inference","url":"https://arxiv.org/pdf/2604.08584"},{"title":"Conditional Memory via Scalable Lookup: A New Axis of ...","url":"https://arxiv.org/pdf/2601.07372"},{"title":"Cost-Optimal Grouped-Query Attention for Long-Context Modeling","url":"https://arxiv.org/pdf/2503.09579"},{"title":"Attention Mechanism in LLMs Explained (2026)","url":"https://www.buildfastwithai.com/blogs/attention-mechanism-llm-explained"},{"title":"A new way to increase the capabilities of large language models | MIT News | Massachusetts Institute of Technology","url":"https://news.mit.edu/2025/new-way-to-increase-large-language-model-capabilities-1217"},{"title":"Efficient Attention Mechanisms for Large Language Models: A Survey","url":"https://arxiv.org/html/2507.19595v3"}]
+
+Based on the web search results, here are the key findings related to your query about query-conditional gating attention heads, LLM context faithfulness, and trainable mechanisms in 2025-2026:
+
+## Query-Conditional Gating Attention Heads
+
+A recent finding applies a query-dependent head-specific sigmoid gate after the Scaled Dot-Product Attention (SDPA), which consistently improves performance, improves scaling properties and mitigates the 'massive activation' and 'attention sink'. This simple modification—applying a head-specific sigmoid gate after the Scaled Dot-Product Attention—consistently improves performance.
+
+## Context Faithfulness with Trainable Mechanisms
+
+A significant development in 2025 addresses context faithfulness in retrieval-augmented LLMs. Research has identified a salient correlation between LFQA (Long-Form Question-Answering) faithfulness and retrieval heads, a set of attention heads responsible for retrieving contextual information. 
+
+The RHIO framework is designed to teach LLMs to explicitly discriminate between faithful and unfaithful generations by first augmenting unfaithful samples that simulate realistic model-intrinsic errors through selectively masking retrieval heads, then incorporating these samples into joint training, enabling the model to distinguish unfaithful outputs from faithful ones conditioned on control tokens.
+
+## Broader Attention Architecture Trends (2025-2026)
+
+Grouped-Query Attention (GQA) has become the default choice for most large open-weight models like LLaMA 3 and Mistral in 2025, offering an optimal balance between efficiency and expressivity.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4044c8b6-8cfa-4a5a-8878-455935131ac3",
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "c93f927f-ff5a-4eea-8a1b-f7b5a05a576d",
+  "sourceToolAssistantUUID": "4044c8b6-8cfa-4a5a-8878-455935131ac3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T09:12:47.582Z_
+
+<details><summary>↩ Tool result · `toolu_01TcXMLahsqYGBqqPUay1yzC`</summary>
+
+```text
+Web search results for query: ""Llama See Llama Do" entrainment heads intervention training proposed future work"
+
+Links: [{"title":"Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs","url":"https://arxiv.org/html/2505.09338v2"},{"title":"[2505.09338] Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs","url":"https://arxiv.org/abs/2505.09338"},{"title":"Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.791/"},{"title":"Tong Wang's scientific contributions","url":"https://www.researchgate.net/scientific-contributions/Tong-Wang-2118690213"},{"title":"A Mechanistic Perspective on Contextual Entrainment and ...","url":"https://aclanthology.org/2025.acl-long.791.pdf"},{"title":"[Literature Review] Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs","url":"https://www.themoonlight.io/en/review/llama-see-llama-do-a-mechanistic-perspective-on-contextual-entrainment-and-distraction-in-llms"},{"title":"GitHub - frankniujc/entrainment","url":"https://github.com/frankniujc/entrainment"},{"title":"LLaMA-Annotate—Visualizing Token-Level Confidences for LLMs","url":"https://www.researchgate.net/publication/393631072_LLaMA-Annotate-Visualizing_Token-Level_Confidences_for_LLMs"},{"title":"Head-Specific Intervention Can Induce Misaligned AI Coordination in Large Language Models","url":"https://arxiv.org/html/2502.05945"},{"title":"Llama See, Llama Do: A Mechanistic Perspective on Contextual Entrainment and Distraction in LLMs | alphaXiv","url":"https://www.alphaxiv.org/overview/2505.09338v1"}]
+
+Now let me search specifically for information about proposed future work mentioned in the paper:
+
+Links: [{"title":"LLaMA 3 (2026): Features, Benchmarks & Use Cases","url":"https://ultraaiguide.com/llama-3-series-explained-2026-guide/"},{"title":"🦙Llama: Evolution of an Open-Source LLM | by Tahir | Medium","url":"https://medium.com/@tahirbalarabe2/llama-evolution-of-an-open-source-llm-7b48fe8ec8cd"},{"title":"Llama 4: What You Need to Know - Gradient Flow","url":"https://gradientflow.com/llama-4-what-you-need-to-know/"},{"title":"Introduction to Meta AI’s LLaMA: Empowering AI Innovation | DataCamp","url":"https://www.datacamp.com/blog/introduction-to-meta-ai-llama"},{"title":"Meta Llama: Everything you need to know about the open generative AI model | TechCrunch","url":"https://techcrunch.com/2025/10/06/meta-llama-everything-you-need-to-know-about-the-open-generative-ai-model/"},{"title":"What is Llama and How to Use It for AI Agents | MindStudio","url":"https://www.mindstudio.ai/blog/llama"},{"title":"Introducing Llama 3.1: Our most capable models to date","url":"https://ai.meta.com/blog/meta-llama-3-1/"},{"title":"Me-LLaMA: Foundation Large Language Models for Medical Applications - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11142305/"},{"title":"Llama 3.1 and the \"Path Forward\" - by Dean W. Ball","url":"https://www.hyperdimensional.co/p/llama-31-and-the-path-forward"},{"title":"Meta AI: What is LLama and Why It Makes Hype - Latenode Blog","url":"https://latenode.com/blog/ai-technology-language-models/meta-llama/meta-ai-what-is-llama-and-why-it-makes-hype"}]
+
+Let me search for the actual paper's discussion of future work and limitations:
+
+No links found.
+
+Based on my web search results, I can provide you with comprehensive information about the "Llama See, Llama Do" research paper:
+
+## Overview
+
+The paper observes a novel phenomenon called contextual entrainment across a wide range of language models and prompt settings, providing a new mechanistic perspective on how LMs become distracted by "irrelevant" contextual information in the input prompt.
+
+## Key Findings
+
+Specifically, LMs assign significantly higher logits (or probabilities) to any tokens that have previously appeared in the context prompt, even for random tokens. Counterfactual prompts have a greater effect compared to factual ones, suggesting that while contextual entrainment is a mechanistic phenomenon, it is modulated by semantic factors.
+
+## Entrainment Heads and Intervention Training
+
+Using a novel entrainment head discovery method based on differentiable masking, the researchers identify these heads across various settings, and when they "turn off" these heads by setting their outputs to zero, the effect of contextual entrainment is significantly attenuated, causing the model to generate output that capitulates to what it would produce if no distracting context were provided.
+
+The entrainment head experiments use Llama-3.1-8B, which has 1,024 attention heads (32 layers × 32 heads). The algorithm identified 36 entrainment heads for the country–capital city relation.
+
+## Proposed Future Work
+
+The discovery of contextual entrainment, along with the investigation into LM distraction via the entrainment heads, marks a key step towards the mechanistic analysis and mitigation of the distraction problem. The paper emphasizes this as foundational work toward addressing these vulnerabilities in language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b280d59d-050a-4642-b5e2-8d828fe9d619",
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "543d922e-f58e-4df3-a89e-c35ac997028a",
+  "sourceToolAssistantUUID": "b280d59d-050a-4642-b5e2-8d828fe9d619",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T09:12:50.857Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HRJhjrWeH6wLeZFkpV5665`</summary>
+
+```json
+{
+  "query": "arXiv 2501.13573 RHIO retrieval heads induced optimization context faithfulness training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "543d922e-f58e-4df3-a89e-c35ac997028a",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7tDcVyJm8dEiMnp12Mj",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c2baf338-d564-4f80-b2d0-f87f556cbaef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CStwf5HRGDPYnpg9qHUdTQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 913,
+      "cache_creation_input_tokens": 2743,
+      "cache_read_input_tokens": 21571,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2743
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 913,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 21571,
+          "cache_creation_input_tokens": 2743,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2743,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T09:12:58.273Z_
+
+<details><summary>↩ Tool result · `toolu_01HRJhjrWeH6wLeZFkpV5665`</summary>
+
+```text
+Web search results for query: "arXiv 2501.13573 RHIO retrieval heads induced optimization context faithfulness training"
+
+Links: [{"title":"[2501.13573] Improving Contextual Faithfulness of Large Language Models via Retrieval Heads-Induced Optimization","url":"https://arxiv.org/abs/2501.13573"},{"title":"Improving Contextual Faithfulness of Large Language Models via Retrieval Heads-Induced Optimization","url":"https://www.researchgate.net/publication/388354488_Improving_Contextual_Faithfulness_of_Large_Language_Models_via_Retrieval_Heads-Induced_Optimization"},{"title":"Improving Contextual Faithfulness of Large Language Models via Retrieval Heads-Induced Optimization","url":"https://arxiv.org/html/2501.13573"},{"title":"RHIO: A Novel Framework for Improving Faithfulness in Long-Form Question Answering Systems – The Science Archive","url":"https://thesciencearchive.org/2501-13573v1/"},{"title":"arXiv:2501.13573v1 [cs.CL] 23 Jan 2025","url":"https://arxiv.org/pdf/2501.13573"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=1393&show=1000"},{"title":"Computer Science Feb 2025","url":"https://www.arxiv.org/list/cs/2025-02?skip=2175&show=2000"},{"title":"Computer Science Mar 2025","url":"https://arxiv.org/list/cs/2025-03?skip=11875&show=2000"},{"title":"Machine Learning Jul 2023","url":"https://web3.arxiv.org/list/cs.LG/2023-07?skip=240&show=100"},{"title":"[2501.07391] Enhancing Retrieval-Augmented Generation: A Study of Best Practices","url":"https://arxiv.org/abs/2501.07391"}]
+
+Based on the search results, here's information about the arXiv paper 2501.13573:
+
+## Paper Overview
+
+The paper is titled "Improving Contextual Faithfulness of Large Language Models via Retrieval Heads-Induced Optimization" and was submitted on January 23, 2025.
+
+## Key Contributions
+
+The work identifies a correlation between LFQA (long-form question-answering) faithfulness and retrieval heads—attention heads responsible for retrieving contextual information—and proposes RHIO, a framework designed to teach LLMs to explicitly discriminate between faithful and unfaithful generations.
+
+## RHIO Framework
+
+The RHIO framework consists of three main components:
+
+1. **Data Augmentation**: RHIO augments unfaithful samples that simulate realistic model-intrinsic errors by selectively masking retrieval heads.
+
+2. **Training**: These augmented samples are incorporated into joint training, enabling the model to distinguish unfaithful outputs from faithful ones conditioned on control tokens.
+
+3. **Decoding**: Control tokens are leveraged to self-induce contrastive outputs, amplifying their difference through contrastive decoding.
+
+## Results
+
+The authors introduce GroundBench, a comprehensive benchmark compiled from five existing LFQA datasets, and extensive experimental results demonstrate that RHIO significantly improves faithfulness, even outperforming GPT-4o.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c2baf338-d564-4f80-b2d0-f87f556cbaef",
+  "isSidechain": true,
+  "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+  "agentId": "a6d56c9c8cef2a2a9",
+  "type": "user",
+  "uuid": "9db8ea17-eec0-4078-858f-3f9549081188",
+  "sourceToolAssistantUUID": "c2baf338-d564-4f80-b2d0-f87f556cbaef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-17T09:14:02.790Z_
+
+I now have comprehensive information to provide a detailed assessment. Here is my synthesis:
+
+---
+
+## Assessment: Has "EAGT" (Adding Query-Conditional Gates to Entrainment Heads) Been Anticipated?
+
+### 1. ABFT -- Mechanistic Fine-tuning for In-context Learning (arXiv:2505.14233)
+
+**Confirmed to exist.** By Hakaze Cho, Peng Luo, Mariko Kato, Rin Kaenbyou, Naoya Inoue (May 2025).
+
+| Dimension | Details |
+|-----------|---------|
+| Heads targeted | Induction heads (identified by attention focus on label tokens) |
+| New parameters or modified weights? | Modifies existing weights -- fine-tunes only the W_Q projection matrices of each attention head |
+| Inference-time or training-time? | Training-time (fine-tuning with ~0.01% data cost) |
+| Mechanism | Builds a loss directly on the attention scores of induction heads, punishing attention to wrong-label tokens and rewarding attention to correct-label tokens |
+
+**Difference from EAGT:** ABFT does not add new gate parameters. It modifies the existing query projections of induction heads using an attention-score-level loss. It targets ICL performance (correct label copying), not context robustness or entrainment suppression. No query-conditional gating mechanism is introduced.
+
+---
+
+### 2. HAVE -- Head-Adaptive Gating and ValuE Calibration (arXiv:2509.06596)
+
+**Confirmed to exist.** By Xin Tong, Zhi Lin, Jingya Wang, Bo Jin (September 2025).
+
+| Dimension | Details |
+|-----------|---------|
+| Heads targeted | All attention heads, reweighted per-instance based on computed importance |
+| New parameters or modified weights? | Neither -- parameter-free; computes instance-level soft reweighting dynamically |
+| Inference-time or training-time? | Inference-time only (single forward pass, no fine-tuning) |
+| Mechanism | (1) Head-adaptive gating: instance-level soft reweighting of attention heads based on input-dependent importance scores. (2) Value calibration: augments attention with value-vector magnitudes to approximate write-back contribution |
+
+**Difference from EAGT:** HAVE is the closest conceptual relative -- it performs per-head, query-conditional (instance-dependent) gating. However, it is purely inference-time, introduces no trainable parameters, does not specifically target entrainment heads, and is aimed at hallucination reduction rather than context robustness. EAGT's distinguishing contribution would be: (a) targeting specifically mechanistically-identified entrainment heads, (b) adding learned gate parameters conditioned on the query, and (c) training those gates to suppress entrainment. HAVE demonstrates the idea "works" at inference time but does not learn or internalize the gating.
+
+---
+
+### 3. ContextFocus -- Activation Steering for Contextual Faithfulness (arXiv:2601.04131)
+
+**Confirmed to exist.** By Nikhil Anand, Shwetha Somasundaram, Anirudh Phukan, Apoorv Saxena, Koyel Mukherjee (January 2026).
+
+| Dimension | Details |
+|-----------|---------|
+| Heads targeted | Not head-level -- operates on hidden-state activations at specific layers |
+| New parameters or modified weights? | Neither -- applies a fixed steering vector at inference time (no new learned params) |
+| Inference-time or training-time? | Inference-time (activation steering with a multiplier at identified layers) |
+| Mechanism | Computes a steering direction by contrasting context-faithful vs. unfaithful activations, then adds this direction at inference time to bias generation toward contextual faithfulness |
+
+**Difference from EAGT:** ContextFocus works at the residual-stream level, not at individual attention heads. It uses no learned gates and requires no training. It addresses the same downstream problem (context faithfulness in knowledge-conflict settings) but via a fundamentally different mechanism (representation-space steering vs. head-level gating).
+
+---
+
+### 4. "Llama See, Llama Do" -- Entrainment and Distraction Heads (arXiv:2505.09338, ACL 2025)
+
+**Confirmed to exist.** By Jingcheng Niu, Xingdi Yuan, Tong Wang, Hamidreza Saghir, Amir H. Abdi. Published at ACL 2025.
+
+| Dimension | Details |
+|-----------|---------|
+| Heads targeted | Entrainment heads (discovered via differentiable masking; ~36 out of 1024 heads in Llama-3.1-8B) |
+| New parameters or modified weights? | Analysis-only -- they zero-out head outputs as an intervention but do not propose trainable modifications |
+| Inference-time or training-time? | Analysis paper; ablation interventions are inference-time |
+| Mechanism | Discovers entrainment heads via differentiable masking; shows that zeroing these heads attenuates contextual entrainment |
+
+**Relevance to EAGT:** This is the foundational paper that EAGT would build upon. It identifies the entrainment heads and shows that ablating them helps, but it stops short of proposing a trainable gating mechanism. The paper frames this as "a key step towards mechanistic analysis and mitigation" -- implicitly leaving the door open for exactly the kind of training-time intervention EAGT proposes. Critically, this paper does NOT propose adding learnable gates.
+
+---
+
+### 5. Causal Head Gating (CHG) (arXiv:2505.13737, May 2025)
+
+**Confirmed to exist.**
+
+| Dimension | Details |
+|-----------|---------|
+| Heads targeted | All heads -- learns soft gates to classify heads as facilitating, interfering, or irrelevant |
+| New parameters or modified weights? | Adds learnable gating values (soft ablation parameters) per head |
+| Inference-time or training-time? | Training-time (learns gates via next-token prediction loss) |
+| Mechanism | Fits per-head gating values using standard next-token prediction, so facilitating heads remain unaltered while interfering heads are suppressed |
+
+**Difference from EAGT:** CHG learns per-head gates, but these are NOT query-conditional -- they are static per-task scalars. CHG is primarily an interpretability tool (discovering which heads facilitate/interfere) rather than a deployment mechanism. It does not target entrainment heads specifically and does not condition gates on the input query.
+
+---
+
+### 6. Qwen "Gated Attention" (NeurIPS 2025 Best Paper)
+
+**Confirmed to exist.** "Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free" by the Qwen team.
+
+| Dimension | Details |
+|-----------|---------|
+| Heads targeted | All heads uniformly (architectural modification, not targeting specific functional heads) |
+| New parameters or modified weights? | Adds per-head sigmoid gates as a permanent architectural component |
+| Inference-time or training-time? | Pre-training from scratch (architectural change) |
+| Mechanism | Applies a head-specific sigmoid gate after Scaled Dot-Product Attention, trained jointly during pre-training |
+
+**Difference from EAGT:** Qwen's gated attention is a pre-training architectural modification applied to ALL heads uniformly. It is not targeted at mechanistically-identified heads, not query-conditional in the sense EAGT proposes, and not a fine-tuning intervention. It solves a different problem (training stability, attention sinks) rather than context robustness.
+
+---
+
+### 7. RHIO -- Retrieval Heads-Induced Optimization (arXiv:2501.13573, ACL 2025)
+
+**Confirmed to exist.** January 2025.
+
+| Dimension | Details |
+|-----------|---------|
+| Heads targeted | Retrieval heads (heads responsible for retrieving contextual information) |
+| New parameters or modified weights? | Modifies existing weights via fine-tuning (not new gate parameters) |
+| Inference-time or training-time? | Training-time (fine-tuning with augmented data) + inference-time (contrastive decoding with control tokens) |
+| Mechanism | Masks retrieval heads to generate unfaithful examples, trains the model to distinguish faithful/unfaithful outputs using control tokens, then uses contrastive decoding at inference |
+
+**Difference from EAGT:** RHIO uses mechanistically-identified heads (retrieval heads) but only to create training data (by masking them to simulate unfaithfulness). It does not add gates to those heads. The training modifies the full model to be more faithful, rather than surgically adding parameters to specific heads.
+
+---
+
+## Summary Assessment
+
+**No existing paper proposes exactly what EAGT describes** -- i.e., adding trainable, query-conditional gate parameters specifically to mechanistically-identified entrainment heads to suppress context-entrainment during fine-tuning.
+
+The closest neighbors are:
+
+1. **HAVE** (2509.06596) -- does per-head, instance-conditional gating, but inference-only and parameter-free. Does not target entrainment heads.
+2. **CHG** (2505.13737) -- learns per-head gates during training, but they are static (not query-conditional) and used for interpretability.
+3. **"Llama See, Llama Do"** (2505.09338) -- identifies the exact entrainment heads EAGT would target, but proposes only zero-ablation, not learned gating.
+4. **ABFT** (2505.14233) -- trains modifications to specific mechanistically-identified heads (induction heads), but modifies W_Q rather than adding gates, and targets ICL, not entrainment.
+5. **Qwen Gated Attention** (NeurIPS 2025) -- adds sigmoid gates to all heads but as an architectural pre-training choice, not a targeted fine-tuning intervention.
+
+**The gap EAGT fills**: The combination of (a) targeting specifically entrainment heads identified via mechanistic interpretability, (b) adding new learnable gate parameters that are query-conditional, and (c) training those gates (fine-tuning) to suppress entrainment for context robustness -- this specific combination appears novel as of my search results through early 2026.
+
+The most obvious "prior art" objection would cite HAVE for the gating concept and "Llama See, Llama Do" for entrainment head identification, arguing EAGT is a straightforward combination. A strong response would emphasize that (1) making the gating trainable rather than heuristic is non-trivial, (2) query-conditioning requires architectural design choices, and (3) the training signal for entrainment suppression is itself a contribution.
+
+---
+
+Sources:
+- [Mechanistic Fine-tuning for In-context Learning (ABFT)](https://arxiv.org/abs/2505.14233)
+- [HAVE: Head-Adaptive Gating and ValuE Calibration](https://arxiv.org/abs/2509.06596)
+- [ContextFocus: Activation Steering for Contextual Faithfulness](https://arxiv.org/abs/2601.04131)
+- [Llama See, Llama Do: Contextual Entrainment and Distraction](https://arxiv.org/abs/2505.09338)
+- [Causal Head Gating (CHG)](https://arxiv.org/abs/2505.13737)
+- [Qwen Gated Attention - NeurIPS 2025](https://openreview.net/forum?id=1b7whO4SfY)
+- [RHIO: Retrieval Heads-Induced Optimization](https://arxiv.org/abs/2501.13573)
+- [NeurIPS 2025 Best Paper Review: Qwen's Attention Gating](https://towardsdatascience.com/neurips-2025-best-paper-review-qwens-systematic-exploration-of-attention-gating/)
+- [ACL 2025 Entrainment Paper](https://aclanthology.org/2025.acl-long.791/)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9db8ea17-eec0-4078-858f-3f9549081188",
+  "isSidechain": true,
+  "agentId": "a6d56c9c8cef2a2a9",
+  "requestId": "req_011Cb7tEQ7NJ8zHLoLFNNkYq",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "97bf13b0-6f2c-4889-882e-c0c67b5b1fe3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KbTQAiLNK2PFoHUQQgRcPq",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1837,
+      "cache_read_input_tokens": 24314,
+      "output_tokens": 2955,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1837
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2955,
+          "cache_read_input_tokens": 24314,
+          "cache_creation_input_tokens": 1837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1837,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,2940 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-27 (UTC).** ## Original idea { "tit
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 42
+- **Recorded user turns:** 1
+- **Tool calls:** 8
+- **Original source:** `logs/chats/exported-trajectories/account-2/dcea932a-9616-44e0-aedf-dc75f9c4b48a.jsonl`
+- **Structured JSON:** [`e2b348d29596fad448dd.json`](../../sessions/e2/e2b348d29596fad448dd.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T18:59:07.963Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T18:59:07.963Z",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-27 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Generative Process Advantage Verifiers: Calibrated Step-Level Verification via Advantage-Grounded Chain-of-Thought\",\n  \"core_problem\": \"Can we combine the test-time scalability of generative chain-of-thought verification with the theoretically grounded advantage/progress formulation, producing a verifier that reasons explicitly about whether each step constitutes forward progress — and crucially, one whose step-level scores are structurally well-calibrated through advantage grounding at training time, surpassing the calibration achievable by post-hoc recalibration methods (quantile regression, optimal transport) which are provably limited to monotonic transformations that cannot recover progress information absent from the base model's representations? Furthermore, can such advantage-grounded calibration mitigate the evaluator-rewarder gap documented in recent scaling laws for generative reward models, where better static evaluation accuracy fails to translate into better downstream policy optimization?\",\n  \"opportunity\": \"A cluster of recent calibration advances has transformed the PRM landscape since our initial proposal. Post-hoc methods now achieve substantial ECE reductions on discriminative PRMs: 'Know What You Don't Know' (KYD, NeurIPS 2025) applies quantile regression to Qwen2.5-Math-PRM-7B, reducing ECE by 66.3% on MATH500; Distributional PRMs (DPRM, arXiv May 2026) extend this via conditional optimal transport, achieving 51.6–69.5% ECE reduction. CoT Entropy (arXiv Feb 2025) provides sampling-based uncertainty quantification for generative verifiers. However, a critical structural limitation unifies all post-hoc approaches, explicitly acknowledged by the DPRM authors: 'Calibration quality inherits the ranking quality of the base PRM. When the underlying model produces unreliable signals, OT calibration cannot recover meaningful uncertainty estimates.' Post-hoc methods apply monotonic transformations that preserve ranking but cannot inject new information — and crucially, must be re-fitted for each new generator-domain pair (KYD requires 500 calibration questions × 8 trajectories × 8 rollouts per generator; DPRM explicitly notes 'OT performance is sensitive to distribution shift between training and evaluation problems'). Meanwhile, advantage-based step-level reasoning has gained traction in the RL training context: SPAE (arXiv Jan 2026) uses training-free probing to extract step potential for RL credit assignment; SHAPE (arXiv Apr 2026) uses rollout-based potential estimation for hierarchical credit assignment; PQM (ICLR 2025) formulates discriminative PRM training as Q-value ranking. However, none of these combine advantage grounding with generative verification or address calibration — SPAE and SHAPE target RL policy optimization, while PQM trains discriminative models without calibration analysis. A separate critical finding threatens all generative verification approaches: 'Scaling Laws for Generative Reward Models' (OpenReview 2026) documented an evaluator-rewarder gap where thinking GenRMs outperform answer-only variants by 1–2% on validation tasks but these gains 'diminish and often reverse' during policy optimization. This gap likely stems from poorly calibrated scores that enable reward overoptimization — precisely the problem that advantage-grounded calibration could address. The untried combination: advantage-grounded training that encodes progress information into model representations at training time, producing both better ranking AND better calibration — structural benefits that post-hoc recalibration cannot replicate — while also potentially mitigating the evaluator-rewarder gap through progress-aware scoring that resists overoptimization.\",\n  \"landscape\": \"Post-hoc PRM calibration cluster: KYD (NeurIPS 2025) applies quantile regression to Qwen2.5-Math-PRM-7B, achieving ECE 0.2791→0.0942 (66.3% reduction) for Llama-3.2-1B completions and 0.0981→0.0864 for Qwen-2.5-7B completions on MATH500; outperforms temperature scaling, isotonic regression, histogram binning; enables Instance-Adaptive Scaling for up to 75% compute reduction; requires ~500 calibration questions with 8 trajectories × 8 MC rollouts per prefix per generator, and must be re-fitted per generator-domain pair since 'a PRM is only calibrated to the statistical patterns of the policy it was trained with.' Distributional PRMs (DPRM, arXiv May 2026) extend KYD via conditional optimal transport, achieving 51.6–69.5% ECE reduction for Qwen2.5-Math-PRM-7B on MATH500; the authors explicitly state 'Calibration quality inherits the ranking quality of the base PRM' and 'OT performance is sensitive to distribution shift between training and evaluation problems'; they identify 'incorporating calibration objectives directly into PRM fine-tuning' as future work — precisely GenPAV's approach. CoT Entropy (arXiv Feb 2025, Ye et al.) proposes entropy over clustered reasoning paths for UQ in generative PRMs, applied to Qwen2-Math-72B-Instruct; achieves AUROC 0.680, AUPRC 0.885 on PRM800K subset (150 questions); post-hoc, no ECE measurement. EDU-PRM (arXiv Mar 2025) uses entropy-driven step segmentation to match Qwen2.5-Math-PRM with 1.5% training data; no calibration analysis; orthogonal to advantage grounding. DCPO (arXiv Mar 2026) achieves 71.6% ECE reduction on Qwen3-8B (0.435→0.128) but at answer-level RLVR confidence, NOT step-level PRM scores; the paper explicitly states 'No step-level or process reward application is discussed'; step-level PRM calibration is fundamentally harder. Advantage-based approaches: SPAE (arXiv Jan 2026) uses training-free probing to extract 'step potential' Φ(τ) = 1.5·Acc·Conf + 0.5·Acc − Conf for RL credit assignment during GRPO/DAPO training; reduces response length 25% while improving accuracy 3–7% on AIME; but is training-free (no learned representations), targets RL policy optimization (not PRM training), and provides no calibration analysis. SHAPE (arXiv Apr 2026) uses rollout-based potential estimation Φ(s_k) = (1/m)Σr_i for hierarchical advantage with stage-aware discounting; achieves ~3% accuracy gain with 30% token reduction across 3 base models; but again targets RL policy training, not PRM training/verification, and provides no calibration analysis. PQM (ICLR 2025) formulates PRM as Q-value ranking in a deterministic MDP, proving A*(s_t, a_t) = Q*(s_t, a_t) − Q*(s_{t-1}, a_{t-1}) via potential-based reward shaping; achieves +11.6% on MATH500 over classification-based PRMs with comparative loss; but is discriminative (no generative verification), provides no calibration analysis, and cannot scale at test time. Rewarding Progress (ICLR 2025 Spotlight) formalizes progress as advantage under a complementary prover with theoretical guarantees (Theorem 3.1), but PAVs are discriminative. Evaluator-rewarder gap: 'Scaling Laws for Generative Reward Models' (OpenReview 2026) found that thinking GenRMs trained via GRPO outperform answer-only (SFT) variants by 1–2% on validation tasks using Qwen3 family (0.6B–14B), but these gains 'diminish and often reverse' during policy optimization where answer-only GenRMs achieve higher Gold Elo; intermediate GRPO checkpoints can outperform fully-trained ones as rewarders despite worse static accuracy; this suggests that overconfident CoT reasoning may exacerbate reward overoptimization. S2J (arXiv Sep 2025) identifies a 'solve-to-judge gap' of 14–37% in GenRMs and addresses it via joint solving-judging training, reducing the gap by 16.2%; relevant since advantage grounding may similarly close this gap. Generative PRMs: GenPRM (AAAI 2026) achieves ~80.5 F1 at 7B on ProcessBench via CoT+code verification, no calibration analysis. ThinkPRM (TMLR 2026) achieves 86.5 avg F1 on ProcessBench's hardest 2 subsets, but scores cluster near 0/1 with 'step label interference.' R-PRM (EMNLP 2025) reaches 70.4 F1. ActPRM (arXiv 2025) achieves 76.0 F1 at 7B. RL^V (arXiv May 2025) jointly trains LLM as reasoner and generative verifier, boosting MATH accuracy by 20% with parallel sampling; demonstrates feasibility of dual-purpose models. RM-R1 (ICLR 2026) applies chain-of-rubrics for pairwise preference. TP-GRPO (arXiv Jul 2025) integrates generative PRM signals into RL training. No published or concurrent work as of May 2026 unifies generative chain-of-thought verification with advantage-grounded training for structural calibration.\",\n  \"inspired_by\": \"Untried combination #1 (GenPRM × Rewarding Progress × calibration-aware training); innovation pattern 'Structural advantage over post-hoc fixes' (training-time progress encoding vs. post-hoc monotonic transformation, motivated by DPRM authors' own identification of this gap); insight from KYD/DPRM establishing the ceiling of post-hoc calibration (ranking quality inheritance + distribution shift sensitivity) creating an opening for training-time approaches; ThinkPRM's documented calibration failure as the specific problem to solve; evaluator-rewarder gap from Scaling Laws for GenRMs motivating calibration as a mitigation for downstream utility; PQM's Q-value ranking framework and SPAE/SHAPE's advantage-based RL credit assignment confirming the broader trend toward advantage/value-based step-level reasoning — but with the specific gap that none target generative PRM calibration\",\n  \"approach\": \"Train a Generative Process Advantage Verifier (GenPAV) that produces explicit chain-of-thought rationales reasoning about whether each step constitutes forward progress, grounded in the advantage function A(s,a) = V_π(s') − V_π(s) under a complementary prover π. Using Qwen3-8B as the base verifier, we: (1) Generate Monte Carlo advantage labels by rolling out a complementary prover (Qwen3-4B as primary, following PAV's same-family weaker-model precedent, with Llama-3.1-8B cross-family ablation) from each intermediate state in MATH training solutions (~20K states, 64 rollouts each), retaining continuous advantage values rather than binarizing. (2) Synthesize CoT rationales explaining each step's advantage using QwQ-32B as a teacher distiller, conditioned on computed advantages: negative-advantage steps receive critique prompts biased toward identifying errors; positive-advantage steps receive prompts explaining progress. (3) Fine-tune via a streamlined two-objective training procedure combining: (a) standard SFT loss on CoT critique generation, and (b) advantage regression loss on a linear head predicting continuous A(s,a) from final hidden states — grounding internal representations in progress estimation. We deliberately simplify from the earlier three-loss design by dropping the differentiable ECE surrogate, following the principle that advantage regression alone should provide structural calibration by encoding progress information into representations — if the model learns to estimate A(s,a) accurately, its scores will inherently track true solution progress. The ECE surrogate is retained as an ablation variant to test whether explicit calibration pressure yields additional gains atop advantage regression. The advantage regression head serves dual purposes: scalar scoring for ranking (like discriminative PRMs) and calibration target (unlike heuristic binary labels). This design draws on but differentiates from related advantage-based approaches: unlike SPAE's training-free probing for RL credit assignment, GenPAV learns advantage-grounded representations through supervised training; unlike SHAPE's rollout-based potentials for RL policy optimization, GenPAV encodes advantage into a generative verifier's representations; unlike PQM's Q-value ranking for discriminative PRMs, GenPAV produces generative CoT verification with calibrated scores. Critically, we weaken the theoretical claim: rather than asserting inheritance of PAV's Theorem 3.1 guarantees (which assume oracle advantage access), we position GenPAV as designed to approximate PAV's advantage estimates through generative reasoning with structurally calibrated outputs. Regarding the evaluator-rewarder gap documented by 'Scaling Laws for Generative Reward Models': we hypothesize that advantage-grounded calibration mitigates this gap through two mechanisms. First, well-calibrated scores resist reward overoptimization — when a verifier's confidence reflects true success probability, BoN selection avoids the pathological case where overconfident scores for spuriously correct-looking solutions dominate selection. Second, advantage regression anchors the scoring function to a progress-theoretic quantity (expected improvement under the complementary prover) rather than surface-level pattern matching, making scores more robust to distribution shift during policy optimization. We test this hypothesis directly in our evaluation. Test-time compute scaling is achieved through majority voting over multiple CoT traces, with the advantage-calibrated scores providing principled aggregation weights. Our central empirical hypotheses: (H1) GenPAV achieves ≥3% best-of-N accuracy improvement over GenPRM-7B on MATH-500 at matched parameters and compute; (H2) GenPAV achieves ≥50% ECE reduction vs. uncalibrated ThinkPRM-7B on MATH-500; (H3, structural calibration test) GenPAV outperforms post-hoc calibrated baselines — including both generative (QR-ThinkPRM, QR-GenPRM, OT-ThinkPRM, OT-GenPRM) and discriminative (QR-Qwen2.5-Math-PRM-7B, OT-Qwen2.5-Math-PRM-7B) — in ECE, demonstrating that advantage grounding provides calibration benefits beyond what monotonic post-hoc transformations can achieve, even when the base discriminative PRM has well-distributed scores; (H4, evaluator-rewarder gap test) GenPAV exhibits less BoN accuracy degradation than uncalibrated ThinkPRM-7B and GenPRM-7B when increasing N beyond the optimal point, as measured by the gap between proxy-selected and oracle-selected BoN accuracy at N=256 vs. N=64. We evaluate on ProcessBench (all 4 subsets), PRMBench, MATH-500 and AIME'24 (best-of-N and reward-guided search), and online RL sample efficiency, against GenPRM-7B, ThinkPRM-7B, ThinkPRM-14B, R-PRM-7B, ActPRM-7B, discriminative PAV, Qwen2.5-Math-PRM-7B, and post-hoc calibrated variants: QR-ThinkPRM-7B, QR-GenPRM-7B, OT-ThinkPRM-7B, OT-GenPRM-7B, QR-Qwen2.5-Math-PRM-7B, and OT-Qwen2.5-Math-PRM-7B. Additional ablations: (i) advantage regression with vs. without SFT CoT loss (isolating whether advantage regression alone suffices), (ii) two-objective (SFT+AdvReg) vs. three-objective (SFT+AdvReg+ECE surrogate) to test whether explicit calibration pressure adds value beyond advantage regression, (iii) GenPAV with vs. without advantage regression (CoT SFT only — isolating structural calibration contribution), (iv) CoT Entropy applied to GenPAV's critiques as an external UQ method (testing internal vs. external calibration), (v) post-hoc calibration applied to GenPAV itself (testing complementarity — if GenPAV is already well-calibrated, post-hoc methods should yield diminishing returns), (vi) BoN overoptimization curves: proxy-selected vs. oracle-selected accuracy as function of N∈{4,8,16,32,64,128,256} for GenPAV vs. all baselines. Cost-benefit analysis: GenPAV's training requires ~375 GPU-hours (MC rollouts: ~150h, QwQ-32B distillation: ~225h) as a one-time cost. In contrast, KYD post-hoc calibration requires ~5–10 GPU-hours per generator-domain pair (500 questions × 8 trajectories × 8 rollouts). However, post-hoc calibration must be re-fitted for each new generator and domain — KYD explicitly notes 'a PRM is only calibrated to the statistical patterns of the policy it was trained with,' and DPRM reports 'OT performance is sensitive to distribution shift between training and evaluation problems.' For a deployment scenario with K generators across D domains, post-hoc calibration costs K×D×(5–10) GPU-hours and requires maintaining K×D calibration configurations. With K=5 generators and D=3 domains, this reaches 75–150 GPU-hours — approaching GenPAV's one-time cost, and scaling linearly with deployment breadth. GenPAV's advantage-grounded representations aim to provide calibration that generalizes across generators and domains without re-fitting, amortizing the upfront training cost. We validate this claim by evaluating GenPAV's calibration with generators not seen during training (Llama-3.1-8B, DeepSeek-Math-7B) without re-fitting, comparing against KYD/DPRM re-fitted for each generator.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"1350\",\n      \"timeline\": \"10-14 weeks\",\n      \"estimated_gpu_cost\": \"$3375 (8×H100 at ~$2.50/GPU-hr)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"1150\",\n      \"timeline\": \"7-9 weeks\",\n      \"claude_api_cost\": \"$500 (data pipeline automation, rationale quality filtering, calibration analysis, hyperparameter sweep orchestration)\",\n      \"estimated_gpu_cost\": \"$2875\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"1050\",\n      \"timeline\": \"5-7 weeks\",\n      \"claude_api_cost\": \"$1200 (end-to-end experiment orchestration, ablation design, calibration analysis, paper drafting)\",\n      \"estimated_gpu_cost\": \"$2625\",\n      \"speed_bottleneck\": \"Monte Carlo rollout generation: ~64 rollouts per intermediate state across ~20K states requires sequential inference passes with Qwen3-4B complementary prover (~150 GPU-hrs), plus QwQ-32B distillation for 20K rationales (~225 GPU-hrs); cross-family prover ablation with Llama-3.1-8B adds ~100 GPU-hrs; post-hoc calibration baselines (KYD quantile regression and DPRM optimal transport applied to ThinkPRM-7B, GenPRM-7B, and Qwen2.5-Math-PRM-7B, requiring ~500 calibration questions × 8 trajectories × 8 rollouts per prefix per model) add ~80 GPU-hrs; BoN overoptimization analysis at N∈{4,...,256} adds ~50 GPU-hrs; cross-generator calibration generalization test adds ~40 GPU-hrs. Parallelizable across GPUs but QwQ-32B distillation dominates wall-clock time.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (paper deadline: July 28, 2026)\",\n    \"ICLR 2027 (predicted paper deadline: ~Sep 24, 2026)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026)\",\n    \"Rewarding Progress: Scaling Automated Process Verifiers for LLM Reasoning (ICLR 2025 Spotlight)\",\n    \"Process Reward Models That Think (TMLR 2026, Khalifa et al.)\",\n    \"Know What You Don't Know: Uncertainty Calibration of Process Reward Models (NeurIPS 2025, Park et al.) — post-hoc quantile regression; 66.3% ECE reduction; key calibration baseline; must be re-fitted per generator-domain pair\",\n    \"Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport (arXiv May 2026, Ma et al.) — OT-based post-hoc calibration; 51.6–69.5% ECE reduction; explicitly identifies training-time calibration as future work; sensitive to distribution shift\",\n    \"Uncertainty-Aware Step-wise Verification with Generative Reward Models (arXiv Feb 2025, Ye et al.) — CoT Entropy for generative PRM uncertainty quantification\",\n    \"More Bang for the Buck: Process Reward Modeling with Entropy-Driven Uncertainty (arXiv Mar 2025) — EDU-PRM; entropy-driven step segmentation\",\n    \"Decoupling Reasoning and Confidence: Resurrecting Calibration in Reinforcement Learning from Verifiable Rewards (arXiv Mar 2026, Ma et al.) — DCPO; 71.6% ECE reduction at answer-level RLVR (not step-level PRM)\",\n    \"Step Potential Advantage Estimation: Harnessing Intermediate Confidence and Correctness for Efficient Mathematical Reasoning (arXiv Jan 2026) — SPAE; training-free advantage-based RL credit assignment; targets policy optimization, not PRM training\",\n    \"SHAPE: Stage-aware Hierarchical Advantage via Potential Estimation for LLM Reasoning (arXiv Apr 2026) — rollout-based hierarchical advantage for RL policy training; ~3% accuracy with 30% token reduction\",\n    \"Process Reward Model with Q-Value Rankings (ICLR 2025) — PQM; Q-value ranking in MDP framework for discriminative PRM; A*(s,a) = Q*(s,a) − Q*(s_{t-1},a_{t-1}); no calibration analysis\",\n    \"Scaling Laws for Generative Reward Models (OpenReview 2026) — evaluator-rewarder gap: thinking GenRMs underperform answer-only during policy optimization; motivates calibration-based mitigation\",\n    \"R-PRM: Reasoning-Driven Process Reward Modeling (EMNLP 2025)\",\n    \"ActPRM: Efficient Process Reward Model Training via Active Learning (arXiv 2025)\",\n    \"RM-R1: Reward Modeling as Reasoning (ICLR 2026)\",\n    \"Good Learners Think Their Thinking: Generative PRM Makes Large Reasoning Model More Efficient Math Learner (arXiv Jul 2025)\",\n    \"Generative Verifiers: Reward Modeling as Next-Token Prediction (ICLR 2025)\",\n    \"RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning (NeurIPS 2025)\",\n    \"S2J: Bridging the Gap Between Solving and Judging Ability in Generative Reward Models (arXiv Sep 2025) — solve-to-judge gap of 14–37% in GenRMs\",\n    \"Putting the Value Back in RL: Better Test-Time Scaling by Unifying LLM Reasoners With Verifiers (arXiv May 2025) — RL^V; joint reasoner-verifier training\",\n    \"Soft Calibration Objectives for Neural Networks (NeurIPS 2021) — differentiable ECE surrogate for training-time calibration\",\n    \"ProcessBench: Identifying Process Errors in Mathematical Reasoning (ACL 2025)\",\n    \"Hard2Verify: Benchmarking Verification of Frontier Mathematical Reasoning (arXiv 2025)\",\n    \"PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models (ACL 2025)\",\n    \"Reward Model Ensembles Help Mitigate Overoptimization (NeurIPS 2023) — calibrated/ensemble rewards reduce overoptimization\"\n  ],\n  \"description\": \"We propose Generative Process Advantage Verifiers (GenPAV), which unify generative chain-of-thought verification with advantage-grounded training to produce step-level scores that are structurally well-calibrated to true solution progress — achieving calibration quality beyond what post-hoc recalibration methods can provide, while also mitigating the evaluator-rewarder gap that threatens all generative verification approaches. The PRM calibration landscape has evolved rapidly: KYD (NeurIPS 2025) achieves 66.3% ECE reduction via post-hoc quantile regression, DPRM (arXiv May 2026) reaches 51.6–69.5% via optimal transport, and advantage-based step-level reasoning has gained traction through SPAE (training-free probing for RL credit assignment), SHAPE (rollout-based hierarchical advantage for RL policy training), and PQM (Q-value ranking for discriminative PRMs). However, all post-hoc methods 'inherit the ranking quality of the base PRM' and must be re-fitted per generator-domain pair; all advantage-based methods target RL policy training or discriminative ranking, not generative verification with calibration. Meanwhile, 'Scaling Laws for Generative Reward Models' documents an evaluator-rewarder gap where thinking GenRMs' validation gains 'diminish and often reverse' during policy optimization — a gap we hypothesize stems from poorly calibrated overconfident scores. GenPAV addresses both problems through advantage-grounded training: Monte Carlo advantage labels (64 rollouts per state from a Qwen3-4B complementary prover, with Llama-3.1-8B cross-family ablation) encode progress information into the model's representations via a streamlined two-objective loss combining CoT critique generation (SFT) and advantage regression. We deliberately simplify from a three-loss design by dropping the differentiable ECE surrogate — advantage regression alone should provide structural calibration by encoding progress into representations, and the ECE surrogate is retained only as an ablation variant. The advantage regression head anchors scores to a progress-theoretic quantity, making them more robust to distribution shift during policy optimization and resistant to the overoptimization that drives the evaluator-rewarder gap. Built on Qwen3-8B with QwQ-32B-distilled rationales, GenPAV targets: (H1) ≥3% best-of-N accuracy on MATH-500 over GenPRM-7B; (H2) ≥50% ECE reduction vs. uncalibrated ThinkPRM-7B; (H3) measurable ECE improvement over post-hoc calibrated baselines including both generative (QR-ThinkPRM, OT-GenPRM) and discriminative (QR-Qwen2.5-Math-PRM-7B, OT-Qwen2.5-Math-PRM-7B) — the latter ensuring the comparison is fair even when base PRMs have well-distributed scores; (H4) reduced BoN accuracy degradation at large N, testing whether calibration mitigates the evaluator-rewarder gap. Cost-benefit: GenPAV's ~375 GPU-hour one-time training cost is amortized across all future evaluations, while post-hoc calibration requires re-fitting per generator-domain pair (~5–10 GPU-hours each), scaling linearly with deployment breadth. We validate cross-generator generalization without re-fitting.\",\n  \"project_name\": \"gen_pav\",\n  \"source\": \"web_research\",\n  \"revision_notes\": {\n    \"round_1_issue_1_thinkprm_baseline\": \"Added ThinkPRM-7B and ThinkPRM-14B as explicit baselines. Repositioned the contribution: GenPAV's value over ThinkPRM is not raw F1 improvement at matched scale but principled calibration.\",\n    \"round_1_issue_2_theorem_inheritance\": \"Weakened from 'inherits PAV's theoretical guarantees' to 'designed to approximate PAV's advantage estimates; empirically validated via calibration analysis.'\",\n    \"round_1_issue_3_prover_diversity\": \"Retained Qwen3-4B as primary prover (citing PAV same-family precedent) but added Llama-3.1-8B cross-family ablation.\",\n    \"round_1_issue_4_missing_baselines\": \"Added R-PRM-7B, ActPRM-7B, ThinkPRM-7B/14B as baselines. Added PRMBench evaluation.\",\n    \"round_1_issue_5_resource_estimates\": \"Revised upward ~20-30% with detailed breakdown.\",\n    \"round_1_issue_6_empirical_hypothesis\": \"Stated crisp, falsifiable hypotheses for BoN accuracy and ECE reduction.\",\n    \"round_2_issue_1_kyd_calibration_baseline\": \"MAJOR: Added KYD and DPRM as critical calibration baselines with post-hoc calibrated variants.\",\n    \"round_2_issue_2_cot_entropy\": \"Added CoT Entropy to landscape and as ablation.\",\n    \"round_2_issue_3_ece_target_raised\": \"Raised ECE target from ≥30% to ≥50%, distinguished step-level PRM calibration from answer-level RLVR.\",\n    \"round_2_issue_4_edu_prm\": \"Added EDU-PRM to landscape; orthogonal to advantage grounding.\",\n    \"round_2_issue_5_bon_specificity\": \"Structured hypotheses H1–H3 with clear metrics.\",\n    \"round_2_framing_shift\": \"Reframed core contribution to 'structural calibration superiority through progress-aware representations.'\",\n    \"round_3_issue_1_spae_shape_pqm\": \"MAJOR: Added SPAE (arXiv Jan 2026), SHAPE (arXiv Apr 2026), and PQM (ICLR 2025) as related work with detailed positioning. SPAE uses training-free probing to extract step potential Φ(τ) = f(Acc, Conf) for RL credit assignment during GRPO/DAPO — targets policy optimization, not PRM training, and provides no calibration analysis. SHAPE uses rollout-based potential estimation Φ(s_k) = (1/m)Σr_i with stage-aware hierarchical advantage for RL policy training — again targets policy optimization, not PRM training/verification. PQM formulates discriminative PRM training as Q-value ranking in MDP framework, proving A*(s,a) = Q*(s,a) − Q*(s_{t-1}, a_{t-1}) via potential-based reward shaping — closest to GenPAV's advantage formulation but is discriminative (no generative verification), provides no calibration analysis, and cannot scale at test time. GenPAV is positioned as the first to combine advantage grounding with generative verification for structural calibration, occupying a distinct niche from all three: learned representations (vs. SPAE's training-free probing), PRM verification (vs. SHAPE's RL policy optimization), and generative CoT with calibration (vs. PQM's discriminative ranking).\",\n    \"round_3_issue_2_evaluator_rewarder_gap\": \"MAJOR: Addressed the evaluator-rewarder gap from 'Scaling Laws for Generative Reward Models' (OpenReview 2026). The finding that thinking GenRMs outperform answer-only by 1–2% on validation but gains 'diminish and often reverse' during policy optimization is taken seriously as a direct threat to GenPAV's downstream utility. Our argument for why advantage grounding may mitigate this: (1) The gap likely stems from overconfident scores enabling reward overoptimization — poorly calibrated GenRM scores lead policies to exploit spuriously high-scoring but incorrect solutions. Well-calibrated scores that reflect true success probability should resist this overoptimization. (2) Advantage regression anchors scores to a progress-theoretic quantity (expected improvement under complementary prover) rather than surface-level pattern matching, making scores more robust to distribution shift during optimization. (3) This is supported by reward overoptimization literature showing calibrated/ensemble rewards reduce overoptimization (Coste et al., NeurIPS 2023). Added H4 (evaluator-rewarder gap test): GenPAV should exhibit less BoN accuracy degradation at large N, measured as the gap between proxy-selected and oracle-selected BoN accuracy at N=256 vs. N=64. Added BoN overoptimization curves as a key evaluation.\",\n    \"round_3_issue_3_h3_confound\": \"MAJOR: Addressed the confound that ThinkPRM's 0/1 score clustering makes post-hoc calibration unfairly weak. Added QR-Qwen2.5-Math-PRM-7B (the actual KYD result with well-distributed scores) and OT-Qwen2.5-Math-PRM-7B (the actual DPRM result) as discriminative baselines in the H3 structural calibration comparison. These discriminative PRMs have continuous score distributions that are well-suited for post-hoc calibration, ensuring that any GenPAV advantage over post-hoc methods is not an artifact of poor input score distributions. The H3 comparison now spans: generative baselines (QR-ThinkPRM, QR-GenPRM, OT-ThinkPRM, OT-GenPRM) with potentially clustered scores AND discriminative baselines (QR-Qwen2.5-Math-PRM-7B, OT-Qwen2.5-Math-PRM-7B) with well-distributed scores.\",\n    \"round_3_issue_4_cost_benefit\": \"MAJOR: Added explicit cost-benefit analysis. GenPAV training: ~375 GPU-hours one-time (MC rollouts: ~150h, QwQ-32B distillation: ~225h). KYD post-hoc: ~5–10 GPU-hours per generator-domain pair. However, KYD/DPRM must be re-fitted per generator-domain pair — KYD explicitly states 'a PRM is only calibrated to the statistical patterns of the policy it was trained with' and DPRM notes 'OT performance is sensitive to distribution shift.' For K=5 generators × D=3 domains, post-hoc cost reaches 75–150 GPU-hours and requires maintaining 15 calibration configurations, approaching GenPAV's one-time cost. GenPAV's advantage-grounded representations aim to generalize across generators/domains without re-fitting. We validate this claim by evaluating GenPAV's calibration with unseen generators (Llama-3.1-8B, DeepSeek-Math-7B) without re-fitting vs. KYD/DPRM re-fitted per generator.\",\n    \"round_3_issue_5_ece_surrogate_simplification\": \"MAJOR: Simplified the training objective from three losses (SFT + advantage regression + ECE surrogate) to two losses (SFT + advantage regression). The ECE surrogate loss is dropped from the core method for three reasons: (1) no precedent for differentiable ECE surrogates in multi-objective generative+regression frameworks — existing work (Soft Calibration Objectives, NeurIPS 2021; Meta-Calibration) operates in standard classification settings; (2) potential for unpredictable interactions between ECE surrogate and advantage regression losses; (3) advantage regression alone should provide structural calibration by encoding progress information into representations, since learning to predict A(s,a) inherently produces scores correlated with true success probability. The ECE surrogate is retained as an ablation variant (two-objective vs. three-objective) to empirically test whether explicit calibration pressure adds value beyond advantage regression. This simplification reduces implementation risk while maintaining the core advantage-grounding contribution.\"\n  }\n}\n\n## Reviewer feedback (round 4)\nIssues: [\"Missing 5-6 notable related works that narrow the perceived novelty gap: (1) StepWiser (ICLR 2026 withdrawn submission) is a generative step-level judge trained via RL that meta-reasons about reasoning steps—conceptually the closest prior work to GenPAV's 'generative verifier that reasons about step quality' framing, even though it lacks advantage grounding and calibration focus; (2) Think-RM (NeurIPS 2025) achieves SOTA on RM-Bench via long-horizon reasoning in generative reward models with RLHF training—a direct competitor in the 'improved generative RM' space; (3) AgentPRM (ACM Web 2026) uses TD-based estimation combined with GAE for PRM training, which is technically similar to GenPAV's advantage regression for PRM, though in the agent rather than math domain; (4) SPARK (arXiv Dec 2024) combines 'Selective Advantage' (process-aware advantage preserving only aligned step-correctness signals) with a generative PRM-CoT as the reward model; (5) PURE/Stop Summation (NeurIPS 2025) uses min-form credit assignment with value functions to address PRM reward hacking; (6) OAR (Jan 2026) uses advantage reshaping for token-level credit assignment. While none combine all three of GenPAV's elements, collectively they demonstrate that the 'advantage + generative PRM' intersection is actively occupied.\", \"The claim 'No published or concurrent work as of May 2026 unifies generative chain-of-thought verification with advantage-grounded training for structural calibration' is technically correct but could mislead reviewers into perceiving greater novelty distance than exists. StepWiser's 'meta-reasoning about step quality via generative judge trained with RL' and AgentPRM's 'advantage estimation (TD+GAE) for PRM training' together cover much of GenPAV's conceptual territory, leaving 'calibration as the bridging contribution' as the primary differentiator rather than the full three-way combination.\", \"H4 (evaluator-rewarder gap mitigation via calibration) remains the weakest hypothesis. The causal chain 'better calibration → resistance to overoptimization → better downstream RL/BoN' is plausible but the Scaling Laws for GenRMs paper found that model scale—not calibration—is the dominant factor in downstream effectiveness. Additionally, the paper found that intermediate GRPO checkpoints (worse static accuracy) can outperform fully-trained ones as rewarders, which suggests the problem may be more about training dynamics than score calibration. GenPAV's advantage grounding may be orthogonal to the actual causes of the evaluator-rewarder gap.\", \"The 'Scaling Laws for Generative Reward Models' paper's venue status is ambiguous—submitted to ICLR 2026 but acceptance/rejection is unclear. Citing it as 'OpenReview 2026' is accurate but may overstate its authority. If rejected, the evaluator-rewarder gap finding (which motivates H4 and a significant portion of the framing) would rest on unvetted claims.\"]\nFeedback: The proposal is very close to pass quality after four rounds of substantial revision. The core gap (training-time advantage grounding for generative PRM calibration) is verified and well-motivated, particularly by DPRM's explicit identification of this direction as future work. To reach the threshold: (1) Add StepWiser, Think-RM, AgentPRM, SPARK, PURE/Stop Summation, and OAR to the landscape section. Position GenPAV relative to each: StepWiser (generative judge via RL, no calibration); Think-RM (long-horizon GenRM, no advantage grounding); AgentPRM (TD+GAE for PRM, different domain, no calibration); SPARK (selective advantage + generative PRM, targets RL training); PURE (min-form value function, targets reward hacking not calibration). Weaken the novelty framing from 'entirely untried combination' to 'first to unify these elements specifically for structural calibration'—the advantage-estimation-meets-generative-PRM space is more populated than the proposal suggests. (2) Temper H4 or strengthen it: either acknowledge that the evaluator-rewarder gap may stem from training dynamics rather than calibration (per the intermediate checkpoint finding in Scaling Laws), or provide a more rigorous argument for why calibration specifically would help. Consider making H4 an exploratory hypothesis rather than a primary contribution. (3) Verify the Scaling Laws for GenRMs paper's acceptance status at ICLR 2026; if rejected or still under review, cite as a preprint and soften the framing accordingly.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.\n- Address each issue specifically.\n\n## 深度调研要求\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。\n3. **深度思考**：\n   - 核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach？\n4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。\n\n## 针对 Review 意见的定向搜索\n\n1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点\n2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline\n3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现\n4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot\n\n- You have full freedom: minor fix, major revision, or pivot.\n- Include a \"change_type\" field: \"minor\", \"major\", or \"pivot\".\n- Output a COMPLETE JSON object with ALL fields.\n\n## 停滞提醒\n经过 4 轮修订，近 3 轮平均分从 3.8 到 3.8，无明显改善。\n考虑 major revision 或 pivot。\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T18:59:07.967Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T18:59:07.967Z",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a"
+}
+```
+
+---
+
+## Round 1
+
+40 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T18:59:08.000Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-27 (UTC).**
+
+## Original idea
+{
+  "title": "Generative Process Advantage Verifiers: Calibrated Step-Level Verification via Advantage-Grounded Chain-of-Thought",
+  "core_problem": "Can we combine the test-time scalability of generative chain-of-thought verification with the theoretically grounded advantage/progress formulation, producing a verifier that reasons explicitly about whether each step constitutes forward progress — and crucially, one whose step-level scores are structurally well-calibrated through advantage grounding at training time, surpassing the calibration achievable by post-hoc recalibration methods (quantile regression, optimal transport) which are provably limited to monotonic transformations that cannot recover progress information absent from the base model's representations? Furthermore, can such advantage-grounded calibration mitigate the evaluator-rewarder gap documented in recent scaling laws for generative reward models, where better static evaluation accuracy fails to translate into better downstream policy optimization?",
+  "opportunity": "A cluster of recent calibration advances has transformed the PRM landscape since our initial proposal. Post-hoc methods now achieve substantial ECE reductions on discriminative PRMs: 'Know What You Don't Know' (KYD, NeurIPS 2025) applies quantile regression to Qwen2.5-Math-PRM-7B, reducing ECE by 66.3% on MATH500; Distributional PRMs (DPRM, arXiv May 2026) extend this via conditional optimal transport, achieving 51.6–69.5% ECE reduction. CoT Entropy (arXiv Feb 2025) provides sampling-based uncertainty quantification for generative verifiers. However, a critical structural limitation unifies all post-hoc approaches, explicitly acknowledged by the DPRM authors: 'Calibration quality inherits the ranking quality of the base PRM. When the underlying model produces unreliable signals, OT calibration cannot recover meaningful uncertainty estimates.' Post-hoc methods apply monotonic transformations that preserve ranking but cannot inject new information — and crucially, must be re-fitted for each new generator-domain pair (KYD requires 500 calibration questions × 8 trajectories × 8 rollouts per generator; DPRM explicitly notes 'OT performance is sensitive to distribution shift between training and evaluation problems'). Meanwhile, advantage-based step-level reasoning has gained traction in the RL training context: SPAE (arXiv Jan 2026) uses training-free probing to extract step potential for RL credit assignment; SHAPE (arXiv Apr 2026) uses rollout-based potential estimation for hierarchical credit assignment; PQM (ICLR 2025) formulates discriminative PRM training as Q-value ranking. However, none of these combine advantage grounding with generative verification or address calibration — SPAE and SHAPE target RL policy optimization, while PQM trains discriminative models without calibration analysis. A separate critical finding threatens all generative verification approaches: 'Scaling Laws for Generative Reward Models' (OpenReview 2026) documented an evaluator-rewarder gap where thinking GenRMs outperform answer-only variants by 1–2% on validation tasks but these gains 'diminish and often reverse' during policy optimization. This gap likely stems from poorly calibrated scores that enable reward overoptimization — precisely the problem that advantage-grounded calibration could address. The untried combination: advantage-grounded training that encodes progress information into model representations at training time, producing both better ranking AND better calibration — structural benefits that post-hoc recalibration cannot replicate — while also potentially mitigating the evaluator-rewarder gap through progress-aware scoring that resists overoptimization.",
+  "landscape": "Post-hoc PRM calibration cluster: KYD (NeurIPS 2025) applies quantile regression to Qwen2.5-Math-PRM-7B, achieving ECE 0.2791→0.0942 (66.3% reduction) for Llama-3.2-1B completions and 0.0981→0.0864 for Qwen-2.5-7B completions on MATH500; outperforms temperature scaling, isotonic regression, histogram binning; enables Instance-Adaptive Scaling for up to 75% compute reduction; requires ~500 calibration questions with 8 trajectories × 8 MC rollouts per prefix per generator, and must be re-fitted per generator-domain pair since 'a PRM is only calibrated to the statistical patterns of the policy it was trained with.' Distributional PRMs (DPRM, arXiv May 2026) extend KYD via conditional optimal transport, achieving 51.6–69.5% ECE reduction for Qwen2.5-Math-PRM-7B on MATH500; the authors explicitly state 'Calibration quality inherits the ranking quality of the base PRM' and 'OT performance is sensitive to distribution shift between training and evaluation problems'; they identify 'incorporating calibration objectives directly into PRM fine-tuning' as future work — precisely GenPAV's approach. CoT Entropy (arXiv Feb 2025, Ye et al.) proposes entropy over clustered reasoning paths for UQ in generative PRMs, applied to Qwen2-Math-72B-Instruct; achieves AUROC 0.680, AUPRC 0.885 on PRM800K subset (150 questions); post-hoc, no ECE measurement. EDU-PRM (arXiv Mar 2025) uses entropy-driven step segmentation to match Qwen2.5-Math-PRM with 1.5% training data; no calibration analysis; orthogonal to advantage grounding. DCPO (arXiv Mar 2026) achieves 71.6% ECE reduction on Qwen3-8B (0.435→0.128) but at answer-level RLVR confidence, NOT step-level PRM scores; the paper explicitly states 'No step-level or process reward application is discussed'; step-level PRM calibration is fundamentally harder. Advantage-based approaches: SPAE (arXiv Jan 2026) uses training-free probing to extract 'step potential' Φ(τ) = 1.5·Acc·Conf + 0.5·Acc − Conf for RL credit assignment during GRPO/DAPO training; reduces response length 25% while improving accuracy 3–7% on AIME; but is training-free (no learned representations), targets RL policy optimization (not PRM training), and provides no calibration analysis. SHAPE (arXiv Apr 2026) uses rollout-based potential estimation Φ(s_k) = (1/m)Σr_i for hierarchical advantage with stage-aware discounting; achieves ~3% accuracy gain with 30% token reduction across 3 base models; but again targets RL policy training, not PRM training/verification, and provides no calibration analysis. PQM (ICLR 2025) formulates PRM as Q-value ranking in a deterministic MDP, proving A*(s_t, a_t) = Q*(s_t, a_t) − Q*(s_{t-1}, a_{t-1}) via potential-based reward shaping; achieves +11.6% on MATH500 over classification-based PRMs with comparative loss; but is discriminative (no generative verification), provides no calibration analysis, and cannot scale at test time. Rewarding Progress (ICLR 2025 Spotlight) formalizes progress as advantage under a complementary prover with theoretical guarantees (Theorem 3.1), but PAVs are discriminative. Evaluator-rewarder gap: 'Scaling Laws for Generative Reward Models' (OpenReview 2026) found that thinking GenRMs trained via GRPO outperform answer-only (SFT) variants by 1–2% on validation tasks using Qwen3 family (0.6B–14B), but these gains 'diminish and often reverse' during policy optimization where answer-only GenRMs achieve higher Gold Elo; intermediate GRPO checkpoints can outperform fully-trained ones as rewarders despite worse static accuracy; this suggests that overconfident CoT reasoning may exacerbate reward overoptimization. S2J (arXiv Sep 2025) identifies a 'solve-to-judge gap' of 14–37% in GenRMs and addresses it via joint solving-judging training, reducing the gap by 16.2%; relevant since advantage grounding may similarly close this gap. Generative PRMs: GenPRM (AAAI 2026) achieves ~80.5 F1 at 7B on ProcessBench via CoT+code verification, no calibration analysis. ThinkPRM (TMLR 2026) achieves 86.5 avg F1 on ProcessBench's hardest 2 subsets, but scores cluster near 0/1 with 'step label interference.' R-PRM (EMNLP 2025) reaches 70.4 F1. ActPRM (arXiv 2025) achieves 76.0 F1 at 7B. RL^V (arXiv May 2025) jointly trains LLM as reasoner and generative verifier, boosting MATH accuracy by 20% with parallel sampling; demonstrates feasibility of dual-purpose models. RM-R1 (ICLR 2026) applies chain-of-rubrics for pairwise preference. TP-GRPO (arXiv Jul 2025) integrates generative PRM signals into RL training. No published or concurrent work as of May 2026 unifies generative chain-of-thought verification with advantage-grounded training for structural calibration.",
+  "inspired_by": "Untried combination #1 (GenPRM × Rewarding Progress × calibration-aware training); innovation pattern 'Structural advantage over post-hoc fixes' (training-time progress encoding vs. post-hoc monotonic transformation, motivated by DPRM authors' own identification of this gap); insight from KYD/DPRM establishing the ceiling of post-hoc calibration (ranking quality inheritance + distribution shift sensitivity) creating an opening for training-time approaches; ThinkPRM's documented calibration failure as the specific problem to solve; evaluator-rewarder gap from Scaling Laws for GenRMs motivating calibration as a mitigation for downstream utility; PQM's Q-value ranking framework and SPAE/SHAPE's advantage-based RL credit assignment confirming the broader trend toward advantage/value-based step-level reasoning — but with the specific gap that none target generative PRM calibration",
+  "approach": "Train a Generative Process Advantage Verifier (GenPAV) that produces explicit chain-of-thought rationales reasoning about whether each step constitutes forward progress, grounded in the advantage function A(s,a) = V_π(s') − V_π(s) under a complementary prover π. Using Qwen3-8B as the base verifier, we: (1) Generate Monte Carlo advantage labels by rolling out a complementary prover (Qwen3-4B as primary, following PAV's same-family weaker-model precedent, with Llama-3.1-8B cross-family ablation) from each intermediate state in MATH training solutions (~20K states, 64 rollouts each), retaining continuous advantage values rather than binarizing. (2) Synthesize CoT rationales explaining each step's advantage using QwQ-32B as a teacher distiller, conditioned on computed advantages: negative-advantage steps receive critique prompts biased toward identifying errors; positive-advantage steps receive prompts explaining progress. (3) Fine-tune via a streamlined two-objective training procedure combining: (a) standard SFT loss on CoT critique generation, and (b) advantage regression loss on a linear head predicting continuous A(s,a) from final hidden states — grounding internal representations in progress estimation. We deliberately simplify from the earlier three-loss design by dropping the differentiable ECE surrogate, following the principle that advantage regression alone should provide structural calibration by encoding progress information into representations — if the model learns to estimate A(s,a) accurately, its scores will inherently track true solution progress. The ECE surrogate is retained as an ablation variant to test whether explicit calibration pressure yields additional gains atop advantage regression. The advantage regression head serves dual purposes: scalar scoring for ranking (like discriminative PRMs) and calibration target (unlike heuristic binary labels). This design draws on but differentiates from related advantage-based approaches: unlike SPAE's training-free probing for RL credit assignment, GenPAV learns advantage-grounded representations through supervised training; unlike SHAPE's rollout-based potentials for RL policy optimization, GenPAV encodes advantage into a generative verifier's representations; unlike PQM's Q-value ranking for discriminative PRMs, GenPAV produces generative CoT verification with calibrated scores. Critically, we weaken the theoretical claim: rather than asserting inheritance of PAV's Theorem 3.1 guarantees (which assume oracle advantage access), we position GenPAV as designed to approximate PAV's advantage estimates through generative reasoning with structurally calibrated outputs. Regarding the evaluator-rewarder gap documented by 'Scaling Laws for Generative Reward Models': we hypothesize that advantage-grounded calibration mitigates this gap through two mechanisms. First, well-calibrated scores resist reward overoptimization — when a verifier's confidence reflects true success probability, BoN selection avoids the pathological case where overconfident scores for spuriously correct-looking solutions dominate selection. Second, advantage regression anchors the scoring function to a progress-theoretic quantity (expected improvement under the complementary prover) rather than surface-level pattern matching, making scores more robust to distribution shift during policy optimization. We test this hypothesis directly in our evaluation. Test-time compute scaling is achieved through majority voting over multiple CoT traces, with the advantage-calibrated scores providing principled aggregation weights. Our central empirical hypotheses: (H1) GenPAV achieves ≥3% best-of-N accuracy improvement over GenPRM-7B on MATH-500 at matched parameters and compute; (H2) GenPAV achieves ≥50% ECE reduction vs. uncalibrated ThinkPRM-7B on MATH-500; (H3, structural calibration test) GenPAV outperforms post-hoc calibrated baselines — including both generative (QR-ThinkPRM, QR-GenPRM, OT-ThinkPRM, OT-GenPRM) and discriminative (QR-Qwen2.5-Math-PRM-7B, OT-Qwen2.5-Math-PRM-7B) — in ECE, demonstrating that advantage grounding provides calibration benefits beyond what monotonic post-hoc transformations can achieve, even when the base discriminative PRM has well-distributed scores; (H4, evaluator-rewarder gap test) GenPAV exhibits less BoN accuracy degradation than uncalibrated ThinkPRM-7B and GenPRM-7B when increasing N beyond the optimal point, as measured by the gap between proxy-selected and oracle-selected BoN accuracy at N=256 vs. N=64. We evaluate on ProcessBench (all 4 subsets), PRMBench, MATH-500 and AIME'24 (best-of-N and reward-guided search), and online RL sample efficiency, against GenPRM-7B, ThinkPRM-7B, ThinkPRM-14B, R-PRM-7B, ActPRM-7B, discriminative PAV, Qwen2.5-Math-PRM-7B, and post-hoc calibrated variants: QR-ThinkPRM-7B, QR-GenPRM-7B, OT-ThinkPRM-7B, OT-GenPRM-7B, QR-Qwen2.5-Math-PRM-7B, and OT-Qwen2.5-Math-PRM-7B. Additional ablations: (i) advantage regression with vs. without SFT CoT loss (isolating whether advantage regression alone suffices), (ii) two-objective (SFT+AdvReg) vs. three-objective (SFT+AdvReg+ECE surrogate) to test whether explicit calibration pressure adds value beyond advantage regression, (iii) GenPAV with vs. without advantage regression (CoT SFT only — isolating structural calibration contribution), (iv) CoT Entropy applied to GenPAV's critiques as an external UQ method (testing internal vs. external calibration), (v) post-hoc calibration applied to GenPAV itself (testing complementarity — if GenPAV is already well-calibrated, post-hoc methods should yield diminishing returns), (vi) BoN overoptimization curves: proxy-selected vs. oracle-selected accuracy as function of N∈{4,8,16,32,64,128,256} for GenPAV vs. all baselines. Cost-benefit analysis: GenPAV's training requires ~375 GPU-hours (MC rollouts: ~150h, QwQ-32B distillation: ~225h) as a one-time cost. In contrast, KYD post-hoc calibration requires ~5–10 GPU-hours per generator-domain pair (500 questions × 8 trajectories × 8 rollouts). However, post-hoc calibration must be re-fitted for each new generator and domain — KYD explicitly notes 'a PRM is only calibrated to the statistical patterns of the policy it was trained with,' and DPRM reports 'OT performance is sensitive to distribution shift between training and evaluation problems.' For a deployment scenario with K generators across D domains, post-hoc calibration costs K×D×(5–10) GPU-hours and requires maintaining K×D calibration configurations. With K=5 generators and D=3 domains, this reaches 75–150 GPU-hours — approaching GenPAV's one-time cost, and scaling linearly with deployment breadth. GenPAV's advantage-grounded representations aim to provide calibration that generalizes across generators and domains without re-fitting, amortizing the upfront training cost. We validate this claim by evaluating GenPAV's calibration with generators not seen during training (Llama-3.1-8B, DeepSeek-Math-7B) without re-fitting, comparing against KYD/DPRM re-fitted for each generator.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "1350",
+      "timeline": "10-14 weeks",
+      "estimated_gpu_cost": "$3375 (8×H100 at ~$2.50/GPU-hr)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "1150",
+      "timeline": "7-9 weeks",
+      "claude_api_cost": "$500 (data pipeline automation, rationale quality filtering, calibration analysis, hyperparameter sweep orchestration)",
+      "estimated_gpu_cost": "$2875"
+    },
+    "auto_research": {
+      "gpu_hours": "1050",
+      "timeline": "5-7 weeks",
+      "claude_api_cost": "$1200 (end-to-end experiment orchestration, ablation design, calibration analysis, paper drafting)",
+      "estimated_gpu_cost": "$2625",
+      "speed_bottleneck": "Monte Carlo rollout generation: ~64 rollouts per intermediate state across ~20K states requires sequential inference passes with Qwen3-4B complementary prover (~150 GPU-hrs), plus QwQ-32B distillation for 20K rationales (~225 GPU-hrs); cross-family prover ablation with Llama-3.1-8B adds ~100 GPU-hrs; post-hoc calibration baselines (KYD quantile regression and DPRM optimal transport applied to ThinkPRM-7B, GenPRM-7B, and Qwen2.5-Math-PRM-7B, requiring ~500 calibration questions × 8 trajectories × 8 rollouts per prefix per model) add ~80 GPU-hrs; BoN overoptimization analysis at N∈{4,...,256} adds ~50 GPU-hrs; cross-generator calibration generalization test adds ~40 GPU-hrs. Parallelizable across GPUs but QwQ-32B distillation dominates wall-clock time."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (paper deadline: July 28, 2026)",
+    "ICLR 2027 (predicted paper deadline: ~Sep 24, 2026)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026)",
+    "Rewarding Progress: Scaling Automated Process Verifiers for LLM Reasoning (ICLR 2025 Spotlight)",
+    "Process Reward Models That Think (TMLR 2026, Khalifa et al.)",
+    "Know What You Don't Know: Uncertainty Calibration of Process Reward Models (NeurIPS 2025, Park et al.) — post-hoc quantile regression; 66.3% ECE reduction; key calibration baseline; must be re-fitted per generator-domain pair",
+    "Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport (arXiv May 2026, Ma et al.) — OT-based post-hoc calibration; 51.6–69.5% ECE reduction; explicitly identifies training-time calibration as future work; sensitive to distribution shift",
+    "Uncertainty-Aware Step-wise Verification with Generative Reward Models (arXiv Feb 2025, Ye et al.) — CoT Entropy for generative PRM uncertainty quantification",
+    "More Bang for the Buck: Process Reward Modeling with Entropy-Driven Uncertainty (arXiv Mar 2025) — EDU-PRM; entropy-driven step segmentation",
+    "Decoupling Reasoning and Confidence: Resurrecting Calibration in Reinforcement Learning from Verifiable Rewards (arXiv Mar 2026, Ma et al.) — DCPO; 71.6% ECE reduction at answer-level RLVR (not step-level PRM)",
+    "Step Potential Advantage Estimation: Harnessing Intermediate Confidence and Correctness for Efficient Mathematical Reasoning (arXiv Jan 2026) — SPAE; training-free advantage-based RL credit assignment; targets policy optimization, not PRM training",
+    "SHAPE: Stage-aware Hierarchical Advantage via Potential Estimation for LLM Reasoning (arXiv Apr 2026) — rollout-based hierarchical advantage for RL policy training; ~3% accuracy with 30% token reduction",
+    "Process Reward Model with Q-Value Rankings (ICLR 2025) — PQM; Q-value ranking in MDP framework for discriminative PRM; A*(s,a) = Q*(s,a) − Q*(s_{t-1},a_{t-1}); no calibration analysis",
+    "Scaling Laws for Generative Reward Models (OpenReview 2026) — evaluator-rewarder gap: thinking GenRMs underperform answer-only during policy optimization; motivates calibration-based mitigation",
+    "R-PRM: Reasoning-Driven Process Reward Modeling (EMNLP 2025)",
+    "ActPRM: Efficient Process Reward Model Training via Active Learning (arXiv 2025)",
+    "RM-R1: Reward Modeling as Reasoning (ICLR 2026)",
+    "Good Learners Think Their Thinking: Generative PRM Makes Large Reasoning Model More Efficient Math Learner (arXiv Jul 2025)",
+    "Generative Verifiers: Reward Modeling as Next-Token Prediction (ICLR 2025)",
+    "RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning (NeurIPS 2025)",
+    "S2J: Bridging the Gap Between Solving and Judging Ability in Generative Reward Models (arXiv Sep 2025) — solve-to-judge gap of 14–37% in GenRMs",
+    "Putting the Value Back in RL: Better Test-Time Scaling by Unifying LLM Reasoners With Verifiers (arXiv May 2025) — RL^V; joint reasoner-verifier training",
+    "Soft Calibration Objectives for Neural Networks (NeurIPS 2021) — differentiable ECE surrogate for training-time calibration",
+    "ProcessBench: Identifying Process Errors in Mathematical Reasoning (ACL 2025)",
+    "Hard2Verify: Benchmarking Verification of Frontier Mathematical Reasoning (arXiv 2025)",
+    "PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models (ACL 2025)",
+    "Reward Model Ensembles Help Mitigate Overoptimization (NeurIPS 2023) — calibrated/ensemble rewards reduce overoptimization"
+  ],
+  "description": "We propose Generative Process Advantage Verifiers (GenPAV), which unify generative chain-of-thought verification with advantage-grounded training to produce step-level scores that are structurally well-calibrated to true solution progress — achieving calibration quality beyond what post-hoc recalibration methods can provide, while also mitigating the evaluator-rewarder gap that threatens all generative verification approaches. The PRM calibration landscape has evolved rapidly: KYD (NeurIPS 2025) achieves 66.3% ECE reduction via post-hoc quantile regression, DPRM (arXiv May 2026) reaches 51.6–69.5% via optimal transport, and advantage-based step-level reasoning has gained traction through SPAE (training-free probing for RL credit assignment), SHAPE (rollout-based hierarchical advantage for RL policy training), and PQM (Q-value ranking for discriminative PRMs). However, all post-hoc methods 'inherit the ranking quality of the base PRM' and must be re-fitted per generator-domain pair; all advantage-based methods target RL policy training or discriminative ranking, not generative verification with calibration. Meanwhile, 'Scaling Laws for Generative Reward Models' documents an evaluator-rewarder gap where thinking GenRMs' validation gains 'diminish and often reverse' during policy optimization — a gap we hypothesize stems from poorly calibrated overconfident scores. GenPAV addresses both problems through advantage-grounded training: Monte Carlo advantage labels (64 rollouts per state from a Qwen3-4B complementary prover, with Llama-3.1-8B cross-family ablation) encode progress information into the model's representations via a streamlined two-objective loss combining CoT critique generation (SFT) and advantage regression. We deliberately simplify from a three-loss design by dropping the differentiable ECE surrogate — advantage regression alone should provide structural calibration by encoding progress into representations, and the ECE surrogate is retained only as an ablation variant. The advantage regression head anchors scores to a progress-theoretic quantity, making them more robust to distribution shift during policy optimization and resistant to the overoptimization that drives the evaluator-rewarder gap. Built on Qwen3-8B with QwQ-32B-distilled rationales, GenPAV targets: (H1) ≥3% best-of-N accuracy on MATH-500 over GenPRM-7B; (H2) ≥50% ECE reduction vs. uncalibrated ThinkPRM-7B; (H3) measurable ECE improvement over post-hoc calibrated baselines including both generative (QR-ThinkPRM, OT-GenPRM) and discriminative (QR-Qwen2.5-Math-PRM-7B, OT-Qwen2.5-Math-PRM-7B) — the latter ensuring the comparison is fair even when base PRMs have well-distributed scores; (H4) reduced BoN accuracy degradation at large N, testing whether calibration mitigates the evaluator-rewarder gap. Cost-benefit: GenPAV's ~375 GPU-hour one-time training cost is amortized across all future evaluations, while post-hoc calibration requires re-fitting per generator-domain pair (~5–10 GPU-hours each), scaling linearly with deployment breadth. We validate cross-generator generalization without re-fitting.",
+  "project_name": "gen_pav",
+  "source": "web_research",
+  "revision_notes": {
+    "round_1_issue_1_thinkprm_baseline": "Added ThinkPRM-7B and ThinkPRM-14B as explicit baselines. Repositioned the contribution: GenPAV's value over ThinkPRM is not raw F1 improvement at matched scale but principled calibration.",
+    "round_1_issue_2_theorem_inheritance": "Weakened from 'inherits PAV's theoretical guarantees' to 'designed to approximate PAV's advantage estimates; empirically validated via calibration analysis.'",
+    "round_1_issue_3_prover_diversity": "Retained Qwen3-4B as primary prover (citing PAV same-family precedent) but added Llama-3.1-8B cross-family ablation.",
+    "round_1_issue_4_missing_baselines": "Added R-PRM-7B, ActPRM-7B, ThinkPRM-7B/14B as baselines. Added PRMBench evaluation.",
+    "round_1_issue_5_resource_estimates": "Revised upward ~20-30% with detailed breakdown.",
+    "round_1_issue_6_empirical_hypothesis": "Stated crisp, falsifiable hypotheses for BoN accuracy and ECE reduction.",
+    "round_2_issue_1_kyd_calibration_baseline": "MAJOR: Added KYD and DPRM as critical calibration baselines with post-hoc calibrated variants.",
+    "round_2_issue_2_cot_entropy": "Added CoT Entropy to landscape and as ablation.",
+    "round_2_issue_3_ece_target_raised": "Raised ECE target from ≥30% to ≥50%, distinguished step-level PRM calibration from answer-level RLVR.",
+    "round_2_issue_4_edu_prm": "Added EDU-PRM to landscape; orthogonal to advantage grounding.",
+    "round_2_issue_5_bon_specificity": "Structured hypotheses H1–H3 with clear metrics.",
+    "round_2_framing_shift": "Reframed core contribution to 'structural calibration superiority through progress-aware representations.'",
+    "round_3_issue_1_spae_shape_pqm": "MAJOR: Added SPAE (arXiv Jan 2026), SHAPE (arXiv Apr 2026), and PQM (ICLR 2025) as related work with detailed positioning. SPAE uses training-free probing to extract step potential Φ(τ) = f(Acc, Conf) for RL credit assignment during GRPO/DAPO — targets policy optimization, not PRM training, and provides no calibration analysis. SHAPE uses rollout-based potential estimation Φ(s_k) = (1/m)Σr_i with stage-aware hierarchical advantage for RL policy training — again targets policy optimization, not PRM training/verification. PQM formulates discriminative PRM training as Q-value ranking in MDP framework, proving A*(s,a) = Q*(s,a) − Q*(s_{t-1}, a_{t-1}) via potential-based reward shaping — closest to GenPAV's advantage formulation but is discriminative (no generative verification), provides no calibration analysis, and cannot scale at test time. GenPAV is positioned as the first to combine advantage grounding with generative verification for structural calibration, occupying a distinct niche from all three: learned representations (vs. SPAE's training-free probing), PRM verification (vs. SHAPE's RL policy optimization), and generative CoT with calibration (vs. PQM's discriminative ranking).",
+    "round_3_issue_2_evaluator_rewarder_gap": "MAJOR: Addressed the evaluator-rewarder gap from 'Scaling Laws for Generative Reward Models' (OpenReview 2026). The finding that thinking GenRMs outperform answer-only by 1–2% on validation but gains 'diminish and often reverse' during policy optimization is taken seriously as a direct threat to GenPAV's downstream utility. Our argument for why advantage grounding may mitigate this: (1) The gap likely stems from overconfident scores enabling reward overoptimization — poorly calibrated GenRM scores lead policies to exploit spuriously high-scoring but incorrect solutions. Well-calibrated scores that reflect true success probability should resist this overoptimization. (2) Advantage regression anchors scores to a progress-theoretic quantity (expected improvement under complementary prover) rather than surface-level pattern matching, making scores more robust to distribution shift during optimization. (3) This is supported by reward overoptimization literature showing calibrated/ensemble rewards reduce overoptimization (Coste et al., NeurIPS 2023). Added H4 (evaluator-rewarder gap test): GenPAV should exhibit less BoN accuracy degradation at large N, measured as the gap between proxy-selected and oracle-selected BoN accuracy at N=256 vs. N=64. Added BoN overoptimization curves as a key evaluation.",
+    "round_3_issue_3_h3_confound": "MAJOR: Addressed the confound that ThinkPRM's 0/1 score clustering makes post-hoc calibration unfairly weak. Added QR-Qwen2.5-Math-PRM-7B (the actual KYD result with well-distributed scores) and OT-Qwen2.5-Math-PRM-7B (the actual DPRM result) as discriminative baselines in the H3 structural calibration comparison. These discriminative PRMs have continuous score distributions that are well-suited for post-hoc calibration, ensuring that any GenPAV advantage over post-hoc methods is not an artifact of poor input score distributions. The H3 comparison now spans: generative baselines (QR-ThinkPRM, QR-GenPRM, OT-ThinkPRM, OT-GenPRM) with potentially clustered scores AND discriminative baselines (QR-Qwen2.5-Math-PRM-7B, OT-Qwen2.5-Math-PRM-7B) with well-distributed scores.",
+    "round_3_issue_4_cost_benefit": "MAJOR: Added explicit cost-benefit analysis. GenPAV training: ~375 GPU-hours one-time (MC rollouts: ~150h, QwQ-32B distillation: ~225h). KYD post-hoc: ~5–10 GPU-hours per generator-domain pair. However, KYD/DPRM must be re-fitted per generator-domain pair — KYD explicitly states 'a PRM is only calibrated to the statistical patterns of the policy it was trained with' and DPRM notes 'OT performance is sensitive to distribution shift.' For K=5 generators × D=3 domains, post-hoc cost reaches 75–150 GPU-hours and requires maintaining 15 calibration configurations, approaching GenPAV's one-time cost. GenPAV's advantage-grounded representations aim to generalize across generators/domains without re-fitting. We validate this claim by evaluating GenPAV's calibration with unseen generators (Llama-3.1-8B, DeepSeek-Math-7B) without re-fitting vs. KYD/DPRM re-fitted per generator.",
+    "round_3_issue_5_ece_surrogate_simplification": "MAJOR: Simplified the training objective from three losses (SFT + advantage regression + ECE surrogate) to two losses (SFT + advantage regression). The ECE surrogate loss is dropped from the core method for three reasons: (1) no precedent for differentiable ECE surrogates in multi-objective generative+regression frameworks — existing work (Soft Calibration Objectives, NeurIPS 2021; Meta-Calibration) operates in standard classification settings; (2) potential for unpredictable interactions between ECE surrogate and advantage regression losses; (3) advantage regression alone should provide structural calibration by encoding progress information into representations, since learning to predict A(s,a) inherently produces scores correlated with true success probability. The ECE surrogate is retained as an ablation variant (two-objective vs. three-objective) to empirically test whether explicit calibration pressure adds value beyond advantage regression. This simplification reduces implementation risk while maintaining the core advantage-grounding contribution."
+  }
+}
+
+## Reviewer feedback (round 4)
+Issues: ["Missing 5-6 notable related works that narrow the perceived novelty gap: (1) StepWiser (ICLR 2026 withdrawn submission) is a generative step-level judge trained via RL that meta-reasons about reasoning steps—conceptually the closest prior work to GenPAV's 'generative verifier that reasons about step quality' framing, even though it lacks advantage grounding and calibration focus; (2) Think-RM (NeurIPS 2025) achieves SOTA on RM-Bench via long-horizon reasoning in generative reward models with RLHF training—a direct competitor in the 'improved generative RM' space; (3) AgentPRM (ACM Web 2026) uses TD-based estimation combined with GAE for PRM training, which is technically similar to GenPAV's advantage regression for PRM, though in the agent rather than math domain; (4) SPARK (arXiv Dec 2024) combines 'Selective Advantage' (process-aware advantage preserving only aligned step-correctness signals) with a generative PRM-CoT as the reward model; (5) PURE/Stop Summation (NeurIPS 2025) uses min-form credit assignment with value functions to address PRM reward hacking; (6) OAR (Jan 2026) uses advantage reshaping for token-level credit assignment. While none combine all three of GenPAV's elements, collectively they demonstrate that the 'advantage + generative PRM' intersection is actively occupied.", "The claim 'No published or concurrent work as of May 2026 unifies generative chain-of-thought verification with advantage-grounded training for structural calibration' is technically correct but could mislead reviewers into perceiving greater novelty distance than exists. StepWiser's 'meta-reasoning about step quality via generative judge trained with RL' and AgentPRM's 'advantage estimation (TD+GAE) for PRM training' together cover much of GenPAV's conceptual territory, leaving 'calibration as the bridging contribution' as the primary differentiator rather than the full three-way combination.", "H4 (evaluator-rewarder gap mitigation via calibration) remains the weakest hypothesis. The causal chain 'better calibration → resistance to overoptimization → better downstream RL/BoN' is plausible but the Scaling Laws for GenRMs paper found that model scale—not calibration—is the dominant factor in downstream effectiveness. Additionally, the paper found that intermediate GRPO checkpoints (worse static accuracy) can outperform fully-trained ones as rewarders, which suggests the problem may be more about training dynamics than score calibration. GenPAV's advantage grounding may be orthogonal to the actual causes of the evaluator-rewarder gap.", "The 'Scaling Laws for Generative Reward Models' paper's venue status is ambiguous—submitted to ICLR 2026 but acceptance/rejection is unclear. Citing it as 'OpenReview 2026' is accurate but may overstate its authority. If rejected, the evaluator-rewarder gap finding (which motivates H4 and a significant portion of the framing) would rest on unvetted claims."]
+Feedback: The proposal is very close to pass quality after four rounds of substantial revision. The core gap (training-time advantage grounding for generative PRM calibration) is verified and well-motivated, particularly by DPRM's explicit identification of this direction as future work. To reach the threshold: (1) Add StepWiser, Think-RM, AgentPRM, SPARK, PURE/Stop Summation, and OAR to the landscape section. Position GenPAV relative to each: StepWiser (generative judge via RL, no calibration); Think-RM (long-horizon GenRM, no advantage grounding); AgentPRM (TD+GAE for PRM, different domain, no calibration); SPARK (selective advantage + generative PRM, targets RL training); PURE (min-form value function, targets reward hacking not calibration). Weaken the novelty framing from 'entirely untried combination' to 'first to unify these elements specifically for structural calibration'—the advantage-estimation-meets-generative-PRM space is more populated than the proposal suggests. (2) Temper H4 or strengthen it: either acknowledge that the evaluator-rewarder gap may stem from training dynamics rather than calibration (per the intermediate checkpoint finding in Scaling Laws), or provide a more rigorous argument for why calibration specifically would help. Consider making H4 an exploratory hypothesis rather than a primary contribution. (3) Verify the Scaling Laws for GenRMs paper's acceptance status at ICLR 2026; if rejected or still under review, cite as a preprint and soften the framing accordingly.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.
+- Address each issue specifically.
+
+## 深度调研要求
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。
+3. **深度思考**：
+   - 核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach？
+4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。
+
+## 针对 Review 意见的定向搜索
+
+1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点
+2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline
+3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现
+4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot
+
+- You have full freedom: minor fix, major revision, or pivot.
+- Include a "change_type" field: "minor", "major", or "pivot".
+- Output a COMPLETE JSON object with ALL fields.
+
+## 停滞提醒
+经过 4 轮修订，近 3 轮平均分从 3.8 到 3.8，无明显改善。
+考虑 major revision 或 pivot。
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "c5cb5cdd-3dff-45de-89b1-a6d7b6dd5ec9",
+  "type": "user",
+  "uuid": "e834b979-3fb3-41ad-802e-54957b2cd13e",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T18:59:07.998Z_
+
+```json
+{
+  "parentUuid": "e834b979-3fb3-41ad-802e-54957b2cd13e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "c8495ac9-d5d6-44a6-bfc0-903537b533e6",
+  "timestamp": "2026-05-27T18:59:07.998Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T18:59:07.998Z_
+
+```json
+{
+  "parentUuid": "c8495ac9-d5d6-44a6-bfc0-903537b533e6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "fd975ea1-b897-4b60-8d9d-2530e21cf3e0",
+  "timestamp": "2026-05-27T18:59:07.998Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Generative Process Advantage Verifiers: Calibrated Step-Level Verifica…",
+  "leafUuid": "fd975ea1-b897-4b60-8d9d-2530e21cf3e0",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise generative process advantage verifiers for calibration",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T18:59:14.283Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully before diving into research. The key issues are:
+
+1. **Missing related works**: StepWiser, Think-RM, AgentPRM, SPARK, PURE/Stop Summation, OAR - these narrow the novelty gap significantly
+2. **Novelty framing too strong**: The "entirely untried combination" claim needs weakening
+3. **H4 weakness**: The evaluator-rewarder gap hypothesis may be about training dynamics, not calibration
+4. **Scaling Laws paper venue status**: Need to verify if accepted/rejected at ICLR 2026
+
+
+5. **Researching each concern systematically**: Starting with the related works to understand how they compare to the approach, then reassessing the novelty positioning, examining the H4 hypothesis more carefully, and checking the scaling laws paper status.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd975ea1-b897-4b60-8d9d-2530e21cf3e0",
+  "isSidechain": false,
+  "requestId": "req_011CbTb253QwCXCzTUtNWRnj",
+  "type": "assistant",
+  "uuid": "4f23ac56-931f-43ce-a58c-ba8a7e032c52",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KE2dd42ppcBmLKKBZm8E5m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11920,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 11920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-27T18:59:14.593Z_
+
+I'll start by researching the specific papers and issues raised by the reviewers. Let me launch multiple research agents in parallel to cover all the key topics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f23ac56-931f-43ce-a58c-ba8a7e032c52",
+  "isSidechain": false,
+  "requestId": "req_011CbTb253QwCXCzTUtNWRnj",
+  "type": "assistant",
+  "uuid": "307ab98a-7800-4896-a9d2-c8befddf0ff8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KE2dd42ppcBmLKKBZm8E5m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11920,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 11920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-27T18:59:14.743Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01A2Xfbs1y7Ypq6pXogvqQjt`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "307ab98a-7800-4896-a9d2-c8befddf0ff8",
+  "isSidechain": false,
+  "requestId": "req_011CbTb253QwCXCzTUtNWRnj",
+  "type": "assistant",
+  "uuid": "1ffec6f7-729c-4aa4-826c-baf3833c998d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KE2dd42ppcBmLKKBZm8E5m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11920,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 11920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-27T18:59:14.751Z_
+
+<details><summary>↩ Tool result · `toolu_01A2Xfbs1y7Ypq6pXogvqQjt`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ffec6f7-729c-4aa4-826c-baf3833c998d",
+  "isSidechain": false,
+  "promptId": "c5cb5cdd-3dff-45de-89b1-a6d7b6dd5ec9",
+  "type": "user",
+  "uuid": "b2157882-5fb2-4da8-b522-753ff6d6b4ec",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "1ffec6f7-729c-4aa4-826c-baf3833c998d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-27T18:59:18.119Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me launch parallel research agents to investigate all the key issues raised by reviewers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b2157882-5fb2-4da8-b522-753ff6d6b4ec",
+  "isSidechain": false,
+  "requestId": "req_011CbTb2a5uby6oCV1kkeqnQ",
+  "type": "assistant",
+  "uuid": "c7489bca-57a6-4dfe-b2b2-cb7bc4b83de0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KHHCpFovVFuXz5GJrNs19X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 22934,
+      "output_tokens": 2102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2102,
+          "cache_read_input_tokens": 22934,
+          "cache_creation_input_tokens": 1295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-27T18:59:18.714Z_
+
+Let me launch parallel research on all the key papers and issues raised by reviewers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c7489bca-57a6-4dfe-b2b2-cb7bc4b83de0",
+  "isSidechain": false,
+  "requestId": "req_011CbTb2a5uby6oCV1kkeqnQ",
+  "type": "assistant",
+  "uuid": "3e95dc1d-eca4-4c25-99d3-9d1eb34041e9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KHHCpFovVFuXz5GJrNs19X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 22934,
+      "output_tokens": 2102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2102,
+          "cache_read_input_tokens": 22934,
+          "cache_creation_input_tokens": 1295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-27T18:59:23.873Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_014gCHxTWYc9ag81AGgx61bP`</summary>
+
+```json
+{
+  "description": "Research StepWiser ICLR 2026",
+  "prompt": "Research \"StepWiser\" - a generative step-level judge trained via RL that meta-reasons about reasoning steps. It was apparently an ICLR 2026 withdrawn submission. I need to understand:\n1. What exactly does StepWiser do? How does it train a generative judge?\n2. Does it use advantage functions or any RL-based training signal?\n3. Does it address calibration at all?\n4. What are its key results and benchmarks?\n5. How close is it conceptually to a \"generative verifier that reasons about step quality with advantage grounding\"?\n6. What is its current status (withdrawn? resubmitted elsewhere?)\n\nSearch using multiple queries:\n- \"StepWiser generative step-level judge RL reasoning\"\n- \"StepWiser ICLR 2026 process reward model\"\n- \"StepWiser step-level verification meta-reasoning\"\n\nRead the actual paper if you can find it on arxiv or openreview. Report in detail (300-400 words).",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e95dc1d-eca4-4c25-99d3-9d1eb34041e9",
+  "isSidechain": false,
+  "requestId": "req_011CbTb2a5uby6oCV1kkeqnQ",
+  "type": "assistant",
+  "uuid": "7becf4d0-b893-429d-8d3b-c73ef0482eef",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KHHCpFovVFuXz5GJrNs19X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 22934,
+      "output_tokens": 2102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2102,
+          "cache_read_input_tokens": 22934,
+          "cache_creation_input_tokens": 1295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-27T18:59:27.238Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01K193kpy8n1UgU8oiMP2qFe`</summary>
+
+```json
+{
+  "description": "Research Think-RM NeurIPS 2025",
+  "prompt": "Research \"Think-RM\" - a reward model that achieves SOTA on RM-Bench via long-horizon reasoning in generative reward models with RLHF training. It was apparently published at NeurIPS 2025. I need to understand:\n1. What exactly does Think-RM do? How does it use long-horizon reasoning?\n2. What training approach does it use (RLHF, RL, SFT)?\n3. Does it address calibration?\n4. What are its key results and which benchmarks?\n5. How does it relate to process reward models / step-level verification?\n6. Does it use advantage functions?\n\nSearch using multiple queries:\n- \"Think-RM NeurIPS 2025 reward model reasoning\"\n- \"Think-RM long-horizon generative reward model RLHF\"\n- \"Think-RM RM-Bench state of the art\"\n\nRead the actual paper if you can find it on arxiv or openreview. Report in detail (300-400 words).",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7becf4d0-b893-429d-8d3b-c73ef0482eef",
+  "isSidechain": false,
+  "requestId": "req_011CbTb2a5uby6oCV1kkeqnQ",
+  "type": "assistant",
+  "uuid": "bf7bc52f-9a1f-4d52-8864-098c959ec70c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KHHCpFovVFuXz5GJrNs19X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 22934,
+      "output_tokens": 2102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2102,
+          "cache_read_input_tokens": 22934,
+          "cache_creation_input_tokens": 1295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-27T18:59:31.444Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01JMnEwMja5uuU6122FURYCF`</summary>
+
+```json
+{
+  "description": "Research AgentPRM and SPARK",
+  "prompt": "Research two papers:\n\n1. \"AgentPRM\" - uses TD-based estimation combined with GAE for PRM training, apparently published at ACM Web 2026. I need:\n- What does AgentPRM do exactly? How does it use TD/GAE?\n- What domain is it applied to (agent tasks, not math)?\n- Does it address calibration?\n- Key results and benchmarks?\n\n2. \"SPARK\" - combines \"Selective Advantage\" (process-aware advantage preserving only aligned step-correctness signals) with a generative PRM-CoT as the reward model. Apparently from arXiv Dec 2024. I need:\n- What does SPARK do exactly?\n- How does it combine selective advantage with generative PRM?\n- Does it address calibration?\n- Key results?\n\nSearch using multiple queries for each:\n- \"AgentPRM TD estimation GAE process reward model\"\n- \"AgentPRM ACM Web 2026 agent PRM\"\n- \"SPARK selective advantage generative PRM reasoning\"\n- \"SPARK process-aware advantage step-correctness\"\n\nRead the actual papers if possible. Report in detail (300-400 words total).",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bf7bc52f-9a1f-4d52-8864-098c959ec70c",
+  "isSidechain": false,
+  "requestId": "req_011CbTb2a5uby6oCV1kkeqnQ",
+  "type": "assistant",
+  "uuid": "faf8aa9c-c49c-48f9-859c-06e1b92d1d06",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KHHCpFovVFuXz5GJrNs19X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 22934,
+      "output_tokens": 2102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2102,
+          "cache_read_input_tokens": 22934,
+          "cache_creation_input_tokens": 1295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-27T18:59:34.865Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_0169tJUwifoWh9P8RALdm7yf`</summary>
+
+```json
+{
+  "description": "Research PURE and OAR papers",
+  "prompt": "Research two papers:\n\n1. \"PURE\" or \"Stop Summation\" - NeurIPS 2025 paper that uses min-form credit assignment with value functions to address PRM reward hacking. I need:\n- What does PURE do exactly? \n- How does it use value functions / min-form credit assignment?\n- How does it address reward hacking?\n- Key results and benchmarks?\n\n2. \"OAR\" - January 2026 paper that uses advantage reshaping for token-level credit assignment. I need:\n- What does OAR do exactly?\n- How does it use advantage reshaping?\n- Token-level vs step-level - what granularity?\n- Key results?\n\nSearch using multiple queries:\n- \"PURE stop summation NeurIPS 2025 PRM reward hacking\"\n- \"PURE min-form credit assignment value function process reward\"\n- \"OAR advantage reshaping token-level credit assignment 2026\"\n- \"OAR online advantage reshaping language model reasoning\"\n\nRead the actual papers if possible. Report in detail (300-400 words total).",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "faf8aa9c-c49c-48f9-859c-06e1b92d1d06",
+  "isSidechain": false,
+  "requestId": "req_011CbTb2a5uby6oCV1kkeqnQ",
+  "type": "assistant",
+  "uuid": "39c45376-d03a-4242-a955-17686a33e1c5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KHHCpFovVFuXz5GJrNs19X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 22934,
+      "output_tokens": 2102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2102,
+          "cache_read_input_tokens": 22934,
+          "cache_creation_input_tokens": 1295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-27T18:59:39.416Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01SwFCgYrQgYHKxRy4AH6ZZk`</summary>
+
+```json
+{
+  "description": "Verify Scaling Laws GenRMs status",
+  "prompt": "Research the paper \"Scaling Laws for Generative Reward Models\" to determine:\n\n1. Its current venue status - was it accepted or rejected at ICLR 2026? Is it still under review?\n2. If rejected, was it resubmitted elsewhere?\n3. What are the key findings about the \"evaluator-rewarder gap\"?\n4. Specifically, what does it say about intermediate GRPO checkpoints outperforming fully-trained ones? What explanation do the authors give?\n5. Do the authors attribute the gap to calibration, training dynamics, model scale, or something else?\n\nSearch using multiple queries:\n- \"Scaling Laws for Generative Reward Models ICLR 2026 acceptance\"\n- \"Scaling Laws for Generative Reward Models OpenReview 2026 decision\"\n- \"evaluator-rewarder gap generative reward models scaling\"\n- \"scaling laws GenRM GRPO checkpoint rewarder\"\n\nCheck OpenReview directly if possible. Report in detail (300-400 words).",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39c45376-d03a-4242-a955-17686a33e1c5",
+  "isSidechain": false,
+  "requestId": "req_011CbTb2a5uby6oCV1kkeqnQ",
+  "type": "assistant",
+  "uuid": "0d5e2567-8737-4171-8bf8-d17d81e97647",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KHHCpFovVFuXz5GJrNs19X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 22934,
+      "output_tokens": 2102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2102,
+          "cache_read_input_tokens": 22934,
+          "cache_creation_input_tokens": 1295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-27T18:59:46.226Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01UYXffrgd1vjxJ7qbfRXJ7z`</summary>
+
+```json
+{
+  "description": "Research calibration-overoptimization link",
+  "prompt": "Research the relationship between reward model calibration and reward overoptimization in Best-of-N (BoN) and RL settings. The goal is to understand whether better calibration actually mitigates overoptimization, or if the evidence is weak/mixed.\n\nSpecifically:\n1. What does Coste et al. (NeurIPS 2023) \"Reward Model Ensembles Help Mitigate Overoptimization\" actually show? Is it about calibration or diversity?\n2. Are there other papers that study calibration → overoptimization mitigation specifically?\n3. What are the dominant theories for why BoN overoptimization happens? Is calibration a primary factor or secondary?\n4. The \"Scaling Laws for GenRMs\" paper found intermediate GRPO checkpoints (worse accuracy) can be better rewarders. Does this suggest the problem is NOT about calibration?\n5. Any evidence that advantage-grounded scores specifically resist overoptimization?\n\nSearch using:\n- \"reward model calibration overoptimization best-of-n\"\n- \"reward overoptimization calibration mitigation 2025 2026\"\n- \"reward hacking calibration RL language models\"\n- \"best-of-n overoptimization causes reward model\"\n\nReport in detail (400-500 words).",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d5e2567-8737-4171-8bf8-d17d81e97647",
+  "isSidechain": false,
+  "requestId": "req_011CbTb2a5uby6oCV1kkeqnQ",
+  "type": "assistant",
+  "uuid": "21a0fb9f-8c2e-4515-9eeb-030f57b7ba5d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KHHCpFovVFuXz5GJrNs19X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 22934,
+      "output_tokens": 2102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2102,
+          "cache_read_input_tokens": 22934,
+          "cache_creation_input_tokens": 1295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-27T19:00:25.433Z_
+
+<details><summary>↩ Tool result · `toolu_01K193kpy8n1UgU8oiMP2qFe`</summary>
+
+```text
+I now have comprehensive details. Here is the detailed report.
+
+---
+
+## Think-RM: Enabling Long-Horizon Reasoning in Generative Reward Models
+
+**Paper:** arXiv 2505.16265, accepted at NeurIPS 2025. Base model: Llama-3.1-8B-Instruct.
+
+**What it does.** Think-RM is a framework that upgrades generative reward models (GenRMs) from shallow chain-of-thought (CoT) rationales to long-horizon, self-guided reasoning traces spanning hundreds to thousands of tokens. Instead of structured, externally provided rationales, Think-RM generates flexible internal "thinking" that supports self-reflection, hypothetical reasoning, and divergent reasoning -- enabling it to handle nuanced preference judgments that conventional reward models struggle with.
+
+**Training pipeline.** Think-RM uses a two-stage approach. (1) **SFT warm-up:** QwQ-32B generates 10 long CoT trajectories per instance from 10K prompt-response pairs (HelpSteer2-Preference). The longest correct trajectory is selected, yielding 6K binary and 4K multiclass training examples. The model is fine-tuned for 5 epochs. (2) **Rule-based RL:** The model then undergoes GRPO (Group Relative Policy Optimization) with accuracy-based rewards (1.0 for correct, 0.0 for incorrect; 0.5 for partial matches in multiclass), running 1-2 epochs with rollout batch size 512 and KL coefficient 1e-4. So the training is SFT + RL, not classical RLHF for the reward model itself.
+
+**Pairwise RLHF pipeline.** A key contribution is a novel downstream RLHF pipeline that directly uses Think-RM's pairwise preference outputs to train policies, bypassing the lossy conversion to pointwise rewards. It constructs a skew-symmetric preference-strength matrix and derives advantage estimates from it: the advantage for response i is computed as the normalized sum of pairwise differences. For binary outputs, longer reasoning chains are treated as indicating more ambiguous comparisons, weighting rewards inversely by reasoning length. So yes, **it does use advantage functions** -- specifically a pairwise-derived advantage estimator.
+
+**Calibration.** The paper does **not** explicitly address reward model calibration or confidence calibration. Its focus is on accuracy and downstream policy performance rather than uncertainty quantification.
+
+**Relation to process reward models.** Think-RM is fundamentally different from PRMs/step-level verification. It does not evaluate intermediate reasoning steps of the policy's output. Instead, the "long-horizon reasoning" refers to the reward model's own internal deliberation -- it thinks longer before rendering a judgment on entire response pairs, operating at the trajectory level.
+
+**Key results.** On **RM-Bench**, Think-RM achieves 75.06% (8% above baselines), with a 12% improvement in math. On **RewardBench**, it scores 86.35% (binary), with 10%+ gains on the "Chat Hard" subcategory. It outperforms CoT-GenRMs even with 16-sample majority voting (75.06% vs 68.55%). On downstream policy training, pairwise RLHF with Think-RM achieves 31.94% length-controlled win rate on **AlpacaEval2** versus 27.49% for traditional BT RM approaches. All results use only 6K training examples on an 8B-parameter model, achieving SOTA among publicly available RMs under 10B.
+
+Sources:
+- [Think-RM on arXiv](https://arxiv.org/abs/2505.16265)
+- [Think-RM HTML paper](https://arxiv.org/html/2505.16265v1)
+- [Think-RM OpenReview](https://openreview.net/forum?id=UfQAFbP6xq)
+- [Think-RM Project Page](https://think-rm.github.io/)
+- [Think-RM GitHub](https://github.com/IlgeeHong/Think-RM)
+- [NeurIPS 2025 Poster](https://neurips.cc/virtual/2025/poster/117753)
+
+agentId: ae0e3790c0ea07cd1 (use SendMessage with to: 'ae0e3790c0ea07cd1' to continue this agent)
+&lt;usage>total_tokens: 16439
+tool_uses: 7
+duration_ms: 58193&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bf7bc52f-9a1f-4d52-8864-098c959ec70c",
+  "isSidechain": false,
+  "promptId": "c5cb5cdd-3dff-45de-89b1-a6d7b6dd5ec9",
+  "type": "user",
+  "uuid": "434cf493-9154-4845-9bba-6fe034edd44b",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Research \"Think-RM\" - a reward model that achieves SOTA on RM-Bench via long-horizon reasoning in generative reward models with RLHF training. It was apparently published at NeurIPS 2025. I need to understand:\n1. What exactly does Think-RM do? How does it use long-horizon reasoning?\n2. What training approach does it use (RLHF, RL, SFT)?\n3. Does it address calibration?\n4. What are its key results and which benchmarks?\n5. How does it relate to process reward models / step-level verification?\n6. Does it use advantage functions?\n\nSearch using multiple queries:\n- \"Think-RM NeurIPS 2025 reward model reasoning\"\n- \"Think-RM long-horizon generative reward model RLHF\"\n- \"Think-RM RM-Bench state of the art\"\n\nRead the actual paper if you can find it on arxiv or openreview. Report in detail (300-400 words).",
+    "agentId": "ae0e3790c0ea07cd1",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have comprehensive details. Here is the detailed report.\n\n---\n\n## Think-RM: Enabling Long-Horizon Reasoning in Generative Reward Models\n\n**Paper:** arXiv 2505.16265, accepted at NeurIPS 2025. Base model: Llama-3.1-8B-Instruct.\n\n**What it does.** Think-RM is a framework that upgrades generative reward models (GenRMs) from shallow chain-of-thought (CoT) rationales to long-horizon, self-guided reasoning traces spanning hundreds to thousands of tokens. Instead of structured, externally provided rationales, Think-RM generates flexible internal \"thinking\" that supports self-reflection, hypothetical reasoning, and divergent reasoning -- enabling it to handle nuanced preference judgments that conventional reward models struggle with.\n\n**Training pipeline.** Think-RM uses a two-stage approach. (1) **SFT warm-up:** QwQ-32B generates 10 long CoT trajectories per instance from 10K prompt-response pairs (HelpSteer2-Preference). The longest correct trajectory is selected, yielding 6K binary and 4K multiclass training examples. The model is fine-tuned for 5 epochs. (2) **Rule-based RL:** The model then undergoes GRPO (Group Relative Policy Optimization) with accuracy-based rewards (1.0 for correct, 0.0 for incorrect; 0.5 for partial matches in multiclass), running 1-2 epochs with rollout batch size 512 and KL coefficient 1e-4. So the training is SFT + RL, not classical RLHF for the reward model itself.\n\n**Pairwise RLHF pipeline.** A key contribution is a novel downstream RLHF pipeline that directly uses Think-RM's pairwise preference outputs to train policies, bypassing the lossy conversion to pointwise rewards. It constructs a skew-symmetric preference-strength matrix and derives advantage estimates from it: the advantage for response i is computed as the normalized sum of pairwise differences. For binary outputs, longer reasoning chains are treated as indicating more ambiguous comparisons, weighting rewards inversely by reasoning length. So yes, **it does use advantage functions** -- specifically a pairwise-derived advantage estimator.\n\n**Calibration.** The paper does **not** explicitly address reward model calibration or confidence calibration. Its focus is on accuracy and downstream policy performance rather than uncertainty quantification.\n\n**Relation to process reward models.** Think-RM is fundamentally different from PRMs/step-level verification. It does not evaluate intermediate reasoning steps of the policy's output. Instead, the \"long-horizon reasoning\" refers to the reward model's own internal deliberation -- it thinks longer before rendering a judgment on entire response pairs, operating at the trajectory level.\n\n**Key results.** On **RM-Bench**, Think-RM achieves 75.06% (8% above baselines), with a 12% improvement in math. On **RewardBench**, it scores 86.35% (binary), with 10%+ gains on the \"Chat Hard\" subcategory. It outperforms CoT-GenRMs even with 16-sample majority voting (75.06% vs 68.55%). On downstream policy training, pairwise RLHF with Think-RM achieves 31.94% length-controlled win rate on **AlpacaEval2** versus 27.49% for traditional BT RM approaches. All results use only 6K training examples on an 8B-parameter model, achieving SOTA among publicly available RMs under 10B.\n\nSources:\n- [Think-RM on arXiv](https://arxiv.org/abs/2505.16265)\n- [Think-RM HTML paper](https://arxiv.org/html/2505.16265v1)\n- [Think-RM OpenReview](https://openreview.net/forum?id=UfQAFbP6xq)\n- [Think-RM Project Page](https://think-rm.github.io/)\n- [Think-RM GitHub](https://github.com/IlgeeHong/Think-RM)\n- [NeurIPS 2025 Poster](https://neurips.cc/virtual/2025/poster/117753)"
+      }
+    ],
+    "totalDurationMs": 58193,
+    "totalTokens": 16439,
+    "totalToolUseCount": 7,
+    "usage": {
+      "input_tokens": 389,
+      "cache_creation_input_tokens": 2281,
+      "cache_read_input_tokens": 12762,
+      "output_tokens": 1007,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2281
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 389,
+          "output_tokens": 1007,
+          "cache_read_input_tokens": 12762,
+          "cache_creation_input_tokens": 2281,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2281,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 7
+    }
+  },
+  "sourceToolAssistantUUID": "bf7bc52f-9a1f-4d52-8864-098c959ec70c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Generative Process Advantage Verifiers: Calibrated Step-Level Verifica…",
+  "leafUuid": "434cf493-9154-4845-9bba-6fe034edd44b",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise generative process advantage verifiers for calibration",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-27T19:00:27.190Z_
+
+<details><summary>↩ Tool result · `toolu_01JMnEwMja5uuU6122FURYCF`</summary>
+
+```text
+Here is a detailed summary of both papers:
+
+---
+
+**AgentPRM** (arXiv 2511.08325, published at ACM Web Conference 2026 / WWW '26) redefines process reward models for LLM agent tasks -- domains like web navigation and game environments where actions lack clear-cut step correctness (unlike math reasoning). It scores each agent action based on "promise" (proximity to the goal) and "progress" (improvement over previous state).
+
+**TD/GAE mechanism:** AgentPRM computes TD residuals as delta(s_t, a_t) = r_t + gamma * Q(s_t, a_t) - Q(s_{t-1}, a_{t-1}), then uses GAE to aggregate these into advantage estimates: A_hat = sum of (gamma*lambda)^k * delta terms. Q-value labels are derived as Q_hat = A_hat + M_phi(s_{t-1}, a_{t-1}). The model is trained with a dual loss combining action-value fitting (L_Q) and advantage fitting (L_A). This avoids expensive Monte Carlo rollouts -- it needs only 16 trajectories vs. MC methods requiring 1.5-2.8x more tokens.
+
+**Domains/benchmarks:** WebShop (e-commerce), BabyAI (grid-world navigation), TextCraft (Minecraft crafting), plus GSM8K for generality. Models: Qwen-2.5 (0.5B/3B/7B), Llama-3.1-8B.
+
+**Calibration:** Not explicitly addressed. The advantage function provides implicit relative reward shaping rather than calibrated absolute scores.
+
+**Key results:** 8x more compute-efficient than baselines. On Qwen-2.5-3B with beam search: WebShop 76.0% (vs. 54.5% PVM), TextCraft 56.7% (vs. 44.3%), BabyAI 89.8%. Crucially, AgentPRM scales robustly with increased test-time compute, while baselines (ORMs, PVMs) degrade.
+
+---
+
+**SPARK** ("Stepwise Process-Aware Rewards for Reference-Free RL," arXiv 2512.03244, Dec 2024) trains generative PRMs without ground-truth labels by using a three-stage generator-verifier framework: (1) a generator produces diverse solutions, (2) a verifier evaluates them via parallel scaling (self-consistency) and sequential scaling (meta-critique) to produce synthetic step-level labels, (3) these labels train a generative PRM-CoT that outputs verification rationales before judgments.
+
+**Selective Advantage:** During RL, SPARK computes token-level advantages but zeros them out when step correctness contradicts solution outcome -- e.g., if a solution succeeds but a step is marked incorrect, or a solution fails but a step is marked correct. Only "aligned" signals (correct step in successful solution, incorrect step in failed solution) propagate gradients. This achieves 44.0% average accuracy across MATH-500/AIME'24/AIME'25, the highest among their reward formulations.
+
+**Calibration:** Not addressed. The paper evaluates ProcessBench F1 scores and downstream accuracy but does not measure confidence calibration (ECE, reliability diagrams, etc.).
+
+**Key results:** On ProcessBench, their reference-free PRM achieves 67.5 F1, surpassing GPT-4o (61.9 F1). For RL training with Qwen2.5-Math-7B, PRM-CoT with process-aware rewards reaches 47.4% average across six benchmarks, surpassing ground-truth RLVR at 43.9%. The paper also systematically documents three reward hacking patterns (notably step inflation as a Goodhart's Law manifestation).
+
+---
+
+**Neither paper addresses calibration directly** -- this is a notable gap if calibration is important for your review.
+
+Sources:
+- [AgentPRM (arXiv HTML)](https://arxiv.org/html/2511.08325v1)
+- [AgentPRM (ACM DL)](https://dl.acm.org/doi/10.1145/3774904.3792551)
+- [AgentPRM (arXiv abs)](https://arxiv.org/abs/2511.08325)
+- [SPARK (arXiv HTML)](https://arxiv.org/html/2512.03244v1)
+- [SPARK (arXiv abs)](https://arxiv.org/abs/2512.03244)
+- [SPARK (OpenReview)](https://openreview.net/forum?id=7y9IKjl8dt)
+
+agentId: af4befb711a0c1d6a (use SendMessage with to: 'af4befb711a0c1d6a' to continue this agent)
+&lt;usage>total_tokens: 16543
+tool_uses: 8
+duration_ms: 55742&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "faf8aa9c-c49c-48f9-859c-06e1b92d1d06",
+  "isSidechain": false,
+  "promptId": "c5cb5cdd-3dff-45de-89b1-a6d7b6dd5ec9",
+  "type": "user",
+  "uuid": "d9491760-6eb4-421a-8077-ed963150cdeb",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Research two papers:\n\n1. \"AgentPRM\" - uses TD-based estimation combined with GAE for PRM training, apparently published at ACM Web 2026. I need:\n- What does AgentPRM do exactly? How does it use TD/GAE?\n- What domain is it applied to (agent tasks, not math)?\n- Does it address calibration?\n- Key results and benchmarks?\n\n2. \"SPARK\" - combines \"Selective Advantage\" (process-aware advantage preserving only aligned step-correctness signals) with a generative PRM-CoT as the reward model. Apparently from arXiv Dec 2024. I need:\n- What does SPARK do exactly?\n- How does it combine selective advantage with generative PRM?\n- Does it address calibration?\n- Key results?\n\nSearch using multiple queries for each:\n- \"AgentPRM TD estimation GAE process reward model\"\n- \"AgentPRM ACM Web 2026 agent PRM\"\n- \"SPARK selective advantage generative PRM reasoning\"\n- \"SPARK process-aware advantage step-correctness\"\n\nRead the actual papers if possible. Report in detail (300-400 words total).",
+    "agentId": "af4befb711a0c1d6a",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is a detailed summary of both papers:\n\n---\n\n**AgentPRM** (arXiv 2511.08325, published at ACM Web Conference 2026 / WWW '26) redefines process reward models for LLM agent tasks -- domains like web navigation and game environments where actions lack clear-cut step correctness (unlike math reasoning). It scores each agent action based on \"promise\" (proximity to the goal) and \"progress\" (improvement over previous state).\n\n**TD/GAE mechanism:** AgentPRM computes TD residuals as delta(s_t, a_t) = r_t + gamma * Q(s_t, a_t) - Q(s_{t-1}, a_{t-1}), then uses GAE to aggregate these into advantage estimates: A_hat = sum of (gamma*lambda)^k * delta terms. Q-value labels are derived as Q_hat = A_hat + M_phi(s_{t-1}, a_{t-1}). The model is trained with a dual loss combining action-value fitting (L_Q) and advantage fitting (L_A). This avoids expensive Monte Carlo rollouts -- it needs only 16 trajectories vs. MC methods requiring 1.5-2.8x more tokens.\n\n**Domains/benchmarks:** WebShop (e-commerce), BabyAI (grid-world navigation), TextCraft (Minecraft crafting), plus GSM8K for generality. Models: Qwen-2.5 (0.5B/3B/7B), Llama-3.1-8B.\n\n**Calibration:** Not explicitly addressed. The advantage function provides implicit relative reward shaping rather than calibrated absolute scores.\n\n**Key results:** 8x more compute-efficient than baselines. On Qwen-2.5-3B with beam search: WebShop 76.0% (vs. 54.5% PVM), TextCraft 56.7% (vs. 44.3%), BabyAI 89.8%. Crucially, AgentPRM scales robustly with increased test-time compute, while baselines (ORMs, PVMs) degrade.\n\n---\n\n**SPARK** (\"Stepwise Process-Aware Rewards for Reference-Free RL,\" arXiv 2512.03244, Dec 2024) trains generative PRMs without ground-truth labels by using a three-stage generator-verifier framework: (1) a generator produces diverse solutions, (2) a verifier evaluates them via parallel scaling (self-consistency) and sequential scaling (meta-critique) to produce synthetic step-level labels, (3) these labels train a generative PRM-CoT that outputs verification rationales before judgments.\n\n**Selective Advantage:** During RL, SPARK computes token-level advantages but zeros them out when step correctness contradicts solution outcome -- e.g., if a solution succeeds but a step is marked incorrect, or a solution fails but a step is marked correct. Only \"aligned\" signals (correct step in successful solution, incorrect step in failed solution) propagate gradients. This achieves 44.0% average accuracy across MATH-500/AIME'24/AIME'25, the highest among their reward formulations.\n\n**Calibration:** Not addressed. The paper evaluates ProcessBench F1 scores and downstream accuracy but does not measure confidence calibration (ECE, reliability diagrams, etc.).\n\n**Key results:** On ProcessBench, their reference-free PRM achieves 67.5 F1, surpassing GPT-4o (61.9 F1). For RL training with Qwen2.5-Math-7B, PRM-CoT with process-aware rewards reaches 47.4% average across six benchmarks, surpassing ground-truth RLVR at 43.9%. The paper also systematically documents three reward hacking patterns (notably step inflation as a Goodhart's Law manifestation).\n\n---\n\n**Neither paper addresses calibration directly** -- this is a notable gap if calibration is important for your review.\n\nSources:\n- [AgentPRM (arXiv HTML)](https://arxiv.org/html/2511.08325v1)\n- [AgentPRM (ACM DL)](https://dl.acm.org/doi/10.1145/3774904.3792551)\n- [AgentPRM (arXiv abs)](https://arxiv.org/abs/2511.08325)\n- [SPARK (arXiv HTML)](https://arxiv.org/html/2512.03244v1)\n- [SPARK (arXiv abs)](https://arxiv.org/abs/2512.03244)\n- [SPARK (OpenReview)](https://openreview.net/forum?id=7y9IKjl8dt)"
+      }
+    ],
+    "totalDurationMs": 55742,
+    "totalTokens": 16543,
+    "totalToolUseCount": 8,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1946,
+      "cache_read_input_tokens": 13476,
+      "output_tokens": 1120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1946
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1120,
+          "cache_read_input_tokens": 13476,
+          "cache_creation_input_tokens": 1946,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1946,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 8
+    }
+  },
+  "sourceToolAssistantUUID": "faf8aa9c-c49c-48f9-859c-06e1b92d1d06",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-27T19:00:44.415Z_
+
+<details><summary>↩ Tool result · `toolu_0169tJUwifoWh9P8RALdm7yf`</summary>
+
+```text
+Here is a detailed summary of both papers:
+
+---
+
+**1. PURE ("Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning")**
+NeurIPS 2025 -- Authors: Jie Cheng, Gang Xiong, Ruixi Qiao, et al.
+
+**What it does:** PURE (Process sUpervised Reinforcement lEarning) replaces the standard summation-form credit assignment used in RL fine-tuning with a min-form credit assignment when training with Process Reward Models (PRMs). Traditionally, the value function is defined as a cumulative gamma-discounted sum of future step rewards: Q(s_t, a_t) = E[sum of gamma^(i-t) * r_i]. PURE instead defines the return as the *minimum* of future process rewards: min(r_t, ..., r_n). The "worst step" w = argmin(r_1,...,r_n) anchors the value -- steps before w get the min-reward value, steps after get zero.
+
+**How it addresses reward hacking:** Sum-form credit assignment inflates the sampling probability of high-reward steps, creating a shortcut for the model to hack individual step scores rather than improve overall reasoning. Min-form constrains the value range and distributes advantages more equitably. Critically, the min-form error bound is a single-step epsilon, while sum-form accumulates to epsilon/(1-gamma) -- exponentially worse over long trajectories. In practice, sum-form causes training collapse within 25 steps, while min-form remains stable past 200 steps.
+
+**Key results** (Qwen2.5-Math-7B, pass@1): PURE-PRM alone reaches 49.3% average across MATH-500, Minerva Math, Olympiad Bench, AIME24, and AMC23. Combined with 10% verifiable rewards (PURE-PRM+VR), it achieves 53.3% average and 82.5% on AMC23, matching pure verifiable-reward methods in only 30% of the training steps.
+
+---
+
+**2. OAR ("Outcome-Grounded Advantage Reshaping for Fine-Grained Credit Assignment in Mathematical Reasoning")**
+January 2026 -- Authors: Ziheng Li, Liu Kang, Feng Xiao, et al.
+
+**What it does:** OAR addresses GRPO's coarse credit assignment, which broadcasts the same group-level advantage uniformly to every token. OAR redistributes advantages at the **token level** based on each token's influence on the final answer, using a conservative bi-level reshaping scheme: tokens below an importance threshold tau are suppressed (weight = I_t / (tau + epsilon)), while pivotal tokens above tau are boosted (weight = 1 + beta * (I_t - tau) / (1 - tau + epsilon)). A sum-preserving renormalization ensures the total advantage mass is unchanged, preventing destabilization.
+
+**Two variants:** OAR-P estimates token importance via counterfactual perturbations (high-fidelity but costly). OAR-G uses input-gradient sensitivity as a proxy in a single backward pass, adding only ~40% overhead per token versus GRPO.
+
+**Key results** (Qwen2.5-Math-7B across AIME24/25, AMC23, MATH500, GSM8K): GRPO baseline averages 57.3%; OAR-G reaches 59.2%; OAR-P reaches 59.5% -- consistent gains of ~2.2 percentage points while accelerating reward convergence and maintaining policy entropy.
+
+---
+
+Sources:
+- [PURE paper on arXiv](https://arxiv.org/abs/2504.15275)
+- [PURE on OpenReview (NeurIPS 2025)](https://openreview.net/forum?id=3Sxby0hH1q)
+- [PURE GitHub repository](https://github.com/CJReinforce/PURE)
+- [OAR paper on arXiv](https://arxiv.org/abs/2601.07408)
+- [OAR on EmergentMind](https://www.emergentmind.com/topics/outcome-grounded-advantage-reshaping-oar)
+
+agentId: ae0c51c879623ab04 (use SendMessage with to: 'ae0c51c879623ab04' to continue this agent)
+&lt;usage>total_tokens: 16905
+tool_uses: 9
+duration_ms: 69545&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "39c45376-d03a-4242-a955-17686a33e1c5",
+  "isSidechain": false,
+  "promptId": "c5cb5cdd-3dff-45de-89b1-a6d7b6dd5ec9",
+  "type": "user",
+  "uuid": "3f531bb6-1e5e-4e96-95c3-415ba5c3ced1",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Research two papers:\n\n1. \"PURE\" or \"Stop Summation\" - NeurIPS 2025 paper that uses min-form credit assignment with value functions to address PRM reward hacking. I need:\n- What does PURE do exactly? \n- How does it use value functions / min-form credit assignment?\n- How does it address reward hacking?\n- Key results and benchmarks?\n\n2. \"OAR\" - January 2026 paper that uses advantage reshaping for token-level credit assignment. I need:\n- What does OAR do exactly?\n- How does it use advantage reshaping?\n- Token-level vs step-level - what granularity?\n- Key results?\n\nSearch using multiple queries:\n- \"PURE stop summation NeurIPS 2025 PRM reward hacking\"\n- \"PURE min-form credit assignment value function process reward\"\n- \"OAR advantage reshaping token-level credit assignment 2026\"\n- \"OAR online advantage reshaping language model reasoning\"\n\nRead the actual papers if possible. Report in detail (300-400 words total).",
+    "agentId": "ae0c51c879623ab04",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is a detailed summary of both papers:\n\n---\n\n**1. PURE (\"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning\")**\nNeurIPS 2025 -- Authors: Jie Cheng, Gang Xiong, Ruixi Qiao, et al.\n\n**What it does:** PURE (Process sUpervised Reinforcement lEarning) replaces the standard summation-form credit assignment used in RL fine-tuning with a min-form credit assignment when training with Process Reward Models (PRMs). Traditionally, the value function is defined as a cumulative gamma-discounted sum of future step rewards: Q(s_t, a_t) = E[sum of gamma^(i-t) * r_i]. PURE instead defines the return as the *minimum* of future process rewards: min(r_t, ..., r_n). The \"worst step\" w = argmin(r_1,...,r_n) anchors the value -- steps before w get the min-reward value, steps after get zero.\n\n**How it addresses reward hacking:** Sum-form credit assignment inflates the sampling probability of high-reward steps, creating a shortcut for the model to hack individual step scores rather than improve overall reasoning. Min-form constrains the value range and distributes advantages more equitably. Critically, the min-form error bound is a single-step epsilon, while sum-form accumulates to epsilon/(1-gamma) -- exponentially worse over long trajectories. In practice, sum-form causes training collapse within 25 steps, while min-form remains stable past 200 steps.\n\n**Key results** (Qwen2.5-Math-7B, pass@1): PURE-PRM alone reaches 49.3% average across MATH-500, Minerva Math, Olympiad Bench, AIME24, and AMC23. Combined with 10% verifiable rewards (PURE-PRM+VR), it achieves 53.3% average and 82.5% on AMC23, matching pure verifiable-reward methods in only 30% of the training steps.\n\n---\n\n**2. OAR (\"Outcome-Grounded Advantage Reshaping for Fine-Grained Credit Assignment in Mathematical Reasoning\")**\nJanuary 2026 -- Authors: Ziheng Li, Liu Kang, Feng Xiao, et al.\n\n**What it does:** OAR addresses GRPO's coarse credit assignment, which broadcasts the same group-level advantage uniformly to every token. OAR redistributes advantages at the **token level** based on each token's influence on the final answer, using a conservative bi-level reshaping scheme: tokens below an importance threshold tau are suppressed (weight = I_t / (tau + epsilon)), while pivotal tokens above tau are boosted (weight = 1 + beta * (I_t - tau) / (1 - tau + epsilon)). A sum-preserving renormalization ensures the total advantage mass is unchanged, preventing destabilization.\n\n**Two variants:** OAR-P estimates token importance via counterfactual perturbations (high-fidelity but costly). OAR-G uses input-gradient sensitivity as a proxy in a single backward pass, adding only ~40% overhead per token versus GRPO.\n\n**Key results** (Qwen2.5-Math-7B across AIME24/25, AMC23, MATH500, GSM8K): GRPO baseline averages 57.3%; OAR-G reaches 59.2%; OAR-P reaches 59.5% -- consistent gains of ~2.2 percentage points while accelerating reward convergence and maintaining policy entropy.\n\n---\n\nSources:\n- [PURE paper on arXiv](https://arxiv.org/abs/2504.15275)\n- [PURE on OpenReview (NeurIPS 2025)](https://openreview.net/forum?id=3Sxby0hH1q)\n- [PURE GitHub repository](https://github.com/CJReinforce/PURE)\n- [OAR paper on arXiv](https://arxiv.org/abs/2601.07408)\n- [OAR on EmergentMind](https://www.emergentmind.com/topics/outcome-grounded-advantage-reshaping-oar)"
+      }
+    ],
+    "totalDurationMs": 69545,
+    "totalTokens": 16905,
+    "totalToolUseCount": 9,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 14286,
+      "output_tokens": 1017,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1601
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1017,
+          "cache_read_input_tokens": 14286,
+          "cache_creation_input_tokens": 1601,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1601,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 9
+    }
+  },
+  "sourceToolAssistantUUID": "39c45376-d03a-4242-a955-17686a33e1c5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-27T19:01:09.694Z_
+
+<details><summary>↩ Tool result · `toolu_01UYXffrgd1vjxJ7qbfRXJ7z`</summary>
+
+```text
+Now I have sufficient information to provide a comprehensive report. Here is my analysis:
+
+---
+
+## Reward Model Calibration vs. Overoptimization: A Research Synthesis
+
+### 1. What Coste et al. (NeurIPS 2023) Actually Shows
+
+Coste et al.'s "[Reward Model Ensembles Help Mitigate Overoptimization](https://arxiv.org/abs/2310.02743)" is primarily about **diversity and conservative aggregation**, not calibration per se. The paper shows that ensembling reward models and using conservative aggregation strategies (mean, worst-case optimization, uncertainty-weighted optimization) mitigates overoptimization by up to 70% for BoN sampling and reliably reduces it for PPO. The mechanism is that aggregating diverse models dampens idiosyncratic outlier predictions and overconfidence of individual models. Ensembles also enable epistemic uncertainty estimation via prediction discrepancies, which *supports* better calibration -- but calibration is a byproduct, not the claimed causal driver. The follow-up paper "[Helping or Herding?](https://arxiv.org/html/2312.09244v1)" (Eisenstein et al., 2023) further showed that ensembles mitigate but do not eliminate reward hacking, noting that ensembles can "herd" toward shared biases. The evidence points to **diversity and pessimism** as the active ingredients, not calibration alone.
+
+### 2. Papers Studying Calibration -> Overoptimization Mitigation
+
+Direct studies of calibration as a standalone lever against overoptimization are sparse. The closest is "[Bayesian Reward Models for LLM Alignment](https://arxiv.org/pdf/2402.13210)" (2024), which shows that Bayesian reward models signal higher uncertainty farther from the training distribution, and these uncertainty estimates can mitigate overoptimization in BoN. However, this works via **uncertainty quantification** rather than calibration of the reward signal itself. "[InfoRM](https://proceedings.neurips.cc/paper_files/paper/2024/file/f25d75fc760aec0a6174f9f5d9da59b8-Paper-Conference.pdf)" (NeurIPS 2024) maintains consistent growth in both proxy and gold scores during RL by incorporating information-theoretic regularization, but again the mechanism is regularization, not calibration. No paper I found makes a clean claim that "better-calibrated reward models resist overoptimization" with direct experimental evidence isolating calibration from other factors.
+
+### 3. Dominant Theories for Why BoN Overoptimization Happens
+
+The dominant framework traces to [Gao et al. (2022)](https://arxiv.org/abs/2210.10760), which characterized overoptimization as a manifestation of Goodhart's law: when the proxy reward model diverges from the true objective, optimizing the proxy eventually hurts true performance. The leading mechanistic theories are:
+
+- **Out-of-distribution (OOD) extrapolation errors**: As optimization pushes responses away from the reward model's training distribution, the reward model produces spuriously high scores for OOD inputs. This is widely considered the **primary** driver. [Behavior-Supported Policy Optimization](https://arxiv.org/pdf/2503.18130) (2025) and related work specifically target OOD evaluation errors.
+- **Winner's curse / selection bias**: "[From Curiosity to Caution](https://arxiv.org/abs/2604.04648)" (Yu et al., 2026) frames BoN overoptimization as an inevitable statistical artifact: selecting the maximum from N noisy estimates systematically overestimates true quality. Their "Caution" method penalizes prediction error on atypical responses as a signal of distributional uncertainty.
+- **Reward model capacity limitations**: Smaller or less expressive reward models overoptimize sooner (Gao et al.'s scaling laws).
+
+Calibration is at best a **secondary** factor. The primary drivers are OOD errors and selection bias inherent to maximization over noisy estimates.
+
+### 4. "Scaling Laws for GenRMs" and the Accuracy-vs-Rewarder Paradox
+
+The "[Scaling Laws for Generative Reward Models](https://openreview.net/forum?id=VYLwMvhdXI)" paper reveals a striking finding: intermediate GRPO checkpoints of thinking judges (with worse static accuracy) can outperform fully-trained checkpoints as rewarders during policy optimization. Furthermore, thinking GenRMs outperform answer-only variants by 1-2% on static evaluation tasks, yet answer-only GenRMs achieve higher Gold Elo and more stable proxy-Gold alignment during actual policy optimization.
+
+This is strong evidence that **the problem is not primarily about calibration or accuracy**. A better-calibrated, more accurate evaluator does not necessarily make a better rewarder. The evaluator-rewarder gap suggests that what matters for policy optimization is robustness to distributional shift rather than in-distribution accuracy. Intermediate checkpoints may produce "smoother" or less exploitable reward landscapes even though they are less accurate point estimators.
+
+### 5. Advantage-Grounded Scores and Overoptimization Resistance
+
+Direct evidence that advantage-grounded reward scores specifically resist overoptimization is thin. REINFORCE-based methods (ReMax, RLOO, GRPO, REINFORCE++) use various advantage estimation baselines, and GRPO in particular grounds advantages relative to group-level baselines. However, I found no paper making the specific claim that advantage-grounded scoring is inherently more resistant to overoptimization than absolute reward scoring. The closest relevant work is on **behavior-supported regularization** and pessimistic reward estimation, which constrain optimization to in-distribution regions regardless of how scores are grounded.
+
+### Summary Assessment
+
+The evidence that better calibration *per se* mitigates overoptimization is **weak and indirect**. The interventions that demonstrably work -- ensembles, pessimism, uncertainty penalization, OOD regularization -- operate through diversity, conservatism, and distributional robustness. The GenRM scaling laws paper provides perhaps the most compelling counter-evidence: models with worse accuracy/calibration can be better rewarders, suggesting the real challenge is reward landscape exploitability under distributional shift, not calibration of the reward signal at the training distribution.
+
+Sources:
+- [Reward Model Ensembles Help Mitigate Overoptimization (Coste et al., 2023)](https://arxiv.org/abs/2310.02743)
+- [Helping or Herding? Reward Model Ensembles Mitigate but do not Eliminate Reward Hacking](https://arxiv.org/html/2312.09244v1)
+- [Scaling Laws for Reward Model Overoptimization (Gao et al., 2022)](https://arxiv.org/abs/2210.10760)
+- [Scaling Laws for Generative Reward Models](https://openreview.net/forum?id=VYLwMvhdXI)
+- [Bayesian Reward Models for LLM Alignment](https://arxiv.org/pdf/2402.13210)
+- [From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism (Yu et al., 2026)](https://arxiv.org/abs/2604.04648)
+- [Mitigating Reward Over-Optimization in RLHF via Behavior-Supported Regularization](https://arxiv.org/pdf/2503.18130)
+- [InfoRM: Mitigating Reward Hacking in RLHF (NeurIPS 2024)](https://proceedings.neurips.cc/paper_files/paper/2024/file/f25d75fc760aec0a6174f9f5d9da59b8-Paper-Conference.pdf)
+- [Reward Hacking in Reinforcement Learning (Lilian Weng)](https://lilianweng.github.io/posts/2024-11-28-reward-hacking/)
+- [Inference-Time Reward Hacking in Large Language Models](https://arxiv.org/pdf/2506.19248)
+- [Over-Optimization (RLHF Book, Nathan Lambert)](https://rlhfbook.com/c/14-over-optimization)
+
+agentId: ad04f9d63b75722b2 (use SendMessage with to: 'ad04f9d63b75722b2' to continue this agent)
+&lt;usage>total_tokens: 19323
+tool_uses: 10
+duration_ms: 83465&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21a0fb9f-8c2e-4515-9eeb-030f57b7ba5d",
+  "isSidechain": false,
+  "promptId": "c5cb5cdd-3dff-45de-89b1-a6d7b6dd5ec9",
+  "type": "user",
+  "uuid": "76e607e6-ed2d-4b2c-83de-6d613ae4a44f",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Research the relationship between reward model calibration and reward overoptimization in Best-of-N (BoN) and RL settings. The goal is to understand whether better calibration actually mitigates overoptimization, or if the evidence is weak/mixed.\n\nSpecifically:\n1. What does Coste et al. (NeurIPS 2023) \"Reward Model Ensembles Help Mitigate Overoptimization\" actually show? Is it about calibration or diversity?\n2. Are there other papers that study calibration → overoptimization mitigation specifically?\n3. What are the dominant theories for why BoN overoptimization happens? Is calibration a primary factor or secondary?\n4. The \"Scaling Laws for GenRMs\" paper found intermediate GRPO checkpoints (worse accuracy) can be better rewarders. Does this suggest the problem is NOT about calibration?\n5. Any evidence that advantage-grounded scores specifically resist overoptimization?\n\nSearch using:\n- \"reward model calibration overoptimization best-of-n\"\n- \"reward overoptimization calibration mitigation 2025 2026\"\n- \"reward hacking calibration RL language models\"\n- \"best-of-n overoptimization causes reward model\"\n\nReport in detail (400-500 words).",
+    "agentId": "ad04f9d63b75722b2",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have sufficient information to provide a comprehensive report. Here is my analysis:\n\n---\n\n## Reward Model Calibration vs. Overoptimization: A Research Synthesis\n\n### 1. What Coste et al. (NeurIPS 2023) Actually Shows\n\nCoste et al.'s \"[Reward Model Ensembles Help Mitigate Overoptimization](https://arxiv.org/abs/2310.02743)\" is primarily about **diversity and conservative aggregation**, not calibration per se. The paper shows that ensembling reward models and using conservative aggregation strategies (mean, worst-case optimization, uncertainty-weighted optimization) mitigates overoptimization by up to 70% for BoN sampling and reliably reduces it for PPO. The mechanism is that aggregating diverse models dampens idiosyncratic outlier predictions and overconfidence of individual models. Ensembles also enable epistemic uncertainty estimation via prediction discrepancies, which *supports* better calibration -- but calibration is a byproduct, not the claimed causal driver. The follow-up paper \"[Helping or Herding?](https://arxiv.org/html/2312.09244v1)\" (Eisenstein et al., 2023) further showed that ensembles mitigate but do not eliminate reward hacking, noting that ensembles can \"herd\" toward shared biases. The evidence points to **diversity and pessimism** as the active ingredients, not calibration alone.\n\n### 2. Papers Studying Calibration -> Overoptimization Mitigation\n\nDirect studies of calibration as a standalone lever against overoptimization are sparse. The closest is \"[Bayesian Reward Models for LLM Alignment](https://arxiv.org/pdf/2402.13210)\" (2024), which shows that Bayesian reward models signal higher uncertainty farther from the training distribution, and these uncertainty estimates can mitigate overoptimization in BoN. However, this works via **uncertainty quantification** rather than calibration of the reward signal itself. \"[InfoRM](https://proceedings.neurips.cc/paper_files/paper/2024/file/f25d75fc760aec0a6174f9f5d9da59b8-Paper-Conference.pdf)\" (NeurIPS 2024) maintains consistent growth in both proxy and gold scores during RL by incorporating information-theoretic regularization, but again the mechanism is regularization, not calibration. No paper I found makes a clean claim that \"better-calibrated reward models resist overoptimization\" with direct experimental evidence isolating calibration from other factors.\n\n### 3. Dominant Theories for Why BoN Overoptimization Happens\n\nThe dominant framework traces to [Gao et al. (2022)](https://arxiv.org/abs/2210.10760), which characterized overoptimization as a manifestation of Goodhart's law: when the proxy reward model diverges from the true objective, optimizing the proxy eventually hurts true performance. The leading mechanistic theories are:\n\n- **Out-of-distribution (OOD) extrapolation errors**: As optimization pushes responses away from the reward model's training distribution, the reward model produces spuriously high scores for OOD inputs. This is widely considered the **primary** driver. [Behavior-Supported Policy Optimization](https://arxiv.org/pdf/2503.18130) (2025) and related work specifically target OOD evaluation errors.\n- **Winner's curse / selection bias**: \"[From Curiosity to Caution](https://arxiv.org/abs/2604.04648)\" (Yu et al., 2026) frames BoN overoptimization as an inevitable statistical artifact: selecting the maximum from N noisy estimates systematically overestimates true quality. Their \"Caution\" method penalizes prediction error on atypical responses as a signal of distributional uncertainty.\n- **Reward model capacity limitations**: Smaller or less expressive reward models overoptimize sooner (Gao et al.'s scaling laws).\n\nCalibration is at best a **secondary** factor. The primary drivers are OOD errors and selection bias inherent to maximization over noisy estimates.\n\n### 4. \"Scaling Laws for GenRMs\" and the Accuracy-vs-Rewarder Paradox\n\nThe \"[Scaling Laws for Generative Reward Models](https://openreview.net/forum?id=VYLwMvhdXI)\" paper reveals a striking finding: intermediate GRPO checkpoints of thinking judges (with worse static accuracy) can outperform fully-trained checkpoints as rewarders during policy optimization. Furthermore, thinking GenRMs outperform answer-only variants by 1-2% on static evaluation tasks, yet answer-only GenRMs achieve higher Gold Elo and more stable proxy-Gold alignment during actual policy optimization.\n\nThis is strong evidence that **the problem is not primarily about calibration or accuracy**. A better-calibrated, more accurate evaluator does not necessarily make a better rewarder. The evaluator-rewarder gap suggests that what matters for policy optimization is robustness to distributional shift rather than in-distribution accuracy. Intermediate checkpoints may produce \"smoother\" or less exploitable reward landscapes even though they are less accurate point estimators.\n\n### 5. Advantage-Grounded Scores and Overoptimization Resistance\n\nDirect evidence that advantage-grounded reward scores specifically resist overoptimization is thin. REINFORCE-based methods (ReMax, RLOO, GRPO, REINFORCE++) use various advantage estimation baselines, and GRPO in particular grounds advantages relative to group-level baselines. However, I found no paper making the specific claim that advantage-grounded scoring is inherently more resistant to overoptimization than absolute reward scoring. The closest relevant work is on **behavior-supported regularization** and pessimistic reward estimation, which constrain optimization to in-distribution regions regardless of how scores are grounded.\n\n### Summary Assessment\n\nThe evidence that better calibration *per se* mitigates overoptimization is **weak and indirect**. The interventions that demonstrably work -- ensembles, pessimism, uncertainty penalization, OOD regularization -- operate through diversity, conservatism, and distributional robustness. The GenRM scaling laws paper provides perhaps the most compelling counter-evidence: models with worse accuracy/calibration can be better rewarders, suggesting the real challenge is reward landscape exploitability under distributional shift, not calibration of the reward signal at the training distribution.\n\nSources:\n- [Reward Model Ensembles Help Mitigate Overoptimization (Coste et al., 2023)](https://arxiv.org/abs/2310.02743)\n- [Helping or Herding? Reward Model Ensembles Mitigate but do not Eliminate Reward Hacking](https://arxiv.org/html/2312.09244v1)\n- [Scaling Laws for Reward Model Overoptimization (Gao et al., 2022)](https://arxiv.org/abs/2210.10760)\n- [Scaling Laws for Generative Reward Models](https://openreview.net/forum?id=VYLwMvhdXI)\n- [Bayesian Reward Models for LLM Alignment](https://arxiv.org/pdf/2402.13210)\n- [From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism (Yu et al., 2026)](https://arxiv.org/abs/2604.04648)\n- [Mitigating Reward Over-Optimization in RLHF via Behavior-Supported Regularization](https://arxiv.org/pdf/2503.18130)\n- [InfoRM: Mitigating Reward Hacking in RLHF (NeurIPS 2024)](https://proceedings.neurips.cc/paper_files/paper/2024/file/f25d75fc760aec0a6174f9f5d9da59b8-Paper-Conference.pdf)\n- [Reward Hacking in Reinforcement Learning (Lilian Weng)](https://lilianweng.github.io/posts/2024-11-28-reward-hacking/)\n- [Inference-Time Reward Hacking in Large Language Models](https://arxiv.org/pdf/2506.19248)\n- [Over-Optimization (RLHF Book, Nathan Lambert)](https://rlhfbook.com/c/14-over-optimization)"
+      }
+    ],
+    "totalDurationMs": 83465,
+    "totalTokens": 19323,
+    "totalToolUseCount": 10,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1630,
+      "cache_read_input_tokens": 15709,
+      "output_tokens": 1983,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1630
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1983,
+          "cache_read_input_tokens": 15709,
+          "cache_creation_input_tokens": 1630,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1630,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 10
+    }
+  },
+  "sourceToolAssistantUUID": "21a0fb9f-8c2e-4515-9eeb-030f57b7ba5d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Generative Process Advantage Verifiers: Calibrated Step-Level Verifica…",
+  "leafUuid": "76e607e6-ed2d-4b2c-83de-6d613ae4a44f",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise generative process advantage verifiers for calibration",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-27T19:01:20.225Z_
+
+<details><summary>↩ Tool result · `toolu_014gCHxTWYc9ag81AGgx61bP`</summary>
+
+```text
+I now have comprehensive information to provide a detailed report. Here is my findings:
+
+---
+
+## StepWiser: Stepwise Generative Judges for Wiser Reasoning
+
+**Authors:** Wei Xiong, Wenting Zhao, Weizhe Yuan, Olga Golovneva, Tong Zhang, Jason Weston, Sainbayar Sukhbaatar (Meta / FAIR affiliations)
+**ArXiv:** 2508.19229 (August 26, 2025)
+
+### 1. What StepWiser Does
+
+StepWiser reframes step-level reward modeling from a classification task into a **reasoning task**. Instead of training a black-box discriminative process reward model (PRM) that outputs a scalar score per step, StepWiser trains a **generative judge** that produces an explicit chain-of-thought "meta-reasoning" trace analyzing the merits or flaws of each reasoning chunk, then emits a final judgment token (correct/incorrect). The key innovation is that the judge itself reasons about the policy model's reasoning -- it generates "thinking tokens" before delivering its verdict, making its evaluations interpretable and more accurate than classifier-based PRMs.
+
+The system uses a **self-segmentation technique** to decompose continuous reasoning traces into coherent "Chunks-of-Thought," enabling dense step-level supervision rather than coarse trajectory-level feedback.
+
+### 2. RL Training and Advantage Functions
+
+StepWiser is trained via **GRPO (Groupwise Relative Policy Optimization)**. The reward is binary: 1 if the judge's verdict matches the Monte-Carlo rollout-derived label, 0 otherwise. The paper investigates three labeling strategies for assigning ground-truth labels to each reasoning chunk:
+
+- **Abs-Q (Absolute Q-value):** A fixed threshold on Monte-Carlo Q-value estimates.
+- **Rel-Ratio:** A relative improvement metric comparing Q-values before and after the step.
+- **Rel-Effective:** An **advantage-based reward signal** -- a step is labeled positive when its addition improves the Q-value plus an advantage term.
+
+The relative progress-based signals (Rel-Ratio, Rel-Effective) consistently outperform absolute Q-value thresholds. Notably, **Rel-Effective is explicitly described as "advantage-based,"** making it directly relevant to the concept of advantage grounding. Dataset balancing during RL training proved crucial for stability, preventing model collapse.
+
+### 3. Calibration
+
+Based on thorough searching, **StepWiser does not explicitly address calibration** of its generative judge. There is no discussion of whether the judge's confidence in its verdicts is well-calibrated, nor any calibration metrics or entropy-based regularization targeting calibration. This is a gap in the work.
+
+### 4. Key Results and Benchmarks
+
+The primary evaluation benchmark is **ProcessBench** (step-level judgment accuracy, measured as harmonic mean of error-case and correct-case accuracy):
+
+| Model | Method | ProcessBench Avg |
+|-------|--------|-----------------|
+| Qwen2.5-7B | Discriminative SFT | 39.7 |
+| Qwen2.5-7B | Trajectory-level RL | 43.9 |
+| **Qwen2.5-7B** | **StepWiser (Rel-Effective)** | **61.9** |
+| Qwen2.5-1.5B | Discriminative SFT | 34.3 |
+| Qwen2.5-1.5B | StepWiser generative | 36.2 |
+
+Ablations show that removing online RL training is devastating -- rejection sampling fine-tuning yields only 23.1 on the 1.5B model, underperforming even the basic SFT baseline (24.1). StepWiser also demonstrates improvements in (a) **training-time** policy improvement via stepwise rejection sampling for data selection, and (b) **inference-time** search via a "chunk-reset" strategy where the judge evaluates each emitted chunk and triggers regeneration upon negative judgment.
+
+### 5. Conceptual Proximity to "Generative Verifier with Advantage Grounding"
+
+StepWiser is **very close** to this concept. It is a generative verifier (produces reasoning traces, not just scores), it operates at the step level, and its best-performing labeling strategy (Rel-Effective) is explicitly advantage-based. The main differences from a hypothetical "generative verifier that reasons about step quality with advantage grounding" would be: (a) it does not frame its output as an advantage estimate per se -- it outputs a binary correct/incorrect verdict, not a continuous advantage value; (b) it does not address calibration; and (c) the advantage grounding is in the label construction, not in the judge's output representation. But architecturally and philosophically, it is the closest existing work to that description.
+
+### 6. Current Status
+
+StepWiser was submitted to **ICLR 2026** and is listed as a **Withdrawn Submission** (withdrawn September 16, 2025, modified December 10, 2025). No reviewer scores or reviews are publicly visible on OpenReview. I found **no evidence of resubmission** to ICML 2026, NeurIPS 2026, or any other venue as of this search. The arXiv preprint remains available.
+
+Sources:
+- [ArXiv Paper](https://arxiv.org/abs/2508.19229)
+- [OpenReview (ICLR 2026 Withdrawn)](https://openreview.net/forum?id=gEu9xXzTlI)
+- [Emergent Mind Summary](https://www.emergentmind.com/papers/2508.19229)
+- [Liner Quick Review](https://liner.com/review/stepwiser-stepwise-generative-judges-for-wiser-reasoning)
+- [HuggingFace Paper Page](https://huggingface.co/papers/2508.19229)
+
+agentId: ab56ee0393fa18def (use SendMessage with to: 'ab56ee0393fa18def' to continue this agent)
+&lt;usage>total_tokens: 20268
+tool_uses: 16
+duration_ms: 116347&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7becf4d0-b893-429d-8d3b-c73ef0482eef",
+  "isSidechain": false,
+  "promptId": "c5cb5cdd-3dff-45de-89b1-a6d7b6dd5ec9",
+  "type": "user",
+  "uuid": "bffa69cd-4bdc-41c5-80ba-a66ec464d299",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Research \"StepWiser\" - a generative step-level judge trained via RL that meta-reasons about reasoning steps. It was apparently an ICLR 2026 withdrawn submission. I need to understand:\n1. What exactly does StepWiser do? How does it train a generative judge?\n2. Does it use advantage functions or any RL-based training signal?\n3. Does it address calibration at all?\n4. What are its key results and benchmarks?\n5. How close is it conceptually to a \"generative verifier that reasons about step quality with advantage grounding\"?\n6. What is its current status (withdrawn? resubmitted elsewhere?)\n\nSearch using multiple queries:\n- \"StepWiser generative step-level judge RL reasoning\"\n- \"StepWiser ICLR 2026 process reward model\"\n- \"StepWiser step-level verification meta-reasoning\"\n\nRead the actual paper if you can find it on arxiv or openreview. Report in detail (300-400 words).",
+    "agentId": "ab56ee0393fa18def",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have comprehensive information to provide a detailed report. Here is my findings:\n\n---\n\n## StepWiser: Stepwise Generative Judges for Wiser Reasoning\n\n**Authors:** Wei Xiong, Wenting Zhao, Weizhe Yuan, Olga Golovneva, Tong Zhang, Jason Weston, Sainbayar Sukhbaatar (Meta / FAIR affiliations)\n**ArXiv:** 2508.19229 (August 26, 2025)\n\n### 1. What StepWiser Does\n\nStepWiser reframes step-level reward modeling from a classification task into a **reasoning task**. Instead of training a black-box discriminative process reward model (PRM) that outputs a scalar score per step, StepWiser trains a **generative judge** that produces an explicit chain-of-thought \"meta-reasoning\" trace analyzing the merits or flaws of each reasoning chunk, then emits a final judgment token (correct/incorrect). The key innovation is that the judge itself reasons about the policy model's reasoning -- it generates \"thinking tokens\" before delivering its verdict, making its evaluations interpretable and more accurate than classifier-based PRMs.\n\nThe system uses a **self-segmentation technique** to decompose continuous reasoning traces into coherent \"Chunks-of-Thought,\" enabling dense step-level supervision rather than coarse trajectory-level feedback.\n\n### 2. RL Training and Advantage Functions\n\nStepWiser is trained via **GRPO (Groupwise Relative Policy Optimization)**. The reward is binary: 1 if the judge's verdict matches the Monte-Carlo rollout-derived label, 0 otherwise. The paper investigates three labeling strategies for assigning ground-truth labels to each reasoning chunk:\n\n- **Abs-Q (Absolute Q-value):** A fixed threshold on Monte-Carlo Q-value estimates.\n- **Rel-Ratio:** A relative improvement metric comparing Q-values before and after the step.\n- **Rel-Effective:** An **advantage-based reward signal** -- a step is labeled positive when its addition improves the Q-value plus an advantage term.\n\nThe relative progress-based signals (Rel-Ratio, Rel-Effective) consistently outperform absolute Q-value thresholds. Notably, **Rel-Effective is explicitly described as \"advantage-based,\"** making it directly relevant to the concept of advantage grounding. Dataset balancing during RL training proved crucial for stability, preventing model collapse.\n\n### 3. Calibration\n\nBased on thorough searching, **StepWiser does not explicitly address calibration** of its generative judge. There is no discussion of whether the judge's confidence in its verdicts is well-calibrated, nor any calibration metrics or entropy-based regularization targeting calibration. This is a gap in the work.\n\n### 4. Key Results and Benchmarks\n\nThe primary evaluation benchmark is **ProcessBench** (step-level judgment accuracy, measured as harmonic mean of error-case and correct-case accuracy):\n\n| Model | Method | ProcessBench Avg |\n|-------|--------|-----------------|\n| Qwen2.5-7B | Discriminative SFT | 39.7 |\n| Qwen2.5-7B | Trajectory-level RL | 43.9 |\n| **Qwen2.5-7B** | **StepWiser (Rel-Effective)** | **61.9** |\n| Qwen2.5-1.5B | Discriminative SFT | 34.3 |\n| Qwen2.5-1.5B | StepWiser generative | 36.2 |\n\nAblations show that removing online RL training is devastating -- rejection sampling fine-tuning yields only 23.1 on the 1.5B model, underperforming even the basic SFT baseline (24.1). StepWiser also demonstrates improvements in (a) **training-time** policy improvement via stepwise rejection sampling for data selection, and (b) **inference-time** search via a \"chunk-reset\" strategy where the judge evaluates each emitted chunk and triggers regeneration upon negative judgment.\n\n### 5. Conceptual Proximity to \"Generative Verifier with Advantage Grounding\"\n\nStepWiser is **very close** to this concept. It is a generative verifier (produces reasoning traces, not just scores), it operates at the step level, and its best-performing labeling strategy (Rel-Effective) is explicitly advantage-based. The main differences from a hypothetical \"generative verifier that reasons about step quality with advantage grounding\" would be: (a) it does not frame its output as an advantage estimate per se -- it outputs a binary correct/incorrect verdict, not a continuous advantage value; (b) it does not address calibration; and (c) the advantage grounding is in the label construction, not in the judge's output representation. But architecturally and philosophically, it is the closest existing work to that description.\n\n### 6. Current Status\n\nStepWiser was submitted to **ICLR 2026** and is listed as a **Withdrawn Submission** (withdrawn September 16, 2025, modified December 10, 2025). No reviewer scores or reviews are publicly visible on OpenReview. I found **no evidence of resubmission** to ICML 2026, NeurIPS 2026, or any other venue as of this search. The arXiv preprint remains available.\n\nSources:\n- [ArXiv Paper](https://arxiv.org/abs/2508.19229)\n- [OpenReview (ICLR 2026 Withdrawn)](https://openreview.net/forum?id=gEu9xXzTlI)\n- [Emergent Mind Summary](https://www.emergentmind.com/papers/2508.19229)\n- [Liner Quick Review](https://liner.com/review/stepwiser-stepwise-generative-judges-for-wiser-reasoning)\n- [HuggingFace Paper Page](https://huggingface.co/papers/2508.19229)"
+      }
+    ],
+    "totalDurationMs": 116347,
+    "totalTokens": 20268,
+    "totalToolUseCount": 16,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 634,
+      "cache_read_input_tokens": 18213,
+      "output_tokens": 1420,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 634
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1420,
+          "cache_read_input_tokens": 18213,
+          "cache_creation_input_tokens": 634,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 634,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 16
+    }
+  },
+  "sourceToolAssistantUUID": "7becf4d0-b893-429d-8d3b-c73ef0482eef",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-27T19:02:16.263Z_
+
+<details><summary>↩ Tool result · `toolu_01SwFCgYrQgYHKxRy4AH6ZZk`</summary>
+
+```text
+I now have sufficient information to provide a comprehensive report. Here is my detailed finding:
+
+---
+
+**"Scaling Laws for Generative Reward Models" -- Research Report**
+
+**Venue Status:**
+The paper by Angel Raychev, Nathan Lile, and Rafael Rafailov was submitted to ICLR 2026 on September 20, 2025, with revisions through February 11, 2026 (OpenReview ID: VYLwMvhdXI). Based on my research, the paper's OpenReview page still shows it as "Submitted to ICLR 2026" with no visible acceptance or rejection decision, review scores, or meta-review. It does not appear among the top-ranked oral/spotlight papers on aggregator sites. ICLR 2026 accepted approximately 5,357 papers (26.97% acceptance rate) for the conference held April 23-27, 2026 in Rio de Janeiro. I was unable to confirm definitively whether this paper was accepted as a poster or rejected -- the OpenReview page does not display a decision banner, which could indicate the decision is not publicly visible or the paper was rejected/withdrawn. I found no evidence of resubmission to another venue. Notably, the paper does not appear to have a separate arXiv listing (only the OpenReview submission).
+
+**Key Findings on the Evaluator-Rewarder Gap:**
+The paper's central contribution is identifying the "evaluator-rewarder gap": thinking GenRMs (trained via GRPO with chain-of-thought reasoning) consistently outperform answer-only GenRMs (trained via SFT) by 1-2% on static validation/evaluation tasks across all model scales. However, when these same models are used as reward signals for online policy optimization (online DPO), the advantage diminishes and often reverses. Answer-only GenRMs achieve higher peak Gold Elo scores and more stable proxy-Gold alignment during training. This means in-distribution evaluation accuracy does not predict effectiveness as a training reward signal.
+
+**Intermediate GRPO Checkpoints:**
+One of the paper's most striking findings is that intermediate GRPO checkpoints (roughly 50-250 training steps) of thinking GenRMs can outperform fully-trained checkpoints as rewarders, despite having worse static evaluation accuracy. The authors connect this to the training dynamics of GRPO: reward curves follow an exponential saturation pattern with three phases -- (i) slow initial progress, (ii) rapid improvement, and (iii) saturation/plateau. The implication is that extended GRPO training may cause the model to become overfit or miscalibrated for the reward-giving role, even as its evaluation accuracy continues to improve.
+
+**Attribution of the Gap:**
+The authors attribute the gap primarily to a disconnect between static evaluation capability and dynamic reward robustness -- essentially, the properties that make a good evaluator (high accuracy on held-out examples) are not the same as those that make a good rewarder (providing a stable, informative gradient signal as the policy drifts from the training distribution). The paper emphasizes that reward model scale is the single most decisive factor for policy quality, with larger reward models continuing to improve policy outcomes even when they far exceed the policy in parameter count. The gap is not attributed to a single factor like calibration alone, but rather to the broader phenomenon that reasoning-enhanced models, despite better judgment accuracy, may produce reward signals that are less robust to distributional shift during optimization.
+
+Sources:
+- [Scaling Laws for Generative Reward Models - OpenReview](https://openreview.net/forum?id=VYLwMvhdXI)
+- [Scaling Laws for Generative Reward Models - PDF](https://openreview.net/pdf/8eabef0228d74992957fcb646ff50bb5a2d72d0e.pdf)
+- [Reward Hacking in the Era of Large Models (citing the paper)](https://arxiv.org/html/2604.13602v1)
+- [ICLR 2026 Accepted Papers - Paper Copilot](https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/)
+- [ICLR 2026 Papers - Cool Papers](https://papers.cool/venue/ICLR.2026)
+- [Beyond Length Scaling: Synergizing Breadth and Depth for Generative Reward Models](https://arxiv.org/pdf/2603.01571)
+
+agentId: a149a9784cf919fa4 (use SendMessage with to: 'a149a9784cf919fa4' to continue this agent)
+&lt;usage>total_tokens: 26197
+tool_uses: 27
+duration_ms: 156844&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0d5e2567-8737-4171-8bf8-d17d81e97647",
+  "isSidechain": false,
+  "promptId": "c5cb5cdd-3dff-45de-89b1-a6d7b6dd5ec9",
+  "type": "user",
+  "uuid": "6f2a0207-a388-46c0-a017-3967ed7d22fc",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Research the paper \"Scaling Laws for Generative Reward Models\" to determine:\n\n1. Its current venue status - was it accepted or rejected at ICLR 2026? Is it still under review?\n2. If rejected, was it resubmitted elsewhere?\n3. What are the key findings about the \"evaluator-rewarder gap\"?\n4. Specifically, what does it say about intermediate GRPO checkpoints outperforming fully-trained ones? What explanation do the authors give?\n5. Do the authors attribute the gap to calibration, training dynamics, model scale, or something else?\n\nSearch using multiple queries:\n- \"Scaling Laws for Generative Reward Models ICLR 2026 acceptance\"\n- \"Scaling Laws for Generative Reward Models OpenReview 2026 decision\"\n- \"evaluator-rewarder gap generative reward models scaling\"\n- \"scaling laws GenRM GRPO checkpoint rewarder\"\n\nCheck OpenReview directly if possible. Report in detail (300-400 words).",
+    "agentId": "a149a9784cf919fa4",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have sufficient information to provide a comprehensive report. Here is my detailed finding:\n\n---\n\n**\"Scaling Laws for Generative Reward Models\" -- Research Report**\n\n**Venue Status:**\nThe paper by Angel Raychev, Nathan Lile, and Rafael Rafailov was submitted to ICLR 2026 on September 20, 2025, with revisions through February 11, 2026 (OpenReview ID: VYLwMvhdXI). Based on my research, the paper's OpenReview page still shows it as \"Submitted to ICLR 2026\" with no visible acceptance or rejection decision, review scores, or meta-review. It does not appear among the top-ranked oral/spotlight papers on aggregator sites. ICLR 2026 accepted approximately 5,357 papers (26.97% acceptance rate) for the conference held April 23-27, 2026 in Rio de Janeiro. I was unable to confirm definitively whether this paper was accepted as a poster or rejected -- the OpenReview page does not display a decision banner, which could indicate the decision is not publicly visible or the paper was rejected/withdrawn. I found no evidence of resubmission to another venue. Notably, the paper does not appear to have a separate arXiv listing (only the OpenReview submission).\n\n**Key Findings on the Evaluator-Rewarder Gap:**\nThe paper's central contribution is identifying the \"evaluator-rewarder gap\": thinking GenRMs (trained via GRPO with chain-of-thought reasoning) consistently outperform answer-only GenRMs (trained via SFT) by 1-2% on static validation/evaluation tasks across all model scales. However, when these same models are used as reward signals for online policy optimization (online DPO), the advantage diminishes and often reverses. Answer-only GenRMs achieve higher peak Gold Elo scores and more stable proxy-Gold alignment during training. This means in-distribution evaluation accuracy does not predict effectiveness as a training reward signal.\n\n**Intermediate GRPO Checkpoints:**\nOne of the paper's most striking findings is that intermediate GRPO checkpoints (roughly 50-250 training steps) of thinking GenRMs can outperform fully-trained checkpoints as rewarders, despite having worse static evaluation accuracy. The authors connect this to the training dynamics of GRPO: reward curves follow an exponential saturation pattern with three phases -- (i) slow initial progress, (ii) rapid improvement, and (iii) saturation/plateau. The implication is that extended GRPO training may cause the model to become overfit or miscalibrated for the reward-giving role, even as its evaluation accuracy continues to improve.\n\n**Attribution of the Gap:**\nThe authors attribute the gap primarily to a disconnect between static evaluation capability and dynamic reward robustness -- essentially, the properties that make a good evaluator (high accuracy on held-out examples) are not the same as those that make a good rewarder (providing a stable, informative gradient signal as the policy drifts from the training distribution). The paper emphasizes that reward model scale is the single most decisive factor for policy quality, with larger reward models continuing to improve policy outcomes even when they far exceed the policy in parameter count. The gap is not attributed to a single factor like calibration alone, but rather to the broader phenomenon that reasoning-enhanced models, despite better judgment accuracy, may produce reward signals that are less robust to distributional shift during optimization.\n\nSources:\n- [Scaling Laws for Generative Reward Models - OpenReview](https://openreview.net/forum?id=VYLwMvhdXI)\n- [Scaling Laws for Generative Reward Models - PDF](https://openreview.net/pdf/8eabef0228d74992957fcb646ff50bb5a2d72d0e.pdf)\n- [Reward Hacking in the Era of Large Models (citing the paper)](https://arxiv.org/html/2604.13602v1)\n- [ICLR 2026 Accepted Papers - Paper Copilot](https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/)\n- [ICLR 2026 Papers - Cool Papers](https://papers.cool/venue/ICLR.2026)\n- [Beyond Length Scaling: Synergizing Breadth and Depth for Generative Reward Models](https://arxiv.org/pdf/2603.01571)"
+      }
+    ],
+    "totalDurationMs": 156844,
+    "totalTokens": 26197,
+    "totalToolUseCount": 27,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1186,
+      "cache_read_input_tokens": 23974,
+      "output_tokens": 1036,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1186
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1036,
+          "cache_read_input_tokens": 23974,
+          "cache_creation_input_tokens": 1186,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1186,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 27
+    }
+  },
+  "sourceToolAssistantUUID": "0d5e2567-8737-4171-8bf8-d17d81e97647",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-27T19:02:52.999Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent. Now I have comprehensive research on all the key issues. Let me synthesize what I've learned:
+
+## Key findings:
+
+### 1. StepWiser (ICLR 2026 withdrawn)
+- Very close to GenPAV conceptually: generative judge trained via GRPO that meta-reasons about step quality
+- Uses advantage-based labeling (Rel-Effective) for training signals
+- Does NOT address calibration
+- Withdrawn from ICLR 2026, no resubmission found
+- Key differentiators from GenPAV: binary verdict (not continuous advantage), no calibration, advantage is in label construction not representation
+
+
+### 2. Think-RM (NeurIPS 2025)
+- Long-horizon reasoning GenRM using SFT and GRPO, but operates at trajectory level with pairwise preferences rather than step-level granularity
+- Applies pairwise-derived advantage signals for downstream RLHF without calibration analysis
+- Addresses general preference modeling rather than math-specific PRM calibration
+
+### 3. AgentPRM (ACM Web 2026)
+- Uses temporal difference and GAE for advantage estimation in agent domains like web navigation and games
+- Shares similar technical approach to GenPAV but lacks calibration analysis and requires significantly more compute
+
+### 4. SPARK (arXiv Dec 2024)
+- Combines selective advantage estimation with generative PRM-CoT, zeroing out misaligned reward signals for reference-free PRM training
+- Documents reward hacking patterns but doesn't address calibration
+
+### 5. PURE (NeurIPS 2025)
+- Contrasts min-form versus sum-form credit assignment and uses value functions to guide PRM-based RL
+- Specifically targets reward hacking but skips calibration analysis
+
+### 6. OAR (Jan 2026)
+- Applies token-level advantage reshaping within GRPO, focusing on RL credit assignment rather than PRM training itself
+- No calibration work
+
+### 7. Scaling Laws for GenRMs
+- Submission status to ICLR 2026 remains unconfirmed, but the work attributes the evaluator-rewarder gap to distributional shift, which is more computationally efficient than Monte Carlo rollouts
+- Model scale emerges as the dominant factor, and the observation that intermediate checkpoints perform better as rewarders points to training dynamics rather than calibration issues
+
+### 8. Calibration → Overoptimization link
+The evidence connecting calibration to overoptimization is actually quite weak. Coste et al. focuses on diversity and pessimism rather than calibration itself, while the dominant explanations center on out-of-distribution extrapolation, winner's curse, and capacity constraints. There's no direct evidence that advantage-grounded scores provide resistance to overoptimization, and the scaling laws paper arguably contradicts the calibration hypothesis entirely.
+
+Looking back at the reviewer feedback, I'm seeing some fundamental gaps in my framing. The novelty claim is thinner than I presented—StepWiser and SPARK together already cover much of what GenPAV attempts with their combination of generative judging and advantage-based RL training.
+
+The real issue is that H4 lacks solid grounding. The evidence that calibration actually mitigates overoptimization is sparse, and the scaling laws findings (intermediate checkpoints outperforming, scale being dominant) actually argue against calibration being the key mechanism. This undermines a significant portion of my paper's narrative.
+
+What I should lean into instead is the structural calibration angle—that's where the genuine novelty sits, and it's what the DPRM authors explicitly called for. Given this is round 4 with no score movement and the reviewer saying I'm "very close to pass quality," I need to do a substantial rewrite that adds the missing related works with honest positioning, reframes novelty as "first to target structural calibration" rather than claiming entirely new ground, and makes that structural calibration claim the clear centerpiece of the contribution.
+
+Now I'm thinking through what "major revision" actually entails. The core idea is sound—reviewers confirmed the training-time advantage for generative PRM calibration is verified and well-motivated. So the changes are really about landscape (adding 6 papers and reframing novelty), tempering H4 significantly, handling the scaling laws citation properly, and being more candid about the populated space. It's a major repositioning of framing rather than a fundamental method change.
+
+Let me draft the revised JSON proposal now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f2a0207-a388-46c0-a017-3967ed7d22fc",
+  "isSidechain": false,
+  "requestId": "req_011CbTbFwqDQnxJz5ZNghQ9c",
+  "type": "assistant",
+  "uuid": "c28b7c68-7335-4d4a-9224-0ea7baa9c05a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TkmGLhkqJGXMjDdr1rWLRA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2086,
+      "cache_creation_input_tokens": 8176,
+      "cache_read_input_tokens": 24229,
+      "output_tokens": 1811,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8176,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2086,
+          "output_tokens": 1811,
+          "cache_read_input_tokens": 24229,
+          "cache_creation_input_tokens": 8176,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8176
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-27T19:02:54.438Z_
+
+Now I have comprehensive research on all six papers and the key issues. Let me synthesize the findings and draft the revision.
+
+**Key findings from research:**
+
+1. **StepWiser**: Very close to GenPAV — generative judge trained via GRPO with advantage-based labeling (Rel-Effective). But binary verdicts, no calibration, no continuous advantage scores. Withdrawn from ICLR 2026.
+
+2. **Think-RM**: Long-horizon reasoning GenRM (SFT+GRPO), trajectory-level pairwise preference, NOT step-level. No calibration. Different domain (general RLHF, not math PRM).
+
+3. **AgentPRM**: TD+GAE for PRM training — technically very similar advantage estimation. Agent domains (web nav, games), not math. No calibration.
+
+4. **SPARK**: Selective advantage + generative PRM-CoT. Targets RL training, documents reward hacking. No calibration.
+
+5. **PURE**: Min-form credit assignment with value functions. Addresses reward hacking in PRM-guided RL. No calibration.
+
+6. **OAR**: Token-level advantage reshaping for GRPO credit assignment. Not PRM training.
+
+7. **Scaling Laws for GenRMs**: Venue status **unclear** — no confirmed acceptance/rejection at ICLR 2026. Gap attributed to distributional shift robustness and scale, NOT calibration.
+
+8. **Calibration→overoptimization link**: **Weak and indirect**. Coste et al. is about diversity/pessimism, not calibration. Dominant theories: OOD errors, winner's curse, capacity. The intermediate checkpoint finding actively undermines the calibration hypothesis.
+
+These findings demand a **major revision** — the novelty space is more crowded than claimed, and H4 is on shaky ground. Let me now produce the revised proposal.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c28b7c68-7335-4d4a-9224-0ea7baa9c05a",
+  "isSidechain": false,
+  "requestId": "req_011CbTbFwqDQnxJz5ZNghQ9c",
+  "type": "assistant",
+  "uuid": "272eea82-49e3-4a71-8029-940896418c46",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TkmGLhkqJGXMjDdr1rWLRA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2086,
+      "cache_creation_input_tokens": 8176,
+      "cache_read_input_tokens": 24229,
+      "output_tokens": 1811,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8176,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2086,
+          "output_tokens": 1811,
+          "cache_read_input_tokens": 24229,
+          "cache_creation_input_tokens": 8176,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8176
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-27T19:02:58.435Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01BiQ9gzh6SqFhL2UXqaz32q`</summary>
+
+```json
+{
+  "description": "Search for latest GenPRM calibration work",
+  "prompt": "Search for any very recent (2026) work that specifically combines advantage/value functions with calibration for process reward models or generative reward models. I want to make sure the revised proposal doesn't miss anything that appeared in the last few months.\n\nSearch queries:\n- \"calibration process reward model advantage 2026\"\n- \"calibrated generative reward model training 2026\"\n- \"process reward model value function calibration\"\n- \"structural calibration reward model training time\"\n\nReport any relevant papers found, even if tangentially related. Keep it brief (200 words).",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "272eea82-49e3-4a71-8029-940896418c46",
+  "isSidechain": false,
+  "requestId": "req_011CbTbFwqDQnxJz5ZNghQ9c",
+  "type": "assistant",
+  "uuid": "cc4270fe-fd3c-4129-90fe-45213b1f4173",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TkmGLhkqJGXMjDdr1rWLRA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2086,
+      "cache_creation_input_tokens": 8176,
+      "cache_read_input_tokens": 24229,
+      "output_tokens": 1811,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8176,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2086,
+          "output_tokens": 1811,
+          "cache_read_input_tokens": 24229,
+          "cache_creation_input_tokens": 8176,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8176
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Generative Process Advantage Verifiers: Calibrated Step-Level Verifica…",
+  "leafUuid": "cc4270fe-fd3c-4129-90fe-45213b1f4173",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise generative process advantage verifiers for calibration",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-27T19:03:40.853Z_
+
+<details><summary>↩ Tool result · `toolu_01BiQ9gzh6SqFhL2UXqaz32q`</summary>
+
+```text
+Here is a brief summary of findings:
+
+**Most directly relevant (May 2026):** "Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport" (arXiv:2605.06785) -- proposes using conditional optimal transport to produce calibrated quantile estimates of PRM success probabilities, conditioned on PRM hidden states. It explicitly addresses the overestimation problem in PRMs and integrates calibrated confidence bounds into instance-adaptive inference scaling. This paper is the closest match to combining value/advantage-style reasoning with structural calibration at training/inference time.
+
+**Other relevant 2026 work:**
+- "Know What You Don't Know: Uncertainty Calibration of PRMs" (arXiv:2506.09338) -- quantile-regression calibration of PRM outputs to align with true success probabilities; enables adaptive compute budgets.
+- "Accelerating RL for LLM Reasoning with Optimal Advantage Regression" (arXiv:2505.20686) -- addresses computational overhead of critic/value networks for advantage estimation in reasoning RL.
+- "Reward Modeling for RL-Based LLM Reasoning" (arXiv:2602.09305) -- survey covering calibration of process vs. outcome rewards before advantage estimation (PPR method).
+- "AgentPRM" (ACM Web Conference 2026) -- step-wise promise/progress PRMs for agents.
+
+**Bottom line:** The Distributional PRM paper (2605.06785) is the one most likely to overlap with a proposal combining advantage/value functions and calibration for PRMs. It appeared in May 2026 and should be cited or differentiated against.
+
+Sources:
+- [Distributional Process Reward Models (arXiv:2605.06785)](https://arxiv.org/abs/2605.06785)
+- [Know What You Don't Know: Uncertainty Calibration of PRMs (arXiv:2506.09338)](https://arxiv.org/abs/2506.09338)
+- [Accelerating RL for LLM Reasoning with Optimal Advantage Regression (arXiv:2505.20686)](https://arxiv.org/pdf/2505.20686)
+- [Reward Modeling for RL-Based LLM Reasoning (arXiv:2602.09305)](https://arxiv.org/html/2602.09305v1)
+- [AgentPRM (ACM Web Conference 2026)](https://dl.acm.org/doi/10.1145/3774904.3792551)
+- [Process Reward Model with Q-Value Rankings (arXiv:2410.11287)](https://arxiv.org/html/2410.11287v1)
+
+agentId: a89bb9ff2c0a32725 (use SendMessage with to: 'a89bb9ff2c0a32725' to continue this agent)
+&lt;usage>total_tokens: 14814
+tool_uses: 7
+duration_ms: 42414&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc4270fe-fd3c-4129-90fe-45213b1f4173",
+  "isSidechain": false,
+  "promptId": "c5cb5cdd-3dff-45de-89b1-a6d7b6dd5ec9",
+  "type": "user",
+  "uuid": "f82e2284-91f6-439c-b0a3-4855e01c73d6",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for any very recent (2026) work that specifically combines advantage/value functions with calibration for process reward models or generative reward models. I want to make sure the revised proposal doesn't miss anything that appeared in the last few months.\n\nSearch queries:\n- \"calibration process reward model advantage 2026\"\n- \"calibrated generative reward model training 2026\"\n- \"process reward model value function calibration\"\n- \"structural calibration reward model training time\"\n\nReport any relevant papers found, even if tangentially related. Keep it brief (200 words).",
+    "agentId": "a89bb9ff2c0a32725",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is a brief summary of findings:\n\n**Most directly relevant (May 2026):** \"Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport\" (arXiv:2605.06785) -- proposes using conditional optimal transport to produce calibrated quantile estimates of PRM success probabilities, conditioned on PRM hidden states. It explicitly addresses the overestimation problem in PRMs and integrates calibrated confidence bounds into instance-adaptive inference scaling. This paper is the closest match to combining value/advantage-style reasoning with structural calibration at training/inference time.\n\n**Other relevant 2026 work:**\n- \"Know What You Don't Know: Uncertainty Calibration of PRMs\" (arXiv:2506.09338) -- quantile-regression calibration of PRM outputs to align with true success probabilities; enables adaptive compute budgets.\n- \"Accelerating RL for LLM Reasoning with Optimal Advantage Regression\" (arXiv:2505.20686) -- addresses computational overhead of critic/value networks for advantage estimation in reasoning RL.\n- \"Reward Modeling for RL-Based LLM Reasoning\" (arXiv:2602.09305) -- survey covering calibration of process vs. outcome rewards before advantage estimation (PPR method).\n- \"AgentPRM\" (ACM Web Conference 2026) -- step-wise promise/progress PRMs for agents.\n\n**Bottom line:** The Distributional PRM paper (2605.06785) is the one most likely to overlap with a proposal combining advantage/value functions and calibration for PRMs. It appeared in May 2026 and should be cited or differentiated against.\n\nSources:\n- [Distributional Process Reward Models (arXiv:2605.06785)](https://arxiv.org/abs/2605.06785)\n- [Know What You Don't Know: Uncertainty Calibration of PRMs (arXiv:2506.09338)](https://arxiv.org/abs/2506.09338)\n- [Accelerating RL for LLM Reasoning with Optimal Advantage Regression (arXiv:2505.20686)](https://arxiv.org/pdf/2505.20686)\n- [Reward Modeling for RL-Based LLM Reasoning (arXiv:2602.09305)](https://arxiv.org/html/2602.09305v1)\n- [AgentPRM (ACM Web Conference 2026)](https://dl.acm.org/doi/10.1145/3774904.3792551)\n- [Process Reward Model with Q-Value Rankings (arXiv:2410.11287)](https://arxiv.org/html/2410.11287v1)"
+      }
+    ],
+    "totalDurationMs": 42414,
+    "totalTokens": 14814,
+    "totalToolUseCount": 7,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2409,
+      "cache_read_input_tokens": 11761,
+      "output_tokens": 643,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2409
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 643,
+          "cache_read_input_tokens": 11761,
+          "cache_creation_input_tokens": 2409,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2409,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 7
+    }
+  },
+  "sourceToolAssistantUUID": "cc4270fe-fd3c-4129-90fe-45213b1f4173",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36 · 2026-05-27T19:03:40.858Z_
+
+```json
+{
+  "parentUuid": "f82e2284-91f6-439c-b0a3-4855e01c73d6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f247f15a-cf6f-4026-adf0-daf201677ee6",
+  "timestamp": "2026-05-27T19:03:40.858Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-27T19:07:26.528Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I now have all the research I need. Let me synthesize everything and produce the complete revised proposal JSON. Let me think carefully about each change:
+
+## Major changes needed:
+
+### 1. Landscape: Add 6 papers with honest positioning
+- **StepWiser** (arXiv Aug 2025, ICLR 2026 withdrawn): Generative step-level judge trained via GRPO with advantage-based labeling (Rel-Effective). Closest prior to GenPAV's "generative verifier reasoning about step quality" framing. Key differences: binary verdicts (not continuous advantage scores), no calibration analysis, advantage grounding is in label construction not learned representations.
+
+
+- **Think-RM** (NeurIPS 2025): Long-horizon reasoning GenRM achieving SOTA on RM-Bench via SFT+GRPO. Operates at trajectory level with pairwise preferences rather than step-level analysis, lacks calibration work, and focuses on general RLHF rather than process-level reasoning.
+- **AgentPRM** (ACM Web 2026): Uses TD+GAE for advantage estimation in agent domains like web navigation and games. Technically similar to our approach but discriminative rather than generative, without calibration analysis.
+- **SPARK** (arXiv Dec 2024): Combines selective advantage estimation with generative PRM-CoT for RL training, using process-aware advantages that zero out misaligned steps.
+- **PURE/Stop Summation** (NeurIPS 2025): Addresses PRM reward hacking through min-form credit assignment with value functions, targeting RL stability rather than calibration.
+- **OAR** (arXiv Jan 2026): Token-level advantage reshaping for GRPO, focused on RL training credit assignment rather than PRM verification.
+
+The advantage-estimation-meets-generative-PRM space is actually more crowded than I initially framed it. What makes GenPAV distinct is the specific focus on structural calibration through advantage grounding—something none of these works directly tackle. I should reframe the novelty claim to emphasize this targeted contribution rather than claiming entirely untried territory. For H4, the evidence linking calibration to overoptimization mitigation is still pretty thin, so I should treat that as exploratory rather than a core finding.
+
+The Scaling Laws paper is a preprint with unclear status at ICLR 2026, so I need to cite it cautiously and soften any claims built on it. I'm also going to remove the evaluator-rewarder gap from the core problem statement since it's taking up space without strong support, and keep it as an exploratory angle instead. The real focus should be sharpened on structural calibration as the primary contribution. This is going to require a genuine restructuring, not just surface-level patching.
+
+Now I'm reconsidering the overall narrative: the PRM calibration problem is well-documented in prior work, and post-hoc methods hit a fundamental ceiling due to monotonic transformations and distribution shift sensitivity. The advantage-estimation space for step-level reasoning is crowded with methods like PQM, SPAE, SHAPE, and others, but none of them actually target calibration. Similarly, the generative PRM space has many players, but none ground advantage specifically for structural calibration. GenPAV's genuine novelty is sitting at that intersection—training-time advantage grounding designed to produce structurally calibrated generative step-level verification. This positioning is sharper and more honest because it acknowledges the competitive landscape while clearly marking what's actually new.
+
+Now I need to restructure the JSON carefully. The core problem should drop the evaluator-rewarder gap from the main question and focus instead on whether advantage-grounded training can produce structurally calibrated generative PRMs that beat post-hoc calibration. The approach section needs H4 to become explicitly exploratory, and I should move the long evaluator-rewarder gap discussion into a separate exploratory investigation rather than the main argument. For the related work landscape, I'm adding all six papers and weakening the "no published work" claim while positioning GenPAV properly against each one. I also need to reconsider whether the approach itself needs adjustments given StepWiser's relevance—it uses GRPO to train a generative judge with advantage-based labels, which overlaps with what GenPAV is doing.
+
+The key insight is that GenPAV can be framed as extending the StepWiser approach specifically toward calibrated continuous scores rather than binary verdicts. AgentPRM's TD+GAE is technically similar in the advantage regression aspect but operates in a different domain without calibration focus. SPARK uses selective advantage with generative PRM-CoT but targets RL training rather than verification. This positioning is actually stronger than claiming it's an entirely untried combination—it's more about the specific application to math-domain calibration as the differentiator.
+
+Now I'm restructuring the JSON to reflect this clearer landscape. I'll be updating the core problem to sharpen the focus on calibration rather than the evaluator-rewarder gap, expanding the opportunity section to acknowledge the crowded space while positioning calibration as the key differentiator, and adding the six new papers to the landscape. The approach section will be adjusted to reflect the new related work positioning, and I'll add revision notes for this round. Since the reviewer didn't raise resource concerns, I can keep the cost section largely as is. I also need to handle the "Scaling Laws for GenRMs" paper carefully by citing it as a preprint and softening the framing around its status.
+
+Writing the full JSON now... no trailing commas, proper escaping, etc.
+
+Actually, let me reconsider the approach to H4. The reviewer gave two options:
+1. "Temper H4" - acknowledge gap may stem from training dynamics, make exploratory
+2. "Strengthen it" - provide more rigorous argument
+
+Given my research showing the calibration→overoptimization link is weak, option 1 is clearly the right call. I'll make H4 explicitly exploratory.
+
+But I should also think about what replaces H4 as a primary contribution. Currently we have:
+- H1: BoN accuracy improvement (primary)
+- H2: ECE reduction vs uncalibrated (primary)
+- H3: Structural calibration superiority over post-hoc (primary, key)
+- H4: Evaluator-rewarder gap mitigation (demoted to exploratory)
+
+Cross-generator generalization is actually a stronger candidate for H4 since it directly tests the amortization argument—whether GenPAV maintains calibration quality across unseen generators like Llama-3.1-8B and DeepSeek-Math-7B without refitting, while KYD and DPRM require generator-specific retraining. This is falsifiable, measurable, and addresses real deployment concerns, making it a much more compelling primary hypothesis than the evaluator-rewarder gap. I'm thinking through the training approach differences—AgentPRM uses TD+GAE to avoid expensive rollouts while GenPAV relies on Monte Carlo with 64 trajectories per state, which is more direct for advantage estimation even if less efficient. SPARK's selective advantage mechanism is really for RL training, not PRM calibration, so it's solving a different problem entirely. I'm confident the approach is solid, so let me move forward with writing out the JSON structure.
+
+For the core problem section, I need to tighten the focus on whether advantage-grounded training can produce generative PRMs with properly calibrated step-level scores that go beyond what post-hoc calibration can achieve.
+
+The opportunity is that while the advantage-estimation and generative-PRM space is crowded with work like StepWiser, SPARK, AgentPRM, and PQM, every single one of them is chasing either RL credit assignment, binary verification accuracy, or policy optimization. None of them are actually targeting calibration directly, which leaves that gap wide open and genuinely valuable.
+
+I'll add the six papers to the landscape section with clear positioning, then restructure the approach to keep hypotheses one through three as they are, add a new fourth hypothesis about cross-generator calibration generalization, move the evaluator-rewarder gap investigation to exploratory territory, and strip out the long mechanistic argument about how calibration mitigates overoptimization—I should be honest that this link is still uncertain rather than asserting it confidently.
+
+For the Scaling Laws citation, I'll treat it as a preprint and soften the framing around it.
+
+Now I'm thinking through the revision strategy more carefully. After four rounds with scores stuck in the same range, the reviewer's message is actually quite direct: "very close to pass quality" followed by four specific asks. These are all genuinely addressable—adding papers, weakening the novelty claims, tempering hypothesis four, and verifying the Scaling Laws status. Rather than making sweeping changes, I should focus on executing these four items thoroughly as a major repositioning effort without overreaching beyond what the reviewer is asking for.
+
+The core method is solid; what needs to change is how I'm presenting it relative to the existing landscape and being more honest about H4's limitations. This calls for a "major" revision since I'm restructuring the novelty framing, demoting H4 from primary to exploratory, refocusing the core problem, and significantly expanding the related work—but I'm not pivoting the fundamental approach.
+
+Writing the JSON now with careful attention to the key_references list, making sure to include the new papers like StepWiser and properly cite Scaling Laws as a preprint. Writing the JSON structure...
+
+I need to reshape the opportunities section to be more concise—acknowledge the crowded generative PRM landscape, then pivot to calibration as the genuine open problem that DPRM addresses through explicit training-time mechanisms. For the related work, I'll map each of the six papers to what they do and crucially what they don't cover, positioning calibration-focused grounding as the differentiator rather than claiming novelty in the combination itself.
+
+The core insight is that this framing is actually stronger: it's honest about the landscape, specific about what's new, grounded in explicit future work calls, and has real practical value through cross-generator generalization. I'll demote the evaluator-rewarder gap from prominence and restructure the description around structural calibration instead.
+
+Now I'm mapping out the JSON changes — the core problem needs a major rewrite focusing on step-level verifier calibration, the opportunity section should acknowledge the crowded space more directly, and I'll need to add six new papers to the landscape while promoting cross-generator generalization from exploratory to a main approach. The description gets a complete overhaul, and I'll add round 4 revision notes.
+
+Let me start drafting the core problem statement...
+
+I'm tightening the core problem around a central tension: can advantage-grounded training produce a generative verifier with structurally calibrated step scores that actually surpass what post-hoc methods can achieve, since those methods are fundamentally limited to monotonic transformations and can't inject progress information the base model never learned? And can this same approach enable cross-generator generalization to amortize training costs across different deployment scenarios? Writing the approach section... Writing the JSON proposal...
+
+I'm thinking through how to handle StepWiser's withdrawal from ICLR 2026—it's still valid as an arXiv preprint and establishes concurrent work, though the withdrawal might suggest some methodological concerns worth noting in the positioning.
+
+Now I'm drafting the JSON structure carefully. For the core problem, I need to compress the advantage-grounded training question into something concise that captures the calibration challenge and how it differs from existing post-hoc methods, while acknowledging the active work in this space like StepWiser, SPARK, and AgentPRM.
+
+For the opportunity section, I'm laying out the post-hoc calibration baselines—KYD and DPRM have shown strong ECE reductions through quantile regression and optimal transport respectively—but both hit fundamental limits since they can only apply monotonic transformations to existing model outputs without access to the underlying representations that would let them inject new progress signals. similar to our advantage regression but in a different domain and without calibration; PQM formulates discriminative PRM as Q-value ranking with proven advantage decomposition, though it's non-generative and lacks calibration analysis; SPAE and SHAPE apply advantage-based RL for policy optimization rather than verification; Think-RM achieves SOTA through long-horizon generative reasoning at the trajectory level for preferences, not step-level calibration; PURE and OAR target RL training stability via value-function and advantage reshaping respectively, but neither addresses PRM score calibration. The pattern emerging across all these approaches is consistent.
+
+Advantage estimation for step-level reasoning is clearly productive, and generative PRM verification is maturing rapidly — yet calibration of these scores remains completely unaddressed. DPRM's authors explicitly flag 'incorporating calibration objectives into PRM fine-tuning' as future work, which is exactly what GenPAV does. The opening is to be first at this intersection: advantage-grounded training that produces structurally calibrated generative verification with cross-generator generalization that post-hoc methods can't achieve.
+
+Now looking at the specific landscape — post-hoc calibration has matured with KYD and DPRM achieving substantial ECE reductions, but they hit a hard ceiling since monotonic transformations can't inject new information and require refitting per generator-domain pair. Meanwhile, advantage-estimation and generative-PRM work have each advanced independently: StepWiser trains generative judges with advantage labels but outputs binary verdicts, SPARK combines selective advantage with generative PRM-CoT for RL rewards, AgentPRM applies TD+GAE for step-level advantage in agent settings, Think-RM reaches SOTA generative reward modeling at trajectory level, and PURE and OAR use value-function and advantage-based credit assignment for RL stability — but none of these connect advantage estimation to calibrated generative verification.
+
+The key insight is that advantage-based step reasoning and generative PRM verification are both proven productive directions, yet no existing work unifies them specifically for structural calibration. This isn't an untried combination but rather an unoccupied niche within an actively developing space, and its value is independently confirmed by DPRM's own identification of this gap as the critical limitation of post-hoc approaches.
+
+Now I need to add detailed entries for each paper in the landscape section, starting with StepWiser...
+
+StepWiser trains a generative step-level judge using GRPO that reasons about each step before rendering a verdict, using self-segmented "Chunks-of-Thought" for supervision. It explores three labeling strategies based on Q-values, relative improvement, and advantage estimation, achieving 61.9 on ProcessBench at Qwen2.5-7B compared to 39.7 for discriminative SFT and 43.9 for trajectory-level RL. The main limitations are that it produces only binary verdicts rather than continuous scores, lacks calibration analysis, and grounds advantage in label construction rather than learned representations. It's conceptually closest to what I'm proposing with generative verifiers reasoning about step quality, but GenPAV differentiates by targeting continuous calibrated scores through advantage regression and explicit calibration evaluation.
+
+For Think-RM...
+
+Think-RM enables long-horizon reasoning in generative reward models by warm-starting on distilled QwQ traces with SFT, then applying GRPO with accuracy-based rewards, achieving 75.06% on RM-Bench and 86.35% on RewardBench. It introduces a novel pairwise RLHF pipeline using skew-symmetric preference matrices for advantage estimation. However, it operates at trajectory level for preferences rather than step-level process verification, doesn't address calibration, and targets general RLHF rather than math-specific process verification.
+
+For AgentPRM...
+
+AgentPRM computes temporal difference residuals to estimate step-level advantages using GAE aggregation, but the thinking cuts off here.
+
+AgentPRM computes temporal difference residuals for step-level advantage estimation in agent tasks like WebShop and BabyAI, using a dual loss that combines Q-value and advantage fitting. It's 8× more compute-efficient than Monte Carlo rollout methods, requiring only 16 trajectories. While it's technically closest to GenPAV's advantage regression approach for process reward training, it applies to agent domains rather than math reasoning, produces discriminative scores instead of generative verification, and lacks calibration analysis.
+
+For SPARK...
+
+SPARK trains generative process reward models without ground-truth labels through a three-stage generator-verifier framework, with its key innovation being Selective Advantage that suppresses token-level advantages when step correctness contradicts the final outcome. The reference-free approach achieves 67.5 F1 on ProcessBench, surpassing baseline methods.
+
+For PURE, I'm looking at how it replaces traditional summation-based credit assignment with a min-form approach when training with process reward models. The min-form constrains value ranges and distributes advantages more fairly, preventing training collapse that occurs with sum-form methods beyond 200 steps.
+
+For the next methods, PURE-RM+VR achieves 53.3% performance matching pure verifiable rewards in just 30% of training steps, addressing reward hacking in PRM-guided RL. Then OAR takes a different approach by redistributing group-level advantages at the token level through conservative reshaping, suppressing less important tokens while boosting pivotal ones, gaining about 2.2 percentage points over the GRPO baseline on Qwen2.5-Math-7B.
+
+Now I'm thinking through the approach section updates. I need to position these against the new related work, add a cross-generator calibration generalization test as a new hypothesis, rename the old exploratory section, and adjust the framing on scaling laws and overoptimization claims.
+
+For the new H4, GenPAV maintains calibration quality across different generators without re-fitting, while competing methods like KYD and DPRM need per-generator re-fitting to match performance.
+
+For the exploratory investigation section, I'm compressing the evaluator-rewarder gap analysis into a concise summary of what we're testing and why it matters. ...and now I'm drafting the JSON summary to capture the key contribution—GenPAV bridges the gap between post-hoc calibration methods and advantage-based reasoning approaches by grounding calibration directly in the advantage signal, positioning it as a structural solution rather than a post-hoc patch. ressed intersection — not as an 'entirely untried combination' but as the first to specifically target calibration within an actively developing neighborhood of advantage-estimation and generative-PRM research. Using Qwen3-8B with QwQ-32B-distilled rationales, GenPAV trains via a two-objective loss combining CoT critique generation and advantage regression on continuous Monte Carlo advantage labels from a complementary prover with cross-family ablation. The advantage regression head grounds internal representations in progress estimation, producing scores structurally calibrated to true solution progress — a benefit that post-hoc transformations cannot replicate. My primary hypotheses focus on achieving ≥3% BoN accuracy improvement over existing baselines, ≥50% ECE reduction versus uncalibrated variants, measurable ECE gains over post-hoc calibrated approaches, and cross-generator calibration generalization without refitting. I'm also exploring whether advantage-grounded calibration addresses the evaluator-rewarder gap documented in recent work, though the causal mechanism remains uncertain. The cost-benefit analysis shows GenPAV's one-time training investment amortizes across deployments while post-hoc calibration scales linearly with each new generator-domain pair.
+
+Now I'm verifying the reviewer's reference to StepWiser and checking whether it was actually submitted to ICLR 2026. The timeline for AAAI 2027 is tight with 10-14 weeks for manual revisions or 5-7 weeks if I automate parts, but ICLR 2027's September deadline gives more breathing room. The reviewer's comment about being "very close to pass quality after four rounds of substantial revision" tells me the needed changes are well-defined—I just need to execute them thoroughly without overengineering. The four specific requests are clear: expand the landscape section with six additional papers, dial back the novelty claims, temper hypothesis 4, and verify the Scaling Laws paper status. I haven't found confirmation that the Scaling Laws paper was accepted, so I'll note that in the revision plan and address each request explicitly in the notes. Likely rejected then. Let me finalize the JSON output, making sure to update the "inspired_by" field to accurately reflect how this work sits within the broader research landscape—specifically positioning it as a targeted approach to generative PRM calibration that builds on the limitations identified by prior work like DPRM, KYD, StepWiser, SPARK, and AgentPRM.
+
+The ECE targets seem solid as they are, and I should add StepWiser as a baseline for step-level verification accuracy even though its binary verdicts won't directly compare to GenPAV's continuous scores on calibration metrics.
+
+Writing the JSON structure now... Now I'm writing out the full project proposal with all the revisions, making sure the JSON structure is properly formatted and valid.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f247f15a-cf6f-4026-adf0-daf201677ee6",
+  "isSidechain": false,
+  "requestId": "req_011CbTbNBVQpKLHPEY8JHj25",
+  "type": "assistant",
+  "uuid": "54a7e239-d424-4186-876e-a47efcb00aa2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iwgeidguckpxt5RXs8K8k",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4719,
+      "cache_read_input_tokens": 32405,
+      "output_tokens": 20248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4719,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 20248,
+          "cache_read_input_tokens": 32405,
+          "cache_creation_input_tokens": 4719,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4719
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-27T19:10:42.294Z_
+
+Now I have all the research I need. Let me synthesize everything and produce the complete revised proposal. This is a major revision — the novelty space is more crowded than previously claimed, H4 is on shaky ground, and the framing needs fundamental restructuring around calibration as THE key differentiator.
+
+```json
+{
+  "change_type": "major",
+  "title": "Generative Process Advantage Verifiers: Calibrated Step-Level Verification via Advantage-Grounded Chain-of-Thought",
+  "core_problem": "Can advantage-grounded training produce a generative chain-of-thought verifier with structurally well-calibrated step-level scores — calibration that surpasses the ceiling of post-hoc recalibration methods (quantile regression, optimal transport), which are provably limited to monotonic transformations that preserve ranking but cannot inject progress information absent from the base model's representations, and which must be re-fitted for each generator-domain pair? The intersection of advantage estimation and generative PRM verification is an actively developing space — StepWiser trains generative judges via RL with advantage-based labels, SPARK combines selective advantage with generative PRM-CoT, AgentPRM uses TD+GAE for step-level scoring, PQM formulates PRM as Q-value ranking — but no existing work targets calibration as a training objective, leaving an open gap explicitly identified by DPRM authors as critical future work. Furthermore, can advantage-grounded representations enable cross-generator calibration generalization, amortizing a one-time training cost across diverse deployment configurations without the per-pair re-fitting required by post-hoc methods?",
+  "opportunity": "Two parallel developments create a precise opening. First, post-hoc PRM calibration has reached maturity: KYD (NeurIPS 2025) achieves 66.3% ECE reduction via quantile regression; DPRM (arXiv May 2026) reaches 51.6–69.5% via conditional optimal transport. However, both face a fundamental ceiling explicitly acknowledged by their authors: 'Calibration quality inherits the ranking quality of the base PRM' (DPRM); re-fitting is required per generator-domain pair; 'OT performance is sensitive to distribution shift between training and evaluation problems' (DPRM). The DPRM authors explicitly identify 'incorporating calibration objectives directly into PRM fine-tuning' as future work — precisely GenPAV's approach. Second, and critically for positioning, the advantage-estimation-meets-generative-PRM neighborhood has become actively populated — but uniformly ignores calibration. StepWiser (arXiv Aug 2025, ICLR 2026 withdrawn) trains a generative step-level judge via GRPO with advantage-based labels (Rel-Effective), conceptually the closest prior work to GenPAV's framing, but produces binary verdicts with no calibration analysis. SPARK (arXiv Dec 2024) combines selective advantage with generative PRM-CoT for RL training, documenting reward hacking patterns but not targeting PRM calibration. AgentPRM (ACM Web 2026) uses TD+GAE for step-level advantage estimation — technically the closest to GenPAV's advantage regression — but operates in agent domains without calibration analysis. Think-RM (NeurIPS 2025) achieves SOTA on RM-Bench via long-horizon generative reasoning, but at the trajectory level for pairwise preference, not step-level PRM calibration. PQM (ICLR 2025) formalizes advantage decomposition for discriminative PRM ranking without calibration or generative verification. PURE (NeurIPS 2025) and OAR (arXiv Jan 2026) use value-function and advantage-based credit assignment but target RL training stability, not PRM score calibration. SPAE and SHAPE use advantage-based RL credit assignment for policy optimization. The convergent pattern: advantage estimation for step-level reasoning and generative PRM verification are both confirmed productive directions — but calibration of the resulting scores remains entirely unaddressed. GenPAV occupies this specific niche — not as an 'entirely untried combination' but as the first to target structural calibration within an actively developing neighborhood, with the practical advantage of cross-generator generalization that post-hoc methods cannot achieve.",
+  "landscape": "Post-hoc PRM calibration cluster: KYD (NeurIPS 2025) applies quantile regression to Qwen2.5-Math-PRM-7B, achieving ECE 0.2791→0.0942 (66.3% reduction) for Llama-3.2-1B completions and 0.0981→0.0864 for Qwen-2.5-7B completions on MATH500; outperforms temperature scaling, isotonic regression, histogram binning; enables Instance-Adaptive Scaling for up to 75% compute reduction; requires ~500 calibration questions with 8 trajectories × 8 MC rollouts per prefix per generator, and must be re-fitted per generator-domain pair since 'a PRM is only calibrated to the statistical patterns of the policy it was trained with.' Distributional PRMs (DPRM, arXiv May 2026) extend KYD via conditional optimal transport, achieving 51.6–69.5% ECE reduction for Qwen2.5-Math-PRM-7B on MATH500; the authors explicitly state 'Calibration quality inherits the ranking quality of the base PRM' and 'OT performance is sensitive to distribution shift between training and evaluation problems'; they identify 'incorporating calibration objectives directly into PRM fine-tuning' as future work — precisely GenPAV's approach. CoT Entropy (arXiv Feb 2025, Ye et al.) proposes entropy over clustered reasoning paths for UQ in generative PRMs, applied to Qwen2-Math-72B-Instruct; achieves AUROC 0.680, AUPRC 0.885 on PRM800K subset (150 questions); post-hoc, no ECE measurement. EDU-PRM (arXiv Mar 2025) uses entropy-driven step segmentation to match Qwen2.5-Math-PRM with 1.5% training data; no calibration analysis; orthogonal to advantage grounding. DCPO (arXiv Mar 2026) achieves 71.6% ECE reduction on Qwen3-8B (0.435→0.128) but at answer-level RLVR confidence, NOT step-level PRM scores. Advantage-based and value-function approaches (actively developing cluster): StepWiser (arXiv Aug 2025, Xiong et al.; ICLR 2026 submission withdrawn) trains a generative step-level judge via GRPO that meta-reasons about each reasoning 'Chunk-of-Thought' before emitting a verdict; three labeling strategies with Rel-Effective (advantage-based) performing best; achieves 61.9 ProcessBench average at Qwen2.5-7B vs. 39.7 for discriminative SFT; produces binary correct/incorrect verdicts (not continuous calibrated scores), provides no calibration analysis, and advantage grounding is in label construction (MC rollout-derived advantage used to assign training labels) rather than in learned representations (no advantage regression head); conceptually the closest prior work to GenPAV — GenPAV differentiates by targeting continuous calibrated scores via advantage regression and explicit calibration evaluation. AgentPRM (ACM Web 2026) computes TD residuals δ(s_t, a_t) = r_t + γ·Q(s_t, a_t) − Q(s_{t-1}, a_{t-1}) with GAE aggregation A_hat = Σ(γλ)^k δ for step-level advantage estimation in agent domains (WebShop, BabyAI, TextCraft); dual loss combining Q-value fitting (L_Q) and advantage fitting (L_A); 8× more compute-efficient than MC rollout methods needing only 16 trajectories; achieves WebShop 76.0% (vs. 54.5% PVM) at Qwen-2.5-3B; technically the closest to GenPAV's advantage regression for PRM training, but applied to agent domains, produces discriminative scores, and provides no calibration analysis. SPARK (arXiv Dec 2024, Stepwise Process-Aware Rewards) trains generative PRMs without ground-truth labels via three-stage generator-verifier framework; Selective Advantage zeros out token-level advantages when step correctness contradicts solution outcome (only 'aligned' signals propagate); reference-free PRM achieves 67.5 F1 on ProcessBench surpassing GPT-4o (61.9); PRM-CoT with process-aware rewards reaches 47.4% average across benchmarks surpassing ground-truth RLVR (43.9%); documents three reward hacking patterns; targets RL policy optimization, not PRM calibration. SPAE (arXiv Jan 2026) uses training-free probing to extract 'step potential' Φ(τ) = 1.5·Acc·Conf + 0.5·Acc − Conf for RL credit assignment during GRPO/DAPO training; reduces response length 25% while improving accuracy 3–7% on AIME; training-free, targets RL. SHAPE (arXiv Apr 2026) uses rollout-based potential estimation Φ(s_k) = (1/m)Σr_i for hierarchical advantage with stage-aware discounting; achieves ~3% accuracy gain with 30% token reduction; targets RL policy training. PQM (ICLR 2025) formulates PRM as Q-value ranking in a deterministic MDP, proving A*(s_t, a_t) = Q*(s_t, a_t) − Q*(s_{t-1}, a_{t-1}) via potential-based reward shaping; achieves +11.6% on MATH500 over classification-based PRMs with comparative loss; discriminative (no generative verification), no calibration analysis. PURE / Stop Summation (NeurIPS 2025, Cheng et al.) replaces summation-form credit assignment with min-form Q = min(r_t, ..., r_n) when training with PRMs; min-form error bound is single-step ε vs. sum-form's ε/(1−γ); prevents training collapse past 200 steps where sum-form collapses within 25; PURE-PRM+VR achieves 53.3% avg across MATH-500/AIME24/AMC23; addresses reward hacking in PRM-guided RL, not PRM calibration. OAR (arXiv Jan 2026, Li et al.) redistributes GRPO's coarse group-level advantages at the token level via conservative bi-level reshaping with sum-preserving renormalization; OAR-G adds ~40% overhead, achieves ~2.2pp gain over GRPO at Qwen2.5-Math-7B; targets RL training credit assignment, not PRM training or calibration. Rewarding Progress (ICLR 2025 Spotlight) formalizes progress as advantage under a complementary prover with theoretical guarantees (Theorem 3.1), but PAVs are discriminative. Generative reward model advances: Think-RM (NeurIPS 2025, Hong et al.) enables long-horizon reasoning (hundreds to thousands of tokens) in generative reward models via SFT warm-up on QwQ-32B traces + GRPO with accuracy rewards; achieves 75.06% on RM-Bench (8% above baselines), 86.35% on RewardBench; novel pairwise RLHF pipeline with skew-symmetric preference-derived advantage; operates at trajectory level for pairwise preference, not step-level PRM; no calibration analysis. GenPRM (AAAI 2026) achieves ~80.5 F1 at 7B on ProcessBench via CoT+code verification, no calibration analysis. ThinkPRM (TMLR 2026) achieves 86.5 avg F1 on ProcessBench's hardest 2 subsets, but scores cluster near 0/1 with 'step label interference.' R-PRM (EMNLP 2025) reaches 70.4 F1. ActPRM (arXiv 2025) achieves 76.0 F1 at 7B. RL^V (arXiv May 2025) jointly trains LLM as reasoner and generative verifier. RM-R1 (ICLR 2026) applies chain-of-rubrics for pairwise preference. S2J (arXiv Sep 2025) identifies a 'solve-to-judge gap' of 14–37% in GenRMs. Evaluator-rewarder gap: 'Scaling Laws for Generative Reward Models' (preprint, submitted to ICLR 2026, acceptance status unconfirmed) reports that thinking GenRMs outperform answer-only variants by 1–2% on validation tasks using Qwen3 family but these gains 'diminish and often reverse' during policy optimization; intermediate GRPO checkpoints can outperform fully-trained ones as rewarders; the authors attribute the gap primarily to distributional shift robustness and model scale rather than calibration specifically. Summary of the landscape gap: the advantage-estimation and generative-PRM spaces are actively populated but no published or concurrent work as of May 2026 targets calibration as a training objective for advantage-grounded generative verification — this specific intersection, not the broader combination, is GenPAV's contribution.",
+  "inspired_by": "Specific niche within an actively developing neighborhood: advantage-grounded training specifically targeting generative PRM calibration, identified as future work by DPRM (arXiv May 2026). Innovation pattern 'training-time structural advantage over post-hoc fixes' motivated by DPRM and KYD establishing the ceiling of post-hoc calibration (ranking quality inheritance + distribution shift sensitivity). StepWiser (generative judge + advantage-based labels via RL), SPARK (selective advantage + generative PRM-CoT), and AgentPRM (TD+GAE for step-level advantage) confirm the productivity of the advantage-estimation direction but leave calibration entirely unaddressed. Cross-generator generalization advantage motivated by KYD's explicit requirement for per-generator re-fitting. ThinkPRM's documented calibration failure (0/1 score clustering) as the specific failure mode to solve.",
+  "approach": "Train a Generative Process Advantage Verifier (GenPAV) that produces explicit chain-of-thought rationales reasoning about whether each step constitutes forward progress, grounded in the advantage function A(s,a) = V_π(s') − V_π(s) under a complementary prover π. Using Qwen3-8B as the base verifier, we: (1) Generate Monte Carlo advantage labels by rolling out a complementary prover (Qwen3-4B as primary, following PAV's same-family weaker-model precedent, with Llama-3.1-8B cross-family ablation) from each intermediate state in MATH training solutions (~20K states, 64 rollouts each), retaining continuous advantage values rather than binarizing. (2) Synthesize CoT rationales explaining each step's advantage using QwQ-32B as a teacher distiller, conditioned on computed advantages: negative-advantage steps receive critique prompts biased toward identifying errors; positive-advantage steps receive prompts explaining progress. (3) Fine-tune via a streamlined two-objective training procedure combining: (a) standard SFT loss on CoT critique generation, and (b) advantage regression loss on a linear head predicting continuous A(s,a) from final hidden states — grounding internal representations in progress estimation. We deliberately simplify from the earlier three-loss design by dropping the differentiable ECE surrogate, following the principle that advantage regression alone should provide structural calibration by encoding progress information into representations — if the model learns to estimate A(s,a) accurately, its scores will inherently track true solution progress. The ECE surrogate is retained as an ablation variant to test whether explicit calibration pressure yields additional gains atop advantage regression. The advantage regression head serves dual purposes: scalar scoring for ranking (like discriminative PRMs) and calibration target (unlike heuristic binary labels). Positioning relative to the actively developing advantage-estimation neighborhood: unlike StepWiser's GRPO-trained generative judge that uses advantage-based labels to produce binary verdicts, GenPAV uses supervised advantage regression to produce continuous calibrated scores — the distinction between advantage as a label-construction heuristic vs. advantage as a learned representation target is critical for calibration; unlike AgentPRM's TD+GAE advantage estimation for agent-domain discriminative PRMs, GenPAV applies advantage regression to a generative math PRM with explicit calibration evaluation; unlike SPARK's selective advantage that filters RL training signals via generative PRM-CoT, GenPAV encodes advantage into the verifier's own representations for calibrated scoring; unlike PQM's Q-value ranking for discriminative PRMs, GenPAV produces generative CoT verification with calibrated scores; unlike PURE's min-form credit assignment and OAR's token-level advantage reshaping, which target RL training stability, GenPAV targets the PRM's own score calibration. We weaken the theoretical claim: rather than asserting inheritance of PAV's Theorem 3.1 guarantees (which assume oracle advantage access), we position GenPAV as designed to approximate PAV's advantage estimates through generative reasoning with structurally calibrated outputs. Test-time compute scaling is achieved through majority voting over multiple CoT traces, with the advantage-calibrated scores providing principled aggregation weights. Our primary empirical hypotheses: (H1) GenPAV achieves ≥3% best-of-N accuracy improvement over GenPRM-7B on MATH-500 at matched parameters and compute; (H2) GenPAV achieves ≥50% ECE reduction vs. uncalibrated ThinkPRM-7B on MATH-500; (H3, structural calibration test) GenPAV outperforms post-hoc calibrated baselines — including both generative (QR-ThinkPRM, QR-GenPRM, OT-ThinkPRM, OT-GenPRM) and discriminative (QR-Qwen2.5-Math-PRM-7B, OT-Qwen2.5-Math-PRM-7B) — in ECE, demonstrating that advantage grounding provides calibration benefits beyond what monotonic post-hoc transformations can achieve, even when the base discriminative PRM has well-distributed scores; (H4, cross-generator calibration generalization test) GenPAV maintains calibration quality (ECE degradation ≤20% relative) when evaluated with generators not seen during training (Llama-3.1-8B, DeepSeek-Math-7B) without re-fitting, while KYD and DPRM require per-generator re-fitting to achieve comparable ECE — directly testing the amortization argument that justifies GenPAV's higher one-time training cost. Exploratory Investigation (evaluator-rewarder gap): We additionally investigate whether advantage-grounded calibration provides any mitigation of the evaluator-rewarder gap documented in 'Scaling Laws for Generative Reward Models' (preprint, submitted to ICLR 2026, acceptance status unconfirmed), where thinking GenRMs' validation accuracy gains diminish during policy optimization. We explicitly acknowledge that the causal chain from better calibration to overoptimization resistance is uncertain: the Scaling Laws paper attributes the gap primarily to distributional shift robustness and model scale rather than score calibration, and its finding that intermediate GRPO checkpoints (worse static accuracy) outperform fully-trained ones as rewarders suggests training dynamics may dominate over calibration effects. Additionally, the dominant theories of BoN overoptimization emphasize out-of-distribution extrapolation errors and winner's curse (Gao et al., 2022; Yu et al., 2026) rather than calibration per se; Coste et al. (NeurIPS 2023) showed ensemble rewards mitigate overoptimization, but the active mechanism is diversity and pessimistic aggregation, not calibration alone. We hypothesize that advantage-grounded scores may offer partial resistance to overoptimization by anchoring to a progress-theoretic quantity rather than surface-level pattern matching, but treat this as an exploratory investigation rather than a primary contribution. We include BoN overoptimization curves (proxy-selected vs. oracle-selected accuracy at N∈{4,8,16,32,64,128,256}) as an empirical test but do not rely on positive results for our core claims. We evaluate on ProcessBench (all 4 subsets), PRMBench, MATH-500 and AIME'24 (best-of-N and reward-guided search), against GenPRM-7B, ThinkPRM-7B, ThinkPRM-14B, R-PRM-7B, ActPRM-7B, discriminative PAV, Qwen2.5-Math-PRM-7B, StepWiser-7B (if reproducible; binary-verdict comparison on ProcessBench only), and post-hoc calibrated variants: QR-ThinkPRM-7B, QR-GenPRM-7B, OT-ThinkPRM-7B, OT-GenPRM-7B, QR-Qwen2.5-Math-PRM-7B, and OT-Qwen2.5-Math-PRM-7B. Additional ablations: (i) advantage regression with vs. without SFT CoT loss (isolating whether advantage regression alone suffices), (ii) two-objective (SFT+AdvReg) vs. three-objective (SFT+AdvReg+ECE surrogate) to test whether explicit calibration pressure adds value beyond advantage regression, (iii) GenPAV with vs. without advantage regression (CoT SFT only — isolating structural calibration contribution), (iv) CoT Entropy applied to GenPAV's critiques as an external UQ method (testing internal vs. external calibration), (v) post-hoc calibration applied to GenPAV itself (testing complementarity — if GenPAV is already well-calibrated, post-hoc methods should yield diminishing returns), (vi) BoN overoptimization curves: proxy-selected vs. oracle-selected accuracy as function of N∈{4,...,256} for GenPAV vs. all baselines (exploratory). Cost-benefit analysis: GenPAV's training requires ~375 GPU-hours (MC rollouts: ~150h, QwQ-32B distillation: ~225h) as a one-time cost. In contrast, KYD post-hoc calibration requires ~5–10 GPU-hours per generator-domain pair (500 questions × 8 trajectories × 8 rollouts). However, post-hoc calibration must be re-fitted for each new generator and domain. For a deployment scenario with K generators across D domains, post-hoc calibration costs K×D×(5–10) GPU-hours and requires maintaining K×D calibration configurations. With K=5 generators and D=3 domains, this reaches 75–150 GPU-hours — approaching GenPAV's one-time cost, and scaling linearly with deployment breadth. H4 directly tests whether GenPAV's advantage-grounded representations deliver on this amortization promise.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "1400",
+      "timeline": "10-14 weeks",
+      "estimated_gpu_cost": "$3500 (8×H100 at ~$2.50/GPU-hr)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "1200",
+      "timeline": "7-9 weeks",
+      "claude_api_cost": "$500 (data pipeline automation, rationale quality filtering, calibration analysis, hyperparameter sweep orchestration)",
+      "estimated_gpu_cost": "$3000"
+    },
+    "auto_research": {
+      "gpu_hours": "1100",
+      "timeline": "5-7 weeks",
+      "claude_api_cost": "$1200 (end-to-end experiment orchestration, ablation design, calibration analysis, paper drafting)",
+      "estimated_gpu_cost": "$2750",
+      "speed_bottleneck": "Monte Carlo rollout generation: ~64 rollouts per intermediate state across ~20K states requires sequential inference passes with Qwen3-4B complementary prover (~150 GPU-hrs), plus QwQ-32B distillation for 20K rationales (~225 GPU-hrs); cross-family prover ablation with Llama-3.1-8B adds ~100 GPU-hrs; post-hoc calibration baselines (KYD quantile regression and DPRM optimal transport applied to ThinkPRM-7B, GenPRM-7B, and Qwen2.5-Math-PRM-7B, requiring ~500 calibration questions × 8 trajectories × 8 rollouts per prefix per model) add ~80 GPU-hrs; cross-generator calibration generalization evaluation (Llama-3.1-8B and DeepSeek-Math-7B generators, plus KYD/DPRM re-fitting baselines) adds ~60 GPU-hrs; BoN overoptimization analysis at N∈{4,...,256} adds ~50 GPU-hrs; StepWiser reproduction attempt adds ~30 GPU-hrs. Parallelizable across GPUs but QwQ-32B distillation dominates wall-clock time."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (paper deadline: July 28, 2026)",
+    "ICLR 2027 (predicted paper deadline: ~Sep 24, 2026)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026)",
+    "Rewarding Progress: Scaling Automated Process Verifiers for LLM Reasoning (ICLR 2025 Spotlight)",
+    "Process Reward Models That Think (TMLR 2026, Khalifa et al.)",
+    "Know What You Don't Know: Uncertainty Calibration of Process Reward Models (NeurIPS 2025, Park et al.) — post-hoc quantile regression; 66.3% ECE reduction; key calibration baseline",
+    "Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport (arXiv May 2026, Ma et al.) — OT-based post-hoc calibration; explicitly identifies training-time calibration as future work",
+    "StepWiser: Stepwise Generative Judges for Wiser Reasoning (arXiv Aug 2025, Xiong et al.; ICLR 2026 submission withdrawn) — generative step-level judge trained via GRPO with advantage-based labeling (Rel-Effective); closest prior work to GenPAV's framing; no calibration analysis, binary verdicts",
+    "Think-RM: Enabling Long-Horizon Reasoning in Generative Reward Models (NeurIPS 2025, Hong et al.) — long-horizon GenRM via SFT+GRPO; SOTA on RM-Bench; trajectory-level pairwise preference, not step-level PRM calibration",
+    "AgentPRM: Agentic Process Reward Models with TD-Based Estimation and GAE (ACM Web Conference 2026) — TD+GAE advantage estimation for agent-domain PRM; technically closest to GenPAV's advantage regression; different domain, no calibration",
+    "SPARK: Reinforcing LLM Reasoning with Stepwise Process-Aware Reward (arXiv Dec 2024) — selective advantage + generative PRM-CoT for RL training; documents reward hacking; no calibration analysis",
+    "Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning / PURE (NeurIPS 2025, Cheng et al.) — min-form value-function credit assignment addressing PRM reward hacking in RL training",
+    "OAR: Outcome-Grounded Advantage Reshaping for Fine-Grained Credit Assignment (arXiv Jan 2026, Li et al.) — token-level advantage reshaping for GRPO",
+    "Uncertainty-Aware Step-wise Verification with Generative Reward Models (arXiv Feb 2025, Ye et al.) — CoT Entropy for generative PRM uncertainty quantification",
+    "More Bang for the Buck: Process Reward Modeling with Entropy-Driven Uncertainty (arXiv Mar 2025) — EDU-PRM",
+    "Decoupling Reasoning and Confidence: Resurrecting Calibration in Reinforcement Learning from Verifiable Rewards (arXiv Mar 2026, Ma et al.) — DCPO; answer-level RLVR calibration, not step-level PRM",
+    "Step Potential Advantage Estimation (arXiv Jan 2026) — SPAE; training-free advantage-based RL credit assignment",
+    "SHAPE: Stage-aware Hierarchical Advantage via Potential Estimation (arXiv Apr 2026) — rollout-based hierarchical advantage for RL policy training",
+    "Process Reward Model with Q-Value Rankings (ICLR 2025) — PQM; Q-value ranking in MDP framework for discriminative PRM",
+    "Scaling Laws for Generative Reward Models (preprint, submitted to ICLR 2026, acceptance status unconfirmed, Raychev et al.) — evaluator-rewarder gap; intermediate checkpoints outperform fully-trained ones; attributes gap to distributional shift and scale",
+    "R-PRM: Reasoning-Driven Process Reward Modeling (EMNLP 2025)",
+    "ActPRM: Efficient Process Reward Model Training via Active Learning (arXiv 2025)",
+    "RM-R1: Reward Modeling as Reasoning (ICLR 2026)",
+    "Good Learners Think Their Thinking: Generative PRM Makes Large Reasoning Model More Efficient Math Learner (arXiv Jul 2025)",
+    "Generative Verifiers: Reward Modeling as Next-Token Prediction (ICLR 2025)",
+    "RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning (NeurIPS 2025)",
+    "S2J: Bridging the Gap Between Solving and Judging Ability in Generative Reward Models (arXiv Sep 2025)",
+    "Putting the Value Back in RL: Better Test-Time Scaling by Unifying LLM Reasoners With Verifiers (arXiv May 2025) — RL^V",
+    "Soft Calibration Objectives for Neural Networks (NeurIPS 2021) — differentiable ECE surrogate",
+    "Scaling Laws for Reward Model Overoptimization (Gao et al., 2022) — foundational BoN overoptimization framework",
+    "Reward Model Ensembles Help Mitigate Overoptimization (Coste et al., NeurIPS 2023) — ensemble/diversity for overoptimization, not calibration per se",
+    "From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism (Yu et al., arXiv 2026) — pessimistic BoN addressing winner's curse",
+    "ProcessBench: Identifying Process Errors in Mathematical Reasoning (ACL 2025)",
+    "PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models (ACL 2025)"
+  ],
+  "description": "We propose Generative Process Advantage Verifiers (GenPAV), targeting the specific open problem of structural calibration for generative process reward models through advantage-grounded training. The PRM landscape has evolved along two parallel tracks that have not yet converged: post-hoc calibration methods (KYD, DPRM) achieve 51–69% ECE reduction but face fundamental ceilings — monotonic transformations that preserve ranking but cannot inject progress information, plus mandatory per-generator-domain refitting — while advantage-based methods (StepWiser, SPARK, AgentPRM, PQM, SPAE, SHAPE, PURE, OAR) advance step-level reasoning but uniformly ignore calibration. GenPAV occupies the unaddressed intersection — not as an 'entirely untried combination' but as the first to specifically target calibration within this actively developing neighborhood, responding to DPRM authors' explicit identification of training-time calibration as critical future work. Using Qwen3-8B with QwQ-32B-distilled rationales, GenPAV trains via a two-objective loss combining CoT critique generation (SFT) and advantage regression on continuous Monte Carlo advantage labels from a Qwen3-4B complementary prover (64 rollouts/state, with Llama-3.1-8B cross-family ablation). Unlike StepWiser's binary verdicts from advantage-based labels, GenPAV regresses to continuous advantage values, grounding internal representations in progress estimation for structurally calibrated scoring. Unlike AgentPRM's TD+GAE in agent domains, GenPAV targets math PRM calibration with generative verification. Our primary hypotheses: (H1) ≥3% BoN accuracy on MATH-500 over GenPRM-7B; (H2) ≥50% ECE reduction vs. uncalibrated ThinkPRM-7B; (H3) measurable ECE improvement over post-hoc calibrated baselines including both generative (QR-ThinkPRM, OT-GenPRM) and discriminative (QR-Qwen2.5-Math-PRM-7B, OT-Qwen2.5-Math-PRM-7B); (H4) cross-generator calibration generalization — GenPAV maintains ECE within 20% when evaluated with unseen generators without refitting, while KYD/DPRM require per-generator refitting. We additionally include an exploratory investigation of whether advantage-grounded calibration mitigates the evaluator-rewarder gap documented in a recent preprint (Scaling Laws for GenRMs, submitted to ICLR 2026, acceptance unconfirmed), while acknowledging that the evidence for calibration as the causal factor is uncertain — the paper attributes the gap to distributional shift and scale, and dominant overoptimization theories emphasize OOD errors and winner's curse rather than calibration. Cost-benefit: GenPAV's ~375 GPU-hour one-time cost is amortized across all deployments, while post-hoc calibration scales linearly with generator-domain pairs (~75–150 GPU-hours for 5 generators × 3 domains).",
+  "project_name": "gen_pav",
+  "source": "web_research",
+  "revision_notes": {
+    "round_1_issue_1_thinkprm_baseline": "Added ThinkPRM-7B and ThinkPRM-14B as explicit baselines. Repositioned the contribution: GenPAV's value over ThinkPRM is not raw F1 improvement at matched scale but principled calibration.",
+    "round_1_issue_2_theorem_inheritance": "Weakened from 'inherits PAV's theoretical guarantees' to 'designed to approximate PAV's advantage estimates; empirically validated via calibration analysis.'",
+    "round_1_issue_3_prover_diversity": "Retained Qwen3-4B as primary prover (citing PAV same-family precedent) but added Llama-3.1-8B cross-family ablation.",
+    "round_1_issue_4_missing_baselines": "Added R-PRM-7B, ActPRM-7B, ThinkPRM-7B/14B as baselines. Added PRMBench evaluation.",
+    "round_1_issue_5_resource_estimates": "Revised upward ~20-30% with detailed breakdown.",
+    "round_1_issue_6_empirical_hypothesis": "Stated crisp, falsifiable hypotheses for BoN accuracy and ECE reduction.",
+    "round_2_issue_1_kyd_calibration_baseline": "MAJOR: Added KYD and DPRM as critical calibration baselines with post-hoc calibrated variants.",
+    "round_2_issue_2_cot_entropy": "Added CoT Entropy to landscape and as ablation.",
+    "round_2_issue_3_ece_target_raised": "Raised ECE target from ≥30% to ≥50%, distinguished step-level PRM calibration from answer-level RLVR.",
+    "round_2_issue_4_edu_prm": "Added EDU-PRM to landscape; orthogonal to advantage grounding.",
+    "round_2_issue_5_bon_specificity": "Structured hypotheses H1–H3 with clear metrics.",
+    "round_2_framing_shift": "Reframed core contribution to 'structural calibration superiority through progress-aware representations.'",
+    "round_3_issue_1_spae_shape_pqm": "MAJOR: Added SPAE, SHAPE, and PQM as related work with detailed positioning.",
+    "round_3_issue_2_evaluator_rewarder_gap": "MAJOR: Addressed the evaluator-rewarder gap from Scaling Laws for GenRMs. Added H4 for BoN overoptimization test.",
+    "round_3_issue_3_h3_confound": "MAJOR: Added discriminative post-hoc calibrated baselines (QR/OT-Qwen2.5-Math-PRM-7B) to H3.",
+    "round_3_issue_4_cost_benefit": "MAJOR: Added explicit cost-benefit analysis with amortization argument.",
+    "round_3_issue_5_ece_surrogate_simplification": "MAJOR: Simplified training to two-objective (SFT+AdvReg); ECE surrogate retained as ablation only.",
+    "round_4_issue_1_missing_related_work": "MAJOR: Added six papers narrowing the novelty gap: StepWiser (generative judge via GRPO with advantage-based Rel-Effective labeling; closest prior — differentiates on binary vs. continuous scores, no calibration), Think-RM (long-horizon GenRM via SFT+GRPO, trajectory-level pairwise not step-level PRM, no calibration), AgentPRM (TD+GAE advantage for agent-domain PRM; technically closest advantage regression — differentiates on domain and calibration focus), SPARK (selective advantage + generative PRM-CoT for RL; no calibration), PURE/Stop Summation (min-form value-function credit for PRM reward hacking; targets RL stability not calibration), OAR (token-level advantage reshaping for GRPO; targets RL credit assignment). Each positioned with precise differentiation from GenPAV.",
+    "round_4_issue_2_novelty_framing": "MAJOR: Weakened novelty framing from 'entirely untried combination' to 'first to target structural calibration within an actively developing neighborhood.' Explicitly acknowledged that the advantage-estimation-meets-generative-PRM intersection is populated by StepWiser, SPARK, AgentPRM, and others. Repositioned GenPAV's unique contribution as calibration focus (the specific niche no existing work addresses), not the broader combination. Updated core_problem, opportunity, inspired_by, and description to reflect this more honest positioning.",
+    "round_4_issue_3_h4_tempered": "MAJOR: Demoted the evaluator-rewarder gap hypothesis from primary contribution (old H4) to an explicitly labeled 'Exploratory Investigation.' Acknowledged that: (a) the Scaling Laws paper attributes the gap to distributional shift and model scale, not calibration; (b) intermediate GRPO checkpoints outperforming fully-trained ones suggests training dynamics may dominate; (c) dominant overoptimization theories (Gao et al. OOD errors, Yu et al. winner's curse) emphasize mechanisms other than calibration; (d) Coste et al. NeurIPS 2023 shows ensemble/diversity is the active ingredient, not calibration per se. Replaced with new H4: cross-generator calibration generalization test (ECE degradation ≤20% with unseen generators without refitting), which directly tests the amortization argument and is both more novel and more empirically grounded.",
+    "round_4_issue_4_scaling_laws_status": "Updated citation from 'OpenReview 2026' to 'preprint, submitted to ICLR 2026, acceptance status unconfirmed.' Research found no confirmed acceptance at ICLR 2026 (conference held April 2026) and the paper does not appear on confirmed accepted-paper lists. Softened all framing that relied on this paper's authority: evaluator-rewarder gap is now presented as a documented finding in a preprint rather than a vetted result, and the hypothesis it motivates is explicitly exploratory."
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "54a7e239-d424-4186-876e-a47efcb00aa2",
+  "isSidechain": false,
+  "requestId": "req_011CbTbNBVQpKLHPEY8JHj25",
+  "type": "assistant",
+  "uuid": "8fc7b92b-1833-4a12-b8cd-6891b29bc07e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iwgeidguckpxt5RXs8K8k",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4719,
+      "cache_read_input_tokens": 32405,
+      "output_tokens": 20248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4719,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 20248,
+          "cache_read_input_tokens": 32405,
+          "cache_creation_input_tokens": 4719,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4719
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Generative Process Advantage Verifiers: Calibrated Step-Level Verifica…",
+  "leafUuid": "8fc7b92b-1833-4a12-b8cd-6891b29bc07e",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise generative process advantage verifiers for calibration",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Generative Process Advantage Verifiers: Calibrated Step-Level Verifica…",
+  "leafUuid": "8fc7b92b-1833-4a12-b8cd-6891b29bc07e",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise generative process advantage verifiers for calibration",
+  "sessionId": "dcea932a-9616-44e0-aedf-dc75f9c4b48a"
+}
+```
+
+---

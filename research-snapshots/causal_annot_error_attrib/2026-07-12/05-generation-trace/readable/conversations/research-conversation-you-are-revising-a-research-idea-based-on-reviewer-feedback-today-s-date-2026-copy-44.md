@@ -1,0 +1,5920 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-14 (UTC).** ## Original idea { "tit
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 87
+- **Recorded user turns:** 1
+- **Tool calls:** 27
+- **Original source:** `logs/chats/exported-trajectories/account-1/b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7.jsonl`
+- **Structured JSON:** [`522317299632a39026ca.json`](../../sessions/52/522317299632a39026ca.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T06:26:09.295Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T06:26:09.295Z",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-14 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Action-Conditioned Information Bottleneck Token Surgery for Robust VLAs\",\n  \"core_problem\": \"VLA visual encoders produce redundant token sequences where task-irrelevant tokens carry spurious correlations with environment-specific factors — correlations that collapse under visual perturbations. Existing token pruning methods (VLA-IAP, LightVLA, GridS, DTP, Compressor-VLA) optimize exclusively for inference efficiency, while existing robustness methods operate at other levels: policy-level regularization (RobustVLA), input restoration (CRT), or lightweight affine token modulation (FTM, which uses input-independent global parameters). Critically, post-hoc token compression has been shown to actively HURT adversarial robustness by concentrating adversarial signal on high-importance retained tokens (arXiv 2601.21531, 2601.12042). The recent position paper 'Token Reduction Should Go Beyond Efficiency' (arXiv 2505.18227) argues exactly this thesis but provides no concrete VLA instantiation. We show that token-level intervention CAN improve robustness — when the token scorer is jointly trained with an information bottleneck objective using multi-view augmentation consistency that implicitly decorrelates from nuisance variables, producing perturbation-invariant relevance scores fundamentally different from both attention-based importance used in post-hoc methods and input-independent affine modulation used in FTM.\",\n  \"opportunity\": \"LIBERO-Plus (CVPR 2026) reveals catastrophic robustness gaps (95% → <30% under camera/state perturbations). FTM (arXiv 2512.02902) shows that even a simple global affine transformation on visual tokens recovers viewpoint robustness (48.5% → 87.1% on π0.5 with 4K params), demonstrating that token-level intervention is a promising robustness lever — but FTM's input-independent, fixed-parameter design cannot adapt to scene content, varies in effectiveness across perturbation types, and lacks information-theoretic guarantees about what information is preserved vs. discarded. BC-IB (ICML 2025) demonstrates that IB at the representation level improves clean accuracy on LIBERO but explicitly acknowledges robustness to domain shifts as an open problem. The unexploited gap is: applying IB at the TOKEN level with ADAPTIVE, INPUT-DEPENDENT selection, conditioned on ACTION prediction, using MULTI-VIEW augmentation consistency to achieve perturbation invariance — a combination that provides principled, per-timestep token selection with information-theoretic grounding, going beyond both FTM's fixed modulation and BC-IB's coarse-grained bottleneck.\",\n  \"landscape\": \"The VLA token intervention literature spans efficiency, modulation, and robustness approaches. EFFICIENCY-FOCUSED PRUNING: VLA-IAP (Mar 2026) achieves 97.8% on LIBERO with 1.54x speedup via training-free interaction-aligned pruning; LightVLA (ICRA 2026) uses differentiable Gumbel softmax selection reducing FLOPs by 59.1%; GridS (ICML 2026) performs differentiable grid resampling; Compressor-VLA uses instruction-guided dual compression; DTP prunes distracting tokens for accuracy not perturbation robustness; BFA++ uses hierarchical two-level importance predictors. TOKEN-LEVEL MODULATION: FTM (arXiv 2512.02902) applies an input-independent global affine transformation F̂=(1+γ)⊙F+β to visual tokens from π0.5's ViT encoder, achieving camera 87.1%, lighting 96.0%, texture 96.0%, noise 93.6% on LIBERO-V with only 4K params — remarkably effective but limited by: (a) input-independence (same γ,β regardless of scene content), (b) tested only on π0.5 (3B+ params), not compact models like SmolVLA, (c) no token selection/pruning (all tokens retained), (d) no information-theoretic guarantee about what signal is preserved. FLA extends FTM with low-rank ViT updates (4.7M params, 90.8%) but requires encoder modification. IB FOR ROBOTICS: BC-IB (ICML 2025, arXiv 2502.02853) applies IB at the REPRESENTATION level in behavior cloning, minimizing I(X;Z) on the full latent vector — improves clean accuracy by +5.6% on LIBERO but does not operate at token granularity and explicitly notes domain-shift robustness as unstudied. IBTM (OpenReview) combines IB with learnable token merging for ViT efficiency but targets FLOPs reduction on classification without action conditioning or robustness evaluation. MULTI-VIEW IB: DRIBO (ICML 2022) uses augmentation-generated paired views with a contrastive MIB objective to learn robust RL representations — directly inspiring our nuisance-invariant token selection approach but operating at representation level, not token selection level. MIB (Federici et al., ICLR 2020) provides the theoretical foundation for multi-view IB without nuisance labels. VLA ROBUSTNESS: RobustVLA (arXiv 2511.01331) applies Jacobian + smoothness regularization during online RL post-training (~82.5% on observation perturbations). CRT (arXiv 2602.01158) uses a corruption restoration transformer as preprocessing, recovering near-baseline for large VLAs but struggling with smaller models like SmolVLA. SRPO achieves 82.1 on LIBERO-Plus via self-referential RL policy optimization. COUNTER-EVIDENCE: arXiv 2601.21531 and 2601.12042 demonstrate that POST-HOC token compression hurts adversarial robustness via the 'distortion concentrator' effect — but these exclusively evaluate training-free compression with attention-based importance scores that are themselves perturbed. POSITION PAPER: 'Token Reduction Should Go Beyond Efficiency' (arXiv 2505.18227) argues the thesis that token reduction should target robustness/quality, not just efficiency — ACIBS is the first concrete VLA instantiation of this vision.\",\n  \"approach\": \"We train a lightweight differentiable token scoring head atop SmolVLA's visual encoder (SmolVLM-256M vision backbone + Qwen2.5-0.5B LLM, 450M total params) that is jointly optimized with action prediction and a multi-view augmentation-consistent Information Bottleneck (IB) objective. The key methodological advance over the original formulation is the REFORMULATED IB OBJECTIVE that eliminates the need for explicit nuisance variable labels or conditional MI estimation. Instead of minimizing I(V_selected; N | A) — which requires access to nuisance factor samples N — we adopt a multi-view consistency approach inspired by DRIBO (ICML 2022) and MIB (Federici et al., ICLR 2020): during training, each observation X is paired with an augmented view X' generated via domain randomization (camera jitter ±15°, color/lighting perturbation, background texture swap using LIBERO's built-in randomization). Both views pass through SmolVLA's frozen ViT encoder to produce token sequences V and V'. The combined training loss is: L = L_action(f(V_m), A) + α·D_KL(q(m|V) || p_0(m)) + β·||S(V) - S(V')||². The first term maximizes action-prediction accuracy from selected tokens. The second term is a VIB-style token-level bottleneck: q(m|V) is the per-token Bernoulli selection distribution parameterized by the scorer MLP via Gumbel-softmax relaxation (architecturally following LightVLA's differentiable selection), and p_0(m) is a Bernoulli prior with target retention rate k — this forces compression of redundant information. The third term is the CROSS-VIEW SELECTION CONSISTENCY loss: it penalizes differences in the scorer's output logits S(·) across augmented views, forcing the scorer to be INVARIANT to augmentation-defined nuisance factors. Crucially, this formulation uses only standard KL divergence and MSE — no neural MI estimation required, completely sidestepping the bias/variance issues of variational MI bounds identified by Poole et al. (ICML 2019). The augmentation pipeline implicitly defines nuisance variables: any information that varies across views (background, lighting, viewpoint) is nuisance, and the consistency loss forces the scorer to ignore it. The scorer is implemented as a 2-layer MLP (~50K params) predicting per-token logits, with Gumbel-softmax producing differentiable soft masks during training and hard top-k selection during inference. Key differentiation from prior work: (a) vs. FTM — adaptive, input-dependent, per-token selection with IB grounding vs. input-independent global affine modulation; FTM retains all tokens with shifted features, ACIBS selects informative tokens and discards nuisance-carrying ones; (b) vs. BC-IB — token-level vs. representation-level IB, robustness-targeted via multi-view consistency vs. accuracy-targeted; (c) vs. DRIBO — token selection level vs. representation level, action-conditioned for manipulation; (d) vs. post-hoc pruning — trained perturbation-invariant scorer vs. unstable attention-based importance; (e) vs. IBTM — action-conditioned and robustness-evaluated vs. task-agnostic efficiency. As a secondary modular contribution, retained tokens optionally undergo tangent-space augmentation extending FOMA to VLA token embeddings; this component is explicitly ablated. We evaluate on LIBERO-Plus across all 7 perturbation dimensions. Baselines include efficiency-focused pruning (VLA-IAP, DTP), token modulation (FTM adapted to SmolVLA backbone), and robustness methods (RobustVLA, CRT, SRPO), plus ablations isolating the VIB term, consistency term, and tangent-space augmentation.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~200-250h H100 (SmolVLA base: ~4h/run; with IB scorer + dual-view forward pass: ~12-15h/run; 5-6 training configs × 12-15h = 60-90h training; LIBERO-Plus eval ~8-10h per model on 1 GPU × 6 models = 48-60h; debugging/iteration ~40-50h; may slightly exceed 200h budget — mitigated by evaluating 4 key perturbation dimensions first, deferring full 7-dimension eval to camera-ready)\",\n      \"gpu_utilization\": \"Moderate idle (35-45%) — researcher iterates on α/β trade-off and analyzes per-dimension robustness curves between runs\",\n      \"timeline\": \"6-8 weeks (targeting AAAI 2027 primary, ~10-12 weeks to deadline)\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"$500-$625 (at ~$2.50/hr H100)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~200-230h H100 (agent systematically sweeps α/β and retention rate k; human approves VIB/consistency/action-loss trade-off at each checkpoint; dual-view augmentation adds ~40% overhead per training run vs. standard SmolVLA fine-tuning)\",\n      \"gpu_utilization\": \"20-30% lower idle vs manual — agent queues next run while human reviews Pareto curves of robustness vs. clean accuracy\",\n      \"timeline\": \"3-4 weeks\",\n      \"team\": \"1 researcher, ~1.5hr/day reviewing trade-off curves and selecting augmentation strategies\",\n      \"claude_api_cost\": \"$100-180 (estimated ~1000-1800 turns for experiment design, augmentation pipeline setup, result analysis)\",\n      \"estimated_gpu_cost\": \"$500-$575\",\n      \"risk_note\": \"α/β tuning is the critical human decision — α too high destroys action-relevant signal in SmolVLA's compact token space, β too high forces trivially constant selection that ignores scene content. The dual-view augmentation pipeline must be carefully calibrated: augmentations too weak fail to define meaningful nuisance, too strong create views where task-relevant information also differs\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~350-450h H100 (2x more exploration of α/β/k hyperparameter space and augmentation magnitudes; includes failed runs; EXCEEDS 200h budget — requires reduced scope or 2-GPU parallel allocation)\",\n      \"gpu_utilization\": \"Near-zero idle — agent continuously pipelines training → evaluation → next experiment\",\n      \"timeline\": \"2-3 weeks with 2-4 H100 GPUs\",\n      \"team\": \"0 (initial setup only)\",\n      \"claude_api_cost\": \"$250-450\",\n      \"estimated_gpu_cost\": \"$875-$1,125\",\n      \"speed_bottleneck\": \"LIBERO-Plus evaluation throughput — ~8-10h per full 10,030-task evaluation pass per model on single GPU\",\n      \"risk_note\": \"Agent may over-explore hyperparameter space without convergence intuition; multi-view augmentation magnitude is sensitive and agent may not distinguish meaningful augmentation failures from hyperparameter failures\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (deadlines TBD, likely abstract ~August 2026, paper ~August 2026 — primary target, comfortable 10-12 week timeline for full evaluation across all 7 LIBERO-Plus dimensions with thorough ablations)\",\n    \"CoRL 2026 (abstract: May 26 11:59 UTC, paper: May 28 Thursday EOD — stretch goal with scoped submission: IB pruning + consistency loss only, no tangent-space augmentation, SmolVLA backbone only, 4 key perturbation dimensions (camera, lighting, texture, noise), full ablation deferred to camera-ready; 12-day timeline from today May 14 is extremely tight)\",\n    \"ICLR 2027 (deadline: ~October 2026, TBD — highest-tier general ML venue, allows most thorough evaluation including compositional perturbations and multi-backbone experiments)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (CVPR 2026, arXiv 2510.13626)\",\n    \"SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics (arXiv 2025, 2506.01844)\",\n    \"Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation [BC-IB] (ICML 2025, arXiv 2502.02853)\",\n    \"VLA Models Are More Generalizable Than You Think: Revisiting Physical and Spatial Modeling [FTM/FLA] (arXiv 2025, 2512.02902)\",\n    \"Token Reduction Should Go Beyond Efficiency in Generative Models — From Vision, Language to Multimodality (arXiv 2025, 2505.18227)\",\n    \"DRIBO: Robust Deep Reinforcement Learning via Multi-View Information Bottleneck (ICML 2022)\",\n    \"Learning Robust Representations via Multi-View Information Bottleneck [MIB] (ICLR 2020, arXiv 2002.07017)\",\n    \"CLUB: A Contrastive Log-ratio Upper Bound of Mutual Information (ICML 2020)\",\n    \"On Variational Bounds of Mutual Information (Poole et al., ICML 2019)\",\n    \"Efficient Visual Transformer by Information Bottleneck Inspired Token Merging [IBTM] (OpenReview 2024)\",\n    \"RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models (arXiv 2025, 2511.01331)\",\n    \"Improving Robustness of Vision-Language-Action Models by Restoring Corrupted Visual Inputs [CRT] (arXiv 2026, 2602.01158)\",\n    \"Token Bottleneck: One Token to Remember Dynamics [ToBo] (NeurIPS 2025, arXiv 2507.06543)\",\n    \"SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models (arXiv 2025, 2511.15605)\",\n    \"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression (arXiv 2026, 2601.21531)\",\n    \"Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models (arXiv 2026, 2601.12042)\",\n    \"First-Order Manifold Data Augmentation for Regression Learning [FOMA] (ICML 2024)\",\n    \"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models (arXiv 2026, 2603.22991)\",\n    \"The Better You Learn, The Smarter You Prune: Towards Efficient VLAs via Differentiable Token Pruning [LightVLA] (ICRA 2026)\",\n    \"See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA [GridS] (ICML 2026)\",\n    \"DTP: A Simple yet Effective Distracting Token Pruning Framework for VLA Models (arXiv 2026, 2601.16065)\",\n    \"Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation (arXiv 2025, 2511.18950)\"\n  ],\n  \"description\": \"We propose Action-Conditioned Information Bottleneck Token Surgery (ACIBS), a method that reconceptualizes VLA visual token selection from an efficiency optimization into a robustness mechanism. Current VLA models achieve >95% success on standard benchmarks but collapse to <30% under visual perturbations (LIBERO-Plus, CVPR 2026). Existing token pruning methods (VLA-IAP, LightVLA, GridS, DTP) target inference speed; post-hoc compression actively hurts adversarial robustness via the 'distortion concentrator' effect (arXiv 2601.21531, 2601.12042); and FTM (arXiv 2512.02902) achieves strong viewpoint robustness (87.1% on π0.5) via a simple input-independent global affine transformation on visual tokens — but its fixed parameters cannot adapt to scene content, and it lacks guarantees about what information is preserved. Meanwhile, BC-IB (ICML 2025) applies IB at the representation level for clean accuracy without addressing token-level robustness, and 'Token Reduction Should Go Beyond Efficiency' (arXiv 2505.18227) argues this exact thesis without a concrete VLA method. ACIBS bridges these gaps with a fundamentally different formulation: a differentiable token scorer jointly trained with action prediction and a MULTI-VIEW AUGMENTATION-CONSISTENT IB objective. During training, each observation is paired with a domain-randomized augmented view (camera jitter, lighting, background); the combined loss is L = L_action + α·D_KL(q(m|V) || p_0(m)) + β·||S(V) - S(V')||², where the VIB term compresses token information and the consistency term forces the scorer to be INVARIANT to augmentation-defined nuisance factors. This reformulation completely avoids the problematic conditional MI estimation I(V;N|A) that would require nuisance labels — instead using only standard KL divergence and MSE, sidestepping the bias/variance issues of neural MI estimators (Poole et al., ICML 2019). The approach extends DRIBO's multi-view IB principle from representation-level RL to token-level VLA selection. Unlike FTM, ACIBS provides adaptive, input-dependent, per-token selection — different scenes get different token masks — with information-theoretic compression guarantees. Unlike post-hoc pruning, the IB-trained scorer is perturbation-invariant by construction. Built on SmolVLA (450M params), ACIBS targets comprehensive LIBERO-Plus evaluation across all 7 perturbation dimensions. Baselines include FTM (adapted to SmolVLA), efficiency-focused pruning (VLA-IAP, DTP), robustness methods (RobustVLA, CRT, SRPO), and the representation-level IB approach (BC-IB). Primary venue target is AAAI 2027 with CoRL 2026 as stretch goal (scoped to 4 perturbation dimensions, no tangent-space augmentation).\",\n  \"project_name\": \"ib_token_surgery_vla\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 3)\nIssues: [\"VENUE TARGET MISMATCH: User explicitly requires 'Target: CoRL 2026' but the idea designates AAAI 2027 as primary target with CoRL as 'stretch goal.' The idea must be primarily scoped for CoRL 2026 with the 12-day timeline and 200h compute as hard constraints, not soft guidelines.\", \"SMOLVLA FACTUAL ERRORS: The idea states 'SmolVLM-256M vision backbone + Qwen2.5-0.5B LLM' but SmolVLA actually uses SmolVLM2-500M (SigLIP encoder) and SmolLM2 (HuggingFace's own LLM with layer skipping), not Qwen2.5-0.5B. These errors undermine credibility.\", \"MISSING COMPETITOR — SimPrune (ICLR 2025): 'Mutual Effort for Efficiency: A Similarity-based Token Pruning for Vision Transformers in Self-Supervised Learning' explicitly enforces cross-branch augmentation consistency during token pruning — the same core mechanism as ACIBS's consistency loss ||S(V)-S(V')||². SimPrune targets training efficiency rather than robustness, but the conceptual overlap is substantial and must be cited and differentiated.\", \"MISSING COMPETITOR — TCA (ICCV 2025, arXiv 2410.14729): 'Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation' demonstrates that token condensation improves distribution shift robustness by up to 21.4% on CIFAR-100-C and cross-dataset benchmarks. This directly supports the 'token reduction helps robustness' thesis and provides prior evidence that the approach direction works, but also reduces novelty of the core claim.\", \"COMPUTE STILL EXCEEDS HARD CONSTRAINT: Manual estimate of 200-250h exceeds the user's hard ≤200h budget. The idea acknowledges 'may slightly exceed' but the user specified this as a HARD CONSTRAINT. The mitigation (evaluate 4 dimensions first, defer full 7 to camera-ready) is reasonable but should be the primary plan, not a fallback.\", \"PROVABLE ROBUSTNESS MARGINS CLAIM IS VAGUE: The description repeatedly claims 'provable robustness margins' and 'information-theoretic compression guarantees' but never specifies what theorem is proved. A VIB KL term provides an upper bound on I(X;Z) but converting this to a robustness margin (e.g., Lipschitz bound on action error under perturbation) requires additional assumptions that are not stated.\", \"FTM BASELINE RISK UNDER-DISCUSSED: FTM achieves 87.1% viewpoint / 90.5% avg on LIBERO-V with 4K params and trivial training. If FTM adapted to SmolVLA recovers most of the robustness gap, ACIBS's added complexity (50K scorer, dual-view training, IB tuning of α/β/k) may yield marginal improvement insufficient for a top-venue contribution. The idea should explicitly discuss what happens if FTM-on-SmolVLA is a strong baseline.\", \"SEVERAL RECENT VLA PRUNING METHODS UNCITED: VLA-Pruner (arXiv 2511.16449), SP-VLA (ICLR 2026, arXiv 2506.12723), ETA-VLA (arXiv 2603.25766), EcoVLA (arXiv 2602.00780), and OneWM-VLA (arXiv 2605.07931) are recent VLA-specific token pruning methods. While efficiency-focused, they represent the broader competitive landscape and key ones should be cited in the landscape section.\"]\nFeedback: The Round 3 revision is substantially improved — the multi-view consistency reformulation elegantly solves the nuisance variable access problem from Round 2, the landscape coverage is now comprehensive (20+ papers), and the FTM/BC-IB/post-hoc differentiation is well-articulated. Four targeted fixes for Round 4:\n\n1. **SCOPE FOR CoRL PRIMARY (mandatory)**: Restructure the entire submission plan around CoRL 2026 as the primary target. The scoped version you already describe (IB pruning + consistency loss, no tangent-space augmentation, SmolVLA only, 4 key perturbation dimensions) should be the MAIN plan, not a stretch fallback. Compute should be re-estimated to fit strictly within 200h: ~4 training configs × 12h = 48h + 4 models × 5h eval = 20h + 30h debugging = 98h, leaving margin. AAAI 2027 can be mentioned as the extended version.\n\n2. **FIX SMOLVLA DETAILS + ADD SimPrune/TCA (mandatory)**: Correct the architecture to SmolVLM2-500M (SigLIP) + SmolLM2. Cite SimPrune (ICLR 2025) and differentiate: 'SimPrune enforces augmentation consistency for token pruning during self-supervised pretraining to maintain semantic alignment, targeting efficiency; ACIBS enforces consistency during VLA fine-tuning with an IB objective, targeting perturbation invariance for robustness.' Cite TCA (ICCV 2025) as supporting evidence that token reduction improves distribution shift robustness.\n\n3. **SHARPEN THEORETICAL CLAIMS (mandatory)**: Either (a) state a concrete theorem: 'Under Assumptions X (Lipschitz action decoder, bounded perturbation ε), the VIB-trained scorer with retention rate k achieves action prediction error bounded by [expression]' — even if the proof is standard VIB theory applied to this setting; or (b) downgrade the claim from 'provable robustness margins' to 'information-theoretic motivation with empirical robustness improvement,' which is honest and still publishable at CoRL.\n\n4. **EXPLICITLY PLAN FOR FTM BASELINE OUTCOME (recommended)**: Add a contingency analysis: 'If FTM adapted to SmolVLA achieves >X% on LIBERO-Plus, our contribution shifts to demonstrating that adaptive, per-token selection with IB grounding provides complementary gains — we can combine FTM's global modulation with ACIBS's selective pruning (FTM+ACIBS) and show the combination exceeds either alone.' This makes the paper robust to a strong FTM baseline result.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T06:26:09.300Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T06:26:09.300Z",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---
+
+## Round 1
+
+85 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T06:26:09.326Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-14 (UTC).**
+
+## Original idea
+{
+  "title": "Action-Conditioned Information Bottleneck Token Surgery for Robust VLAs",
+  "core_problem": "VLA visual encoders produce redundant token sequences where task-irrelevant tokens carry spurious correlations with environment-specific factors — correlations that collapse under visual perturbations. Existing token pruning methods (VLA-IAP, LightVLA, GridS, DTP, Compressor-VLA) optimize exclusively for inference efficiency, while existing robustness methods operate at other levels: policy-level regularization (RobustVLA), input restoration (CRT), or lightweight affine token modulation (FTM, which uses input-independent global parameters). Critically, post-hoc token compression has been shown to actively HURT adversarial robustness by concentrating adversarial signal on high-importance retained tokens (arXiv 2601.21531, 2601.12042). The recent position paper 'Token Reduction Should Go Beyond Efficiency' (arXiv 2505.18227) argues exactly this thesis but provides no concrete VLA instantiation. We show that token-level intervention CAN improve robustness — when the token scorer is jointly trained with an information bottleneck objective using multi-view augmentation consistency that implicitly decorrelates from nuisance variables, producing perturbation-invariant relevance scores fundamentally different from both attention-based importance used in post-hoc methods and input-independent affine modulation used in FTM.",
+  "opportunity": "LIBERO-Plus (CVPR 2026) reveals catastrophic robustness gaps (95% → <30% under camera/state perturbations). FTM (arXiv 2512.02902) shows that even a simple global affine transformation on visual tokens recovers viewpoint robustness (48.5% → 87.1% on π0.5 with 4K params), demonstrating that token-level intervention is a promising robustness lever — but FTM's input-independent, fixed-parameter design cannot adapt to scene content, varies in effectiveness across perturbation types, and lacks information-theoretic guarantees about what information is preserved vs. discarded. BC-IB (ICML 2025) demonstrates that IB at the representation level improves clean accuracy on LIBERO but explicitly acknowledges robustness to domain shifts as an open problem. The unexploited gap is: applying IB at the TOKEN level with ADAPTIVE, INPUT-DEPENDENT selection, conditioned on ACTION prediction, using MULTI-VIEW augmentation consistency to achieve perturbation invariance — a combination that provides principled, per-timestep token selection with information-theoretic grounding, going beyond both FTM's fixed modulation and BC-IB's coarse-grained bottleneck.",
+  "landscape": "The VLA token intervention literature spans efficiency, modulation, and robustness approaches. EFFICIENCY-FOCUSED PRUNING: VLA-IAP (Mar 2026) achieves 97.8% on LIBERO with 1.54x speedup via training-free interaction-aligned pruning; LightVLA (ICRA 2026) uses differentiable Gumbel softmax selection reducing FLOPs by 59.1%; GridS (ICML 2026) performs differentiable grid resampling; Compressor-VLA uses instruction-guided dual compression; DTP prunes distracting tokens for accuracy not perturbation robustness; BFA++ uses hierarchical two-level importance predictors. TOKEN-LEVEL MODULATION: FTM (arXiv 2512.02902) applies an input-independent global affine transformation F̂=(1+γ)⊙F+β to visual tokens from π0.5's ViT encoder, achieving camera 87.1%, lighting 96.0%, texture 96.0%, noise 93.6% on LIBERO-V with only 4K params — remarkably effective but limited by: (a) input-independence (same γ,β regardless of scene content), (b) tested only on π0.5 (3B+ params), not compact models like SmolVLA, (c) no token selection/pruning (all tokens retained), (d) no information-theoretic guarantee about what signal is preserved. FLA extends FTM with low-rank ViT updates (4.7M params, 90.8%) but requires encoder modification. IB FOR ROBOTICS: BC-IB (ICML 2025, arXiv 2502.02853) applies IB at the REPRESENTATION level in behavior cloning, minimizing I(X;Z) on the full latent vector — improves clean accuracy by +5.6% on LIBERO but does not operate at token granularity and explicitly notes domain-shift robustness as unstudied. IBTM (OpenReview) combines IB with learnable token merging for ViT efficiency but targets FLOPs reduction on classification without action conditioning or robustness evaluation. MULTI-VIEW IB: DRIBO (ICML 2022) uses augmentation-generated paired views with a contrastive MIB objective to learn robust RL representations — directly inspiring our nuisance-invariant token selection approach but operating at representation level, not token selection level. MIB (Federici et al., ICLR 2020) provides the theoretical foundation for multi-view IB without nuisance labels. VLA ROBUSTNESS: RobustVLA (arXiv 2511.01331) applies Jacobian + smoothness regularization during online RL post-training (~82.5% on observation perturbations). CRT (arXiv 2602.01158) uses a corruption restoration transformer as preprocessing, recovering near-baseline for large VLAs but struggling with smaller models like SmolVLA. SRPO achieves 82.1 on LIBERO-Plus via self-referential RL policy optimization. COUNTER-EVIDENCE: arXiv 2601.21531 and 2601.12042 demonstrate that POST-HOC token compression hurts adversarial robustness via the 'distortion concentrator' effect — but these exclusively evaluate training-free compression with attention-based importance scores that are themselves perturbed. POSITION PAPER: 'Token Reduction Should Go Beyond Efficiency' (arXiv 2505.18227) argues the thesis that token reduction should target robustness/quality, not just efficiency — ACIBS is the first concrete VLA instantiation of this vision.",
+  "approach": "We train a lightweight differentiable token scoring head atop SmolVLA's visual encoder (SmolVLM-256M vision backbone + Qwen2.5-0.5B LLM, 450M total params) that is jointly optimized with action prediction and a multi-view augmentation-consistent Information Bottleneck (IB) objective. The key methodological advance over the original formulation is the REFORMULATED IB OBJECTIVE that eliminates the need for explicit nuisance variable labels or conditional MI estimation. Instead of minimizing I(V_selected; N | A) — which requires access to nuisance factor samples N — we adopt a multi-view consistency approach inspired by DRIBO (ICML 2022) and MIB (Federici et al., ICLR 2020): during training, each observation X is paired with an augmented view X' generated via domain randomization (camera jitter ±15°, color/lighting perturbation, background texture swap using LIBERO's built-in randomization). Both views pass through SmolVLA's frozen ViT encoder to produce token sequences V and V'. The combined training loss is: L = L_action(f(V_m), A) + α·D_KL(q(m|V) || p_0(m)) + β·||S(V) - S(V')||². The first term maximizes action-prediction accuracy from selected tokens. The second term is a VIB-style token-level bottleneck: q(m|V) is the per-token Bernoulli selection distribution parameterized by the scorer MLP via Gumbel-softmax relaxation (architecturally following LightVLA's differentiable selection), and p_0(m) is a Bernoulli prior with target retention rate k — this forces compression of redundant information. The third term is the CROSS-VIEW SELECTION CONSISTENCY loss: it penalizes differences in the scorer's output logits S(·) across augmented views, forcing the scorer to be INVARIANT to augmentation-defined nuisance factors. Crucially, this formulation uses only standard KL divergence and MSE — no neural MI estimation required, completely sidestepping the bias/variance issues of variational MI bounds identified by Poole et al. (ICML 2019). The augmentation pipeline implicitly defines nuisance variables: any information that varies across views (background, lighting, viewpoint) is nuisance, and the consistency loss forces the scorer to ignore it. The scorer is implemented as a 2-layer MLP (~50K params) predicting per-token logits, with Gumbel-softmax producing differentiable soft masks during training and hard top-k selection during inference. Key differentiation from prior work: (a) vs. FTM — adaptive, input-dependent, per-token selection with IB grounding vs. input-independent global affine modulation; FTM retains all tokens with shifted features, ACIBS selects informative tokens and discards nuisance-carrying ones; (b) vs. BC-IB — token-level vs. representation-level IB, robustness-targeted via multi-view consistency vs. accuracy-targeted; (c) vs. DRIBO — token selection level vs. representation level, action-conditioned for manipulation; (d) vs. post-hoc pruning — trained perturbation-invariant scorer vs. unstable attention-based importance; (e) vs. IBTM — action-conditioned and robustness-evaluated vs. task-agnostic efficiency. As a secondary modular contribution, retained tokens optionally undergo tangent-space augmentation extending FOMA to VLA token embeddings; this component is explicitly ablated. We evaluate on LIBERO-Plus across all 7 perturbation dimensions. Baselines include efficiency-focused pruning (VLA-IAP, DTP), token modulation (FTM adapted to SmolVLA backbone), and robustness methods (RobustVLA, CRT, SRPO), plus ablations isolating the VIB term, consistency term, and tangent-space augmentation.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200-250h H100 (SmolVLA base: ~4h/run; with IB scorer + dual-view forward pass: ~12-15h/run; 5-6 training configs × 12-15h = 60-90h training; LIBERO-Plus eval ~8-10h per model on 1 GPU × 6 models = 48-60h; debugging/iteration ~40-50h; may slightly exceed 200h budget — mitigated by evaluating 4 key perturbation dimensions first, deferring full 7-dimension eval to camera-ready)",
+      "gpu_utilization": "Moderate idle (35-45%) — researcher iterates on α/β trade-off and analyzes per-dimension robustness curves between runs",
+      "timeline": "6-8 weeks (targeting AAAI 2027 primary, ~10-12 weeks to deadline)",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$500-$625 (at ~$2.50/hr H100)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~200-230h H100 (agent systematically sweeps α/β and retention rate k; human approves VIB/consistency/action-loss trade-off at each checkpoint; dual-view augmentation adds ~40% overhead per training run vs. standard SmolVLA fine-tuning)",
+      "gpu_utilization": "20-30% lower idle vs manual — agent queues next run while human reviews Pareto curves of robustness vs. clean accuracy",
+      "timeline": "3-4 weeks",
+      "team": "1 researcher, ~1.5hr/day reviewing trade-off curves and selecting augmentation strategies",
+      "claude_api_cost": "$100-180 (estimated ~1000-1800 turns for experiment design, augmentation pipeline setup, result analysis)",
+      "estimated_gpu_cost": "$500-$575",
+      "risk_note": "α/β tuning is the critical human decision — α too high destroys action-relevant signal in SmolVLA's compact token space, β too high forces trivially constant selection that ignores scene content. The dual-view augmentation pipeline must be carefully calibrated: augmentations too weak fail to define meaningful nuisance, too strong create views where task-relevant information also differs"
+    },
+    "auto_research": {
+      "gpu_hours": "~350-450h H100 (2x more exploration of α/β/k hyperparameter space and augmentation magnitudes; includes failed runs; EXCEEDS 200h budget — requires reduced scope or 2-GPU parallel allocation)",
+      "gpu_utilization": "Near-zero idle — agent continuously pipelines training → evaluation → next experiment",
+      "timeline": "2-3 weeks with 2-4 H100 GPUs",
+      "team": "0 (initial setup only)",
+      "claude_api_cost": "$250-450",
+      "estimated_gpu_cost": "$875-$1,125",
+      "speed_bottleneck": "LIBERO-Plus evaluation throughput — ~8-10h per full 10,030-task evaluation pass per model on single GPU",
+      "risk_note": "Agent may over-explore hyperparameter space without convergence intuition; multi-view augmentation magnitude is sensitive and agent may not distinguish meaningful augmentation failures from hyperparameter failures"
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (deadlines TBD, likely abstract ~August 2026, paper ~August 2026 — primary target, comfortable 10-12 week timeline for full evaluation across all 7 LIBERO-Plus dimensions with thorough ablations)",
+    "CoRL 2026 (abstract: May 26 11:59 UTC, paper: May 28 Thursday EOD — stretch goal with scoped submission: IB pruning + consistency loss only, no tangent-space augmentation, SmolVLA backbone only, 4 key perturbation dimensions (camera, lighting, texture, noise), full ablation deferred to camera-ready; 12-day timeline from today May 14 is extremely tight)",
+    "ICLR 2027 (deadline: ~October 2026, TBD — highest-tier general ML venue, allows most thorough evaluation including compositional perturbations and multi-backbone experiments)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (CVPR 2026, arXiv 2510.13626)",
+    "SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics (arXiv 2025, 2506.01844)",
+    "Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation [BC-IB] (ICML 2025, arXiv 2502.02853)",
+    "VLA Models Are More Generalizable Than You Think: Revisiting Physical and Spatial Modeling [FTM/FLA] (arXiv 2025, 2512.02902)",
+    "Token Reduction Should Go Beyond Efficiency in Generative Models — From Vision, Language to Multimodality (arXiv 2025, 2505.18227)",
+    "DRIBO: Robust Deep Reinforcement Learning via Multi-View Information Bottleneck (ICML 2022)",
+    "Learning Robust Representations via Multi-View Information Bottleneck [MIB] (ICLR 2020, arXiv 2002.07017)",
+    "CLUB: A Contrastive Log-ratio Upper Bound of Mutual Information (ICML 2020)",
+    "On Variational Bounds of Mutual Information (Poole et al., ICML 2019)",
+    "Efficient Visual Transformer by Information Bottleneck Inspired Token Merging [IBTM] (OpenReview 2024)",
+    "RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models (arXiv 2025, 2511.01331)",
+    "Improving Robustness of Vision-Language-Action Models by Restoring Corrupted Visual Inputs [CRT] (arXiv 2026, 2602.01158)",
+    "Token Bottleneck: One Token to Remember Dynamics [ToBo] (NeurIPS 2025, arXiv 2507.06543)",
+    "SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models (arXiv 2025, 2511.15605)",
+    "On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression (arXiv 2026, 2601.21531)",
+    "Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models (arXiv 2026, 2601.12042)",
+    "First-Order Manifold Data Augmentation for Regression Learning [FOMA] (ICML 2024)",
+    "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models (arXiv 2026, 2603.22991)",
+    "The Better You Learn, The Smarter You Prune: Towards Efficient VLAs via Differentiable Token Pruning [LightVLA] (ICRA 2026)",
+    "See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA [GridS] (ICML 2026)",
+    "DTP: A Simple yet Effective Distracting Token Pruning Framework for VLA Models (arXiv 2026, 2601.16065)",
+    "Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation (arXiv 2025, 2511.18950)"
+  ],
+  "description": "We propose Action-Conditioned Information Bottleneck Token Surgery (ACIBS), a method that reconceptualizes VLA visual token selection from an efficiency optimization into a robustness mechanism. Current VLA models achieve >95% success on standard benchmarks but collapse to <30% under visual perturbations (LIBERO-Plus, CVPR 2026). Existing token pruning methods (VLA-IAP, LightVLA, GridS, DTP) target inference speed; post-hoc compression actively hurts adversarial robustness via the 'distortion concentrator' effect (arXiv 2601.21531, 2601.12042); and FTM (arXiv 2512.02902) achieves strong viewpoint robustness (87.1% on π0.5) via a simple input-independent global affine transformation on visual tokens — but its fixed parameters cannot adapt to scene content, and it lacks guarantees about what information is preserved. Meanwhile, BC-IB (ICML 2025) applies IB at the representation level for clean accuracy without addressing token-level robustness, and 'Token Reduction Should Go Beyond Efficiency' (arXiv 2505.18227) argues this exact thesis without a concrete VLA method. ACIBS bridges these gaps with a fundamentally different formulation: a differentiable token scorer jointly trained with action prediction and a MULTI-VIEW AUGMENTATION-CONSISTENT IB objective. During training, each observation is paired with a domain-randomized augmented view (camera jitter, lighting, background); the combined loss is L = L_action + α·D_KL(q(m|V) || p_0(m)) + β·||S(V) - S(V')||², where the VIB term compresses token information and the consistency term forces the scorer to be INVARIANT to augmentation-defined nuisance factors. This reformulation completely avoids the problematic conditional MI estimation I(V;N|A) that would require nuisance labels — instead using only standard KL divergence and MSE, sidestepping the bias/variance issues of neural MI estimators (Poole et al., ICML 2019). The approach extends DRIBO's multi-view IB principle from representation-level RL to token-level VLA selection. Unlike FTM, ACIBS provides adaptive, input-dependent, per-token selection — different scenes get different token masks — with information-theoretic compression guarantees. Unlike post-hoc pruning, the IB-trained scorer is perturbation-invariant by construction. Built on SmolVLA (450M params), ACIBS targets comprehensive LIBERO-Plus evaluation across all 7 perturbation dimensions. Baselines include FTM (adapted to SmolVLA), efficiency-focused pruning (VLA-IAP, DTP), robustness methods (RobustVLA, CRT, SRPO), and the representation-level IB approach (BC-IB). Primary venue target is AAAI 2027 with CoRL 2026 as stretch goal (scoped to 4 perturbation dimensions, no tangent-space augmentation).",
+  "project_name": "ib_token_surgery_vla",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 3)
+Issues: ["VENUE TARGET MISMATCH: User explicitly requires 'Target: CoRL 2026' but the idea designates AAAI 2027 as primary target with CoRL as 'stretch goal.' The idea must be primarily scoped for CoRL 2026 with the 12-day timeline and 200h compute as hard constraints, not soft guidelines.", "SMOLVLA FACTUAL ERRORS: The idea states 'SmolVLM-256M vision backbone + Qwen2.5-0.5B LLM' but SmolVLA actually uses SmolVLM2-500M (SigLIP encoder) and SmolLM2 (HuggingFace's own LLM with layer skipping), not Qwen2.5-0.5B. These errors undermine credibility.", "MISSING COMPETITOR — SimPrune (ICLR 2025): 'Mutual Effort for Efficiency: A Similarity-based Token Pruning for Vision Transformers in Self-Supervised Learning' explicitly enforces cross-branch augmentation consistency during token pruning — the same core mechanism as ACIBS's consistency loss ||S(V)-S(V')||². SimPrune targets training efficiency rather than robustness, but the conceptual overlap is substantial and must be cited and differentiated.", "MISSING COMPETITOR — TCA (ICCV 2025, arXiv 2410.14729): 'Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation' demonstrates that token condensation improves distribution shift robustness by up to 21.4% on CIFAR-100-C and cross-dataset benchmarks. This directly supports the 'token reduction helps robustness' thesis and provides prior evidence that the approach direction works, but also reduces novelty of the core claim.", "COMPUTE STILL EXCEEDS HARD CONSTRAINT: Manual estimate of 200-250h exceeds the user's hard ≤200h budget. The idea acknowledges 'may slightly exceed' but the user specified this as a HARD CONSTRAINT. The mitigation (evaluate 4 dimensions first, defer full 7 to camera-ready) is reasonable but should be the primary plan, not a fallback.", "PROVABLE ROBUSTNESS MARGINS CLAIM IS VAGUE: The description repeatedly claims 'provable robustness margins' and 'information-theoretic compression guarantees' but never specifies what theorem is proved. A VIB KL term provides an upper bound on I(X;Z) but converting this to a robustness margin (e.g., Lipschitz bound on action error under perturbation) requires additional assumptions that are not stated.", "FTM BASELINE RISK UNDER-DISCUSSED: FTM achieves 87.1% viewpoint / 90.5% avg on LIBERO-V with 4K params and trivial training. If FTM adapted to SmolVLA recovers most of the robustness gap, ACIBS's added complexity (50K scorer, dual-view training, IB tuning of α/β/k) may yield marginal improvement insufficient for a top-venue contribution. The idea should explicitly discuss what happens if FTM-on-SmolVLA is a strong baseline.", "SEVERAL RECENT VLA PRUNING METHODS UNCITED: VLA-Pruner (arXiv 2511.16449), SP-VLA (ICLR 2026, arXiv 2506.12723), ETA-VLA (arXiv 2603.25766), EcoVLA (arXiv 2602.00780), and OneWM-VLA (arXiv 2605.07931) are recent VLA-specific token pruning methods. While efficiency-focused, they represent the broader competitive landscape and key ones should be cited in the landscape section."]
+Feedback: The Round 3 revision is substantially improved — the multi-view consistency reformulation elegantly solves the nuisance variable access problem from Round 2, the landscape coverage is now comprehensive (20+ papers), and the FTM/BC-IB/post-hoc differentiation is well-articulated. Four targeted fixes for Round 4:
+
+1. **SCOPE FOR CoRL PRIMARY (mandatory)**: Restructure the entire submission plan around CoRL 2026 as the primary target. The scoped version you already describe (IB pruning + consistency loss, no tangent-space augmentation, SmolVLA only, 4 key perturbation dimensions) should be the MAIN plan, not a stretch fallback. Compute should be re-estimated to fit strictly within 200h: ~4 training configs × 12h = 48h + 4 models × 5h eval = 20h + 30h debugging = 98h, leaving margin. AAAI 2027 can be mentioned as the extended version.
+
+2. **FIX SMOLVLA DETAILS + ADD SimPrune/TCA (mandatory)**: Correct the architecture to SmolVLM2-500M (SigLIP) + SmolLM2. Cite SimPrune (ICLR 2025) and differentiate: 'SimPrune enforces augmentation consistency for token pruning during self-supervised pretraining to maintain semantic alignment, targeting efficiency; ACIBS enforces consistency during VLA fine-tuning with an IB objective, targeting perturbation invariance for robustness.' Cite TCA (ICCV 2025) as supporting evidence that token reduction improves distribution shift robustness.
+
+3. **SHARPEN THEORETICAL CLAIMS (mandatory)**: Either (a) state a concrete theorem: 'Under Assumptions X (Lipschitz action decoder, bounded perturbation ε), the VIB-trained scorer with retention rate k achieves action prediction error bounded by [expression]' — even if the proof is standard VIB theory applied to this setting; or (b) downgrade the claim from 'provable robustness margins' to 'information-theoretic motivation with empirical robustness improvement,' which is honest and still publishable at CoRL.
+
+4. **EXPLICITLY PLAN FOR FTM BASELINE OUTCOME (recommended)**: Add a contingency analysis: 'If FTM adapted to SmolVLA achieves >X% on LIBERO-Plus, our contribution shifts to demonstrating that adaptive, per-token selection with IB grounding provides complementary gains — we can combine FTM's global modulation with ACIBS's selective pruning (FTM+ACIBS) and show the combination exceeds either alone.' This makes the paper robust to a strong FTM baseline result.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "20f09950-1559-4d47-8a9c-314f14f91bdc",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T06:26:09.324Z_
+
+```json
+{
+  "parentUuid": "20f09950-1559-4d47-8a9c-314f14f91bdc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "733a3857-1431-4a50-8667-0f7bd8be6028",
+  "timestamp": "2026-05-14T06:26:09.324Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T06:26:09.324Z_
+
+```json
+{
+  "parentUuid": "733a3857-1431-4a50-8667-0f7bd8be6028",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "1962babe-82d4-4bae-bd44-d2e8e757a774",
+  "timestamp": "2026-05-14T06:26:09.324Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Action-Conditioned Information Bottleneck Token Surgery for Robust VLA…",
+  "leafUuid": "1962babe-82d4-4bae-bd44-d2e8e757a774",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise token pruning for CoRL 2026 with fixed baselines",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T06:26:18.580Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully and plan my research strategy before making revisions.
+
+The key issues are:
+1. **Venue target mismatch** - Must scope for CoRL 2026 as primary
+2. **SmolVLA factual errors** - Wrong architecture details
+3. **Missing competitor - SimPrune** - Cross-branch augmentation consistency for token pruning
+4. **Missing competitor - TCA** - Token condensation for robustness
+5. **Compute exceeds budget** - Must fit within 200h hard constraint
+6. **Provable robustness claims too vague** - Need concrete theorem or downgrade
+
+
+7. **FTM baseline risk** - Need contingency plan if it doesn't work out
+8. **Several uncited VLA pruning methods** - Need to cite key ones
+
+I'll need to research each of these systematically, starting with the factual corrections and missing baselines, then addressing the compute constraints and theoretical claims.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1962babe-82d4-4bae-bd44-d2e8e757a774",
+  "isSidechain": false,
+  "requestId": "req_011Cb1z5rzp18nXs2Nfytzxc",
+  "type": "assistant",
+  "uuid": "9b69a251-e0d0-47a4-b624-e80b202d109b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DBes46ZEXBxTjipHnXX5bu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13001,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 307,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-14T06:26:18.589Z_
+
+I'll systematically research each reviewer issue before revising. Let me start with parallel searches for the key items.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b69a251-e0d0-47a4-b624-e80b202d109b",
+  "isSidechain": false,
+  "requestId": "req_011Cb1z5rzp18nXs2Nfytzxc",
+  "type": "assistant",
+  "uuid": "36b6cedb-9fdc-4338-ac59-f722b3cd8eee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DBes46ZEXBxTjipHnXX5bu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13001,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 307,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T06:26:18.974Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01JTMA8nSmjvPmzHwvU3jyfC`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36b6cedb-9fdc-4338-ac59-f722b3cd8eee",
+  "isSidechain": false,
+  "requestId": "req_011Cb1z5rzp18nXs2Nfytzxc",
+  "type": "assistant",
+  "uuid": "b7c939d3-2d2f-40da-9f0e-f15b083cedfb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DBes46ZEXBxTjipHnXX5bu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13001,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 307,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T06:26:18.980Z_
+
+<details><summary>↩ Tool result · `toolu_01JTMA8nSmjvPmzHwvU3jyfC`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b7c939d3-2d2f-40da-9f0e-f15b083cedfb",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "5af2b3bd-b762-4793-8c5a-8903e63e5e89",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "b7c939d3-2d2f-40da-9f0e-f15b083cedfb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-14T06:26:25.476Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now research all the key issues in parallel. I need to:
+
+1. Verify SmolVLA architecture details
+2. Find SimPrune (ICLR 2025) paper
+3. Find TCA (ICCV 2025) paper
+4. Check CoRL 2026 deadlines
+5. Find the uncited VLA pruning methods
+6. Check VIB robustness theory
+
+Let me launch parallel searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5af2b3bd-b762-4793-8c5a-8903e63e5e89",
+  "isSidechain": false,
+  "requestId": "req_011Cb1z6ZuS2seqgPkkskhMC",
+  "type": "assistant",
+  "uuid": "46e52981-6bef-43ba-a68f-dd89d960dcdf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HT9DGT3Tivu2XzcDqNT6JH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1327,
+      "cache_read_input_tokens": 24842,
+      "output_tokens": 205,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1327,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 205,
+          "cache_read_input_tokens": 24842,
+          "cache_creation_input_tokens": 1327,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1327
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-14T06:26:25.479Z_
+
+Let me research all the key issues in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46e52981-6bef-43ba-a68f-dd89d960dcdf",
+  "isSidechain": false,
+  "requestId": "req_011Cb1z6ZuS2seqgPkkskhMC",
+  "type": "assistant",
+  "uuid": "2488c2a3-fa46-4606-a6e6-99add29d6880",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HT9DGT3Tivu2XzcDqNT6JH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1327,
+      "cache_read_input_tokens": 24842,
+      "output_tokens": 205,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1327,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 205,
+          "cache_read_input_tokens": 24842,
+          "cache_creation_input_tokens": 1327,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1327
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T06:26:26.357Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019oVmHyUHhxEu9yLRCQGCJv`</summary>
+
+```json
+{
+  "query": "SmolVLA architecture SmolVLM2 SmolLM2 vision language action model 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2488c2a3-fa46-4606-a6e6-99add29d6880",
+  "isSidechain": false,
+  "requestId": "req_011Cb1z6ZuS2seqgPkkskhMC",
+  "type": "assistant",
+  "uuid": "b397c34c-0c56-41b9-ab70-94e84e97e542",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HT9DGT3Tivu2XzcDqNT6JH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1327,
+      "cache_read_input_tokens": 24842,
+      "output_tokens": 205,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1327,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 205,
+          "cache_read_input_tokens": 24842,
+          "cache_creation_input_tokens": 1327,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1327
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T06:26:33.820Z_
+
+<details><summary>↩ Tool result · `toolu_019oVmHyUHhxEu9yLRCQGCJv`</summary>
+
+```text
+Web search results for query: "SmolVLA architecture SmolVLM2 SmolLM2 vision language action model 2025"
+
+Links: [{"title":"SmolVLA: Efficient Vision-Language-Action Model trained on Lerobot Community Data","url":"https://huggingface.co/blog/smolvla"},{"title":"arXiv:2506.01844v1 [cs.LG] 2 Jun 2025 SmolVLA: A vision-language-action model","url":"https://arxiv.org/pdf/2506.01844"},{"title":"SmolVLA: A vision-language-action model for affordable and efficient robotics","url":"https://arxiv.org/html/2506.01844v1"},{"title":"SmolVLA: Efficient Vision Language Action Model - LeRobot","url":"https://learnopencv.com/smolvla-lerobot-vision-language-action-model/"},{"title":"SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/smolvla-vision-language-action-model-affordable-efficient"},{"title":"[2506.01844] SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics","url":"https://arxiv.org/abs/2506.01844"},{"title":"SmolVLA: Compact Vision-Language-Action Model","url":"https://www.emergentmind.com/topics/smolvla"},{"title":"Weekly Robotics June #1 - SmolVLA discovery and thoughts","url":"https://huggingface.co/blog/Beegbrain/daily-robotics-june"},{"title":"SmolVLM to SmolVLM2: Compact Models for Multi-Image VQA - PyImageSearch","url":"https://pyimagesearch.com/2025/06/23/smolvlm-to-smolvlm2-compact-models-for-multi-image-vqa/"},{"title":"SmolVLM: Redefining small and efficient multimodal models","url":"https://arxiv.org/html/2504.05299v1"}]
+
+Based on the search results, here's comprehensive information about the SmolVLA architecture:
+
+## SmolVLA Architecture Overview
+
+SmolVLA is a small, efficient, and community-driven VLA that drastically reduces both training and inference costs, while retaining competitive performance. SmolVLA is designed to be trained on a single GPU and deployed on consumer-grade GPUs or even CPUs.
+
+## Core Components
+
+**Vision-Language Model Backbone:**
+SmolVLA uses SmolVLM2 as its VLM backbone, which is optimized for multi-image inputs and consists of a SigLIP vision encoder and a SmolLM2 language decoder.
+
+**Action Expert:**
+The architecture has two core parts: a pretrained vision-language model (SmolVLM2) for perception, and a lightweight action expert (100M parameters) trained to act based on that perception.
+
+## Key Architectural Optimizations
+
+SmolVLA employs several efficiency techniques:
+
+1. **Visual Token Reduction:** SmolVLA limits visual tokens to 64 per frame and uses only global images without tiling.
+
+2. **Layer Skipping:** SmolVLA uses only the first half of VLM layers, effectively halving computational cost.
+
+3. **Attention Design:** SmolVLA interleaves cross and self-attention layers, improving the model's ability to generate appropriate actions while maintaining efficiency.
+
+4. **Action Prediction:** The action expert is trained using flow matching to predict action chunks—sequences of continuous actions that the robot will execute.
+
+## Purpose
+
+VLAs are designed to incorporate abstract reasoning, world knowledge, and decision-making skills embedded in pretrained large language and vision-language models. These models take multimodal inputs–such as visual observations and natural language instructions–and predict the corresponding robotic actions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b397c34c-0c56-41b9-ab70-94e84e97e542",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "e425760d-d82d-45ec-88a9-dc6ff615685f",
+  "toolUseResult": {
+    "query": "SmolVLA architecture SmolVLM2 SmolLM2 vision language action model 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01W4HTPmVk9Uhf72p56DqpjD",
+        "content": [
+          {
+            "title": "SmolVLA: Efficient Vision-Language-Action Model trained on Lerobot Community Data",
+            "url": "https://huggingface.co/blog/smolvla"
+          },
+          {
+            "title": "arXiv:2506.01844v1 [cs.LG] 2 Jun 2025 SmolVLA: A vision-language-action model",
+            "url": "https://arxiv.org/pdf/2506.01844"
+          },
+          {
+            "title": "SmolVLA: A vision-language-action model for affordable and efficient robotics",
+            "url": "https://arxiv.org/html/2506.01844v1"
+          },
+          {
+            "title": "SmolVLA: Efficient Vision Language Action Model - LeRobot",
+            "url": "https://learnopencv.com/smolvla-lerobot-vision-language-action-model/"
+          },
+          {
+            "title": "SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/smolvla-vision-language-action-model-affordable-efficient"
+          },
+          {
+            "title": "[2506.01844] SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics",
+            "url": "https://arxiv.org/abs/2506.01844"
+          },
+          {
+            "title": "SmolVLA: Compact Vision-Language-Action Model",
+            "url": "https://www.emergentmind.com/topics/smolvla"
+          },
+          {
+            "title": "Weekly Robotics June #1 - SmolVLA discovery and thoughts",
+            "url": "https://huggingface.co/blog/Beegbrain/daily-robotics-june"
+          },
+          {
+            "title": "SmolVLM to SmolVLM2: Compact Models for Multi-Image VQA - PyImageSearch",
+            "url": "https://pyimagesearch.com/2025/06/23/smolvlm-to-smolvlm2-compact-models-for-multi-image-vqa/"
+          },
+          {
+            "title": "SmolVLM: Redefining small and efficient multimodal models",
+            "url": "https://arxiv.org/html/2504.05299v1"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about the SmolVLA architecture:\n\n## SmolVLA Architecture Overview\n\nSmolVLA is a small, efficient, and community-driven VLA that drastically reduces both training and inference costs, while retaining competitive performance. SmolVLA is designed to be trained on a single GPU and deployed on consumer-grade GPUs or even CPUs.\n\n## Core Components\n\n**Vision-Language Model Backbone:**\nSmolVLA uses SmolVLM2 as its VLM backbone, which is optimized for multi-image inputs and consists of a SigLIP vision encoder and a SmolLM2 language decoder.\n\n**Action Expert:**\nThe architecture has two core parts: a pretrained vision-language model (SmolVLM2) for perception, and a lightweight action expert (100M parameters) trained to act based on that perception.\n\n## Key Architectural Optimizations\n\nSmolVLA employs several efficiency techniques:\n\n1. **Visual Token Reduction:** SmolVLA limits visual tokens to 64 per frame and uses only global images without tiling.\n\n2. **Layer Skipping:** SmolVLA uses only the first half of VLM layers, effectively halving computational cost.\n\n3. **Attention Design:** SmolVLA interleaves cross and self-attention layers, improving the model's ability to generate appropriate actions while maintaining efficiency.\n\n4. **Action Prediction:** The action expert is trained using flow matching to predict action chunks—sequences of continuous actions that the robot will execute.\n\n## Purpose\n\nVLAs are designed to incorporate abstract reasoning, world knowledge, and decision-making skills embedded in pretrained large language and vision-language models. These models take multimodal inputs–such as visual observations and natural language instructions–and predict the corresponding robotic actions."
+    ],
+    "durationSeconds": 7.457101074999999
+  },
+  "sourceToolAssistantUUID": "b397c34c-0c56-41b9-ab70-94e84e97e542",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T06:26:36.867Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GwkywyQRb25JrG7erwG6Wg`</summary>
+
+```json
+{
+  "query": "SimPrune \"Mutual Effort for Efficiency\" similarity-based token pruning ICLR 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e425760d-d82d-45ec-88a9-dc6ff615685f",
+  "isSidechain": false,
+  "requestId": "req_011Cb1z7f1YVhn25R7EqkoXN",
+  "type": "assistant",
+  "uuid": "07f5fc8d-7fb2-46c0-be46-41ec218a4a24",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5PhQA1ye2M9DjVVRkTADu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1182,
+      "cache_read_input_tokens": 26169,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1182,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 26169,
+          "cache_creation_input_tokens": 1182,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1182
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T06:26:44.208Z_
+
+<details><summary>↩ Tool result · `toolu_01GwkywyQRb25JrG7erwG6Wg`</summary>
+
+```text
+Web search results for query: "SimPrune "Mutual Effort for Efficiency" similarity-based token pruning ICLR 2025"
+
+Links: [{"title":"Mutual Effort for Efficiency: A Similarity-based Token Pruning for Vision Transformers in Self-Supervised Learning | OpenReview","url":"https://openreview.net/forum?id=GTcEe5fayC"},{"title":"ICLR Poster Mutual Effort for Efficiency: A Similarity-based Token Pruning for Vision Transformers in Self-Supervised Learning","url":"https://iclr.cc/virtual/2025/poster/30276"},{"title":"BASED TOKEN PRUNING FOR VISION TRANSFORMERS ...","url":"https://openreview.net/pdf?id=GTcEe5fayC"},{"title":"A SIMILARITY- BASED TOKEN PRUNING FOR VISION ...","url":"https://openreview.net/notes/edits/attachment?id=7I9FCztgnH&name=pdf"},{"title":"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub","url":"https://github.com/ZLKong/Awesome-Collection-Token-Reduction"},{"title":"GitHub - F-JISOO/ICLR-2025-Submitted · GitHub","url":"https://github.com/F-JISOO/ICLR-2025-Submitted"},{"title":"GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub","url":"https://github.com/daixiangzi/Awesome-Token-Compress"},{"title":"Published as a conference paper at ICLR 2025 THE UNREASONABLE INEFFECTIVENESS","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/cbabc2f70de2dd09f491a8715ec3e80f-Paper-Conference.pdf"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/532ce4fcf853023c4cf2ac38cbc5d002-Paper-Conference.pdf"},{"title":"Beyond Attention or Similarity: Maximizing Conditional Diversity for Token Pruning in MLLMs","url":"https://arxiv.org/html/2506.10967v1"}]
+
+I found detailed information about SimPrune and the ICLR 2025 paper. Here's what the search revealed:
+
+## SimPrune: Mutual Effort for Efficiency
+
+SimPrune leverages cross-branch similarity information to efficiently prune tokens, retaining essential semantic information across dual branches. The paper was published at ICLR 2025.
+
+### Key Methodology
+
+SimPrune is a novel token pruning strategy designed for Vision Transformers (ViTs) in self-supervised learning (SSL), addressing how SSL's dual-branch encoders make traditional single-branch pruning strategies less effective, as they fail to account for critical cross-branch similarity information.
+
+The method conducts token matching for image tokens in the online and target encoders, matching each token (excluding the [CLS] token) in the online encoder to its most similar tokens in the target encoder, with similarity quantified using cosine similarity.
+
+### Performance Enhancements
+
+The approach includes two main contributions:
+
+1. **Cross-branch similarity-based pruning**: The approach effectively utilizes mutual information contributed by dual branches to boost training efficiency (i.e., Mutual Effort for Efficiency).
+
+2. **Difficulty-aware pruning strategy**: The method introduces a difficulty-aware pruning strategy that strategically prunes token pairs with different similarity levels at different training stages, further boosting the model's final performance.
+
+### Results
+
+The proposed approach effectively reduces training computation while maintaining accuracy, specifically offering 24% savings in training costs compared to SSL baseline, without sacrificing accuracy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "07f5fc8d-7fb2-46c0-be46-41ec218a4a24",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "1d5c92b6-daac-42d9-bcf7-41029f5d537c",
+  "toolUseResult": {
+    "query": "SimPrune \"Mutual Effort for Efficiency\" similarity-based token pruning ICLR 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01V71xhuwVS7fTKguZJer1hE",
+        "content": [
+          {
+            "title": "Mutual Effort for Efficiency: A Similarity-based Token Pruning for Vision Transformers in Self-Supervised Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=GTcEe5fayC"
+          },
+          {
+            "title": "ICLR Poster Mutual Effort for Efficiency: A Similarity-based Token Pruning for Vision Transformers in Self-Supervised Learning",
+            "url": "https://iclr.cc/virtual/2025/poster/30276"
+          },
+          {
+            "title": "BASED TOKEN PRUNING FOR VISION TRANSFORMERS ...",
+            "url": "https://openreview.net/pdf?id=GTcEe5fayC"
+          },
+          {
+            "title": "A SIMILARITY- BASED TOKEN PRUNING FOR VISION ...",
+            "url": "https://openreview.net/notes/edits/attachment?id=7I9FCztgnH&name=pdf"
+          },
+          {
+            "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+            "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+          },
+          {
+            "title": "GitHub - F-JISOO/ICLR-2025-Submitted · GitHub",
+            "url": "https://github.com/F-JISOO/ICLR-2025-Submitted"
+          },
+          {
+            "title": "GitHub - daixiangzi/Awesome-Token-Compress: A paper list of some recent works about Token Compress for Vit and VLM · GitHub",
+            "url": "https://github.com/daixiangzi/Awesome-Token-Compress"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 THE UNREASONABLE INEFFECTIVENESS",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/cbabc2f70de2dd09f491a8715ec3e80f-Paper-Conference.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/532ce4fcf853023c4cf2ac38cbc5d002-Paper-Conference.pdf"
+          },
+          {
+            "title": "Beyond Attention or Similarity: Maximizing Conditional Diversity for Token Pruning in MLLMs",
+            "url": "https://arxiv.org/html/2506.10967v1"
+          }
+        ]
+      },
+      "I found detailed information about SimPrune and the ICLR 2025 paper. Here's what the search revealed:\n\n## SimPrune: Mutual Effort for Efficiency\n\nSimPrune leverages cross-branch similarity information to efficiently prune tokens, retaining essential semantic information across dual branches. The paper was published at ICLR 2025.\n\n### Key Methodology\n\nSimPrune is a novel token pruning strategy designed for Vision Transformers (ViTs) in self-supervised learning (SSL), addressing how SSL's dual-branch encoders make traditional single-branch pruning strategies less effective, as they fail to account for critical cross-branch similarity information.\n\nThe method conducts token matching for image tokens in the online and target encoders, matching each token (excluding the [CLS] token) in the online encoder to its most similar tokens in the target encoder, with similarity quantified using cosine similarity.\n\n### Performance Enhancements\n\nThe approach includes two main contributions:\n\n1. **Cross-branch similarity-based pruning**: The approach effectively utilizes mutual information contributed by dual branches to boost training efficiency (i.e., Mutual Effort for Efficiency).\n\n2. **Difficulty-aware pruning strategy**: The method introduces a difficulty-aware pruning strategy that strategically prunes token pairs with different similarity levels at different training stages, further boosting the model's final performance.\n\n### Results\n\nThe proposed approach effectively reduces training computation while maintaining accuracy, specifically offering 24% savings in training costs compared to SSL baseline, without sacrificing accuracy."
+    ],
+    "durationSeconds": 7.336485035000002
+  },
+  "sourceToolAssistantUUID": "07f5fc8d-7fb2-46c0-be46-41ec218a4a24",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T06:26:49.261Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018XYVtuaJdB5FxHKXy58o4Y`</summary>
+
+```json
+{
+  "query": "TCA \"Token Condensation\" test-time adaptation ICCV 2025 arXiv 2410.14729"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d5c92b6-daac-42d9-bcf7-41029f5d537c",
+  "isSidechain": false,
+  "requestId": "req_011Cb1z8RRzq5rimZoUn1NTX",
+  "type": "assistant",
+  "uuid": "fe8daff8-9dcd-48dc-8326-f73fbeed07a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EivLRDnJaV1qLRSTzCG6mx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1067,
+      "cache_read_input_tokens": 27351,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1067,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 27351,
+          "cache_creation_input_tokens": 1067,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1067
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T06:26:57.366Z_
+
+<details><summary>↩ Tool result · `toolu_018XYVtuaJdB5FxHKXy58o4Y`</summary>
+
+```text
+Web search results for query: "TCA "Token Condensation" test-time adaptation ICCV 2025 arXiv 2410.14729"
+
+Links: [{"title":"GitHub - Jo-wang/TCA: Official repo for ICCV 2025 paper \"Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation\"","url":"https://github.com/Jo-wang/TCA"},{"title":"Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation","url":"https://arxiv.org/html/2410.14729v3"},{"title":"[2410.14729v3] Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation","url":"https://arxiv.org/abs/2410.14729v3"},{"title":"[2410.14729] Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation","url":"https://arxiv.org/abs/2410.14729"},{"title":"Paper page - Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation","url":"https://huggingface.co/papers/2410.14729"},{"title":"Is Less More? Exploring Token Condensation as Training-free ...","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Wang_Is_Less_More_Exploring_Token_Condensation_as_Training-free_Test-time_Adaptation_ICCV_2025_paper.pdf"},{"title":"(PDF) Tokens on Demand: Token Condensation as Training-free Test-time Adaptation","url":"https://www.researchgate.net/publication/385107712_Tokens_on_Demand_Token_Condensation_as_Training-free_Test-time_Adaptation"},{"title":"Tokens on Demand: Token Condensation as Training-free Test-time Adaptation | OpenReview","url":"https://openreview.net/forum?id=EK1yOLL7GA&noteId=aa1fhh8o1I"},{"title":"Track: Poster Session 1 & Exhibit Hall","url":"https://iccv.thecvf.com/virtual/2025/session/2873"},{"title":"awesome-test-time-adaptation/TTA-OTTA.md at main · tim-learn/awesome-test-time-adaptation","url":"https://github.com/tim-learn/awesome-test-time-adaptation/blob/main/TTA-OTTA.md"}]
+
+Based on the search results, I found comprehensive information about the TCA (Token Condensation as Adaptation) paper:
+
+## Overview
+
+TCA is an ICCV 2025 paper presenting Token Condensation as a method for Vision Transformers with Test-Time Adaptation. The paper by Wang, Gong, Wang, Huang, and Luo is titled "Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation" and appears as arXiv preprint arXiv:2410.14729.
+
+## Core Contribution
+
+TCA is a training-free adaptation method that dynamically refines token selection based on evolving domain knowledge, tracking and maintaining domain-representative tokens over time to allow the model to be adapted to new domains.
+
+Rather than passively discarding tokens, TCA condenses token representation by introducing reservoir-based domain anchor tokens for information-preserving token reduction and logits correction.
+
+## Technical Approach
+
+TCA stores domain-aware anchor tokens in a reservoir (DTR), which then guides adaptation by refining class-specific representations. At each time step, TCA aligns token usage with domain trends by selectively adjusting token attentiveness based on both the current test sample and accumulated domain information in DTR, and utilizes domain anchor tokens to refine model logits, improving visual-text alignment without modifying model parameters.
+
+## Performance Results
+
+The extensive evaluations demonstrate that TCA consistently outperforms traditional TTA, prompting, and test-time prompting methods, achieving up to a 21.4% improvement over the strongest baseline while reducing GFLOPs by 12.2% to 48.9%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe8daff8-9dcd-48dc-8326-f73fbeed07a1",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "44c92d8a-5a79-4958-a40c-86a7565a6300",
+  "toolUseResult": {
+    "query": "TCA \"Token Condensation\" test-time adaptation ICCV 2025 arXiv 2410.14729",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016hxvoaum2WpCqUsvefwkwQ",
+        "content": [
+          {
+            "title": "GitHub - Jo-wang/TCA: Official repo for ICCV 2025 paper \"Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation\"",
+            "url": "https://github.com/Jo-wang/TCA"
+          },
+          {
+            "title": "Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation",
+            "url": "https://arxiv.org/html/2410.14729v3"
+          },
+          {
+            "title": "[2410.14729v3] Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation",
+            "url": "https://arxiv.org/abs/2410.14729v3"
+          },
+          {
+            "title": "[2410.14729] Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation",
+            "url": "https://arxiv.org/abs/2410.14729"
+          },
+          {
+            "title": "Paper page - Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation",
+            "url": "https://huggingface.co/papers/2410.14729"
+          },
+          {
+            "title": "Is Less More? Exploring Token Condensation as Training-free ...",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Wang_Is_Less_More_Exploring_Token_Condensation_as_Training-free_Test-time_Adaptation_ICCV_2025_paper.pdf"
+          },
+          {
+            "title": "(PDF) Tokens on Demand: Token Condensation as Training-free Test-time Adaptation",
+            "url": "https://www.researchgate.net/publication/385107712_Tokens_on_Demand_Token_Condensation_as_Training-free_Test-time_Adaptation"
+          },
+          {
+            "title": "Tokens on Demand: Token Condensation as Training-free Test-time Adaptation | OpenReview",
+            "url": "https://openreview.net/forum?id=EK1yOLL7GA&noteId=aa1fhh8o1I"
+          },
+          {
+            "title": "Track: Poster Session 1 & Exhibit Hall",
+            "url": "https://iccv.thecvf.com/virtual/2025/session/2873"
+          },
+          {
+            "title": "awesome-test-time-adaptation/TTA-OTTA.md at main · tim-learn/awesome-test-time-adaptation",
+            "url": "https://github.com/tim-learn/awesome-test-time-adaptation/blob/main/TTA-OTTA.md"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the TCA (Token Condensation as Adaptation) paper:\n\n## Overview\n\nTCA is an ICCV 2025 paper presenting Token Condensation as a method for Vision Transformers with Test-Time Adaptation. The paper by Wang, Gong, Wang, Huang, and Luo is titled \"Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation\" and appears as arXiv preprint arXiv:2410.14729.\n\n## Core Contribution\n\nTCA is a training-free adaptation method that dynamically refines token selection based on evolving domain knowledge, tracking and maintaining domain-representative tokens over time to allow the model to be adapted to new domains.\n\nRather than passively discarding tokens, TCA condenses token representation by introducing reservoir-based domain anchor tokens for information-preserving token reduction and logits correction.\n\n## Technical Approach\n\nTCA stores domain-aware anchor tokens in a reservoir (DTR), which then guides adaptation by refining class-specific representations. At each time step, TCA aligns token usage with domain trends by selectively adjusting token attentiveness based on both the current test sample and accumulated domain information in DTR, and utilizes domain anchor tokens to refine model logits, improving visual-text alignment without modifying model parameters.\n\n## Performance Results\n\nThe extensive evaluations demonstrate that TCA consistently outperforms traditional TTA, prompting, and test-time prompting methods, achieving up to a 21.4% improvement over the strongest baseline while reducing GFLOPs by 12.2% to 48.9%."
+    ],
+    "durationSeconds": 8.101586883999996
+  },
+  "sourceToolAssistantUUID": "fe8daff8-9dcd-48dc-8326-f73fbeed07a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Action-Conditioned Information Bottleneck Token Surgery for Robust VLA…",
+  "leafUuid": "44c92d8a-5a79-4958-a40c-86a7565a6300",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise token pruning for CoRL 2026 with fixed baselines",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T06:27:00.283Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TFwdaeXD8WTFzpZjnUmgFh`</summary>
+
+```json
+{
+  "query": "CoRL 2026 conference deadline submission date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44c92d8a-5a79-4958-a40c-86a7565a6300",
+  "isSidechain": false,
+  "requestId": "req_011Cb1z9Q2wgbtGJDipRc4rg",
+  "type": "assistant",
+  "uuid": "1278426a-3aa3-426a-aa60-bd94ec70378a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016JCtQTdrpnPsrA95w1BDjr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1096,
+      "cache_read_input_tokens": 28418,
+      "output_tokens": 61,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1096,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 61,
+          "cache_read_input_tokens": 28418,
+          "cache_creation_input_tokens": 1096,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1096
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T06:27:03.247Z_
+
+<details><summary>↩ Tool result · `toolu_01TFwdaeXD8WTFzpZjnUmgFh`</summary>
+
+```text
+Web search results for query: "CoRL 2026 conference deadline submission date"
+
+Links: [{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz","url":"https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"},{"title":"Refactor conference data · huggingface/ai-deadlines at f3cc2d7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"}]
+
+Based on the search results, here are the submission deadlines for CoRL 2026:
+
+The abstract submission deadline is May 26, 2026 11:59 UTC and the paper submission deadline is May 29, 2026 11:59 UTC.
+
+CoRL 2026 will be held at JW Marriott Austin from November 9-12, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1278426a-3aa3-426a-aa60-bd94ec70378a",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "dfaaf49a-551f-4a5e-a1dc-412b4310baca",
+  "toolUseResult": {
+    "query": "CoRL 2026 conference deadline submission date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0194F9Un93fwf4o951ijfHsi",
+        "content": [
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf?lang=en"
+          },
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          },
+          {
+            "title": "CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz",
+            "url": "https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"
+          },
+          {
+            "title": "Refactor conference data · huggingface/ai-deadlines at f3cc2d7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"
+          }
+        ]
+      },
+      "Based on the search results, here are the submission deadlines for CoRL 2026:\n\nThe abstract submission deadline is May 26, 2026 11:59 UTC and the paper submission deadline is May 29, 2026 11:59 UTC.\n\nCoRL 2026 will be held at JW Marriott Austin from November 9-12, 2026."
+    ],
+    "durationSeconds": 2.959175673000005
+  },
+  "sourceToolAssistantUUID": "1278426a-3aa3-426a-aa60-bd94ec70378a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T06:27:05.757Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CKz7dk92Be4mNcKjpZZG3U`</summary>
+
+```json
+{
+  "query": "SP-VLA ICLR 2026 arXiv 2506.12723 token pruning VLA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dfaaf49a-551f-4a5e-a1dc-412b4310baca",
+  "isSidechain": false,
+  "requestId": "req_011Cb1z9pniK9SJ4vuDYgbPd",
+  "type": "assistant",
+  "uuid": "17d0252b-d721-4dcf-a9f5-afd88dffc4c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0123XMTZc5KRBe5N3bK4gp9Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 642,
+      "cache_read_input_tokens": 29514,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 642,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 29514,
+          "cache_creation_input_tokens": 642,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 642
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T06:27:19.679Z_
+
+<details><summary>↩ Tool result · `toolu_01CKz7dk92Be4mNcKjpZZG3U`</summary>
+
+```text
+Web search results for query: "SP-VLA ICLR 2026 arXiv 2506.12723 token pruning VLA"
+
+Links: [{"title":"[2506.12723] SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://arxiv.org/abs/2506.12723"},{"title":"SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://arxiv.org/html/2506.12723v2"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"Preprint. SP-VLA: A JOINT MODEL SCHEDULING AND TOKEN","url":"https://arxiv.org/pdf/2506.12723"},{"title":"dblp: SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration.","url":"https://dblp.org/rec/journals/corr/abs-2506-12723.html"},{"title":"(PDF) SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration","url":"https://www.researchgate.net/publication/392736853_SP-VLA_A_Joint_Model_Scheduling_and_Token_Pruning_Approach_for_VLA_Model_Acceleration"},{"title":"SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration | OpenReview","url":"https://openreview.net/forum?id=RwdGIIjPlC"},{"title":"SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration | alphaXiv","url":"https://www.alphaxiv.org/overview/2506.12723v3"},{"title":"GitHub - ChildTang/SP-VLA · GitHub","url":"https://github.com/ChildTang/SP-VLA"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/html/2509.12594v1"}]
+
+I found detailed information about the SP-VLA paper. Here's what the search revealed:
+
+## SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration
+
+SP-VLA addresses the high computational cost and low execution frequency of Vision-Language-Action (VLA) models that hinder their suitability for real-time tasks such as robotic manipulation and autonomous navigation.
+
+### Core Approach
+
+SP-VLA is a unified framework that accelerates VLA models by jointly scheduling models and pruning tokens, with an action-aware model scheduling mechanism that reduces temporal redundancy by dynamically switching between a VLA model and a lightweight generator.
+
+VLA actions are categorized into deliberative and intuitive, assigning the former to the VLA model and the latter to the lightweight generator, enabling frequency-adaptive execution through collaborative model scheduling.
+
+### Token Pruning Method
+
+To address spatial redundancy, SP-VLA develops a spatio-semantic dual-aware token pruning method where tokens are classified into spatial and semantic types and pruned based on their dual-aware importance to accelerate VLA inference.
+
+The paper is authored by Ye Li, Yuan Meng, Zewen Sun, Kangye Ji, Chen Tang, Jiajun Fan, Xinzhu Ma, Shutao Xia, Zhi Wang, and Wenwu Zhu. The paper was submitted to arXiv on June 15, 2025, with identifier 2506.12723.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "17d0252b-d721-4dcf-a9f5-afd88dffc4c6",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "3c94fc28-fe30-44ba-a17d-cf5db88c1eac",
+  "toolUseResult": {
+    "query": "SP-VLA ICLR 2026 arXiv 2506.12723 token pruning VLA",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Wpxy98NhanuNWwn6B8oKzM",
+        "content": [
+          {
+            "title": "[2506.12723] SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration",
+            "url": "https://arxiv.org/abs/2506.12723"
+          },
+          {
+            "title": "SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration",
+            "url": "https://arxiv.org/html/2506.12723v2"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "Preprint. SP-VLA: A JOINT MODEL SCHEDULING AND TOKEN",
+            "url": "https://arxiv.org/pdf/2506.12723"
+          },
+          {
+            "title": "dblp: SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration.",
+            "url": "https://dblp.org/rec/journals/corr/abs-2506-12723.html"
+          },
+          {
+            "title": "(PDF) SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration",
+            "url": "https://www.researchgate.net/publication/392736853_SP-VLA_A_Joint_Model_Scheduling_and_Token_Pruning_Approach_for_VLA_Model_Acceleration"
+          },
+          {
+            "title": "SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration | OpenReview",
+            "url": "https://openreview.net/forum?id=RwdGIIjPlC"
+          },
+          {
+            "title": "SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2506.12723v3"
+          },
+          {
+            "title": "GitHub - ChildTang/SP-VLA · GitHub",
+            "url": "https://github.com/ChildTang/SP-VLA"
+          },
+          {
+            "title": "The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning",
+            "url": "https://arxiv.org/html/2509.12594v1"
+          }
+        ]
+      },
+      "I found detailed information about the SP-VLA paper. Here's what the search revealed:\n\n## SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration\n\nSP-VLA addresses the high computational cost and low execution frequency of Vision-Language-Action (VLA) models that hinder their suitability for real-time tasks such as robotic manipulation and autonomous navigation.\n\n### Core Approach\n\nSP-VLA is a unified framework that accelerates VLA models by jointly scheduling models and pruning tokens, with an action-aware model scheduling mechanism that reduces temporal redundancy by dynamically switching between a VLA model and a lightweight generator.\n\nVLA actions are categorized into deliberative and intuitive, assigning the former to the VLA model and the latter to the lightweight generator, enabling frequency-adaptive execution through collaborative model scheduling.\n\n### Token Pruning Method\n\nTo address spatial redundancy, SP-VLA develops a spatio-semantic dual-aware token pruning method where tokens are classified into spatial and semantic types and pruned based on their dual-aware importance to accelerate VLA inference.\n\nThe paper is authored by Ye Li, Yuan Meng, Zewen Sun, Kangye Ji, Chen Tang, Jiajun Fan, Xinzhu Ma, Shutao Xia, Zhi Wang, and Wenwu Zhu. The paper was submitted to arXiv on June 15, 2025, with identifier 2506.12723."
+    ],
+    "durationSeconds": 13.915455914000006
+  },
+  "sourceToolAssistantUUID": "17d0252b-d721-4dcf-a9f5-afd88dffc4c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T06:27:23.284Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B71y9D1uU1JVKQcicNSkDD`</summary>
+
+```json
+{
+  "query": "VLA-Pruner arXiv 2511.16449 vision language action pruning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c94fc28-fe30-44ba-a17d-cf5db88c1eac",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zB36R8k7aTBUL85Xsh",
+  "type": "assistant",
+  "uuid": "87d7a6f8-26e2-40d6-95ce-7cce8cee001e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H5NHEgZvHxtUedXubKMad8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 30156,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1009,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 30156,
+          "cache_creation_input_tokens": 1009,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1009
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T06:27:31.698Z_
+
+<details><summary>↩ Tool result · `toolu_01B71y9D1uU1JVKQcicNSkDD`</summary>
+
+```text
+Web search results for query: "VLA-Pruner arXiv 2511.16449 vision language action pruning"
+
+Links: [{"title":"[2511.16449] VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference","url":"https://arxiv.org/abs/2511.16449"},{"title":"VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference","url":"https://arxiv.org/html/2511.16449"},{"title":"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning","url":"https://arxiv.org/html/2509.12594v1"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning | OpenReview","url":"https://openreview.net/forum?id=t85Ni0LwjC"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991v1"},{"title":"SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning","url":"https://arxiv.org/html/2509.05614v1"},{"title":"GitHub - chen7086/VLA-ADP: Action aware Dynamic Pruning for Efficient Vision Language Action Manipulation · GitHub","url":"https://github.com/chen7086/VLA-ADP"},{"title":"GitHub - KwanWaiPang/Awesome-VLA: Paper Survey for Visual Language Action · GitHub","url":"https://github.com/KwanWaiPang/Awesome-VLA"},{"title":"[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22991"}]
+
+Based on the search results, here's information about VLA-Pruner (arXiv 2511.16449):
+
+## Overview
+
+VLA-Pruner addresses the heavy computational cost of Vision-Language-Action (VLA) models by using token pruning—keeping salient visual tokens and dropping redundant ones—to accelerate them for efficient inference.
+
+## Problem
+
+Existing VLM-specific token pruning methods select tokens based solely on semantic salience metrics (like prefill attention), overlooking the VLA's dual-system nature of high-level semantic understanding and low-level action execution, which causes them to discard critical information for action generation and degrade VLA performance.
+
+## Solution
+
+VLA-Pruner is a plug-and-play VLA-specific token pruning method that aligns with the dual-system nature of VLA models and exploits temporal continuity in robot manipulation by adopting a dual-level importance criterion: vision-language prefill attention for semantic-level relevance and action decode attention (estimated via temporal smoothing) for action-level importance.
+
+VLA-Pruner proposes a dual-level token selection strategy that adaptively preserves a compact, informative set of visual tokens for both semantic understanding and action execution under given compute budget.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "87d7a6f8-26e2-40d6-95ce-7cce8cee001e",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "7cf30e20-640e-4665-80de-c75f16084e8c",
+  "toolUseResult": {
+    "query": "VLA-Pruner arXiv 2511.16449 vision language action pruning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PKBGeJy4PJuKtATU5DHyEK",
+        "content": [
+          {
+            "title": "[2511.16449] VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference",
+            "url": "https://arxiv.org/abs/2511.16449"
+          },
+          {
+            "title": "VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference",
+            "url": "https://arxiv.org/html/2511.16449"
+          },
+          {
+            "title": "The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning",
+            "url": "https://arxiv.org/html/2509.12594v1"
+          },
+          {
+            "title": "SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning | OpenReview",
+            "url": "https://openreview.net/forum?id=t85Ni0LwjC"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.22991v1"
+          },
+          {
+            "title": "SpecPrune-VLA: Accelerating Vision-Language-Action Models via Action-Aware Self-Speculative Pruning",
+            "url": "https://arxiv.org/html/2509.05614v1"
+          },
+          {
+            "title": "GitHub - chen7086/VLA-ADP: Action aware Dynamic Pruning for Efficient Vision Language Action Manipulation · GitHub",
+            "url": "https://github.com/chen7086/VLA-ADP"
+          },
+          {
+            "title": "GitHub - KwanWaiPang/Awesome-VLA: Paper Survey for Visual Language Action · GitHub",
+            "url": "https://github.com/KwanWaiPang/Awesome-VLA"
+          },
+          {
+            "title": "[2603.22991] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.22991"
+          }
+        ]
+      },
+      "Based on the search results, here's information about VLA-Pruner (arXiv 2511.16449):\n\n## Overview\n\nVLA-Pruner addresses the heavy computational cost of Vision-Language-Action (VLA) models by using token pruning—keeping salient visual tokens and dropping redundant ones—to accelerate them for efficient inference.\n\n## Problem\n\nExisting VLM-specific token pruning methods select tokens based solely on semantic salience metrics (like prefill attention), overlooking the VLA's dual-system nature of high-level semantic understanding and low-level action execution, which causes them to discard critical information for action generation and degrade VLA performance.\n\n## Solution\n\nVLA-Pruner is a plug-and-play VLA-specific token pruning method that aligns with the dual-system nature of VLA models and exploits temporal continuity in robot manipulation by adopting a dual-level importance criterion: vision-language prefill attention for semantic-level relevance and action decode attention (estimated via temporal smoothing) for action-level importance.\n\nVLA-Pruner proposes a dual-level token selection strategy that adaptively preserves a compact, informative set of visual tokens for both semantic understanding and action execution under given compute budget."
+    ],
+    "durationSeconds": 8.407790599
+  },
+  "sourceToolAssistantUUID": "87d7a6f8-26e2-40d6-95ce-7cce8cee001e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T06:27:35.420Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UYi9NWmJTZEpys5EwwgZLj`</summary>
+
+```json
+{
+  "query": "ETA-VLA arXiv 2603.25766 EcoVLA arXiv 2602.00780 OneWM-VLA arXiv 2605.07931"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7cf30e20-640e-4665-80de-c75f16084e8c",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zBvPNQ6agEacfqASzS",
+  "type": "assistant",
+  "uuid": "02202a54-b97d-471f-8e9b-3f4dedb1a005",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YV39BcnJPbdDd73gTkUmcw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 962,
+      "cache_read_input_tokens": 31165,
+      "output_tokens": 95,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 962,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 95,
+          "cache_read_input_tokens": 31165,
+          "cache_creation_input_tokens": 962,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 962
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T06:27:42.496Z_
+
+<details><summary>↩ Tool result · `toolu_01UYi9NWmJTZEpys5EwwgZLj`</summary>
+
+```text
+Web search results for query: "ETA-VLA arXiv 2603.25766 EcoVLA arXiv 2602.00780 OneWM-VLA arXiv 2605.07931"
+
+Links: [{"title":"[2603.25766] ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.25766"},{"title":"ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.25766"},{"title":"Environment-Aware Adaptive Pruning with Interleaved Inference Orchestration for Vision-Language-Action Models","url":"https://arxiv.org/html/2602.00780"},{"title":"[2602.07931] Which private attributes do VLMs agree on and predict well?","url":"https://arxiv.org/abs/2602.07931"},{"title":"[2603.25661] Fast-dVLA: Accelerating Discrete Diffusion VLA to Real-Time Performance","url":"https://arxiv.org/abs/2603.25661"},{"title":"X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model","url":"https://arxiv.org/html/2510.10274v1"},{"title":"VLA Model Leaderboard (beta)","url":"https://allenai.github.io/vla-evaluation-harness/leaderboard/"},{"title":"[2603.07931] BRIDGE: Benchmark for multi-hop Reasoning In long multimodal Documents with Grounded Evidence","url":"https://arxiv.org/abs/2603.07931"},{"title":"BRIDGE: Benchmark for multi-hop Reasoning In long multimodal Documents with Grounded Evidence","url":"https://arxiv.org/html/2603.07931"},{"title":"[2603.22280] DualCoT-VLA: Visual-Linguistic Chain of Thought via Parallel Reasoning for Vision-Language-Action Models","url":"https://arxiv.org/abs/2603.22280"}]
+
+Based on the search results, here's what I found about these three Vision-Language-Action (VLA) papers:
+
+**ETA-VLA (arXiv 2603.25766):**
+ETA-VLA is an Efficient Token Adaptation framework for VLA models that processes the past n frames of multi-view images and introduces a novel Intra-LLM Sparse Aggregator (ILSA). ILSA dynamically identifies and prunes redundant visual tokens guided by textual queries and temporal consistency.
+
+**EcoVLA (arXiv 2602.00780):**
+EcoVLA is a training-free, plug-and-play adaptive pruning framework comprising Environment-aware Adaptive Pruning (EAP) and Interleaved Inference Orchestration (I2O). EcoVLA achieves up to 1.60× speedup with only a 0.5% degradation when combined with token pruning, and has been validated on real-world robots.
+
+**OneWM-VLA (arXiv 2605.07931):**
+The search did not return results for arXiv 2605.07931. The closest result was arXiv 2603.07931, which is a different paper about BRIDGE (a benchmark for multi-hop reasoning in documents), not related to VLA models. You may want to verify the correct arXiv number for the OneWM-VLA paper.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "02202a54-b97d-471f-8e9b-3f4dedb1a005",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "fa3664e0-7692-45ef-addd-0e0f1948258e",
+  "toolUseResult": {
+    "query": "ETA-VLA arXiv 2603.25766 EcoVLA arXiv 2602.00780 OneWM-VLA arXiv 2605.07931",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y7RZNLjEDYcvk2L6G1Cju3",
+        "content": [
+          {
+            "title": "[2603.25766] ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.25766"
+          },
+          {
+            "title": "ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.25766"
+          },
+          {
+            "title": "Environment-Aware Adaptive Pruning with Interleaved Inference Orchestration for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2602.00780"
+          },
+          {
+            "title": "[2602.07931] Which private attributes do VLMs agree on and predict well?",
+            "url": "https://arxiv.org/abs/2602.07931"
+          },
+          {
+            "title": "[2603.25661] Fast-dVLA: Accelerating Discrete Diffusion VLA to Real-Time Performance",
+            "url": "https://arxiv.org/abs/2603.25661"
+          },
+          {
+            "title": "X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model",
+            "url": "https://arxiv.org/html/2510.10274v1"
+          },
+          {
+            "title": "VLA Model Leaderboard (beta)",
+            "url": "https://allenai.github.io/vla-evaluation-harness/leaderboard/"
+          },
+          {
+            "title": "[2603.07931] BRIDGE: Benchmark for multi-hop Reasoning In long multimodal Documents with Grounded Evidence",
+            "url": "https://arxiv.org/abs/2603.07931"
+          },
+          {
+            "title": "BRIDGE: Benchmark for multi-hop Reasoning In long multimodal Documents with Grounded Evidence",
+            "url": "https://arxiv.org/html/2603.07931"
+          },
+          {
+            "title": "[2603.22280] DualCoT-VLA: Visual-Linguistic Chain of Thought via Parallel Reasoning for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2603.22280"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about these three Vision-Language-Action (VLA) papers:\n\n**ETA-VLA (arXiv 2603.25766):**\nETA-VLA is an Efficient Token Adaptation framework for VLA models that processes the past n frames of multi-view images and introduces a novel Intra-LLM Sparse Aggregator (ILSA). ILSA dynamically identifies and prunes redundant visual tokens guided by textual queries and temporal consistency.\n\n**EcoVLA (arXiv 2602.00780):**\nEcoVLA is a training-free, plug-and-play adaptive pruning framework comprising Environment-aware Adaptive Pruning (EAP) and Interleaved Inference Orchestration (I2O). EcoVLA achieves up to 1.60× speedup with only a 0.5% degradation when combined with token pruning, and has been validated on real-world robots.\n\n**OneWM-VLA (arXiv 2605.07931):**\nThe search did not return results for arXiv 2605.07931. The closest result was arXiv 2603.07931, which is a different paper about BRIDGE (a benchmark for multi-hop reasoning in documents), not related to VLA models. You may want to verify the correct arXiv number for the OneWM-VLA paper."
+    ],
+    "durationSeconds": 7.071041734999992
+  },
+  "sourceToolAssistantUUID": "02202a54-b97d-471f-8e9b-3f4dedb1a005",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-14T06:27:42.499Z_
+
+```json
+{
+  "parentUuid": "fa3664e0-7692-45ef-addd-0e0f1948258e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "659919ac-9c8f-4240-be6f-0e1f031574f7",
+  "timestamp": "2026-05-14T06:27:42.499Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T06:27:45.137Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Qjq8seuxS16X4tzKQFx8xD`</summary>
+
+```json
+{
+  "query": "OneWM-VLA arXiv 2605 VLA world model token 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "659919ac-9c8f-4240-be6f-0e1f031574f7",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zCiazCV5p7hfyx9zec",
+  "type": "assistant",
+  "uuid": "8f2d8e62-efd9-4e0c-b8fd-b9fb6f89ae17",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HQaaGSFBwmijFoH1JPZPX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1108,
+      "cache_read_input_tokens": 32127,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 32127,
+          "cache_creation_input_tokens": 1108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T06:27:52.590Z_
+
+<details><summary>↩ Tool result · `toolu_01Qjq8seuxS16X4tzKQFx8xD`</summary>
+
+```text
+Web search results for query: "OneWM-VLA arXiv 2605 VLA world model token 2026"
+
+Links: [{"title":"One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy","url":"https://arxiv.org/html/2605.07931v1"},{"title":"One Token Per Frame: Reconsidering Visual Bandwidth in World...","url":"https://arxiv.org/abs/2605.07931v1"},{"title":"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation","url":"https://arxiv.org/html/2605.06481v1"},{"title":"SenseNova-U1: Unifying Multimodal Understanding and Generation with NEO-unify Architecture","url":"https://arxiv.org/html/2605.12500"},{"title":"World Model for Robot Learning: A Comprehensive Survey","url":"https://arxiv.org/html/2605.00080v1"},{"title":"LiteVLA-H: Dual-Rate Vision-Language-Action Inference for Onboard Aerial Guidance and Semantic Perception","url":"https://arxiv.org/html/2605.00884"},{"title":"GitHub - OpenDriveLab/WholebodyVLA: [ICLR 2026] Towards Unified Latent VLA for Whole-body Loco-manipulation Control · GitHub","url":"https://github.com/OpenDriveLab/WholebodyVLA"},{"title":"XPENG Releases World Model Technical Report, Powering VLA 2.0 Model R&D and Verification","url":"https://www.xpeng.com/news/019dd72da86c9dd703de8a0282290002"},{"title":"DriveVLA-W0: World Models Amplify Data Scaling Law in Autonomous Driving | OpenReview","url":"https://openreview.net/forum?id=plrGn3RdzN"},{"title":"WorldVLA: Towards Autoregressive Action World Model","url":"https://arxiv.org/html/2506.21539v1"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## OneWM-VLA: One Token Per Frame
+
+OneWM-VLA is a world-module-augmented Vision-Language-Action (VLA) model that compresses each view into a single semantic token per frame through Adaptive Attention Pooling, and produces the resulting latent stream and action trajectory under a single flow-matching objective.
+
+### Key Features
+
+A lightweight Adaptive Attention Pooling distills each view into a single semantic latent token per frame, so that per-frame visual bandwidth is held at one token.
+
+### Performance Results
+
+Trained with 14.71M LoRA parameters on a π₀ (2B) backbone, OneWM-VLA improves the average success rate from 47.9% to 61.3% on MetaWorld MT50, reaches 95.6% on LIBERO-Long (vs. 85.2% for π₀), and reaches 60.0% on the long-horizon deformable task Fold Cloth on a real Piper arm (vs. 20.0% for π₀).
+
+### Paper Information
+
+The paper was submitted to arXiv on Fri, 8 May 2026 with the title "One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy" by Zuojin Tang and 6 other authors.
+
+The paper can be accessed at arXiv:2605.07931.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f2d8e62-efd9-4e0c-b8fd-b9fb6f89ae17",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "9bdffc00-1a54-4c27-9008-56c8849757bf",
+  "toolUseResult": {
+    "query": "OneWM-VLA arXiv 2605 VLA world model token 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019rRL4CgtGCw4q6J2vzmRit",
+        "content": [
+          {
+            "title": "One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy",
+            "url": "https://arxiv.org/html/2605.07931v1"
+          },
+          {
+            "title": "One Token Per Frame: Reconsidering Visual Bandwidth in World...",
+            "url": "https://arxiv.org/abs/2605.07931v1"
+          },
+          {
+            "title": "OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation",
+            "url": "https://arxiv.org/html/2605.06481v1"
+          },
+          {
+            "title": "SenseNova-U1: Unifying Multimodal Understanding and Generation with NEO-unify Architecture",
+            "url": "https://arxiv.org/html/2605.12500"
+          },
+          {
+            "title": "World Model for Robot Learning: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2605.00080v1"
+          },
+          {
+            "title": "LiteVLA-H: Dual-Rate Vision-Language-Action Inference for Onboard Aerial Guidance and Semantic Perception",
+            "url": "https://arxiv.org/html/2605.00884"
+          },
+          {
+            "title": "GitHub - OpenDriveLab/WholebodyVLA: [ICLR 2026] Towards Unified Latent VLA for Whole-body Loco-manipulation Control · GitHub",
+            "url": "https://github.com/OpenDriveLab/WholebodyVLA"
+          },
+          {
+            "title": "XPENG Releases World Model Technical Report, Powering VLA 2.0 Model R&D and Verification",
+            "url": "https://www.xpeng.com/news/019dd72da86c9dd703de8a0282290002"
+          },
+          {
+            "title": "DriveVLA-W0: World Models Amplify Data Scaling Law in Autonomous Driving | OpenReview",
+            "url": "https://openreview.net/forum?id=plrGn3RdzN"
+          },
+          {
+            "title": "WorldVLA: Towards Autoregressive Action World Model",
+            "url": "https://arxiv.org/html/2506.21539v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## OneWM-VLA: One Token Per Frame\n\nOneWM-VLA is a world-module-augmented Vision-Language-Action (VLA) model that compresses each view into a single semantic token per frame through Adaptive Attention Pooling, and produces the resulting latent stream and action trajectory under a single flow-matching objective.\n\n### Key Features\n\nA lightweight Adaptive Attention Pooling distills each view into a single semantic latent token per frame, so that per-frame visual bandwidth is held at one token.\n\n### Performance Results\n\nTrained with 14.71M LoRA parameters on a π₀ (2B) backbone, OneWM-VLA improves the average success rate from 47.9% to 61.3% on MetaWorld MT50, reaches 95.6% on LIBERO-Long (vs. 85.2% for π₀), and reaches 60.0% on the long-horizon deformable task Fold Cloth on a real Piper arm (vs. 20.0% for π₀).\n\n### Paper Information\n\nThe paper was submitted to arXiv on Fri, 8 May 2026 with the title \"One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy\" by Zuojin Tang and 6 other authors.\n\nThe paper can be accessed at arXiv:2605.07931."
+    ],
+    "durationSeconds": 7.449112242000003
+  },
+  "sourceToolAssistantUUID": "8f2d8e62-efd9-4e0c-b8fd-b9fb6f89ae17",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Action-Conditioned Information Bottleneck Token Surgery for Robust VLA…",
+  "leafUuid": "9bdffc00-1a54-4c27-9008-56c8849757bf",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise token pruning for CoRL 2026 with fixed baselines",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-14T06:27:55.990Z_
+
+Now let me fetch the SmolVLA paper and SimPrune paper for detailed architecture verification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9bdffc00-1a54-4c27-9008-56c8849757bf",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zDTjoLrUvz6jV1Jevp",
+  "type": "assistant",
+  "uuid": "372608c6-29d7-41b6-8827-895af2dc3ddc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dxwd6TPKSYTMH4Q6u6K7n6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 33235,
+      "output_tokens": 153,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 153,
+          "cache_read_input_tokens": 33235,
+          "cache_creation_input_tokens": 954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T06:27:57.920Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01M5oTKrNdD8S11s7ZbkXUUB`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2506.01844",
+  "prompt": "Extract the exact architecture details of SmolVLA: what vision encoder does it use (exact model name), what language model backbone, total parameter count, how many visual tokens per frame, and the action expert details. Be precise about model names."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "372608c6-29d7-41b6-8827-895af2dc3ddc",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zDTjoLrUvz6jV1Jevp",
+  "type": "assistant",
+  "uuid": "0edb07e7-6a36-4200-93ae-2a463abb924e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dxwd6TPKSYTMH4Q6u6K7n6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 33235,
+      "output_tokens": 153,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 153,
+          "cache_read_input_tokens": 33235,
+          "cache_creation_input_tokens": 954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T06:28:01.172Z_
+
+<details><summary>↩ Tool result · `toolu_01M5oTKrNdD8S11s7ZbkXUUB`</summary>
+
+```text
+Based on the webpage content provided, I cannot extract the specific architecture details you're requesting.
+
+The page contains only the abstract and metadata for the SmolVLA paper (arXiv:2506.01844). While the abstract describes the model as "small, efficient" and mentions it's "designed to be trained on a single GPU," it does not specify:
+
+- The exact vision encoder model name
+- The specific language model backbone
+- Total parameter count
+- Visual tokens per frame
+- Action expert details
+
+The abstract states the paper "achieves performance comparable to VLAs that are 10x larger," but architectural specifications are absent from this landing page. These technical details would be found in the full paper PDF or HTML version, which are linked but not included in the content you provided.
+
+To obtain precise architecture information, you would need to access the complete paper through the provided PDF or HTML links.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0edb07e7-6a36-4200-93ae-2a463abb924e",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "30c4f384-a045-4d4b-b5b2-88fcaaa48aa3",
+  "toolUseResult": {
+    "bytes": 49144,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the webpage content provided, I cannot extract the specific architecture details you're requesting.\n\nThe page contains only the abstract and metadata for the SmolVLA paper (arXiv:2506.01844). While the abstract describes the model as \"small, efficient\" and mentions it's \"designed to be trained on a single GPU,\" it does not specify:\n\n- The exact vision encoder model name\n- The specific language model backbone\n- Total parameter count\n- Visual tokens per frame\n- Action expert details\n\nThe abstract states the paper \"achieves performance comparable to VLAs that are 10x larger,\" but architectural specifications are absent from this landing page. These technical details would be found in the full paper PDF or HTML version, which are linked but not included in the content you provided.\n\nTo obtain precise architecture information, you would need to access the complete paper through the provided PDF or HTML links.",
+    "durationMs": 3248,
+    "url": "https://arxiv.org/abs/2506.01844"
+  },
+  "sourceToolAssistantUUID": "0edb07e7-6a36-4200-93ae-2a463abb924e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-14T06:28:07.490Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01MLX94jDvAzwMch3p5i3VqC`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2506.01844v1",
+  "prompt": "Extract the exact architecture details of SmolVLA: 1) What vision encoder does it use (exact model name, e.g. SigLIP)? 2) What language model backbone (exact name, e.g. SmolLM2 or Qwen2.5)? 3) Total parameter count? 4) How many visual tokens per frame? 5) Action expert architecture and parameter count? 6) What is SmolVLM2? Be precise about all model names and numbers."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30c4f384-a045-4d4b-b5b2-88fcaaa48aa3",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zE6Qvb85iGAV8g18Nk",
+  "type": "assistant",
+  "uuid": "40e313a2-e486-4c33-8884-b69b4474ce26",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ExrozYotdjfxE6k2QFaQst",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 353,
+      "cache_read_input_tokens": 34189,
+      "output_tokens": 196,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 353,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 196,
+          "cache_read_input_tokens": 34189,
+          "cache_creation_input_tokens": 353,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 353
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T06:28:12.954Z_
+
+<details><summary>↩ Tool result · `toolu_01MLX94jDvAzwMch3p5i3VqC`</summary>
+
+```text
+# SmolVLA Architecture Details
+
+## 1. Vision Encoder
+**SigLIP** - The paper states: "SmolVLM-2 relies on SigLIP (Zhai et al., 2023) to encode visual features for SmolLM2 language decoder"
+
+## 2. Language Model Backbone
+**SmolLM2** - Combined with SigLIP in SmolVLM-2, which is described as "an efficient model optimized for multi-image and video inputs"
+
+## 3. Total Parameter Count
+**450 million parameters** - The document specifies: "Our main model, contains 450 million parameters, with approximately 100 million dedicated to the action expert"
+
+## 4. Visual Tokens Per Frame
+**64 tokens** - The paper explains: "we use the global image only, in addition to a pixel shuffle operation, limiting the visual tokens to 64 per frame"
+
+## 5. Action Expert
+- **Parameter count:** ~100 million of the 450M total
+- **Architecture:** Flow Matching Transformer with interleaved cross and self-attention layers
+- **Hidden dimension:** 0.75× the VLM's hidden dimension (for efficiency)
+- **Action output:** Chunks of n=50 actions
+
+## 6. What is SmolVLM-2?
+SmolVLM-2 represents "an efficient model optimized for multi-image and video inputs" combining the SigLIP vision encoder with the SmolLM2 language decoder, designed for accessibility and efficient deployment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40e313a2-e486-4c33-8884-b69b4474ce26",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "9b8db835-57b0-4bc3-9669-f1a95a259a9e",
+  "toolUseResult": {
+    "bytes": 522052,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SmolVLA Architecture Details\n\n## 1. Vision Encoder\n**SigLIP** - The paper states: \"SmolVLM-2 relies on SigLIP (Zhai et al., 2023) to encode visual features for SmolLM2 language decoder\"\n\n## 2. Language Model Backbone\n**SmolLM2** - Combined with SigLIP in SmolVLM-2, which is described as \"an efficient model optimized for multi-image and video inputs\"\n\n## 3. Total Parameter Count\n**450 million parameters** - The document specifies: \"Our main model, contains 450 million parameters, with approximately 100 million dedicated to the action expert\"\n\n## 4. Visual Tokens Per Frame\n**64 tokens** - The paper explains: \"we use the global image only, in addition to a pixel shuffle operation, limiting the visual tokens to 64 per frame\"\n\n## 5. Action Expert\n- **Parameter count:** ~100 million of the 450M total\n- **Architecture:** Flow Matching Transformer with interleaved cross and self-attention layers\n- **Hidden dimension:** 0.75× the VLM's hidden dimension (for efficiency)\n- **Action output:** Chunks of n=50 actions\n\n## 6. What is SmolVLM-2?\nSmolVLM-2 represents \"an efficient model optimized for multi-image and video inputs\" combining the SigLIP vision encoder with the SmolLM2 language decoder, designed for accessibility and efficient deployment.",
+    "durationMs": 5460,
+    "url": "https://arxiv.org/html/2506.01844v1"
+  },
+  "sourceToolAssistantUUID": "40e313a2-e486-4c33-8884-b69b4474ce26",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T06:28:18.239Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JgRTonvQvoycuX4Ad4zJHA`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=GTcEe5fayC",
+  "prompt": "Extract the key technical details of SimPrune: 1) How does cross-branch augmentation consistency work for token pruning? 2) What is the similarity metric used? 3) How does it differ from just using attention-based pruning? 4) Does it enforce that the same tokens are selected across augmented views? 5) What loss function or constraint implements the cross-branch consistency?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b8db835-57b0-4bc3-9669-f1a95a259a9e",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zExq3t38rB6FvUUJ5F",
+  "type": "assistant",
+  "uuid": "9325adea-aef3-4d68-8b46-f29ac75295f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Medr9MythYwqFyf87F7wW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 561,
+      "cache_read_input_tokens": 34542,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 561,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 34542,
+          "cache_creation_input_tokens": 561,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 561
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T06:28:22.440Z_
+
+<details><summary>↩ Tool result · `toolu_01JgRTonvQvoycuX4Ad4zJHA`</summary>
+
+```text
+# Technical Details of SimPrune - Limited Information
+
+Based on the provided web page content, I can only offer partial answers to your questions:
+
+**Available Information:**
+
+The abstract confirms that SimPrune is designed to address a key limitation: "SSL's dual-branch encoders make traditional single-branch pruning strategies less effective, as they fail to account for the critical cross-branch similarity information."
+
+The paper indicates the approach "leverages cross-branch similarity information to efficiently prune tokens, retaining essential semantic information across dual branches" and incorporates "a difficulty-aware pruning strategy."
+
+**Limitations:**
+
+Unfortunately, the webpage content does not provide sufficient technical detail to answer your specific questions about:
+1. The exact mechanism of cross-branch consistency
+2. The specific similarity metric employed
+3. Precise distinctions from attention-based approaches
+4. Whether identical tokens must be selected across views
+5. The mathematical formulation of loss functions or constraints
+
+**Recommendation:**
+
+To obtain these technical specifications, you would need to access the full PDF paper (indicated by the download link on the OpenReview page) rather than the abstract alone. The page provides only high-level overview information suitable for conference announcements.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9325adea-aef3-4d68-8b46-f29ac75295f2",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "82675f61-6b4a-4175-9012-51aad7c418da",
+  "toolUseResult": {
+    "bytes": 74401,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Technical Details of SimPrune - Limited Information\n\nBased on the provided web page content, I can only offer partial answers to your questions:\n\n**Available Information:**\n\nThe abstract confirms that SimPrune is designed to address a key limitation: \"SSL's dual-branch encoders make traditional single-branch pruning strategies less effective, as they fail to account for the critical cross-branch similarity information.\"\n\nThe paper indicates the approach \"leverages cross-branch similarity information to efficiently prune tokens, retaining essential semantic information across dual branches\" and incorporates \"a difficulty-aware pruning strategy.\"\n\n**Limitations:**\n\nUnfortunately, the webpage content does not provide sufficient technical detail to answer your specific questions about:\n1. The exact mechanism of cross-branch consistency\n2. The specific similarity metric employed\n3. Precise distinctions from attention-based approaches\n4. Whether identical tokens must be selected across views\n5. The mathematical formulation of loss functions or constraints\n\n**Recommendation:**\n\nTo obtain these technical specifications, you would need to access the full PDF paper (indicated by the download link on the OpenReview page) rather than the abstract alone. The page provides only high-level overview information suitable for conference announcements.",
+    "durationMs": 4197,
+    "url": "https://openreview.net/forum?id=GTcEe5fayC"
+  },
+  "sourceToolAssistantUUID": "9325adea-aef3-4d68-8b46-f29ac75295f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-14T06:28:26.578Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_011FFJjY3eRbumU9Xm85boDW`</summary>
+
+```json
+{
+  "url": "https://openreview.net/pdf?id=GTcEe5fayC",
+  "prompt": "Extract the key technical details of SimPrune: 1) How does cross-branch augmentation consistency work for token pruning? 2) What similarity metric is used for cross-branch token matching? 3) How is the pruning decision made - is it based on matching scores? 4) What is the mathematical formulation of the cross-view consistency mechanism? 5) How does it relate to enforcing augmentation invariance in token selection?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82675f61-6b4a-4175-9012-51aad7c418da",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zFfPaotws8ZkuUVTHN",
+  "type": "assistant",
+  "uuid": "1f9a4784-3f43-4fc3-9272-1cd7d0831aea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018RfWfcTYqWS2YKtWkuZAgq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 443,
+      "cache_read_input_tokens": 35103,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 443,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 35103,
+          "cache_creation_input_tokens": 443,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 443
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T06:28:32.423Z_
+
+<details><summary>↩ Tool result · `toolu_011FFJjY3eRbumU9Xm85boDW`</summary>
+
+```text
+I appreciate your request, but I need to be transparent: the document provided appears to be a PDF file encoded in binary/compressed format (containing PDF stream objects, FlateDecode filters, and linearized content). The content is not readable as plain text in the format you've shared.
+
+To properly extract technical details about SimPrune's cross-branch augmentation consistency mechanism, I would need:
+
+1. **A readable text or properly formatted document** - either a PDF that can be parsed into text, a research paper in plain text format, or relevant excerpts already converted to readable form.
+
+2. **Clear source material** - The current format contains PDF structural data rather than extractable article content.
+
+**What I can help with once readable content is provided:**
+- Explaining cross-branch token matching mechanics
+- Describing similarity metrics used in pruning frameworks
+- Detailing pruning decision algorithms
+- Analyzing mathematical formulations for consistency mechanisms
+- Connecting augmentation invariance to token selection strategies
+
+If you can share the document in a readable format (plain text, properly extracted PDF content, or a direct link to the paper), I'd be happy to extract and synthesize the technical details about SimPrune while adhering to your character limits and citation requirements.
+
+[Binary content (application/pdf, 782.2KB) also saved to /home/ubuntu/.claude-account-1/projects/-/b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7/tool-results/webfetch-1778740107481-xjlb04.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f9a4784-3f43-4fc3-9272-1cd7d0831aea",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "7cc6e027-398f-452b-a42f-129a59f85b39",
+  "toolUseResult": {
+    "bytes": 801010,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I appreciate your request, but I need to be transparent: the document provided appears to be a PDF file encoded in binary/compressed format (containing PDF stream objects, FlateDecode filters, and linearized content). The content is not readable as plain text in the format you've shared.\n\nTo properly extract technical details about SimPrune's cross-branch augmentation consistency mechanism, I would need:\n\n1. **A readable text or properly formatted document** - either a PDF that can be parsed into text, a research paper in plain text format, or relevant excerpts already converted to readable form.\n\n2. **Clear source material** - The current format contains PDF structural data rather than extractable article content.\n\n**What I can help with once readable content is provided:**\n- Explaining cross-branch token matching mechanics\n- Describing similarity metrics used in pruning frameworks\n- Detailing pruning decision algorithms\n- Analyzing mathematical formulations for consistency mechanisms\n- Connecting augmentation invariance to token selection strategies\n\nIf you can share the document in a readable format (plain text, properly extracted PDF content, or a direct link to the paper), I'd be happy to extract and synthesize the technical details about SimPrune while adhering to your character limits and citation requirements.\n\n[Binary content (application/pdf, 782.2KB) also saved to /home/ubuntu/.claude-account-1/projects/-/b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7/tool-results/webfetch-1778740107481-xjlb04.pdf]",
+    "durationMs": 5841,
+    "url": "https://openreview.net/pdf?id=GTcEe5fayC"
+  },
+  "sourceToolAssistantUUID": "1f9a4784-3f43-4fc3-9272-1cd7d0831aea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-14T06:28:36.950Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CABstRj7vy3no8QemP6Aaq`</summary>
+
+```json
+{
+  "url": "https://openreview.net/notes/edits/attachment?id=7I9FCztgnH&name=pdf",
+  "prompt": "Extract the key technical details about how SimPrune enforces cross-branch consistency for token pruning. What is the cross-branch similarity mechanism? How are tokens matched across augmented views? What loss or constraint enforces consistency?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7cc6e027-398f-452b-a42f-129a59f85b39",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zGQEHtHUi3ZLmLQUpq",
+  "type": "assistant",
+  "uuid": "237eca83-9a5c-467f-875e-dbb21f2d86ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012aeeeq8w22dqSJHQcGgeip",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 547,
+      "cache_read_input_tokens": 35546,
+      "output_tokens": 144,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 547,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 144,
+          "cache_read_input_tokens": 35546,
+          "cache_creation_input_tokens": 547,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 547
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T06:28:42.337Z_
+
+<details><summary>↩ Tool result · `toolu_01CABstRj7vy3no8QemP6Aaq`</summary>
+
+```text
+I appreciate your question, but I need to be transparent: the content provided appears to be a PDF file in binary/encoded format that doesn't render as readable text. The displayed content shows PDF object streams with compression filters and encoded data rather than the actual document text.
+
+To accurately extract technical details about SimPrune's cross-branch consistency mechanisms for token pruning, I would need:
+
+1. **Readable source material** - The actual paper text, not encoded PDF objects
+2. **Clear sections** - Specific methodology or technical approach sections
+3. **Accessible diagrams/equations** - Descriptions of the matching and consistency enforcement mechanisms
+
+Without access to the decoded content, I cannot reliably identify:
+- How tokens are matched across augmented views
+- The specific cross-branch similarity mechanism employed
+- What loss functions or constraints enforce consistency
+
+**Recommendation**: If you have access to the SimPrune paper, please share it in a text-accessible format (plain text, markdown, or properly converted PDF text) so I can provide accurate technical details while respecting your character limit requirements for quotes.
+
+[Binary content (application/pdf, 782.2KB) also saved to /home/ubuntu/.claude-account-1/projects/-/b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7/tool-results/webfetch-1778740117501-yiaohq.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "237eca83-9a5c-467f-875e-dbb21f2d86ed",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "9750c1df-f6e6-4abe-8146-92f0a86b47a1",
+  "toolUseResult": {
+    "bytes": 801010,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I appreciate your question, but I need to be transparent: the content provided appears to be a PDF file in binary/encoded format that doesn't render as readable text. The displayed content shows PDF object streams with compression filters and encoded data rather than the actual document text.\n\nTo accurately extract technical details about SimPrune's cross-branch consistency mechanisms for token pruning, I would need:\n\n1. **Readable source material** - The actual paper text, not encoded PDF objects\n2. **Clear sections** - Specific methodology or technical approach sections\n3. **Accessible diagrams/equations** - Descriptions of the matching and consistency enforcement mechanisms\n\nWithout access to the decoded content, I cannot reliably identify:\n- How tokens are matched across augmented views\n- The specific cross-branch similarity mechanism employed\n- What loss functions or constraints enforce consistency\n\n**Recommendation**: If you have access to the SimPrune paper, please share it in a text-accessible format (plain text, markdown, or properly converted PDF text) so I can provide accurate technical details while respecting your character limit requirements for quotes.\n\n[Binary content (application/pdf, 782.2KB) also saved to /home/ubuntu/.claude-account-1/projects/-/b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7/tool-results/webfetch-1778740117501-yiaohq.pdf]",
+    "durationMs": 5382,
+    "url": "https://openreview.net/notes/edits/attachment?id=7I9FCztgnH&name=pdf"
+  },
+  "sourceToolAssistantUUID": "237eca83-9a5c-467f-875e-dbb21f2d86ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-14T06:28:45.859Z_
+
+Let me search for more details on SimPrune's method and also check VIB robustness theory.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9750c1df-f6e6-4abe-8146-92f0a86b47a1",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zH8TYPAMbjjadY9QZy",
+  "type": "assistant",
+  "uuid": "325279b2-48f6-4539-a8d7-a3dd2a3e5ca3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuXuQwPksnhWtuZcQm5yQH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 471,
+      "cache_read_input_tokens": 36093,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 471,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 36093,
+          "cache_creation_input_tokens": 471,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 471
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T06:28:46.444Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MXs76ZRapEJWsoLxvn4Rin`</summary>
+
+```json
+{
+  "query": "SimPrune cross-branch similarity token pruning SSL method cosine similarity token matching augmentation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "325279b2-48f6-4539-a8d7-a3dd2a3e5ca3",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zH8TYPAMbjjadY9QZy",
+  "type": "assistant",
+  "uuid": "a4134cf7-a162-4005-813a-ecc3ec4b4d08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuXuQwPksnhWtuZcQm5yQH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 471,
+      "cache_read_input_tokens": 36093,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 471,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 36093,
+          "cache_creation_input_tokens": 471,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 471
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T06:28:53.140Z_
+
+<details><summary>↩ Tool result · `toolu_01MXs76ZRapEJWsoLxvn4Rin`</summary>
+
+```text
+Web search results for query: "SimPrune cross-branch similarity token pruning SSL method cosine similarity token matching augmentation"
+
+Links: [{"title":"BASED TOKEN PRUNING FOR VISION TRANSFORMERS ...","url":"https://openreview.net/pdf?id=GTcEe5fayC"},{"title":"Mutual Effort for Efficiency: A Similarity-based Token Pruning for Vision Transformers in Self-Supervised Learning | OpenReview","url":"https://openreview.net/forum?id=GTcEe5fayC"},{"title":"A SIMILARITY- BASED TOKEN PRUNING FOR VISION ...","url":"https://openreview.net/notes/edits/attachment?id=7I9FCztgnH&name=pdf"},{"title":"ICLR Poster Mutual Effort for Efficiency: A Similarity-based Token Pruning for Vision Transformers in Self-Supervised Learning","url":"https://iclr.cc/virtual/2025/poster/30276"},{"title":"(PDF) Similarity-Aware Token Pruning: Your VLM but Faster","url":"https://www.researchgate.net/publication/389894457_Similarity-Aware_Token_Pruning_Your_VLM_but_Faster"},{"title":"[Literature Review] OptiPrune: Boosting Prompt-Image Consistency with Attention-Guided Noise and Dynamic Token Selection","url":"https://www.themoonlight.io/en/review/optiprune-boosting-prompt-image-consistency-with-attention-guided-noise-and-dynamic-token-selection"},{"title":"Similarity-Aware Token Pruning: Your VLM but Faster","url":"https://arxiv.org/html/2503.11549v1"},{"title":"[2503.11549] Similarity-Aware Token Pruning: Your VLM but Faster","url":"https://arxiv.org/abs/2503.11549"},{"title":"Similarity-Aware Token Pruning: Your VLM but Faster Ahmadreza Jeddi1,2,4","url":"https://arxiv.org/pdf/2503.11549"},{"title":"GitHub - armenjeddi/saint: a training-free approach to accelerate ViTs and VLMs by pruning redundant tokens based on similarity","url":"https://github.com/ArmenJeddi/saint"}]
+
+Based on the search results, I found information about SimPrune, a similarity-based token pruning method for self-supervised learning. Here's what I found:
+
+## SimPrune Overview
+
+SimPrune is a novel token pruning strategy tailored specifically for ViTs (Vision Transformers) in discriminative self-supervised learning.
+
+## Key Approach
+
+SimPrune leverages cross-branch similarity information to efficiently prune tokens, retaining essential semantic information across dual branches. By leveraging cross-branch similarity, SimPrune efficiently prunes non-essential tokens while preserving crucial semantic consistency across different augmented views of the same image, significantly enhancing training efficiency without compromising accuracy.
+
+## Token Matching and Cosine Similarity
+
+The method uses cosine similarity for token matching: Given input tokens, pairwise cosine similarity is computed using the formula CosSim_{i,j} = T_i · T_j / (|T_i||T_j|) SimPrune first matches tokens from two branches to form multiple token pairs, and then prunes at the granularity of these token pairs.
+
+## Augmentation Strategy
+
+SimPrune introduces a difficulty-aware pruning strategy that strategically prunes token pairs with different similarity levels at different training stages, further boosting the model's final performance.
+
+## Performance
+
+SimPrune with the dynamic pruning strategy reduces 24% computation costs without compromising accuracy compared to the DINO baseline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a4134cf7-a162-4005-813a-ecc3ec4b4d08",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "7b6d79ee-e3bf-485f-9b50-7a9cc3fe9191",
+  "toolUseResult": {
+    "query": "SimPrune cross-branch similarity token pruning SSL method cosine similarity token matching augmentation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012SbYy6HAjraV6qUbQLQvpB",
+        "content": [
+          {
+            "title": "BASED TOKEN PRUNING FOR VISION TRANSFORMERS ...",
+            "url": "https://openreview.net/pdf?id=GTcEe5fayC"
+          },
+          {
+            "title": "Mutual Effort for Efficiency: A Similarity-based Token Pruning for Vision Transformers in Self-Supervised Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=GTcEe5fayC"
+          },
+          {
+            "title": "A SIMILARITY- BASED TOKEN PRUNING FOR VISION ...",
+            "url": "https://openreview.net/notes/edits/attachment?id=7I9FCztgnH&name=pdf"
+          },
+          {
+            "title": "ICLR Poster Mutual Effort for Efficiency: A Similarity-based Token Pruning for Vision Transformers in Self-Supervised Learning",
+            "url": "https://iclr.cc/virtual/2025/poster/30276"
+          },
+          {
+            "title": "(PDF) Similarity-Aware Token Pruning: Your VLM but Faster",
+            "url": "https://www.researchgate.net/publication/389894457_Similarity-Aware_Token_Pruning_Your_VLM_but_Faster"
+          },
+          {
+            "title": "[Literature Review] OptiPrune: Boosting Prompt-Image Consistency with Attention-Guided Noise and Dynamic Token Selection",
+            "url": "https://www.themoonlight.io/en/review/optiprune-boosting-prompt-image-consistency-with-attention-guided-noise-and-dynamic-token-selection"
+          },
+          {
+            "title": "Similarity-Aware Token Pruning: Your VLM but Faster",
+            "url": "https://arxiv.org/html/2503.11549v1"
+          },
+          {
+            "title": "[2503.11549] Similarity-Aware Token Pruning: Your VLM but Faster",
+            "url": "https://arxiv.org/abs/2503.11549"
+          },
+          {
+            "title": "Similarity-Aware Token Pruning: Your VLM but Faster Ahmadreza Jeddi1,2,4",
+            "url": "https://arxiv.org/pdf/2503.11549"
+          },
+          {
+            "title": "GitHub - armenjeddi/saint: a training-free approach to accelerate ViTs and VLMs by pruning redundant tokens based on similarity",
+            "url": "https://github.com/ArmenJeddi/saint"
+          }
+        ]
+      },
+      "Based on the search results, I found information about SimPrune, a similarity-based token pruning method for self-supervised learning. Here's what I found:\n\n## SimPrune Overview\n\nSimPrune is a novel token pruning strategy tailored specifically for ViTs (Vision Transformers) in discriminative self-supervised learning.\n\n## Key Approach\n\nSimPrune leverages cross-branch similarity information to efficiently prune tokens, retaining essential semantic information across dual branches. By leveraging cross-branch similarity, SimPrune efficiently prunes non-essential tokens while preserving crucial semantic consistency across different augmented views of the same image, significantly enhancing training efficiency without compromising accuracy.\n\n## Token Matching and Cosine Similarity\n\nThe method uses cosine similarity for token matching: Given input tokens, pairwise cosine similarity is computed using the formula CosSim_{i,j} = T_i · T_j / (|T_i||T_j|) SimPrune first matches tokens from two branches to form multiple token pairs, and then prunes at the granularity of these token pairs.\n\n## Augmentation Strategy\n\nSimPrune introduces a difficulty-aware pruning strategy that strategically prunes token pairs with different similarity levels at different training stages, further boosting the model's final performance.\n\n## Performance\n\nSimPrune with the dynamic pruning strategy reduces 24% computation costs without compromising accuracy compared to the DINO baseline."
+    ],
+    "durationSeconds": 6.69147628599999
+  },
+  "sourceToolAssistantUUID": "a4134cf7-a162-4005-813a-ecc3ec4b4d08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Action-Conditioned Information Bottleneck Token Surgery for Robust VLA…",
+  "leafUuid": "7b6d79ee-e3bf-485f-9b50-7a9cc3fe9191",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise token pruning for CoRL 2026 with fixed baselines",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-14T06:28:56.459Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01X7r1nmbmChvKy3HWgQu3pi`</summary>
+
+```json
+{
+  "query": "variational information bottleneck robustness bound theorem perturbation Lipschitz guarantee VIB"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b6d79ee-e3bf-485f-9b50-7a9cc3fe9191",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zHvdfiHqYm7KKdSosr",
+  "type": "assistant",
+  "uuid": "38b945e9-ee00-49dd-b399-3aa9dc212c51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EWnmnRdjEudiM9tZb6wR4S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1026,
+      "cache_read_input_tokens": 36564,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1026,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 36564,
+          "cache_creation_input_tokens": 1026,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1026
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T06:29:03.776Z_
+
+<details><summary>↩ Tool result · `toolu_01X7r1nmbmChvKy3HWgQu3pi`</summary>
+
+```text
+Web search results for query: "variational information bottleneck robustness bound theorem perturbation Lipschitz guarantee VIB"
+
+Links: [{"title":"[1612.00410] Deep Variational Information Bottleneck","url":"https://arxiv.org/abs/1612.00410"},{"title":"Deep Variational Information Bottleneck | OpenReview","url":"https://openreview.net/forum?id=HyxQzBceg"},{"title":"DEEP VARIATIONAL INFORMATION BOTTLENECK","url":"https://openreview.net/pdf?id=HyxQzBceg"},{"title":"Revisiting the Variational Information Bottleneck | OpenReview","url":"https://openreview.net/forum?id=w10KdRwcMk"},{"title":"Variational Geometric Information Bottleneck: Learning the Shape of Understanding","url":"https://arxiv.org/html/2511.02496"},{"title":"Graph Structure Learning with Variational Information Bottleneck","url":"https://cdn.aaai.org/ojs/20335/20335-13-24348-1-2-20220628.pdf"},{"title":"A Comparison of Variational Bounds for the Information Bottleneck Functional - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC7712881/"},{"title":"1 The Information Bottleneck Problem and Its Applications in Machine Learning","url":"https://arxiv.org/pdf/2004.14941"},{"title":"On the Information Bottleneck Problems: Models, Connections, Applications and Information Theoretic Views - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC7516564/"},{"title":"Variational Information Bottleneck Theory","url":"https://www.emergentmind.com/topics/variational-information-bottleneck-vib-theory"}]
+
+I've completed a web search for your query on variational information bottleneck robustness bound theorem perturbation Lipschitz guarantee VIB. Here are the key findings:
+
+## Overview
+
+Deep Variational Information Bottleneck (Deep VIB) is a method where models trained with the VIB objective outperform those trained with other forms of regularization in terms of generalization performance and robustness to adversarial attack.
+
+## Robustness Properties
+
+Each input image gets mapped to a distribution rather than a unique representation, so it is more difficult to pass small, idiosyncratic perturbations through the latent bottleneck. The randomized VIB mapping from input to representation suppresses the ability to tailor adversarial examples that flip the classification label.
+
+## Theoretical Framework
+
+VIB formulates a variationally tractable objective that allows neural networks to efficiently balance compression and predictive sufficiency by leveraging variational approximations, the reparameterization trick, and stochastic optimization over neural architectures. The compression penalty directly bounds expected generalization error according to PAC-Bayes theory.
+
+## Lipschitz and Geometric Properties
+
+Recent geometric approaches retain assumptions standard in geometric learning including compact manifold support, bounded curvature, and bi-Lipschitz encoders.
+
+The search results provide comprehensive information about VIB's robustness properties and theoretical foundations, though specific formal theorems on perturbation bounds and Lipschitz guarantees are referenced implicitly rather than presented in detail in these particular sources.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "38b945e9-ee00-49dd-b399-3aa9dc212c51",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "b7dc41a2-0753-4b7f-a72c-999b4fff57a0",
+  "toolUseResult": {
+    "query": "variational information bottleneck robustness bound theorem perturbation Lipschitz guarantee VIB",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011ZYkEMMrBiJk5cRmqPvAcS",
+        "content": [
+          {
+            "title": "[1612.00410] Deep Variational Information Bottleneck",
+            "url": "https://arxiv.org/abs/1612.00410"
+          },
+          {
+            "title": "Deep Variational Information Bottleneck | OpenReview",
+            "url": "https://openreview.net/forum?id=HyxQzBceg"
+          },
+          {
+            "title": "DEEP VARIATIONAL INFORMATION BOTTLENECK",
+            "url": "https://openreview.net/pdf?id=HyxQzBceg"
+          },
+          {
+            "title": "Revisiting the Variational Information Bottleneck | OpenReview",
+            "url": "https://openreview.net/forum?id=w10KdRwcMk"
+          },
+          {
+            "title": "Variational Geometric Information Bottleneck: Learning the Shape of Understanding",
+            "url": "https://arxiv.org/html/2511.02496"
+          },
+          {
+            "title": "Graph Structure Learning with Variational Information Bottleneck",
+            "url": "https://cdn.aaai.org/ojs/20335/20335-13-24348-1-2-20220628.pdf"
+          },
+          {
+            "title": "A Comparison of Variational Bounds for the Information Bottleneck Functional - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7712881/"
+          },
+          {
+            "title": "1 The Information Bottleneck Problem and Its Applications in Machine Learning",
+            "url": "https://arxiv.org/pdf/2004.14941"
+          },
+          {
+            "title": "On the Information Bottleneck Problems: Models, Connections, Applications and Information Theoretic Views - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7516564/"
+          },
+          {
+            "title": "Variational Information Bottleneck Theory",
+            "url": "https://www.emergentmind.com/topics/variational-information-bottleneck-vib-theory"
+          }
+        ]
+      },
+      "I've completed a web search for your query on variational information bottleneck robustness bound theorem perturbation Lipschitz guarantee VIB. Here are the key findings:\n\n## Overview\n\nDeep Variational Information Bottleneck (Deep VIB) is a method where models trained with the VIB objective outperform those trained with other forms of regularization in terms of generalization performance and robustness to adversarial attack.\n\n## Robustness Properties\n\nEach input image gets mapped to a distribution rather than a unique representation, so it is more difficult to pass small, idiosyncratic perturbations through the latent bottleneck. The randomized VIB mapping from input to representation suppresses the ability to tailor adversarial examples that flip the classification label.\n\n## Theoretical Framework\n\nVIB formulates a variationally tractable objective that allows neural networks to efficiently balance compression and predictive sufficiency by leveraging variational approximations, the reparameterization trick, and stochastic optimization over neural architectures. The compression penalty directly bounds expected generalization error according to PAC-Bayes theory.\n\n## Lipschitz and Geometric Properties\n\nRecent geometric approaches retain assumptions standard in geometric learning including compact manifold support, bounded curvature, and bi-Lipschitz encoders.\n\nThe search results provide comprehensive information about VIB's robustness properties and theoretical foundations, though specific formal theorems on perturbation bounds and Lipschitz guarantees are referenced implicitly rather than presented in detail in these particular sources."
+    ],
+    "durationSeconds": 7.314098805999994
+  },
+  "sourceToolAssistantUUID": "38b945e9-ee00-49dd-b399-3aa9dc212c51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53 · 2026-05-14T06:29:03.779Z_
+
+```json
+{
+  "parentUuid": "b7dc41a2-0753-4b7f-a72c-999b4fff57a0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "91537b19-bc53-419b-b11f-c4430539dde0",
+  "timestamp": "2026-05-14T06:29:03.779Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-14T06:29:07.229Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019NZfBH1XtLmzsyP4wzUdYX`</summary>
+
+```json
+{
+  "query": "VIB adversarial robustness certification bound \"information bottleneck\" provable guarantee perturbation radius"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "91537b19-bc53-419b-b11f-c4430539dde0",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zJi7NnxEUJjxhEZk33",
+  "type": "assistant",
+  "uuid": "26957e2e-838f-4106-8243-664ffada1b76",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R639S8iMbLwVpeWrPru4bv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1018,
+      "cache_read_input_tokens": 37590,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1018,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 37590,
+          "cache_creation_input_tokens": 1018,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1018
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-14T06:29:15.370Z_
+
+<details><summary>↩ Tool result · `toolu_019NZfBH1XtLmzsyP4wzUdYX`</summary>
+
+```text
+Web search results for query: "VIB adversarial robustness certification bound "information bottleneck" provable guarantee perturbation radius"
+
+Links: [{"title":"A Closer Look at the Adversarial Robustness of Information Bottleneck Models","url":"https://arxiv.org/pdf/2107.05712"},{"title":"Revisiting the Variational Information Bottleneck | OpenReview","url":"https://openreview.net/forum?id=w10KdRwcMk"},{"title":"Deep Variational Information Bottleneck | OpenReview","url":"https://openreview.net/forum?id=HyxQzBceg"},{"title":"[1612.00410] Deep Variational Information Bottleneck","url":"https://arxiv.org/abs/1612.00410"},{"title":"Certiﬁed Adversarial Robustness via Randomized Smoothing","url":"http://proceedings.mlr.press/v97/cohen19c/cohen19c.pdf"},{"title":"Adversarial Robustness with Non-uniform Perturbations Ecenaz Erdemir","url":"https://arxiv.org/pdf/2102.12002"},{"title":"Provable defenses against adversarial attacks","url":"https://locuslab.github.io/2019-03-12-provable/"},{"title":"[2104.14379] Learning Robust Variational Information Bottleneck with Reference","url":"https://arxiv.org/abs/2104.14379"},{"title":"GitHub - AI-secure/Certified-Robustness-SoK-Oldver: This repo keeps track of popular provable training and verification approaches towards robust neural networks, including leaderboards on popular datasets and paper categorization. · GitHub","url":"https://github.com/AI-secure/Certified-Robustness-SoK-Oldver"},{"title":"Adversarial Robustness of Bottleneck Injected Deep Neural Networks for Task-Oriented Communication","url":"https://arxiv.org/html/2412.10265v1"}]
+
+Based on the search results, I found relevant information about Variational Information Bottleneck (VIB) and adversarial robustness, though the results don't contain a single paper specifically addressing all the elements you mentioned together (certification bounds, information bottleneck, provable guarantees, and perturbation radius).
+
+Here's what I found:
+
+## Key Research on VIB and Adversarial Robustness
+
+Models trained with the VIB objective outperform those trained with other forms of regularization in terms of generalization performance and robustness to adversarial attack.
+
+However, no clear explanation has been found as to how IB models become more robust to adversarial examples. Additionally, previous works failed to investigate possible effects of gradient obfuscation which could lead to a false sense of security.
+
+## Recent Work on Robust VIB
+
+A new approach has been proposed to train a variational information bottleneck (VIB) that improves its robustness to adversarial perturbations.
+
+## Certified Robustness and Perturbation Radius
+
+While not directly combined with VIB, research on certified robustness addresses provable perturbation guarantees. Smoothing with Gaussian noise naturally induces certifiable robustness under the ℓ2 norm.
+
+The search results don't contain a specific paper combining all your query terms. If you're looking for a particular paper on VIB with formal certification bounds and perturbation radius guarantees, it may be a more recent or specialized publication.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "26957e2e-838f-4106-8243-664ffada1b76",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "5275668e-8c11-4f5f-ae6d-dbad31cbace9",
+  "toolUseResult": {
+    "query": "VIB adversarial robustness certification bound \"information bottleneck\" provable guarantee perturbation radius",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DJBmcUjydH3ptMLNn8cZz8",
+        "content": [
+          {
+            "title": "A Closer Look at the Adversarial Robustness of Information Bottleneck Models",
+            "url": "https://arxiv.org/pdf/2107.05712"
+          },
+          {
+            "title": "Revisiting the Variational Information Bottleneck | OpenReview",
+            "url": "https://openreview.net/forum?id=w10KdRwcMk"
+          },
+          {
+            "title": "Deep Variational Information Bottleneck | OpenReview",
+            "url": "https://openreview.net/forum?id=HyxQzBceg"
+          },
+          {
+            "title": "[1612.00410] Deep Variational Information Bottleneck",
+            "url": "https://arxiv.org/abs/1612.00410"
+          },
+          {
+            "title": "Certiﬁed Adversarial Robustness via Randomized Smoothing",
+            "url": "http://proceedings.mlr.press/v97/cohen19c/cohen19c.pdf"
+          },
+          {
+            "title": "Adversarial Robustness with Non-uniform Perturbations Ecenaz Erdemir",
+            "url": "https://arxiv.org/pdf/2102.12002"
+          },
+          {
+            "title": "Provable defenses against adversarial attacks",
+            "url": "https://locuslab.github.io/2019-03-12-provable/"
+          },
+          {
+            "title": "[2104.14379] Learning Robust Variational Information Bottleneck with Reference",
+            "url": "https://arxiv.org/abs/2104.14379"
+          },
+          {
+            "title": "GitHub - AI-secure/Certified-Robustness-SoK-Oldver: This repo keeps track of popular provable training and verification approaches towards robust neural networks, including leaderboards on popular datasets and paper categorization. · GitHub",
+            "url": "https://github.com/AI-secure/Certified-Robustness-SoK-Oldver"
+          },
+          {
+            "title": "Adversarial Robustness of Bottleneck Injected Deep Neural Networks for Task-Oriented Communication",
+            "url": "https://arxiv.org/html/2412.10265v1"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about Variational Information Bottleneck (VIB) and adversarial robustness, though the results don't contain a single paper specifically addressing all the elements you mentioned together (certification bounds, information bottleneck, provable guarantees, and perturbation radius).\n\nHere's what I found:\n\n## Key Research on VIB and Adversarial Robustness\n\nModels trained with the VIB objective outperform those trained with other forms of regularization in terms of generalization performance and robustness to adversarial attack.\n\nHowever, no clear explanation has been found as to how IB models become more robust to adversarial examples. Additionally, previous works failed to investigate possible effects of gradient obfuscation which could lead to a false sense of security.\n\n## Recent Work on Robust VIB\n\nA new approach has been proposed to train a variational information bottleneck (VIB) that improves its robustness to adversarial perturbations.\n\n## Certified Robustness and Perturbation Radius\n\nWhile not directly combined with VIB, research on certified robustness addresses provable perturbation guarantees. Smoothing with Gaussian noise naturally induces certifiable robustness under the ℓ2 norm.\n\nThe search results don't contain a specific paper combining all your query terms. If you're looking for a particular paper on VIB with formal certification bounds and perturbation radius guarantees, it may be a more recent or specialized publication."
+    ],
+    "durationSeconds": 8.137175292
+  },
+  "sourceToolAssistantUUID": "26957e2e-838f-4106-8243-664ffada1b76",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-14T06:29:34.096Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QuGifhZsygEJTQw3kDLsvb`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/pdf/2107.05712",
+  "prompt": "Extract: 1) Does VIB provide provable/certifiable adversarial robustness bounds? 2) Or does the paper show VIB's robustness is only empirical? 3) What is the main conclusion about IB models and adversarial robustness? 4) Does the paper find gradient obfuscation issues with VIB? Be specific about what guarantees VIB does and does NOT provide."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5275668e-8c11-4f5f-ae6d-dbad31cbace9",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zKZev7fnN4mQ6bGHsM",
+  "type": "assistant",
+  "uuid": "e4a85a8b-229a-4eda-beef-e137acb7d869",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cb4CzS1H5gf512StTyAX4Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 38608,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 38608,
+          "cache_creation_input_tokens": 954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-14T06:29:39.938Z_
+
+<details><summary>↩ Tool result · `toolu_01QuGifhZsygEJTQw3kDLsvb`</summary>
+
+```text
+# VIB and Adversarial Robustness Analysis
+
+Based on the document provided, I cannot extract clear answers to your questions because the content appears to be a corrupted or improperly rendered PDF file containing primarily binary/compressed data rather than readable text.
+
+The visible portions show fragmented information about image processing and PDF structure data, but do not contain coherent discussion of:
+
+1. **Provable robustness bounds** - No clear claims about certifiable guarantees are discernible
+2. **Empirical vs. theoretical robustness** - Cannot determine the paper's stance from available text
+3. **IB models and adversarial robustness conclusions** - The main argument is not extractable
+4. **Gradient obfuscation issues** - No specific findings are readable
+
+**To properly answer your questions**, I would need:
+- A correctly formatted PDF or text version of the paper
+- Sections discussing theoretical guarantees or their absence
+- Methodology sections describing robustness evaluation approaches
+- Conclusion sections summarizing findings about VIB (Variational Information Bottleneck)
+
+I recommend converting the source document to text format or providing a different version of the paper for accurate analysis.
+
+[Binary content (application/pdf, 2.5MB) also saved to /home/ubuntu/.claude-account-1/projects/-/b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7/tool-results/webfetch-1778740174484-a67cva.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e4a85a8b-229a-4eda-beef-e137acb7d869",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "385cd76d-3c99-4542-b56f-7da09b5c6a45",
+  "toolUseResult": {
+    "bytes": 2646218,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# VIB and Adversarial Robustness Analysis\n\nBased on the document provided, I cannot extract clear answers to your questions because the content appears to be a corrupted or improperly rendered PDF file containing primarily binary/compressed data rather than readable text.\n\nThe visible portions show fragmented information about image processing and PDF structure data, but do not contain coherent discussion of:\n\n1. **Provable robustness bounds** - No clear claims about certifiable guarantees are discernible\n2. **Empirical vs. theoretical robustness** - Cannot determine the paper's stance from available text\n3. **IB models and adversarial robustness conclusions** - The main argument is not extractable\n4. **Gradient obfuscation issues** - No specific findings are readable\n\n**To properly answer your questions**, I would need:\n- A correctly formatted PDF or text version of the paper\n- Sections discussing theoretical guarantees or their absence\n- Methodology sections describing robustness evaluation approaches\n- Conclusion sections summarizing findings about VIB (Variational Information Bottleneck)\n\nI recommend converting the source document to text format or providing a different version of the paper for accurate analysis.\n\n[Binary content (application/pdf, 2.5MB) also saved to /home/ubuntu/.claude-account-1/projects/-/b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7/tool-results/webfetch-1778740174484-a67cva.pdf]",
+    "durationMs": 5837,
+    "url": "https://arxiv.org/pdf/2107.05712"
+  },
+  "sourceToolAssistantUUID": "e4a85a8b-229a-4eda-beef-e137acb7d869",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-14T06:29:44.512Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01MwmwXoZ5yVk1i4LvydhqrV`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2107.05712",
+  "prompt": "Extract the abstract and key conclusions: Does this paper find that VIB provides provable adversarial robustness? Or does it show VIB's robustness claims are weaker than initially thought? What does it say about gradient obfuscation in IB models?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "385cd76d-3c99-4542-b56f-7da09b5c6a45",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zMNjeB3BNCq8d12wwx",
+  "type": "assistant",
+  "uuid": "2a983b11-a99d-4684-bd64-f8e4f98fdadd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DVCrj5EBXuwu2i8TN2Rs6a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 532,
+      "cache_read_input_tokens": 39562,
+      "output_tokens": 141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 532,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 141,
+          "cache_read_input_tokens": 39562,
+          "cache_creation_input_tokens": 532,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 532
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-14T06:29:48.190Z_
+
+<details><summary>↩ Tool result · `toolu_01MwmwXoZ5yVk1i4LvydhqrV`</summary>
+
+```text
+# Paper Analysis: Adversarial Robustness of Information Bottleneck Models
+
+## Abstract Summary
+The paper investigates whether information bottleneck (IB) models provide genuine adversarial robustness for classification tasks. The authors state: "information bottlenecks alone are not a strong defense strategy, and that previous results were likely influenced by gradient obfuscation."
+
+## Key Findings
+
+**Does VIB provide provable robustness?**
+No. The research demonstrates that prior claims about information bottleneck robustness were misleading rather than substantiated.
+
+**Are VIB's robustness claims weaker than thought?**
+Yes. The paper's evaluation under diverse white-box ℓ∞ attacks reveals that earlier positive findings were compromised by gradient obfuscation—a phenomenon where models appear robust only because they hide vulnerability information from attackers rather than achieving genuine resilience.
+
+**Gradient Obfuscation in IB Models**
+The authors identify gradient obfuscation as the primary explanation for previously reported robustness improvements, indicating that information bottleneck mechanisms inadvertently obscure gradients in ways that create false impressions of security without providing actual protection against well-designed attacks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2a983b11-a99d-4684-bd64-f8e4f98fdadd",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "7268897b-ce68-42bc-af64-9f9aebbd3fba",
+  "toolUseResult": {
+    "bytes": 45268,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Analysis: Adversarial Robustness of Information Bottleneck Models\n\n## Abstract Summary\nThe paper investigates whether information bottleneck (IB) models provide genuine adversarial robustness for classification tasks. The authors state: \"information bottlenecks alone are not a strong defense strategy, and that previous results were likely influenced by gradient obfuscation.\"\n\n## Key Findings\n\n**Does VIB provide provable robustness?**\nNo. The research demonstrates that prior claims about information bottleneck robustness were misleading rather than substantiated.\n\n**Are VIB's robustness claims weaker than thought?**\nYes. The paper's evaluation under diverse white-box ℓ∞ attacks reveals that earlier positive findings were compromised by gradient obfuscation—a phenomenon where models appear robust only because they hide vulnerability information from attackers rather than achieving genuine resilience.\n\n**Gradient Obfuscation in IB Models**\nThe authors identify gradient obfuscation as the primary explanation for previously reported robustness improvements, indicating that information bottleneck mechanisms inadvertently obscure gradients in ways that create false impressions of security without providing actual protection against well-designed attacks.",
+    "durationMs": 3676,
+    "url": "https://arxiv.org/abs/2107.05712"
+  },
+  "sourceToolAssistantUUID": "2a983b11-a99d-4684-bd64-f8e4f98fdadd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-14T06:29:54.087Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CgASwLMPoDoZoKH2jeKArd`</summary>
+
+```json
+{
+  "query": "LIBERO-Plus benchmark leaderboard VLA robustness results 2026 latest"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7268897b-ce68-42bc-af64-9f9aebbd3fba",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zMzddmbnq1ZHNSsiRe",
+  "type": "assistant",
+  "uuid": "8e778558-79fd-4c5b-b175-3ed22ec73e90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSgFgrenzLReZcjJp96W9X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 419,
+      "cache_read_input_tokens": 40094,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 419,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 40094,
+          "cache_creation_input_tokens": 419,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 419
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-14T06:30:00.414Z_
+
+<details><summary>↩ Tool result · `toolu_01CgASwLMPoDoZoKH2jeKArd`</summary>
+
+```text
+Web search results for query: "LIBERO-Plus benchmark leaderboard VLA robustness results 2026 latest"
+
+Links: [{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://sylvestf.github.io/LIBERO-plus/"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"},{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://huggingface.co/papers/2510.13626"},{"title":"CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models","url":"https://cvpr.thecvf.com/virtual/2026/poster/38735"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"[2603.28301] LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models","url":"https://arxiv.org/abs/2603.28301"},{"title":"LIBERO-plus/README.md at main · sylvestf/LIBERO-plus","url":"https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"},{"title":"Sylvest/LIBERO-plus · Datasets at Hugging Face","url":"https://huggingface.co/datasets/Sylvest/LIBERO-plus"}]
+
+Based on the web search results, here's what I found about LIBERO-Plus benchmark and VLA robustness results:
+
+## Overview
+
+LIBERO-Plus is a comprehensive benchmark designed to establish a rigorous leaderboard for evaluating generalization capabilities across key vulnerability dimensions. The benchmark includes 10,030 tasks spanning seven perturbation dimensions.
+
+## Key Robustness Findings
+
+The research reveals significant fragility in current VLA models. Models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.
+
+## Perturbation Dimensions
+
+The systematic vulnerability analysis introduces controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise.
+
+## Notable Findings
+
+Language perturbations result in the smallest average performance drop (-25.3) across most models, contrary to expectations. Models are largely insensitive to language variations, with further experiments revealing that models tend to ignore language instructions completely.
+
+## Leaderboard Models
+
+The leaderboard includes several models with average scores: AVA-VLA (Avg 74.7), MergeVLA (Avg 72.2), and SRPO (Avg 82.1).
+
+For the most up-to-date leaderboard results, you can visit the official LIBERO-Plus website at https://sylvestf.github.io/LIBERO-plus/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8e778558-79fd-4c5b-b175-3ed22ec73e90",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "1be1f1ce-d0b6-4238-99d7-307345e31d35",
+  "toolUseResult": {
+    "query": "LIBERO-Plus benchmark leaderboard VLA robustness results 2026 latest",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Kz2vbi1UthPcE5XzGsAsEU",
+        "content": [
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://sylvestf.github.io/LIBERO-plus/"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          },
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          },
+          {
+            "title": "Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2510.13626"
+          },
+          {
+            "title": "CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models",
+            "url": "https://cvpr.thecvf.com/virtual/2026/poster/38735"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "[2603.28301] LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models",
+            "url": "https://arxiv.org/abs/2603.28301"
+          },
+          {
+            "title": "LIBERO-plus/README.md at main · sylvestf/LIBERO-plus",
+            "url": "https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"
+          },
+          {
+            "title": "Sylvest/LIBERO-plus · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/Sylvest/LIBERO-plus"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about LIBERO-Plus benchmark and VLA robustness results:\n\n## Overview\n\nLIBERO-Plus is a comprehensive benchmark designed to establish a rigorous leaderboard for evaluating generalization capabilities across key vulnerability dimensions. The benchmark includes 10,030 tasks spanning seven perturbation dimensions.\n\n## Key Robustness Findings\n\nThe research reveals significant fragility in current VLA models. Models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.\n\n## Perturbation Dimensions\n\nThe systematic vulnerability analysis introduces controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise.\n\n## Notable Findings\n\nLanguage perturbations result in the smallest average performance drop (-25.3) across most models, contrary to expectations. Models are largely insensitive to language variations, with further experiments revealing that models tend to ignore language instructions completely.\n\n## Leaderboard Models\n\nThe leaderboard includes several models with average scores: AVA-VLA (Avg 74.7), MergeVLA (Avg 72.2), and SRPO (Avg 82.1).\n\nFor the most up-to-date leaderboard results, you can visit the official LIBERO-Plus website at https://sylvestf.github.io/LIBERO-plus/"
+    ],
+    "durationSeconds": 6.323319839000003
+  },
+  "sourceToolAssistantUUID": "8e778558-79fd-4c5b-b175-3ed22ec73e90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Action-Conditioned Information Bottleneck Token Surgery for Robust VLA…",
+  "leafUuid": "1be1f1ce-d0b6-4238-99d7-307345e31d35",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise token pruning for CoRL 2026 with fixed baselines",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-14T06:30:05.026Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CnshCC3EyRTvw9ErQbC2o8`</summary>
+
+```json
+{
+  "url": "https://sylvestf.github.io/LIBERO-plus/",
+  "prompt": "Extract the full leaderboard results table if available. List all methods with their scores across perturbation dimensions. What are the current SOTA results on LIBERO-Plus? Which methods perform best on camera, lighting, texture, noise perturbations specifically?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1be1f1ce-d0b6-4238-99d7-307345e31d35",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zNtMtXbdC5ADndzn1G",
+  "type": "assistant",
+  "uuid": "52402322-ee80-417d-8eed-205f80ee2e12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cv2gBwQ93ErEnSLZDLKhuw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 971,
+      "cache_read_input_tokens": 40513,
+      "output_tokens": 138,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 971,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 138,
+          "cache_read_input_tokens": 40513,
+          "cache_creation_input_tokens": 971,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 971
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-14T06:30:09.367Z_
+
+<details><summary>↩ Tool result · `toolu_01CnshCC3EyRTvw9ErQbC2o8`</summary>
+
+```text
+# LIBERO-Plus Leaderboard Analysis
+
+Based on the provided webpage content, **a detailed numerical leaderboard table with complete scores across all perturbation dimensions is not fully displayed in the text**.
+
+## Available Information
+
+The page references a leaderboard figure showing model performance but does not include the actual numerical results table. The content mentions:
+
+- **SOTA Performance Highlight**: One method achieved "92.8% success rate under camera perturbations, surpassing the next best model by 37.2 percentage points."
+
+- **Additional Strong Results**: The same top performer showed "89.3%" on noise and "77.6%" on layout perturbations.
+
+## Key Limitations
+
+The webpage provides visual representations (heatmaps and difficulty-level charts) rather than a comprehensive numerical table. The exact model names and complete score breakdowns across all seven perturbation dimensions are not transcribed in the available text.
+
+## Finding Summary
+
+The page emphasizes that "training strategies that emphasize diversity and exposure to varied data distributions consistently yield more robust models," suggesting the leaderboard-leading approach uses extensive training data (20,000+ trajectories) across varied conditions rather than relying on specific architectural innovations.
+
+To access the complete leaderboard with all methods and scores, you would need to consult the actual paper or code repository linked on the page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "52402322-ee80-417d-8eed-205f80ee2e12",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "9da6f74d-22ff-409f-8e44-05da4759747c",
+  "toolUseResult": {
+    "bytes": 40818,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# LIBERO-Plus Leaderboard Analysis\n\nBased on the provided webpage content, **a detailed numerical leaderboard table with complete scores across all perturbation dimensions is not fully displayed in the text**.\n\n## Available Information\n\nThe page references a leaderboard figure showing model performance but does not include the actual numerical results table. The content mentions:\n\n- **SOTA Performance Highlight**: One method achieved \"92.8% success rate under camera perturbations, surpassing the next best model by 37.2 percentage points.\"\n\n- **Additional Strong Results**: The same top performer showed \"89.3%\" on noise and \"77.6%\" on layout perturbations.\n\n## Key Limitations\n\nThe webpage provides visual representations (heatmaps and difficulty-level charts) rather than a comprehensive numerical table. The exact model names and complete score breakdowns across all seven perturbation dimensions are not transcribed in the available text.\n\n## Finding Summary\n\nThe page emphasizes that \"training strategies that emphasize diversity and exposure to varied data distributions consistently yield more robust models,\" suggesting the leaderboard-leading approach uses extensive training data (20,000+ trajectories) across varied conditions rather than relying on specific architectural innovations.\n\nTo access the complete leaderboard with all methods and scores, you would need to consult the actual paper or code repository linked on the page.",
+    "durationMs": 4337,
+    "url": "https://sylvestf.github.io/LIBERO-plus/"
+  },
+  "sourceToolAssistantUUID": "52402322-ee80-417d-8eed-205f80ee2e12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-14T06:30:13.796Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VfxvKcsTpiC3iKwcE3ksbQ`</summary>
+
+```json
+{
+  "query": "LIBERO-Plus leaderboard SOTA results AVA-VLA MergeVLA SRPO FTM robustness scores 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9da6f74d-22ff-409f-8e44-05da4759747c",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zPYdWRZ2EFt63FPqns",
+  "type": "assistant",
+  "uuid": "3e285b31-c2e3-4c7a-8116-7017be8e44cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VbJf1ubZU3ewbKGFxGnFuJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 440,
+      "cache_read_input_tokens": 41484,
+      "output_tokens": 85,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 440,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 85,
+          "cache_read_input_tokens": 41484,
+          "cache_creation_input_tokens": 440,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 440
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-14T06:30:19.573Z_
+
+<details><summary>↩ Tool result · `toolu_01VfxvKcsTpiC3iKwcE3ksbQ`</summary>
+
+```text
+Web search results for query: "LIBERO-Plus leaderboard SOTA results AVA-VLA MergeVLA SRPO FTM robustness scores 2026"
+
+Links: [{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"},{"title":"VLA SOTA Leaderboard","url":"https://sota.evomind-tech.com/"},{"title":"VLA & Dexterous Manipulation SOTA Leaderboard","url":"https://github.com/MINT-SJTU/Evo-SOTA.io/blob/main/README.md"},{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://sylvestf.github.io/LIBERO-plus/"},{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"},{"title":"CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models","url":"https://cvpr.thecvf.com/virtual/2026/poster/38735"},{"title":"SRPO Code Implementation Explained — siiRL documentation","url":"https://siirl.readthedocs.io/en/latest/programming_guide/srpo_code_explained.html"},{"title":"LIBERO-plus/README.md at main · sylvestf/LIBERO-plus","url":"https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"}]
+
+Based on the search results, I found relevant information about the LIBERO-Plus leaderboard and the models you mentioned:
+
+## LIBERO-Plus Leaderboard Results
+
+The LIBERO-Plus leaderboard includes several state-of-the-art models with their average robustness scores:
+- AVA-VLA: Avg 74.7
+- MergeVLA: Avg 72.2  
+- SRPO: Avg 82.1
+
+## Key Findings
+
+LIBERO Plus is an extended benchmark testing robustness across 7 perturbation dimensions: Camera, Robot, Language, Light, Background, Noise, and Layout.
+
+Models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.
+
+SRPO shows significant robustness on the LIBERO-Plus benchmark, achieving a 167% performance gain.
+
+Regarding FTM (Fine-Tuned Model), I did not find specific results for a model with that acronym in the search results. If you have more details about FTM or would like results for other specific models, I can search for more information.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3e285b31-c2e3-4c7a-8116-7017be8e44cc",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "33f60c31-9f5c-4d89-be0e-481084367615",
+  "toolUseResult": {
+    "query": "LIBERO-Plus leaderboard SOTA results AVA-VLA MergeVLA SRPO FTM robustness scores 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VKtfku5duTnwvb2du4uktv",
+        "content": [
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          },
+          {
+            "title": "VLA SOTA Leaderboard",
+            "url": "https://sota.evomind-tech.com/"
+          },
+          {
+            "title": "VLA & Dexterous Manipulation SOTA Leaderboard",
+            "url": "https://github.com/MINT-SJTU/Evo-SOTA.io/blob/main/README.md"
+          },
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://sylvestf.github.io/LIBERO-plus/"
+          },
+          {
+            "title": "LIBERO Benchmark: Vision-Language-Action in Robotics",
+            "url": "https://www.emergentmind.com/topics/libero"
+          },
+          {
+            "title": "CVPR Poster LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models",
+            "url": "https://cvpr.thecvf.com/virtual/2026/poster/38735"
+          },
+          {
+            "title": "SRPO Code Implementation Explained — siiRL documentation",
+            "url": "https://siirl.readthedocs.io/en/latest/programming_guide/srpo_code_explained.html"
+          },
+          {
+            "title": "LIBERO-plus/README.md at main · sylvestf/LIBERO-plus",
+            "url": "https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the LIBERO-Plus leaderboard and the models you mentioned:\n\n## LIBERO-Plus Leaderboard Results\n\nThe LIBERO-Plus leaderboard includes several state-of-the-art models with their average robustness scores:\n- AVA-VLA: Avg 74.7\n- MergeVLA: Avg 72.2  \n- SRPO: Avg 82.1\n\n## Key Findings\n\nLIBERO Plus is an extended benchmark testing robustness across 7 perturbation dimensions: Camera, Robot, Language, Light, Background, Noise, and Layout.\n\nModels exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.\n\nSRPO shows significant robustness on the LIBERO-Plus benchmark, achieving a 167% performance gain.\n\nRegarding FTM (Fine-Tuned Model), I did not find specific results for a model with that acronym in the search results. If you have more details about FTM or would like results for other specific models, I can search for more information."
+    ],
+    "durationSeconds": 5.773238410999999
+  },
+  "sourceToolAssistantUUID": "3e285b31-c2e3-4c7a-8116-7017be8e44cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-14T06:30:25.651Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YUP7jek6R5DUiWu1knRX3U`</summary>
+
+```json
+{
+  "query": "FTM \"Feature Transform Module\" SmolVLA small VLA robustness LIBERO token modulation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33f60c31-9f5c-4d89-be0e-481084367615",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zQJ8es6ChnHE93VKkm",
+  "type": "assistant",
+  "uuid": "8e53b2fc-85e9-4b4e-aa1a-27e49140f088",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BBjDtiu3JsHsv3WM3YubmC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 906,
+      "cache_read_input_tokens": 41924,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 906,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 41924,
+          "cache_creation_input_tokens": 906,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 906
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-14T06:30:37.637Z_
+
+<details><summary>↩ Tool result · `toolu_01YUP7jek6R5DUiWu1knRX3U`</summary>
+
+```text
+Web search results for query: "FTM "Feature Transform Module" SmolVLA small VLA robustness LIBERO token modulation 2025 2026"
+
+Links: [{"title":"Fine Tuning SmolVLA for New Environments (Code included!) | by Xavier O'Keefe | Toward Humanoids | Medium","url":"https://medium.com/correll-lab/fine-tuning-smolvla-for-new-environments-code-included-af266c56d632"},{"title":"Leave No Observation Behind: Real-time Correction for VLA Action Chunks","url":"https://arxiv.org/html/2509.23224v1"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"},{"title":"SmolVLA: A vision-language-action model for affordable and efficient robotics","url":"https://arxiv.org/html/2506.01844v1"},{"title":"VLA-0-Smol","url":"https://robot-learning-collective.github.io/vla-0-smol"},{"title":"LIBERO-plus/README.md at main · sylvestf/LIBERO-plus","url":"https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"},{"title":"Release 0.6.0 · Issue #3134 · huggingface/lerobot","url":"https://github.com/huggingface/lerobot/issues/3134"},{"title":"fine tune SmolVLA in libero with tensor shape mismatch · Issue #2418 · huggingface/lerobot","url":"https://github.com/huggingface/lerobot/issues/2418"},{"title":"How can i train and eval SmolVLA in libero? · Issue #2258 · huggingface/lerobot","url":"https://github.com/huggingface/lerobot/issues/2258"},{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"}]
+
+Now let me search more specifically for "FTM" and "token modulation" to find research on Feature Transform Module:
+
+Links: [{"title":"VLA Models Are More Generalizable Than You Think: Revisiting Physical and Spatial Modeling","url":"https://arxiv.org/html/2512.02902"},{"title":"Feature Token Modulation (FTM)","url":"https://www.emergentmind.com/topics/feature-token-modulation-ftm"},{"title":"[2512.02902] VLA Models Are More Generalizable Than You Think: Revisiting Physical and Spatial Modeling","url":"https://arxiv.org/abs/2512.02902"},{"title":"TTF-VLA: Temporal Token Fusion via Pixel-Attention Integration for Vision-Language-Action Models","url":"https://arxiv.org/html/2508.19257"},{"title":"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.22991v1"},{"title":"FD-VLA: Force-Distilled Vision-Language-Action Model for Contact-Rich Manipulation","url":"https://arxiv.org/html/2602.02142"},{"title":"Bio-Visual Inspired Weak Saliency Feedback Transformer ...","url":"https://dl.acm.org/doi/pdf/10.1145/3746027.3755005"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models","url":"https://arxiv.org/html/2603.25766"},{"title":"Fine-Tuning Vision-Language-Action Models","url":"https://arxiv.org/pdf/2502.19645"}]
+
+Based on my web search results, I found comprehensive information about FTM (Feature Token Modulation) and its application to SmolVLA robustness on LIBERO benchmarks. Here's what I discovered:
+
+## Feature Token Modulation (FTM) for VLA Robustness
+
+Vision-language-action (VLA) models achieve strong in-distribution performance but degrade sharply under novel camera viewpoints and visual perturbations, with this brittleness primarily arising from misalignment in Spatial Modeling, rather than Physical Modeling.
+
+### FTM Mechanism
+
+Feature Token Modulation (FTM) applies a global affine transformation to visual tokens and improves Libero viewpoint accuracy from 48.5% to 87.1% with only 4K parameters. FTM is a simple yet effective mechanism that applies a global affine transformation to visual token embeddings using only two learnable parameter vectors.
+
+### Broader Framework
+
+A one-shot adaptation framework recalibrates visual representations through lightweight, learnable updates, with Feature Linear Adaptation (FLA) introducing low-rank updates to the ViT encoder, achieving 90.8% success with 4.7M parameters—matching LoRA-scale finetuning at far lower cost.
+
+### Key Applications
+
+Global FTM recovers over 80% of the viewpoint-induced loss in VLA models with only 4K parameters. FTM can be introduced at the output of encoders (as in VLA), within transformer blocks (as in DiTs and LaVi), or modulate FiLM parameters of UNet-based diffusion models.
+
+The research demonstrates that substantial untapped robustness exists in pretrained VLA models like SmolVLA, and targeted minimal visual adaptation through FTM is sufficient to restore viewpoint generalization on benchmarks like LIBERO.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8e53b2fc-85e9-4b4e-aa1a-27e49140f088",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "73c31b69-015a-4886-b21f-5bc69df18071",
+  "toolUseResult": {
+    "query": "FTM \"Feature Transform Module\" SmolVLA small VLA robustness LIBERO token modulation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0196TTK3y877iaA7tQF3r2wC",
+        "content": [
+          {
+            "title": "Fine Tuning SmolVLA for New Environments (Code included!) | by Xavier O'Keefe | Toward Humanoids | Medium",
+            "url": "https://medium.com/correll-lab/fine-tuning-smolvla-for-new-environments-code-included-af266c56d632"
+          },
+          {
+            "title": "Leave No Observation Behind: Real-time Correction for VLA Action Chunks",
+            "url": "https://arxiv.org/html/2509.23224v1"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          },
+          {
+            "title": "SmolVLA: A vision-language-action model for affordable and efficient robotics",
+            "url": "https://arxiv.org/html/2506.01844v1"
+          },
+          {
+            "title": "VLA-0-Smol",
+            "url": "https://robot-learning-collective.github.io/vla-0-smol"
+          },
+          {
+            "title": "LIBERO-plus/README.md at main · sylvestf/LIBERO-plus",
+            "url": "https://github.com/sylvestf/LIBERO-plus/blob/main/README.md"
+          },
+          {
+            "title": "Release 0.6.0 · Issue #3134 · huggingface/lerobot",
+            "url": "https://github.com/huggingface/lerobot/issues/3134"
+          },
+          {
+            "title": "fine tune SmolVLA in libero with tensor shape mismatch · Issue #2418 · huggingface/lerobot",
+            "url": "https://github.com/huggingface/lerobot/issues/2418"
+          },
+          {
+            "title": "How can i train and eval SmolVLA in libero? · Issue #2258 · huggingface/lerobot",
+            "url": "https://github.com/huggingface/lerobot/issues/2258"
+          },
+          {
+            "title": "LIBERO Benchmark: Vision-Language-Action in Robotics",
+            "url": "https://www.emergentmind.com/topics/libero"
+          }
+        ]
+      },
+      "Now let me search more specifically for \"FTM\" and \"token modulation\" to find research on Feature Transform Module:",
+      {
+        "tool_use_id": "srvtoolu_01VLKibk68HEAoWp9nXdHe2o",
+        "content": [
+          {
+            "title": "VLA Models Are More Generalizable Than You Think: Revisiting Physical and Spatial Modeling",
+            "url": "https://arxiv.org/html/2512.02902"
+          },
+          {
+            "title": "Feature Token Modulation (FTM)",
+            "url": "https://www.emergentmind.com/topics/feature-token-modulation-ftm"
+          },
+          {
+            "title": "[2512.02902] VLA Models Are More Generalizable Than You Think: Revisiting Physical and Spatial Modeling",
+            "url": "https://arxiv.org/abs/2512.02902"
+          },
+          {
+            "title": "TTF-VLA: Temporal Token Fusion via Pixel-Attention Integration for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2508.19257"
+          },
+          {
+            "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.22991v1"
+          },
+          {
+            "title": "FD-VLA: Force-Distilled Vision-Language-Action Model for Contact-Rich Manipulation",
+            "url": "https://arxiv.org/html/2602.02142"
+          },
+          {
+            "title": "Bio-Visual Inspired Weak Saliency Feedback Transformer ...",
+            "url": "https://dl.acm.org/doi/pdf/10.1145/3746027.3755005"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2603.25766"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2502.19645"
+          }
+        ]
+      },
+      "Based on my web search results, I found comprehensive information about FTM (Feature Token Modulation) and its application to SmolVLA robustness on LIBERO benchmarks. Here's what I discovered:\n\n## Feature Token Modulation (FTM) for VLA Robustness\n\nVision-language-action (VLA) models achieve strong in-distribution performance but degrade sharply under novel camera viewpoints and visual perturbations, with this brittleness primarily arising from misalignment in Spatial Modeling, rather than Physical Modeling.\n\n### FTM Mechanism\n\nFeature Token Modulation (FTM) applies a global affine transformation to visual tokens and improves Libero viewpoint accuracy from 48.5% to 87.1% with only 4K parameters. FTM is a simple yet effective mechanism that applies a global affine transformation to visual token embeddings using only two learnable parameter vectors.\n\n### Broader Framework\n\nA one-shot adaptation framework recalibrates visual representations through lightweight, learnable updates, with Feature Linear Adaptation (FLA) introducing low-rank updates to the ViT encoder, achieving 90.8% success with 4.7M parameters—matching LoRA-scale finetuning at far lower cost.\n\n### Key Applications\n\nGlobal FTM recovers over 80% of the viewpoint-induced loss in VLA models with only 4K parameters. FTM can be introduced at the output of encoders (as in VLA), within transformer blocks (as in DiTs and LaVi), or modulate FiLM parameters of UNet-based diffusion models.\n\nThe research demonstrates that substantial untapped robustness exists in pretrained VLA models like SmolVLA, and targeted minimal visual adaptation through FTM is sufficient to restore viewpoint generalization on benchmarks like LIBERO."
+    ],
+    "durationSeconds": 11.980009479
+  },
+  "sourceToolAssistantUUID": "8e53b2fc-85e9-4b4e-aa1a-27e49140f088",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-14T06:30:42.077Z_
+
+Now let me check the CoRL deadline more precisely and verify the paper submission date.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73c31b69-015a-4886-b21f-5bc69df18071",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zRdRHyJXWro9dZtQ1D",
+  "type": "assistant",
+  "uuid": "c9fe8ea6-fe0b-44a4-b8c3-1860af0bcb99",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018hFrybFSEAJSNacjxtJLJK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1554,
+      "cache_read_input_tokens": 42830,
+      "output_tokens": 130,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1554,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 130,
+          "cache_read_input_tokens": 42830,
+          "cache_creation_input_tokens": 1554,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1554
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-14T06:30:43.345Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012W9Su36DvSvn1TstWiULSX`</summary>
+
+```json
+{
+  "url": "https://www.corl.org/contributions/call-for-papers",
+  "prompt": "Extract the exact submission deadlines for CoRL 2026: abstract deadline, paper deadline, review timeline, notification date. Include timezone information."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9fe8ea6-fe0b-44a4-b8c3-1860af0bcb99",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zRdRHyJXWro9dZtQ1D",
+  "type": "assistant",
+  "uuid": "daa29689-accd-4f34-a98f-b3a5d225fc07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018hFrybFSEAJSNacjxtJLJK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1554,
+      "cache_read_input_tokens": 42830,
+      "output_tokens": 130,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1554,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 130,
+          "cache_read_input_tokens": 42830,
+          "cache_creation_input_tokens": 1554,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1554
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-14T06:30:45.852Z_
+
+<details><summary>↩ Tool result · `toolu_012W9Su36DvSvn1TstWiULSX`</summary>
+
+```text
+# CoRL 2026 Submission Deadlines
+
+Based on the provided web page content, **specific submission deadlines are not included**. The page states "For paper submission format and timeline, see: [Instruction for Authors](/contributions/instruction-for-authors)" but does not display the actual deadlines, timezone information, or review timeline on this page.
+
+To find the exact abstract deadline, paper deadline, review timeline, and notification date with timezone details, you would need to visit the "Instruction for Authors" section referenced in the link.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "daa29689-accd-4f34-a98f-b3a5d225fc07",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "7218618d-7792-4443-b702-a77b3411acc5",
+  "toolUseResult": {
+    "bytes": 134153,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# CoRL 2026 Submission Deadlines\n\nBased on the provided web page content, **specific submission deadlines are not included**. The page states \"For paper submission format and timeline, see: [Instruction for Authors](/contributions/instruction-for-authors)\" but does not display the actual deadlines, timezone information, or review timeline on this page.\n\nTo find the exact abstract deadline, paper deadline, review timeline, and notification date with timezone details, you would need to visit the \"Instruction for Authors\" section referenced in the link.",
+    "durationMs": 2504,
+    "url": "https://www.corl.org/contributions/call-for-papers"
+  },
+  "sourceToolAssistantUUID": "daa29689-accd-4f34-a98f-b3a5d225fc07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-14T06:30:50.448Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Ayqbz7GvU9pjRMiV6VzfS9`</summary>
+
+```json
+{
+  "url": "https://www.corl.org/contributions/instruction-for-authors",
+  "prompt": "Extract the exact submission deadlines for CoRL 2026: abstract deadline date and time, paper submission deadline date and time, supplementary materials deadline, review timeline, author notification date. Include timezone information (UTC, AoE, etc.)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7218618d-7792-4443-b702-a77b3411acc5",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zSEVw7VcoeZ6Z74TPp",
+  "type": "assistant",
+  "uuid": "3326aca1-1a9b-4609-b732-f37ad497bebc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GyPm1KDntC4mCJesdkRLCV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 44384,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 256,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 44384,
+          "cache_creation_input_tokens": 256,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 256
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-14T06:30:53.808Z_
+
+<details><summary>↩ Tool result · `toolu_01Ayqbz7GvU9pjRMiV6VzfS9`</summary>
+
+```text
+# CoRL 2026 Submission Deadlines
+
+Based on the provided page content, **specific deadline dates and times are not listed**. The document references a "Key Dates" section but does not populate it with actual dates.
+
+The only concrete deadline mentioned is:
+
+**Camera-Ready Submission:** "Oct 12, 2026 (23:59 [Anywhere on Earth](https://www.timeanddate.com/time/zones/aoe))"
+
+The document also notes: "Please note that the paper submission deadline is Thursday (5/28) EOD rather than Friday!" However, this appears to reference May 28th without specifying the year or timezone for the main submission deadline.
+
+**Missing Information:**
+The page does not provide:
+- Abstract submission deadline date/time
+- Complete paper submission deadline with timezone
+- Supplementary materials deadline
+- Review timeline
+- Author notification date
+
+To obtain complete deadline information, you would need to access the full "Key Dates" section on the CoRL 2026 website or contact the organizing committee directly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3326aca1-1a9b-4609-b732-f37ad497bebc",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "4c973f38-58b2-41e2-b8d5-f5367810fcf3",
+  "toolUseResult": {
+    "bytes": 176782,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# CoRL 2026 Submission Deadlines\n\nBased on the provided page content, **specific deadline dates and times are not listed**. The document references a \"Key Dates\" section but does not populate it with actual dates.\n\nThe only concrete deadline mentioned is:\n\n**Camera-Ready Submission:** \"Oct 12, 2026 (23:59 [Anywhere on Earth](https://www.timeanddate.com/time/zones/aoe))\"\n\nThe document also notes: \"Please note that the paper submission deadline is Thursday (5/28) EOD rather than Friday!\" However, this appears to reference May 28th without specifying the year or timezone for the main submission deadline.\n\n**Missing Information:**\nThe page does not provide:\n- Abstract submission deadline date/time\n- Complete paper submission deadline with timezone\n- Supplementary materials deadline\n- Review timeline\n- Author notification date\n\nTo obtain complete deadline information, you would need to access the full \"Key Dates\" section on the CoRL 2026 website or contact the organizing committee directly.",
+    "durationMs": 3356,
+    "url": "https://www.corl.org/contributions/instruction-for-authors"
+  },
+  "sourceToolAssistantUUID": "3326aca1-1a9b-4609-b732-f37ad497bebc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 75 · 2026-05-14T06:30:53.810Z_
+
+```json
+{
+  "parentUuid": "4c973f38-58b2-41e2-b8d5-f5367810fcf3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "a911d2df-aca5-4df4-8400-9e733d70d3fb",
+  "timestamp": "2026-05-14T06:30:53.810Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Action-Conditioned Information Bottleneck Token Surgery for Robust VLA…",
+  "leafUuid": "a911d2df-aca5-4df4-8400-9e733d70d3fb",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise token pruning for CoRL 2026 with fixed baselines",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-14T06:30:57.796Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01C34P1Bocs6ePQN1BZHFemL`</summary>
+
+```json
+{
+  "query": "CoRL 2026 abstract deadline \"May 26\" paper deadline \"May 28\" submission timeline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a911d2df-aca5-4df4-8400-9e733d70d3fb",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zSpW5KAML8Z3h9kd4h",
+  "type": "assistant",
+  "uuid": "0de9bce0-f095-41a6-8e1a-2d576e63251f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DjGcwpLtaDMYwLh3PYhmmt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 44640,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 482,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 44640,
+          "cache_creation_input_tokens": 482,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 482
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-14T06:31:06.676Z_
+
+<details><summary>↩ Tool result · `toolu_01C34P1Bocs6ePQN1BZHFemL`</summary>
+
+```text
+Web search results for query: "CoRL 2026 abstract deadline "May 26" paper deadline "May 28" submission timeline"
+
+Links: [{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf"},{"title":"AI Conference Deadlines","url":"https://mldeadlines.com/"},{"title":"CoRL 2026 - Contributions","url":"https://www.corl.org/contributions"},{"title":"Refactor conference data · huggingface/ai-deadlines at f3cc2d7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"}]
+
+Based on the search results, here's the CoRL 2026 submission timeline:
+
+## CoRL 2026 Submission Deadlines
+
+**Abstract submission deadline:** May 26, 2026 at 11:59 UTC
+
+**Paper submission deadline:** May 29, 2026 at 11:59 UTC
+
+However, there's an important note: the paper submission deadline is Thursday (5/28) EOD rather than Friday, which suggests the official deadline may be May 28, 2026 end-of-day.
+
+## Conference Details
+
+The conference will be held November 9-12, 2026 at JW Marriott Austin, 110 E 2nd St, Austin, TX 78701
+
+The deadlines are final, and no accommodations can be made for missing the abstract deadline or paper deadline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0de9bce0-f095-41a6-8e1a-2d576e63251f",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "4d0248e6-0c31-4804-af47-2f898e248d02",
+  "toolUseResult": {
+    "query": "CoRL 2026 abstract deadline \"May 26\" paper deadline \"May 28\" submission timeline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014qADsxKsf5GgV1nJk9vipW",
+        "content": [
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mldeadlines.com/"
+          },
+          {
+            "title": "CoRL 2026 - Contributions",
+            "url": "https://www.corl.org/contributions"
+          },
+          {
+            "title": "Refactor conference data · huggingface/ai-deadlines at f3cc2d7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"
+          }
+        ]
+      },
+      "Based on the search results, here's the CoRL 2026 submission timeline:\n\n## CoRL 2026 Submission Deadlines\n\n**Abstract submission deadline:** May 26, 2026 at 11:59 UTC\n\n**Paper submission deadline:** May 29, 2026 at 11:59 UTC\n\nHowever, there's an important note: the paper submission deadline is Thursday (5/28) EOD rather than Friday, which suggests the official deadline may be May 28, 2026 end-of-day.\n\n## Conference Details\n\nThe conference will be held November 9-12, 2026 at JW Marriott Austin, 110 E 2nd St, Austin, TX 78701\n\nThe deadlines are final, and no accommodations can be made for missing the abstract deadline or paper deadline."
+    ],
+    "durationSeconds": 8.87588523700001
+  },
+  "sourceToolAssistantUUID": "0de9bce0-f095-41a6-8e1a-2d576e63251f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-14T06:31:10.042Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01YNGS9VtEz9mFUYEzLsqjGf`</summary>
+
+```json
+{
+  "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf",
+  "prompt": "Extract the exact CoRL 2026 deadlines: abstract deadline, paper deadline, with dates and times. What timezone?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d0248e6-0c31-4804-af47-2f898e248d02",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zTmX1wAuaA7LxB3pwv",
+  "type": "assistant",
+  "uuid": "689bd065-611a-4545-a8a3-d5328a7a6ac8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FtQ7q8nPrH2ZYsft7AD3oX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 45122,
+      "output_tokens": 141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 718,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 141,
+          "cache_read_input_tokens": 45122,
+          "cache_creation_input_tokens": 718,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 718
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-14T06:31:12.232Z_
+
+<details><summary>↩ Tool result · `toolu_01YNGS9VtEz9mFUYEzLsqjGf`</summary>
+
+```text
+# CoRL 2026 Deadlines
+
+Based on the conference update, here are the exact deadlines:
+
+| Deadline Type | Date & Time | Timezone |
+|---|---|---|
+| **Abstract submission** | May 26, 2026 at 11:59 | UTC |
+| **Paper submission** | May 29, 2026 at 11:59 | UTC |
+
+**Additional Conference Details:**
+- **Dates:** November 9-12, 2026
+- **Schedule:** Workshops on Nov 9, main conference Nov 10-12
+- **Venue:** JW Marriott Austin, 110 E 2nd St, Austin, TX 78701
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "689bd065-611a-4545-a8a3-d5328a7a6ac8",
+  "isSidechain": false,
+  "promptId": "57c70c04-9f4d-4afc-a9cf-c629a6645617",
+  "type": "user",
+  "uuid": "c2011ef0-7cd7-48be-aa50-3b985ac30619",
+  "toolUseResult": {
+    "bytes": 60013,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# CoRL 2026 Deadlines\n\nBased on the conference update, here are the exact deadlines:\n\n| Deadline Type | Date & Time | Timezone |\n|---|---|---|\n| **Abstract submission** | May 26, 2026 at 11:59 | UTC |\n| **Paper submission** | May 29, 2026 at 11:59 | UTC |\n\n**Additional Conference Details:**\n- **Dates:** November 9-12, 2026\n- **Schedule:** Workshops on Nov 9, main conference Nov 10-12\n- **Venue:** JW Marriott Austin, 110 E 2nd St, Austin, TX 78701",
+    "durationMs": 2183,
+    "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+  },
+  "sourceToolAssistantUUID": "689bd065-611a-4545-a8a3-d5328a7a6ac8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82 · 2026-05-14T06:31:40.924Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me synthesize my findings before writing the revised idea:
+
+**Key findings:**
+
+1. **SmolVLA architecture**: SmolVLM-2 (SigLIP vision encoder + SmolLM2 language decoder), 450M total params, ~100M action expert, 64 visual tokens per frame. NOT Qwen2.5-0.5B.
+
+2. **CoRL 2026 deadlines**: Abstract May 26 (11:59 UTC), Paper May 29 (11:59 UTC). Today is May 14. That gives us ~12 days to abstract, ~15 days to paper.
+
+
+3. **SimPrune** targets SSL training efficiency through cross-branch token matching, while my approach focuses on robustness in VLA fine-tuning using augmentation consistency with an information bottleneck objective—fundamentally different goals and settings. **TCA** applies token condensation at test time without training, achieving significant improvements on downstream tasks.
+
+5. I need to reconsider the VIB robustness claim—recent work shows that apparent VIB robustness stems from gradient obfuscation rather than provable guarantees, so I should frame this as information-theoretic motivation with empirical improvements rather than formal robustness margins.
+
+6. Looking at the LIBERO-Plus leaderboard, SRPO leads significantly at 82.1, with other methods like AVA-VLA and MergeVLA trailing, though FTM shows strong performance on specific benchmarks.
+
+7. There are several other VLA pruning approaches I should consider—VLA-Pruner, SP-VLA, ETA-VLA, EcoVLA, and OneWM-VLA—each with different compression strategies.
+
+For the revision, I'm refocusing the scope around CoRL 2026 as the primary target with a more constrained experimental plan: four perturbation dimensions without tangent-space augmentation, focusing on SmolVLA. The compute budget works out to roughly 98 hours total, leaving comfortable headroom within the 200-hour limit. I also need to correct the SmolVLA details to SmolVLM-2 with its SigLIP encoder and incorporate SimPrune and TCA into the comparison.
+
+On the theoretical side, I'm being more honest about the robustness claims—moving away from "provable robustness margins" toward "information-theoretic motivation with empirical robustness improvements" given what the literature shows about gradient obfuscation. I should also add explicit contingency analysis for what happens if FTM performs unexpectedly well on SmolVLA, and make sure the VLA pruning landscape is properly cited.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2011ef0-7cd7-48be-aa50-3b985ac30619",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zUBQwqDpdJMLpWGLSQ",
+  "type": "assistant",
+  "uuid": "5eecb1c6-9994-452d-b53c-3d6c4afc15b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BUyh3rXyJfY873sEGwBFK1",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 310,
+      "cache_read_input_tokens": 45840,
+      "output_tokens": 8637,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 310,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8637,
+          "cache_read_input_tokens": 45840,
+          "cache_creation_input_tokens": 310,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 310
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-14T06:34:41.089Z_
+
+I now have all the research I need. Let me synthesize the findings before writing the revision.
+
+**Key research findings:**
+- **SmolVLA architecture**: Uses SmolVLM-2 (SigLIP vision encoder + SmolLM2 language decoder), 450M total params, ~100M action expert, 64 tokens/frame — NOT Qwen2.5-0.5B
+- **CoRL 2026**: Abstract May 26, Paper May 29 (11:59 UTC) — 12 days from today
+- **SimPrune**: Cross-branch cosine similarity for token-pair pruning in SSL; targets efficiency, not robustness
+- **TCA**: Training-free token condensation achieves 21.4% improvement on distribution shift — supports our thesis
+- **Critical VIB finding**: A 2021 paper shows VIB does NOT provide provable adversarial robustness — apparent robustness is gradient obfuscation. Must downgrade theoretical claims.
+- **LIBERO-Plus SOTA**: SRPO 82.1 avg, AVA-VLA 74.7, MergeVLA 72.2
+
+Now writing the complete revised idea:
+
+```json
+{
+  "change_type": "major",
+  "title": "Action-Conditioned Information Bottleneck Token Surgery for Robust VLAs",
+  "core_problem": "VLA visual encoders produce redundant token sequences where task-irrelevant tokens carry spurious correlations with environment-specific factors — correlations that collapse under visual perturbations. Existing token pruning methods (VLA-IAP, LightVLA, GridS, DTP, Compressor-VLA, SP-VLA, VLA-Pruner, ETA-VLA, EcoVLA) optimize exclusively for inference efficiency, while existing robustness methods operate at other levels: policy-level regularization (RobustVLA), input restoration (CRT), or lightweight affine token modulation (FTM, which uses input-independent global parameters). Critically, post-hoc token compression has been shown to actively HURT adversarial robustness by concentrating adversarial signal on high-importance retained tokens (arXiv 2601.21531, 2601.12042). The position paper 'Token Reduction Should Go Beyond Efficiency' (arXiv 2505.18227) argues exactly this thesis but provides no concrete VLA instantiation. TCA (ICCV 2025) provides preliminary evidence that token condensation can improve distribution shift robustness in classification (+21.4% on CIFAR-100-C), but operates training-free at test time without action conditioning. SimPrune (ICLR 2025) enforces cross-branch augmentation consistency during token pruning in self-supervised pretraining, but targets training efficiency rather than deployment robustness. We show that token-level intervention CAN improve VLA robustness — when the token scorer is jointly trained with an information bottleneck objective using multi-view augmentation consistency that implicitly decorrelates from nuisance variables, producing perturbation-invariant relevance scores fundamentally different from both attention-based importance used in post-hoc methods, input-independent affine modulation used in FTM, and cross-branch similarity matching used in SimPrune.",
+  "opportunity": "LIBERO-Plus (CVPR 2026) reveals catastrophic robustness gaps (95% → <30% under camera/state perturbations), with current SOTA at SRPO 82.1% avg. FTM (arXiv 2512.02902) shows that even a simple global affine transformation on visual tokens recovers viewpoint robustness (48.5% → 87.1% on π0.5 with 4K params), demonstrating that token-level intervention is a promising robustness lever — but FTM's input-independent, fixed-parameter design cannot adapt to scene content, varies in effectiveness across perturbation types, and lacks information-theoretic grounding. BC-IB (ICML 2025) demonstrates that IB at the representation level improves clean accuracy on LIBERO but explicitly acknowledges robustness to domain shifts as an open problem. TCA (ICCV 2025) demonstrates that token condensation improves distribution shift robustness in ViT classification by up to 21.4%, providing direct supporting evidence that the token-reduction-for-robustness direction is viable — but TCA is training-free, task-agnostic, and untested on embodied action prediction. SimPrune (ICLR 2025) shows cross-branch consistency can guide token pruning in SSL, but targets pretraining efficiency without an IB objective or robustness evaluation. The unexploited gap is: applying IB at the TOKEN level with ADAPTIVE, INPUT-DEPENDENT selection, conditioned on ACTION prediction, using MULTI-VIEW augmentation consistency to achieve perturbation invariance — a combination that provides principled, per-timestep token selection with information-theoretic motivation, going beyond FTM's fixed modulation, BC-IB's coarse-grained bottleneck, TCA's training-free approach, and SimPrune's efficiency-focused consistency.",
+  "landscape": "The VLA token intervention literature spans efficiency, modulation, and robustness approaches. EFFICIENCY-FOCUSED PRUNING: VLA-IAP (Mar 2026) achieves 97.8% on LIBERO with 1.54x speedup via training-free interaction-aligned pruning; LightVLA (ICRA 2026) uses differentiable Gumbel softmax selection reducing FLOPs by 59.1%; GridS (ICML 2026) performs differentiable grid resampling; Compressor-VLA uses instruction-guided dual compression; DTP prunes distracting tokens for accuracy not perturbation robustness; SP-VLA (ICLR 2026, arXiv 2506.12723) jointly schedules models and prunes tokens via spatio-semantic dual-aware importance; VLA-Pruner (arXiv 2511.16449) uses dual-level importance combining prefill attention and temporal-smoothed action decode attention; ETA-VLA (arXiv 2603.25766) performs temporal fusion with intra-LLM sparsification; EcoVLA (arXiv 2602.00780) applies environment-aware adaptive pruning as a training-free plug-and-play framework; OneWM-VLA (arXiv 2605.07931) compresses each view to one token via adaptive attention pooling. TOKEN-LEVEL MODULATION: FTM (arXiv 2512.02902) applies an input-independent global affine transformation F̂=(1+γ)⊙F+β to visual tokens from π0.5's ViT encoder, achieving camera 87.1%, lighting 96.0%, texture 96.0%, noise 93.6% on LIBERO-V with only 4K params — remarkably effective but limited by: (a) input-independence (same γ,β regardless of scene content), (b) tested only on π0.5 (3B+ params), not compact models like SmolVLA, (c) no token selection/pruning (all tokens retained), (d) no information-theoretic grounding. FLA extends FTM with low-rank ViT updates (4.7M params, 90.8%) but requires encoder modification. AUGMENTATION-CONSISTENT TOKEN METHODS: SimPrune (ICLR 2025) enforces cross-branch cosine similarity matching for token-pair pruning during self-supervised pretraining — conceptually related to ACIBS's consistency loss but differs in three key ways: (1) SimPrune targets training efficiency in SSL dual-branch architectures, not deployment robustness in VLAs; (2) SimPrune uses pairwise cosine similarity for token matching, not an IB-grounded scoring head; (3) SimPrune prunes matched token pairs to reduce compute, not to select perturbation-invariant tokens for action prediction. TCA (ICCV 2025, arXiv 2410.14729) demonstrates that training-free token condensation improves distribution shift robustness by up to 21.4% on CIFAR-100-C via reservoir-based domain anchor tokens — directly supporting the token-reduction-for-robustness thesis but operating training-free, at test time, without action conditioning or IB objectives. IB FOR ROBOTICS: BC-IB (ICML 2025, arXiv 2502.02853) applies IB at the REPRESENTATION level in behavior cloning, minimizing I(X;Z) on the full latent vector — improves clean accuracy by +5.6% on LIBERO but does not operate at token granularity and explicitly notes domain-shift robustness as unstudied. IBTM (OpenReview) combines IB with learnable token merging for ViT efficiency but targets FLOPs reduction on classification without action conditioning or robustness evaluation. MULTI-VIEW IB: DRIBO (ICML 2022) uses augmentation-generated paired views with a contrastive MIB objective to learn robust RL representations — directly inspiring our nuisance-invariant token selection approach but operating at representation level, not token selection level. MIB (Federici et al., ICLR 2020) provides the theoretical foundation for multi-view IB without nuisance labels. VLA ROBUSTNESS: RobustVLA (arXiv 2511.01331) applies Jacobian + smoothness regularization during online RL post-training (~82.5% on observation perturbations). CRT (arXiv 2602.01158) uses a corruption restoration transformer as preprocessing. SRPO achieves 82.1 on LIBERO-Plus via self-referential RL policy optimization (current LIBERO-Plus SOTA). COUNTER-EVIDENCE: arXiv 2601.21531 and 2601.12042 demonstrate that POST-HOC token compression hurts adversarial robustness via the 'distortion concentrator' effect — but these exclusively evaluate training-free compression with attention-based importance scores that are themselves perturbed. Fischer et al. (2021, arXiv 2107.05712) show that VIB's apparent adversarial robustness in classification is partly attributable to gradient obfuscation rather than provable guarantees — motivating our empirical rather than certified robustness framing. POSITION PAPER: 'Token Reduction Should Go Beyond Efficiency' (arXiv 2505.18227) argues the thesis that token reduction should target robustness/quality, not just efficiency — ACIBS is the first concrete VLA instantiation of this vision.",
+  "approach": "We train a lightweight differentiable token scoring head atop SmolVLA's visual encoder (SmolVLM-2: SigLIP vision encoder + SmolLM2 language decoder, 450M total params with ~100M action expert, 64 visual tokens per frame) that is jointly optimized with action prediction and a multi-view augmentation-consistent Information Bottleneck (IB) objective. The key methodological advance is the REFORMULATED IB OBJECTIVE that eliminates the need for explicit nuisance variable labels or conditional MI estimation. Instead of minimizing I(V_selected; N | A) — which requires access to nuisance factor samples N — we adopt a multi-view consistency approach inspired by DRIBO (ICML 2022) and MIB (Federici et al., ICLR 2020): during training, each observation X is paired with an augmented view X' generated via domain randomization (camera jitter ±15°, color/lighting perturbation, background texture swap using LIBERO's built-in randomization). Both views pass through SmolVLA's frozen SigLIP encoder to produce token sequences V and V'. The combined training loss is: L = L_action(f(V_m), A) + α·D_KL(q(m|V) || p_0(m)) + β·||S(V) - S(V')||². The first term maximizes action-prediction accuracy from selected tokens. The second term is a VIB-style token-level bottleneck: q(m|V) is the per-token Bernoulli selection distribution parameterized by the scorer MLP via Gumbel-softmax relaxation (architecturally following LightVLA's differentiable selection), and p_0(m) is a Bernoulli prior with target retention rate k — this forces compression of redundant information. The third term is the CROSS-VIEW SELECTION CONSISTENCY loss: it penalizes differences in the scorer's output logits S(·) across augmented views, forcing the scorer to be INVARIANT to augmentation-defined nuisance factors. This formulation uses only standard KL divergence and MSE — no neural MI estimation required, sidestepping the bias/variance issues of variational MI bounds (Poole et al., ICML 2019). The augmentation pipeline implicitly defines nuisance variables: any information that varies across views (background, lighting, viewpoint) is nuisance, and the consistency loss forces the scorer to ignore it. We note the conceptual connection to SimPrune (ICLR 2025), which also uses cross-branch consistency for token pruning — but SimPrune operates in SSL pretraining using cosine similarity for efficiency-driven token-pair matching, while ACIBS operates in VLA fine-tuning using an IB-grounded scorer for robustness-driven token selection, representing a fundamentally different objective and mechanism. The scorer is implemented as a 2-layer MLP (~50K params) predicting per-token logits, with Gumbel-softmax producing differentiable soft masks during training and hard top-k selection during inference. THEORETICAL FRAMING: We frame ACIBS with information-theoretic motivation rather than provable robustness certificates. The VIB term upper-bounds the mutual information I(X;M) between input tokens and selected mask, encouraging compression; the consistency term empirically enforces invariance to augmentation-defined nuisance factors. We do NOT claim certified robustness margins — Fischer et al. (2021) demonstrated that VIB's apparent adversarial robustness in classification is partly attributable to gradient obfuscation, and certified bounds would require additional assumptions (Lipschitz continuity, bounded perturbation sets) beyond what VIB alone provides. Instead, our contribution is an empirically grounded method that achieves perturbation invariance through the joint training of IB compression and augmentation consistency, validated on LIBERO-Plus. FTM BASELINE CONTINGENCY: If FTM adapted to SmolVLA recovers most of the robustness gap (e.g., >75% avg on LIBERO-Plus), our contribution shifts to demonstrating that adaptive, input-dependent, per-token selection with IB grounding provides COMPLEMENTARY gains — we evaluate FTM+ACIBS (global affine modulation followed by IB-guided selective pruning) and show the combination exceeds either alone by leveraging both feature recalibration and information-theoretic token filtering. This compositional result would be novel regardless of FTM's standalone strength. Key differentiation from prior work: (a) vs. FTM — adaptive, input-dependent, per-token selection with IB motivation vs. input-independent global affine modulation; FTM retains all tokens with shifted features, ACIBS selects informative tokens and discards nuisance-carrying ones; composable as FTM+ACIBS; (b) vs. BC-IB — token-level vs. representation-level IB, robustness-targeted via multi-view consistency vs. accuracy-targeted; (c) vs. DRIBO — token selection level vs. representation level, action-conditioned for manipulation; (d) vs. post-hoc pruning — trained perturbation-invariant scorer vs. unstable attention-based importance; (e) vs. SimPrune — IB-grounded action-conditioned robustness scorer vs. cosine-similarity efficiency matcher in SSL; (f) vs. TCA — trained, action-conditioned IB selection vs. training-free, task-agnostic condensation; (g) vs. IBTM — action-conditioned and robustness-evaluated vs. task-agnostic efficiency. We evaluate on LIBERO-Plus across 4 key perturbation dimensions (camera, lighting, texture, noise) for the primary CoRL submission, with full 7-dimension evaluation deferred to extended version. Baselines include efficiency-focused pruning (VLA-IAP, DTP), token modulation (FTM adapted to SmolVLA backbone), robustness methods (RobustVLA, CRT, SRPO), and the representation-level IB approach (BC-IB), plus ablations isolating the VIB term and consistency term, and the FTM+ACIBS combination.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~150-180h H100 (SmolVLA base: ~4h/run; with IB scorer + dual-view forward pass: ~12h/run; 4 training configs × 12h = 48h training; LIBERO-Plus eval on 4 perturbation dims ~5h per model × 5 models (ACIBS, FTM-SmolVLA, FTM+ACIBS, 2 ablations) = 25h; baseline reproductions ~30h; debugging/iteration ~40-50h; total ~143-153h well within 200h budget with ~50h margin for unexpected issues)",
+      "gpu_utilization": "Moderate idle (35-45%) — researcher iterates on α/β trade-off and analyzes per-dimension robustness curves between runs",
+      "timeline": "12-15 days (abstract by May 26, paper by May 29 CoRL 2026)",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$375-$450 (at ~$2.50/hr H100)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~140-170h H100 (agent systematically sweeps α/β and retention rate k; human approves VIB/consistency/action-loss trade-off at each checkpoint; dual-view augmentation adds ~40% overhead per training run vs. standard SmolVLA fine-tuning)",
+      "gpu_utilization": "20-30% lower idle vs manual — agent queues next run while human reviews robustness vs. clean accuracy trade-offs",
+      "timeline": "10-12 days",
+      "team": "1 researcher, ~1.5hr/day reviewing trade-off curves and selecting augmentation strategies",
+      "claude_api_cost": "$80-150 (estimated ~800-1500 turns for experiment design, augmentation pipeline setup, result analysis)",
+      "estimated_gpu_cost": "$350-$425",
+      "risk_note": "α/β tuning is the critical human decision — α too high destroys action-relevant signal in SmolVLA's compact 64-token space, β too high forces trivially constant selection that ignores scene content. The dual-view augmentation pipeline must be carefully calibrated: augmentations too weak fail to define meaningful nuisance, too strong create views where task-relevant information also differs"
+    },
+    "auto_research": {
+      "gpu_hours": "~180-200h H100 (more exploration of α/β/k hyperparameter space and augmentation magnitudes; includes failed runs; fits within 200h budget with scoped 4-dimension eval)",
+      "gpu_utilization": "Near-zero idle — agent continuously pipelines training → evaluation → next experiment",
+      "timeline": "8-12 days with 2 H100 GPUs",
+      "team": "0 (initial setup only)",
+      "claude_api_cost": "$200-350",
+      "estimated_gpu_cost": "$450-$500",
+      "speed_bottleneck": "LIBERO-Plus evaluation throughput — ~5h per 4-dimension evaluation pass per model on single GPU",
+      "risk_note": "Agent may over-explore hyperparameter space without convergence intuition; multi-view augmentation magnitude is sensitive and agent may not distinguish meaningful augmentation failures from hyperparameter failures"
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (abstract: May 26 11:59 UTC, paper: May 29 11:59 UTC — PRIMARY TARGET, scoped submission: IB pruning + consistency loss, SmolVLA backbone, 4 key perturbation dimensions (camera, lighting, texture, noise), FTM+ACIBS combination experiment, full ablation; 15-day timeline from today May 14)",
+    "AAAI 2027 (deadlines TBD, likely ~August 2026 — extended version with full 7-dimension LIBERO-Plus evaluation, tangent-space augmentation ablation, multi-backbone experiments on π0.5)",
+    "ICLR 2027 (deadline ~October 2026 — most comprehensive version with compositional perturbations and theoretical analysis)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (CVPR 2026, arXiv 2510.13626)",
+    "SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics (arXiv 2025, 2506.01844)",
+    "Rethinking Latent Redundancy in Behavior Cloning: An Information Bottleneck Approach for Robot Manipulation [BC-IB] (ICML 2025, arXiv 2502.02853)",
+    "VLA Models Are More Generalizable Than You Think: Revisiting Physical and Spatial Modeling [FTM/FLA] (arXiv 2025, 2512.02902)",
+    "Token Reduction Should Go Beyond Efficiency in Generative Models — From Vision, Language to Multimodality (arXiv 2025, 2505.18227)",
+    "Mutual Effort for Efficiency: A Similarity-based Token Pruning for Vision Transformers in Self-Supervised Learning [SimPrune] (ICLR 2025)",
+    "Is Less More? Exploring Token Condensation as Training-free Test-time Adaptation [TCA] (ICCV 2025, arXiv 2410.14729)",
+    "DRIBO: Robust Deep Reinforcement Learning via Multi-View Information Bottleneck (ICML 2022)",
+    "Learning Robust Representations via Multi-View Information Bottleneck [MIB] (ICLR 2020, arXiv 2002.07017)",
+    "A Closer Look at the Adversarial Robustness of Information Bottleneck Models (Fischer et al., 2021, arXiv 2107.05712)",
+    "CLUB: A Contrastive Log-ratio Upper Bound of Mutual Information (ICML 2020)",
+    "On Variational Bounds of Mutual Information (Poole et al., ICML 2019)",
+    "Efficient Visual Transformer by Information Bottleneck Inspired Token Merging [IBTM] (OpenReview 2024)",
+    "RobustVLA: Robustness-Aware Reinforcement Post-Training for Vision-Language-Action Models (arXiv 2025, 2511.01331)",
+    "Improving Robustness of Vision-Language-Action Models by Restoring Corrupted Visual Inputs [CRT] (arXiv 2026, 2602.01158)",
+    "SRPO: Self-Referential Policy Optimization for Vision-Language-Action Models (arXiv 2025, 2511.15605)",
+    "On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression (arXiv 2026, 2601.21531)",
+    "Less Is More — Until It Breaks: Security Pitfalls of Vision Token Compression in Large Vision-Language Models (arXiv 2026, 2601.12042)",
+    "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models (arXiv 2026, 2603.22991)",
+    "The Better You Learn, The Smarter You Prune: Towards Efficient VLAs via Differentiable Token Pruning [LightVLA] (ICRA 2026)",
+    "See What Matters: Differentiable Grid Sample Pruning for Generalizable VLA [GridS] (ICML 2026)",
+    "DTP: A Simple yet Effective Distracting Token Pruning Framework for VLA Models (arXiv 2026, 2601.16065)",
+    "Compressor-VLA: Instruction-Guided Visual Token Compression for Efficient Robotic Manipulation (arXiv 2025, 2511.18950)",
+    "SP-VLA: A Joint Model Scheduling and Token Pruning Approach for VLA Model Acceleration (ICLR 2026, arXiv 2506.12723)",
+    "VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient VLA Inference (arXiv 2025, 2511.16449)",
+    "ETA-VLA: Efficient Token Adaptation via Temporal Fusion and Intra-LLM Sparsification (arXiv 2026, 2603.25766)",
+    "EcoVLA: Environment-Aware Adaptive Pruning with Interleaved Inference Orchestration (arXiv 2026, 2602.00780)",
+    "One Token Per Frame: Reconsidering Visual Bandwidth in World Models for VLA Policy [OneWM-VLA] (arXiv 2026, 2605.07931)",
+    "Deep Variational Information Bottleneck (Alemi et al., ICLR 2017, arXiv 1612.00410)",
+    "Token Bottleneck: One Token to Remember Dynamics [ToBo] (NeurIPS 2025, arXiv 2507.06543)",
+    "First-Order Manifold Data Augmentation for Regression Learning [FOMA] (ICML 2024)"
+  ],
+  "description": "We propose Action-Conditioned Information Bottleneck Token Surgery (ACIBS), a method that reconceptualizes VLA visual token selection from an efficiency optimization into a robustness mechanism. Current VLA models achieve >95% success on standard benchmarks but collapse to <30% under visual perturbations (LIBERO-Plus, CVPR 2026), with the current SOTA (SRPO) at 82.1% average. Existing token pruning methods (VLA-IAP, LightVLA, GridS, DTP, SP-VLA, VLA-Pruner, ETA-VLA, EcoVLA) target inference speed; post-hoc compression actively hurts adversarial robustness via the 'distortion concentrator' effect (arXiv 2601.21531, 2601.12042); and FTM (arXiv 2512.02902) achieves strong viewpoint robustness (87.1% on π0.5) via a simple input-independent global affine transformation on visual tokens — but its fixed parameters cannot adapt to scene content. Meanwhile, BC-IB (ICML 2025) applies IB at the representation level for clean accuracy without addressing token-level robustness; TCA (ICCV 2025) demonstrates that token condensation improves distribution shift robustness by up to 21.4% in classification but is training-free and task-agnostic; SimPrune (ICLR 2025) enforces cross-branch augmentation consistency for token pruning in SSL pretraining but targets efficiency; and 'Token Reduction Should Go Beyond Efficiency' (arXiv 2505.18227) argues this thesis without a concrete VLA method. ACIBS bridges these gaps with a fundamentally different formulation: a differentiable token scorer jointly trained with action prediction and a MULTI-VIEW AUGMENTATION-CONSISTENT IB objective. Built on SmolVLA (SmolVLM-2: SigLIP vision encoder + SmolLM2 language decoder, 450M params, 64 visual tokens per frame), the combined loss is L = L_action + α·D_KL(q(m|V) || p_0(m)) + β·||S(V) - S(V')||², where the VIB term compresses token information and the consistency term forces the scorer to be INVARIANT to augmentation-defined nuisance factors. Unlike SimPrune's cosine-similarity token-pair matching for SSL efficiency, ACIBS uses an IB-grounded scorer for action-conditioned robustness. We frame this with information-theoretic motivation rather than certified robustness guarantees — Fischer et al. (2021) showed VIB's apparent adversarial robustness is partly gradient obfuscation, so we target empirical perturbation invariance through joint IB compression and augmentation consistency, not provable bounds. The approach extends DRIBO's multi-view IB principle from representation-level RL to token-level VLA selection. Unlike FTM, ACIBS provides adaptive, input-dependent, per-token selection — different scenes get different token masks. We explicitly plan for a strong FTM baseline: if FTM adapted to SmolVLA achieves >75% avg on LIBERO-Plus, we demonstrate FTM+ACIBS (global modulation + IB-guided selection) exceeds either alone, showing the approaches are complementary. Primary target is CoRL 2026 (abstract May 26, paper May 29) with a scoped submission evaluating 4 key perturbation dimensions (camera, lighting, texture, noise) within a strict 200h H100 compute budget (~150h estimated). Baselines include FTM (adapted to SmolVLA), efficiency-focused pruning (VLA-IAP, DTP), robustness methods (RobustVLA, CRT, SRPO), and the representation-level IB approach (BC-IB), plus ablations isolating the VIB term and consistency term, and the FTM+ACIBS combination. AAAI 2027 serves as the extended version with full 7-dimension evaluation.",
+  "project_name": "ib_token_surgery_vla",
+  "source": "web_research"
+}
+```
+
+**Summary of changes (major revision):**
+
+1. **CoRL 2026 is now PRIMARY** — entire submission plan restructured around the May 26/29 deadlines with 4 perturbation dimensions and ~150h compute (well within 200h hard constraint). AAAI 2027 becomes the extended version.
+
+2. **SmolVLA architecture corrected** — now accurately states SmolVLM-2 (SigLIP encoder + SmolLM2 decoder), 450M params, ~100M action expert, 64 tokens/frame.
+
+3. **SimPrune + TCA cited and differentiated** — SimPrune's cross-branch cosine similarity for SSL efficiency is clearly distinguished from ACIBS's IB-grounded action-conditioned robustness scorer. TCA cited as supporting evidence for the token-reduction-for-robustness thesis.
+
+4. **Theoretical claims downgraded** — based on Fischer et al. (2021) showing VIB's adversarial robustness is partly gradient obfuscation, all claims of "provable robustness margins" and "certified guarantees" replaced with honest "information-theoretic motivation with empirical robustness improvement" framing.
+
+5. **FTM baseline contingency added** — explicit plan for FTM+ACIBS combination if FTM alone is strong on SmolVLA, showing complementary gains (global modulation + selective pruning).
+
+6. **Compute fits 200h** — ~150h estimated with ~50h margin. 4 training configs × 12h + 5 models × 5h eval + 30h debugging = ~153h.
+
+7. **7 additional VLA pruning methods cited** — SP-VLA, VLA-Pruner, ETA-VLA, EcoVLA, OneWM-VLA added to landscape alongside existing methods.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5eecb1c6-9994-452d-b53c-3d6c4afc15b9",
+  "isSidechain": false,
+  "requestId": "req_011Cb1zUBQwqDpdJMLpWGLSQ",
+  "type": "assistant",
+  "uuid": "c91903aa-ef8f-4086-b109-be6cfcfab6f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BUyh3rXyJfY873sEGwBFK1",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 310,
+      "cache_read_input_tokens": 45840,
+      "output_tokens": 8637,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 310,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8637,
+          "cache_read_input_tokens": 45840,
+          "cache_creation_input_tokens": 310,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 310
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Action-Conditioned Information Bottleneck Token Surgery for Robust VLA…",
+  "leafUuid": "c91903aa-ef8f-4086-b109-be6cfcfab6f3",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise token pruning for CoRL 2026 with fixed baselines",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-14 (UTC).**  ## Original idea {   \"title\": \"Action-Conditioned Information Bottleneck Token Surgery for Robust VLA…",
+  "leafUuid": "c91903aa-ef8f-4086-b109-be6cfcfab6f3",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise token pruning for CoRL 2026 with fixed baselines",
+  "sessionId": "b8a84b6a-2ca0-4fa5-850b-7b6ab9be5aa7"
+}
+```
+
+---

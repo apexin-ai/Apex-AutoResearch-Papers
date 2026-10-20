@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "066406451544e6351bc4",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目根目录: /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/ Python path: 脚本中 sy",
+  "task_key": "902e8f74-2fcc-4000-aa4d-8f0cc75bfbb8",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/902e8f74-2fcc-4000-aa4d-8f0cc75bfbb8.jsonl",
+    "occurrence": 1,
+    "bytes": 593989,
+    "sha256": "619d8bdd80ff67bbc75952aa6a82025d46600ad9bb9651ceaf335239db2832a9"
+  },
+  "statistics": {
+    "messages": 169,
+    "user_turns": 2,
+    "tool_calls": 53,
+    "roles": {
+      "record": 39,
+      "user": 2,
+      "assistant": 22,
+      "tool_call": 53,
+      "tool_result": 53
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "066406451544e6351bc4-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 165,
+      "chunks": [
+        {
+          "path": "066406451544e6351bc4-part-0001.json",
+          "message_count": 153
+        },
+        {
+          "path": "066406451544e6351bc4-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "066406451544e6351bc4-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-home-ubuntu-agent-ml-research-prod-0510-projects-causal-annot-er-copy-3.md"
+}

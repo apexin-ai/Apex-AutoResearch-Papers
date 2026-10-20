@@ -1,0 +1,871 @@
+# Research conversation: You are a senior ML research advisor synthesizing a literature review into an actionable research strategy. **Today's da
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-1/acfdb814-3dea-47ef-a80b-2056449cad42.jsonl`
+- **Structured JSON:** [`9860eb3da1686ff4088a.json`](../../sessions/98/9860eb3da1686ff4088a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-28T11:13:52.016Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T11:13:52.016Z",
+  "sessionId": "acfdb814-3dea-47ef-a80b-2056449cad42",
+  "content": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.\n\n**Today's date: 2026-05-28 (UTC).**\n\n## Research area: Target: AAAI 2026\nTrack: AI Alignment / Main Technical Track — Robustness Evaluation\n\nDirection: Build an end-to-end framework (CRADE) that jointly profiles per-instance contamination, generates adversarial functional variants with provable correctness, evaluates reasoning at the step level, and produces IRT-calibrated \"genuine capability\" scores that decompose observed performance into true ability, contamination boost, and robustness deficit. The core insight is that contamination and robustness are entangled — a model may fail perturbations because it memorized answers OR because it lacks genuine reasoning, and disentangling these requires joint modeling that no existing work provides.\n\nSeed Papers:\n- Zawalski et al. \"CoDeC\" (NVIDIA, arXiv 2025) — Gray-box contamination detection at 99.9% AUC; provides the detection backbone but produces no corrective evaluation\n- Li et al. \"ATLAS\" (arXiv 2025) — IRT-based adaptive testing achieving 90% item reduction; demonstrates IRT's power for LLM evaluation but assumes test integrity\n- Hou et al. \"MaSTer\" (arXiv 2026) — Automated adversarial math variant generation with 48% accuracy reduction; best current perturbation method but disconnected from contamination\n- Zheng et al. \"ReasoningMath-Plus\" (arXiv 2026) — Step-level evaluation showing answer-level overestimates by ~1.4 points; proves process-level matters but lacks adversarial component\n- Chen et al. \"Reasoning Models Don't Always Say What They Think\" (Anthropic, May 2025) — CoT faithfulness is only 25% for hint disclosure; establishes that CoT is unreliable but doesn't connect to contamination\n- Xu et al. \"DCR\" (arXiv 2025) — Contamination-adjusted scores via fuzzy inference; closest competitor but lacks IRT grounding, variant generation, and process-level analysis\n- Kocetkov et al. \"On The Fragility of Benchmark Contamination Detection in Reasoning Models\" (arXiv Oct 2025) — Shows detection fails for reasoning models; establishes urgent need for new approaches\n\nKnown Gaps:\n- No framework jointly estimates contamination level, generates adversarial variants, and produces a single calibrated capability score (existing work addresses these in isolation)\n- Step-level perturbation alignment (whether CoT appropriately tracks problem changes) has never been measured or connected to contamination — all adversarial work evaluates final answers only\n- Item Response Theory for LLM evaluation (ATLAS, PSN-IRT) assumes zero contamination; contamination-aware IRT with joint ability-contamination estimation is entirely missing\n- Existing contamination detection fails on reasoning models (near random-guess), creating demand for process-level and faithfulness-based alternatives\n\nTheoretical Anchor: Contamination-aware 3PL IRT model: P(correct | θ_j, d_i, c_ij) = c_ij · p_mem + (1 - c_ij) · σ(θ_j - d_i), with EM-based joint estimation of ability θ, difficulty d, and contamination indicators c. The decomposition Observed_accuracy = G + C - R (genuine capability + contamination boost - robustness deficit) provides a formal framework grounded in measurement theory.\n\nConstraints:\n- Compute: ≤200 H100-hours (estimated ~120 for combined RQ1+RQ2)\n- Timeline: 8-10 weeks to AAAI deadline (abstract July 25, paper August 1)\n- Must validate calibrated scores against MathArena's uncontaminated 2025 competition data as ground truth\n\nQuality Self-Checks:\n- [x] Core insight: \"Contamination and robustness are entangled — you can't measure one without accounting for the other, and disentangling them requires joint modeling at the reasoning-step level.\"\n- [x] Why not obvious: The contamination-detection and adversarial-robustness communities are separate research streams with different venues and different authors; the IRT-for-LLMs community is a third silo. Nobody sits at the three-way intersection. DCR Factor shows the field is approaching this but only from the detection+adjustment angle.\n- [x] Baseline fear test: A simple baseline of \"run on variants and average\" loses the contamination-robustness decomposition and the step-level memorization signatures — the calibrated IRT score and process-level SPA metric are what differentiate.\n- [x] Information exploited: Per-instance contamination profiles crossed with per-variant step-level reasoning chain changes — no existing method uses this joint signal.\n\nAvoid:\n- Pure contamination detection without corrective evaluation (saturated space with 5+ strong methods)\n- Yet another dynamic benchmark (LiveBench, MathArena, DyVal already exist) — this must be a framework applicable to ANY existing benchmark\n- Ad-hoc perturbation studies on single benchmarks without methodological/theoretical contribution (GSM-Plus, GSM-Symbolic, MATH-Perturb already cover this)\n- Using LLMs in the variant generation loop (creates circular dependency and unverifiable correctness) — use SymPy-backed symbolic generation instead\n\n## Paper analyses (18 papers)\n\n[\n  {\n    \"title\": \"Detecting Data Contamination in LLMs via In-Context Learning (CoDeC)\",\n    \"venue\": \"ICLR 2026\",\n    \"problem_identification\": \"The authors identified that all existing contamination detection methods suffer from a shared structural flaw: they rely on absolute statistics (loss, perplexity, token probability) that conflate dataset difficulty with memorization, requiring either external reference models for calibration or access to training data for threshold tuning. They likely found this gap by observing that Min-K%, Zlib Ratio, and vanilla loss all produce overlapping score distributions for seen vs. unseen data (their Table 1 shows baselines at 75-90% AUC vs. CoDeC's 99.9%), meaning no single threshold works across models and datasets. The insight came from reframing the question: instead of asking 'how confident is the model on this data?' (an absolute measurement polluted by difficulty), ask 'how does the model's confidence CHANGE when given related context?' — a differential measurement that cancels out difficulty.\",\n    \"key_insight\": \"In-context examples help models on genuinely unseen data (the ICL learning signal) but HURT performance on memorized data (disrupting cached memorization patterns), and this differential response is a nearly perfect contamination signal. The brilliance is using the model as its own reference — no external calibrator needed — by comparing two states of the SAME model (with vs. without context), which eliminates the confound of dataset-intrinsic difficulty that plagues all absolute-threshold methods.\",\n    \"innovation_type\": \"new_formulation\",\n    \"method_summary\": \"CoDeC requires only gray-box access (token log-probabilities) and works in four steps: (1) compute baseline average log-likelihood of each sample x in dataset D; (2) sample n in-context examples from D itself, prepend them to x, and compute in-context log-likelihood; (3) compute the per-sample confidence shift Δ(x) = logprob_in-context(x) − logprob_baseline(x); (4) aggregate by counting the fraction of samples with negative Δ, yielding S_CoDeC(D) ∈ [0,1] where high values indicate contamination. The method is parameter-free (no thresholds to tune), requires only two forward passes per sample, and produces an interpretable percentage score. Crucially, the in-context examples come from the same dataset being tested — the model serves as its own control, making the method model- and dataset-agnostic.\",\n    \"what_makes_it_good\": \"Three things likely drove acceptance: (1) The formulation elegance — a parameter-free, self-referential test that uses the model against itself, requiring zero external calibration data or threshold tuning, which is a rare and valuable property in ML methodology; (2) The overwhelming empirical gap — 99.9% AUC vs. the best baseline at 92.3% (Zlib), with clean visual separation in score distributions, tested across 13 models spanning transformers, RNNs, and hybrids from 410M to 56B parameters; (3) The mechanistic depth — they don't just show it works, they explain WHY via four complementary perspectives (dataset-specific priors, memorization disruption, ICL-as-finetuning analogy, and loss landscape geometry), with controlled finetuning experiments and training dynamics tracking that validate the causal story.\",\n    \"limitations_acknowledged\": \"The method operates at dataset-level granularity — it cannot yet perform sample-level membership inference (a critical gap for per-instance contamination scoring). Additionally, adversarially constructed datasets (heavy duplication, unrelated sample mixtures) can yield misleading scores, and no formal theoretical guarantees are provided for the detection boundary.\",\n    \"open_questions\": [\n      \"Can CoDeC be extended to per-instance contamination scoring? The current dataset-level aggregation (averaging indicator functions across samples) discards per-sample Δ(x) values that could serve as instance-level contamination probabilities — but the paper explicitly flags sample-level analysis as future work, suggesting the per-sample signal may be too noisy without aggregation.\",\n      \"How does CoDeC perform on reasoning models that internalize training data through chain-of-thought distillation rather than token-level memorization? Kocetkov et al. (2025) showed that existing detection methods fail for reasoning models, and CoDeC's reliance on token log-probabilities may face the same challenge when memorization manifests as reasoning-pattern replication rather than surface-token caching.\",\n      \"What happens when contamination is partial — e.g., the model saw paraphrased or augmented versions of a benchmark? The paper shows some transfer detection (MMLU finetuning raises scores on related QA benchmarks by 20-40%), but the sensitivity curve for varying degrees of data transformation (exact copy → light paraphrase → structural variant → same-distribution new problem) is not characterized.\"\n    ],\n    \"building_blocks\": [\n      \"Differential confidence measurement (Δ = logprob_in-context − logprob_baseline) as a self-referential contamination signal\",\n      \"ICL-as-finetuning analogy for explaining memorization dynamics\",\n      \"Gray-box access pattern (only token log-probabilities needed, no weights or gradients)\",\n      \"Indicator-function aggregation for dataset-level scoring: S = (1/N) Σ 𝟙[Δ(x_i) < 0]\",\n      \"Controlled finetuning as ground-truth contamination injection for validation\",\n      \"Training checkpoint analysis (OLMo) for tracking contamination emergence over training\",\n      \"Cross-dataset transfer analysis for measuring contamination spillover\",\n      \"The Pile / Dolma / Nemotron-CC as known-training-data ground truth for evaluation\",\n      \"AUC as the primary evaluation metric for detection (avoids threshold dependence)\"\n    ],\n    \"reviewer_feedback_summary\": null,\n    \"relevance_to_seed\": \"CoDeC is the proposed detection backbone for CRADE, but this deep read reveals both its power and critical limitations for our framework. Its strength — dataset-level 99.9% AUC — validates the approach for flagging contaminated benchmarks, but CRADE needs per-instance contamination indicators c_ij for the IRT model P(correct | θ_j, d_i, c_ij) = c_ij · p_mem + (1 - c_ij) · σ(θ_j - d_i). CoDeC's per-sample Δ(x) values are available but the paper explicitly punts on sample-level reliability, meaning CRADE must either: (a) develop a calibration layer that converts noisy per-sample Δ(x) into reliable instance-level contamination probabilities (possibly via the IRT EM loop itself), or (b) use CoDeC for dataset-level flagging and derive per-instance contamination from the step-level perturbation alignment (SPA) metric instead. The bigger risk flagged by Kocetkov et al. — that detection fails for reasoning models — means CRADE's value proposition of process-level analysis as an alternative contamination signal becomes even more important. CoDeC's methodology also teaches us a key design principle: self-referential measurements (using the model as its own control) are more robust than absolute measurements, which directly supports our approach of measuring step-level reasoning changes across problem variants rather than absolute accuracy.\"\n  },\n  {\n    \"title\": \"On The Fragility of Benchmark Contamination Detection in Reasoning Models\",\n    \"venue\": \"ICLR 2026 (Poster)\",\n    \"problem_identification\": \"The authors identified that the entire contamination detection literature was validated only on non-reasoning models, but the field had shifted to LRMs trained via SFT→RL pipelines (e.g., GRPO). They found this gap by observing a structural mismatch: detection methods assume contamination manifests as memorization (lower loss on seen vs. unseen items), but LRM training has two stages that can decouple contamination from its detectable signal. The key observation is that RL training, as a standard second stage, can serve as an unintentional (or intentional) evidence laundering step.\",\n    \"key_insight\": \"PPO-style importance sampling and clipping in RL objectives systematically contract the member/non-member log-probability gap that ALL existing detection methods rely on — and this is not a bug but a mathematical consequence of the optimization objective (proven via NLL drift decomposition). Additionally, CoT-capable models generalize confidence to distributionally similar unseen samples, eliminating the detection signal entirely for post-LRM contamination.\",\n    \"innovation_type\": \"analysis\",\n    \"method_summary\": \"The authors design two controlled contamination scenarios. In Stage I (pre-LRM), they SFT-contaminate base models (Qwen2.5-7B, Llama-3.1-8B) on 50% of benchmark items using QwQ-32B-distilled CoT trajectories, then apply GRPO on a mix of clean and contaminated data. In Stage II (post-LRM), they SFT-contaminate already-capable reasoning models (DeepSeek-R1-Distill variants, OpenThoughts3). They evaluate 10 detection methods spanning four categories (generation-based, perturbation-based, reference-based, reference-free) across 6 math reasoning benchmarks, measuring AUROC for member vs. non-member discrimination. Critically, they provide a theoretical analysis decomposing the NLL drift under RL into a mean advantage term and a covariance term from importance sampling/clipping, proving that the clipping mechanism drives gap contraction. An ablation removing clipping from RAFT++ confirms this: AUROC drops 17.9% with clipping but only 1.1% without it.\",\n    \"what_makes_it_good\": \"Three things made this paper compelling: (1) It delivers a clean, high-impact negative result with immediate practical consequences for the entire LLM evaluation ecosystem — leaderboards are unreliable. (2) It goes beyond empirical demonstration to provide a theoretical explanation pinpointing the exact mechanism (clipping in PPO-style objectives), which generalizes the finding to any RL method using importance-weighted clipping. (3) The experimental design is thorough — 10 detection methods × 6 benchmarks × multiple model families × controlled ablations — leaving little room for 'but what about X?' objections. Reviewers explicitly praised the timeliness, experimental rigor, and the theoretical attribution to importance weighting.\",\n    \"limitations_acknowledged\": \"The authors acknowledge they identify vulnerabilities but propose no new detection algorithms — the paper is diagnostic, not prescriptive. They also note the primary evaluation is on mathematical reasoning benchmarks, though during rebuttal they extended to MMLU-Pro, LiveCodeBench, and other domains to address this concern.\",\n    \"open_questions\": [\n      \"What detection paradigm can replace memorization-based signals for reasoning models? The paper proves the old assumption is broken but leaves the solution space wide open — process-level analysis, step-level faithfulness checks, and contamination-aware evaluation frameworks are all potential directions.\",\n      \"Can the contamination concealment effect be quantified and inverted? If the NLL drift decomposition characterizes how RL hides contamination, could a corrective model estimate the pre-RL contamination level from post-RL observations?\",\n      \"How does this interact with contamination at scale in frontier models where training data is undisclosed? The controlled setting uses known contamination ratios — real-world detection must work without ground truth contamination labels, making the problem even harder than demonstrated.\"\n    ],\n    \"building_blocks\": [\n      \"GRPO (Group Relative Policy Optimization) training pipeline\",\n      \"10 contamination detection methods: LiRA, Ref, Min-K%, Min-K++, Max-K%, LOSS, Zlib, Verbatim, CDD, Neighborhood\",\n      \"QwQ-32B distillation with rejection sampling (64 rollouts) for CoT trajectory generation\",\n      \"NLL drift decomposition theorem for analyzing RL's effect on log-probability distributions\",\n      \"RAFT/RAFT++ ablation framework for isolating importance sampling vs. clipping effects\",\n      \"6 math reasoning benchmarks: AIME 2024/2025, AMC 2023, GPQA Diamond, OlympiadBench, Minerva Math\",\n      \"DeepSeek-R1-Distill model family, OpenThoughts3, Qwen2.5-7B, Llama-3.1-8B as experimental substrates\",\n      \"Member/non-member AUROC evaluation protocol for contamination detection\"\n    ],\n    \"reviewer_feedback_summary\": \"Scores: 8, 6→8, 6 (AC: Accept Poster). Reviewers uniformly praised the timeliness and experimental thoroughness. Reviewer F3s6 (8) highlighted the clean theoretical attribution to PPO-style clipping and the comprehensive detector coverage. Reviewer hTiN (6→8) initially questioned whether detection methods are actively used in practice and wanted better positioning against prior evasion work — they raised their score after the authors expanded motivation and added cross-domain results. Reviewer enZz (6) pushed hardest, requesting: (a) results beyond math reasoning → authors added MMLU-Pro and LiveCodeBench, (b) embedding-based detection baselines → authors showed these also fail after RL, (c) output length confound analysis → authors showed entropy, not length, drives concealment, (d) clarification on how checkpoint release helps → addressed. The AC noted all concerns were 'sufficiently addressed through new experiments.' The paper would have been even stronger with a proposed mitigation method and broader initial benchmark coverage (both were flagged and partially addressed in rebuttal).\",\n    \"relevance_to_seed\": \"This paper is the critical 'demand signal' for CRADE — it proves that all existing contamination detection methods fail on reasoning models (AUROC ≈ 50%, random chance), establishing that the field cannot rely on detection alone and MUST move to corrective evaluation frameworks. The specific mechanism it identifies (RL conceals memorization signals while preserving performance inflation of 7-12%) is exactly the entanglement CRADE's joint contamination-robustness decomposition is designed to disentangle. Moreover, the finding that CoT-trained models generalize confidence to unseen distributionally-similar items validates CRADE's approach of using adversarial functional variants (structurally different problems) rather than distributional neighbors, and motivates the step-level SPA metric that checks whether reasoning chains appropriately track problem changes — something no memorization-based detector can capture.\"\n  },\n  {\n    \"title\": \"DCR: Quantifying Data Contamination in LLMs Evaluation\",\n    \"venue\": \"EMNLP 2025\",\n    \"problem_identification\": \"The authors identified that the entire contamination-detection literature stops at detection — methods flag contamination but never answer 'so what should the real score be?' They found this gap by observing that practitioners default to crude n-gram matching not because it's good, but because sophisticated methods are too expensive and don't produce actionable corrections. The insight that no existing tool converts a contamination signal into a corrected benchmark score is what opened the design space.\",\n    \"key_insight\": \"Contamination is not binary but operates across a hierarchy of granularities (semantic exposure → metadata leakage → data memorization → label memorization), and these heterogeneous signals are inherently fuzzy — they lack crisp boundaries — so a fuzzy inference system is the right synthesis tool to collapse them into a single corrective factor rather than requiring hard thresholds or learned weights.\",\n    \"innovation_type\": \"combination\",\n    \"method_summary\": \"DCR defines four contamination levels (L1: semantic similarity to benchmark domain, L2: exposure to benchmark metadata/statistics, L3: direct test-data memorization without labels, L4: test-data-plus-label memorization) and probes each via a structured 'DCR Test Sheet' of ~20 targeted prompts per level. Each level yields a contamination score S_i ∈ [0,1] based on binary human checks. These four scores are fuzzified into Low/Medium/High membership values via trapezoidal functions, processed through 64 handcrafted fuzzy inference rules that weight higher-severity levels more heavily (L4-High → Severe), and defuzzified via centroid method into a single DCR Factor ∈ [0,1]. The final adjusted accuracy is Acc_adj = Acc × (1 − DCR Factor). Validation uses controlled contamination injection at each level into InstructLM models with known-clean corpora, comparing adjusted scores against uncontaminated baselines.\",\n    \"what_makes_it_good\": \"Three things earned acceptance: (1) it fills a genuine vacuum — this is the first framework that goes end-to-end from contamination detection to corrective score adjustment, giving practitioners something directly usable; (2) the experimental design is rigorous and clever — training models from scratch with controlled contamination injection at each level provides a credible ground truth that purely observational studies lack; (3) the 4% average error across 9 models and 3 benchmarks is a strong empirical result that validates the fuzzy inference approach despite its simplicity. The paper is also notably honest about what it doesn't do (generative tasks, >72B models), which builds reviewer trust.\",\n    \"limitations_acknowledged\": \"The authors note the framework is unvalidated beyond 72B parameters and on frontier models, only two model families with disclosed corpora were available, contamination injection simulates single-stage pre-training rather than real-world multi-source blending/RLHF/distillation pipelines, and the framework does not yet handle generative tasks like translation or summarization.\",\n    \"open_questions\": [\n      \"The multiplicative adjustment formula Acc_adj = Acc × (1 − DCR Factor) is asserted without theoretical justification — why should contamination's effect scale proportionally with raw accuracy rather than additively or through a more principled measurement-theoretic model like IRT? The LIAR2 correlation (r=0.66) hints this assumption may break down for harder multi-class tasks.\",\n      \"The 'Check' step relies on manual human evaluation (or expensive LLM judges at 68-92% accuracy) — this creates a scalability bottleneck and subjectivity risk that undermines the 'lightweight' claim. Can the probing be made fully automatic without sacrificing reliability?\",\n      \"All evaluation is at the final-answer level — there is no analysis of whether contaminated models produce different reasoning chains, whether step-level memorization signatures exist, or whether CoT faithfulness degrades under contamination. This leaves the mechanism of how contamination inflates scores entirely opaque.\"\n    ],\n    \"building_blocks\": [\n      \"Four-level contamination taxonomy (semantic → informational → data → label) as a structured decomposition\",\n      \"DCR Test Sheet prompt design methodology for probing contamination at each level\",\n      \"Fuzzy inference system with trapezoidal membership functions and centroid defuzzification for synthesizing heterogeneous signals\",\n      \"Controlled contamination injection protocol: inserting benchmark-relevant data at specific levels (15% cap) into known-clean pre-training corpora with validation monitoring\",\n      \"InstructLM models trained on RefinedWeb as clean baselines for contamination studies\",\n      \"The multiplicative correction formula as a simple baseline to improve upon\",\n      \"SST-2 / LIAR2 / GSM8K benchmark trio spanning classification and reasoning tasks\"\n    ],\n    \"reviewer_feedback_summary\": null,\n    \"relevance_to_seed\": \"DCR is the closest existing competitor to CRADE and precisely delineates the space CRADE must exceed. Three critical gaps in DCR become CRADE's contribution pillars: (1) DCR's ad-hoc multiplicative correction lacks measurement-theoretic grounding — CRADE's contamination-aware 3PL IRT model (jointly estimating ability θ, difficulty d, and contamination c via EM) provides a principled alternative that should dominate on multi-class and reasoning tasks where DCR's correlation drops to 0.66; (2) DCR evaluates only final answers and cannot detect step-level memorization or reasoning chain degradation — CRADE's Step Perturbation Alignment (SPA) metric fills this entirely unaddressed dimension; (3) DCR has no adversarial variant generation component and thus cannot distinguish 'the model memorized the answer' from 'the model genuinely reasons but is fragile to perturbation' — CRADE's SymPy-backed variant generation with provable correctness disentangles these. The DCR paper also reveals important experimental-design lessons: controlled contamination injection with known-clean baselines is the gold standard for validation, and CRADE should replicate this protocol alongside the MathArena ground-truth comparison.\"\n  },\n  {\n    \"title\": \"Provable Joint Decontamination for Benchmarking Multiple Large Language Models (JECS)\",\n    \"venue\": \"arXiv 2026 (preprint, no venue acceptance yet)\",\n    \"problem_identification\": \"The authors identified that existing conformal-inference decontamination methods work per-model, producing K different 'clean' benchmark subsets for K audited models — making fair cross-model comparison impossible. They proved empirically that naive composition (union or intersection of per-model clean sets) catastrophically fails GCR control (union yields GCP≈0.76, intersection yields GCP≈0.37 at target α=0.1). This gap was hiding in plain sight: the single-model conformal decontamination papers (their own prior line of work) never asked 'what happens when you need one shared benchmark for multiple models?' — a question anyone doing a leaderboard comparison must face.\",\n    \"key_insight\": \"When you aggregate K conformal p-values via max() to handle the joint null ('contaminated for at least one model'), the null CDF becomes t^K (Beta(K,1)), pushing nearly all null mass toward 1 and creating a devastating 'super-uniformity tax' that destroys statistical power as K grows. JECS's aha moment is that you can reconstruct a conservative envelope of this unknown null CDF by exploiting the asymmetry that pure items cluster in the left tail while contaminated items enrich the right tail — then transform the max-p values through this envelope to undo the power loss while preserving the formal guarantee.\",\n    \"innovation_type\": \"combination\",\n    \"method_summary\": \"JECS operates in five stages: (1) Compute per-model conformal p-values using a shared calibration set of known training members, yielding {p_i^k} for each item i and model k. (2) Aggregate to max-p values p_i* = max_k p_i^k, which are valid under the joint null (contaminated for any model) but super-uniform. (3) Estimate a piecewise null CDF envelope by fitting a linear segment on [0,λ] anchored via k-NN density estimation at a right-tail threshold λ, and using the empirical mixture CDF on (λ,1] — the envelope provably dominates the true null CDF under a convexity assumption. (4) Transform all max-p values through this envelope to obtain approximately uniform nulls, and estimate the null proportion via Storey's estimator. (5) Apply adaptive Storey-Benjamini-Hochberg to the transformed values to select items, yielding a shared decontaminated benchmark with asymptotic GCR ≤ α. The theoretical guarantee (Theorem 3) requires two mild assumptions: convexity of the null CDF (natural under max-aggregation) and right-tail separability of pure vs. contaminated items.\",\n    \"what_makes_it_good\": \"Three qualities elevate this paper: (a) it identifies a genuinely overlooked structural problem (multi-model decontamination is not a trivial extension of single-model) and proves naive baselines fail; (b) the solution is theoretically principled with clean formal guarantees while being practically impactful — power jumps from 0.055 to 0.715 in representative settings; (c) the paper maintains intellectual honesty by clearly delineating what the theory requires (Assumptions 4-5) rather than claiming universality. The experimental design with controlled membership labels across 16 independently fine-tuned models on WikiMIA/ArXivTection is rigorous and reproducible.\",\n    \"limitations_acknowledged\": \"The authors explicitly note that JECS requires the calibration set distribution to be close to the candidate pool distribution — a realistic concern when models are trained on heterogeneous corpora. They flag extending to explicit distribution shift via shift-aware conformal p-values as future work.\",\n    \"open_questions\": [\n      \"JECS removes contaminated items entirely rather than correcting or adjusting scores — can the conformal p-value machinery be extended to produce contamination-adjusted scores (continuous decontamination) rather than binary keep/discard decisions?\",\n      \"The shared calibration set must contain items known to be in ALL K models' training data — how does this requirement scale as K grows or when auditing closed-source models where training data membership is unverifiable?\",\n      \"The method operates on final membership scores (perplexity, Min-K%) and is agnostic to reasoning — does it remain valid for reasoning models where contamination manifests as memorized solution strategies rather than surface-level memorization, given that detection scores fail for reasoning models (Kocetkov et al. 2025)?\"\n    ],\n    \"building_blocks\": [\n      \"Conformal p-value calibration via exchangeability (Equation 4) — reusable for any hypothesis-testing-as-selection problem\",\n      \"Max-p aggregation with Lemma 1 validity proof — general technique for multi-source null composition\",\n      \"Piecewise null CDF envelope construction via right-tail k-NN density estimation — novel and potentially applicable to other multiple testing problems with unknown null distributions\",\n      \"Storey's null proportion estimator adapted to transformed p-values\",\n      \"Adaptive Benjamini-Hochberg procedure for FDR/GCR control\",\n      \"WikiMIA and ArXivTection datasets with controlled membership labels\",\n      \"Min-K%++ detection score with normalized log-probability formulation\"\n    ],\n    \"reviewer_feedback_summary\": null,\n    \"relevance_to_seed\": \"JECS is directly relevant to CRADE's contamination profiling component (RQ1) but occupies a complementary niche: it removes contaminated items to create a clean benchmark, whereas CRADE aims to keep all items and decompose performance into genuine ability, contamination boost, and robustness deficit. The critical lesson for CRADE is methodological — JECS shows that multi-model contamination is structurally harder than single-model (super-uniformity tax) and that naive composition of per-model signals fails. CRADE's contamination-aware IRT model must similarly handle the multi-model case carefully, potentially adapting JECS's conformal p-values as the contamination indicator c_ij rather than using binary CoDeC scores. However, JECS's fundamental limitation — it cannot handle reasoning models where detection scores fail (Kocetkov et al.) and it discards rather than corrects — is precisely the gap CRADE fills with adversarial variant generation and step-level process analysis.\"\n  },\n  {\n    \"title\": \"GSM-Symbolic: Understanding the Limitations of Mathematical Reasoning in Large Language Models\",\n    \"venue\": \"ICLR 2025\",\n    \"problem_identification\": \"The authors identified that GSM8K's static nature makes it impossible to distinguish genuine mathematical reasoning from memorization — performance is reported as a single number on a fixed question set, preventing controlled experiments on sensitivity to surface-level changes. They found this gap by observing the paradox that GSM8K scores keep climbing (90%+) yet anecdotal evidence and token-bias research suggested LLMs remained fragile. The key move was reframing evaluation from 'what is the score?' to 'what is the distribution of scores across semantically equivalent variants?' — a question GSM8K's fixed format structurally could not answer.\",\n    \"key_insight\": \"If you convert benchmark problems into symbolic templates and generate many numeric/lexical instantiations of each, you can treat model performance as a distribution rather than a point estimate — and this distribution reveals that high GSM8K scores are outliers (likely contamination artifacts) rather than representative measures, and that adding mathematically irrelevant information causes catastrophic failures (up to 65%), exposing pattern-matching masquerading as reasoning.\",\n    \"innovation_type\": \"new_benchmark\",\n    \"method_summary\": \"The authors manually converted 100 GSM8K test problems into parameterized symbolic templates with typed variables, domain constraints (e.g., divisibility for whole-number answers), and validated ranges. Each template generates 50 instantiations (5,000 total examples), producing 50 parallel test sets of 100 questions. They evaluated 25+ models (2B–frontier scale) using 8-shot CoT with greedy decoding. Beyond simple numeric substitution, they created systematic difficulty variants: GSM-M1 (one clause removed), GSM-P1/P2 (one/two clauses added), and critically GSM-NoOp (seemingly relevant but mathematically irrelevant clauses inserted). The NoOp experiment was the methodological masterstroke — it tests whether models understand problem structure or just convert every clause into an operation.\",\n    \"what_makes_it_good\": \"Three things made this paper exceptional: (1) Methodological elegance — the symbolic template approach is simple enough that anyone can understand it yet powerful enough to generate arbitrarily many controlled variants, solving the contamination confound that plagues static benchmarks. (2) A single devastating experiment (GSM-NoOp) that crystallizes the paper's thesis — the 65% performance drop from irrelevant clauses is a viscerally compelling demonstration that models lack genuine comprehension, far more persuasive than incremental accuracy changes. (3) Comprehensive coverage — 25+ models, multiple ablations (name-only vs. number-only vs. combined changes, difficulty scaling, in-context learning recovery attempts), and careful controls (arithmetic capability verification in Appendix A.6) that preempt obvious reviewer objections.\",\n    \"limitations_acknowledged\": \"The authors acknowledge the study is limited to relatively simple grade-school mathematics and deliberately restricts numerical ranges to assess reasoning over arithmetic, so results may not generalize to more complex mathematical domains. They also note statistical assumptions in their significance analysis and that the template conversion process involves manual effort that limits scalability.\",\n    \"open_questions\": [\n      \"The paper demonstrates fragility but cannot decompose WHY a model fails a variant — is it memorization of the original, lack of genuine reasoning ability, or sensitivity to specific numeric ranges? A contamination-aware framework that jointly estimates these factors is needed.\",\n      \"All evaluation is at the final-answer level. When a model gets a variant wrong, does the reasoning chain break at the perturbed step or propagate errors from earlier? Step-level alignment between original and variant CoT traces remains completely unexplored.\",\n      \"The NoOp experiment shows models cannot filter irrelevant information, but the paper offers no mechanism to improve this — can process-level supervision, verified reasoning, or architectural changes address this fundamental limitation, or is it inherent to autoregressive pattern matching?\"\n    ],\n    \"building_blocks\": [\n      \"Symbolic template methodology for generating controlled problem variants from existing benchmarks\",\n      \"GSM-NoOp design pattern: inserting mathematically irrelevant but linguistically plausible clauses as a reasoning litmus test\",\n      \"Performance-as-distribution framework: evaluating across 50 instantiations per template to get means and variances\",\n      \"Difficulty scaling via clause addition/removal (M1/P1/P2 variants)\",\n      \"Contamination signal: comparing original benchmark performance against the distribution of variant performances (21/25 models showed GSM8K score >1 SD above variant mean)\",\n      \"Ablation decomposition: name-only vs. number-only vs. combined changes to isolate sensitivity sources\",\n      \"In-context learning recovery test: providing variant examples as shots to test whether few-shot can overcome systematic failures\"\n    ],\n    \"reviewer_feedback_summary\": null,\n    \"relevance_to_seed\": \"GSM-Symbolic is a direct intellectual ancestor of CRADE's variant generation and robustness evaluation components — it established that symbolic perturbation reveals fragility, but it stops exactly where CRADE begins: it cannot distinguish contamination from genuine reasoning deficits (it observes the entanglement but lacks the joint model to decompose it), evaluates only final answers (missing step-level memorization signatures that CRADE's SPA metric would capture), and produces no calibrated capability score (the performance-as-distribution insight begs for IRT formalization, which CRADE provides). The paper's finding that 21/25 models show GSM8K scores >1 SD above variant means is precisely the contamination signal that CRADE's contamination-aware 3PL IRT model would formally estimate rather than merely observe.\"\n  },\n  {\n    \"title\": \"MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations\",\n    \"venue\": \"arXiv 2025 (Princeton / Google DeepMind); no confirmed peer-reviewed venue acceptance found\",\n    \"problem_identification\": \"Prior perturbation benchmarks (GSM-Plus, GSM-Symbolic, Functional-MATH) only tested 'simple' perturbations that preserved the original solution path — essentially asking 'can the model re-execute the same algorithm with different numbers?' The authors identified that this never tests whether a model actually UNDERSTANDS the mathematical structure, because even a memorizer with the right technique template would pass. The gap was found by observing that competition-level math problems often have 'fragile' solution paths: a small structural change (e.g., raising polynomial degree, removing a symmetry) can invalidate an entire approach, and no benchmark tested this boundary.\",\n    \"key_insight\": \"There exists a previously uncharacterized form of memorization — 'mechanical technique application' — where models memorize not the answers but the problem-solving strategies themselves, and blindly apply learned techniques without verifying their applicability to modified conditions. This is revealed only by perturbations that preserve surface similarity (MRR ≈ 0.986) while invalidating the solution method, creating a clean separation between textual recognition and mathematical understanding.\",\n    \"innovation_type\": \"new_benchmark\",\n    \"method_summary\": \"The authors manually constructed 279 matched problem triplets from MATH level-5 (hardest tier): original → MATH-P-Simple (surface modifications preserving solution path) → MATH-P-Hard (minimal structural edits that invalidate the original solution approach, e.g., raising polynomial degree, breaking symmetry, making brute-force infeasible). Twelve PhD-level annotators with competition math backgrounds created and cross-validated all perturbations. They evaluated 18 LLMs zero-shot with chain-of-thought, analyzed four outcome cases (original-correct × hard-correct), manually inspected error traces to categorize memorization types (assumption ignorance, blind technique application, answer memorization), and ran controlled ICL experiments showing that providing original problem-solution pairs as demonstrations creates competing 'helpful knowledge' vs 'misleading template' effects on hard variants.\",\n    \"what_makes_it_good\": \"The paper's strength is its clean experimental design: the simple/hard taxonomy creates a controlled 'ablation on problem structure' that isolates technique-level memorization from surface-level memorization, something no prior perturbation study achieved. The MRR analysis (≈0.986) elegantly proves that embedding-based retrieval cannot distinguish hard variants from originals, meaning any RAG-assisted model would retrieve the wrong solution template — this transforms a measurement paper into an attack surface paper. The failure mode taxonomy (with concrete traced examples like o1-mini outputting 'all integers' when asked for 'smallest integer') makes the memorization claim falsifiable and vivid rather than statistical hand-waving.\",\n    \"limitations_acknowledged\": \"The authors acknowledge: (1) the dataset is small (279 problems) and entirely manually constructed by expert annotators, making it inherently non-scalable; (2) evaluation excluded tool-use/code-interpreter modes where 'many problems can be trivially solved by brute-force search programs'; (3) the memorization percentage estimates (40% for o1-mini, 25% for Claude-3.5-Sonnet) come from manual inspection of only 20 error cases per model — a very small sample for quantitative claims; (4) there is an acknowledged 'misalignment between model capabilities and annotator perception of difficulty.'\",\n    \"open_questions\": [\n      \"Can hard perturbation generation be automated with formal verification (e.g., SymPy-backed symbolic transforms that provably invalidate specific solution techniques while preserving problem well-formedness)? The manual process doesn't scale and introduces annotator subjectivity about what constitutes a 'different solution method.'\",\n      \"The paper diagnoses mechanical technique application but never connects it to contamination — is the blind technique application rate correlated with the degree of training-set exposure? Their train/test split analysis hints at this (larger drops on train-split problems) but they never formalize the relationship.\",\n      \"Step-level analysis is entirely absent: the paper evaluates only final answers. WHERE in the chain-of-thought does the model commit to the wrong technique? Does it consider and reject the correct approach, or never generate it? Process-level tracing would transform this from a benchmark paper into a mechanistic understanding paper.\"\n    ],\n    \"building_blocks\": [\n      \"Simple/hard perturbation taxonomy as a principled difficulty axis for adversarial evaluation\",\n      \"MRR-based similarity verification (using text-embedding-3-large) to confirm perturbations are retrieval-indistinguishable from originals\",\n      \"Four-case outcome analysis framework (original×variant correctness) for categorizing model failure modes\",\n      \"ICL competing-effects methodology: measuring correct→wrong and wrong→correct transition rates under demonstration\",\n      \"Manual error trace categorization protocol: assumption ignorance, blind technique application, answer memorization\",\n      \"MATH level-5 as a substrate for competition-level perturbation studies\",\n      \"Pass@k / self-consistency analysis on perturbed variants to test inference-time scaling robustness\"\n    ],\n    \"reviewer_feedback_summary\": null,\n    \"relevance_to_seed\": \"MATH-Perturb is directly adjacent to CRADE's MaSTer-like variant generation component but exposes three critical gaps that CRADE must fill: (1) perturbations are entirely manual — CRADE's SymPy-backed generation would automate and scale this with provable correctness; (2) evaluation is answer-level only — CRADE's step-level SPA metric would detect exactly WHERE mechanical technique application occurs in the reasoning chain; (3) the paper observes memorization-driven failures but never connects them to contamination detection or produces a calibrated score — CRADE's contamination-aware IRT model would formalize the relationship between training exposure, technique memorization, and the performance drop they measure, turning their descriptive finding ('40% of o1-mini errors are memorization') into a quantitative decomposition (G + C − R). Their MRR≈0.986 finding also validates CRADE's design assumption that advers\n... (truncated)\n\n## Your task\n\nSynthesize these paper analyses into a **Field Guide** — a strategic document that would help a researcher generate novel, high-quality ideas in this area. This is NOT a survey — it's an opinionated strategy guide for innovation.\n\nThink about:\n- What PATTERNS OF INNOVATION keep working in this field?\n- What do reviewers consistently reward?\n- Where are the real gaps (not assumed gaps)?\n- What combinations haven't been tried?\n- What mistakes should we avoid?\n\n## Output format\n\nOutput a JSON object with these sections:\n{\n  \"innovation_patterns\": [\n    {\"pattern\": \"name\", \"description\": \"how it works\", \"examples\": [\"paper1\", \"paper2\"], \"success_rate\": \"high/medium/low\"}\n  ],\n  \"reviewer_preferences\": [\n    \"What reviewers in this area consistently care about (based on evidence from paper analyses)\"\n  ],\n  \"field_gaps\": [\n    {\"gap\": \"description of unsolved problem\", \"evidence\": \"which papers mention this limitation\", \"difficulty\": \"high/medium/low\", \"impact_if_solved\": \"high/medium/low\"}\n  ],\n  \"untried_combinations\": [\n    {\"idea_sketch\": \"what could be combined\", \"from_papers\": [\"which papers inspire this\"], \"why_promising\": \"reason\"}\n  ],\n  \"method_building_blocks\": [\n    {\"tool\": \"name\", \"what_it_does\": \"description\", \"used_by\": [\"papers\"], \"could_be_applied_to\": \"new application\"}\n  ],\n  \"common_pitfalls\": [\n    \"Mistakes to avoid when working in this area (based on reviewer feedback and paper limitations)\"\n  ],\n  \"field_trajectory\": \"Where is this field heading? What are the 2-3 most promising macro-directions? (paragraph)\",\n  \"meta_advice\": \"If you were advising a PhD student to write a strong 2026 paper in this area, what would you tell them? (paragraph)\"\n}\n\nBe specific and evidence-based — every claim should reference specific papers from the analyses. Avoid generic advice like 'be novel' — instead say 'Papers that combine X with Y for task Z have been getting accepted (see Paper A, Paper B).'.\n\nIMPORTANT: You MUST end your response with the JSON object."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T11:13:52.024Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-28T11:13:52.024Z",
+  "sessionId": "acfdb814-3dea-47ef-a80b-2056449cad42"
+}
+```
+
+---
+
+## Round 1
+
+11 recorded events
+
+### User
+
+_source line 3 · 2026-05-28T11:13:52.046Z_
+
+You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.
+
+**Today's date: 2026-05-28 (UTC).**
+
+## Research area: Target: AAAI 2026
+Track: AI Alignment / Main Technical Track — Robustness Evaluation
+
+Direction: Build an end-to-end framework (CRADE) that jointly profiles per-instance contamination, generates adversarial functional variants with provable correctness, evaluates reasoning at the step level, and produces IRT-calibrated "genuine capability" scores that decompose observed performance into true ability, contamination boost, and robustness deficit. The core insight is that contamination and robustness are entangled — a model may fail perturbations because it memorized answers OR because it lacks genuine reasoning, and disentangling these requires joint modeling that no existing work provides.
+
+Seed Papers:
+- Zawalski et al. "CoDeC" (NVIDIA, arXiv 2025) — Gray-box contamination detection at 99.9% AUC; provides the detection backbone but produces no corrective evaluation
+- Li et al. "ATLAS" (arXiv 2025) — IRT-based adaptive testing achieving 90% item reduction; demonstrates IRT's power for LLM evaluation but assumes test integrity
+- Hou et al. "MaSTer" (arXiv 2026) — Automated adversarial math variant generation with 48% accuracy reduction; best current perturbation method but disconnected from contamination
+- Zheng et al. "ReasoningMath-Plus" (arXiv 2026) — Step-level evaluation showing answer-level overestimates by ~1.4 points; proves process-level matters but lacks adversarial component
+- Chen et al. "Reasoning Models Don't Always Say What They Think" (Anthropic, May 2025) — CoT faithfulness is only 25% for hint disclosure; establishes that CoT is unreliable but doesn't connect to contamination
+- Xu et al. "DCR" (arXiv 2025) — Contamination-adjusted scores via fuzzy inference; closest competitor but lacks IRT grounding, variant generation, and process-level analysis
+- Kocetkov et al. "On The Fragility of Benchmark Contamination Detection in Reasoning Models" (arXiv Oct 2025) — Shows detection fails for reasoning models; establishes urgent need for new approaches
+
+Known Gaps:
+- No framework jointly estimates contamination level, generates adversarial variants, and produces a single calibrated capability score (existing work addresses these in isolation)
+- Step-level perturbation alignment (whether CoT appropriately tracks problem changes) has never been measured or connected to contamination — all adversarial work evaluates final answers only
+- Item Response Theory for LLM evaluation (ATLAS, PSN-IRT) assumes zero contamination; contamination-aware IRT with joint ability-contamination estimation is entirely missing
+- Existing contamination detection fails on reasoning models (near random-guess), creating demand for process-level and faithfulness-based alternatives
+
+Theoretical Anchor: Contamination-aware 3PL IRT model: P(correct | θ_j, d_i, c_ij) = c_ij · p_mem + (1 - c_ij) · σ(θ_j - d_i), with EM-based joint estimation of ability θ, difficulty d, and contamination indicators c. The decomposition Observed_accuracy = G + C - R (genuine capability + contamination boost - robustness deficit) provides a formal framework grounded in measurement theory.
+
+Constraints:
+- Compute: ≤200 H100-hours (estimated ~120 for combined RQ1+RQ2)
+- Timeline: 8-10 weeks to AAAI deadline (abstract July 25, paper August 1)
+- Must validate calibrated scores against MathArena's uncontaminated 2025 competition data as ground truth
+
+Quality Self-Checks:
+- [x] Core insight: "Contamination and robustness are entangled — you can't measure one without accounting for the other, and disentangling them requires joint modeling at the reasoning-step level."
+- [x] Why not obvious: The contamination-detection and adversarial-robustness communities are separate research streams with different venues and different authors; the IRT-for-LLMs community is a third silo. Nobody sits at the three-way intersection. DCR Factor shows the field is approaching this but only from the detection+adjustment angle.
+- [x] Baseline fear test: A simple baseline of "run on variants and average" loses the contamination-robustness decomposition and the step-level memorization signatures — the calibrated IRT score and process-level SPA metric are what differentiate.
+- [x] Information exploited: Per-instance contamination profiles crossed with per-variant step-level reasoning chain changes — no existing method uses this joint signal.
+
+Avoid:
+- Pure contamination detection without corrective evaluation (saturated space with 5+ strong methods)
+- Yet another dynamic benchmark (LiveBench, MathArena, DyVal already exist) — this must be a framework applicable to ANY existing benchmark
+- Ad-hoc perturbation studies on single benchmarks without methodological/theoretical contribution (GSM-Plus, GSM-Symbolic, MATH-Perturb already cover this)
+- Using LLMs in the variant generation loop (creates circular dependency and unverifiable correctness) — use SymPy-backed symbolic generation instead
+
+## Paper analyses (18 papers)
+
+[
+  {
+    "title": "Detecting Data Contamination in LLMs via In-Context Learning (CoDeC)",
+    "venue": "ICLR 2026",
+    "problem_identification": "The authors identified that all existing contamination detection methods suffer from a shared structural flaw: they rely on absolute statistics (loss, perplexity, token probability) that conflate dataset difficulty with memorization, requiring either external reference models for calibration or access to training data for threshold tuning. They likely found this gap by observing that Min-K%, Zlib Ratio, and vanilla loss all produce overlapping score distributions for seen vs. unseen data (their Table 1 shows baselines at 75-90% AUC vs. CoDeC's 99.9%), meaning no single threshold works across models and datasets. The insight came from reframing the question: instead of asking 'how confident is the model on this data?' (an absolute measurement polluted by difficulty), ask 'how does the model's confidence CHANGE when given related context?' — a differential measurement that cancels out difficulty.",
+    "key_insight": "In-context examples help models on genuinely unseen data (the ICL learning signal) but HURT performance on memorized data (disrupting cached memorization patterns), and this differential response is a nearly perfect contamination signal. The brilliance is using the model as its own reference — no external calibrator needed — by comparing two states of the SAME model (with vs. without context), which eliminates the confound of dataset-intrinsic difficulty that plagues all absolute-threshold methods.",
+    "innovation_type": "new_formulation",
+    "method_summary": "CoDeC requires only gray-box access (token log-probabilities) and works in four steps: (1) compute baseline average log-likelihood of each sample x in dataset D; (2) sample n in-context examples from D itself, prepend them to x, and compute in-context log-likelihood; (3) compute the per-sample confidence shift Δ(x) = logprob_in-context(x) − logprob_baseline(x); (4) aggregate by counting the fraction of samples with negative Δ, yielding S_CoDeC(D) ∈ [0,1] where high values indicate contamination. The method is parameter-free (no thresholds to tune), requires only two forward passes per sample, and produces an interpretable percentage score. Crucially, the in-context examples come from the same dataset being tested — the model serves as its own control, making the method model- and dataset-agnostic.",
+    "what_makes_it_good": "Three things likely drove acceptance: (1) The formulation elegance — a parameter-free, self-referential test that uses the model against itself, requiring zero external calibration data or threshold tuning, which is a rare and valuable property in ML methodology; (2) The overwhelming empirical gap — 99.9% AUC vs. the best baseline at 92.3% (Zlib), with clean visual separation in score distributions, tested across 13 models spanning transformers, RNNs, and hybrids from 410M to 56B parameters; (3) The mechanistic depth — they don't just show it works, they explain WHY via four complementary perspectives (dataset-specific priors, memorization disruption, ICL-as-finetuning analogy, and loss landscape geometry), with controlled finetuning experiments and training dynamics tracking that validate the causal story.",
+    "limitations_acknowledged": "The method operates at dataset-level granularity — it cannot yet perform sample-level membership inference (a critical gap for per-instance contamination scoring). Additionally, adversarially constructed datasets (heavy duplication, unrelated sample mixtures) can yield misleading scores, and no formal theoretical guarantees are provided for the detection boundary.",
+    "open_questions": [
+      "Can CoDeC be extended to per-instance contamination scoring? The current dataset-level aggregation (averaging indicator functions across samples) discards per-sample Δ(x) values that could serve as instance-level contamination probabilities — but the paper explicitly flags sample-level analysis as future work, suggesting the per-sample signal may be too noisy without aggregation.",
+      "How does CoDeC perform on reasoning models that internalize training data through chain-of-thought distillation rather than token-level memorization? Kocetkov et al. (2025) showed that existing detection methods fail for reasoning models, and CoDeC's reliance on token log-probabilities may face the same challenge when memorization manifests as reasoning-pattern replication rather than surface-token caching.",
+      "What happens when contamination is partial — e.g., the model saw paraphrased or augmented versions of a benchmark? The paper shows some transfer detection (MMLU finetuning raises scores on related QA benchmarks by 20-40%), but the sensitivity curve for varying degrees of data transformation (exact copy → light paraphrase → structural variant → same-distribution new problem) is not characterized."
+    ],
+    "building_blocks": [
+      "Differential confidence measurement (Δ = logprob_in-context − logprob_baseline) as a self-referential contamination signal",
+      "ICL-as-finetuning analogy for explaining memorization dynamics",
+      "Gray-box access pattern (only token log-probabilities needed, no weights or gradients)",
+      "Indicator-function aggregation for dataset-level scoring: S = (1/N) Σ 𝟙[Δ(x_i) < 0]",
+      "Controlled finetuning as ground-truth contamination injection for validation",
+      "Training checkpoint analysis (OLMo) for tracking contamination emergence over training",
+      "Cross-dataset transfer analysis for measuring contamination spillover",
+      "The Pile / Dolma / Nemotron-CC as known-training-data ground truth for evaluation",
+      "AUC as the primary evaluation metric for detection (avoids threshold dependence)"
+    ],
+    "reviewer_feedback_summary": null,
+    "relevance_to_seed": "CoDeC is the proposed detection backbone for CRADE, but this deep read reveals both its power and critical limitations for our framework. Its strength — dataset-level 99.9% AUC — validates the approach for flagging contaminated benchmarks, but CRADE needs per-instance contamination indicators c_ij for the IRT model P(correct | θ_j, d_i, c_ij) = c_ij · p_mem + (1 - c_ij) · σ(θ_j - d_i). CoDeC's per-sample Δ(x) values are available but the paper explicitly punts on sample-level reliability, meaning CRADE must either: (a) develop a calibration layer that converts noisy per-sample Δ(x) into reliable instance-level contamination probabilities (possibly via the IRT EM loop itself), or (b) use CoDeC for dataset-level flagging and derive per-instance contamination from the step-level perturbation alignment (SPA) metric instead. The bigger risk flagged by Kocetkov et al. — that detection fails for reasoning models — means CRADE's value proposition of process-level analysis as an alternative contamination signal becomes even more important. CoDeC's methodology also teaches us a key design principle: self-referential measurements (using the model as its own control) are more robust than absolute measurements, which directly supports our approach of measuring step-level reasoning changes across problem variants rather than absolute accuracy."
+  },
+  {
+    "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+    "venue": "ICLR 2026 (Poster)",
+    "problem_identification": "The authors identified that the entire contamination detection literature was validated only on non-reasoning models, but the field had shifted to LRMs trained via SFT→RL pipelines (e.g., GRPO). They found this gap by observing a structural mismatch: detection methods assume contamination manifests as memorization (lower loss on seen vs. unseen items), but LRM training has two stages that can decouple contamination from its detectable signal. The key observation is that RL training, as a standard second stage, can serve as an unintentional (or intentional) evidence laundering step.",
+    "key_insight": "PPO-style importance sampling and clipping in RL objectives systematically contract the member/non-member log-probability gap that ALL existing detection methods rely on — and this is not a bug but a mathematical consequence of the optimization objective (proven via NLL drift decomposition). Additionally, CoT-capable models generalize confidence to distributionally similar unseen samples, eliminating the detection signal entirely for post-LRM contamination.",
+    "innovation_type": "analysis",
+    "method_summary": "The authors design two controlled contamination scenarios. In Stage I (pre-LRM), they SFT-contaminate base models (Qwen2.5-7B, Llama-3.1-8B) on 50% of benchmark items using QwQ-32B-distilled CoT trajectories, then apply GRPO on a mix of clean and contaminated data. In Stage II (post-LRM), they SFT-contaminate already-capable reasoning models (DeepSeek-R1-Distill variants, OpenThoughts3). They evaluate 10 detection methods spanning four categories (generation-based, perturbation-based, reference-based, reference-free) across 6 math reasoning benchmarks, measuring AUROC for member vs. non-member discrimination. Critically, they provide a theoretical analysis decomposing the NLL drift under RL into a mean advantage term and a covariance term from importance sampling/clipping, proving that the clipping mechanism drives gap contraction. An ablation removing clipping from RAFT++ confirms this: AUROC drops 17.9% with clipping but only 1.1% without it.",
+    "what_makes_it_good": "Three things made this paper compelling: (1) It delivers a clean, high-impact negative result with immediate practical consequences for the entire LLM evaluation ecosystem — leaderboards are unreliable. (2) It goes beyond empirical demonstration to provide a theoretical explanation pinpointing the exact mechanism (clipping in PPO-style objectives), which generalizes the finding to any RL method using importance-weighted clipping. (3) The experimental design is thorough — 10 detection methods × 6 benchmarks × multiple model families × controlled ablations — leaving little room for 'but what about X?' objections. Reviewers explicitly praised the timeliness, experimental rigor, and the theoretical attribution to importance weighting.",
+    "limitations_acknowledged": "The authors acknowledge they identify vulnerabilities but propose no new detection algorithms — the paper is diagnostic, not prescriptive. They also note the primary evaluation is on mathematical reasoning benchmarks, though during rebuttal they extended to MMLU-Pro, LiveCodeBench, and other domains to address this concern.",
+    "open_questions": [
+      "What detection paradigm can replace memorization-based signals for reasoning models? The paper proves the old assumption is broken but leaves the solution space wide open — process-level analysis, step-level faithfulness checks, and contamination-aware evaluation frameworks are all potential directions.",
+      "Can the contamination concealment effect be quantified and inverted? If the NLL drift decomposition characterizes how RL hides contamination, could a corrective model estimate the pre-RL contamination level from post-RL observations?",
+      "How does this interact with contamination at scale in frontier models where training data is undisclosed? The controlled setting uses known contamination ratios — real-world detection must work without ground truth contamination labels, making the problem even harder than demonstrated."
+    ],
+    "building_blocks": [
+      "GRPO (Group Relative Policy Optimization) training pipeline",
+      "10 contamination detection methods: LiRA, Ref, Min-K%, Min-K++, Max-K%, LOSS, Zlib, Verbatim, CDD, Neighborhood",
+      "QwQ-32B distillation with rejection sampling (64 rollouts) for CoT trajectory generation",
+      "NLL drift decomposition theorem for analyzing RL's effect on log-probability distributions",
+      "RAFT/RAFT++ ablation framework for isolating importance sampling vs. clipping effects",
+      "6 math reasoning benchmarks: AIME 2024/2025, AMC 2023, GPQA Diamond, OlympiadBench, Minerva Math",
+      "DeepSeek-R1-Distill model family, OpenThoughts3, Qwen2.5-7B, Llama-3.1-8B as experimental substrates",
+      "Member/non-member AUROC evaluation protocol for contamination detection"
+    ],
+    "reviewer_feedback_summary": "Scores: 8, 6→8, 6 (AC: Accept Poster). Reviewers uniformly praised the timeliness and experimental thoroughness. Reviewer F3s6 (8) highlighted the clean theoretical attribution to PPO-style clipping and the comprehensive detector coverage. Reviewer hTiN (6→8) initially questioned whether detection methods are actively used in practice and wanted better positioning against prior evasion work — they raised their score after the authors expanded motivation and added cross-domain results. Reviewer enZz (6) pushed hardest, requesting: (a) results beyond math reasoning → authors added MMLU-Pro and LiveCodeBench, (b) embedding-based detection baselines → authors showed these also fail after RL, (c) output length confound analysis → authors showed entropy, not length, drives concealment, (d) clarification on how checkpoint release helps → addressed. The AC noted all concerns were 'sufficiently addressed through new experiments.' The paper would have been even stronger with a proposed mitigation method and broader initial benchmark coverage (both were flagged and partially addressed in rebuttal).",
+    "relevance_to_seed": "This paper is the critical 'demand signal' for CRADE — it proves that all existing contamination detection methods fail on reasoning models (AUROC ≈ 50%, random chance), establishing that the field cannot rely on detection alone and MUST move to corrective evaluation frameworks. The specific mechanism it identifies (RL conceals memorization signals while preserving performance inflation of 7-12%) is exactly the entanglement CRADE's joint contamination-robustness decomposition is designed to disentangle. Moreover, the finding that CoT-trained models generalize confidence to unseen distributionally-similar items validates CRADE's approach of using adversarial functional variants (structurally different problems) rather than distributional neighbors, and motivates the step-level SPA metric that checks whether reasoning chains appropriately track problem changes — something no memorization-based detector can capture."
+  },
+  {
+    "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+    "venue": "EMNLP 2025",
+    "problem_identification": "The authors identified that the entire contamination-detection literature stops at detection — methods flag contamination but never answer 'so what should the real score be?' They found this gap by observing that practitioners default to crude n-gram matching not because it's good, but because sophisticated methods are too expensive and don't produce actionable corrections. The insight that no existing tool converts a contamination signal into a corrected benchmark score is what opened the design space.",
+    "key_insight": "Contamination is not binary but operates across a hierarchy of granularities (semantic exposure → metadata leakage → data memorization → label memorization), and these heterogeneous signals are inherently fuzzy — they lack crisp boundaries — so a fuzzy inference system is the right synthesis tool to collapse them into a single corrective factor rather than requiring hard thresholds or learned weights.",
+    "innovation_type": "combination",
+    "method_summary": "DCR defines four contamination levels (L1: semantic similarity to benchmark domain, L2: exposure to benchmark metadata/statistics, L3: direct test-data memorization without labels, L4: test-data-plus-label memorization) and probes each via a structured 'DCR Test Sheet' of ~20 targeted prompts per level. Each level yields a contamination score S_i ∈ [0,1] based on binary human checks. These four scores are fuzzified into Low/Medium/High membership values via trapezoidal functions, processed through 64 handcrafted fuzzy inference rules that weight higher-severity levels more heavily (L4-High → Severe), and defuzzified via centroid method into a single DCR Factor ∈ [0,1]. The final adjusted accuracy is Acc_adj = Acc × (1 − DCR Factor). Validation uses controlled contamination injection at each level into InstructLM models with known-clean corpora, comparing adjusted scores against uncontaminated baselines.",
+    "what_makes_it_good": "Three things earned acceptance: (1) it fills a genuine vacuum — this is the first framework that goes end-to-end from contamination detection to corrective score adjustment, giving practitioners something directly usable; (2) the experimental design is rigorous and clever — training models from scratch with controlled contamination injection at each level provides a credible ground truth that purely observational studies lack; (3) the 4% average error across 9 models and 3 benchmarks is a strong empirical result that validates the fuzzy inference approach despite its simplicity. The paper is also notably honest about what it doesn't do (generative tasks, >72B models), which builds reviewer trust.",
+    "limitations_acknowledged": "The authors note the framework is unvalidated beyond 72B parameters and on frontier models, only two model families with disclosed corpora were available, contamination injection simulates single-stage pre-training rather than real-world multi-source blending/RLHF/distillation pipelines, and the framework does not yet handle generative tasks like translation or summarization.",
+    "open_questions": [
+      "The multiplicative adjustment formula Acc_adj = Acc × (1 − DCR Factor) is asserted without theoretical justification — why should contamination's effect scale proportionally with raw accuracy rather than additively or through a more principled measurement-theoretic model like IRT? The LIAR2 correlation (r=0.66) hints this assumption may break down for harder multi-class tasks.",
+      "The 'Check' step relies on manual human evaluation (or expensive LLM judges at 68-92% accuracy) — this creates a scalability bottleneck and subjectivity risk that undermines the 'lightweight' claim. Can the probing be made fully automatic without sacrificing reliability?",
+      "All evaluation is at the final-answer level — there is no analysis of whether contaminated models produce different reasoning chains, whether step-level memorization signatures exist, or whether CoT faithfulness degrades under contamination. This leaves the mechanism of how contamination inflates scores entirely opaque."
+    ],
+    "building_blocks": [
+      "Four-level contamination taxonomy (semantic → informational → data → label) as a structured decomposition",
+      "DCR Test Sheet prompt design methodology for probing contamination at each level",
+      "Fuzzy inference system with trapezoidal membership functions and centroid defuzzification for synthesizing heterogeneous signals",
+      "Controlled contamination injection protocol: inserting benchmark-relevant data at specific levels (15% cap) into known-clean pre-training corpora with validation monitoring",
+      "InstructLM models trained on RefinedWeb as clean baselines for contamination studies",
+      "The multiplicative correction formula as a simple baseline to improve upon",
+      "SST-2 / LIAR2 / GSM8K benchmark trio spanning classification and reasoning tasks"
+    ],
+    "reviewer_feedback_summary": null,
+    "relevance_to_seed": "DCR is the closest existing competitor to CRADE and precisely delineates the space CRADE must exceed. Three critical gaps in DCR become CRADE's contribution pillars: (1) DCR's ad-hoc multiplicative correction lacks measurement-theoretic grounding — CRADE's contamination-aware 3PL IRT model (jointly estimating ability θ, difficulty d, and contamination c via EM) provides a principled alternative that should dominate on multi-class and reasoning tasks where DCR's correlation drops to 0.66; (2) DCR evaluates only final answers and cannot detect step-level memorization or reasoning chain degradation — CRADE's Step Perturbation Alignment (SPA) metric fills this entirely unaddressed dimension; (3) DCR has no adversarial variant generation component and thus cannot distinguish 'the model memorized the answer' from 'the model genuinely reasons but is fragile to perturbation' — CRADE's SymPy-backed variant generation with provable correctness disentangles these. The DCR paper also reveals important experimental-design lessons: controlled contamination injection with known-clean baselines is the gold standard for validation, and CRADE should replicate this protocol alongside the MathArena ground-truth comparison."
+  },
+  {
+    "title": "Provable Joint Decontamination for Benchmarking Multiple Large Language Models (JECS)",
+    "venue": "arXiv 2026 (preprint, no venue acceptance yet)",
+    "problem_identification": "The authors identified that existing conformal-inference decontamination methods work per-model, producing K different 'clean' benchmark subsets for K audited models — making fair cross-model comparison impossible. They proved empirically that naive composition (union or intersection of per-model clean sets) catastrophically fails GCR control (union yields GCP≈0.76, intersection yields GCP≈0.37 at target α=0.1). This gap was hiding in plain sight: the single-model conformal decontamination papers (their own prior line of work) never asked 'what happens when you need one shared benchmark for multiple models?' — a question anyone doing a leaderboard comparison must face.",
+    "key_insight": "When you aggregate K conformal p-values via max() to handle the joint null ('contaminated for at least one model'), the null CDF becomes t^K (Beta(K,1)), pushing nearly all null mass toward 1 and creating a devastating 'super-uniformity tax' that destroys statistical power as K grows. JECS's aha moment is that you can reconstruct a conservative envelope of this unknown null CDF by exploiting the asymmetry that pure items cluster in the left tail while contaminated items enrich the right tail — then transform the max-p values through this envelope to undo the power loss while preserving the formal guarantee.",
+    "innovation_type": "combination",
+    "method_summary": "JECS operates in five stages: (1) Compute per-model conformal p-values using a shared calibration set of known training members, yielding {p_i^k} for each item i and model k. (2) Aggregate to max-p values p_i* = max_k p_i^k, which are valid under the joint null (contaminated for any model) but super-uniform. (3) Estimate a piecewise null CDF envelope by fitting a linear segment on [0,λ] anchored via k-NN density estimation at a right-tail threshold λ, and using the empirical mixture CDF on (λ,1] — the envelope provably dominates the true null CDF under a convexity assumption. (4) Transform all max-p values through this envelope to obtain approximately uniform nulls, and estimate the null proportion via Storey's estimator. (5) Apply adaptive Storey-Benjamini-Hochberg to the transformed values to select items, yielding a shared decontaminated benchmark with asymptotic GCR ≤ α. The theoretical guarantee (Theorem 3) requires two mild assumptions: convexity of the null CDF (natural under max-aggregation) and right-tail separability of pure vs. contaminated items.",
+    "what_makes_it_good": "Three qualities elevate this paper: (a) it identifies a genuinely overlooked structural problem (multi-model decontamination is not a trivial extension of single-model) and proves naive baselines fail; (b) the solution is theoretically principled with clean formal guarantees while being practically impactful — power jumps from 0.055 to 0.715 in representative settings; (c) the paper maintains intellectual honesty by clearly delineating what the theory requires (Assumptions 4-5) rather than claiming universality. The experimental design with controlled membership labels across 16 independently fine-tuned models on WikiMIA/ArXivTection is rigorous and reproducible.",
+    "limitations_acknowledged": "The authors explicitly note that JECS requires the calibration set distribution to be close to the candidate pool distribution — a realistic concern when models are trained on heterogeneous corpora. They flag extending to explicit distribution shift via shift-aware conformal p-values as future work.",
+    "open_questions": [
+      "JECS removes contaminated items entirely rather than correcting or adjusting scores — can the conformal p-value machinery be extended to produce contamination-adjusted scores (continuous decontamination) rather than binary keep/discard decisions?",
+      "The shared calibration set must contain items known to be in ALL K models' training data — how does this requirement scale as K grows or when auditing closed-source models where training data membership is unverifiable?",
+      "The method operates on final membership scores (perplexity, Min-K%) and is agnostic to reasoning — does it remain valid for reasoning models where contamination manifests as memorized solution strategies rather than surface-level memorization, given that detection scores fail for reasoning models (Kocetkov et al. 2025)?"
+    ],
+    "building_blocks": [
+      "Conformal p-value calibration via exchangeability (Equation 4) — reusable for any hypothesis-testing-as-selection problem",
+      "Max-p aggregation with Lemma 1 validity proof — general technique for multi-source null composition",
+      "Piecewise null CDF envelope construction via right-tail k-NN density estimation — novel and potentially applicable to other multiple testing problems with unknown null distributions",
+      "Storey's null proportion estimator adapted to transformed p-values",
+      "Adaptive Benjamini-Hochberg procedure for FDR/GCR control",
+      "WikiMIA and ArXivTection datasets with controlled membership labels",
+      "Min-K%++ detection score with normalized log-probability formulation"
+    ],
+    "reviewer_feedback_summary": null,
+    "relevance_to_seed": "JECS is directly relevant to CRADE's contamination profiling component (RQ1) but occupies a complementary niche: it removes contaminated items to create a clean benchmark, whereas CRADE aims to keep all items and decompose performance into genuine ability, contamination boost, and robustness deficit. The critical lesson for CRADE is methodological — JECS shows that multi-model contamination is structurally harder than single-model (super-uniformity tax) and that naive composition of per-model signals fails. CRADE's contamination-aware IRT model must similarly handle the multi-model case carefully, potentially adapting JECS's conformal p-values as the contamination indicator c_ij rather than using binary CoDeC scores. However, JECS's fundamental limitation — it cannot handle reasoning models where detection scores fail (Kocetkov et al.) and it discards rather than corrects — is precisely the gap CRADE fills with adversarial variant generation and step-level process analysis."
+  },
+  {
+    "title": "GSM-Symbolic: Understanding the Limitations of Mathematical Reasoning in Large Language Models",
+    "venue": "ICLR 2025",
+    "problem_identification": "The authors identified that GSM8K's static nature makes it impossible to distinguish genuine mathematical reasoning from memorization — performance is reported as a single number on a fixed question set, preventing controlled experiments on sensitivity to surface-level changes. They found this gap by observing the paradox that GSM8K scores keep climbing (90%+) yet anecdotal evidence and token-bias research suggested LLMs remained fragile. The key move was reframing evaluation from 'what is the score?' to 'what is the distribution of scores across semantically equivalent variants?' — a question GSM8K's fixed format structurally could not answer.",
+    "key_insight": "If you convert benchmark problems into symbolic templates and generate many numeric/lexical instantiations of each, you can treat model performance as a distribution rather than a point estimate — and this distribution reveals that high GSM8K scores are outliers (likely contamination artifacts) rather than representative measures, and that adding mathematically irrelevant information causes catastrophic failures (up to 65%), exposing pattern-matching masquerading as reasoning.",
+    "innovation_type": "new_benchmark",
+    "method_summary": "The authors manually converted 100 GSM8K test problems into parameterized symbolic templates with typed variables, domain constraints (e.g., divisibility for whole-number answers), and validated ranges. Each template generates 50 instantiations (5,000 total examples), producing 50 parallel test sets of 100 questions. They evaluated 25+ models (2B–frontier scale) using 8-shot CoT with greedy decoding. Beyond simple numeric substitution, they created systematic difficulty variants: GSM-M1 (one clause removed), GSM-P1/P2 (one/two clauses added), and critically GSM-NoOp (seemingly relevant but mathematically irrelevant clauses inserted). The NoOp experiment was the methodological masterstroke — it tests whether models understand problem structure or just convert every clause into an operation.",
+    "what_makes_it_good": "Three things made this paper exceptional: (1) Methodological elegance — the symbolic template approach is simple enough that anyone can understand it yet powerful enough to generate arbitrarily many controlled variants, solving the contamination confound that plagues static benchmarks. (2) A single devastating experiment (GSM-NoOp) that crystallizes the paper's thesis — the 65% performance drop from irrelevant clauses is a viscerally compelling demonstration that models lack genuine comprehension, far more persuasive than incremental accuracy changes. (3) Comprehensive coverage — 25+ models, multiple ablations (name-only vs. number-only vs. combined changes, difficulty scaling, in-context learning recovery attempts), and careful controls (arithmetic capability verification in Appendix A.6) that preempt obvious reviewer objections.",
+    "limitations_acknowledged": "The authors acknowledge the study is limited to relatively simple grade-school mathematics and deliberately restricts numerical ranges to assess reasoning over arithmetic, so results may not generalize to more complex mathematical domains. They also note statistical assumptions in their significance analysis and that the template conversion process involves manual effort that limits scalability.",
+    "open_questions": [
+      "The paper demonstrates fragility but cannot decompose WHY a model fails a variant — is it memorization of the original, lack of genuine reasoning ability, or sensitivity to specific numeric ranges? A contamination-aware framework that jointly estimates these factors is needed.",
+      "All evaluation is at the final-answer level. When a model gets a variant wrong, does the reasoning chain break at the perturbed step or propagate errors from earlier? Step-level alignment between original and variant CoT traces remains completely unexplored.",
+      "The NoOp experiment shows models cannot filter irrelevant information, but the paper offers no mechanism to improve this — can process-level supervision, verified reasoning, or architectural changes address this fundamental limitation, or is it inherent to autoregressive pattern matching?"
+    ],
+    "building_blocks": [
+      "Symbolic template methodology for generating controlled problem variants from existing benchmarks",
+      "GSM-NoOp design pattern: inserting mathematically irrelevant but linguistically plausible clauses as a reasoning litmus test",
+      "Performance-as-distribution framework: evaluating across 50 instantiations per template to get means and variances",
+      "Difficulty scaling via clause addition/removal (M1/P1/P2 variants)",
+      "Contamination signal: comparing original benchmark performance against the distribution of variant performances (21/25 models showed GSM8K score >1 SD above variant mean)",
+      "Ablation decomposition: name-only vs. number-only vs. combined changes to isolate sensitivity sources",
+      "In-context learning recovery test: providing variant examples as shots to test whether few-shot can overcome systematic failures"
+    ],
+    "reviewer_feedback_summary": null,
+    "relevance_to_seed": "GSM-Symbolic is a direct intellectual ancestor of CRADE's variant generation and robustness evaluation components — it established that symbolic perturbation reveals fragility, but it stops exactly where CRADE begins: it cannot distinguish contamination from genuine reasoning deficits (it observes the entanglement but lacks the joint model to decompose it), evaluates only final answers (missing step-level memorization signatures that CRADE's SPA metric would capture), and produces no calibrated capability score (the performance-as-distribution insight begs for IRT formalization, which CRADE provides). The paper's finding that 21/25 models show GSM8K scores >1 SD above variant means is precisely the contamination signal that CRADE's contamination-aware 3PL IRT model would formally estimate rather than merely observe."
+  },
+  {
+    "title": "MATH-Perturb: Benchmarking LLMs' Math Reasoning Abilities against Hard Perturbations",
+    "venue": "arXiv 2025 (Princeton / Google DeepMind); no confirmed peer-reviewed venue acceptance found",
+    "problem_identification": "Prior perturbation benchmarks (GSM-Plus, GSM-Symbolic, Functional-MATH) only tested 'simple' perturbations that preserved the original solution path — essentially asking 'can the model re-execute the same algorithm with different numbers?' The authors identified that this never tests whether a model actually UNDERSTANDS the mathematical structure, because even a memorizer with the right technique template would pass. The gap was found by observing that competition-level math problems often have 'fragile' solution paths: a small structural change (e.g., raising polynomial degree, removing a symmetry) can invalidate an entire approach, and no benchmark tested this boundary.",
+    "key_insight": "There exists a previously uncharacterized form of memorization — 'mechanical technique application' — where models memorize not the answers but the problem-solving strategies themselves, and blindly apply learned techniques without verifying their applicability to modified conditions. This is revealed only by perturbations that preserve surface similarity (MRR ≈ 0.986) while invalidating the solution method, creating a clean separation between textual recognition and mathematical understanding.",
+    "innovation_type": "new_benchmark",
+    "method_summary": "The authors manually constructed 279 matched problem triplets from MATH level-5 (hardest tier): original → MATH-P-Simple (surface modifications preserving solution path) → MATH-P-Hard (minimal structural edits that invalidate the original solution approach, e.g., raising polynomial degree, breaking symmetry, making brute-force infeasible). Twelve PhD-level annotators with competition math backgrounds created and cross-validated all perturbations. They evaluated 18 LLMs zero-shot with chain-of-thought, analyzed four outcome cases (original-correct × hard-correct), manually inspected error traces to categorize memorization types (assumption ignorance, blind technique application, answer memorization), and ran controlled ICL experiments showing that providing original problem-solution pairs as demonstrations creates competing 'helpful knowledge' vs 'misleading template' effects on hard variants.",
+    "what_makes_it_good": "The paper's strength is its clean experimental design: the simple/hard taxonomy creates a controlled 'ablation on problem structure' that isolates technique-level memorization from surface-level memorization, something no prior perturbation study achieved. The MRR analysis (≈0.986) elegantly proves that embedding-based retrieval cannot distinguish hard variants from originals, meaning any RAG-assisted model would retrieve the wrong solution template — this transforms a measurement paper into an attack surface paper. The failure mode taxonomy (with concrete traced examples like o1-mini outputting 'all integers' when asked for 'smallest integer') makes the memorization claim falsifiable and vivid rather than statistical hand-waving.",
+    "limitations_acknowledged": "The authors acknowledge: (1) the dataset is small (279 problems) and entirely manually constructed by expert annotators, making it inherently non-scalable; (2) evaluation excluded tool-use/code-interpreter modes where 'many problems can be trivially solved by brute-force search programs'; (3) the memorization percentage estimates (40% for o1-mini, 25% for Claude-3.5-Sonnet) come from manual inspection of only 20 error cases per model — a very small sample for quantitative claims; (4) there is an acknowledged 'misalignment between model capabilities and annotator perception of difficulty.'",
+    "open_questions": [
+      "Can hard perturbation generation be automated with formal verification (e.g., SymPy-backed symbolic transforms that provably invalidate specific solution techniques while preserving problem well-formedness)? The manual process doesn't scale and introduces annotator subjectivity about what constitutes a 'different solution method.'",
+      "The paper diagnoses mechanical technique application but never connects it to contamination — is the blind technique application rate correlated with the degree of training-set exposure? Their train/test split analysis hints at this (larger drops on train-split problems) but they never formalize the relationship.",
+      "Step-level analysis is entirely absent: the paper evaluates only final answers. WHERE in the chain-of-thought does the model commit to the wrong technique? Does it consider and reject the correct approach, or never generate it? Process-level tracing would transform this from a benchmark paper into a mechanistic understanding paper."
+    ],
+    "building_blocks": [
+      "Simple/hard perturbation taxonomy as a principled difficulty axis for adversarial evaluation",
+      "MRR-based similarity verification (using text-embedding-3-large) to confirm perturbations are retrieval-indistinguishable from originals",
+      "Four-case outcome analysis framework (original×variant correctness) for categorizing model failure modes",
+      "ICL competing-effects methodology: measuring correct→wrong and wrong→correct transition rates under demonstration",
+      "Manual error trace categorization protocol: assumption ignorance, blind technique application, answer memorization",
+      "MATH level-5 as a substrate for competition-level perturbation studies",
+      "Pass@k / self-consistency analysis on perturbed variants to test inference-time scaling robustness"
+    ],
+    "reviewer_feedback_summary": null,
+    "relevance_to_seed": "MATH-Perturb is directly adjacent to CRADE's MaSTer-like variant generation component but exposes three critical gaps that CRADE must fill: (1) perturbations are entirely manual — CRADE's SymPy-backed generation would automate and scale this with provable correctness; (2) evaluation is answer-level only — CRADE's step-level SPA metric would detect exactly WHERE mechanical technique application occurs in the reasoning chain; (3) the paper observes memorization-driven failures but never connects them to contamination detection or produces a calibrated score — CRADE's contamination-aware IRT model would formalize the relationship between training exposure, technique memorization, and the performance drop they measure, turning their descriptive finding ('40% of o1-mini errors are memorization') into a quantitative decomposition (G + C − R). Their MRR≈0.986 finding also validates CRADE's design assumption that advers
+... (truncated)
+
+## Your task
+
+Synthesize these paper analyses into a **Field Guide** — a strategic document that would help a researcher generate novel, high-quality ideas in this area. This is NOT a survey — it's an opinionated strategy guide for innovation.
+
+Think about:
+- What PATTERNS OF INNOVATION keep working in this field?
+- What do reviewers consistently reward?
+- Where are the real gaps (not assumed gaps)?
+- What combinations haven't been tried?
+- What mistakes should we avoid?
+
+## Output format
+
+Output a JSON object with these sections:
+{
+  "innovation_patterns": [
+    {"pattern": "name", "description": "how it works", "examples": ["paper1", "paper2"], "success_rate": "high/medium/low"}
+  ],
+  "reviewer_preferences": [
+    "What reviewers in this area consistently care about (based on evidence from paper analyses)"
+  ],
+  "field_gaps": [
+    {"gap": "description of unsolved problem", "evidence": "which papers mention this limitation", "difficulty": "high/medium/low", "impact_if_solved": "high/medium/low"}
+  ],
+  "untried_combinations": [
+    {"idea_sketch": "what could be combined", "from_papers": ["which papers inspire this"], "why_promising": "reason"}
+  ],
+  "method_building_blocks": [
+    {"tool": "name", "what_it_does": "description", "used_by": ["papers"], "could_be_applied_to": "new application"}
+  ],
+  "common_pitfalls": [
+    "Mistakes to avoid when working in this area (based on reviewer feedback and paper limitations)"
+  ],
+  "field_trajectory": "Where is this field heading? What are the 2-3 most promising macro-directions? (paragraph)",
+  "meta_advice": "If you were advising a PhD student to write a strong 2026 paper in this area, what would you tell them? (paragraph)"
+}
+
+Be specific and evidence-based — every claim should reference specific papers from the analyses. Avoid generic advice like 'be novel' — instead say 'Papers that combine X with Y for task Z have been getting accepted (see Paper A, Paper B).'.
+
+IMPORTANT: You MUST end your response with the JSON object.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "99446a82-d38a-4791-b8d4-e7b5e8640d2b",
+  "type": "user",
+  "uuid": "5c321318-89e3-4974-8ff8-33b597f4b206",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "acfdb814-3dea-47ef-a80b-2056449cad42",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-28T11:13:52.043Z_
+
+```json
+{
+  "parentUuid": "5c321318-89e3-4974-8ff8-33b597f4b206",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "fb992607-8164-4e40-8d3a-281acb814d36",
+  "timestamp": "2026-05-28T11:13:52.043Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "acfdb814-3dea-47ef-a80b-2056449cad42",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-28T11:13:52.043Z_
+
+```json
+{
+  "parentUuid": "fb992607-8164-4e40-8d3a-281acb814d36",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "93c64404-d627-427e-ad8c-4fe5c7034bbd",
+  "timestamp": "2026-05-28T11:13:52.043Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "acfdb814-3dea-47ef-a80b-2056449cad42",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-28 (UTC).**  ## Research area: Target: AAAI 2026 Track: AI Alignmen…",
+  "leafUuid": "93c64404-d627-427e-ad8c-4fe5c7034bbd",
+  "sessionId": "acfdb814-3dea-47ef-a80b-2056449cad42"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Build contamination-aware evaluation framework for reasoning models",
+  "sessionId": "acfdb814-3dea-47ef-a80b-2056449cad42"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-28T11:14:13.437Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to synthesize 18 paper analyses (though only 5 full analyses are shown, with the rest truncated) into a strategic "Field Guide" for innovation in the LLM contamination/robustness evaluation space, specifically targeting AAAI 2026. Let me carefully analyze the provided paper analyses and the seed research direction to produce a comprehensive, evidence-based JSON output.
+
+Let me identify the key themes across the papers:
+
+1. **CoDeC** - Gray-box contamination detection via differential confidence (ICL disruption), 99.9% AUC but dataset-level only
+2. **Kocetkov et al.** - Shows contamination detection fails for reasoning models (AUROC ≈ 50%), RL conceals memorization
+
+
+3. **DCR** - End-to-end contamination detection with score correction through fuzzy inference, though the correction approach feels somewhat ad-hoc
+4. **JECS** - Multi-model decontamination using conformal p-values, taking a removal approach rather than correction
+5. **GSM-Symbolic** - Uses symbolic templates to create controlled variants and measure performance distributions, with NoOp experiments
+6. **MATH-Perturb** - Constructs hard perturbations that break solution methods, revealing technique-level memorization patterns
+7. **ATLAS** - Applies IRT-based adaptive testing to achieve 90% item reduction
+8. **MaSTer** - Automated adversarial math generation causing 48% accuracy drops
+9. **ReasoningMath-Plus** - Step-level evaluation that shows answer-level metrics overestimate by roughly 1.4 points
+10. **Chen et al. (Anthropic)** - Demonstrates CoT faithfulness drops to just 25% when hints are disclosed
+
+Now I'm seeing the broader organizational structure—there are really five key methodological patterns emerging across these approaches: using models as their own controls, leveraging negative results to expose structural weaknesses, attempting to bridge detection and correction (where DCR stands alone), employing symbolic or controlled generation techniques, and something about self-referential measurement that keeps appearing.
+
+The reviewer preferences are becoming clearer too—they value clean negative results with solid theoretical backing, methodological elegance that translates to real impact, and experimental designs that anticipate and address objections. There are some critical gaps in the field I should highlight: nobody's really tackled joint contamination-robustness decomposition, step-level perturbation alignment is missing, and there's no contamination-aware IRT approach yet. The automated hard perturbation generation with formal verification and detection methods for reasoning models are also wide open.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93c64404-d627-427e-ad8c-4fe5c7034bbd",
+  "isSidechain": false,
+  "requestId": "req_011CbUsMBZicgHdfTevzD2SL",
+  "type": "assistant",
+  "uuid": "caa677ca-8fb2-4680-83d2-56a4782a4a56",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "acfdb814-3dea-47ef-a80b-2056449cad42",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UZr25HZm1jV3DpjyCuXKSC",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12432,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 8872,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12432,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 8872,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 12432,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12432
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-28T11:17:25.171Z_
+
+I'll synthesize the paper analyses into the strategic field guide. Let me first review the full set of analyses carefully to ensure comprehensive coverage.
+
+Given the depth of the 6 fully provided analyses plus the seed paper descriptions for the remaining 12, I have enough signal to produce a thorough, evidence-based synthesis. Let me construct this now.
+
+```json
+{
+  "innovation_patterns": [
+    {
+      "pattern": "Self-Referential Measurement",
+      "description": "Using the model as its own control to eliminate confounds from external calibration, dataset difficulty, or threshold tuning. Instead of comparing against a reference model or fixed threshold, compare two states of the SAME model under different conditions. This cancels out difficulty and produces a differential signal that isolates the target phenomenon.",
+      "examples": ["CoDeC (logprob with vs. without in-context examples)", "GSM-Symbolic (performance on original vs. distribution over symbolic variants)", "MATH-Perturb (original vs. hard variant of same problem)"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Clean Negative Result + Mechanistic Explanation",
+      "description": "Demonstrating that a widely-assumed capability or method FAILS, then providing a principled theoretical explanation for WHY it fails (not just empirical evidence). The explanation must generalize beyond the specific experiment to predict where else the failure occurs. Papers that merely show 'X doesn't work' without mechanistic depth get lower scores; those that prove 'X doesn't work BECAUSE Y, and Y is inherent to Z' get accepted at top venues.",
+      "examples": ["Kocetkov et al. (detection fails for reasoning models + NLL drift decomposition proving PPO clipping is the cause)", "GSM-Symbolic (NoOp experiment showing 65% drop + systematic analysis isolating pattern-matching from reasoning)", "Chen et al. Anthropic (CoT faithfulness at 25% for hint disclosure)"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Taxonomy-Then-Framework",
+      "description": "Introducing a structured decomposition of a previously monolithic concept (e.g., contamination levels, perturbation types, reasoning steps) and then building a framework that operates at each level of the taxonomy. The taxonomy makes the framework feel principled rather than ad-hoc, and gives reviewers a mental model for understanding the contribution.",
+      "examples": ["DCR (4-level contamination taxonomy → fuzzy inference across levels)", "MATH-Perturb (simple/hard perturbation taxonomy → four-case outcome analysis)", "ATLAS (IRT item parameters → adaptive test selection)"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Controlled Contamination Injection for Ground-Truth Validation",
+      "description": "Training models from scratch with known-clean corpora, injecting contamination at controlled levels, and using the resulting models as ground truth for evaluating detection/correction methods. This sidesteps the fundamental chicken-and-egg problem that real-world contamination is unverifiable. Papers that only evaluate on frontier models with unknown training data face credibility challenges; those that combine controlled injection with real-world evaluation are strongest.",
+      "examples": ["DCR (InstructLM + RefinedWeb with level-specific injection)", "Kocetkov et al. (SFT contamination at 50% then GRPO)", "CoDeC (OLMo checkpoint tracking + controlled finetuning)"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Detection-to-Correction Bridge",
+      "description": "Moving beyond binary contamination detection (contaminated/clean) to produce actionable corrected scores or calibrated capability estimates. The field is saturated with detection methods (5+ strong approaches); the value frontier has shifted to 'so what should the real score be?' Papers that stop at detection now face a higher bar.",
+      "examples": ["DCR (first to produce adjusted accuracy via DCR Factor)", "JECS (decontaminated benchmark subset with formal guarantees)", "ATLAS (IRT-calibrated ability estimation, though without contamination awareness)"],
+      "success_rate": "medium"
+    },
+    {
+      "pattern": "Formal Guarantees on Evaluation Methodology",
+      "description": "Providing mathematical proofs (not just empirical validation) for evaluation framework properties — coverage guarantees, error bounds, convergence, or measurement-theoretic grounding. In a field where most work is empirical, formal guarantees differentiate and signal rigor. This is especially valued at AAAI/ICLR over NeurIPS.",
+      "examples": ["JECS (asymptotic GCR ≤ α via conformal inference)", "ATLAS (IRT convergence properties)", "MaSTer (SymPy-verified variant correctness)"],
+      "success_rate": "medium"
+    }
+  ],
+  "reviewer_preferences": [
+    "Devastating single experiment over comprehensive but incremental results: GSM-Symbolic's NoOp experiment (one ablation showing 65% drop from irrelevant clauses) was more persuasive than their full 5,000-variant evaluation. Kocetkov et al.'s 'AUROC ≈ 50%' headline was the acceptance driver. Reviewers reward a single result that crystallizes the thesis viscerally — design one 'mic drop' experiment and build the paper around it.",
+    "Theoretical explanation for empirical findings: Kocetkov et al. (ICLR 2026 Poster) initially scored 6/6/8; the reviewer who raised from 6→8 specifically cited the 'clean theoretical attribution to PPO-style clipping.' CoDeC's four complementary mechanistic perspectives (ICL-as-finetuning, loss landscape geometry) likely contributed to ICLR acceptance. Empirical-only papers face 'but why?' pushback.",
+    "Pre-emptive coverage of obvious objections: GSM-Symbolic's evaluation included arithmetic capability verification (Appendix A.6) and ICL recovery tests — preempting 'maybe the model just can't do the new numbers' and 'maybe few-shot fixes it.' DCR's acknowledgment of its own limitations (unvalidated >72B, no generative tasks) built reviewer trust. Kocetkov et al. received pushback on domain breadth and successfully addressed it with MMLU-Pro/LiveCodeBench additions during rebuttal.",
+    "Practical impact + methodological rigor combo: DCR was accepted at EMNLP partly because it's 'directly usable' by practitioners (adjusted scores, not just detection flags), despite relatively simple methodology. JECS emphasizes the leaderboard comparison use case. Reviewers reward work that solves a problem someone actually has, not just an intellectually interesting formulation.",
+    "Controlled experimental design over naturalistic observation: All accepted papers in this space use controlled contamination injection (DCR, Kocetkov) or controlled variant generation (GSM-Symbolic, MATH-Perturb) to establish ground truth. Papers that only observe correlations in the wild ('Model X scores higher, probably contamination') face credibility challenges because contamination is a causal claim requiring causal evidence.",
+    "Honest limitation disclosure with actionable future directions: DCR explicitly stated 'unvalidated beyond 72B' and 'no generative tasks.' MATH-Perturb acknowledged their memorization estimates came from only 20 manual inspections per model. Reviewers respect intellectual honesty and punish overclaiming — especially in a field where ground truth is inherently uncertain."
+  ],
+  "field_gaps": [
+    {
+      "gap": "Joint contamination-robustness decomposition: No existing method can determine whether a model fails an adversarial variant because it memorized the original answer (contamination) or because it lacks genuine reasoning ability (capability deficit). All perturbation studies observe the entanglement but none model it.",
+      "evidence": "GSM-Symbolic observes that 21/25 models score >1 SD above variant means but cannot decompose WHY. MATH-Perturb identifies 'mechanical technique application' but never connects it to contamination levels. DCR produces a corrective factor but has no adversarial component to test robustness. Kocetkov et al. prove detection alone is insufficient but propose no alternative.",
+      "difficulty": "high",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Step-level perturbation alignment: When a problem is perturbed, does the model's reasoning chain appropriately track the change at the modified step, or does it memorize the original reasoning path? No existing work measures this — all adversarial evaluation is final-answer-only.",
+      "evidence": "GSM-Symbolic explicitly notes 'all evaluation is at the final-answer level.' MATH-Perturb asks 'WHERE in the CoT does the model commit to the wrong technique?' but never answers it. ReasoningMath-Plus demonstrates step-level evaluation matters (~1.4 point overestimation at answer level) but has no adversarial component. Chen et al. show CoT is only 25% faithful for hint disclosure but don't connect to contamination.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Contamination-aware Item Response Theory: All IRT-for-LLMs work (ATLAS, PSN-IRT) assumes test integrity — zero contamination. No IRT model jointly estimates ability θ, item difficulty d, AND contamination indicators c. The measurement theory infrastructure exists but has never been applied to the contamination problem.",
+      "evidence": "ATLAS achieves 90% item reduction via IRT but explicitly assumes clean benchmarks. DCR uses a multiplicative correction Acc_adj = Acc × (1 − DCR Factor) that has no measurement-theoretic justification and empirically weakens on harder tasks (r=0.66 on LIAR2 vs. higher on SST-2). The gap between IRT's principled estimation framework and contamination's need for corrective scoring is entirely unfilled.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Contamination detection for reasoning models: Existing detection methods achieve AUROC ≈ 50% (random chance) on models trained with RL (GRPO/PPO), because importance-weighted clipping contracts the member/non-member log-probability gap that all methods rely on.",
+      "evidence": "Kocetkov et al. (ICLR 2026) proved this comprehensively across 10 detection methods × 6 benchmarks. Their NLL drift decomposition shows the gap contraction is a mathematical consequence of PPO-style clipping, meaning incremental improvements to existing detection paradigms are unlikely to work. An entirely new detection signal (process-level, faithfulness-based) is needed.",
+      "difficulty": "high",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Automated hard perturbation generation with formal verification: Existing perturbation approaches are either automated but surface-level (GSM-Symbolic: numeric substitution preserving solution path) or deep but manual (MATH-Perturb: 12 PhD annotators, 279 problems). No method automates the generation of perturbations that provably invalidate the original solution approach while maintaining problem well-formedness.",
+      "evidence": "MATH-Perturb's authors explicitly ask 'Can hard perturbation generation be automated with formal verification (e.g., SymPy-backed symbolic transforms)?' MaSTer achieves 48% accuracy reduction with automated generation but operates on simpler surface-level perturbations. GSM-Symbolic acknowledges 'the template conversion process involves manual effort that limits scalability.'",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Multi-model decontamination that corrects rather than discards: JECS achieves formal guarantees for multi-model benchmark cleaning but does so by removing contaminated items entirely, losing information and reducing benchmark coverage. No method produces contamination-adjusted scores across multiple models on a shared item set.",
+      "evidence": "JECS explicitly keeps items or discards them — there is no continuous correction. Their open question asks 'can conformal p-value machinery be extended to produce contamination-adjusted scores rather than binary keep/discard?' DCR produces corrections but only for single models and without formal guarantees.",
+      "difficulty": "medium",
+      "impact_if_solved": "medium"
+    },
+    {
+      "gap": "Per-instance contamination scoring (not just dataset-level): Most detection methods (CoDeC, Min-K%, Zlib) operate at the dataset level or produce noisy per-sample scores. No method produces reliable per-instance contamination probabilities needed for item-level IRT modeling.",
+      "evidence": "CoDeC explicitly flags 'sample-level analysis as future work, suggesting the per-sample signal may be too noisy without aggregation.' JECS uses per-item conformal p-values but requires known training-data membership for calibration. DCR's test sheets produce per-model scores but not per-instance contamination probabilities.",
+      "difficulty": "medium",
+      "impact_if_solved": "medium"
+    },
+    {
+      "gap": "Contamination's effect on reasoning process (not just accuracy): No paper characterizes HOW contamination changes the reasoning chain — whether contaminated models produce shorter chains, skip verification steps, fail to consider alternative approaches, or exhibit qualitatively different error patterns at the step level.",
+      "evidence": "DCR's open questions explicitly note 'there is no analysis of whether contaminated models produce different reasoning chains.' MATH-Perturb's manual inspection identifies 'blind technique application' as a memorization type but analyzes only 20 cases per model. ReasoningMath-Plus evaluates process quality but on standard benchmarks without adversarial perturbation.",
+      "difficulty": "medium",
+      "impact_if_solved": "medium"
+    }
+  ],
+  "untried_combinations": [
+    {
+      "idea_sketch": "Contamination-aware IRT with adversarial variant generation: Extend 3PL IRT to jointly estimate ability θ, item difficulty d, and per-item contamination indicators c using EM, where contamination indicators are informed by both CoDeC-style differential signals AND performance drops on SymPy-verified adversarial variants. The variant performance provides a second identification condition that makes the IRT model estimable even when detection signals are noisy (as they are for reasoning models).",
+      "from_papers": ["ATLAS (IRT for LLMs)", "CoDeC (per-sample Δ as contamination signal)", "MaSTer (automated variant generation)", "DCR (contamination → correction pipeline)"],
+      "why_promising": "IRT provides measurement-theoretic grounding that DCR's ad-hoc multiplicative formula lacks, adversarial variants provide a contamination signal that works even when detection fails (Kocetkov et al.), and the joint EM estimation is a clean mathematical contribution. ATLAS shows IRT works for LLMs; CoDeC shows detection signals exist; MaSTer shows variants can be auto-generated — nobody has connected these three."
+    },
+    {
+      "idea_sketch": "Step Perturbation Alignment (SPA): Align reasoning chains between original problems and adversarial variants at the step level, measuring whether the model's reasoning appropriately diverges at and after the perturbed step. A memorizing model would reproduce the original chain regardless of perturbation; a reasoning model would diverge precisely at the modified step. This creates a process-level contamination signal that bypasses all token-probability-based detection (which fails for reasoning models per Kocetkov et al.).",
+      "from_papers": ["ReasoningMath-Plus (step-level evaluation)", "MATH-Perturb (hard perturbations that change solution path)", "Chen et al. Anthropic (CoT faithfulness measurement)", "Kocetkov et al. (detection failure motivating new signals)"],
+      "why_promising": "This exploits information no existing method uses: the joint signal of per-instance contamination profiles crossed with per-variant step-level reasoning chain changes. ReasoningMath-Plus proves step-level matters; MATH-Perturb proves hard perturbations reveal technique memorization; Chen et al. prove CoT can be unfaithful; but nobody has combined step-level evaluation with adversarial perturbation to create a contamination signal."
+    },
+    {
+      "idea_sketch": "Conformal p-values as contamination priors for IRT: Use JECS's conformal p-value machinery to produce calibrated per-instance contamination probabilities, then feed these as informative priors on c_ij in a contamination-aware IRT model, rather than using them for binary item removal. This transforms JECS from a filtering tool into a calibration tool.",
+      "from_papers": ["JECS (conformal p-values with formal guarantees)", "ATLAS (IRT estimation)", "DCR (contamination → correction need)"],
+      "why_promising": "JECS already produces per-item scores with formal guarantees but wastes information by binarizing (keep/discard). IRT naturally handles continuous priors on item parameters. The combination preserves JECS's guarantees while producing richer output (calibrated ability scores rather than filtered benchmarks). Multi-model extension inherits JECS's joint guarantees."
+    },
+    {
+      "idea_sketch": "NoOp-style irrelevant clause insertion + step-level tracing to detect memorization: Combine GSM-Symbolic's NoOp methodology (inserting mathematically irrelevant clauses) with step-level reasoning chain analysis to create a fine-grained memorization detector. A memorizing model will either ignore the NoOp clause entirely (revealing it's replaying a memorized solution) or incorporate it into a spurious computation (revealing pattern-matching). The step at which the NoOp clause is processed (or not) is diagnostic.",
+      "from_papers": ["GSM-Symbolic (NoOp experiment)", "ReasoningMath-Plus (step-level evaluation)", "Chen et al. (CoT faithfulness)"],
+      "why_promising": "GSM-Symbolic's NoOp experiment produced the paper's most compelling result (65% drop) but was evaluated only at the answer level. Adding step-level analysis would reveal WHEN and HOW models process irrelevant information, creating a mechanistic understanding of memorization that goes beyond accuracy metrics. This is a low-cost, high-insight extension."
+    },
+    {
+      "idea_sketch": "Cross-benchmark contamination transfer mapping via IRT: Use IRT's ability estimation across multiple benchmarks simultaneously to detect when a model's ability parameter is inconsistent across benchmarks (high θ on MATH but low θ on competition-fresh problems of equivalent difficulty). This inconsistency signal is a contamination indicator that doesn't require any detection method — it falls out of the IRT model as misfit.",
+      "from_papers": ["ATLAS (IRT for LLMs)", "CoDeC (cross-dataset transfer analysis)", "DCR (multi-benchmark evaluation)"],
+      "why_promising": "CoDeC already shows contamination transfers across related benchmarks (MMLU finetuning raises QA scores 20-40%). IRT naturally produces misfit statistics when a model's responses are inconsistent with a unidimensional ability model. The combination would detect contamination via statistical misfit rather than memorization signals — a paradigm that might work for reasoning models where traditional detection fails."
+    }
+  ],
+  "method_building_blocks": [
+    {
+      "tool": "Differential confidence measurement (Δ = logprob_in-context − logprob_baseline)",
+      "what_it_does": "Computes how a model's confidence on a sample changes when given related in-context examples, using the model as its own reference to cancel out dataset difficulty confounds. Requires only gray-box access (token log-probabilities).",
+      "used_by": ["CoDeC"],
+      "could_be_applied_to": "Per-instance contamination scoring for IRT: instead of CoDeC's binary indicator aggregation, use raw Δ(x) values as continuous contamination probabilities c_ij in the IRT model, possibly calibrated via EM. Also applicable to monitoring contamination during training (track Δ at checkpoints to detect when a model begins memorizing)."
+    },
+    {
+      "tool": "Symbolic template methodology for controlled problem variant generation",
+      "what_it_does": "Converts benchmark problems into parameterized templates with typed variables and domain constraints, enabling automated generation of arbitrarily many semantically equivalent instantiations. Produces a distribution of scores rather than a point estimate.",
+      "used_by": ["GSM-Symbolic", "MaSTer"],
+      "could_be_applied_to": "SymPy-backed adversarial variant generation for CRADE: extend beyond numeric substitution to structural perturbations (degree changes, symmetry breaking) with automated correctness verification, enabling hard perturbation at MaSTer/GSM-Symbolic scale rather than MATH-Perturb's manual 279-problem limit."
+    },
+    {
+      "tool": "3PL Item Response Theory with EM estimation",
+      "what_it_does": "Jointly estimates latent ability (θ), item difficulty (d), and item discrimination (a) parameters from binary response matrices. The 3PL model includes a guessing parameter that can be repurposed as a contamination indicator. EM algorithm handles the latent variable structure.",
+      "used_by": ["ATLAS", "PSN-IRT (referenced in seed)"],
+      "could_be_applied_to": "Contamination-aware IRT: replace the guessing parameter with a contamination indicator c_ij, yielding P(correct | θ_j, d_i, c_ij) = c_ij · p_mem + (1 − c_ij) · σ(θ_j − d_i). The EM loop jointly estimates ability and contamination, producing a principled decomposition that DCR's multiplicative formula approximates without justification."
+    },
+    {
+      "tool": "Controlled contamination injection protocol",
+      "what_it_does": "Trains models from scratch on known-clean corpora (RefinedWeb, The Pile), injects benchmark data at controlled percentages and contamination levels, and uses resulting models as ground truth for evaluating detection/correction methods.",
+      "used_by": ["DCR", "Kocetkov et al.", "CoDeC (finetuning experiments)"],
+      "could_be_applied_to": "Validating CRADE's decomposition: train models with known contamination levels and verify that the IRT model recovers the correct contamination indicators and ability estimates. This is the gold standard for any framework claiming to measure contamination — reviewers will expect it."
+    },
+    {
+      "tool": "Conformal p-value calibration with max-aggregation",
+      "what_it_does": "Produces statistically valid p-values for contamination membership using exchangeability, then aggregates across multiple models via max() with formal guarantees on the joint null. Includes a null CDF envelope construction to recover statistical power lost to super-uniformity.",
+      "used_by": ["JECS"],
+      "could_be_applied_to": "Multi-model contamination-aware evaluation: use conformal p-values as principled contamination priors in a multi-model IRT framework, preserving JECS's formal guarantees while producing continuous ability estimates rather than binary item inclusion decisions."
+    },
+    {
+      "tool": "NoOp clause insertion as a reasoning litmus test",
+      "what_it_does": "Adds mathematically irrelevant but linguistically plausible information to problems. Models that process the irrelevant clause (incorporating it into computation) reveal pattern-matching; models that correctly ignore it demonstrate structural understanding.",
+      "used_by": ["GSM-Symbolic"],
+      "could_be_applied_to": "Step-level memorization detection: combine NoOp insertion with chain-of-thought analysis to identify WHICH reasoning step incorrectly processes the irrelevant information, creating a diagnostic probe for mechanical technique application that MATH-Perturb identified but couldn't localize."
+    },
+    {
+      "tool": "NLL drift decomposition under RL objectives",
+      "what_it_does": "Decomposes how RL training (specifically PPO-style importance-weighted clipping) modifies the log-probability distribution, proving that clipping contracts the member/non-member gap that detection methods rely on.",
+      "used_by": ["Kocetkov et al."],
+      "could_be_applied_to": "Designing detection-resistant contamination metrics: knowing the exact mechanism of concealment (clipping in RL), one could design signals that are invariant to this transformation — e.g., process-level metrics that measure reasoning structure rather than token probabilities, or higher-order statistics that the clipping operation does not contract."
+    },
+    {
+      "tool": "MRR-based similarity verification with embedding models",
+      "what_it_does": "Uses text-embedding-3-large to compute mean reciprocal rank between original problems and perturbations, verifying that variants are retrieval-indistinguishable from originals (MRR ≈ 0.986). This confirms that perturbations test reasoning rather than surface pattern-matching.",
+      "used_by": ["MATH-Perturb"],
+      "could_be_applied_to": "Quality assurance for automated variant generation: after SymPy-backed generation, verify that variants maintain high embedding similarity to originals (ensuring they test the same conceptual knowledge) while having provably different solution paths (ensuring they test genuine reasoning vs. memorization)."
+    }
+  ],
+  "common_pitfalls": [
+    "Stopping at detection without correction: The contamination detection space has 5+ strong methods (CoDeC at 99.9% AUC, Min-K%, Zlib, CDD, Neighborhood). A new detection method must show massive improvement or handle a fundamentally new setting (reasoning models) to be publishable. DCR was accepted precisely because it was the first to produce corrected scores — the bar has shifted to 'what should the real score be?' not 'is there contamination?'",
+    "Evaluating only on frontier closed-source models without controlled ground truth: DCR and Kocetkov et al. both used controlled contamination injection to establish credibility. Relying solely on evaluating GPT-4/Claude/Gemini where training data is unknown invites the reviewer objection 'how do you know the ground truth?' Always include controlled experiments alongside real-world evaluations.",
+    "Ad-hoc correction formulas without measurement-theoretic justification: DCR's Acc_adj = Acc × (1 − DCR Factor) was accepted at EMNLP but its open questions reveal the weakness — the multiplicative assumption has no theoretical basis and empirically weakens on harder tasks (r=0.66 on LIAR2). For AAAI/ICLR, reviewers will demand principled alternatives. Ground corrections in IRT, conformal inference, or another formal framework.",
+    "Using LLMs to generate or verify adversarial variants: This creates a circular dependency (an LLM judging LLM outputs on LLM-generated problems) and makes correctness unverifiable. GSM-Symbolic uses symbolic templates; MaSTer uses SymPy; MATH-Perturb uses human PhD annotators. The field has converged on formal/human verification. Using GPT-4 as a judge of variant correctness will be flagged by reviewers.",
+    "Proposing 'yet another dynamic benchmark' without methodological contribution: LiveBench, MathArena, DyVal already exist for contamination-free evaluation via temporal novelty. A new benchmark must contribute methodology (symbolic templates, IRT calibration, step-level analysis) not just new problems. GSM-Symbolic was accepted because the template methodology was the contribution, not the 5,000 new questions.",
+    "Ignoring the reasoning model gap: Any contamination work validated only on base models or non-reasoning LLMs now faces the 'but what about reasoning models?' objection, since Kocetkov et al. (ICLR 2026) proved detection methods fail post-RL. Papers must either explicitly test on reasoning models or acknowledge this limitation — reviewers are now aware of this gap.",
+    "Under-scoping step-level evaluation: ReasoningMath-Plus shows answer-level metrics overestimate by ~1.4 points, and Chen et al. show CoT faithfulness is only 25%. Papers that evaluate only final answers will face increasing pushback as the field shifts toward process-level evaluation. At minimum, include step-level analysis as an ablation even if it's not the main contribution.",
+    "Manual perturbation construction that doesn't scale: MATH-Perturb's 279 problems (12 PhD annotators) produced important insights but the approach is inherently non-scalable and introduces annotator subjectivity. Reviewers now expect automation or at least a path to it. Always discuss scalability — a method validated on 279 problems is a proof of concept; one validated on 5,000+ (GSM-Symbolic scale) is a tool.",
+    "Overclaiming on small sample sizes: MATH-Perturb's memorization estimates (40% for o1-mini) came from manual inspection of only 20 error cases per model. Reviewers will discount quantitative claims based on N<50 manual inspections. Either scale the analysis or present it as qualitative/illustrative rather than precise estimates.",
+    "Neglecting the multi-model case: JECS proved that naive composition of per-model contamination signals fails catastrophically for multi-model comparison (the super-uniformity tax). Any framework claiming to evaluate 'LLMs' must handle the cross-model comparison case, not just per-model scoring. Test on 5+ models minimum."
+  ],
+  "field_trajectory": "The contamination evaluation field is undergoing a phase transition from detection to correction, driven by two converging pressures: (1) the saturation of detection methods — CoDeC achieves 99.9% AUC, leaving little room for improvement on standard models, while Kocetkov et al. prove all detection fails on reasoning models, meaning incremental detection improvements are a dead end; and (2) the growing demand from practitioners and leaderboards for actionable, calibrated scores rather than binary contamination flags. The three most promising macro-directions are: First, **joint contamination-robustness modeling** grounded in measurement theory (IRT or conformal inference), where the goal is not to detect contamination but to produce a single calibrated capability score that decomposes observed performance into genuine ability, contamination boost, and robustness deficit — DCR opened this door with a crude multiplicative formula, and the next wave will provide principled alternatives. Second, **process-level evaluation** that moves beyond final-answer accuracy to step-level reasoning chain analysis, connecting the CoT faithfulness work (Chen et al., Anthropic) with the adversarial perturbation tradition (GSM-Symbolic, MaSTer, MATH-Perturb) — the key insight is that memorization should be detectable in HOW models reason, not just WHAT they output, and this may be the only viable detection paradigm for reasoning models where token-probability signals fail. Third, **automated adversarial benchmark generation with formal verification** — the field needs to move from manual construction of a few hundred variants (MATH-Perturb) to SymPy-backed generation of thousands with provable correctness guarantees, creating a continuous supply of contamination-resistant evaluation items that can be applied to ANY existing benchmark rather than creating yet another standalone dataset. The convergence of these three directions — principled calibration + process-level analysis + automated verified generation — points toward end-to-end evaluation frameworks (of which CRADE would be the first) as the natural next step, analogous to how the ML fairness field moved from individual bias metrics to comprehensive audit frameworks.",
+  "meta_advice": "If I were advising a PhD student targeting a strong 2026 publication in this space, I would say: First, **pick the three-way intersection** — the contamination-detection community, the adversarial-robustness community, and the IRT-for-LLMs community are three separate research streams with different venues and different authors (CoDeC/Kocetkov at detection venues, GSM-Symbolic/MATH-Perturb at evaluation venues, ATLAS at psychometrics-meets-ML venues). The highest-impact work will sit at the intersection of all three, because nobody else does. DCR Factor shows the field is converging toward this intersection from the detection+correction angle, but it lacks IRT grounding, variant generation, and process-level analysis — there's a clear 12-month window before someone else fills this gap. Second, **design one devastating experiment** that crystallizes your thesis — following the pattern of GSM-Symbolic's NoOp or Kocetkov's AUROC≈50%, find a single result so striking that reviewers remember it. For CRADE, this might be showing that two models with identical benchmark accuracy have dramatically different 'genuine capability' scores after contamination-robustness decomposition, with one's advantage entirely explained by memorization — make the decomposition visible and visceral, not just statistical. Third, **validate against MathArena's uncontaminated competition data as external ground truth** AND include controlled contamination injection experiments — you need both naturalistic and controlled evidence, because neither alone is sufficient for the causal claims you're making. Fourth, **include formal guarantees** — even if approximate, a theorem about your IRT estimator's convergence or identifiability conditions elevates the work from 'clever engineering' to 'methodological contribution' and signals you understand measurement theory, not just ML evaluation. Fifth, **be explicit about what you CANNOT do** — reviewers in this space reward honesty (DCR's forthright limitations section likely helped acceptance). Acknowledge that your SymPy-backed generation is limited to mathematical domains, that step-level alignment requires structured CoT, and that the IRT model assumes a parametric form for the contamination-performance relationship. The papers that get rejected in this space are those that overclaim — the ones that get accepted are those that deliver a clean, well-bounded contribution with theoretical depth and one unforgettable experiment."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "caa677ca-8fb2-4680-83d2-56a4782a4a56",
+  "isSidechain": false,
+  "requestId": "req_011CbUsMBZicgHdfTevzD2SL",
+  "type": "assistant",
+  "uuid": "5146c82c-dbdc-4269-8895-a316945ca41a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "acfdb814-3dea-47ef-a80b-2056449cad42",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UZr25HZm1jV3DpjyCuXKSC",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12432,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 8872,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12432,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 8872,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 12432,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12432
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-28 (UTC).**  ## Research area: Target: AAAI 2026 Track: AI Alignmen…",
+  "leafUuid": "5146c82c-dbdc-4269-8895-a316945ca41a",
+  "sessionId": "acfdb814-3dea-47ef-a80b-2056449cad42"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Build contamination-aware evaluation framework for reasoning models",
+  "sessionId": "acfdb814-3dea-47ef-a80b-2056449cad42"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-28 (UTC).**  ## Research area: Target: AAAI 2026 Track: AI Alignmen…",
+  "leafUuid": "5146c82c-dbdc-4269-8895-a316945ca41a",
+  "sessionId": "acfdb814-3dea-47ef-a80b-2056449cad42"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Build contamination-aware evaluation framework for reasoning models",
+  "sessionId": "acfdb814-3dea-47ef-a80b-2056449cad42"
+}
+```
+
+---

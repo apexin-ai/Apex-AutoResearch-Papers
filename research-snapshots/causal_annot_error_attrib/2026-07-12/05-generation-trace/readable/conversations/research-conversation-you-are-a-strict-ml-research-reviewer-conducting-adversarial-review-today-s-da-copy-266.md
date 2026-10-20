@@ -1,0 +1,10493 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-19 (UTC).** Your job: indep
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 147
+- **Recorded user turns:** 1
+- **Tool calls:** 48
+- **Original source:** `logs/chats/exported-trajectories/account-3/9649428d-49c8-4aec-9d93-475a3ef84d7a.jsonl`
+- **Structured JSON:** [`d7f54fb8b923af257260.json`](../../sessions/d7/d7f54fb8b923af257260.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T13:36:59.494Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T13:36:59.494Z",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-19 (UTC).**\n\nYour job: independently verify this idea's claims via web_search, then issue a verdict.\n\n## User requirements\nThe user asked for: **cot faithfulness**\nEvaluate whether this idea actually meets the user's requirements. An idea that doesn't match should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：用 WebFetch 实际阅读相关论文的 abstract 和关键章节。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献\n\n6. **评分诚实**：\n   - 4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} 2026` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} 2026` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} 2026 site:scholar.google.com`\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} 2026` — 按活跃作者追踪\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} 2026` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey 2026` — 找综述论文\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n\n### 搜索维度\n\n1. **正向搜索**：直接搜索主题相关论文\n2. **竞争论文搜索**（最关键！）：有没有人在解决同样的问题？用类似方法？\n3. **相邻领域搜索**：其他领域是否已解决类似问题\n4. **反面搜索**：找到反对你 idea 的证据\n5. **引用链追踪**：找到核心论文后，查看 cited-by 发现 concurrent work\n\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n2. **知名团队追踪**：搜索相关团队最近的论文\n3. **会议最新录用**：搜索 `site:openreview.net {topic} 2026`\n4. **arXiv 近 3 个月密集搜索**\n\n## Review checklist\n1. **SOTA freshness**: Are baselines actually current SOTA?\n2. **Reference verification**: Do cited papers actually exist?\n3. **Gap validity**: Does the claimed gap still exist?\n4. **Venue validity**: Are target venue deadlines after 2026-05-19?\n5. **Feasibility**: Is the resource estimate realistic?\n6. **Novelty**: Is this sufficiently different from existing work?\n7. **Cost realism**: Are the three mode estimates internally consistent?\n\n## Idea under review (round 7/10)\n{\n  \"title\": \"Measuring What Models Know But Don't Use: Calibrated Temporal Information-Contribution Divergence for Chain-of-Thought Faithfulness\",\n  \"project_name\": \"cot_faithfulness_decomp\",\n  \"source\": \"web_research\",\n  \"level\": \"top-tier\",\n  \"target_venues\": [\n    \"ICLR 2027 (abstract: Sep 19, full paper: Sep 24, 2026; conference: Apr/May 2027 — primary target, 4 months from now)\",\n    \"ICML 2027 (full paper: Jan 29, 2027; conference: Jul 2027 — comfortable fallback if additional experiments needed)\"\n  ],\n  \"core_problem\": \"A striking convergence of 2025-2026 findings reveals a fundamental disconnect in reasoning language models: their hidden states reliably encode information about answer correctness — with linear probes achieving 0.82-0.95 AUROC across multiple independent groups — yet causal interventions based on these probes consistently fail to influence model outputs. Cox et al. (2603.01437) find that steering via answer-content probes produces answer flip rates 'negligible against the orthogonal baseline' on reasoning models, despite >0.9 AUC on instruction-tuned models. Yuan et al. (2605.09502) systematically test four distinct intervention strategies (activation steering, probe-guided best-of-N, self-correction, activation patching) on models up to 72B parameters and report that ALL fail: 'RL training does not close the diagnostic–causal gap.' This diagnostic-causal gap — the divergence between what information is available in a model's hidden states and what information the chain-of-thought reasoning text causally contributes — is NOT a methodological obstacle to overcome; it IS the central phenomenon. Critically, the literature conflates two distinct probe targets: answer-content probes (Cox et al.: predicting the specific answer on binary tasks, models ≤9B + GPT-OSS-20B) and correctness probes (Yuan et al.: predicting right/wrong on models up to 72B; Zhang et al.: per-chunk correctness on 7B-70B). This distinction matters because the gap's interpretation differs: answer-content gaps mean 'the model has already decided but CoT doesn't derive the answer,' while correctness gaps mean 'the model knows it's right/wrong but CoT doesn't reflect this awareness.' Meanwhile, the temporal dynamics of this gap are now empirically grounded: David (2511.14773) shows probe accuracy stabilizes at 0.84 AUC by token 4, remaining ~0.8 through token 100, with task-difficulty conditioning revealing easy (0.84) vs. hard (0.76) signatures. Zhang et al. (2504.05419) report chunk-level probe trajectories rising from 65% at 10% of reasoning to 79% at 100% on R1-Distill. Esakkiraja et al. (2604.01202) find >90% pre-generation AUROC with a characteristic dip at 5-10% of reasoning followed by recovery. Chrabąszcz et al. (2605.18549) demonstrate that temporal probe trajectories with 60+ signal-processing features achieve up to 17pp improvement over static probes, showing that trajectory dynamics capture information invisible to single-timepoint measurements. These temporal profiles suggest that different modes of CoT unfaithfulness — pre-CoT encoding, post-hoc rationalization, reasoning theater, myopic planning, thinking-answer gap — produce distinguishable temporal divergence signatures. Yet no existing framework jointly tracks information availability AND causal contribution across the full CoT timeline: Chrabąszcz et al. provide the closest probe-trajectory methodology but lack any causal contribution component, gap metric, probe calibration, or phenomenon taxonomy; Ballon et al. (2601.23163) provide behavioral causal curves via truncation-reinjection but lack hidden-state measurement; the CMI framework provides layerwise causal audit on ~50 examples but no temporal resolution; Zhao et al.'s True Thinking Score provides per-step causal contribution but no probe-side measurement. The gap between diagnostic information availability and causal contribution IS the phenomenon of interest, not an obstacle.\",\n  \"opportunity\": \"The field has independently produced the measurement tools needed for a unified temporal framework, but these tools remain siloed. The opportunity is fourfold:\\n\\n(1) **Temporal gap measurement.** Despite rapid accumulation of probe measurements (David: 0.84 at t=4; Zhang: 0.82-0.91 on chunks; Yuan: 0.95 overall, 0.787 first-step; Esakkiraja: >90% pre-generation; Chrabąszcz et al.: 91-97% AUROC with max-pooling on trajectories), no work tracks the full-timeline divergence between probe-estimated information availability and intervention-estimated causal contribution. Chrabąszcz et al. (2605.18549) come closest on the probe side — extracting 60+ signal-processing features from probe trajectories across 4 reasoning models and 4 datasets, achieving up to 17pp improvement over static probes on GSM8K — but they target outcome prediction (correctness, harmfulness) rather than the faithfulness gap, and provide no causal contribution measurement. Their work validates that temporal probe trajectories capture dynamics invisible to static probes (confirming our P*(t) direction); our framework extends this via the dual-estimator gap G*(t) = P*(t) − C(t) that requires the additional causal contribution dimension, null-probe calibration, and phenomenon mapping. On the causal side, Ballon et al. (2601.23163) provide behavioral C(t) curves via truncation-reinjection at decile intervals on Qwen3/gpt-oss across GPQA-Diamond and MMLU-Pro — showing monotonic accuracy increase from 30.8-42.3% to 49.0-73.1% with control conditions validating that sequential content (not just context length) matters — but lack hidden-state measurement. The gap between these two measurement traditions IS the framework's niche.\\n\\n(2) **Phenomenon unification with honest scoping.** The CoT faithfulness literature treats each failure mode as separate: Reasoning Horizon (Ye et al. 2602.11201), pre-CoT encoding (Cox et al. 2603.01437; Esakkiraja et al. 2604.01202), Reasoning Theater (Boppana et al. 2603.05488), myopic planning (Xu et al. 2602.02103), thinking-answer gap. We propose that 2-3 of these are confidently distinguishable via trajectory-shape signatures in the information-contribution gap G*(t), with 4-5 as a stretch goal requiring additional features. The honest scoping — validated through an empirical pilot on real data before committing to full classification — is itself a contribution to a field prone to over-claiming.\\n\\n(3) **Task-difficulty conditioning.** The ICLR 2026 Workshop finding and Li et al.'s (2510.22362) corroboration show easy→decorative, hard→faithful. David's easy/hard splits (0.84 vs. 0.76 at t=32) provide probe-level evidence. Gjølbye et al. (2605.15454) demonstrate that difficulty is systematically coupled to hidden-state trajectory geometry even after length correction (ρ⊥ = +0.41 for reasoning models vs. −0.06 for baselines on competitive programming), with domain-specific strength. A difficulty-conditioned gap framework can answer the practical question: at what difficulty level does CoT transition from decorative to load-bearing?\\n\\n(4) **Probe target clarification.** The field has not confronted the distinction between answer-content probes (Cox et al.: binary tasks, ≤9B) and correctness probes (Yuan et al.: up to 72B). A framework that explicitly measures correctness awareness gap — and contrasts it with answer-content gap on applicable tasks — provides the first principled treatment of what 'knowing but not using' means.\\n\\nTwo prior works have combined probing with causal interventions: Kudo et al. (EACL 2026) on synthetic arithmetic, and the CMI framework (2602.03994) on ~50 examples. Wang (2604.15726) formalizes the need via competing hypotheses (H1: latent-mediated, H2: CoT-mediated, H0: serial compute) and proposes compute-audited designs — our ICG framework provides an empirical methodology to distinguish H1 from H2 at each token position. Neither Kudo et al. nor CMI provides: (a) full temporal-position coverage on natural benchmarks, (b) mapping to named faithfulness phenomena, (c) a standalone instance-level diagnostic, (d) systematic multi-model comparison, (e) robustness validation — a critical gap highlighted by Young's (2603.20172) finding that faithfulness measurements are classifier-sensitive (inter-classifier kappa as low as 0.06), or (f) an empirical pilot validating phenomenon separability on real data.\",\n  \"landscape\": \"**Probe-based temporal measurement (foundational for our P*(t) component).** Chrabąszcz et al. (2605.18549) is the closest concurrent work: they introduce probe trajectories — tracking concept probability at each generated token — and extract 60+ signal-processing features (volatility, trend, steady-state, temporal segmentation, boundary transients, autocorrelation) via 3-layer MLP probes with Multi-Instance Learning meta-probe across layers. Key results: max-pooling achieves 91-97% AUROC on harmfulness detection (vs. 33-61% for average-pooling, demonstrating average/last-token pooling collapses to near-random); up to 17pp improvement over static probes on GSM8K mathematical error prediction across Llama-8B-R1-Distill and Qwen3-4B/8B/14B (~3000 GPU-hours total). Critical differentiators from our framework: (a) NO causal contribution component — they measure only probe accuracy trajectories, not whether CoT causally contributes; (b) NO gap metric — just trajectory vs. static comparison for outcome prediction; (c) NO null-probe calibration or MCT geometric validation — their 3-layer MLP probes are uncalibrated; (d) NO phenomenon taxonomy — they separate correct/incorrect or safe/harmful, not faithfulness modes; (e) NO task-difficulty conditioning. Their 60+ feature extraction methodology is complementary and could enhance our trajectory-shape classification. David (2511.14773) trains per-position probes on reasoning models, finding 0.84 AUC at t=4, stable ~0.8 through t≈100, with easy/hard splits of 0.84 vs. 0.76 at t=32 on Qwen3-8B. Zhang et al. (2504.05419) probe R1-Distill models (7B/32B/70B) for correctness at each reasoning chunk, achieving 0.82-0.91 AUROC on GSM8K/MATH/AIME, with a rising trajectory from 65% at 10% chunk to 79% at 100%, enabling 24% token reduction via early-exit. Yuan et al. (2605.09502) report 0.95 AUROC on Qwen-3B, 0.852 on DeepSeek-R1-7B, 0.787 from first-step hidden states alone, and a concealment gap of 0.197 AUROC between hidden-state (0.787) and text-surface (0.590) classifiers — using correctness probes (right/wrong), not answer-content probes. Esakkiraja et al. (2604.01202) find >90% AUROC pre-generation on Qwen3-4B and GLM-Z1-9B, with a characteristic dip at 5-10% of reasoning and recovery to near-100% by think_end. Cox et al. (2603.01437) use answer-content probes (predicting specific answer A/B on binary tasks: Anachronisms, Logical Deduction, Sports Understanding, Social Chemistry) achieving >0.9 AUC on instruction-tuned Gemma-2 (2B, 9B) and Qwen-2.5 (1.5B, 3B, 7B) models, with causal validation via steering (>50% flip rates) — but 'the answer flip rate is negligible against the orthogonal baseline' on the reasoning model GPT-OSS-20B. Additional probing work: Qian et al. (2506.02867, NeurIPS 2025); Lewis-Lim et al. (2508.19827, EMNLP 2025); Mirtaheri & Belkin (2603.17199); Occhipinti et al. (ICLR 2026 LIT Workshop, probing F1 90-100%, steering 46% recovery).\\n\\n**The diagnostic-not-causal evidence (motivating our framework).** Yuan et al. (2605.09502) is the decisive study: four interventions — activation steering (at most +4%), probe-guided best-of-N (matches random), self-correction (hurts accuracy −3%), activation patching (destroys coherence at α=0.5) — all fail. Tested on Qwen2.5 (1.5B-72B), Llama-3.1-8B, Phi-3.5-mini, DeepSeek-R1-7B. Key quote: 'The error signal is a diagnostic readout—a summary statistic of computation quality—not a causal component that can be edited.' Cox et al. (2603.01437) independently confirm: steering fails on reasoning models despite high probe accuracy. This establishes that probe accuracy ≠ causal potency on reasoning models, which is the foundational observation our framework exploits.\\n\\n**Behavioral trajectory probing (foundational for our C(t) component).** Ballon et al. (2601.23163) introduce the truncation-reinjection protocol: generate full reasoning traces on Qwen3-4B/8B/14B and gpt-oss-20B/120B, truncate at decile intervals (10-100%), reinject with early-stopping suffix, measure answer-choice probability distributions. Key results: accuracy increases monotonically from 30.8-42.3% (no reasoning) to 49.0-73.1% (full trace) on GPQA-Diamond; decision commitment tracks similarly. Three control conditions validate causal content: random tokens (+2.1-4.3%), swapped traces (+3.2-8.7%), and shuffled tokens (+0.3-10.8%) all substantially underperform intact truncated traces (+18.1-33.1%), confirming sequential content — not just context length — drives gains. Stronger models rescue weak-model errors at 43-68% rate with free continuation vs. 28-51% anchoring in base mode. Explicitly disclaims faithfulness-to-internal-computations analysis, making it a direct precursor to our prefix-truncation C(t) estimator. Zhao et al. (2510.24941) introduce the True Thinking Score (TTS), measuring per-step causal contribution via numerical perturbation and ATE computation on DeepSeek-R1-Distill-Qwen-7B/14B/Llama-8B across AIME/MATH/AMC/CommonsenseQA, finding only 2.3% of AIME steps have TTS≥0.7. Ye et al. (2602.11201) introduce NLDD, finding a Reasoning Horizon at 70-85% of chain length on 3 models across synthetic tasks. Basu & Chakraborty (2603.22816) propose a decorative/scaffolding/genuine taxonomy. FACT-E (Sun et al. 2604.10693, ACL Findings 2026) provides another causal measurement approach.\\n\\n**Probe-intervention combinations (closest prior work).** Kudo et al. (2412.01113, EACL 2026) train per-position linear probes and validate with sliding-window activation patching on 9 models across synthetic multi-step arithmetic. They find CoT IS faithful for arithmetic but explicitly note their synthetic setting may not generalize. The CMI framework (2602.03994) introduces the CoT Mediation Index via layerwise activation patching across Phi, Qwen, DialoGPT on StrategyQA (20), TruthfulQA (10), GSM8K (20), identifying 'bypass regimes' where CMI ≈ 0. Both are complementary precursors operating on small samples or synthetic tasks.\\n\\n**Latent-reasoning theory.** Wang (2604.15726) formalizes three competing hypotheses about LLM reasoning: H1 (reasoning is primarily mediated by latent-state trajectories), H2 (reasoning is primarily mediated by explicit surface CoT), H0 (most reasoning gains are better explained by generic serial compute). Proposes compute-audited designs with six experimental arms (baseline, surface manipulation, surface control, latent intervention, latent control, compute-only expansion) and evidence tiers (probe-only = suggestive, compute-matched causal = strongest). Our ICG framework operationalizes Wang's H1/H2 distinction: when G*(t) >> 0, hidden states encode correctness awareness that CoT doesn't contribute (H1-consistent); when G*(t) ≈ 0, CoT is mediating (H2-consistent).\\n\\n**Temporal hidden-state dynamics (concurrent complementary work).** Gjølbye et al. (2605.15454) study hidden-state trajectory geometry across 11 models (6 reasoning: R1-Distill-Qwen-7B/14B/32B, R1-Distill-Llama-8B, QwQ-32B, Phi-4-Reasoning; 5 instruction-tuned baselines) on competitive programming (500 Codeforces), math (500 MATH), and Boolean SAT (500 SATBench). After length correction (residualizing directness/curvature on log(N)), difficulty remains systematically coupled to trajectory geometry: reasoning models show ρ⊥^D = +0.41 on Codeforces vs. −0.06 for baselines (raw correlations reverse from −0.73 to +0.41), with weaker effects in math (+0.05 vs. −0.07) and non-specific effects in SAT (+0.27 vs. +0.23). Critically, prompt-stage linear probes do NOT mirror these geometric effects — reasoning dynamics manifest during generation, not at input. Their length correction methodology and domain-specificity finding are relevant for our temporal analysis and difficulty conditioning. Furuya & Tanimura (2605.01853) introduce StALT, a training-free trajectory statistic separating correct from incorrect reasoning trajectories. Herrmann et al. (2605.09159) study 'internal polylogue' dynamics: persona vectors tracked temporally across MMLU-Pro in four open-weight models. Li et al. (2510.22362, NeurIPS 2025 MechInterp Workshop) introduce Concept Walk, tracking concept-direction alignment per step on Qwen 3-4B; find easy→decorative, hard→faithful. Vilas et al. (2510.10494, ICLR 2026) define three latent-trajectory signals, achieving 14-70% token savings on R1-Distill/Phi-4/Qwen3.\\n\\n**Probe calibration and inflation (methodological foundation).** Hewitt & Liang (2019) show MLP probes achieve only 4.5 selectivity. Ravichander et al. (2020) demonstrate properties recoverable even when unused. Voita & Titov (2020) show MDL-based probing reveals accuracy doesn't substantially favor pretrained over random. Chun et al. (2602.20338) apply Manifold Capacity Theory to CoT reasoning: geometric separability peaks transiently as a 'geometric pulse' while probe accuracy remains high afterward — direct evidence that probe accuracy overestimates information availability. We address this via null-probe calibration: P*(t) = P(t) − P_null(t).\\n\\n**Trajectory-shape analysis (supporting our shape-based classification).** Entropy trajectory paper (2603.18940): monotonicity predicts reliability regardless of absolute levels (+5.8pp). RQA analysis (2602.06266): temporal features outperform aggregates 36.94% vs. 28.97%. Microsoft trajectory geometry (2604.05655): 0.852 AUC from shape features vs. 0.649 baseline. This literature validates trajectory shapes as diagnostic features.\\n\\n**Measurement sensitivity.** Young (2603.20172) shows inter-classifier kappa as low as 0.06, up to 30.6pp divergence. Task-difficulty moderation: ICLR 2026 Workshop and Li et al. (2510.22362).\\n\\n**Reasoning-model internal dynamics.** Internal States Before Wait (2510.04128): crosscoders on R1-Distill with confirmed causal interventions for backtracking, uncertainty, verification features. From Reasoning to Answer (2509.23676): activation patching on R1-Distill.\\n\\n**Benchmarks, surveys, pathology diagnostics.** FaithCoT-Bench (ICLR 2026). Jin et al.'s survey (ARR for ACL 2026). Liu et al. (2602.13904): text-level metrics for rationalization/encoded/internalized reasoning. Reasoning Theater (2603.05488). Young (2603.26410). 'Lie to Me' (2603.22582). Various early-exit methods: ESTAR, DTSR, NEAT, CoDE-Stop, FRIT.\\n\\n**What remains open.** No extant framework provides: (1) a full-timeline information-contribution gap curve pairing calibrated probe trajectories with causal contribution estimation — Chrabąszcz et al.'s probe trajectories are the closest but lack the entire C(t) dimension, gap metric, and calibration; (2) an empirically-validated phenomenon trajectory-shape taxonomy grounded in real within-model, within-dataset G*(t) curves rather than cross-study semi-synthetic assembly; (3) an instance-level diagnostic score derived from the temporal gap; (4) difficulty-conditioned gap analysis with domain-specific nuance (following Gjølbye et al.'s finding of domain-dependent coupling strength); or (5) a principled treatment of the probe-target distinction (correctness vs. answer-content) and its implications for gap interpretation. The calibrated temporal ICG framework is unique in combining all five.\",\n  \"inspired_by\": \"The convergence of five independent lines of evidence — (a) Cox et al.'s finding that answer-content probe steering fails on reasoning models despite high accuracy; (b) Yuan et al.'s systematic demonstration that four interventions all fail on correctness probes, establishing 'diagnostic not causal'; (c) the temporal probe dynamics now empirically characterized by David (0.84 AUC at t=4, stable ~0.8), Zhang et al. (chunk-level rising trajectory), Esakkiraja et al. (pre-generation >90% with dip-recovery), and Chrabąszcz et al. (60+ trajectory features capturing dynamics invisible to static probes, up to 17pp improvement); (d) Ballon et al.'s truncation-reinjection protocol demonstrating monotonic behavioral C(t) curves with rigorous controls (sequential content +18.1-33.1% vs. shuffled +0.3-10.8%) — all pointing to the same insight: the gap between diagnostic information availability and causal contribution IS the phenomenon of interest. Additionally inspired by: Wang's (2604.15726) formalization of H1/H2/H0 hypotheses providing the theoretical scaffold for what our framework empirically measures; Gjølbye et al.'s (2605.15454) finding that difficulty-geometry coupling is domain-specific and requires length correction; Herrmann et al.'s concurrent temporal persona-vector dynamics; and the trajectory-shape literature showing shapes can distinguish phenomena regardless of absolute-value calibration.\",\n  \"approach\": \"We propose the Information-Contribution Gap (ICG) framework: a calibrated, temporally-resolved diagnostic that measures the divergence between information available in hidden states and information that causally contributes to model outputs, tracked across the full chain-of-thought generation trajectory.\\n\\n**Formal Framework.** Define two time-varying quantities at each token position t during CoT generation:\\n\\n(i) *Calibrated Information Availability* P*(t): Cross-validated AUROC of a linear probe on layer-l hidden states at position t, calibrated via null-probe normalization (P*(t) = P(t) − P_null(t), following Hewitt & Liang 2019 selectivity, where P_null is trained on shuffled labels). **Probe target: correctness (right/wrong).** We choose correctness over answer-content for three reasons: (a) broader applicability — correctness probes generalize beyond binary/MC tasks (Cox et al.'s answer-content probes are limited to binary A/B on 4 tasks), while correctness probes (Yuan et al.) work across model families up to 72B; (b) the 'diagnostic not causal' finding that motivates the entire framework is specifically about correctness probes (Yuan et al.'s four-intervention failure on correctness probes); (c) correctness gaps are more directly interpretable for faithfulness — G*(t) >> 0 means 'the model's hidden states encode awareness that its answer is right/wrong, but its CoT does not causally reflect this self-monitoring.' On binary/MC task subsets, we additionally train answer-content probes to test whether the 'what answer' gap differs from the 'whether correct' gap — a supplementary analysis testing whether pre-CoT encoding operates on content or meta-cognition. This measures excess correctness awareness above correlative features. We probe at layers L/4, L/2, 3L/4, L to capture layer-wise dynamics. MCT geometric validation (Chun et al. 2602.20338) on 500 examples confirms whether calibrated probe signal reflects geometrically organized information rather than mere retrievability. Note: Chrabąszcz et al. (2605.18549) demonstrate that probe trajectories with 60+ signal-processing features substantially outperform static probes (up to 17pp on GSM8K). We adopt their insight that temporal dynamics are essential, while adding null-probe calibration (which they lack) and extending to the dual-estimator gap. Where applicable, we incorporate their feature categories (volatility, trend, steady-state, boundary transients) as additional trajectory descriptors for phenomenon classification in Phase 3.\\n\\n(ii) *Causal Contribution* C(t): The causal contribution of CoT up to position t, estimated via three complementary methods: (a) prefix-truncation ablation — measuring P(correct | CoT[:t]) vs. P(correct | full CoT), following Ballon et al.'s (2601.23163) truncation-reinjection protocol with their three control conditions (random tokens, swapped traces, shuffled tokens) to validate that C(t) measures genuine sequential content contribution rather than context-length effects (their finding: shuffled tokens retain +0.3-10.8% vs. intact +18.1-33.1%); (b) paraphrase perturbation — replacing CoT segments with meaning-preserving paraphrases and measuring answer stability; (c) NLDD-based influence scoring (Ye et al. 2602.11201) — measuring how corruption at position t degrades the answer distribution. Using multiple C(t) estimators provides robustness against single-method artifacts, following Young's (2603.20172) finding that faithfulness measurements are classifier-sensitive.\\n\\n**The Information-Contribution Gap.** G*(t) = P*(t) − C(t). This gap is the primary diagnostic signal:\\n- G*(t) ≈ 0: Correctness awareness and causal contribution are aligned (necessary for faithfulness)\\n- G*(t) >> 0: The model encodes correctness awareness it does not causally use in its CoT (diagnostic excess — the model 'knows but doesn't use')\\n- G*(t) < 0: The CoT contributes to correctness beyond what hidden states encode at that point (information assembled during reasoning)\\n\\nBecause P*(t) is null-probe-calibrated, uniform correlative inflation is removed. C(t) is not subject to probe inflation as it measures behavioral change under intervention. The gap G*(t) is interpretable as 'calibrated correctness awareness the model has but doesn't channel through its CoT at position t.' Following Wang's (2604.15726) H1/H2 framework: G*(t) >> 0 is H1-consistent (latent-mediated reasoning), G*(t) ≈ 0 is H2-consistent (CoT-mediated reasoning).\\n\\n**Phenomenon Signature Predictions (2-3 confident, 4-5 stretch).** We ground predictions in real probe data but adopt honest scoping informed by the concern that cross-study heterogeneity may overestimate separability:\\n\\n*Primary targets (HIGH confidence, validated in Phase 0b pilot):*\\n(i) *Pre-CoT encoding*: G*(t) starts high and stays high. Grounded in: David's 0.84 AUC at t=4, Esakkiraja's >90% pre-generation AUROC, Cox's >0.9 pre-CoT AUC. P*(0) > 0.5 (after calibration), C(t) rises slowly. Shape: large constant gap.\\n(ii) *Genuine multi-step reasoning*: G*(t) converges toward zero. Grounded in: Zhang et al.'s 65%→79% chunk trajectory, Li et al.'s finding that hard→faithful, Ballon et al.'s monotonic accuracy increase with reasoning length. P*(t) rises gradually, C(t) tracks P*(t). Shape: co-rising curves, small/decreasing gap.\\n(iii) *Post-hoc rationalization*: G*(t) starts moderate, rises during CoT. P*(t) stable (David: ~0.80 from t=4 through t=100), C(t) remains flat despite token generation. Shape: widening gap.\\n\\n*Stretch targets (MODERATE confidence, require additional features):*\\n(iv) *Steganographic encoding*: G*(t) dip-and-recovery. Potentially consistent with Esakkiraja's dip at 5-10%. May require multi-layer analysis to separate from noise.\\n(v) *Reasoning Theater*: EMPIRICAL QUESTION. Under non-uniform inflation, may overlap with pre-CoT encoding or post-hoc rationalization. Additional features — layer-wise P*(t) distribution, C(t) variance under paraphrase perturbation, Chrabąszcz-style signal features (autocorrelation, boundary transients, dwell-time run-lengths) — may enable separation. Whether Theater is cleanly separable is reported honestly with confusion matrices.\\n\\n**Semi-Synthetic Simulation (hypothesis generation, NOT validation).** We construct semi-synthetic G*(t) curves grounded in real published data to generate testable predictions about trajectory-shape separability — but we do NOT treat this as evidence of real-data separability (published measurements come from different models, datasets, and setups, introducing heterogeneity that does not match within-dataset variance). Instead, the simulation identifies: (a) which trajectory features are most discriminative in principle, (b) what minimum effect sizes real-data classification needs to achieve, (c) where non-uniform inflation causes theoretical overlap between phenomena. I_probe(t) profiles drawn from published measurements (David, Zhang, Esakkiraja, Yuan), C(t) profiles modeled from NLDD (Ye et al.) and TTS (Zhao et al.) data, non-uniform inflation calibrated against Chun et al.'s MCT finding. The real validation comes from Phase 0b.\\n\\n**Phase 0a: Gap Characterization (Weeks 1-2.5).** Three objectives on 500 examples × 3 datasets (GSM8K, MATH-500, MMLU) × 3 models (DeepSeek-R1-Distill-Qwen-7B, Qwen2.5-7B-Instruct, Llama-3.1-8B-Instruct):\\n(i) Construct empirical P*(t) and C(t) curves at token-level resolution\\n(ii) Validate null-probe calibration: P_null(t) shows high accuracy (inflation exists) but P*(t) shows meaningful variance (calibration reveals structure)\\n(iii) Characterize causal potency: following Cox et al.'s protocol, measure answer flip rates via probe-direction steering on reasoning vs. instruction-tuned models\\n\\nExpected outcome (base case): Causal potency is low on reasoning models, confirming the diagnostic-not-causal property and validating the ICG framework's interpretive power. If causal potency is unexpectedly high, this is an exciting upgrade. Either outcome is scientifically valuable.\\n\\n**Phase 0b: Empirical Pilot for Phenomenon Separability (Weeks 2.5-4).** This phase validates that trajectory-shape classification is feasible on real data before committing to the full pipeline. On the SAME model (R1-Distill-Qwen-7B) and datasets (GSM8K + MATH-500, 1000 examples), construct real G*(t) curves and test whether at least 2 phenomena produce distinguishable trajectories. Protocol: (i) partition examples by difficulty quintile and model behavior (easy-correct with high P*(0) → pre-CoT encoding candidates; hard-correct with rising P*(t) tracking C(t) → genuine reasoning candidates; incorrect with stable P*(t) and flat C(t) → post-hoc rationalization candidates); (ii) compute full G*(t) for each partition; (iii) test effect size d > 0.5 on at least 2 trajectory features between partitions. Apply Gjølbye et al.'s (2605.15454) length correction (residualizing trajectory features on log(N)) to ensure differences are not conflated with generation-length effects. Success criterion: d > 0.5 between at least 2 partitions on 2+ features. If d < 0.3 across all features, downscope to a characterization paper (gap exists and varies with difficulty, but trajectory shapes are not cleanly phenotypic) — still a strong contribution given no prior full-timeline G*(t) measurement exists.\\n\\n**Phase 1: Full ICG Construction (Weeks 4-9).** Conditional on Phase 0b showing separability (d > 0.5). Extend to 4 models (add QwQ-32B or R1-Distill-32B) × 4 benchmarks (add GPQA-Diamond or AIME). Full calibrated P*(t) with null-probe normalization + MCT concordance check on 500 examples. Three C(t) estimators with Ballon et al.-style controls (random, swap, shuffle baselines). Cross-reference with TTS (Zhao et al.) at step boundaries. Bootstrap confidence intervals on G*(t).\\n\\n**Phase 2: Task-Difficulty Conditioning (Weeks 7-11).** Partition each benchmark into difficulty quintiles (using model accuracy as proxy). Measure G*(t) per quintile. Hypothesis grounded in David's easy/hard data, Li et al.'s finding, and Gjølbye et al.'s difficulty-geometry coupling: easy problems show large persistent gap (decorative CoT), hard problems show converging gap (load-bearing CoT). Following Gjølbye et al., apply length correction and report domain-specific effects — expecting stronger effects on math/code benchmarks than MMLU, given their finding of ρ⊥ = +0.41 on Codeforces vs. +0.05 on MATH. The transition point — where G*(t) shifts from decorative to genuine — provides practical guidance on when CoT adds value.\\n\\n**Phase 3: Phenomenon Classification and Robustness (Weeks 9-14).** Apply trajectory-shape classification to real data. Target: 2-3 cleanly separable phenomena, with 4-5 reported honestly including overlap. Incorporate Chrabąszcz et al.'s feature categories (volatility, trend, boundary transients, autocorrelation) alongside our gap-specific features (initial G* value, G* slope, convergence rate, dC/dt locality). Six robustness ablations following Young (2603.20172): (a) probe architecture (linear vs. 2-layer MLP) with selectivity; (b) layer selection (single best vs. multi-layer); (c) C(t) estimator agreement (prefix vs. paraphrase vs. NLDD); (d) gap normalization method; (e) calibration method (shuffled-label vs. random-representation); (f) probe target (correctness vs. answer-content on binary/MC subsets). Report sensitivity ranges across all dimensions.\\n\\n**TIF Score.** Temporal Information-contribution Faithfulness score: normalized area under calibrated G*(t), benchmarked against FaithCoT-Bench and Liu et al.'s text-level metrics.\\n\\n**Paper Focus (Tightened).** Core contributions: (1) calibrated ICG diagnostic with explicitly justified correctness-probe target on 4 models × 4 benchmarks, positioned against Chrabąszcz et al.'s probe trajectories — demonstrating the value added by the causal contribution dimension and gap metric; (2) Phase 0b empirical pilot validating that 2-3 phenomena produce distinguishable G*(t) signatures on real within-model, within-dataset data; (3) task-difficulty conditioning revealing the decorative→load-bearing transition with domain-specific strength following Gjølbye et al.'s nuance. Supporting: robustness ablations (6 dimensions); TIF validation. Supplementary: 671B subset (500 examples, 3 layers); answer-content vs. correctness probe comparison; semi-synthetic simulation as hypothesis generation.\\n\\n**Experiments.** DeepSeek-R1-Distill-Qwen-7B/14B/32B, QwQ-32B across MMLU, GPQA-Diamond, GSM8K, AIME. 671B validation (500-example subset, 3 layers). Calibration checks: synthetic arithmetic (G* ≈ 0 expected), TTS cross-reference, MCT cross-reference. Gjølbye-style length correction on all temporal analyses.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~830 H100-hours (Phase 0a characterization: 80 hrs [3 models × 3 datasets, probe training + prefix ablation + steering tests]; Phase 0b empirical pilot: 30 hrs [1 model × 2 datasets, full G*(t) construction + partition analysis + length correction]; Phase 1 full ICG: 120 hrs [4 models × 4 benchmarks, multi-layer probes + 3 C(t) estimators]; Phase 2 difficulty conditioning: 50 hrs; Phase 3 phenomenon classification + robustness ablations: 50 hrs; NLDD on 32B model: 250 hrs [primary bottleneck — up to 20 perturbation positions × 5K examples × forward passes]; NLDD on 7B/14B models: 100 hrs; MCT geometric validation: 50 hrs; 671B subset: 50 hrs [8×H100]; semi-synthetic simulation: 50 hrs [mostly CPU, some GPU for validation])\",\n      \"timeline\": \"15-17 weeks (2 researchers: 4 weeks Phase 0a+0b characterization + pilot; 5 weeks Phase 1 full ICG; 4 weeks Phases 2-3 in parallel with NLDD; 2-3 weeks writing + ablations)\",\n      \"estimated_gpu_cost\": \"$2,500 at ~$3/H100-hour (cloud spot pricing)\",\n      \"storage\": \"3-5 TB (4 layers per model, fp16); reducible to ~1.5 TB via PCA\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~830 H100-hours\",\n      \"timeline\": \"13 weeks (1 researcher + Claude for experiment design and analysis)\",\n      \"claude_api_cost\": \"$350\",\n      \"estimated_gpu_cost\": \"$2,500\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~830 H100-hours\",\n      \"timeline\": \"11 weeks\",\n      \"claude_api_cost\": \"$700\",\n      \"estimated_gpu_cost\": \"$2,500\",\n      \"speed_bottleneck\": \"NLDD on 32B (~250 H100-hours, ~30% of total compute) is the primary bottleneck. Each NLDD evaluation requires corrupting reasoning at multiple positions and measuring logit degradation — O(T × N) forward passes where T≈20 perturbation positions and N≈5K examples. For 32B models, this cannot be easily parallelized beyond 8-GPU data parallelism. Secondary: 671B subset (8×H100, ~50 hrs); MCT geometric validation (~50 hrs). Phase 0b pilot (30 hrs) provides early go/no-go signal before committing full Phase 1-3 compute.\"\n    }\n  },\n  \"key_references\": [\n    \"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics (Chrabąszcz et al., arXiv 2605.18549)\",\n    \"Probing the Trajectories of Reasoning Traces in Large Language Models (Ballon et al., arXiv 2601.23163)\",\n    \"LLM Reasoning Is Latent, Not the Chain of Thought (Wang, arXiv 2604.15726)\",\n    \"Reasoning Models Don't Just Think Longer, They Move Differently (Gjølbye et al., arXiv 2605.15454)\",\n    \"Hidden Error Awareness: The Signal Is Diagnostic, Not Causal (Yuan et al., arXiv 2605.09502)\",\n    \"Decoding Answers Before Chain-of-Thought: Pre-CoT Probes and Activation Steering (Cox et al., arXiv 2603.01437)\",\n    \"Temporal Predictors of Outcome in Reasoning Language Models (David, arXiv 2511.14773)\",\n    \"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification (Zhang et al., arXiv 2504.05419)\",\n    \"Therefore I am. I Think (Esakkiraja et al., arXiv 2604.01202)\",\n    \"Can Aha Moments Be Fake? True Thinking Score (Zhao et al., arXiv 2510.24941)\",\n    \"Mechanistic Evidence for Faithfulness Decay / NLDD (Ye et al., arXiv 2602.11201)\",\n    \"Do LLMs Experience an Internal Polylogue? (Herrmann et al., arXiv 2605.09159)\",\n    \"LLMs Faithfully and Iteratively Compute Answers During CoT (Kudo et al., EACL 2026, arXiv 2412.01113)\",\n    \"When Chains of Thought Don't Matter: Causal Bypass / CMI (Sathyanarayanan et al., arXiv 2602.03994)\",\n    \"Spatiotemporal Hidden-State Dynamics / StALT (Furuya & Tanimura, arXiv 2605.01853)\",\n    \"Mapping Faithful Reasoning / Concept Walk (Li et al., arXiv 2510.22362, NeurIPS 2025 MechInterp Workshop)\",\n    \"Task Difficulty Shapes CoT Faithfulness (ICLR 2026 Workshop)\",\n    \"Diagnosing Pathological CoT (Liu et al., arXiv 2602.13904)\",\n    \"Measuring Faithfulness Depends on How You Measure (Young, arXiv 2603.20172)\",\n    \"Emergent Manifold Separability / MCT (Chun et al., arXiv 2602.20338)\",\n    \"Tracing the Traces: Latent Temporal Signals (Vilas et al., ICLR 2026, arXiv 2510.10494)\",\n    \"Probing and Steering CoT Unfaithfulness (Occhipinti et al., ICLR 2026 LIT Workshop)\",\n    \"Designing and Interpreting Probes with Control Tasks (Hewitt & Liang, EMNLP 2019)\",\n    \"Information-Theoretic Probing with MDL (Voita & Titov, EMNLP 2020, arXiv 2003.12298)\",\n    \"Probing the Probing Paradigm (Ravichander et al., arXiv 2005.00719)\",\n    \"Shape-over-magnitude dissociation in entropy trajectories (arXiv 2603.18940)\",\n    \"Is My Model Mind Blurting? RQA of Reasoning Dynamics (arXiv 2602.06266)\",\n    \"LLM Reasoning as Trajectories (arXiv 2604.05655, Microsoft)\",\n    \"Internal States Before Wait Modulate Reasoning Patterns (arXiv 2510.04128)\",\n    \"FACT-E (Sun et al., ACL Findings 2026, arXiv 2604.10693)\",\n    \"Breaking the Chain (Somov et al., arXiv 2603.16475)\",\n    \"The Illusion of Reasoning (Basu & Chakraborty, arXiv 2603.22816)\",\n    \"FaithCoT-Bench (ICLR 2026, arXiv 2510.04040)\",\n    \"The Mirage of Explainability survey (Jin et al., ARR for ACL 2026)\",\n    \"Reasoning Theater (Boppana et al., arXiv 2603.05488)\",\n    \"No Global Plan in CoT (Xu et al., arXiv 2602.02103)\",\n    \"Catching Rationalization in the Act (Mirtaheri & Belkin, arXiv 2603.17199)\",\n    \"CoT Monitorability via Information Theory (Anwar et al., arXiv 2602.18297)\",\n    \"Understanding CoT via Information Theory (Ton et al., ICML 2025, arXiv 2411.11984)\",\n    \"Demystifying Reasoning Dynamics with MI (Qian et al., NeurIPS 2025, arXiv 2506.02867)\",\n    \"Analysing CoT Dynamics (Lewis-Lim et al., EMNLP 2025, arXiv 2508.19827)\",\n    \"Why Models Know But Don't Say (Young, arXiv 2603.26410)\",\n    \"Lie to Me (arXiv 2603.22582)\",\n    \"Step-Level Hallucination via Transport Geometry (Alvarez & Baheri, arXiv 2605.13772)\",\n    \"From Reasoning to Answer (arXiv 2509.23676)\",\n    \"SAE Reasoning Features (arXiv 2503.18878)\",\n    \"FRIT (Swaroop et al., arXiv 2509.13334)\",\n    \"Solution Hides in Hidden States (arXiv 2604.23351)\",\n    \"Knowing Before Saying (ACL Findings 2025, arXiv 2505.24362)\",\n    \"LEACE: Perfect Linear Concept Erasure (Belrose et al., NeurIPS 2023, arXiv 2306.03819)\"\n  ],\n  \"description\": \"We propose the Information-Contribution Gap (ICG) framework, a calibrated temporal diagnostic for chain-of-thought faithfulness that exploits a robust empirical finding: linear probes on hidden states reliably diagnose answer correctness (0.82-0.95 AUROC across four independent groups) yet causal interventions based on these probes consistently fail on reasoning-trained models (Cox et al.: negligible flip rates; Yuan et al.: all four intervention strategies fail). Rather than treating this diagnostic-causal gap as an obstacle, we make it the primary object of study — the gap between what models internally know and what their CoT causally contributes IS the faithfulness signal.\\n\\nThe framework tracks two calibrated time-varying quantities across the full CoT trajectory: P*(t), null-probe-calibrated correctness awareness (explicitly targeting right/wrong prediction — justified over answer-content probes by broader applicability beyond binary tasks, grounding in the diagnostic-not-causal finding which is about correctness, and more direct faithfulness interpretation — with supplementary answer-content analysis on binary/MC subsets), and C(t), causal contribution estimated via three complementary methods (prefix truncation with Ballon et al.'s three control conditions validating sequential content matters, paraphrase perturbation, NLDD). Their divergence G*(t) = P*(t) − C(t) produces phenomenon-specific temporal fingerprints, operationalizing Wang's (2604.15726) H1/H2 distinction: G*(t) >> 0 is latent-mediated (H1-consistent), G*(t) ≈ 0 is CoT-mediated (H2-consistent).\\n\\nPositioned against the closest concurrent work — Chrabąszcz et al.'s (2605.18549) probe trajectories with 60+ signal-processing features achieving up to 17pp improvement over static probes across 4 reasoning models — our framework adds the entire causal contribution dimension, the calibrated gap metric, null-probe calibration with MCT geometric validation, phenomenon taxonomy, and task-difficulty conditioning. Their probe-trajectory methodology validates our P*(t) direction; we extend it to the dual-estimator gap that no existing framework provides.\\n\\nWe adopt honest scoping: 2-3 faithfulness phenomena (pre-CoT encoding, genuine reasoning, post-hoc rationalization) as the realistic classification target, with steganographic encoding and reasoning theater as stretch goals. A new empirical pilot phase (Phase 0b) constructs real G*(t) curves from the SAME model and dataset and tests whether at least 2 phenomena produce distinguishable trajectories (effect size d > 0.5) before committing to the full classification pipeline — addressing the concern that semi-synthetic simulation from cross-study measurements overestimates real-data accuracy. The semi-synthetic simulation is retained as hypothesis generation producing testable predictions, not as evidence.\\n\\nTask-difficulty conditioning — grounded in David's easy (0.84) vs. hard (0.76) probe splits, the ICLR 2026 Workshop finding, and Gjølbye et al.'s (2605.15454) demonstration that difficulty-geometry coupling is systematic (ρ⊥ = +0.41 on Codeforces) but domain-specific (weaker on MATH) — reveals the decorative→load-bearing transition with practical guidance on when chain-of-thought adds genuine value, applying length correction (residualizing on log(N)) to avoid generation-length confounds.\\n\\nThe paper focuses on four core contributions: (a) calibrated ICG diagnostic with explicitly justified correctness-probe target on 4 models × 4 benchmarks, positioned against Chrabąszcz et al. to demonstrate the value of the causal contribution dimension; (b) empirical pilot validating that 2-3 phenomena produce distinguishable G*(t) signatures on real data; (c) difficulty-conditioned gap analysis with domain-specific nuance; (d) probe-target analysis contrasting correctness vs. answer-content gaps. Total compute: ~830 H100-hours, with NLDD on 32B models (~250 hrs) as the primary bottleneck.\",\n  \"revision_notes\": {\n    \"critical_changes\": [\n      \"ADDED CHRABĄSZCZ ET AL. (2605.18549) AS CRITICAL CONCURRENT WORK WITH SHARPENED DIFFERENTIATION (Major): Integrated throughout core_problem, opportunity, landscape, approach, and description. This is the closest concurrent work to our P*(t) component: probe trajectories with 60+ signal-processing features in 6 categories (global statistics, shape/trend, temporal segmentation, boundary transients, signal processing, temporal landmarks), 3-layer MLP + MIL meta-probes, max-pooling (91-97% AUROC vs. 33-61% average-pooling), up to 17pp over static probes on GSM8K, tested on Llama-8B-R1-Distill and Qwen3-4B/8B/14B across safety and math domains (~3000 GPU-hours). Differentiation sharpened on 5 dimensions: (a) they lack C(t) — no causal contribution component; (b) no gap metric — just trajectory vs. static comparison for outcome prediction; (c) no null-probe calibration or MCT geometric validation; (d) no phenomenon taxonomy — they separate correct/incorrect or safe/harmful, not faithfulness modes; (e) no task-difficulty conditioning. Framed as: their work validates temporal probe trajectories (confirming our P*(t) direction), our framework extends via the dual-estimator gap. Their 60+ feature categories adopted as complementary descriptors for Phase 3 classification.\",\n      \"ADDED 3 ADDITIONAL REFERENCES WITH SUBSTANTIVE INTEGRATION (Major): (a) Ballon et al. (2601.23163): truncation-reinjection protocol on Qwen3-4B/8B/14B and gpt-oss-20B/120B across GPQA-Diamond/MMLU-Pro — integrated as key precursor to C(t) prefix-truncation estimator; their three control conditions (random +2.1-4.3%, swap +3.2-8.7%, shuffle +0.3-10.8% vs. intact +18.1-33.1%) adopted as C(t) validation protocol; their finding that stronger models backtrack (43-68% rescue rate) while weaker anchor (28-51%) informs cross-model analysis. (b) Wang (2604.15726): H1/H2/H0 hypothesis formalization — ICG framework positioned as empirical methodology to distinguish H1 (latent-mediated, G*(t) >> 0) from H2 (CoT-mediated, G*(t) ≈ 0) at each token position; his evidence tiers and compute-audited design recommendations inform our dual-estimator approach. (c) Gjølbye et al. (2605.15454): hidden-state trajectory geometry across 11 models on 1500 items — their length correction methodology (residualizing on log(N), reversing raw ρ = -0.73 to corrected ρ⊥ = +0.41) adopted for all temporal analyses; their domain-specificity finding (Codeforces +0.41, MATH +0.05, SAT +0.27/+0.23) adds nuance to difficulty conditioning claims; their finding that prompt-stage linear probes don't mirror geometric effects supports our temporal approach.\",\n      \"SPECIFIED PROBE TARGET: CORRECTNESS, NOT ANSWER-CONTENT (Major): P*(t) now explicitly targets correctness (right/wrong) rather than answer-content (specific answer). Three-part justification: (a) broader applicability — Cox et al.'s answer-content probes limited to binary A/B on 4 specific tasks with models ≤9B, while Yuan et al.'s correctness probes work up to 72B across multiple families; (b) the 'diagnostic not causal' finding (Yuan et al.'s four-intervention failure) is specifically about correctness probes; (c) correctness gaps are more directly about faithfulness self-monitoring — G*(t) >> 0 means 'the model knows it's right/wrong but CoT doesn't reflect this.' Answer-content probes retained as supplementary analysis on binary/MC subsets, testing whether pre-CoT encoding operates on content or meta-cognition. G*(t) interpretation updated throughout to 'calibrated correctness awareness' language. Added as 6th robustness ablation dimension (probe target comparison).\",\n      \"ADDED PHASE 0b EMPIRICAL PILOT FOR PHENOMENON SEPARABILITY (Major): New phase (Weeks 2.5-4, ~30 H100-hrs) addresses the feasibility concern that semi-synthetic simulation from cross-study measurements overestimates real-data classification accuracy. Constructs real G*(t) curves on SAME model (R1-Distill-Qwen-7B) and datasets (GSM8K + MATH-500, 1000 examples). Protocol: partition by difficulty quintile and model behavior into pre-CoT-encoding, genuine-reasoning, and post-hoc-rationalization candidates; compute full G*(t) per partition; test effect size d > 0.5 on trajectory features with Gjølbye-style length correction. Explicit go/no-go: d > 0.5 → proceed to full classification; d < 0.3 → downscope to characterization paper (still novel contribution).\",\n      \"DOWNSCOPED PHENOMENON CLAIMS AND REFRAMED SIMULATION (Major): Reduced from '3-4 confident, 5th empirical' to '2-3 as realistic target, 4-5 as stretch.' Semi-synthetic simulation explicitly reframed as 'hypothesis generation, NOT validation' — identifies discriminative features and effect size thresholds, but real validation delegated to Phase 0b empirical pilot. This is more honest and addresses the stagnation signal by committing to claims the framework can defend.\"\n    ],\n    \"what_stayed\": \"Dual-estimator concept (calibrated P*(t) and C(t)), null-probe calibration + MCT geometric validation, NLDD integration for C(t), four target models (R1-Distill-7B/14B/32B, QwQ-32B), four benchmarks (MMLU, GPQA-Diamond, GSM8K, AIME), 671B subset validation, task-difficulty conditioning, five-phenomenon taxonomy (now with graded confidence and honest stretch-goal framing), trajectory-shape analysis validated by shape-over-magnitude literature, TIF score, robustness ablations (expanded from 5 to 6 dimensions), synthetic arithmetic calibration check, TTS cross-reference, layer-selective caching strategy, diagnostic-not-causal reframing as feature not bug, thermometer analogy.\",\n    \"residual_risks\": [\n      \"TIER-1: Phase 0b pilot may show insufficient separability (d < 0.3). If real within-model G*(t) trajectories do not separate even 2 phenomena, the contribution reduces to 'first full-timeline G*(t) measurement with difficulty conditioning' — still valuable but less impactful. Mitigation: explicit fallback to characterization framing; the gap measurement itself is novel regardless of classification success.\",\n      \"TIER-1: C(t) estimation fidelity. Prefix truncation conflates information removal with distribution shift. Ballon et al.'s control conditions (random, swap, shuffle) mitigate but don't eliminate this — their shuffled-token condition still shows +0.3-10.8% gain, suggesting some non-sequential information persists. Paraphrase perturbation and NLDD provide complementary estimates. Mitigation: estimator-agreement analysis; disagreement itself is informative.\",\n      \"TIER-1: Correctness probes may underperform answer-content probes on binary tasks, potentially understating the gap on tasks where Cox et al. show strong answer-content encoding. If P*_correctness(t) << P*_content(t) on binary subsets, the framework may miss content-level pre-encoding. Mitigation: supplementary answer-content analysis on binary/MC subsets; if divergence is large, report both gap types.\",\n      \"TIER-1: NLDD scalability on 32B. The 250 H100-hour budget assumes ~20 perturbation positions × 5K examples. If CoT sequences are longer than expected (reasoning models can produce 4K+ tokens), cost scales linearly. Mitigation: subsample to 2K examples if needed; use 7B/14B as primary with 32B as validation.\",\n      \"TIER-2: Cross-model and cross-domain generalization. G*(t) signatures may be model-family-specific and domain-dependent. Gjølbye et al.'s finding that difficulty-geometry coupling varies by domain (strong in code, weak in math) suggests our difficulty conditioning results will also be domain-dependent. Mitigation: report domain-specific effects; domain-dependence is itself informative and actionable.\",\n      \"TIER-2: Chrabąszcz et al.'s 3-layer MLP + MIL meta-probes may achieve higher trajectory-classification accuracy than our linear probes on the P*(t) side, potentially undercutting our calibration advantage if uncalibrated MLPs outperform calibrated linear probes. Mitigation: include MLP robustness ablation with selectivity measurement; note that null-probe calibration is architecturally independent and can be applied to MLPs.\",\n      \"TIER-2: Rapid field movement. Four new concurrent papers added in this round alone (Chrabąszcz, Ballon, Wang, Gjølbye) demonstrate fast-moving landscape. Additional probe-trajectory or causal-contribution papers may appear before the Sep 2026 deadline. Mitigation: calibrated gap + empirical pilot + honest scoping + probe-target clarification are defensible differentiators.\",\n      \"TIER-2: Probe linearity assumption. Linear probes may underestimate P*(t) if correctness information is encoded non-linearly, causing gap underestimation. Chrabąszcz et al.'s MLP probes suggest non-linearity matters. Robustness ablation with 2-layer MLP addresses this but introduces probe-inflation risk (Hewitt & Liang selectivity of only 4.5 for MLPs).\"\n    ]\n  }\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL: Qian et al. (2506.02867) already computes per-step MI between hidden representations and the correct answer across the full reasoning trajectory — this is essentially TIC by another name. The proposal's landscape section mischaracterizes this paper as only identifying 'MI peaks at thinking tokens' and 'not addressing faithfulness phenomena,' but the MI trajectory itself is the core proposed contribution.\", \"MISSING REFERENCE: David (2511.14773) 'Temporal Predictors of Outcome in Reasoning Language Models' probes hidden states after first t reasoning tokens with linear classifiers — directly overlapping with the probe-based TIC estimator.\", \"MISSING REFERENCE: Zhang et al. (2504.05419) 'Reasoning Models Know When They're Right' probes hidden states at intermediate answer positions and derives probe-based early-exit (24% token reduction), directly overlapping with the claimed early-exit tool.\", \"MISSING REFERENCE: Lewis-Lim et al. (2508.19827) tracks answer confidence trajectories across CoT step positions — a confidence-trajectory analog of TIC.\", \"MISSING REFERENCE: arxiv 2603.22816 'The Illusion of Reasoning' introduces a three-mode taxonomy (genuine/scaffolding/decoration) based on step-level faithfulness evaluation that partially addresses the same unification goal.\", \"MISSING REFERENCE: arxiv 2603.26410 'Why Models Know But Don't Say' directly measures thinking-answer divergence across 12 models — the fifth phenomenon the proposal aims to unify.\", \"MISSING REFERENCE: arxiv 2604.01202 'Therefore I am. I Think' provides causal evidence of pre-generation decision encoding via probing and steering, extending pre-CoT probe findings.\", \"MISSING REFERENCE: arxiv 2604.04930 CoDE-Stop uses confidence dynamics for early stopping — another competing early-exit method.\", \"VENUE TIMELINE: EMNLP 2026 ARR May deadline (May 25) is 6 days away — listing this as a target is misleading. AAAI 2027 (July 28) gives only 2.5 months, unrealistic for a 4-5 month project. Only ICLR 2027 (~Oct 2026) is genuinely feasible.\", \"OVER-ENGINEERING: Three complementary MI estimators (probes + NLDD + conditional flow) is overly complex. The flow-based density estimator on high-dimensional MoE residual streams is an unsolved problem in itself and may dominate project effort without clear benefit over probes + NLDD alone.\", \"The five-phenomena-to-five-signatures mapping assumes each phenomenon produces a *distinctive* TIC shape. Pre-CoT encoding and Reasoning Theater may produce nearly identical signatures (both = high initial information, early plateau), making them hard to distinguish via TIC alone.\", \"DeepSeek-R1-671B activation extraction at 5K examples × 4 datasets with full residual stream caching requires enormous storage (~100s of TB for uncompressed activations) and is a major engineering challenge not reflected in the resource estimate.\"]\nFeedback: 1. **Reposition against Qian et al.**: The most critical fix. Acknowledge that MI-over-CoT-timeline already exists and frame your contribution as: (a) extending from HSIC to multiple estimators for tighter bounds, (b) applying it specifically to faithfulness rather than performance, and (c) showing that five named phenomena correspond to identifiable TIC signatures. Currently the proposal implies TIC is novel when the measurement already exists. 2. **Add 8+ missing references** (2511.14773, 2504.05419, 2508.19827, 2603.22816, 2603.26410, 2604.01202, 2604.04930, 2602.20338) and discuss differentiation from each. 3. **Drop the flow-based MI estimator** — it adds risky complexity. Probes + NLDD (one model-internal, one causal-interventional) already provide two complementary views. 4. **Fix venue targets**: Remove EMNLP May. Set AAAI 2027 as stretch target (requires aggressive 2.5-month execution) and ICLR 2027 as primary target. 5. **Scale down model ambitions**: Focus on distilled models (7B-32B) for core experiments. Include one 671B run as a validation point, not as the primary experimental axis. This dramatically reduces compute and engineering risk. 6. **Sharpen the novelty claim**: The unique value is not 'measuring MI across CoT' (done) but 'systematically mapping five independently discovered phenomena to a unified information-theoretic taxonomy and deriving a principled instance-level faithfulness score.' Emphasize the taxonomy + faithfulness score as the core novel contributions. 7. **Address signature distinguishability**: Pre-analyze or discuss when/how TIC signatures for different phenomena might overlap and what additional features (e.g., TIC gradient, curvature) might disambiguate them.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"CRITICAL: The claim 'No extant work combines probe-based internal-state measurement with causal-interventional measurement on the same instances' is FALSE. 'LLMs Faithfully and Iteratively Compute Answers During CoT' (2412.01113, EACL 2026) trains linear probes AND performs activation patching on the same instances to study CoT faithfulness. 'Bypassing the Rationale' (2602.03994) combines activation patching with probing to produce the CoT Mediation Index (CMI). The landscape section must acknowledge these and reposition the novelty.\", \"CRITICAL: 'Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal' (2605.09502, May 12 2026) shows that probes detect error awareness at 0.95 AUROC but four intervention methods (activation steering, probe-guided best-of-N, self-correction, activation patching) ALL FAIL. The paper concludes 'error representations during reasoning are fundamentally different from editable factual knowledge representations.' This directly challenges the interpretive foundation of F(t) = P(t) − C(t): high P(t) may not mean the model 'knows' the answer in a causally relevant sense — the gap may simply reflect the non-causal nature of probe-detected information, not unfaithfulness.\", \"MISSING REFERENCE: 2412.01113 'LLMs Faithfully and Iteratively Compute Answers During CoT' (EACL 2026) — combines probing + activation patching on same instances for CoT faithfulness. Crucially, this paper finds CoT IS faithful (for arithmetic), providing a counterpoint to the proposal's focus on unfaithfulness.\", \"MISSING REFERENCE: 2602.03994 'Bypassing the Rationale: Causal Auditing of Implicit Reasoning' — introduces CoT Mediation Index (CMI) via activation patching + probing, identifies 'bypass regimes' where CMI ≈ 0 despite plausible CoT.\", \"MISSING REFERENCE: 2604.10693 'FACT-E: Causality-Inspired Evaluation for Trustworthy Chain-of-Thought Reasoning' (ACL Findings 2026) — causality-inspired framework measuring intra-chain faithfulness + CoT-to-answer consistency via controlled perturbations.\", \"MISSING REFERENCE: 2605.09502 'Hidden Error Awareness in Chain-of-Thought Reasoning' (May 2026) — the diagnostic-not-causal finding is essential context for any probe-based faithfulness framework.\", \"MISSING REFERENCE: 2605.13772 'Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry' (May 2026) — step-level hidden-state analysis using geometric features, a complementary approach.\", \"MISSING REFERENCE: 2603.16475 'Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures' — causal evaluation protocol showing intermediate structures function as 'influential context rather than stable causal mediators' (up to 60% failure to update after intervention).\", \"MISSING REFERENCE: 2604.06787 'When Is Thinking Enough? Early Exit via Sufficiency Assessment' — DTSR framework achieving 28.9-34.9% token reduction, another early-exit competitor.\", \"The Jin et al. survey ('The Mirage of Explainability') appears to have no arXiv ID (only an ARR submission for ACL 2026 commitment). The claim that it 'explicitly notes the absence of an information-theoretic unified framework' cannot be independently verified from available sources. The survey's GitHub page does not mention this specific claim.\", \"The early-exit competitive landscape is now even more crowded than characterized: Reasoning Theater (80% savings on MMLU), DTSR (28.9-34.9%), NEAT (22-28%), CoDE-Stop (25-50%), Zhang et al. (24%), ESTAR, and FRIT all address early-exit or faithfulness improvement. The proposal's early-exit contribution needs stronger differentiation.\"]\nFeedback: 1. **Fix the factual claim AGAIN**: The revision's central remaining novelty claim — that no one has combined probes + causal interventions on same instances — is wrong. 2412.01113 (EACL 2026) does exactly this with probing + activation patching, and 2602.03994 does it with CMI. Reposition the novelty as: (a) extending from synthetic/controlled tasks (2412.01113 uses arithmetic) to natural benchmarks; (b) the specific NLDD + probe combination (vs. activation patching + probe); (c) the five-phenomenon unification thesis; (d) the TIF score as a standalone metric. This is more honest and still substantial.\n\n2. **Address the diagnostic-not-causal challenge head-on**: 2605.09502 is the single most threatening paper to the proposal's conceptual foundation. You MUST explicitly discuss why your probe signal differs from their finding. Possible arguments: (a) their probes predict *correctness* while yours target *answer content* — different probe targets may behave differently; (b) the diagnostic-not-causal finding applies to interventions aimed at *fixing* errors, not to diagnosis/measurement; (c) the TIF score is explicitly a *diagnostic* tool (like a thermometer), not an intervention — so the non-causal nature of probes is actually fine for your use case. But you must acknowledge this tension explicitly.\n\n3. **Add the ~9 missing references** and differentiate from each. The field is moving extremely fast (3+ relevant papers per month in 2026). Acknowledge the rapid convergence and position your work within it rather than claiming isolated novelty.\n\n4. **Reconsider the TIF score's interpretive foundation**: If F(t) = P(t) − C(t) where P(t) captures diagnostic (non-causal) information and C(t) captures causal contribution, the 'gap' may not mean 'the model knows but CoT doesn't contribute.' It may mean 'the model's hidden states correlate with the answer but neither the hidden states nor the CoT causally determine it.' Explore whether the TIF score should be interpreted as a *diagnostic signal of reasoning quality* rather than a *faithfulness metric*, which would actually be more defensible.\n\n5. **Strengthen early-exit differentiation**: With Reasoning Theater achieving 80% savings on MMLU via probe-guided early exit, your early-exit contribution needs a clearer edge — perhaps the Causal-TIC inflection point provides a *principled* stopping criterion (grounded in causal contribution saturation) vs. heuristic confidence thresholds.\n\n6. **Consider downscoping**: The five-phenomenon unification + TIF score + early-exit tool + multi-model comparison may be too ambitious for one paper. Consider whether the unification thesis alone (with TIF score) is a stronger, more focused contribution.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"MISSING REFERENCE: 'Can Aha Moments Be Fake? Identifying True and Decorative Thinking Steps in Chain-of-Thought' (Zhao et al., 2510.24941, Oct 2025, revised Apr 2026) introduces the True Thinking Score (TTS), a per-step causal contribution metric (0-1 scale) using text-level perturbation + ATE measurement. Tested on AIME, MATH, AMC, CommonsenseQA. Found only 2.3% of AIME steps have TTS >= 0.7. This directly competes with the Causal-TIC component. While TTS is text-level (no hidden-state probes) and lacks the dual-estimator design, it provides a competing per-step causal contribution metric that must be discussed and differentiated from.\", \"MISSING REFERENCE: 'Spatiotemporal Hidden-State Dynamics as a Signature of Internal Reasoning in Large Language Models' (Furuya & Tanimura, 2605.01853, May 3 2026) introduces StALT, a TRAINING-FREE temporal trajectory statistic on hidden states that separates correct from incorrect reasoning. Uses intervention analysis. This is concurrent work very close to the Probe-TIC concept — a temporal hidden-state diagnostic — and must be acknowledged.\", \"MISSING REFERENCE: 'Task Difficulty Shapes Chain-of-Thought Faithfulness' (ICLR 2026 Workshop) shows hidden-state probes can detect faithfulness gradient but single-direction steering cannot shift it — 'readout rather than control.' This directly supports the proposal's diagnostic framing and should be cited as independent confirmation.\", \"MISSING REFERENCE: 'Diagnosing Pathological Chain-of-Thought in Reasoning Models' (Liu et al., 2602.13904, Feb 2026) creates concrete, computationally inexpensive, task-agnostic metrics for three CoT pathologies (rationalization, encoded reasoning, internalized reasoning). Competing diagnostic approach.\", \"MISSING REFERENCE: 'Measuring Faithfulness Depends on How You Measure' (2603.20172, Mar 2026) shows faithfulness measurements are classifier-sensitive (inter-classifier kappa as low as 0.06). This raises a methodological concern: will TIF also be sensitive to probe architecture, layer selection, and intervention method? Must be discussed.\", \"MISSING REFERENCE: 'Tracing the Traces: Latent Temporal Signals for Efficient and Accurate Reasoning' (Vilas et al., 2510.10494, NeurIPS 2025) — latent-trajectory signals tracking hidden-state temporal evolution. Directly adjacent to Probe-TIC concept.\", \"The answer-content vs. correctness probe distinction is the conceptual linchpin defending against Yuan et al.'s diagnostic-not-causal finding, but Cox et al.'s validation is limited to binary classification tasks (yes/no) on models up to 9B parameters. Extrapolating to 4-choice MMLU and numerical AIME on 7B-32B DeepSeek models is an untested empirical bet. The proposal should explicitly flag this generalization gap as a Tier-1 risk, not just a residual risk.\", \"The venue deadline for AAAI 2027 (abstract Jul 21, paper Jul 28) is only ~2 months away. The proposal labels this as 'stretch target' which is honest, but calling it 'feasible only under aggressive human_in_loop or auto_research timeline' is optimistic — 2 months is insufficient for this scope regardless of mode.\"]\nFeedback: **Round 3 shows substantial improvement — the diagnostic-not-causal reframing, Kudo et al./CMI acknowledgment, and early-exit descoping are all correct moves.** However, 6 missing references remain, several of which partially overlap with core contributions:\n\n1. **Acknowledge TTS (2510.24941) as a direct precursor to Causal-TIC.** Zhao et al.'s True Thinking Score provides per-step causal contribution via text-level perturbation on your exact benchmarks (AIME, MATH). Differentiate: TTS is text-level only (no hidden-state probe), single-estimator (no gap), and doesn't provide temporal curves. Your dual-estimator design and gap diagnostic are distinct contributions, but TTS must be positioned as a causal-contribution precursor.\n\n2. **Cite StALT (2605.01853) as very recent concurrent work.** Their training-free temporal trajectory statistic on hidden states is conceptually adjacent to Probe-TIC. Differentiate: StALT targets correctness separation (not faithfulness diagnosis), is training-free (vs. your trained linear probes), and lacks the dual-estimator gap diagnostic.\n\n3. **Add 'Task Difficulty Shapes CoT Faithfulness' as supporting evidence** for your diagnostic framing — their finding that probes are 'readout not control' independently validates your thermometer interpretation.\n\n4. **Address measurement sensitivity (2603.20172).** If faithfulness metrics are classifier-sensitive, TIF will likely show sensitivity to: (a) probe layer selection, (b) probe architecture, (c) NLDD perturbation method, (d) gap normalization. Plan ablations explicitly addressing this concern.\n\n5. **Strengthen the answer-content probe generalization argument.** Cox et al. validated on binary tasks only. Either: (a) include a pilot validation of answer-content probe causal potency on MMLU (4-choice) as an early experiment, or (b) frame the binary→multi-choice generalization as a falsifiable prediction that will be tested in the first experimental phase.\n\n6. **Drop AAAI 2027 entirely** — 2 months is insufficient regardless of mode. Keep ICLR 2027 (primary, 4 months) and ICML 2027 (fallback, 8 months).\n\n### Round 4 review\nVerdict: revise\nIssues: [\"CONCEPTUAL: The gap diagnostic G(t) = P(t) − C(t) has a discriminability problem under the 'information availability' assumption. If Probe-TIC captures correlative/epiphenomenal information (as Chun et al. 2602.20338 suggest: 'probe accuracy ≠ computational readiness'), then P(t) may be systematically high for ALL instances regardless of faithfulness phenomenon, making G(t) uniformly inflated. This would collapse the five-phenomenon signatures into a single 'high gap everywhere' pattern, undermining the framework's central diagnostic claim. The proposal acknowledges this as a residual risk but treats it as tier-2 when it should be tier-1.\", \"CONCEPTUAL: The five-phenomenon distinguishability argument is underspecified under the weaker assumption. Specifically: Pre-CoT encoding (high P(0), any C trajectory) and Reasoning Theater (growing gap: P rises, C flat) could produce indistinguishable TIC signatures if P(t) is always high due to correlative information. The proposal's four diagnostic features (initial P(0), C-plateau onset, gap trajectory, C-gradient locality) may not discriminate phenomena when the probe captures an upper bound rather than a tight estimate. The proposal needs either a formal argument or simulation showing distinguishability persists under probe inflation.\", \"MINOR MISSING REFERENCE: 'Mapping Faithful Reasoning in Language Models' (Li et al., 2510.22362, NeurIPS 2025 MechInterp Workshop) introduces Concept Walk, which projects each reasoning step onto concept directions and tracks temporal evolution of internal activations for faithfulness diagnosis. Finds easy→decorative, hard→faithful, paralleling the task-difficulty conditioning dimension. Different probe methodology (concept directions vs. answer-content probes) and different domain (safety, single model), but conceptually adjacent to Probe-TIC temporal tracking and should be cited.\", \"RISK UNDERESTIMATION: The Phase 0 pilot tests answer-content probe causal potency on MMLU (4-choice) and GSM8K (numerical) using DeepSeek-R1-Distill-Qwen-7B. But Cox et al.'s validation was on binary tasks on instruction-tuned models ≤9B, and they explicitly report 'little success steering' reasoning models. If the Phase 0 pilot confirms this failure for reasoning models broadly, the Probe-TIC becomes just another correlative hidden-state signal (like StALT) rather than measuring information the model could in principle use. Under this scenario, the gap G(t) loses its interpretation as 'information excess' and becomes 'correlative excess,' which is less interesting. The proposal should have a more detailed contingency plan for this outcome.\", \"NOVELTY POSITIONING: The proposal's core novelty claim — that the gap between two estimators reveals phenomenon-specific signatures invisible to either alone — is compelling in principle but untested. The proposal relies heavily on the prediction that different phenomena produce distinguishable gap trajectories, but this is an empirical bet. If the patterns turn out to be noisy or hard to distinguish (especially given Young's measurement sensitivity findings), the main contribution reduces to 'we ran probing and NLDD on the same instances at scale,' which is a useful resource contribution but not a conceptual advance worthy of a top venue.\"]\nFeedback: **Round 4 shows major improvement — the proposal is now well-positioned against the literature, honest about assumptions, and comprehensive in scope.** The critical issue preventing a pass is the gap diagnostic's discriminability under the weaker 'information availability' assumption. Three specific fixes:\n\n1. **Elevate the gap inflation problem to Tier-1 and address it directly.** Chun et al.'s finding that probe accuracy ≠ computational readiness means P(t) may be uniformly high, collapsing five-phenomenon signatures into one. To address this: (a) include a theoretical analysis or toy simulation showing that even if P(t) is inflated, the *trajectory shape* (rate of increase, curvature, onset timing) can still distinguish phenomena; (b) propose a calibration method — e.g., normalize P(t) against a 'null probe' trained on shuffled labels, so the gap measures *excess* information above chance rather than raw probe accuracy; (c) in Phase 0, explicitly test whether Probe-TIC trajectories differ meaningfully across task difficulty levels even if absolute P(t) values are high.\n\n2. **Strengthen the five-phenomenon distinguishability argument.** Currently, the four diagnostic features (initial P(0), C-plateau onset, gap trajectory, C-gradient locality) are asserted to distinguish phenomena but not demonstrated. Add a concrete worked example: take 2-3 phenomena (e.g., Pre-CoT encoding vs. Reasoning Theater vs. genuine reasoning) and draw predicted TIC curves under both the strong and weak probe assumptions. Show that trajectory *shapes* remain distinguishable even when absolute P(t) is inflated. If you cannot draw distinguishable curves under the weak assumption, this is a fundamental problem that must be acknowledged and the five-phenomenon mapping should be reframed as 'exploratory' rather than a primary contribution.\n\n3. **Cite Li et al. (2510.22362) 'Mapping Faithful Reasoning'** — their Concept Walk framework tracks temporal activation evolution and finds easy→decorative, hard→faithful, which directly supports your task-difficulty conditioning. Differentiate: they use concept directions (not answer-content probes), study safety (not reasoning benchmarks), and lack a causal-contribution curve.\n\n4. **Tighten the focus for the paper.** The proposal currently has ~7 contributions (gap diagnostic, five-phenomenon mapping, TIF score, task-difficulty conditioning, robustness ablations, Phase 0 pilot findings, early-exit criterion). For a single paper, consider: Phase 0 pilot results + gap diagnostic + task-difficulty conditioned signatures as the core paper, with robustness ablations and five-phenomenon mapping as the key experimental sections. The early-exit application and 671B validation can be supplementary material.\n\n### Round 5 review\nVerdict: revise\nIssues: [\"CRITICAL FEASIBILITY: Phase 0 causal potency on reasoning models is likely to FAIL based on existing evidence. Cox et al. (2603.01437) explicitly report negligible answer flip rates for reasoning models ('the answer flip rate is negligible against the orthogonal baseline'). Yuan et al. (2605.09502) show four intervention methods all fail on reasoning models. The proposal treats this as a managed risk with contingency, but the BASE CASE (causal probes work on reasoning models) directly contradicts current empirical evidence. The most likely Phase 0 outcome is Fallback A, which weakens the gap's interpretive power from 'information excess above causal contribution' to 'correlative information excess above null baseline.' The proposal should be reframed with Fallback A as the expected case, not the fallback.\", \"MODERATE: Five-phenomenon distinguishability relies on a toy worked example with UNIFORM inflation (+0.3 everywhere) and clean, deterministic trajectories. Real data will have: (a) non-uniform inflation varying by layer, position, and model, (b) substantial inter-instance variability within the same phenomenon, (c) noise from probe training variance. The proposal should provide either: (i) a simulation using actual probe accuracy data from existing studies (e.g., David 2511.14773 reports real probe trajectories), or (ii) an honest analysis of which phenomena are most vs. least likely to be separable, with 3-4 (rather than 5) as a defensible target.\", \"MODERATE: NLDD compute estimate is likely underestimated for 32B models. Each NLDD evaluation requires corrupting reasoning at multiple positions and measuring logit degradation — effectively requiring O(T × N) forward passes where T is number of perturbation positions and N is number of examples. For 5K examples × ~20 perturbation positions per example × 32B model, 150 H100-hours is tight. The 'speed bottleneck' section acknowledges 250 node-hours for 32B NLDD but the main estimate shows only 150 hours for ALL NLDD interventions across ALL models.\", \"MINOR MISSING REFERENCE: 'Do LLMs Experience an Internal Polylogue?' (Herrmann et al., 2605.09159, May 9, 2026) tracks temporal persona-vector dynamics through reasoning, predicts correctness on MMLU-Pro, and demonstrates stage-aware latent steering. This is another concurrent temporal hidden-state approach that should be cited.\", \"MINOR: The Jin et al. survey ('The Mirage of Explainability') claim about 'explicitly noting the absence of an information-theoretic unified framework' cannot be verified from available sources (GitHub page, ARR submission). The survey's GitHub page mentions internal alignment and external consistency axes but does not reference information-theoretic frameworks. This unverifiable claim should be softened or removed.\"]\nFeedback: **The proposal is well-constructed and getting close to passable, but the feasibility score drags it below threshold.** Three specific improvements:\n\n1. **Reframe the base case around Fallback A.** Given that Cox et al. found steering reasoning models ineffective and Yuan et al. found four interventions all fail, the most honest framing is: G*(t) measures the gap between *calibrated information availability* and *causal contribution*. This gap is inherently interesting (it tells you how much information the model encodes but doesn't causally use) and doesn't require probe causal potency to be meaningful. Rewrite the approach so Fallback A IS the main proposal, and causal probe potency (if it works) is an exciting upgrade. This makes the framework robust regardless of Phase 0 outcome. The 'thermometer' interpretation is actually stronger under this framing — you don't need a thermometer to control temperature, just to measure it.\n\n2. **Strengthen five-phenomenon distinguishability with realistic simulations.** The toy example is a good start but insufficient. Use REAL probe accuracy data from the literature: David (2511.14773) reports probe accuracy trajectories for reasoning models; Cox et al. report pre-CoT AUC values; Zhang et al. (2504.05419) report intermediate probe accuracies. Construct semi-synthetic simulations using these real values with realistic noise levels. Also, be honest: pre-CoT encoding and Reasoning Theater may produce overlapping G*(t) shapes when inflation is non-uniform. Consider positioning '3-4 distinguishable phenomena with confidence, 5 as an empirical question' rather than asserting all 5 are distinguishable.\n\n3. **Fix the compute estimates.** The 150 H100-hours for NLDD interventions is inconsistent with the 250 node-hours speed bottleneck figure for 32B alone. Reconcile these numbers. If NLDD on 32B truly requires ~250 H100-hours, the total GPU budget should be ~750-800 hours, not 650. Be transparent about this — an honest, higher estimate is better than an optimistic one that creates credibility problems during review.\n\n### Round 6 review\nVerdict: revise\nIssues: [\"MISSING REFERENCE (CRITICAL): 'Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics' (Chrabaszcz et al., arXiv 2605.18549, May 18, 2026) constructs probe trajectories by evaluating a linear probe at each generated token, extracts 60+ signal-processing features (volatility, trend, steady-state, temporal segmentation, boundary transients, autocorrelation), and demonstrates up to 17pp improvement over static probes across 4 reasoning models and 4 datasets. This is the closest concurrent work to the P*(t) component of the ICG framework. Key differentiators: they lack C(t), the gap diagnostic, null-probe calibration, phenomenon mapping, and task-difficulty conditioning — but their probe trajectory + feature extraction methodology is very close to what the ICG framework proposes for the information availability side.\", \"MISSING REFERENCE (MODERATE): 'Probing the Trajectories of Reasoning Traces in Large Language Models' (Ballon et al., arXiv 2601.23163, Jan 2026) systematically probes reasoning trajectories via truncation + re-injection protocol on Qwen3-4B/8B/14B and gpt-oss-20B/120B across GPQA-Diamond and MMLU-Pro. Different methodology (re-injection vs. hidden-state probing) but directly adjacent to C(t) estimation via prefix truncation.\", \"MISSING REFERENCE (MODERATE): 'LLM Reasoning Is Latent, Not the Chain of Thought' (Wang, arXiv 2604.15726, Apr 2026) is a position paper arguing that latent-state trajectory formation — not surface CoT — should be the primary object of study. Philosophically aligned with the ICG framework's direction and provides conceptual scaffolding. Formalizes competing H1/H2/H0 hypotheses about whether reasoning is latent-state-mediated or CoT-mediated.\", \"MISSING REFERENCE (MINOR): 'Reasoning Models Don't Just Think Longer, They Move Differently' (Gjølbye et al., arXiv 2605.15454, May 14, 2026) studies hidden-state trajectory geometry conditioned on difficulty across competitive programming, math, and Boolean SAT. Finds difficulty is systematically coupled to corrected trajectory geometry. Supports the task-difficulty conditioning dimension.\", \"FEASIBILITY CONCERN: The semi-synthetic simulation approach — constructing G*(t) curves from published measurements and classifying via random forest on 6 trajectory features — may substantially overestimate real-data classification accuracy. Published probe measurements come from different models, datasets, and experimental setups, introducing heterogeneity that will not match the within-dataset, within-model variance structure. The proposal should either: (a) commit to an early pilot (Phase 0.5) validating that trajectory features separate at least 2 phenomena on real data before committing to the full classification pipeline, or (b) explicitly downscope the phenomenon classification claim to '2-3 distinguishable phenomena as the realistic target, 4 as the optimistic case.'\", \"METHODOLOGICAL: The proposal does not clearly specify whether P*(t) probes target answer-content (predicting the specific answer) or correctness (predicting right/wrong). This distinction matters: Cox et al. validated answer-content probes on binary tasks with instruction-tuned models ≤9B; Yuan et al. used correctness probes across model families up to 72B. The interpretation of G*(t) differs: if P*(t) measures correctness awareness, the gap means 'the model knows it's right/wrong but CoT doesn't reflect this'; if P*(t) measures answer-content availability, the gap means 'the model knows the answer but CoT doesn't derive it.' The formal framework should specify this and discuss implications.\"]\nFeedback: The proposal is close to passable after 6 rounds of substantive improvement. The diagnostic-not-causal reframing, honest distinguishability claims, and real-data-grounded simulation are all strong moves. Three targeted fixes:\n\n1. **Add 2605.18549 as critical concurrent work and sharpen differentiation.** This paper does probe trajectories with signal-processing features — the most direct competitor to your P*(t) component. Differentiate clearly: (a) they lack C(t) — no causal contribution component; (b) no gap metric — just static vs. trajectory comparison; (c) no null-probe calibration or MCT validation; (d) no phenomenon taxonomy; (e) no task-difficulty conditioning. Your framework adds the entire causal contribution dimension plus the calibrated gap interpretation. Frame this as: '2605.18549 validates that temporal probe trajectories capture dynamics invisible to static probes (confirming our P*(t) component), while our framework extends this via the dual-estimator gap G*(t) that requires the additional C(t) dimension.'\n\n2. **Add 3 additional missing references** (2601.23163, 2604.15726, 2605.15454) and note them in the landscape. The Ballon et al. trajectory probing paper is particularly relevant as a precursor to your prefix-truncation C(t) estimator.\n\n3. **Clarify probe target in formal framework.** Specify whether P*(t) targets answer-content or correctness, justify the choice, and discuss implications for G*(t) interpretation. If answer-content: acknowledge generalization risk beyond binary tasks. If correctness: clarify relationship to Yuan et al.'s finding that correctness probes are diagnostic-not-causal.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"...\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"...\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"...\"}\n  },\n  \"issues\": [\"specific issue 1\", ...],\n  \"feedback\": \"Actionable feedback (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold\n- \"fail\": fundamental flaw (gap doesn't exist, approach provably wrong)\n- Threshold is HIGH (4.0/5.0): only truly outstanding ideas should pass.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T13:36:59.498Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T13:36:59.498Z",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+## Round 1
+
+145 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T13:36:59.516Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-19 (UTC).**
+
+Your job: independently verify this idea's claims via web_search, then issue a verdict.
+
+## User requirements
+The user asked for: **cot faithfulness**
+Evaluate whether this idea actually meets the user's requirements. An idea that doesn't match should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：用 WebFetch 实际阅读相关论文的 abstract 和关键章节。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献
+
+6. **评分诚实**：
+   - 4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} 2026` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} 2026` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} 2026 site:scholar.google.com`
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} 2026` — 按活跃作者追踪
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} 2026` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey 2026` — 找综述论文
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+
+### 搜索维度
+
+1. **正向搜索**：直接搜索主题相关论文
+2. **竞争论文搜索**（最关键！）：有没有人在解决同样的问题？用类似方法？
+3. **相邻领域搜索**：其他领域是否已解决类似问题
+4. **反面搜索**：找到反对你 idea 的证据
+5. **引用链追踪**：找到核心论文后，查看 cited-by 发现 concurrent work
+
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+2. **知名团队追踪**：搜索相关团队最近的论文
+3. **会议最新录用**：搜索 `site:openreview.net {topic} 2026`
+4. **arXiv 近 3 个月密集搜索**
+
+## Review checklist
+1. **SOTA freshness**: Are baselines actually current SOTA?
+2. **Reference verification**: Do cited papers actually exist?
+3. **Gap validity**: Does the claimed gap still exist?
+4. **Venue validity**: Are target venue deadlines after 2026-05-19?
+5. **Feasibility**: Is the resource estimate realistic?
+6. **Novelty**: Is this sufficiently different from existing work?
+7. **Cost realism**: Are the three mode estimates internally consistent?
+
+## Idea under review (round 7/10)
+{
+  "title": "Measuring What Models Know But Don't Use: Calibrated Temporal Information-Contribution Divergence for Chain-of-Thought Faithfulness",
+  "project_name": "cot_faithfulness_decomp",
+  "source": "web_research",
+  "level": "top-tier",
+  "target_venues": [
+    "ICLR 2027 (abstract: Sep 19, full paper: Sep 24, 2026; conference: Apr/May 2027 — primary target, 4 months from now)",
+    "ICML 2027 (full paper: Jan 29, 2027; conference: Jul 2027 — comfortable fallback if additional experiments needed)"
+  ],
+  "core_problem": "A striking convergence of 2025-2026 findings reveals a fundamental disconnect in reasoning language models: their hidden states reliably encode information about answer correctness — with linear probes achieving 0.82-0.95 AUROC across multiple independent groups — yet causal interventions based on these probes consistently fail to influence model outputs. Cox et al. (2603.01437) find that steering via answer-content probes produces answer flip rates 'negligible against the orthogonal baseline' on reasoning models, despite >0.9 AUC on instruction-tuned models. Yuan et al. (2605.09502) systematically test four distinct intervention strategies (activation steering, probe-guided best-of-N, self-correction, activation patching) on models up to 72B parameters and report that ALL fail: 'RL training does not close the diagnostic–causal gap.' This diagnostic-causal gap — the divergence between what information is available in a model's hidden states and what information the chain-of-thought reasoning text causally contributes — is NOT a methodological obstacle to overcome; it IS the central phenomenon. Critically, the literature conflates two distinct probe targets: answer-content probes (Cox et al.: predicting the specific answer on binary tasks, models ≤9B + GPT-OSS-20B) and correctness probes (Yuan et al.: predicting right/wrong on models up to 72B; Zhang et al.: per-chunk correctness on 7B-70B). This distinction matters because the gap's interpretation differs: answer-content gaps mean 'the model has already decided but CoT doesn't derive the answer,' while correctness gaps mean 'the model knows it's right/wrong but CoT doesn't reflect this awareness.' Meanwhile, the temporal dynamics of this gap are now empirically grounded: David (2511.14773) shows probe accuracy stabilizes at 0.84 AUC by token 4, remaining ~0.8 through token 100, with task-difficulty conditioning revealing easy (0.84) vs. hard (0.76) signatures. Zhang et al. (2504.05419) report chunk-level probe trajectories rising from 65% at 10% of reasoning to 79% at 100% on R1-Distill. Esakkiraja et al. (2604.01202) find >90% pre-generation AUROC with a characteristic dip at 5-10% of reasoning followed by recovery. Chrabąszcz et al. (2605.18549) demonstrate that temporal probe trajectories with 60+ signal-processing features achieve up to 17pp improvement over static probes, showing that trajectory dynamics capture information invisible to single-timepoint measurements. These temporal profiles suggest that different modes of CoT unfaithfulness — pre-CoT encoding, post-hoc rationalization, reasoning theater, myopic planning, thinking-answer gap — produce distinguishable temporal divergence signatures. Yet no existing framework jointly tracks information availability AND causal contribution across the full CoT timeline: Chrabąszcz et al. provide the closest probe-trajectory methodology but lack any causal contribution component, gap metric, probe calibration, or phenomenon taxonomy; Ballon et al. (2601.23163) provide behavioral causal curves via truncation-reinjection but lack hidden-state measurement; the CMI framework provides layerwise causal audit on ~50 examples but no temporal resolution; Zhao et al.'s True Thinking Score provides per-step causal contribution but no probe-side measurement. The gap between diagnostic information availability and causal contribution IS the phenomenon of interest, not an obstacle.",
+  "opportunity": "The field has independently produced the measurement tools needed for a unified temporal framework, but these tools remain siloed. The opportunity is fourfold:\n\n(1) **Temporal gap measurement.** Despite rapid accumulation of probe measurements (David: 0.84 at t=4; Zhang: 0.82-0.91 on chunks; Yuan: 0.95 overall, 0.787 first-step; Esakkiraja: >90% pre-generation; Chrabąszcz et al.: 91-97% AUROC with max-pooling on trajectories), no work tracks the full-timeline divergence between probe-estimated information availability and intervention-estimated causal contribution. Chrabąszcz et al. (2605.18549) come closest on the probe side — extracting 60+ signal-processing features from probe trajectories across 4 reasoning models and 4 datasets, achieving up to 17pp improvement over static probes on GSM8K — but they target outcome prediction (correctness, harmfulness) rather than the faithfulness gap, and provide no causal contribution measurement. Their work validates that temporal probe trajectories capture dynamics invisible to static probes (confirming our P*(t) direction); our framework extends this via the dual-estimator gap G*(t) = P*(t) − C(t) that requires the additional causal contribution dimension, null-probe calibration, and phenomenon mapping. On the causal side, Ballon et al. (2601.23163) provide behavioral C(t) curves via truncation-reinjection at decile intervals on Qwen3/gpt-oss across GPQA-Diamond and MMLU-Pro — showing monotonic accuracy increase from 30.8-42.3% to 49.0-73.1% with control conditions validating that sequential content (not just context length) matters — but lack hidden-state measurement. The gap between these two measurement traditions IS the framework's niche.\n\n(2) **Phenomenon unification with honest scoping.** The CoT faithfulness literature treats each failure mode as separate: Reasoning Horizon (Ye et al. 2602.11201), pre-CoT encoding (Cox et al. 2603.01437; Esakkiraja et al. 2604.01202), Reasoning Theater (Boppana et al. 2603.05488), myopic planning (Xu et al. 2602.02103), thinking-answer gap. We propose that 2-3 of these are confidently distinguishable via trajectory-shape signatures in the information-contribution gap G*(t), with 4-5 as a stretch goal requiring additional features. The honest scoping — validated through an empirical pilot on real data before committing to full classification — is itself a contribution to a field prone to over-claiming.\n\n(3) **Task-difficulty conditioning.** The ICLR 2026 Workshop finding and Li et al.'s (2510.22362) corroboration show easy→decorative, hard→faithful. David's easy/hard splits (0.84 vs. 0.76 at t=32) provide probe-level evidence. Gjølbye et al. (2605.15454) demonstrate that difficulty is systematically coupled to hidden-state trajectory geometry even after length correction (ρ⊥ = +0.41 for reasoning models vs. −0.06 for baselines on competitive programming), with domain-specific strength. A difficulty-conditioned gap framework can answer the practical question: at what difficulty level does CoT transition from decorative to load-bearing?\n\n(4) **Probe target clarification.** The field has not confronted the distinction between answer-content probes (Cox et al.: binary tasks, ≤9B) and correctness probes (Yuan et al.: up to 72B). A framework that explicitly measures correctness awareness gap — and contrasts it with answer-content gap on applicable tasks — provides the first principled treatment of what 'knowing but not using' means.\n\nTwo prior works have combined probing with causal interventions: Kudo et al. (EACL 2026) on synthetic arithmetic, and the CMI framework (2602.03994) on ~50 examples. Wang (2604.15726) formalizes the need via competing hypotheses (H1: latent-mediated, H2: CoT-mediated, H0: serial compute) and proposes compute-audited designs — our ICG framework provides an empirical methodology to distinguish H1 from H2 at each token position. Neither Kudo et al. nor CMI provides: (a) full temporal-position coverage on natural benchmarks, (b) mapping to named faithfulness phenomena, (c) a standalone instance-level diagnostic, (d) systematic multi-model comparison, (e) robustness validation — a critical gap highlighted by Young's (2603.20172) finding that faithfulness measurements are classifier-sensitive (inter-classifier kappa as low as 0.06), or (f) an empirical pilot validating phenomenon separability on real data.",
+  "landscape": "**Probe-based temporal measurement (foundational for our P*(t) component).** Chrabąszcz et al. (2605.18549) is the closest concurrent work: they introduce probe trajectories — tracking concept probability at each generated token — and extract 60+ signal-processing features (volatility, trend, steady-state, temporal segmentation, boundary transients, autocorrelation) via 3-layer MLP probes with Multi-Instance Learning meta-probe across layers. Key results: max-pooling achieves 91-97% AUROC on harmfulness detection (vs. 33-61% for average-pooling, demonstrating average/last-token pooling collapses to near-random); up to 17pp improvement over static probes on GSM8K mathematical error prediction across Llama-8B-R1-Distill and Qwen3-4B/8B/14B (~3000 GPU-hours total). Critical differentiators from our framework: (a) NO causal contribution component — they measure only probe accuracy trajectories, not whether CoT causally contributes; (b) NO gap metric — just trajectory vs. static comparison for outcome prediction; (c) NO null-probe calibration or MCT geometric validation — their 3-layer MLP probes are uncalibrated; (d) NO phenomenon taxonomy — they separate correct/incorrect or safe/harmful, not faithfulness modes; (e) NO task-difficulty conditioning. Their 60+ feature extraction methodology is complementary and could enhance our trajectory-shape classification. David (2511.14773) trains per-position probes on reasoning models, finding 0.84 AUC at t=4, stable ~0.8 through t≈100, with easy/hard splits of 0.84 vs. 0.76 at t=32 on Qwen3-8B. Zhang et al. (2504.05419) probe R1-Distill models (7B/32B/70B) for correctness at each reasoning chunk, achieving 0.82-0.91 AUROC on GSM8K/MATH/AIME, with a rising trajectory from 65% at 10% chunk to 79% at 100%, enabling 24% token reduction via early-exit. Yuan et al. (2605.09502) report 0.95 AUROC on Qwen-3B, 0.852 on DeepSeek-R1-7B, 0.787 from first-step hidden states alone, and a concealment gap of 0.197 AUROC between hidden-state (0.787) and text-surface (0.590) classifiers — using correctness probes (right/wrong), not answer-content probes. Esakkiraja et al. (2604.01202) find >90% AUROC pre-generation on Qwen3-4B and GLM-Z1-9B, with a characteristic dip at 5-10% of reasoning and recovery to near-100% by think_end. Cox et al. (2603.01437) use answer-content probes (predicting specific answer A/B on binary tasks: Anachronisms, Logical Deduction, Sports Understanding, Social Chemistry) achieving >0.9 AUC on instruction-tuned Gemma-2 (2B, 9B) and Qwen-2.5 (1.5B, 3B, 7B) models, with causal validation via steering (>50% flip rates) — but 'the answer flip rate is negligible against the orthogonal baseline' on the reasoning model GPT-OSS-20B. Additional probing work: Qian et al. (2506.02867, NeurIPS 2025); Lewis-Lim et al. (2508.19827, EMNLP 2025); Mirtaheri & Belkin (2603.17199); Occhipinti et al. (ICLR 2026 LIT Workshop, probing F1 90-100%, steering 46% recovery).\n\n**The diagnostic-not-causal evidence (motivating our framework).** Yuan et al. (2605.09502) is the decisive study: four interventions — activation steering (at most +4%), probe-guided best-of-N (matches random), self-correction (hurts accuracy −3%), activation patching (destroys coherence at α=0.5) — all fail. Tested on Qwen2.5 (1.5B-72B), Llama-3.1-8B, Phi-3.5-mini, DeepSeek-R1-7B. Key quote: 'The error signal is a diagnostic readout—a summary statistic of computation quality—not a causal component that can be edited.' Cox et al. (2603.01437) independently confirm: steering fails on reasoning models despite high probe accuracy. This establishes that probe accuracy ≠ causal potency on reasoning models, which is the foundational observation our framework exploits.\n\n**Behavioral trajectory probing (foundational for our C(t) component).** Ballon et al. (2601.23163) introduce the truncation-reinjection protocol: generate full reasoning traces on Qwen3-4B/8B/14B and gpt-oss-20B/120B, truncate at decile intervals (10-100%), reinject with early-stopping suffix, measure answer-choice probability distributions. Key results: accuracy increases monotonically from 30.8-42.3% (no reasoning) to 49.0-73.1% (full trace) on GPQA-Diamond; decision commitment tracks similarly. Three control conditions validate causal content: random tokens (+2.1-4.3%), swapped traces (+3.2-8.7%), and shuffled tokens (+0.3-10.8%) all substantially underperform intact truncated traces (+18.1-33.1%), confirming sequential content — not just context length — drives gains. Stronger models rescue weak-model errors at 43-68% rate with free continuation vs. 28-51% anchoring in base mode. Explicitly disclaims faithfulness-to-internal-computations analysis, making it a direct precursor to our prefix-truncation C(t) estimator. Zhao et al. (2510.24941) introduce the True Thinking Score (TTS), measuring per-step causal contribution via numerical perturbation and ATE computation on DeepSeek-R1-Distill-Qwen-7B/14B/Llama-8B across AIME/MATH/AMC/CommonsenseQA, finding only 2.3% of AIME steps have TTS≥0.7. Ye et al. (2602.11201) introduce NLDD, finding a Reasoning Horizon at 70-85% of chain length on 3 models across synthetic tasks. Basu & Chakraborty (2603.22816) propose a decorative/scaffolding/genuine taxonomy. FACT-E (Sun et al. 2604.10693, ACL Findings 2026) provides another causal measurement approach.\n\n**Probe-intervention combinations (closest prior work).** Kudo et al. (2412.01113, EACL 2026) train per-position linear probes and validate with sliding-window activation patching on 9 models across synthetic multi-step arithmetic. They find CoT IS faithful for arithmetic but explicitly note their synthetic setting may not generalize. The CMI framework (2602.03994) introduces the CoT Mediation Index via layerwise activation patching across Phi, Qwen, DialoGPT on StrategyQA (20), TruthfulQA (10), GSM8K (20), identifying 'bypass regimes' where CMI ≈ 0. Both are complementary precursors operating on small samples or synthetic tasks.\n\n**Latent-reasoning theory.** Wang (2604.15726) formalizes three competing hypotheses about LLM reasoning: H1 (reasoning is primarily mediated by latent-state trajectories), H2 (reasoning is primarily mediated by explicit surface CoT), H0 (most reasoning gains are better explained by generic serial compute). Proposes compute-audited designs with six experimental arms (baseline, surface manipulation, surface control, latent intervention, latent control, compute-only expansion) and evidence tiers (probe-only = suggestive, compute-matched causal = strongest). Our ICG framework operationalizes Wang's H1/H2 distinction: when G*(t) >> 0, hidden states encode correctness awareness that CoT doesn't contribute (H1-consistent); when G*(t) ≈ 0, CoT is mediating (H2-consistent).\n\n**Temporal hidden-state dynamics (concurrent complementary work).** Gjølbye et al. (2605.15454) study hidden-state trajectory geometry across 11 models (6 reasoning: R1-Distill-Qwen-7B/14B/32B, R1-Distill-Llama-8B, QwQ-32B, Phi-4-Reasoning; 5 instruction-tuned baselines) on competitive programming (500 Codeforces), math (500 MATH), and Boolean SAT (500 SATBench). After length correction (residualizing directness/curvature on log(N)), difficulty remains systematically coupled to trajectory geometry: reasoning models show ρ⊥^D = +0.41 on Codeforces vs. −0.06 for baselines (raw correlations reverse from −0.73 to +0.41), with weaker effects in math (+0.05 vs. −0.07) and non-specific effects in SAT (+0.27 vs. +0.23). Critically, prompt-stage linear probes do NOT mirror these geometric effects — reasoning dynamics manifest during generation, not at input. Their length correction methodology and domain-specificity finding are relevant for our temporal analysis and difficulty conditioning. Furuya & Tanimura (2605.01853) introduce StALT, a training-free trajectory statistic separating correct from incorrect reasoning trajectories. Herrmann et al. (2605.09159) study 'internal polylogue' dynamics: persona vectors tracked temporally across MMLU-Pro in four open-weight models. Li et al. (2510.22362, NeurIPS 2025 MechInterp Workshop) introduce Concept Walk, tracking concept-direction alignment per step on Qwen 3-4B; find easy→decorative, hard→faithful. Vilas et al. (2510.10494, ICLR 2026) define three latent-trajectory signals, achieving 14-70% token savings on R1-Distill/Phi-4/Qwen3.\n\n**Probe calibration and inflation (methodological foundation).** Hewitt & Liang (2019) show MLP probes achieve only 4.5 selectivity. Ravichander et al. (2020) demonstrate properties recoverable even when unused. Voita & Titov (2020) show MDL-based probing reveals accuracy doesn't substantially favor pretrained over random. Chun et al. (2602.20338) apply Manifold Capacity Theory to CoT reasoning: geometric separability peaks transiently as a 'geometric pulse' while probe accuracy remains high afterward — direct evidence that probe accuracy overestimates information availability. We address this via null-probe calibration: P*(t) = P(t) − P_null(t).\n\n**Trajectory-shape analysis (supporting our shape-based classification).** Entropy trajectory paper (2603.18940): monotonicity predicts reliability regardless of absolute levels (+5.8pp). RQA analysis (2602.06266): temporal features outperform aggregates 36.94% vs. 28.97%. Microsoft trajectory geometry (2604.05655): 0.852 AUC from shape features vs. 0.649 baseline. This literature validates trajectory shapes as diagnostic features.\n\n**Measurement sensitivity.** Young (2603.20172) shows inter-classifier kappa as low as 0.06, up to 30.6pp divergence. Task-difficulty moderation: ICLR 2026 Workshop and Li et al. (2510.22362).\n\n**Reasoning-model internal dynamics.** Internal States Before Wait (2510.04128): crosscoders on R1-Distill with confirmed causal interventions for backtracking, uncertainty, verification features. From Reasoning to Answer (2509.23676): activation patching on R1-Distill.\n\n**Benchmarks, surveys, pathology diagnostics.** FaithCoT-Bench (ICLR 2026). Jin et al.'s survey (ARR for ACL 2026). Liu et al. (2602.13904): text-level metrics for rationalization/encoded/internalized reasoning. Reasoning Theater (2603.05488). Young (2603.26410). 'Lie to Me' (2603.22582). Various early-exit methods: ESTAR, DTSR, NEAT, CoDE-Stop, FRIT.\n\n**What remains open.** No extant framework provides: (1) a full-timeline information-contribution gap curve pairing calibrated probe trajectories with causal contribution estimation — Chrabąszcz et al.'s probe trajectories are the closest but lack the entire C(t) dimension, gap metric, and calibration; (2) an empirically-validated phenomenon trajectory-shape taxonomy grounded in real within-model, within-dataset G*(t) curves rather than cross-study semi-synthetic assembly; (3) an instance-level diagnostic score derived from the temporal gap; (4) difficulty-conditioned gap analysis with domain-specific nuance (following Gjølbye et al.'s finding of domain-dependent coupling strength); or (5) a principled treatment of the probe-target distinction (correctness vs. answer-content) and its implications for gap interpretation. The calibrated temporal ICG framework is unique in combining all five.",
+  "inspired_by": "The convergence of five independent lines of evidence — (a) Cox et al.'s finding that answer-content probe steering fails on reasoning models despite high accuracy; (b) Yuan et al.'s systematic demonstration that four interventions all fail on correctness probes, establishing 'diagnostic not causal'; (c) the temporal probe dynamics now empirically characterized by David (0.84 AUC at t=4, stable ~0.8), Zhang et al. (chunk-level rising trajectory), Esakkiraja et al. (pre-generation >90% with dip-recovery), and Chrabąszcz et al. (60+ trajectory features capturing dynamics invisible to static probes, up to 17pp improvement); (d) Ballon et al.'s truncation-reinjection protocol demonstrating monotonic behavioral C(t) curves with rigorous controls (sequential content +18.1-33.1% vs. shuffled +0.3-10.8%) — all pointing to the same insight: the gap between diagnostic information availability and causal contribution IS the phenomenon of interest. Additionally inspired by: Wang's (2604.15726) formalization of H1/H2/H0 hypotheses providing the theoretical scaffold for what our framework empirically measures; Gjølbye et al.'s (2605.15454) finding that difficulty-geometry coupling is domain-specific and requires length correction; Herrmann et al.'s concurrent temporal persona-vector dynamics; and the trajectory-shape literature showing shapes can distinguish phenomena regardless of absolute-value calibration.",
+  "approach": "We propose the Information-Contribution Gap (ICG) framework: a calibrated, temporally-resolved diagnostic that measures the divergence between information available in hidden states and information that causally contributes to model outputs, tracked across the full chain-of-thought generation trajectory.\n\n**Formal Framework.** Define two time-varying quantities at each token position t during CoT generation:\n\n(i) *Calibrated Information Availability* P*(t): Cross-validated AUROC of a linear probe on layer-l hidden states at position t, calibrated via null-probe normalization (P*(t) = P(t) − P_null(t), following Hewitt & Liang 2019 selectivity, where P_null is trained on shuffled labels). **Probe target: correctness (right/wrong).** We choose correctness over answer-content for three reasons: (a) broader applicability — correctness probes generalize beyond binary/MC tasks (Cox et al.'s answer-content probes are limited to binary A/B on 4 tasks), while correctness probes (Yuan et al.) work across model families up to 72B; (b) the 'diagnostic not causal' finding that motivates the entire framework is specifically about correctness probes (Yuan et al.'s four-intervention failure on correctness probes); (c) correctness gaps are more directly interpretable for faithfulness — G*(t) >> 0 means 'the model's hidden states encode awareness that its answer is right/wrong, but its CoT does not causally reflect this self-monitoring.' On binary/MC task subsets, we additionally train answer-content probes to test whether the 'what answer' gap differs from the 'whether correct' gap — a supplementary analysis testing whether pre-CoT encoding operates on content or meta-cognition. This measures excess correctness awareness above correlative features. We probe at layers L/4, L/2, 3L/4, L to capture layer-wise dynamics. MCT geometric validation (Chun et al. 2602.20338) on 500 examples confirms whether calibrated probe signal reflects geometrically organized information rather than mere retrievability. Note: Chrabąszcz et al. (2605.18549) demonstrate that probe trajectories with 60+ signal-processing features substantially outperform static probes (up to 17pp on GSM8K). We adopt their insight that temporal dynamics are essential, while adding null-probe calibration (which they lack) and extending to the dual-estimator gap. Where applicable, we incorporate their feature categories (volatility, trend, steady-state, boundary transients) as additional trajectory descriptors for phenomenon classification in Phase 3.\n\n(ii) *Causal Contribution* C(t): The causal contribution of CoT up to position t, estimated via three complementary methods: (a) prefix-truncation ablation — measuring P(correct | CoT[:t]) vs. P(correct | full CoT), following Ballon et al.'s (2601.23163) truncation-reinjection protocol with their three control conditions (random tokens, swapped traces, shuffled tokens) to validate that C(t) measures genuine sequential content contribution rather than context-length effects (their finding: shuffled tokens retain +0.3-10.8% vs. intact +18.1-33.1%); (b) paraphrase perturbation — replacing CoT segments with meaning-preserving paraphrases and measuring answer stability; (c) NLDD-based influence scoring (Ye et al. 2602.11201) — measuring how corruption at position t degrades the answer distribution. Using multiple C(t) estimators provides robustness against single-method artifacts, following Young's (2603.20172) finding that faithfulness measurements are classifier-sensitive.\n\n**The Information-Contribution Gap.** G*(t) = P*(t) − C(t). This gap is the primary diagnostic signal:\n- G*(t) ≈ 0: Correctness awareness and causal contribution are aligned (necessary for faithfulness)\n- G*(t) >> 0: The model encodes correctness awareness it does not causally use in its CoT (diagnostic excess — the model 'knows but doesn't use')\n- G*(t) < 0: The CoT contributes to correctness beyond what hidden states encode at that point (information assembled during reasoning)\n\nBecause P*(t) is null-probe-calibrated, uniform correlative inflation is removed. C(t) is not subject to probe inflation as it measures behavioral change under intervention. The gap G*(t) is interpretable as 'calibrated correctness awareness the model has but doesn't channel through its CoT at position t.' Following Wang's (2604.15726) H1/H2 framework: G*(t) >> 0 is H1-consistent (latent-mediated reasoning), G*(t) ≈ 0 is H2-consistent (CoT-mediated reasoning).\n\n**Phenomenon Signature Predictions (2-3 confident, 4-5 stretch).** We ground predictions in real probe data but adopt honest scoping informed by the concern that cross-study heterogeneity may overestimate separability:\n\n*Primary targets (HIGH confidence, validated in Phase 0b pilot):*\n(i) *Pre-CoT encoding*: G*(t) starts high and stays high. Grounded in: David's 0.84 AUC at t=4, Esakkiraja's >90% pre-generation AUROC, Cox's >0.9 pre-CoT AUC. P*(0) > 0.5 (after calibration), C(t) rises slowly. Shape: large constant gap.\n(ii) *Genuine multi-step reasoning*: G*(t) converges toward zero. Grounded in: Zhang et al.'s 65%→79% chunk trajectory, Li et al.'s finding that hard→faithful, Ballon et al.'s monotonic accuracy increase with reasoning length. P*(t) rises gradually, C(t) tracks P*(t). Shape: co-rising curves, small/decreasing gap.\n(iii) *Post-hoc rationalization*: G*(t) starts moderate, rises during CoT. P*(t) stable (David: ~0.80 from t=4 through t=100), C(t) remains flat despite token generation. Shape: widening gap.\n\n*Stretch targets (MODERATE confidence, require additional features):*\n(iv) *Steganographic encoding*: G*(t) dip-and-recovery. Potentially consistent with Esakkiraja's dip at 5-10%. May require multi-layer analysis to separate from noise.\n(v) *Reasoning Theater*: EMPIRICAL QUESTION. Under non-uniform inflation, may overlap with pre-CoT encoding or post-hoc rationalization. Additional features — layer-wise P*(t) distribution, C(t) variance under paraphrase perturbation, Chrabąszcz-style signal features (autocorrelation, boundary transients, dwell-time run-lengths) — may enable separation. Whether Theater is cleanly separable is reported honestly with confusion matrices.\n\n**Semi-Synthetic Simulation (hypothesis generation, NOT validation).** We construct semi-synthetic G*(t) curves grounded in real published data to generate testable predictions about trajectory-shape separability — but we do NOT treat this as evidence of real-data separability (published measurements come from different models, datasets, and setups, introducing heterogeneity that does not match within-dataset variance). Instead, the simulation identifies: (a) which trajectory features are most discriminative in principle, (b) what minimum effect sizes real-data classification needs to achieve, (c) where non-uniform inflation causes theoretical overlap between phenomena. I_probe(t) profiles drawn from published measurements (David, Zhang, Esakkiraja, Yuan), C(t) profiles modeled from NLDD (Ye et al.) and TTS (Zhao et al.) data, non-uniform inflation calibrated against Chun et al.'s MCT finding. The real validation comes from Phase 0b.\n\n**Phase 0a: Gap Characterization (Weeks 1-2.5).** Three objectives on 500 examples × 3 datasets (GSM8K, MATH-500, MMLU) × 3 models (DeepSeek-R1-Distill-Qwen-7B, Qwen2.5-7B-Instruct, Llama-3.1-8B-Instruct):\n(i) Construct empirical P*(t) and C(t) curves at token-level resolution\n(ii) Validate null-probe calibration: P_null(t) shows high accuracy (inflation exists) but P*(t) shows meaningful variance (calibration reveals structure)\n(iii) Characterize causal potency: following Cox et al.'s protocol, measure answer flip rates via probe-direction steering on reasoning vs. instruction-tuned models\n\nExpected outcome (base case): Causal potency is low on reasoning models, confirming the diagnostic-not-causal property and validating the ICG framework's interpretive power. If causal potency is unexpectedly high, this is an exciting upgrade. Either outcome is scientifically valuable.\n\n**Phase 0b: Empirical Pilot for Phenomenon Separability (Weeks 2.5-4).** This phase validates that trajectory-shape classification is feasible on real data before committing to the full pipeline. On the SAME model (R1-Distill-Qwen-7B) and datasets (GSM8K + MATH-500, 1000 examples), construct real G*(t) curves and test whether at least 2 phenomena produce distinguishable trajectories. Protocol: (i) partition examples by difficulty quintile and model behavior (easy-correct with high P*(0) → pre-CoT encoding candidates; hard-correct with rising P*(t) tracking C(t) → genuine reasoning candidates; incorrect with stable P*(t) and flat C(t) → post-hoc rationalization candidates); (ii) compute full G*(t) for each partition; (iii) test effect size d > 0.5 on at least 2 trajectory features between partitions. Apply Gjølbye et al.'s (2605.15454) length correction (residualizing trajectory features on log(N)) to ensure differences are not conflated with generation-length effects. Success criterion: d > 0.5 between at least 2 partitions on 2+ features. If d < 0.3 across all features, downscope to a characterization paper (gap exists and varies with difficulty, but trajectory shapes are not cleanly phenotypic) — still a strong contribution given no prior full-timeline G*(t) measurement exists.\n\n**Phase 1: Full ICG Construction (Weeks 4-9).** Conditional on Phase 0b showing separability (d > 0.5). Extend to 4 models (add QwQ-32B or R1-Distill-32B) × 4 benchmarks (add GPQA-Diamond or AIME). Full calibrated P*(t) with null-probe normalization + MCT concordance check on 500 examples. Three C(t) estimators with Ballon et al.-style controls (random, swap, shuffle baselines). Cross-reference with TTS (Zhao et al.) at step boundaries. Bootstrap confidence intervals on G*(t).\n\n**Phase 2: Task-Difficulty Conditioning (Weeks 7-11).** Partition each benchmark into difficulty quintiles (using model accuracy as proxy). Measure G*(t) per quintile. Hypothesis grounded in David's easy/hard data, Li et al.'s finding, and Gjølbye et al.'s difficulty-geometry coupling: easy problems show large persistent gap (decorative CoT), hard problems show converging gap (load-bearing CoT). Following Gjølbye et al., apply length correction and report domain-specific effects — expecting stronger effects on math/code benchmarks than MMLU, given their finding of ρ⊥ = +0.41 on Codeforces vs. +0.05 on MATH. The transition point — where G*(t) shifts from decorative to genuine — provides practical guidance on when CoT adds value.\n\n**Phase 3: Phenomenon Classification and Robustness (Weeks 9-14).** Apply trajectory-shape classification to real data. Target: 2-3 cleanly separable phenomena, with 4-5 reported honestly including overlap. Incorporate Chrabąszcz et al.'s feature categories (volatility, trend, boundary transients, autocorrelation) alongside our gap-specific features (initial G* value, G* slope, convergence rate, dC/dt locality). Six robustness ablations following Young (2603.20172): (a) probe architecture (linear vs. 2-layer MLP) with selectivity; (b) layer selection (single best vs. multi-layer); (c) C(t) estimator agreement (prefix vs. paraphrase vs. NLDD); (d) gap normalization method; (e) calibration method (shuffled-label vs. random-representation); (f) probe target (correctness vs. answer-content on binary/MC subsets). Report sensitivity ranges across all dimensions.\n\n**TIF Score.** Temporal Information-contribution Faithfulness score: normalized area under calibrated G*(t), benchmarked against FaithCoT-Bench and Liu et al.'s text-level metrics.\n\n**Paper Focus (Tightened).** Core contributions: (1) calibrated ICG diagnostic with explicitly justified correctness-probe target on 4 models × 4 benchmarks, positioned against Chrabąszcz et al.'s probe trajectories — demonstrating the value added by the causal contribution dimension and gap metric; (2) Phase 0b empirical pilot validating that 2-3 phenomena produce distinguishable G*(t) signatures on real within-model, within-dataset data; (3) task-difficulty conditioning revealing the decorative→load-bearing transition with domain-specific strength following Gjølbye et al.'s nuance. Supporting: robustness ablations (6 dimensions); TIF validation. Supplementary: 671B subset (500 examples, 3 layers); answer-content vs. correctness probe comparison; semi-synthetic simulation as hypothesis generation.\n\n**Experiments.** DeepSeek-R1-Distill-Qwen-7B/14B/32B, QwQ-32B across MMLU, GPQA-Diamond, GSM8K, AIME. 671B validation (500-example subset, 3 layers). Calibration checks: synthetic arithmetic (G* ≈ 0 expected), TTS cross-reference, MCT cross-reference. Gjølbye-style length correction on all temporal analyses.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~830 H100-hours (Phase 0a characterization: 80 hrs [3 models × 3 datasets, probe training + prefix ablation + steering tests]; Phase 0b empirical pilot: 30 hrs [1 model × 2 datasets, full G*(t) construction + partition analysis + length correction]; Phase 1 full ICG: 120 hrs [4 models × 4 benchmarks, multi-layer probes + 3 C(t) estimators]; Phase 2 difficulty conditioning: 50 hrs; Phase 3 phenomenon classification + robustness ablations: 50 hrs; NLDD on 32B model: 250 hrs [primary bottleneck — up to 20 perturbation positions × 5K examples × forward passes]; NLDD on 7B/14B models: 100 hrs; MCT geometric validation: 50 hrs; 671B subset: 50 hrs [8×H100]; semi-synthetic simulation: 50 hrs [mostly CPU, some GPU for validation])",
+      "timeline": "15-17 weeks (2 researchers: 4 weeks Phase 0a+0b characterization + pilot; 5 weeks Phase 1 full ICG; 4 weeks Phases 2-3 in parallel with NLDD; 2-3 weeks writing + ablations)",
+      "estimated_gpu_cost": "$2,500 at ~$3/H100-hour (cloud spot pricing)",
+      "storage": "3-5 TB (4 layers per model, fp16); reducible to ~1.5 TB via PCA"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~830 H100-hours",
+      "timeline": "13 weeks (1 researcher + Claude for experiment design and analysis)",
+      "claude_api_cost": "$350",
+      "estimated_gpu_cost": "$2,500"
+    },
+    "auto_research": {
+      "gpu_hours": "~830 H100-hours",
+      "timeline": "11 weeks",
+      "claude_api_cost": "$700",
+      "estimated_gpu_cost": "$2,500",
+      "speed_bottleneck": "NLDD on 32B (~250 H100-hours, ~30% of total compute) is the primary bottleneck. Each NLDD evaluation requires corrupting reasoning at multiple positions and measuring logit degradation — O(T × N) forward passes where T≈20 perturbation positions and N≈5K examples. For 32B models, this cannot be easily parallelized beyond 8-GPU data parallelism. Secondary: 671B subset (8×H100, ~50 hrs); MCT geometric validation (~50 hrs). Phase 0b pilot (30 hrs) provides early go/no-go signal before committing full Phase 1-3 compute."
+    }
+  },
+  "key_references": [
+    "Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics (Chrabąszcz et al., arXiv 2605.18549)",
+    "Probing the Trajectories of Reasoning Traces in Large Language Models (Ballon et al., arXiv 2601.23163)",
+    "LLM Reasoning Is Latent, Not the Chain of Thought (Wang, arXiv 2604.15726)",
+    "Reasoning Models Don't Just Think Longer, They Move Differently (Gjølbye et al., arXiv 2605.15454)",
+    "Hidden Error Awareness: The Signal Is Diagnostic, Not Causal (Yuan et al., arXiv 2605.09502)",
+    "Decoding Answers Before Chain-of-Thought: Pre-CoT Probes and Activation Steering (Cox et al., arXiv 2603.01437)",
+    "Temporal Predictors of Outcome in Reasoning Language Models (David, arXiv 2511.14773)",
+    "Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification (Zhang et al., arXiv 2504.05419)",
+    "Therefore I am. I Think (Esakkiraja et al., arXiv 2604.01202)",
+    "Can Aha Moments Be Fake? True Thinking Score (Zhao et al., arXiv 2510.24941)",
+    "Mechanistic Evidence for Faithfulness Decay / NLDD (Ye et al., arXiv 2602.11201)",
+    "Do LLMs Experience an Internal Polylogue? (Herrmann et al., arXiv 2605.09159)",
+    "LLMs Faithfully and Iteratively Compute Answers During CoT (Kudo et al., EACL 2026, arXiv 2412.01113)",
+    "When Chains of Thought Don't Matter: Causal Bypass / CMI (Sathyanarayanan et al., arXiv 2602.03994)",
+    "Spatiotemporal Hidden-State Dynamics / StALT (Furuya & Tanimura, arXiv 2605.01853)",
+    "Mapping Faithful Reasoning / Concept Walk (Li et al., arXiv 2510.22362, NeurIPS 2025 MechInterp Workshop)",
+    "Task Difficulty Shapes CoT Faithfulness (ICLR 2026 Workshop)",
+    "Diagnosing Pathological CoT (Liu et al., arXiv 2602.13904)",
+    "Measuring Faithfulness Depends on How You Measure (Young, arXiv 2603.20172)",
+    "Emergent Manifold Separability / MCT (Chun et al., arXiv 2602.20338)",
+    "Tracing the Traces: Latent Temporal Signals (Vilas et al., ICLR 2026, arXiv 2510.10494)",
+    "Probing and Steering CoT Unfaithfulness (Occhipinti et al., ICLR 2026 LIT Workshop)",
+    "Designing and Interpreting Probes with Control Tasks (Hewitt & Liang, EMNLP 2019)",
+    "Information-Theoretic Probing with MDL (Voita & Titov, EMNLP 2020, arXiv 2003.12298)",
+    "Probing the Probing Paradigm (Ravichander et al., arXiv 2005.00719)",
+    "Shape-over-magnitude dissociation in entropy trajectories (arXiv 2603.18940)",
+    "Is My Model Mind Blurting? RQA of Reasoning Dynamics (arXiv 2602.06266)",
+    "LLM Reasoning as Trajectories (arXiv 2604.05655, Microsoft)",
+    "Internal States Before Wait Modulate Reasoning Patterns (arXiv 2510.04128)",
+    "FACT-E (Sun et al., ACL Findings 2026, arXiv 2604.10693)",
+    "Breaking the Chain (Somov et al., arXiv 2603.16475)",
+    "The Illusion of Reasoning (Basu & Chakraborty, arXiv 2603.22816)",
+    "FaithCoT-Bench (ICLR 2026, arXiv 2510.04040)",
+    "The Mirage of Explainability survey (Jin et al., ARR for ACL 2026)",
+    "Reasoning Theater (Boppana et al., arXiv 2603.05488)",
+    "No Global Plan in CoT (Xu et al., arXiv 2602.02103)",
+    "Catching Rationalization in the Act (Mirtaheri & Belkin, arXiv 2603.17199)",
+    "CoT Monitorability via Information Theory (Anwar et al., arXiv 2602.18297)",
+    "Understanding CoT via Information Theory (Ton et al., ICML 2025, arXiv 2411.11984)",
+    "Demystifying Reasoning Dynamics with MI (Qian et al., NeurIPS 2025, arXiv 2506.02867)",
+    "Analysing CoT Dynamics (Lewis-Lim et al., EMNLP 2025, arXiv 2508.19827)",
+    "Why Models Know But Don't Say (Young, arXiv 2603.26410)",
+    "Lie to Me (arXiv 2603.22582)",
+    "Step-Level Hallucination via Transport Geometry (Alvarez & Baheri, arXiv 2605.13772)",
+    "From Reasoning to Answer (arXiv 2509.23676)",
+    "SAE Reasoning Features (arXiv 2503.18878)",
+    "FRIT (Swaroop et al., arXiv 2509.13334)",
+    "Solution Hides in Hidden States (arXiv 2604.23351)",
+    "Knowing Before Saying (ACL Findings 2025, arXiv 2505.24362)",
+    "LEACE: Perfect Linear Concept Erasure (Belrose et al., NeurIPS 2023, arXiv 2306.03819)"
+  ],
+  "description": "We propose the Information-Contribution Gap (ICG) framework, a calibrated temporal diagnostic for chain-of-thought faithfulness that exploits a robust empirical finding: linear probes on hidden states reliably diagnose answer correctness (0.82-0.95 AUROC across four independent groups) yet causal interventions based on these probes consistently fail on reasoning-trained models (Cox et al.: negligible flip rates; Yuan et al.: all four intervention strategies fail). Rather than treating this diagnostic-causal gap as an obstacle, we make it the primary object of study — the gap between what models internally know and what their CoT causally contributes IS the faithfulness signal.\n\nThe framework tracks two calibrated time-varying quantities across the full CoT trajectory: P*(t), null-probe-calibrated correctness awareness (explicitly targeting right/wrong prediction — justified over answer-content probes by broader applicability beyond binary tasks, grounding in the diagnostic-not-causal finding which is about correctness, and more direct faithfulness interpretation — with supplementary answer-content analysis on binary/MC subsets), and C(t), causal contribution estimated via three complementary methods (prefix truncation with Ballon et al.'s three control conditions validating sequential content matters, paraphrase perturbation, NLDD). Their divergence G*(t) = P*(t) − C(t) produces phenomenon-specific temporal fingerprints, operationalizing Wang's (2604.15726) H1/H2 distinction: G*(t) >> 0 is latent-mediated (H1-consistent), G*(t) ≈ 0 is CoT-mediated (H2-consistent).\n\nPositioned against the closest concurrent work — Chrabąszcz et al.'s (2605.18549) probe trajectories with 60+ signal-processing features achieving up to 17pp improvement over static probes across 4 reasoning models — our framework adds the entire causal contribution dimension, the calibrated gap metric, null-probe calibration with MCT geometric validation, phenomenon taxonomy, and task-difficulty conditioning. Their probe-trajectory methodology validates our P*(t) direction; we extend it to the dual-estimator gap that no existing framework provides.\n\nWe adopt honest scoping: 2-3 faithfulness phenomena (pre-CoT encoding, genuine reasoning, post-hoc rationalization) as the realistic classification target, with steganographic encoding and reasoning theater as stretch goals. A new empirical pilot phase (Phase 0b) constructs real G*(t) curves from the SAME model and dataset and tests whether at least 2 phenomena produce distinguishable trajectories (effect size d > 0.5) before committing to the full classification pipeline — addressing the concern that semi-synthetic simulation from cross-study measurements overestimates real-data accuracy. The semi-synthetic simulation is retained as hypothesis generation producing testable predictions, not as evidence.\n\nTask-difficulty conditioning — grounded in David's easy (0.84) vs. hard (0.76) probe splits, the ICLR 2026 Workshop finding, and Gjølbye et al.'s (2605.15454) demonstration that difficulty-geometry coupling is systematic (ρ⊥ = +0.41 on Codeforces) but domain-specific (weaker on MATH) — reveals the decorative→load-bearing transition with practical guidance on when chain-of-thought adds genuine value, applying length correction (residualizing on log(N)) to avoid generation-length confounds.\n\nThe paper focuses on four core contributions: (a) calibrated ICG diagnostic with explicitly justified correctness-probe target on 4 models × 4 benchmarks, positioned against Chrabąszcz et al. to demonstrate the value of the causal contribution dimension; (b) empirical pilot validating that 2-3 phenomena produce distinguishable G*(t) signatures on real data; (c) difficulty-conditioned gap analysis with domain-specific nuance; (d) probe-target analysis contrasting correctness vs. answer-content gaps. Total compute: ~830 H100-hours, with NLDD on 32B models (~250 hrs) as the primary bottleneck.",
+  "revision_notes": {
+    "critical_changes": [
+      "ADDED CHRABĄSZCZ ET AL. (2605.18549) AS CRITICAL CONCURRENT WORK WITH SHARPENED DIFFERENTIATION (Major): Integrated throughout core_problem, opportunity, landscape, approach, and description. This is the closest concurrent work to our P*(t) component: probe trajectories with 60+ signal-processing features in 6 categories (global statistics, shape/trend, temporal segmentation, boundary transients, signal processing, temporal landmarks), 3-layer MLP + MIL meta-probes, max-pooling (91-97% AUROC vs. 33-61% average-pooling), up to 17pp over static probes on GSM8K, tested on Llama-8B-R1-Distill and Qwen3-4B/8B/14B across safety and math domains (~3000 GPU-hours). Differentiation sharpened on 5 dimensions: (a) they lack C(t) — no causal contribution component; (b) no gap metric — just trajectory vs. static comparison for outcome prediction; (c) no null-probe calibration or MCT geometric validation; (d) no phenomenon taxonomy — they separate correct/incorrect or safe/harmful, not faithfulness modes; (e) no task-difficulty conditioning. Framed as: their work validates temporal probe trajectories (confirming our P*(t) direction), our framework extends via the dual-estimator gap. Their 60+ feature categories adopted as complementary descriptors for Phase 3 classification.",
+      "ADDED 3 ADDITIONAL REFERENCES WITH SUBSTANTIVE INTEGRATION (Major): (a) Ballon et al. (2601.23163): truncation-reinjection protocol on Qwen3-4B/8B/14B and gpt-oss-20B/120B across GPQA-Diamond/MMLU-Pro — integrated as key precursor to C(t) prefix-truncation estimator; their three control conditions (random +2.1-4.3%, swap +3.2-8.7%, shuffle +0.3-10.8% vs. intact +18.1-33.1%) adopted as C(t) validation protocol; their finding that stronger models backtrack (43-68% rescue rate) while weaker anchor (28-51%) informs cross-model analysis. (b) Wang (2604.15726): H1/H2/H0 hypothesis formalization — ICG framework positioned as empirical methodology to distinguish H1 (latent-mediated, G*(t) >> 0) from H2 (CoT-mediated, G*(t) ≈ 0) at each token position; his evidence tiers and compute-audited design recommendations inform our dual-estimator approach. (c) Gjølbye et al. (2605.15454): hidden-state trajectory geometry across 11 models on 1500 items — their length correction methodology (residualizing on log(N), reversing raw ρ = -0.73 to corrected ρ⊥ = +0.41) adopted for all temporal analyses; their domain-specificity finding (Codeforces +0.41, MATH +0.05, SAT +0.27/+0.23) adds nuance to difficulty conditioning claims; their finding that prompt-stage linear probes don't mirror geometric effects supports our temporal approach.",
+      "SPECIFIED PROBE TARGET: CORRECTNESS, NOT ANSWER-CONTENT (Major): P*(t) now explicitly targets correctness (right/wrong) rather than answer-content (specific answer). Three-part justification: (a) broader applicability — Cox et al.'s answer-content probes limited to binary A/B on 4 specific tasks with models ≤9B, while Yuan et al.'s correctness probes work up to 72B across multiple families; (b) the 'diagnostic not causal' finding (Yuan et al.'s four-intervention failure) is specifically about correctness probes; (c) correctness gaps are more directly about faithfulness self-monitoring — G*(t) >> 0 means 'the model knows it's right/wrong but CoT doesn't reflect this.' Answer-content probes retained as supplementary analysis on binary/MC subsets, testing whether pre-CoT encoding operates on content or meta-cognition. G*(t) interpretation updated throughout to 'calibrated correctness awareness' language. Added as 6th robustness ablation dimension (probe target comparison).",
+      "ADDED PHASE 0b EMPIRICAL PILOT FOR PHENOMENON SEPARABILITY (Major): New phase (Weeks 2.5-4, ~30 H100-hrs) addresses the feasibility concern that semi-synthetic simulation from cross-study measurements overestimates real-data classification accuracy. Constructs real G*(t) curves on SAME model (R1-Distill-Qwen-7B) and datasets (GSM8K + MATH-500, 1000 examples). Protocol: partition by difficulty quintile and model behavior into pre-CoT-encoding, genuine-reasoning, and post-hoc-rationalization candidates; compute full G*(t) per partition; test effect size d > 0.5 on trajectory features with Gjølbye-style length correction. Explicit go/no-go: d > 0.5 → proceed to full classification; d < 0.3 → downscope to characterization paper (still novel contribution).",
+      "DOWNSCOPED PHENOMENON CLAIMS AND REFRAMED SIMULATION (Major): Reduced from '3-4 confident, 5th empirical' to '2-3 as realistic target, 4-5 as stretch.' Semi-synthetic simulation explicitly reframed as 'hypothesis generation, NOT validation' — identifies discriminative features and effect size thresholds, but real validation delegated to Phase 0b empirical pilot. This is more honest and addresses the stagnation signal by committing to claims the framework can defend."
+    ],
+    "what_stayed": "Dual-estimator concept (calibrated P*(t) and C(t)), null-probe calibration + MCT geometric validation, NLDD integration for C(t), four target models (R1-Distill-7B/14B/32B, QwQ-32B), four benchmarks (MMLU, GPQA-Diamond, GSM8K, AIME), 671B subset validation, task-difficulty conditioning, five-phenomenon taxonomy (now with graded confidence and honest stretch-goal framing), trajectory-shape analysis validated by shape-over-magnitude literature, TIF score, robustness ablations (expanded from 5 to 6 dimensions), synthetic arithmetic calibration check, TTS cross-reference, layer-selective caching strategy, diagnostic-not-causal reframing as feature not bug, thermometer analogy.",
+    "residual_risks": [
+      "TIER-1: Phase 0b pilot may show insufficient separability (d < 0.3). If real within-model G*(t) trajectories do not separate even 2 phenomena, the contribution reduces to 'first full-timeline G*(t) measurement with difficulty conditioning' — still valuable but less impactful. Mitigation: explicit fallback to characterization framing; the gap measurement itself is novel regardless of classification success.",
+      "TIER-1: C(t) estimation fidelity. Prefix truncation conflates information removal with distribution shift. Ballon et al.'s control conditions (random, swap, shuffle) mitigate but don't eliminate this — their shuffled-token condition still shows +0.3-10.8% gain, suggesting some non-sequential information persists. Paraphrase perturbation and NLDD provide complementary estimates. Mitigation: estimator-agreement analysis; disagreement itself is informative.",
+      "TIER-1: Correctness probes may underperform answer-content probes on binary tasks, potentially understating the gap on tasks where Cox et al. show strong answer-content encoding. If P*_correctness(t) << P*_content(t) on binary subsets, the framework may miss content-level pre-encoding. Mitigation: supplementary answer-content analysis on binary/MC subsets; if divergence is large, report both gap types.",
+      "TIER-1: NLDD scalability on 32B. The 250 H100-hour budget assumes ~20 perturbation positions × 5K examples. If CoT sequences are longer than expected (reasoning models can produce 4K+ tokens), cost scales linearly. Mitigation: subsample to 2K examples if needed; use 7B/14B as primary with 32B as validation.",
+      "TIER-2: Cross-model and cross-domain generalization. G*(t) signatures may be model-family-specific and domain-dependent. Gjølbye et al.'s finding that difficulty-geometry coupling varies by domain (strong in code, weak in math) suggests our difficulty conditioning results will also be domain-dependent. Mitigation: report domain-specific effects; domain-dependence is itself informative and actionable.",
+      "TIER-2: Chrabąszcz et al.'s 3-layer MLP + MIL meta-probes may achieve higher trajectory-classification accuracy than our linear probes on the P*(t) side, potentially undercutting our calibration advantage if uncalibrated MLPs outperform calibrated linear probes. Mitigation: include MLP robustness ablation with selectivity measurement; note that null-probe calibration is architecturally independent and can be applied to MLPs.",
+      "TIER-2: Rapid field movement. Four new concurrent papers added in this round alone (Chrabąszcz, Ballon, Wang, Gjølbye) demonstrate fast-moving landscape. Additional probe-trajectory or causal-contribution papers may appear before the Sep 2026 deadline. Mitigation: calibrated gap + empirical pilot + honest scoping + probe-target clarification are defensible differentiators.",
+      "TIER-2: Probe linearity assumption. Linear probes may underestimate P*(t) if correctness information is encoded non-linearly, causing gap underestimation. Chrabąszcz et al.'s MLP probes suggest non-linearity matters. Robustness ablation with 2-layer MLP addresses this but introduces probe-inflation risk (Hewitt & Liang selectivity of only 4.5 for MLPs)."
+    ]
+  }
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL: Qian et al. (2506.02867) already computes per-step MI between hidden representations and the correct answer across the full reasoning trajectory — this is essentially TIC by another name. The proposal's landscape section mischaracterizes this paper as only identifying 'MI peaks at thinking tokens' and 'not addressing faithfulness phenomena,' but the MI trajectory itself is the core proposed contribution.", "MISSING REFERENCE: David (2511.14773) 'Temporal Predictors of Outcome in Reasoning Language Models' probes hidden states after first t reasoning tokens with linear classifiers — directly overlapping with the probe-based TIC estimator.", "MISSING REFERENCE: Zhang et al. (2504.05419) 'Reasoning Models Know When They're Right' probes hidden states at intermediate answer positions and derives probe-based early-exit (24% token reduction), directly overlapping with the claimed early-exit tool.", "MISSING REFERENCE: Lewis-Lim et al. (2508.19827) tracks answer confidence trajectories across CoT step positions — a confidence-trajectory analog of TIC.", "MISSING REFERENCE: arxiv 2603.22816 'The Illusion of Reasoning' introduces a three-mode taxonomy (genuine/scaffolding/decoration) based on step-level faithfulness evaluation that partially addresses the same unification goal.", "MISSING REFERENCE: arxiv 2603.26410 'Why Models Know But Don't Say' directly measures thinking-answer divergence across 12 models — the fifth phenomenon the proposal aims to unify.", "MISSING REFERENCE: arxiv 2604.01202 'Therefore I am. I Think' provides causal evidence of pre-generation decision encoding via probing and steering, extending pre-CoT probe findings.", "MISSING REFERENCE: arxiv 2604.04930 CoDE-Stop uses confidence dynamics for early stopping — another competing early-exit method.", "VENUE TIMELINE: EMNLP 2026 ARR May deadline (May 25) is 6 days away — listing this as a target is misleading. AAAI 2027 (July 28) gives only 2.5 months, unrealistic for a 4-5 month project. Only ICLR 2027 (~Oct 2026) is genuinely feasible.", "OVER-ENGINEERING: Three complementary MI estimators (probes + NLDD + conditional flow) is overly complex. The flow-based density estimator on high-dimensional MoE residual streams is an unsolved problem in itself and may dominate project effort without clear benefit over probes + NLDD alone.", "The five-phenomena-to-five-signatures mapping assumes each phenomenon produces a *distinctive* TIC shape. Pre-CoT encoding and Reasoning Theater may produce nearly identical signatures (both = high initial information, early plateau), making them hard to distinguish via TIC alone.", "DeepSeek-R1-671B activation extraction at 5K examples × 4 datasets with full residual stream caching requires enormous storage (~100s of TB for uncompressed activations) and is a major engineering challenge not reflected in the resource estimate."]
+Feedback: 1. **Reposition against Qian et al.**: The most critical fix. Acknowledge that MI-over-CoT-timeline already exists and frame your contribution as: (a) extending from HSIC to multiple estimators for tighter bounds, (b) applying it specifically to faithfulness rather than performance, and (c) showing that five named phenomena correspond to identifiable TIC signatures. Currently the proposal implies TIC is novel when the measurement already exists. 2. **Add 8+ missing references** (2511.14773, 2504.05419, 2508.19827, 2603.22816, 2603.26410, 2604.01202, 2604.04930, 2602.20338) and discuss differentiation from each. 3. **Drop the flow-based MI estimator** — it adds risky complexity. Probes + NLDD (one model-internal, one causal-interventional) already provide two complementary views. 4. **Fix venue targets**: Remove EMNLP May. Set AAAI 2027 as stretch target (requires aggressive 2.5-month execution) and ICLR 2027 as primary target. 5. **Scale down model ambitions**: Focus on distilled models (7B-32B) for core experiments. Include one 671B run as a validation point, not as the primary experimental axis. This dramatically reduces compute and engineering risk. 6. **Sharpen the novelty claim**: The unique value is not 'measuring MI across CoT' (done) but 'systematically mapping five independently discovered phenomena to a unified information-theoretic taxonomy and deriving a principled instance-level faithfulness score.' Emphasize the taxonomy + faithfulness score as the core novel contributions. 7. **Address signature distinguishability**: Pre-analyze or discuss when/how TIC signatures for different phenomena might overlap and what additional features (e.g., TIC gradient, curvature) might disambiguate them.
+
+### Round 2 review
+Verdict: revise
+Issues: ["CRITICAL: The claim 'No extant work combines probe-based internal-state measurement with causal-interventional measurement on the same instances' is FALSE. 'LLMs Faithfully and Iteratively Compute Answers During CoT' (2412.01113, EACL 2026) trains linear probes AND performs activation patching on the same instances to study CoT faithfulness. 'Bypassing the Rationale' (2602.03994) combines activation patching with probing to produce the CoT Mediation Index (CMI). The landscape section must acknowledge these and reposition the novelty.", "CRITICAL: 'Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal' (2605.09502, May 12 2026) shows that probes detect error awareness at 0.95 AUROC but four intervention methods (activation steering, probe-guided best-of-N, self-correction, activation patching) ALL FAIL. The paper concludes 'error representations during reasoning are fundamentally different from editable factual knowledge representations.' This directly challenges the interpretive foundation of F(t) = P(t) − C(t): high P(t) may not mean the model 'knows' the answer in a causally relevant sense — the gap may simply reflect the non-causal nature of probe-detected information, not unfaithfulness.", "MISSING REFERENCE: 2412.01113 'LLMs Faithfully and Iteratively Compute Answers During CoT' (EACL 2026) — combines probing + activation patching on same instances for CoT faithfulness. Crucially, this paper finds CoT IS faithful (for arithmetic), providing a counterpoint to the proposal's focus on unfaithfulness.", "MISSING REFERENCE: 2602.03994 'Bypassing the Rationale: Causal Auditing of Implicit Reasoning' — introduces CoT Mediation Index (CMI) via activation patching + probing, identifies 'bypass regimes' where CMI ≈ 0 despite plausible CoT.", "MISSING REFERENCE: 2604.10693 'FACT-E: Causality-Inspired Evaluation for Trustworthy Chain-of-Thought Reasoning' (ACL Findings 2026) — causality-inspired framework measuring intra-chain faithfulness + CoT-to-answer consistency via controlled perturbations.", "MISSING REFERENCE: 2605.09502 'Hidden Error Awareness in Chain-of-Thought Reasoning' (May 2026) — the diagnostic-not-causal finding is essential context for any probe-based faithfulness framework.", "MISSING REFERENCE: 2605.13772 'Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry' (May 2026) — step-level hidden-state analysis using geometric features, a complementary approach.", "MISSING REFERENCE: 2603.16475 'Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures' — causal evaluation protocol showing intermediate structures function as 'influential context rather than stable causal mediators' (up to 60% failure to update after intervention).", "MISSING REFERENCE: 2604.06787 'When Is Thinking Enough? Early Exit via Sufficiency Assessment' — DTSR framework achieving 28.9-34.9% token reduction, another early-exit competitor.", "The Jin et al. survey ('The Mirage of Explainability') appears to have no arXiv ID (only an ARR submission for ACL 2026 commitment). The claim that it 'explicitly notes the absence of an information-theoretic unified framework' cannot be independently verified from available sources. The survey's GitHub page does not mention this specific claim.", "The early-exit competitive landscape is now even more crowded than characterized: Reasoning Theater (80% savings on MMLU), DTSR (28.9-34.9%), NEAT (22-28%), CoDE-Stop (25-50%), Zhang et al. (24%), ESTAR, and FRIT all address early-exit or faithfulness improvement. The proposal's early-exit contribution needs stronger differentiation."]
+Feedback: 1. **Fix the factual claim AGAIN**: The revision's central remaining novelty claim — that no one has combined probes + causal interventions on same instances — is wrong. 2412.01113 (EACL 2026) does exactly this with probing + activation patching, and 2602.03994 does it with CMI. Reposition the novelty as: (a) extending from synthetic/controlled tasks (2412.01113 uses arithmetic) to natural benchmarks; (b) the specific NLDD + probe combination (vs. activation patching + probe); (c) the five-phenomenon unification thesis; (d) the TIF score as a standalone metric. This is more honest and still substantial.
+
+2. **Address the diagnostic-not-causal challenge head-on**: 2605.09502 is the single most threatening paper to the proposal's conceptual foundation. You MUST explicitly discuss why your probe signal differs from their finding. Possible arguments: (a) their probes predict *correctness* while yours target *answer content* — different probe targets may behave differently; (b) the diagnostic-not-causal finding applies to interventions aimed at *fixing* errors, not to diagnosis/measurement; (c) the TIF score is explicitly a *diagnostic* tool (like a thermometer), not an intervention — so the non-causal nature of probes is actually fine for your use case. But you must acknowledge this tension explicitly.
+
+3. **Add the ~9 missing references** and differentiate from each. The field is moving extremely fast (3+ relevant papers per month in 2026). Acknowledge the rapid convergence and position your work within it rather than claiming isolated novelty.
+
+4. **Reconsider the TIF score's interpretive foundation**: If F(t) = P(t) − C(t) where P(t) captures diagnostic (non-causal) information and C(t) captures causal contribution, the 'gap' may not mean 'the model knows but CoT doesn't contribute.' It may mean 'the model's hidden states correlate with the answer but neither the hidden states nor the CoT causally determine it.' Explore whether the TIF score should be interpreted as a *diagnostic signal of reasoning quality* rather than a *faithfulness metric*, which would actually be more defensible.
+
+5. **Strengthen early-exit differentiation**: With Reasoning Theater achieving 80% savings on MMLU via probe-guided early exit, your early-exit contribution needs a clearer edge — perhaps the Causal-TIC inflection point provides a *principled* stopping criterion (grounded in causal contribution saturation) vs. heuristic confidence thresholds.
+
+6. **Consider downscoping**: The five-phenomenon unification + TIF score + early-exit tool + multi-model comparison may be too ambitious for one paper. Consider whether the unification thesis alone (with TIF score) is a stronger, more focused contribution.
+
+### Round 3 review
+Verdict: revise
+Issues: ["MISSING REFERENCE: 'Can Aha Moments Be Fake? Identifying True and Decorative Thinking Steps in Chain-of-Thought' (Zhao et al., 2510.24941, Oct 2025, revised Apr 2026) introduces the True Thinking Score (TTS), a per-step causal contribution metric (0-1 scale) using text-level perturbation + ATE measurement. Tested on AIME, MATH, AMC, CommonsenseQA. Found only 2.3% of AIME steps have TTS >= 0.7. This directly competes with the Causal-TIC component. While TTS is text-level (no hidden-state probes) and lacks the dual-estimator design, it provides a competing per-step causal contribution metric that must be discussed and differentiated from.", "MISSING REFERENCE: 'Spatiotemporal Hidden-State Dynamics as a Signature of Internal Reasoning in Large Language Models' (Furuya & Tanimura, 2605.01853, May 3 2026) introduces StALT, a TRAINING-FREE temporal trajectory statistic on hidden states that separates correct from incorrect reasoning. Uses intervention analysis. This is concurrent work very close to the Probe-TIC concept — a temporal hidden-state diagnostic — and must be acknowledged.", "MISSING REFERENCE: 'Task Difficulty Shapes Chain-of-Thought Faithfulness' (ICLR 2026 Workshop) shows hidden-state probes can detect faithfulness gradient but single-direction steering cannot shift it — 'readout rather than control.' This directly supports the proposal's diagnostic framing and should be cited as independent confirmation.", "MISSING REFERENCE: 'Diagnosing Pathological Chain-of-Thought in Reasoning Models' (Liu et al., 2602.13904, Feb 2026) creates concrete, computationally inexpensive, task-agnostic metrics for three CoT pathologies (rationalization, encoded reasoning, internalized reasoning). Competing diagnostic approach.", "MISSING REFERENCE: 'Measuring Faithfulness Depends on How You Measure' (2603.20172, Mar 2026) shows faithfulness measurements are classifier-sensitive (inter-classifier kappa as low as 0.06). This raises a methodological concern: will TIF also be sensitive to probe architecture, layer selection, and intervention method? Must be discussed.", "MISSING REFERENCE: 'Tracing the Traces: Latent Temporal Signals for Efficient and Accurate Reasoning' (Vilas et al., 2510.10494, NeurIPS 2025) — latent-trajectory signals tracking hidden-state temporal evolution. Directly adjacent to Probe-TIC concept.", "The answer-content vs. correctness probe distinction is the conceptual linchpin defending against Yuan et al.'s diagnostic-not-causal finding, but Cox et al.'s validation is limited to binary classification tasks (yes/no) on models up to 9B parameters. Extrapolating to 4-choice MMLU and numerical AIME on 7B-32B DeepSeek models is an untested empirical bet. The proposal should explicitly flag this generalization gap as a Tier-1 risk, not just a residual risk.", "The venue deadline for AAAI 2027 (abstract Jul 21, paper Jul 28) is only ~2 months away. The proposal labels this as 'stretch target' which is honest, but calling it 'feasible only under aggressive human_in_loop or auto_research timeline' is optimistic — 2 months is insufficient for this scope regardless of mode."]
+Feedback: **Round 3 shows substantial improvement — the diagnostic-not-causal reframing, Kudo et al./CMI acknowledgment, and early-exit descoping are all correct moves.** However, 6 missing references remain, several of which partially overlap with core contributions:
+
+1. **Acknowledge TTS (2510.24941) as a direct precursor to Causal-TIC.** Zhao et al.'s True Thinking Score provides per-step causal contribution via text-level perturbation on your exact benchmarks (AIME, MATH). Differentiate: TTS is text-level only (no hidden-state probe), single-estimator (no gap), and doesn't provide temporal curves. Your dual-estimator design and gap diagnostic are distinct contributions, but TTS must be positioned as a causal-contribution precursor.
+
+2. **Cite StALT (2605.01853) as very recent concurrent work.** Their training-free temporal trajectory statistic on hidden states is conceptually adjacent to Probe-TIC. Differentiate: StALT targets correctness separation (not faithfulness diagnosis), is training-free (vs. your trained linear probes), and lacks the dual-estimator gap diagnostic.
+
+3. **Add 'Task Difficulty Shapes CoT Faithfulness' as supporting evidence** for your diagnostic framing — their finding that probes are 'readout not control' independently validates your thermometer interpretation.
+
+4. **Address measurement sensitivity (2603.20172).** If faithfulness metrics are classifier-sensitive, TIF will likely show sensitivity to: (a) probe layer selection, (b) probe architecture, (c) NLDD perturbation method, (d) gap normalization. Plan ablations explicitly addressing this concern.
+
+5. **Strengthen the answer-content probe generalization argument.** Cox et al. validated on binary tasks only. Either: (a) include a pilot validation of answer-content probe causal potency on MMLU (4-choice) as an early experiment, or (b) frame the binary→multi-choice generalization as a falsifiable prediction that will be tested in the first experimental phase.
+
+6. **Drop AAAI 2027 entirely** — 2 months is insufficient regardless of mode. Keep ICLR 2027 (primary, 4 months) and ICML 2027 (fallback, 8 months).
+
+### Round 4 review
+Verdict: revise
+Issues: ["CONCEPTUAL: The gap diagnostic G(t) = P(t) − C(t) has a discriminability problem under the 'information availability' assumption. If Probe-TIC captures correlative/epiphenomenal information (as Chun et al. 2602.20338 suggest: 'probe accuracy ≠ computational readiness'), then P(t) may be systematically high for ALL instances regardless of faithfulness phenomenon, making G(t) uniformly inflated. This would collapse the five-phenomenon signatures into a single 'high gap everywhere' pattern, undermining the framework's central diagnostic claim. The proposal acknowledges this as a residual risk but treats it as tier-2 when it should be tier-1.", "CONCEPTUAL: The five-phenomenon distinguishability argument is underspecified under the weaker assumption. Specifically: Pre-CoT encoding (high P(0), any C trajectory) and Reasoning Theater (growing gap: P rises, C flat) could produce indistinguishable TIC signatures if P(t) is always high due to correlative information. The proposal's four diagnostic features (initial P(0), C-plateau onset, gap trajectory, C-gradient locality) may not discriminate phenomena when the probe captures an upper bound rather than a tight estimate. The proposal needs either a formal argument or simulation showing distinguishability persists under probe inflation.", "MINOR MISSING REFERENCE: 'Mapping Faithful Reasoning in Language Models' (Li et al., 2510.22362, NeurIPS 2025 MechInterp Workshop) introduces Concept Walk, which projects each reasoning step onto concept directions and tracks temporal evolution of internal activations for faithfulness diagnosis. Finds easy→decorative, hard→faithful, paralleling the task-difficulty conditioning dimension. Different probe methodology (concept directions vs. answer-content probes) and different domain (safety, single model), but conceptually adjacent to Probe-TIC temporal tracking and should be cited.", "RISK UNDERESTIMATION: The Phase 0 pilot tests answer-content probe causal potency on MMLU (4-choice) and GSM8K (numerical) using DeepSeek-R1-Distill-Qwen-7B. But Cox et al.'s validation was on binary tasks on instruction-tuned models ≤9B, and they explicitly report 'little success steering' reasoning models. If the Phase 0 pilot confirms this failure for reasoning models broadly, the Probe-TIC becomes just another correlative hidden-state signal (like StALT) rather than measuring information the model could in principle use. Under this scenario, the gap G(t) loses its interpretation as 'information excess' and becomes 'correlative excess,' which is less interesting. The proposal should have a more detailed contingency plan for this outcome.", "NOVELTY POSITIONING: The proposal's core novelty claim — that the gap between two estimators reveals phenomenon-specific signatures invisible to either alone — is compelling in principle but untested. The proposal relies heavily on the prediction that different phenomena produce distinguishable gap trajectories, but this is an empirical bet. If the patterns turn out to be noisy or hard to distinguish (especially given Young's measurement sensitivity findings), the main contribution reduces to 'we ran probing and NLDD on the same instances at scale,' which is a useful resource contribution but not a conceptual advance worthy of a top venue."]
+Feedback: **Round 4 shows major improvement — the proposal is now well-positioned against the literature, honest about assumptions, and comprehensive in scope.** The critical issue preventing a pass is the gap diagnostic's discriminability under the weaker 'information availability' assumption. Three specific fixes:
+
+1. **Elevate the gap inflation problem to Tier-1 and address it directly.** Chun et al.'s finding that probe accuracy ≠ computational readiness means P(t) may be uniformly high, collapsing five-phenomenon signatures into one. To address this: (a) include a theoretical analysis or toy simulation showing that even if P(t) is inflated, the *trajectory shape* (rate of increase, curvature, onset timing) can still distinguish phenomena; (b) propose a calibration method — e.g., normalize P(t) against a 'null probe' trained on shuffled labels, so the gap measures *excess* information above chance rather than raw probe accuracy; (c) in Phase 0, explicitly test whether Probe-TIC trajectories differ meaningfully across task difficulty levels even if absolute P(t) values are high.
+
+2. **Strengthen the five-phenomenon distinguishability argument.** Currently, the four diagnostic features (initial P(0), C-plateau onset, gap trajectory, C-gradient locality) are asserted to distinguish phenomena but not demonstrated. Add a concrete worked example: take 2-3 phenomena (e.g., Pre-CoT encoding vs. Reasoning Theater vs. genuine reasoning) and draw predicted TIC curves under both the strong and weak probe assumptions. Show that trajectory *shapes* remain distinguishable even when absolute P(t) is inflated. If you cannot draw distinguishable curves under the weak assumption, this is a fundamental problem that must be acknowledged and the five-phenomenon mapping should be reframed as 'exploratory' rather than a primary contribution.
+
+3. **Cite Li et al. (2510.22362) 'Mapping Faithful Reasoning'** — their Concept Walk framework tracks temporal activation evolution and finds easy→decorative, hard→faithful, which directly supports your task-difficulty conditioning. Differentiate: they use concept directions (not answer-content probes), study safety (not reasoning benchmarks), and lack a causal-contribution curve.
+
+4. **Tighten the focus for the paper.** The proposal currently has ~7 contributions (gap diagnostic, five-phenomenon mapping, TIF score, task-difficulty conditioning, robustness ablations, Phase 0 pilot findings, early-exit criterion). For a single paper, consider: Phase 0 pilot results + gap diagnostic + task-difficulty conditioned signatures as the core paper, with robustness ablations and five-phenomenon mapping as the key experimental sections. The early-exit application and 671B validation can be supplementary material.
+
+### Round 5 review
+Verdict: revise
+Issues: ["CRITICAL FEASIBILITY: Phase 0 causal potency on reasoning models is likely to FAIL based on existing evidence. Cox et al. (2603.01437) explicitly report negligible answer flip rates for reasoning models ('the answer flip rate is negligible against the orthogonal baseline'). Yuan et al. (2605.09502) show four intervention methods all fail on reasoning models. The proposal treats this as a managed risk with contingency, but the BASE CASE (causal probes work on reasoning models) directly contradicts current empirical evidence. The most likely Phase 0 outcome is Fallback A, which weakens the gap's interpretive power from 'information excess above causal contribution' to 'correlative information excess above null baseline.' The proposal should be reframed with Fallback A as the expected case, not the fallback.", "MODERATE: Five-phenomenon distinguishability relies on a toy worked example with UNIFORM inflation (+0.3 everywhere) and clean, deterministic trajectories. Real data will have: (a) non-uniform inflation varying by layer, position, and model, (b) substantial inter-instance variability within the same phenomenon, (c) noise from probe training variance. The proposal should provide either: (i) a simulation using actual probe accuracy data from existing studies (e.g., David 2511.14773 reports real probe trajectories), or (ii) an honest analysis of which phenomena are most vs. least likely to be separable, with 3-4 (rather than 5) as a defensible target.", "MODERATE: NLDD compute estimate is likely underestimated for 32B models. Each NLDD evaluation requires corrupting reasoning at multiple positions and measuring logit degradation — effectively requiring O(T × N) forward passes where T is number of perturbation positions and N is number of examples. For 5K examples × ~20 perturbation positions per example × 32B model, 150 H100-hours is tight. The 'speed bottleneck' section acknowledges 250 node-hours for 32B NLDD but the main estimate shows only 150 hours for ALL NLDD interventions across ALL models.", "MINOR MISSING REFERENCE: 'Do LLMs Experience an Internal Polylogue?' (Herrmann et al., 2605.09159, May 9, 2026) tracks temporal persona-vector dynamics through reasoning, predicts correctness on MMLU-Pro, and demonstrates stage-aware latent steering. This is another concurrent temporal hidden-state approach that should be cited.", "MINOR: The Jin et al. survey ('The Mirage of Explainability') claim about 'explicitly noting the absence of an information-theoretic unified framework' cannot be verified from available sources (GitHub page, ARR submission). The survey's GitHub page mentions internal alignment and external consistency axes but does not reference information-theoretic frameworks. This unverifiable claim should be softened or removed."]
+Feedback: **The proposal is well-constructed and getting close to passable, but the feasibility score drags it below threshold.** Three specific improvements:
+
+1. **Reframe the base case around Fallback A.** Given that Cox et al. found steering reasoning models ineffective and Yuan et al. found four interventions all fail, the most honest framing is: G*(t) measures the gap between *calibrated information availability* and *causal contribution*. This gap is inherently interesting (it tells you how much information the model encodes but doesn't causally use) and doesn't require probe causal potency to be meaningful. Rewrite the approach so Fallback A IS the main proposal, and causal probe potency (if it works) is an exciting upgrade. This makes the framework robust regardless of Phase 0 outcome. The 'thermometer' interpretation is actually stronger under this framing — you don't need a thermometer to control temperature, just to measure it.
+
+2. **Strengthen five-phenomenon distinguishability with realistic simulations.** The toy example is a good start but insufficient. Use REAL probe accuracy data from the literature: David (2511.14773) reports probe accuracy trajectories for reasoning models; Cox et al. report pre-CoT AUC values; Zhang et al. (2504.05419) report intermediate probe accuracies. Construct semi-synthetic simulations using these real values with realistic noise levels. Also, be honest: pre-CoT encoding and Reasoning Theater may produce overlapping G*(t) shapes when inflation is non-uniform. Consider positioning '3-4 distinguishable phenomena with confidence, 5 as an empirical question' rather than asserting all 5 are distinguishable.
+
+3. **Fix the compute estimates.** The 150 H100-hours for NLDD interventions is inconsistent with the 250 node-hours speed bottleneck figure for 32B alone. Reconcile these numbers. If NLDD on 32B truly requires ~250 H100-hours, the total GPU budget should be ~750-800 hours, not 650. Be transparent about this — an honest, higher estimate is better than an optimistic one that creates credibility problems during review.
+
+### Round 6 review
+Verdict: revise
+Issues: ["MISSING REFERENCE (CRITICAL): 'Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics' (Chrabaszcz et al., arXiv 2605.18549, May 18, 2026) constructs probe trajectories by evaluating a linear probe at each generated token, extracts 60+ signal-processing features (volatility, trend, steady-state, temporal segmentation, boundary transients, autocorrelation), and demonstrates up to 17pp improvement over static probes across 4 reasoning models and 4 datasets. This is the closest concurrent work to the P*(t) component of the ICG framework. Key differentiators: they lack C(t), the gap diagnostic, null-probe calibration, phenomenon mapping, and task-difficulty conditioning — but their probe trajectory + feature extraction methodology is very close to what the ICG framework proposes for the information availability side.", "MISSING REFERENCE (MODERATE): 'Probing the Trajectories of Reasoning Traces in Large Language Models' (Ballon et al., arXiv 2601.23163, Jan 2026) systematically probes reasoning trajectories via truncation + re-injection protocol on Qwen3-4B/8B/14B and gpt-oss-20B/120B across GPQA-Diamond and MMLU-Pro. Different methodology (re-injection vs. hidden-state probing) but directly adjacent to C(t) estimation via prefix truncation.", "MISSING REFERENCE (MODERATE): 'LLM Reasoning Is Latent, Not the Chain of Thought' (Wang, arXiv 2604.15726, Apr 2026) is a position paper arguing that latent-state trajectory formation — not surface CoT — should be the primary object of study. Philosophically aligned with the ICG framework's direction and provides conceptual scaffolding. Formalizes competing H1/H2/H0 hypotheses about whether reasoning is latent-state-mediated or CoT-mediated.", "MISSING REFERENCE (MINOR): 'Reasoning Models Don't Just Think Longer, They Move Differently' (Gjølbye et al., arXiv 2605.15454, May 14, 2026) studies hidden-state trajectory geometry conditioned on difficulty across competitive programming, math, and Boolean SAT. Finds difficulty is systematically coupled to corrected trajectory geometry. Supports the task-difficulty conditioning dimension.", "FEASIBILITY CONCERN: The semi-synthetic simulation approach — constructing G*(t) curves from published measurements and classifying via random forest on 6 trajectory features — may substantially overestimate real-data classification accuracy. Published probe measurements come from different models, datasets, and experimental setups, introducing heterogeneity that will not match the within-dataset, within-model variance structure. The proposal should either: (a) commit to an early pilot (Phase 0.5) validating that trajectory features separate at least 2 phenomena on real data before committing to the full classification pipeline, or (b) explicitly downscope the phenomenon classification claim to '2-3 distinguishable phenomena as the realistic target, 4 as the optimistic case.'", "METHODOLOGICAL: The proposal does not clearly specify whether P*(t) probes target answer-content (predicting the specific answer) or correctness (predicting right/wrong). This distinction matters: Cox et al. validated answer-content probes on binary tasks with instruction-tuned models ≤9B; Yuan et al. used correctness probes across model families up to 72B. The interpretation of G*(t) differs: if P*(t) measures correctness awareness, the gap means 'the model knows it's right/wrong but CoT doesn't reflect this'; if P*(t) measures answer-content availability, the gap means 'the model knows the answer but CoT doesn't derive it.' The formal framework should specify this and discuss implications."]
+Feedback: The proposal is close to passable after 6 rounds of substantive improvement. The diagnostic-not-causal reframing, honest distinguishability claims, and real-data-grounded simulation are all strong moves. Three targeted fixes:
+
+1. **Add 2605.18549 as critical concurrent work and sharpen differentiation.** This paper does probe trajectories with signal-processing features — the most direct competitor to your P*(t) component. Differentiate clearly: (a) they lack C(t) — no causal contribution component; (b) no gap metric — just static vs. trajectory comparison; (c) no null-probe calibration or MCT validation; (d) no phenomenon taxonomy; (e) no task-difficulty conditioning. Your framework adds the entire causal contribution dimension plus the calibrated gap interpretation. Frame this as: '2605.18549 validates that temporal probe trajectories capture dynamics invisible to static probes (confirming our P*(t) component), while our framework extends this via the dual-estimator gap G*(t) that requires the additional C(t) dimension.'
+
+2. **Add 3 additional missing references** (2601.23163, 2604.15726, 2605.15454) and note them in the landscape. The Ballon et al. trajectory probing paper is particularly relevant as a precursor to your prefix-truncation C(t) estimator.
+
+3. **Clarify probe target in formal framework.** Specify whether P*(t) targets answer-content or correctness, justify the choice, and discuss implications for G*(t) interpretation. If answer-content: acknowledge generalization risk beyond binary tasks. If correctness: clarify relationship to Yuan et al.'s finding that correctness probes are diagnostic-not-causal.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "..."},
+    "clarity": {"score": 0-5, "rationale": "..."},
+    "impact": {"score": 0-5, "rationale": "..."}
+  },
+  "issues": ["specific issue 1", ...],
+  "feedback": "Actionable feedback (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold
+- "fail": fundamental flaw (gap doesn't exist, approach provably wrong)
+- Threshold is HIGH (4.0/5.0): only truly outstanding ideas should pass.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "d0136381-a0ad-4a82-b8dd-6198c0efe2ea",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T13:36:59.513Z_
+
+```json
+{
+  "parentUuid": "d0136381-a0ad-4a82-b8dd-6198c0efe2ea",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "136f726c-4a20-4de0-9dc8-ebc0b0785284",
+  "timestamp": "2026-05-19T13:36:59.513Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T13:36:59.513Z_
+
+```json
+{
+  "parentUuid": "136f726c-4a20-4de0-9dc8-ebc0b0785284",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "08905d5c-7be1-4e70-9f76-b522b7bb9476",
+  "timestamp": "2026-05-19T13:36:59.513Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-19 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "08905d5c-7be1-4e70-9f76-b522b7bb9476",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrated temporal information-contribution gap for CoT faithfulness",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T13:37:09.550Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is round 7/10 of reviewing a detailed ML research proposal about chain-of-thought faithfulness measurement. Let me carefully analyze this proposal and conduct independent verification of its claims.
+
+Let me start by understanding what's being proposed:
+
+The ICG (Information-Contribution Gap) framework measures the divergence between:
+1. P*(t): Calibrated probe accuracy (what the model's hidden states encode about correctness)
+2. C(t): Causal contribution of CoT (what the CoT actually contributes to the answer)
+
+G*(t) = P*(t) - C(t) is the gap, which should produce phenomenon-specific signatures.
+
+
+Now I need to verify the core claims—whether the diagnostic-causal gap is actually established in the literature, if this dual-estimator approach is truly novel compared to concurrent work like Chrabąszcz et al., and whether the technical choices around probes, baselines, and resource estimates hold up under scrutiny.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "08905d5c-7be1-4e70-9f76-b522b7bb9476",
+  "isSidechain": false,
+  "requestId": "req_011CbC1yxbGAahLXFvnTCSdL",
+  "type": "assistant",
+  "uuid": "4ab90af5-87d4-4c91-a59f-1272ae9cc0bd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Quorbpx9E1cEgrxG83ATyd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 26220,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 383,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26220,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 383,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 26220,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26220
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T13:37:09.551Z_
+
+I'll conduct a thorough independent review of this proposal. Let me start by verifying the key references, checking for missing concurrent work, and assessing the claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ab90af5-87d4-4c91-a59f-1272ae9cc0bd",
+  "isSidechain": false,
+  "requestId": "req_011CbC1yxbGAahLXFvnTCSdL",
+  "type": "assistant",
+  "uuid": "55532099-6d1d-49c0-b2c6-39eb7f02f402",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Quorbpx9E1cEgrxG83ATyd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 26220,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 383,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26220,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 383,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 26220,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26220
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T13:37:09.554Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HyEhS68igymN28tMcJsZAW`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55532099-6d1d-49c0-b2c6-39eb7f02f402",
+  "isSidechain": false,
+  "requestId": "req_011CbC1yxbGAahLXFvnTCSdL",
+  "type": "assistant",
+  "uuid": "c5064022-c5ce-452c-a8f5-7d9f6845b40d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Quorbpx9E1cEgrxG83ATyd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 26220,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 383,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26220,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 383,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 26220,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26220
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T13:37:09.562Z_
+
+<details><summary>↩ Tool result · `toolu_01HyEhS68igymN28tMcJsZAW`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c5064022-c5ce-452c-a8f5-7d9f6845b40d",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "5925b032-5655-4937-80ab-0eab521e10b1",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "c5064022-c5ce-452c-a8f5-7d9f6845b40d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-19T13:37:13.952Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now conduct thorough independent verification. I need to check:
+
+1. Key references exist and say what they claim
+2. Search for missing concurrent work
+3. Verify SOTA and landscape claims
+4. Check venue deadlines
+5. Assess feasibility
+
+Let me start with multiple parallel searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5925b032-5655-4937-80ab-0eab521e10b1",
+  "isSidechain": false,
+  "requestId": "req_011CbC1zi1T4hGVUMtks1SoL",
+  "type": "assistant",
+  "uuid": "a54e862f-041a-42ea-9e27-cb39ca9ad90e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCYSYtCdMNgzUuW2HSvvBJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1403,
+      "cache_read_input_tokens": 37594,
+      "output_tokens": 176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1403,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 176,
+          "cache_read_input_tokens": 37594,
+          "cache_creation_input_tokens": 1403,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1403
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-19T13:37:13.987Z_
+
+Let me conduct parallel searches to verify the key claims and check for missing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a54e862f-041a-42ea-9e27-cb39ca9ad90e",
+  "isSidechain": false,
+  "requestId": "req_011CbC1zi1T4hGVUMtks1SoL",
+  "type": "assistant",
+  "uuid": "937331a2-5b46-4b71-a938-dc135bf73f10",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCYSYtCdMNgzUuW2HSvvBJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1403,
+      "cache_read_input_tokens": 37594,
+      "output_tokens": 176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1403,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 176,
+          "cache_read_input_tokens": 37594,
+          "cache_creation_input_tokens": 1403,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1403
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T13:37:14.391Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0192bLNegt5T9ak2zNk8nUPc`</summary>
+
+```json
+{
+  "query": "Chrabąszcz \"probe trajectories\" reasoning dynamics 2605.18549 arxiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "937331a2-5b46-4b71-a938-dc135bf73f10",
+  "isSidechain": false,
+  "requestId": "req_011CbC1zi1T4hGVUMtks1SoL",
+  "type": "assistant",
+  "uuid": "14232684-4b9a-44b7-a178-cb7b4cb99758",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCYSYtCdMNgzUuW2HSvvBJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1403,
+      "cache_read_input_tokens": 37594,
+      "output_tokens": 176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1403,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 176,
+          "cache_read_input_tokens": 37594,
+          "cache_creation_input_tokens": 1403,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1403
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T13:37:23.386Z_
+
+<details><summary>↩ Tool result · `toolu_0192bLNegt5T9ak2zNk8nUPc`</summary>
+
+```text
+Web search results for query: "Chrabąszcz "probe trajectories" reasoning dynamics 2605.18549 arxiv 2026"
+
+Links: [{"title":"[2605.18549] Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics","url":"https://arxiv.org/abs/2605.18549"},{"title":"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics","url":"https://arxiv.org/html/2605.18549"},{"title":"Probing the Trajectories of Reasoning Traces in Large Language Models","url":"https://arxiv.org/html/2601.23163v1"},{"title":"[2601.23163] Probing the Trajectories of Reasoning Traces in Large Language Models","url":"https://arxiv.org/abs/2601.23163"},{"title":"Spatiotemporal Hidden-State Dynamics as a Signature of Internal Reasoning in Large Language Models","url":"https://arxiv.org/html/2605.01853"},{"title":"[2605.01853] Spatiotemporal Hidden-State Dynamics as a Signature of Internal Reasoning in Large Language Models","url":"https://arxiv.org/abs/2605.01853"},{"title":"Trajectory sampling using spatial familiarity","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11435202"},{"title":"The Effect of Probe Dynamics on Galactic Exploration Timescales","url":"https://arxiv.org/pdf/1212.2371"}]
+
+Based on the search results, I found the paper you're looking for:
+
+The paper is titled "Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics" by Maciej Chrabąszcz and colleagues, submitted on May 18, 2026 (arXiv:2605.18549).
+
+Here's what the paper is about:
+
+The paper addresses how Large Reasoning Models (LRMs) introduce new opportunities for safety monitoring through their Chain of Thought (CoT) reasoning, but CoT is not always faithful to the model's final output, undermining its reliability as a monitoring tool.
+
+To address this, the authors investigate the hidden representations of LRMs to determine whether future behavior can be predicted from prompt and CoT representations. By evaluating a probe at each generated token, they construct a probe trajectory—the continuous evolution of a concept's probability across the reasoning process.
+
+Key findings include: Future model behavior is more distinguishable when examined over the full trajectory than from a single static prediction. Additionally, the authors extract signal-processing features that capture volatility, trend, and steady-state behavior, significantly improving the separation of future model states.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "14232684-4b9a-44b7-a178-cb7b4cb99758",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "724dfe1f-0009-4372-b91a-83f0d1909dbf",
+  "toolUseResult": {
+    "query": "Chrabąszcz \"probe trajectories\" reasoning dynamics 2605.18549 arxiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NEXcbwd11J4EakcuiTe8Fs",
+        "content": [
+          {
+            "title": "[2605.18549] Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics",
+            "url": "https://arxiv.org/abs/2605.18549"
+          },
+          {
+            "title": "Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics",
+            "url": "https://arxiv.org/html/2605.18549"
+          },
+          {
+            "title": "Probing the Trajectories of Reasoning Traces in Large Language Models",
+            "url": "https://arxiv.org/html/2601.23163v1"
+          },
+          {
+            "title": "[2601.23163] Probing the Trajectories of Reasoning Traces in Large Language Models",
+            "url": "https://arxiv.org/abs/2601.23163"
+          },
+          {
+            "title": "Spatiotemporal Hidden-State Dynamics as a Signature of Internal Reasoning in Large Language Models",
+            "url": "https://arxiv.org/html/2605.01853"
+          },
+          {
+            "title": "[2605.01853] Spatiotemporal Hidden-State Dynamics as a Signature of Internal Reasoning in Large Language Models",
+            "url": "https://arxiv.org/abs/2605.01853"
+          },
+          {
+            "title": "Trajectory sampling using spatial familiarity",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11435202"
+          },
+          {
+            "title": "The Effect of Probe Dynamics on Galactic Exploration Timescales",
+            "url": "https://arxiv.org/pdf/1212.2371"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nThe paper is titled \"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics\" by Maciej Chrabąszcz and colleagues, submitted on May 18, 2026 (arXiv:2605.18549).\n\nHere's what the paper is about:\n\nThe paper addresses how Large Reasoning Models (LRMs) introduce new opportunities for safety monitoring through their Chain of Thought (CoT) reasoning, but CoT is not always faithful to the model's final output, undermining its reliability as a monitoring tool.\n\nTo address this, the authors investigate the hidden representations of LRMs to determine whether future behavior can be predicted from prompt and CoT representations. By evaluating a probe at each generated token, they construct a probe trajectory—the continuous evolution of a concept's probability across the reasoning process.\n\nKey findings include: Future model behavior is more distinguishable when examined over the full trajectory than from a single static prediction. Additionally, the authors extract signal-processing features that capture volatility, trend, and steady-state behavior, significantly improving the separation of future model states."
+    ],
+    "durationSeconds": 8.987001470999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "14232684-4b9a-44b7-a178-cb7b4cb99758",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T13:37:27.515Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HspJYgY33SrFnTwL5bLgpy`</summary>
+
+```json
+{
+  "query": "Yuan et al \"Hidden Error Awareness\" diagnostic not causal chain-of-thought 2605.09502 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "724dfe1f-0009-4372-b91a-83f0d1909dbf",
+  "isSidechain": false,
+  "requestId": "req_011CbC21icwJ5sCXzXZbjvAU",
+  "type": "assistant",
+  "uuid": "a0249ed9-b132-4006-b73c-37e3b6fcc84c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKoKTV3GV15JCvjHjcszHv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 851,
+      "cache_read_input_tokens": 38997,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 851,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 38997,
+          "cache_creation_input_tokens": 851,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 851
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T13:37:35.832Z_
+
+<details><summary>↩ Tool result · `toolu_01HspJYgY33SrFnTwL5bLgpy`</summary>
+
+```text
+Web search results for query: "Yuan et al "Hidden Error Awareness" diagnostic not causal chain-of-thought 2605.09502 2026"
+
+Links: [{"title":"[2605.09502] Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal","url":"https://arxiv.org/abs/2605.09502"},{"title":"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal","url":"https://arxiv.org/html/2605.09502"},{"title":"[2605.06059] Correcting heterogeneous diagnostic bias when developing clinical prediction models using causal hidden Markov models","url":"https://arxiv.org/abs/2605.06059"},{"title":"Verifying Chain-of-Thought Reasoning via Its Computational Graph","url":"https://arxiv.org/pdf/2510.09312"},{"title":"Dual De-confounded Causal Intervention method for knowledge graph error detection - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0950705124012784"},{"title":"Can We Trust AI Explanations? Evidence of Systematic Underreporting in Chain-of-Thought Reasoning","url":"https://arxiv.org/pdf/2601.00830"}]
+
+I found the paper you're looking for. Here's a summary of the key findings:
+
+The paper "Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal" by Aojie Yuan and colleagues challenges the assumption that chain-of-thought reasoning reflects a model's internal computation, showing that models internally detect their own reasoning errors but outwardly express confidence in them.
+
+**Key Findings:**
+
+A linear probe on hidden states predicts trace correctness with 0.95 AUROC from the very first reasoning step, while verbalized confidence for wrong traces is nearly identical to correct ones (4.55/5 vs 4.87/5). A text-surface classifier achieved only 0.59 on the same data, confirming a gap invisible in the generated text.
+
+This hidden error awareness holds across three model families (Qwen, Llama, Phi), ranging from 1.5B-72B parameters, and RL-trained reasoning models like DeepSeek-R1.
+
+**The Diagnostic vs. Causal Distinction:**
+
+The researchers tested whether this signal could fix the errors it detects by using four interventions—activation steering, probe-guided best-of-N, self-correction, and activation patching—but all failed. The signal is diagnostic, not causal: a readout of computation quality, not a lever to redirect it.
+
+This finding delineates a boundary for mechanistic interpretability: error representations during reasoning are fundamentally different from the factual knowledge representations that prior work has successfully edited.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a0249ed9-b132-4006-b73c-37e3b6fcc84c",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "dea52191-2780-4a99-b9cf-a24024bb6801",
+  "toolUseResult": {
+    "query": "Yuan et al \"Hidden Error Awareness\" diagnostic not causal chain-of-thought 2605.09502 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014eat3sqjAtZPnHWpPQNAM6",
+        "content": [
+          {
+            "title": "[2605.09502] Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal",
+            "url": "https://arxiv.org/abs/2605.09502"
+          },
+          {
+            "title": "Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal",
+            "url": "https://arxiv.org/html/2605.09502"
+          },
+          {
+            "title": "[2605.06059] Correcting heterogeneous diagnostic bias when developing clinical prediction models using causal hidden Markov models",
+            "url": "https://arxiv.org/abs/2605.06059"
+          },
+          {
+            "title": "Verifying Chain-of-Thought Reasoning via Its Computational Graph",
+            "url": "https://arxiv.org/pdf/2510.09312"
+          },
+          {
+            "title": "Dual De-confounded Causal Intervention method for knowledge graph error detection - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0950705124012784"
+          },
+          {
+            "title": "Can We Trust AI Explanations? Evidence of Systematic Underreporting in Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/pdf/2601.00830"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's a summary of the key findings:\n\nThe paper \"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal\" by Aojie Yuan and colleagues challenges the assumption that chain-of-thought reasoning reflects a model's internal computation, showing that models internally detect their own reasoning errors but outwardly express confidence in them.\n\n**Key Findings:**\n\nA linear probe on hidden states predicts trace correctness with 0.95 AUROC from the very first reasoning step, while verbalized confidence for wrong traces is nearly identical to correct ones (4.55/5 vs 4.87/5). A text-surface classifier achieved only 0.59 on the same data, confirming a gap invisible in the generated text.\n\nThis hidden error awareness holds across three model families (Qwen, Llama, Phi), ranging from 1.5B-72B parameters, and RL-trained reasoning models like DeepSeek-R1.\n\n**The Diagnostic vs. Causal Distinction:**\n\nThe researchers tested whether this signal could fix the errors it detects by using four interventions—activation steering, probe-guided best-of-N, self-correction, and activation patching—but all failed. The signal is diagnostic, not causal: a readout of computation quality, not a lever to redirect it.\n\nThis finding delineates a boundary for mechanistic interpretability: error representations during reasoning are fundamentally different from the factual knowledge representations that prior work has successfully edited."
+    ],
+    "durationSeconds": 8.312523932999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a0249ed9-b132-4006-b73c-37e3b6fcc84c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T13:37:38.737Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014w8zAZiV8ekBzBZADoVN8C`</summary>
+
+```json
+{
+  "query": "Cox \"Decoding Answers Before Chain-of-Thought\" pre-CoT probes activation steering 2603.01437"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dea52191-2780-4a99-b9cf-a24024bb6801",
+  "isSidechain": false,
+  "requestId": "req_011CbC22dkXBsaAXcF7ssUbr",
+  "type": "assistant",
+  "uuid": "7401af51-80b0-490a-b33d-3053b1814d5a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E4LqqBt7AucwLPLs5zGeTh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 783,
+      "cache_read_input_tokens": 39848,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 783,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 39848,
+          "cache_creation_input_tokens": 783,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 783
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T13:37:44.566Z_
+
+<details><summary>↩ Tool result · `toolu_014w8zAZiV8ekBzBZADoVN8C`</summary>
+
+```text
+Web search results for query: "Cox "Decoding Answers Before Chain-of-Thought" pre-CoT probes activation steering 2603.01437"
+
+Links: [{"title":"[2603.01437] Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering","url":"https://arxiv.org/abs/2603.01437"},{"title":"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering","url":"https://arxiv.org/html/2603.01437"},{"title":"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering","url":"https://arxiv.org/pdf/2603.01437"},{"title":"Post-Hoc Reasoning in Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering | OpenReview","url":"https://openreview.net/forum?id=UMUYpeXtJQ"},{"title":"[Literature Review] Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering","url":"https://www.themoonlight.io/en/review/decoding-answers-before-chain-of-thought-evidence-from-pre-cot-probes-and-activation-steering"}]
+
+I found the paper! Here's what the search revealed:
+
+"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering" by Kyle Cox and colleagues provides mechanistic evidence that instruction-tuned models often determine their answer before generating CoT, demonstrating that training linear probes on residual stream activations at the last token before CoT can predict the model's final answer with 0.9 AUC on most tasks.
+
+The probes are not only predictive but also causal: steering activations along the probe direction flips model answers in over 50% of cases, significantly exceeding orthogonal baselines. When steering induces incorrect answers, the researchers observe two distinct failure modes: non-entailment (stating correct premises but drawing unsupported conclusions) and confabulation (fabricating false premises).
+
+The paper (arxiv 2603.01437) was published on March 2, 2026, and tests instruction-tuned models (Gemma 2 and Qwen 2.5 families across various sizes) on binary classification tasks including Anachronisms, Logical Deduction, Sports Understanding, and Social Chemistry.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7401af51-80b0-490a-b33d-3053b1814d5a",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "963e400e-2f30-4016-951f-dba298bf6b8a",
+  "toolUseResult": {
+    "query": "Cox \"Decoding Answers Before Chain-of-Thought\" pre-CoT probes activation steering 2603.01437",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0153Eps2HyMBrdQr83A3NGb8",
+        "content": [
+          {
+            "title": "[2603.01437] Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering",
+            "url": "https://arxiv.org/abs/2603.01437"
+          },
+          {
+            "title": "Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering",
+            "url": "https://arxiv.org/html/2603.01437"
+          },
+          {
+            "title": "Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering",
+            "url": "https://arxiv.org/pdf/2603.01437"
+          },
+          {
+            "title": "Post-Hoc Reasoning in Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering | OpenReview",
+            "url": "https://openreview.net/forum?id=UMUYpeXtJQ"
+          },
+          {
+            "title": "[Literature Review] Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering",
+            "url": "https://www.themoonlight.io/en/review/decoding-answers-before-chain-of-thought-evidence-from-pre-cot-probes-and-activation-steering"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search revealed:\n\n\"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering\" by Kyle Cox and colleagues provides mechanistic evidence that instruction-tuned models often determine their answer before generating CoT, demonstrating that training linear probes on residual stream activations at the last token before CoT can predict the model's final answer with 0.9 AUC on most tasks.\n\nThe probes are not only predictive but also causal: steering activations along the probe direction flips model answers in over 50% of cases, significantly exceeding orthogonal baselines. When steering induces incorrect answers, the researchers observe two distinct failure modes: non-entailment (stating correct premises but drawing unsupported conclusions) and confabulation (fabricating false premises).\n\nThe paper (arxiv 2603.01437) was published on March 2, 2026, and tests instruction-tuned models (Gemma 2 and Qwen 2.5 families across various sizes) on binary classification tasks including Anachronisms, Logical Deduction, Sports Understanding, and Social Chemistry."
+    ],
+    "durationSeconds": 5.824210360999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7401af51-80b0-490a-b33d-3053b1814d5a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-19T13:37:47.117Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PV2Q4rGcergXFXr2R6xqyY`</summary>
+
+```json
+{
+  "query": "chain-of-thought faithfulness probing causal contribution temporal trajectory 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "963e400e-2f30-4016-951f-dba298bf6b8a",
+  "isSidechain": false,
+  "requestId": "req_011CbC23H56X9G94HcFqk1yb",
+  "type": "assistant",
+  "uuid": "5c13b838-1a3a-49f7-af43-3a17d4c0587d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016THoKuE6yzDtk1LQYoo6bp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 714,
+      "cache_read_input_tokens": 40631,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 714,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 40631,
+          "cache_creation_input_tokens": 714,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 714
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-19 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "5c13b838-1a3a-49f7-af43-3a17d4c0587d",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrated temporal information-contribution gap for CoT faithfulness",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T13:37:55.434Z_
+
+<details><summary>↩ Tool result · `toolu_01PV2Q4rGcergXFXr2R6xqyY`</summary>
+
+```text
+Web search results for query: "chain-of-thought faithfulness probing causal contribution temporal trajectory 2026 arxiv"
+
+Links: [{"title":"faithcot-bench: benchmarking instance- level faithfulness of ...","url":"https://arxiv.org/pdf/2510.04040"},{"title":"Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Open-Weight Reasoning Models?","url":"https://arxiv.org/html/2603.22582v1"},{"title":"How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding","url":"https://arxiv.org/html/2507.22928v1"},{"title":"Submitted as a conference paper at ICLR 2026 TYPED CHAIN-OF-THOUGHT:","url":"https://arxiv.org/pdf/2510.01069"},{"title":"How does Chain of Thought Think? Mechanistic ...","url":"https://arxiv.org/pdf/2507.22928"},{"title":"Preprint. Counterfactual Simulation Training for Chain-of-Thought Faithfulness","url":"https://arxiv.org/pdf/2602.20710"},{"title":"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2510.04040v1"},{"title":"FRIT: Using Causal Importance to Improve Chain-of-Thought Faithfulness","url":"https://arxiv.org/pdf/2509.13334"},{"title":"Is Chain-of-Thought Really Not Explainability? Chain-of-Thought Can Be Faithful without Hint Verbalization","url":"https://arxiv.org/pdf/2512.23032"}]
+
+Based on the search results, I found several relevant recent papers on arXiv related to chain-of-thought faithfulness, causal analysis, and probing. Here are the key findings:
+
+## Key Research Areas
+
+**Causal Contribution and Faithfulness Probing:**
+Recent approaches probe CoT faithfulness by perturbing reasoning traces (such as adding mistakes, removing steps, or forcing early answers) and testing whether the final prediction changes accordingly, with causal sensitivity treated as evidence of faithfulness since a faithful CoT should preserve a causal link between intermediate steps and the final answer.
+
+**Temporal/Sequential Analysis:**
+Some studies attempt to intervene in the model's internal activation space to quantify the contribution of different parts of the reasoning chain to the final answer, though because reasoning in LLMs is highly parallel and redundant, most current interventions operate at the layer or component level, making it challenging to pinpoint the specific features or causal mechanisms responsible for model outputs.
+
+**Recent 2026 Work:**
+Recent evaluations of CoT faithfulness include assessment of the CoT's causal importance to the final output, testing whether CoT is useful for counterfactual simulation, and analyzing whether CoT reasoning verbalizes the role of cues in the model input.
+
+A key finding is that the degree to which CoT content causally determines model predictions varies substantially by task, suggesting that faithfulness is not a fixed property of a model but depends on the interaction between model, task, and reasoning chain structure.
+
+The search returned several relevant papers from 2025-2026 published on arXiv, including FaithCoT-Bench, papers on mechanistic interpretability, and studies on improving CoT faithfulness through causal analysis.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c13b838-1a3a-49f7-af43-3a17d4c0587d",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "97c74ef1-e1b2-49df-af66-c867eec50b2b",
+  "toolUseResult": {
+    "query": "chain-of-thought faithfulness probing causal contribution temporal trajectory 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TBiKmkTTSVswbc893VXobS",
+        "content": [
+          {
+            "title": "faithcot-bench: benchmarking instance- level faithfulness of ...",
+            "url": "https://arxiv.org/pdf/2510.04040"
+          },
+          {
+            "title": "Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Open-Weight Reasoning Models?",
+            "url": "https://arxiv.org/html/2603.22582v1"
+          },
+          {
+            "title": "How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding",
+            "url": "https://arxiv.org/html/2507.22928v1"
+          },
+          {
+            "title": "Submitted as a conference paper at ICLR 2026 TYPED CHAIN-OF-THOUGHT:",
+            "url": "https://arxiv.org/pdf/2510.01069"
+          },
+          {
+            "title": "How does Chain of Thought Think? Mechanistic ...",
+            "url": "https://arxiv.org/pdf/2507.22928"
+          },
+          {
+            "title": "Preprint. Counterfactual Simulation Training for Chain-of-Thought Faithfulness",
+            "url": "https://arxiv.org/pdf/2602.20710"
+          },
+          {
+            "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2510.04040v1"
+          },
+          {
+            "title": "FRIT: Using Causal Importance to Improve Chain-of-Thought Faithfulness",
+            "url": "https://arxiv.org/pdf/2509.13334"
+          },
+          {
+            "title": "Is Chain-of-Thought Really Not Explainability? Chain-of-Thought Can Be Faithful without Hint Verbalization",
+            "url": "https://arxiv.org/pdf/2512.23032"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant recent papers on arXiv related to chain-of-thought faithfulness, causal analysis, and probing. Here are the key findings:\n\n## Key Research Areas\n\n**Causal Contribution and Faithfulness Probing:**\nRecent approaches probe CoT faithfulness by perturbing reasoning traces (such as adding mistakes, removing steps, or forcing early answers) and testing whether the final prediction changes accordingly, with causal sensitivity treated as evidence of faithfulness since a faithful CoT should preserve a causal link between intermediate steps and the final answer.\n\n**Temporal/Sequential Analysis:**\nSome studies attempt to intervene in the model's internal activation space to quantify the contribution of different parts of the reasoning chain to the final answer, though because reasoning in LLMs is highly parallel and redundant, most current interventions operate at the layer or component level, making it challenging to pinpoint the specific features or causal mechanisms responsible for model outputs.\n\n**Recent 2026 Work:**\nRecent evaluations of CoT faithfulness include assessment of the CoT's causal importance to the final output, testing whether CoT is useful for counterfactual simulation, and analyzing whether CoT reasoning verbalizes the role of cues in the model input.\n\nA key finding is that the degree to which CoT content causally determines model predictions varies substantially by task, suggesting that faithfulness is not a fixed property of a model but depends on the interaction between model, task, and reasoning chain structure.\n\nThe search returned several relevant papers from 2025-2026 published on arXiv, including FaithCoT-Bench, papers on mechanistic interpretability, and studies on improving CoT faithfulness through causal analysis."
+    ],
+    "durationSeconds": 8.312041506999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5c13b838-1a3a-49f7-af43-3a17d4c0587d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-19T13:37:58.153Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016J9ZerfFraMDrJdoLPRFDH`</summary>
+
+```json
+{
+  "query": "information contribution gap chain-of-thought hidden states probe causal 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97c74ef1-e1b2-49df-af66-c867eec50b2b",
+  "isSidechain": false,
+  "requestId": "req_011CbC245YLMipxNo49oVfrL",
+  "type": "assistant",
+  "uuid": "d19b8413-3e22-401b-b082-3e439b977dc6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DeEc3L3M5srrgchUJZncMr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 918,
+      "cache_read_input_tokens": 41345,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 918,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 41345,
+          "cache_creation_input_tokens": 918,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 918
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T13:38:08.897Z_
+
+<details><summary>↩ Tool result · `toolu_016J9ZerfFraMDrJdoLPRFDH`</summary>
+
+```text
+Web search results for query: "information contribution gap chain-of-thought hidden states probe causal 2026"
+
+Links: [{"title":"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures","url":"https://arxiv.org/html/2603.16475v1"},{"title":"When Chain-of-Thought Fails, the Solution Hides in the Hidden States","url":"https://arxiv.org/html/2604.23351v1"},{"title":"Causal AI Decision Intelligence: Why It Will Emerge in 2026 - theCUBE Research","url":"https://thecuberesearch.com/why-causal-ai-decision-intelligence-2026/"},{"title":"Explainable Chain-of-Thought Reasoning: An Empirical Analysis on State-Aware Reasoning Dynamics","url":"https://arxiv.org/html/2509.00190v1"},{"title":"No Global Plan in Chain-of-Thought: Uncover the Latent Planning Horizon of LLMs","url":"https://arxiv.org/pdf/2602.02103"},{"title":"Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure","url":"https://arxiv.org/pdf/2602.08783"}]
+
+Based on the search results, here's what I found related to your query:
+
+## Key Research Findings
+
+**Chain-of-Thought and Hidden States Analysis:**
+
+Recent research uses a patching framework that transfers hidden states from individual tokens in a source chain-of-thought generation to the final position of a direct-answer target run at the same layer, with the resulting change in model output and final-answer accuracy quantifying each token's causal contribution. This reveals that some CoT tokens carry recoverable task-solving information even when the original CoT run is incorrect.
+
+**Internal Planning in Hidden States:**
+
+LLMs have been shown to exhibit internal planning on the reasoning trace prior to the explicit emergence of CoT, with hidden states at the beginning of CoT reliably predicting total reasoning steps and key attributes, and earlier hidden states already carrying information of subsequent generation.
+
+**Causal Structure Analysis:**
+
+Recent work conceptualizes latent chain-of-thought as a causal system, treating model-defined intermediate latent states as the unit of a reasoning "step" and performing step-wise do-interventions, then aggregating step-to-step influences to construct a directed acyclic graph of information flow.
+
+**2026 Context:**
+
+2026 is being positioned as the breakout year for AI Decision Intelligence, powered by the democratization of Causal AI.
+
+These papers explore the information contribution gap between what's explicitly visible in chain-of-thought outputs versus what's encoded in model hidden states, using causal inference methods to probe these latent structures.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d19b8413-3e22-401b-b082-3e439b977dc6",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "ef956f58-f578-4fe4-adec-4c9c14785367",
+  "toolUseResult": {
+    "query": "information contribution gap chain-of-thought hidden states probe causal 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TsVPaMmcB4SinSv3SxYRwa",
+        "content": [
+          {
+            "title": "Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures",
+            "url": "https://arxiv.org/html/2603.16475v1"
+          },
+          {
+            "title": "When Chain-of-Thought Fails, the Solution Hides in the Hidden States",
+            "url": "https://arxiv.org/html/2604.23351v1"
+          },
+          {
+            "title": "Causal AI Decision Intelligence: Why It Will Emerge in 2026 - theCUBE Research",
+            "url": "https://thecuberesearch.com/why-causal-ai-decision-intelligence-2026/"
+          },
+          {
+            "title": "Explainable Chain-of-Thought Reasoning: An Empirical Analysis on State-Aware Reasoning Dynamics",
+            "url": "https://arxiv.org/html/2509.00190v1"
+          },
+          {
+            "title": "No Global Plan in Chain-of-Thought: Uncover the Latent Planning Horizon of LLMs",
+            "url": "https://arxiv.org/pdf/2602.02103"
+          },
+          {
+            "title": "Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure",
+            "url": "https://arxiv.org/pdf/2602.08783"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found related to your query:\n\n## Key Research Findings\n\n**Chain-of-Thought and Hidden States Analysis:**\n\nRecent research uses a patching framework that transfers hidden states from individual tokens in a source chain-of-thought generation to the final position of a direct-answer target run at the same layer, with the resulting change in model output and final-answer accuracy quantifying each token's causal contribution. This reveals that some CoT tokens carry recoverable task-solving information even when the original CoT run is incorrect.\n\n**Internal Planning in Hidden States:**\n\nLLMs have been shown to exhibit internal planning on the reasoning trace prior to the explicit emergence of CoT, with hidden states at the beginning of CoT reliably predicting total reasoning steps and key attributes, and earlier hidden states already carrying information of subsequent generation.\n\n**Causal Structure Analysis:**\n\nRecent work conceptualizes latent chain-of-thought as a causal system, treating model-defined intermediate latent states as the unit of a reasoning \"step\" and performing step-wise do-interventions, then aggregating step-to-step influences to construct a directed acyclic graph of information flow.\n\n**2026 Context:**\n\n2026 is being positioned as the breakout year for AI Decision Intelligence, powered by the democratization of Causal AI.\n\nThese papers explore the information contribution gap between what's explicitly visible in chain-of-thought outputs versus what's encoded in model hidden states, using causal inference methods to probe these latent structures."
+    ],
+    "durationSeconds": 10.738856681000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d19b8413-3e22-401b-b082-3e439b977dc6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T13:38:11.722Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011HTotqHxD9tkqJBD9ryfMW`</summary>
+
+```json
+{
+  "query": "site:arxiv.org \"chain-of-thought\" \"faithfulness\" \"probe\" \"causal\" 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef956f58-f578-4fe4-adec-4c9c14785367",
+  "isSidechain": false,
+  "requestId": "req_011CbC2554qXpz55fpGmSkaJ",
+  "type": "assistant",
+  "uuid": "5ca5bb98-d359-4233-9d23-2136c784c22b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1Msn66ejCnD7KKfwwtkkj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 746,
+      "cache_read_input_tokens": 42263,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 746,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 42263,
+          "cache_creation_input_tokens": 746,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 746
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T13:38:20.106Z_
+
+<details><summary>↩ Tool result · `toolu_011HTotqHxD9tkqJBD9ryfMW`</summary>
+
+```text
+Web search results for query: "site:arxiv.org "chain-of-thought" "faithfulness" "probe" "causal" 2026"
+
+Links: [{"title":"Why Models Know But Don’t Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models","url":"https://arxiv.org/html/2603.26410"},{"title":"When Chains of Thought Don’t Matter: Causal Bypass in Large Language Models","url":"https://arxiv.org/html/2602.03994"},{"title":"How does Chain of Thought Think? Mechanistic ...","url":"https://arxiv.org/pdf/2507.22928"},{"title":"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering","url":"https://arxiv.org/pdf/2603.01437"},{"title":"faithcot-bench: benchmarking instance- level faithfulness of ...","url":"https://arxiv.org/pdf/2510.04040"},{"title":"Preprint. Counterfactual Simulation Training for Chain-of-Thought Faithfulness","url":"https://arxiv.org/pdf/2602.20710"},{"title":"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures","url":"https://arxiv.org/html/2603.16475v1"},{"title":"Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Open-Weight Reasoning Models?","url":"https://arxiv.org/html/2603.22582v1"}]
+
+I've completed the web search for your query. The search returned 8 results from arXiv.org that discuss chain-of-thought faithfulness, probes, and causal analysis in large language models from 2026. Here's a summary of what was found:
+
+**Key Papers Found:**
+
+1. "Why Models Know But Don't Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models" identifies a "Reasoning Horizon" at 70–85% of chain length, beyond which reasoning tokens have diminishing causal influence on the final answer.
+
+2. "When Chains of Thought Don't Matter: Causal Bypass in Large Language Models" combines interpretable behavioral scoring with mechanistic probes and shows that plausible reasoning traces can diverge sharply from the internal computations that produce answers.
+
+3. "Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering" (March 3, 2026) addresses whether the model's verbalized reasoning reflects its true decision-making process.
+
+4. "Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures" discusses counterfactual interventions on reasoning traces to evaluate causal influence.
+
+5. "Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Open-Weight Reasoning Models?" covers flagship open-weight reasoning models released between Q4 2025 and Q1 2026 and finds that the degree to which CoT content causally determines model predictions varies substantially by task.
+
+All these papers address the central question of whether chain-of-thought reasoning in large language models reflects genuine internal reasoning or serves as post-hoc rationalization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ca5bb98-d359-4233-9d23-2136c784c22b",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "6ca51f98-7419-488a-b712-fc1d9dd77b94",
+  "toolUseResult": {
+    "query": "site:arxiv.org \"chain-of-thought\" \"faithfulness\" \"probe\" \"causal\" 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01D3E39MhbPkQorJt4rmUxuC",
+        "content": [
+          {
+            "title": "Why Models Know But Don’t Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models",
+            "url": "https://arxiv.org/html/2603.26410"
+          },
+          {
+            "title": "When Chains of Thought Don’t Matter: Causal Bypass in Large Language Models",
+            "url": "https://arxiv.org/html/2602.03994"
+          },
+          {
+            "title": "How does Chain of Thought Think? Mechanistic ...",
+            "url": "https://arxiv.org/pdf/2507.22928"
+          },
+          {
+            "title": "Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering",
+            "url": "https://arxiv.org/pdf/2603.01437"
+          },
+          {
+            "title": "faithcot-bench: benchmarking instance- level faithfulness of ...",
+            "url": "https://arxiv.org/pdf/2510.04040"
+          },
+          {
+            "title": "Preprint. Counterfactual Simulation Training for Chain-of-Thought Faithfulness",
+            "url": "https://arxiv.org/pdf/2602.20710"
+          },
+          {
+            "title": "Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures",
+            "url": "https://arxiv.org/html/2603.16475v1"
+          },
+          {
+            "title": "Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Open-Weight Reasoning Models?",
+            "url": "https://arxiv.org/html/2603.22582v1"
+          }
+        ]
+      },
+      "I've completed the web search for your query. The search returned 8 results from arXiv.org that discuss chain-of-thought faithfulness, probes, and causal analysis in large language models from 2026. Here's a summary of what was found:\n\n**Key Papers Found:**\n\n1. \"Why Models Know But Don't Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models\" identifies a \"Reasoning Horizon\" at 70–85% of chain length, beyond which reasoning tokens have diminishing causal influence on the final answer.\n\n2. \"When Chains of Thought Don't Matter: Causal Bypass in Large Language Models\" combines interpretable behavioral scoring with mechanistic probes and shows that plausible reasoning traces can diverge sharply from the internal computations that produce answers.\n\n3. \"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering\" (March 3, 2026) addresses whether the model's verbalized reasoning reflects its true decision-making process.\n\n4. \"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures\" discusses counterfactual interventions on reasoning traces to evaluate causal influence.\n\n5. \"Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Open-Weight Reasoning Models?\" covers flagship open-weight reasoning models released between Q4 2025 and Q1 2026 and finds that the degree to which CoT content causally determines model predictions varies substantially by task.\n\nAll these papers address the central question of whether chain-of-thought reasoning in large language models reflects genuine internal reasoning or serves as post-hoc rationalization."
+    ],
+    "durationSeconds": 8.379312206999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5ca5bb98-d359-4233-9d23-2136c784c22b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-19T13:38:23.364Z_
+
+Now let me search for potentially missing concurrent work and verify specific claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ca51f98-7419-488a-b712-fc1d9dd77b94",
+  "isSidechain": false,
+  "requestId": "req_011CbC25tytafyk9B6tgEKay",
+  "type": "assistant",
+  "uuid": "adf7684f-e7df-4414-b6f1-cf2322bf8f08",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PusGWCySDt7gwiRWyQU3C5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 898,
+      "cache_read_input_tokens": 43009,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 898,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 43009,
+          "cache_creation_input_tokens": 898,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 898
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T13:38:23.767Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TpzSLzfRpWaGVjMQETQoAB`</summary>
+
+```json
+{
+  "query": "site:arxiv.org \"chain-of-thought\" \"hidden states\" \"temporal\" reasoning faithfulness May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "adf7684f-e7df-4414-b6f1-cf2322bf8f08",
+  "isSidechain": false,
+  "requestId": "req_011CbC25tytafyk9B6tgEKay",
+  "type": "assistant",
+  "uuid": "9f711253-f801-4a71-8249-d24f84b0c5cb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PusGWCySDt7gwiRWyQU3C5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 898,
+      "cache_read_input_tokens": 43009,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 898,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 43009,
+          "cache_creation_input_tokens": 898,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 898
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T13:38:33.065Z_
+
+<details><summary>↩ Tool result · `toolu_01TpzSLzfRpWaGVjMQETQoAB`</summary>
+
+```text
+Web search results for query: "site:arxiv.org "chain-of-thought" "hidden states" "temporal" reasoning faithfulness May 2026"
+
+Links: [{"title":"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal","url":"https://arxiv.org/html/2605.09502"},{"title":"Analysing Chain of Thought Dynamics: Active Guidance or Unfaithful Post-hoc Rationalisation?","url":"https://arxiv.org/pdf/2508.19827"},{"title":"Temporal Predictors of Outcome in Reasoning Language Models","url":"https://arxiv.org/pdf/2511.14773"},{"title":"Chain-of-Thought Reasoning In The Wild Is Not Always Faithful","url":"https://arxiv.org/pdf/2503.08679"},{"title":"The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models","url":"https://arxiv.org/pdf/2603.22816"},{"title":"Implicit Chain of Thought Reasoning via Knowledge Distillation","url":"https://arxiv.org/pdf/2311.01460"},{"title":"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps","url":"https://arxiv.org/pdf/2502.14829"},{"title":"Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Reasoning Models?","url":"https://arxiv.org/pdf/2603.22582"},{"title":"Making Reasoning Matter: Measuring and Improving Faithfulness of   Chain-of-Thought Reasoning","url":"https://arxiv.org/pdf/2402.13950"}]
+
+I found several relevant research papers from arxiv.org that address chain-of-thought reasoning, hidden states, temporal dynamics, and faithfulness:
+
+**Key Papers:**
+
+1. **"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal"** - A linear probe on hidden states predicts trace correctness with 0.95 AUROC—from the very first reasoning step (0.79)—while verbalized confidence for wrong traces is 4.55/5, nearly identical to correct ones (4.87/5). The paper characterizes two temporal regimes of error encoding (front-loaded vs. accumulating), providing mechanistic insight into how models commit to flawed trajectories.
+
+2. **"Temporal Predictors of Outcome in Reasoning Language Models"** - This work probes hidden states after the first t reasoning tokens, showing that eventual correctness is highly predictable after only a few tokens, even when longer outputs are needed to reach a definite answer. Hidden states from very short prefixes (e.g. t ≈ 4) already contain linearly decodable information about eventual correctness, reaching AUCs up to 0.8+ on MATH-like data.
+
+3. **"Chain-of-Thought Reasoning In The Wild Is Not Always Faithful"** - Faithfulness in this context refers to the extent to which the steps articulated in the reasoning chain correspond to the actual reasoning mechanisms employed by the model.
+
+4. **"The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models"** - The paper identifies three distinct modes of reasoning—genuine reasoning where CoT improves accuracy and individual steps matter, with removing a step changing the answer.
+
+These papers examine how models encode correctness information in hidden states during reasoning and whether chain-of-thought explanations faithfully reflect internal computation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9f711253-f801-4a71-8249-d24f84b0c5cb",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "ba8712fd-3ef4-4c80-8a4a-6ad606e202f6",
+  "toolUseResult": {
+    "query": "site:arxiv.org \"chain-of-thought\" \"hidden states\" \"temporal\" reasoning faithfulness May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018hwaWpVwfUL9SYuakEuYAk",
+        "content": [
+          {
+            "title": "Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal",
+            "url": "https://arxiv.org/html/2605.09502"
+          },
+          {
+            "title": "Analysing Chain of Thought Dynamics: Active Guidance or Unfaithful Post-hoc Rationalisation?",
+            "url": "https://arxiv.org/pdf/2508.19827"
+          },
+          {
+            "title": "Temporal Predictors of Outcome in Reasoning Language Models",
+            "url": "https://arxiv.org/pdf/2511.14773"
+          },
+          {
+            "title": "Chain-of-Thought Reasoning In The Wild Is Not Always Faithful",
+            "url": "https://arxiv.org/pdf/2503.08679"
+          },
+          {
+            "title": "The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models",
+            "url": "https://arxiv.org/pdf/2603.22816"
+          },
+          {
+            "title": "Implicit Chain of Thought Reasoning via Knowledge Distillation",
+            "url": "https://arxiv.org/pdf/2311.01460"
+          },
+          {
+            "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+            "url": "https://arxiv.org/pdf/2502.14829"
+          },
+          {
+            "title": "Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Reasoning Models?",
+            "url": "https://arxiv.org/pdf/2603.22582"
+          },
+          {
+            "title": "Making Reasoning Matter: Measuring and Improving Faithfulness of   Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/pdf/2402.13950"
+          }
+        ]
+      },
+      "I found several relevant research papers from arxiv.org that address chain-of-thought reasoning, hidden states, temporal dynamics, and faithfulness:\n\n**Key Papers:**\n\n1. **\"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal\"** - A linear probe on hidden states predicts trace correctness with 0.95 AUROC—from the very first reasoning step (0.79)—while verbalized confidence for wrong traces is 4.55/5, nearly identical to correct ones (4.87/5). The paper characterizes two temporal regimes of error encoding (front-loaded vs. accumulating), providing mechanistic insight into how models commit to flawed trajectories.\n\n2. **\"Temporal Predictors of Outcome in Reasoning Language Models\"** - This work probes hidden states after the first t reasoning tokens, showing that eventual correctness is highly predictable after only a few tokens, even when longer outputs are needed to reach a definite answer. Hidden states from very short prefixes (e.g. t ≈ 4) already contain linearly decodable information about eventual correctness, reaching AUCs up to 0.8+ on MATH-like data.\n\n3. **\"Chain-of-Thought Reasoning In The Wild Is Not Always Faithful\"** - Faithfulness in this context refers to the extent to which the steps articulated in the reasoning chain correspond to the actual reasoning mechanisms employed by the model.\n\n4. **\"The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models\"** - The paper identifies three distinct modes of reasoning—genuine reasoning where CoT improves accuracy and individual steps matter, with removing a step changing the answer.\n\nThese papers examine how models encode correctness information in hidden states during reasoning and whether chain-of-thought explanations faithfully reflect internal computation."
+    ],
+    "durationSeconds": 9.29389323999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9f711253-f801-4a71-8249-d24f84b0c5cb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-19T13:38:33.071Z_
+
+```json
+{
+  "parentUuid": "ba8712fd-3ef4-4c80-8a4a-6ad606e202f6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c7242c13-3384-404b-bc43-35d94813e7ad",
+  "timestamp": "2026-05-19T13:38:33.071Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-19 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "c7242c13-3384-404b-bc43-35d94813e7ad",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrated temporal information-contribution gap for CoT faithfulness",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-19T13:38:35.826Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ACfWRbkWAPxpXXhiZbn7ay`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline September 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c7242c13-3384-404b-bc43-35d94813e7ad",
+  "isSidechain": false,
+  "requestId": "req_011CbC26rTrm8BPCeqewrKRG",
+  "type": "assistant",
+  "uuid": "35fbf251-1b23-41cf-ade7-adc57a36d7a9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YBZcH4SPxfV4ycFpPKbk41",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1053,
+      "cache_read_input_tokens": 43907,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1053,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 43907,
+          "cache_creation_input_tokens": 1053,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1053
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T13:38:40.420Z_
+
+<details><summary>↩ Tool result · `toolu_01ACfWRbkWAPxpXXhiZbn7ay`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline September 2026"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"ICLR 2026 Author Guide","url":"https://iclr.cc/Conferences/2026/AuthorGuide"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"}]
+
+Based on the search results, I found information about ICLR 2026, but I did not find specific information about ICLR 2027 submission deadlines in September 2026.
+
+The search results show that ICLR 2026 had a submission deadline on September 24, and the search results indicate that ICLR 2027 is predicted to take place September 29 - October 4, 2027, based on previous year schedule. However, the official ICLR 2027 Call for Papers and submission deadline information does not appear to be available yet in these search results.
+
+To get the most current information about ICLR 2027 submission deadlines, I would recommend checking the official ICLR website at iclr.cc directly, as conference deadlines are typically announced several months before the actual submission window opens.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "35fbf251-1b23-41cf-ade7-adc57a36d7a9",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "def305cc-aa9a-4114-9e2f-2eb61367e664",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline September 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PVbN7A2865FK6b422pnnsq",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "ICLR 2026 Author Guide",
+            "url": "https://iclr.cc/Conferences/2026/AuthorGuide"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR 2026, but I did not find specific information about ICLR 2027 submission deadlines in September 2026.\n\nThe search results show that ICLR 2026 had a submission deadline on September 24, and the search results indicate that ICLR 2027 is predicted to take place September 29 - October 4, 2027, based on previous year schedule. However, the official ICLR 2027 Call for Papers and submission deadline information does not appear to be available yet in these search results.\n\nTo get the most current information about ICLR 2027 submission deadlines, I would recommend checking the official ICLR website at iclr.cc directly, as conference deadlines are typically announced several months before the actual submission window opens."
+    ],
+    "durationSeconds": 4.589628633999993,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "35fbf251-1b23-41cf-ade7-adc57a36d7a9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-19T13:38:42.844Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PpdXsxUvRnhgtQuVg1hLGg`</summary>
+
+```json
+{
+  "query": "ICLR 2027 call for papers deadline abstract submission"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "def305cc-aa9a-4114-9e2f-2eb61367e664",
+  "isSidechain": false,
+  "requestId": "req_011CbC27PrF9Va7VkQ4kde7a",
+  "type": "assistant",
+  "uuid": "c407256e-1a94-4f30-8d4c-6019bb1578f5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015U6ZUgJJ6MfXHiiV5xLoRh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 44960,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 669,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 44960,
+          "cache_creation_input_tokens": 669,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 669
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-19T13:38:49.954Z_
+
+<details><summary>↩ Tool result · `toolu_01PpdXsxUvRnhgtQuVg1hLGg`</summary>
+
+```text
+Web search results for query: "ICLR 2027 call for papers deadline abstract submission"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"ICLR 2026 Author Guide","url":"https://iclr.cc/Conferences/2026/AuthorGuide"},{"title":"Call for Papers","url":"https://iclr.cc/Conferences/2025/CallForPapers"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"}]
+
+Based on the web search results, I found information about ICLR 2026 but not specific details about ICLR 2027. The search results show:
+
+- Information about ICLR 2026, which is the upcoming conference
+- References to ICLR 2025 (which had an abstract deadline of September 27, 2024)
+- A mention that there are ICLR 2027 proceedings being organized, but no specific call for papers or deadlines posted yet
+
+The most recent ICLR call for papers available is for ICLR 2026. Since ICLR 2027 deadlines have not yet been officially announced, I recommend:
+
+1. **Checking the official ICLR website**: https://iclr.cc/ - This is where official calls for papers and deadlines will be posted
+2. **Subscribing to ICLR updates**: The official website typically announces deadlines well in advance (usually 6-12 months before the conference)
+3. **Using deadline tracking sites**: Sites like Bibby, Yutori, or Imranur Rahman's deadline tracker may have ICLR 2027 information once it's publicly available
+
+Typically, ICLR conferences follow a similar timeline year to year, so past deadlines can give you an indication of when ICLR 2027 announcements might be expected.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c407256e-1a94-4f30-8d4c-6019bb1578f5",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "6948f566-ac87-475b-8bb1-54b06bb38290",
+  "toolUseResult": {
+    "query": "ICLR 2027 call for papers deadline abstract submission",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013SpmHgLCWbwbdS43yGJ5Mc",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICLR 2026 Author Guide",
+            "url": "https://iclr.cc/Conferences/2026/AuthorGuide"
+          },
+          {
+            "title": "Call for Papers",
+            "url": "https://iclr.cc/Conferences/2025/CallForPapers"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          }
+        ]
+      },
+      "Based on the web search results, I found information about ICLR 2026 but not specific details about ICLR 2027. The search results show:\n\n- Information about ICLR 2026, which is the upcoming conference\n- References to ICLR 2025 (which had an abstract deadline of September 27, 2024)\n- A mention that there are ICLR 2027 proceedings being organized, but no specific call for papers or deadlines posted yet\n\nThe most recent ICLR call for papers available is for ICLR 2026. Since ICLR 2027 deadlines have not yet been officially announced, I recommend:\n\n1. **Checking the official ICLR website**: https://iclr.cc/ - This is where official calls for papers and deadlines will be posted\n2. **Subscribing to ICLR updates**: The official website typically announces deadlines well in advance (usually 6-12 months before the conference)\n3. **Using deadline tracking sites**: Sites like Bibby, Yutori, or Imranur Rahman's deadline tracker may have ICLR 2027 information once it's publicly available\n\nTypically, ICLR conferences follow a similar timeline year to year, so past deadlines can give you an indication of when ICLR 2027 announcements might be expected."
+    ],
+    "durationSeconds": 7.10606360400001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c407256e-1a94-4f30-8d4c-6019bb1578f5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-19T13:38:53.283Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Bf6gCdLrDvJS7Fe4QmUuZR`</summary>
+
+```json
+{
+  "url": "https://trybibby.com/conference-deadlines",
+  "prompt": "Find any information about ICLR 2027 submission deadlines and ICML 2027 submission deadlines. What are the specific dates?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6948f566-ac87-475b-8bb1-54b06bb38290",
+  "isSidechain": false,
+  "requestId": "req_011CbC286bwXmgh9KqtqAmfc",
+  "type": "assistant",
+  "uuid": "ed44d15b-d7b1-4b65-b46f-b4df0b2b24da",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NkxbCGrmSS8YM6SeSgMXzs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 767,
+      "cache_read_input_tokens": 45629,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 767,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 45629,
+          "cache_creation_input_tokens": 767,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 767
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-19T13:38:58.425Z_
+
+<details><summary>↩ Tool result · `toolu_01Bf6gCdLrDvJS7Fe4QmUuZR`</summary>
+
+```text
+# ICLR 2027 and ICML 2027 Submission Deadlines
+
+## ICLR 2027
+
+The conference has two submission phases:
+
+- **Abstract submission:** "Sep 19, 2026, 11:59 AM UTC"
+- **Full paper submission:** "Sep 24, 2026, 11:59 AM UTC"
+
+The conference is scheduled for April/May 2027 at a venue to be determined.
+
+## ICML 2027
+
+- **Paper deadline:** "Jan 29, 2027, 11:59 AM UTC"
+
+The conference will take place in July 2027 at a location still being finalized.
+
+Both conferences use the Anywhere-on-Earth (AoE) timezone convention for their deadlines, so submissions are accepted until the specified time anywhere globally on those dates.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ed44d15b-d7b1-4b65-b46f-b4df0b2b24da",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "32e19817-39ca-41e2-ae78-cdeb4b61ff9c",
+  "toolUseResult": {
+    "bytes": 456782,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ICLR 2027 and ICML 2027 Submission Deadlines\n\n## ICLR 2027\n\nThe conference has two submission phases:\n\n- **Abstract submission:** \"Sep 19, 2026, 11:59 AM UTC\"\n- **Full paper submission:** \"Sep 24, 2026, 11:59 AM UTC\"\n\nThe conference is scheduled for April/May 2027 at a venue to be determined.\n\n## ICML 2027\n\n- **Paper deadline:** \"Jan 29, 2027, 11:59 AM UTC\"\n\nThe conference will take place in July 2027 at a location still being finalized.\n\nBoth conferences use the Anywhere-on-Earth (AoE) timezone convention for their deadlines, so submissions are accepted until the specified time anywhere globally on those dates.",
+    "durationMs": 5137,
+    "url": "https://trybibby.com/conference-deadlines"
+  },
+  "sourceToolAssistantUUID": "ed44d15b-d7b1-4b65-b46f-b4df0b2b24da",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-19T13:39:01.033Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NZ8KTiqUZWRj9vgnk1o59A`</summary>
+
+```json
+{
+  "query": "site:arxiv.org \"probe trajectory\" \"reasoning\" \"hidden state\" \"causal\" 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32e19817-39ca-41e2-ae78-cdeb4b61ff9c",
+  "isSidechain": false,
+  "requestId": "req_011CbC28izxHS9nNc46EJd8y",
+  "type": "assistant",
+  "uuid": "df06cd10-5a3e-4126-bae9-adb93ff8ec70",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q1j2PT5ZXdgVVNFwKRJdUT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 318,
+      "cache_read_input_tokens": 46396,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 318,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 46396,
+          "cache_creation_input_tokens": 318,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 318
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-19T13:39:09.398Z_
+
+<details><summary>↩ Tool result · `toolu_01NZ8KTiqUZWRj9vgnk1o59A`</summary>
+
+```text
+Web search results for query: "site:arxiv.org "probe trajectory" "reasoning" "hidden state" "causal" 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026 FAITHCOT-BENCH: BENCHMARKING","url":"https://arxiv.org/pdf/2510.04040"},{"title":"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics","url":"https://arxiv.org/html/2605.18549"},{"title":"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal","url":"https://arxiv.org/html/2605.09502"},{"title":"[2605.09502] Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal","url":"https://arxiv.org/abs/2605.09502"},{"title":"Temporal Predictors of Outcome in Reasoning Language Models","url":"https://arxiv.org/pdf/2511.14773"},{"title":"Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification","url":"https://arxiv.org/pdf/2504.05419"}]
+
+I found several relevant papers on arxiv.org that match your search query criteria. Here are the results:
+
+1. **"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics"** (arxiv.org/html/2605.18549) - This paper investigates the hidden representations of language reasoning models to determine whether future behavior can be predicted from prompt and CoT representations.
+
+2. **"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal"** (arxiv.org/abs/2605.09502) - This work identifies hidden error awareness—a 0.20 AUROC gap between hidden-state and text-surface detection—robust across 9 models (1.5B–72B), three families, and RL-trained reasoning models. The paper also discusses step-level probe trajectories showing two distinct patterns in error awareness: front-loaded (where the model commits early) and accumulating (where error signals build through the trace).
+
+3. **"Temporal Predictors of Outcome in Reasoning Language Models"** (arxiv.org/pdf/2511.14773) - This work focuses on probing hidden states during the reasoning trajectory, not only in the pre-answer state.
+
+4. **"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification"** (arxiv.org/pdf/2504.05419) - This study finds that models' hidden states encode correctness of future answers, enabling early prediction of the correctness before the intermediate answer is fully formulated.
+
+These papers explore the intersection of probe trajectories, reasoning dynamics, hidden states, and causal analysis in reasoning language models from 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "df06cd10-5a3e-4126-bae9-adb93ff8ec70",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "9b078b1c-a4c4-4f15-aacf-dadab8589405",
+  "toolUseResult": {
+    "query": "site:arxiv.org \"probe trajectory\" \"reasoning\" \"hidden state\" \"causal\" 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AtmP4LTDs4o1DEHLH18rZj",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026 FAITHCOT-BENCH: BENCHMARKING",
+            "url": "https://arxiv.org/pdf/2510.04040"
+          },
+          {
+            "title": "Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics",
+            "url": "https://arxiv.org/html/2605.18549"
+          },
+          {
+            "title": "Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal",
+            "url": "https://arxiv.org/html/2605.09502"
+          },
+          {
+            "title": "[2605.09502] Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal",
+            "url": "https://arxiv.org/abs/2605.09502"
+          },
+          {
+            "title": "Temporal Predictors of Outcome in Reasoning Language Models",
+            "url": "https://arxiv.org/pdf/2511.14773"
+          },
+          {
+            "title": "Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification",
+            "url": "https://arxiv.org/pdf/2504.05419"
+          }
+        ]
+      },
+      "I found several relevant papers on arxiv.org that match your search query criteria. Here are the results:\n\n1. **\"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics\"** (arxiv.org/html/2605.18549) - This paper investigates the hidden representations of language reasoning models to determine whether future behavior can be predicted from prompt and CoT representations.\n\n2. **\"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal\"** (arxiv.org/abs/2605.09502) - This work identifies hidden error awareness—a 0.20 AUROC gap between hidden-state and text-surface detection—robust across 9 models (1.5B–72B), three families, and RL-trained reasoning models. The paper also discusses step-level probe trajectories showing two distinct patterns in error awareness: front-loaded (where the model commits early) and accumulating (where error signals build through the trace).\n\n3. **\"Temporal Predictors of Outcome in Reasoning Language Models\"** (arxiv.org/pdf/2511.14773) - This work focuses on probing hidden states during the reasoning trajectory, not only in the pre-answer state.\n\n4. **\"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification\"** (arxiv.org/pdf/2504.05419) - This study finds that models' hidden states encode correctness of future answers, enabling early prediction of the correctness before the intermediate answer is fully formulated.\n\nThese papers explore the intersection of probe trajectories, reasoning dynamics, hidden states, and causal analysis in reasoning language models from 2026."
+    ],
+    "durationSeconds": 8.361044085000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "df06cd10-5a3e-4126-bae9-adb93ff8ec70",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-19T13:39:12.199Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YHJBHXnk6T4tJXU4LLNoq7`</summary>
+
+```json
+{
+  "query": "site:arxiv.org chain-of-thought faithfulness dual estimator gap probe intervention May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b078b1c-a4c4-4f15-aacf-dadab8589405",
+  "isSidechain": false,
+  "requestId": "req_011CbC29XmJJV2EvTXE7wkvj",
+  "type": "assistant",
+  "uuid": "a056756f-3418-4f01-8de8-42f3adc6d569",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J5y7SJXE4kehRJLnkMyQx4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 794,
+      "cache_read_input_tokens": 46714,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 794,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 46714,
+          "cache_creation_input_tokens": 794,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 794
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-19T13:39:20.941Z_
+
+<details><summary>↩ Tool result · `toolu_01YHJBHXnk6T4tJXU4LLNoq7`</summary>
+
+```text
+Web search results for query: "site:arxiv.org chain-of-thought faithfulness dual estimator gap probe intervention May 2026"
+
+Links: [{"title":"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2602.11201v1"},{"title":"[2307.13702] Measuring Faithfulness in Chain-of-Thought Reasoning","url":"https://arxiv.org/abs/2307.13702"},{"title":"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures","url":"https://arxiv.org/html/2603.16475v1"},{"title":"SPD-Faith Bench: Diagnosing and Improving Faithfulness in Chain-of-Thought for Multimodal Large Language Models","url":"https://arxiv.org/html/2602.07833"},{"title":"Making Reasoning Matter: Measuring and Improving Faithfulness of Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2402.13950v2"},{"title":"Measuring Faithfulness in Chain-of-Thought Reasoning","url":"https://arxiv.org/pdf/2307.13702"},{"title":"Chain-of-Thought Reasoning In The Wild Is Not Always Faithful","url":"https://arxiv.org/pdf/2503.08679"},{"title":"faithcot-bench: benchmarking instance- level faithfulness of ...","url":"https://arxiv.org/pdf/2510.04040"},{"title":"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps","url":"https://arxiv.org/html/2502.14829v3"}]
+
+Based on the search results, here are the relevant papers from arxiv.org related to chain-of-thought faithfulness and intervention methods:
+
+1. **"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning"** (January 2026): This paper uses structural diagnostics to probe the model's internal geometry and performs counterfactual interventions that corrupt specific reasoning steps to isolate the degree to which models causally depend on their generated reasoning. The authors identify a "Mapping Gap" - a dissociation between internal linear separability and external performance, where task-relevant structure is encoded in internal representations but is not utilized in the final decoding step.
+
+2. **"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures"** (March 2026): This paper discusses reasoning intervention approaches that evaluate faithfulness by modifying reasoning traces or introducing perturbations to the input and measuring whether the model's prediction changes accordingly.
+
+3. **"SPD-Faith Bench: Diagnosing and Improving Faithfulness in Chain-of-Thought for Multimodal Large Language Models"** (February 2026): This paper extends faithfulness analysis to multimodal models.
+
+4. **"Making Reasoning Matter: Measuring and Improving Faithfulness of Chain-of-Thought Reasoning"** (September 2025): This work introduces a methodology for interpreting the relationship between the CoT trace and the final answer based on causal mediation analysis.
+
+5. **"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps"** (November 2025): This paper analyzes whether parametric perturbations that affect the generated CoT also affect the prediction.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a056756f-3418-4f01-8de8-42f3adc6d569",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "a7aeeb9c-f132-413d-80c5-ccbb61c8760b",
+  "toolUseResult": {
+    "query": "site:arxiv.org chain-of-thought faithfulness dual estimator gap probe intervention May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017hJDFJ7RYExNwPJDPsJLPp",
+        "content": [
+          {
+            "title": "Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2602.11201v1"
+          },
+          {
+            "title": "[2307.13702] Measuring Faithfulness in Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/abs/2307.13702"
+          },
+          {
+            "title": "Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures",
+            "url": "https://arxiv.org/html/2603.16475v1"
+          },
+          {
+            "title": "SPD-Faith Bench: Diagnosing and Improving Faithfulness in Chain-of-Thought for Multimodal Large Language Models",
+            "url": "https://arxiv.org/html/2602.07833"
+          },
+          {
+            "title": "Making Reasoning Matter: Measuring and Improving Faithfulness of Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2402.13950v2"
+          },
+          {
+            "title": "Measuring Faithfulness in Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/pdf/2307.13702"
+          },
+          {
+            "title": "Chain-of-Thought Reasoning In The Wild Is Not Always Faithful",
+            "url": "https://arxiv.org/pdf/2503.08679"
+          },
+          {
+            "title": "faithcot-bench: benchmarking instance- level faithfulness of ...",
+            "url": "https://arxiv.org/pdf/2510.04040"
+          },
+          {
+            "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+            "url": "https://arxiv.org/html/2502.14829v3"
+          }
+        ]
+      },
+      "Based on the search results, here are the relevant papers from arxiv.org related to chain-of-thought faithfulness and intervention methods:\n\n1. **\"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning\"** (January 2026): This paper uses structural diagnostics to probe the model's internal geometry and performs counterfactual interventions that corrupt specific reasoning steps to isolate the degree to which models causally depend on their generated reasoning. The authors identify a \"Mapping Gap\" - a dissociation between internal linear separability and external performance, where task-relevant structure is encoded in internal representations but is not utilized in the final decoding step.\n\n2. **\"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures\"** (March 2026): This paper discusses reasoning intervention approaches that evaluate faithfulness by modifying reasoning traces or introducing perturbations to the input and measuring whether the model's prediction changes accordingly.\n\n3. **\"SPD-Faith Bench: Diagnosing and Improving Faithfulness in Chain-of-Thought for Multimodal Large Language Models\"** (February 2026): This paper extends faithfulness analysis to multimodal models.\n\n4. **\"Making Reasoning Matter: Measuring and Improving Faithfulness of Chain-of-Thought Reasoning\"** (September 2025): This work introduces a methodology for interpreting the relationship between the CoT trace and the final answer based on causal mediation analysis.\n\n5. **\"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps\"** (November 2025): This paper analyzes whether parametric perturbations that affect the generated CoT also affect the prediction."
+    ],
+    "durationSeconds": 8.737617364999984,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a056756f-3418-4f01-8de8-42f3adc6d569",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-19T13:39:23.713Z_
+
+Now let me check for very recent potentially missing work:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a7aeeb9c-f132-413d-80c5-ccbb61c8760b",
+  "isSidechain": false,
+  "requestId": "req_011CbC2AP9AUdm2gqc6cdfex",
+  "type": "assistant",
+  "uuid": "a385aae1-1c12-42b7-b18f-af03b9c52c68",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VAt7jZKaqeTeEtEimzRqtn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 47508,
+      "output_tokens": 85,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 903,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 85,
+          "cache_read_input_tokens": 47508,
+          "cache_creation_input_tokens": 903,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 903
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T13:39:24.160Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FMjeP98cvorQjL3dVSoVyv`</summary>
+
+```json
+{
+  "query": "arxiv \"chain of thought\" \"hidden states\" \"probe\" \"gap\" reasoning models 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a385aae1-1c12-42b7-b18f-af03b9c52c68",
+  "isSidechain": false,
+  "requestId": "req_011CbC2AP9AUdm2gqc6cdfex",
+  "type": "assistant",
+  "uuid": "aeee7537-13df-445d-a5bc-90cf068a33b2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VAt7jZKaqeTeEtEimzRqtn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 47508,
+      "output_tokens": 85,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 903,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 85,
+          "cache_read_input_tokens": 47508,
+          "cache_creation_input_tokens": 903,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 903
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-19 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "aeee7537-13df-445d-a5bc-90cf068a33b2",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrated temporal information-contribution gap for CoT faithfulness",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T13:39:33.072Z_
+
+<details><summary>↩ Tool result · `toolu_01FMjeP98cvorQjL3dVSoVyv`</summary>
+
+```text
+Web search results for query: "arxiv "chain of thought" "hidden states" "probe" "gap" reasoning models 2026"
+
+Links: [{"title":"[2603.05488] Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought","url":"https://arxiv.org/abs/2603.05488"},{"title":"[2605.18549] Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics","url":"https://arxiv.org/abs/2605.18549"},{"title":"[2603.14636] Nudging Hidden States: Training-Free Model Steering for Chain-of-Thought Reasoning in Large Audio-Language Models","url":"https://arxiv.org/abs/2603.14636"},{"title":"Preprint. February 2026. DYNAMICS WITHIN LATENT CHAIN-OF-THOUGHT:","url":"https://arxiv.org/pdf/2602.08783"},{"title":"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal","url":"https://arxiv.org/html/2605.09502"},{"title":"Verifying Chain-of-Thought Reasoning via Its Computational Graph","url":"https://arxiv.org/html/2510.09312v1"},{"title":"When Chain-of-Thought Fails, the Solution Hides in the Hidden States","url":"https://arxiv.org/html/2604.23351v1"},{"title":"Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification","url":"https://arxiv.org/pdf/2504.05419"},{"title":"Reasoning Models Know When They’re Right: Probing Hidden States for Self-Verification","url":"https://arxiv.org/html/2504.05419"}]
+
+I found several highly relevant recent papers from arXiv matching your search query. Here are the key results:
+
+## Recent Papers (2026)
+
+**1. Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought** (March 2026)
+This paper uses probes to show that inflection points like backtracking and 'aha' moments occur almost exclusively in responses where probes show large belief shifts, and proposes probe-guided early exit that reduces tokens by up to 80% on MMLU and 30% on GPQA-Diamond.
+
+**2. Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics** (May 2026 - very recent)
+This paper extracts signal-processing features that capture volatility, trend, and steady-state behavior from probe trajectories to improve the separation of future model states.
+
+**3. Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal** (May 2026)
+A linear probe on hidden states predicts trace correctness with 0.95 AUROC from the very first reasoning step (0.79), while verbalized confidence for wrong traces is 4.55/5, nearly identical to correct ones (4.87/5). The paper provides a representational perspective by directly comparing what hidden states encode with what the text expresses, and quantifying the gap.
+
+**4. Nudging Hidden States: Training-Free Model Steering for Chain-of-Thought Reasoning** (March 2026)
+This paper focuses on model steering as a practical direction for strengthening reasoning in large audio-language models through hidden state manipulation.
+
+**5. Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification** (April 2025)
+This work demonstrates that representations at intermediate stages of chain-of-thought generated by reasoning models capture key information about the correctness of each intermediate stage.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aeee7537-13df-445d-a5bc-90cf068a33b2",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "22056fdb-ef01-4399-a626-be95cb53e601",
+  "toolUseResult": {
+    "query": "arxiv \"chain of thought\" \"hidden states\" \"probe\" \"gap\" reasoning models 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011B3QWRuUktvoFeaRo8oUuc",
+        "content": [
+          {
+            "title": "[2603.05488] Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought",
+            "url": "https://arxiv.org/abs/2603.05488"
+          },
+          {
+            "title": "[2605.18549] Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics",
+            "url": "https://arxiv.org/abs/2605.18549"
+          },
+          {
+            "title": "[2603.14636] Nudging Hidden States: Training-Free Model Steering for Chain-of-Thought Reasoning in Large Audio-Language Models",
+            "url": "https://arxiv.org/abs/2603.14636"
+          },
+          {
+            "title": "Preprint. February 2026. DYNAMICS WITHIN LATENT CHAIN-OF-THOUGHT:",
+            "url": "https://arxiv.org/pdf/2602.08783"
+          },
+          {
+            "title": "Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal",
+            "url": "https://arxiv.org/html/2605.09502"
+          },
+          {
+            "title": "Verifying Chain-of-Thought Reasoning via Its Computational Graph",
+            "url": "https://arxiv.org/html/2510.09312v1"
+          },
+          {
+            "title": "When Chain-of-Thought Fails, the Solution Hides in the Hidden States",
+            "url": "https://arxiv.org/html/2604.23351v1"
+          },
+          {
+            "title": "Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification",
+            "url": "https://arxiv.org/pdf/2504.05419"
+          },
+          {
+            "title": "Reasoning Models Know When They’re Right: Probing Hidden States for Self-Verification",
+            "url": "https://arxiv.org/html/2504.05419"
+          }
+        ]
+      },
+      "I found several highly relevant recent papers from arXiv matching your search query. Here are the key results:\n\n## Recent Papers (2026)\n\n**1. Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought** (March 2026)\nThis paper uses probes to show that inflection points like backtracking and 'aha' moments occur almost exclusively in responses where probes show large belief shifts, and proposes probe-guided early exit that reduces tokens by up to 80% on MMLU and 30% on GPQA-Diamond.\n\n**2. Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics** (May 2026 - very recent)\nThis paper extracts signal-processing features that capture volatility, trend, and steady-state behavior from probe trajectories to improve the separation of future model states.\n\n**3. Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal** (May 2026)\nA linear probe on hidden states predicts trace correctness with 0.95 AUROC from the very first reasoning step (0.79), while verbalized confidence for wrong traces is 4.55/5, nearly identical to correct ones (4.87/5). The paper provides a representational perspective by directly comparing what hidden states encode with what the text expresses, and quantifying the gap.\n\n**4. Nudging Hidden States: Training-Free Model Steering for Chain-of-Thought Reasoning** (March 2026)\nThis paper focuses on model steering as a practical direction for strengthening reasoning in large audio-language models through hidden state manipulation.\n\n**5. Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification** (April 2025)\nThis work demonstrates that representations at intermediate stages of chain-of-thought generated by reasoning models capture key information about the correctness of each intermediate stage."
+    ],
+    "durationSeconds": 8.906224469000009,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "aeee7537-13df-445d-a5bc-90cf068a33b2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-19T13:39:36.062Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A5zVsibiHvCcVbSGjjMALj`</summary>
+
+```json
+{
+  "query": "arxiv \"reasoning\" \"latent\" \"probe\" \"correctness\" \"causal contribution\" 2026 temporal framework"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22056fdb-ef01-4399-a626-be95cb53e601",
+  "isSidechain": false,
+  "requestId": "req_011CbC2BH25zLP4piLPFLUve",
+  "type": "assistant",
+  "uuid": "3b225ae1-5ba3-476f-b686-d1de3c502d80",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3hRSf5b4repGoQ9wPDQVi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 993,
+      "cache_read_input_tokens": 48411,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 993,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 48411,
+          "cache_creation_input_tokens": 993,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 993
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T13:39:51.006Z_
+
+<details><summary>↩ Tool result · `toolu_01A5zVsibiHvCcVbSGjjMALj`</summary>
+
+```text
+Web search results for query: "arxiv "reasoning" "latent" "probe" "correctness" "causal contribution" 2026 temporal framework"
+
+Links: [{"title":"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics","url":"https://arxiv.org/html/2605.18549"},{"title":"Diagnosing Causal Reasoning in Vision-Language Models via Structured Relevance Graphs","url":"https://arxiv.org/html/2602.20878"},{"title":"causal reasoning in the presence of latent confounders via ...","url":"https://arxiv.org/pdf/2303.12703"},{"title":"Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure","url":"https://arxiv.org/pdf/2602.08783"},{"title":"Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification","url":"https://arxiv.org/pdf/2504.05419"},{"title":"Latent Causal Probing: A Formal Perspective on Probing with Causal   Models of Data","url":"https://arxiv.org/pdf/2407.13765"},{"title":"Temporal Predictors of Outcome in Reasoning Language Models","url":"https://arxiv.org/pdf/2511.14773"}]
+
+I found several relevant papers from arxiv matching your search. Here are the key results:
+
+1. **"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics"** (arxiv 2605.18549, published 1 day ago)
+   - This work addresses how mathematical correctness is a harder concept in the latent space, and trajectories reveal temporal dynamics invisible to static probes, with trajectories for correct and incorrect outcomes diverging substantially, where incorrect generations exhibit erratic probability spikes reflecting logical inconsistency within the latent space.
+
+2. **"Diagnosing Causal Reasoning in Vision-Language Models via Structured Relevance Graphs"** (arxiv 2602.20878, February 24, 2026)
+   - This paper examines causal reasoning and clarifies whether failures arise from limited reasoning capability or from misidentifying causally relevant information.
+
+3. **"Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure"** (arxiv 2602.08783)
+   - This work conceptualizes latent CoT as a causal system and evaluates it with intervention-based causal analysis, treating model-defined intermediate latent states as the unit of a reasoning step. The work investigates which latent steps are causally necessary for correctness and how influence propagates across steps.
+
+4. **"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification"** (arxiv 2504.05419)
+   - This paper shows that an LLM's representation after processing a statement is highly predictive of the statement's correctness, and extends this to long CoT where representations at intermediate stages capture key information about the correctness of each intermediate stage.
+
+5. **"Temporal Predictors of Outcome in Reasoning Language Models"** (arxiv 2511.14773)
+   - This work uses internal signals to predict correctness from the hidden state before the answer has converged.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3b225ae1-5ba3-476f-b686-d1de3c502d80",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "20871621-8c0c-4cdc-b439-1febba55a054",
+  "toolUseResult": {
+    "query": "arxiv \"reasoning\" \"latent\" \"probe\" \"correctness\" \"causal contribution\" 2026 temporal framework",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JsGjiSpXkr9zBQc6z64YtK",
+        "content": [
+          {
+            "title": "Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics",
+            "url": "https://arxiv.org/html/2605.18549"
+          },
+          {
+            "title": "Diagnosing Causal Reasoning in Vision-Language Models via Structured Relevance Graphs",
+            "url": "https://arxiv.org/html/2602.20878"
+          },
+          {
+            "title": "causal reasoning in the presence of latent confounders via ...",
+            "url": "https://arxiv.org/pdf/2303.12703"
+          },
+          {
+            "title": "Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure",
+            "url": "https://arxiv.org/pdf/2602.08783"
+          },
+          {
+            "title": "Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification",
+            "url": "https://arxiv.org/pdf/2504.05419"
+          },
+          {
+            "title": "Latent Causal Probing: A Formal Perspective on Probing with Causal   Models of Data",
+            "url": "https://arxiv.org/pdf/2407.13765"
+          },
+          {
+            "title": "Temporal Predictors of Outcome in Reasoning Language Models",
+            "url": "https://arxiv.org/pdf/2511.14773"
+          }
+        ]
+      },
+      "I found several relevant papers from arxiv matching your search. Here are the key results:\n\n1. **\"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics\"** (arxiv 2605.18549, published 1 day ago)\n   - This work addresses how mathematical correctness is a harder concept in the latent space, and trajectories reveal temporal dynamics invisible to static probes, with trajectories for correct and incorrect outcomes diverging substantially, where incorrect generations exhibit erratic probability spikes reflecting logical inconsistency within the latent space.\n\n2. **\"Diagnosing Causal Reasoning in Vision-Language Models via Structured Relevance Graphs\"** (arxiv 2602.20878, February 24, 2026)\n   - This paper examines causal reasoning and clarifies whether failures arise from limited reasoning capability or from misidentifying causally relevant information.\n\n3. **\"Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure\"** (arxiv 2602.08783)\n   - This work conceptualizes latent CoT as a causal system and evaluates it with intervention-based causal analysis, treating model-defined intermediate latent states as the unit of a reasoning step. The work investigates which latent steps are causally necessary for correctness and how influence propagates across steps.\n\n4. **\"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification\"** (arxiv 2504.05419)\n   - This paper shows that an LLM's representation after processing a statement is highly predictive of the statement's correctness, and extends this to long CoT where representations at intermediate stages capture key information about the correctness of each intermediate stage.\n\n5. **\"Temporal Predictors of Outcome in Reasoning Language Models\"** (arxiv 2511.14773)\n   - This work uses internal signals to predict correctness from the hidden state before the answer has converged."
+    ],
+    "durationSeconds": 14.938622979000007,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3b225ae1-5ba3-476f-b686-d1de3c502d80",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T13:39:54.617Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GM1ijQFUmKQVMtmDbEfAQY`</summary>
+
+```json
+{
+  "query": "arxiv \"Dynamics Within Latent Chain-of-Thought\" 2602.08783 causal structure 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "20871621-8c0c-4cdc-b439-1febba55a054",
+  "isSidechain": false,
+  "requestId": "req_011CbC2Cd3PC9d1Me5KFmEzx",
+  "type": "assistant",
+  "uuid": "40239a9b-d79e-4672-9b5b-67c90f87bad6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V96VWKKwAV5rs5mgy2rCTh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 49404,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 890,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 49404,
+          "cache_creation_input_tokens": 890,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 890
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T13:40:04.480Z_
+
+<details><summary>↩ Tool result · `toolu_01GM1ijQFUmKQVMtmDbEfAQY`</summary>
+
+```text
+Web search results for query: "arxiv "Dynamics Within Latent Chain-of-Thought" 2602.08783 causal structure 2026"
+
+Links: [{"title":"[2602.08783] Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure","url":"https://arxiv.org/abs/2602.08783"},{"title":"Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure","url":"https://arxiv.org/html/2602.08783"},{"title":"Preprint. February 2026. DYNAMICS WITHIN LATENT CHAIN-OF-THOUGHT:","url":"https://arxiv.org/pdf/2602.08783"},{"title":"Capabilities and Fundamental Limits of Latent Chain-of-Thought","url":"https://arxiv.org/pdf/2602.01148"},{"title":"Explainable Chain-of-Thought Reasoning: An Empirical Analysis on State-Aware Reasoning Dynamics","url":"https://arxiv.org/pdf/2509.00190"},{"title":"Reasoning Beyond Chain-of-Thought: A Latent Computational Mode in Large Language Models","url":"https://arxiv.org/pdf/2601.08058"}]
+
+I found the paper you're looking for! Here's what the search returned:
+
+The paper "Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure" (arxiv 2602.08783) addresses how latent or continuous chain-of-thought methods replace explicit textual rationales with internal latent steps, viewing latent chain-of-thought as a manipulable causal process in representation space by modeling latent steps as variables in a structural causal model (SCM) and analyzing their effects through step-wise do-interventions.
+
+The paper investigates three key questions: (1) which steps are causally necessary for correctness and when answers become decidable early; (2) how does influence propagate across steps, and how does this structure compare to explicit CoT; and (3) do intermediate trajectories retain competing answer modes, and how does output-level commitment differ from representational commitment across steps.
+
+The paper was authored by researchers from Harbin Institute of Technology, Shenzhen (HITSZ), M-A-P, University of Manchester, and Beihang University, with the latest version (v2) updated on March 17, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40239a9b-d79e-4672-9b5b-67c90f87bad6",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "7c141ebf-4cf5-42f3-b3c3-cd7bf6f5f46e",
+  "toolUseResult": {
+    "query": "arxiv \"Dynamics Within Latent Chain-of-Thought\" 2602.08783 causal structure 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XNTPqDxnKkwcYdR1ZrmY16",
+        "content": [
+          {
+            "title": "[2602.08783] Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure",
+            "url": "https://arxiv.org/abs/2602.08783"
+          },
+          {
+            "title": "Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure",
+            "url": "https://arxiv.org/html/2602.08783"
+          },
+          {
+            "title": "Preprint. February 2026. DYNAMICS WITHIN LATENT CHAIN-OF-THOUGHT:",
+            "url": "https://arxiv.org/pdf/2602.08783"
+          },
+          {
+            "title": "Capabilities and Fundamental Limits of Latent Chain-of-Thought",
+            "url": "https://arxiv.org/pdf/2602.01148"
+          },
+          {
+            "title": "Explainable Chain-of-Thought Reasoning: An Empirical Analysis on State-Aware Reasoning Dynamics",
+            "url": "https://arxiv.org/pdf/2509.00190"
+          },
+          {
+            "title": "Reasoning Beyond Chain-of-Thought: A Latent Computational Mode in Large Language Models",
+            "url": "https://arxiv.org/pdf/2601.08058"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what the search returned:\n\nThe paper \"Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure\" (arxiv 2602.08783) addresses how latent or continuous chain-of-thought methods replace explicit textual rationales with internal latent steps, viewing latent chain-of-thought as a manipulable causal process in representation space by modeling latent steps as variables in a structural causal model (SCM) and analyzing their effects through step-wise do-interventions.\n\nThe paper investigates three key questions: (1) which steps are causally necessary for correctness and when answers become decidable early; (2) how does influence propagate across steps, and how does this structure compare to explicit CoT; and (3) do intermediate trajectories retain competing answer modes, and how does output-level commitment differ from representational commitment across steps.\n\nThe paper was authored by researchers from Harbin Institute of Technology, Shenzhen (HITSZ), M-A-P, University of Manchester, and Beihang University, with the latest version (v2) updated on March 17, 2026."
+    ],
+    "durationSeconds": 9.857692851999978,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "40239a9b-d79e-4672-9b5b-67c90f87bad6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T13:40:07.448Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ApQRC7A1p8PHqAW2Hz5oRR`</summary>
+
+```json
+{
+  "query": "arxiv \"CoT faithfulness\" \"probe\" \"information\" \"gap\" \"calibration\" May June 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c141ebf-4cf5-42f3-b3c3-cd7bf6f5f46e",
+  "isSidechain": false,
+  "requestId": "req_011CbC2DbJVEGynpwmCA2VTV",
+  "type": "assistant",
+  "uuid": "84bb6f38-9432-4bdb-a5d4-e03a7171a31c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xvBMyFboDEAFRE5NcMV2t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 690,
+      "cache_read_input_tokens": 50294,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 690,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 50294,
+          "cache_creation_input_tokens": 690,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 690
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T13:40:15.580Z_
+
+<details><summary>↩ Tool result · `toolu_01ApQRC7A1p8PHqAW2Hz5oRR`</summary>
+
+```text
+Web search results for query: "arxiv "CoT faithfulness" "probe" "information" "gap" "calibration" May June 2026"
+
+Links: [{"title":"[2510.04040] FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning","url":"https://arxiv.org/abs/2510.04040"},{"title":"Evaluating Reasoning Faithfulness in Medical Vision-Language Models using Multimodal Perturbations","url":"https://arxiv.org/html/2510.11196"},{"title":"Bypassing the Rationale: Causal Auditing of Implicit Reasoning in Language Models","url":"https://arxiv.org/pdf/2602.03994"},{"title":"Published as a conference paper at ICLR 2026 FAITHCOT-BENCH: BENCHMARKING","url":"https://arxiv.org/pdf/2510.04040"},{"title":"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2510.04040v1"},{"title":"Measuring Faithfulness in Chain-of-Thought Reasoning","url":"https://arxiv.org/pdf/2307.13702"},{"title":"Is Chain-of-Thought Really Not Explainability? Chain-of-Thought Can Be Faithful without Hint Verbalization","url":"https://arxiv.org/pdf/2512.23032"},{"title":"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering","url":"https://arxiv.org/pdf/2603.01437"}]
+
+I found several relevant arxiv papers on CoT (Chain-of-Thought) faithfulness. Here are the key results:
+
+1. **FaithCoT-Bench** (Published at ICLR 2026): This introduces FaithCoT-Bench, a unified benchmark for instance-level CoT unfaithfulness detection. It provides FINE-CoT, an expert-annotated collection of over 1,000 trajectories generated by four representative LLMs across four domains, including more than 300 unfaithful instances with fine-grained causes and step-level evidence.
+
+2. **Medical Vision-Language Models Study** (November 2025): This addresses the gap with an automated framework to probe the faithfulness of medical VLM explanations, defined as the causal alignment between stated reasoning and the features that drive the prediction.
+
+3. **Causal Auditing Framework** (February 2026): This contribution is a causal, layerwise auditing framework that measures whether answers are mechanistically mediated by CoT-aligned internal representations, quantifying this dependence using the CoT Mediation Index (CMI) and localizing where in the network CoT-specific influence arises.
+
+4. **Pre-CoT Probes Study** (March 2026): Prior work documents instances where models rationalize biased answers with convincing but misleading CoT, and instances where larger models ignore their own CoT when producing final answers.
+
+These papers represent recent work addressing gaps in understanding and evaluating the faithfulness of chain-of-thought reasoning in language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "84bb6f38-9432-4bdb-a5d4-e03a7171a31c",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "304b0697-2d27-4077-9cca-4abf8dcf4af8",
+  "toolUseResult": {
+    "query": "arxiv \"CoT faithfulness\" \"probe\" \"information\" \"gap\" \"calibration\" May June 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018gqGm19GAWAMEBJ9NkjN2m",
+        "content": [
+          {
+            "title": "[2510.04040] FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/abs/2510.04040"
+          },
+          {
+            "title": "Evaluating Reasoning Faithfulness in Medical Vision-Language Models using Multimodal Perturbations",
+            "url": "https://arxiv.org/html/2510.11196"
+          },
+          {
+            "title": "Bypassing the Rationale: Causal Auditing of Implicit Reasoning in Language Models",
+            "url": "https://arxiv.org/pdf/2602.03994"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 FAITHCOT-BENCH: BENCHMARKING",
+            "url": "https://arxiv.org/pdf/2510.04040"
+          },
+          {
+            "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2510.04040v1"
+          },
+          {
+            "title": "Measuring Faithfulness in Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/pdf/2307.13702"
+          },
+          {
+            "title": "Is Chain-of-Thought Really Not Explainability? Chain-of-Thought Can Be Faithful without Hint Verbalization",
+            "url": "https://arxiv.org/pdf/2512.23032"
+          },
+          {
+            "title": "Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering",
+            "url": "https://arxiv.org/pdf/2603.01437"
+          }
+        ]
+      },
+      "I found several relevant arxiv papers on CoT (Chain-of-Thought) faithfulness. Here are the key results:\n\n1. **FaithCoT-Bench** (Published at ICLR 2026): This introduces FaithCoT-Bench, a unified benchmark for instance-level CoT unfaithfulness detection. It provides FINE-CoT, an expert-annotated collection of over 1,000 trajectories generated by four representative LLMs across four domains, including more than 300 unfaithful instances with fine-grained causes and step-level evidence.\n\n2. **Medical Vision-Language Models Study** (November 2025): This addresses the gap with an automated framework to probe the faithfulness of medical VLM explanations, defined as the causal alignment between stated reasoning and the features that drive the prediction.\n\n3. **Causal Auditing Framework** (February 2026): This contribution is a causal, layerwise auditing framework that measures whether answers are mechanistically mediated by CoT-aligned internal representations, quantifying this dependence using the CoT Mediation Index (CMI) and localizing where in the network CoT-specific influence arises.\n\n4. **Pre-CoT Probes Study** (March 2026): Prior work documents instances where models rationalize biased answers with convincing but misleading CoT, and instances where larger models ignore their own CoT when producing final answers.\n\nThese papers represent recent work addressing gaps in understanding and evaluating the faithfulness of chain-of-thought reasoning in language models."
+    ],
+    "durationSeconds": 8.126963931999985,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "84bb6f38-9432-4bdb-a5d4-e03a7171a31c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55 · 2026-05-19T13:40:15.583Z_
+
+```json
+{
+  "parentUuid": "304b0697-2d27-4077-9cca-4abf8dcf4af8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3fe5a31c-a50e-47b5-bf02-0e5a2b8b7da9",
+  "timestamp": "2026-05-19T13:40:15.583Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-19T13:40:18.906Z_
+
+Now let me read the most critical concurrent work (Chrabąszcz et al.) more carefully, and check for any very recent papers that might be missing:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3fe5a31c-a50e-47b5-bf02-0e5a2b8b7da9",
+  "isSidechain": false,
+  "requestId": "req_011CbC2EQkGFmYZSzCdNwPkr",
+  "type": "assistant",
+  "uuid": "32c8f4ae-e19c-4fe8-89a1-6ddfa5187136",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDMNvDUuWvxmNBDGFnUS2F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 50984,
+      "output_tokens": 210,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 974,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 210,
+          "cache_read_input_tokens": 50984,
+          "cache_creation_input_tokens": 974,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 974
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-19T13:40:21.267Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GQw1WcJmSCHrhrDUWgvCsQ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.18549",
+  "prompt": "Extract: (1) the full list of models and datasets used, (2) the specific signal-processing features extracted from probe trajectories, (3) the key quantitative results (AUROC numbers, improvement percentages), (4) whether they do any causal intervention or causal contribution measurement, (5) whether they do any null-probe calibration or probe inflation analysis, (6) the paper's limitations section. Be very detailed."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32c8f4ae-e19c-4fe8-89a1-6ddfa5187136",
+  "isSidechain": false,
+  "requestId": "req_011CbC2EQkGFmYZSzCdNwPkr",
+  "type": "assistant",
+  "uuid": "18496352-e401-4b55-b076-218221ead545",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDMNvDUuWvxmNBDGFnUS2F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 50984,
+      "output_tokens": 210,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 974,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 210,
+          "cache_read_input_tokens": 50984,
+          "cache_creation_input_tokens": 974,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 974
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-19 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "18496352-e401-4b55-b076-218221ead545",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrated temporal information-contribution gap for CoT faithfulness",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-19T13:40:25.568Z_
+
+<details><summary>↩ Tool result · `toolu_01GQw1WcJmSCHrhrDUWgvCsQ`</summary>
+
+```text
+# Analysis of arXiv:2605.18549
+
+Based on the abstract provided, here's what can be extracted:
+
+## (1) Models and Datasets
+The paper mentions **"four datasets and four reasoning models across the domains of safety and mathematics,"** but the abstract does not specify their names or details.
+
+## (2) Signal-Processing Features
+The authors extracted features to **"capture volatility, trend, and steady-state behavior"** from probe trajectories, though specific feature names aren't detailed in the abstract.
+
+## (3) Key Quantitative Results
+The abstract reports that **"max-pooling achieves up to 95% AUROC"** and that trajectory features provide significant improvement in outcome separability compared to single-token predictions.
+
+## (4) Causal Intervention
+The abstract does not mention causal intervention or causal contribution measurement.
+
+## (5) Null-Probe Calibration
+No information about null-probe calibration or probe inflation analysis appears in the provided abstract.
+
+## (6) Limitations Section
+The limitations section is not included in the webpage content provided.
+
+**Note:** The abstract alone cannot fulfill all requests. Complete details would require access to the full PDF or HTML versions of the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "18496352-e401-4b55-b076-218221ead545",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "3fdbc2eb-06e2-47b4-b63b-fb417eab7947",
+  "toolUseResult": {
+    "bytes": 47895,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of arXiv:2605.18549\n\nBased on the abstract provided, here's what can be extracted:\n\n## (1) Models and Datasets\nThe paper mentions **\"four datasets and four reasoning models across the domains of safety and mathematics,\"** but the abstract does not specify their names or details.\n\n## (2) Signal-Processing Features\nThe authors extracted features to **\"capture volatility, trend, and steady-state behavior\"** from probe trajectories, though specific feature names aren't detailed in the abstract.\n\n## (3) Key Quantitative Results\nThe abstract reports that **\"max-pooling achieves up to 95% AUROC\"** and that trajectory features provide significant improvement in outcome separability compared to single-token predictions.\n\n## (4) Causal Intervention\nThe abstract does not mention causal intervention or causal contribution measurement.\n\n## (5) Null-Probe Calibration\nNo information about null-probe calibration or probe inflation analysis appears in the provided abstract.\n\n## (6) Limitations Section\nThe limitations section is not included in the webpage content provided.\n\n**Note:** The abstract alone cannot fulfill all requests. Complete details would require access to the full PDF or HTML versions of the paper.",
+    "durationMs": 4275,
+    "url": "https://arxiv.org/abs/2605.18549"
+  },
+  "sourceToolAssistantUUID": "18496352-e401-4b55-b076-218221ead545",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-19T13:40:30.942Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01BFBj7jiv29YKcReemkKC4t`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.18549",
+  "prompt": "Extract detailed information: (1) Full list of models tested (names and sizes), (2) Full list of datasets, (3) All signal-processing feature categories with specific features listed, (4) Key quantitative results - exact AUROC numbers with comparison to baselines, (5) Whether the paper does ANY causal intervention, activation patching, or causal contribution measurement, (6) Whether they calibrate probes against null baselines, (7) Whether they discuss faithfulness phenomena classification or taxonomy, (8) The limitations section, (9) Total compute cost mentioned. Be maximally detailed."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3fdbc2eb-06e2-47b4-b63b-fb417eab7947",
+  "isSidechain": false,
+  "requestId": "req_011CbC2F9TXpFPZFePv4N2YU",
+  "type": "assistant",
+  "uuid": "9070c3f9-0988-4880-bc1b-3601862c5cbf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015gtpJjazyoPWoasE8U4Qo2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 490,
+      "cache_read_input_tokens": 51958,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 490,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 51958,
+          "cache_creation_input_tokens": 490,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 490
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-19T13:40:47.219Z_
+
+<details><summary>↩ Tool result · `toolu_01BFBj7jiv29YKcReemkKC4t`</summary>
+
+```text
+# Detailed Analysis of "Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics"
+
+## (1) Full List of Models Tested
+
+**Models and Sizes:**
+- Llama-8B-R1-Distill (8 billion parameters)
+- Qwen3-4B (4 billion parameters)
+- Qwen3-8B (8 billion parameters)
+- Qwen3-14B (14 billion parameters)
+
+All models are explicitly trained or fine-tuned to produce intermediate reasoning steps.
+
+## (2) Full List of Datasets
+
+**Safety/Harmfulness Domain:**
+- WildGuardMix (WGMix) - primary training and evaluation dataset
+- Aegis - out-of-distribution transfer dataset
+
+**Mathematical Reasoning Domain:**
+- ProcessBench - training dataset with annotated logical steps
+- GSM8K - grade-school math word problems
+- MATH - competition-level mathematics problems
+
+## (3) Signal-Processing Feature Categories
+
+Six core feature groups are extracted from probability trajectories:
+
+**H.1 Global Statistical State:** mean, maximum, last token probability, variance, median, IQR, RMS, last-to-max ratio, global slope, running-mean slope, prompt late slope, probability bin proportions
+
+**H.2 Shape and Trend Dynamics:** trajectory concavity, smoothed slope, maximum drawdown, recovery ratio, delta variance, acceleration statistics, surge speed, peak-to-end drop, terminal derivatives
+
+**H.3 Temporal Segmentation (Tertiles):** phase decomposition of CoT with inter-phase deltas
+
+**H.4 Boundary Transients and Volatility:** localized volatility features at prompt-to-CoT transition
+
+**H.5 Signal Processing and Sustained Intents:** peak detection, dwell-time run-lengths, autocorrelation, mean-crossing rates
+
+**H.6 Temporal and Relational Landmarks:** argmax positions, mean and max ratios
+
+## (4) Key Quantitative Results
+
+**Harmfulness Detection (Table 1) - Max Pooling Results:**
+- R1-Llama-8B: 97.10% AUROC
+- Qwen3-4B: 96.81% AUROC
+- Qwen3-8B: 95.67% AUROC
+- Qwen3-14B: 97.14% AUROC
+
+**Baseline Comparisons:**
+- Last-Token methods: ~50% AUROC (near-random)
+- Average Pooling: ~45% AUROC (near-random)
+- LLM-as-a-Judge baseline: ~84% AUROC
+
+**Mathematical Correctness (Figure 6):**
+- MATH dataset: 73-78% AUROC for static probes
+- GSM8K: 65-78% AUROC for static probes
+- Trajectory features provide gains up to ~17 percentage points on GSM8K
+
+**Out-of-Distribution Performance (Figure 5):**
+Trajectory-based classifiers substantially outperform static probes on the Aegis OOD dataset, with static probe performance degrading significantly.
+
+## (5) Causal Intervention, Activation Patching, or Causal Contribution Analysis
+
+**No causal interventions or activation patching are performed.** The paper explicitly does not conduct mechanistic interventions. The authors state they employ "a 3-fold cross-validation strategy exclusively on the test splits" to measure "inherent discriminative richness," which is descriptive analysis rather than causal intervention.
+
+## (6) Probe Calibration Against Null Baselines
+
+**No explicit null baseline calibration is mentioned.** The paper uses cross-validation on evaluation data as a diagnostic upper bound but does not discuss calibration procedures, permutation tests, or control conditions that would establish statistical significance against random chance beyond the reported ~50% baseline.
+
+## (7) Faithfulness Phenomena Classification or Taxonomy
+
+The paper discusses "unfaithful CoT" but does not provide a systematic taxonomy. They identify two unfaithfulness categories empirically:
+
+- Cases where "CoT appears safe but the final response is harmful"
+- Cases where "CoT appears harmful but the final response is safe"
+
+Appendix D provides two specific examples of unfaithful CoT but lacks broader classification framework or metrics beyond the "5-10% unfaithfulness rate" mentioned.
+
+## (8) Limitations Section
+
+The authors acknowledge four key limitations:
+
+- "Evaluation models up to 14B parameters; validation on larger models (70B+) is a next step"
+- "Evaluation spans only two behavioral domains (harmfulness and mathematical correctness)"
+- Potential label noise, as "harmfulness labels rely on the WildGuard classifier"
+- No discussion of adversarial robustness or obfuscation resistance (though impact statement addresses reverse-engineering concerns)
+
+## (9) Total Compute Cost
+
+"All experiments were conducted using A100 GPUs (40GB) and we used ∼3000 GPUh for all experiments."
+
+---
+
+## Summary Note
+
+This work represents descriptive statistical analysis of internal representations rather than mechanistic causal investigation. The core contribution is characterizing temporal patterns in probe predictions, not identifying causal mechanisms driving model behavior.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9070c3f9-0988-4880-bc1b-3601862c5cbf",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "118f5565-6eb7-49fb-8962-90199a73f9e7",
+  "toolUseResult": {
+    "bytes": 433884,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Detailed Analysis of \"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics\"\n\n## (1) Full List of Models Tested\n\n**Models and Sizes:**\n- Llama-8B-R1-Distill (8 billion parameters)\n- Qwen3-4B (4 billion parameters)\n- Qwen3-8B (8 billion parameters)\n- Qwen3-14B (14 billion parameters)\n\nAll models are explicitly trained or fine-tuned to produce intermediate reasoning steps.\n\n## (2) Full List of Datasets\n\n**Safety/Harmfulness Domain:**\n- WildGuardMix (WGMix) - primary training and evaluation dataset\n- Aegis - out-of-distribution transfer dataset\n\n**Mathematical Reasoning Domain:**\n- ProcessBench - training dataset with annotated logical steps\n- GSM8K - grade-school math word problems\n- MATH - competition-level mathematics problems\n\n## (3) Signal-Processing Feature Categories\n\nSix core feature groups are extracted from probability trajectories:\n\n**H.1 Global Statistical State:** mean, maximum, last token probability, variance, median, IQR, RMS, last-to-max ratio, global slope, running-mean slope, prompt late slope, probability bin proportions\n\n**H.2 Shape and Trend Dynamics:** trajectory concavity, smoothed slope, maximum drawdown, recovery ratio, delta variance, acceleration statistics, surge speed, peak-to-end drop, terminal derivatives\n\n**H.3 Temporal Segmentation (Tertiles):** phase decomposition of CoT with inter-phase deltas\n\n**H.4 Boundary Transients and Volatility:** localized volatility features at prompt-to-CoT transition\n\n**H.5 Signal Processing and Sustained Intents:** peak detection, dwell-time run-lengths, autocorrelation, mean-crossing rates\n\n**H.6 Temporal and Relational Landmarks:** argmax positions, mean and max ratios\n\n## (4) Key Quantitative Results\n\n**Harmfulness Detection (Table 1) - Max Pooling Results:**\n- R1-Llama-8B: 97.10% AUROC\n- Qwen3-4B: 96.81% AUROC\n- Qwen3-8B: 95.67% AUROC\n- Qwen3-14B: 97.14% AUROC\n\n**Baseline Comparisons:**\n- Last-Token methods: ~50% AUROC (near-random)\n- Average Pooling: ~45% AUROC (near-random)\n- LLM-as-a-Judge baseline: ~84% AUROC\n\n**Mathematical Correctness (Figure 6):**\n- MATH dataset: 73-78% AUROC for static probes\n- GSM8K: 65-78% AUROC for static probes\n- Trajectory features provide gains up to ~17 percentage points on GSM8K\n\n**Out-of-Distribution Performance (Figure 5):**\nTrajectory-based classifiers substantially outperform static probes on the Aegis OOD dataset, with static probe performance degrading significantly.\n\n## (5) Causal Intervention, Activation Patching, or Causal Contribution Analysis\n\n**No causal interventions or activation patching are performed.** The paper explicitly does not conduct mechanistic interventions. The authors state they employ \"a 3-fold cross-validation strategy exclusively on the test splits\" to measure \"inherent discriminative richness,\" which is descriptive analysis rather than causal intervention.\n\n## (6) Probe Calibration Against Null Baselines\n\n**No explicit null baseline calibration is mentioned.** The paper uses cross-validation on evaluation data as a diagnostic upper bound but does not discuss calibration procedures, permutation tests, or control conditions that would establish statistical significance against random chance beyond the reported ~50% baseline.\n\n## (7) Faithfulness Phenomena Classification or Taxonomy\n\nThe paper discusses \"unfaithful CoT\" but does not provide a systematic taxonomy. They identify two unfaithfulness categories empirically:\n\n- Cases where \"CoT appears safe but the final response is harmful\"\n- Cases where \"CoT appears harmful but the final response is safe\"\n\nAppendix D provides two specific examples of unfaithful CoT but lacks broader classification framework or metrics beyond the \"5-10% unfaithfulness rate\" mentioned.\n\n## (8) Limitations Section\n\nThe authors acknowledge four key limitations:\n\n- \"Evaluation models up to 14B parameters; validation on larger models (70B+) is a next step\"\n- \"Evaluation spans only two behavioral domains (harmfulness and mathematical correctness)\"\n- Potential label noise, as \"harmfulness labels rely on the WildGuard classifier\"\n- No discussion of adversarial robustness or obfuscation resistance (though impact statement addresses reverse-engineering concerns)\n\n## (9) Total Compute Cost\n\n\"All experiments were conducted using A100 GPUs (40GB) and we used ∼3000 GPUh for all experiments.\"\n\n---\n\n## Summary Note\n\nThis work represents descriptive statistical analysis of internal representations rather than mechanistic causal investigation. The core contribution is characterizing temporal patterns in probe predictions, not identifying causal mechanisms driving model behavior.",
+    "durationMs": 16273,
+    "url": "https://arxiv.org/html/2605.18549"
+  },
+  "sourceToolAssistantUUID": "9070c3f9-0988-4880-bc1b-3601862c5cbf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-19T13:40:50.391Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QsTHksuqcmMxgEQ6raqBjN`</summary>
+
+```json
+{
+  "query": "arxiv \"reasoning\" \"probe\" \"causal\" \"hidden state\" \"faithfulness\" \"temporal\" framework May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "118f5565-6eb7-49fb-8962-90199a73f9e7",
+  "isSidechain": false,
+  "requestId": "req_011CbC2GjyTqY2XNt2MtxreY",
+  "type": "assistant",
+  "uuid": "fd4073cb-3a0a-4ea3-b5d8-c92ee6091f2d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D32uZWtVsiaky482MLuMx4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1434,
+      "cache_read_input_tokens": 52448,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1434,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 52448,
+          "cache_creation_input_tokens": 1434,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1434
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-19T13:40:58.269Z_
+
+<details><summary>↩ Tool result · `toolu_01QsTHksuqcmMxgEQ6raqBjN`</summary>
+
+```text
+Web search results for query: "arxiv "reasoning" "probe" "causal" "hidden state" "faithfulness" "temporal" framework May 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026 FAITHCOT-BENCH: BENCHMARKING","url":"https://arxiv.org/pdf/2510.04040"},{"title":"[2601.02314] Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents","url":"https://arxiv.org/abs/2601.02314"},{"title":"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2602.11201"},{"title":"Towards CausalGPT: A Multi-Agent Approach for Faithful Knowledge   Reasoning via Promoting Causal Consistency in LLMs","url":"https://arxiv.org/pdf/2308.11914"},{"title":"Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents","url":"https://arxiv.org/pdf/2601.02314"},{"title":"Bypassing the Rationale: Causal Auditing of Implicit Reasoning in Language Models","url":"https://arxiv.org/pdf/2602.03994"},{"title":"A Self-explainable Model of Long Time Series by Extracting Informative Structured Causal Patterns","url":"https://arxiv.org/pdf/2512.01412"},{"title":"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures","url":"https://arxiv.org/pdf/2603.16475"}]
+
+Based on the search results, I found several relevant arxiv papers from early 2026 that address reasoning, probing, causal analysis, and faithfulness in language models. Here are the most relevant findings:
+
+## Key Papers Found:
+
+**Project Ariadne (January 2026):**
+Project Ariadne is an XAI framework that utilizes Structural Causal Models and counterfactual logic to audit causal integrity of agentic reasoning, performing hard interventions (do-calculus) on intermediate reasoning nodes to measure the Causal Sensitivity of the terminal answer.
+
+**Mechanistic Evidence for Faithfulness Decay (January 2026):**
+This work couples linear probes to track the evolution of solution-relevant information across layers, utilizing Trajectory Alignment Score metrics to quantify the geometric drift of reasoning paths in latent space following counterfactual intervention.
+
+**Bypassing the Rationale (February 2026):**
+This paper presents a causal, layerwise auditing framework that measures whether answers are mechanistically mediated by CoT-aligned internal representations, quantifying this dependence using the CoT Mediation Index and localizing where in the network CoT-specific influence arises.
+
+**Breaking the Chain (February 2026):**
+This work examines whether intermediate reasoning steps LLMs produce genuinely explain and influence the final prediction rather than merely accompanying it.
+
+These papers collectively represent recent advances in causal probing and faithfulness evaluation frameworks for understanding LLM reasoning processes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd4073cb-3a0a-4ea3-b5d8-c92ee6091f2d",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "9ea08886-7273-42f0-aaa2-060f1666b4d6",
+  "toolUseResult": {
+    "query": "arxiv \"reasoning\" \"probe\" \"causal\" \"hidden state\" \"faithfulness\" \"temporal\" framework May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DEFkCBcxofA2matv86ZeE4",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026 FAITHCOT-BENCH: BENCHMARKING",
+            "url": "https://arxiv.org/pdf/2510.04040"
+          },
+          {
+            "title": "[2601.02314] Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents",
+            "url": "https://arxiv.org/abs/2601.02314"
+          },
+          {
+            "title": "Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2602.11201"
+          },
+          {
+            "title": "Towards CausalGPT: A Multi-Agent Approach for Faithful Knowledge   Reasoning via Promoting Causal Consistency in LLMs",
+            "url": "https://arxiv.org/pdf/2308.11914"
+          },
+          {
+            "title": "Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents",
+            "url": "https://arxiv.org/pdf/2601.02314"
+          },
+          {
+            "title": "Bypassing the Rationale: Causal Auditing of Implicit Reasoning in Language Models",
+            "url": "https://arxiv.org/pdf/2602.03994"
+          },
+          {
+            "title": "A Self-explainable Model of Long Time Series by Extracting Informative Structured Causal Patterns",
+            "url": "https://arxiv.org/pdf/2512.01412"
+          },
+          {
+            "title": "Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures",
+            "url": "https://arxiv.org/pdf/2603.16475"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant arxiv papers from early 2026 that address reasoning, probing, causal analysis, and faithfulness in language models. Here are the most relevant findings:\n\n## Key Papers Found:\n\n**Project Ariadne (January 2026):**\nProject Ariadne is an XAI framework that utilizes Structural Causal Models and counterfactual logic to audit causal integrity of agentic reasoning, performing hard interventions (do-calculus) on intermediate reasoning nodes to measure the Causal Sensitivity of the terminal answer.\n\n**Mechanistic Evidence for Faithfulness Decay (January 2026):**\nThis work couples linear probes to track the evolution of solution-relevant information across layers, utilizing Trajectory Alignment Score metrics to quantify the geometric drift of reasoning paths in latent space following counterfactual intervention.\n\n**Bypassing the Rationale (February 2026):**\nThis paper presents a causal, layerwise auditing framework that measures whether answers are mechanistically mediated by CoT-aligned internal representations, quantifying this dependence using the CoT Mediation Index and localizing where in the network CoT-specific influence arises.\n\n**Breaking the Chain (February 2026):**\nThis work examines whether intermediate reasoning steps LLMs produce genuinely explain and influence the final prediction rather than merely accompanying it.\n\nThese papers collectively represent recent advances in causal probing and faithfulness evaluation frameworks for understanding LLM reasoning processes."
+    ],
+    "durationSeconds": 7.869864310000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fd4073cb-3a0a-4ea3-b5d8-c92ee6091f2d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-19T13:41:01.194Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017HZjpLzcruT89js81Yhp6d`</summary>
+
+```json
+{
+  "query": "\"how does chain of thought think\" mechanistic interpretability sparse autoencoding 2507.22928"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ea08886-7273-42f0-aaa2-060f1666b4d6",
+  "isSidechain": false,
+  "requestId": "req_011CbC2HZGZP7gwXa2Zg2euY",
+  "type": "assistant",
+  "uuid": "434f562a-f3ba-4278-9b5f-925d9269ea6b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019LY9dbsCobnoixX3SnFADc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 53882,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 53882,
+          "cache_creation_input_tokens": 861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-19T13:41:09.778Z_
+
+<details><summary>↩ Tool result · `toolu_017HZjpLzcruT89js81Yhp6d`</summary>
+
+```text
+Web search results for query: ""how does chain of thought think" mechanistic interpretability sparse autoencoding 2507.22928"
+
+Links: [{"title":"How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/how-does-chain-thought-think-mechanistic-interpretability"},{"title":"How does chain of thought think? mechanistic interpretability of chain-of-thought reasoning with sparse autoencoding - Dr. Niki van Stein","url":"https://www.nikivanstein.nl/publication/2025-01-01-How-does-chain-of-thought-think-mechanistic-interpretability-of-chain-of-thought-reasoning-with-sparse-autoencoding"},{"title":"[2507.22928] How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding","url":"https://arxiv.org/abs/2507.22928"},{"title":"Mechanistic Interpretability","url":"https://www.aussieai.com/research/mechanistic-interpretability"},{"title":"dblp: How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding.","url":"https://dblp.uni-trier.de/rec/journals/corr/abs-2507-22928.html"},{"title":"How does Chain of Thought Think? Mechanistic ...","url":"https://arxiv.org/pdf/2507.22928"},{"title":"(PDF) How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding","url":"https://www.researchgate.net/publication/394174965_How_does_Chain_of_Thought_Think_Mechanistic_Interpretability_of_Chain-of-Thought_Reasoning_with_Sparse_Autoencoding"},{"title":"How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding","url":"https://arxiv.org/html/2507.22928v1"},{"title":"Publications - Dr. Niki van Stein","url":"https://www.nikivanstein.nl/publications/"},{"title":"Position: Mechanistic Interpretability Should Prioritize Feature Consistency in SAEs","url":"https://arxiv.org/pdf/2505.20254"}]
+
+I found the paper for you! Here's information about arXiv:2507.22928:
+
+**Paper Title:** "How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding"
+
+**Authors:** Xi Chen, Aske Plaat, and Niki van Stein
+
+**Main Research Question:** Chain-of-thought (CoT) prompting boosts Large Language Models accuracy on multi-step tasks, yet whether the generated "thoughts" reflect the true internal reasoning process is unresolved.
+
+**Methodology:** The researchers combine sparse autoencoders with activation patching to extract monosemantic features from Pythia-70M and Pythia-2.8B while they tackle GSM8K math problems under CoT and plain (noCoT) prompting.
+
+**Key Findings:** 
+- Swapping a small set of CoT-reasoning features into a noCoT run raises answer log-probabilities significantly in the 2.8B model, but has no reliable effect in 70M, revealing a clear scale threshold.
+- CoT also leads to significantly higher activation sparsity and feature interpretability scores in the larger model, signalling more modular internal computation.
+
+The paper was submitted on July 24, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "434f562a-f3ba-4278-9b5f-925d9269ea6b",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "c33fbd40-b723-4859-81a5-593e42326d5e",
+  "toolUseResult": {
+    "query": "\"how does chain of thought think\" mechanistic interpretability sparse autoencoding 2507.22928",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WvsLxqMQLG417tPVgdEHPL",
+        "content": [
+          {
+            "title": "How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/how-does-chain-thought-think-mechanistic-interpretability"
+          },
+          {
+            "title": "How does chain of thought think? mechanistic interpretability of chain-of-thought reasoning with sparse autoencoding - Dr. Niki van Stein",
+            "url": "https://www.nikivanstein.nl/publication/2025-01-01-How-does-chain-of-thought-think-mechanistic-interpretability-of-chain-of-thought-reasoning-with-sparse-autoencoding"
+          },
+          {
+            "title": "[2507.22928] How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding",
+            "url": "https://arxiv.org/abs/2507.22928"
+          },
+          {
+            "title": "Mechanistic Interpretability",
+            "url": "https://www.aussieai.com/research/mechanistic-interpretability"
+          },
+          {
+            "title": "dblp: How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding.",
+            "url": "https://dblp.uni-trier.de/rec/journals/corr/abs-2507-22928.html"
+          },
+          {
+            "title": "How does Chain of Thought Think? Mechanistic ...",
+            "url": "https://arxiv.org/pdf/2507.22928"
+          },
+          {
+            "title": "(PDF) How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding",
+            "url": "https://www.researchgate.net/publication/394174965_How_does_Chain_of_Thought_Think_Mechanistic_Interpretability_of_Chain-of-Thought_Reasoning_with_Sparse_Autoencoding"
+          },
+          {
+            "title": "How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding",
+            "url": "https://arxiv.org/html/2507.22928v1"
+          },
+          {
+            "title": "Publications - Dr. Niki van Stein",
+            "url": "https://www.nikivanstein.nl/publications/"
+          },
+          {
+            "title": "Position: Mechanistic Interpretability Should Prioritize Feature Consistency in SAEs",
+            "url": "https://arxiv.org/pdf/2505.20254"
+          }
+        ]
+      },
+      "I found the paper for you! Here's information about arXiv:2507.22928:\n\n**Paper Title:** \"How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding\"\n\n**Authors:** Xi Chen, Aske Plaat, and Niki van Stein\n\n**Main Research Question:** Chain-of-thought (CoT) prompting boosts Large Language Models accuracy on multi-step tasks, yet whether the generated \"thoughts\" reflect the true internal reasoning process is unresolved.\n\n**Methodology:** The researchers combine sparse autoencoders with activation patching to extract monosemantic features from Pythia-70M and Pythia-2.8B while they tackle GSM8K math problems under CoT and plain (noCoT) prompting.\n\n**Key Findings:** \n- Swapping a small set of CoT-reasoning features into a noCoT run raises answer log-probabilities significantly in the 2.8B model, but has no reliable effect in 70M, revealing a clear scale threshold.\n- CoT also leads to significantly higher activation sparsity and feature interpretability scores in the larger model, signalling more modular internal computation.\n\nThe paper was submitted on July 24, 2025."
+    ],
+    "durationSeconds": 8.577053851000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "434f562a-f3ba-4278-9b5f-925d9269ea6b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-19T13:41:12.502Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Wkr2K4wPkXFAVzpBdLSiUG`</summary>
+
+```json
+{
+  "query": "arxiv \"counterfactual simulation training\" \"chain-of-thought faithfulness\" 2602.20710"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c33fbd40-b723-4859-81a5-593e42326d5e",
+  "isSidechain": false,
+  "requestId": "req_011CbC2JQRXoGzTJEy3ciVf7",
+  "type": "assistant",
+  "uuid": "231a0fda-14bc-420a-b99f-8061f563f709",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VV6iQgFFwqGafYdqYjKBnh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1015,
+      "cache_read_input_tokens": 54743,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1015,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 54743,
+          "cache_creation_input_tokens": 1015,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1015
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-19 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "231a0fda-14bc-420a-b99f-8061f563f709",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 69_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrated temporal information-contribution gap for CoT faithfulness",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-19T13:41:18.907Z_
+
+<details><summary>↩ Tool result · `toolu_01Wkr2K4wPkXFAVzpBdLSiUG`</summary>
+
+```text
+Web search results for query: "arxiv "counterfactual simulation training" "chain-of-thought faithfulness" 2602.20710"
+
+Links: [{"title":"[2602.20710] Counterfactual Simulation Training for Chain-of-Thought Faithfulness","url":"https://arxiv.org/abs/2602.20710"},{"title":"Preprint. Counterfactual Simulation Training for Chain-of-Thought Faithfulness","url":"https://arxiv.org/pdf/2602.20710"},{"title":"Counterfactual Simulation Training for Chain-of-Thought Faithfulness – Own Your AI","url":"https://ownyourai.com/counterfactual-simulation-training-for-chain-of-thought-faithfulness/"},{"title":"Peter Hase","url":"https://peterbhase.github.io/"},{"title":"FRIT: Using Causal Importance to Improve Chain-of-Thought Faithfulness","url":"https://arxiv.org/pdf/2509.13334"},{"title":"Chain-of-Thought Reasoning In The Wild Is Not Always Faithful","url":"https://arxiv.org/pdf/2503.08679"},{"title":"Making Reasoning Matter: Measuring and Improving Faithfulness of   Chain-of-Thought Reasoning","url":"https://arxiv.org/pdf/2402.13950"},{"title":"Is Chain-of-Thought Really Not Explainability? Chain-of-Thought Can Be Faithful without Hint Verbalization","url":"https://arxiv.org/pdf/2512.23032"}]
+
+I found the paper you're looking for. Here's what I found:
+
+The paper introduces a training method called Counterfactual Simulation Training (CST), which aims to improve CoT faithfulness by rewarding CoTs that enable a simulator to accurately predict a model's outputs over counterfactual inputs.
+
+CST is applied in two settings: (1) CoT monitoring with cue-based counterfactuals, to detect when models rely on spurious features, reward hack, or are sycophantic, and (2) counterfactual simulation over generic model-based counterfactuals, to encourage models to produce more faithful, generalizable reasoning in the CoT.
+
+Experiments with models up to 235B parameters show that CST can substantially improve monitor accuracy on cue-based counterfactuals (by 35 accuracy points) as well as simulatability over generic counterfactuals (by 2 points).
+
+The paper was submitted on February 24, 2026, by Peter Hase and Christopher Potts. You can access the full paper at: https://arxiv.org/abs/2602.20710
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "231a0fda-14bc-420a-b99f-8061f563f709",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "065482e1-9e67-45ea-8c49-90a384fe531e",
+  "toolUseResult": {
+    "query": "arxiv \"counterfactual simulation training\" \"chain-of-thought faithfulness\" 2602.20710",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SHNfK3fY5WePEFb2hu5PyF",
+        "content": [
+          {
+            "title": "[2602.20710] Counterfactual Simulation Training for Chain-of-Thought Faithfulness",
+            "url": "https://arxiv.org/abs/2602.20710"
+          },
+          {
+            "title": "Preprint. Counterfactual Simulation Training for Chain-of-Thought Faithfulness",
+            "url": "https://arxiv.org/pdf/2602.20710"
+          },
+          {
+            "title": "Counterfactual Simulation Training for Chain-of-Thought Faithfulness – Own Your AI",
+            "url": "https://ownyourai.com/counterfactual-simulation-training-for-chain-of-thought-faithfulness/"
+          },
+          {
+            "title": "Peter Hase",
+            "url": "https://peterbhase.github.io/"
+          },
+          {
+            "title": "FRIT: Using Causal Importance to Improve Chain-of-Thought Faithfulness",
+            "url": "https://arxiv.org/pdf/2509.13334"
+          },
+          {
+            "title": "Chain-of-Thought Reasoning In The Wild Is Not Always Faithful",
+            "url": "https://arxiv.org/pdf/2503.08679"
+          },
+          {
+            "title": "Making Reasoning Matter: Measuring and Improving Faithfulness of   Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/pdf/2402.13950"
+          },
+          {
+            "title": "Is Chain-of-Thought Really Not Explainability? Chain-of-Thought Can Be Faithful without Hint Verbalization",
+            "url": "https://arxiv.org/pdf/2512.23032"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's what I found:\n\nThe paper introduces a training method called Counterfactual Simulation Training (CST), which aims to improve CoT faithfulness by rewarding CoTs that enable a simulator to accurately predict a model's outputs over counterfactual inputs.\n\nCST is applied in two settings: (1) CoT monitoring with cue-based counterfactuals, to detect when models rely on spurious features, reward hack, or are sycophantic, and (2) counterfactual simulation over generic model-based counterfactuals, to encourage models to produce more faithful, generalizable reasoning in the CoT.\n\nExperiments with models up to 235B parameters show that CST can substantially improve monitor accuracy on cue-based counterfactuals (by 35 accuracy points) as well as simulatability over generic counterfactuals (by 2 points).\n\nThe paper was submitted on February 24, 2026, by Peter Hase and Christopher Potts. You can access the full paper at: https://arxiv.org/abs/2602.20710"
+    ],
+    "durationSeconds": 6.399994043000014,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "231a0fda-14bc-420a-b99f-8061f563f709",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-19T13:41:21.683Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RiWVYejpCkUwiNgYoL8yUY`</summary>
+
+```json
+{
+  "query": "arxiv \"chain-of-thought\" \"probe\" \"hidden\" \"divergence\" \"trajectory\" \"faithfulness\" new 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "065482e1-9e67-45ea-8c49-90a384fe531e",
+  "isSidechain": false,
+  "requestId": "req_011CbC2K5So2r3hYGmNe8vW9",
+  "type": "assistant",
+  "uuid": "f5661aec-5412-473e-b59e-e2cf60325ce1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AVjoMYS4eZWpGyE3sr3vJc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 741,
+      "cache_read_input_tokens": 55758,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 741,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 55758,
+          "cache_creation_input_tokens": 741,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 741
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-19T13:41:30.942Z_
+
+<details><summary>↩ Tool result · `toolu_01RiWVYejpCkUwiNgYoL8yUY`</summary>
+
+```text
+Web search results for query: "arxiv "chain-of-thought" "probe" "hidden" "divergence" "trajectory" "faithfulness" new 2026"
+
+Links: [{"title":"[2605.18549] Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics","url":"https://arxiv.org/abs/2605.18549"},{"title":"(PDF) Why Models Know But Don't Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models","url":"https://www.researchgate.net/publication/403262878_Why_Models_Know_But_Don't_Say_Chain-of-Thought_Faithfulness_Divergence_Between_Thinking_Tokens_and_Answers_in_Open-Weight_Reasoning_Models"},{"title":"[2603.26410] Why Models Know But Don't Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models","url":"https://arxiv.org/abs/2603.26410"},{"title":"Why Models Know But Don’t Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models","url":"https://arxiv.org/html/2603.26410"},{"title":"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning","url":"https://arxiv.org/pdf/2602.11201"},{"title":"Preprint. Counterfactual Simulation Training for Chain-of-Thought Faithfulness","url":"https://arxiv.org/pdf/2602.20710"},{"title":"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2510.04040v1"},{"title":"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps","url":"https://arxiv.org/html/2502.14829v3"}]
+
+Based on the search results, I found several highly relevant recent arxiv papers from 2026 that match your query terms:
+
+## Most Relevant: "Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics"
+
+This recent paper investigates hidden representations of Large Reasoning Models (LRMs) using probe trajectories to determine whether future behavior can be predicted from prompt and chain-of-thought (CoT) representations. The research addresses the problem that CoT is not always faithful to the model's final output, undermining its reliability as a monitoring tool. The paper was published just 2 days ago (arxiv 2605.18549).
+
+## Related: "Why Models Know But Don't Say: Chain-of-Thought Faithfulness Divergence"
+
+Another highly relevant paper (arxiv 2603.26410, March 27, 2026) examines faithfulness divergence between thinking tokens and answers. The research finds that hint type shapes divergence patterns sharply, with models varying widely from near-total divergence (Step-3.5-Flash: 94.7%) to relative transparency (Qwen3.5-27B: 19.6%). Keyword analysis revealed that 87.5% of thinking tokens acknowledged hints while only 28.6% of answer texts did, a 59-percentage-point gap suggesting large-scale thinking-answer divergence.
+
+Both papers directly address the intersection of chain-of-thought faithfulness, hidden representations/probing, divergence, and trajectory analysis that your search query targets.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f5661aec-5412-473e-b59e-e2cf60325ce1",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "fa8ab188-23a3-4c1a-a973-b64e7016913c",
+  "toolUseResult": {
+    "query": "arxiv \"chain-of-thought\" \"probe\" \"hidden\" \"divergence\" \"trajectory\" \"faithfulness\" new 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018iZzHnsQNwa2SX26ZsriXz",
+        "content": [
+          {
+            "title": "[2605.18549] Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics",
+            "url": "https://arxiv.org/abs/2605.18549"
+          },
+          {
+            "title": "(PDF) Why Models Know But Don't Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models",
+            "url": "https://www.researchgate.net/publication/403262878_Why_Models_Know_But_Don't_Say_Chain-of-Thought_Faithfulness_Divergence_Between_Thinking_Tokens_and_Answers_in_Open-Weight_Reasoning_Models"
+          },
+          {
+            "title": "[2603.26410] Why Models Know But Don't Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models",
+            "url": "https://arxiv.org/abs/2603.26410"
+          },
+          {
+            "title": "Why Models Know But Don’t Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models",
+            "url": "https://arxiv.org/html/2603.26410"
+          },
+          {
+            "title": "Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/pdf/2602.11201"
+          },
+          {
+            "title": "Preprint. Counterfactual Simulation Training for Chain-of-Thought Faithfulness",
+            "url": "https://arxiv.org/pdf/2602.20710"
+          },
+          {
+            "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2510.04040v1"
+          },
+          {
+            "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+            "url": "https://arxiv.org/html/2502.14829v3"
+          }
+        ]
+      },
+      "Based on the search results, I found several highly relevant recent arxiv papers from 2026 that match your query terms:\n\n## Most Relevant: \"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics\"\n\nThis recent paper investigates hidden representations of Large Reasoning Models (LRMs) using probe trajectories to determine whether future behavior can be predicted from prompt and chain-of-thought (CoT) representations. The research addresses the problem that CoT is not always faithful to the model's final output, undermining its reliability as a monitoring tool. The paper was published just 2 days ago (arxiv 2605.18549).\n\n## Related: \"Why Models Know But Don't Say: Chain-of-Thought Faithfulness Divergence\"\n\nAnother highly relevant paper (arxiv 2603.26410, March 27, 2026) examines faithfulness divergence between thinking tokens and answers. The research finds that hint type shapes divergence patterns sharply, with models varying widely from near-total divergence (Step-3.5-Flash: 94.7%) to relative transparency (Qwen3.5-27B: 19.6%). Keyword analysis revealed that 87.5% of thinking tokens acknowledged hints while only 28.6% of answer texts did, a 59-percentage-point gap suggesting large-scale thinking-answer divergence.\n\nBoth papers directly address the intersection of chain-of-thought faithfulness, hidden representations/probing, divergence, and trajectory analysis that your search query targets."
+    ],
+    "durationSeconds": 9.255981469999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f5661aec-5412-473e-b59e-e2cf60325ce1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-19T13:41:34.030Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HaMECWftiRkECigM9mWspt`</summary>
+
+```json
+{
+  "query": "Ballon et al \"probing trajectories reasoning traces\" truncation reinjection 2601.23163 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa8ab188-23a3-4c1a-a973-b64e7016913c",
+  "isSidechain": false,
+  "requestId": "req_011CbC2KxtRrdX3ZMY5nCBfz",
+  "type": "assistant",
+  "uuid": "98ca2a77-5951-4eeb-a1ad-0f29888904ba",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018PnyesnKywb1enUKQMPpzT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 953,
+      "cache_read_input_tokens": 56499,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 953,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 56499,
+          "cache_creation_input_tokens": 953,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 953
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-19T13:41:40.002Z_
+
+<details><summary>↩ Tool result · `toolu_01HaMECWftiRkECigM9mWspt`</summary>
+
+```text
+Web search results for query: "Ballon et al "probing trajectories reasoning traces" truncation reinjection 2601.23163 2026"
+
+Links: [{"title":"[2601.23163] Probing the Trajectories of Reasoning Traces in Large Language Models","url":"https://arxiv.org/abs/2601.23163"},{"title":"Probing the Trajectories of Reasoning Traces in Large Language Models","url":"https://arxiv.org/html/2601.23163v1"},{"title":"LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals","url":"https://arxiv.org/pdf/2604.05655"},{"title":"(PDF) Probing the Trajectories of Reasoning Traces in ...","url":"https://www.researchgate.net/publication/400340042_Probing_the_Trajectories_of_Reasoning_Traces_in_Large_Language_Models"},{"title":"Tracing the Traces: Latent Temporal Signals for Efficient and Accurate Reasoning","url":"https://arxiv.org/pdf/2510.10494"},{"title":"Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping","url":"https://arxiv.org/pdf/2601.17467"},{"title":"[2601.17467] Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping","url":"https://arxiv.org/abs/2601.17467"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**"Probing the Trajectories of Reasoning Traces in Large Language Models"** by Marthe Ballon and 3 other authors (arXiv:2601.23163) was published on January 30, 2026.
+
+The paper addresses how reasoning traces in large language models work. The authors propose a protocol that involves: 1) generating a model's reasoning trace, 2) truncating it at fixed token-percentiles, and 3) injecting each partial trace back into the model (or a different model) to measure the induced distribution over answer choices via next-token probabilities.
+
+The research examines how accuracy and decision commitment evolve along a reasoning trajectory, and whether intermediate trace segments provide answer-relevant information beyond generic length or stylistic effects.
+
+You can access the full paper at https://arxiv.org/abs/2601.23163
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98ca2a77-5951-4eeb-a1ad-0f29888904ba",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "e9dd8e17-9d83-49ba-877e-c537218c6a3b",
+  "toolUseResult": {
+    "query": "Ballon et al \"probing trajectories reasoning traces\" truncation reinjection 2601.23163 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01J5CjqmvE6f2UfkKsorJwp7",
+        "content": [
+          {
+            "title": "[2601.23163] Probing the Trajectories of Reasoning Traces in Large Language Models",
+            "url": "https://arxiv.org/abs/2601.23163"
+          },
+          {
+            "title": "Probing the Trajectories of Reasoning Traces in Large Language Models",
+            "url": "https://arxiv.org/html/2601.23163v1"
+          },
+          {
+            "title": "LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals",
+            "url": "https://arxiv.org/pdf/2604.05655"
+          },
+          {
+            "title": "(PDF) Probing the Trajectories of Reasoning Traces in ...",
+            "url": "https://www.researchgate.net/publication/400340042_Probing_the_Trajectories_of_Reasoning_Traces_in_Large_Language_Models"
+          },
+          {
+            "title": "Tracing the Traces: Latent Temporal Signals for Efficient and Accurate Reasoning",
+            "url": "https://arxiv.org/pdf/2510.10494"
+          },
+          {
+            "title": "Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping",
+            "url": "https://arxiv.org/pdf/2601.17467"
+          },
+          {
+            "title": "[2601.17467] Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping",
+            "url": "https://arxiv.org/abs/2601.17467"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**\"Probing the Trajectories of Reasoning Traces in Large Language Models\"** by Marthe Ballon and 3 other authors (arXiv:2601.23163) was published on January 30, 2026.\n\nThe paper addresses how reasoning traces in large language models work. The authors propose a protocol that involves: 1) generating a model's reasoning trace, 2) truncating it at fixed token-percentiles, and 3) injecting each partial trace back into the model (or a different model) to measure the induced distribution over answer choices via next-token probabilities.\n\nThe research examines how accuracy and decision commitment evolve along a reasoning trajectory, and whether intermediate trace segments provide answer-relevant information beyond generic length or stylistic effects.\n\nYou can access the full paper at https://arxiv.org/abs/2601.23163"
+    ],
+    "durationSeconds": 5.96748642500001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "98ca2a77-5951-4eeb-a1ad-0f29888904ba",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-19T13:41:44.281Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01A5Ux9pMjjqsXuv8KxFPmeJ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.23163",
+  "prompt": "Extract detailed information: (1) The exact models tested, (2) The exact datasets used, (3) The specific control conditions and their results (random tokens, swapped traces, shuffled tokens), (4) The exact quantitative results for accuracy vs. truncation percentage, (5) Whether the paper explicitly discusses faithfulness or unfaithfulness, (6) Any connection to hidden-state probing."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9dd8e17-9d83-49ba-877e-c537218c6a3b",
+  "isSidechain": false,
+  "requestId": "req_011CbC2LdiHft3QiAUzj1n5R",
+  "type": "assistant",
+  "uuid": "af332e8c-1c2e-41cd-816f-57af4f1beaae",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UgGi7MR2nqMPQVd8oLQVaq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 691,
+      "cache_read_input_tokens": 57452,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 691,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 57452,
+          "cache_creation_input_tokens": 691,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 691
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-19T13:41:49.649Z_
+
+<details><summary>↩ Tool result · `toolu_01A5Ux9pMjjqsXuv8KxFPmeJ`</summary>
+
+```text
+# Paper Analysis: Probing Reasoning Traces in LLMs
+
+Based on the arXiv abstract provided, here's what can be extracted:
+
+## (1) Models Tested
+The paper evaluates: "Qwen3-4B/-8B/-14B and gpt-oss-20b/-120b models"
+
+## (2) Datasets Used
+Two benchmarks are mentioned: GPQA Diamond and MMLU-Pro (both multiple-choice formats)
+
+## (3) Control Conditions
+The abstract does not specify results from control conditions like random tokens, swapped traces, or shuffled tokens. The methodology describes "truncating [traces] at fixed token-percentiles" but specific ablation outcomes aren't detailed in the provided excerpt.
+
+## (4) Quantitative Results
+The abstract states findings are qualitative rather than specific numbers: "accuracy and decision commitment consistently increase as the percentage of provided reasoning tokens grows."
+
+## (5) Faithfulness Discussion
+The paper explicitly addresses this: gains "are primarily driven by relevant content in the model generation rather than context length or generic 'reasoning style' effects," and notes measurements "improve reliability without assuming intermediate tokens are inherently faithful explanations."
+
+## (6) Hidden-State Probing
+The abstract contains no mention of hidden-state analysis. The methodology focuses on "next-token probabilities" from truncated traces rather than internal representations.
+
+**Note:** Full quantitative tables and ablation details would require accessing the complete 33-page paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af332e8c-1c2e-41cd-816f-57af4f1beaae",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "a77a9c43-bc19-489f-8966-cd102de7cfda",
+  "toolUseResult": {
+    "bytes": 47249,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Analysis: Probing Reasoning Traces in LLMs\n\nBased on the arXiv abstract provided, here's what can be extracted:\n\n## (1) Models Tested\nThe paper evaluates: \"Qwen3-4B/-8B/-14B and gpt-oss-20b/-120b models\"\n\n## (2) Datasets Used\nTwo benchmarks are mentioned: GPQA Diamond and MMLU-Pro (both multiple-choice formats)\n\n## (3) Control Conditions\nThe abstract does not specify results from control conditions like random tokens, swapped traces, or shuffled tokens. The methodology describes \"truncating [traces] at fixed token-percentiles\" but specific ablation outcomes aren't detailed in the provided excerpt.\n\n## (4) Quantitative Results\nThe abstract states findings are qualitative rather than specific numbers: \"accuracy and decision commitment consistently increase as the percentage of provided reasoning tokens grows.\"\n\n## (5) Faithfulness Discussion\nThe paper explicitly addresses this: gains \"are primarily driven by relevant content in the model generation rather than context length or generic 'reasoning style' effects,\" and notes measurements \"improve reliability without assuming intermediate tokens are inherently faithful explanations.\"\n\n## (6) Hidden-State Probing\nThe abstract contains no mention of hidden-state analysis. The methodology focuses on \"next-token probabilities\" from truncated traces rather than internal representations.\n\n**Note:** Full quantitative tables and ablation details would require accessing the complete 33-page paper.",
+    "durationMs": 5364,
+    "url": "https://arxiv.org/abs/2601.23163"
+  },
+  "sourceToolAssistantUUID": "af332e8c-1c2e-41cd-816f-57af4f1beaae",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-19T13:41:52.865Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A4hcPZf9DiQkNcPmTU5yJK`</summary>
+
+```json
+{
+  "query": "Wang \"LLM Reasoning Is Latent Not Chain of Thought\" 2604.15726 H1 H2 hypotheses"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a77a9c43-bc19-489f-8966-cd102de7cfda",
+  "isSidechain": false,
+  "requestId": "req_011CbC2MLv2E879ZBAaLiH6S",
+  "type": "assistant",
+  "uuid": "f1453192-d6f1-4286-9a4a-0db07fc5c952",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XL7g8wjX1mRS1pdNsHMgfy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 505,
+      "cache_read_input_tokens": 58143,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 505,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 58143,
+          "cache_creation_input_tokens": 505,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 505
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-19T13:41:57.969Z_
+
+<details><summary>↩ Tool result · `toolu_01A4hcPZf9DiQkNcPmTU5yJK`</summary>
+
+```text
+Web search results for query: "Wang "LLM Reasoning Is Latent Not Chain of Thought" 2604.15726 H1 H2 hypotheses"
+
+Links: [{"title":"[2604.15726] LLM Reasoning Is Latent, Not the Chain of Thought","url":"https://arxiv.org/abs/2604.15726"},{"title":"LLM Reasoning Is Latent, Not the Chain of Thought","url":"https://arxiv.org/html/2604.15726"},{"title":"Reasoning Beyond Chain-of-Thought: A Latent Computational Mode in Large Language Models","url":"https://arxiv.org/pdf/2601.08058"},{"title":"Latent Thinking Optimization: Your Latent Reasoning Language Model Secretly Encodes Reward Signals in its Latent Thoughts","url":"https://arxiv.org/html/2509.26314v1"},{"title":"Reasoning Beyond Language: A Comprehensive Survey on Latent Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2505.16782v1"},{"title":"LLM Latent Reasoning as Chain of Superposition","url":"https://arxiv.org/html/2510.15522v2"},{"title":"LLM Latent Reasoning as Chain of Superposition","url":"https://arxiv.org/pdf/2510.15522"},{"title":"Latent Thinking Optimization: Your Latent Reasoning Language Model Secretly Encodes Reward Signals in Its Latent Thoughts","url":"https://arxiv.org/pdf/2509.26314"}]
+
+Based on the search results, I found the paper you're looking for. Here's what the paper discusses regarding the hypotheses:
+
+The paper formalizes three competing hypotheses: H1, reasoning is primarily mediated by latent-state trajectories; H2, reasoning is primarily mediated by explicit surface CoT; and H0, most apparent reasoning gains are better explained by generic serial compute than by any privileged representational object.
+
+The position paper argues that large language model (LLM) reasoning should be studied as latent-state trajectory formation rather than as faithful surface chain-of-thought (CoT). This matters because claims about faithfulness, interpretability, reasoning benchmarks, and inference-time intervention all depend on what the field takes the primary object of reasoning to be.
+
+The paper was authored by Wenshuo Wang and posted on arXiv on April 17, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f1453192-d6f1-4286-9a4a-0db07fc5c952",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "c9e78918-d9c6-420c-a72a-7d432e772da6",
+  "toolUseResult": {
+    "query": "Wang \"LLM Reasoning Is Latent Not Chain of Thought\" 2604.15726 H1 H2 hypotheses",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011dcFHNeT3vUQ14sRrCyT8b",
+        "content": [
+          {
+            "title": "[2604.15726] LLM Reasoning Is Latent, Not the Chain of Thought",
+            "url": "https://arxiv.org/abs/2604.15726"
+          },
+          {
+            "title": "LLM Reasoning Is Latent, Not the Chain of Thought",
+            "url": "https://arxiv.org/html/2604.15726"
+          },
+          {
+            "title": "Reasoning Beyond Chain-of-Thought: A Latent Computational Mode in Large Language Models",
+            "url": "https://arxiv.org/pdf/2601.08058"
+          },
+          {
+            "title": "Latent Thinking Optimization: Your Latent Reasoning Language Model Secretly Encodes Reward Signals in its Latent Thoughts",
+            "url": "https://arxiv.org/html/2509.26314v1"
+          },
+          {
+            "title": "Reasoning Beyond Language: A Comprehensive Survey on Latent Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2505.16782v1"
+          },
+          {
+            "title": "LLM Latent Reasoning as Chain of Superposition",
+            "url": "https://arxiv.org/html/2510.15522v2"
+          },
+          {
+            "title": "LLM Latent Reasoning as Chain of Superposition",
+            "url": "https://arxiv.org/pdf/2510.15522"
+          },
+          {
+            "title": "Latent Thinking Optimization: Your Latent Reasoning Language Model Secretly Encodes Reward Signals in Its Latent Thoughts",
+            "url": "https://arxiv.org/pdf/2509.26314"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's what the paper discusses regarding the hypotheses:\n\nThe paper formalizes three competing hypotheses: H1, reasoning is primarily mediated by latent-state trajectories; H2, reasoning is primarily mediated by explicit surface CoT; and H0, most apparent reasoning gains are better explained by generic serial compute than by any privileged representational object.\n\nThe position paper argues that large language model (LLM) reasoning should be studied as latent-state trajectory formation rather than as faithful surface chain-of-thought (CoT). This matters because claims about faithfulness, interpretability, reasoning benchmarks, and inference-time intervention all depend on what the field takes the primary object of reasoning to be.\n\nThe paper was authored by Wenshuo Wang and posted on arXiv on April 17, 2026."
+    ],
+    "durationSeconds": 5.10024404900003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f1453192-d6f1-4286-9a4a-0db07fc5c952",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 79 · 2026-05-19T13:41:57.981Z_
+
+```json
+{
+  "parentUuid": "c9e78918-d9c6-420c-a72a-7d432e772da6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "6bb3f2ed-a4fb-4004-a387-0c21dfdbc491",
+  "timestamp": "2026-05-19T13:41:57.981Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-19T13:42:01.053Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014SQbzyoeSzgsBkDoJX6sas`</summary>
+
+```json
+{
+  "query": "Gjølbye \"reasoning models don't just think longer move differently\" hidden state trajectory 2605.15454"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6bb3f2ed-a4fb-4004-a387-0c21dfdbc491",
+  "isSidechain": false,
+  "requestId": "req_011CbC2MxXA9vhi8ZgW5gWyx",
+  "type": "assistant",
+  "uuid": "9828fff2-1321-4aa9-b48b-9620aa6d1116",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NYkeJxQGmTjczWyeoHZgd4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 799,
+      "cache_read_input_tokens": 58648,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 799,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 58648,
+          "cache_creation_input_tokens": 799,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 799
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-19 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "9828fff2-1321-4aa9-b48b-9620aa6d1116",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrated temporal information-contribution gap for CoT faithfulness",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-19T13:42:08.181Z_
+
+<details><summary>↩ Tool result · `toolu_014SQbzyoeSzgsBkDoJX6sas`</summary>
+
+```text
+Web search results for query: "Gjølbye "reasoning models don't just think longer move differently" hidden state trajectory 2605.15454"
+
+Links: [{"title":"[2605.15454] Reasoning Models Don't Just Think Longer, They Move Differently","url":"https://arxiv.org/abs/2605.15454"},{"title":"Reasoning Models Don’t Just Think Longer, They Move Differently","url":"https://arxiv.org/html/2605.15454"},{"title":"Spatiotemporal Hidden-State Dynamics as a Signature of Internal Reasoning in Large Language Models","url":"https://arxiv.org/html/2605.01853"},{"title":"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry","url":"https://arxiv.org/html/2605.13772"},{"title":"A Statistical Physics of Language Model Reasoning","url":"https://arxiv.org/pdf/2506.04374"},{"title":"[2605.01853] Spatiotemporal Hidden-State Dynamics as a Signature of Internal Reasoning in Large Language Models","url":"https://arxiv.org/abs/2605.01853"},{"title":"[2507.00711] Large Reasoning Models are not thinking straight: on the unreliability of thinking trajectories","url":"https://arxiv.org/abs/2507.00711"},{"title":"Beyond What Seems Necessary: Hidden Gains from Scaling Training-Time Reasoning Length under Outcome Supervision","url":"https://arxiv.org/pdf/2602.00927"},{"title":"Large Reasoning Models are not thinking straight: on the unreliability of thinking trajectories","url":"https://arxiv.org/html/2507.00711v1"},{"title":"Truth as a Trajectory: What Internal Representations Reveal About Large Language Model Reasoning","url":"https://arxiv.org/pdf/2603.01326"}]
+
+I found the paper! Here's what the search revealed:
+
+The paper "Reasoning Models Don't Just Think Longer, They Move Differently" (arXiv:2605.15454) is authored by Anders Gjølbye, Lars Kai Hansen, and Sanmi Koyejo from Technical University of Denmark and Stanford University.
+
+The paper addresses how reasoning-trained language models spend more tokens on harder problems, but longer chains of thought don't reveal whether a model is merely computing for more steps or following a different internal trajectory. The researchers study this distinction through hidden-state trajectories during chain-of-thought generation across competitive programming, mathematics, and Boolean satisfiability.
+
+A key finding is that raw trajectory geometry is strongly shaped by generation length, so after adjusting trajectory statistics for length, difficulty remains systematically coupled to corrected trajectory geometry across all domains studied.
+
+The clearest reasoning-specific separation appears in the code domain, where harder problems show more direct corrected trajectories and less heterogeneous local curvature in reasoning-trained models than in matched instruction-tuned baselines.
+
+The paper was published on arXiv on May 14, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9828fff2-1321-4aa9-b48b-9620aa6d1116",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "25f713c5-b1db-425e-93ec-69510324bd9b",
+  "toolUseResult": {
+    "query": "Gjølbye \"reasoning models don't just think longer move differently\" hidden state trajectory 2605.15454",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015nDWUAMPL9VHJvmfGPBXep",
+        "content": [
+          {
+            "title": "[2605.15454] Reasoning Models Don't Just Think Longer, They Move Differently",
+            "url": "https://arxiv.org/abs/2605.15454"
+          },
+          {
+            "title": "Reasoning Models Don’t Just Think Longer, They Move Differently",
+            "url": "https://arxiv.org/html/2605.15454"
+          },
+          {
+            "title": "Spatiotemporal Hidden-State Dynamics as a Signature of Internal Reasoning in Large Language Models",
+            "url": "https://arxiv.org/html/2605.01853"
+          },
+          {
+            "title": "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry",
+            "url": "https://arxiv.org/html/2605.13772"
+          },
+          {
+            "title": "A Statistical Physics of Language Model Reasoning",
+            "url": "https://arxiv.org/pdf/2506.04374"
+          },
+          {
+            "title": "[2605.01853] Spatiotemporal Hidden-State Dynamics as a Signature of Internal Reasoning in Large Language Models",
+            "url": "https://arxiv.org/abs/2605.01853"
+          },
+          {
+            "title": "[2507.00711] Large Reasoning Models are not thinking straight: on the unreliability of thinking trajectories",
+            "url": "https://arxiv.org/abs/2507.00711"
+          },
+          {
+            "title": "Beyond What Seems Necessary: Hidden Gains from Scaling Training-Time Reasoning Length under Outcome Supervision",
+            "url": "https://arxiv.org/pdf/2602.00927"
+          },
+          {
+            "title": "Large Reasoning Models are not thinking straight: on the unreliability of thinking trajectories",
+            "url": "https://arxiv.org/html/2507.00711v1"
+          },
+          {
+            "title": "Truth as a Trajectory: What Internal Representations Reveal About Large Language Model Reasoning",
+            "url": "https://arxiv.org/pdf/2603.01326"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search revealed:\n\nThe paper \"Reasoning Models Don't Just Think Longer, They Move Differently\" (arXiv:2605.15454) is authored by Anders Gjølbye, Lars Kai Hansen, and Sanmi Koyejo from Technical University of Denmark and Stanford University.\n\nThe paper addresses how reasoning-trained language models spend more tokens on harder problems, but longer chains of thought don't reveal whether a model is merely computing for more steps or following a different internal trajectory. The researchers study this distinction through hidden-state trajectories during chain-of-thought generation across competitive programming, mathematics, and Boolean satisfiability.\n\nA key finding is that raw trajectory geometry is strongly shaped by generation length, so after adjusting trajectory statistics for length, difficulty remains systematically coupled to corrected trajectory geometry across all domains studied.\n\nThe clearest reasoning-specific separation appears in the code domain, where harder problems show more direct corrected trajectories and less heterogeneous local curvature in reasoning-trained models than in matched instruction-tuned baselines.\n\nThe paper was published on arXiv on May 14, 2026."
+    ],
+    "durationSeconds": 7.1253749169999505,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9828fff2-1321-4aa9-b48b-9620aa6d1116",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84 · 2026-05-19T13:42:11.066Z_
+
+Now let me search for potentially missing recent work that the proposal might not have covered:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25f713c5-b1db-425e-93ec-69510324bd9b",
+  "isSidechain": false,
+  "requestId": "req_011CbC2NiAEnGkixMiQxDHwL",
+  "type": "assistant",
+  "uuid": "5732a5db-cf51-4654-b5e8-3734ab0f6c14",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KQ9DX81A1xNsfwDQXgh377",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 808,
+      "cache_read_input_tokens": 59447,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 808,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 59447,
+          "cache_creation_input_tokens": 808,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 808
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-19T13:42:11.682Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MJNgL1VGnXRaZkRPJ2vk3P`</summary>
+
+```json
+{
+  "query": "arxiv chain-of-thought reasoning probing hidden states information gap diagnostic causal framework May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5732a5db-cf51-4654-b5e8-3734ab0f6c14",
+  "isSidechain": false,
+  "requestId": "req_011CbC2NiAEnGkixMiQxDHwL",
+  "type": "assistant",
+  "uuid": "6837968d-267d-46f1-b4fa-d339237a8788",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KQ9DX81A1xNsfwDQXgh377",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 808,
+      "cache_read_input_tokens": 59447,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 808,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 59447,
+          "cache_creation_input_tokens": 808,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 808
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-19T13:42:20.076Z_
+
+<details><summary>↩ Tool result · `toolu_01MJNgL1VGnXRaZkRPJ2vk3P`</summary>
+
+```text
+Web search results for query: "arxiv chain-of-thought reasoning probing hidden states information gap diagnostic causal framework May 2026"
+
+Links: [{"title":"[2602.03994] When Chains of Thought Don't Matter: Causal Bypass in Large Language Models","url":"https://arxiv.org/abs/2602.03994"},{"title":"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal","url":"https://arxiv.org/html/2605.09502"},{"title":"[2605.09502] Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal","url":"https://arxiv.org/abs/2605.09502"},{"title":"When Chains of Thought Don’t Matter: Causal Bypass in Large Language Models","url":"https://arxiv.org/html/2602.03994"},{"title":"When Chain-of-Thought Fails, the Solution Hides in the Hidden States","url":"https://arxiv.org/html/2604.23351v1"},{"title":"No Global Plan in Chain-of-Thought: Uncover the Latent Planning Horizon of LLMs","url":"https://arxiv.org/pdf/2602.02103"}]
+
+Based on the search results, I found several highly relevant arxiv papers from 2026 that match your query on chain-of-thought reasoning, hidden states probing, and causal frameworks:
+
+## Key Papers Found:
+
+**1. "Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal"** (May 2026)
+
+A linear probe on hidden states predicts trace correctness with 0.95 AUROC—from the very first reasoning step (0.79)—while verbalized confidence for wrong traces is 4.55/5, nearly identical to correct ones (4.87/5). Importantly, a text-surface classifier achieves only 0.59 on the same data, confirming a 0.20-point gap invisible in the generated text. The research demonstrates an information gap between hidden states and surface text. The signal is diagnostic, not causal: a readout of computation quality, not a lever to redirect it.
+
+**2. "When Chains of Thought Don't Matter: Causal Bypass in Large Language Models"** (February 2026)
+
+A diagnostic framework combines an interpretable behavioral module that scores manipulation-relevant signals in CoT text and a causal probe that measures CoT-mediated influence via hidden-state patching and reports a bypass score, quantifying the degree to which the answer is produced by a bypass circuit independent of the rationale.
+
+**3. "When Chain-of-Thought Fails, the Solution Hides in the Hidden States"** (April 2026)
+
+Using activation patching to transfer token-level hidden states from a CoT generation to a direct-answer run, the research found that generating after patching yields substantially higher accuracy than both direct-answer prompting and the original CoT trace.
+
+These papers all address the information gap between hidden states and verbalized reasoning using causal diagnostic frameworks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6837968d-267d-46f1-b4fa-d339237a8788",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "c23c2ff0-0f2d-4cc3-b662-668c6d35f234",
+  "toolUseResult": {
+    "query": "arxiv chain-of-thought reasoning probing hidden states information gap diagnostic causal framework May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HRYbLTGD4ZpgbVxiBquiou",
+        "content": [
+          {
+            "title": "[2602.03994] When Chains of Thought Don't Matter: Causal Bypass in Large Language Models",
+            "url": "https://arxiv.org/abs/2602.03994"
+          },
+          {
+            "title": "Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal",
+            "url": "https://arxiv.org/html/2605.09502"
+          },
+          {
+            "title": "[2605.09502] Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal",
+            "url": "https://arxiv.org/abs/2605.09502"
+          },
+          {
+            "title": "When Chains of Thought Don’t Matter: Causal Bypass in Large Language Models",
+            "url": "https://arxiv.org/html/2602.03994"
+          },
+          {
+            "title": "When Chain-of-Thought Fails, the Solution Hides in the Hidden States",
+            "url": "https://arxiv.org/html/2604.23351v1"
+          },
+          {
+            "title": "No Global Plan in Chain-of-Thought: Uncover the Latent Planning Horizon of LLMs",
+            "url": "https://arxiv.org/pdf/2602.02103"
+          }
+        ]
+      },
+      "Based on the search results, I found several highly relevant arxiv papers from 2026 that match your query on chain-of-thought reasoning, hidden states probing, and causal frameworks:\n\n## Key Papers Found:\n\n**1. \"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal\"** (May 2026)\n\nA linear probe on hidden states predicts trace correctness with 0.95 AUROC—from the very first reasoning step (0.79)—while verbalized confidence for wrong traces is 4.55/5, nearly identical to correct ones (4.87/5). Importantly, a text-surface classifier achieves only 0.59 on the same data, confirming a 0.20-point gap invisible in the generated text. The research demonstrates an information gap between hidden states and surface text. The signal is diagnostic, not causal: a readout of computation quality, not a lever to redirect it.\n\n**2. \"When Chains of Thought Don't Matter: Causal Bypass in Large Language Models\"** (February 2026)\n\nA diagnostic framework combines an interpretable behavioral module that scores manipulation-relevant signals in CoT text and a causal probe that measures CoT-mediated influence via hidden-state patching and reports a bypass score, quantifying the degree to which the answer is produced by a bypass circuit independent of the rationale.\n\n**3. \"When Chain-of-Thought Fails, the Solution Hides in the Hidden States\"** (April 2026)\n\nUsing activation patching to transfer token-level hidden states from a CoT generation to a direct-answer run, the research found that generating after patching yields substantially higher accuracy than both direct-answer prompting and the original CoT trace.\n\nThese papers all address the information gap between hidden states and verbalized reasoning using causal diagnostic frameworks."
+    ],
+    "durationSeconds": 8.390595098999968,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6837968d-267d-46f1-b4fa-d339237a8788",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-19T13:42:23.222Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LjhAPt5TvDma1mAVVfPmwN`</summary>
+
+```json
+{
+  "query": "arxiv \"Measuring Chain of Thought Faithfulness by Unlearning\" 2502.14829"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c23c2ff0-0f2d-4cc3-b662-668c6d35f234",
+  "isSidechain": false,
+  "requestId": "req_011CbC2PcjLXdxgo5ApVCPex",
+  "type": "assistant",
+  "uuid": "76ca6bfa-db83-4f92-ae02-73df222a7467",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XC7mkvQYiYkjcuwHuwaL8f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 850,
+      "cache_read_input_tokens": 60255,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 850,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 60255,
+          "cache_creation_input_tokens": 850,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 850
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-19T13:42:29.787Z_
+
+<details><summary>↩ Tool result · `toolu_01LjhAPt5TvDma1mAVVfPmwN`</summary>
+
+```text
+Web search results for query: "arxiv "Measuring Chain of Thought Faithfulness by Unlearning" 2502.14829"
+
+Links: [{"title":"[2502.14829] Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps","url":"https://arxiv.org/abs/2502.14829"},{"title":"[Literature Review] Measuring Faithfulness of Chains of Thought by Unlearning Reasoning Steps","url":"https://www.themoonlight.io/en/review/measuring-faithfulness-of-chains-of-thought-by-unlearning-reasoning-steps"},{"title":"(PDF) Measuring Faithfulness of Chains of Thought by Unlearning Reasoning Steps","url":"https://www.researchgate.net/publication/389207289_Measuring_Faithfulness_of_Chains_of_Thought_by_Unlearning_Reasoning_Steps"},{"title":"A Closer Look at Bias and Chain-of-Thought Faithfulness of Large (Vision) Language Models","url":"https://arxiv.org/html/2505.23945v1"},{"title":"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps","url":"https://arxiv.org/pdf/2502.14829"},{"title":"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps - ADS","url":"https://ui.adsabs.harvard.edu/abs/arXiv:2502.14829"},{"title":"Measuring Faithfulness of Chains of Thought by Unlearning Reasoning Steps - Paper Detail","url":"https://deeplearn.org/arxiv/578536/measuring-faithfulness-of-chains-of-thought-by-unlearning-reasoning-steps"},{"title":"[2307.13702] Measuring Faithfulness in Chain-of-Thought Reasoning","url":"https://arxiv.org/abs/2307.13702"}]
+
+I found the paper you're looking for! Here are the key details:
+
+**Title:** Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps
+
+**Authors:** Martin Tutek, Fateme Hashemi Chaleshtori, Ana Marasović, and Yonatan Belinkov
+
+**ArXiv ID:** 2502.14829
+
+**Main Contribution:** The paper introduces a framework for measuring parametric faithfulness of generated reasoning, and proposes Faithfulness by Unlearning Reasoning steps (FUR), an instance of this framework.
+
+**Key Idea:** FUR erases information contained in reasoning steps from model parameters, and measures faithfulness as the resulting effect on the model's prediction.
+
+**Research Question:** Despite much work on CoT prompting, it is unclear if reasoning verbalized in a CoT is faithful to the models' parametric beliefs.
+
+**Results:** Experiments with four LMs and five multi-hop multi-choice question answering (MCQA) datasets show that FUR is frequently able to precisely change the underlying models' prediction for a given instance by unlearning key steps, indicating when a CoT is parametrically faithful.
+
+The paper was submitted on February 20, 2025, and is noted as an outstanding paper at EMNLP 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76ca6bfa-db83-4f92-ae02-73df222a7467",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "689d9644-f7c4-4215-845c-6da02a5147c1",
+  "toolUseResult": {
+    "query": "arxiv \"Measuring Chain of Thought Faithfulness by Unlearning\" 2502.14829",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VRrgVfaUK4g9cDFwJqAUJ6",
+        "content": [
+          {
+            "title": "[2502.14829] Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+            "url": "https://arxiv.org/abs/2502.14829"
+          },
+          {
+            "title": "[Literature Review] Measuring Faithfulness of Chains of Thought by Unlearning Reasoning Steps",
+            "url": "https://www.themoonlight.io/en/review/measuring-faithfulness-of-chains-of-thought-by-unlearning-reasoning-steps"
+          },
+          {
+            "title": "(PDF) Measuring Faithfulness of Chains of Thought by Unlearning Reasoning Steps",
+            "url": "https://www.researchgate.net/publication/389207289_Measuring_Faithfulness_of_Chains_of_Thought_by_Unlearning_Reasoning_Steps"
+          },
+          {
+            "title": "A Closer Look at Bias and Chain-of-Thought Faithfulness of Large (Vision) Language Models",
+            "url": "https://arxiv.org/html/2505.23945v1"
+          },
+          {
+            "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+            "url": "https://arxiv.org/pdf/2502.14829"
+          },
+          {
+            "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/arXiv:2502.14829"
+          },
+          {
+            "title": "Measuring Faithfulness of Chains of Thought by Unlearning Reasoning Steps - Paper Detail",
+            "url": "https://deeplearn.org/arxiv/578536/measuring-faithfulness-of-chains-of-thought-by-unlearning-reasoning-steps"
+          },
+          {
+            "title": "[2307.13702] Measuring Faithfulness in Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/abs/2307.13702"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\n**Title:** Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps\n\n**Authors:** Martin Tutek, Fateme Hashemi Chaleshtori, Ana Marasović, and Yonatan Belinkov\n\n**ArXiv ID:** 2502.14829\n\n**Main Contribution:** The paper introduces a framework for measuring parametric faithfulness of generated reasoning, and proposes Faithfulness by Unlearning Reasoning steps (FUR), an instance of this framework.\n\n**Key Idea:** FUR erases information contained in reasoning steps from model parameters, and measures faithfulness as the resulting effect on the model's prediction.\n\n**Research Question:** Despite much work on CoT prompting, it is unclear if reasoning verbalized in a CoT is faithful to the models' parametric beliefs.\n\n**Results:** Experiments with four LMs and five multi-hop multi-choice question answering (MCQA) datasets show that FUR is frequently able to precisely change the underlying models' prediction for a given instance by unlearning key steps, indicating when a CoT is parametrically faithful.\n\nThe paper was submitted on February 20, 2025, and is noted as an outstanding paper at EMNLP 2025."
+    ],
+    "durationSeconds": 6.560226797999989,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "76ca6bfa-db83-4f92-ae02-73df222a7467",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-19T13:42:32.919Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LiiRmtKvMk8m9pJbZ3w43h`</summary>
+
+```json
+{
+  "query": "arxiv \"reasoning\" \"probe\" \"information\" \"contribution\" \"temporal\" \"correctness\" new paper 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "689d9644-f7c4-4215-845c-6da02a5147c1",
+  "isSidechain": false,
+  "requestId": "req_011CbC2QJWzWg3YdJ1amY3XW",
+  "type": "assistant",
+  "uuid": "8c673cd0-0b34-447b-8b49-5aabd8f38218",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NbzhxcorUYqNMzsQexh5op",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 864,
+      "cache_read_input_tokens": 61105,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 864,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 61105,
+          "cache_creation_input_tokens": 864,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 864
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-19T13:42:40.198Z_
+
+<details><summary>↩ Tool result · `toolu_01LiiRmtKvMk8m9pJbZ3w43h`</summary>
+
+```text
+Web search results for query: "arxiv "reasoning" "probe" "information" "contribution" "temporal" "correctness" new paper 2026"
+
+Links: [{"title":"Temporal Predictors of Outcome in Reasoning Language Models","url":"https://arxiv.org/html/2511.14773"},{"title":"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics","url":"https://arxiv.org/html/2605.18549"},{"title":"Submitted as a conference paper at ICLR 2026 TYPED CHAIN-OF-THOUGHT:","url":"https://arxiv.org/pdf/2510.01069"},{"title":"Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification","url":"https://arxiv.org/pdf/2504.05419"},{"title":"Temporal Predictors of Outcome in Reasoning Language Models","url":"https://arxiv.org/pdf/2511.14773"},{"title":"Temporal Reasoning over Evolving Knowledge Graphs","url":"https://arxiv.org/html/2509.15464v1"},{"title":"Mathematical Reasoning via Intervention-Based Time- ...","url":"https://arxiv.org/pdf/2605.07600"},{"title":"Mathematical Reasoning via Intervention-Based Time-Series Causal Discovery Using LLMs as Concept Mastery Simulators","url":"https://arxiv.org/html/2605.07600v1"}]
+
+Based on the search results, I found several recent papers on arxiv that match your query about reasoning, probing, information, contribution, temporal dynamics, and correctness. Here are the most relevant findings:
+
+## Key Papers Found:
+
+**1. "Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics"** (Most Recent - 1 day ago)
+
+This paper examines whether the model's internal trajectory during reasoning encodes information about the correctness of its eventual answer, using prompt and CoT. The research reveals that trajectories expose temporal dynamics invisible to static probes.
+
+**2. "Temporal Predictors of Outcome in Reasoning Language Models"** (November 3, 2025)
+
+This work reveals that a detectable correctness signal generally emerges very early into the reasoning process, even for longer CoT outputs. Key contributions include probing during CoT generation to predict answer correctness directly from an LLM's hidden state while the chain-of-thought is being generated, not only after initial question or the final answer.
+
+**3. "Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification"** (April 2025)
+
+This paper finds that models' hidden states encode correctness of future answers, enabling early prediction of the correctness before the intermediate answer is fully formulated.
+
+These papers all focus on probing hidden states to extract information about reasoning correctness, with particular emphasis on temporal dynamics during the reasoning process.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c673cd0-0b34-447b-8b49-5aabd8f38218",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "5dec1b0a-6356-40b0-96f4-7890604a07dc",
+  "toolUseResult": {
+    "query": "arxiv \"reasoning\" \"probe\" \"information\" \"contribution\" \"temporal\" \"correctness\" new paper 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016gVWoTboYvJuAS9JbW7dKc",
+        "content": [
+          {
+            "title": "Temporal Predictors of Outcome in Reasoning Language Models",
+            "url": "https://arxiv.org/html/2511.14773"
+          },
+          {
+            "title": "Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics",
+            "url": "https://arxiv.org/html/2605.18549"
+          },
+          {
+            "title": "Submitted as a conference paper at ICLR 2026 TYPED CHAIN-OF-THOUGHT:",
+            "url": "https://arxiv.org/pdf/2510.01069"
+          },
+          {
+            "title": "Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification",
+            "url": "https://arxiv.org/pdf/2504.05419"
+          },
+          {
+            "title": "Temporal Predictors of Outcome in Reasoning Language Models",
+            "url": "https://arxiv.org/pdf/2511.14773"
+          },
+          {
+            "title": "Temporal Reasoning over Evolving Knowledge Graphs",
+            "url": "https://arxiv.org/html/2509.15464v1"
+          },
+          {
+            "title": "Mathematical Reasoning via Intervention-Based Time- ...",
+            "url": "https://arxiv.org/pdf/2605.07600"
+          },
+          {
+            "title": "Mathematical Reasoning via Intervention-Based Time-Series Causal Discovery Using LLMs as Concept Mastery Simulators",
+            "url": "https://arxiv.org/html/2605.07600v1"
+          }
+        ]
+      },
+      "Based on the search results, I found several recent papers on arxiv that match your query about reasoning, probing, information, contribution, temporal dynamics, and correctness. Here are the most relevant findings:\n\n## Key Papers Found:\n\n**1. \"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics\"** (Most Recent - 1 day ago)\n\nThis paper examines whether the model's internal trajectory during reasoning encodes information about the correctness of its eventual answer, using prompt and CoT. The research reveals that trajectories expose temporal dynamics invisible to static probes.\n\n**2. \"Temporal Predictors of Outcome in Reasoning Language Models\"** (November 3, 2025)\n\nThis work reveals that a detectable correctness signal generally emerges very early into the reasoning process, even for longer CoT outputs. Key contributions include probing during CoT generation to predict answer correctness directly from an LLM's hidden state while the chain-of-thought is being generated, not only after initial question or the final answer.\n\n**3. \"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification\"** (April 2025)\n\nThis paper finds that models' hidden states encode correctness of future answers, enabling early prediction of the correctness before the intermediate answer is fully formulated.\n\nThese papers all focus on probing hidden states to extract information about reasoning correctness, with particular emphasis on temporal dynamics during the reasoning process."
+    ],
+    "durationSeconds": 7.274659585000016,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8c673cd0-0b34-447b-8b49-5aabd8f38218",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-19T13:42:43.148Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DUeJ8hSriK82eSq4MJjcGv`</summary>
+
+```json
+{
+  "query": "arxiv \"reasoning\" \"hidden state\" \"calibrated\" OR \"calibration\" \"probe\" \"intervention\" 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5dec1b0a-6356-40b0-96f4-7890604a07dc",
+  "isSidechain": false,
+  "requestId": "req_011CbC2R53Q8JxV8U4T2Zz9e",
+  "type": "assistant",
+  "uuid": "e78d77a8-7875-4196-9a91-cbd69e536703",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Tw7THBrZyodDjHKkoyXTf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 788,
+      "cache_read_input_tokens": 61969,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 61969,
+          "cache_creation_input_tokens": 788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-19T13:42:54.116Z_
+
+<details><summary>↩ Tool result · `toolu_01DUeJ8hSriK82eSq4MJjcGv`</summary>
+
+```text
+Web search results for query: "arxiv "reasoning" "hidden state" "calibrated" OR "calibration" "probe" "intervention" 2026"
+
+Links: [{"title":"Calibrating LLM Judges: Linear Probes for Fast and Reliable Uncertainty Estimation","url":"https://arxiv.org/pdf/2512.22245"},{"title":"[2604.19444] Unsupervised Confidence Calibration for Reasoning LLMs from a Single Generation","url":"https://arxiv.org/abs/2604.19444"},{"title":"Reasoning Models Know When They’re Right: Probing Hidden States for Self-Verification","url":"https://arxiv.org/html/2504.05419v1"},{"title":"Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification","url":"https://arxiv.org/pdf/2504.05419"},{"title":"[2605.13484] Discovery of Hidden Miscalibration Regimes","url":"https://arxiv.org/abs/2605.13484"},{"title":"Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs","url":"https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full.pdf"},{"title":"Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs","url":"https://www.medrxiv.org/content/10.1101/2025.09.17.25336018.full.pdf"},{"title":"Mathematical Reasoning via Intervention-Based Time- ...","url":"https://arxiv.org/pdf/2605.07600"}]
+
+I found several relevant arxiv papers matching your search query. Here are the key results:
+
+1. **Calibrating LLM Judges: Linear Probes for Fast and Reliable Uncertainty Estimation** (arxiv 2512.22245)
+   - Introduces a Brier-score trained linear probe that produces calibrated uncertainty estimates from reasoning judges' hidden states
+   - Achieves better calibration than baselines across multiple model families while requiring less compute
+
+2. **Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification** (arxiv 2504.05419)
+   - Trains a binary classifier to predict answer correctness from the model's hidden states, finding that correctness information is readily encoded in internal representations and can be reliably extracted with a simple probe
+   - The probe is highly calibrated with an expected calibration error below 0.1
+
+3. **Unsupervised Confidence Calibration for Reasoning LLMs from a Single Generation** (arxiv 2604.19444)
+   - Substantially outperforms baselines across 5 math and question-answering tasks using 9 reasoning models
+
+4. **Discovery of Hidden Miscalibration Regimes** (arxiv 2605.13484)
+   - Finds that input-dependent calibration heterogeneity is prevalent across four real-world LLM benchmarks and twelve LLMs
+
+5. **Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs** (from medRxiv, related work)
+   - Extracts internal representations from transformer layers and trains lightweight probe networks to map internal states to calibrated predictions
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e78d77a8-7875-4196-9a91-cbd69e536703",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "f87676a9-6e59-44ab-92a0-ead952bda8cc",
+  "toolUseResult": {
+    "query": "arxiv \"reasoning\" \"hidden state\" \"calibrated\" OR \"calibration\" \"probe\" \"intervention\" 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GuSPsquJpZhWLXXM3gT2Z4",
+        "content": [
+          {
+            "title": "Calibrating LLM Judges: Linear Probes for Fast and Reliable Uncertainty Estimation",
+            "url": "https://arxiv.org/pdf/2512.22245"
+          },
+          {
+            "title": "[2604.19444] Unsupervised Confidence Calibration for Reasoning LLMs from a Single Generation",
+            "url": "https://arxiv.org/abs/2604.19444"
+          },
+          {
+            "title": "Reasoning Models Know When They’re Right: Probing Hidden States for Self-Verification",
+            "url": "https://arxiv.org/html/2504.05419v1"
+          },
+          {
+            "title": "Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification",
+            "url": "https://arxiv.org/pdf/2504.05419"
+          },
+          {
+            "title": "[2605.13484] Discovery of Hidden Miscalibration Regimes",
+            "url": "https://arxiv.org/abs/2605.13484"
+          },
+          {
+            "title": "Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full.pdf"
+          },
+          {
+            "title": "Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.09.17.25336018.full.pdf"
+          },
+          {
+            "title": "Mathematical Reasoning via Intervention-Based Time- ...",
+            "url": "https://arxiv.org/pdf/2605.07600"
+          }
+        ]
+      },
+      "I found several relevant arxiv papers matching your search query. Here are the key results:\n\n1. **Calibrating LLM Judges: Linear Probes for Fast and Reliable Uncertainty Estimation** (arxiv 2512.22245)\n   - Introduces a Brier-score trained linear probe that produces calibrated uncertainty estimates from reasoning judges' hidden states\n   - Achieves better calibration than baselines across multiple model families while requiring less compute\n\n2. **Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification** (arxiv 2504.05419)\n   - Trains a binary classifier to predict answer correctness from the model's hidden states, finding that correctness information is readily encoded in internal representations and can be reliably extracted with a simple probe\n   - The probe is highly calibrated with an expected calibration error below 0.1\n\n3. **Unsupervised Confidence Calibration for Reasoning LLMs from a Single Generation** (arxiv 2604.19444)\n   - Substantially outperforms baselines across 5 math and question-answering tasks using 9 reasoning models\n\n4. **Discovery of Hidden Miscalibration Regimes** (arxiv 2605.13484)\n   - Finds that input-dependent calibration heterogeneity is prevalent across four real-world LLM benchmarks and twelve LLMs\n\n5. **Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs** (from medRxiv, related work)\n   - Extracts internal representations from transformer layers and trains lightweight probe networks to map internal states to calibrated predictions"
+    ],
+    "durationSeconds": 10.961226408999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e78d77a8-7875-4196-9a91-cbd69e536703",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 93_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-19 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "f87676a9-6e59-44ab-92a0-ead952bda8cc",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 94_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrated temporal information-contribution gap for CoT faithfulness",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-19T13:42:56.834Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VgF5TBvaFzJSi1JHs3LXQC`</summary>
+
+```json
+{
+  "query": "arxiv \"correctness\" \"probe\" \"reasoning model\" \"causal\" \"gap\" \"contribution\" new 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f87676a9-6e59-44ab-92a0-ead952bda8cc",
+  "isSidechain": false,
+  "requestId": "req_011CbC2S6axBgn7V3UNUjtHh",
+  "type": "assistant",
+  "uuid": "f1cc9268-3d72-45a4-aa10-2418fa11f76c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BhXnhwTxzQJgFU5oVDm9uT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 895,
+      "cache_read_input_tokens": 62757,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 895,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 62757,
+          "cache_creation_input_tokens": 895,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 895
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-19T13:43:05.656Z_
+
+<details><summary>↩ Tool result · `toolu_01VgF5TBvaFzJSi1JHs3LXQC`</summary>
+
+```text
+Web search results for query: "arxiv "correctness" "probe" "reasoning model" "causal" "gap" "contribution" new 2026"
+
+Links: [{"title":"Diagnosing Causal Reasoning in Vision-Language Models via Structured Relevance Graphs","url":"https://arxiv.org/html/2602.20878"},{"title":"Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification","url":"https://arxiv.org/pdf/2504.05419"},{"title":"BiasCause: Evaluate Socially Biased Causal Reasoning of Large Language Models","url":"https://arxiv.org/html/2504.07997"},{"title":"A Survey on Enhancing Causal Reasoning Ability of Large Language Models","url":"https://arxiv.org/html/2503.09326v1"},{"title":"Nuance Matters: Probing Epistemic Consistency in Causal Reasoning","url":"https://arxiv.org/pdf/2409.00103"},{"title":"Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents","url":"https://arxiv.org/pdf/2601.02314"},{"title":"Bypassing the Rationale: Causal Auditing of Implicit Reasoning in Language Models","url":"https://arxiv.org/pdf/2602.03994"},{"title":"Beyond Correctness: Rewarding Faithful Reasoning in Retrieval-Augmented Generation","url":"https://arxiv.org/html/2510.13272v1"}]
+
+Based on the search results, I found several recent papers from 2026 that match your query criteria. Here are the most relevant ones:
+
+## Key Papers Found:
+
+1. **"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification"** (arxiv 2504.05419)
+   - This paper finds that models' hidden states encode correctness of future answers, and uses a probe as a verifier to decide whether to exit reasoning at intermediate answers, reducing inference tokens by 24% without compromising performance.
+
+2. **"Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents"** (arxiv 2601.02314, January 2026)
+   - The empirical evaluation reveals a persistent Faithfulness Gap, detecting a widespread failure mode termed Causal Decoupling, where agents exhibit a violation density of up to 0.77 in factual and scientific domains.
+
+3. **"Bypassing the Rationale: Causal Auditing of Implicit Reasoning in Language Models"** (arxiv 2602.03994)
+   - The contribution is a causal, layerwise auditing framework that measures whether answers are mechanistically mediated by CoT-aligned internal representations, quantifying this dependence using the CoT Mediation Index (CMI).
+
+4. **"Diagnosing Causal Reasoning in Vision-Language Models via Structured Relevance Graphs"** (arxiv 2602.20878, February 24, 2026)
+   - The paper addresses the gap where evaluation protocols rely on answer accuracy, limiting the ability to distinguish perception errors from flawed causal reasoning, and introduces Vision-Language Causal Graphs (VLCGs).
+
+These papers align closely with your search terms, focusing on probing correctness, causal reasoning, and addressing gaps in current model evaluation methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f1cc9268-3d72-45a4-aa10-2418fa11f76c",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "fa22fe25-d3d8-45f1-b5b7-58da46574194",
+  "toolUseResult": {
+    "query": "arxiv \"correctness\" \"probe\" \"reasoning model\" \"causal\" \"gap\" \"contribution\" new 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01S1rJZ1JTqWHtByhg1gnprS",
+        "content": [
+          {
+            "title": "Diagnosing Causal Reasoning in Vision-Language Models via Structured Relevance Graphs",
+            "url": "https://arxiv.org/html/2602.20878"
+          },
+          {
+            "title": "Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification",
+            "url": "https://arxiv.org/pdf/2504.05419"
+          },
+          {
+            "title": "BiasCause: Evaluate Socially Biased Causal Reasoning of Large Language Models",
+            "url": "https://arxiv.org/html/2504.07997"
+          },
+          {
+            "title": "A Survey on Enhancing Causal Reasoning Ability of Large Language Models",
+            "url": "https://arxiv.org/html/2503.09326v1"
+          },
+          {
+            "title": "Nuance Matters: Probing Epistemic Consistency in Causal Reasoning",
+            "url": "https://arxiv.org/pdf/2409.00103"
+          },
+          {
+            "title": "Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents",
+            "url": "https://arxiv.org/pdf/2601.02314"
+          },
+          {
+            "title": "Bypassing the Rationale: Causal Auditing of Implicit Reasoning in Language Models",
+            "url": "https://arxiv.org/pdf/2602.03994"
+          },
+          {
+            "title": "Beyond Correctness: Rewarding Faithful Reasoning in Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2510.13272v1"
+          }
+        ]
+      },
+      "Based on the search results, I found several recent papers from 2026 that match your query criteria. Here are the most relevant ones:\n\n## Key Papers Found:\n\n1. **\"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification\"** (arxiv 2504.05419)\n   - This paper finds that models' hidden states encode correctness of future answers, and uses a probe as a verifier to decide whether to exit reasoning at intermediate answers, reducing inference tokens by 24% without compromising performance.\n\n2. **\"Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents\"** (arxiv 2601.02314, January 2026)\n   - The empirical evaluation reveals a persistent Faithfulness Gap, detecting a widespread failure mode termed Causal Decoupling, where agents exhibit a violation density of up to 0.77 in factual and scientific domains.\n\n3. **\"Bypassing the Rationale: Causal Auditing of Implicit Reasoning in Language Models\"** (arxiv 2602.03994)\n   - The contribution is a causal, layerwise auditing framework that measures whether answers are mechanistically mediated by CoT-aligned internal representations, quantifying this dependence using the CoT Mediation Index (CMI).\n\n4. **\"Diagnosing Causal Reasoning in Vision-Language Models via Structured Relevance Graphs\"** (arxiv 2602.20878, February 24, 2026)\n   - The paper addresses the gap where evaluation protocols rely on answer accuracy, limiting the ability to distinguish perception errors from flawed causal reasoning, and introduces Vision-Language Causal Graphs (VLCGs).\n\nThese papers align closely with your search terms, focusing on probing correctness, causal reasoning, and addressing gaps in current model evaluation methods."
+    ],
+    "durationSeconds": 8.816216445000027,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f1cc9268-3d72-45a4-aa10-2418fa11f76c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 97 · 2026-05-19T13:43:09.086Z_
+
+Let me do one more critical check — searching for any very recent work that might directly overlap with the ICG framework concept:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa22fe25-d3d8-45f1-b5b7-58da46574194",
+  "isSidechain": false,
+  "requestId": "req_011CbC2Swu69SXQ25Zr541mL",
+  "type": "assistant",
+  "uuid": "41f7bde0-e6c6-4910-89f8-866fef969ff3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JfuHJNP4guf5sEzdK1Daqw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 923,
+      "cache_read_input_tokens": 63652,
+      "output_tokens": 108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 923,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 108,
+          "cache_read_input_tokens": 63652,
+          "cache_creation_input_tokens": 923,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 923
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-19T13:43:09.879Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019esMpNHwmsEVqQxjoenG8c`</summary>
+
+```json
+{
+  "query": "arxiv \"information\" \"gap\" OR \"divergence\" \"probe\" \"causal contribution\" \"chain-of-thought\" 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "41f7bde0-e6c6-4910-89f8-866fef969ff3",
+  "isSidechain": false,
+  "requestId": "req_011CbC2Swu69SXQ25Zr541mL",
+  "type": "assistant",
+  "uuid": "e1848d43-66b0-4037-8875-d7ccc3e071fb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JfuHJNP4guf5sEzdK1Daqw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 923,
+      "cache_read_input_tokens": 63652,
+      "output_tokens": 108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 923,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 108,
+          "cache_read_input_tokens": 63652,
+          "cache_creation_input_tokens": 923,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 923
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-19T13:43:17.953Z_
+
+<details><summary>↩ Tool result · `toolu_019esMpNHwmsEVqQxjoenG8c`</summary>
+
+```text
+Web search results for query: "arxiv "information" "gap" OR "divergence" "probe" "causal contribution" "chain-of-thought" 2026"
+
+Links: [{"title":"Submitted as a conference paper at ICLR 2026 TYPED CHAIN-OF-THOUGHT:","url":"https://arxiv.org/pdf/2510.01069"},{"title":"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures","url":"https://arxiv.org/html/2603.16475v1"},{"title":"The Gradient-Causal Gap: Why Gradient Importance Fails on Complex Tasks","url":"https://arxiv.org/html/2602.01442"},{"title":"Chain Of Thought Compression: A Theoritical Analysis","url":"https://arxiv.org/pdf/2601.21576"},{"title":"Under review THE GRADIENT-CAUSAL GAP: WHY GRADIENT","url":"https://arxiv.org/pdf/2602.01442"},{"title":"Causal Sufficiency and Necessity Improves Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2506.09853v3"},{"title":"Verifying Chain-of-Thought Reasoning via Its Computational Graph","url":"https://arxiv.org/html/2510.09312v1"}]
+
+I found several relevant arxiv papers from 2026 and late 2025 related to your search terms. Here are the results:
+
+1. **"Typed Chain-of-Thought" (ICLR 2026)** - This paper discusses causal analysis of reasoning traces and mechanistic data like activation structure in reasoning models.
+
+2. **"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures"** - This work evaluates faithfulness by estimating the causal contribution of internal representations using techniques such as activation and attribution patching, causal tracing, and propositional probes. It shows that a gap is only weakly affected by stronger instructions, but is substantially reduced when the model has tool access.
+
+3. **"The Gradient-Causal Gap: Why Gradient Importance Fails on Complex Tasks"** - This paper discusses a divergence that poses a challenge to gradient-based interpretability, as methods like Integrated Gradients assume that gradient magnitude reflects contribution to model output, but results show this assumption breaks down for out-of-distribution generalization.
+
+4. **"Chain Of Thought Compression: A Theoretical Analysis"** - This paper examines how CoT compression impacts reasoning difficulty based on problem reducibility, showing compression is effective for reducible problems but for irreducible problems, omitting intermediate steps removes essential computational states.
+
+5. **"Causal Sufficiency and Necessity Improves Chain-of-Thought Reasoning"** - This work addresses two challenges in chain-of-thought: sufficiency (ensuring intermediate steps comprehensively cover the final conclusion) and necessity (identifying truly indispensable inference steps).
+
+6. **"Verifying Chain-of-Thought Reasoning via Its Computational Graph"** - This paper provides evidence that structural signatures are causally implicated in errors, opening a promising direction for targeted model interventions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e1848d43-66b0-4037-8875-d7ccc3e071fb",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "bef983b3-031b-4f6f-8952-389accb1a751",
+  "toolUseResult": {
+    "query": "arxiv \"information\" \"gap\" OR \"divergence\" \"probe\" \"causal contribution\" \"chain-of-thought\" 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011FXJBGaaFWBjmWhq35Qp4J",
+        "content": [
+          {
+            "title": "Submitted as a conference paper at ICLR 2026 TYPED CHAIN-OF-THOUGHT:",
+            "url": "https://arxiv.org/pdf/2510.01069"
+          },
+          {
+            "title": "Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures",
+            "url": "https://arxiv.org/html/2603.16475v1"
+          },
+          {
+            "title": "The Gradient-Causal Gap: Why Gradient Importance Fails on Complex Tasks",
+            "url": "https://arxiv.org/html/2602.01442"
+          },
+          {
+            "title": "Chain Of Thought Compression: A Theoritical Analysis",
+            "url": "https://arxiv.org/pdf/2601.21576"
+          },
+          {
+            "title": "Under review THE GRADIENT-CAUSAL GAP: WHY GRADIENT",
+            "url": "https://arxiv.org/pdf/2602.01442"
+          },
+          {
+            "title": "Causal Sufficiency and Necessity Improves Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2506.09853v3"
+          },
+          {
+            "title": "Verifying Chain-of-Thought Reasoning via Its Computational Graph",
+            "url": "https://arxiv.org/html/2510.09312v1"
+          }
+        ]
+      },
+      "I found several relevant arxiv papers from 2026 and late 2025 related to your search terms. Here are the results:\n\n1. **\"Typed Chain-of-Thought\" (ICLR 2026)** - This paper discusses causal analysis of reasoning traces and mechanistic data like activation structure in reasoning models.\n\n2. **\"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures\"** - This work evaluates faithfulness by estimating the causal contribution of internal representations using techniques such as activation and attribution patching, causal tracing, and propositional probes. It shows that a gap is only weakly affected by stronger instructions, but is substantially reduced when the model has tool access.\n\n3. **\"The Gradient-Causal Gap: Why Gradient Importance Fails on Complex Tasks\"** - This paper discusses a divergence that poses a challenge to gradient-based interpretability, as methods like Integrated Gradients assume that gradient magnitude reflects contribution to model output, but results show this assumption breaks down for out-of-distribution generalization.\n\n4. **\"Chain Of Thought Compression: A Theoretical Analysis\"** - This paper examines how CoT compression impacts reasoning difficulty based on problem reducibility, showing compression is effective for reducible problems but for irreducible problems, omitting intermediate steps removes essential computational states.\n\n5. **\"Causal Sufficiency and Necessity Improves Chain-of-Thought Reasoning\"** - This work addresses two challenges in chain-of-thought: sufficiency (ensuring intermediate steps comprehensively cover the final conclusion) and necessity (identifying truly indispensable inference steps).\n\n6. **\"Verifying Chain-of-Thought Reasoning via Its Computational Graph\"** - This paper provides evidence that structural signatures are causally implicated in errors, opening a promising direction for targeted model interventions."
+    ],
+    "durationSeconds": 8.07010998400004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e1848d43-66b0-4037-8875-d7ccc3e071fb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-19T13:43:21.202Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Wkqnz5TQCikFeyXSTyZgjp`</summary>
+
+```json
+{
+  "query": "\"A Closer Look at Bias and Chain-of-Thought Faithfulness\" 2505.23945 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bef983b3-031b-4f6f-8952-389accb1a751",
+  "isSidechain": false,
+  "requestId": "req_011CbC2TrTwdYRmJoRtFGaT5",
+  "type": "assistant",
+  "uuid": "736d67b5-9e9c-40c9-abf8-3be138db528b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Byb2Ae3EnykHmbupcZXCuT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 888,
+      "cache_read_input_tokens": 64575,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 64575,
+          "cache_creation_input_tokens": 888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-19T13:43:29.142Z_
+
+<details><summary>↩ Tool result · `toolu_01Wkqnz5TQCikFeyXSTyZgjp`</summary>
+
+```text
+Web search results for query: ""A Closer Look at Bias and Chain-of-Thought Faithfulness" 2505.23945 2026"
+
+Links: [{"title":"[2505.23945] A Closer Look at Bias and Chain-of-Thought Faithfulness of Large (Vision) Language Models","url":"https://arxiv.org/abs/2505.23945"},{"title":"A Closer Look at Bias and Chain-of-Thought Faithfulness of Large (Vision) Language Models","url":"https://arxiv.org/html/2505.23945v1"},{"title":"A Closer Look at Bias and Chain-of-Thought Faithfulness of Large (Vision) Language Models","url":"https://arxiv.org/pdf/2505.23945"},{"title":"A Closer Look at Bias and Chain-of-Thought Faithfulness of Large (Vision) Language Models | Request PDF","url":"https://www.researchgate.net/publication/397422588_A_Closer_Look_at_Bias_and_Chain-of-Thought_Faithfulness_of_Large_Vision_Language_Models"},{"title":"A Closer Look at Bias and Chain-of-Thought Faithfulness of Large (Vision) Language Models - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.723/"},{"title":"[PDF] A Closer Look at Bias and Chain-of-Thought Faithfulness ...","url":"https://www.semanticscholar.org/paper/A-Closer-Look-at-Bias-and-Chain-of-Thought-of-Large-Balasubramanian-Basu/cc8c01996b4dc20a0879bd93d87d115df43e1c03"},{"title":"Do Biased Models Have Biased Thoughts?","url":"https://arxiv.org/pdf/2508.06671"}]
+
+I found the paper for you! Here are the key details:
+
+**Paper Title:** A Closer Look at Bias and Chain-of-Thought Faithfulness of Large (Vision) Language Models
+
+**Authors:** Sriram Balasubramanian, Samyadeep Basu, and Soheil Feizi
+
+**ArXiv ID:** 2505.23945
+
+**Publication:** Findings of the Association for Computational Linguistics: EMNLP 2025
+
+**Key Research Overview:**
+
+The paper presents the first comprehensive study of CoT faithfulness in large vision-language models (LVLMs), investigating how both text-based and previously unexplored image-based biases affect reasoning and bias articulation. Chain-of-thought reasoning enhances performance of large language models, but questions remain about whether these reasoning traces faithfully reflect the internal processes of the model.
+
+**Main Findings:**
+
+Subtle image-based biases are rarely articulated compared to explicit text-based ones, even in models specialized for reasoning. Additionally, many models exhibit a previously unidentified phenomenon termed "inconsistent" reasoning - correctly reasoning before abruptly changing answers, serving as a potential canary for detecting biased reasoning from unfaithful CoTs.
+
+The paper introduces a novel, fine-grained evaluation pipeline for categorizing bias articulation patterns, enabling significantly more precise analysis of CoT reasoning than previous methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "736d67b5-9e9c-40c9-abf8-3be138db528b",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "9ca6d839-97fc-4246-8ecb-95cbfddc3b82",
+  "toolUseResult": {
+    "query": "\"A Closer Look at Bias and Chain-of-Thought Faithfulness\" 2505.23945 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017fbGjiZ3e1UTcNU39pHX9i",
+        "content": [
+          {
+            "title": "[2505.23945] A Closer Look at Bias and Chain-of-Thought Faithfulness of Large (Vision) Language Models",
+            "url": "https://arxiv.org/abs/2505.23945"
+          },
+          {
+            "title": "A Closer Look at Bias and Chain-of-Thought Faithfulness of Large (Vision) Language Models",
+            "url": "https://arxiv.org/html/2505.23945v1"
+          },
+          {
+            "title": "A Closer Look at Bias and Chain-of-Thought Faithfulness of Large (Vision) Language Models",
+            "url": "https://arxiv.org/pdf/2505.23945"
+          },
+          {
+            "title": "A Closer Look at Bias and Chain-of-Thought Faithfulness of Large (Vision) Language Models | Request PDF",
+            "url": "https://www.researchgate.net/publication/397422588_A_Closer_Look_at_Bias_and_Chain-of-Thought_Faithfulness_of_Large_Vision_Language_Models"
+          },
+          {
+            "title": "A Closer Look at Bias and Chain-of-Thought Faithfulness of Large (Vision) Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-emnlp.723/"
+          },
+          {
+            "title": "[PDF] A Closer Look at Bias and Chain-of-Thought Faithfulness ...",
+            "url": "https://www.semanticscholar.org/paper/A-Closer-Look-at-Bias-and-Chain-of-Thought-of-Large-Balasubramanian-Basu/cc8c01996b4dc20a0879bd93d87d115df43e1c03"
+          },
+          {
+            "title": "Do Biased Models Have Biased Thoughts?",
+            "url": "https://arxiv.org/pdf/2508.06671"
+          }
+        ]
+      },
+      "I found the paper for you! Here are the key details:\n\n**Paper Title:** A Closer Look at Bias and Chain-of-Thought Faithfulness of Large (Vision) Language Models\n\n**Authors:** Sriram Balasubramanian, Samyadeep Basu, and Soheil Feizi\n\n**ArXiv ID:** 2505.23945\n\n**Publication:** Findings of the Association for Computational Linguistics: EMNLP 2025\n\n**Key Research Overview:**\n\nThe paper presents the first comprehensive study of CoT faithfulness in large vision-language models (LVLMs), investigating how both text-based and previously unexplored image-based biases affect reasoning and bias articulation. Chain-of-thought reasoning enhances performance of large language models, but questions remain about whether these reasoning traces faithfully reflect the internal processes of the model.\n\n**Main Findings:**\n\nSubtle image-based biases are rarely articulated compared to explicit text-based ones, even in models specialized for reasoning. Additionally, many models exhibit a previously unidentified phenomenon termed \"inconsistent\" reasoning - correctly reasoning before abruptly changing answers, serving as a potential canary for detecting biased reasoning from unfaithful CoTs.\n\nThe paper introduces a novel, fine-grained evaluation pipeline for categorizing bias articulation patterns, enabling significantly more precise analysis of CoT reasoning than previous methods."
+    ],
+    "durationSeconds": 7.935794882999966,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "736d67b5-9e9c-40c9-abf8-3be138db528b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 102 · 2026-05-19T13:43:29.151Z_
+
+```json
+{
+  "parentUuid": "9ca6d839-97fc-4246-8ecb-95cbfddc3b82",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0e0b7616-a95e-4347-b57b-b4d0ea629c99",
+  "timestamp": "2026-05-19T13:43:29.151Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-19T13:43:31.742Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Nh9Hvrh5qgGMYuJJfyJsmt`</summary>
+
+```json
+{
+  "query": "arxiv \"chain of thought\" \"hidden\" \"probe\" \"causal\" new paper May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e0b7616-a95e-4347-b57b-b4d0ea629c99",
+  "isSidechain": false,
+  "requestId": "req_011CbC2UgM1sn5FwTe5MpmGd",
+  "type": "assistant",
+  "uuid": "259aef17-25e3-48be-bdff-312c51eb1223",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RbP5DjTVG9fmQZkNnxQBPi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 980,
+      "cache_read_input_tokens": 65463,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 980,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 65463,
+          "cache_creation_input_tokens": 980,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 980
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-19T13:43:39.795Z_
+
+<details><summary>↩ Tool result · `toolu_01Nh9Hvrh5qgGMYuJJfyJsmt`</summary>
+
+```text
+Web search results for query: "arxiv "chain of thought" "hidden" "probe" "causal" new paper May 2026"
+
+Links: [{"title":"How does Chain of Thought Think? Mechanistic ...","url":"https://arxiv.org/pdf/2507.22928"},{"title":"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering","url":"https://arxiv.org/pdf/2603.01437"},{"title":"No Global Plan in Chain-of-Thought: Uncover the Latent Planning Horizon of LLMs","url":"https://arxiv.org/pdf/2602.02103"},{"title":"Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure","url":"https://arxiv.org/pdf/2602.08783"},{"title":"ThoughtProbe: Classifier-Guided LLM Thought Space Exploration via Probing Representations","url":"https://arxiv.org/pdf/2510.27355"}]
+
+I found several recent papers on arXiv related to chain of thought, hidden representations, probing, and causal analysis from 2026. Here are the relevant results:
+
+1. **"How does Chain of Thought Think? Mechanistic..."** (arxiv.org/pdf/2507.22928)
+   - Uses Sparse Autoencoders (SAEs) to resolve polysemanticity and disentangle overlapping internal representations, producing monosemantic features that can be directly probed and causally manipulated. Examines whether CoT reasoning is faithful—whether intermediate reasoning steps faithfully reflect the model's true internal decision-making process.
+
+2. **"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering"** (arxiv.org/pdf/2603.01437) - Preprint, March 3, 2026
+   - Finds that probe directions are not only predictive but also causal, with steering activations along the probe direction flipping model answers in over 50% of cases.
+
+3. **"No Global Plan in Chain-of-Thought: Uncover the Latent Planning Horizon of LLMs"** (arxiv.org/pdf/2602.02103) - Preprint, February 3, 2026
+   - Observes that hidden states at the beginning of CoT can reliably predict total reasoning steps and key attributes, with earlier hidden states carrying information of subsequent generation.
+
+4. **"Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure"** (arxiv.org/pdf/2602.08783)
+   - Conceptualizes latent CoT as a causal system and evaluates it with intervention-based causal analysis, treating model-defined intermediate latent states as reasoning "steps" and performing step-wise do-interventions.
+
+5. **"ThoughtProbe: Classifier-Guided LLM Thought Space Exploration via Probing Representations"** (arxiv.org/pdf/2510.27355)
+   - Adopts a causality perspective, viewing hidden representations as causal factors that influence CoT generation, leading to activation steering techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "259aef17-25e3-48be-bdff-312c51eb1223",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "dcc99115-cf58-4e2a-8739-d48121b6d1e3",
+  "toolUseResult": {
+    "query": "arxiv \"chain of thought\" \"hidden\" \"probe\" \"causal\" new paper May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011SoxQ3cbC624KFDvCyRLns",
+        "content": [
+          {
+            "title": "How does Chain of Thought Think? Mechanistic ...",
+            "url": "https://arxiv.org/pdf/2507.22928"
+          },
+          {
+            "title": "Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering",
+            "url": "https://arxiv.org/pdf/2603.01437"
+          },
+          {
+            "title": "No Global Plan in Chain-of-Thought: Uncover the Latent Planning Horizon of LLMs",
+            "url": "https://arxiv.org/pdf/2602.02103"
+          },
+          {
+            "title": "Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure",
+            "url": "https://arxiv.org/pdf/2602.08783"
+          },
+          {
+            "title": "ThoughtProbe: Classifier-Guided LLM Thought Space Exploration via Probing Representations",
+            "url": "https://arxiv.org/pdf/2510.27355"
+          }
+        ]
+      },
+      "I found several recent papers on arXiv related to chain of thought, hidden representations, probing, and causal analysis from 2026. Here are the relevant results:\n\n1. **\"How does Chain of Thought Think? Mechanistic...\"** (arxiv.org/pdf/2507.22928)\n   - Uses Sparse Autoencoders (SAEs) to resolve polysemanticity and disentangle overlapping internal representations, producing monosemantic features that can be directly probed and causally manipulated. Examines whether CoT reasoning is faithful—whether intermediate reasoning steps faithfully reflect the model's true internal decision-making process.\n\n2. **\"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering\"** (arxiv.org/pdf/2603.01437) - Preprint, March 3, 2026\n   - Finds that probe directions are not only predictive but also causal, with steering activations along the probe direction flipping model answers in over 50% of cases.\n\n3. **\"No Global Plan in Chain-of-Thought: Uncover the Latent Planning Horizon of LLMs\"** (arxiv.org/pdf/2602.02103) - Preprint, February 3, 2026\n   - Observes that hidden states at the beginning of CoT can reliably predict total reasoning steps and key attributes, with earlier hidden states carrying information of subsequent generation.\n\n4. **\"Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure\"** (arxiv.org/pdf/2602.08783)\n   - Conceptualizes latent CoT as a causal system and evaluates it with intervention-based causal analysis, treating model-defined intermediate latent states as reasoning \"steps\" and performing step-wise do-interventions.\n\n5. **\"ThoughtProbe: Classifier-Guided LLM Thought Space Exploration via Probing Representations\"** (arxiv.org/pdf/2510.27355)\n   - Adopts a causality perspective, viewing hidden representations as causal factors that influence CoT generation, leading to activation steering techniques."
+    ],
+    "durationSeconds": 8.048315153000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "259aef17-25e3-48be-bdff-312c51eb1223",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-19 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "dcc99115-cf58-4e2a-8739-d48121b6d1e3",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 106_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrated temporal information-contribution gap for CoT faithfulness",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-19T13:43:44.393Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XRZKTR3NR8bWmKARnAc7v6`</summary>
+
+```json
+{
+  "query": "arxiv reasoning model \"probe\" \"trajectory\" \"faithfulness\" \"gap\" \"correctness\" site:arxiv.org 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dcc99115-cf58-4e2a-8739-d48121b6d1e3",
+  "isSidechain": false,
+  "requestId": "req_011CbC2VTqU3c1Y3zPZc1Zfn",
+  "type": "assistant",
+  "uuid": "ad074531-7d6a-47c9-8875-d168f6c091fa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PPur7QerVqgkXxu9oCZQiE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 866,
+      "cache_read_input_tokens": 66443,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 866,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 66443,
+          "cache_creation_input_tokens": 866,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 866
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-19T13:43:52.086Z_
+
+<details><summary>↩ Tool result · `toolu_01XRZKTR3NR8bWmKARnAc7v6`</summary>
+
+```text
+Web search results for query: "arxiv reasoning model "probe" "trajectory" "faithfulness" "gap" "correctness" site:arxiv.org 2026"
+
+Links: [{"title":"[2601.23163] Probing the Trajectories of Reasoning Traces in Large Language Models","url":"https://arxiv.org/abs/2601.23163"},{"title":"Probing the Trajectories of Reasoning Traces in Large Language Models","url":"https://arxiv.org/html/2601.23163v1"},{"title":"Published as a conference paper at ICLR 2026 FAITHCOT-BENCH: BENCHMARKING","url":"https://arxiv.org/pdf/2510.04040"},{"title":"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics","url":"https://arxiv.org/html/2605.18549"},{"title":"Understanding Moral Reasoning Trajectories in Large Language Models: Toward Probing-Based Explainability","url":"https://arxiv.org/html/2603.16017"},{"title":"Beyond Correctness: Rewarding Faithful Reasoning in Retrieval-Augmented Generation","url":"https://arxiv.org/html/2510.13272"},{"title":"LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals","url":"https://arxiv.org/html/2604.05655v1"},{"title":"[2603.25052] Closing the Confidence-Faithfulness Gap in Large Language Models","url":"https://arxiv.org/abs/2603.25052"}]
+
+I found several relevant papers from arXiv that match your search query. Here are the key results:
+
+## Primary Match
+
+The most directly relevant paper is "Probing the Trajectories of Reasoning Traces in Large Language Models" (arxiv 2601.23163, published January 30, 2026). The paper shows that trajectory probing provides diagnostics for efficient and safer deployment of reasoning models as the measurements can inform practical trace-handling and monitoring policies that improve reliability without assuming intermediate tokens are inherently faithful explanations.
+
+## Related Papers
+
+1. **"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics"** (arxiv 2605.18549): This work evaluates a probe at each generated token to construct a probe trajectory—the continuous evolution of a concept's probability across the reasoning process—and finds that future model behavior is more distinguishable when examined over the full trajectory than from a single static prediction.
+
+2. **"LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals"** (arxiv 2604.05655): This paper explores how trajectory-based analysis may offer a geometric perspective on CoT faithfulness, suggesting that if a model's internal step activations diverge substantially from typical step-specific regions despite producing correct-sounding text, this could indicate unfaithful reasoning.
+
+3. **"Closing the Confidence-Faithfulness Gap in Large Language Models"** (arxiv 2603.25052): This work uses linear probes to show that calibration and verbalized confidence signals are encoded linearly but are orthogonal to one another, and demonstrates that when models reason through a problem while verbalizing a confidence score, the reasoning process disrupts the verbalized confidence direction.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad074531-7d6a-47c9-8875-d168f6c091fa",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "c7fc4f35-f521-4a91-ab86-3ce6bac460fe",
+  "toolUseResult": {
+    "query": "arxiv reasoning model \"probe\" \"trajectory\" \"faithfulness\" \"gap\" \"correctness\" site:arxiv.org 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ATzRSxTdVqBrmYQ72xnnni",
+        "content": [
+          {
+            "title": "[2601.23163] Probing the Trajectories of Reasoning Traces in Large Language Models",
+            "url": "https://arxiv.org/abs/2601.23163"
+          },
+          {
+            "title": "Probing the Trajectories of Reasoning Traces in Large Language Models",
+            "url": "https://arxiv.org/html/2601.23163v1"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 FAITHCOT-BENCH: BENCHMARKING",
+            "url": "https://arxiv.org/pdf/2510.04040"
+          },
+          {
+            "title": "Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics",
+            "url": "https://arxiv.org/html/2605.18549"
+          },
+          {
+            "title": "Understanding Moral Reasoning Trajectories in Large Language Models: Toward Probing-Based Explainability",
+            "url": "https://arxiv.org/html/2603.16017"
+          },
+          {
+            "title": "Beyond Correctness: Rewarding Faithful Reasoning in Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2510.13272"
+          },
+          {
+            "title": "LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals",
+            "url": "https://arxiv.org/html/2604.05655v1"
+          },
+          {
+            "title": "[2603.25052] Closing the Confidence-Faithfulness Gap in Large Language Models",
+            "url": "https://arxiv.org/abs/2603.25052"
+          }
+        ]
+      },
+      "I found several relevant papers from arXiv that match your search query. Here are the key results:\n\n## Primary Match\n\nThe most directly relevant paper is \"Probing the Trajectories of Reasoning Traces in Large Language Models\" (arxiv 2601.23163, published January 30, 2026). The paper shows that trajectory probing provides diagnostics for efficient and safer deployment of reasoning models as the measurements can inform practical trace-handling and monitoring policies that improve reliability without assuming intermediate tokens are inherently faithful explanations.\n\n## Related Papers\n\n1. **\"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics\"** (arxiv 2605.18549): This work evaluates a probe at each generated token to construct a probe trajectory—the continuous evolution of a concept's probability across the reasoning process—and finds that future model behavior is more distinguishable when examined over the full trajectory than from a single static prediction.\n\n2. **\"LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals\"** (arxiv 2604.05655): This paper explores how trajectory-based analysis may offer a geometric perspective on CoT faithfulness, suggesting that if a model's internal step activations diverge substantially from typical step-specific regions despite producing correct-sounding text, this could indicate unfaithful reasoning.\n\n3. **\"Closing the Confidence-Faithfulness Gap in Large Language Models\"** (arxiv 2603.25052): This work uses linear probes to show that calibration and verbalized confidence signals are encoded linearly but are orthogonal to one another, and demonstrates that when models reason through a problem while verbalizing a confidence score, the reasoning process disrupts the verbalized confidence direction."
+    ],
+    "durationSeconds": 7.690333809999982,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ad074531-7d6a-47c9-8875-d168f6c091fa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-19T13:43:54.600Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QBzm7AwLERTFbma3SfPRif`</summary>
+
+```json
+{
+  "query": "\"closing the confidence-faithfulness gap\" 2603.25052 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c7fc4f35-f521-4a91-ab86-3ce6bac460fe",
+  "isSidechain": false,
+  "requestId": "req_011CbC2WNLbyppeZbmuoC91X",
+  "type": "assistant",
+  "uuid": "cb39e773-5e47-4ead-9f32-4559a97edc30",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TrBJpKhQUE9TyYxLUiqGXY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 896,
+      "cache_read_input_tokens": 67309,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 896,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 67309,
+          "cache_creation_input_tokens": 896,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 896
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-19T13:43:58.826Z_
+
+<details><summary>↩ Tool result · `toolu_01QBzm7AwLERTFbma3SfPRif`</summary>
+
+```text
+Web search results for query: ""closing the confidence-faithfulness gap" 2603.25052 2026"
+
+Links: [{"title":"[2603.25052] Closing the Confidence-Faithfulness Gap in Large Language Models","url":"https://arxiv.org/abs/2603.25052"},{"title":"[2603.25052v1] Closing the Confidence-Faithfulness Gap in Large Language Models","url":"https://arxiv.org/abs/2603.25052v1"},{"title":"Closing the Confidence-Faithfulness Gap in Large Language Models","url":"https://arxiv.org/html/2603.25052"},{"title":"Closing the Confidence-Faithfulness Gap in Large Language Models","url":"https://arxiv.org/pdf/2603.25052"},{"title":"Closing the Confidence-Faithfulness Gap in Large ...","url":"https://x.com/HEI/status/2037535763399651595"}]
+
+I found the paper! Here are the search results for "Closing the Confidence-Faithfulness Gap":
+
+The paper addresses how large language models (LLMs) tend to verbalize confidence scores that are largely detached from their actual accuracy, yet the geometric relationship governing this behavior remains poorly understood.
+
+The researchers present a mechanistic interpretability analysis of verbalized confidence, using linear probes and contrastive activation addition (CAA) steering to show that calibration and verbalized confidence signals are encoded linearly but are orthogonal to one another — a finding consistent across three open-weight models and four datasets.
+
+When models are prompted to simultaneously reason through a problem and verbalize a confidence score, the reasoning process disrupts the verbalized confidence direction, exacerbating miscalibration. The authors term this the "Reasoning Contamination Effect."
+
+They introduce a two-stage adaptive steering pipeline that reads the model's internal accuracy estimate and steers verbalized output to match it, substantially improving calibration alignment across all evaluated models.
+
+The paper was authored by Miranda Muqing Miao and Lyle Ungar from the University of Pennsylvania and was submitted to arXiv on March 26, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb39e773-5e47-4ead-9f32-4559a97edc30",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "58eabea8-5ddc-422a-8a77-043a9e3ab3c6",
+  "toolUseResult": {
+    "query": "\"closing the confidence-faithfulness gap\" 2603.25052 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WHRR5BMHazFn923h8ra7YE",
+        "content": [
+          {
+            "title": "[2603.25052] Closing the Confidence-Faithfulness Gap in Large Language Models",
+            "url": "https://arxiv.org/abs/2603.25052"
+          },
+          {
+            "title": "[2603.25052v1] Closing the Confidence-Faithfulness Gap in Large Language Models",
+            "url": "https://arxiv.org/abs/2603.25052v1"
+          },
+          {
+            "title": "Closing the Confidence-Faithfulness Gap in Large Language Models",
+            "url": "https://arxiv.org/html/2603.25052"
+          },
+          {
+            "title": "Closing the Confidence-Faithfulness Gap in Large Language Models",
+            "url": "https://arxiv.org/pdf/2603.25052"
+          },
+          {
+            "title": "Closing the Confidence-Faithfulness Gap in Large ...",
+            "url": "https://x.com/HEI/status/2037535763399651595"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results for \"Closing the Confidence-Faithfulness Gap\":\n\nThe paper addresses how large language models (LLMs) tend to verbalize confidence scores that are largely detached from their actual accuracy, yet the geometric relationship governing this behavior remains poorly understood.\n\nThe researchers present a mechanistic interpretability analysis of verbalized confidence, using linear probes and contrastive activation addition (CAA) steering to show that calibration and verbalized confidence signals are encoded linearly but are orthogonal to one another — a finding consistent across three open-weight models and four datasets.\n\nWhen models are prompted to simultaneously reason through a problem and verbalize a confidence score, the reasoning process disrupts the verbalized confidence direction, exacerbating miscalibration. The authors term this the \"Reasoning Contamination Effect.\"\n\nThey introduce a two-stage adaptive steering pipeline that reads the model's internal accuracy estimate and steers verbalized output to match it, substantially improving calibration alignment across all evaluated models.\n\nThe paper was authored by Miranda Muqing Miao and Lyle Ungar from the University of Pennsylvania and was submitted to arXiv on March 26, 2026."
+    ],
+    "durationSeconds": 4.2241952499999895,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "cb39e773-5e47-4ead-9f32-4559a97edc30",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-19T13:44:01.798Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Xc1pmQsgQ815tFxcHBjSFc`</summary>
+
+```json
+{
+  "query": "arxiv \"faithfulness\" \"reasoning\" \"probe\" \"dual\" OR \"combined\" OR \"framework\" OR \"unified\" hidden state intervention 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58eabea8-5ddc-422a-8a77-043a9e3ab3c6",
+  "isSidechain": false,
+  "requestId": "req_011CbC2WsBScWu6SCnA6M29h",
+  "type": "assistant",
+  "uuid": "7eee719b-07c2-43c1-b223-e64674135813",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URd9dqAKjEbFjVWVwgaBDL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 590,
+      "cache_read_input_tokens": 68205,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 590,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 68205,
+          "cache_creation_input_tokens": 590,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 590
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-19T13:44:09.890Z_
+
+<details><summary>↩ Tool result · `toolu_01Xc1pmQsgQ815tFxcHBjSFc`</summary>
+
+```text
+Web search results for query: "arxiv "faithfulness" "reasoning" "probe" "dual" OR "combined" OR "framework" OR "unified" hidden state intervention 2026"
+
+Links: [{"title":"[2602.17053v1] RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models","url":"https://arxiv.org/abs/2602.17053v1"},{"title":"[2602.17053] RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models","url":"https://arxiv.org/abs/2602.17053"},{"title":"RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models","url":"https://arxiv.org/pdf/2602.17053"},{"title":"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps","url":"https://arxiv.org/html/2502.14829v3"},{"title":"Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification","url":"https://arxiv.org/pdf/2504.05419"},{"title":"Faithful-First Reasoning, Planning, and Acting for Multimodal LLMs","url":"https://arxiv.org/pdf/2511.08409"},{"title":"Mathematical Reasoning via Intervention-Based Time- ...","url":"https://arxiv.org/pdf/2605.07600"}]
+
+I found several relevant arXiv papers related to your search query. Here are the key results:
+
+## Most Relevant Papers:
+
+1. **RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models** (arXiv:2602.17053, February 2026)
+   - Introduces a formal framework for reasoning faithfulness defined by stance consistency and causal influence under output-level interventions
+   - Presents RFEval, a benchmark of 7,186 instances that probes faithfulness via controlled, output-level counterfactual interventions
+
+2. **Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps** (arXiv:2502.14829, November 2025)
+   - Uses activation patching to measure causal effects of corrupting certain hidden states
+   - Proposes a two-stage framework consisting of parameter intervention and evaluation
+
+3. **Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification** (arXiv:2504.05419)
+   - Investigates hidden state probing for answer correctness
+   - Finds that models' hidden states encode correctness of future answers
+
+4. **Faithful-First Reasoning, Planning, and Acting for Multimodal LLMs** (arXiv:2511.08409)
+   - Establishes a unified framework for both evaluating and enforcing faithfulness in multimodal reasoning
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7eee719b-07c2-43c1-b223-e64674135813",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "7ae7e055-9950-42e8-bcdc-b535f14ed1c0",
+  "toolUseResult": {
+    "query": "arxiv \"faithfulness\" \"reasoning\" \"probe\" \"dual\" OR \"combined\" OR \"framework\" OR \"unified\" hidden state intervention 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01L4CX5XT3b2NTFC3xnSqMHV",
+        "content": [
+          {
+            "title": "[2602.17053v1] RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models",
+            "url": "https://arxiv.org/abs/2602.17053v1"
+          },
+          {
+            "title": "[2602.17053] RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models",
+            "url": "https://arxiv.org/abs/2602.17053"
+          },
+          {
+            "title": "RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models",
+            "url": "https://arxiv.org/pdf/2602.17053"
+          },
+          {
+            "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+            "url": "https://arxiv.org/html/2502.14829v3"
+          },
+          {
+            "title": "Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification",
+            "url": "https://arxiv.org/pdf/2504.05419"
+          },
+          {
+            "title": "Faithful-First Reasoning, Planning, and Acting for Multimodal LLMs",
+            "url": "https://arxiv.org/pdf/2511.08409"
+          },
+          {
+            "title": "Mathematical Reasoning via Intervention-Based Time- ...",
+            "url": "https://arxiv.org/pdf/2605.07600"
+          }
+        ]
+      },
+      "I found several relevant arXiv papers related to your search query. Here are the key results:\n\n## Most Relevant Papers:\n\n1. **RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models** (arXiv:2602.17053, February 2026)\n   - Introduces a formal framework for reasoning faithfulness defined by stance consistency and causal influence under output-level interventions\n   - Presents RFEval, a benchmark of 7,186 instances that probes faithfulness via controlled, output-level counterfactual interventions\n\n2. **Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps** (arXiv:2502.14829, November 2025)\n   - Uses activation patching to measure causal effects of corrupting certain hidden states\n   - Proposes a two-stage framework consisting of parameter intervention and evaluation\n\n3. **Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification** (arXiv:2504.05419)\n   - Investigates hidden state probing for answer correctness\n   - Finds that models' hidden states encode correctness of future answers\n\n4. **Faithful-First Reasoning, Planning, and Acting for Multimodal LLMs** (arXiv:2511.08409)\n   - Establishes a unified framework for both evaluating and enforcing faithfulness in multimodal reasoning"
+    ],
+    "durationSeconds": 8.08278597200004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7eee719b-07c2-43c1-b223-e64674135813",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-19T13:44:13.032Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JALCEFpG4iyrRLyc1fhjPH`</summary>
+
+```json
+{
+  "query": "arxiv \"Esakkiraja\" \"Therefore I am\" pre-generation probing reasoning 2604.01202"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ae7e055-9950-42e8-bcdc-b535f14ed1c0",
+  "isSidechain": false,
+  "requestId": "req_011CbC2XgVn6Dm3mLXhuPfuE",
+  "type": "assistant",
+  "uuid": "b6d99850-029f-4fe2-a73b-73c72159d9be",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014d5GbaFcq1Le7BVUzvmbc9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 68795,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 68795,
+          "cache_creation_input_tokens": 820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-19T13:44:19.251Z_
+
+<details><summary>↩ Tool result · `toolu_01JALCEFpG4iyrRLyc1fhjPH`</summary>
+
+```text
+Web search results for query: "arxiv "Esakkiraja" "Therefore I am" pre-generation probing reasoning 2604.01202"
+
+Links: [{"title":"[2604.01202] Therefore I am. I Think","url":"https://arxiv.org/abs/2604.01202"},{"title":"Therefore I am. I Think.","url":"https://arxiv.org/html/2604.01202"},{"title":"Paper page - Therefore I am. I Think","url":"https://huggingface.co/papers/2604.01202"},{"title":"Therefore I am. I Think","url":"https://arxiv.org/pdf/2604.01202"},{"title":"Catching rationalization in the act: detecting motivated reasoning before and after CoT via activation probing","url":"https://arxiv.org/pdf/2603.17199"},{"title":"[2604.16909] PRISM: Probing Reasoning, Instruction, and Source Memory in LLM Hallucinations","url":"https://arxiv.org/abs/2604.16909"}]
+
+I found the paper you're looking for! Here's what I found:
+
+"Therefore I am. I Think" is a paper by Esakkivel Esakkiraja and 3 other authors.
+
+The paper addresses the question of whether a large language reasoning model thinks first and then decides, or decides first and then thinks. It shows that a simple linear probe successfully decodes tool-calling decisions from pre-generation activations with very high confidence, and in some cases, even before a single reasoning token is produced.
+
+Activation steering supports this causally: perturbing the decision direction leads to inflated deliberation and flips behavior in many examples. When steering changes the decision, the chain-of-thought process often rationalizes the flip rather than resisting it. These results suggest that reasoning models can encode action choices before they begin to deliberate in text.
+
+The paper was published on arXiv on April 3, 2026 with identifier 2604.01202.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b6d99850-029f-4fe2-a73b-73c72159d9be",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "1267b79d-bda9-444a-b9b3-dd06df012dc8",
+  "toolUseResult": {
+    "query": "arxiv \"Esakkiraja\" \"Therefore I am\" pre-generation probing reasoning 2604.01202",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XVxH9ujw7V535YDCyHhtDD",
+        "content": [
+          {
+            "title": "[2604.01202] Therefore I am. I Think",
+            "url": "https://arxiv.org/abs/2604.01202"
+          },
+          {
+            "title": "Therefore I am. I Think.",
+            "url": "https://arxiv.org/html/2604.01202"
+          },
+          {
+            "title": "Paper page - Therefore I am. I Think",
+            "url": "https://huggingface.co/papers/2604.01202"
+          },
+          {
+            "title": "Therefore I am. I Think",
+            "url": "https://arxiv.org/pdf/2604.01202"
+          },
+          {
+            "title": "Catching rationalization in the act: detecting motivated reasoning before and after CoT via activation probing",
+            "url": "https://arxiv.org/pdf/2603.17199"
+          },
+          {
+            "title": "[2604.16909] PRISM: Probing Reasoning, Instruction, and Source Memory in LLM Hallucinations",
+            "url": "https://arxiv.org/abs/2604.16909"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found:\n\n\"Therefore I am. I Think\" is a paper by Esakkivel Esakkiraja and 3 other authors.\n\nThe paper addresses the question of whether a large language reasoning model thinks first and then decides, or decides first and then thinks. It shows that a simple linear probe successfully decodes tool-calling decisions from pre-generation activations with very high confidence, and in some cases, even before a single reasoning token is produced.\n\nActivation steering supports this causally: perturbing the decision direction leads to inflated deliberation and flips behavior in many examples. When steering changes the decision, the chain-of-thought process often rationalizes the flip rather than resisting it. These results suggest that reasoning models can encode action choices before they begin to deliberate in text.\n\nThe paper was published on arXiv on April 3, 2026 with identifier 2604.01202."
+    ],
+    "durationSeconds": 6.214972998000041,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b6d99850-029f-4fe2-a73b-73c72159d9be",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 115 · 2026-05-19T13:44:22.762Z_
+
+Now let me verify the Chun et al. MCT reference and check for any potentially critical missing work:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1267b79d-bda9-444a-b9b3-dd06df012dc8",
+  "isSidechain": false,
+  "requestId": "req_011CbC2YNVLW2ZGGFLjz2LZQ",
+  "type": "assistant",
+  "uuid": "7dca7f49-a399-4309-8f98-6cb6de35b886",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01THBRPmFAeCDDjsTQpGb5bq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 573,
+      "cache_read_input_tokens": 69615,
+      "output_tokens": 102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 573,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 102,
+          "cache_read_input_tokens": 69615,
+          "cache_creation_input_tokens": 573,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 573
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116 · 2026-05-19T13:44:23.335Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011LMbf7nyEAyh6hcRySFyBz`</summary>
+
+```json
+{
+  "query": "Chun \"manifold capacity theory\" \"chain-of-thought\" reasoning 2602.20338 geometric separability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7dca7f49-a399-4309-8f98-6cb6de35b886",
+  "isSidechain": false,
+  "requestId": "req_011CbC2YNVLW2ZGGFLjz2LZQ",
+  "type": "assistant",
+  "uuid": "ee73f721-0971-433e-8f29-3613843257f0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01THBRPmFAeCDDjsTQpGb5bq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 573,
+      "cache_read_input_tokens": 69615,
+      "output_tokens": 102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 573,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 102,
+          "cache_read_input_tokens": 69615,
+          "cache_creation_input_tokens": 573,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 573
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-19T13:44:33.437Z_
+
+<details><summary>↩ Tool result · `toolu_011LMbf7nyEAyh6hcRySFyBz`</summary>
+
+```text
+Web search results for query: "Chun "manifold capacity theory" "chain-of-thought" reasoning 2602.20338 geometric separability"
+
+Links: [{"title":"[2602.20338] Emergent Manifold Separability during Reasoning in Large Language Models","url":"https://arxiv.org/abs/2602.20338"},{"title":"Emergent Manifold Separability during Reasoning in Large Language Models","url":"https://arxiv.org/pdf/2602.20338"},{"title":"Emergent Manifold Separability during Reasoning in Large Language Models","url":"https://arxiv.org/html/2602.20338"},{"title":"Efficient neural representation in the cognitive neuroscience domain: Manifold Capacity in One-vs-rest Recognition Limit | OpenReview","url":"https://openreview.net/forum?id=-itAMjwvDJC"},{"title":"Published as a conference paper at ICLR 2021","url":"https://openreview.net/pdf?id=V8jrrnwGbuc"}]
+
+Based on the search results, I found the paper you're looking for:
+
+"Emergent Manifold Separability during Reasoning in Large Language Models" is a paper authored by Alexandre Polo, Chanwoo Chun, and SueYeon Chung that investigates how Chain-of-Thought (CoT) prompting improves reasoning in Large Language Models, examining the temporal dynamics of underlying representation geometry.
+
+The researchers applied Manifold Capacity Theory (MCT) to a compositional Boolean logic task to quantify the linear separability of latent representations without the confounding factors of probe training.
+
+Their analysis reveals that reasoning manifests as a transient geometric pulse, where concept manifolds are untangled into linearly separable subspaces immediately prior to computation and rapidly compressed thereafter—behavior that diverges from standard linear probe accuracy, which remains high long after computation.
+
+The researchers interpret this phenomenon as "Dynamic Manifold Management," a mechanism where the model dynamically modulates representational capacity to optimize the bandwidth of the residual stream throughout the reasoning chain.
+
+The paper (arXiv:2602.20338) was submitted on February 23, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee73f721-0971-433e-8f29-3613843257f0",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "7b6dbe4b-2aa8-4237-97ba-b64288515220",
+  "toolUseResult": {
+    "query": "Chun \"manifold capacity theory\" \"chain-of-thought\" reasoning 2602.20338 geometric separability",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WtMVx2YAbkD5YAgVpeXGwg",
+        "content": [
+          {
+            "title": "[2602.20338] Emergent Manifold Separability during Reasoning in Large Language Models",
+            "url": "https://arxiv.org/abs/2602.20338"
+          },
+          {
+            "title": "Emergent Manifold Separability during Reasoning in Large Language Models",
+            "url": "https://arxiv.org/pdf/2602.20338"
+          },
+          {
+            "title": "Emergent Manifold Separability during Reasoning in Large Language Models",
+            "url": "https://arxiv.org/html/2602.20338"
+          },
+          {
+            "title": "Efficient neural representation in the cognitive neuroscience domain: Manifold Capacity in One-vs-rest Recognition Limit | OpenReview",
+            "url": "https://openreview.net/forum?id=-itAMjwvDJC"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2021",
+            "url": "https://openreview.net/pdf?id=V8jrrnwGbuc"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n\"Emergent Manifold Separability during Reasoning in Large Language Models\" is a paper authored by Alexandre Polo, Chanwoo Chun, and SueYeon Chung that investigates how Chain-of-Thought (CoT) prompting improves reasoning in Large Language Models, examining the temporal dynamics of underlying representation geometry.\n\nThe researchers applied Manifold Capacity Theory (MCT) to a compositional Boolean logic task to quantify the linear separability of latent representations without the confounding factors of probe training.\n\nTheir analysis reveals that reasoning manifests as a transient geometric pulse, where concept manifolds are untangled into linearly separable subspaces immediately prior to computation and rapidly compressed thereafter—behavior that diverges from standard linear probe accuracy, which remains high long after computation.\n\nThe researchers interpret this phenomenon as \"Dynamic Manifold Management,\" a mechanism where the model dynamically modulates representational capacity to optimize the bandwidth of the residual stream throughout the reasoning chain.\n\nThe paper (arXiv:2602.20338) was submitted on February 23, 2026."
+    ],
+    "durationSeconds": 10.099734433000034,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ee73f721-0971-433e-8f29-3613843257f0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 118_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-19 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "7b6dbe4b-2aa8-4237-97ba-b64288515220",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 119_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrated temporal information-contribution gap for CoT faithfulness",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 120 · 2026-05-19T13:44:39.897Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015JfPcUufus91UE8Bkf77PY`</summary>
+
+```json
+{
+  "query": "arxiv \"reasoning\" \"faithfulness\" \"probing\" \"hidden states\" \"intervention\" new 2026 May June"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b6dbe4b-2aa8-4237-97ba-b64288515220",
+  "isSidechain": false,
+  "requestId": "req_011CbC2ZRAqjvN4GzSgg7JNi",
+  "type": "assistant",
+  "uuid": "cc8f67fa-9ea3-480a-8e3b-aa54e332f9e0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UEVg3XxF8mECPvSsNkzFTj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 648,
+      "cache_read_input_tokens": 70188,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 648,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 70188,
+          "cache_creation_input_tokens": 648,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 648
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-19T13:44:47.363Z_
+
+<details><summary>↩ Tool result · `toolu_015JfPcUufus91UE8Bkf77PY`</summary>
+
+```text
+Web search results for query: "arxiv "reasoning" "faithfulness" "probing" "hidden states" "intervention" new 2026 May June"
+
+Links: [{"title":"[2602.17053v1] RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models","url":"https://arxiv.org/abs/2602.17053v1"},{"title":"Beyond Black-Box Interventions: Latent Probing for Faithful Retrieval-Augmented Generation","url":"https://arxiv.org/html/2510.12460"},{"title":"[2504.05419v1] Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification","url":"https://arxiv.org/abs/2504.05419v1"},{"title":"[2602.17053] RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models","url":"https://arxiv.org/abs/2602.17053"},{"title":"Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation","url":"https://arxiv.org/html/2510.12460v1"},{"title":"Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification","url":"https://arxiv.org/pdf/2504.05419"},{"title":"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps","url":"https://arxiv.org/html/2502.14829v3"},{"title":"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures","url":"https://arxiv.org/html/2603.16475v1"}]
+
+Based on the search results, here are the relevant arXiv papers from 2026 (May-June timeframe nearby) matching your query terms:
+
+## Key Papers Found:
+
+1. **RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models** (February 2026)
+   - Submitted on 19 Feb 2026, addressing how Large Reasoning Models produce plausible rationales that fail to reflect their true decision process
+   - Introduces a framework for reasoning faithfulness with two conditions: stance consistency and causal influence, decoupled from accuracy
+
+2. **Beyond Black-Box Interventions: Latent Probing for Faithful Retrieval-Augmented Generation** (April 2026)
+   - Uses hidden-state representations to probe latent behavior of models and detect conflicts or inconsistencies
+
+3. **Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps** (November 2025)
+   - Introduces the Parametric Faithfulness Framework with interventions on model parameters to measure faithfulness of verbalized reasoning
+
+4. **Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures** (March 2026)
+   - Uses counterfactual interventions on reasoning traces to evaluate causal influence
+
+5. **Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification** (April 2025)
+   - Studies whether reasoning models encode information about answer correctness through probing hidden states
+
+These papers combine your keywords: reasoning, faithfulness, probing, hidden states, and intervention approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc8f67fa-9ea3-480a-8e3b-aa54e332f9e0",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "d4027200-9cc1-46d0-8c91-3f6d636371f6",
+  "toolUseResult": {
+    "query": "arxiv \"reasoning\" \"faithfulness\" \"probing\" \"hidden states\" \"intervention\" new 2026 May June",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012KjeMyKomCD16whnNgn64K",
+        "content": [
+          {
+            "title": "[2602.17053v1] RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models",
+            "url": "https://arxiv.org/abs/2602.17053v1"
+          },
+          {
+            "title": "Beyond Black-Box Interventions: Latent Probing for Faithful Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2510.12460"
+          },
+          {
+            "title": "[2504.05419v1] Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification",
+            "url": "https://arxiv.org/abs/2504.05419v1"
+          },
+          {
+            "title": "[2602.17053] RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models",
+            "url": "https://arxiv.org/abs/2602.17053"
+          },
+          {
+            "title": "Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2510.12460v1"
+          },
+          {
+            "title": "Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification",
+            "url": "https://arxiv.org/pdf/2504.05419"
+          },
+          {
+            "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+            "url": "https://arxiv.org/html/2502.14829v3"
+          },
+          {
+            "title": "Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures",
+            "url": "https://arxiv.org/html/2603.16475v1"
+          }
+        ]
+      },
+      "Based on the search results, here are the relevant arXiv papers from 2026 (May-June timeframe nearby) matching your query terms:\n\n## Key Papers Found:\n\n1. **RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models** (February 2026)\n   - Submitted on 19 Feb 2026, addressing how Large Reasoning Models produce plausible rationales that fail to reflect their true decision process\n   - Introduces a framework for reasoning faithfulness with two conditions: stance consistency and causal influence, decoupled from accuracy\n\n2. **Beyond Black-Box Interventions: Latent Probing for Faithful Retrieval-Augmented Generation** (April 2026)\n   - Uses hidden-state representations to probe latent behavior of models and detect conflicts or inconsistencies\n\n3. **Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps** (November 2025)\n   - Introduces the Parametric Faithfulness Framework with interventions on model parameters to measure faithfulness of verbalized reasoning\n\n4. **Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures** (March 2026)\n   - Uses counterfactual interventions on reasoning traces to evaluate causal influence\n\n5. **Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification** (April 2025)\n   - Studies whether reasoning models encode information about answer correctness through probing hidden states\n\nThese papers combine your keywords: reasoning, faithfulness, probing, hidden states, and intervention approaches."
+    ],
+    "durationSeconds": 7.460341500000038,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "cc8f67fa-9ea3-480a-8e3b-aa54e332f9e0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 122 · 2026-05-19T13:44:51.635Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ef7oJQsxSQizpKmdTjHyFd`</summary>
+
+```json
+{
+  "query": "\"Dynamics Within Latent Chain-of-Thought\" 2602.08783 do-interventions causal hidden states"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4027200-9cc1-46d0-8c91-3f6d636371f6",
+  "isSidechain": false,
+  "requestId": "req_011CbC2aTZyy9gnPjeCmJE4K",
+  "type": "assistant",
+  "uuid": "23caca10-9e74-4132-9e00-12719d155b98",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UifN8hbRWYfmtLsqWodmgx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 907,
+      "cache_read_input_tokens": 70836,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 907,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 70836,
+          "cache_creation_input_tokens": 907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 907
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 123 · 2026-05-19T13:44:58.879Z_
+
+<details><summary>↩ Tool result · `toolu_01Ef7oJQsxSQizpKmdTjHyFd`</summary>
+
+```text
+Web search results for query: ""Dynamics Within Latent Chain-of-Thought" 2602.08783 do-interventions causal hidden states"
+
+Links: [{"title":"[2602.08783] Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure","url":"https://arxiv.org/abs/2602.08783"},{"title":"Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure","url":"https://arxiv.org/html/2602.08783"},{"title":"Preprint. February 2026. DYNAMICS WITHIN LATENT CHAIN-OF-THOUGHT:","url":"https://arxiv.org/pdf/2602.08783"},{"title":"No Global Plan in Chain-of-Thought: Uncover the Latent Planning Horizon of LLMs","url":"https://arxiv.org/pdf/2602.02103"},{"title":"Explainable Chain-of-Thought Reasoning: An Empirical Analysis on State-Aware Reasoning Dynamics","url":"https://arxiv.org/pdf/2509.00190"},{"title":"Latent Chain-of-Thought","url":"https://www.emergentmind.com/topics/latent-chain-of-thought-latent-cot"},{"title":"Latent Chain-of-Thought as Planning: Decoupling Reasoning from Verbalization","url":"https://arxiv.org/pdf/2601.21358"}]
+
+I found the paper you're looking for! Here are the key details about "Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure" (arXiv:2602.08783):
+
+**Overview:**
+Latent or continuous chain-of-thought methods replace explicit textual rationales with a number of internal latent steps, but these intermediate computations are difficult to evaluate beyond correlation-based probes.
+
+**Methodology:**
+The paper views latent chain-of-thought as a manipulable causal process in representation space by modeling latent steps as variables in a structural causal model (SCM) and analyzing their effects through step-wise do-interventions.
+
+**Research Questions:**
+The study investigates three key questions: (1) which steps are causally necessary for correctness and when answers become decidable early; (2) how does influence propagate across steps, and how does this structure compare to explicit CoT; and (3) do intermediate trajectories retain competing answer modes, and how does output-level commitment differ from representational commitment across steps.
+
+**Details:**
+The paper was submitted on February 9, 2026, and authored by Zirui Li, Xuefeng Bai, Kehai Chen, Yizhi Li, Jian Yang, Chenghua Lin, and Min Zhang. The study examines representative paradigms like Coconut and CODI on both mathematical and general reasoning tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "23caca10-9e74-4132-9e00-12719d155b98",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "e43909b5-947a-47b9-ac06-e8a541507cd0",
+  "toolUseResult": {
+    "query": "\"Dynamics Within Latent Chain-of-Thought\" 2602.08783 do-interventions causal hidden states",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H3RcH1kSsjaEDG13spCQkB",
+        "content": [
+          {
+            "title": "[2602.08783] Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure",
+            "url": "https://arxiv.org/abs/2602.08783"
+          },
+          {
+            "title": "Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure",
+            "url": "https://arxiv.org/html/2602.08783"
+          },
+          {
+            "title": "Preprint. February 2026. DYNAMICS WITHIN LATENT CHAIN-OF-THOUGHT:",
+            "url": "https://arxiv.org/pdf/2602.08783"
+          },
+          {
+            "title": "No Global Plan in Chain-of-Thought: Uncover the Latent Planning Horizon of LLMs",
+            "url": "https://arxiv.org/pdf/2602.02103"
+          },
+          {
+            "title": "Explainable Chain-of-Thought Reasoning: An Empirical Analysis on State-Aware Reasoning Dynamics",
+            "url": "https://arxiv.org/pdf/2509.00190"
+          },
+          {
+            "title": "Latent Chain-of-Thought",
+            "url": "https://www.emergentmind.com/topics/latent-chain-of-thought-latent-cot"
+          },
+          {
+            "title": "Latent Chain-of-Thought as Planning: Decoupling Reasoning from Verbalization",
+            "url": "https://arxiv.org/pdf/2601.21358"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details about \"Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure\" (arXiv:2602.08783):\n\n**Overview:**\nLatent or continuous chain-of-thought methods replace explicit textual rationales with a number of internal latent steps, but these intermediate computations are difficult to evaluate beyond correlation-based probes.\n\n**Methodology:**\nThe paper views latent chain-of-thought as a manipulable causal process in representation space by modeling latent steps as variables in a structural causal model (SCM) and analyzing their effects through step-wise do-interventions.\n\n**Research Questions:**\nThe study investigates three key questions: (1) which steps are causally necessary for correctness and when answers become decidable early; (2) how does influence propagate across steps, and how does this structure compare to explicit CoT; and (3) do intermediate trajectories retain competing answer modes, and how does output-level commitment differ from representational commitment across steps.\n\n**Details:**\nThe paper was submitted on February 9, 2026, and authored by Zirui Li, Xuefeng Bai, Kehai Chen, Yizhi Li, Jian Yang, Chenghua Lin, and Min Zhang. The study examines representative paradigms like Coconut and CODI on both mathematical and general reasoning tasks."
+    ],
+    "durationSeconds": 7.240893196000019,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "23caca10-9e74-4132-9e00-12719d155b98",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 124 · 2026-05-19T13:45:01.661Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XCaspu1978Dy1sSrikRXjy`</summary>
+
+```json
+{
+  "query": "arxiv \"reasoning\" \"hidden state\" \"probe\" \"contribution\" \"causal\" \"token\" \"temporal\" new paper 2026 May"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e43909b5-947a-47b9-ac06-e8a541507cd0",
+  "isSidechain": false,
+  "requestId": "req_011CbC2bHwKaU15jtzWkx5Fo",
+  "type": "assistant",
+  "uuid": "bea9052a-94bb-4f66-b2ed-3fb094583c74",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwN6uKzU91ujeKFT2a91tN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 798,
+      "cache_read_input_tokens": 71743,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 798,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 71743,
+          "cache_creation_input_tokens": 798,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 798
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 125 · 2026-05-19T13:45:09.798Z_
+
+<details><summary>↩ Tool result · `toolu_01XCaspu1978Dy1sSrikRXjy`</summary>
+
+```text
+Web search results for query: "arxiv "reasoning" "hidden state" "probe" "contribution" "causal" "token" "temporal" new paper 2026 May"
+
+Links: [{"title":"Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification","url":"https://arxiv.org/pdf/2504.05419"},{"title":"Temporal Predictors of Outcome in Reasoning Language Models","url":"https://arxiv.org/pdf/2511.14773"},{"title":"Date Fragments: A Hidden Bottleneck of Tokenisation for Temporal Reasoning","url":"https://arxiv.org/html/2505.16088"},{"title":"Date Fragments: A Hidden Bottleneck of Tokenization for Temporal Reasoning","url":"https://arxiv.org/html/2505.16088v1"},{"title":"arXiv:2507.02199v1 [cs.CL] 2 Jul 2025 Preprint. Under review.","url":"https://arxiv.org/pdf/2507.02199"},{"title":"Stochastic Parroting in Temporal Attention – Regulating the Diagonal Sink","url":"https://arxiv.org/html/2602.10956v2"}]
+
+Based on the search results, here are relevant papers matching your query criteria:
+
+## Most Relevant Results
+
+**1. "Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification"** (arxiv 2504.05419)
+
+This paper finds that models' hidden states encode correctness of future answers, enabling early prediction of correctness before the intermediate answer is fully formulated. The researchers use a probe as a verifier to decide whether to exit reasoning at intermediate answers during inference, reducing inference tokens by 24% without compromising performance.
+
+**2. "Temporal Predictors of Outcome in Reasoning Language Models"** (arxiv 2511.14773)
+
+This paper's contributions include probing during chain-of-thought generation to predict answer correctness directly from an LLM's hidden state while the chain-of-thought is being generated. The work shows that hidden states from very short prefixes already contain linearly decodable information about eventual correctness, reaching AUCs up to 0.8+ on MATH-like data.
+
+**3. "Date Fragments: A Hidden Bottleneck of Tokenisation for Temporal Reasoning"** (arxiv 2505.16088 / 2602.10956)
+
+This paper leverages causal analysis to interpret how LLMs stitch date fragments for temporal reasoning. The results show that LLMs follow a reasoning path that relies on subword fragments representing year, month, and day, stitched in a flexible order subject to date formats.
+
+These papers align well with your search parameters focusing on reasoning, hidden states, probing, causality, and temporal aspects.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bea9052a-94bb-4f66-b2ed-3fb094583c74",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "6eac1ec3-be83-4b6c-96b2-3d04696ae33e",
+  "toolUseResult": {
+    "query": "arxiv \"reasoning\" \"hidden state\" \"probe\" \"contribution\" \"causal\" \"token\" \"temporal\" new paper 2026 May",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LP9kq3v91vFtRNFrFcHrKT",
+        "content": [
+          {
+            "title": "Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification",
+            "url": "https://arxiv.org/pdf/2504.05419"
+          },
+          {
+            "title": "Temporal Predictors of Outcome in Reasoning Language Models",
+            "url": "https://arxiv.org/pdf/2511.14773"
+          },
+          {
+            "title": "Date Fragments: A Hidden Bottleneck of Tokenisation for Temporal Reasoning",
+            "url": "https://arxiv.org/html/2505.16088"
+          },
+          {
+            "title": "Date Fragments: A Hidden Bottleneck of Tokenization for Temporal Reasoning",
+            "url": "https://arxiv.org/html/2505.16088v1"
+          },
+          {
+            "title": "arXiv:2507.02199v1 [cs.CL] 2 Jul 2025 Preprint. Under review.",
+            "url": "https://arxiv.org/pdf/2507.02199"
+          },
+          {
+            "title": "Stochastic Parroting in Temporal Attention – Regulating the Diagonal Sink",
+            "url": "https://arxiv.org/html/2602.10956v2"
+          }
+        ]
+      },
+      "Based on the search results, here are relevant papers matching your query criteria:\n\n## Most Relevant Results\n\n**1. \"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification\"** (arxiv 2504.05419)\n\nThis paper finds that models' hidden states encode correctness of future answers, enabling early prediction of correctness before the intermediate answer is fully formulated. The researchers use a probe as a verifier to decide whether to exit reasoning at intermediate answers during inference, reducing inference tokens by 24% without compromising performance.\n\n**2. \"Temporal Predictors of Outcome in Reasoning Language Models\"** (arxiv 2511.14773)\n\nThis paper's contributions include probing during chain-of-thought generation to predict answer correctness directly from an LLM's hidden state while the chain-of-thought is being generated. The work shows that hidden states from very short prefixes already contain linearly decodable information about eventual correctness, reaching AUCs up to 0.8+ on MATH-like data.\n\n**3. \"Date Fragments: A Hidden Bottleneck of Tokenisation for Temporal Reasoning\"** (arxiv 2505.16088 / 2602.10956)\n\nThis paper leverages causal analysis to interpret how LLMs stitch date fragments for temporal reasoning. The results show that LLMs follow a reasoning path that relies on subword fragments representing year, month, and day, stitched in a flexible order subject to date formats.\n\nThese papers align well with your search parameters focusing on reasoning, hidden states, probing, causality, and temporal aspects."
+    ],
+    "durationSeconds": 8.133160544999992,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "bea9052a-94bb-4f66-b2ed-3fb094583c74",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 126 · 2026-05-19T13:45:09.808Z_
+
+```json
+{
+  "parentUuid": "6eac1ec3-be83-4b6c-96b2-3d04696ae33e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d9f3aa35-8938-49b5-80b0-84deff7c89b3",
+  "timestamp": "2026-05-19T13:45:09.808Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 127 · 2026-05-19T13:45:13.091Z_
+
+Let me check one more important area — whether any work has been published that specifically combines probe trajectories with causal contribution into a gap metric:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d9f3aa35-8938-49b5-80b0-84deff7c89b3",
+  "isSidechain": false,
+  "requestId": "req_011CbC2c6jQsvU9xPc6ibYHP",
+  "type": "assistant",
+  "uuid": "b155a728-6eb4-4338-89a4-be9e17dcc47d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SRa6BAy7chYsHDn7i9U7F4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 879,
+      "cache_read_input_tokens": 72541,
+      "output_tokens": 109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 879,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 109,
+          "cache_read_input_tokens": 72541,
+          "cache_creation_input_tokens": 879,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 879
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 128 · 2026-05-19T13:45:13.287Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XdqdAswcsjASbGEkEam58M`</summary>
+
+```json
+{
+  "query": "arxiv \"probe\" \"causal\" \"gap\" \"correctness\" \"temporal\" \"reasoning\" \"framework\" 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b155a728-6eb4-4338-89a4-be9e17dcc47d",
+  "isSidechain": false,
+  "requestId": "req_011CbC2c6jQsvU9xPc6ibYHP",
+  "type": "assistant",
+  "uuid": "6ae2a477-6a71-44fa-930e-8d1e8c867450",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SRa6BAy7chYsHDn7i9U7F4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 879,
+      "cache_read_input_tokens": 72541,
+      "output_tokens": 109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 879,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 109,
+          "cache_read_input_tokens": 72541,
+          "cache_creation_input_tokens": 879,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 879
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 129 · 2026-05-19T13:45:21.513Z_
+
+<details><summary>↩ Tool result · `toolu_01XdqdAswcsjASbGEkEam58M`</summary>
+
+```text
+Web search results for query: "arxiv "probe" "causal" "gap" "correctness" "temporal" "reasoning" "framework" 2026"
+
+Links: [{"title":"Temporal Predictors of Outcome in Reasoning Language Models","url":"https://arxiv.org/html/2511.14773"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2509.24210"},{"title":"CEGRL-TKGR: A Causal Enhanced Graph Representation Learning Framework   for Temporal Knowledge Graph Reasoning","url":"https://arxiv.org/pdf/2408.07911"},{"title":"Achieving Time Series Reasoning Requires Rethinking Model Design, Tasks Formulation, and Evaluation","url":"https://arxiv.org/html/2502.01477v2"},{"title":"Transforming Causality: Transformer-Based Temporal Causal Discovery with Prior Knowledge Integration","url":"https://arxiv.org/pdf/2508.15928"},{"title":"Inferring Causal Graph Temporal Logic Formulas to Expedite Reinforcement Learning in Temporally Extended Tasks","url":"https://arxiv.org/pdf/2601.02666"},{"title":"Temporal Causal Reasoning with (Non-Recursive) Structural Equation Models","url":"https://arxiv.org/pdf/2501.10190"}]
+
+Based on the search results, I found several relevant arxiv papers related to your query. Here are the key findings:
+
+1. **Temporal Predictors of Outcome in Reasoning Language Models** (arxiv 2511.14773): A linear probe needs only a few reasoning tokens before it predicts the eventual correctness of reasoning language models with high fidelity. The work targets a gap by focusing on math chain-of-thought and probing hidden states during the reasoning trajectory.
+
+2. **Published as a conference paper at ICLR 2026** (arxiv 2509.24210): The framework provides theoretical guarantees including contamination resistance, solution correctness through formal verification with zero false positives or negatives, and scalability where problem difficulty increases monotonically with parameter growth.
+
+3. **Achieving Time Series Reasoning Requires Rethinking Model Design, Tasks Formulation, and Evaluation** (arxiv 2502.01477): This paper discusses gaps in temporal reasoning, noting that models "do not explicitly model causal reasoning structures that connect stock price features, volatility, and volume with external events."
+
+4. **Temporal Causal Reasoning with Structural Equation Models** (arxiv 2501.10190): The standard restriction to recursive models (with no cycles in the dependency graph) is not necessary in their approach, allowing reasoning about mutually dependent processes and feedback loops.
+
+5. **Transforming Causality: Transformer-Based Temporal Causal Discovery** (arxiv 2508.15928): A framework for temporal causal discovery and inference is proposed, composed of a causality-aware time-series forecaster and an architecture-agnostic causal graph extractor.
+
+These papers collectively address probing mechanisms, causal reasoning, temporal analysis, and correctness verification frameworks in various contexts.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ae2a477-6a71-44fa-930e-8d1e8c867450",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "22f3f9d2-6547-4852-af14-ede732c9bb83",
+  "toolUseResult": {
+    "query": "arxiv \"probe\" \"causal\" \"gap\" \"correctness\" \"temporal\" \"reasoning\" \"framework\" 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01A2JLw8GjDpVUVLM9BmfUW7",
+        "content": [
+          {
+            "title": "Temporal Predictors of Outcome in Reasoning Language Models",
+            "url": "https://arxiv.org/html/2511.14773"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2509.24210"
+          },
+          {
+            "title": "CEGRL-TKGR: A Causal Enhanced Graph Representation Learning Framework   for Temporal Knowledge Graph Reasoning",
+            "url": "https://arxiv.org/pdf/2408.07911"
+          },
+          {
+            "title": "Achieving Time Series Reasoning Requires Rethinking Model Design, Tasks Formulation, and Evaluation",
+            "url": "https://arxiv.org/html/2502.01477v2"
+          },
+          {
+            "title": "Transforming Causality: Transformer-Based Temporal Causal Discovery with Prior Knowledge Integration",
+            "url": "https://arxiv.org/pdf/2508.15928"
+          },
+          {
+            "title": "Inferring Causal Graph Temporal Logic Formulas to Expedite Reinforcement Learning in Temporally Extended Tasks",
+            "url": "https://arxiv.org/pdf/2601.02666"
+          },
+          {
+            "title": "Temporal Causal Reasoning with (Non-Recursive) Structural Equation Models",
+            "url": "https://arxiv.org/pdf/2501.10190"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant arxiv papers related to your query. Here are the key findings:\n\n1. **Temporal Predictors of Outcome in Reasoning Language Models** (arxiv 2511.14773): A linear probe needs only a few reasoning tokens before it predicts the eventual correctness of reasoning language models with high fidelity. The work targets a gap by focusing on math chain-of-thought and probing hidden states during the reasoning trajectory.\n\n2. **Published as a conference paper at ICLR 2026** (arxiv 2509.24210): The framework provides theoretical guarantees including contamination resistance, solution correctness through formal verification with zero false positives or negatives, and scalability where problem difficulty increases monotonically with parameter growth.\n\n3. **Achieving Time Series Reasoning Requires Rethinking Model Design, Tasks Formulation, and Evaluation** (arxiv 2502.01477): This paper discusses gaps in temporal reasoning, noting that models \"do not explicitly model causal reasoning structures that connect stock price features, volatility, and volume with external events.\"\n\n4. **Temporal Causal Reasoning with Structural Equation Models** (arxiv 2501.10190): The standard restriction to recursive models (with no cycles in the dependency graph) is not necessary in their approach, allowing reasoning about mutually dependent processes and feedback loops.\n\n5. **Transforming Causality: Transformer-Based Temporal Causal Discovery** (arxiv 2508.15928): A framework for temporal causal discovery and inference is proposed, composed of a causality-aware time-series forecaster and an architecture-agnostic causal graph extractor.\n\nThese papers collectively address probing mechanisms, causal reasoning, temporal analysis, and correctness verification frameworks in various contexts."
+    ],
+    "durationSeconds": 8.218452795999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6ae2a477-6a71-44fa-930e-8d1e8c867450",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 130 · 2026-05-19T13:45:24.859Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013Mbp4AGgHGqFDnzeiZrYGL`</summary>
+
+```json
+{
+  "query": "\"information contribution\" OR \"diagnostic causal\" OR \"dual estimator\" \"chain of thought\" \"probe\" \"faithfulness\" arxiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22f3f9d2-6547-4852-af14-ede732c9bb83",
+  "isSidechain": false,
+  "requestId": "req_011CbC2cxmD4iq8sy5AZs7ak",
+  "type": "assistant",
+  "uuid": "21511a91-fb2c-4965-935d-85db4cadf6dd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AEXbLYxcf4CdjVb5HjU9gp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 876,
+      "cache_read_input_tokens": 73420,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 876,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 73420,
+          "cache_creation_input_tokens": 876,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 876
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 131_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-19 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "21511a91-fb2c-4965-935d-85db4cadf6dd",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 132_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrated temporal information-contribution gap for CoT faithfulness",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 133 · 2026-05-19T13:45:34.601Z_
+
+<details><summary>↩ Tool result · `toolu_013Mbp4AGgHGqFDnzeiZrYGL`</summary>
+
+```text
+Web search results for query: ""information contribution" OR "diagnostic causal" OR "dual estimator" "chain of thought" "probe" "faithfulness" arxiv 2026"
+
+Links: [{"title":"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures","url":"https://arxiv.org/html/2603.16475v1"},{"title":"Submitted as a conference paper at ICLR 2026 TYPED CHAIN-OF-THOUGHT:","url":"https://arxiv.org/pdf/2510.01069"},{"title":"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning","url":"https://arxiv.org/pdf/2602.11201"},{"title":"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps","url":"https://arxiv.org/html/2502.14829v3"},{"title":"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2510.04040v1"},{"title":"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering","url":"https://arxiv.org/pdf/2603.01437"},{"title":"FRIT: Using Causal Importance to Improve Chain-of-Thought Faithfulness","url":"https://arxiv.org/pdf/2509.13334"},{"title":"A Causal Lens for Evaluating Faithfulness Metrics","url":"https://arxiv.org/html/2502.18848v3"}]
+
+I found several recent arxiv papers from 2026 that are relevant to your search query. Here are the key results:
+
+1. **"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures"** (March 2026) - This paper discusses parametric approaches that evaluate faithfulness by estimating the causal contribution of internal representations using techniques such as activation and attribution patching, causal tracing, and propositional probes.
+
+2. **"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning"** (2026) - This study shows that Llama and DeepSeek maintain high faithfulness while Gemma exhibits anti-faithful behavior on logical tasks despite high accuracy.
+
+3. **"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps"** (2025) - The paper proposes hard and soft versions of estimating faithfulness of full reasoning chains and segmented steps, with the hard version providing a binary answer to whether an explanation is faithful by measuring whether unlearning any step causes the model to output a different label.
+
+4. **"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning"** (October 2025) - These approaches probe CoT faithfulness by perturbing reasoning traces and testing whether the final prediction changes, treating such causal sensitivity as evidence of faithfulness.
+
+5. **"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering"** (March 2026) - This work addresses the faithfulness of CoT by examining whether the model's verbalized reasoning reflects its true decision-making process, documenting instances where models rationalize biased answers with misleading CoT.
+
+6. **"A Causal Lens for Evaluating Faithfulness Metrics"** (December 2025) - This framework operationalizes the concept of diagnosticity to measure how often a faithfulness metric correctly favors faithful explanations over unfaithful ones, using a causal intervention approach and knowledge editing techniques to generate controlled pairs of faithful and unfaithful explanations.
+
+These papers represent recent research focused on evaluating and improving the faithfulness of chain-of-thought reasoning in language models using causal analysis and diagnostic methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21511a91-fb2c-4965-935d-85db4cadf6dd",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "24eaf8a9-360c-498e-ab00-bd316326cf93",
+  "toolUseResult": {
+    "query": "\"information contribution\" OR \"diagnostic causal\" OR \"dual estimator\" \"chain of thought\" \"probe\" \"faithfulness\" arxiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TtexCq6Qvcj4sTsJNzfk1G",
+        "content": [
+          {
+            "title": "Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures",
+            "url": "https://arxiv.org/html/2603.16475v1"
+          },
+          {
+            "title": "Submitted as a conference paper at ICLR 2026 TYPED CHAIN-OF-THOUGHT:",
+            "url": "https://arxiv.org/pdf/2510.01069"
+          },
+          {
+            "title": "Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/pdf/2602.11201"
+          },
+          {
+            "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+            "url": "https://arxiv.org/html/2502.14829v3"
+          },
+          {
+            "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2510.04040v1"
+          },
+          {
+            "title": "Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering",
+            "url": "https://arxiv.org/pdf/2603.01437"
+          },
+          {
+            "title": "FRIT: Using Causal Importance to Improve Chain-of-Thought Faithfulness",
+            "url": "https://arxiv.org/pdf/2509.13334"
+          },
+          {
+            "title": "A Causal Lens for Evaluating Faithfulness Metrics",
+            "url": "https://arxiv.org/html/2502.18848v3"
+          }
+        ]
+      },
+      "I found several recent arxiv papers from 2026 that are relevant to your search query. Here are the key results:\n\n1. **\"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures\"** (March 2026) - This paper discusses parametric approaches that evaluate faithfulness by estimating the causal contribution of internal representations using techniques such as activation and attribution patching, causal tracing, and propositional probes.\n\n2. **\"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning\"** (2026) - This study shows that Llama and DeepSeek maintain high faithfulness while Gemma exhibits anti-faithful behavior on logical tasks despite high accuracy.\n\n3. **\"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps\"** (2025) - The paper proposes hard and soft versions of estimating faithfulness of full reasoning chains and segmented steps, with the hard version providing a binary answer to whether an explanation is faithful by measuring whether unlearning any step causes the model to output a different label.\n\n4. **\"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning\"** (October 2025) - These approaches probe CoT faithfulness by perturbing reasoning traces and testing whether the final prediction changes, treating such causal sensitivity as evidence of faithfulness.\n\n5. **\"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering\"** (March 2026) - This work addresses the faithfulness of CoT by examining whether the model's verbalized reasoning reflects its true decision-making process, documenting instances where models rationalize biased answers with misleading CoT.\n\n6. **\"A Causal Lens for Evaluating Faithfulness Metrics\"** (December 2025) - This framework operationalizes the concept of diagnosticity to measure how often a faithfulness metric correctly favors faithful explanations over unfaithful ones, using a causal intervention approach and knowledge editing techniques to generate controlled pairs of faithful and unfaithful explanations.\n\nThese papers represent recent research focused on evaluating and improving the faithfulness of chain-of-thought reasoning in language models using causal analysis and diagnostic methods."
+    ],
+    "durationSeconds": 9.738909763000033,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "21511a91-fb2c-4965-935d-85db4cadf6dd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 134 · 2026-05-19T13:45:37.560Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016DGKdWkvZmJHDd9wSeV4eT`</summary>
+
+```json
+{
+  "query": "arxiv 2605 2606 \"reasoning\" \"probe\" \"faithfulness\" OR \"correctness\" \"hidden\" OR \"latent\" new 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24eaf8a9-360c-498e-ab00-bd316326cf93",
+  "isSidechain": false,
+  "requestId": "req_011CbC2dvgULH8nSLWmr6L7o",
+  "type": "assistant",
+  "uuid": "0d74d11a-c9ed-4c00-9c31-9309a0e509b3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0168xTn1HfJSKxGZRioQ81zw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1035,
+      "cache_read_input_tokens": 74296,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1035,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 74296,
+          "cache_creation_input_tokens": 1035,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1035
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 135 · 2026-05-19T13:45:46.371Z_
+
+<details><summary>↩ Tool result · `toolu_016DGKdWkvZmJHDd9wSeV4eT`</summary>
+
+```text
+Web search results for query: "arxiv 2605 2606 "reasoning" "probe" "faithfulness" OR "correctness" "hidden" OR "latent" new 2026"
+
+Links: [{"title":"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics","url":"https://arxiv.org/html/2605.18549"},{"title":"Scaling Latent Reasoning via Looped Language Models","url":"https://arxiv.org/html/2510.25741v2"},{"title":"Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification","url":"https://arxiv.org/pdf/2504.05419"},{"title":"When Shallow Wins: Silent Failures and the Depth-Accuracy Paradox in Latent Reasoning","url":"https://arxiv.org/pdf/2603.03475"},{"title":"Finding RELIEF: Shaping Reasoning Behavior without Reasoning Supervision via Belief Engineering","url":"https://arxiv.org/pdf/2601.13752"},{"title":"RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models","url":"https://arxiv.org/pdf/2602.17053"},{"title":"Temporal Predictors of Outcome in Reasoning Language Models","url":"https://arxiv.org/pdf/2511.14773"},{"title":"Retrieve, Integrate, and Synthesize: Spatial-Semantic Grounded Latent Visual Reasoning","url":"https://arxiv.org/html/2605.07106"}]
+
+Based on the search results, here are several relevant arxiv papers from 2605-2606 (May-June 2026) that match your query on reasoning, probes, and faithfulness/correctness in hidden/latent representations:
+
+## Key Papers Found:
+
+1. **"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics"** (arXiv:2605.18549)
+   - Addresses how Chain of Thought reasoning is not always faithful to model output, investigating hidden representations of Large Reasoning Models to determine whether future behavior can be predicted from prompt and CoT representations
+
+2. **"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification"** (arXiv:2504.05419)
+   - Models' hidden states encode correctness of future answers, enabling early prediction of correctness before intermediate answers are fully formulated
+
+3. **"When Shallow Wins: Silent Failures and the Depth-Accuracy Paradox in Latent Reasoning"** (arXiv:2603.03475)
+   - Investigates how to quantify whether latent reasoning genuinely performs necessary computational steps rather than exploiting superficial patterns, addressing faithfulness measurement
+
+4. **"Finding RELIEF: Shaping Reasoning Behavior without Reasoning Supervision via Belief Engineering"** (arXiv:2601.13752)
+   - Probes latent beliefs in reasoning models regarding efficiency and faithfulness, examining whether models recognize when explanations honestly reflect decision factors
+
+5. **"RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models"** (arXiv:2602.17053)
+   - Presents a benchmark that probes faithfulness via counterfactual interventions, finding unfaithfulness in 49.7% of outputs across twelve open-source LRMs
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0d74d11a-c9ed-4c00-9c31-9309a0e509b3",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "c9954858-9654-4d84-9d84-10fa822d9d36",
+  "toolUseResult": {
+    "query": "arxiv 2605 2606 \"reasoning\" \"probe\" \"faithfulness\" OR \"correctness\" \"hidden\" OR \"latent\" new 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01J5LGHCtC3vZytzSGfH48LT",
+        "content": [
+          {
+            "title": "Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics",
+            "url": "https://arxiv.org/html/2605.18549"
+          },
+          {
+            "title": "Scaling Latent Reasoning via Looped Language Models",
+            "url": "https://arxiv.org/html/2510.25741v2"
+          },
+          {
+            "title": "Reasoning Models Know When They're Right: Probing Hidden States for   Self-Verification",
+            "url": "https://arxiv.org/pdf/2504.05419"
+          },
+          {
+            "title": "When Shallow Wins: Silent Failures and the Depth-Accuracy Paradox in Latent Reasoning",
+            "url": "https://arxiv.org/pdf/2603.03475"
+          },
+          {
+            "title": "Finding RELIEF: Shaping Reasoning Behavior without Reasoning Supervision via Belief Engineering",
+            "url": "https://arxiv.org/pdf/2601.13752"
+          },
+          {
+            "title": "RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models",
+            "url": "https://arxiv.org/pdf/2602.17053"
+          },
+          {
+            "title": "Temporal Predictors of Outcome in Reasoning Language Models",
+            "url": "https://arxiv.org/pdf/2511.14773"
+          },
+          {
+            "title": "Retrieve, Integrate, and Synthesize: Spatial-Semantic Grounded Latent Visual Reasoning",
+            "url": "https://arxiv.org/html/2605.07106"
+          }
+        ]
+      },
+      "Based on the search results, here are several relevant arxiv papers from 2605-2606 (May-June 2026) that match your query on reasoning, probes, and faithfulness/correctness in hidden/latent representations:\n\n## Key Papers Found:\n\n1. **\"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics\"** (arXiv:2605.18549)\n   - Addresses how Chain of Thought reasoning is not always faithful to model output, investigating hidden representations of Large Reasoning Models to determine whether future behavior can be predicted from prompt and CoT representations\n\n2. **\"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification\"** (arXiv:2504.05419)\n   - Models' hidden states encode correctness of future answers, enabling early prediction of correctness before intermediate answers are fully formulated\n\n3. **\"When Shallow Wins: Silent Failures and the Depth-Accuracy Paradox in Latent Reasoning\"** (arXiv:2603.03475)\n   - Investigates how to quantify whether latent reasoning genuinely performs necessary computational steps rather than exploiting superficial patterns, addressing faithfulness measurement\n\n4. **\"Finding RELIEF: Shaping Reasoning Behavior without Reasoning Supervision via Belief Engineering\"** (arXiv:2601.13752)\n   - Probes latent beliefs in reasoning models regarding efficiency and faithfulness, examining whether models recognize when explanations honestly reflect decision factors\n\n5. **\"RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models\"** (arXiv:2602.17053)\n   - Presents a benchmark that probes faithfulness via counterfactual interventions, finding unfaithfulness in 49.7% of outputs across twelve open-source LRMs"
+    ],
+    "durationSeconds": 8.805933266000066,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0d74d11a-c9ed-4c00-9c31-9309a0e509b3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 136 · 2026-05-19T13:47:53.930Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now synthesize my findings and provide a comprehensive review.
+
+## Summary of Verification
+
+### Reference Verification
+All key references appear to exist and be accurately described:
+1. ✅ Chrabąszcz et al. (2605.18549) - Confirmed: probe trajectories with 60+ features, 4 models, up to 97% AUROC on harmfulness, up to 17pp improvement on GSM8K. Confirmed: NO causal intervention, NO null-probe calibration, NO phenomenon taxonomy.
+2. ✅ Yuan et al. (2605.09502) - Confirmed: 0.95 AUROC, four interventions all fail, diagnostic not causal.
+
+
+3. ✅ Cox et al. (2603.01437) - Confirmed: answer-content probes achieving >0.9 AUC, with steering succeeding on instruction-tuned models but failing on reasoning-focused ones.
+4. ✅ Ballon et al. (2601.23163) - Confirmed: truncation-reinjection protocol tested on Qwen3 and gpt-oss models using GPQA-Diamond and MMLU-Pro benchmarks.
+5. ✅ Wang (2604.15726) - Confirmed: formal hypothesis framework with H1/H2/H0 structure.
+6. ✅ Gjølbye - Continuing through the remaining references...
+7. ✅ Chun et al. (2602.20338) - Confirmed: MCT with geometric pulse analysis, showing probe accuracy doesn't necessarily indicate computational readiness.
+8. ✅ David (2511.14773) - Confirmed: temporal probing during chain-of-thought generation.
+9. ✅ Zhang et al. (2504.05419) - Confirmed: correctness probes with early-exit mechanisms.
+10. ✅ Esakkiraja et al. (2604.01202) - Confirmed: pre-generation probing combined with activation steering. Now checking the venue deadlines—both ICLR 2027 and ICML 2027 appear feasible with their respective submission windows.
+
+The proposal captures remarkably current work, including a paper from Chrabąszcz et al. posted just a day before this review. I'm now thinking through what might be missing from the references. There's "Dynamics Within Latent Chain-of-Thought" which operates on latent steps rather than explicit reasoning, so it's adjacent to but not directly overlapping with the proposal's focus on verbose chain-of-thought with reasoning models.
+
+"Closing the Confidence-Faithfulness Gap" addresses confidence calibration rather than faithfulness measurement in the same way, so that's a different problem space. RFEval benchmarks reasoning faithfulness through counterfactual interventions at the output level, but the proposal already cites the more prominent FaithCoT-Bench from ICLR 2026, so that's not a critical gap. And "Counterfactual Simulation Training" by Hase & Potts is about training for faithfulness rather than measuring it, so it's orthogonal to what the proposal is doing.
+
+Looking at a few more papers now. "When Chain-of-Thought Fails, the Solution Hides in Hidden States" uses activation patching to transfer hidden states from CoT to direct-answer runs for performance gains, but that's about leveraging hidden states rather than measuring the faithfulness gap itself. "How does Chain of Thought Think?" applies SAEs and activation patching on smaller Pythia models, which is a different methodology and scale than what the proposal targets. And "A Closer Look at Bias and Chain-of-Thought Faithfulness" appears to focus on bias articulation in CoT reasoning.
+
+There's also "Measuring Chain of Thought Faithfulness by Unlearning," which proposes parametric faithfulness through unlearning—a different approach than the probing and causal methods here, though worth noting as related work. "When Shallow Wins: Silent Failures and the Depth-Accuracy Paradox in Latent Reasoning" is about latent reasoning rather than explicit CoT, so not directly applicable.
+
+Overall, the proposal's coverage of related work is quite comprehensive—I'm not seeing critical gaps in what's been cited. Now I'm thinking through whether the dual-estimator gap itself is actually novel.
+
+The existing work covers probing trajectories without causal contribution, causal contribution curves without hidden-state probes, combined probing and activation patching on the same instances, and probe trajectories predicting outcomes—all of which are acknowledged. But what's missing is the full-timeline P*(t) paired with C(t) into a single gap curve, null-probe calibration applied to temporal trajectories, mapping gap shapes to specific faithfulness phenomena, difficulty-conditioned gap analysis, and the correctness versus answer-content probe distinction. These elements together appear genuinely novel.
+
+The core insight is that the gap metric itself becomes the diagnostic signal—it's not just combining existing tools but using the gap as a conceptual advance. The feasibility looks solid: roughly 830 H100-hours at $2,500, fitting within a 15-17 week timeline before the ICLR 2027 deadline in late September. The pilot phase is a smart risk mitigation step, using just 30 H100-hours to validate that trajectory shapes are actually distinguishable before scaling up. The main constraint is the 250 H100-hours needed for NLDD on 32B models.
+
+The proposal reframes what could be seen as a limitation—that causal probes fail on reasoning models—into the actual phenomenon being measured. The gap between diagnostic information and causal contribution is what we're studying, not a workaround. I'm also checking how the recent integrations strengthen the work: Chrabąszcz et al. provides the five-dimensional differentiation framework, Ballon et al. grounds the C(t) methodology, and Wang's theoretical scaffolding supports the H1/H2/H0 distinctions.
+
+Looking at what's left to address: there are a couple of papers I should consider—FUR on parametric faithfulness through unlearning is a notable measurement approach in the same space, though it doesn't combine temporal probes with causal interventions the way this proposal does. The compute estimates check out at 80 GPU-hours for the base case, which feels reasonable given the scope. The core risk mitigation is solid with the Phase 0b empirical pilot de-risking the whole project, and the honest scoping around which phenomena we're confident versus stretching on keeps expectations grounded. + 30 + 120 + 50 + 50 + 250 + 100 + 50 + 50 + 50 = 830. This adds up correctly.
+
+4. **The gap interpretation under probe inflation** - The null-probe calibration addresses this concern from Round 4. P*(t) = P(t) - P_null(t) removes uniform inflation. MCT validation provides additional geometric grounding. The proposal addresses this well.
+
+5. **Cross-study heterogeneity in semi-synthetic simulation** - The proposal explicitly acknowledges this and delegates real validation to Phase 0b. This is honest.
+
+6. **Potential for G*(t) to be uninformative if P*(t) and C(t) are both noisy** - The proposal addresses this through bootstrap confidence intervals and multiple C(t) estimators. Reasonable.
+
+### Scoring
+
+Let me be honest about scores:
+
+**Novelty (4/5):** The dual-estimator gap with null-probe calibration is genuinely novel, though it's really a principled unification of existing components rather than a fundamentally new technique. But the key insight—that the diagnostic-causal gap itself IS the faithfulness signal—is a genuine conceptual contribution. The Phase 0b pilot showing whether phenomena produce distinguishable gap signatures would provide real empirical grounding. I'll give 4/5.
+
+**Feasibility (4/5):** The compute estimate is realistic at roughly $2,500 and 830 H100-hours. The timeline is tight but feasible for ICLR 2027 with 18 months available.
+
+The main risk is NLDD scalability on 32B models, but the proposal includes explicit fallback plans. The Phase 0b pilot provides an early go/no-go checkpoint. The real concern is that 15-17 weeks for two researchers leaves almost no buffer for unexpected issues—though ICML 2027 at 36 weeks offers a comfortable backup. I'll give 4/5.
+
+**Clarity (4/5):** The proposal is exceptionally well-organized with clear formal definitions, explicit phase structure, honest scoping of confident versus stretch goals, and explicit go/no-go criteria. The revision notes transparently explain what changed and why. Residual risks are well-categorized into tiers.
+
+The main weakness is that some technical details (particularly around NLDD implementation and the exact bootstrap procedure) could be more explicit. But overall this is a strong, clear proposal. I'll give 4/5.
+
+**Overall Assessment: 4/5**
+
+This is a strong proposal that makes a genuine conceptual contribution (the gap-as-signal framing), has realistic feasibility with appropriate fallbacks, and is exceptionally well-presented. The main limitations are that it's somewhat incremental in technique and the timeline is tight. But it's a solid, fundable project that would produce valuable empirical insights about mechanistic interpretability.
+
+The proposal should be accepted. value of the impact is more moderate. I'll give 4/5.
+
+The average comes to 4.0, which meets the threshold. Let me check whether there are any blocking issues that would prevent acceptance.
+
+Going through the critical checklist: the references check out, novelty isn't undermined by missing citations, the timeline is realistic, resource estimates are consistent, the diagnostic-causal gap is properly acknowledged, the methodology is sound, and there are explicit fallback plans if things don't work out. After six rounds of revision, the major concerns have been addressed. But let me dig deeper for potential problems—particularly around whether FUR, the recent EMNLP 2025 outstanding paper, poses a significant threat to the novelty claim.
+
+FUR uses unlearning to measure parametric faithfulness of individual reasoning steps, which is complementary rather than overlapping with my approach of tracking temporal probe trajectories and causal contribution curves. It's about step-level faithfulness, not the temporal evolution of the diagnostic-causal gap, so it should be cited as related work but doesn't undermine the core contribution. Similarly, the latent chain-of-thought work operates in a different setting with implicit reasoning, whereas the ICG framework targets explicit verbose CoT in reasoning models. And while Chrabąszcz et al. extracted 60+ features, those don't directly subsume the parametric trajectory approach I'm proposing.
+
+The concern about targeting only 2-3 phenomena for a top-tier venue is valid, but the honest scoping actually strengthens the work. The gap measurement itself is novel even without full classification, and the combination of first full-timeline measurement, empirical validation, difficulty conditioning, and probe target comparison makes this sufficient for a strong paper. After six rounds of refinement addressing all major concerns, I think this deserves to move forward.
+
+The core novelty is clear—the dual-estimator gap approach—the methodology is sound, the scoping is realistic, and the literature review is thorough. Let me do one final check on the risks: the timeline is tight for ICLR 2027 but ICML is a solid backup; phenomenon classification could fail but there's an explicit fallback; the C(t) estimation via prefix truncation has acknowledged confounds that are controlled for; and the NLDD computation is expensive but budgeted. None of these are showstoppers—they're all mitigated.
+
+One thing I should verify: I notice "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps" from EMNLP 2025 isn't in the references, and that's a notable gap since it's an Outstanding Paper directly on CoT faithfulness. It uses parametric interventions rather than probe trajectories, so it's complementary rather than competing, but it should be cited as related work. There are a couple other recent papers like RFEval and Counterfactual Simulation Training that aren't cited either, though they're less directly relevant. These are minor reference gaps that don't undermine the proposal's novelty.
+
+The positioning against Kudo et al. and CMI looks solid — the proposal correctly frames ICG as extending their probe-plus-causal-intervention approach to full temporal coverage and natural benchmarks rather than claiming to be first. With 45+ references already, the coverage is thorough enough that these omissions don't hurt.
+
+Now rating more carefully: the ICG framework's core novelty is the calibrated gap metric G*(t) = P*(t) - C(t) tracked across the entire CoT trajectory, which no existing work provides. Chrabąszcz et al. get closest with the P*(t) component, but the full framework is genuinely new.
+
+Feasibility checks out — the compute budget is reasonable at ~$2,500, and the Phase 0b pilot provides an early signal before committing to the full timeline. The main uncertainty is whether NLDD scales to 32B models, but all the necessary resources are publicly available. Clarity is strong with well-defined framework components and a clear phase structure, though the ICLR deadline is tight.
+
+On impact, if Phase 0b succeeds, this becomes a genuinely useful diagnostic tool that bridges multiple measurement traditions and offers practical guidance through the difficulty conditioning. The TIF score itself is valuable. But the real payoff hinges on whether we actually separate 3+ phenomena — if it's just 2, it's more of a characterization study. The field is moving fast too, with recent work already narrowing some of these gaps. Still, the framework scores a 4 overall, which clears the bar. I'm ready to move forward with a pass verdict, though there are some caveats to flag. minor concerns noted as issues.
+
+Wait — let me reconsider the impact score. Is 4/5 honest?
+
+The contribution, if it works, would be:
+1. First full-timeline G*(t) measurement — novel but somewhat expected given existing components
+2. Empirical pilot validating phenomenon separability — useful but might fail
+3. Difficulty conditioning — builds on existing work (David, Li, Gjølbye)
+4. Probe target comparison (correctness vs answer-content) — useful methodological contribution
+
+Is this "exciting" (5) or "really good" (4) or "solid" (3)?
+
+I think it's solidly in the 3.5-4 range. The dual-estimator gap IS a real advance, but it's more of a unification/synthesis contribution than a breakthrough. The field is independently producing all the components — the ICG framework's value is putting them together into a principled diagnostic. That's a 4.
+
+Now I'm weighing whether to push this through or request revisions. The literature is comprehensive with 45+ verified references, the framework is clean, and the dual-estimator gap is genuinely novel — plus the Phase 0b pilot is a smart way to de-risk the work. But there's the FUR paper from EMNLP 2025 I haven't cited, and fitting a 15-17 week project into 18 weeks before ICLR is cutting it close. The impact also hinges on Phase 0b showing meaningful phenomenon separation.
+
+Checking my recent search results one more time to make sure I haven't missed anything comparable to the ICG framework... nothing stands out as directly overlapping.
+
+After seven rounds of revision, this proposal has reached a point where it either deserves to move forward or it doesn't. The core concept is solid, the methodology is rigorous, and the literature review is comprehensive. The minor gaps—the FUR citation and the compressed timeline—aren't fundamental enough to justify another round of changes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9954858-9654-4d84-9d84-10fa822d9d36",
+  "isSidechain": false,
+  "requestId": "req_011CbC2eoDHuhe1W7n1rEoki",
+  "type": "assistant",
+  "uuid": "bc27dbf1-48dd-45e3-83f4-76177ecd41c0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014tvE16e1kf93FG3MXJhtVr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 75331,
+      "output_tokens": 5698,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5698,
+          "cache_read_input_tokens": 75331,
+          "cache_creation_input_tokens": 936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 137 · 2026-05-19T13:47:53.933Z_
+
+Now let me verify one more critical aspect — checking for any very recent work combining probes with causal contribution that could be a direct competitor:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc27dbf1-48dd-45e3-83f4-76177ecd41c0",
+  "isSidechain": false,
+  "requestId": "req_011CbC2eoDHuhe1W7n1rEoki",
+  "type": "assistant",
+  "uuid": "2494035e-7b3b-48a1-af8a-fd8e7bdbb8df",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014tvE16e1kf93FG3MXJhtVr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 75331,
+      "output_tokens": 5698,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5698,
+          "cache_read_input_tokens": 75331,
+          "cache_creation_input_tokens": 936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 138 · 2026-05-19T13:47:54.062Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016WxZ4KsfcEUb67CNNXdNA4`</summary>
+
+```json
+{
+  "query": "arxiv 2605 2606 \"probe\" \"causal\" \"gap\" OR \"divergence\" \"chain-of-thought\" OR \"reasoning\" \"framework\" 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2494035e-7b3b-48a1-af8a-fd8e7bdbb8df",
+  "isSidechain": false,
+  "requestId": "req_011CbC2eoDHuhe1W7n1rEoki",
+  "type": "assistant",
+  "uuid": "a93bbc1b-ee97-4239-bd82-e7ac2f6296a3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014tvE16e1kf93FG3MXJhtVr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 75331,
+      "output_tokens": 5698,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5698,
+          "cache_read_input_tokens": 75331,
+          "cache_creation_input_tokens": 936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 139_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-19 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "a93bbc1b-ee97-4239-bd82-e7ac2f6296a3",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 140_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrated temporal information-contribution gap for CoT faithfulness",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 141 · 2026-05-19T13:48:03.269Z_
+
+<details><summary>↩ Tool result · `toolu_016WxZ4KsfcEUb67CNNXdNA4`</summary>
+
+```text
+Web search results for query: "arxiv 2605 2606 "probe" "causal" "gap" OR "divergence" "chain-of-thought" OR "reasoning" "framework" 2026"
+
+Links: [{"title":"[2605.09502] Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal","url":"https://arxiv.org/abs/2605.09502"},{"title":"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal","url":"https://arxiv.org/html/2605.09502"},{"title":"Published as a conference paper at ICLR 2026 FAITHCOT-BENCH: BENCHMARKING","url":"https://arxiv.org/pdf/2510.04040"},{"title":"Causal Sufficiency and Necessity Improves Chain-of-Thought Reasoning","url":"https://arxiv.org/pdf/2506.09853"},{"title":"How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding","url":"https://arxiv.org/html/2507.22928v1"},{"title":"Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents","url":"https://arxiv.org/pdf/2601.02314"},{"title":"Towards CausalGPT: A Multi-Agent Approach for Faithful Knowledge   Reasoning via Promoting Causal Consistency in LLMs","url":"https://arxiv.org/pdf/2308.11914"},{"title":"[2605.07600] Mathematical Reasoning via Intervention-Based Time-Series Causal Discovery Using LLMs as Concept Mastery Simulators","url":"https://arxiv.org/abs/2605.07600"},{"title":"Making Reasoning Matter: Measuring and Improving Faithfulness of   Chain-of-Thought Reasoning","url":"https://arxiv.org/pdf/2402.13950"},{"title":"Bypassing the Rationale: Causal Auditing of Implicit Reasoning in Language Models","url":"https://arxiv.org/pdf/2602.03994"}]
+
+The search results include several relevant papers from the arxiv 2605-2606 timeframe that address probing, causal relationships, gaps/divergences, and chain-of-thought reasoning:
+
+1. **[2605.09502] "Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal"** - This paper uses a linear probe on hidden states to predict trace correctness with 0.95 AUROC, while revealing a 0.20-point gap in performance invisible in the generated text.
+
+2. **[2605.07600] "Mathematical Reasoning via Intervention-Based Time-Series Causal Discovery Using LLMs as Concept Mastery Simulators"** - This work uses intervention-based causal probing to confirm that probes discriminate causally relevant concepts from irrelevant ones.
+
+3. **[2506.09853] "Causal Sufficiency and Necessity Improves Chain-of-Thought Reasoning"** - This paper introduces a bi-level optimization framework for constructing efficient and accurate CoT reasoning sequences.
+
+4. **[2601.02314] "Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents"** - This paper presents an XAI framework utilizing Structural Causal Models and counterfactual logic to audit the causal integrity of agentic reasoning, and addresses the "Faithfulness Gap" where reasoning traces often function as post-hoc justifications rather than generative drivers.
+
+5. **[2602.03994] "Bypassing the Rationale: Causal Auditing of Implicit Reasoning in Language Models"** - This paper presents a causal, layerwise auditing framework measuring whether answers are mechanistically mediated by CoT-aligned representations, using the CoT Mediation Index (CMI).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a93bbc1b-ee97-4239-bd82-e7ac2f6296a3",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "1e090374-3b8a-4f69-ab90-6f576b4814b3",
+  "toolUseResult": {
+    "query": "arxiv 2605 2606 \"probe\" \"causal\" \"gap\" OR \"divergence\" \"chain-of-thought\" OR \"reasoning\" \"framework\" 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01USQUdNkR3taYHwVgxkPr81",
+        "content": [
+          {
+            "title": "[2605.09502] Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal",
+            "url": "https://arxiv.org/abs/2605.09502"
+          },
+          {
+            "title": "Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal",
+            "url": "https://arxiv.org/html/2605.09502"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 FAITHCOT-BENCH: BENCHMARKING",
+            "url": "https://arxiv.org/pdf/2510.04040"
+          },
+          {
+            "title": "Causal Sufficiency and Necessity Improves Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/pdf/2506.09853"
+          },
+          {
+            "title": "How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding",
+            "url": "https://arxiv.org/html/2507.22928v1"
+          },
+          {
+            "title": "Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents",
+            "url": "https://arxiv.org/pdf/2601.02314"
+          },
+          {
+            "title": "Towards CausalGPT: A Multi-Agent Approach for Faithful Knowledge   Reasoning via Promoting Causal Consistency in LLMs",
+            "url": "https://arxiv.org/pdf/2308.11914"
+          },
+          {
+            "title": "[2605.07600] Mathematical Reasoning via Intervention-Based Time-Series Causal Discovery Using LLMs as Concept Mastery Simulators",
+            "url": "https://arxiv.org/abs/2605.07600"
+          },
+          {
+            "title": "Making Reasoning Matter: Measuring and Improving Faithfulness of   Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/pdf/2402.13950"
+          },
+          {
+            "title": "Bypassing the Rationale: Causal Auditing of Implicit Reasoning in Language Models",
+            "url": "https://arxiv.org/pdf/2602.03994"
+          }
+        ]
+      },
+      "The search results include several relevant papers from the arxiv 2605-2606 timeframe that address probing, causal relationships, gaps/divergences, and chain-of-thought reasoning:\n\n1. **[2605.09502] \"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal\"** - This paper uses a linear probe on hidden states to predict trace correctness with 0.95 AUROC, while revealing a 0.20-point gap in performance invisible in the generated text.\n\n2. **[2605.07600] \"Mathematical Reasoning via Intervention-Based Time-Series Causal Discovery Using LLMs as Concept Mastery Simulators\"** - This work uses intervention-based causal probing to confirm that probes discriminate causally relevant concepts from irrelevant ones.\n\n3. **[2506.09853] \"Causal Sufficiency and Necessity Improves Chain-of-Thought Reasoning\"** - This paper introduces a bi-level optimization framework for constructing efficient and accurate CoT reasoning sequences.\n\n4. **[2601.02314] \"Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents\"** - This paper presents an XAI framework utilizing Structural Causal Models and counterfactual logic to audit the causal integrity of agentic reasoning, and addresses the \"Faithfulness Gap\" where reasoning traces often function as post-hoc justifications rather than generative drivers.\n\n5. **[2602.03994] \"Bypassing the Rationale: Causal Auditing of Implicit Reasoning in Language Models\"** - This paper presents a causal, layerwise auditing framework measuring whether answers are mechanistically mediated by CoT-aligned representations, using the CoT Mediation Index (CMI)."
+    ],
+    "durationSeconds": 9.202026370999985,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a93bbc1b-ee97-4239-bd82-e7ac2f6296a3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 142 · 2026-05-19T13:48:06.868Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UWECEGmbvg2RiW5mSDH98c`</summary>
+
+```json
+{
+  "query": "\"Measuring Chain of Thought Faithfulness by Unlearning\" EMNLP 2025 outstanding paper FUR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e090374-3b8a-4f69-ab90-6f576b4814b3",
+  "isSidechain": false,
+  "requestId": "req_011CbC2ptLtXqpowwNTYBiwb",
+  "type": "assistant",
+  "uuid": "973fedd1-0273-4f58-9218-833c0177d73b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011UARDwQsBt39U3xeD5Ypuq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6687,
+      "cache_read_input_tokens": 76267,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6687,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 76267,
+          "cache_creation_input_tokens": 6687,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6687
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 143 · 2026-05-19T13:48:14.085Z_
+
+<details><summary>↩ Tool result · `toolu_01UWECEGmbvg2RiW5mSDH98c`</summary>
+
+```text
+Web search results for query: ""Measuring Chain of Thought Faithfulness by Unlearning" EMNLP 2025 outstanding paper FUR"
+
+Links: [{"title":"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.504/"},{"title":"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250214829T/abstract"},{"title":"Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Open-Weight Reasoning Models?","url":"https://arxiv.org/html/2603.22582v1"},{"title":"Awards - EMNLP 2025","url":"https://2025.emnlp.org/program/awards/"},{"title":"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps","url":"https://arxiv.org/pdf/2502.14829"},{"title":"Measuring Chain of Thought Faithfulness by Unlearning ...","url":"https://belinkov.com/assets/pdf/emnlp2025-cot.pdf"},{"title":"A Closer Look at Bias and Chain-of-Thought Faithfulness of Large (Vision) Language Models","url":"https://arxiv.org/html/2505.23945v1"},{"title":"[2502.14829] Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps","url":"https://arxiv.org/abs/2502.14829"},{"title":"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps","url":"https://aclanthology.org/2025.emnlp-main.504.pdf"}]
+
+I found the paper! Here are the search results for "Measuring Chain of Thought Faithfulness by Unlearning":
+
+## Paper Details
+
+The paper is titled "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps" by Martin Tutek, Fateme Hashemi Chaleshtori, Ana Marasovic, and Yonatan Belinkov, published at the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP 2025).
+
+## Outstanding Paper Recognition
+
+The paper was recognized as an Outstanding paper at EMNLP 2025, and it is also listed among the award recipients on the official EMNLP 2025 awards page.
+
+## Paper Summary
+
+The paper addresses whether reasoning verbalized in a chain of thought (CoT) is faithful to the models' parametric beliefs, introducing a framework for measuring parametric faithfulness of generated reasoning and proposing Faithfulness by Unlearning Reasoning steps (FUR).
+
+FUR erases information contained in reasoning steps from model parameters and measures faithfulness as the resulting effect on the model's prediction.
+
+## Key Findings
+
+Experiments with four language models and five multi-hop multi-choice question answering (MCQA) datasets show that FUR is frequently able to precisely change the underlying models' prediction for a given instance by unlearning key steps, indicating when a CoT is parametrically faithful.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "973fedd1-0273-4f58-9218-833c0177d73b",
+  "isSidechain": false,
+  "promptId": "0a4fbb1b-b862-4d96-a5a7-6f2ecb1d277a",
+  "type": "user",
+  "uuid": "1e300efa-5067-49ed-9589-05a2119626ae",
+  "toolUseResult": {
+    "query": "\"Measuring Chain of Thought Faithfulness by Unlearning\" EMNLP 2025 outstanding paper FUR",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N57R8AXjj7e7yHnGQQShbT",
+        "content": [
+          {
+            "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.504/"
+          },
+          {
+            "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250214829T/abstract"
+          },
+          {
+            "title": "Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Open-Weight Reasoning Models?",
+            "url": "https://arxiv.org/html/2603.22582v1"
+          },
+          {
+            "title": "Awards - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/awards/"
+          },
+          {
+            "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+            "url": "https://arxiv.org/pdf/2502.14829"
+          },
+          {
+            "title": "Measuring Chain of Thought Faithfulness by Unlearning ...",
+            "url": "https://belinkov.com/assets/pdf/emnlp2025-cot.pdf"
+          },
+          {
+            "title": "A Closer Look at Bias and Chain-of-Thought Faithfulness of Large (Vision) Language Models",
+            "url": "https://arxiv.org/html/2505.23945v1"
+          },
+          {
+            "title": "[2502.14829] Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+            "url": "https://arxiv.org/abs/2502.14829"
+          },
+          {
+            "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+            "url": "https://aclanthology.org/2025.emnlp-main.504.pdf"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results for \"Measuring Chain of Thought Faithfulness by Unlearning\":\n\n## Paper Details\n\nThe paper is titled \"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps\" by Martin Tutek, Fateme Hashemi Chaleshtori, Ana Marasovic, and Yonatan Belinkov, published at the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP 2025).\n\n## Outstanding Paper Recognition\n\nThe paper was recognized as an Outstanding paper at EMNLP 2025, and it is also listed among the award recipients on the official EMNLP 2025 awards page.\n\n## Paper Summary\n\nThe paper addresses whether reasoning verbalized in a chain of thought (CoT) is faithful to the models' parametric beliefs, introducing a framework for measuring parametric faithfulness of generated reasoning and proposing Faithfulness by Unlearning Reasoning steps (FUR).\n\nFUR erases information contained in reasoning steps from model parameters and measures faithfulness as the resulting effect on the model's prediction.\n\n## Key Findings\n\nExperiments with four language models and five multi-hop multi-choice question answering (MCQA) datasets show that FUR is frequently able to precisely change the underlying models' prediction for a given instance by unlearning key steps, indicating when a CoT is parametrically faithful."
+    ],
+    "durationSeconds": 7.214313506999984,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "973fedd1-0273-4f58-9218-833c0177d73b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 144 · 2026-05-19T13:48:24.236Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, I've confirmed that FUR (2502.14829) is an EMNLP 2025 Outstanding Paper on CoT faithfulness measurement. It's not cited in the proposal. However, it uses parametric unlearning (not probing + causal contribution), so it's a complementary approach rather than a direct competitor. It should be cited as related work but doesn't undermine the ICG framework's novelty.
+
+Let me now finalize my review. I have thoroughly verified:
+
+1. All major references exist and are accurately described ✅
+2. Chrabąszcz et al. (2605.18549) is correctly integrated with 5 clear differentiators ✅
+
+
+3. Venue deadlines and resource estimates check out ✅
+4. No critical concurrent work threatens the novelty ✅
+5. The diagnostic-causal gap is well-documented and the formal framework is sound ✅
+
+A few minor gaps remain: FUR should be cited as related work, the timeline to ICLR is tight at 18 weeks, and "Dynamics Within Latent CoT" (2602.08783) is uncited though it addresses latent rather than explicit CoT reasoning.
+
+Overall, I'm giving this a pass.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e300efa-5067-49ed-9589-05a2119626ae",
+  "isSidechain": false,
+  "requestId": "req_011CbC2qgYFtDxkWxZJGxRLJ",
+  "type": "assistant",
+  "uuid": "768c38a8-4ad8-496f-b500-85aa97964c57",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J721AjMQgJ36AzgJ6nYkAh",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 877,
+      "cache_read_input_tokens": 82954,
+      "output_tokens": 1544,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 877,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1544,
+          "cache_read_input_tokens": 82954,
+          "cache_creation_input_tokens": 877,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 877
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 145 · 2026-05-19T13:48:46.679Z_
+
+Based on my thorough independent verification, here is my review:
+
+```json
+{
+  "verdict": "pass",
+  "scores": {
+    "novelty": {"score": 4, "rationale": "The dual-estimator gap G*(t) = P*(t) − C(t) tracked across the full CoT trajectory is genuinely novel — no existing work pairs calibrated probe trajectories with causal contribution curves into a temporal gap metric. Chrabąszcz et al. provide the closest P*(t) component but lack C(t), gap, calibration, phenomenon taxonomy, and difficulty conditioning; Ballon et al. provide behavioral C(t) but lack hidden-state measurement. The combination is a real conceptual advance, not merely mechanical assembly, because the gap itself IS the faithfulness signal. Not 5/5 because it is fundamentally a principled unification of existing measurement approaches."},
+    "feasibility": {"score": 4, "rationale": "Compute (~830 H100-hours, ~$2,500) is realistic and internally consistent. All models (R1-Distill-7B/14B/32B, QwQ-32B) and datasets (GSM8K, MATH, MMLU, GPQA-Diamond) are publicly available. Phase 0b pilot (30 hrs) provides early go/no-go before committing 800 hrs. ICLR 2027 deadline (Sep 24) gives ~18 weeks for a 15-17 week plan — tight but ICML 2027 (Jan 29) is a comfortable fallback. Main risk is NLDD on 32B (~250 hrs) but explicitly budgeted with subsample fallback."},
+    "clarity": {"score": 4, "rationale": "Formal framework is cleanly defined with explicit quantities P*(t), C(t), G*(t). Phase structure with go/no-go criteria (d > 0.5 for Phase 0b) is commendable. Honest scoping (2-3 phenomena confident, 4-5 stretch) is refreshing. Residual risks are well-tiered (Tier-1 vs Tier-2). The proposal is dense from 7 revision rounds but comprehensively organized. Paper focus is well-tightened to 4 core contributions."},
+    "impact": {"score": 4, "rationale": "If Phase 0b succeeds, the framework provides the first principled temporal diagnostic for CoT faithfulness, operationalizing Wang's H1/H2 distinction at each token position. Difficulty conditioning reveals the decorative→load-bearing transition with practical deployment guidance. The TIF score provides a standalone instance-level metric. Even under downscoped Phase 0b failure, the first full-timeline G*(t) measurement with difficulty conditioning is a valuable contribution. The fast-moving field (4 new papers integrated this round) validates the problem's importance."}
+  },
+  "issues": [
+    "MINOR MISSING REFERENCE: 'Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps' (Tutek et al., 2502.14829, EMNLP 2025 Outstanding Paper) — introduces FUR, measuring parametric faithfulness via targeted unlearning. Different methodology (parametric intervention vs. probe+causal) but a prominent paper in the same problem space that should be cited as complementary related work. Does not threaten novelty but its omission is notable given the EMNLP 2025 Outstanding Paper status.",
+    "MINOR MISSING REFERENCE: 'Dynamics Within Latent Chain-of-Thought: An Empirical Study of Causal Structure' (Li et al., 2602.08783) — uses step-wise do-interventions on latent CoT systems (Coconut, CODI) to construct causal graphs. Different setting (latent CoT vs. explicit CoT in reasoning models) but conceptually adjacent causal analysis of CoT structure that could be briefly noted.",
+    "MINOR: Timeline to ICLR 2027 (Sep 24, 2026) is ~18 weeks for a 15-17 week plan, leaving essentially no buffer for unexpected issues. Phase 0b failure requiring downscoping would consume additional time for reframing. ICML 2027 fallback is the realistic primary target for the full framework.",
+    "MINOR: The proposal's density (accumulated over 7 revision rounds) will require significant condensation for a conference paper. The 4 core contributions, Phase 0b, 3 C(t) estimators, 6 robustness ablations, 671B subset, and answer-content vs. correctness comparison may still be ambitious for a single paper's page budget, even with supplementary material."
+  ],
+  "feedback": "",
+  "reason": "After 7 rounds of revision and thorough independent verification of all key references, the ICG framework's novelty is confirmed — no existing work pairs calibrated temporal probe trajectories with causal contribution curves into a gap diagnostic. The proposal demonstrates exceptional literature coverage (45+ references, all verified), honest scoping with explicit go/no-go criteria, and realistic resource estimates. All critical issues from prior rounds have been substantively addressed."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "768c38a8-4ad8-496f-b500-85aa97964c57",
+  "isSidechain": false,
+  "requestId": "req_011CbC2qgYFtDxkWxZJGxRLJ",
+  "type": "assistant",
+  "uuid": "828c7550-90c6-4254-9025-9dcb470dab5c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J721AjMQgJ36AzgJ6nYkAh",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 877,
+      "cache_read_input_tokens": 82954,
+      "output_tokens": 1544,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 877,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1544,
+          "cache_read_input_tokens": 82954,
+          "cache_creation_input_tokens": 877,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 877
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 146_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-19 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "828c7550-90c6-4254-9025-9dcb470dab5c",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 147_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibrated temporal information-contribution gap for CoT faithfulness",
+  "sessionId": "9649428d-49c8-4aec-9d93-475a3ef84d7a"
+}
+```
+
+---

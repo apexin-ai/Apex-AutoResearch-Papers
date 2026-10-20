@@ -1,0 +1,2857 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-27 (UTC).** ## Original idea { "rev
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 40
+- **Recorded user turns:** 1
+- **Tool calls:** 7
+- **Original source:** `logs/chats/exported-trajectories/account-1/fb084f80-f924-4de3-8655-efd55a5a6caf.jsonl`
+- **Structured JSON:** [`99c8f5323166464620fa.json`](../../sessions/99/99c8f5323166464620fa.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T17:49:53.653Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T17:49:53.653Z",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-27 (UTC).**\n\n## Original idea\n{\n  \"revision_notes\": {\n    \"issue_1_genprm_code_execution\": \"ADDRESSED. Deep reading of GenPRM (arXiv 2504.00891) confirms it executes Python code at test time within &lt;verify> tags, with results appended as [Code output: ...]. However, code execution is optional/opportunistic (Table 5 ablates CoT-only vs. CoT+Code+Exec), yields only ~2-point gain over CoT-only (78.8 → 80.5 avg), and consists of ad-hoc Python snippets — not systematic formal verification against proof obligations. Novelty claim completely reframed: our contribution is mandatory systematic anchoring with relevance verification, not 'first to use code at test time.'\",\n    \"issue_2_trivial_anchor_vulnerability\": \"ADDRESSED. Added a three-gate anchor validation pipeline: (1) formal correctness via Z3/SymPy execution, (2) entailment relevance via NLI model checking anchor-step alignment, (3) symbolic coverage requiring anchors to reference ≥50% of the step's mathematical variables/operations. Inspired by CLATTER entailment verification, Ghassabani et al.'s Inductive Validity Cores for proof coverage, and 'Grounding the Score' (arXiv 2603.16253) for premise-conditioned verification. The gated product is now three-factor, not two-factor.\",\n    \"issue_3_tim_prm\": \"ADDRESSED. TIM-PRM (arXiv 2511.22998) added to landscape. After reading the paper, it is multimodal-specific — uses external MLLM queries for visual grounding via 'ask_questions' tool, not code/symbolic verification. Relevant as tool-integrated PRM paradigm but orthogonal to our formal-anchoring approach for mathematical reasoning.\",\n    \"issue_4_codeprm\": \"ADDRESSED. CodePRM (ACL 2025 Findings) added to landscape. Uses code execution feedback (pass rates) for code generation PRMs in a Generate-Verify-Refine pipeline. Requires complete runnable code at each step (cannot score partial solutions). Different domain (code gen) but relevant methodology.\",\n    \"issue_5_overclaiming\": \"ADDRESSED. All instances of 'structurally impossible' replaced with 'structurally more resistant.' Explicitly acknowledge the dual-channel shifts the attack surface rather than eliminating it, and characterize remaining attack vectors.\",\n    \"issue_6_z3_isabelle_throughput\": \"ADDRESSED with concrete data. Z3: 1-50ms for QF_LIA/QF_LRA arithmetic checks, millions of queries/day feasible. Isabelle/Sledgehammer: 5-30+ seconds per goal, FoVer took weeks on multiple servers for 80K steps. SOLUTION: dropped Isabelle from test-time entirely; Z3+SymPy+sandboxed Python at test time only. Isabelle restricted to offline training data synthesis via FoVer pipeline.\",\n    \"issue_7_domain_limitation\": \"ADDRESSED. Added tiered verification architecture with explicit coverage estimates: Tier 1 (Z3/SymPy formal, ~40-50% of MATH steps), Tier 2 (code execution numerical, ~15-20%), Tier 3 (neural-only with coverage penalty, ~30-40%). Graceful degradation for geometry/combinatorics. Coverage analysis based on FormalMATH benchmark data showing algebra >> geometry in formal verification success.\",\n    \"issue_8_iclr_deadline\": \"ADDRESSED. ICLR 2027 dates not yet officially announced on iclr.cc; listed as projected based on ICLR 2026 pattern. AAAI 2027 dates confirmed from official CFP.\"\n  },\n  \"title\": \"Relevance-Verified Formal Anchoring for Generative PRMs Against Reward Hacking\",\n  \"core_problem\": \"Current PRMs — including generative variants with optional code execution (GenPRM) — remain vulnerable to reward hacking: 43% of RL reward gains are attributable to stylistic shortcuts rather than genuine reasoning improvements (Reward Under Attack, 2026). GenPRM's ad-hoc code verification provides incremental gains (~2 points) but neither mandates coverage nor guarantees that code checks are semantically relevant to the reasoning step. Can we make the verification process systematically auditable, so that reward hacking becomes structurally more resistant rather than merely penalized after the fact?\",\n  \"opportunity\": \"The field has bifurcated into two tracks: (a) generative verifiers that produce richer reasoning but remain hackable (GenPRM, ThinkPRM, RM-R1), and (b) formal verification pipelines that produce ground-truth labels but operate only at training time (FoVer, VPRMs). GenPRM bridges these partially — it generates verification CoT with optional Python code execution — but its code checks are opportunistic (not every step produces code), ad-hoc (no formal specification), and unvalidated for relevance (a trivially correct '1+1=2' check passes). The opportunity is threefold: (1) mandate that every verification step produces formally checkable anchor claims grounded in the reasoning content, (2) verify that anchors are semantically relevant to the step via entailment and symbolic coverage checks, and (3) use a three-factor gated score that requires simultaneous success across formal correctness, relevance, and neural plausibility. This directly addresses the reward hacking vulnerability while preserving the scalability of generative PRMs.\",\n  \"landscape\": \"GenPRM (AAAI 2026) achieves SOTA on ProcessBench with 1.5B parameters by reframing process verification as a generative task; it produces CoT with optional Python code execution at test time, achieving ~2-point gain over CoT-only verification. ThinkPRM uses only 1% of PRM800K labels while outperforming discriminative PRMs by 8% on GPQA-Diamond. RM-R1 (ICLR 2026) generates chain-of-rubrics before scoring but rationales are not formally grounded. FoVer (ACL 2026 Findings) synthesizes PRM training data via Z3/Isabelle formal verification, producing 80K step labels — but Isabelle verification took weeks on multiple servers, and the approach operates only at training time. CodePRM (ACL 2025 Findings) uses code execution feedback (pass rates) for code-generation PRMs in a Generate-Verify-Refine pipeline but requires complete runnable code and targets a different domain. TIM-PRM (arXiv 2511.22998) integrates external tool queries for multimodal visual grounding in process verification (61.7 F1 on VisualProcessBench at 8B) but addresses visual perception, not mathematical formal verification. 'Reward Under Attack' (Feb 2026) demonstrated that gradient-based attacks achieve >0.9 PRM rewards with <4% ground-truth accuracy on AIME, with 43% of reward gains from stylistic shortcuts. APRM proposes adversarial training (+5.3% OOD) but doesn't change the verification paradigm. AgentV-RL (Apr 2026) introduces multi-turn agentic verification achieving 25.2% gains but distills into a single LLM without preserving per-claim auditability. T³RL (Mar 2026) uses code execution to verify test-time RL consensus but targets majority-vote reliability, not PRM rationale grounding. PRoSFI (Mar 2026) generates structured formal intermediaries verified by a formal prover but focuses on training-time reward shaping for logic reasoning, not test-time PRM auditing. FormalRewardBench (May 2026) provides the first benchmark for evaluating reward models on formal theorem proofs, finding frontier LLMs achieve only 59.8% — confirming that verification quality remains an open problem. VPRMs (Jan 2026) use deterministic rule-based verifiers but are domain-specific and non-generative. Gap: no existing work mandates systematic formal anchoring of the test-time verification rationale with relevance guarantees — GenPRM's code checks are optional and unvalidated for semantic relevance, FoVer/PRoSFI operate at training time, and TIM-PRM/AgentV-RL address different verification modalities.\",\n  \"inspired_by\": \"Field guide gap 'PRM robustness to search exploitation' + gap 'GenRM-style generative verification extended to step-level process supervision' + pattern 'Defense in depth' (layering formal correctness, entailment relevance, and symbolic coverage to create a multi-gate defense that shifts the reward hacking attack surface from one dimension to three) + concrete evidence from Reward Under Attack that GenPRM-style optional code checks leave 43% of the reward surface exploitable\",\n  \"approach\": \"Train a generative PRM (Qwen3-8B base) where each verification CoT step must produce formally checkable anchor claims that pass a three-gate validation pipeline:\\n\\n**Gate 1 — Formal Correctness:** Each anchor claim is executed via the appropriate backend: algebraic/arithmetic assertions through SymPy, numerical computations in a sandboxed Python interpreter, and logical entailments via Z3 SMT solver. We deliberately exclude Isabelle from test-time verification (FoVer's experience shows Isabelle proofs take 5-30+ seconds per goal vs. Z3's 1-50ms for arithmetic), retaining it only for offline training data synthesis.\\n\\n**Gate 2 — Entailment Relevance:** A lightweight NLI classifier (fine-tuned DeBERTa-v3-large) checks that each anchor claim is entailed by or entails the corresponding reasoning step, blocking trivially correct but semantically irrelevant anchors like '1+1=2' when verifying a quadratic formula derivation. This directly addresses the trivial-anchor vulnerability: formal correctness alone is insufficient.\\n\\n**Gate 3 — Symbolic Coverage:** AST-level analysis extracts the variable set and operation set from the reasoning step under verification; anchors must collectively reference ≥50% of these symbols. This ensures anchors address the mathematical substance of the step rather than peripheral claims.\\n\\nThe final verification score per step is: score = p(correct | rationale) × anchor_pass_rate × relevance_score × coverage_score, where the first factor is the neural rationale plausibility and the remaining three are the gate outputs. Gaming this score requires simultaneously fooling the neural channel AND producing formally correct, semantically relevant, high-coverage anchors — a significantly harder attack surface than fooling a single neural score.\\n\\n**Tiered Verification with Graceful Degradation:** Not all reasoning steps are formally verifiable. Based on FormalMATH benchmark data and MATH dataset domain analysis, we estimate: Tier 1 (Z3/SymPy formal verification) covers ~40-50% of steps (primarily algebra, arithmetic, number theory); Tier 2 (sandboxed code execution for numerical/computational checks) covers an additional ~15-20%; Tier 3 (neural-only verification with a coverage penalty multiplier of 0.7) handles the remaining ~30-40% (geometry, combinatorics, open-ended reasoning). The coverage penalty ensures the model is incentivized to produce formal anchors wherever possible while not failing silently on non-formalizable steps.\\n\\n**Training:** Combines FoVer-style formally verified step labels (Z3 for arithmetic, Isabelle for offline synthesis only) with a novel multi-objective GRPO reward: (a) anchor coverage reward incentivizing more checkable claims per step, (b) relevance reward penalizing low-entailment anchors, and (c) standard correctness reward. Training data synthesis uses Z3 exclusively for online RL (millions of queries at 1-50ms each), with Isabelle-verified labels from FoVer as a static training corpus.\\n\\n**Auditable Output:** Every PRM score is accompanied by a structured audit trace: for each step, the anchor claims, their formal check results, NLI relevance scores, and symbolic coverage scores are exposed, enabling downstream systems to reject scores with low anchor quality.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"350 H100-equivalent\",\n      \"timeline\": \"11-13 weeks\",\n      \"estimated_gpu_cost\": \"$700 (H100 spot at ~$2/hr)\",\n      \"notes\": \"Additional cost for NLI relevance model fine-tuning (~20 GPU-hours) and expanded Z3 integration testing\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"250 H100-equivalent\",\n      \"timeline\": \"8-9 weeks\",\n      \"claude_api_cost\": \"$500 (batch-mode rationale distillation, anchor template design, three-gate pipeline prototyping, experiment analysis via Sonnet 4.6)\",\n      \"estimated_gpu_cost\": \"$500\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"550 H100-equivalent\",\n      \"timeline\": \"4-5 weeks\",\n      \"claude_api_cost\": \"$900 (pipeline orchestration, automated ablation analysis across all three gates, paper drafting assistance)\",\n      \"estimated_gpu_cost\": \"$1,100\",\n      \"speed_bottleneck\": \"Z3 SMT solving throughput (~1-50ms per check) is fast enough for online RL; NLI relevance model adds ~10ms per anchor; total overhead ~3-5x vs. pure neural verification during training. FoVer-style Isabelle synthesis for static training data is offline and parallelizable (budget ~2 weeks on 8 servers, based on FoVer's reported experience for 80K steps).\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (abstract Jul 21, full paper Jul 28, 2026 — confirmed from official CFP)\",\n    \"ARR August 2026 cycle → EACL 2027 (submission ~Aug 15, 2026)\",\n    \"ICLR 2027 (projected abstract ~Sep 19, full paper ~Sep 24, 2026 — not yet officially announced; projected from ICLR 2026 pattern)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026) — optional code execution at test time, 1.5B outperforms GPT-4o on ProcessBench\",\n    \"Process Reward Models That Think / ThinkPRM (arXiv 2025, under review) — 1% labels, thinking-based generative verification\",\n    \"Efficient PRM Training Data Synthesis via Formal Verification / FoVer (ACL 2026 Findings) — Z3/Isabelle for training data, 80K labels, weeks of Isabelle compute\",\n    \"Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models (arXiv 2026) — >0.9 PRM rewards with <4% accuracy, 43% stylistic shortcuts\",\n    \"Adversarial Training for Process Reward Models / APRM (arXiv 2025) — +5.3% OOD via adversarial training\",\n    \"CodePRM: Execution Feedback-enhanced Process Reward Model for Code Generation (ACL 2025 Findings) — code execution feedback in PRM for code generation domain\",\n    \"TIM-PRM: Verifying Multimodal Reasoning with Tool-Integrated PRM (arXiv 2511.22998) — tool-integrated PRM for visual grounding, 61.7 F1 on VisualProcessBench\",\n    \"RM-R1: Reward Modeling as Reasoning (ICLR 2026) — chain-of-rubrics, 2-stage training\",\n    \"AgentV-RL: Scaling Reward Modeling with Agentic Verifier (arXiv 2026) — multi-turn agentic verification, 25.2% gains\",\n    \"Tool Verification for Test-Time Reinforcement Learning / T³RL (arXiv 2026) — code execution for majority-vote verification\",\n    \"PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries (arXiv 2603.29500) — formal intermediaries for training-time reward shaping\",\n    \"FormalRewardBench: A Benchmark for Formal Theorem Proving Reward Models (arXiv 2605.10141) — first benchmark for RM evaluation on formal proofs, frontier LLMs achieve 59.8%\",\n    \"FormalMATH: Benchmarking Formal Mathematical Reasoning (arXiv 2505.02735) — 5,560 problems, best provers achieve ~16.5%, strong algebra bias\",\n    \"ExecVerify: White-Box RL with Verifiable Stepwise Rewards for Code Execution Reasoning (arXiv 2026)\",\n    \"Grounding the Score: Explicit Premise Verification for Visual Process Reward Models (arXiv 2603.16253) — premise-conditioned verification\",\n    \"Controllable and Verifiable Process Data Synthesis for Process Reward Models (arXiv 2026)\",\n    \"Verifiable Composite Rewards for Reward Hacking Mitigation (arXiv 2509.15557)\",\n    \"ProcessBench: Identifying Process Errors in Mathematical Reasoning (ACL 2025)\",\n    \"Beyond Outcome Verification: Verifiable Process Reward Models for Structured Reasoning / VPRMs (arXiv 2026)\"\n  ],\n  \"description\": \"We propose Relevance-Verified Formally Anchored Generative PRMs (RV-GenPRM), a framework that makes process reward model verification structurally more resistant to reward hacking by mandating that each step of the generative verification rationale produces formally checkable anchor claims validated through a three-gate pipeline. While GenPRM (AAAI 2026) demonstrated that generative PRMs can optionally produce and execute ad-hoc Python code during verification, its code checks are neither mandatory (most steps use CoT-only), relevance-validated (trivially correct checks like '1+1=2' pass), nor formally grounded (no SMT solving or proof obligations). RV-GenPRM addresses all three gaps: Gate 1 (Formal Correctness) executes anchor claims via Z3 SMT solver, SymPy, or sandboxed Python — using Z3 exclusively at test time (1-50ms per query) while relegating Isabelle to offline training data synthesis, informed by FoVer's finding that Isabelle verification takes weeks at 80K-step scale. Gate 2 (Entailment Relevance) uses a fine-tuned NLI classifier to block semantically irrelevant anchors, directly preventing the trivial-anchor attack where formally correct but meaningless claims game the verification score. Gate 3 (Symbolic Coverage) requires anchors to reference ≥50% of the mathematical variables and operations in the reasoning step, ensuring substantive rather than peripheral verification. The final score is a four-factor product of neural plausibility × formal pass rate × relevance × coverage, creating a multi-dimensional defense surface. We acknowledge this shifts rather than eliminates the attack surface — but shifting from one hackable dimension to four coordinated dimensions raises the bar substantially (cf. Reward Under Attack showing single-channel PRMs are trivially exploitable). A tiered architecture provides graceful degradation: ~40-50% of MATH steps receive full Z3/SymPy formal anchoring (primarily algebra/arithmetic), ~15-20% receive code execution checks, and ~30-40% use neural-only verification with a coverage penalty (geometry, combinatorics). Training combines FoVer-verified labels with multi-objective GRPO optimizing anchor coverage, relevance, and correctness rewards. Every PRM score ships with a structured audit trace of all anchor claims and their gate results, enabling transparent downstream rejection of low-quality verifications.\",\n  \"project_name\": \"rv_genprm\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 2)\nIssues: [\"CRITICAL: MATH-VF (arxiv 2505.20869, May 2025) omitted from landscape — it performs step-wise formal verification using Z3 and SymPy at test time for LLM mathematical solutions, achieving 74.1% F1 on ProcessBench (training-free). This directly contradicts the gap claim 'no existing work mandates systematic formal anchoring of the test-time verification rationale.' MATH-VF formalizes each reasoning step into formal claims (judgments of the form T_i ⊢ Q_i) and verifies each with Z3/SymPy. The key difference is that MATH-VF is a standalone verification pipeline, not a PRM — but the core Gate 1 mechanism is essentially identical.\", \"CRITICAL: VERGE (arxiv 2601.20055, Jan 2026) omitted — it decomposes LLM outputs into atomic claims, autoformalizes into first-order logic, and verifies with SMT solvers at test time, achieving 18.7% average improvement. It includes semantic routing (directing different claim types to appropriate verification strategies) and error localization via Minimal Correction Subsets — both relevant to the proposed architecture.\", \"NLI relevance gate (Gate 2) applicability to mathematical reasoning is unvalidated — DeBERTa-v3-large fine-tuned on standard NLI corpora (SNLI, MNLI) has minimal exposure to mathematical notation, symbolic expressions, or formal verification claims. The proposal assumes NLI transfer to mathematical step-anchor pairs without evidence or a plan for domain-specific fine-tuning data.\", \"Four-factor product score is fragile — multiplying four scores means a single low factor dominates (e.g., relevance_score=0.3 on a valid step due to NLI model limitation collapses the final score regardless of perfect formal verification and neural plausibility). Consider a weighted geometric mean or minimum-gated thresholding instead.\", \"50% symbolic coverage threshold (Gate 3) is arbitrary — no empirical basis is provided. Many valid verification anchors may check a key constraint involving 2 of 8 variables (25% coverage) while being more informative than a superficial check touching 5 of 8 variables (62.5% coverage). Coverage ≠ verification quality.\", \"ARR August 2026 submission deadline is August 3, 2026 (not '~Aug 15' as stated) — this is 10 weeks from today, tighter than the 11-13 week manual timeline estimate.\"]\nFeedback: The revision competently addressed Round 1 issues (GenPRM repositioning, trivial-anchor vulnerability, Isabelle throughput, domain limitation acknowledgment), but introduced a new critical gap by missing two directly relevant papers:\n\n(1) **Add MATH-VF and VERGE to the landscape** and fundamentally reframe the novelty claim. The gap is NOT 'no work does formal verification at test time' — MATH-VF does exactly that with Z3/SymPy. The real gap is: no work integrates step-wise formal verification INTO a PRM training pipeline with relevance and coverage guarantees. Frame it as: 'MATH-VF verifies steps but doesn't produce reward signals for RL; FoVer produces rewards but only at training time; GenPRM produces generative rewards but without formal grounding. RV-GenPRM bridges all three — formal test-time verification embedded in a trainable PRM with relevance guarantees.'\n\n(2) **Validate the NLI gate on mathematical content** — either (a) describe a plan for fine-tuning DeBERTa on mathematical entailment pairs (e.g., from FoVer-verified step-anchor pairs), or (b) replace the NLI gate with a more domain-appropriate mechanism (e.g., symbolic entailment checking via SymPy, or a math-specific similarity metric).\n\n(3) **Replace the product score with a more robust aggregation** — consider a thresholded approach where each gate must exceed a minimum bar, then the neural score is the primary signal, rather than multiplicative collapse.\n\n(4) **Justify or remove the 50% coverage threshold** — either provide empirical data from a pilot study, or make coverage a soft reward signal rather than a hard threshold.\n\n(5) **Fix the ARR deadline** — August 3, 2026, not ~Aug 15. This is very tight for the proposed timeline.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.\n- Address each issue specifically.\n\n## 深度调研要求\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。\n3. **深度思考**：\n   - 核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach？\n4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。\n\n## 针对 Review 意见的定向搜索\n\n1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点\n2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline\n3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现\n4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot\n\n- You have full freedom: minor fix, major revision, or pivot.\n- Include a \"change_type\" field: \"minor\", \"major\", or \"pivot\".\n- Output a COMPLETE JSON object with ALL fields."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T17:49:53.656Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T17:49:53.656Z",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf"
+}
+```
+
+---
+
+## Round 1
+
+38 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T17:49:53.691Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-27 (UTC).**
+
+## Original idea
+{
+  "revision_notes": {
+    "issue_1_genprm_code_execution": "ADDRESSED. Deep reading of GenPRM (arXiv 2504.00891) confirms it executes Python code at test time within &lt;verify> tags, with results appended as [Code output: ...]. However, code execution is optional/opportunistic (Table 5 ablates CoT-only vs. CoT+Code+Exec), yields only ~2-point gain over CoT-only (78.8 → 80.5 avg), and consists of ad-hoc Python snippets — not systematic formal verification against proof obligations. Novelty claim completely reframed: our contribution is mandatory systematic anchoring with relevance verification, not 'first to use code at test time.'",
+    "issue_2_trivial_anchor_vulnerability": "ADDRESSED. Added a three-gate anchor validation pipeline: (1) formal correctness via Z3/SymPy execution, (2) entailment relevance via NLI model checking anchor-step alignment, (3) symbolic coverage requiring anchors to reference ≥50% of the step's mathematical variables/operations. Inspired by CLATTER entailment verification, Ghassabani et al.'s Inductive Validity Cores for proof coverage, and 'Grounding the Score' (arXiv 2603.16253) for premise-conditioned verification. The gated product is now three-factor, not two-factor.",
+    "issue_3_tim_prm": "ADDRESSED. TIM-PRM (arXiv 2511.22998) added to landscape. After reading the paper, it is multimodal-specific — uses external MLLM queries for visual grounding via 'ask_questions' tool, not code/symbolic verification. Relevant as tool-integrated PRM paradigm but orthogonal to our formal-anchoring approach for mathematical reasoning.",
+    "issue_4_codeprm": "ADDRESSED. CodePRM (ACL 2025 Findings) added to landscape. Uses code execution feedback (pass rates) for code generation PRMs in a Generate-Verify-Refine pipeline. Requires complete runnable code at each step (cannot score partial solutions). Different domain (code gen) but relevant methodology.",
+    "issue_5_overclaiming": "ADDRESSED. All instances of 'structurally impossible' replaced with 'structurally more resistant.' Explicitly acknowledge the dual-channel shifts the attack surface rather than eliminating it, and characterize remaining attack vectors.",
+    "issue_6_z3_isabelle_throughput": "ADDRESSED with concrete data. Z3: 1-50ms for QF_LIA/QF_LRA arithmetic checks, millions of queries/day feasible. Isabelle/Sledgehammer: 5-30+ seconds per goal, FoVer took weeks on multiple servers for 80K steps. SOLUTION: dropped Isabelle from test-time entirely; Z3+SymPy+sandboxed Python at test time only. Isabelle restricted to offline training data synthesis via FoVer pipeline.",
+    "issue_7_domain_limitation": "ADDRESSED. Added tiered verification architecture with explicit coverage estimates: Tier 1 (Z3/SymPy formal, ~40-50% of MATH steps), Tier 2 (code execution numerical, ~15-20%), Tier 3 (neural-only with coverage penalty, ~30-40%). Graceful degradation for geometry/combinatorics. Coverage analysis based on FormalMATH benchmark data showing algebra >> geometry in formal verification success.",
+    "issue_8_iclr_deadline": "ADDRESSED. ICLR 2027 dates not yet officially announced on iclr.cc; listed as projected based on ICLR 2026 pattern. AAAI 2027 dates confirmed from official CFP."
+  },
+  "title": "Relevance-Verified Formal Anchoring for Generative PRMs Against Reward Hacking",
+  "core_problem": "Current PRMs — including generative variants with optional code execution (GenPRM) — remain vulnerable to reward hacking: 43% of RL reward gains are attributable to stylistic shortcuts rather than genuine reasoning improvements (Reward Under Attack, 2026). GenPRM's ad-hoc code verification provides incremental gains (~2 points) but neither mandates coverage nor guarantees that code checks are semantically relevant to the reasoning step. Can we make the verification process systematically auditable, so that reward hacking becomes structurally more resistant rather than merely penalized after the fact?",
+  "opportunity": "The field has bifurcated into two tracks: (a) generative verifiers that produce richer reasoning but remain hackable (GenPRM, ThinkPRM, RM-R1), and (b) formal verification pipelines that produce ground-truth labels but operate only at training time (FoVer, VPRMs). GenPRM bridges these partially — it generates verification CoT with optional Python code execution — but its code checks are opportunistic (not every step produces code), ad-hoc (no formal specification), and unvalidated for relevance (a trivially correct '1+1=2' check passes). The opportunity is threefold: (1) mandate that every verification step produces formally checkable anchor claims grounded in the reasoning content, (2) verify that anchors are semantically relevant to the step via entailment and symbolic coverage checks, and (3) use a three-factor gated score that requires simultaneous success across formal correctness, relevance, and neural plausibility. This directly addresses the reward hacking vulnerability while preserving the scalability of generative PRMs.",
+  "landscape": "GenPRM (AAAI 2026) achieves SOTA on ProcessBench with 1.5B parameters by reframing process verification as a generative task; it produces CoT with optional Python code execution at test time, achieving ~2-point gain over CoT-only verification. ThinkPRM uses only 1% of PRM800K labels while outperforming discriminative PRMs by 8% on GPQA-Diamond. RM-R1 (ICLR 2026) generates chain-of-rubrics before scoring but rationales are not formally grounded. FoVer (ACL 2026 Findings) synthesizes PRM training data via Z3/Isabelle formal verification, producing 80K step labels — but Isabelle verification took weeks on multiple servers, and the approach operates only at training time. CodePRM (ACL 2025 Findings) uses code execution feedback (pass rates) for code-generation PRMs in a Generate-Verify-Refine pipeline but requires complete runnable code and targets a different domain. TIM-PRM (arXiv 2511.22998) integrates external tool queries for multimodal visual grounding in process verification (61.7 F1 on VisualProcessBench at 8B) but addresses visual perception, not mathematical formal verification. 'Reward Under Attack' (Feb 2026) demonstrated that gradient-based attacks achieve >0.9 PRM rewards with <4% ground-truth accuracy on AIME, with 43% of reward gains from stylistic shortcuts. APRM proposes adversarial training (+5.3% OOD) but doesn't change the verification paradigm. AgentV-RL (Apr 2026) introduces multi-turn agentic verification achieving 25.2% gains but distills into a single LLM without preserving per-claim auditability. T³RL (Mar 2026) uses code execution to verify test-time RL consensus but targets majority-vote reliability, not PRM rationale grounding. PRoSFI (Mar 2026) generates structured formal intermediaries verified by a formal prover but focuses on training-time reward shaping for logic reasoning, not test-time PRM auditing. FormalRewardBench (May 2026) provides the first benchmark for evaluating reward models on formal theorem proofs, finding frontier LLMs achieve only 59.8% — confirming that verification quality remains an open problem. VPRMs (Jan 2026) use deterministic rule-based verifiers but are domain-specific and non-generative. Gap: no existing work mandates systematic formal anchoring of the test-time verification rationale with relevance guarantees — GenPRM's code checks are optional and unvalidated for semantic relevance, FoVer/PRoSFI operate at training time, and TIM-PRM/AgentV-RL address different verification modalities.",
+  "inspired_by": "Field guide gap 'PRM robustness to search exploitation' + gap 'GenRM-style generative verification extended to step-level process supervision' + pattern 'Defense in depth' (layering formal correctness, entailment relevance, and symbolic coverage to create a multi-gate defense that shifts the reward hacking attack surface from one dimension to three) + concrete evidence from Reward Under Attack that GenPRM-style optional code checks leave 43% of the reward surface exploitable",
+  "approach": "Train a generative PRM (Qwen3-8B base) where each verification CoT step must produce formally checkable anchor claims that pass a three-gate validation pipeline:\n\n**Gate 1 — Formal Correctness:** Each anchor claim is executed via the appropriate backend: algebraic/arithmetic assertions through SymPy, numerical computations in a sandboxed Python interpreter, and logical entailments via Z3 SMT solver. We deliberately exclude Isabelle from test-time verification (FoVer's experience shows Isabelle proofs take 5-30+ seconds per goal vs. Z3's 1-50ms for arithmetic), retaining it only for offline training data synthesis.\n\n**Gate 2 — Entailment Relevance:** A lightweight NLI classifier (fine-tuned DeBERTa-v3-large) checks that each anchor claim is entailed by or entails the corresponding reasoning step, blocking trivially correct but semantically irrelevant anchors like '1+1=2' when verifying a quadratic formula derivation. This directly addresses the trivial-anchor vulnerability: formal correctness alone is insufficient.\n\n**Gate 3 — Symbolic Coverage:** AST-level analysis extracts the variable set and operation set from the reasoning step under verification; anchors must collectively reference ≥50% of these symbols. This ensures anchors address the mathematical substance of the step rather than peripheral claims.\n\nThe final verification score per step is: score = p(correct | rationale) × anchor_pass_rate × relevance_score × coverage_score, where the first factor is the neural rationale plausibility and the remaining three are the gate outputs. Gaming this score requires simultaneously fooling the neural channel AND producing formally correct, semantically relevant, high-coverage anchors — a significantly harder attack surface than fooling a single neural score.\n\n**Tiered Verification with Graceful Degradation:** Not all reasoning steps are formally verifiable. Based on FormalMATH benchmark data and MATH dataset domain analysis, we estimate: Tier 1 (Z3/SymPy formal verification) covers ~40-50% of steps (primarily algebra, arithmetic, number theory); Tier 2 (sandboxed code execution for numerical/computational checks) covers an additional ~15-20%; Tier 3 (neural-only verification with a coverage penalty multiplier of 0.7) handles the remaining ~30-40% (geometry, combinatorics, open-ended reasoning). The coverage penalty ensures the model is incentivized to produce formal anchors wherever possible while not failing silently on non-formalizable steps.\n\n**Training:** Combines FoVer-style formally verified step labels (Z3 for arithmetic, Isabelle for offline synthesis only) with a novel multi-objective GRPO reward: (a) anchor coverage reward incentivizing more checkable claims per step, (b) relevance reward penalizing low-entailment anchors, and (c) standard correctness reward. Training data synthesis uses Z3 exclusively for online RL (millions of queries at 1-50ms each), with Isabelle-verified labels from FoVer as a static training corpus.\n\n**Auditable Output:** Every PRM score is accompanied by a structured audit trace: for each step, the anchor claims, their formal check results, NLI relevance scores, and symbolic coverage scores are exposed, enabling downstream systems to reject scores with low anchor quality.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "350 H100-equivalent",
+      "timeline": "11-13 weeks",
+      "estimated_gpu_cost": "$700 (H100 spot at ~$2/hr)",
+      "notes": "Additional cost for NLI relevance model fine-tuning (~20 GPU-hours) and expanded Z3 integration testing"
+    },
+    "human_in_loop": {
+      "gpu_hours": "250 H100-equivalent",
+      "timeline": "8-9 weeks",
+      "claude_api_cost": "$500 (batch-mode rationale distillation, anchor template design, three-gate pipeline prototyping, experiment analysis via Sonnet 4.6)",
+      "estimated_gpu_cost": "$500"
+    },
+    "auto_research": {
+      "gpu_hours": "550 H100-equivalent",
+      "timeline": "4-5 weeks",
+      "claude_api_cost": "$900 (pipeline orchestration, automated ablation analysis across all three gates, paper drafting assistance)",
+      "estimated_gpu_cost": "$1,100",
+      "speed_bottleneck": "Z3 SMT solving throughput (~1-50ms per check) is fast enough for online RL; NLI relevance model adds ~10ms per anchor; total overhead ~3-5x vs. pure neural verification during training. FoVer-style Isabelle synthesis for static training data is offline and parallelizable (budget ~2 weeks on 8 servers, based on FoVer's reported experience for 80K steps)."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (abstract Jul 21, full paper Jul 28, 2026 — confirmed from official CFP)",
+    "ARR August 2026 cycle → EACL 2027 (submission ~Aug 15, 2026)",
+    "ICLR 2027 (projected abstract ~Sep 19, full paper ~Sep 24, 2026 — not yet officially announced; projected from ICLR 2026 pattern)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026) — optional code execution at test time, 1.5B outperforms GPT-4o on ProcessBench",
+    "Process Reward Models That Think / ThinkPRM (arXiv 2025, under review) — 1% labels, thinking-based generative verification",
+    "Efficient PRM Training Data Synthesis via Formal Verification / FoVer (ACL 2026 Findings) — Z3/Isabelle for training data, 80K labels, weeks of Isabelle compute",
+    "Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models (arXiv 2026) — >0.9 PRM rewards with <4% accuracy, 43% stylistic shortcuts",
+    "Adversarial Training for Process Reward Models / APRM (arXiv 2025) — +5.3% OOD via adversarial training",
+    "CodePRM: Execution Feedback-enhanced Process Reward Model for Code Generation (ACL 2025 Findings) — code execution feedback in PRM for code generation domain",
+    "TIM-PRM: Verifying Multimodal Reasoning with Tool-Integrated PRM (arXiv 2511.22998) — tool-integrated PRM for visual grounding, 61.7 F1 on VisualProcessBench",
+    "RM-R1: Reward Modeling as Reasoning (ICLR 2026) — chain-of-rubrics, 2-stage training",
+    "AgentV-RL: Scaling Reward Modeling with Agentic Verifier (arXiv 2026) — multi-turn agentic verification, 25.2% gains",
+    "Tool Verification for Test-Time Reinforcement Learning / T³RL (arXiv 2026) — code execution for majority-vote verification",
+    "PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries (arXiv 2603.29500) — formal intermediaries for training-time reward shaping",
+    "FormalRewardBench: A Benchmark for Formal Theorem Proving Reward Models (arXiv 2605.10141) — first benchmark for RM evaluation on formal proofs, frontier LLMs achieve 59.8%",
+    "FormalMATH: Benchmarking Formal Mathematical Reasoning (arXiv 2505.02735) — 5,560 problems, best provers achieve ~16.5%, strong algebra bias",
+    "ExecVerify: White-Box RL with Verifiable Stepwise Rewards for Code Execution Reasoning (arXiv 2026)",
+    "Grounding the Score: Explicit Premise Verification for Visual Process Reward Models (arXiv 2603.16253) — premise-conditioned verification",
+    "Controllable and Verifiable Process Data Synthesis for Process Reward Models (arXiv 2026)",
+    "Verifiable Composite Rewards for Reward Hacking Mitigation (arXiv 2509.15557)",
+    "ProcessBench: Identifying Process Errors in Mathematical Reasoning (ACL 2025)",
+    "Beyond Outcome Verification: Verifiable Process Reward Models for Structured Reasoning / VPRMs (arXiv 2026)"
+  ],
+  "description": "We propose Relevance-Verified Formally Anchored Generative PRMs (RV-GenPRM), a framework that makes process reward model verification structurally more resistant to reward hacking by mandating that each step of the generative verification rationale produces formally checkable anchor claims validated through a three-gate pipeline. While GenPRM (AAAI 2026) demonstrated that generative PRMs can optionally produce and execute ad-hoc Python code during verification, its code checks are neither mandatory (most steps use CoT-only), relevance-validated (trivially correct checks like '1+1=2' pass), nor formally grounded (no SMT solving or proof obligations). RV-GenPRM addresses all three gaps: Gate 1 (Formal Correctness) executes anchor claims via Z3 SMT solver, SymPy, or sandboxed Python — using Z3 exclusively at test time (1-50ms per query) while relegating Isabelle to offline training data synthesis, informed by FoVer's finding that Isabelle verification takes weeks at 80K-step scale. Gate 2 (Entailment Relevance) uses a fine-tuned NLI classifier to block semantically irrelevant anchors, directly preventing the trivial-anchor attack where formally correct but meaningless claims game the verification score. Gate 3 (Symbolic Coverage) requires anchors to reference ≥50% of the mathematical variables and operations in the reasoning step, ensuring substantive rather than peripheral verification. The final score is a four-factor product of neural plausibility × formal pass rate × relevance × coverage, creating a multi-dimensional defense surface. We acknowledge this shifts rather than eliminates the attack surface — but shifting from one hackable dimension to four coordinated dimensions raises the bar substantially (cf. Reward Under Attack showing single-channel PRMs are trivially exploitable). A tiered architecture provides graceful degradation: ~40-50% of MATH steps receive full Z3/SymPy formal anchoring (primarily algebra/arithmetic), ~15-20% receive code execution checks, and ~30-40% use neural-only verification with a coverage penalty (geometry, combinatorics). Training combines FoVer-verified labels with multi-objective GRPO optimizing anchor coverage, relevance, and correctness rewards. Every PRM score ships with a structured audit trace of all anchor claims and their gate results, enabling transparent downstream rejection of low-quality verifications.",
+  "project_name": "rv_genprm",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 2)
+Issues: ["CRITICAL: MATH-VF (arxiv 2505.20869, May 2025) omitted from landscape — it performs step-wise formal verification using Z3 and SymPy at test time for LLM mathematical solutions, achieving 74.1% F1 on ProcessBench (training-free). This directly contradicts the gap claim 'no existing work mandates systematic formal anchoring of the test-time verification rationale.' MATH-VF formalizes each reasoning step into formal claims (judgments of the form T_i ⊢ Q_i) and verifies each with Z3/SymPy. The key difference is that MATH-VF is a standalone verification pipeline, not a PRM — but the core Gate 1 mechanism is essentially identical.", "CRITICAL: VERGE (arxiv 2601.20055, Jan 2026) omitted — it decomposes LLM outputs into atomic claims, autoformalizes into first-order logic, and verifies with SMT solvers at test time, achieving 18.7% average improvement. It includes semantic routing (directing different claim types to appropriate verification strategies) and error localization via Minimal Correction Subsets — both relevant to the proposed architecture.", "NLI relevance gate (Gate 2) applicability to mathematical reasoning is unvalidated — DeBERTa-v3-large fine-tuned on standard NLI corpora (SNLI, MNLI) has minimal exposure to mathematical notation, symbolic expressions, or formal verification claims. The proposal assumes NLI transfer to mathematical step-anchor pairs without evidence or a plan for domain-specific fine-tuning data.", "Four-factor product score is fragile — multiplying four scores means a single low factor dominates (e.g., relevance_score=0.3 on a valid step due to NLI model limitation collapses the final score regardless of perfect formal verification and neural plausibility). Consider a weighted geometric mean or minimum-gated thresholding instead.", "50% symbolic coverage threshold (Gate 3) is arbitrary — no empirical basis is provided. Many valid verification anchors may check a key constraint involving 2 of 8 variables (25% coverage) while being more informative than a superficial check touching 5 of 8 variables (62.5% coverage). Coverage ≠ verification quality.", "ARR August 2026 submission deadline is August 3, 2026 (not '~Aug 15' as stated) — this is 10 weeks from today, tighter than the 11-13 week manual timeline estimate."]
+Feedback: The revision competently addressed Round 1 issues (GenPRM repositioning, trivial-anchor vulnerability, Isabelle throughput, domain limitation acknowledgment), but introduced a new critical gap by missing two directly relevant papers:
+
+(1) **Add MATH-VF and VERGE to the landscape** and fundamentally reframe the novelty claim. The gap is NOT 'no work does formal verification at test time' — MATH-VF does exactly that with Z3/SymPy. The real gap is: no work integrates step-wise formal verification INTO a PRM training pipeline with relevance and coverage guarantees. Frame it as: 'MATH-VF verifies steps but doesn't produce reward signals for RL; FoVer produces rewards but only at training time; GenPRM produces generative rewards but without formal grounding. RV-GenPRM bridges all three — formal test-time verification embedded in a trainable PRM with relevance guarantees.'
+
+(2) **Validate the NLI gate on mathematical content** — either (a) describe a plan for fine-tuning DeBERTa on mathematical entailment pairs (e.g., from FoVer-verified step-anchor pairs), or (b) replace the NLI gate with a more domain-appropriate mechanism (e.g., symbolic entailment checking via SymPy, or a math-specific similarity metric).
+
+(3) **Replace the product score with a more robust aggregation** — consider a thresholded approach where each gate must exceed a minimum bar, then the neural score is the primary signal, rather than multiplicative collapse.
+
+(4) **Justify or remove the 50% coverage threshold** — either provide empirical data from a pilot study, or make coverage a soft reward signal rather than a hard threshold.
+
+(5) **Fix the ARR deadline** — August 3, 2026, not ~Aug 15. This is very tight for the proposed timeline.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.
+- Address each issue specifically.
+
+## 深度调研要求
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。
+3. **深度思考**：
+   - 核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach？
+4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。
+
+## 针对 Review 意见的定向搜索
+
+1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点
+2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline
+3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现
+4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot
+
+- You have full freedom: minor fix, major revision, or pivot.
+- Include a "change_type" field: "minor", "major", or "pivot".
+- Output a COMPLETE JSON object with ALL fields.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "8d251980-9caf-43e4-a631-55b1b931b61b",
+  "type": "user",
+  "uuid": "c4761192-b739-4ced-b91f-0c762cd53664",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T17:49:53.689Z_
+
+```json
+{
+  "parentUuid": "c4761192-b739-4ced-b91f-0c762cd53664",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "f98fe27b-364b-4f3c-846e-6eb72ae0c668",
+  "timestamp": "2026-05-27T17:49:53.689Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T17:49:53.690Z_
+
+```json
+{
+  "parentUuid": "f98fe27b-364b-4f3c-846e-6eb72ae0c668",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "de9c9610-1cd5-42cc-ae07-3bb78969bff1",
+  "timestamp": "2026-05-27T17:49:53.690Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"revision_notes\": {     \"issue_1_genprm_code_execution\": \"ADDRESSED. Deep readin…",
+  "leafUuid": "de9c9610-1cd5-42cc-ae07-3bb78969bff1",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise formal verification PRM novelty and gates",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T17:50:00.888Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully and plan my research accordingly.
+
+The key issues are:
+
+1. **CRITICAL: MATH-VF (arxiv 2505.20869)** - Step-wise formal verification using Z3/SymPy at test time. This directly challenges the novelty claim.
+2. **CRITICAL: VERGE (arxiv 2601.20055)** - Decomposes outputs into atomic claims, autoformalizes into FOL, verifies with SMT solvers.
+
+
+3. Beyond those two papers, there are several other concerns: whether DeBERTa is actually suitable for validating mathematical content through NLI, the potential instability of multiplying four factors together in the scoring mechanism, the lack of justification for the 50% coverage threshold, and I need to correct the ARR deadline to August 3, 2026.
+
+I should start by diving into MATH-VF and VERGE to understand exactly how they work, then explore whether there are better alternatives for the NLI gate and a more robust scoring approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "de9c9610-1cd5-42cc-ae07-3bb78969bff1",
+  "isSidechain": false,
+  "requestId": "req_011CbTVjqcjxridG4h7ZbAJq",
+  "type": "assistant",
+  "uuid": "1b56c59b-f108-43a9-8c6a-74ad4b654670",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WKA6nttySzcaB1VCADcezo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7715,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 374,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7715,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 374,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 7715,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7715
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-27T17:50:00.892Z_
+
+I'll start by deeply researching the two critical papers (MATH-VF and VERGE) and the NLI-for-math question. Let me launch multiple research agents in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b56c59b-f108-43a9-8c6a-74ad4b654670",
+  "isSidechain": false,
+  "requestId": "req_011CbTVjqcjxridG4h7ZbAJq",
+  "type": "assistant",
+  "uuid": "880f1d3f-d775-4969-bb46-37afab604f37",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WKA6nttySzcaB1VCADcezo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7715,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 374,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7715,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 374,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 7715,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7715
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-27T17:50:00.895Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01KhVWVwcgg9btZmp3phbVD4`</summary>
+
+```json
+{
+  "query": "select:WebFetch,WebSearch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "880f1d3f-d775-4969-bb46-37afab604f37",
+  "isSidechain": false,
+  "requestId": "req_011CbTVjqcjxridG4h7ZbAJq",
+  "type": "assistant",
+  "uuid": "bff33e7d-6f8c-4290-ae4d-e269ad003c72",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WKA6nttySzcaB1VCADcezo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7715,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 374,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7715,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 374,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 7715,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7715
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-27T17:50:00.908Z_
+
+<details><summary>↩ Tool result · `toolu_01KhVWVwcgg9btZmp3phbVD4`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bff33e7d-6f8c-4290-ae4d-e269ad003c72",
+  "isSidechain": false,
+  "promptId": "8d251980-9caf-43e4-a631-55b1b931b61b",
+  "type": "user",
+  "uuid": "17026d49-2dcd-41c3-a46a-22e271cde892",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch",
+      "WebSearch"
+    ],
+    "query": "select:WebFetch,WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "bff33e7d-6f8c-4290-ae4d-e269ad003c72",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-27T17:50:04.060Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me launch multiple research agents in parallel to investigate the critical issues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17026d49-2dcd-41c3-a46a-22e271cde892",
+  "isSidechain": false,
+  "requestId": "req_011CbTVkNmVLh7Y2TfM7PqeF",
+  "type": "assistant",
+  "uuid": "f4ce0e70-1338-461e-a2bd-fd146164bb6b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SrzyVB2YULL4cN2YAgZiTb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1394,
+      "cache_read_input_tokens": 18729,
+      "output_tokens": 1808,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1394,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1808,
+          "cache_read_input_tokens": 18729,
+          "cache_creation_input_tokens": 1394,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1394
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-27T17:50:04.625Z_
+
+Now let me launch parallel research on all the critical issues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4ce0e70-1338-461e-a2bd-fd146164bb6b",
+  "isSidechain": false,
+  "requestId": "req_011CbTVkNmVLh7Y2TfM7PqeF",
+  "type": "assistant",
+  "uuid": "9d7ef6fc-1f1c-4e68-8d1c-8ebecc9265cb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SrzyVB2YULL4cN2YAgZiTb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1394,
+      "cache_read_input_tokens": 18729,
+      "output_tokens": 1808,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1394,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1808,
+          "cache_read_input_tokens": 18729,
+          "cache_creation_input_tokens": 1394,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1394
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-27T17:50:10.885Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_014a3RM4K349oU3wvj3C9KFM`</summary>
+
+```json
+{
+  "description": "Research MATH-VF paper deeply",
+  "prompt": "I need to deeply research the paper MATH-VF (arxiv 2505.20869, May 2025). This paper performs step-wise formal verification using Z3 and SymPy at test time for LLM mathematical solutions, achieving 74.1% F1 on ProcessBench (training-free).\n\nPlease do the following:\n1. Search for \"MATH-VF arxiv 2505.20869 step-wise formal verification Z3 SymPy\" and related queries\n2. Fetch and read the actual arxiv paper at https://arxiv.org/abs/2505.20869\n3. Search for \"MATH-VF formal verification mathematical reasoning ProcessBench\" for additional context\n\nI need to understand:\n- Exactly how MATH-VF formalizes reasoning steps (the T_i ⊢ Q_i judgment form)\n- How it uses Z3 and SymPy at test time\n- Its limitations and failure modes\n- How it compares to a PRM — does it produce reward signals? Can it be used for RL training?\n- Its performance numbers on ProcessBench and other benchmarks\n- Whether it has semantic routing (directing different types to different solvers)\n- What gaps remain that a PRM-integrated approach could fill\n\nReport in detail (500+ words). This is critical for reframing our novelty claim.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d7ef6fc-1f1c-4e68-8d1c-8ebecc9265cb",
+  "isSidechain": false,
+  "requestId": "req_011CbTVkNmVLh7Y2TfM7PqeF",
+  "type": "assistant",
+  "uuid": "1b7ee7c3-8202-428c-9813-c747e9edb936",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SrzyVB2YULL4cN2YAgZiTb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1394,
+      "cache_read_input_tokens": 18729,
+      "output_tokens": 1808,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1394,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1808,
+          "cache_read_input_tokens": 18729,
+          "cache_creation_input_tokens": 1394,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1394
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-27T17:50:14.698Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_012MZicJHvmbMG6RAJiWs6yb`</summary>
+
+```json
+{
+  "description": "Research VERGE paper deeply",
+  "prompt": "I need to deeply research the paper VERGE (arxiv 2601.20055, January 2026). This paper decomposes LLM outputs into atomic claims, autoformalizes into first-order logic, and verifies with SMT solvers at test time.\n\nPlease do the following:\n1. Search for \"VERGE arxiv 2601.20055 atomic claims autoformalize first-order logic SMT\" and related queries\n2. Fetch and read the actual arxiv paper at https://arxiv.org/abs/2601.20055\n3. Search for \"VERGE verification LLM outputs SMT solver error localization\" for additional context\n\nI need to understand:\n- Exactly how VERGE decomposes outputs into atomic claims\n- How it autoformalizes claims into FOL\n- Its semantic routing mechanism (directing different claim types to appropriate verification strategies)\n- The Minimal Correction Subsets approach for error localization\n- Its performance (18.7% average improvement on what benchmarks?)\n- Its limitations — does it work as a PRM? Can it produce step-level reward signals for RL?\n- How it differs from MATH-VF\n- What gaps remain\n\nReport in detail (500+ words). This is critical for reframing our novelty claim.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b7ee7c3-8202-428c-9813-c747e9edb936",
+  "isSidechain": false,
+  "requestId": "req_011CbTVkNmVLh7Y2TfM7PqeF",
+  "type": "assistant",
+  "uuid": "6a27766b-7c12-402d-b484-de5640275fc3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SrzyVB2YULL4cN2YAgZiTb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1394,
+      "cache_read_input_tokens": 18729,
+      "output_tokens": 1808,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1394,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1808,
+          "cache_read_input_tokens": 18729,
+          "cache_creation_input_tokens": 1394,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1394
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-27T17:50:23.156Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_015gcnzy3EVimKWDynExAQZt`</summary>
+
+```json
+{
+  "description": "Research NLI for math reasoning",
+  "prompt": "I need to research whether NLI (Natural Language Inference) models like DeBERTa work well on mathematical content, and what alternatives exist for verifying semantic relevance between mathematical reasoning steps and formal verification claims.\n\nPlease search for and investigate:\n1. \"NLI mathematical reasoning DeBERTa symbolic expressions\" - does NLI transfer to math?\n2. \"mathematical entailment verification neural\" - any math-specific entailment models?\n3. \"SciNLI scientific NLI\" or \"MathNLI\" - domain-specific NLI for STEM\n4. \"SymPy symbolic entailment checking mathematical\" - symbolic approaches to checking mathematical relevance\n5. \"math text similarity semantic mathematical expressions\" - alternative approaches\n\nKey questions:\n- Is there evidence that standard NLI models (trained on SNLI/MNLI) work on mathematical text?\n- Are there math-specific NLI datasets or models?\n- What are better alternatives for checking if a formal anchor claim is semantically relevant to a mathematical reasoning step?\n- Could we use symbolic methods (e.g., variable overlap, AST comparison, SymPy equation manipulation) instead of or alongside NLI?\n- Any papers on \"premise selection\" in mathematical theorem proving that are relevant?\n\nReport in detail (400+ words) with specific paper references and findings.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a27766b-7c12-402d-b484-de5640275fc3",
+  "isSidechain": false,
+  "requestId": "req_011CbTVkNmVLh7Y2TfM7PqeF",
+  "type": "assistant",
+  "uuid": "ce001d9c-aabd-4c5c-8ab6-1c4d5952be9e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SrzyVB2YULL4cN2YAgZiTb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1394,
+      "cache_read_input_tokens": 18729,
+      "output_tokens": 1808,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1394,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1808,
+          "cache_read_input_tokens": 18729,
+          "cache_creation_input_tokens": 1394,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1394
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-27T17:50:29.258Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_014o81Bf22WXjni14J7VnnJ7`</summary>
+
+```json
+{
+  "description": "Research score aggregation methods",
+  "prompt": "I need to research robust score aggregation methods for multi-criteria verification systems, specifically alternatives to a simple multiplicative product of scores which is fragile (one low score collapses everything).\n\nPlease search for and investigate:\n1. \"multi-criteria score aggregation reward model robust\" \n2. \"weighted geometric mean verification scoring\"\n3. \"minimum threshold gating neural verification\"\n4. \"composite reward functions reward hacking mitigation\"\n5. Search for the paper \"Verifiable Composite Rewards for Reward Hacking Mitigation\" (arxiv 2509.15557) - how does it aggregate multiple reward signals?\n\nKey questions:\n- What are best practices for combining multiple verification signals (formal correctness, relevance, coverage, neural plausibility)?\n- How do existing multi-signal reward systems handle the \"one bad signal collapses everything\" problem?\n- What's the difference between: (a) multiplicative product, (b) weighted geometric mean, (c) threshold-then-aggregate, (d) min-gated approaches?\n- Any papers on robust aggregation specifically in the context of reward models or verification?\n- What does the \"Verifiable Composite Rewards\" paper recommend?\n\nReport concisely (300+ words) with specific recommendations for our use case.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce001d9c-aabd-4c5c-8ab6-1c4d5952be9e",
+  "isSidechain": false,
+  "requestId": "req_011CbTVkNmVLh7Y2TfM7PqeF",
+  "type": "assistant",
+  "uuid": "63d6455f-cc33-4e0d-a16a-16d42c244a38",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SrzyVB2YULL4cN2YAgZiTb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1394,
+      "cache_read_input_tokens": 18729,
+      "output_tokens": 1808,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1394,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1808,
+          "cache_read_input_tokens": 18729,
+          "cache_creation_input_tokens": 1394,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1394
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-27T17:50:33.619Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01RxAKKcS4e1Qcwpp7dhg9HK`</summary>
+
+```json
+{
+  "description": "Research ARR Aug 2026 deadline",
+  "prompt": "I need to verify the exact ARR (ACL Rolling Review) August 2026 submission deadline. The reviewer claims it is August 3, 2026 (not ~Aug 15 as we stated).\n\nPlease search for:\n1. \"ACL Rolling Review August 2026 deadline submission\"\n2. \"ARR 2026 submission dates schedule\"\n3. Check https://aclrollingreview.org for current deadlines\n\nAlso search for:\n4. \"AAAI 2027 deadline submission dates\" to confirm the July 21/28 dates\n5. \"ICLR 2027 submission deadline\" to see if dates have been announced\n\nReport the exact confirmed dates for all three venues.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63d6455f-cc33-4e0d-a16a-16d42c244a38",
+  "isSidechain": false,
+  "requestId": "req_011CbTVkNmVLh7Y2TfM7PqeF",
+  "type": "assistant",
+  "uuid": "bbd86e91-81ff-4170-8c1c-68f9bd610e66",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SrzyVB2YULL4cN2YAgZiTb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1394,
+      "cache_read_input_tokens": 18729,
+      "output_tokens": 1808,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1394,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1808,
+          "cache_read_input_tokens": 18729,
+          "cache_creation_input_tokens": 1394,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1394
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-27T17:51:54.166Z_
+
+<details><summary>↩ Tool result · `toolu_01RxAKKcS4e1Qcwpp7dhg9HK`</summary>
+
+```text
+I now have enough information to provide a comprehensive report. Here is a summary of the confirmed deadlines:
+
+---
+
+## Confirmed Deadline Dates
+
+### 1. ACL Rolling Review (ARR) -- August 2026 Cycle
+
+**The reviewer is correct.** The ARR August 2026 submission deadline is **August 3, 2026**, not ~August 15.
+
+This was confirmed directly from the official [ACL Rolling Review Dates & Venues page](https://aclrollingreview.org/dates). The full 2026 ARR cycle schedule is:
+
+| Cycle | Submission Deadline |
+|-------|-------------------|
+| March 2026 | March 16 |
+| May 2026 | May 25 |
+| **August 2026** | **August 3** |
+| October 2026 | October 12 |
+
+The August cycle ends October 11, 2026. Note that ARR switched from 8-week to 10-week review cycles starting May 2025, reducing from 6 cycles per year to 5, which shifts deadlines earlier than one might expect from historical patterns.
+
+### 2. AAAI 2027
+
+**The July 21/28 dates are confirmed.** From the official [AAAI-27 Main Technical Track Call for Papers](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/):
+
+- **June 17, 2026** -- OpenReview registration opens
+- **June 24, 2026** -- Paper submission site opens
+- **July 21, 2026** -- Abstracts due (11:59 PM UTC-12)
+- **July 28, 2026** -- Full papers due (11:59 PM UTC-12)
+- **July 31, 2026** -- Supplementary material and code due
+- **September 24, 2026** -- Phase 1 rejection notifications
+- **October 19-25, 2026** -- Author feedback window
+- **November 30, 2026** -- Final acceptance/rejection
+- **December 14, 2026** -- Camera-ready due
+- **February 16-23, 2027** -- Conference in Montreal, Canada
+
+### 3. ICLR 2027
+
+**No official dates announced yet.** The ICLR 2027 page (iclr.cc/Conferences/2027) returns a 404, meaning the official call for papers has not been posted. One deadline aggregator ([trybibby.com](https://trybibby.com/conference-deadlines)) predicts abstract and paper deadlines in **September 2026** based on historical patterns (ICLR 2026 had a September 24, 2025 deadline), but these are estimates only and not confirmed by the organizers.
+
+---
+
+## Key Takeaway
+
+The reviewer's correction about the ARR August 2026 deadline is accurate: it is **August 3, 2026**, confirmed on the official ACL Rolling Review website. Your document's "~Aug 15" estimate was off by about 12 days. This is important because the 10-week cycle structure pulls deadlines earlier than the old 8-week cycle pattern might suggest.
+
+Sources:
+- [ACL Rolling Review -- Dates and Venues](https://aclrollingreview.org/dates)
+- [AAAI-27 Main Technical Track CFP](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)
+- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)
+- [AI & ML Conference Deadlines 2026-2027 (trybibby.com)](https://trybibby.com/conference-deadlines)
+- [AI Conference Deadlines (mlciv.com)](https://mlciv.com/ai-deadlines/)
+
+agentId: a5efa45deaa3579a4 (use SendMessage with to: 'a5efa45deaa3579a4' to continue this agent)
+&lt;usage>total_tokens: 19143
+tool_uses: 16
+duration_ms: 80542&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bbd86e91-81ff-4170-8c1c-68f9bd610e66",
+  "isSidechain": false,
+  "promptId": "8d251980-9caf-43e4-a631-55b1b931b61b",
+  "type": "user",
+  "uuid": "f21b3873-286e-4ea8-8cfe-a9836a07ad0e",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify the exact ARR (ACL Rolling Review) August 2026 submission deadline. The reviewer claims it is August 3, 2026 (not ~Aug 15 as we stated).\n\nPlease search for:\n1. \"ACL Rolling Review August 2026 deadline submission\"\n2. \"ARR 2026 submission dates schedule\"\n3. Check https://aclrollingreview.org for current deadlines\n\nAlso search for:\n4. \"AAAI 2027 deadline submission dates\" to confirm the July 21/28 dates\n5. \"ICLR 2027 submission deadline\" to see if dates have been announced\n\nReport the exact confirmed dates for all three venues.",
+    "agentId": "a5efa45deaa3579a4",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have enough information to provide a comprehensive report. Here is a summary of the confirmed deadlines:\n\n---\n\n## Confirmed Deadline Dates\n\n### 1. ACL Rolling Review (ARR) -- August 2026 Cycle\n\n**The reviewer is correct.** The ARR August 2026 submission deadline is **August 3, 2026**, not ~August 15.\n\nThis was confirmed directly from the official [ACL Rolling Review Dates & Venues page](https://aclrollingreview.org/dates). The full 2026 ARR cycle schedule is:\n\n| Cycle | Submission Deadline |\n|-------|-------------------|\n| March 2026 | March 16 |\n| May 2026 | May 25 |\n| **August 2026** | **August 3** |\n| October 2026 | October 12 |\n\nThe August cycle ends October 11, 2026. Note that ARR switched from 8-week to 10-week review cycles starting May 2025, reducing from 6 cycles per year to 5, which shifts deadlines earlier than one might expect from historical patterns.\n\n### 2. AAAI 2027\n\n**The July 21/28 dates are confirmed.** From the official [AAAI-27 Main Technical Track Call for Papers](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/):\n\n- **June 17, 2026** -- OpenReview registration opens\n- **June 24, 2026** -- Paper submission site opens\n- **July 21, 2026** -- Abstracts due (11:59 PM UTC-12)\n- **July 28, 2026** -- Full papers due (11:59 PM UTC-12)\n- **July 31, 2026** -- Supplementary material and code due\n- **September 24, 2026** -- Phase 1 rejection notifications\n- **October 19-25, 2026** -- Author feedback window\n- **November 30, 2026** -- Final acceptance/rejection\n- **December 14, 2026** -- Camera-ready due\n- **February 16-23, 2027** -- Conference in Montreal, Canada\n\n### 3. ICLR 2027\n\n**No official dates announced yet.** The ICLR 2027 page (iclr.cc/Conferences/2027) returns a 404, meaning the official call for papers has not been posted. One deadline aggregator ([trybibby.com](https://trybibby.com/conference-deadlines)) predicts abstract and paper deadlines in **September 2026** based on historical patterns (ICLR 2026 had a September 24, 2025 deadline), but these are estimates only and not confirmed by the organizers.\n\n---\n\n## Key Takeaway\n\nThe reviewer's correction about the ARR August 2026 deadline is accurate: it is **August 3, 2026**, confirmed on the official ACL Rolling Review website. Your document's \"~Aug 15\" estimate was off by about 12 days. This is important because the 10-week cycle structure pulls deadlines earlier than the old 8-week cycle pattern might suggest.\n\nSources:\n- [ACL Rolling Review -- Dates and Venues](https://aclrollingreview.org/dates)\n- [AAAI-27 Main Technical Track CFP](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)\n- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [AI & ML Conference Deadlines 2026-2027 (trybibby.com)](https://trybibby.com/conference-deadlines)\n- [AI Conference Deadlines (mlciv.com)](https://mlciv.com/ai-deadlines/)"
+      }
+    ],
+    "totalDurationMs": 80542,
+    "totalTokens": 19143,
+    "totalToolUseCount": 16,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 401,
+      "cache_read_input_tokens": 17806,
+      "output_tokens": 935,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 401
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 935,
+          "cache_read_input_tokens": 17806,
+          "cache_creation_input_tokens": 401,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 401,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 16
+    }
+  },
+  "sourceToolAssistantUUID": "bbd86e91-81ff-4170-8c1c-68f9bd610e66",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-27T17:52:03.301Z_
+
+<details><summary>↩ Tool result · `toolu_014o81Bf22WXjni14J7VnnJ7`</summary>
+
+````text
+Here is a comprehensive synthesis of the research findings:
+
+---
+
+## Multi-Criteria Score Aggregation for Verification Systems: Research Report
+
+### The Core Problem
+
+A pure multiplicative product of scores (e.g., `S = s1 * s2 * s3 * s4`) is fragile because any single low score drives the entire composite to near zero. This is well-documented across multiple research communities -- from multi-criteria decision analysis to reward model design in RLHF.
+
+### Aggregation Method Comparison
+
+**(a) Multiplicative Product:**
+Straightforward but brittle. A single dimension scoring 0.1 while others score 0.9 yields 0.066 instead of something reflecting the mostly-good signals. Only appropriate when ALL dimensions are strict prerequisites and any failure is genuinely disqualifying.
+
+**(b) Weighted Geometric Mean:**
+Computes `S = product(s_i ^ w_i)` where weights sum to 1. This is the strongest general-purpose recommendation from the literature. The paper ["Rethinking Reward Models for Multi-Domain Test-Time Scaling" (Lee et al., 2025)](https://arxiv.org/abs/2510.00492) found that geometric mean achieves the best or near-best results across benchmarks and is the simplest to compute, with reranking improvements being robust to the choice of aggregation function. The geometric mean still penalizes low values more strongly than an arithmetic mean (preventing a high score in one area from compensating for weakness elsewhere), but it does not collapse catastrophically from a single low dimension. The [Effective Altruism Forum analysis](https://forum.effectivealtruism.org/posts/86PYvFEJoZq8g87gk/weighted-factor-models-consider-using-the-geometric-mean) and research on the [Analytic Hierarchy Process](https://www.researchgate.net/publication/325951246_Aggregation_in_the_analytic_hierarchy_process_Why_weighted_geometric_mean_should_be_used_instead_of_weighted_arithmetic_mean) both argue the geometric mean is uniquely appropriate when factors interact multiplicatively, as it satisfies separability, unanimity, homogeneity, and the reciprocal property -- properties the arithmetic mean lacks.
+
+**(c) Threshold-Then-Aggregate:**
+Apply minimum thresholds to each dimension first (e.g., if any score falls below 0.3, either reject outright or clamp to a floor), then aggregate the surviving/clamped scores. The [Eidoku verification gate system](https://arxiv.org/pdf/2512.20664) uses a context-calibrated cost threshold derived from intrinsic statistics, rejecting candidates that exceed it. This prevents truly unacceptable outputs from being rescued by high scores elsewhere while allowing moderate weakness to be folded into the aggregate.
+
+**(d) Min-Gated / Worst-Case Optimization:**
+Use the minimum score across dimensions as the composite, or weight the aggregate toward the worst performer. [Coste et al. (ICLR 2023)](https://arxiv.org/abs/2310.02743) demonstrated that worst-case optimization (WCO) across reward model ensembles practically eliminates overoptimization and improves performance by up to 70% for best-of-n sampling. Their uncertainty-weighted optimization (UWO) variant penalizes reward variance across ensemble members. These are conservative but highly robust.
+
+### Key Systems and Papers
+
+**ArmoRM (Wang et al., EMNLP 2024):** The [Absolute-Rating Multi-Objective Reward Model](https://arxiv.org/abs/2406.12845) trains per-dimension reward heads (honesty, verbosity, safety, helpfulness, etc.) and uses a Mixture-of-Experts gating network to dynamically weight objectives based on the input context. This is the most sophisticated approach found -- rather than fixed weights, the aggregation coefficients adapt per-prompt. For safety-sensitive prompts, the safety dimension gets higher weight; for math problems, helpfulness dominates. ArmoRM achieved state-of-the-art on RewardBench with just an 8B parameter model.
+
+**Verifiable Composite Rewards (Tarek & Beheshti, 2025):** The [paper at arxiv 2509.15557](https://arxiv.org/abs/2509.15557) addresses reward hacking in RLVR (Reinforcement Learning with Verifiable Rewards) for medical QA. Their composite reward function uses an additive structure with explicit penalty terms: a base correctness reward minus `P_answer` (penalty for outputting answers without reasoning) minus `P_structural` (penalty for violating response format instructions). The key design principle is **standardizing each reward dimension prior to aggregation** so all objectives contribute equally, preventing hacking via imbalance. They also incorporate **veto layers** -- defense rubrics that invalidate (set to zero) the entire scalar reward if critical dimensions signal an exploit. Results show better-formatted reasoning with less reward hacking and maintained accuracy.
+
+**Themis (2025):** The [Themis code reward model](https://arxiv.org/abs/2605.00754) trains on multi-criteria preferences across five evaluation dimensions, demonstrating that multi-criteria training yields more stable and reliable reward modeling than single-dimension approaches.
+
+**Rubric-Based Reward Models:** This [emerging approach](https://www.emergentmind.com/topics/rubric-based-reward-modeling-rubric-rm) decomposes evaluation into explicit, structured criteria with per-dimension scores, providing interpretable multi-dimensional supervision rather than a single opaque score.
+
+### Specific Recommendations for Your System
+
+Given your signals (formal correctness, relevance, coverage, neural plausibility), here is a concrete recommendation:
+
+1. **Use a two-tier architecture: threshold gates + weighted geometric mean.** First, apply hard minimum thresholds to each signal. Formal correctness below 0.2 should be an automatic reject (veto). Then aggregate surviving candidates using a weighted geometric mean of the scores.
+
+2. **Consider dynamic weights via a lightweight gating network** (ArmoRM-style). If your verification contexts vary meaningfully (some need strict formal correctness, others prioritize coverage), a small MLP that reads context features and outputs per-dimension weights will outperform fixed weights.
+
+3. **Standardize scores before aggregation.** Following the Verifiable Composite Rewards paper, normalize each dimension to comparable scales. Raw scores from heterogeneous sources (a formal prover vs. a neural plausibility model) will have incompatible distributions.
+
+4. **Add explicit penalty terms for known failure modes** rather than relying solely on the aggregation to handle them. If you know that certain outputs game one signal, add a targeted penalty (as in the composite reward approach).
+
+5. **For maximum robustness, ensemble with a worst-case floor.** Compute both the weighted geometric mean and the minimum score. Your final composite could be: `S = alpha * geometric_mean + (1 - alpha) * min_score`, tuning alpha to balance sensitivity vs. robustness. This gives you the geometric mean's balanced aggregation while the min-score component prevents any truly deficient dimension from being hidden.
+
+The formula would look like:
+
+```
+# Per-signal thresholds (veto if below)
+if any(s_i < threshold_i): reject
+
+# Standardize
+s_i_norm = (s_i - mu_i) / sigma_i  (then rescale to [0,1])
+
+# Weighted geometric mean
+wgm = product(s_i_norm ^ w_i)
+
+# Final score with worst-case floor
+S = alpha * wgm + (1 - alpha) * min(s_i_norm)
+```
+
+This hybrid approach captures the best properties from the literature: veto-gating from composite reward research, geometric mean from multi-criteria decision theory, and worst-case robustness from reward ensemble work.
+
+Sources:
+- [Rethinking Reward Models for Multi-Domain Test-Time Scaling (Lee et al., 2025)](https://arxiv.org/abs/2510.00492)
+- [Reward Hacking Mitigation using Verifiable Composite Rewards (Tarek & Beheshti, 2025)](https://arxiv.org/abs/2509.15557)
+- [Reward Model Ensembles Help Mitigate Overoptimization (Coste et al., ICLR 2023)](https://arxiv.org/abs/2310.02743)
+- [ArmoRM: Interpretable Preferences via Multi-Objective Reward Modeling and Mixture-of-Experts (Wang et al., EMNLP 2024)](https://arxiv.org/abs/2406.12845)
+- [Themis: Training Robust Multilingual Code Reward Models for Flexible Multi-Criteria Scoring (2025)](https://arxiv.org/abs/2605.00754)
+- [Eidoku: A Neuro-Symbolic Verification Gate for LLM Reasoning](https://arxiv.org/pdf/2512.20664)
+- [Weighted Factor Models: Geometric Mean vs Arithmetic Mean (EA Forum)](https://forum.effectivealtruism.org/posts/86PYvFEJoZq8g87gk/weighted-factor-models-consider-using-the-geometric-mean)
+- [Aggregation in the AHP: Why Weighted Geometric Mean (ResearchGate)](https://www.researchgate.net/publication/325951246_Aggregation_in_the_analytic_hierarchy_process_Why_weighted_geometric_mean_should_be_used_instead_of_weighted_arithmetic_mean)
+- [Rubric-Based Reward Modeling (Emergent Mind)](https://www.emergentmind.com/topics/rubric-based-reward-modeling-rubric-rm)
+- [Reward Model Ensembles (Emergent Mind)](https://www.emergentmind.com/topics/reward-model-ensembles)
+
+agentId: aa21258cccf05bd5d (use SendMessage with to: 'aa21258cccf05bd5d' to continue this agent)
+&lt;usage>total_tokens: 20266
+tool_uses: 12
+duration_ms: 94040&lt;/usage>
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "63d6455f-cc33-4e0d-a16a-16d42c244a38",
+  "isSidechain": false,
+  "promptId": "8d251980-9caf-43e4-a631-55b1b931b61b",
+  "type": "user",
+  "uuid": "9a9da624-859d-45b7-be37-cf996589f7ef",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to research robust score aggregation methods for multi-criteria verification systems, specifically alternatives to a simple multiplicative product of scores which is fragile (one low score collapses everything).\n\nPlease search for and investigate:\n1. \"multi-criteria score aggregation reward model robust\" \n2. \"weighted geometric mean verification scoring\"\n3. \"minimum threshold gating neural verification\"\n4. \"composite reward functions reward hacking mitigation\"\n5. Search for the paper \"Verifiable Composite Rewards for Reward Hacking Mitigation\" (arxiv 2509.15557) - how does it aggregate multiple reward signals?\n\nKey questions:\n- What are best practices for combining multiple verification signals (formal correctness, relevance, coverage, neural plausibility)?\n- How do existing multi-signal reward systems handle the \"one bad signal collapses everything\" problem?\n- What's the difference between: (a) multiplicative product, (b) weighted geometric mean, (c) threshold-then-aggregate, (d) min-gated approaches?\n- Any papers on robust aggregation specifically in the context of reward models or verification?\n- What does the \"Verifiable Composite Rewards\" paper recommend?\n\nReport concisely (300+ words) with specific recommendations for our use case.",
+    "agentId": "aa21258cccf05bd5d",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is a comprehensive synthesis of the research findings:\n\n---\n\n## Multi-Criteria Score Aggregation for Verification Systems: Research Report\n\n### The Core Problem\n\nA pure multiplicative product of scores (e.g., `S = s1 * s2 * s3 * s4`) is fragile because any single low score drives the entire composite to near zero. This is well-documented across multiple research communities -- from multi-criteria decision analysis to reward model design in RLHF.\n\n### Aggregation Method Comparison\n\n**(a) Multiplicative Product:**\nStraightforward but brittle. A single dimension scoring 0.1 while others score 0.9 yields 0.066 instead of something reflecting the mostly-good signals. Only appropriate when ALL dimensions are strict prerequisites and any failure is genuinely disqualifying.\n\n**(b) Weighted Geometric Mean:**\nComputes `S = product(s_i ^ w_i)` where weights sum to 1. This is the strongest general-purpose recommendation from the literature. The paper [\"Rethinking Reward Models for Multi-Domain Test-Time Scaling\" (Lee et al., 2025)](https://arxiv.org/abs/2510.00492) found that geometric mean achieves the best or near-best results across benchmarks and is the simplest to compute, with reranking improvements being robust to the choice of aggregation function. The geometric mean still penalizes low values more strongly than an arithmetic mean (preventing a high score in one area from compensating for weakness elsewhere), but it does not collapse catastrophically from a single low dimension. The [Effective Altruism Forum analysis](https://forum.effectivealtruism.org/posts/86PYvFEJoZq8g87gk/weighted-factor-models-consider-using-the-geometric-mean) and research on the [Analytic Hierarchy Process](https://www.researchgate.net/publication/325951246_Aggregation_in_the_analytic_hierarchy_process_Why_weighted_geometric_mean_should_be_used_instead_of_weighted_arithmetic_mean) both argue the geometric mean is uniquely appropriate when factors interact multiplicatively, as it satisfies separability, unanimity, homogeneity, and the reciprocal property -- properties the arithmetic mean lacks.\n\n**(c) Threshold-Then-Aggregate:**\nApply minimum thresholds to each dimension first (e.g., if any score falls below 0.3, either reject outright or clamp to a floor), then aggregate the surviving/clamped scores. The [Eidoku verification gate system](https://arxiv.org/pdf/2512.20664) uses a context-calibrated cost threshold derived from intrinsic statistics, rejecting candidates that exceed it. This prevents truly unacceptable outputs from being rescued by high scores elsewhere while allowing moderate weakness to be folded into the aggregate.\n\n**(d) Min-Gated / Worst-Case Optimization:**\nUse the minimum score across dimensions as the composite, or weight the aggregate toward the worst performer. [Coste et al. (ICLR 2023)](https://arxiv.org/abs/2310.02743) demonstrated that worst-case optimization (WCO) across reward model ensembles practically eliminates overoptimization and improves performance by up to 70% for best-of-n sampling. Their uncertainty-weighted optimization (UWO) variant penalizes reward variance across ensemble members. These are conservative but highly robust.\n\n### Key Systems and Papers\n\n**ArmoRM (Wang et al., EMNLP 2024):** The [Absolute-Rating Multi-Objective Reward Model](https://arxiv.org/abs/2406.12845) trains per-dimension reward heads (honesty, verbosity, safety, helpfulness, etc.) and uses a Mixture-of-Experts gating network to dynamically weight objectives based on the input context. This is the most sophisticated approach found -- rather than fixed weights, the aggregation coefficients adapt per-prompt. For safety-sensitive prompts, the safety dimension gets higher weight; for math problems, helpfulness dominates. ArmoRM achieved state-of-the-art on RewardBench with just an 8B parameter model.\n\n**Verifiable Composite Rewards (Tarek & Beheshti, 2025):** The [paper at arxiv 2509.15557](https://arxiv.org/abs/2509.15557) addresses reward hacking in RLVR (Reinforcement Learning with Verifiable Rewards) for medical QA. Their composite reward function uses an additive structure with explicit penalty terms: a base correctness reward minus `P_answer` (penalty for outputting answers without reasoning) minus `P_structural` (penalty for violating response format instructions). The key design principle is **standardizing each reward dimension prior to aggregation** so all objectives contribute equally, preventing hacking via imbalance. They also incorporate **veto layers** -- defense rubrics that invalidate (set to zero) the entire scalar reward if critical dimensions signal an exploit. Results show better-formatted reasoning with less reward hacking and maintained accuracy.\n\n**Themis (2025):** The [Themis code reward model](https://arxiv.org/abs/2605.00754) trains on multi-criteria preferences across five evaluation dimensions, demonstrating that multi-criteria training yields more stable and reliable reward modeling than single-dimension approaches.\n\n**Rubric-Based Reward Models:** This [emerging approach](https://www.emergentmind.com/topics/rubric-based-reward-modeling-rubric-rm) decomposes evaluation into explicit, structured criteria with per-dimension scores, providing interpretable multi-dimensional supervision rather than a single opaque score.\n\n### Specific Recommendations for Your System\n\nGiven your signals (formal correctness, relevance, coverage, neural plausibility), here is a concrete recommendation:\n\n1. **Use a two-tier architecture: threshold gates + weighted geometric mean.** First, apply hard minimum thresholds to each signal. Formal correctness below 0.2 should be an automatic reject (veto). Then aggregate surviving candidates using a weighted geometric mean of the scores.\n\n2. **Consider dynamic weights via a lightweight gating network** (ArmoRM-style). If your verification contexts vary meaningfully (some need strict formal correctness, others prioritize coverage), a small MLP that reads context features and outputs per-dimension weights will outperform fixed weights.\n\n3. **Standardize scores before aggregation.** Following the Verifiable Composite Rewards paper, normalize each dimension to comparable scales. Raw scores from heterogeneous sources (a formal prover vs. a neural plausibility model) will have incompatible distributions.\n\n4. **Add explicit penalty terms for known failure modes** rather than relying solely on the aggregation to handle them. If you know that certain outputs game one signal, add a targeted penalty (as in the composite reward approach).\n\n5. **For maximum robustness, ensemble with a worst-case floor.** Compute both the weighted geometric mean and the minimum score. Your final composite could be: `S = alpha * geometric_mean + (1 - alpha) * min_score`, tuning alpha to balance sensitivity vs. robustness. This gives you the geometric mean's balanced aggregation while the min-score component prevents any truly deficient dimension from being hidden.\n\nThe formula would look like:\n\n```\n# Per-signal thresholds (veto if below)\nif any(s_i < threshold_i): reject\n\n# Standardize\ns_i_norm = (s_i - mu_i) / sigma_i  (then rescale to [0,1])\n\n# Weighted geometric mean\nwgm = product(s_i_norm ^ w_i)\n\n# Final score with worst-case floor\nS = alpha * wgm + (1 - alpha) * min(s_i_norm)\n```\n\nThis hybrid approach captures the best properties from the literature: veto-gating from composite reward research, geometric mean from multi-criteria decision theory, and worst-case robustness from reward ensemble work.\n\nSources:\n- [Rethinking Reward Models for Multi-Domain Test-Time Scaling (Lee et al., 2025)](https://arxiv.org/abs/2510.00492)\n- [Reward Hacking Mitigation using Verifiable Composite Rewards (Tarek & Beheshti, 2025)](https://arxiv.org/abs/2509.15557)\n- [Reward Model Ensembles Help Mitigate Overoptimization (Coste et al., ICLR 2023)](https://arxiv.org/abs/2310.02743)\n- [ArmoRM: Interpretable Preferences via Multi-Objective Reward Modeling and Mixture-of-Experts (Wang et al., EMNLP 2024)](https://arxiv.org/abs/2406.12845)\n- [Themis: Training Robust Multilingual Code Reward Models for Flexible Multi-Criteria Scoring (2025)](https://arxiv.org/abs/2605.00754)\n- [Eidoku: A Neuro-Symbolic Verification Gate for LLM Reasoning](https://arxiv.org/pdf/2512.20664)\n- [Weighted Factor Models: Geometric Mean vs Arithmetic Mean (EA Forum)](https://forum.effectivealtruism.org/posts/86PYvFEJoZq8g87gk/weighted-factor-models-consider-using-the-geometric-mean)\n- [Aggregation in the AHP: Why Weighted Geometric Mean (ResearchGate)](https://www.researchgate.net/publication/325951246_Aggregation_in_the_analytic_hierarchy_process_Why_weighted_geometric_mean_should_be_used_instead_of_weighted_arithmetic_mean)\n- [Rubric-Based Reward Modeling (Emergent Mind)](https://www.emergentmind.com/topics/rubric-based-reward-modeling-rubric-rm)\n- [Reward Model Ensembles (Emergent Mind)](https://www.emergentmind.com/topics/reward-model-ensembles)"
+      }
+    ],
+    "totalDurationMs": 94040,
+    "totalTokens": 20266,
+    "totalToolUseCount": 12,
+    "usage": {
+      "input_tokens": 716,
+      "cache_creation_input_tokens": 810,
+      "cache_read_input_tokens": 16382,
+      "output_tokens": 2358,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 810
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 716,
+          "output_tokens": 2358,
+          "cache_read_input_tokens": 16382,
+          "cache_creation_input_tokens": 810,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 810,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 12
+    }
+  },
+  "sourceToolAssistantUUID": "63d6455f-cc33-4e0d-a16a-16d42c244a38",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"revision_notes\": {     \"issue_1_genprm_code_execution\": \"ADDRESSED. Deep readin…",
+  "leafUuid": "9a9da624-859d-45b7-be37-cf996589f7ef",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise formal verification PRM novelty and gates",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-27T17:52:23.427Z_
+
+<details><summary>↩ Tool result · `toolu_014a3RM4K349oU3wvj3C9KFM`</summary>
+
+```text
+I now have comprehensive information. Here is the detailed report.
+
+---
+
+## MATH-VF Deep Research Report
+
+**Paper**: "Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving" (arxiv 2505.20869, May 27, 2025)
+**Authors**: Kuo Zhou, Lu Zhang
+
+### 1. How MATH-VF Formalizes Reasoning Steps (The T_i ⊢ Q_i Judgment Form)
+
+MATH-VF introduces **SimpleMath**, a formal language extending first-order logic with additional constants and syntactic sugar. Natural language solutions are converted into **Fitch-style proofs** containing five statement types: **Facts** (known truths), **Assumptions** (accepted premises), **Theorems** (proven statements), **Definitions** (precise meanings), and **Conclusions** (derived statements).
+
+The core verification unit is the judgment **T_i ⊢ Q_i**, where T_i is the set of relevant premises and Q_i is the conclusion to verify at step i. Critically, T_i is NOT the full preceding context -- it is constructed from a **solution graph** (V, E) where V represents statements and E represents dependency edges. The solution graph exploits a **sparsity property**: each conclusion Q_i typically depends on at most M <= 4 direct premises from prior steps, not all of them. This reduces the Critic's input complexity from O(n(n+1)/2) to O(n x M), a significant practical improvement.
+
+The **Formalizer** is an LLM prompted with few-shot examples and SimpleMath grammar rules to translate the full natural language solution into this formal context. The paper claims over 90% of natural language statements can be correctly formalized and verified.
+
+### 2. How Z3 and SymPy Are Used at Test Time
+
+**SymPy** (Computer Algebra System) handles symbolic and numerical computation: differentiation, integration, equation solving, polynomial factoring, and expression manipulation.
+
+**Z3** (SMT Solver) handles satisfiability of logical expressions, supporting linear arithmetic (real and integer), bit vectors, arrays, datatypes, strings, and nonlinear polynomial constraints.
+
+The Critic does NOT generate code directly. Instead, it operates through **three LLM-based agents** each integrated with a specific tool. The paper mentions these three agents but provides frustratingly little detail about what the third tool is (beyond SymPy and Z3) or how the agents are structured. The Critic acts as "both a reasoner and a tool-agent caller."
+
+### 3. Semantic Routing: A Critical Gap
+
+**MATH-VF has NO explicit semantic routing mechanism.** The paper never specifies decision logic for when Z3 vs. SymPy is invoked. The routing appears to be **implicit and LLM-decided** -- the Critic model itself determines which tool to call during few-shot prompted reasoning. There is no hard-coded classifier, no problem-type taxonomy, and no routing algorithm described. This is a significant architectural ambiguity and a clear gap in the paper.
+
+### 4. Performance Numbers
+
+**ProcessBench F1 Scores (the key benchmark):**
+
+| Subset | MATH-VF | Qwen2.5-MATH-PRM-72B |
+|---|---|---|
+| GSM8K | 77.2 | 87.3 |
+| MATH | 73.4 | 80.6 |
+| OlympiadBench | 76.1 | 74.3 |
+| Omni-MATH | 69.5 | 71.1 |
+| **Average** | **74.1** | **78.3** |
+| Std Dev | **0.029** | 0.062 |
+
+**MATH500 Correctness Detection:** MATH-VF achieves 92.4-95.7% across models (DeepSeek-v3, Qwen-2.5-72B, DeepSeek-v2.5), beating the "Primary Critic" baseline (87.9-90.6%).
+
+**Solution Selection (MATH500):** MATH-VF 86.4-90.5% vs Self-Consistency 87.1-89.9% -- marginal improvement.
+
+**Refinement (MATH500):** MATH-VF 86.2-92.4% vs Self-Refine 83.7-90.1%.
+
+Key takeaway: MATH-VF's average ProcessBench F1 (74.1) is **4.2 points below** the trained PRM (78.3), but it has **much lower variance** (0.029 vs 0.062 std dev), meaning more stable performance across difficulty levels. On harder subsets (OlympiadBench), MATH-VF actually edges ahead at 76.1 vs 74.3.
+
+### 5. Limitations and Failure Modes
+
+The paper explicitly acknowledges two limitations:
+
+1. **Formalization syntax errors**: When the Formalizer converts natural language to SimpleMath, expressions may contain syntax errors that cause tool invocation failures in the Critic. This is a brittle failure mode -- a single malformed expression can prevent verification of an entire step.
+
+2. **No step effectiveness analysis**: MATH-VF can assess whether each step is *correct* but cannot assess whether it is *effective* (i.e., whether it progresses toward the goal). A solution could contain all correct but irrelevant steps, and MATH-VF would approve it.
+
+Additional implicit limitations (not explicitly discussed but evident from the architecture):
+- **Coverage ceiling of ~90%**: The paper admits ~10% of natural language statements cannot be formalized, creating blind spots.
+- **No error taxonomy**: The paper provides no categorization of what error types are caught vs. missed.
+- **LLM-dependent routing**: Since tool selection is LLM-decided with no explicit routing, misrouting errors are invisible and unquantified.
+
+### 6. Comparison to PRMs and Reward Signal Generation
+
+**MATH-VF is NOT a PRM and does NOT produce reward signals.** This is the most critical distinction for your novelty framing:
+
+- MATH-VF produces **binary correct/incorrect judgments** plus textual corrective feedback per step.
+- It generates **no confidence scores, no probability estimates, no soft signals** of any kind.
+- PRMs (like Qwen2.5-MATH-PRM-72B) assign continuous confidence scores to each step, which can be aggregated for solution ranking and used as reward signals in RL training.
+- MATH-VF explicitly cannot be used for RL training in its current form -- there is no differentiable signal, no score that could serve as a reward.
+
+The paper positions itself as **complementary** to PRMs, not as a replacement. It argues the training-free nature is an advantage for closed-source model settings where fine-tuning is infeasible.
+
+### 7. The FoVer Connection (arxiv 2505.15960)
+
+A closely related concurrent paper, **FoVer** (published just 6 days before MATH-VF), directly bridges formal verification and PRM training. FoVer uses Z3 and Isabelle to **automatically generate step-level error labels** for PRM training data, eliminating the need for costly human annotation. PRMs trained on FoVer data exhibit cross-task generalization and competitive performance against human-annotated PRMs on ProcessBench and 12 reasoning benchmarks. This paper is the direct precedent for using formal verification to generate PRM training signals.
+
+### 8. Gaps That a PRM-Integrated Approach Could Fill
+
+Based on this analysis, the following gaps remain exploitable for a novelty claim:
+
+1. **No reward signal**: MATH-VF's binary output cannot drive RL training or best-of-N ranking with soft scores. A hybrid system that produces calibrated step-level reward scores *backed by* formal verification would be novel.
+
+2. **No explicit semantic routing**: MATH-VF relies on the LLM to implicitly decide tool usage. A system with an explicit, learned router that directs algebraic steps to SymPy, logical steps to Z3, and informal reasoning to a neural verifier would be architecturally novel.
+
+3. **No coverage fallback**: When formalization fails (~10% of steps), MATH-VF simply cannot verify. A PRM-integrated approach could use formal verification when possible and fall back to a trained neural verifier for unformalizable steps -- providing full coverage.
+
+4. **No step effectiveness**: MATH-VF verifies correctness but not progress. A PRM could score both correctness AND relevance/effectiveness.
+
+5. **No confidence calibration**: MATH-VF's binary signal gives no uncertainty estimate. A system that produces calibrated probabilities (e.g., "92% confident this step is correct, verified by Z3" vs. "71% confident, neural estimate only") would be strictly more informative.
+
+6. **Training data generation**: FoVer already showed that formal verification can generate PRM training data, but the combination of MATH-VF-style step-wise Z3/SymPy verification with online RL reward generation (not just offline data labeling) remains unexplored.
+
+Sources:
+- [MATH-VF Paper (arxiv)](https://arxiv.org/abs/2505.20869)
+- [MATH-VF Full HTML](https://arxiv.org/html/2505.20869v1)
+- [MATH-VF Literature Review](https://www.themoonlight.io/en/review/step-wise-formal-verification-for-llm-based-mathematical-problem-solving)
+- [FoVer Paper (arxiv 2505.15960)](https://arxiv.org/abs/2505.15960)
+- [FoVer Project Page](https://fover-prm.github.io/)
+
+agentId: adc872fadd0f7f171 (use SendMessage with to: 'adc872fadd0f7f171' to continue this agent)
+&lt;usage>total_tokens: 20454
+tool_uses: 10
+duration_ms: 132537&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1b7ee7c3-8202-428c-9813-c747e9edb936",
+  "isSidechain": false,
+  "promptId": "8d251980-9caf-43e4-a631-55b1b931b61b",
+  "type": "user",
+  "uuid": "dfc11f95-1ff7-48c8-9542-db7ca58be515",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to deeply research the paper MATH-VF (arxiv 2505.20869, May 2025). This paper performs step-wise formal verification using Z3 and SymPy at test time for LLM mathematical solutions, achieving 74.1% F1 on ProcessBench (training-free).\n\nPlease do the following:\n1. Search for \"MATH-VF arxiv 2505.20869 step-wise formal verification Z3 SymPy\" and related queries\n2. Fetch and read the actual arxiv paper at https://arxiv.org/abs/2505.20869\n3. Search for \"MATH-VF formal verification mathematical reasoning ProcessBench\" for additional context\n\nI need to understand:\n- Exactly how MATH-VF formalizes reasoning steps (the T_i ⊢ Q_i judgment form)\n- How it uses Z3 and SymPy at test time\n- Its limitations and failure modes\n- How it compares to a PRM — does it produce reward signals? Can it be used for RL training?\n- Its performance numbers on ProcessBench and other benchmarks\n- Whether it has semantic routing (directing different types to different solvers)\n- What gaps remain that a PRM-integrated approach could fill\n\nReport in detail (500+ words). This is critical for reframing our novelty claim.",
+    "agentId": "adc872fadd0f7f171",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have comprehensive information. Here is the detailed report.\n\n---\n\n## MATH-VF Deep Research Report\n\n**Paper**: \"Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving\" (arxiv 2505.20869, May 27, 2025)\n**Authors**: Kuo Zhou, Lu Zhang\n\n### 1. How MATH-VF Formalizes Reasoning Steps (The T_i ⊢ Q_i Judgment Form)\n\nMATH-VF introduces **SimpleMath**, a formal language extending first-order logic with additional constants and syntactic sugar. Natural language solutions are converted into **Fitch-style proofs** containing five statement types: **Facts** (known truths), **Assumptions** (accepted premises), **Theorems** (proven statements), **Definitions** (precise meanings), and **Conclusions** (derived statements).\n\nThe core verification unit is the judgment **T_i ⊢ Q_i**, where T_i is the set of relevant premises and Q_i is the conclusion to verify at step i. Critically, T_i is NOT the full preceding context -- it is constructed from a **solution graph** (V, E) where V represents statements and E represents dependency edges. The solution graph exploits a **sparsity property**: each conclusion Q_i typically depends on at most M <= 4 direct premises from prior steps, not all of them. This reduces the Critic's input complexity from O(n(n+1)/2) to O(n x M), a significant practical improvement.\n\nThe **Formalizer** is an LLM prompted with few-shot examples and SimpleMath grammar rules to translate the full natural language solution into this formal context. The paper claims over 90% of natural language statements can be correctly formalized and verified.\n\n### 2. How Z3 and SymPy Are Used at Test Time\n\n**SymPy** (Computer Algebra System) handles symbolic and numerical computation: differentiation, integration, equation solving, polynomial factoring, and expression manipulation.\n\n**Z3** (SMT Solver) handles satisfiability of logical expressions, supporting linear arithmetic (real and integer), bit vectors, arrays, datatypes, strings, and nonlinear polynomial constraints.\n\nThe Critic does NOT generate code directly. Instead, it operates through **three LLM-based agents** each integrated with a specific tool. The paper mentions these three agents but provides frustratingly little detail about what the third tool is (beyond SymPy and Z3) or how the agents are structured. The Critic acts as \"both a reasoner and a tool-agent caller.\"\n\n### 3. Semantic Routing: A Critical Gap\n\n**MATH-VF has NO explicit semantic routing mechanism.** The paper never specifies decision logic for when Z3 vs. SymPy is invoked. The routing appears to be **implicit and LLM-decided** -- the Critic model itself determines which tool to call during few-shot prompted reasoning. There is no hard-coded classifier, no problem-type taxonomy, and no routing algorithm described. This is a significant architectural ambiguity and a clear gap in the paper.\n\n### 4. Performance Numbers\n\n**ProcessBench F1 Scores (the key benchmark):**\n\n| Subset | MATH-VF | Qwen2.5-MATH-PRM-72B |\n|---|---|---|\n| GSM8K | 77.2 | 87.3 |\n| MATH | 73.4 | 80.6 |\n| OlympiadBench | 76.1 | 74.3 |\n| Omni-MATH | 69.5 | 71.1 |\n| **Average** | **74.1** | **78.3** |\n| Std Dev | **0.029** | 0.062 |\n\n**MATH500 Correctness Detection:** MATH-VF achieves 92.4-95.7% across models (DeepSeek-v3, Qwen-2.5-72B, DeepSeek-v2.5), beating the \"Primary Critic\" baseline (87.9-90.6%).\n\n**Solution Selection (MATH500):** MATH-VF 86.4-90.5% vs Self-Consistency 87.1-89.9% -- marginal improvement.\n\n**Refinement (MATH500):** MATH-VF 86.2-92.4% vs Self-Refine 83.7-90.1%.\n\nKey takeaway: MATH-VF's average ProcessBench F1 (74.1) is **4.2 points below** the trained PRM (78.3), but it has **much lower variance** (0.029 vs 0.062 std dev), meaning more stable performance across difficulty levels. On harder subsets (OlympiadBench), MATH-VF actually edges ahead at 76.1 vs 74.3.\n\n### 5. Limitations and Failure Modes\n\nThe paper explicitly acknowledges two limitations:\n\n1. **Formalization syntax errors**: When the Formalizer converts natural language to SimpleMath, expressions may contain syntax errors that cause tool invocation failures in the Critic. This is a brittle failure mode -- a single malformed expression can prevent verification of an entire step.\n\n2. **No step effectiveness analysis**: MATH-VF can assess whether each step is *correct* but cannot assess whether it is *effective* (i.e., whether it progresses toward the goal). A solution could contain all correct but irrelevant steps, and MATH-VF would approve it.\n\nAdditional implicit limitations (not explicitly discussed but evident from the architecture):\n- **Coverage ceiling of ~90%**: The paper admits ~10% of natural language statements cannot be formalized, creating blind spots.\n- **No error taxonomy**: The paper provides no categorization of what error types are caught vs. missed.\n- **LLM-dependent routing**: Since tool selection is LLM-decided with no explicit routing, misrouting errors are invisible and unquantified.\n\n### 6. Comparison to PRMs and Reward Signal Generation\n\n**MATH-VF is NOT a PRM and does NOT produce reward signals.** This is the most critical distinction for your novelty framing:\n\n- MATH-VF produces **binary correct/incorrect judgments** plus textual corrective feedback per step.\n- It generates **no confidence scores, no probability estimates, no soft signals** of any kind.\n- PRMs (like Qwen2.5-MATH-PRM-72B) assign continuous confidence scores to each step, which can be aggregated for solution ranking and used as reward signals in RL training.\n- MATH-VF explicitly cannot be used for RL training in its current form -- there is no differentiable signal, no score that could serve as a reward.\n\nThe paper positions itself as **complementary** to PRMs, not as a replacement. It argues the training-free nature is an advantage for closed-source model settings where fine-tuning is infeasible.\n\n### 7. The FoVer Connection (arxiv 2505.15960)\n\nA closely related concurrent paper, **FoVer** (published just 6 days before MATH-VF), directly bridges formal verification and PRM training. FoVer uses Z3 and Isabelle to **automatically generate step-level error labels** for PRM training data, eliminating the need for costly human annotation. PRMs trained on FoVer data exhibit cross-task generalization and competitive performance against human-annotated PRMs on ProcessBench and 12 reasoning benchmarks. This paper is the direct precedent for using formal verification to generate PRM training signals.\n\n### 8. Gaps That a PRM-Integrated Approach Could Fill\n\nBased on this analysis, the following gaps remain exploitable for a novelty claim:\n\n1. **No reward signal**: MATH-VF's binary output cannot drive RL training or best-of-N ranking with soft scores. A hybrid system that produces calibrated step-level reward scores *backed by* formal verification would be novel.\n\n2. **No explicit semantic routing**: MATH-VF relies on the LLM to implicitly decide tool usage. A system with an explicit, learned router that directs algebraic steps to SymPy, logical steps to Z3, and informal reasoning to a neural verifier would be architecturally novel.\n\n3. **No coverage fallback**: When formalization fails (~10% of steps), MATH-VF simply cannot verify. A PRM-integrated approach could use formal verification when possible and fall back to a trained neural verifier for unformalizable steps -- providing full coverage.\n\n4. **No step effectiveness**: MATH-VF verifies correctness but not progress. A PRM could score both correctness AND relevance/effectiveness.\n\n5. **No confidence calibration**: MATH-VF's binary signal gives no uncertainty estimate. A system that produces calibrated probabilities (e.g., \"92% confident this step is correct, verified by Z3\" vs. \"71% confident, neural estimate only\") would be strictly more informative.\n\n6. **Training data generation**: FoVer already showed that formal verification can generate PRM training data, but the combination of MATH-VF-style step-wise Z3/SymPy verification with online RL reward generation (not just offline data labeling) remains unexplored.\n\nSources:\n- [MATH-VF Paper (arxiv)](https://arxiv.org/abs/2505.20869)\n- [MATH-VF Full HTML](https://arxiv.org/html/2505.20869v1)\n- [MATH-VF Literature Review](https://www.themoonlight.io/en/review/step-wise-formal-verification-for-llm-based-mathematical-problem-solving)\n- [FoVer Paper (arxiv 2505.15960)](https://arxiv.org/abs/2505.15960)\n- [FoVer Project Page](https://fover-prm.github.io/)"
+      }
+    ],
+    "totalDurationMs": 132537,
+    "totalTokens": 20454,
+    "totalToolUseCount": 10,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1546,
+      "cache_read_input_tokens": 16597,
+      "output_tokens": 2310,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1546
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2310,
+          "cache_read_input_tokens": 16597,
+          "cache_creation_input_tokens": 1546,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1546,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 10
+    }
+  },
+  "sourceToolAssistantUUID": "1b7ee7c3-8202-428c-9813-c747e9edb936",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-27T17:52:27.022Z_
+
+<details><summary>↩ Tool result · `toolu_015gcnzy3EVimKWDynExAQZt`</summary>
+
+```text
+Now I have comprehensive research across all the angles. Here is my detailed report:
+
+---
+
+## Research Report: NLI Models on Mathematical Content and Alternatives for Semantic Relevance Verification
+
+### 1. Do Standard NLI Models (SNLI/MNLI-trained) Work on Mathematical Text?
+
+The short answer is: **poorly, and with no reliable guarantees**. Standard NLI models like DeBERTa cross-encoders (e.g., `cross-encoder/nli-deberta-v3-base`) are trained on SNLI and MultiNLI, which consist of everyday natural language. Research on NLI fragility shows that even on *simple* natural language sentences, MNLI/SNLI-fine-tuned models can drop below 35.4% accuracy on out-of-distribution examples (Luo et al., EMNLP 2022, "[Simple but Challenging: Natural Language Inference Models Fail on Simple Sentences](https://aclanthology.org/2022.findings-emnlp.252/)"). Semantic sensitivity analysis shows average degradation of 12.92% in-domain and 23.71% out-of-domain (Gureja et al., 2024, "[Semantic Sensitivities and Inconsistent Predictions](https://arxiv.org/pdf/2401.14440)").
+
+Mathematical text is a particularly hostile domain for these models because: (a) mathematical notation is precise and meaning changes dramatically with small character shifts, (b) the vocabulary of symbols, operators, and variable names is entirely outside the SNLI/MNLI training distribution, and (c) entailment in mathematics follows formal logical rules, not the soft textual inference patterns NLI models learn. There is no published benchmark specifically measuring SNLI/MNLI-trained model performance on mathematical reasoning text, which itself is telling -- the research community has recognized this gap and pursued domain-specific alternatives instead.
+
+### 2. Math-Specific Entailment Models and Datasets
+
+**MATHENTAIL Dataset** (Pathak & Pakray, 2023, "[Recognising formula entailment using long short-term memory network](https://journals.sagepub.com/doi/abs/10.1177/01655515231184826)"): This is the most directly relevant work. The authors created the MATHENTAIL dataset in an automated fashion, assigning entailment/neutral labels to symbol pairs based on similarity between symbol embeddings (using an improved symbol-to-vector method called isymbol2vec, trained on Wikipedia scientific documents with CBOW). An LSTM with symbol-by-symbol attention achieved only **62.2% accuracy** on formula entailment -- a modest result that underscores how difficult mathematical entailment is, even with a purpose-built model and dataset.
+
+**SciNLI** (Sadat & Caragea, ACL 2022, "[SciNLI: A Corpus for Natural Language Inference on Scientific Text](https://arxiv.org/abs/2203.06728)"): Contains 107,412 sentence pairs from NLP/computational linguistics papers with four labels (entailment, reasoning, contrasting, neutral). The best model (XLNet) achieves only 78.18% Macro F1, significantly lower than MNLI benchmarks, demonstrating that even scientific *natural language* (not yet math-heavy) is harder than standard NLI. The follow-up **MSciNLI** (NAACL 2024, "[MSciNLI: A Diverse Benchmark for Scientific Natural Language Inference](https://aclanthology.org/2024.naacl-long.90/)") extends to hardware, networks, security, and NeurIPS domains, but neither SciNLI nor MSciNLI specifically targets mathematical content. No "MathNLI" dataset exists in the published literature.
+
+### 3. Premise Selection in Mathematical Theorem Proving
+
+This is the most mature line of related work and is **highly relevant** to your use case.
+
+**DeepMath** (Alemi, Chollet et al., NeurIPS 2016, "[DeepMath - Deep Sequence Models for Premise Selection](https://arxiv.org/abs/1606.04442)"): The seminal paper applying deep learning to premise selection at scale on the Mizar corpus. Given a conjecture, the model selects which axioms/premises are relevant for proving it. They embed axioms and conjectures into vectors and classify relevance of each (axiom, conjecture) pair. This is architecturally very similar to the task of checking if a formal anchor claim is relevant to a reasoning step.
+
+**Graph-Based Premise Selection** (Wang et al., 2017, "[Premise Selection for Theorem Proving by Deep Graph Embedding](https://arxiv.org/pdf/1709.09994)"): Represents mathematical formulas as graphs and embeds them for premise selection. More recent work (2025, "[Integrating a simplified formula graph representation into a graph neural network model](https://www.sciencedirect.com/science/article/abs/pii/S1568494625006295)") uses GNNs with attention mechanisms over formula graphs, achieving strong results.
+
+**NaturalProofs** (Welleck et al., NeurIPS 2021, "[NaturalProofs: Mathematical Theorem Proving in Natural Language](https://arxiv.org/abs/2104.01112)"): A multi-domain corpus (ProofWiki, Stacks Project, etc.) with a "mathematical reference retrieval" task: given a theorem stated in natural language, retrieve the definitions/lemmas/theorems used in its proof. Neural retrieval methods work well in-distribution but **struggle with out-of-distribution generalization and symbolic content** -- a critical finding for your use case.
+
+### 4. Symbolic and Hybrid Approaches
+
+**SymPy-based equivalence checking** has known limitations. While SymPy can check equivalence for some expression classes (via `simplify`, `equals`, or `Equivalent`), it struggles with complex expressions, and mathematical equivalence is in general undecidable. However, for your specific use case of checking *relevance* (not full equivalence), lighter symbolic heuristics are viable:
+
+- **Variable/symbol overlap**: Check whether the formal anchor claim and the reasoning step share key variables, operators, or mathematical objects. This is cheap, interpretable, and surprisingly effective as a first filter.
+- **AST comparison**: Parse mathematical expressions into ASTs and compute structural similarity (tree edit distance, subtree matching). Research by Grozdev et al. (2013, "[Software for Evaluating Relevance of Steps in Algebraic Transformations](https://arxiv.org/pdf/1306.6749)") built systems that evaluate whether algebraic transformation steps are *relevant* to the task, using AST-based analysis.
+- **Expression embedding similarity**: Mansouri et al. (2022, "[Semantic Representations of Mathematical Expressions in a Continuous Vector Space](https://arxiv.org/abs/2211.08142)") use sequence-to-sequence encoders trained on equivalent-but-visually-different expressions to embed formulas into vector spaces. Cosine similarity between embeddings then captures semantic relatedness.
+
+### 5. The Neuro-Symbolic Hybrid: ERCP
+
+The very recent **ERCP** (2025, "[ERCP: Self-Correcting LLM Reasoning Using NLI-Based Neuro-Symbolic Constraints](https://news.ycombinator.com/item?id=45966208)") system is directly relevant. It uses a DeBERTa NLI Oracle (specifically `MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli`) to detect contradictions and ambiguities in LLM reasoning chains, then translates detected errors into formal constraints. This demonstrates that NLI can play a *partial* role in mathematical reasoning verification -- but as a contradiction detector rather than a full entailment checker, and combined with symbolic constraint mechanisms.
+
+### 6. Recommendations for Your Use Case
+
+For checking whether a formal anchor claim is semantically relevant to a mathematical reasoning step, a **tiered hybrid approach** is recommended:
+
+1. **First pass -- Symbolic heuristics** (fast, interpretable): Variable/symbol overlap, shared mathematical objects, AST subtree matching. This catches obvious mismatches cheaply.
+
+2. **Second pass -- Embedding similarity**: Use math-aware embeddings (e.g., from a sequence-to-sequence model trained on equivalent expressions, or even a general sentence transformer fine-tuned on scientific text) to compute similarity between the claim and the reasoning step.
+
+3. **Third pass -- NLI as contradiction filter**: Use a DeBERTa NLI model not to confirm entailment (unreliable on math) but to flag *contradictions* between the claim and reasoning step. The ERCP work shows this is more reliable than using NLI for positive entailment on mathematical content.
+
+4. **If high accuracy is needed -- Premise selection models**: Fine-tune a model in the style of DeepMath or NaturalProofs retrieval on your specific domain of formal claims and reasoning steps.
+
+The key takeaway is that **standard NLI models should not be trusted as the primary mechanism for mathematical relevance checking**. They were not designed for this domain, and the evidence (MATHENTAIL's 62.2% accuracy, SciNLI's difficulty, NLI fragility research) all point to significant reliability concerns. A hybrid approach combining symbolic methods with neural similarity/contradiction detection will be substantially more robust.
+
+Sources:
+- [Simple but Challenging: NLI Models Fail on Simple Sentences (EMNLP 2022)](https://aclanthology.org/2022.findings-emnlp.252/)
+- [Semantic Sensitivities and Inconsistent Predictions (2024)](https://arxiv.org/pdf/2401.14440)
+- [Recognising Formula Entailment Using LSTM (Pathak & Pakray, 2023)](https://journals.sagepub.com/doi/abs/10.1177/01655515231184826)
+- [SciNLI: A Corpus for NLI on Scientific Text (ACL 2022)](https://arxiv.org/abs/2203.06728)
+- [MSciNLI: A Diverse Benchmark for Scientific NLI (NAACL 2024)](https://aclanthology.org/2024.naacl-long.90/)
+- [DeepMath - Deep Sequence Models for Premise Selection (NeurIPS 2016)](https://arxiv.org/abs/1606.04442)
+- [Premise Selection by Deep Graph Embedding (Wang et al., 2017)](https://arxiv.org/pdf/1709.09994)
+- [NaturalProofs: Mathematical Theorem Proving in Natural Language (NeurIPS 2021)](https://arxiv.org/abs/2104.01112)
+- [Semantic Representations of Mathematical Expressions in Vector Space (2022)](https://arxiv.org/abs/2211.08142)
+- [Software for Evaluating Relevance of Steps in Algebraic Transformations (2013)](https://arxiv.org/pdf/1306.6749)
+- [ERCP: Self-Correcting LLM Reasoning Using NLI-Based Neuro-Symbolic Constraints (2025)](https://news.ycombinator.com/item?id=45966208)
+- [Pretrained Language Models are Symbolic Mathematics Solvers too (2021)](https://arxiv.org/pdf/2110.03501)
+- [cross-encoder/nli-deberta-base (Hugging Face)](https://huggingface.co/cross-encoder/nli-deberta-base)
+- [A Synthetic Data Approach for Domain Generalization of NLI Models (2024)](https://arxiv.org/pdf/2402.12368)
+- [GNN-based Premise Selection (2025)](https://www.sciencedirect.com/science/article/abs/pii/S1568494625006295)
+- [NaturalProver: Grounded Mathematical Proof Generation (2022)](https://openreview.net/pdf?id=rhdfTOiXBng)
+- [ASyMOB: Algebraic Symbolic Mathematical Operations Benchmark (2025)](https://arxiv.org/html/2505.23851)
+
+agentId: a8892070f7ffec3a4 (use SendMessage with to: 'a8892070f7ffec3a4' to continue this agent)
+&lt;usage>total_tokens: 22892
+tool_uses: 14
+duration_ms: 123863&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce001d9c-aabd-4c5c-8ab6-1c4d5952be9e",
+  "isSidechain": false,
+  "promptId": "8d251980-9caf-43e4-a631-55b1b931b61b",
+  "type": "user",
+  "uuid": "2c6a1293-b717-4e24-b05b-eb1b6f4a9ae0",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to research whether NLI (Natural Language Inference) models like DeBERTa work well on mathematical content, and what alternatives exist for verifying semantic relevance between mathematical reasoning steps and formal verification claims.\n\nPlease search for and investigate:\n1. \"NLI mathematical reasoning DeBERTa symbolic expressions\" - does NLI transfer to math?\n2. \"mathematical entailment verification neural\" - any math-specific entailment models?\n3. \"SciNLI scientific NLI\" or \"MathNLI\" - domain-specific NLI for STEM\n4. \"SymPy symbolic entailment checking mathematical\" - symbolic approaches to checking mathematical relevance\n5. \"math text similarity semantic mathematical expressions\" - alternative approaches\n\nKey questions:\n- Is there evidence that standard NLI models (trained on SNLI/MNLI) work on mathematical text?\n- Are there math-specific NLI datasets or models?\n- What are better alternatives for checking if a formal anchor claim is semantically relevant to a mathematical reasoning step?\n- Could we use symbolic methods (e.g., variable overlap, AST comparison, SymPy equation manipulation) instead of or alongside NLI?\n- Any papers on \"premise selection\" in mathematical theorem proving that are relevant?\n\nReport in detail (400+ words) with specific paper references and findings.",
+    "agentId": "a8892070f7ffec3a4",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have comprehensive research across all the angles. Here is my detailed report:\n\n---\n\n## Research Report: NLI Models on Mathematical Content and Alternatives for Semantic Relevance Verification\n\n### 1. Do Standard NLI Models (SNLI/MNLI-trained) Work on Mathematical Text?\n\nThe short answer is: **poorly, and with no reliable guarantees**. Standard NLI models like DeBERTa cross-encoders (e.g., `cross-encoder/nli-deberta-v3-base`) are trained on SNLI and MultiNLI, which consist of everyday natural language. Research on NLI fragility shows that even on *simple* natural language sentences, MNLI/SNLI-fine-tuned models can drop below 35.4% accuracy on out-of-distribution examples (Luo et al., EMNLP 2022, \"[Simple but Challenging: Natural Language Inference Models Fail on Simple Sentences](https://aclanthology.org/2022.findings-emnlp.252/)\"). Semantic sensitivity analysis shows average degradation of 12.92% in-domain and 23.71% out-of-domain (Gureja et al., 2024, \"[Semantic Sensitivities and Inconsistent Predictions](https://arxiv.org/pdf/2401.14440)\").\n\nMathematical text is a particularly hostile domain for these models because: (a) mathematical notation is precise and meaning changes dramatically with small character shifts, (b) the vocabulary of symbols, operators, and variable names is entirely outside the SNLI/MNLI training distribution, and (c) entailment in mathematics follows formal logical rules, not the soft textual inference patterns NLI models learn. There is no published benchmark specifically measuring SNLI/MNLI-trained model performance on mathematical reasoning text, which itself is telling -- the research community has recognized this gap and pursued domain-specific alternatives instead.\n\n### 2. Math-Specific Entailment Models and Datasets\n\n**MATHENTAIL Dataset** (Pathak & Pakray, 2023, \"[Recognising formula entailment using long short-term memory network](https://journals.sagepub.com/doi/abs/10.1177/01655515231184826)\"): This is the most directly relevant work. The authors created the MATHENTAIL dataset in an automated fashion, assigning entailment/neutral labels to symbol pairs based on similarity between symbol embeddings (using an improved symbol-to-vector method called isymbol2vec, trained on Wikipedia scientific documents with CBOW). An LSTM with symbol-by-symbol attention achieved only **62.2% accuracy** on formula entailment -- a modest result that underscores how difficult mathematical entailment is, even with a purpose-built model and dataset.\n\n**SciNLI** (Sadat & Caragea, ACL 2022, \"[SciNLI: A Corpus for Natural Language Inference on Scientific Text](https://arxiv.org/abs/2203.06728)\"): Contains 107,412 sentence pairs from NLP/computational linguistics papers with four labels (entailment, reasoning, contrasting, neutral). The best model (XLNet) achieves only 78.18% Macro F1, significantly lower than MNLI benchmarks, demonstrating that even scientific *natural language* (not yet math-heavy) is harder than standard NLI. The follow-up **MSciNLI** (NAACL 2024, \"[MSciNLI: A Diverse Benchmark for Scientific Natural Language Inference](https://aclanthology.org/2024.naacl-long.90/)\") extends to hardware, networks, security, and NeurIPS domains, but neither SciNLI nor MSciNLI specifically targets mathematical content. No \"MathNLI\" dataset exists in the published literature.\n\n### 3. Premise Selection in Mathematical Theorem Proving\n\nThis is the most mature line of related work and is **highly relevant** to your use case.\n\n**DeepMath** (Alemi, Chollet et al., NeurIPS 2016, \"[DeepMath - Deep Sequence Models for Premise Selection](https://arxiv.org/abs/1606.04442)\"): The seminal paper applying deep learning to premise selection at scale on the Mizar corpus. Given a conjecture, the model selects which axioms/premises are relevant for proving it. They embed axioms and conjectures into vectors and classify relevance of each (axiom, conjecture) pair. This is architecturally very similar to the task of checking if a formal anchor claim is relevant to a reasoning step.\n\n**Graph-Based Premise Selection** (Wang et al., 2017, \"[Premise Selection for Theorem Proving by Deep Graph Embedding](https://arxiv.org/pdf/1709.09994)\"): Represents mathematical formulas as graphs and embeds them for premise selection. More recent work (2025, \"[Integrating a simplified formula graph representation into a graph neural network model](https://www.sciencedirect.com/science/article/abs/pii/S1568494625006295)\") uses GNNs with attention mechanisms over formula graphs, achieving strong results.\n\n**NaturalProofs** (Welleck et al., NeurIPS 2021, \"[NaturalProofs: Mathematical Theorem Proving in Natural Language](https://arxiv.org/abs/2104.01112)\"): A multi-domain corpus (ProofWiki, Stacks Project, etc.) with a \"mathematical reference retrieval\" task: given a theorem stated in natural language, retrieve the definitions/lemmas/theorems used in its proof. Neural retrieval methods work well in-distribution but **struggle with out-of-distribution generalization and symbolic content** -- a critical finding for your use case.\n\n### 4. Symbolic and Hybrid Approaches\n\n**SymPy-based equivalence checking** has known limitations. While SymPy can check equivalence for some expression classes (via `simplify`, `equals`, or `Equivalent`), it struggles with complex expressions, and mathematical equivalence is in general undecidable. However, for your specific use case of checking *relevance* (not full equivalence), lighter symbolic heuristics are viable:\n\n- **Variable/symbol overlap**: Check whether the formal anchor claim and the reasoning step share key variables, operators, or mathematical objects. This is cheap, interpretable, and surprisingly effective as a first filter.\n- **AST comparison**: Parse mathematical expressions into ASTs and compute structural similarity (tree edit distance, subtree matching). Research by Grozdev et al. (2013, \"[Software for Evaluating Relevance of Steps in Algebraic Transformations](https://arxiv.org/pdf/1306.6749)\") built systems that evaluate whether algebraic transformation steps are *relevant* to the task, using AST-based analysis.\n- **Expression embedding similarity**: Mansouri et al. (2022, \"[Semantic Representations of Mathematical Expressions in a Continuous Vector Space](https://arxiv.org/abs/2211.08142)\") use sequence-to-sequence encoders trained on equivalent-but-visually-different expressions to embed formulas into vector spaces. Cosine similarity between embeddings then captures semantic relatedness.\n\n### 5. The Neuro-Symbolic Hybrid: ERCP\n\nThe very recent **ERCP** (2025, \"[ERCP: Self-Correcting LLM Reasoning Using NLI-Based Neuro-Symbolic Constraints](https://news.ycombinator.com/item?id=45966208)\") system is directly relevant. It uses a DeBERTa NLI Oracle (specifically `MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli`) to detect contradictions and ambiguities in LLM reasoning chains, then translates detected errors into formal constraints. This demonstrates that NLI can play a *partial* role in mathematical reasoning verification -- but as a contradiction detector rather than a full entailment checker, and combined with symbolic constraint mechanisms.\n\n### 6. Recommendations for Your Use Case\n\nFor checking whether a formal anchor claim is semantically relevant to a mathematical reasoning step, a **tiered hybrid approach** is recommended:\n\n1. **First pass -- Symbolic heuristics** (fast, interpretable): Variable/symbol overlap, shared mathematical objects, AST subtree matching. This catches obvious mismatches cheaply.\n\n2. **Second pass -- Embedding similarity**: Use math-aware embeddings (e.g., from a sequence-to-sequence model trained on equivalent expressions, or even a general sentence transformer fine-tuned on scientific text) to compute similarity between the claim and the reasoning step.\n\n3. **Third pass -- NLI as contradiction filter**: Use a DeBERTa NLI model not to confirm entailment (unreliable on math) but to flag *contradictions* between the claim and reasoning step. The ERCP work shows this is more reliable than using NLI for positive entailment on mathematical content.\n\n4. **If high accuracy is needed -- Premise selection models**: Fine-tune a model in the style of DeepMath or NaturalProofs retrieval on your specific domain of formal claims and reasoning steps.\n\nThe key takeaway is that **standard NLI models should not be trusted as the primary mechanism for mathematical relevance checking**. They were not designed for this domain, and the evidence (MATHENTAIL's 62.2% accuracy, SciNLI's difficulty, NLI fragility research) all point to significant reliability concerns. A hybrid approach combining symbolic methods with neural similarity/contradiction detection will be substantially more robust.\n\nSources:\n- [Simple but Challenging: NLI Models Fail on Simple Sentences (EMNLP 2022)](https://aclanthology.org/2022.findings-emnlp.252/)\n- [Semantic Sensitivities and Inconsistent Predictions (2024)](https://arxiv.org/pdf/2401.14440)\n- [Recognising Formula Entailment Using LSTM (Pathak & Pakray, 2023)](https://journals.sagepub.com/doi/abs/10.1177/01655515231184826)\n- [SciNLI: A Corpus for NLI on Scientific Text (ACL 2022)](https://arxiv.org/abs/2203.06728)\n- [MSciNLI: A Diverse Benchmark for Scientific NLI (NAACL 2024)](https://aclanthology.org/2024.naacl-long.90/)\n- [DeepMath - Deep Sequence Models for Premise Selection (NeurIPS 2016)](https://arxiv.org/abs/1606.04442)\n- [Premise Selection by Deep Graph Embedding (Wang et al., 2017)](https://arxiv.org/pdf/1709.09994)\n- [NaturalProofs: Mathematical Theorem Proving in Natural Language (NeurIPS 2021)](https://arxiv.org/abs/2104.01112)\n- [Semantic Representations of Mathematical Expressions in Vector Space (2022)](https://arxiv.org/abs/2211.08142)\n- [Software for Evaluating Relevance of Steps in Algebraic Transformations (2013)](https://arxiv.org/pdf/1306.6749)\n- [ERCP: Self-Correcting LLM Reasoning Using NLI-Based Neuro-Symbolic Constraints (2025)](https://news.ycombinator.com/item?id=45966208)\n- [Pretrained Language Models are Symbolic Mathematics Solvers too (2021)](https://arxiv.org/pdf/2110.03501)\n- [cross-encoder/nli-deberta-base (Hugging Face)](https://huggingface.co/cross-encoder/nli-deberta-base)\n- [A Synthetic Data Approach for Domain Generalization of NLI Models (2024)](https://arxiv.org/pdf/2402.12368)\n- [GNN-based Premise Selection (2025)](https://www.sciencedirect.com/science/article/abs/pii/S1568494625006295)\n- [NaturalProver: Grounded Mathematical Proof Generation (2022)](https://openreview.net/pdf?id=rhdfTOiXBng)\n- [ASyMOB: Algebraic Symbolic Mathematical Operations Benchmark (2025)](https://arxiv.org/html/2505.23851)"
+      }
+    ],
+    "totalDurationMs": 123863,
+    "totalTokens": 22892,
+    "totalToolUseCount": 14,
+    "usage": {
+      "input_tokens": 908,
+      "cache_creation_input_tokens": 813,
+      "cache_read_input_tokens": 18249,
+      "output_tokens": 2922,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 813
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 908,
+          "output_tokens": 2922,
+          "cache_read_input_tokens": 18249,
+          "cache_creation_input_tokens": 813,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 813,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 14
+    }
+  },
+  "sourceToolAssistantUUID": "ce001d9c-aabd-4c5c-8ab6-1c4d5952be9e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"revision_notes\": {     \"issue_1_genprm_code_execution\": \"ADDRESSED. Deep readin…",
+  "leafUuid": "2c6a1293-b717-4e24-b05b-eb1b6f4a9ae0",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise formal verification PRM novelty and gates",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf"
+}
+```
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-27T17:52:49.601Z_
+
+<details><summary>↩ Tool result · `toolu_012MZicJHvmbMG6RAJiWs6yb`</summary>
+
+```text
+Now I have comprehensive information. Let me compile the detailed report.
+
+---
+
+## VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning -- Deep Research Report
+
+**Paper**: arXiv 2601.20055 (submitted January 27, 2026; revised May 2, 2026)
+**Authors**: Vikash Singh, Darion Cassel, Nathaniel Weir, Nick Feng, Sam Bayless
+
+---
+
+### 1. Atomic Claim Decomposition
+
+VERGE takes an LLM-generated answer A and decomposes it into a set of atomic claims {c1, ..., cn}. The decomposition is performed by an LLM classifier M. The paper references prompt templates in Appendix E.2.1 for "Claim Decomposition & Classification" but does not publish the actual prompt content, which is a reproducibility gap. An "atomic claim" is the granular unit of assertion -- the smallest independently verifiable statement -- though the paper does not provide a formal definition of atomicity or worked examples of the decomposition step itself. This is one of the underspecified parts of the pipeline.
+
+### 2. Autoformalization into First-Order Logic
+
+Claims are autoformalized into **SMT-LIB2** format, specifically targeting decidable fragments: **QF_UF** (Quantifier-Free Uninterpreted Functions) and **QF_LIA** (Quantifier-Free Linear Integer Arithmetic). The process works as follows:
+
+- **Entity extraction** produces typed constants (a set E).
+- For each claim, **K=3 candidate formalizations** are generated by the LLM.
+- **Semantic equivalence checking** validates consensus: Equiv(phi_a, phi_b) holds iff UNSAT(Sigma_E AND NOT(phi_a <-> phi_b)). A majority vote (at least ceil(K/2)) is required.
+- A **round-trip translation** (SMT back to natural language) serves as a sanity check.
+
+Critically, VERGE restricts itself to **quantifier-free logic**. The paper explicitly acknowledges in Section 6 that "restricting to decidable logics (QF-UF, LIA) sacrifices expressiveness -- claims requiring universal quantification cannot be formally verified." This is a fundamental expressiveness ceiling. Failure modes include Z3 syntax errors (triggering hybrid fallback), undeclared variables, and solver timeouts.
+
+### 3. Semantic Routing
+
+The router classifies each atomic claim into one of six categories:
+
+| Type | Category | Route |
+|------|----------|-------|
+| tau_m | Mathematical | SMT solver |
+| tau_l | Logical | SMT solver |
+| tau_t | Temporal | SMT solver |
+| tau_c | Commonsense | Soft verifier (LLM ensemble) |
+| tau_v | Vague | Soft verifier |
+| tau_p | Probabilistic | Soft verifier |
+
+The routing function (Eq. 4) directs mathematical, logical, and temporal claims to the Z3 SMT solver, while commonsense, vague, and probabilistic claims go to a consensus-based soft verifier. A hybrid fallback exists for edge cases. The classifier uses tau_i = argmax_tau P_M(tau | c_i), though the specific model and prompt are not disclosed. Stress testing on 54 adversarial claims achieved 94% accuracy (F1=0.93 SMT, F1=0.95 Soft, with only 1 of 32 soft claims misrouted).
+
+### 4. Minimal Correction Subsets (MCS) for Error Localization
+
+When verification detects a contradiction (sigma_c), VERGE computes a Minimal Correction Subset -- the smallest set S of claims whose removal restores satisfiability:
+
+- SAT(phi_C AND phi_{c_i} \ S) = true
+- For all proper subsets S' of S: SAT(phi_C AND phi_{c_i} \ S') = false
+
+The implementation uses a **greedy linear-scan algorithm** (Appendix B) rather than exact computation. Claims are sorted by confidence (descending) and iteratively tested. Complexity is O(n * SAT) versus exact O(2^n * SAT). For n=30 claims, this means ~30 SAT calls versus ~1 billion. The MCS output identifies precisely which claims to revise, and this is fed back to the LLM as structured feedback (along with UNSAT cores) for the next refinement iteration. This is what transforms a binary pass/fail signal into actionable, targeted feedback.
+
+### 5. Iterative Refinement Loop
+
+The refinement loop (Algorithm 1) operates as:
+1. Generate answer A^(t) given context C, query q, and prior feedback F^(t-1)
+2. Decompose into atomic claims
+3. Route and verify each claim (producing scores sigma_i)
+4. Compute aggregate score S^(t)
+5. If S^(t) >= 0.75 AND JointSAT: accept and return
+6. If convergence (Delta_S < 0.01): return best answer seen
+7. Otherwise, generate feedback F^(t) from MCS + individual errors, loop
+
+Default T_max = 3. Extended experiments up to T_max=10 show gains become negligible (<0.3%) after ~6.2 iterations. The system exhibits **perfect monotonic improvement** (Kendall's tau = 1.0, p < 0.001) across all six datasets, which is a stark contrast to probabilistic self-refinement methods that degrade in 85.2% of trials.
+
+### 6. Performance: The 18.7% Number
+
+The 18.7% average uplift is computed across **6 benchmarks and 3 models** at convergence. Benchmarks: FOLIO, ProofWriter, ZebraLogic, AR-LSAT, BBEH (Big-Bench Extra Hard), and HLE (Humanity's Last Exam). Models: GPT-OSS-20B, GPT-OSS-120B, Claude 3.7 Sonnet.
+
+**Detailed results with GPT-OSS-120B (T_max=3)**:
+
+| Benchmark | CoT Baseline | VERGE | Gain |
+|-----------|-------------|-------|------|
+| FOLIO | 32.0% | 84.7% | +52.7 |
+| ProofWriter | 52.4% | 89.9% | +37.5 |
+| ZebraLogic | 84.0% | 91.0% | +7.0 |
+| AR-LSAT | 87.8% | 91.7% | +3.9 |
+| BBEH | 38.4% | 58.9% | +20.5 |
+| HLE | 14.2% | 30.5% | +16.3 |
+
+Note the massive gains on logic-heavy benchmarks (FOLIO, ProofWriter) versus moderate gains on tasks requiring more commonsense (AR-LSAT). Compute cost: VERGE T=1 uses ~8 LLM calls, ~5 solver calls, 8.4K tokens, 11.8s wall time, compared to Self-Consistency k=10 using 10 LLM calls, 21K tokens, 28.3s.
+
+### 7. Ablation Studies
+
+| Variant | FOLIO | ProofWriter | Avg Drop |
+|---------|-------|-------------|----------|
+| Full VERGE | 84.7% | 89.9% | -- |
+| w/o MCS | 80.7% | 88.7% | -6.8% |
+| w/o Routing | 81.6% | 84.6% | -8.3% |
+| Soft-Only (no SMT) | 80.8% | 75.8% | -22.8% |
+| UNSAT-Core Only | 79.3% | 82.4% | -10.9% |
+
+Removing SMT entirely causes the largest degradation, validating the hybrid approach. Routing contributes more than MCS alone.
+
+### 8. How VERGE Differs from MATH-VF
+
+**MATH-VF** (arxiv 2505.20869) also autoformalizes LLM solutions and verifies with external tools (SymPy, Z3), but differs in several key ways:
+
+- **Formal language**: MATH-VF uses "SimpleMath" (an extension of classical first-order language resembling informal math), while VERGE targets SMT-LIB2 (QF_UF, QF_LIA).
+- **Scope**: MATH-VF is specifically designed for mathematical problem solving (evaluated on MATH500, ProcessBench). VERGE targets broader reasoning (logic, commonsense, temporal reasoning).
+- **Architecture**: MATH-VF has a Formalizer + Critic pipeline exploiting sparse solution graphs. VERGE has decomposition + routing + MCS-based error localization.
+- **Error granularity**: Both provide step-level feedback, but VERGE's MCS approach is more formally grounded (identifying minimal inconsistent subsets) while MATH-VF's Critic provides textual evaluations.
+- **Neither functions as a PRM**: Both are inference-time verification frameworks, not trained reward models. Neither produces scalar reward signals suitable for RL training.
+
+### 9. Limitations and Gaps Critical for Your Novelty Claim
+
+**VERGE does NOT work as a PRM and cannot produce step-level reward signals for RL.** The paper makes no mention whatsoever of process reward models, step-level rewards, or RL training. Its verification scores (Entailed=1.0, Supported=0.9, Possible=0.7, Contradictory=0.0) are heuristic weights for aggregation, not learned reward signals. The soft verifier assigns a score of 0.9 to supported claims "without mathematical guarantees."
+
+**Key gaps that remain**:
+
+1. **No reward signal for training**: VERGE is purely an inference-time system. It cannot supervise RL or generate training-time process rewards. This is a major gap if your work bridges verification into training.
+2. **Quantifier-free restriction**: Cannot handle universal/existential quantification, ruling out many mathematical claims. If your approach handles richer logic, that is differentiation.
+3. **Formalization barrier**: Models under 20B achieve only ~30% formalization validity. The pipeline is effectively locked to frontier-scale models (70B+).
+4. **Soft verification is unprincipled**: Commonsense claims get a flat 0.9 score via LLM consensus -- no formal guarantees. The paper itself warns of "verified hallucinations."
+5. **Decomposition is a black box**: The atomicity definition, decomposition prompts, and failure modes of decomposition are not published. Reproducibility is limited.
+6. **Benchmarks are logic-heavy**: The 18.7% number is inflated by FOLIO (+52.7) and ProofWriter (+37.5), which are synthetic logic benchmarks. Gains on naturalistic tasks (AR-LSAT: +3.9, HLE: +16.3) are more modest.
+7. **No mathematical reasoning benchmarks**: VERGE is not evaluated on MATH, GSM8K, or any standard math benchmarks. MATH-VF covers that space.
+8. **Scoring is heuristic, not learned**: The aggregation weights (1.0/0.9/0.7/0.0) and the variance penalty are hand-tuned, not optimized.
+
+**Bottom line for your novelty**: If your contribution involves (a) producing step-level reward signals from formal verification for RL training, (b) handling richer logic than QF_UF/QF_LIA, (c) working on mathematical reasoning (MATH/GSM8K), or (d) learning verification scores rather than hand-tuning them, you have clear differentiation from VERGE. VERGE is an inference-time-only framework with no pathway to training-time integration.
+
+Sources:
+- [VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning (arxiv)](https://arxiv.org/abs/2601.20055)
+- [VERGE full paper HTML](https://arxiv.org/html/2601.20055)
+- [VERGE on HuggingFace Papers](https://huggingface.co/papers/2601.20055)
+- [Moonlight Review of VERGE](https://www.themoonlight.io/en/review/verge-formal-refinement-and-guidance-engine-for-verifiable-llm-reasoning)
+- [MATH-VF: Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving](https://arxiv.org/html/2505.20869v1)
+- [Let's Verify Step by Step (PRM800K)](https://arxiv.org/abs/2305.20050)
+
+agentId: a14b86579d6a6f99e (use SendMessage with to: 'a14b86579d6a6f99e' to continue this agent)
+&lt;usage>total_tokens: 21881
+tool_uses: 10
+duration_ms: 154898&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a27766b-7c12-402d-b484-de5640275fc3",
+  "isSidechain": false,
+  "promptId": "8d251980-9caf-43e4-a631-55b1b931b61b",
+  "type": "user",
+  "uuid": "f8e0242f-17ad-4119-a541-094d0b5c7686",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to deeply research the paper VERGE (arxiv 2601.20055, January 2026). This paper decomposes LLM outputs into atomic claims, autoformalizes into first-order logic, and verifies with SMT solvers at test time.\n\nPlease do the following:\n1. Search for \"VERGE arxiv 2601.20055 atomic claims autoformalize first-order logic SMT\" and related queries\n2. Fetch and read the actual arxiv paper at https://arxiv.org/abs/2601.20055\n3. Search for \"VERGE verification LLM outputs SMT solver error localization\" for additional context\n\nI need to understand:\n- Exactly how VERGE decomposes outputs into atomic claims\n- How it autoformalizes claims into FOL\n- Its semantic routing mechanism (directing different claim types to appropriate verification strategies)\n- The Minimal Correction Subsets approach for error localization\n- Its performance (18.7% average improvement on what benchmarks?)\n- Its limitations — does it work as a PRM? Can it produce step-level reward signals for RL?\n- How it differs from MATH-VF\n- What gaps remain\n\nReport in detail (500+ words). This is critical for reframing our novelty claim.",
+    "agentId": "a14b86579d6a6f99e",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have comprehensive information. Let me compile the detailed report.\n\n---\n\n## VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning -- Deep Research Report\n\n**Paper**: arXiv 2601.20055 (submitted January 27, 2026; revised May 2, 2026)\n**Authors**: Vikash Singh, Darion Cassel, Nathaniel Weir, Nick Feng, Sam Bayless\n\n---\n\n### 1. Atomic Claim Decomposition\n\nVERGE takes an LLM-generated answer A and decomposes it into a set of atomic claims {c1, ..., cn}. The decomposition is performed by an LLM classifier M. The paper references prompt templates in Appendix E.2.1 for \"Claim Decomposition & Classification\" but does not publish the actual prompt content, which is a reproducibility gap. An \"atomic claim\" is the granular unit of assertion -- the smallest independently verifiable statement -- though the paper does not provide a formal definition of atomicity or worked examples of the decomposition step itself. This is one of the underspecified parts of the pipeline.\n\n### 2. Autoformalization into First-Order Logic\n\nClaims are autoformalized into **SMT-LIB2** format, specifically targeting decidable fragments: **QF_UF** (Quantifier-Free Uninterpreted Functions) and **QF_LIA** (Quantifier-Free Linear Integer Arithmetic). The process works as follows:\n\n- **Entity extraction** produces typed constants (a set E).\n- For each claim, **K=3 candidate formalizations** are generated by the LLM.\n- **Semantic equivalence checking** validates consensus: Equiv(phi_a, phi_b) holds iff UNSAT(Sigma_E AND NOT(phi_a <-> phi_b)). A majority vote (at least ceil(K/2)) is required.\n- A **round-trip translation** (SMT back to natural language) serves as a sanity check.\n\nCritically, VERGE restricts itself to **quantifier-free logic**. The paper explicitly acknowledges in Section 6 that \"restricting to decidable logics (QF-UF, LIA) sacrifices expressiveness -- claims requiring universal quantification cannot be formally verified.\" This is a fundamental expressiveness ceiling. Failure modes include Z3 syntax errors (triggering hybrid fallback), undeclared variables, and solver timeouts.\n\n### 3. Semantic Routing\n\nThe router classifies each atomic claim into one of six categories:\n\n| Type | Category | Route |\n|------|----------|-------|\n| tau_m | Mathematical | SMT solver |\n| tau_l | Logical | SMT solver |\n| tau_t | Temporal | SMT solver |\n| tau_c | Commonsense | Soft verifier (LLM ensemble) |\n| tau_v | Vague | Soft verifier |\n| tau_p | Probabilistic | Soft verifier |\n\nThe routing function (Eq. 4) directs mathematical, logical, and temporal claims to the Z3 SMT solver, while commonsense, vague, and probabilistic claims go to a consensus-based soft verifier. A hybrid fallback exists for edge cases. The classifier uses tau_i = argmax_tau P_M(tau | c_i), though the specific model and prompt are not disclosed. Stress testing on 54 adversarial claims achieved 94% accuracy (F1=0.93 SMT, F1=0.95 Soft, with only 1 of 32 soft claims misrouted).\n\n### 4. Minimal Correction Subsets (MCS) for Error Localization\n\nWhen verification detects a contradiction (sigma_c), VERGE computes a Minimal Correction Subset -- the smallest set S of claims whose removal restores satisfiability:\n\n- SAT(phi_C AND phi_{c_i} \\ S) = true\n- For all proper subsets S' of S: SAT(phi_C AND phi_{c_i} \\ S') = false\n\nThe implementation uses a **greedy linear-scan algorithm** (Appendix B) rather than exact computation. Claims are sorted by confidence (descending) and iteratively tested. Complexity is O(n * SAT) versus exact O(2^n * SAT). For n=30 claims, this means ~30 SAT calls versus ~1 billion. The MCS output identifies precisely which claims to revise, and this is fed back to the LLM as structured feedback (along with UNSAT cores) for the next refinement iteration. This is what transforms a binary pass/fail signal into actionable, targeted feedback.\n\n### 5. Iterative Refinement Loop\n\nThe refinement loop (Algorithm 1) operates as:\n1. Generate answer A^(t) given context C, query q, and prior feedback F^(t-1)\n2. Decompose into atomic claims\n3. Route and verify each claim (producing scores sigma_i)\n4. Compute aggregate score S^(t)\n5. If S^(t) >= 0.75 AND JointSAT: accept and return\n6. If convergence (Delta_S < 0.01): return best answer seen\n7. Otherwise, generate feedback F^(t) from MCS + individual errors, loop\n\nDefault T_max = 3. Extended experiments up to T_max=10 show gains become negligible (<0.3%) after ~6.2 iterations. The system exhibits **perfect monotonic improvement** (Kendall's tau = 1.0, p < 0.001) across all six datasets, which is a stark contrast to probabilistic self-refinement methods that degrade in 85.2% of trials.\n\n### 6. Performance: The 18.7% Number\n\nThe 18.7% average uplift is computed across **6 benchmarks and 3 models** at convergence. Benchmarks: FOLIO, ProofWriter, ZebraLogic, AR-LSAT, BBEH (Big-Bench Extra Hard), and HLE (Humanity's Last Exam). Models: GPT-OSS-20B, GPT-OSS-120B, Claude 3.7 Sonnet.\n\n**Detailed results with GPT-OSS-120B (T_max=3)**:\n\n| Benchmark | CoT Baseline | VERGE | Gain |\n|-----------|-------------|-------|------|\n| FOLIO | 32.0% | 84.7% | +52.7 |\n| ProofWriter | 52.4% | 89.9% | +37.5 |\n| ZebraLogic | 84.0% | 91.0% | +7.0 |\n| AR-LSAT | 87.8% | 91.7% | +3.9 |\n| BBEH | 38.4% | 58.9% | +20.5 |\n| HLE | 14.2% | 30.5% | +16.3 |\n\nNote the massive gains on logic-heavy benchmarks (FOLIO, ProofWriter) versus moderate gains on tasks requiring more commonsense (AR-LSAT). Compute cost: VERGE T=1 uses ~8 LLM calls, ~5 solver calls, 8.4K tokens, 11.8s wall time, compared to Self-Consistency k=10 using 10 LLM calls, 21K tokens, 28.3s.\n\n### 7. Ablation Studies\n\n| Variant | FOLIO | ProofWriter | Avg Drop |\n|---------|-------|-------------|----------|\n| Full VERGE | 84.7% | 89.9% | -- |\n| w/o MCS | 80.7% | 88.7% | -6.8% |\n| w/o Routing | 81.6% | 84.6% | -8.3% |\n| Soft-Only (no SMT) | 80.8% | 75.8% | -22.8% |\n| UNSAT-Core Only | 79.3% | 82.4% | -10.9% |\n\nRemoving SMT entirely causes the largest degradation, validating the hybrid approach. Routing contributes more than MCS alone.\n\n### 8. How VERGE Differs from MATH-VF\n\n**MATH-VF** (arxiv 2505.20869) also autoformalizes LLM solutions and verifies with external tools (SymPy, Z3), but differs in several key ways:\n\n- **Formal language**: MATH-VF uses \"SimpleMath\" (an extension of classical first-order language resembling informal math), while VERGE targets SMT-LIB2 (QF_UF, QF_LIA).\n- **Scope**: MATH-VF is specifically designed for mathematical problem solving (evaluated on MATH500, ProcessBench). VERGE targets broader reasoning (logic, commonsense, temporal reasoning).\n- **Architecture**: MATH-VF has a Formalizer + Critic pipeline exploiting sparse solution graphs. VERGE has decomposition + routing + MCS-based error localization.\n- **Error granularity**: Both provide step-level feedback, but VERGE's MCS approach is more formally grounded (identifying minimal inconsistent subsets) while MATH-VF's Critic provides textual evaluations.\n- **Neither functions as a PRM**: Both are inference-time verification frameworks, not trained reward models. Neither produces scalar reward signals suitable for RL training.\n\n### 9. Limitations and Gaps Critical for Your Novelty Claim\n\n**VERGE does NOT work as a PRM and cannot produce step-level reward signals for RL.** The paper makes no mention whatsoever of process reward models, step-level rewards, or RL training. Its verification scores (Entailed=1.0, Supported=0.9, Possible=0.7, Contradictory=0.0) are heuristic weights for aggregation, not learned reward signals. The soft verifier assigns a score of 0.9 to supported claims \"without mathematical guarantees.\"\n\n**Key gaps that remain**:\n\n1. **No reward signal for training**: VERGE is purely an inference-time system. It cannot supervise RL or generate training-time process rewards. This is a major gap if your work bridges verification into training.\n2. **Quantifier-free restriction**: Cannot handle universal/existential quantification, ruling out many mathematical claims. If your approach handles richer logic, that is differentiation.\n3. **Formalization barrier**: Models under 20B achieve only ~30% formalization validity. The pipeline is effectively locked to frontier-scale models (70B+).\n4. **Soft verification is unprincipled**: Commonsense claims get a flat 0.9 score via LLM consensus -- no formal guarantees. The paper itself warns of \"verified hallucinations.\"\n5. **Decomposition is a black box**: The atomicity definition, decomposition prompts, and failure modes of decomposition are not published. Reproducibility is limited.\n6. **Benchmarks are logic-heavy**: The 18.7% number is inflated by FOLIO (+52.7) and ProofWriter (+37.5), which are synthetic logic benchmarks. Gains on naturalistic tasks (AR-LSAT: +3.9, HLE: +16.3) are more modest.\n7. **No mathematical reasoning benchmarks**: VERGE is not evaluated on MATH, GSM8K, or any standard math benchmarks. MATH-VF covers that space.\n8. **Scoring is heuristic, not learned**: The aggregation weights (1.0/0.9/0.7/0.0) and the variance penalty are hand-tuned, not optimized.\n\n**Bottom line for your novelty**: If your contribution involves (a) producing step-level reward signals from formal verification for RL training, (b) handling richer logic than QF_UF/QF_LIA, (c) working on mathematical reasoning (MATH/GSM8K), or (d) learning verification scores rather than hand-tuning them, you have clear differentiation from VERGE. VERGE is an inference-time-only framework with no pathway to training-time integration.\n\nSources:\n- [VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning (arxiv)](https://arxiv.org/abs/2601.20055)\n- [VERGE full paper HTML](https://arxiv.org/html/2601.20055)\n- [VERGE on HuggingFace Papers](https://huggingface.co/papers/2601.20055)\n- [Moonlight Review of VERGE](https://www.themoonlight.io/en/review/verge-formal-refinement-and-guidance-engine-for-verifiable-llm-reasoning)\n- [MATH-VF: Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving](https://arxiv.org/html/2505.20869v1)\n- [Let's Verify Step by Step (PRM800K)](https://arxiv.org/abs/2305.20050)"
+      }
+    ],
+    "totalDurationMs": 154898,
+    "totalTokens": 21881,
+    "totalToolUseCount": 10,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 549,
+      "cache_read_input_tokens": 18216,
+      "output_tokens": 3115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 549
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3115,
+          "cache_read_input_tokens": 18216,
+          "cache_creation_input_tokens": 549,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 549,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 10
+    }
+  },
+  "sourceToolAssistantUUID": "6a27766b-7c12-402d-b484-de5640275fc3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-27T17:53:25.526Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! I now have comprehensive research on all the critical issues. Let me synthesize the findings and produce the revised research idea.
+
+Key findings from the research:
+
+### MATH-VF (arxiv 2505.20869)
+- Step-wise formal verification using Z3/SymPy at test time
+- Uses "SimpleMath" formal language, Fitch-style proofs
+- Achieves 74.1% F1 on ProcessBench (training-free) — 4.2 points below trained PRM (78.3) but lower variance
+- **NOT a PRM** — produces binary correct/incorrect, no soft scores, no reward signals for RL
+
+
+- No explicit semantic routing, ~10% formalization failure rate, and no coverage fallback or step effectiveness analysis
+
+### VERGE (arxiv 2601.20055)
+- Decomposes atomic claims and autoformalize them into SMT-LIB2 (QF_UF, QF_LIA) with explicit semantic routing across 6 claim types
+- Uses MCS for error localization and achieves 18.7% average improvement on logic benchmarks
+- **NOT a PRM** — inference-time only with no reward signals for training
+- Quantifier-free restriction limits expressiveness and hasn't been evaluated on math benchmarks like MATH or GSM8K
+
+### NLI for Math
+- Standard NLI models trained on SNLI/MNLI fail on mathematical text, with MATHENTAIL only reaching 62.2% accuracy
+- Better approaches use symbolic heuristics like variable overlap and AST matching, premise selection models, or NLI as a contradiction filter rather than entailment confirmation
+- A hybrid strategy combining symbolic preprocessing, embedding similarity, and NLI contradiction filtering works better than relying on NLI alone
+
+### Score Aggregation
+- Pure product scoring is fragile, so threshold gates with weighted geometric means are preferred
+- ArmoRM uses dynamic weights via gating networks, while Verifiable Composite Rewards applies additive scoring with penalty terms and veto layers
+- The most effective approach uses a two-tier system: hard minimum thresholds as gates, then weighted geometric mean for final scoring
+
+### Deadlines
+- ARR August 2026 is confirmed for August 3, 2026
+- AAAI 2027 has abstract due July 21 and full paper due July 28
+- ICLR 2027 hasn't announced dates yet but is projected for September 2026
+
+Now I'm realizing the reviewer actually has a point—MATH-VF and VERGE both do perform formal verification at test time using Z3/SymPy and SMT solvers respectively, so my claim that no existing work does this is wrong. The real distinction is that neither of these produces learnable reward signals suitable for RL training.
+
+The actual gap is integrating formal verification into a trainable PRM that can provide relevance and coverage guarantees. MATH-VF gives binary outputs rather than continuous rewards, FoVer only operates at training time, GenPRM generates rewards at test time but without formal grounding, and VERGE focuses on logic and commonsense rather than mathematical reasoning. What RV-GenPRM uniquely does is embed formal test-time verification directly into a trainable PRM with relevance validation built in.
+
+For the revised relevance gate, I should move beyond just NLI and use a hybrid approach combining symbolic relevance checks like variable and operation overlap analysis with other methods.
+
+Updating the scoring mechanism to use threshold-gated weighted geometric means instead of multiplicative products, where each gate has hard minimum thresholds that act as vetoes, and then neural plausibility becomes the primary signal once gates are passed.
+
+The coverage metric should shift from a hard 50% threshold to a soft signal calibrated empirically on a MATH subset pilot study.
+
+The ARR deadline is August 3, 2026, and this tighter timeline means I need to reassess resource allocation.
+
+Constructing the complete revised JSON now...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8e0242f-17ad-4119-a541-094d0b5c7686",
+  "isSidechain": false,
+  "requestId": "req_011CbTVxoapJJRsH3ACrLhhC",
+  "type": "assistant",
+  "uuid": "9fa36869-5062-4b70-b45b-ada1046d2ff0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DrjzEVQpb68z9rA8jRnjXD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6508,
+      "cache_creation_input_tokens": 7433,
+      "cache_read_input_tokens": 20123,
+      "output_tokens": 1559,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7433,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 6508,
+          "output_tokens": 1559,
+          "cache_read_input_tokens": 20123,
+          "cache_creation_input_tokens": 7433,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7433
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-27T17:53:25.892Z_
+
+Now I have comprehensive research on all issues. Let me synthesize everything and produce the complete revised idea.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9fa36869-5062-4b70-b45b-ada1046d2ff0",
+  "isSidechain": false,
+  "requestId": "req_011CbTVxoapJJRsH3ACrLhhC",
+  "type": "assistant",
+  "uuid": "13487bd1-dac7-4627-895c-41fd10cb71b6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DrjzEVQpb68z9rA8jRnjXD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6508,
+      "cache_creation_input_tokens": 7433,
+      "cache_read_input_tokens": 20123,
+      "output_tokens": 1559,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7433,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 6508,
+          "output_tokens": 1559,
+          "cache_read_input_tokens": 20123,
+          "cache_creation_input_tokens": 7433,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7433
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-27T17:53:30.655Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01EX8Aze3DQiTCMC4ABB5KKV`</summary>
+
+```json
+{
+  "description": "Search for recent related work",
+  "prompt": "I need to do a quick search for any very recent papers (2026) that combine formal verification with process reward models for RL training. This is to make sure we're not missing anything else in the landscape.\n\nPlease search for:\n1. \"formal verification process reward model RL training 2026\"\n2. \"PRM formal grounding reward hacking 2026\"  \n3. \"step-level reward formal verification mathematical reasoning\"\n4. \"MATH-VF PRM\" or \"MATH-VF reward model\" to see if anyone has extended MATH-VF into a PRM\n5. \"VERGE reward model\" or \"VERGE RL training\"\n\nI just need a brief report (200 words) on whether any paper has combined formal test-time verification with PRM training/reward signals. This is the specific novelty gap we're claiming.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13487bd1-dac7-4627-895c-41fd10cb71b6",
+  "isSidechain": false,
+  "requestId": "req_011CbTVxoapJJRsH3ACrLhhC",
+  "type": "assistant",
+  "uuid": "d3cd591b-0fb1-4da8-a174-8ff0d2493862",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DrjzEVQpb68z9rA8jRnjXD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6508,
+      "cache_creation_input_tokens": 7433,
+      "cache_read_input_tokens": 20123,
+      "output_tokens": 1559,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7433,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 6508,
+          "output_tokens": 1559,
+          "cache_read_input_tokens": 20123,
+          "cache_creation_input_tokens": 7433,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7433
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"revision_notes\": {     \"issue_1_genprm_code_execution\": \"ADDRESSED. Deep readin…",
+  "leafUuid": "d3cd591b-0fb1-4da8-a174-8ff0d2493862",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise formal verification PRM novelty and gates",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf"
+}
+```
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-27T17:54:02.976Z_
+
+<details><summary>↩ Tool result · `toolu_01EX8Aze3DQiTCMC4ABB5KKV`</summary>
+
+```text
+Here is the brief report:
+
+---
+
+**Landscape scan: Formal verification + PRM for RL training**
+
+The closest existing work is **FoVer** (Training Step-Level Reasoning Verifiers with Formal Verification Tools), which uses Z3 and Isabelle to auto-annotate step-level error labels and then trains a PRM on that data. This is the most direct overlap with the novelty gap you are claiming -- it explicitly combines formal verification tools with PRM training. However, FoVer uses formal verification to *generate training labels for a PRM*, not to supply a live reward signal during RL training itself.
+
+No paper was found that uses formal test-time verification (e.g., Lean/Isabelle checking at inference) as a direct, online reward signal within an RL training loop for PRMs. The **Safe** framework does step-aware formal verification via Lean 4 but applies it at inference for filtering, not as a training reward. **MATH-VF** has not been extended into a PRM in any indexed work. No results appeared for **VERGE** as a named system. The broader RLVR literature (DeepSeek-R1, etc.) uses outcome-level verifiable rewards (binary correct/incorrect), not step-level formally grounded process rewards.
+
+**Bottom line:** FoVer is the paper you most need to differentiate from. The specific gap -- using formal verification as a *live process-level reward signal during RL training* rather than as an offline label-generation step -- appears to remain open.
+
+---
+
+Sources:
+- [FoVer: Training Step-Level Reasoning Verifiers with Formal Verification Tools (Moonlight review)](https://www.themoonlight.io/en/review/training-step-level-reasoning-verifiers-with-formal-verification-tools)
+- [FoVer on Hugging Face Papers](https://huggingface.co/papers/2505.15960)
+- [FoVer on ResearchGate](https://www.researchgate.net/publication/391990893_Training_Step-Level_Reasoning_Verifiers_with_Formal_Verification_Tools)
+- [Safe: Step-aware Formal Verification (arXiv)](https://arxiv.org/abs/2506.04592)
+- [Process-Verified RL for Theorem Proving via Lean (OpenReview)](https://openreview.net/forum?id=P00k4DFaXF)
+- [Reward Hacking in the Era of Large Models (arXiv 2026)](https://arxiv.org/abs/2604.13602)
+- [RLVR Explained (Promptfoo)](https://www.promptfoo.dev/blog/rlvr-explained/)
+- [RLFR: RL from Formally-Defined Rewards for Code Generation](https://www.haladir.com/research/rlfr)
+
+agentId: a0eb3220d9592ddf7 (use SendMessage with to: 'a0eb3220d9592ddf7' to continue this agent)
+&lt;usage>total_tokens: 14402
+tool_uses: 6
+duration_ms: 32315&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d3cd591b-0fb1-4da8-a174-8ff0d2493862",
+  "isSidechain": false,
+  "promptId": "8d251980-9caf-43e4-a631-55b1b931b61b",
+  "type": "user",
+  "uuid": "b1cfc9e8-6ced-4a3f-a239-3bd43ce10db4",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to do a quick search for any very recent papers (2026) that combine formal verification with process reward models for RL training. This is to make sure we're not missing anything else in the landscape.\n\nPlease search for:\n1. \"formal verification process reward model RL training 2026\"\n2. \"PRM formal grounding reward hacking 2026\"  \n3. \"step-level reward formal verification mathematical reasoning\"\n4. \"MATH-VF PRM\" or \"MATH-VF reward model\" to see if anyone has extended MATH-VF into a PRM\n5. \"VERGE reward model\" or \"VERGE RL training\"\n\nI just need a brief report (200 words) on whether any paper has combined formal test-time verification with PRM training/reward signals. This is the specific novelty gap we're claiming.",
+    "agentId": "a0eb3220d9592ddf7",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is the brief report:\n\n---\n\n**Landscape scan: Formal verification + PRM for RL training**\n\nThe closest existing work is **FoVer** (Training Step-Level Reasoning Verifiers with Formal Verification Tools), which uses Z3 and Isabelle to auto-annotate step-level error labels and then trains a PRM on that data. This is the most direct overlap with the novelty gap you are claiming -- it explicitly combines formal verification tools with PRM training. However, FoVer uses formal verification to *generate training labels for a PRM*, not to supply a live reward signal during RL training itself.\n\nNo paper was found that uses formal test-time verification (e.g., Lean/Isabelle checking at inference) as a direct, online reward signal within an RL training loop for PRMs. The **Safe** framework does step-aware formal verification via Lean 4 but applies it at inference for filtering, not as a training reward. **MATH-VF** has not been extended into a PRM in any indexed work. No results appeared for **VERGE** as a named system. The broader RLVR literature (DeepSeek-R1, etc.) uses outcome-level verifiable rewards (binary correct/incorrect), not step-level formally grounded process rewards.\n\n**Bottom line:** FoVer is the paper you most need to differentiate from. The specific gap -- using formal verification as a *live process-level reward signal during RL training* rather than as an offline label-generation step -- appears to remain open.\n\n---\n\nSources:\n- [FoVer: Training Step-Level Reasoning Verifiers with Formal Verification Tools (Moonlight review)](https://www.themoonlight.io/en/review/training-step-level-reasoning-verifiers-with-formal-verification-tools)\n- [FoVer on Hugging Face Papers](https://huggingface.co/papers/2505.15960)\n- [FoVer on ResearchGate](https://www.researchgate.net/publication/391990893_Training_Step-Level_Reasoning_Verifiers_with_Formal_Verification_Tools)\n- [Safe: Step-aware Formal Verification (arXiv)](https://arxiv.org/abs/2506.04592)\n- [Process-Verified RL for Theorem Proving via Lean (OpenReview)](https://openreview.net/forum?id=P00k4DFaXF)\n- [Reward Hacking in the Era of Large Models (arXiv 2026)](https://arxiv.org/abs/2604.13602)\n- [RLVR Explained (Promptfoo)](https://www.promptfoo.dev/blog/rlvr-explained/)\n- [RLFR: RL from Formally-Defined Rewards for Code Generation](https://www.haladir.com/research/rlfr)"
+      }
+    ],
+    "totalDurationMs": 32315,
+    "totalTokens": 14402,
+    "totalToolUseCount": 6,
+    "usage": {
+      "input_tokens": 826,
+      "cache_creation_input_tokens": 3323,
+      "cache_read_input_tokens": 9566,
+      "output_tokens": 687,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3323
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 826,
+          "output_tokens": 687,
+          "cache_read_input_tokens": 9566,
+          "cache_creation_input_tokens": 3323,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3323,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 6
+    }
+  },
+  "sourceToolAssistantUUID": "d3cd591b-0fb1-4da8-a174-8ff0d2493862",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34 · 2026-05-27T17:54:02.989Z_
+
+```json
+{
+  "parentUuid": "b1cfc9e8-6ced-4a3f-a239-3bd43ce10db4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "a088aa78-1fc5-4fae-9c2f-36762e29a8ad",
+  "timestamp": "2026-05-27T17:54:02.989Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-27T17:54:12.679Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the research I need. Let me synthesize everything and produce the complete revised JSON.
+
+Key changes needed:
+
+1. **MATH-VF and VERGE added to landscape** — fundamentally reframe novelty claim
+2. **Gate 2 redesigned** — from NLI to hybrid symbolic relevance
+3. **Scoring redesigned** — from product to threshold-gated weighted geometric mean
+4. **Coverage threshold** — from hard 50% to soft signal with empirical calibration
+5. **ARR deadline corrected** — August 3, 2026
+
+
+6. **Timeline adjusted** for tighter deadline
+
+This is a major revision. The core novelty shift is that RV-GenPRM uniquely combines formal verification as a live process-level reward signal during RL training—MATH-VF only does binary test-time verification, VERGE targets logic and commonsense rather than math, FoVer uses formal verification only for offline training data, and GenPRM produces generative rewards without formal grounding. So RV-GenPRM's distinction is embedding formal verification with relevance guarantees directly into the reward loop.
+
+Writing the complete JSON now...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a088aa78-1fc5-4fae-9c2f-36762e29a8ad",
+  "isSidechain": false,
+  "requestId": "req_011CbTW4DKTvCHsPtmmZZTF8",
+  "type": "assistant",
+  "uuid": "ba8d176c-3cc6-4fb3-8042-0c038ed33f77",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XkVRdaMz2rz18AwLwkHLtk",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 8933,
+      "cache_read_input_tokens": 27556,
+      "output_tokens": 7632,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 7632,
+          "cache_read_input_tokens": 27556,
+          "cache_creation_input_tokens": 8933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-27T17:56:48.766Z_
+
+Now I have all the research needed. Let me synthesize everything into the complete revised idea.
+
+```json
+{
+  "change_type": "major",
+  "revision_notes": {
+    "issue_1_math_vf": "ADDRESSED via deep reading of MATH-VF (arxiv 2505.20869). MATH-VF formalizes reasoning steps into SimpleMath (Fitch-style proofs with T_i ⊢ Q_i judgments) and verifies via Z3/SymPy at test time, achieving 74.1% F1 on ProcessBench (training-free). CRITICAL DISTINCTION: MATH-VF produces binary correct/incorrect judgments — no soft scores, no reward signals, no pathway to RL training. It also has no explicit semantic routing (LLM-decided tool selection), ~10% formalization failure with no fallback, and cannot assess step effectiveness (correct but irrelevant steps pass). Added to landscape and used to fundamentally reframe novelty: the gap is NOT 'no formal verification at test time' but 'no integration of formal verification into a trainable PRM with live reward signals and relevance guarantees.'",
+    "issue_2_verge": "ADDRESSED via deep reading of VERGE (arxiv 2601.20055). VERGE decomposes LLM outputs into atomic claims, autoformalizes into SMT-LIB2 (QF_UF, QF_LIA), and verifies via Z3 with explicit semantic routing (6 claim types → SMT or soft verifier) and MCS-based error localization. Achieves 18.7% average improvement on logic benchmarks (FOLIO, ProofWriter, ZebraLogic, AR-LSAT, BBEH, HLE). CRITICAL DISTINCTION: VERGE is inference-time only, produces heuristic scores (1.0/0.9/0.7/0.0 hand-tuned weights), no learnable reward signals, restricted to quantifier-free logic, and not evaluated on math benchmarks (MATH, GSM8K). Added to landscape. Its semantic routing and MCS ideas are acknowledged as relevant architectural precedents.",
+    "issue_3_nli_gate": "ADDRESSED via major redesign. Research confirms standard NLI models are unreliable on mathematical content: MATHENTAIL achieves only 62.2% accuracy; SciNLI shows even scientific NL is harder than standard NLI; no MathNLI dataset exists. SOLUTION: Replaced Gate 2 entirely. New design is a hybrid symbolic relevance gate: (1) variable/operation overlap analysis via AST extraction (fast, interpretable), (2) expression embedding similarity using math-aware encoder fine-tuned on FoVer step-anchor pairs (inspired by DeepMath premise selection and NaturalProofs retrieval), (3) NLI contradiction filter only (flagging contradictions between anchor and step, which is more reliable than positive entailment per ERCP findings). This three-layer hybrid is grounded in the premise selection literature (DeepMath, NaturalProofs) rather than assuming NLI transfer.",
+    "issue_4_product_score": "ADDRESSED via complete scoring redesign. Research on multi-criteria aggregation (ArmoRM, Verifiable Composite Rewards, Coste et al. reward ensembles) confirms multiplicative product is fragile. SOLUTION: Replaced with threshold-gated weighted geometric mean. Each gate has a hard minimum threshold (veto below floor); passing scores are aggregated via weighted geometric mean S = Π(s_i^{w_i}). This prevents single-factor collapse while still requiring all dimensions to exceed a minimum bar. Weights are learnable via a lightweight gating network conditioned on step context (inspired by ArmoRM's MoE gating). Added score standardization to ensure comparable scales across heterogeneous signals.",
+    "issue_5_coverage_threshold": "ADDRESSED. Removed the hard 50% threshold. Coverage is now a soft signal: a continuous score computed as the fraction of mathematical symbols/operations in the reasoning step that are referenced by anchors, fed into the weighted geometric mean with a learned weight. The minimum threshold for the coverage gate is set conservatively (≥0.15, i.e., anchors must touch at least some mathematical content) rather than an arbitrary 50%. The exact weight and threshold will be calibrated via a pilot study on 500 MATH problems before full training.",
+    "issue_6_arr_deadline": "ADDRESSED. ARR August 2026 deadline confirmed as August 3, 2026 from official aclrollingreview.org. Timeline adjusted: AAAI 2027 (July 21/28) is primary target at 8 weeks out; ARR August 2026 (August 3) is stretch target at 10 weeks. ICLR 2027 not yet announced, projected September 2026."
+  },
+  "title": "Formally Grounded Generative PRMs: Bridging Test-Time Verification and Trainable Reward Signals Against Reward Hacking",
+  "core_problem": "Current PRMs — including generative variants with optional code execution (GenPRM) — remain vulnerable to reward hacking: 43% of RL reward gains are attributable to stylistic shortcuts rather than genuine reasoning improvements (Reward Under Attack, 2026). Meanwhile, formal verification systems like MATH-VF and VERGE can verify reasoning steps at test time using Z3/SymPy/SMT solvers, but they produce binary judgments or heuristic scores — not learnable reward signals that can supervise RL training. FoVer bridges formal verification to PRM training, but only as an offline label-generation step, not as a live verification signal. The field thus has a three-way disconnect: (a) PRMs that produce trainable rewards but lack formal grounding, (b) formal verification systems that provide ground-truth checks but no reward signals, and (c) offline formal-to-PRM pipelines that cannot operate at test time. Can we close this triangle — producing formally grounded, relevance-validated reward signals at both training and test time?",
+  "opportunity": "Three parallel developments have created the components but no one has assembled the full system: (1) MATH-VF demonstrated that step-wise formal verification via Z3/SymPy is feasible at test time (74.1% F1 on ProcessBench, training-free) — but it produces binary outputs with no soft scores, no coverage fallback when formalization fails (~10% of steps), and no pathway to RL training signals. (2) FoVer showed formal verification can generate PRM training data (80K labels via Z3/Isabelle) — but only as an offline pipeline, not as a live reward signal. (3) GenPRM proved generative PRMs can produce rich verification rationales with optional code execution — but its checks are opportunistic, ad-hoc, and unvalidated for relevance. VERGE added semantic routing and error localization via MCS for atomic claim verification — but targets logic/commonsense benchmarks, not mathematical PRMs, and uses hand-tuned heuristic scores. The opportunity is to unify these: embed MATH-VF-style formal step verification into a generative PRM training loop, where formal check results serve as live reward signals for GRPO, and add relevance validation to ensure anchors are substantively connected to the reasoning content — something neither MATH-VF nor VERGE attempts.",
+  "landscape": "MATH-VF (arxiv 2505.20869, May 2025) performs step-wise formal verification of LLM math solutions using Z3/SymPy at test time via a SimpleMath formal language with Fitch-style proofs (T_i ⊢ Q_i judgments); achieves 74.1% F1 on ProcessBench (training-free) with lower variance than trained PRMs (σ=0.029 vs 0.062), but produces only binary correct/incorrect judgments — no soft scores, no reward signals for RL, no formalization fallback, and no relevance validation. VERGE (arxiv 2601.20055, Jan 2026) decomposes LLM outputs into atomic claims, autoformalizes into QF_UF/QF_LIA SMT-LIB2, and verifies via Z3 with explicit semantic routing across 6 claim types and MCS-based error localization; achieves 18.7% average improvement on logic benchmarks but uses hand-tuned heuristic scores (not learnable rewards), is restricted to quantifier-free logic, and is not evaluated on math reasoning benchmarks. GenPRM (AAAI 2026) achieves SOTA on ProcessBench with 1.5B parameters via generative verification CoT with optional Python code execution (~2-point gain over CoT-only), but code checks are optional, ad-hoc, and unvalidated for relevance. ThinkPRM uses 1% of PRM800K labels while outperforming discriminative PRMs by 8% on GPQA-Diamond. RM-R1 (ICLR 2026) generates chain-of-rubrics before scoring but rationales are not formally grounded. FoVer (ACL 2026 Findings) synthesizes PRM training data via Z3/Isabelle formal verification (80K step labels) but operates only at training time — Isabelle verification took weeks on multiple servers. CodePRM (ACL 2025 Findings) uses code execution feedback for code-generation PRMs but requires complete runnable code and targets a different domain. TIM-PRM (arXiv 2511.22998) integrates tool queries for multimodal visual grounding, not mathematical verification. Reward Under Attack (Feb 2026) demonstrated >0.9 PRM rewards with <4% accuracy on AIME, 43% of gains from stylistic shortcuts. APRM proposes adversarial training (+5.3% OOD) but doesn't change the verification paradigm. AgentV-RL (Apr 2026) introduces multi-turn agentic verification but distills into a single LLM without per-claim auditability. T³RL uses code execution for majority-vote verification. PRoSFI generates structured formal intermediaries for training-time reward shaping. FormalRewardBench (May 2026) benchmarks reward models on formal proofs, finding frontier LLMs achieve only 59.8%. VPRMs use deterministic rule-based verifiers but are domain-specific and non-generative. ArmoRM (EMNLP 2024) demonstrates multi-objective reward modeling via MoE gating for dynamic weight adaptation — relevant to our scoring architecture. Gap: no existing work integrates step-wise formal verification into a trainable generative PRM with live reward signals and relevance guarantees. MATH-VF verifies steps but cannot train PRMs; FoVer trains PRMs but only offline; GenPRM trains generatively but without formal grounding; VERGE verifies claims but produces no learnable rewards and ignores math benchmarks.",
+  "inspired_by": "Triangulating three disconnected capabilities: MATH-VF's test-time formal verification + FoVer's formal-to-PRM training pipeline + GenPRM's generative reward signals — unified by embedding formal checks as live reward signals in a GRPO training loop + pattern 'Defense in depth' from VERGE's semantic routing and ArmoRM's multi-objective gating + concrete vulnerability evidence from Reward Under Attack (43% stylistic exploitation) + premise selection literature (DeepMath, NaturalProofs) for relevance validation instead of unreliable NLI transfer",
+  "approach": "Train a generative PRM (Qwen3-8B base) where each verification CoT step must produce formally checkable anchor claims that pass a three-gate validation pipeline, with gate results serving as live reward signals during GRPO training:\n\n**Gate 1 — Formal Correctness (execution-based):** Each anchor claim is executed via the appropriate backend: algebraic/arithmetic assertions through SymPy, numerical computations in a sandboxed Python interpreter, and logical entailments via Z3 SMT solver. We adopt MATH-VF's insight that step-wise Z3/SymPy verification is feasible at test time (1-50ms per query) but extend it from binary judgments to soft confidence scores by measuring verification coverage (fraction of anchor sub-claims that verify successfully). Unlike MATH-VF, we include a structured fallback: when formalization fails, the step is routed to Tier 2 (code execution) or Tier 3 (neural-only with penalty). Isabelle excluded from test-time (FoVer's throughput data: 5-30s/goal); retained for offline training data synthesis.\n\n**Gate 2 — Symbolic Relevance (hybrid, replaces NLI):** Research shows standard NLI models are unreliable on mathematical content (MATHENTAIL: 62.2% accuracy; SciNLI shows scientific text degrades NLI by >10%). We replace the NLI gate with a three-layer hybrid relevance check inspired by the premise selection literature:\n  (a) **Variable/operation overlap:** AST-level extraction of the mathematical symbols, variables, and operations from both the reasoning step and anchor claims; compute Jaccard similarity of symbol sets. Fast (<1ms), interpretable, catches obvious mismatches.\n  (b) **Math-aware embedding similarity:** A lightweight encoder (DistilBERT fine-tuned on FoVer-verified step-anchor pairs + NaturalProofs premise-theorem pairs) computes cosine similarity between step and anchor embeddings. Captures semantic relatedness beyond surface symbol overlap.\n  (c) **Contradiction filter:** A DeBERTa NLI model used only to flag contradictions (not confirm entailment) between anchor and step — the more reliable NLI use case per ERCP findings. Anchors flagged as contradictory are vetoed regardless of other signals.\nThe relevance score is the geometric mean of (a) and (b), with (c) as a binary veto.\n\n**Gate 3 — Symbolic Coverage (soft signal):** AST-level analysis extracts the variable set and operation set from the reasoning step; coverage is computed as the fraction of these symbols referenced by the anchor claims. Unlike the previous hard 50% threshold (which was arbitrary), coverage is now a continuous score fed into the aggregation with a learned weight. A conservative minimum threshold of 0.15 (anchors must reference at least some mathematical content) serves as a veto, while the exact contribution to the final score is learned. Threshold and weight will be calibrated via a pilot study on 500 MATH problems.\n\n**Scoring — Threshold-Gated Weighted Geometric Mean (replaces multiplicative product):** Each gate must exceed a minimum threshold (formal correctness ≥ 0.2, relevance ≥ 0.25, coverage ≥ 0.15); if any gate is below its floor, the step is vetoed (score = 0). For passing steps, the final score is a weighted geometric mean: S = p_neural^{w_1} × formal_rate^{w_2} × relevance^{w_3} × coverage^{w_4}, where weights are learned via a lightweight MLP gating network conditioned on step features (inspired by ArmoRM's MoE approach), ensuring that the aggregation adapts to context — e.g., algebra-heavy steps weight formal correctness higher, while geometry steps weight neural plausibility higher. Score standardization ensures comparable scales across heterogeneous signals. This eliminates the fragility of a raw product while maintaining the property that all dimensions must exceed a minimum bar.\n\n**Tiered Verification with Graceful Degradation:** Tier 1 (Z3/SymPy formal anchoring, ~40-50% of MATH steps — primarily algebra, arithmetic, number theory); Tier 2 (sandboxed code execution for numerical/computational checks, ~15-20%); Tier 3 (neural-only verification with a learned coverage penalty, ~30-40% — geometry, combinatorics, open-ended reasoning). MATH-VF's ~10% formalization failure rate motivates the fallback: we explicitly route failures rather than silently skipping them. VERGE's semantic routing taxonomy (mathematical → SMT, computational → code, informal → neural) inspires our tiered routing, though we use a learned router rather than VERGE's LLM-based classifier.\n\n**Training — Live Formal Rewards via GRPO:** The key novelty vs. FoVer (offline labels) and MATH-VF (no rewards): gate results serve as live reward signals during GRPO training. The multi-objective reward combines: (a) anchor coverage reward (incentivizing more checkable claims per step), (b) relevance reward (penalizing low-relevance anchors via the hybrid Gate 2 score), (c) formal correctness reward (Z3/SymPy pass rate), and (d) standard outcome correctness reward. Z3's throughput (1-50ms per query, millions/day) makes online formal reward computation feasible — unlike Isabelle, which is restricted to offline FoVer-style data synthesis. This closes the triangle: formal verification operates at both training time (as live GRPO rewards) and test time (as auditable verification scores).\n\n**Auditable Output:** Every PRM score ships with a structured audit trace: per-step anchor claims, formal check results, relevance scores (symbol overlap + embedding similarity + contradiction flag), coverage scores, gate pass/fail status, and the gating network's learned weights for that step. This enables downstream systems to reject scores with low anchor quality and provides interpretability absent from MATH-VF's binary output and VERGE's heuristic aggregation.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "320 H100-equivalent",
+      "timeline": "9-10 weeks",
+      "estimated_gpu_cost": "$640 (H100 spot at ~$2/hr)",
+      "notes": "Reduced from 11-13 weeks to fit AAAI deadline. Savings from dropping NLI fine-tuning (replaced by lighter symbolic relevance). Additional cost: math-aware encoder fine-tuning (~15 GPU-hours), pilot study for coverage calibration (~5 GPU-hours)."
+    },
+    "human_in_loop": {
+      "gpu_hours": "230 H100-equivalent",
+      "timeline": "7-8 weeks",
+      "claude_api_cost": "$450 (batch-mode rationale distillation, anchor template design, gating network prototyping, pilot study analysis via Sonnet 4.6)",
+      "estimated_gpu_cost": "$460"
+    },
+    "auto_research": {
+      "gpu_hours": "500 H100-equivalent",
+      "timeline": "4-5 weeks",
+      "claude_api_cost": "$850 (pipeline orchestration, automated ablation analysis across gates, scoring calibration, paper drafting)",
+      "estimated_gpu_cost": "$1,000",
+      "speed_bottleneck": "Z3 SMT solving (1-50ms/query) is fast for online GRPO rewards; hybrid relevance gate adds ~5ms per anchor (AST extraction + embedding lookup + contradiction check); total overhead ~2-4x vs. pure neural verification during training. Gating network training is lightweight (<10 GPU-hours). FoVer Isabelle synthesis for static training data: offline, ~2 weeks on 8 servers."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (abstract Jul 21, full paper Jul 28, 2026 — confirmed from official CFP, 8 weeks from today)",
+    "ARR August 2026 cycle → EACL 2027 (submission Aug 3, 2026 — confirmed from aclrollingreview.org, 10 weeks from today)",
+    "ICLR 2027 (projected abstract ~Sep 19, full paper ~Sep 24, 2026 — not yet officially announced; projected from ICLR 2026 pattern)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "MATH-VF: Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving (arxiv 2505.20869, May 2025) — step-wise Z3/SymPy verification at test time, 74.1% F1 on ProcessBench (training-free), binary outputs only, no reward signals",
+    "VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning (arxiv 2601.20055, Jan 2026) — atomic claim decomposition + SMT autoformalization + semantic routing (6 types) + MCS error localization, 18.7% avg improvement on logic benchmarks, heuristic scores not learnable",
+    "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026) — optional code execution at test time, 1.5B outperforms GPT-4o on ProcessBench",
+    "Process Reward Models That Think / ThinkPRM (arXiv 2025, under review) — 1% labels, thinking-based generative verification",
+    "Efficient PRM Training Data Synthesis via Formal Verification / FoVer (ACL 2026 Findings) — Z3/Isabelle for offline training data, 80K labels, weeks of Isabelle compute",
+    "Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models (arXiv 2026) — >0.9 PRM rewards with <4% accuracy, 43% stylistic shortcuts",
+    "Adversarial Training for Process Reward Models / APRM (arXiv 2025) — +5.3% OOD via adversarial training",
+    "CodePRM: Execution Feedback-enhanced Process Reward Model for Code Generation (ACL 2025 Findings) — code execution feedback in PRM for code generation domain",
+    "TIM-PRM: Verifying Multimodal Reasoning with Tool-Integrated PRM (arXiv 2511.22998) — tool-integrated PRM for visual grounding",
+    "RM-R1: Reward Modeling as Reasoning (ICLR 2026) — chain-of-rubrics, 2-stage training",
+    "AgentV-RL: Scaling Reward Modeling with Agentic Verifier (arXiv 2026) — multi-turn agentic verification, 25.2% gains",
+    "ArmoRM: Interpretable Preferences via Multi-Objective Reward Modeling and Mixture-of-Experts (EMNLP 2024) — dynamic MoE gating for multi-dimensional reward aggregation",
+    "Verifiable Composite Rewards for Reward Hacking Mitigation (arXiv 2509.15557) — additive composite rewards with veto layers and score standardization",
+    "Reward Model Ensembles Help Mitigate Overoptimization (Coste et al., ICLR 2023) — worst-case optimization across reward ensembles",
+    "DeepMath: Deep Sequence Models for Premise Selection (NeurIPS 2016) — neural premise selection for theorem proving, architecturally relevant to relevance gate",
+    "NaturalProofs: Mathematical Theorem Proving in Natural Language (Welleck et al., NeurIPS 2021) — mathematical reference retrieval, relevant to relevance encoder training data",
+    "PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries (arXiv 2603.29500)",
+    "FormalRewardBench: A Benchmark for Formal Theorem Proving Reward Models (arXiv 2605.10141) — frontier LLMs achieve 59.8%",
+    "FormalMATH: Benchmarking Formal Mathematical Reasoning (arXiv 2505.02735)",
+    "Tool Verification for Test-Time RL / T³RL (arXiv 2026)",
+    "ProcessBench: Identifying Process Errors in Mathematical Reasoning (ACL 2025)",
+    "Beyond Outcome Verification: Verifiable Process Reward Models / VPRMs (arXiv 2026)",
+    "Grounding the Score: Explicit Premise Verification for Visual Process Reward Models (arXiv 2603.16253)",
+    "ERCP: Self-Correcting LLM Reasoning Using NLI-Based Neuro-Symbolic Constraints (2025) — DeBERTa NLI as contradiction detector in reasoning chains",
+    "SciNLI: A Corpus for Natural Language Inference on Scientific Text (ACL 2022) — scientific NLI harder than standard, 78.18% Macro F1"
+  ],
+  "description": "We propose Formally Grounded Generative PRMs (FG-GenPRM), a framework that bridges the three-way disconnect between formal verification systems (MATH-VF, VERGE), offline formal-to-PRM pipelines (FoVer), and generative PRMs (GenPRM) — embedding step-wise formal verification as live reward signals in a trainable PRM with relevance guarantees. Existing formal verification systems can check reasoning steps at test time (MATH-VF achieves 74.1% F1 on ProcessBench via Z3/SymPy) but produce only binary judgments with no pathway to RL training. FoVer bridges formal verification to PRM training but only as offline label generation. GenPRM produces learnable generative rewards but without formal grounding. FG-GenPRM closes this triangle: a generative PRM (Qwen3-8B) where each verification step produces formally checkable anchor claims validated through three gates whose results serve as live GRPO reward signals.\n\nGate 1 (Formal Correctness) executes anchors via Z3/SymPy/sandboxed Python, extending MATH-VF's binary output to soft coverage scores with structured fallback for formalization failures. Gate 2 (Symbolic Relevance) replaces the previously proposed NLI classifier — which research shows is unreliable on mathematical content (MATHENTAIL: 62.2% accuracy) — with a hybrid approach inspired by the premise selection literature: (a) AST-level variable/operation overlap, (b) math-aware embedding similarity from an encoder fine-tuned on FoVer step-anchor pairs, (c) DeBERTa as a contradiction-only filter (the more reliable NLI use per ERCP). Gate 3 (Symbolic Coverage) computes the fraction of mathematical symbols referenced by anchors as a continuous soft signal with a conservative minimum threshold (≥0.15), calibrated via pilot study — replacing the arbitrary hard 50% threshold.\n\nScoring uses a threshold-gated weighted geometric mean instead of a fragile multiplicative product: each gate must exceed a minimum floor (veto below), then passing scores are aggregated via S = Π(s_i^{w_i}) with weights learned by a lightweight MLP gating network conditioned on step context (inspired by ArmoRM's MoE approach), adapting aggregation to the mathematical domain of each step. This eliminates single-factor collapse while maintaining multi-dimensional defense.\n\nThe core novelty — live formal rewards for GRPO training — exploits Z3's throughput (1-50ms/query, millions/day) to make online formal reward computation feasible: the GRPO multi-objective reward combines anchor coverage, relevance, formal correctness, and outcome correctness signals. This is infeasible with Isabelle (5-30s/goal) but practical with Z3/SymPy. A tiered architecture provides graceful degradation: Tier 1 (Z3/SymPy formal, ~40-50% of MATH steps), Tier 2 (code execution, ~15-20%), Tier 3 (neural-only with learned penalty, ~30-40%). Every PRM score ships with a structured audit trace of all anchor claims, gate results, and learned gating weights, enabling transparent downstream rejection — providing the interpretability that MATH-VF's binary output and VERGE's heuristic scores lack.",
+  "project_name": "fg_genprm",
+  "source": "web_research"
+}
+```
+
+**Summary of changes (major revision):**
+
+### Fundamental Reframing (Issues 1-2: MATH-VF & VERGE)
+- **Added both papers** to the landscape with detailed analysis from deep reading
+- **Completely reframed the novelty claim**: The gap is no longer "no formal verification at test time" (MATH-VF does that). The gap is the **three-way disconnect**: MATH-VF verifies but produces no reward signals → FoVer produces rewards but only offline → GenPRM produces generative rewards but without formal grounding. FG-GenPRM bridges all three by making formal verification results serve as **live GRPO reward signals**
+- Renamed project from `rv_genprm` to `fg_genprm` to reflect the new framing
+
+### Gate 2 Redesigned (Issue 3: NLI invalidity)
+- **Dropped the NLI entailment gate entirely** — research confirms standard NLI is unreliable on math (MATHENTAIL: 62.2%; SciNLI degrades >10%)
+- **Replaced with hybrid symbolic relevance**: (a) AST variable/operation overlap, (b) math-aware embedding similarity fine-tuned on FoVer pairs + NaturalProofs data, (c) DeBERTa as contradiction-only filter (the reliable NLI use case per ERCP)
+- Grounded in premise selection literature (DeepMath, NaturalProofs)
+
+### Scoring Redesigned (Issue 4: Product fragility)
+- **Replaced multiplicative product** with threshold-gated weighted geometric mean
+- Hard minimum thresholds per gate act as vetos (inspired by Verifiable Composite Rewards)
+- Weights learned via lightweight MLP gating network conditioned on step context (inspired by ArmoRM's MoE)
+- Score standardization across heterogeneous signals
+
+### Coverage Threshold (Issue 5: Arbitrary 50%)
+- **Removed hard 50% threshold** — replaced with continuous soft signal (≥0.15 conservative minimum) calibrated via pilot study on 500 MATH problems
+- Coverage weight in the geometric mean is learned, not fixed
+
+### Deadlines & Timeline (Issue 6)
+- **Corrected ARR August 2026 to August 3** (confirmed from official site)
+- Tightened timeline estimates: 9-10 weeks manual, 7-8 weeks human-in-loop
+- AAAI 2027 primary target (8 weeks), ARR August stretch (10 weeks)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba8d176c-3cc6-4fb3-8042-0c038ed33f77",
+  "isSidechain": false,
+  "requestId": "req_011CbTW4DKTvCHsPtmmZZTF8",
+  "type": "assistant",
+  "uuid": "413a542f-22c5-4093-bf20-9e6a2c94eb82",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XkVRdaMz2rz18AwLwkHLtk",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 8933,
+      "cache_read_input_tokens": 27556,
+      "output_tokens": 7632,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 7632,
+          "cache_read_input_tokens": 27556,
+          "cache_creation_input_tokens": 8933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"revision_notes\": {     \"issue_1_genprm_code_execution\": \"ADDRESSED. Deep readin…",
+  "leafUuid": "413a542f-22c5-4093-bf20-9e6a2c94eb82",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise formal verification PRM novelty and gates",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"revision_notes\": {     \"issue_1_genprm_code_execution\": \"ADDRESSED. Deep readin…",
+  "leafUuid": "413a542f-22c5-4093-bf20-9e6a2c94eb82",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise formal verification PRM novelty and gates",
+  "sessionId": "fb084f80-f924-4de3-8655-efd55a5a6caf"
+}
+```
+
+---

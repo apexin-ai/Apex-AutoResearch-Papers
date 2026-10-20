@@ -1,0 +1,852 @@
+# Research conversation: You are a senior ML research advisor synthesizing a literature review into an actionable research strategy. **Today's da
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-1/c8d8b266-510e-4c99-9abe-dc35de162e07.jsonl`
+- **Structured JSON:** [`a561ce8b85d9db02b75d.json`](../../sessions/a5/a561ce8b85d9db02b75d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-28T05:25:03.008Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T05:25:03.008Z",
+  "sessionId": "c8d8b266-510e-4c99-9abe-dc35de162e07",
+  "content": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.\n\n**Today's date: 2026-05-28 (UTC).**\n\n## Research area: Process Reward Models for Mathematical Reasoning — Step-Level Verification and Credit Assignment\n\n## Paper analyses (18 papers)\n\n[\n  {\n    \"title\": \"Let's Verify Step by Step\",\n    \"venue\": \"ICLR 2024 (poster)\",\n    \"problem_identification\": \"Uesato et al. (2022) had compared process vs. outcome supervision on GSM8K (grade-school math) and found them roughly equivalent — leaving the community with the impression that the expensive step-level labeling wasn't worth it. Lightman et al. identified that this null result was an artifact of insufficient scale along three axes: model capability, dataset difficulty, and supervision volume. By re-running the comparison with GPT-4, the much harder MATH benchmark, and 800K step-level labels, they revealed a gap that was invisible at smaller scale.\",\n    \"key_insight\": \"Outcome supervision forces the reward model to solve a hard credit-assignment problem — given only a final-answer label, it must figure out which intermediate step went wrong. Process supervision sidesteps this entirely by providing the error location directly, and this advantage compounds on harder problems where most model-generated solutions contain errors, making each negative outcome label nearly uninformative. The insight is that the supervision granularity bottleneck only becomes visible when the problems are hard enough that credit assignment genuinely matters.\",\n    \"innovation_type\": \"combination\",\n    \"method_summary\": \"The authors finetune GPT-4 on a math-focused corpus (MathMix) and train it to generate step-by-step solutions. Human labelers annotate each step as positive/negative/neutral, producing the PRM800K dataset (800K step-level labels across 75K solutions to 12K MATH problems). An active learning strategy surfaces 'convincing wrong-answer' solutions — those the current best PRM rates highly despite having an incorrect final answer — to maximize labeler information gain, yielding 2.6× data efficiency. PRMs are trained to predict step correctness at each step boundary, with solution-level scores computed as the product of per-step correctness probabilities. Evaluation uses best-of-N selection: the generator samples N solutions and the reward model picks the highest-scored one. To address confounds in the large-scale comparison (different training set sizes/compositions for ORM vs PRM), they run controlled small-scale ablations using the large PRM as a synthetic labeling oracle for smaller models.\",\n    \"what_makes_it_good\": \"Three things got this paper accepted despite significant reproducibility concerns (GPT-4 base model). First, the empirical result is clean, surprising, and overturns a prior null result (Uesato et al. 2022) — the PRM hits 78.2% vs the ORM's 72.4% and the gap widens with more test-time compute. Second, the PRM800K dataset release is a genuine community contribution that lowers barriers to entry for process supervision research. Third, the experimental design is thoughtful: they anticipated the confound critique (different training sets) and preempted it with small-scale controlled ablations using synthetic supervision, showing the result holds even on identical data.\",\n    \"limitations_acknowledged\": \"The authors explicitly note that all large-scale results depend on GPT-4 and are not reproducible by the community, that the comparison is confounded by different training set sizes/compositions for ORM vs PRM, that the domain is limited to math (generalization to open-ended domains is unknown), and that they do not explore using the PRM for RL training of the generator — only for best-of-N reranking.\",\n    \"open_questions\": [\n      \"Does the process supervision advantage hold for open-ended domains (code generation, essay writing, scientific reasoning) where step correctness is ambiguous and there is no easily checkable final answer?\",\n      \"Can step-level labels be generated automatically (e.g., via Monte Carlo rollouts or model self-verification) rather than requiring expensive human annotation, and would such synthetic process supervision retain the performance advantage?\",\n      \"What happens when PRMs are used not just for best-of-N reranking but as the reward signal in RL training of the generator — does the step-level signal produce better policy optimization than outcome-level rewards?\"\n    ],\n    \"building_blocks\": [\n      \"PRM800K dataset (800K step-level human labels, publicly released)\",\n      \"Best-of-N evaluation protocol for reward model quality\",\n      \"Active learning via 'convincing wrong-answer' solution selection\",\n      \"Product-of-step-probabilities as solution-level scoring function\",\n      \"Large reward model as synthetic oracle for small-scale ablations\",\n      \"MathMix pretraining corpus (1.5B math-focused tokens)\",\n      \"Three-label annotation scheme (positive/negative/neutral) with deferred neutral handling\",\n      \"MATH benchmark (Hendrycks et al. 2021) as evaluation testbed\",\n      \"Step-delimited solution format for parsing individual reasoning steps\"\n    ],\n    \"reviewer_feedback_summary\": \"Ratings were split: 8, 6, 5, 3. The accept-vote reviewer praised the thoroughness and dataset release. The reject-vote reviewer (3/10) argued that dense rewards are a 'well-known RL concept' and the paper lacks novelty beyond scaling. Two middle reviewers flagged reproducibility as the core weakness — GPT-4 dependence means the community cannot verify or build on the large-scale results. All four reviewers questioned generalization beyond math. The meta-reviewer ultimately sided with acceptance, emphasizing that the dataset contribution and the clean empirical reversal of a prior null result justified publication despite reproducibility limitations. Key lesson: releasing a high-quality dataset can tip the scales for an empirical paper that would otherwise be borderline.\",\n    \"relevance_to_seed\": \"This is the foundational paper for our research area — it established the PRM paradigm, provided the primary benchmark dataset (PRM800K), and defined the core evaluation protocol (best-of-N with reward model scoring). Every open question it raises maps directly to active research directions: automating step-level labels (eliminating the human annotation bottleneck), extending PRMs beyond math, using PRMs for RL policy training, and improving credit assignment. The craft lesson is that scaling up a controlled comparison of a known idea (process vs. outcome feedback) on a harder benchmark, while releasing a major dataset, can produce a foundational 1000+ citation paper — the insight was not technically novel but the execution at scale revealed a result that changed the field's assumptions.\"\n  },\n  {\n    \"title\": \"Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations\",\n    \"venue\": \"ACL 2024 (Main Conference, Long Paper)\",\n    \"problem_identification\": \"Prior work on Process Reward Models (PRMs) — most notably Lightman et al. (2023) with PRM800K — demonstrated that step-level verification outperforms outcome-level verification for mathematical reasoning, but the approach was bottlenecked by the need for expensive, skilled human annotators to label each reasoning step as correct or incorrect. The authors identified that this annotation cost was not an inherent requirement of PRMs but an artifact of how step quality was being defined: if you reframe step quality as 'potential to reach the correct answer' rather than 'intrinsic logical correctness,' you can estimate it automatically via Monte Carlo sampling — something the MCTS literature had solved decades ago in a different domain.\",\n    \"key_insight\": \"A reasoning step's quality can be operationalized not as whether it is logically correct in isolation, but as its empirical potential to lead to the correct final answer — estimated by sampling multiple completions from that step and measuring what fraction reach the ground-truth answer. This reframing transforms the annotation problem from one requiring human judgment into one requiring only compute (LLM forward passes + answer matching), making it fully automatable.\",\n    \"innovation_type\": \"combination\",\n    \"method_summary\": \"Math-Shepherd works in two phases. (1) Annotation: For each intermediate step s_i in a candidate solution, a 'completer' LLM generates N independent completions of the remaining reasoning. Step quality is estimated either via Hard Estimation (binary: can any completion reach the correct answer?) or Soft Estimation (frequency: what fraction of completions reach the correct answer?). This yields automatic process-level labels without any human involvement. (2) Training & Application: A PRM is trained on these labels using per-step cross-entropy loss. The PRM is then deployed in two modes — verification (reranking N candidate solutions using the minimum step score as the solution score, optionally combined with self-consistency weighting) and reinforcement learning (step-by-step PPO where the PRM provides rewards at each reasoning step rather than only at the terminal state). The completer model is a fine-tuned LLemma-7B with N=8 completions, trained on MetaMATH to ensure familiarity with the problem distribution.\",\n    \"what_makes_it_good\": \"This paper succeeded because it identified a high-impact bottleneck (human annotation cost for PRMs), proposed a clean and simple solution grounded in well-understood theory (Monte Carlo estimation from MCTS), and validated it with unusually thorough experiments: 8 base models from 7B to 70B, two benchmarks, two application scenarios (verification + RL), extensive ablations on annotation quality/completer ability/data scaling/model size interactions, out-of-distribution evaluation on the Hungarian national exam, and direct comparison with the gold-standard PRM800K. The combination of practical scalability (4x more data than PRM800K at lower cost) with strong empirical results (outperforming human-annotated PRM800K on MATH verification) made the contribution undeniable. The paper also demonstrated that the same reward model improves both test-time compute (verification) and training-time learning (RL), showing breadth of impact.\",\n    \"limitations_acknowledged\": \"The authors explicitly flag two limitations: (1) Computational cost — the completion process requires N forward passes per step per solution, which is resource-intensive though still cheaper than human annotation; they point to speculative decoding and vLLM as mitigations. (2) Annotation noise — automatic labels contain false positives (solutions that reach correct answers via incorrect reasoning), and a comprehensive human-vs-automatic comparison was deferred to future work; however, they note that hybrid human+automatic approaches could combine the best of both.\",\n    \"open_questions\": [\n      \"Can the false-positive problem (correct answer via wrong reasoning) be addressed more directly — e.g., through verification of intermediate values, not just final answers — to improve annotation precision beyond the 86% reported?\",\n      \"How does this approach scale to domains beyond math where ground-truth answers are not easily verifiable (e.g., open-ended reasoning, code generation, scientific argumentation), and what serves as the 'correct answer' signal for Monte Carlo estimation in those settings?\",\n      \"The paper shows that completer quality strongly affects annotation quality, but uses a relatively small completer (LLemma-7B) — what are the returns from using much stronger completers (e.g., GPT-4-class), and is there a point of diminishing returns where the completer is so good that every step looks 'correct'?\",\n      \"Step-by-step PPO outperformed outcome RL, but iterative RL (training the generator, re-annotating with the improved generator, re-training the PRM) was left as future work — does this create a virtuous cycle or does it converge/diverge?\"\n    ],\n    \"building_blocks\": [\n      \"Monte Carlo Tree Search (MCTS) — inspiration for defining step quality as completion potential\",\n      \"Hard Estimation and Soft Estimation — two labeling strategies for automatic process annotation\",\n      \"LLemma-7B as completer model for generating reasoning continuations\",\n      \"MetaMATH dataset for fine-tuning generators and completers\",\n      \"Per-step cross-entropy loss for PRM training (binary classification per step)\",\n      \"Minimum step score as solution-level aggregation for verification\",\n      \"Self-consistency + reward model combination (SC+RM) for weighted majority voting\",\n      \"Step-by-step PPO — distributing rewards at each EOS token within reasoning steps rather than only at response end\",\n      \"GSM8K and MATH benchmarks with best-of-N evaluation protocol (N=256)\",\n      \"HAI-LLM training framework\",\n      \"Hungarian national exam as out-of-distribution evaluation set\"\n    ],\n    \"reviewer_feedback_summary\": \"ACL 2024 reviews are not publicly available on OpenReview or ACL Anthology. However, based on the paper's structure and the commentary ecosystem, we can infer likely reviewer sentiment: Strengths would include the practical impact (eliminating human annotation), the clean MCTS-inspired formulation, the breadth of experiments across model scales, and the strong empirical results exceeding PRM800K. Likely concerns would center on (a) the false-positive noise problem and whether 86% annotation accuracy is sufficient or just happens to work, (b) the computational cost analysis being qualitative rather than quantitative (no wall-clock or FLOPs comparison with human annotation), (c) limited analysis of failure modes — when does Monte Carlo estimation give systematically wrong labels?, and (d) the gap between the open-source models used and the GPT-4-based PRM800K making direct comparison imperfect due to distribution mismatch.\",\n    \"relevance_to_seed\": \"This paper is foundational to our research area — it directly addresses the core challenge of process reward models: how to obtain step-level supervision at scale. The key transferable lesson is that credit assignment for intermediate reasoning steps does not require ground-truth step labels; instead, you can use the model's own generative capacity to estimate step value via Monte Carlo rollouts, converting an annotation problem into a compute problem. Any follow-up work on PRMs for mathematical reasoning must either build upon, improve, or explicitly differentiate from Math-Shepherd's automatic annotation framework — it has effectively set the new baseline for how process supervision data is constructed.\"\n  },\n  {\n    \"title\": \"ReST-MCTS*: LLM Self-Training via Process Reward Guided Tree Search\",\n    \"venue\": \"NeurIPS 2024\",\n    \"problem_identification\": \"The authors identified that existing LLM self-training methods (STaR, RFT, ReST^EM) filter training data using only final-answer correctness, but a correct final answer does NOT imply correct intermediate reasoning — 'false positive' traces with flawed steps poison the fine-tuning set. Meanwhile, process reward models (PRMs) that could catch these errors require expensive per-step human annotations (as in MATH-SHEPHERD), creating a chicken-and-egg problem: you need a good PRM to get good traces, but you need good traces (with step labels) to train a good PRM. They found this gap by observing that tree search algorithms naturally produce implicit step-level supervision signals through rollout statistics, which no prior work had exploited for joint self-training.\",\n    \"key_insight\": \"Tree search rollouts toward known final answers are a FREE source of process-level reward signal: by measuring how many rollouts from a given intermediate step eventually reach the correct answer, you can infer step-level quality without any human annotation — and this inferred signal is good enough to train a PRM that, in turn, guides better tree search, creating a virtuous cycle of mutual improvement between the policy and reward model.\",\n    \"innovation_type\": \"combination\",\n    \"method_summary\": \"ReST-MCTS* defines a 'quality value' v_k for each partial solution that captures both step correctness and distance-to-solution, updated via a weighted reward formula w_sk = ((1 - v_{k-1}) / (m_k + 1)) × (1 - 2r_sk), where m_k is the estimated remaining steps to a correct answer and r_sk is the PRM score. The MCTS* algorithm uses these quality values to select nodes, expand reasoning steps via the policy, perform greedy Monte Carlo rollouts with self-critique, and backpropagate values — all guided by process rewards rather than just outcome rewards. Crucially, after each round of tree search on problems with known answers, the tree structure itself provides training data for the PRM: steps on paths reaching correct answers get positive labels, others get negative labels. The full pipeline iterates: (1) run MCTS* guided by the current PRM to generate reasoning traces, (2) filter correct traces and fine-tune the policy, (3) extract step-level value labels from the search tree and retrain the PRM, (4) repeat. Both models improve each iteration through this mutual bootstrapping.\",\n    \"what_makes_it_good\": \"The paper elegantly solves the PRM data bottleneck — the most expensive part of process reward modeling — by reusing computation that tree search already performs, turning a cost center into a data source. It provides theoretical guarantees (bounded quality values in [0,1]) ensuring training stability, which reviewers at top venues value. The experimental design is thorough: three model backbones (LLaMA-3-8B, Mistral-7B, SciGLM-6B), both in-distribution (MATH, GSM8K) and out-of-distribution (GPQA, SciBench, CEval-Hard) evaluation, head-to-head comparison with the annotation-heavy MATH-SHEPHERD PRM, and search-budget-controlled comparisons showing efficiency gains — this comprehensiveness likely gave reviewers confidence in the claims.\",\n    \"limitations_acknowledged\": \"The authors explicitly note that their method requires ground-truth final answers (inapplicable to open-ended tasks like SWE-Bench or dialogue), generalization to non-math domains (coding, agents) is uncertain, and the value model's scalability and data filtering could be improved. They also suggest online RL algorithms could further enhance joint optimization.\",\n    \"open_questions\": [\n      \"Can the mutual self-training loop be extended to domains without verifiable ground-truth answers — e.g., by using a learned outcome reward model instead of answer matching, and if so, how much does noise in the outcome signal degrade PRM quality?\",\n      \"What is the scaling behavior of this approach: does the virtuous cycle between policy and PRM plateau after a few iterations, and can it be sustained with larger models or more diverse problem sets?\",\n      \"How does the quality of the inferred process rewards compare to human annotations at a fine-grained level — are there systematic biases (e.g., overvaluing steps that happen to be on short paths) that could be corrected?\"\n    ],\n    \"building_blocks\": [\n      \"Monte Carlo Tree Search (MCTS) adapted for LLM reasoning (MCTS*)\",\n      \"Process Reward Models (PRMs) with sigmoid scoring\",\n      \"Quality value formulation with bounded weighted rewards\",\n      \"Greedy MC rollout with self-critique mechanism\",\n      \"Iterative self-training / Reinforced Self-Training (ReST) framework\",\n      \"Self-Consistency voting as a baseline and component\",\n      \"SciInstruct dataset for science problem initialization\",\n      \"MATH and GSM8K benchmarks for mathematical reasoning evaluation\",\n      \"Negative sample generation using weaker LLMs (ChatGLM2)\",\n      \"Tree-based automatic process reward annotation (no human labels)\"\n    ],\n    \"reviewer_feedback_summary\": null,\n    \"relevance_to_seed\": \"This paper is directly central to our research area: it proposes a novel solution to the most critical bottleneck in process reward modeling — obtaining step-level labels — by showing that MCTS rollout statistics serve as high-quality proxy annotations. For anyone working on PRMs for mathematical reasoning, this paper's key lesson is architectural: don't treat the PRM as a static verifier to be trained once, but as a co-evolving component in a search-and-train loop where the search process itself generates the PRM's supervision signal. The 'quality value' formulation (combining step correctness with distance-to-solution) is a reusable innovation for credit assignment that goes beyond binary correct/incorrect step labels.\"\n  },\n  {\n    \"title\": \"Improve Mathematical Reasoning in Language Models by Automated Process Supervision (OmegaPRM)\",\n    \"venue\": \"ICLR 2025\",\n    \"problem_identification\": \"Prior process reward model (PRM) training required either expensive human annotation (PRM800K) or brute-force per-step Monte Carlo estimation (Math-Shepherd, MiPS) with O(k·M) complexity, making large-scale process supervision data collection impractical. The authors identified that the bottleneck was not the concept of Monte Carlo estimation itself, but the naive linear scan over all M steps — a computational framing problem that prior work accepted without question. They recognized that only the *first* error location matters for PRM training (following Lightman et al. 2023's insight), converting an annotation problem into a search problem.\",\n    \"key_insight\": \"Finding the first error in a reasoning chain is a search problem, not a sequential labeling problem. By reformulating step-level verification as binary search — split the solution at the midpoint, run rollouts to determine which half contains the first error, recurse — you reduce annotation cost from O(k·M) to O(k·log M) while still producing sufficient supervision signal. The second insight is that intermediate rollouts from the search process can be *reused* as tree nodes for future MCTS iterations, amortizing computational cost across the entire data collection campaign.\",\n    \"innovation_type\": \"combination\",\n    \"method_summary\": \"OmegaPRM wraps a binary-search error localization procedure inside a Monte Carlo Tree Search framework. Given a question and a (possibly incorrect) solution, the algorithm splits the solution at its midpoint, runs k=8 rollouts from that prefix, and checks if any reach the correct answer. If some do (c_m > 0), the first error is in the second half; if none do (c_m = 0), it's in the first half — then recurse. The MCTS layer uses a PUCT selection formula to balance exploration/exploitation, with a custom value function Q(s,r) = α^(1−MC(s)) · β^(len(r)/L) that prioritizes 'supposed-to-be-correct wrong-answer rollouts' (high MC but wrong answer) and penalizes overly long completions. All intermediate rollouts are pooled and reused as new tree nodes, enabling the search to branch from multiple starting points. From 12K MATH training problems with 100 search iterations each, the method generated 1.5M+ step-level annotations — a 75× efficiency gain over brute force. PRMs are trained using pointwise soft labels (continuous MC estimates rather than binary correct/incorrect), which outperformed hard labels by 6.8 percentage points on step-level accuracy.\",\n    \"what_makes_it_good\": \"The paper succeeds because it reframes a known bottleneck (expensive process supervision) through an elegant algorithmic lens that is both theoretically grounded (log-factor improvement) and practically impactful (1.5M annotations, 18.4% absolute gain on MATH). The combination of MCTS with binary search is not individually novel, but their specific adaptation — the value function design prioritizing 'near-correct' rollouts, the rollout reuse mechanism, and the soft-label training — shows deep engineering taste. The results are convincing because they demonstrate gains on two different model families (Gemini Pro and Gemma2 27B) across two benchmarks, and include meaningful ablations (soft vs. hard vs. pairwise labels).\",\n    \"limitations_acknowledged\": \"The authors note that automatic annotation introduces false positives and false negatives (paradoxically outperforming human annotations, leaving the 'precise impact of noise on PRM performance uncertain'). They also acknowledge the method requires question-answer pairs with golden answers, unlike truly self-supervised approaches like AlphaGo Zero, limiting applicability to domains with verifiable ground truth.\",\n    \"open_questions\": [\n      \"Can the binary-search error localization principle be extended to domains without easily verifiable answers (e.g., open-ended reasoning, code generation with partial specifications, or scientific reasoning)?\",\n      \"The soft-label superiority over hard labels is demonstrated but not deeply explained — what is the mechanism? Is it label smoothing regularization, richer gradient signal, or preservation of uncertainty information? Could calibrated soft labels further improve PRM quality?\",\n      \"The paper filters out 'too easy' and 'too hard' questions — what is the optimal difficulty distribution for PRM training data, and can curriculum learning or active sampling strategies further improve data efficiency beyond the 75× gain?\"\n    ],\n    \"building_blocks\": [\n      \"MCTS with PUCT selection (adapted from AlphaGo/AlphaZero)\",\n      \"Binary search for error localization in sequential reasoning chains\",\n      \"Monte Carlo rollout estimation for step correctness (from Math-Shepherd/MiPS)\",\n      \"Pointwise soft-label PRM training with continuous MC estimates\",\n      \"Weighted self-consistency (best-of-N with PRM scoring) for inference\",\n      \"Rollout reuse / state-action tree construction across search iterations\",\n      \"Custom value function Q(s,r) = α^(1−MC(s)) · β^(len(r)/L) for prioritizing informative rollouts\",\n      \"MATH dataset (12K train / 500 test) and GSM8K as evaluation benchmarks\",\n      \"Question filtering by difficulty (removing trivially easy/hard problems)\"\n    ],\n    \"reviewer_feedback_summary\": null,\n    \"relevance_to_seed\": \"This paper is a cornerstone contribution to process reward models for mathematical reasoning, directly addressing the credit assignment problem by automating step-level verification at scale. Its key lesson for our research area is that the *data collection algorithm* for PRMs matters as much as the PRM architecture itself — reframing annotation as search (not labeling) and using soft labels (not hard) are design principles that any follow-up work on step-level verification should absorb or deliberately improve upon.\"\n  },\n  {\n    \"title\": \"Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters\",\n    \"venue\": \"ICLR 2025 (Oral)\",\n    \"problem_identification\": \"Prior work treated test-time compute as a uniform knob — throw more samples or more search at every problem equally. Snell et al. identified that the effectiveness of different test-time strategies (search vs. revision) varies dramatically with problem difficulty, meaning a one-size-fits-all approach wastes compute catastrophically. They found this gap by systematically profiling two orthogonal test-time mechanisms (PRM-guided search and iterative revision) across difficulty strata, revealing that beam search actually degrades on easy problems while revisions plateau on hard ones — a non-obvious interaction that no prior work had characterized.\",\n    \"key_insight\": \"Test-time compute is not fungible: the optimal strategy is difficulty-conditioned, and by routing compute adaptively — choosing WHICH mechanism to apply and HOW MUCH budget to allocate based on estimated problem difficulty — you can achieve 4× better compute efficiency than uniform scaling, making a small model outperform one 14× larger under FLOPs-matched comparison.\",\n    \"innovation_type\": \"analysis\",\n    \"method_summary\": \"The paper studies two test-time compute mechanisms on the MATH benchmark using PaLM 2-S*: (1) search against process reward models (PRMs trained via Monte Carlo rollouts with binary cross-entropy on reward-to-go estimates), comparing best-of-N weighted sampling, beam search with step-level PRM scoring, and lookahead search; and (2) iterative sequential revision, where a model is fine-tuned to refine previous incorrect attempts, with a tunable sequential-to-parallel sampling ratio. Problems are binned into five difficulty quantiles using either oracle pass@1 rates (from 2048 samples) or a learned verifier's predicted scores. The compute-optimal strategy selects the best-performing mechanism and hyperparameters per difficulty bin per compute budget, then applies this routing at test time. A FLOPs-matched analysis compares allocating compute to test-time search versus scaling model parameters, using the exchange rate that pretraining costs 6ND FLOPs and inference costs 2ND FLOPs per token.\",\n    \"what_makes_it_good\": \"Three things made this an oral: (1) it reframed a practical engineering question (how to use inference compute) as a principled optimization problem with a formal objective, creating a new research agenda rather than just an empirical finding; (2) it produced a surprising, counterintuitive result — that a small model with smart compute allocation beats a 14× larger model — which has immediate practical implications for deployment economics; (3) it provided a comprehensive empirical analysis that cleanly decomposes the design space (search type × revision depth × difficulty × budget) rather than just proposing one new method. The paper essentially established the 'compute-optimal test-time scaling' paradigm analogous to Chinchilla's compute-optimal training scaling.\",\n    \"limitations_acknowledged\": \"The authors acknowledge that estimating question difficulty itself requires non-trivial compute (creating a chicken-and-egg problem for deployment), that their methods provide minimal gains on the hardest problems suggesting fundamental capability limits, and that they did not explore combining PRM search with iterative revision — leaving potential synergies unexplored.\",\n    \"open_questions\": [\n      \"How can difficulty estimation be made cheap enough for practical deployment? The current approach requires 2048 samples or a learned verifier, which is itself expensive — can difficulty be estimated from the prompt alone (e.g., via a lightweight classifier)?\",\n      \"Can PRM-guided search and iterative revision be composed (e.g., search over revision trajectories, or revise candidates found by beam search), and does this composition yield superlinear gains on hard problems where each method alone plateaus?\",\n      \"The paper shows diminishing returns from search due to 'exploitation of PRM predictions' — how can process reward models be made more robust to over-optimization, and does this connect to the broader reward hacking literature in RLHF?\"\n    ],\n    \"building_blocks\": [\n      \"Process Reward Models (PRMs) trained via Monte Carlo rollouts with soft labels (reward-to-go estimates)\",\n      \"Binary cross-entropy loss on per-step MC return values for PRM training\",\n      \"Last-step PRM scoring (shown to outperform min-score and product-of-probabilities aggregation)\",\n      \"Best-of-N weighted selection with inter-answer marginalization over identical final answers\",\n      \"Beam search with PRM step-level scoring (M=4 beams, √N branching)\",\n      \"Iterative revision fine-tuning using post-hoc constructed multi-turn rollouts with edit-distance-based selection of incorrect predecessors\",\n      \"Difficulty binning via pass@1 quantiles or verifier-predicted scores\",\n      \"FLOPs-matched comparison framework (6ND pretraining vs 2ND inference)\",\n      \"PaLM 2-S* (Codey) as base model\",\n      \"MATH benchmark (12k train, 500 test)\",\n      \"Two-fold cross-validation for strategy selection without oracle access\"\n    ],\n    \"reviewer_feedback_summary\": null,\n    \"relevance_to_seed\": \"This paper is foundational to process reward model research: it demonstrates that PRMs are not just passive verifiers but active search guides whose effectiveness depends critically on how they are deployed. For our research area on step-level verification and credit assignment, the key lessons are: (1) PRM aggregation matters — last-step scoring outperforming min/product aggregation suggests PRMs learn holistic solution quality representations, not just per-step correctness; (2) beam search with PRMs shows signs of reward over-optimization on easy problems, directly motivating research into more robust step-level credit assignment; (3) the difficulty-conditioned framework shows that the VALUE of precise step-level verification is highest on medium-difficulty problems, suggesting that PRM research should focus on this regime rather than the extremes.\"\n  },\n  {\n    \"title\": \"Rewarding Progress: Scaling Automated Process Verifiers for LLM Reasoning\",\n    \"venue\": \"ICLR 2025 (Spotlight)\",\n    \"problem_identification\": \"The authors identified that while process reward models (PRMs) theoretically offer better credit assignment than outcome reward models (ORMs), PRMs trained from automatically-labeled data showed surprisingly limited gains — despite dense step-level supervision being more informative in principle. The key question they asked was not 'how to collect better labels' but 'how should we DESIGN process rewards?' — reframing the bottleneck from data quality to reward definition. They found this gap by observing that naively using Q-values (expected future correctness) as step-level rewards assigns unmerited bonuses to trivial steps and fails to distinguish genuinely progress-making reasoning from steps that merely follow an already-correct trajectory.\",\n    \"key_insight\": \"The process reward for a step should not measure absolute value (Q-value) but rather PROGRESS — the change in likelihood of correctness before vs. after taking the step, which is exactly the step-level advantage function A^μ = Q^μ(s_h, a_h) - V^μ(s_h) from RL. Crucially, this advantage must be measured under a 'prover' policy μ that is distinct from and complementary to the base policy being improved, because a prover that is too strong assigns near-zero advantages everywhere (it already knows the answer regardless of the step), while the base policy's own advantages are too noisy to be useful.\",\n    \"innovation_type\": \"new_formulation\",\n    \"method_summary\": \"The paper formalizes multi-step reasoning as an MDP where states are partial solutions and actions are reasoning steps. Process Advantage Verifiers (PAVs) are trained to predict step-level advantages A^μ(s_h, a_h) under a prover policy μ, where the advantage captures progress — the change in success probability before and after a step. Training data is generated by: (1) sampling 'seed' solution traces, (2) at each prefix of the seed trace, rolling out completions from the prover policy μ to estimate Q^μ via Monte Carlo returns, and (3) computing advantages as the difference between post-step and pre-step value estimates. The final PAV score combines an outcome reward Q^π (from the base policy) with the step-level advantage A^μ weighted by a mixing coefficient α. The authors theoretically connect this to potential-based reward shaping (Ng et al. 1999), showing that Q^μ serves as a potential function and A^μ is the corresponding shaping reward. They prove that complementary provers — strong enough to distinguish correct from incorrect paths but not so strong that they render all steps trivially correct — yield the best verifiers. In practice, Best-of-K policies (K≈4) serve as effective provers.\",\n    \"what_makes_it_good\": \"This paper succeeds by reframing a data problem (how to label steps) as a conceptual problem (what should the reward MEAN), which is a hallmark of strong theoretical contributions. Reviewers unanimously praised the theoretical grounding connecting to classical RL reward shaping, combined with substantial empirical gains (8-10% accuracy, 1.5-5× compute efficiency in search, 5-6× sample efficiency in RL) across multiple model scales (Gemma 2B/9B/27B). The dual demonstration in both test-time search AND online RL training — showing the same framework improves both use cases — significantly broadened the paper's impact and appeal. The formalization is clean enough to be a reusable building block while being practically effective at scale.\",\n    \"limitations_acknowledged\": \"The authors acknowledged that experiments were primarily on the MATH benchmark with the Gemma model family, leaving generalization to other reasoning domains, benchmarks (e.g., GSM8k), and LLM architectures unverified. They also noted that prover policy selection remains somewhat manual (requiring choice of K in Best-of-K) and that the advantage estimation depends on Monte Carlo rollouts, which adds computational overhead to data generation.\",\n    \"open_questions\": [\n      \"How does the optimal prover policy change as the base policy improves during training? Can we design adaptive/co-evolving prover policies, or does the prover need periodic refreshing — and if so, how often?\",\n      \"Can the PAV framework generalize beyond mathematical reasoning to other structured multi-step tasks (code generation, planning, tool use) where step-level progress may be harder to define or where the success signal is less binary?\",\n      \"The paper shows weak provers can improve strong policies, but what is the theoretical lower bound on prover quality? Is there a principled way to select or construct the optimal prover without exhaustive search over K values?\"\n    ],\n    \"building_blocks\": [\n      \"Step-level advantage estimation via Monte Carlo rollouts from a prover policy\",\n      \"Potential-based reward shaping framework (Ng et al. 1999) applied to LLM reasoning\",\n      \"Best-of-K sampling as a simple but effective prover policy constructor\",\n      \"Mixed scoring: Q^π (outcome) + α·A^μ (process advantage) for verifier-guided beam search\",\n      \"Gemma 2B/9B/27B model family as experimental testbed\",\n      \"MATH benchmark for multi-step mathematical reasoning evaluation\",\n      \"Online RL with dense PAV rewards as alternative to sparse outcome rewards\",\n      \"Binary search approach for hyperparameter tuning of mixing coefficient α\"\n    ],\n    \"reviewer_feedback_summary\": \"Decision: Accept (Spotlight). Scores: 9, 9 (raised from 8), 8, 8, 8, plus one additional reviewer who raised their score after rebuttal. The Area Chair noted 'reviewers unanimously appreciate the reward-densifying transformation.' STRENGTHS praised: (1) solid theoretical connection to potential-based reward shaping, (2) comprehensive empirical validation across model scales, (3) clean motivation for advantages over Q-values, (4) dual applicability to both test-time search and RL training. WEAKNESSES raised: (1) narrow evaluation scope — only MATH benchmark, only Gemma models — raising generalization concerns (Reviewers jZuo, Ys2B), (2) imprecise 'exploration' terminology caused confusion about whether PAVs improve general exploration or directed search (Reviewer CgRb), (3) hyperparameter α requires tuning with different optimal ranges for search vs. RL, (4) insufficient comparison with prior PRM methods initially (addressed in rebuttal with Figure 13 showing 1.5-5× efficiency gains). Authors effectively addressed concerns by adding AlphaLLM comparisons (8× efficiency), prior PRM baselines, discounted reward experiments showing strong provers yield A^μ≈0, and structural improvements (moving related work to main text, adding conclusion with limitations). The strongest remaining concern was limited cross-benchmark/cross-architecture validation.\",\n    \"relevance_to_seed\": \"This paper is a foundational contribution to our exact research area — it provides the theoretical and practical framework for defining what step-level process rewards SHOULD be (advantages/progress, not values), which directly addresses the credit assignment problem in process reward models. The key transferable lesson is that the right formulation of the reward signal matters more than the scale of supervision data: reframing PRMs through the lens of RL advantage functions unlocked gains that brute-force labeling improvements coul\n... (truncated)\n\n## Your task\n\nSynthesize these paper analyses into a **Field Guide** — a strategic document that would help a researcher generate novel, high-quality ideas in this area. This is NOT a survey — it's an opinionated strategy guide for innovation.\n\nThink about:\n- What PATTERNS OF INNOVATION keep working in this field?\n- What do reviewers consistently reward?\n- Where are the real gaps (not assumed gaps)?\n- What combinations haven't been tried?\n- What mistakes should we avoid?\n\n## Output format\n\nOutput a JSON object with these sections:\n{\n  \"innovation_patterns\": [\n    {\"pattern\": \"name\", \"description\": \"how it works\", \"examples\": [\"paper1\", \"paper2\"], \"success_rate\": \"high/medium/low\"}\n  ],\n  \"reviewer_preferences\": [\n    \"What reviewers in this area consistently care about (based on evidence from paper analyses)\"\n  ],\n  \"field_gaps\": [\n    {\"gap\": \"description of unsolved problem\", \"evidence\": \"which papers mention this limitation\", \"difficulty\": \"high/medium/low\", \"impact_if_solved\": \"high/medium/low\"}\n  ],\n  \"untried_combinations\": [\n    {\"idea_sketch\": \"what could be combined\", \"from_papers\": [\"which papers inspire this\"], \"why_promising\": \"reason\"}\n  ],\n  \"method_building_blocks\": [\n    {\"tool\": \"name\", \"what_it_does\": \"description\", \"used_by\": [\"papers\"], \"could_be_applied_to\": \"new application\"}\n  ],\n  \"common_pitfalls\": [\n    \"Mistakes to avoid when working in this area (based on reviewer feedback and paper limitations)\"\n  ],\n  \"field_trajectory\": \"Where is this field heading? What are the 2-3 most promising macro-directions? (paragraph)\",\n  \"meta_advice\": \"If you were advising a PhD student to write a strong 2026 paper in this area, what would you tell them? (paragraph)\"\n}\n\nBe specific and evidence-based — every claim should reference specific papers from the analyses. Avoid generic advice like 'be novel' — instead say 'Papers that combine X with Y for task Z have been getting accepted (see Paper A, Paper B).'.\n\nIMPORTANT: You MUST end your response with the JSON object."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T05:25:03.012Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-28T05:25:03.012Z",
+  "sessionId": "c8d8b266-510e-4c99-9abe-dc35de162e07"
+}
+```
+
+---
+
+## Round 1
+
+11 recorded events
+
+### User
+
+_source line 3 · 2026-05-28T05:25:03.065Z_
+
+You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.
+
+**Today's date: 2026-05-28 (UTC).**
+
+## Research area: Process Reward Models for Mathematical Reasoning — Step-Level Verification and Credit Assignment
+
+## Paper analyses (18 papers)
+
+[
+  {
+    "title": "Let's Verify Step by Step",
+    "venue": "ICLR 2024 (poster)",
+    "problem_identification": "Uesato et al. (2022) had compared process vs. outcome supervision on GSM8K (grade-school math) and found them roughly equivalent — leaving the community with the impression that the expensive step-level labeling wasn't worth it. Lightman et al. identified that this null result was an artifact of insufficient scale along three axes: model capability, dataset difficulty, and supervision volume. By re-running the comparison with GPT-4, the much harder MATH benchmark, and 800K step-level labels, they revealed a gap that was invisible at smaller scale.",
+    "key_insight": "Outcome supervision forces the reward model to solve a hard credit-assignment problem — given only a final-answer label, it must figure out which intermediate step went wrong. Process supervision sidesteps this entirely by providing the error location directly, and this advantage compounds on harder problems where most model-generated solutions contain errors, making each negative outcome label nearly uninformative. The insight is that the supervision granularity bottleneck only becomes visible when the problems are hard enough that credit assignment genuinely matters.",
+    "innovation_type": "combination",
+    "method_summary": "The authors finetune GPT-4 on a math-focused corpus (MathMix) and train it to generate step-by-step solutions. Human labelers annotate each step as positive/negative/neutral, producing the PRM800K dataset (800K step-level labels across 75K solutions to 12K MATH problems). An active learning strategy surfaces 'convincing wrong-answer' solutions — those the current best PRM rates highly despite having an incorrect final answer — to maximize labeler information gain, yielding 2.6× data efficiency. PRMs are trained to predict step correctness at each step boundary, with solution-level scores computed as the product of per-step correctness probabilities. Evaluation uses best-of-N selection: the generator samples N solutions and the reward model picks the highest-scored one. To address confounds in the large-scale comparison (different training set sizes/compositions for ORM vs PRM), they run controlled small-scale ablations using the large PRM as a synthetic labeling oracle for smaller models.",
+    "what_makes_it_good": "Three things got this paper accepted despite significant reproducibility concerns (GPT-4 base model). First, the empirical result is clean, surprising, and overturns a prior null result (Uesato et al. 2022) — the PRM hits 78.2% vs the ORM's 72.4% and the gap widens with more test-time compute. Second, the PRM800K dataset release is a genuine community contribution that lowers barriers to entry for process supervision research. Third, the experimental design is thoughtful: they anticipated the confound critique (different training sets) and preempted it with small-scale controlled ablations using synthetic supervision, showing the result holds even on identical data.",
+    "limitations_acknowledged": "The authors explicitly note that all large-scale results depend on GPT-4 and are not reproducible by the community, that the comparison is confounded by different training set sizes/compositions for ORM vs PRM, that the domain is limited to math (generalization to open-ended domains is unknown), and that they do not explore using the PRM for RL training of the generator — only for best-of-N reranking.",
+    "open_questions": [
+      "Does the process supervision advantage hold for open-ended domains (code generation, essay writing, scientific reasoning) where step correctness is ambiguous and there is no easily checkable final answer?",
+      "Can step-level labels be generated automatically (e.g., via Monte Carlo rollouts or model self-verification) rather than requiring expensive human annotation, and would such synthetic process supervision retain the performance advantage?",
+      "What happens when PRMs are used not just for best-of-N reranking but as the reward signal in RL training of the generator — does the step-level signal produce better policy optimization than outcome-level rewards?"
+    ],
+    "building_blocks": [
+      "PRM800K dataset (800K step-level human labels, publicly released)",
+      "Best-of-N evaluation protocol for reward model quality",
+      "Active learning via 'convincing wrong-answer' solution selection",
+      "Product-of-step-probabilities as solution-level scoring function",
+      "Large reward model as synthetic oracle for small-scale ablations",
+      "MathMix pretraining corpus (1.5B math-focused tokens)",
+      "Three-label annotation scheme (positive/negative/neutral) with deferred neutral handling",
+      "MATH benchmark (Hendrycks et al. 2021) as evaluation testbed",
+      "Step-delimited solution format for parsing individual reasoning steps"
+    ],
+    "reviewer_feedback_summary": "Ratings were split: 8, 6, 5, 3. The accept-vote reviewer praised the thoroughness and dataset release. The reject-vote reviewer (3/10) argued that dense rewards are a 'well-known RL concept' and the paper lacks novelty beyond scaling. Two middle reviewers flagged reproducibility as the core weakness — GPT-4 dependence means the community cannot verify or build on the large-scale results. All four reviewers questioned generalization beyond math. The meta-reviewer ultimately sided with acceptance, emphasizing that the dataset contribution and the clean empirical reversal of a prior null result justified publication despite reproducibility limitations. Key lesson: releasing a high-quality dataset can tip the scales for an empirical paper that would otherwise be borderline.",
+    "relevance_to_seed": "This is the foundational paper for our research area — it established the PRM paradigm, provided the primary benchmark dataset (PRM800K), and defined the core evaluation protocol (best-of-N with reward model scoring). Every open question it raises maps directly to active research directions: automating step-level labels (eliminating the human annotation bottleneck), extending PRMs beyond math, using PRMs for RL policy training, and improving credit assignment. The craft lesson is that scaling up a controlled comparison of a known idea (process vs. outcome feedback) on a harder benchmark, while releasing a major dataset, can produce a foundational 1000+ citation paper — the insight was not technically novel but the execution at scale revealed a result that changed the field's assumptions."
+  },
+  {
+    "title": "Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations",
+    "venue": "ACL 2024 (Main Conference, Long Paper)",
+    "problem_identification": "Prior work on Process Reward Models (PRMs) — most notably Lightman et al. (2023) with PRM800K — demonstrated that step-level verification outperforms outcome-level verification for mathematical reasoning, but the approach was bottlenecked by the need for expensive, skilled human annotators to label each reasoning step as correct or incorrect. The authors identified that this annotation cost was not an inherent requirement of PRMs but an artifact of how step quality was being defined: if you reframe step quality as 'potential to reach the correct answer' rather than 'intrinsic logical correctness,' you can estimate it automatically via Monte Carlo sampling — something the MCTS literature had solved decades ago in a different domain.",
+    "key_insight": "A reasoning step's quality can be operationalized not as whether it is logically correct in isolation, but as its empirical potential to lead to the correct final answer — estimated by sampling multiple completions from that step and measuring what fraction reach the ground-truth answer. This reframing transforms the annotation problem from one requiring human judgment into one requiring only compute (LLM forward passes + answer matching), making it fully automatable.",
+    "innovation_type": "combination",
+    "method_summary": "Math-Shepherd works in two phases. (1) Annotation: For each intermediate step s_i in a candidate solution, a 'completer' LLM generates N independent completions of the remaining reasoning. Step quality is estimated either via Hard Estimation (binary: can any completion reach the correct answer?) or Soft Estimation (frequency: what fraction of completions reach the correct answer?). This yields automatic process-level labels without any human involvement. (2) Training & Application: A PRM is trained on these labels using per-step cross-entropy loss. The PRM is then deployed in two modes — verification (reranking N candidate solutions using the minimum step score as the solution score, optionally combined with self-consistency weighting) and reinforcement learning (step-by-step PPO where the PRM provides rewards at each reasoning step rather than only at the terminal state). The completer model is a fine-tuned LLemma-7B with N=8 completions, trained on MetaMATH to ensure familiarity with the problem distribution.",
+    "what_makes_it_good": "This paper succeeded because it identified a high-impact bottleneck (human annotation cost for PRMs), proposed a clean and simple solution grounded in well-understood theory (Monte Carlo estimation from MCTS), and validated it with unusually thorough experiments: 8 base models from 7B to 70B, two benchmarks, two application scenarios (verification + RL), extensive ablations on annotation quality/completer ability/data scaling/model size interactions, out-of-distribution evaluation on the Hungarian national exam, and direct comparison with the gold-standard PRM800K. The combination of practical scalability (4x more data than PRM800K at lower cost) with strong empirical results (outperforming human-annotated PRM800K on MATH verification) made the contribution undeniable. The paper also demonstrated that the same reward model improves both test-time compute (verification) and training-time learning (RL), showing breadth of impact.",
+    "limitations_acknowledged": "The authors explicitly flag two limitations: (1) Computational cost — the completion process requires N forward passes per step per solution, which is resource-intensive though still cheaper than human annotation; they point to speculative decoding and vLLM as mitigations. (2) Annotation noise — automatic labels contain false positives (solutions that reach correct answers via incorrect reasoning), and a comprehensive human-vs-automatic comparison was deferred to future work; however, they note that hybrid human+automatic approaches could combine the best of both.",
+    "open_questions": [
+      "Can the false-positive problem (correct answer via wrong reasoning) be addressed more directly — e.g., through verification of intermediate values, not just final answers — to improve annotation precision beyond the 86% reported?",
+      "How does this approach scale to domains beyond math where ground-truth answers are not easily verifiable (e.g., open-ended reasoning, code generation, scientific argumentation), and what serves as the 'correct answer' signal for Monte Carlo estimation in those settings?",
+      "The paper shows that completer quality strongly affects annotation quality, but uses a relatively small completer (LLemma-7B) — what are the returns from using much stronger completers (e.g., GPT-4-class), and is there a point of diminishing returns where the completer is so good that every step looks 'correct'?",
+      "Step-by-step PPO outperformed outcome RL, but iterative RL (training the generator, re-annotating with the improved generator, re-training the PRM) was left as future work — does this create a virtuous cycle or does it converge/diverge?"
+    ],
+    "building_blocks": [
+      "Monte Carlo Tree Search (MCTS) — inspiration for defining step quality as completion potential",
+      "Hard Estimation and Soft Estimation — two labeling strategies for automatic process annotation",
+      "LLemma-7B as completer model for generating reasoning continuations",
+      "MetaMATH dataset for fine-tuning generators and completers",
+      "Per-step cross-entropy loss for PRM training (binary classification per step)",
+      "Minimum step score as solution-level aggregation for verification",
+      "Self-consistency + reward model combination (SC+RM) for weighted majority voting",
+      "Step-by-step PPO — distributing rewards at each EOS token within reasoning steps rather than only at response end",
+      "GSM8K and MATH benchmarks with best-of-N evaluation protocol (N=256)",
+      "HAI-LLM training framework",
+      "Hungarian national exam as out-of-distribution evaluation set"
+    ],
+    "reviewer_feedback_summary": "ACL 2024 reviews are not publicly available on OpenReview or ACL Anthology. However, based on the paper's structure and the commentary ecosystem, we can infer likely reviewer sentiment: Strengths would include the practical impact (eliminating human annotation), the clean MCTS-inspired formulation, the breadth of experiments across model scales, and the strong empirical results exceeding PRM800K. Likely concerns would center on (a) the false-positive noise problem and whether 86% annotation accuracy is sufficient or just happens to work, (b) the computational cost analysis being qualitative rather than quantitative (no wall-clock or FLOPs comparison with human annotation), (c) limited analysis of failure modes — when does Monte Carlo estimation give systematically wrong labels?, and (d) the gap between the open-source models used and the GPT-4-based PRM800K making direct comparison imperfect due to distribution mismatch.",
+    "relevance_to_seed": "This paper is foundational to our research area — it directly addresses the core challenge of process reward models: how to obtain step-level supervision at scale. The key transferable lesson is that credit assignment for intermediate reasoning steps does not require ground-truth step labels; instead, you can use the model's own generative capacity to estimate step value via Monte Carlo rollouts, converting an annotation problem into a compute problem. Any follow-up work on PRMs for mathematical reasoning must either build upon, improve, or explicitly differentiate from Math-Shepherd's automatic annotation framework — it has effectively set the new baseline for how process supervision data is constructed."
+  },
+  {
+    "title": "ReST-MCTS*: LLM Self-Training via Process Reward Guided Tree Search",
+    "venue": "NeurIPS 2024",
+    "problem_identification": "The authors identified that existing LLM self-training methods (STaR, RFT, ReST^EM) filter training data using only final-answer correctness, but a correct final answer does NOT imply correct intermediate reasoning — 'false positive' traces with flawed steps poison the fine-tuning set. Meanwhile, process reward models (PRMs) that could catch these errors require expensive per-step human annotations (as in MATH-SHEPHERD), creating a chicken-and-egg problem: you need a good PRM to get good traces, but you need good traces (with step labels) to train a good PRM. They found this gap by observing that tree search algorithms naturally produce implicit step-level supervision signals through rollout statistics, which no prior work had exploited for joint self-training.",
+    "key_insight": "Tree search rollouts toward known final answers are a FREE source of process-level reward signal: by measuring how many rollouts from a given intermediate step eventually reach the correct answer, you can infer step-level quality without any human annotation — and this inferred signal is good enough to train a PRM that, in turn, guides better tree search, creating a virtuous cycle of mutual improvement between the policy and reward model.",
+    "innovation_type": "combination",
+    "method_summary": "ReST-MCTS* defines a 'quality value' v_k for each partial solution that captures both step correctness and distance-to-solution, updated via a weighted reward formula w_sk = ((1 - v_{k-1}) / (m_k + 1)) × (1 - 2r_sk), where m_k is the estimated remaining steps to a correct answer and r_sk is the PRM score. The MCTS* algorithm uses these quality values to select nodes, expand reasoning steps via the policy, perform greedy Monte Carlo rollouts with self-critique, and backpropagate values — all guided by process rewards rather than just outcome rewards. Crucially, after each round of tree search on problems with known answers, the tree structure itself provides training data for the PRM: steps on paths reaching correct answers get positive labels, others get negative labels. The full pipeline iterates: (1) run MCTS* guided by the current PRM to generate reasoning traces, (2) filter correct traces and fine-tune the policy, (3) extract step-level value labels from the search tree and retrain the PRM, (4) repeat. Both models improve each iteration through this mutual bootstrapping.",
+    "what_makes_it_good": "The paper elegantly solves the PRM data bottleneck — the most expensive part of process reward modeling — by reusing computation that tree search already performs, turning a cost center into a data source. It provides theoretical guarantees (bounded quality values in [0,1]) ensuring training stability, which reviewers at top venues value. The experimental design is thorough: three model backbones (LLaMA-3-8B, Mistral-7B, SciGLM-6B), both in-distribution (MATH, GSM8K) and out-of-distribution (GPQA, SciBench, CEval-Hard) evaluation, head-to-head comparison with the annotation-heavy MATH-SHEPHERD PRM, and search-budget-controlled comparisons showing efficiency gains — this comprehensiveness likely gave reviewers confidence in the claims.",
+    "limitations_acknowledged": "The authors explicitly note that their method requires ground-truth final answers (inapplicable to open-ended tasks like SWE-Bench or dialogue), generalization to non-math domains (coding, agents) is uncertain, and the value model's scalability and data filtering could be improved. They also suggest online RL algorithms could further enhance joint optimization.",
+    "open_questions": [
+      "Can the mutual self-training loop be extended to domains without verifiable ground-truth answers — e.g., by using a learned outcome reward model instead of answer matching, and if so, how much does noise in the outcome signal degrade PRM quality?",
+      "What is the scaling behavior of this approach: does the virtuous cycle between policy and PRM plateau after a few iterations, and can it be sustained with larger models or more diverse problem sets?",
+      "How does the quality of the inferred process rewards compare to human annotations at a fine-grained level — are there systematic biases (e.g., overvaluing steps that happen to be on short paths) that could be corrected?"
+    ],
+    "building_blocks": [
+      "Monte Carlo Tree Search (MCTS) adapted for LLM reasoning (MCTS*)",
+      "Process Reward Models (PRMs) with sigmoid scoring",
+      "Quality value formulation with bounded weighted rewards",
+      "Greedy MC rollout with self-critique mechanism",
+      "Iterative self-training / Reinforced Self-Training (ReST) framework",
+      "Self-Consistency voting as a baseline and component",
+      "SciInstruct dataset for science problem initialization",
+      "MATH and GSM8K benchmarks for mathematical reasoning evaluation",
+      "Negative sample generation using weaker LLMs (ChatGLM2)",
+      "Tree-based automatic process reward annotation (no human labels)"
+    ],
+    "reviewer_feedback_summary": null,
+    "relevance_to_seed": "This paper is directly central to our research area: it proposes a novel solution to the most critical bottleneck in process reward modeling — obtaining step-level labels — by showing that MCTS rollout statistics serve as high-quality proxy annotations. For anyone working on PRMs for mathematical reasoning, this paper's key lesson is architectural: don't treat the PRM as a static verifier to be trained once, but as a co-evolving component in a search-and-train loop where the search process itself generates the PRM's supervision signal. The 'quality value' formulation (combining step correctness with distance-to-solution) is a reusable innovation for credit assignment that goes beyond binary correct/incorrect step labels."
+  },
+  {
+    "title": "Improve Mathematical Reasoning in Language Models by Automated Process Supervision (OmegaPRM)",
+    "venue": "ICLR 2025",
+    "problem_identification": "Prior process reward model (PRM) training required either expensive human annotation (PRM800K) or brute-force per-step Monte Carlo estimation (Math-Shepherd, MiPS) with O(k·M) complexity, making large-scale process supervision data collection impractical. The authors identified that the bottleneck was not the concept of Monte Carlo estimation itself, but the naive linear scan over all M steps — a computational framing problem that prior work accepted without question. They recognized that only the *first* error location matters for PRM training (following Lightman et al. 2023's insight), converting an annotation problem into a search problem.",
+    "key_insight": "Finding the first error in a reasoning chain is a search problem, not a sequential labeling problem. By reformulating step-level verification as binary search — split the solution at the midpoint, run rollouts to determine which half contains the first error, recurse — you reduce annotation cost from O(k·M) to O(k·log M) while still producing sufficient supervision signal. The second insight is that intermediate rollouts from the search process can be *reused* as tree nodes for future MCTS iterations, amortizing computational cost across the entire data collection campaign.",
+    "innovation_type": "combination",
+    "method_summary": "OmegaPRM wraps a binary-search error localization procedure inside a Monte Carlo Tree Search framework. Given a question and a (possibly incorrect) solution, the algorithm splits the solution at its midpoint, runs k=8 rollouts from that prefix, and checks if any reach the correct answer. If some do (c_m > 0), the first error is in the second half; if none do (c_m = 0), it's in the first half — then recurse. The MCTS layer uses a PUCT selection formula to balance exploration/exploitation, with a custom value function Q(s,r) = α^(1−MC(s)) · β^(len(r)/L) that prioritizes 'supposed-to-be-correct wrong-answer rollouts' (high MC but wrong answer) and penalizes overly long completions. All intermediate rollouts are pooled and reused as new tree nodes, enabling the search to branch from multiple starting points. From 12K MATH training problems with 100 search iterations each, the method generated 1.5M+ step-level annotations — a 75× efficiency gain over brute force. PRMs are trained using pointwise soft labels (continuous MC estimates rather than binary correct/incorrect), which outperformed hard labels by 6.8 percentage points on step-level accuracy.",
+    "what_makes_it_good": "The paper succeeds because it reframes a known bottleneck (expensive process supervision) through an elegant algorithmic lens that is both theoretically grounded (log-factor improvement) and practically impactful (1.5M annotations, 18.4% absolute gain on MATH). The combination of MCTS with binary search is not individually novel, but their specific adaptation — the value function design prioritizing 'near-correct' rollouts, the rollout reuse mechanism, and the soft-label training — shows deep engineering taste. The results are convincing because they demonstrate gains on two different model families (Gemini Pro and Gemma2 27B) across two benchmarks, and include meaningful ablations (soft vs. hard vs. pairwise labels).",
+    "limitations_acknowledged": "The authors note that automatic annotation introduces false positives and false negatives (paradoxically outperforming human annotations, leaving the 'precise impact of noise on PRM performance uncertain'). They also acknowledge the method requires question-answer pairs with golden answers, unlike truly self-supervised approaches like AlphaGo Zero, limiting applicability to domains with verifiable ground truth.",
+    "open_questions": [
+      "Can the binary-search error localization principle be extended to domains without easily verifiable answers (e.g., open-ended reasoning, code generation with partial specifications, or scientific reasoning)?",
+      "The soft-label superiority over hard labels is demonstrated but not deeply explained — what is the mechanism? Is it label smoothing regularization, richer gradient signal, or preservation of uncertainty information? Could calibrated soft labels further improve PRM quality?",
+      "The paper filters out 'too easy' and 'too hard' questions — what is the optimal difficulty distribution for PRM training data, and can curriculum learning or active sampling strategies further improve data efficiency beyond the 75× gain?"
+    ],
+    "building_blocks": [
+      "MCTS with PUCT selection (adapted from AlphaGo/AlphaZero)",
+      "Binary search for error localization in sequential reasoning chains",
+      "Monte Carlo rollout estimation for step correctness (from Math-Shepherd/MiPS)",
+      "Pointwise soft-label PRM training with continuous MC estimates",
+      "Weighted self-consistency (best-of-N with PRM scoring) for inference",
+      "Rollout reuse / state-action tree construction across search iterations",
+      "Custom value function Q(s,r) = α^(1−MC(s)) · β^(len(r)/L) for prioritizing informative rollouts",
+      "MATH dataset (12K train / 500 test) and GSM8K as evaluation benchmarks",
+      "Question filtering by difficulty (removing trivially easy/hard problems)"
+    ],
+    "reviewer_feedback_summary": null,
+    "relevance_to_seed": "This paper is a cornerstone contribution to process reward models for mathematical reasoning, directly addressing the credit assignment problem by automating step-level verification at scale. Its key lesson for our research area is that the *data collection algorithm* for PRMs matters as much as the PRM architecture itself — reframing annotation as search (not labeling) and using soft labels (not hard) are design principles that any follow-up work on step-level verification should absorb or deliberately improve upon."
+  },
+  {
+    "title": "Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters",
+    "venue": "ICLR 2025 (Oral)",
+    "problem_identification": "Prior work treated test-time compute as a uniform knob — throw more samples or more search at every problem equally. Snell et al. identified that the effectiveness of different test-time strategies (search vs. revision) varies dramatically with problem difficulty, meaning a one-size-fits-all approach wastes compute catastrophically. They found this gap by systematically profiling two orthogonal test-time mechanisms (PRM-guided search and iterative revision) across difficulty strata, revealing that beam search actually degrades on easy problems while revisions plateau on hard ones — a non-obvious interaction that no prior work had characterized.",
+    "key_insight": "Test-time compute is not fungible: the optimal strategy is difficulty-conditioned, and by routing compute adaptively — choosing WHICH mechanism to apply and HOW MUCH budget to allocate based on estimated problem difficulty — you can achieve 4× better compute efficiency than uniform scaling, making a small model outperform one 14× larger under FLOPs-matched comparison.",
+    "innovation_type": "analysis",
+    "method_summary": "The paper studies two test-time compute mechanisms on the MATH benchmark using PaLM 2-S*: (1) search against process reward models (PRMs trained via Monte Carlo rollouts with binary cross-entropy on reward-to-go estimates), comparing best-of-N weighted sampling, beam search with step-level PRM scoring, and lookahead search; and (2) iterative sequential revision, where a model is fine-tuned to refine previous incorrect attempts, with a tunable sequential-to-parallel sampling ratio. Problems are binned into five difficulty quantiles using either oracle pass@1 rates (from 2048 samples) or a learned verifier's predicted scores. The compute-optimal strategy selects the best-performing mechanism and hyperparameters per difficulty bin per compute budget, then applies this routing at test time. A FLOPs-matched analysis compares allocating compute to test-time search versus scaling model parameters, using the exchange rate that pretraining costs 6ND FLOPs and inference costs 2ND FLOPs per token.",
+    "what_makes_it_good": "Three things made this an oral: (1) it reframed a practical engineering question (how to use inference compute) as a principled optimization problem with a formal objective, creating a new research agenda rather than just an empirical finding; (2) it produced a surprising, counterintuitive result — that a small model with smart compute allocation beats a 14× larger model — which has immediate practical implications for deployment economics; (3) it provided a comprehensive empirical analysis that cleanly decomposes the design space (search type × revision depth × difficulty × budget) rather than just proposing one new method. The paper essentially established the 'compute-optimal test-time scaling' paradigm analogous to Chinchilla's compute-optimal training scaling.",
+    "limitations_acknowledged": "The authors acknowledge that estimating question difficulty itself requires non-trivial compute (creating a chicken-and-egg problem for deployment), that their methods provide minimal gains on the hardest problems suggesting fundamental capability limits, and that they did not explore combining PRM search with iterative revision — leaving potential synergies unexplored.",
+    "open_questions": [
+      "How can difficulty estimation be made cheap enough for practical deployment? The current approach requires 2048 samples or a learned verifier, which is itself expensive — can difficulty be estimated from the prompt alone (e.g., via a lightweight classifier)?",
+      "Can PRM-guided search and iterative revision be composed (e.g., search over revision trajectories, or revise candidates found by beam search), and does this composition yield superlinear gains on hard problems where each method alone plateaus?",
+      "The paper shows diminishing returns from search due to 'exploitation of PRM predictions' — how can process reward models be made more robust to over-optimization, and does this connect to the broader reward hacking literature in RLHF?"
+    ],
+    "building_blocks": [
+      "Process Reward Models (PRMs) trained via Monte Carlo rollouts with soft labels (reward-to-go estimates)",
+      "Binary cross-entropy loss on per-step MC return values for PRM training",
+      "Last-step PRM scoring (shown to outperform min-score and product-of-probabilities aggregation)",
+      "Best-of-N weighted selection with inter-answer marginalization over identical final answers",
+      "Beam search with PRM step-level scoring (M=4 beams, √N branching)",
+      "Iterative revision fine-tuning using post-hoc constructed multi-turn rollouts with edit-distance-based selection of incorrect predecessors",
+      "Difficulty binning via pass@1 quantiles or verifier-predicted scores",
+      "FLOPs-matched comparison framework (6ND pretraining vs 2ND inference)",
+      "PaLM 2-S* (Codey) as base model",
+      "MATH benchmark (12k train, 500 test)",
+      "Two-fold cross-validation for strategy selection without oracle access"
+    ],
+    "reviewer_feedback_summary": null,
+    "relevance_to_seed": "This paper is foundational to process reward model research: it demonstrates that PRMs are not just passive verifiers but active search guides whose effectiveness depends critically on how they are deployed. For our research area on step-level verification and credit assignment, the key lessons are: (1) PRM aggregation matters — last-step scoring outperforming min/product aggregation suggests PRMs learn holistic solution quality representations, not just per-step correctness; (2) beam search with PRMs shows signs of reward over-optimization on easy problems, directly motivating research into more robust step-level credit assignment; (3) the difficulty-conditioned framework shows that the VALUE of precise step-level verification is highest on medium-difficulty problems, suggesting that PRM research should focus on this regime rather than the extremes."
+  },
+  {
+    "title": "Rewarding Progress: Scaling Automated Process Verifiers for LLM Reasoning",
+    "venue": "ICLR 2025 (Spotlight)",
+    "problem_identification": "The authors identified that while process reward models (PRMs) theoretically offer better credit assignment than outcome reward models (ORMs), PRMs trained from automatically-labeled data showed surprisingly limited gains — despite dense step-level supervision being more informative in principle. The key question they asked was not 'how to collect better labels' but 'how should we DESIGN process rewards?' — reframing the bottleneck from data quality to reward definition. They found this gap by observing that naively using Q-values (expected future correctness) as step-level rewards assigns unmerited bonuses to trivial steps and fails to distinguish genuinely progress-making reasoning from steps that merely follow an already-correct trajectory.",
+    "key_insight": "The process reward for a step should not measure absolute value (Q-value) but rather PROGRESS — the change in likelihood of correctness before vs. after taking the step, which is exactly the step-level advantage function A^μ = Q^μ(s_h, a_h) - V^μ(s_h) from RL. Crucially, this advantage must be measured under a 'prover' policy μ that is distinct from and complementary to the base policy being improved, because a prover that is too strong assigns near-zero advantages everywhere (it already knows the answer regardless of the step), while the base policy's own advantages are too noisy to be useful.",
+    "innovation_type": "new_formulation",
+    "method_summary": "The paper formalizes multi-step reasoning as an MDP where states are partial solutions and actions are reasoning steps. Process Advantage Verifiers (PAVs) are trained to predict step-level advantages A^μ(s_h, a_h) under a prover policy μ, where the advantage captures progress — the change in success probability before and after a step. Training data is generated by: (1) sampling 'seed' solution traces, (2) at each prefix of the seed trace, rolling out completions from the prover policy μ to estimate Q^μ via Monte Carlo returns, and (3) computing advantages as the difference between post-step and pre-step value estimates. The final PAV score combines an outcome reward Q^π (from the base policy) with the step-level advantage A^μ weighted by a mixing coefficient α. The authors theoretically connect this to potential-based reward shaping (Ng et al. 1999), showing that Q^μ serves as a potential function and A^μ is the corresponding shaping reward. They prove that complementary provers — strong enough to distinguish correct from incorrect paths but not so strong that they render all steps trivially correct — yield the best verifiers. In practice, Best-of-K policies (K≈4) serve as effective provers.",
+    "what_makes_it_good": "This paper succeeds by reframing a data problem (how to label steps) as a conceptual problem (what should the reward MEAN), which is a hallmark of strong theoretical contributions. Reviewers unanimously praised the theoretical grounding connecting to classical RL reward shaping, combined with substantial empirical gains (8-10% accuracy, 1.5-5× compute efficiency in search, 5-6× sample efficiency in RL) across multiple model scales (Gemma 2B/9B/27B). The dual demonstration in both test-time search AND online RL training — showing the same framework improves both use cases — significantly broadened the paper's impact and appeal. The formalization is clean enough to be a reusable building block while being practically effective at scale.",
+    "limitations_acknowledged": "The authors acknowledged that experiments were primarily on the MATH benchmark with the Gemma model family, leaving generalization to other reasoning domains, benchmarks (e.g., GSM8k), and LLM architectures unverified. They also noted that prover policy selection remains somewhat manual (requiring choice of K in Best-of-K) and that the advantage estimation depends on Monte Carlo rollouts, which adds computational overhead to data generation.",
+    "open_questions": [
+      "How does the optimal prover policy change as the base policy improves during training? Can we design adaptive/co-evolving prover policies, or does the prover need periodic refreshing — and if so, how often?",
+      "Can the PAV framework generalize beyond mathematical reasoning to other structured multi-step tasks (code generation, planning, tool use) where step-level progress may be harder to define or where the success signal is less binary?",
+      "The paper shows weak provers can improve strong policies, but what is the theoretical lower bound on prover quality? Is there a principled way to select or construct the optimal prover without exhaustive search over K values?"
+    ],
+    "building_blocks": [
+      "Step-level advantage estimation via Monte Carlo rollouts from a prover policy",
+      "Potential-based reward shaping framework (Ng et al. 1999) applied to LLM reasoning",
+      "Best-of-K sampling as a simple but effective prover policy constructor",
+      "Mixed scoring: Q^π (outcome) + α·A^μ (process advantage) for verifier-guided beam search",
+      "Gemma 2B/9B/27B model family as experimental testbed",
+      "MATH benchmark for multi-step mathematical reasoning evaluation",
+      "Online RL with dense PAV rewards as alternative to sparse outcome rewards",
+      "Binary search approach for hyperparameter tuning of mixing coefficient α"
+    ],
+    "reviewer_feedback_summary": "Decision: Accept (Spotlight). Scores: 9, 9 (raised from 8), 8, 8, 8, plus one additional reviewer who raised their score after rebuttal. The Area Chair noted 'reviewers unanimously appreciate the reward-densifying transformation.' STRENGTHS praised: (1) solid theoretical connection to potential-based reward shaping, (2) comprehensive empirical validation across model scales, (3) clean motivation for advantages over Q-values, (4) dual applicability to both test-time search and RL training. WEAKNESSES raised: (1) narrow evaluation scope — only MATH benchmark, only Gemma models — raising generalization concerns (Reviewers jZuo, Ys2B), (2) imprecise 'exploration' terminology caused confusion about whether PAVs improve general exploration or directed search (Reviewer CgRb), (3) hyperparameter α requires tuning with different optimal ranges for search vs. RL, (4) insufficient comparison with prior PRM methods initially (addressed in rebuttal with Figure 13 showing 1.5-5× efficiency gains). Authors effectively addressed concerns by adding AlphaLLM comparisons (8× efficiency), prior PRM baselines, discounted reward experiments showing strong provers yield A^μ≈0, and structural improvements (moving related work to main text, adding conclusion with limitations). The strongest remaining concern was limited cross-benchmark/cross-architecture validation.",
+    "relevance_to_seed": "This paper is a foundational contribution to our exact research area — it provides the theoretical and practical framework for defining what step-level process rewards SHOULD be (advantages/progress, not values), which directly addresses the credit assignment problem in process reward models. The key transferable lesson is that the right formulation of the reward signal matters more than the scale of supervision data: reframing PRMs through the lens of RL advantage functions unlocked gains that brute-force labeling improvements coul
+... (truncated)
+
+## Your task
+
+Synthesize these paper analyses into a **Field Guide** — a strategic document that would help a researcher generate novel, high-quality ideas in this area. This is NOT a survey — it's an opinionated strategy guide for innovation.
+
+Think about:
+- What PATTERNS OF INNOVATION keep working in this field?
+- What do reviewers consistently reward?
+- Where are the real gaps (not assumed gaps)?
+- What combinations haven't been tried?
+- What mistakes should we avoid?
+
+## Output format
+
+Output a JSON object with these sections:
+{
+  "innovation_patterns": [
+    {"pattern": "name", "description": "how it works", "examples": ["paper1", "paper2"], "success_rate": "high/medium/low"}
+  ],
+  "reviewer_preferences": [
+    "What reviewers in this area consistently care about (based on evidence from paper analyses)"
+  ],
+  "field_gaps": [
+    {"gap": "description of unsolved problem", "evidence": "which papers mention this limitation", "difficulty": "high/medium/low", "impact_if_solved": "high/medium/low"}
+  ],
+  "untried_combinations": [
+    {"idea_sketch": "what could be combined", "from_papers": ["which papers inspire this"], "why_promising": "reason"}
+  ],
+  "method_building_blocks": [
+    {"tool": "name", "what_it_does": "description", "used_by": ["papers"], "could_be_applied_to": "new application"}
+  ],
+  "common_pitfalls": [
+    "Mistakes to avoid when working in this area (based on reviewer feedback and paper limitations)"
+  ],
+  "field_trajectory": "Where is this field heading? What are the 2-3 most promising macro-directions? (paragraph)",
+  "meta_advice": "If you were advising a PhD student to write a strong 2026 paper in this area, what would you tell them? (paragraph)"
+}
+
+Be specific and evidence-based — every claim should reference specific papers from the analyses. Avoid generic advice like 'be novel' — instead say 'Papers that combine X with Y for task Z have been getting accepted (see Paper A, Paper B).'.
+
+IMPORTANT: You MUST end your response with the JSON object.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "e6e44776-7f6f-4148-89f0-ab0a152ddb25",
+  "type": "user",
+  "uuid": "add274c9-7711-43bb-9353-6b8755b8ce5e",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c8d8b266-510e-4c99-9abe-dc35de162e07",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-28T05:25:03.063Z_
+
+```json
+{
+  "parentUuid": "add274c9-7711-43bb-9353-6b8755b8ce5e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "e8e0431c-4e6b-46ed-b08e-a49a2919c10e",
+  "timestamp": "2026-05-28T05:25:03.063Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c8d8b266-510e-4c99-9abe-dc35de162e07",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-28T05:25:03.063Z_
+
+```json
+{
+  "parentUuid": "e8e0431c-4e6b-46ed-b08e-a49a2919c10e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "812337b3-1740-4684-abe6-00120feb5e84",
+  "timestamp": "2026-05-28T05:25:03.063Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c8d8b266-510e-4c99-9abe-dc35de162e07",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-28 (UTC).**  ## Research area: Process Reward Models for Mathematic…",
+  "leafUuid": "812337b3-1740-4684-abe6-00120feb5e84",
+  "sessionId": "c8d8b266-510e-4c99-9abe-dc35de162e07"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Synthesize process reward model research strategy guide",
+  "sessionId": "c8d8b266-510e-4c99-9abe-dc35de162e07"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-28T05:25:27.306Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to synthesize 18 paper analyses into a strategic "Field Guide" for Process Reward Models for Mathematical Reasoning. Let me carefully read through all the paper analyses provided and then construct the JSON output.
+
+Let me note that the paper analyses were truncated - I can see the first 6 papers in detail:
+
+1. "Let's Verify Step by Step" (ICLR 2024) - Lightman et al.
+2. "Math-Shepherd" (ACL 2024)
+3. "ReST-MCTS*" (NeurIPS 2024)
+
+
+4. "OmegaPRM" (ICLR 2025)
+5. "Scaling LLM Test-Time Compute Optimally" (ICLR 2025 Oral) - Snell et al.
+6. "Rewarding Progress: Scaling Automated Process Verifiers" (ICLR 2025 Spotlight) - PAV paper
+
+The remaining 12 papers were truncated, but I have substantial information from these 6 papers to work with. Let me synthesize what I have into the field guide. These six papers provide rich material covering the evolution from foundational process reward modeling through scaling approaches and test-time compute optimization.
+
+Now I'm identifying the core innovation patterns across these works. The field is converging on a few key strategies: converting annotation bottlenecks into compute problems through Monte Carlo sampling, applying algorithmic optimizations like binary search to reduce verification costs, and discovering that process supervision outperforms outcome supervision at scale. There's also a theoretical thread connecting step-level rewards to advantage estimation in reinforcement learning, and evidence that verifiers and policies can bootstrap each other's improvements.
+
+The research that gets traction tends to release datasets, validate across multiple scales and benchmarks, ground claims in theory, and surface surprising results that challenge prior assumptions. The major open questions cluster around extending these techniques beyond mathematics into more open-ended domains, handling the false positive problem where models reach correct answers through flawed reasoning, understanding how verifiers evolve when trained online alongside improving policies, and protecting against adversarial optimization of the reward signal.
+
+Now I'm identifying promising research directions by combining insights from different papers—pairing PAV's policy selection with OmegaPRM's efficiency gains, layering difficulty-conditioned training on top of curriculum learning, merging PAV's framework with iterative self-improvement, and integrating revision mechanisms into search-guided verification. I'm about to structure these findings into a comprehensive JSON format.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "812337b3-1740-4684-abe6-00120feb5e84",
+  "isSidechain": false,
+  "requestId": "req_011CbUQkQzbxyGg18njepU7C",
+  "type": "assistant",
+  "uuid": "b5a971dc-a5fd-454c-aea2-d03e37683bd5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c8d8b266-510e-4c99-9abe-dc35de162e07",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JFP3UAhMd6iFrQTQoGUY9S",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11136,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 7849,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11136,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 7849,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 11136,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11136
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-28T05:28:07.912Z_
+
+I'll carefully analyze all the paper details provided to synthesize a comprehensive field guide. Let me work through the patterns systematically.
+
+```json
+{
+  "innovation_patterns": [
+    {
+      "pattern": "Reframe annotation as computation",
+      "description": "Convert the expensive human-labeling bottleneck into a compute problem by using the model's own generative capacity (Monte Carlo rollouts) to estimate step quality. The key move is redefining 'step correctness' from 'logically valid' (requires human judgment) to 'leads to correct answer' (requires only LLM forward passes + answer matching).",
+      "examples": ["Math-Shepherd", "OmegaPRM", "ReST-MCTS*"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Algorithmic efficiency on accepted primitives",
+      "description": "Take a known expensive subroutine that the field accepts as necessary (e.g., per-step Monte Carlo estimation at O(k·M)) and show that a well-known algorithm from another domain (binary search, MCTS) reduces its cost by an order of magnitude. The innovation is not the algorithm — it's recognizing which computational framing makes the algorithm applicable.",
+      "examples": ["OmegaPRM", "ReST-MCTS*"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Scale a controlled comparison to reveal hidden effects",
+      "description": "Take a prior null result or conventional wisdom, identify the specific axes along which it was under-powered (model size, dataset difficulty, supervision volume), and re-run at sufficient scale to reveal a gap that was invisible before. Requires releasing a major artifact (dataset, benchmark) to justify the empirical contribution.",
+      "examples": ["Let's Verify Step by Step"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Theoretical reframing of existing practice",
+      "description": "Take a design choice that the field treats as an engineering detail (e.g., using Q-values as step rewards) and show it maps to a formal framework from RL/control theory (e.g., potential-based reward shaping), revealing that the 'obvious' choice is suboptimal and the theoretically principled alternative yields large gains. The theory both explains why current practice is broken and prescribes the fix.",
+      "examples": ["Rewarding Progress (PAV)"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Co-evolution / mutual bootstrapping",
+      "description": "Design a system where the policy and the reward model improve each other iteratively — the policy generates search traces that provide supervision for the PRM, and the PRM guides the policy to generate better traces. The key insight is that the computational byproducts of one component's operation serve as training data for the other.",
+      "examples": ["ReST-MCTS*", "Math-Shepherd (step-by-step PPO)"],
+      "success_rate": "medium"
+    },
+    {
+      "pattern": "Difficulty-conditioned strategy selection",
+      "description": "Show that a one-size-fits-all approach to test-time or training-time compute allocation is suboptimal, and that routing compute adaptively based on problem difficulty yields outsized efficiency gains. The contribution is the decomposition framework and the surprising finding that different mechanisms dominate in different regimes.",
+      "examples": ["Scaling LLM Test-Time Compute Optimally"],
+      "success_rate": "high"
+    }
+  ],
+  "reviewer_preferences": [
+    "Dataset or artifact release tips the scales for borderline empirical papers — PRM800K's release was cited by the meta-reviewer as a decisive factor for acceptance of 'Let's Verify Step by Step' despite GPT-4 reproducibility concerns. Build releasable artifacts into your research plan from the start.",
+    "Breadth of experimental validation across model scales (not just one model size) is near-mandatory — Math-Shepherd tested 8 models from 7B-70B, PAV tested Gemma 2B/9B/27B, and reviewers of PAV still flagged single-architecture limitation. Test on at least 2 model families and 3 scales.",
+    "Theoretical grounding from classical RL/optimization earns high marks — PAV's connection to potential-based reward shaping (Ng et al. 1999) was unanimously praised ('reviewers unanimously appreciate the reward-densifying transformation'). Formalisms that explain WHY something works, not just THAT it works, consistently elevate scores from 6-7 to 8-9.",
+    "Controlled ablations that isolate the contribution from confounds are essential — Lightman et al. preempted the 'different training set sizes' confound with small-scale synthetic ablations, and this was cited as a strength. Always anticipate the 'is it just more/different data?' objection.",
+    "Surprising or counterintuitive results that overturn prior beliefs get rewarded disproportionately — the process > outcome reversal (Lightman et al.), the 'small model beats 14× larger' finding (Snell et al.), and the 'weak prover improves strong policy' result (PAV) all drove high scores. Frame your contribution around what the community got wrong.",
+    "Dual applicability (showing the same method improves both test-time search AND training-time RL) significantly broadens appeal — both Math-Shepherd and PAV demonstrated this, and reviewers noted it as a strength in both cases. If your method only works in one deployment mode, reviewers will ask 'but does it transfer?'",
+    "Reviewers consistently penalize narrow evaluation scope: single-benchmark (MATH only), single-domain (math only), or single-model-family results draw criticism even in otherwise strong papers. PAV's spotlight was tempered by 'limited cross-benchmark/cross-architecture validation' as the strongest remaining concern."
+  ],
+  "field_gaps": [
+    {
+      "gap": "Generalization beyond mathematical reasoning to domains without easily verifiable ground-truth answers (code generation, scientific reasoning, open-ended argumentation)",
+      "evidence": "Explicitly flagged as an open question or limitation in ALL six analyzed papers: Let's Verify Step by Step, Math-Shepherd, ReST-MCTS*, OmegaPRM, Snell et al., and PAV. The entire Monte Carlo estimation framework depends on answer-matching against ground truth — no paper has shown how to replace this with a learned or approximate signal.",
+      "difficulty": "high",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "False positive contamination: solutions that reach the correct answer via incorrect intermediate reasoning receive positive step labels under all Monte Carlo estimation approaches",
+      "evidence": "Math-Shepherd reports only 86% annotation accuracy and explicitly defers human-vs-automatic comparison. OmegaPRM notes 'false positives and false negatives' and finds automatic labels paradoxically outperform human ones, leaving 'the precise impact of noise on PRM performance uncertain.' ReST-MCTS* identifies this as the core problem with outcome-filtered self-training.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Reward over-optimization / PRM exploitation during search — beam search with PRMs degrades performance on easy problems and shows diminishing returns with more compute",
+      "evidence": "Snell et al. explicitly document 'exploitation of PRM predictions' causing beam search to degrade on easy problems. PAV's complementary prover analysis shows that overly strong provers assign near-zero advantages, suggesting a related saturation effect. No paper provides a robust solution to PRM over-optimization beyond ad-hoc difficulty-conditioned routing.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Iterative co-evolution dynamics between policy and PRM are poorly understood — does the mutual bootstrapping loop converge, diverge, or plateau?",
+      "evidence": "Math-Shepherd explicitly leaves 'iterative RL (training the generator, re-annotating with the improved generator, re-training the PRM)' as future work. ReST-MCTS* demonstrates one round of co-evolution but does not characterize long-run dynamics. PAV asks 'how does the optimal prover policy change as the base policy improves?' without answering it.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Optimal PRM score aggregation — min-step, product-of-probabilities, last-step, and advantage-weighted scoring all give different results and the best choice is task/model-dependent",
+      "evidence": "Let's Verify Step by Step uses product-of-step-probabilities. Math-Shepherd uses minimum step score. Snell et al. find last-step scoring outperforms min and product. PAV uses a mixed Q+αA formula. No paper systematically studies why different aggregations work in different settings or proposes a principled, adaptive aggregation method.",
+      "difficulty": "low",
+      "impact_if_solved": "medium"
+    },
+    {
+      "gap": "Cheap difficulty estimation for compute-optimal routing — current methods require 2048 samples or a learned verifier, which is prohibitively expensive for deployment",
+      "evidence": "Snell et al. explicitly acknowledge this chicken-and-egg problem: 'estimating question difficulty itself requires non-trivial compute.' They propose cross-validation as a partial solution but no lightweight alternative. This blocks practical deployment of their compute-optimal framework.",
+      "difficulty": "low",
+      "impact_if_solved": "medium"
+    },
+    {
+      "gap": "Mechanistic understanding of why soft/continuous labels outperform hard/binary labels for PRM training",
+      "evidence": "OmegaPRM demonstrates a 6.8 percentage point gain from soft labels over hard labels but notes the mechanism is unexplained — 'is it label smoothing regularization, richer gradient signal, or preservation of uncertainty information?' Snell et al. also use soft labels (reward-to-go estimates) without ablating against hard labels. No paper provides a theoretical explanation.",
+      "difficulty": "low",
+      "impact_if_solved": "medium"
+    },
+    {
+      "gap": "Composing PRM-guided search with iterative revision — these are complementary test-time compute mechanisms that have never been combined",
+      "evidence": "Snell et al. explicitly flag this: 'they did not explore combining PRM search with iterative revision — leaving potential synergies unexplored.' Search excels on medium-difficulty problems, revision excels on easy problems — composition could cover the full difficulty spectrum.",
+      "difficulty": "medium",
+      "impact_if_solved": "medium"
+    }
+  ],
+  "untried_combinations": [
+    {
+      "idea_sketch": "PAV advantage-based rewards + OmegaPRM's binary-search data collection: Use the advantage formulation (A^μ = Q^μ - V^μ) as the training target for PRMs, but collect the Monte Carlo estimates needed for advantage computation using OmegaPRM's O(k·log M) binary search instead of brute-force O(k·M) per-step rollouts. The binary search finds the first error efficiently, and the rollout statistics at each binary search step provide the Q^μ and V^μ estimates needed for advantage computation.",
+      "from_papers": ["Rewarding Progress (PAV)", "OmegaPRM"],
+      "why_promising": "PAV showed advantages are the theoretically correct reward signal (8-10% gains), and OmegaPRM showed binary search yields 75× data efficiency — but PAV still uses brute-force per-step rollouts for advantage estimation. Combining them addresses both the 'what to estimate' and 'how to estimate it efficiently' questions simultaneously."
+    },
+    {
+      "idea_sketch": "Difficulty-conditioned PRM training data curation: Use Snell et al.'s finding that PRM value is highest on medium-difficulty problems to design a curriculum learning strategy for PRM training. Instead of uniformly sampling problems for rollout-based annotation, concentrate annotation budget on the difficulty band where step-level credit assignment matters most, and use lighter supervision (or none) for easy/hard problems.",
+      "from_papers": ["Scaling LLM Test-Time Compute Optimally", "OmegaPRM", "Math-Shepherd"],
+      "why_promising": "OmegaPRM already filters 'too easy' and 'too hard' questions but uses ad-hoc thresholds. Snell et al.'s difficulty profiling provides a principled basis for where annotation investment has the highest marginal return. This could improve data efficiency beyond OmegaPRM's 75× gain by concentrating compute where it matters."
+    },
+    {
+      "idea_sketch": "Iterative co-evolution with adaptive prover selection: Combine ReST-MCTS*'s mutual bootstrapping (policy generates PRM data, PRM guides policy) with PAV's complementary prover framework. At each iteration, select the prover policy K-value that is optimally 'complementary' to the current base policy — strong enough to distinguish steps but not so strong it assigns zero advantages — then use this prover to generate advantage-based training labels for the next PRM iteration.",
+      "from_papers": ["ReST-MCTS*", "Rewarding Progress (PAV)"],
+      "why_promising": "ReST-MCTS* showed co-evolution works but used Q-values (suboptimal per PAV). PAV showed advantages are better but used a static prover. The combination addresses PAV's open question of how the optimal prover changes during training while grounding it in ReST-MCTS*'s iterative framework."
+    },
+    {
+      "idea_sketch": "PRM-guided search composed with iterative revision: Use PRM beam search to generate a diverse set of near-correct candidate solutions, then fine-tune a revision model to fix the specific errors the PRM identifies (using the PRM's per-step scores to localize errors). At test time, run search first to get candidates, then revise the top-k candidates using error localization from PRM step scores.",
+      "from_papers": ["Scaling LLM Test-Time Compute Optimally", "Let's Verify Step by Step"],
+      "why_promising": "Snell et al. explicitly noted this as an unexplored synergy. Search dominates on medium/hard problems but plateaus; revision dominates on easy problems. Composing them with PRM-guided error localization could break the plateau on hard problems by targeted revision of the specific step the PRM flags as weakest."
+    },
+    {
+      "idea_sketch": "Transfer process supervision to code generation via execution-based step verification: Replace answer-matching in Math-Shepherd/OmegaPRM with intermediate execution checks (unit tests, assertions, type checks) at each step of a code generation trace. Each 'step' is a code block; its quality is estimated by running Monte Carlo completions and checking how many pass the test suite.",
+      "from_papers": ["Math-Shepherd", "OmegaPRM", "ReST-MCTS*"],
+      "why_promising": "The #1 open question across all papers is generalization beyond math. Code generation is the natural next domain because it has verifiable intermediate states (code compiles, partial tests pass) that can serve as the 'ground truth answer' signal for Monte Carlo estimation — bridging the gap between math's clean verifiability and open-ended domains."
+    },
+    {
+      "idea_sketch": "Learned PRM score aggregation: Instead of hand-designing the solution-level scoring function (product, min, last-step, or α-weighted mixture), train a lightweight meta-model that takes the sequence of per-step PRM scores as input and predicts solution correctness. This aggregator could be conditioned on estimated problem difficulty to adaptively weight different steps.",
+      "from_papers": ["Let's Verify Step by Step", "Math-Shepherd", "Scaling LLM Test-Time Compute Optimally", "Rewarding Progress (PAV)"],
+      "why_promising": "Four different papers use four different aggregation strategies, each optimal in different settings. No paper has tried learning the aggregation function, despite it being a simple supervised learning problem (input: step-score sequence; label: solution correctness). Snell et al.'s finding that optimal strategy is difficulty-conditioned suggests a learned, difficulty-aware aggregator could capture all four strategies as special cases."
+    }
+  ],
+  "method_building_blocks": [
+    {
+      "tool": "Monte Carlo rollout estimation for step quality",
+      "what_it_does": "Estimates the quality of an intermediate reasoning step by sampling N completions from that step and measuring the fraction that reach the correct final answer. Converts human annotation into a compute problem.",
+      "used_by": ["Math-Shepherd", "OmegaPRM", "ReST-MCTS*", "Scaling LLM Test-Time Compute Optimally", "Rewarding Progress (PAV)"],
+      "could_be_applied_to": "Step-level verification in code generation (replace answer-matching with test-suite pass rates), tool-use planning (replace with task-completion checks), or multi-agent coordination (replace with team-objective achievement)"
+    },
+    {
+      "tool": "Binary search for error localization",
+      "what_it_does": "Finds the first error in a reasoning chain in O(k·log M) instead of O(k·M) by splitting at the midpoint, running rollouts, and recursing into the half containing the first error.",
+      "used_by": ["OmegaPRM"],
+      "could_be_applied_to": "Debugging long code generation traces, localizing the first hallucination in a multi-paragraph factual generation, or identifying the critical failure point in multi-step agent trajectories"
+    },
+    {
+      "tool": "Step-level advantage estimation (A^μ = Q^μ - V^μ)",
+      "what_it_does": "Measures the PROGRESS a reasoning step makes toward correctness, rather than the absolute likelihood of eventual correctness. Uses a 'prover' policy distinct from the base policy to compute the advantage, avoiding the saturation problem where a strong model assigns zero advantage to all steps.",
+      "used_by": ["Rewarding Progress (PAV)"],
+      "could_be_applied_to": "Any sequential decision process where dense rewards are needed — agentic tool use, multi-turn dialogue, hierarchical planning. The prover-based advantage formulation is domain-agnostic."
+    },
+    {
+      "tool": "Active learning via 'convincing wrong-answer' selection",
+      "what_it_does": "Surfaces training examples where the current reward model is most confidently wrong — solutions the PRM rates highly but that have incorrect final answers — to maximize labeler information gain, yielding 2.6× data efficiency.",
+      "used_by": ["Let's Verify Step by Step"],
+      "could_be_applied_to": "Any reward model training loop: iteratively mine hard negatives from the current RM to improve calibration, applicable to RLHF reward models, code correctness verifiers, or factuality classifiers"
+    },
+    {
+      "tool": "Best-of-N with inter-answer marginalization",
+      "what_it_does": "Samples N candidate solutions, scores each with a reward model, but instead of selecting the single highest-scored solution, marginalizes PRM scores across solutions that share the same final answer — combining reward model confidence with self-consistency voting.",
+      "used_by": ["Scaling LLM Test-Time Compute Optimally", "Math-Shepherd"],
+      "could_be_applied_to": "Any generation task where multiple candidates can be scored and grouped by equivalence classes — code generation (group by output behavior), translation (group by semantic similarity), planning (group by goal state)"
+    },
+    {
+      "tool": "MCTS with PUCT selection adapted for LLM reasoning",
+      "what_it_does": "Treats partial solutions as tree nodes and reasoning steps as edges. Uses Upper Confidence bounds for Trees with a learned prior (PUCT) to balance exploring novel reasoning paths vs. exploiting high-reward known paths. Backpropagates rollout outcomes to update node values.",
+      "used_by": ["ReST-MCTS*", "OmegaPRM"],
+      "could_be_applied_to": "Multi-step agentic planning (each action is a tree edge), theorem proving (each proof step is a node), or dialogue strategy optimization (each conversational move is an action)"
+    },
+    {
+      "tool": "Pointwise soft-label PRM training",
+      "what_it_does": "Trains the PRM on continuous Monte Carlo return estimates (e.g., 0.73 probability of reaching correct answer) rather than binary correct/incorrect labels. Uses binary cross-entropy with the continuous target as the soft label.",
+      "used_by": ["OmegaPRM", "Scaling LLM Test-Time Compute Optimally"],
+      "could_be_applied_to": "Any classification task where hard labels are noisy approximations of an underlying continuous signal — toxicity scoring, factuality verification, code quality estimation"
+    },
+    {
+      "tool": "Difficulty-conditioned compute routing",
+      "what_it_does": "Bins problems by estimated difficulty (via pass@1 rates or verifier scores) and selects different inference strategies (search type, revision depth, compute budget) per difficulty bin, yielding 4× compute efficiency over uniform allocation.",
+      "used_by": ["Scaling LLM Test-Time Compute Optimally"],
+      "could_be_applied_to": "Any inference-heavy pipeline: adaptive RAG (more retrieval for harder queries), code generation (more search for complex functions), or cascading model selection (route easy queries to small models)"
+    }
+  ],
+  "common_pitfalls": [
+    "Testing only on MATH/GSM8K without out-of-distribution evaluation: Reviewers consistently flag this. ReST-MCTS* mitigated it with GPQA/SciBench/CEval-Hard; OmegaPRM and PAV were both criticized for narrow evaluation. Always include at least one OOD benchmark (e.g., competition math, science reasoning, or the Hungarian national exam used by Math-Shepherd).",
+    "Conflating 'dense supervision' with 'process supervision': The PAV paper showed that naively densifying rewards (using Q-values at every step) does NOT automatically help — you need the RIGHT dense signal (advantages). Don't assume more labels = better; the reward DEFINITION matters more than the reward DENSITY.",
+    "Ignoring the confound of different training data distributions when comparing ORMs vs PRMs: Lightman et al. were explicitly challenged on this — their ORM and PRM saw different training set sizes/compositions. Always run controlled ablations on identical data when claiming one supervision type outperforms another.",
+    "Using a single PRM score aggregation method without ablation: Four major papers use four different aggregation strategies (product, min, last-step, weighted mixture), and the optimal choice varies. Always ablate aggregation strategy; reviewers know this is a confound.",
+    "Reporting only best-of-N accuracy without analyzing compute scaling behavior: Snell et al. showed that the ranking of methods changes dramatically with compute budget. Report performance curves across N, not just a single N value. Reviewers at ICLR 2025 expect scaling analysis.",
+    "Neglecting the false-positive problem in Monte Carlo labeling: Solutions that reach correct answers via incorrect reasoning are a systematic noise source in all automatic PRM annotation methods. Math-Shepherd reports 86% accuracy. Acknowledge this, measure it, and if possible, mitigate it — reviewers will ask.",
+    "Training and evaluating PRMs only for test-time reranking (best-of-N) without showing RL applicability: Both Math-Shepherd and PAV earned significant credit for demonstrating PRMs work for both verification AND RL training. A paper that shows only one mode will face 'but does it transfer?' questions.",
+    "Using GPT-4 or other closed-source models as the primary experimental backbone: Lightman et al.'s reproducibility was the most criticized aspect of 'Let's Verify Step by Step' — two reviewers gave low scores primarily on this basis. Use open-weight models (LLaMA, Gemma, Mistral) as primary results; closed-model results can supplement but not substitute.",
+    "Proposing a data collection improvement without comparing against the PRM800K and Math-Shepherd baselines: These are the two established baselines for process supervision data. OmegaPRM and ReST-MCTS* both included direct comparisons. Omitting them signals lack of awareness of the literature.",
+    "Treating the completer/prover model as a fixed design choice without ablation: Math-Shepherd showed completer quality strongly affects annotation quality, and PAV showed prover strength has a non-monotonic relationship with verifier quality (too-strong provers assign zero advantages). Always ablate the model used for rollout generation."
+  ],
+  "field_trajectory": "The field is converging on three macro-directions. First, the 'data collection algorithm' for PRMs is becoming as important as the PRM architecture itself — the progression from human annotation (PRM800K, 2023) to brute-force Monte Carlo (Math-Shepherd, 2024) to efficient search-based annotation (OmegaPRM, ReST-MCTS*, 2024-2025) shows a clear trajectory toward compute-optimal automatic annotation, with the next frontier being adaptive annotation strategies that concentrate compute where it has the highest marginal return (combining OmegaPRM's efficiency with Snell et al.'s difficulty-conditioned insights). Second, the reward signal definition is shifting from binary step correctness toward richer formulations — PAV's advantage-based rewards represent the leading edge, and the field is moving toward rewards that capture not just 'is this step correct?' but 'how much progress does this step make?' and 'how surprising is this step's contribution?' This connects process reward modeling to the broader RL theory of credit assignment and potential-based shaping, and future work will likely explore temporal-difference methods, eligibility traces, and hindsight relabeling adapted to LLM reasoning chains. Third, the deployment mode is expanding from static reranking toward dynamic co-evolution — ReST-MCTS*'s mutual bootstrapping and PAV's online RL results point toward systems where the policy and PRM improve each other continuously, with the PRM serving as both a training signal and an inference-time guide. The 2026-2027 frontier will likely be defined by papers that unify these three directions: compute-optimal annotation of theoretically grounded reward signals within an iterative self-improvement loop, applied to domains beyond pure mathematics.",
+  "meta_advice": "If you are a PhD student aiming to write a strong 2026 paper in process reward models, here is concrete guidance based on what has worked and what gaps remain. First, pick one of the established field gaps — generalization beyond math, false-positive mitigation, or co-evolution dynamics — and make it your primary contribution. Do NOT try to 'improve PRM accuracy on MATH by 2%' with an incremental method change; that space is saturated. The highest-impact gap is generalization to code generation or scientific reasoning, because every paper flags it as a limitation but none address it — the first clean demonstration of Monte Carlo step-level verification in a non-math domain (using execution traces for code, or intermediate assertions for proofs) would be publishable at a top venue almost regardless of the accuracy numbers, simply because it opens the door. Second, ground your method in theory from RL or optimization — PAV's connection to potential-based reward shaping earned it a spotlight with scores of 8-9 from all reviewers. A paper that proposes temporal-difference PRM training (replacing Monte Carlo rollouts with bootstrapped value estimates) or applies hindsight experience replay to step-level credit assignment would have strong theoretical novelty while being practically impactful. Third, run experiments on open-weight models (Gemma, LLaMA-3, Mistral) across at least two model scales and two benchmarks including one OOD evaluation — this is table stakes after reviewers punished GPT-4-only results in 'Let's Verify Step by Step' and narrow-benchmark evaluation in PAV. Fourth, always demonstrate your method in BOTH test-time search AND RL training — papers that show dual applicability (Math-Shepherd, PAV) get significantly more credit. Fifth, release an artifact: a dataset, a trained PRM checkpoint, or a reusable annotation toolkit. PRM800K's release was the deciding factor for a borderline paper. Finally, frame your contribution around a surprising finding that overturns a current assumption — 'process supervision outperforms outcome supervision' (Lightman et al.), 'small model beats 14× larger' (Snell et al.), 'weak provers beat strong provers for verification' (PAV) all earned outsized attention. The 2026 version might be 'process rewards hurt on easy problems but this specific fix resolves it,' or 'Monte Carlo estimation systematically fails on this problem class but this alternative succeeds.' Identify what the community currently takes for granted and design your experiment to test exactly that assumption."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5a971dc-a5fd-454c-aea2-d03e37683bd5",
+  "isSidechain": false,
+  "requestId": "req_011CbUQkQzbxyGg18njepU7C",
+  "type": "assistant",
+  "uuid": "eded9717-2b50-4025-b93d-c3328c6dcc23",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c8d8b266-510e-4c99-9abe-dc35de162e07",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JFP3UAhMd6iFrQTQoGUY9S",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11136,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 7849,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11136,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 7849,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 11136,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11136
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-28 (UTC).**  ## Research area: Process Reward Models for Mathematic…",
+  "leafUuid": "eded9717-2b50-4025-b93d-c3328c6dcc23",
+  "sessionId": "c8d8b266-510e-4c99-9abe-dc35de162e07"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Synthesize process reward model research strategy guide",
+  "sessionId": "c8d8b266-510e-4c99-9abe-dc35de162e07"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-28 (UTC).**  ## Research area: Process Reward Models for Mathematic…",
+  "leafUuid": "eded9717-2b50-4025-b93d-c3328c6dcc23",
+  "sessionId": "c8d8b266-510e-4c99-9abe-dc35de162e07"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Synthesize process reward model research strategy guide",
+  "sessionId": "c8d8b266-510e-4c99-9abe-dc35de162e07"
+}
+```
+
+---

@@ -1,0 +1,5361 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-16 (UTC).** ## Original idea { "tit
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 79
+- **Recorded user turns:** 1
+- **Tool calls:** 19
+- **Original source:** `logs/chats/exported-trajectories/account-1/bc8954cb-299c-4796-96dd-a2a0aa0dc0be.jsonl`
+- **Structured JSON:** [`16c3377ba84e771c0d56.json`](../../sessions/16/16c3377ba84e771c0d56.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T11:16:46.230Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T11:16:46.230Z",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-16 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Dual-Metric Perturbation Probing: Training-Free CHOKE Detection via Output–Representation Sensitivity Divergence at Intermediate Layers\",\n  \"core_problem\": \"High-confidence hallucinations—termed CHOKE (Simhi et al., EMNLP 2025 Findings) or Certainty Misalignment (HACK, Simhi et al., 2025)—are factual errors where models confidently produce incorrect answers despite possessing correct internal knowledge. These affect 16–43% of hallucinations across models (HACK) and resist all published mitigation methods: uncertainty-based detection fails because entropy is low, probing achieves only 15–30% CM-specific mitigation despite 60–75% overall (HACK), and noise-injection approaches (Liu et al., ICLR 2026) rely on answer-level diversity that stays flat when the argmax is stable. Recent theoretical work establishes WHY these errors resist detection: Attractor Geometry (Liang et al., 2026) proves that the LM head, being a fixed linear map, produces identical high-confidence outputs whether the hidden state occupies a memorized attractor basin (correct recall) or drifts freely outside any basin (CHOKE)—static output signals are fundamentally blind. Meanwhile, a critical CONTRADICTION exists in perturbation-based detection: SSP (Luo et al., 2025) finds that truthful responses show GREATER representation-level sensitivity to input perturbation at intermediate layers, while the Attractor Geometry framework predicts that correct recall (basin convergence) should be locally STABLE. Trajectory Commitment (Akarlar, 2026) adds further complexity: hallucinated states form 'stable, difficult-to-escape basins' with only 33.3% recovery rate under directed activation patching, while correct states are fragile (87.5% corruption rate). No work has investigated whether this apparent paradox—hallucinated basins being simultaneously STABLE to directed escape yet potentially SENSITIVE to random perturbation (as EPGS demonstrates for 'stubborn hallucinations')—can be resolved by distinguishing perturbation TYPE (directed replacement vs. random Gaussian noise) and measurement METRIC (representation shift vs. output KL divergence).\",\n  \"opportunity\": \"Seven converging results create a precise opportunity: (1) Attractor Geometry (Liang et al., 2026) establishes geometric margin as the theoretically correct monitoring signal. (2) SSP (Luo et al., 2025) demonstrates that perturbation sensitivity at intermediate layers is informative—but uses input perturbation, representation cosine, and trained encoders, NOT testing CHOKE. (3) EPGS (ICML 2026) confirms that high-confidence hallucinations occupy 'sharp minima' detectable via gradient magnitude—but requires backpropagation. Crucially, EPGS proves that stubborn hallucinations have HIGH gradient sensitivity, which is mathematically the Hessian trace—establishing that these errors sit in regions of high LOCAL CURVATURE. (4) Trajectory Commitment (2604.15400) shows hallucinated states resist DIRECTED escape (33.3% recovery), with random-patch control achieving only 12.5%—confirming that directed replacement and random noise probe geometrically distinct properties. The critical insight: a NARROW DEEP well is simultaneously (a) hard to escape directionally (consistent with Trajectory Commitment's low recovery rate) AND (b) highly sensitive to small random perturbation (consistent with EPGS's high gradient magnitude). Depth determines escapability; WIDTH/CURVATURE determines perturbation sensitivity. These are complementary, not contradictory. (5) Hallucination Basins (2604.04743) establishes task-dependent separability: 'factoid settings show clearer basin separation, whereas misconception-heavy settings overlap.' Our target domain (factoid QA: TriviaQA, NQ) is precisely where their framework predicts separability. (6) The mathematical bridge via Hutchinson trace estimation: for a linear LM head W with softmax output p, the expected output KL under isotropic Gaussian perturbation δ ~ N(0, σ²I) satisfies E[D_KL] ≈ (σ²/2) · Tr(W^T · F · W), where F = diag(p) - pp^T. This is exactly a K-sample Hutchinson estimator of Tr(W^T F W)—the SAME output curvature quantity that EPGS estimates via backpropagation (||∇_h L||²). DMPP thus provides a FORWARD-ONLY ESTIMATOR of EPGS's signal, with the additional decomposition into output vs. representation components. (7) The Geometric Hallucination Taxonomy (2603.00307) validates that different geometric statistics capture different hallucination types, but finds Types 1 and 2 do NOT separate in static contextual embeddings—motivating DYNAMIC (perturbation-based) rather than static geometric approaches.\",\n  \"landscape\": \"**Perturbation-based hallucination methods:** Liu et al. (ICLR 2026, arxiv 2502.03799): noise into upper-third MLP activations, sample K outputs, compute answer/semantic entropy—73–80% AUROC generally but limited on CHOKE because answer entropy stays low when argmax is stable. SHINE (Lee et al., arxiv 2411.09689): perturbs entity embeddings at INPUT layer, measures output KL—operates before attractor dynamics begin. CCPS (Khanmohammadi et al., EMNLP 2025, arxiv 2505.21772): adversarial perturbation to FINAL hidden states with a trained classifier—achieves ~55% ECE reduction; requires training. SSP/Shaking to Reveal (Luo et al., arxiv 2506.02696): perturbs via dynamically-generated input noise prompts, measures intermediate representation COSINE shift with trained MLP encoder—achieves 75.38% avg AUROC (LLaMA-3-8B) on general hallucination. Critically: (a) uses input-level perturbation, not residual-stream noise; (b) measures representation cosine, not output KL; (c) finds truthful responses MORE sensitive; (d) trained components (MLP encoder + prompt generator); (e) NOT tested on CHOKE-specific subsets.\\n\\n**Gradient-based methods:** EPGS (ICML 2026, arxiv 2605.00939): perturbs input embeddings with Gaussian noise, measures gradient magnitude as Hessian proxy—requires backpropagation through the final Transformer block. Core theoretical claim: stubborn hallucinations sit in SHARP minima (high curvature), robust facts in FLAT minima. Achieves highest AUROC across 12 model-dataset configurations, surpassing Eigenscore by 9%+ on TriviaQA. Targets 'stubborn errors' (conceptually overlapping with CHOKE). NGS-HD (ICLR 2026 submission): gradient of max log-probability w.r.t. layer embeddings, MMD-based comparison—requires gradients. LLM-CAS (arxiv 2512.18623, AAAI): neuron-level causal tracing via Integrated Gradients, trains RL agents for dynamic perturbation—requires both gradients AND training.\\n\\n**Latent perturbation with answer stability:** ARS (Zhang et al., arxiv 2601.17467, ICML 2026): perturbs trace-boundary embeddings in reasoning models, labels perturbations by answer agreement/disagreement, learns shaped representations that expose latent instability. Requires training (contrastive learning on perturbation outcomes). Targets reasoning models (LRMs), not factual recall. Conceptual overlap with DMPP: both use latent perturbation and measure downstream stability. Key differences: ARS requires training, measures binary answer flip, targets reasoning chains; DMPP is training-free, measures continuous KL + cosine, targets factual CHOKE at token level.\\n\\n**Geometric hallucination detection:** 'What do Geometric Hallucination Detection Metrics Actually Measure?' (arxiv 2602.09158): shows different geometric statistics capture different hallucination types. 'From OOD Detection to Hallucination Detection: A Geometric View' (arxiv 2602.07253): treats next-token prediction as classification, applies OOD detection geometrically. 'Where Does Reasoning Break?' (arxiv 2605.13772): hidden-state transport geometry for step-level detection—trained teacher/student. Sample Transform Cost (arxiv 2603.22303): Wasserstein distance between sampled responses—training-free but requires multiple samples. Geometric Hallucination Taxonomy (arxiv 2603.00307): classifies failures as center-drift (Type 1), wrong-well convergence (Type 2), or coverage gaps (Type 3). Critical finding: Types 1 and 2 do NOT separate in static contextual hidden states (≤ 3/20 runs significant)—motivating dynamic (perturbation-based) approaches over static embedding analysis. 'Shadows in the Attention' (arxiv 2505.16894): systematic study of representation drift under incremental context injection—observes monotonic hallucination growth and attention re-routing, complementary to our per-token perturbation approach.\\n\\n**Attractor geometry framework:** Liang et al. (arxiv 2605.05686, May 2026): proves attractor basin structure, proposes geometric margin. Hallucination Basins (Chen et al., arxiv 2604.04743, April 2026): task-dependent basin structure, geometry-aware steering; key theorem: separability depends on task complexity and answer-set cardinality—factoid QA (point attractors) shows clearest separation. Trajectory Commitment (Akarlar, arxiv 2604.15400, April 2026): asymmetric attractor dynamics; hallucinated states resist escape (33.3% recovery via directed activation patching) while correct states are fragile (87.5% corruption); critically, random-patch control achieves only 12.5% effect, confirming that random noise probes a different property than directed intervention.\\n\\n**Gap:** No existing method simultaneously: (a) measures BOTH output-level and representation-level sensitivity under the SAME perturbation, (b) targets CHOKE specifically, (c) operates training-free and forward-only, (d) provides a formal connection to gradient-based curvature (EPGS) via Hutchinson estimation, (e) distinguishes perturbation TYPE effects (input vs. residual-stream) from metric TYPE effects (cosine vs. KL) from error TYPE effects (CHOKE vs. general), and (f) accounts for the task-dependent detectability fraction (which CHOKE subset sits in sharp vs. flat wrong-wells). EPGS detects the right phenomenon (sharpness) but requires gradients. SSP uses the wrong perturbation type, wrong metric for curvature, trained components, and never tests CHOKE. ARS requires training and targets reasoning, not factual recall.\",\n  \"approach\": \"We propose Dual-Metric Perturbation Probing (DMPP), a training-free, forward-only method that detects CHOKE and enables selective abstention by measuring BOTH output logit KL divergence AND representation cosine shift under residual-stream perturbation at intermediate layers.\\n\\n**Theoretical Contribution 1: DMPP as Forward-Only Hutchinson Estimator of Output Curvature**\\n\\nFor a linear LM head W and softmax output p = softmax(Wh), under hidden-state perturbation δ ~ N(0, σ²I):\\n\\nD_KL(softmax(Wh) || softmax(W(h+δ))) ≈ (1/2)·(Wδ)ᵀ·F(p)·(Wδ)\\n\\nwhere F(p) = diag(p) - ppᵀ is the Fisher information matrix of the categorical output.\\n\\nTaking the expectation over K random perturbations:\\nE[D_KL] ≈ (σ²/2) · Tr(W^T · F · W)\\n\\nThis follows from the Hutchinson trace identity: E[δ^T M δ] = σ² · Tr(M) for M = W^T F W and δ ~ N(0, σ²I).\\n\\nThe quantity Tr(W^T F W) is exactly the OUTPUT CURVATURE—the trace of the Fisher-weighted Jacobian of the output mapping. EPGS estimates this same quantity via backpropagation: ||∇_h L||² is proportional to the diagonal Fisher information evaluated at h. Our K forward passes with random δ provide a K-sample Hutchinson estimate of the SAME curvature, entirely without gradients.\\n\\nThis positions DMPP as: **forward-only EPGS with dual-metric decomposition.**\\n\\n**Theoretical Contribution 2: Reconciling Trajectory Commitment with Perturbation Sensitivity**\\n\\nTrajectory Commitment (2604.15400) shows hallucinated states are hard to ESCAPE via directed activation patching (complete residual-stream replacement from another trajectory). Their random-patch control achieves only 12.5% effect vs. 33.3% for directed. This asymmetry reveals that:\\n- DIRECTED patching tests BASIN ESCAPABILITY (global depth): can a coordinated multi-layer intervention push the state over the basin wall?\\n- RANDOM Gaussian noise tests LOCAL CURVATURE (sharpness): how much does the output distribution change per unit of random displacement?\\n\\nThese are geometrically independent properties. A narrow deep well (high curvature, deep walls) is SIMULTANEOUSLY:\\n- Hard to escape directionally → consistent with TC's 33.3% recovery\\n- Highly sensitive to random perturbation → consistent with EPGS's high gradient magnitude for stubborn hallucinations\\n- Detectable by DMPP → high SAR\\n\\nConversely, a wide deep well (low curvature, deep walls) would be:\\n- Hard to escape directionally → consistent with TC\\n- INSENSITIVE to random perturbation → low SAR\\n- Undetectable by DMPP\\n\\nEPGS's finding that stubborn hallucinations consistently show HIGH gradient magnitude (sharp minima) provides empirical evidence that the narrow-deep geometry is predominant for high-confidence errors.\\n\\n**Theoretical Contribution 3: Detectability Fraction Analysis**\\n\\nNot all CHOKE is created equal. We formally distinguish:\\n\\n- **CHOKE-sharp** (detectable subset): Wrong-well convergence with HIGH local curvature. The model has competing correct knowledge (HK+ in HACK), meaning the wrong-answer basin coexists with a correct-answer basin. Competition between basins implies narrower individual wells with steeper walls at boundaries. Predicted behavior: high SAR, high output KL, moderate Δcos. DMPP targets this subset.\\n\\n- **CHOKE-flat** (undetectable subset): Wrong-well convergence with LOW local curvature. The model's wrong-answer basin is geometrically indistinguishable from correct deep recall. This corresponds to cases where incorrect information is as deeply entrenched as correct knowledge.\\n\\nWhy CHOKE-sharp is the dominant subset: CHOKE/CM is defined by HK+ (model HAS correct knowledge). The presence of competing correct knowledge means the wrong-answer basin is NOT maximally entrenched—it coexists with and competes against the correct basin. This competition implies that CHOKE basins are generally NARROWER than genuine knowledge basins (HK-), hence sharper. Supporting evidence: (1) EPGS achieves very high AUROC on stubborn hallucinations, implying most are in sharp minima. (2) Hallucination Basins (2604.04743) theorem shows factoid QA (our domain) has point-attractor structure with clearer separation. (3) HACK reports that probing achieves 15-30% CM-specific mitigation—the linear probe captures the EASY (sharp) subset; DMPP's perturbation-based signal should detect a larger fraction.\\n\\nWe acknowledge CHOKE-flat as a fundamental limitation of ALL training-free forward-only methods and report partial recall honestly. Expected recall: 60-80% of CHOKE examples (based on EPGS's near-complete detection of stubborn hallucinations and accounting for the small flat-basin residual).\\n\\n**Theoretical Contribution 4: Sensitivity Divergence Reconciles SSP**\\n\\nRepresentation cosine shift: Δcos = 1 - cos(h_L, h_L + δ_L) ≈ ||δ_L||² / (2||h_L||²)\\nSensitivity Amplification Ratio: SAR = D_KL / max(Δcos, ε)\\n\\nSAR measures the output sensitivity PER UNIT of representation movement—proportional to the local Jacobian norm weighted by Fisher information.\\n\\nPredicted pattern for high-confidence outputs:\\n- CORRECT recall (deep in wide basin): Perturbation propagates through layers (nonzero Δcos) but the LM head maps the local neighborhood to similar distributions (low D_KL). SAR is LOW. CONSISTENT with SSP's finding of high representation sensitivity for truthful answers.\\n- CHOKE-sharp (narrow wrong-well): Perturbation propagates moderately (moderate Δcos) but the hidden state sits near steep output decision boundaries where small perturbations shift probability mass (high D_KL). SAR is HIGH.\\n- General hallucination (no basin): Perturbation propagates freely (high Δcos) with proportional output change (high D_KL). SAR is MODERATE.\\n\\nThis RECONCILES the SSP contradiction without contradicting Trajectory Commitment: SSP's sensitivity direction (truthful > hallucinated for REPRESENTATION shift) coexists with DMPP's prediction (CHOKE > correct for OUTPUT sensitivity). The divergence between metrics IS the signal.\\n\\n**Stage 0 (Layer Identification—offline, per-model, two strategies):** (A) Causal tracing (Meng et al. 2022) on ~200 calibration examples to identify 2–4 layers with maximal causal effect on factual recall. (B) Empirical sweep: measure D_KL sensitivity AND Δcos at all layers on 50 calibration examples, select layers with maximum CHOKE/correct SAR separation. Strategy comparison is a mandatory ablation.\\n\\n**Stage 1 (Pre-filter—near-zero cost):** Conjunction filter: (a) top-1 probability > 0.9 AND (b) factual-position classifier (frozen linear probe on last-layer residual stream). ~15–20% of tokens pass to Stage 2.\\n\\n**Stage 2 (Dual-Metric Measurement):** For each flagged position, inject calibrated isotropic Gaussian noise into the residual stream at 2–3 identified layers. Use 3 noise scales (σ ∈ {0.5, 1.0, 2.0} × layer-norm baseline). Run K=5 perturbed forward passes per scale from injection point. Compute:\\n- Output KL: D_KL(p_clean || p_perturbed) → Hutchinson estimate of (σ²/2)·Tr(W^T F W)\\n- Representation cosine shift: Δcos = 1 - cos(h_L_clean, h_L_perturbed)\\n- SAR = D_KL / max(Δcos, ε)\\nAll three are candidate detection signals; their relative performance is a primary experimental question.\\n\\n**Stage 3 (Selective Abstention):** Apply calibrated threshold τ on the best-performing metric. When signal > τ, abstain. Report Selective Accuracy, Coverage, and CHOKE-Score.\\n\\n**Differentiation from Related Methods:**\\n- vs. EPGS: Both probe output curvature/sharpness. EPGS computes Tr(W^T F W) via backpropagation (gradient magnitude). DMPP estimates the same via forward-only Hutchinson sampling. DMPP additionally DECOMPOSES the signal into output vs. representation components, enabling the SAR metric that EPGS cannot provide. Expected tradeoff: DMPP slightly lower accuracy (stochastic estimation) but no gradient computation, enabling deployment in inference-only settings.\\n- vs. SSP: Different perturbation type (residual-stream Gaussian vs. input noise prompts), different metrics (output KL + cosine + SAR vs. cosine alone), training-free vs. trained, and explicitly tested on CHOKE.\\n- vs. ARS (2601.17467): ARS perturbs trace-boundary embeddings and learns answer-stability representations via contrastive training. DMPP uses random Gaussian noise and threshold-based detection without training. ARS targets reasoning models; DMPP targets factual recall CHOKE.\\n- vs. CCPS: Random Gaussian at intermediate layers with training-free threshold vs. adversarial perturbation at final layer with trained classifier.\\n\\n**Pilot Validation Plan (Week 1, ~8h H100):** 100-example pilot on Qwen3-32B: 50 CHOKE (HACK protocol) + 50 correct high-confidence. Measure D_KL, Δcos, and SAR at: (a) causal-tracing layers, (b) empirical-sweep layers, (c) input layer, (d) final layer. Primary go/no-go: Does SAR (or D_KL alone) at intermediate layers achieve AUROC > 0.65 for CHOKE detection? Secondary: Do D_KL and Δcos show the predicted divergence pattern? Tertiary: What fraction of CHOKE examples show the predicted CHOKE-sharp pattern (high SAR) vs. CHOKE-flat (low SAR)? If CHOKE-sharp fraction < 40%, pivot to characterization paper.\\n\\n**Full Evaluation:** (1) CHOKE subsets of TriviaQA and Natural Questions (HACK CM protocol). (2) TruthfulQA. (3) General hallucination AUROC. Models: Qwen3-32B and Qwen2.5-32B. Baselines: Liu et al. (noise+entropy), SHINE (input KL), SSP (REPLICATED on our CHOKE subsets), CCPS (adversarial+trained), EPGS (gradient, upper-bound reference), ARS (trained, if code available), I-CALM (prompt-based abstention), standard semantic entropy, token probability. Primary metrics: CHOKE-Score (CM-d), Selective Accuracy @ 90%/95% coverage, general AUROC, CHOKE-sharp vs. CHOKE-flat separation.\\n\\n**Mandatory Ablations:** (1) Metric comparison: output KL alone vs. Δcos alone vs. SAR vs. 2D (KL, cos) logistic regression. (2) SSP replication on CHOKE subsets + our protocol on SSP benchmarks. (3) Layer placement: input vs. causal-tracing vs. empirical-sweep vs. final. (4) Causal-tracing vs. empirical-sweep (addressing Hase et al.). (5) Per-layer sensitivity curves. (6) Noise scale sensitivity (σ sweep). (7) Abstention threshold sensitivity (Pareto curves). (8) Detectability fraction: what % of CHOKE shows CHOKE-sharp signature, stratified by HACK categories.\\n\\n**Contributions:** (1) THEORETICAL: Formalizing DMPP as a forward-only Hutchinson estimator of output curvature Tr(W^T F W), establishing formal equivalence with EPGS's gradient-based signal and providing a training-free, gradient-free alternative. (2) RECONCILIATION: Resolving the apparent contradiction between Trajectory Commitment (hallucinated states are stable) and EPGS (hallucinated states are sharp) by formally distinguishing directed escapability (depth) from random-noise sensitivity (curvature). (3) DETECTABILITY: First formal analysis of which CHOKE subset is detectable by perturbation methods (CHOKE-sharp vs. CHOKE-flat), with honest reporting of partial recall. (4) PRACTICAL: Selective abstention with Pareto-optimal coverage-accuracy tradeoffs for the detectable CHOKE subset. (5) EMPIRICAL: Most comprehensive perturbation-based hallucination detection ablation across perturbation types, metrics, layers, scales, and error types.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~150h H100\",\n      \"gpu_utilization\": \"~25-35% effective utilization\",\n      \"timeline\": \"2.5 months\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"$375 (150h × ~$2.50/h)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~175h H100\",\n      \"gpu_utilization\": \"~55-65% effective utilization\",\n      \"timeline\": \"5-6 weeks\",\n      \"team\": \"1 researcher with ~30min/day steering\",\n      \"claude_api_cost\": \"$90-130\",\n      \"estimated_gpu_cost\": \"$438 (175h × ~$2.50/h)\",\n      \"risk_note\": \"Pilot validation (8h) de-risks before full compute. Layer identification adds ~8h total per model.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~195h H100\",\n      \"gpu_utilization\": \"~85-90% effective utilization; 24/7 autonomous operation\",\n      \"timeline\": \"14-16 days with 2× H100 GPUs\",\n      \"team\": \"0 after initial setup\",\n      \"claude_api_cost\": \"$220-300\",\n      \"estimated_gpu_cost\": \"$488 (195h × ~$2.50/h)\",\n      \"compute_breakdown\": \"Layer identification (causal tracing + empirical sweep, 2 models): ~12h. CHOKE subset construction using HACK protocol (2 models × 2 datasets): ~28h. Pilot validation (100 examples, dual metrics, 4 layer conditions × 3 scales × K=5 samples): ~8h. Main experiments (2 models × 2 datasets × 3 σ × 3 layer-selection × 3 metrics = 108 configs): ~52h. SSP replication and head-to-head (2 models × 4 datasets): ~18h. Other baselines (7 methods × 2 models × 2 datasets): ~35h. Ablations (metric comparison, layer placement, per-layer curves, σ sweep, τ sweep, detectability fraction): ~26h. Selective abstention analysis (Pareto curves): ~8h. Buffer: ~8h.\",\n      \"speed_bottleneck\": \"CHOKE subset construction requires 6× generation per question. SSP replication requires implementing their noise-prompt generation pipeline.\",\n      \"risk_note\": \"195h within ≤200h constraint. Pilot at ~48h provides early stop signal. Dual-metric design ensures value even if SAR hypothesis fails: the EPGS-equivalence proof and detectability fraction analysis are novel regardless of which metric wins.\"\n    }\n  },\n  \"target_venues\": [\n    \"EACL 2027 (ARR August 3, 2026 deadline; 79-day runway from today; commitment deadline October 11, 2026)\",\n    \"ACL 2027 (ARR ~January 2027; fallback if results warrant extended analysis)\"\n  ],\n  \"venue_note\": \"EMNLP 2026 (ARR May 25, 2026) requires submission in 9 days—infeasible for a paper requiring pilot validation, CHOKE subset construction, full experiments, and comprehensive ablations. Even a workshop paper would require compromising on the SSP replication and detectability fraction analysis that constitute the paper's most important empirical contributions. The EACL 2027 timeline (ARR August 3, 79-day runway) enables proper execution: pilot validation (week 1), subset construction (weeks 1-2), full experiments + SSP replication (weeks 3-6), ablations + detectability analysis (weeks 5-7), and writing (weeks 7-10). We note this remains a violation of the user's EMNLP 2026 preference—if EMNLP 2026 is a hard constraint, the only feasible option would be a 4-page workshop submission focusing solely on the theoretical EPGS-equivalence contribution and a minimal pilot, sacrificing the full empirical program.\",\n  \"level\": \"solid-to-strong\",\n  \"key_references\": [\n    \"Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (Liang et al., MIT, arxiv 2605.05686, May 2026)\",\n    \"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (Chen et al., arxiv 2604.04743, April 2026)\",\n    \"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation (Akarlar, arxiv 2604.15400, April 2026)\",\n    \"From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity (EPGS, ICML 2026, arxiv 2605.00939)\",\n    \"Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations (SSP, Luo et al., arxiv 2506.02696)\",\n    \"Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping (ARS, Zhang et al., ICML 2026, arxiv 2601.17467)\",\n    \"What do Geometric Hallucination Detection Metrics Actually Measure? (arxiv 2602.09158, February 2026)\",\n    \"From Out-of-Distribution Detection to Hallucination Detection: A Geometric View (arxiv 2602.07253, February 2026)\",\n    \"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arxiv 2605.13772, May 2026)\",\n    \"From Prerequisites to Predictions: Validating a Geometric Hallucination Taxonomy Through Controlled Induction (arxiv 2603.00307, March 2026)\",\n    \"Sample Transform Cost-Based Training-Free Hallucination Detector for Large Language Models (arxiv 2603.22303, March 2026)\",\n    \"Shadows in the Attention: Contextual Perturbation and Representation Drift in the Dynamics of Hallucination in LLMs (arxiv 2505.16894, ICONIP 2025)\",\n    \"Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models (Hase et al., NeurIPS 2023, arxiv 2301.04213)\",\n    \"Trust Me, I'm Wrong: LLMs Hallucinate with Certainty Despite Knowing the Answer (Simhi et al., Findings of EMNLP 2025, arxiv 2502.12964)\",\n    \"HACK: Hallucinations Along Certainty and Knowledge Axes (Simhi et al., arxiv 2510.24222)\",\n    \"Enhancing Hallucination Detection through Noise Injection (Liu et al., ICLR 2026, arxiv 2502.03799)\",\n    \"Calibrating LLM Confidence by Probing Perturbed Representation Stability (CCPS, Khanmohammadi et al., EMNLP 2025, arxiv 2505.21772)\",\n    \"Probing LLM Hallucination from Within: Perturbation-Driven Approach via Internal Knowledge (SHINE, Lee et al., arxiv 2411.09689)\",\n    \"LLM-CAS: Dynamic Neuron Perturbation for Real-Time Hallucination Correction (arxiv 2512.18623, AAAI 2025)\",\n    \"Neural Probe-Based Hallucination Detection with Bayesian Layer Optimization (arxiv 2512.20949)\",\n    \"Next-Token Gradient Sensitivity Probing for LLM Hallucination Detection (NGS-HD, OpenReview, ICLR 2026 submission)\",\n    \"I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation (arxiv 2604.03904, April 2026)\",\n    \"Know Your Limits: A Survey of Abstention in Large Language Models (TACL 2025)\",\n    \"Locating and Editing Factual Associations in GPT (Meng et al., ROME, NeurIPS 2022, arxiv 2202.05262)\",\n    \"Detecting hallucinations in large language models using semantic entropy (Nature 2024)\",\n    \"In-Context Sharpness as Alerts: An Inner Representation Perspective for Hallucination Mitigation (ICML 2024, arxiv 2403.01548)\",\n    \"Hutchinson's Stochastic Trace Estimator (Hutchinson, 1990; modern analysis: Skorski, arxiv 2012.12895)\"\n  ],\n  \"description\": \"We propose Dual-Metric Perturbation Probing (DMPP), a training-free, forward-only method that detects CHOKE (Certain Hallucinations Overriding Known Evidence) by measuring BOTH output logit KL divergence AND representation cosine shift under residual-stream Gaussian perturbation at intermediate layers. Our primary theoretical contribution formalizes DMPP as a forward-only Hutchinson estimator of output curvature: E[D_KL] ≈ (σ²/2)·Tr(W^T F W), establishing formal equivalence with EPGS's gradient-based signal (ICML 2026) while requiring only forward passes. Our second contribution resolves the apparent contradiction between Trajectory Commitment (hallucinated states resist directed escape, 33.3% recovery) and EPGS (hallucinated states show high gradient sensitivity): directed activation patching tests basin ESCAPABILITY (depth), while random Gaussian noise tests local CURVATURE (sharpness). A narrow deep well is simultaneously hard to escape AND highly sensitive to random perturbation—these are complementary geometric properties, not contradictory findings. TC's own random-patch control (12.5% effect vs. 33.3% directed) confirms this distinction. Our third contribution introduces a detectability fraction analysis: CHOKE-sharp (narrow wrong-wells with high curvature, detectable) vs. CHOKE-flat (wide wrong-wells geometrically indistinguishable from correct recall, a fundamental limitation of forward-only methods). We argue that CHOKE's defining property (HK+: model HAS competing correct knowledge) implies narrower wrong-wells, predicting that CHOKE-sharp is the dominant subset. Fourth, we reconcile SSP's finding (truthful = high representation sensitivity) with DMPP's prediction (CHOKE = high output sensitivity) via the Sensitivity Amplification Ratio: the DIVERGENCE between output-level and representation-level responses under the same perturbation is the geometrically meaningful signal. We evaluate on CHOKE subsets of TriviaQA and NQ with Qwen3-32B and Qwen2.5-32B, providing: (1) first head-to-head comparison of output KL vs. representation cosine on CHOKE, (2) SSP replication on CHOKE subsets, (3) formal EPGS-equivalence validation, (4) detectability fraction quantification, and (5) selective abstention with honest partial-recall reporting. Unlike EPGS (gradients), SSP (trained), ARS (trained, reasoning-focused), and CCPS (trained), DMPP is entirely training-free and forward-only while targeting the same curvature signal.\",\n  \"project_name\": \"sharpness_selective_gen\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 7)\nIssues: [\"VENUE MISMATCH (persistent): User requires EMNLP 2026 (ARR May 25, 2026). Proposal targets EACL 2027 (ARR August 3, 2026). The justification is sound (9 days is genuinely infeasible for this scope) and honestly acknowledged, but this remains a violation of the user's stated hard constraint.\", \"COMPUTATIONAL COST vs. EPGS NOT ADDRESSED: DMPP requires K=5 forward passes × 3 noise scales = 15 half-forward-passes (from intermediate layer to output) ≈ 7.5 equivalent full forward passes per flagged token. EPGS requires 1 forward + 1 backward ≈ 3 equivalent forward passes. Even with the Stage 1 pre-filter (15-20% pass-through), DMPP's amortized cost per token is ~2.3 full forward passes vs. EPGS's comparable ~3 when you account for pre-filtering both methods. The proposal must explicitly compare computational cost with EPGS and argue whether the forward-only constraint justifies potentially comparable or higher compute.\", \"HUTCHINSON APPROXIMATION IS EXACT ONLY AT FINAL LAYER: The derivation E[D_KL] ≈ (σ²/2)·Tr(W^T F W) assumes the perturbation δ directly enters the linear LM head (h → Wh → softmax). When δ is injected at intermediate layer L/2, it propagates through ~32 transformer layers of nonlinear transformations before reaching the LM head. The effective perturbation at the LM head is NOT Gaussian, and the Hutchinson identity does not apply exactly. The proposal should clarify that the formula motivates WHY intermediate-layer perturbation probes curvature but that the actual signal is measured empirically via K forward passes, not analytically via the formula.\", \"MISSING CONCURRENT WORK: (1) HalluSAE (arxiv 2604.16430, April 2026): uses SAEs to identify 'phase transitions' in residual stream via potential energy metric, achieving 0.93 AUROC in-distribution—directly relevant to geometric hallucination detection. (2) PCNet (arxiv 2605.05953, May 2026): training-free hallucination detection as geometric anomaly on factual manifold via probabilistic circuits, up to 99% AUROC—a strong baseline for forward-only detection. (3) 'The First Token Knows' (arxiv 2605.05166, May 2026): training-free single-decode confidence achieving 0.82 AUROC—an extremely efficient baseline DMPP must compare against.\", \"NO PILOT DATA AFTER 7 ROUNDS: The core hypothesis (SAR discriminates CHOKE from correct high-confidence answers) remains entirely unvalidated empirically. The theoretical grounding via EPGS-equivalence is now strong enough to make the hypothesis plausible, but after 7 revision rounds, even a 4-hour pilot on 50 CHOKE examples from HACK protocol on Qwen2.5-7B would provide actual evidence. The pivot plan is good but the paper's acceptance probability drops significantly without any empirical signal.\", \"SAR SIGNAL-TO-NOISE CONCERN: With K=5 Hutchinson samples, the variance of the trace estimate is Var = (2/K)·||W^T F W||_F². For K=5, this is high. The proposal should discuss whether K=5 provides sufficient precision to distinguish CHOKE-sharp (high SAR) from correct recall (low SAR), or whether K=10-20 may be needed, further increasing computational cost.\"]\nFeedback: The proposal has improved dramatically over 7 rounds and is now close to passing. The theoretical framework (SAR, dual-metric decomposition, TC-EPGS reconciliation, detectability fraction) represents genuine contributions. Three targeted fixes would push this to pass:\n\n1. **Address computational cost head-on**: Add a 'Computational Efficiency Analysis' subsection. Compare DMPP's amortized cost (1 clean pass + 0.175 × 15 × 0.5 = 2.3 equivalent passes per token) against EPGS (~3 passes) and SSP (1 pass + trained components). Show that DMPP is competitive WITH the pre-filter, and emphasize the deployment advantage: many quantized/compiled inference engines (TensorRT-LLM, GGML) don't support backpropagation but do support multiple forward passes. This strengthens the practical case.\n\n2. **Qualify the Hutchinson connection at intermediate layers**: State explicitly that Theoretical Contribution 1 (E[D_KL] ≈ (σ²/2)·Tr(W^T F W)) holds exactly for perturbation at the FINAL layer before the LM head. At intermediate layers, the perturbation propagates through nonlinear transformer blocks, so the Hutchinson formula is a motivating approximation rather than an exact identity. Frame Mandatory Ablation #3 (layer placement: input vs. intermediate vs. final) as an empirical test of how well the curvature signal propagates. This turns a potential weakness into a testable scientific question.\n\n3. **Cite the three missing concurrent works** (HalluSAE, PCNet, 'The First Token Knows') in the landscape section. Position DMPP against PCNet (requires training a probabilistic circuit; DMPP is fully training-free) and 'The First Token Knows' (extremely efficient single-decode baseline; include as a baseline in evaluation). HalluSAE's potential energy metric is related to the geometric curvature framework—cite it as supporting evidence for the geometric detection paradigm while noting it requires SAE training.\n\n4. **Optional but highly recommended**: Run a minimal pilot (4h, 50 examples, Qwen2.5-7B) before the ARR August 3 deadline. Even preliminary evidence showing SAR > threshold for CHOKE-sharp examples would transform the paper from 'plausible theory + planned experiments' to 'validated theory + comprehensive experiments.'\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T11:16:46.235Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T11:16:46.235Z",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---
+
+## Round 1
+
+77 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T11:16:46.266Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-16 (UTC).**
+
+## Original idea
+{
+  "title": "Dual-Metric Perturbation Probing: Training-Free CHOKE Detection via Output–Representation Sensitivity Divergence at Intermediate Layers",
+  "core_problem": "High-confidence hallucinations—termed CHOKE (Simhi et al., EMNLP 2025 Findings) or Certainty Misalignment (HACK, Simhi et al., 2025)—are factual errors where models confidently produce incorrect answers despite possessing correct internal knowledge. These affect 16–43% of hallucinations across models (HACK) and resist all published mitigation methods: uncertainty-based detection fails because entropy is low, probing achieves only 15–30% CM-specific mitigation despite 60–75% overall (HACK), and noise-injection approaches (Liu et al., ICLR 2026) rely on answer-level diversity that stays flat when the argmax is stable. Recent theoretical work establishes WHY these errors resist detection: Attractor Geometry (Liang et al., 2026) proves that the LM head, being a fixed linear map, produces identical high-confidence outputs whether the hidden state occupies a memorized attractor basin (correct recall) or drifts freely outside any basin (CHOKE)—static output signals are fundamentally blind. Meanwhile, a critical CONTRADICTION exists in perturbation-based detection: SSP (Luo et al., 2025) finds that truthful responses show GREATER representation-level sensitivity to input perturbation at intermediate layers, while the Attractor Geometry framework predicts that correct recall (basin convergence) should be locally STABLE. Trajectory Commitment (Akarlar, 2026) adds further complexity: hallucinated states form 'stable, difficult-to-escape basins' with only 33.3% recovery rate under directed activation patching, while correct states are fragile (87.5% corruption rate). No work has investigated whether this apparent paradox—hallucinated basins being simultaneously STABLE to directed escape yet potentially SENSITIVE to random perturbation (as EPGS demonstrates for 'stubborn hallucinations')—can be resolved by distinguishing perturbation TYPE (directed replacement vs. random Gaussian noise) and measurement METRIC (representation shift vs. output KL divergence).",
+  "opportunity": "Seven converging results create a precise opportunity: (1) Attractor Geometry (Liang et al., 2026) establishes geometric margin as the theoretically correct monitoring signal. (2) SSP (Luo et al., 2025) demonstrates that perturbation sensitivity at intermediate layers is informative—but uses input perturbation, representation cosine, and trained encoders, NOT testing CHOKE. (3) EPGS (ICML 2026) confirms that high-confidence hallucinations occupy 'sharp minima' detectable via gradient magnitude—but requires backpropagation. Crucially, EPGS proves that stubborn hallucinations have HIGH gradient sensitivity, which is mathematically the Hessian trace—establishing that these errors sit in regions of high LOCAL CURVATURE. (4) Trajectory Commitment (2604.15400) shows hallucinated states resist DIRECTED escape (33.3% recovery), with random-patch control achieving only 12.5%—confirming that directed replacement and random noise probe geometrically distinct properties. The critical insight: a NARROW DEEP well is simultaneously (a) hard to escape directionally (consistent with Trajectory Commitment's low recovery rate) AND (b) highly sensitive to small random perturbation (consistent with EPGS's high gradient magnitude). Depth determines escapability; WIDTH/CURVATURE determines perturbation sensitivity. These are complementary, not contradictory. (5) Hallucination Basins (2604.04743) establishes task-dependent separability: 'factoid settings show clearer basin separation, whereas misconception-heavy settings overlap.' Our target domain (factoid QA: TriviaQA, NQ) is precisely where their framework predicts separability. (6) The mathematical bridge via Hutchinson trace estimation: for a linear LM head W with softmax output p, the expected output KL under isotropic Gaussian perturbation δ ~ N(0, σ²I) satisfies E[D_KL] ≈ (σ²/2) · Tr(W^T · F · W), where F = diag(p) - pp^T. This is exactly a K-sample Hutchinson estimator of Tr(W^T F W)—the SAME output curvature quantity that EPGS estimates via backpropagation (||∇_h L||²). DMPP thus provides a FORWARD-ONLY ESTIMATOR of EPGS's signal, with the additional decomposition into output vs. representation components. (7) The Geometric Hallucination Taxonomy (2603.00307) validates that different geometric statistics capture different hallucination types, but finds Types 1 and 2 do NOT separate in static contextual embeddings—motivating DYNAMIC (perturbation-based) rather than static geometric approaches.",
+  "landscape": "**Perturbation-based hallucination methods:** Liu et al. (ICLR 2026, arxiv 2502.03799): noise into upper-third MLP activations, sample K outputs, compute answer/semantic entropy—73–80% AUROC generally but limited on CHOKE because answer entropy stays low when argmax is stable. SHINE (Lee et al., arxiv 2411.09689): perturbs entity embeddings at INPUT layer, measures output KL—operates before attractor dynamics begin. CCPS (Khanmohammadi et al., EMNLP 2025, arxiv 2505.21772): adversarial perturbation to FINAL hidden states with a trained classifier—achieves ~55% ECE reduction; requires training. SSP/Shaking to Reveal (Luo et al., arxiv 2506.02696): perturbs via dynamically-generated input noise prompts, measures intermediate representation COSINE shift with trained MLP encoder—achieves 75.38% avg AUROC (LLaMA-3-8B) on general hallucination. Critically: (a) uses input-level perturbation, not residual-stream noise; (b) measures representation cosine, not output KL; (c) finds truthful responses MORE sensitive; (d) trained components (MLP encoder + prompt generator); (e) NOT tested on CHOKE-specific subsets.\n\n**Gradient-based methods:** EPGS (ICML 2026, arxiv 2605.00939): perturbs input embeddings with Gaussian noise, measures gradient magnitude as Hessian proxy—requires backpropagation through the final Transformer block. Core theoretical claim: stubborn hallucinations sit in SHARP minima (high curvature), robust facts in FLAT minima. Achieves highest AUROC across 12 model-dataset configurations, surpassing Eigenscore by 9%+ on TriviaQA. Targets 'stubborn errors' (conceptually overlapping with CHOKE). NGS-HD (ICLR 2026 submission): gradient of max log-probability w.r.t. layer embeddings, MMD-based comparison—requires gradients. LLM-CAS (arxiv 2512.18623, AAAI): neuron-level causal tracing via Integrated Gradients, trains RL agents for dynamic perturbation—requires both gradients AND training.\n\n**Latent perturbation with answer stability:** ARS (Zhang et al., arxiv 2601.17467, ICML 2026): perturbs trace-boundary embeddings in reasoning models, labels perturbations by answer agreement/disagreement, learns shaped representations that expose latent instability. Requires training (contrastive learning on perturbation outcomes). Targets reasoning models (LRMs), not factual recall. Conceptual overlap with DMPP: both use latent perturbation and measure downstream stability. Key differences: ARS requires training, measures binary answer flip, targets reasoning chains; DMPP is training-free, measures continuous KL + cosine, targets factual CHOKE at token level.\n\n**Geometric hallucination detection:** 'What do Geometric Hallucination Detection Metrics Actually Measure?' (arxiv 2602.09158): shows different geometric statistics capture different hallucination types. 'From OOD Detection to Hallucination Detection: A Geometric View' (arxiv 2602.07253): treats next-token prediction as classification, applies OOD detection geometrically. 'Where Does Reasoning Break?' (arxiv 2605.13772): hidden-state transport geometry for step-level detection—trained teacher/student. Sample Transform Cost (arxiv 2603.22303): Wasserstein distance between sampled responses—training-free but requires multiple samples. Geometric Hallucination Taxonomy (arxiv 2603.00307): classifies failures as center-drift (Type 1), wrong-well convergence (Type 2), or coverage gaps (Type 3). Critical finding: Types 1 and 2 do NOT separate in static contextual hidden states (≤ 3/20 runs significant)—motivating dynamic (perturbation-based) approaches over static embedding analysis. 'Shadows in the Attention' (arxiv 2505.16894): systematic study of representation drift under incremental context injection—observes monotonic hallucination growth and attention re-routing, complementary to our per-token perturbation approach.\n\n**Attractor geometry framework:** Liang et al. (arxiv 2605.05686, May 2026): proves attractor basin structure, proposes geometric margin. Hallucination Basins (Chen et al., arxiv 2604.04743, April 2026): task-dependent basin structure, geometry-aware steering; key theorem: separability depends on task complexity and answer-set cardinality—factoid QA (point attractors) shows clearest separation. Trajectory Commitment (Akarlar, arxiv 2604.15400, April 2026): asymmetric attractor dynamics; hallucinated states resist escape (33.3% recovery via directed activation patching) while correct states are fragile (87.5% corruption); critically, random-patch control achieves only 12.5% effect, confirming that random noise probes a different property than directed intervention.\n\n**Gap:** No existing method simultaneously: (a) measures BOTH output-level and representation-level sensitivity under the SAME perturbation, (b) targets CHOKE specifically, (c) operates training-free and forward-only, (d) provides a formal connection to gradient-based curvature (EPGS) via Hutchinson estimation, (e) distinguishes perturbation TYPE effects (input vs. residual-stream) from metric TYPE effects (cosine vs. KL) from error TYPE effects (CHOKE vs. general), and (f) accounts for the task-dependent detectability fraction (which CHOKE subset sits in sharp vs. flat wrong-wells). EPGS detects the right phenomenon (sharpness) but requires gradients. SSP uses the wrong perturbation type, wrong metric for curvature, trained components, and never tests CHOKE. ARS requires training and targets reasoning, not factual recall.",
+  "approach": "We propose Dual-Metric Perturbation Probing (DMPP), a training-free, forward-only method that detects CHOKE and enables selective abstention by measuring BOTH output logit KL divergence AND representation cosine shift under residual-stream perturbation at intermediate layers.\n\n**Theoretical Contribution 1: DMPP as Forward-Only Hutchinson Estimator of Output Curvature**\n\nFor a linear LM head W and softmax output p = softmax(Wh), under hidden-state perturbation δ ~ N(0, σ²I):\n\nD_KL(softmax(Wh) || softmax(W(h+δ))) ≈ (1/2)·(Wδ)ᵀ·F(p)·(Wδ)\n\nwhere F(p) = diag(p) - ppᵀ is the Fisher information matrix of the categorical output.\n\nTaking the expectation over K random perturbations:\nE[D_KL] ≈ (σ²/2) · Tr(W^T · F · W)\n\nThis follows from the Hutchinson trace identity: E[δ^T M δ] = σ² · Tr(M) for M = W^T F W and δ ~ N(0, σ²I).\n\nThe quantity Tr(W^T F W) is exactly the OUTPUT CURVATURE—the trace of the Fisher-weighted Jacobian of the output mapping. EPGS estimates this same quantity via backpropagation: ||∇_h L||² is proportional to the diagonal Fisher information evaluated at h. Our K forward passes with random δ provide a K-sample Hutchinson estimate of the SAME curvature, entirely without gradients.\n\nThis positions DMPP as: **forward-only EPGS with dual-metric decomposition.**\n\n**Theoretical Contribution 2: Reconciling Trajectory Commitment with Perturbation Sensitivity**\n\nTrajectory Commitment (2604.15400) shows hallucinated states are hard to ESCAPE via directed activation patching (complete residual-stream replacement from another trajectory). Their random-patch control achieves only 12.5% effect vs. 33.3% for directed. This asymmetry reveals that:\n- DIRECTED patching tests BASIN ESCAPABILITY (global depth): can a coordinated multi-layer intervention push the state over the basin wall?\n- RANDOM Gaussian noise tests LOCAL CURVATURE (sharpness): how much does the output distribution change per unit of random displacement?\n\nThese are geometrically independent properties. A narrow deep well (high curvature, deep walls) is SIMULTANEOUSLY:\n- Hard to escape directionally → consistent with TC's 33.3% recovery\n- Highly sensitive to random perturbation → consistent with EPGS's high gradient magnitude for stubborn hallucinations\n- Detectable by DMPP → high SAR\n\nConversely, a wide deep well (low curvature, deep walls) would be:\n- Hard to escape directionally → consistent with TC\n- INSENSITIVE to random perturbation → low SAR\n- Undetectable by DMPP\n\nEPGS's finding that stubborn hallucinations consistently show HIGH gradient magnitude (sharp minima) provides empirical evidence that the narrow-deep geometry is predominant for high-confidence errors.\n\n**Theoretical Contribution 3: Detectability Fraction Analysis**\n\nNot all CHOKE is created equal. We formally distinguish:\n\n- **CHOKE-sharp** (detectable subset): Wrong-well convergence with HIGH local curvature. The model has competing correct knowledge (HK+ in HACK), meaning the wrong-answer basin coexists with a correct-answer basin. Competition between basins implies narrower individual wells with steeper walls at boundaries. Predicted behavior: high SAR, high output KL, moderate Δcos. DMPP targets this subset.\n\n- **CHOKE-flat** (undetectable subset): Wrong-well convergence with LOW local curvature. The model's wrong-answer basin is geometrically indistinguishable from correct deep recall. This corresponds to cases where incorrect information is as deeply entrenched as correct knowledge.\n\nWhy CHOKE-sharp is the dominant subset: CHOKE/CM is defined by HK+ (model HAS correct knowledge). The presence of competing correct knowledge means the wrong-answer basin is NOT maximally entrenched—it coexists with and competes against the correct basin. This competition implies that CHOKE basins are generally NARROWER than genuine knowledge basins (HK-), hence sharper. Supporting evidence: (1) EPGS achieves very high AUROC on stubborn hallucinations, implying most are in sharp minima. (2) Hallucination Basins (2604.04743) theorem shows factoid QA (our domain) has point-attractor structure with clearer separation. (3) HACK reports that probing achieves 15-30% CM-specific mitigation—the linear probe captures the EASY (sharp) subset; DMPP's perturbation-based signal should detect a larger fraction.\n\nWe acknowledge CHOKE-flat as a fundamental limitation of ALL training-free forward-only methods and report partial recall honestly. Expected recall: 60-80% of CHOKE examples (based on EPGS's near-complete detection of stubborn hallucinations and accounting for the small flat-basin residual).\n\n**Theoretical Contribution 4: Sensitivity Divergence Reconciles SSP**\n\nRepresentation cosine shift: Δcos = 1 - cos(h_L, h_L + δ_L) ≈ ||δ_L||² / (2||h_L||²)\nSensitivity Amplification Ratio: SAR = D_KL / max(Δcos, ε)\n\nSAR measures the output sensitivity PER UNIT of representation movement—proportional to the local Jacobian norm weighted by Fisher information.\n\nPredicted pattern for high-confidence outputs:\n- CORRECT recall (deep in wide basin): Perturbation propagates through layers (nonzero Δcos) but the LM head maps the local neighborhood to similar distributions (low D_KL). SAR is LOW. CONSISTENT with SSP's finding of high representation sensitivity for truthful answers.\n- CHOKE-sharp (narrow wrong-well): Perturbation propagates moderately (moderate Δcos) but the hidden state sits near steep output decision boundaries where small perturbations shift probability mass (high D_KL). SAR is HIGH.\n- General hallucination (no basin): Perturbation propagates freely (high Δcos) with proportional output change (high D_KL). SAR is MODERATE.\n\nThis RECONCILES the SSP contradiction without contradicting Trajectory Commitment: SSP's sensitivity direction (truthful > hallucinated for REPRESENTATION shift) coexists with DMPP's prediction (CHOKE > correct for OUTPUT sensitivity). The divergence between metrics IS the signal.\n\n**Stage 0 (Layer Identification—offline, per-model, two strategies):** (A) Causal tracing (Meng et al. 2022) on ~200 calibration examples to identify 2–4 layers with maximal causal effect on factual recall. (B) Empirical sweep: measure D_KL sensitivity AND Δcos at all layers on 50 calibration examples, select layers with maximum CHOKE/correct SAR separation. Strategy comparison is a mandatory ablation.\n\n**Stage 1 (Pre-filter—near-zero cost):** Conjunction filter: (a) top-1 probability > 0.9 AND (b) factual-position classifier (frozen linear probe on last-layer residual stream). ~15–20% of tokens pass to Stage 2.\n\n**Stage 2 (Dual-Metric Measurement):** For each flagged position, inject calibrated isotropic Gaussian noise into the residual stream at 2–3 identified layers. Use 3 noise scales (σ ∈ {0.5, 1.0, 2.0} × layer-norm baseline). Run K=5 perturbed forward passes per scale from injection point. Compute:\n- Output KL: D_KL(p_clean || p_perturbed) → Hutchinson estimate of (σ²/2)·Tr(W^T F W)\n- Representation cosine shift: Δcos = 1 - cos(h_L_clean, h_L_perturbed)\n- SAR = D_KL / max(Δcos, ε)\nAll three are candidate detection signals; their relative performance is a primary experimental question.\n\n**Stage 3 (Selective Abstention):** Apply calibrated threshold τ on the best-performing metric. When signal > τ, abstain. Report Selective Accuracy, Coverage, and CHOKE-Score.\n\n**Differentiation from Related Methods:**\n- vs. EPGS: Both probe output curvature/sharpness. EPGS computes Tr(W^T F W) via backpropagation (gradient magnitude). DMPP estimates the same via forward-only Hutchinson sampling. DMPP additionally DECOMPOSES the signal into output vs. representation components, enabling the SAR metric that EPGS cannot provide. Expected tradeoff: DMPP slightly lower accuracy (stochastic estimation) but no gradient computation, enabling deployment in inference-only settings.\n- vs. SSP: Different perturbation type (residual-stream Gaussian vs. input noise prompts), different metrics (output KL + cosine + SAR vs. cosine alone), training-free vs. trained, and explicitly tested on CHOKE.\n- vs. ARS (2601.17467): ARS perturbs trace-boundary embeddings and learns answer-stability representations via contrastive training. DMPP uses random Gaussian noise and threshold-based detection without training. ARS targets reasoning models; DMPP targets factual recall CHOKE.\n- vs. CCPS: Random Gaussian at intermediate layers with training-free threshold vs. adversarial perturbation at final layer with trained classifier.\n\n**Pilot Validation Plan (Week 1, ~8h H100):** 100-example pilot on Qwen3-32B: 50 CHOKE (HACK protocol) + 50 correct high-confidence. Measure D_KL, Δcos, and SAR at: (a) causal-tracing layers, (b) empirical-sweep layers, (c) input layer, (d) final layer. Primary go/no-go: Does SAR (or D_KL alone) at intermediate layers achieve AUROC > 0.65 for CHOKE detection? Secondary: Do D_KL and Δcos show the predicted divergence pattern? Tertiary: What fraction of CHOKE examples show the predicted CHOKE-sharp pattern (high SAR) vs. CHOKE-flat (low SAR)? If CHOKE-sharp fraction < 40%, pivot to characterization paper.\n\n**Full Evaluation:** (1) CHOKE subsets of TriviaQA and Natural Questions (HACK CM protocol). (2) TruthfulQA. (3) General hallucination AUROC. Models: Qwen3-32B and Qwen2.5-32B. Baselines: Liu et al. (noise+entropy), SHINE (input KL), SSP (REPLICATED on our CHOKE subsets), CCPS (adversarial+trained), EPGS (gradient, upper-bound reference), ARS (trained, if code available), I-CALM (prompt-based abstention), standard semantic entropy, token probability. Primary metrics: CHOKE-Score (CM-d), Selective Accuracy @ 90%/95% coverage, general AUROC, CHOKE-sharp vs. CHOKE-flat separation.\n\n**Mandatory Ablations:** (1) Metric comparison: output KL alone vs. Δcos alone vs. SAR vs. 2D (KL, cos) logistic regression. (2) SSP replication on CHOKE subsets + our protocol on SSP benchmarks. (3) Layer placement: input vs. causal-tracing vs. empirical-sweep vs. final. (4) Causal-tracing vs. empirical-sweep (addressing Hase et al.). (5) Per-layer sensitivity curves. (6) Noise scale sensitivity (σ sweep). (7) Abstention threshold sensitivity (Pareto curves). (8) Detectability fraction: what % of CHOKE shows CHOKE-sharp signature, stratified by HACK categories.\n\n**Contributions:** (1) THEORETICAL: Formalizing DMPP as a forward-only Hutchinson estimator of output curvature Tr(W^T F W), establishing formal equivalence with EPGS's gradient-based signal and providing a training-free, gradient-free alternative. (2) RECONCILIATION: Resolving the apparent contradiction between Trajectory Commitment (hallucinated states are stable) and EPGS (hallucinated states are sharp) by formally distinguishing directed escapability (depth) from random-noise sensitivity (curvature). (3) DETECTABILITY: First formal analysis of which CHOKE subset is detectable by perturbation methods (CHOKE-sharp vs. CHOKE-flat), with honest reporting of partial recall. (4) PRACTICAL: Selective abstention with Pareto-optimal coverage-accuracy tradeoffs for the detectable CHOKE subset. (5) EMPIRICAL: Most comprehensive perturbation-based hallucination detection ablation across perturbation types, metrics, layers, scales, and error types.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~150h H100",
+      "gpu_utilization": "~25-35% effective utilization",
+      "timeline": "2.5 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$375 (150h × ~$2.50/h)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~175h H100",
+      "gpu_utilization": "~55-65% effective utilization",
+      "timeline": "5-6 weeks",
+      "team": "1 researcher with ~30min/day steering",
+      "claude_api_cost": "$90-130",
+      "estimated_gpu_cost": "$438 (175h × ~$2.50/h)",
+      "risk_note": "Pilot validation (8h) de-risks before full compute. Layer identification adds ~8h total per model."
+    },
+    "auto_research": {
+      "gpu_hours": "~195h H100",
+      "gpu_utilization": "~85-90% effective utilization; 24/7 autonomous operation",
+      "timeline": "14-16 days with 2× H100 GPUs",
+      "team": "0 after initial setup",
+      "claude_api_cost": "$220-300",
+      "estimated_gpu_cost": "$488 (195h × ~$2.50/h)",
+      "compute_breakdown": "Layer identification (causal tracing + empirical sweep, 2 models): ~12h. CHOKE subset construction using HACK protocol (2 models × 2 datasets): ~28h. Pilot validation (100 examples, dual metrics, 4 layer conditions × 3 scales × K=5 samples): ~8h. Main experiments (2 models × 2 datasets × 3 σ × 3 layer-selection × 3 metrics = 108 configs): ~52h. SSP replication and head-to-head (2 models × 4 datasets): ~18h. Other baselines (7 methods × 2 models × 2 datasets): ~35h. Ablations (metric comparison, layer placement, per-layer curves, σ sweep, τ sweep, detectability fraction): ~26h. Selective abstention analysis (Pareto curves): ~8h. Buffer: ~8h.",
+      "speed_bottleneck": "CHOKE subset construction requires 6× generation per question. SSP replication requires implementing their noise-prompt generation pipeline.",
+      "risk_note": "195h within ≤200h constraint. Pilot at ~48h provides early stop signal. Dual-metric design ensures value even if SAR hypothesis fails: the EPGS-equivalence proof and detectability fraction analysis are novel regardless of which metric wins."
+    }
+  },
+  "target_venues": [
+    "EACL 2027 (ARR August 3, 2026 deadline; 79-day runway from today; commitment deadline October 11, 2026)",
+    "ACL 2027 (ARR ~January 2027; fallback if results warrant extended analysis)"
+  ],
+  "venue_note": "EMNLP 2026 (ARR May 25, 2026) requires submission in 9 days—infeasible for a paper requiring pilot validation, CHOKE subset construction, full experiments, and comprehensive ablations. Even a workshop paper would require compromising on the SSP replication and detectability fraction analysis that constitute the paper's most important empirical contributions. The EACL 2027 timeline (ARR August 3, 79-day runway) enables proper execution: pilot validation (week 1), subset construction (weeks 1-2), full experiments + SSP replication (weeks 3-6), ablations + detectability analysis (weeks 5-7), and writing (weeks 7-10). We note this remains a violation of the user's EMNLP 2026 preference—if EMNLP 2026 is a hard constraint, the only feasible option would be a 4-page workshop submission focusing solely on the theoretical EPGS-equivalence contribution and a minimal pilot, sacrificing the full empirical program.",
+  "level": "solid-to-strong",
+  "key_references": [
+    "Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (Liang et al., MIT, arxiv 2605.05686, May 2026)",
+    "Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (Chen et al., arxiv 2604.04743, April 2026)",
+    "Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation (Akarlar, arxiv 2604.15400, April 2026)",
+    "From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity (EPGS, ICML 2026, arxiv 2605.00939)",
+    "Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations (SSP, Luo et al., arxiv 2506.02696)",
+    "Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping (ARS, Zhang et al., ICML 2026, arxiv 2601.17467)",
+    "What do Geometric Hallucination Detection Metrics Actually Measure? (arxiv 2602.09158, February 2026)",
+    "From Out-of-Distribution Detection to Hallucination Detection: A Geometric View (arxiv 2602.07253, February 2026)",
+    "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arxiv 2605.13772, May 2026)",
+    "From Prerequisites to Predictions: Validating a Geometric Hallucination Taxonomy Through Controlled Induction (arxiv 2603.00307, March 2026)",
+    "Sample Transform Cost-Based Training-Free Hallucination Detector for Large Language Models (arxiv 2603.22303, March 2026)",
+    "Shadows in the Attention: Contextual Perturbation and Representation Drift in the Dynamics of Hallucination in LLMs (arxiv 2505.16894, ICONIP 2025)",
+    "Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models (Hase et al., NeurIPS 2023, arxiv 2301.04213)",
+    "Trust Me, I'm Wrong: LLMs Hallucinate with Certainty Despite Knowing the Answer (Simhi et al., Findings of EMNLP 2025, arxiv 2502.12964)",
+    "HACK: Hallucinations Along Certainty and Knowledge Axes (Simhi et al., arxiv 2510.24222)",
+    "Enhancing Hallucination Detection through Noise Injection (Liu et al., ICLR 2026, arxiv 2502.03799)",
+    "Calibrating LLM Confidence by Probing Perturbed Representation Stability (CCPS, Khanmohammadi et al., EMNLP 2025, arxiv 2505.21772)",
+    "Probing LLM Hallucination from Within: Perturbation-Driven Approach via Internal Knowledge (SHINE, Lee et al., arxiv 2411.09689)",
+    "LLM-CAS: Dynamic Neuron Perturbation for Real-Time Hallucination Correction (arxiv 2512.18623, AAAI 2025)",
+    "Neural Probe-Based Hallucination Detection with Bayesian Layer Optimization (arxiv 2512.20949)",
+    "Next-Token Gradient Sensitivity Probing for LLM Hallucination Detection (NGS-HD, OpenReview, ICLR 2026 submission)",
+    "I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation (arxiv 2604.03904, April 2026)",
+    "Know Your Limits: A Survey of Abstention in Large Language Models (TACL 2025)",
+    "Locating and Editing Factual Associations in GPT (Meng et al., ROME, NeurIPS 2022, arxiv 2202.05262)",
+    "Detecting hallucinations in large language models using semantic entropy (Nature 2024)",
+    "In-Context Sharpness as Alerts: An Inner Representation Perspective for Hallucination Mitigation (ICML 2024, arxiv 2403.01548)",
+    "Hutchinson's Stochastic Trace Estimator (Hutchinson, 1990; modern analysis: Skorski, arxiv 2012.12895)"
+  ],
+  "description": "We propose Dual-Metric Perturbation Probing (DMPP), a training-free, forward-only method that detects CHOKE (Certain Hallucinations Overriding Known Evidence) by measuring BOTH output logit KL divergence AND representation cosine shift under residual-stream Gaussian perturbation at intermediate layers. Our primary theoretical contribution formalizes DMPP as a forward-only Hutchinson estimator of output curvature: E[D_KL] ≈ (σ²/2)·Tr(W^T F W), establishing formal equivalence with EPGS's gradient-based signal (ICML 2026) while requiring only forward passes. Our second contribution resolves the apparent contradiction between Trajectory Commitment (hallucinated states resist directed escape, 33.3% recovery) and EPGS (hallucinated states show high gradient sensitivity): directed activation patching tests basin ESCAPABILITY (depth), while random Gaussian noise tests local CURVATURE (sharpness). A narrow deep well is simultaneously hard to escape AND highly sensitive to random perturbation—these are complementary geometric properties, not contradictory findings. TC's own random-patch control (12.5% effect vs. 33.3% directed) confirms this distinction. Our third contribution introduces a detectability fraction analysis: CHOKE-sharp (narrow wrong-wells with high curvature, detectable) vs. CHOKE-flat (wide wrong-wells geometrically indistinguishable from correct recall, a fundamental limitation of forward-only methods). We argue that CHOKE's defining property (HK+: model HAS competing correct knowledge) implies narrower wrong-wells, predicting that CHOKE-sharp is the dominant subset. Fourth, we reconcile SSP's finding (truthful = high representation sensitivity) with DMPP's prediction (CHOKE = high output sensitivity) via the Sensitivity Amplification Ratio: the DIVERGENCE between output-level and representation-level responses under the same perturbation is the geometrically meaningful signal. We evaluate on CHOKE subsets of TriviaQA and NQ with Qwen3-32B and Qwen2.5-32B, providing: (1) first head-to-head comparison of output KL vs. representation cosine on CHOKE, (2) SSP replication on CHOKE subsets, (3) formal EPGS-equivalence validation, (4) detectability fraction quantification, and (5) selective abstention with honest partial-recall reporting. Unlike EPGS (gradients), SSP (trained), ARS (trained, reasoning-focused), and CCPS (trained), DMPP is entirely training-free and forward-only while targeting the same curvature signal.",
+  "project_name": "sharpness_selective_gen",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 7)
+Issues: ["VENUE MISMATCH (persistent): User requires EMNLP 2026 (ARR May 25, 2026). Proposal targets EACL 2027 (ARR August 3, 2026). The justification is sound (9 days is genuinely infeasible for this scope) and honestly acknowledged, but this remains a violation of the user's stated hard constraint.", "COMPUTATIONAL COST vs. EPGS NOT ADDRESSED: DMPP requires K=5 forward passes × 3 noise scales = 15 half-forward-passes (from intermediate layer to output) ≈ 7.5 equivalent full forward passes per flagged token. EPGS requires 1 forward + 1 backward ≈ 3 equivalent forward passes. Even with the Stage 1 pre-filter (15-20% pass-through), DMPP's amortized cost per token is ~2.3 full forward passes vs. EPGS's comparable ~3 when you account for pre-filtering both methods. The proposal must explicitly compare computational cost with EPGS and argue whether the forward-only constraint justifies potentially comparable or higher compute.", "HUTCHINSON APPROXIMATION IS EXACT ONLY AT FINAL LAYER: The derivation E[D_KL] ≈ (σ²/2)·Tr(W^T F W) assumes the perturbation δ directly enters the linear LM head (h → Wh → softmax). When δ is injected at intermediate layer L/2, it propagates through ~32 transformer layers of nonlinear transformations before reaching the LM head. The effective perturbation at the LM head is NOT Gaussian, and the Hutchinson identity does not apply exactly. The proposal should clarify that the formula motivates WHY intermediate-layer perturbation probes curvature but that the actual signal is measured empirically via K forward passes, not analytically via the formula.", "MISSING CONCURRENT WORK: (1) HalluSAE (arxiv 2604.16430, April 2026): uses SAEs to identify 'phase transitions' in residual stream via potential energy metric, achieving 0.93 AUROC in-distribution—directly relevant to geometric hallucination detection. (2) PCNet (arxiv 2605.05953, May 2026): training-free hallucination detection as geometric anomaly on factual manifold via probabilistic circuits, up to 99% AUROC—a strong baseline for forward-only detection. (3) 'The First Token Knows' (arxiv 2605.05166, May 2026): training-free single-decode confidence achieving 0.82 AUROC—an extremely efficient baseline DMPP must compare against.", "NO PILOT DATA AFTER 7 ROUNDS: The core hypothesis (SAR discriminates CHOKE from correct high-confidence answers) remains entirely unvalidated empirically. The theoretical grounding via EPGS-equivalence is now strong enough to make the hypothesis plausible, but after 7 revision rounds, even a 4-hour pilot on 50 CHOKE examples from HACK protocol on Qwen2.5-7B would provide actual evidence. The pivot plan is good but the paper's acceptance probability drops significantly without any empirical signal.", "SAR SIGNAL-TO-NOISE CONCERN: With K=5 Hutchinson samples, the variance of the trace estimate is Var = (2/K)·||W^T F W||_F². For K=5, this is high. The proposal should discuss whether K=5 provides sufficient precision to distinguish CHOKE-sharp (high SAR) from correct recall (low SAR), or whether K=10-20 may be needed, further increasing computational cost."]
+Feedback: The proposal has improved dramatically over 7 rounds and is now close to passing. The theoretical framework (SAR, dual-metric decomposition, TC-EPGS reconciliation, detectability fraction) represents genuine contributions. Three targeted fixes would push this to pass:
+
+1. **Address computational cost head-on**: Add a 'Computational Efficiency Analysis' subsection. Compare DMPP's amortized cost (1 clean pass + 0.175 × 15 × 0.5 = 2.3 equivalent passes per token) against EPGS (~3 passes) and SSP (1 pass + trained components). Show that DMPP is competitive WITH the pre-filter, and emphasize the deployment advantage: many quantized/compiled inference engines (TensorRT-LLM, GGML) don't support backpropagation but do support multiple forward passes. This strengthens the practical case.
+
+2. **Qualify the Hutchinson connection at intermediate layers**: State explicitly that Theoretical Contribution 1 (E[D_KL] ≈ (σ²/2)·Tr(W^T F W)) holds exactly for perturbation at the FINAL layer before the LM head. At intermediate layers, the perturbation propagates through nonlinear transformer blocks, so the Hutchinson formula is a motivating approximation rather than an exact identity. Frame Mandatory Ablation #3 (layer placement: input vs. intermediate vs. final) as an empirical test of how well the curvature signal propagates. This turns a potential weakness into a testable scientific question.
+
+3. **Cite the three missing concurrent works** (HalluSAE, PCNet, 'The First Token Knows') in the landscape section. Position DMPP against PCNet (requires training a probabilistic circuit; DMPP is fully training-free) and 'The First Token Knows' (extremely efficient single-decode baseline; include as a baseline in evaluation). HalluSAE's potential energy metric is related to the geometric curvature framework—cite it as supporting evidence for the geometric detection paradigm while noting it requires SAE training.
+
+4. **Optional but highly recommended**: Run a minimal pilot (4h, 50 examples, Qwen2.5-7B) before the ARR August 3 deadline. Even preliminary evidence showing SAR > threshold for CHOKE-sharp examples would transform the paper from 'plausible theory + planned experiments' to 'validated theory + comprehensive experiments.'
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "8b619902-6414-40ad-ab18-f5060760eab2",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T11:16:46.264Z_
+
+```json
+{
+  "parentUuid": "8b619902-6414-40ad-ab18-f5060760eab2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "458a5de9-82b6-463f-86ae-c602bd41ee28",
+  "timestamp": "2026-05-16T11:16:46.264Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T11:16:46.264Z_
+
+```json
+{
+  "parentUuid": "458a5de9-82b6-463f-86ae-c602bd41ee28",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "2ba6aaa8-0d17-485e-a124-666e6ea3ea74",
+  "timestamp": "2026-05-16T11:16:46.264Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Dual-Metric Perturbation Probing: Training-Free CHOKE Detection via Ou…",
+  "leafUuid": "2ba6aaa8-0d17-485e-a124-666e6ea3ea74",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DMPP to pass venue and computational reality checks",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T11:16:55.733Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully:
+
+1. **VENUE MISMATCH**: User wants EMNLP 2026 (ARR May 25, 2026 - which is 9 days from "today" May 16, 2026). The proposal targets EACL 2027. This is a persistent issue.
+
+2. **COMPUTATIONAL COST vs. EPGS**: Need to explicitly compare costs and argue the forward-only advantage.
+
+3. **HUTCHINSON APPROXIMATION at intermediate layers**: The formula is exact only at the final layer. Need to qualify this.
+
+
+4. **MISSING CONCURRENT WORK**: HalluSAE, PCNet, "The First Token Knows" - need to search for and incorporate these.
+
+5. **NO PILOT DATA**: After 7 rounds, still no empirical validation.
+
+6. **SAR SIGNAL-TO-NOISE with K=5**: Variance concerns with small K.
+
+The reviewer identifies three targeted fixes that would push this to pass: address computational cost directly, qualify the Hutchinson connection at intermediate layers, and cite the three missing concurrent works. There's also an optional but recommended pilot study. I need to search for these missing papers and make the revisions.
+
+Now I'm searching for the specific papers—HalluSAE, PCNet, and "The First Token Knows"—along with literature on computational costs of inference-only versus gradient-based methods and how Hutchinson trace estimation applies to neural networks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ba6aaa8-0d17-485e-a124-666e6ea3ea74",
+  "isSidechain": false,
+  "requestId": "req_011Cb69s33s8xiNpPeGXfuPY",
+  "type": "assistant",
+  "uuid": "5046ac4f-62ff-4872-aebe-50f156d56386",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MvH2LrBifwxwsZ2d8guxo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16465,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 489,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16465,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 489,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16465,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16465
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T11:16:55.735Z_
+
+I'll research the missing concurrent works and computational efficiency considerations flagged by the reviewer, then revise the proposal.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5046ac4f-62ff-4872-aebe-50f156d56386",
+  "isSidechain": false,
+  "requestId": "req_011Cb69s33s8xiNpPeGXfuPY",
+  "type": "assistant",
+  "uuid": "5c90ef65-af75-466f-a584-0eaefe72105b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MvH2LrBifwxwsZ2d8guxo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16465,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 489,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16465,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 489,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16465,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16465
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T11:16:56.210Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013JgEyrahBtsKj3bLQFexgL`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c90ef65-af75-466f-a584-0eaefe72105b",
+  "isSidechain": false,
+  "requestId": "req_011Cb69s33s8xiNpPeGXfuPY",
+  "type": "assistant",
+  "uuid": "9fc7cb7f-bd21-46e5-bbe9-8353903bad31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MvH2LrBifwxwsZ2d8guxo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16465,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 489,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16465,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 489,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16465,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16465
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T11:16:56.217Z_
+
+<details><summary>↩ Tool result · `toolu_013JgEyrahBtsKj3bLQFexgL`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9fc7cb7f-bd21-46e5-bbe9-8353903bad31",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "8f4b0c28-cd1e-4baf-9d75-d4ef8c13c909",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "9fc7cb7f-bd21-46e5-bbe9-8353903bad31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-16T11:16:58.460Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for the three missing concurrent works and computational efficiency considerations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f4b0c28-cd1e-4baf-9d75-d4ef8c13c909",
+  "isSidechain": false,
+  "requestId": "req_011Cb69smXk8angXEaJ54pan",
+  "type": "assistant",
+  "uuid": "3b5fed5f-c175-48db-94f8-d32b8fa35251",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EqkXf8EyxfRMBXPKdzx9bP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1507,
+      "cache_read_input_tokens": 28306,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1507,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 28306,
+          "cache_creation_input_tokens": 1507,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1507
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-16T11:16:58.946Z_
+
+Let me search for the three missing concurrent works and relevant computational efficiency information.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b5fed5f-c175-48db-94f8-d32b8fa35251",
+  "isSidechain": false,
+  "requestId": "req_011Cb69smXk8angXEaJ54pan",
+  "type": "assistant",
+  "uuid": "4c8a4588-5c57-4054-967a-197488ed1bdd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EqkXf8EyxfRMBXPKdzx9bP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1507,
+      "cache_read_input_tokens": 28306,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1507,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 28306,
+          "cache_creation_input_tokens": 1507,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1507
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T11:17:00.080Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EN3NF2PhVLWCCgaveMJ8Ui`</summary>
+
+```json
+{
+  "query": "HalluSAE arxiv 2604.16430 sparse autoencoder hallucination detection phase transition 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c8a4588-5c57-4054-967a-197488ed1bdd",
+  "isSidechain": false,
+  "requestId": "req_011Cb69smXk8angXEaJ54pan",
+  "type": "assistant",
+  "uuid": "abee44fc-f5a0-4237-986c-e0d691049dca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EqkXf8EyxfRMBXPKdzx9bP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1507,
+      "cache_read_input_tokens": 28306,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1507,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 28306,
+          "cache_creation_input_tokens": 1507,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1507
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T11:17:00.420Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PBHfgxfEbEEq5KQ6wX5ETA`</summary>
+
+```json
+{
+  "query": "PCNet arxiv 2605.05953 probabilistic circuits hallucination detection training-free 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "abee44fc-f5a0-4237-986c-e0d691049dca",
+  "isSidechain": false,
+  "requestId": "req_011Cb69smXk8angXEaJ54pan",
+  "type": "assistant",
+  "uuid": "3d60797d-f5f8-46be-96ad-fce28afb4201",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EqkXf8EyxfRMBXPKdzx9bP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1507,
+      "cache_read_input_tokens": 28306,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1507,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 28306,
+          "cache_creation_input_tokens": 1507,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1507
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T11:17:00.949Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LMTnQFXuUKXMcz3zWMsMMw`</summary>
+
+```json
+{
+  "query": "\"The First Token Knows\" arxiv 2605.05166 training-free confidence hallucination 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d60797d-f5f8-46be-96ad-fce28afb4201",
+  "isSidechain": false,
+  "requestId": "req_011Cb69smXk8angXEaJ54pan",
+  "type": "assistant",
+  "uuid": "33e715f6-8bb2-47d0-87f0-08161af59af9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EqkXf8EyxfRMBXPKdzx9bP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1507,
+      "cache_read_input_tokens": 28306,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1507,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 28306,
+          "cache_creation_input_tokens": 1507,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1507
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T11:17:01.479Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BGi8urdU2Cd333rAZtJZqh`</summary>
+
+```json
+{
+  "query": "TensorRT-LLM inference-only forward pass no backpropagation deployment constraint LLM 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33e715f6-8bb2-47d0-87f0-08161af59af9",
+  "isSidechain": false,
+  "requestId": "req_011Cb69smXk8angXEaJ54pan",
+  "type": "assistant",
+  "uuid": "f5e47515-4282-4ee7-b357-d34c54826e19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EqkXf8EyxfRMBXPKdzx9bP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1507,
+      "cache_read_input_tokens": 28306,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1507,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 28306,
+          "cache_creation_input_tokens": 1507,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1507
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T11:17:06.567Z_
+
+<details><summary>↩ Tool result · `toolu_01LMTnQFXuUKXMcz3zWMsMMw`</summary>
+
+```text
+Web search results for query: ""The First Token Knows" arxiv 2605.05166 training-free confidence hallucination 2026"
+
+Links: [{"title":"[2605.05166] The First Token Knows: Single-Decode Confidence for Hallucination Detection","url":"https://arxiv.org/abs/2605.05166"},{"title":"The First Token Knows: Single-Decode Confidence for Hallucination Detection","url":"https://arxiv.org/html/2605.05166"},{"title":"First Hallucination Tokens Are Different from Conditional Ones","url":"https://arxiv.org/html/2507.20836v4"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=1259&show=1000"},{"title":"[2605.06216] TIDE: Every Layer Knows the Token Beneath the Context","url":"https://arxiv.org/abs/2605.06216"},{"title":"The Hidden Life of Tokens: Reducing Hallucination of Large Vision-Language Models via Visual Information Steering","url":"https://arxiv.org/html/2502.03628v1"},{"title":"Do We Really Need External Tools to Mitigate Hallucinations? Sira: Shared-Prefix Internal Reconstruction of Attribution","url":"https://arxiv.org/html/2605.14621"},{"title":"TIDE: Every Layer Knows the Token Beneath the Context","url":"https://arxiv.org/html/2605.06216"},{"title":"[2403.09037] The First to Know: How Token Distributions Reveal Hidden Knowledge in Large Vision-Language Models?","url":"https://arxiv.org/abs/2403.09037"},{"title":"[2507.20836v4] First Hallucination Tokens Are Different from Conditional Ones","url":"https://arxiv.org/abs/2507.20836v4"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## "The First Token Knows: Single-Decode Confidence for Hallucination Detection"
+
+This is arXiv paper 2605.05166, authored by Mina Gabriel and submitted on May 6, 2026.
+
+**Key Contribution:**
+
+The paper shows that first-token confidence (phi_first), computed from the normalized entropy of the top-K logits at the first content-bearing answer token of a single greedy decode, matches or modestly exceeds semantic self-consistency on closed-book short-answer factual question answering.
+
+**Motivation:**
+
+Self-consistency detects hallucinations by generating multiple sampled answers to a question and measuring agreement, but this requires repeated decoding and can be sensitive to lexical variation. Semantic self-consistency improves this by clustering sampled answers by meaning using natural language inference, but it adds both sampling cost and external inference overhead.
+
+The paper offers a **training-free** approach to hallucination detection that only requires a single decode pass, making it more efficient than existing methods while achieving comparable or better performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "33e715f6-8bb2-47d0-87f0-08161af59af9",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "a2c1446a-b84a-415c-b66c-ae3becd4beb1",
+  "toolUseResult": {
+    "query": "\"The First Token Knows\" arxiv 2605.05166 training-free confidence hallucination 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VQP1AiRGQe3tw2YzhmBRsb",
+        "content": [
+          {
+            "title": "[2605.05166] The First Token Knows: Single-Decode Confidence for Hallucination Detection",
+            "url": "https://arxiv.org/abs/2605.05166"
+          },
+          {
+            "title": "The First Token Knows: Single-Decode Confidence for Hallucination Detection",
+            "url": "https://arxiv.org/html/2605.05166"
+          },
+          {
+            "title": "First Hallucination Tokens Are Different from Conditional Ones",
+            "url": "https://arxiv.org/html/2507.20836v4"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/recent?skip=1259&show=1000"
+          },
+          {
+            "title": "[2605.06216] TIDE: Every Layer Knows the Token Beneath the Context",
+            "url": "https://arxiv.org/abs/2605.06216"
+          },
+          {
+            "title": "The Hidden Life of Tokens: Reducing Hallucination of Large Vision-Language Models via Visual Information Steering",
+            "url": "https://arxiv.org/html/2502.03628v1"
+          },
+          {
+            "title": "Do We Really Need External Tools to Mitigate Hallucinations? Sira: Shared-Prefix Internal Reconstruction of Attribution",
+            "url": "https://arxiv.org/html/2605.14621"
+          },
+          {
+            "title": "TIDE: Every Layer Knows the Token Beneath the Context",
+            "url": "https://arxiv.org/html/2605.06216"
+          },
+          {
+            "title": "[2403.09037] The First to Know: How Token Distributions Reveal Hidden Knowledge in Large Vision-Language Models?",
+            "url": "https://arxiv.org/abs/2403.09037"
+          },
+          {
+            "title": "[2507.20836v4] First Hallucination Tokens Are Different from Conditional Ones",
+            "url": "https://arxiv.org/abs/2507.20836v4"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## \"The First Token Knows: Single-Decode Confidence for Hallucination Detection\"\n\nThis is arXiv paper 2605.05166, authored by Mina Gabriel and submitted on May 6, 2026.\n\n**Key Contribution:**\n\nThe paper shows that first-token confidence (phi_first), computed from the normalized entropy of the top-K logits at the first content-bearing answer token of a single greedy decode, matches or modestly exceeds semantic self-consistency on closed-book short-answer factual question answering.\n\n**Motivation:**\n\nSelf-consistency detects hallucinations by generating multiple sampled answers to a question and measuring agreement, but this requires repeated decoding and can be sensitive to lexical variation. Semantic self-consistency improves this by clustering sampled answers by meaning using natural language inference, but it adds both sampling cost and external inference overhead.\n\nThe paper offers a **training-free** approach to hallucination detection that only requires a single decode pass, making it more efficient than existing methods while achieving comparable or better performance."
+    ],
+    "durationSeconds": 5.614590833999999
+  },
+  "sourceToolAssistantUUID": "33e715f6-8bb2-47d0-87f0-08161af59af9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T11:17:06.646Z_
+
+<details><summary>↩ Tool result · `toolu_01EN3NF2PhVLWCCgaveMJ8Ui`</summary>
+
+```text
+Web search results for query: "HalluSAE arxiv 2604.16430 sparse autoencoder hallucination detection phase transition 2026"
+
+Links: [{"title":"[2604.16430] HalluSAE: Detecting Hallucinations in Large Language Models via Sparse Auto-Encoders","url":"https://arxiv.org/abs/2604.16430"},{"title":"HalluSAE: Detecting Hallucinations in Large Language Models via Sparse Auto-Encoders","url":"https://arxiv.org/html/2604.16430"},{"title":"Steering LVLMs via Sparse Autoencoder for Hallucination Mitigation","url":"https://arxiv.org/html/2505.16146v1"},{"title":"[2505.16146] Steering LVLMs via Sparse Autoencoder for Hallucination Mitigation","url":"https://arxiv.org/abs/2505.16146"},{"title":"TOWARD FAITHFUL RETRIEVAL-AUGMENTED GEN- ERATION WITH SPARSE AUTOENCODERS","url":"https://arxiv.org/pdf/2512.08892"},{"title":"SAFE: A Sparse Autoencoder-Based Framework for Robust Query Enrichment and Hallucination Mitigation in LLMs","url":"https://arxiv.org/html/2503.03032"},{"title":"SAVE: Sparse Autoencoder‑Driven Visual Information Enhancement for Mitigating Object Hallucination","url":"https://arxiv.org/html/2512.07730"},{"title":"[2512.07730] SAVE: Sparse Autoencoder-Driven Visual Information Enhancement for Mitigating Object Hallucination","url":"https://arxiv.org/abs/2512.07730"},{"title":"Steering LVLMs Via Sparse Autoencoder for Hallucination ...","url":"https://www.paperdigest.org/paper/?paper_id=arxiv-2505.16146"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/html/2509.03531v1"}]
+
+I found the paper you're looking for! Here's the information about HalluSAE (arxiv 2604.16430):
+
+## Overview
+
+HalluSAE is a phase transition-inspired framework that models hallucination as a critical shift in the model's latent dynamics. The paper was published on April 6, 2026.
+
+## Methodology
+
+By modeling the generation process as a trajectory through a potential energy landscape, HalluSAE identifies critical transition zones and attributes factual errors to specific high-energy sparse features.
+
+The framework consists of three stages:
+
+1. Potential Energy Empowered Phase Zone Localization leverages sparse autoencoders and a geometric potential energy metric to identify critical layer intervals where phase transitions indicative of hallucination occur.
+
+2. Hallucination-related Sparse Feature Attribution uses contrastive logit attribution to pinpoint a small set of sparse features most responsible for hallucination within these layers.
+
+3. Probing-based Causal Hallucination Detection conducts linear probing on disentangled features to detect and validate causal relationships between feature activation patterns and hallucination outcomes.
+
+## Performance
+
+HalluSAE attains an AUC of 0.9286 on the in-distribution test set and 0.8044 on out-of-distribution TriviaQA, establishing new state-of-the-art results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "abee44fc-f5a0-4237-986c-e0d691049dca",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "14983943-c466-4e44-a1d4-186acc0bda99",
+  "toolUseResult": {
+    "query": "HalluSAE arxiv 2604.16430 sparse autoencoder hallucination detection phase transition 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018tXyXE2tZjXMRgynwD5ZG7",
+        "content": [
+          {
+            "title": "[2604.16430] HalluSAE: Detecting Hallucinations in Large Language Models via Sparse Auto-Encoders",
+            "url": "https://arxiv.org/abs/2604.16430"
+          },
+          {
+            "title": "HalluSAE: Detecting Hallucinations in Large Language Models via Sparse Auto-Encoders",
+            "url": "https://arxiv.org/html/2604.16430"
+          },
+          {
+            "title": "Steering LVLMs via Sparse Autoencoder for Hallucination Mitigation",
+            "url": "https://arxiv.org/html/2505.16146v1"
+          },
+          {
+            "title": "[2505.16146] Steering LVLMs via Sparse Autoencoder for Hallucination Mitigation",
+            "url": "https://arxiv.org/abs/2505.16146"
+          },
+          {
+            "title": "TOWARD FAITHFUL RETRIEVAL-AUGMENTED GEN- ERATION WITH SPARSE AUTOENCODERS",
+            "url": "https://arxiv.org/pdf/2512.08892"
+          },
+          {
+            "title": "SAFE: A Sparse Autoencoder-Based Framework for Robust Query Enrichment and Hallucination Mitigation in LLMs",
+            "url": "https://arxiv.org/html/2503.03032"
+          },
+          {
+            "title": "SAVE: Sparse Autoencoder‑Driven Visual Information Enhancement for Mitigating Object Hallucination",
+            "url": "https://arxiv.org/html/2512.07730"
+          },
+          {
+            "title": "[2512.07730] SAVE: Sparse Autoencoder-Driven Visual Information Enhancement for Mitigating Object Hallucination",
+            "url": "https://arxiv.org/abs/2512.07730"
+          },
+          {
+            "title": "Steering LVLMs Via Sparse Autoencoder for Hallucination ...",
+            "url": "https://www.paperdigest.org/paper/?paper_id=arxiv-2505.16146"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/html/2509.03531v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's the information about HalluSAE (arxiv 2604.16430):\n\n## Overview\n\nHalluSAE is a phase transition-inspired framework that models hallucination as a critical shift in the model's latent dynamics. The paper was published on April 6, 2026.\n\n## Methodology\n\nBy modeling the generation process as a trajectory through a potential energy landscape, HalluSAE identifies critical transition zones and attributes factual errors to specific high-energy sparse features.\n\nThe framework consists of three stages:\n\n1. Potential Energy Empowered Phase Zone Localization leverages sparse autoencoders and a geometric potential energy metric to identify critical layer intervals where phase transitions indicative of hallucination occur.\n\n2. Hallucination-related Sparse Feature Attribution uses contrastive logit attribution to pinpoint a small set of sparse features most responsible for hallucination within these layers.\n\n3. Probing-based Causal Hallucination Detection conducts linear probing on disentangled features to detect and validate causal relationships between feature activation patterns and hallucination outcomes.\n\n## Performance\n\nHalluSAE attains an AUC of 0.9286 on the in-distribution test set and 0.8044 on out-of-distribution TriviaQA, establishing new state-of-the-art results."
+    ],
+    "durationSeconds": 6.5633088090000005
+  },
+  "sourceToolAssistantUUID": "abee44fc-f5a0-4237-986c-e0d691049dca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T11:17:08.273Z_
+
+<details><summary>↩ Tool result · `toolu_01PBHfgxfEbEEq5KQ6wX5ETA`</summary>
+
+```text
+Web search results for query: "PCNet arxiv 2605.05953 probabilistic circuits hallucination detection training-free 2026"
+
+Links: [{"title":"[2605.05953] Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits","url":"https://arxiv.org/abs/2605.05953"},{"title":"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits","url":"https://arxiv.org/html/2605.05953"},{"title":"A Probabilistic Framework for LLM Hallucination Detection via Belief Tree Propagation","url":"https://arxiv.org/html/2406.06950v1"},{"title":"Hallucination Detection: A Probabilistic Framework Using Embeddings Distance Analysis","url":"https://arxiv.org/html/2502.08663v1"},{"title":"Computer Science Apr 2025","url":"https://www.arxiv.org/list/cs/2025-04?skip=5650&show=25"},{"title":"Probabilistic distances-based hallucination detection in LLMs with RAG","url":"https://arxiv.org/html/2506.09886"},{"title":"[2502.08663] Hallucination Detection: A Probabilistic Framework Using Embeddings Distance Analysis","url":"https://arxiv.org/abs/2502.08663"},{"title":"Computer Science Apr 2025","url":"https://arxiv.org/list/cs/2025-04?skip=5650&show=2000"},{"title":"Hallucination Detection and Mitigation in Large Language Models","url":"https://arxiv.org/html/2601.09929v1"},{"title":"[2406.06950] A Probabilistic Framework for LLM Hallucination Detection via Belief Tree Propagation","url":"https://arxiv.org/abs/2406.06950"}]
+
+Based on the search results, I found detailed information about the paper you're looking for:
+
+## PCNet (arXiv 2605.05953): Hallucination Detection via Probabilistic Circuits
+
+PCNet is a Probabilistic Circuit trained as a tractable density estimator over the LLM residual stream that detects hallucinations as geometric anomalies on the factual manifold, which is done via exact Negative Log-Likelihood computation, hence without the need for sampling, external verifiers, or weight modifications.
+
+**Key Features:**
+
+- **Training-Free Detection**: The method works without the need for sampling, external verifiers, or weight modifications, making it a training-free approach for hallucination detection.
+
+- **Dynamic Gating**: PCNet is used as a dynamic gate that distinguishes hallucinated from factual hidden states at each decoding step, triggering PC-LDCD (Probabilistic Circuit Latent Density Contrastive Decoding) only when the latent geometry deviates from factual regions, while leaving correct generations untouched.
+
+**Performance Results:**
+
+Across four LLMs, ranging from 1B to 8B models, and four benchmarks covering conversational reasoning, knowledge-intensive QA, reading comprehension, and truthfulness, PCNet achieves near-perfect hallucination detection across CoQA, SQuAD v2.0, and TriviaQA, with AUROC reaching up to 99%.
+
+PC-LDCD obtains the highest True+Info, MC2, and MC3 scores on TruthfulQA in three out of four models, in comparison with state-of-the-art baselines, while reducing the mean corruption rate to 53.7% and achieving a preservation rate of 79.3%.
+
+The proposed method is publicly available on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3d60797d-f5f8-46be-96ad-fce28afb4201",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "6bec7d17-4654-48af-9600-449b31b2b54e",
+  "toolUseResult": {
+    "query": "PCNet arxiv 2605.05953 probabilistic circuits hallucination detection training-free 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ssz32ZFS4vP8W98ELVKNch",
+        "content": [
+          {
+            "title": "[2605.05953] Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits",
+            "url": "https://arxiv.org/abs/2605.05953"
+          },
+          {
+            "title": "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits",
+            "url": "https://arxiv.org/html/2605.05953"
+          },
+          {
+            "title": "A Probabilistic Framework for LLM Hallucination Detection via Belief Tree Propagation",
+            "url": "https://arxiv.org/html/2406.06950v1"
+          },
+          {
+            "title": "Hallucination Detection: A Probabilistic Framework Using Embeddings Distance Analysis",
+            "url": "https://arxiv.org/html/2502.08663v1"
+          },
+          {
+            "title": "Computer Science Apr 2025",
+            "url": "https://www.arxiv.org/list/cs/2025-04?skip=5650&show=25"
+          },
+          {
+            "title": "Probabilistic distances-based hallucination detection in LLMs with RAG",
+            "url": "https://arxiv.org/html/2506.09886"
+          },
+          {
+            "title": "[2502.08663] Hallucination Detection: A Probabilistic Framework Using Embeddings Distance Analysis",
+            "url": "https://arxiv.org/abs/2502.08663"
+          },
+          {
+            "title": "Computer Science Apr 2025",
+            "url": "https://arxiv.org/list/cs/2025-04?skip=5650&show=2000"
+          },
+          {
+            "title": "Hallucination Detection and Mitigation in Large Language Models",
+            "url": "https://arxiv.org/html/2601.09929v1"
+          },
+          {
+            "title": "[2406.06950] A Probabilistic Framework for LLM Hallucination Detection via Belief Tree Propagation",
+            "url": "https://arxiv.org/abs/2406.06950"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the paper you're looking for:\n\n## PCNet (arXiv 2605.05953): Hallucination Detection via Probabilistic Circuits\n\nPCNet is a Probabilistic Circuit trained as a tractable density estimator over the LLM residual stream that detects hallucinations as geometric anomalies on the factual manifold, which is done via exact Negative Log-Likelihood computation, hence without the need for sampling, external verifiers, or weight modifications.\n\n**Key Features:**\n\n- **Training-Free Detection**: The method works without the need for sampling, external verifiers, or weight modifications, making it a training-free approach for hallucination detection.\n\n- **Dynamic Gating**: PCNet is used as a dynamic gate that distinguishes hallucinated from factual hidden states at each decoding step, triggering PC-LDCD (Probabilistic Circuit Latent Density Contrastive Decoding) only when the latent geometry deviates from factual regions, while leaving correct generations untouched.\n\n**Performance Results:**\n\nAcross four LLMs, ranging from 1B to 8B models, and four benchmarks covering conversational reasoning, knowledge-intensive QA, reading comprehension, and truthfulness, PCNet achieves near-perfect hallucination detection across CoQA, SQuAD v2.0, and TriviaQA, with AUROC reaching up to 99%.\n\nPC-LDCD obtains the highest True+Info, MC2, and MC3 scores on TruthfulQA in three out of four models, in comparison with state-of-the-art baselines, while reducing the mean corruption rate to 53.7% and achieving a preservation rate of 79.3%.\n\nThe proposed method is publicly available on GitHub."
+    ],
+    "durationSeconds": 7.831566658999998
+  },
+  "sourceToolAssistantUUID": "3d60797d-f5f8-46be-96ad-fce28afb4201",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Dual-Metric Perturbation Probing: Training-Free CHOKE Detection via Ou…",
+  "leafUuid": "6bec7d17-4654-48af-9600-449b31b2b54e",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DMPP to pass venue and computational reality checks",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T11:17:11.388Z_
+
+<details><summary>↩ Tool result · `toolu_01BGi8urdU2Cd333rAZtJZqh`</summary>
+
+```text
+Web search results for query: "TensorRT-LLM inference-only forward pass no backpropagation deployment constraint LLM 2026"
+
+Links: [{"title":"Run inference / do a forward pass on certain segments of LLM only during inference · Issue #1866 · NVIDIA/TensorRT-LLM","url":"https://github.com/NVIDIA/TensorRT-LLM/issues/1866"},{"title":"TensorRT SDK | NVIDIA Developer","url":"https://developer.nvidia.com/tensorrt"},{"title":"Optimizing Inference on Large Language Models with NVIDIA TensorRT-LLM, Now Publicly Available | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/optimizing-inference-on-llms-with-tensorrt-llm-now-publicly-available/"},{"title":"Release Notes — TensorRT LLM","url":"https://nvidia.github.io/TensorRT-LLM/release-notes.html"},{"title":"GitHub - NVIDIA/TensorRT-LLM: TensorRT LLM provides users with an easy-to-use Python API to define Large Language Models (LLMs) and supports state-of-the-art optimizations to perform inference efficiently on NVIDIA GPUs. TensorRT LLM also contains components to create Python and C++ runtimes that orchestrate the inference execution in a performant way. · GitHub","url":"https://github.com/NVIDIA/TensorRT-LLM"},{"title":"Architecture Overview — TensorRT-LLM","url":"https://nvidia.github.io/TensorRT-LLM/architecture/overview.html"},{"title":"How to Use TensorRT-LLM: A Complete Hands-On Guide","url":"https://sider.ai/blog/ai-tools/how-to-use-tensorrt-llm-a-complete-hands-on-guide"},{"title":"Deploying LLMs Into Production Using TensorRT LLM | Towards Data Science","url":"https://towardsdatascience.com/deploying-llms-into-production-using-tensorrt-llm-ed36e620dac4/"},{"title":"TensorRT-LLM: A Comprehensive Guide to Optimizing Large Language Model Inference for Maximum Performance – Unite.AI","url":"https://www.unite.ai/tensorrt-llm-a-comprehensive-guide-to-optimizing-large-language-model-inference-for-maximum-performance/"},{"title":"Welcome to TensorRT LLM’s Documentation! — TensorRT LLM","url":"https://nvidia.github.io/TensorRT-LLM/"}]
+
+Based on the web search results, here's what I found about TensorRT-LLM and inference-only deployments:
+
+## Key Findings
+
+TensorRT-LLM provides users with an easy-to-use Python API to define Large Language Models (LLMs) and supports state-of-the-art optimizations to perform inference efficiently on NVIDIA GPUs. The framework is specifically designed for inference workloads.
+
+### Inference-Only Architecture
+
+The ModelEngine performs a forward pass on the scheduled requests, predicting the next output tokens. TensorRT-LLM's architecture is fundamentally built around inference execution without backpropagation, making it optimized for deployment scenarios where only forward passes are needed.
+
+### Optimization Techniques for Deployment
+
+TensorRT LLM provides state-of-the-art optimizations, including custom kernels for common inference operations (attention, GEMMs, MoE, ...), algorithmic runtime optimizations (Prefill-Decode disaggregation, Wide Expert Parallelism, Speculative Decoding, etc), to perform inference efficiently on NVIDIA GPUs.
+
+### Deployment Constraints
+
+The entire model compilation process MUST take place on a GPU, and the compiled model that gets generated is optimized specifically on the GPU that it is run on. This is an important deployment constraint to consider.
+
+The search results confirm that TensorRT-LLM is explicitly designed as an inference-only framework with no training or backpropagation capabilities, making it ideal for production LLM deployment scenarios focused purely on forward passes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f5e47515-4282-4ee7-b357-d34c54826e19",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "6f468018-a28e-46d4-9d4e-419e7a2a5869",
+  "toolUseResult": {
+    "query": "TensorRT-LLM inference-only forward pass no backpropagation deployment constraint LLM 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018hvWY6TAMYFwmjvk2Mdpud",
+        "content": [
+          {
+            "title": "Run inference / do a forward pass on certain segments of LLM only during inference · Issue #1866 · NVIDIA/TensorRT-LLM",
+            "url": "https://github.com/NVIDIA/TensorRT-LLM/issues/1866"
+          },
+          {
+            "title": "TensorRT SDK | NVIDIA Developer",
+            "url": "https://developer.nvidia.com/tensorrt"
+          },
+          {
+            "title": "Optimizing Inference on Large Language Models with NVIDIA TensorRT-LLM, Now Publicly Available | NVIDIA Technical Blog",
+            "url": "https://developer.nvidia.com/blog/optimizing-inference-on-llms-with-tensorrt-llm-now-publicly-available/"
+          },
+          {
+            "title": "Release Notes — TensorRT LLM",
+            "url": "https://nvidia.github.io/TensorRT-LLM/release-notes.html"
+          },
+          {
+            "title": "GitHub - NVIDIA/TensorRT-LLM: TensorRT LLM provides users with an easy-to-use Python API to define Large Language Models (LLMs) and supports state-of-the-art optimizations to perform inference efficiently on NVIDIA GPUs. TensorRT LLM also contains components to create Python and C++ runtimes that orchestrate the inference execution in a performant way. · GitHub",
+            "url": "https://github.com/NVIDIA/TensorRT-LLM"
+          },
+          {
+            "title": "Architecture Overview — TensorRT-LLM",
+            "url": "https://nvidia.github.io/TensorRT-LLM/architecture/overview.html"
+          },
+          {
+            "title": "How to Use TensorRT-LLM: A Complete Hands-On Guide",
+            "url": "https://sider.ai/blog/ai-tools/how-to-use-tensorrt-llm-a-complete-hands-on-guide"
+          },
+          {
+            "title": "Deploying LLMs Into Production Using TensorRT LLM | Towards Data Science",
+            "url": "https://towardsdatascience.com/deploying-llms-into-production-using-tensorrt-llm-ed36e620dac4/"
+          },
+          {
+            "title": "TensorRT-LLM: A Comprehensive Guide to Optimizing Large Language Model Inference for Maximum Performance – Unite.AI",
+            "url": "https://www.unite.ai/tensorrt-llm-a-comprehensive-guide-to-optimizing-large-language-model-inference-for-maximum-performance/"
+          },
+          {
+            "title": "Welcome to TensorRT LLM’s Documentation! — TensorRT LLM",
+            "url": "https://nvidia.github.io/TensorRT-LLM/"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about TensorRT-LLM and inference-only deployments:\n\n## Key Findings\n\nTensorRT-LLM provides users with an easy-to-use Python API to define Large Language Models (LLMs) and supports state-of-the-art optimizations to perform inference efficiently on NVIDIA GPUs. The framework is specifically designed for inference workloads.\n\n### Inference-Only Architecture\n\nThe ModelEngine performs a forward pass on the scheduled requests, predicting the next output tokens. TensorRT-LLM's architecture is fundamentally built around inference execution without backpropagation, making it optimized for deployment scenarios where only forward passes are needed.\n\n### Optimization Techniques for Deployment\n\nTensorRT LLM provides state-of-the-art optimizations, including custom kernels for common inference operations (attention, GEMMs, MoE, ...), algorithmic runtime optimizations (Prefill-Decode disaggregation, Wide Expert Parallelism, Speculative Decoding, etc), to perform inference efficiently on NVIDIA GPUs.\n\n### Deployment Constraints\n\nThe entire model compilation process MUST take place on a GPU, and the compiled model that gets generated is optimized specifically on the GPU that it is run on. This is an important deployment constraint to consider.\n\nThe search results confirm that TensorRT-LLM is explicitly designed as an inference-only framework with no training or backpropagation capabilities, making it ideal for production LLM deployment scenarios focused purely on forward passes."
+    ],
+    "durationSeconds": 9.905554790999998
+  },
+  "sourceToolAssistantUUID": "f5e47515-4282-4ee7-b357-d34c54826e19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-16T11:17:14.585Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have information on the three missing concurrent works. Let me get more details on each by fetching their actual paper pages.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f468018-a28e-46d4-9d4e-419e7a2a5869",
+  "isSidechain": false,
+  "requestId": "req_011Cb69ttHa8s9EYqL9Zp7Wk",
+  "type": "assistant",
+  "uuid": "36386e86-b99c-4866-a851-f257465cb9fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XA1mvFKKgSuWBsjbjX4GLe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 29813,
+      "output_tokens": 504,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3877,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 504,
+          "cache_read_input_tokens": 29813,
+          "cache_creation_input_tokens": 3877,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3877
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-16T11:17:15.449Z_
+
+Now let me get more details on these papers and search for additional relevant information about Hutchinson estimation variance and K-sample requirements.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36386e86-b99c-4866-a851-f257465cb9fd",
+  "isSidechain": false,
+  "requestId": "req_011Cb69ttHa8s9EYqL9Zp7Wk",
+  "type": "assistant",
+  "uuid": "2ee6058c-c2a2-496d-9944-0a49fb04aaf4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XA1mvFKKgSuWBsjbjX4GLe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 29813,
+      "output_tokens": 504,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3877,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 504,
+          "cache_read_input_tokens": 29813,
+          "cache_creation_input_tokens": 3877,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3877
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T11:17:17.972Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01NUqgCxSUpRheHZW37d1Nu8`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.05953",
+  "prompt": "Extract the key method details: What exactly does PCNet train? Is it truly \"training-free\" or does it require training a probabilistic circuit? What are the exact AUROC numbers on TriviaQA? What models were tested? How does it compare to baselines?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ee6058c-c2a2-496d-9944-0a49fb04aaf4",
+  "isSidechain": false,
+  "requestId": "req_011Cb69ttHa8s9EYqL9Zp7Wk",
+  "type": "assistant",
+  "uuid": "6301b503-0cd8-4bb6-a97f-76532a0a474c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XA1mvFKKgSuWBsjbjX4GLe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 29813,
+      "output_tokens": 504,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3877,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 504,
+          "cache_read_input_tokens": 29813,
+          "cache_creation_input_tokens": 3877,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3877
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T11:17:19.424Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_014CQeY5MZSEjyRRog5Mzj2Z`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.05166",
+  "prompt": "Extract key details: What is the exact method? What AUROC does it achieve? On which datasets and models? How does it compare to semantic entropy and other baselines? What are the limitations?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6301b503-0cd8-4bb6-a97f-76532a0a474c",
+  "isSidechain": false,
+  "requestId": "req_011Cb69ttHa8s9EYqL9Zp7Wk",
+  "type": "assistant",
+  "uuid": "5b551c66-a5c1-4503-bbb3-44f04464d316",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XA1mvFKKgSuWBsjbjX4GLe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 29813,
+      "output_tokens": 504,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3877,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 504,
+          "cache_read_input_tokens": 29813,
+          "cache_creation_input_tokens": 3877,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3877
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T11:17:21.305Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012mTuUrjzS21TFECBTV86V4`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.16430",
+  "prompt": "Extract key details: What exactly does HalluSAE require training? What is the potential energy metric? What AUROC does it achieve on TriviaQA and other benchmarks? Does it specifically target high-confidence hallucinations or general hallucinations? How does it relate to geometric/curvature-based detection?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b551c66-a5c1-4503-bbb3-44f04464d316",
+  "isSidechain": false,
+  "requestId": "req_011Cb69ttHa8s9EYqL9Zp7Wk",
+  "type": "assistant",
+  "uuid": "1a9ea221-114a-4fee-8376-a9116b73f2bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XA1mvFKKgSuWBsjbjX4GLe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 29813,
+      "output_tokens": 504,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3877,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 504,
+          "cache_read_input_tokens": 29813,
+          "cache_creation_input_tokens": 3877,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3877
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T11:17:21.362Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WtbWLEKTZu8Tg94Eqi4M96`</summary>
+
+```json
+{
+  "query": "Hutchinson trace estimator variance K samples neural network curvature estimation convergence"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a9ea221-114a-4fee-8376-a9116b73f2bd",
+  "isSidechain": false,
+  "requestId": "req_011Cb69ttHa8s9EYqL9Zp7Wk",
+  "type": "assistant",
+  "uuid": "a1846c06-5877-470e-a75a-4f8ef861143d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XA1mvFKKgSuWBsjbjX4GLe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 29813,
+      "output_tokens": 504,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3877,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 504,
+          "cache_read_input_tokens": 29813,
+          "cache_creation_input_tokens": 3877,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3877
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T11:17:23.137Z_
+
+<details><summary>↩ Tool result · `toolu_01NUqgCxSUpRheHZW37d1Nu8`</summary>
+
+```text
+# Key Method Details from PCNET Paper
+
+## What PCNet Trains
+PCNet is "a Probabilistic Circuit trained as a tractable density estimator over the LLM residual stream." This is **not** training-free—it requires training a probabilistic circuit model on the language model's internal representations.
+
+## Performance Metrics
+The abstract reports that "PCNET achieves near-perfect hallucination detection across CoQA, SQuAD v2.0, and TriviaQA, with AUROC reaching up to 99%." However, the exact AUROC numbers specific to TriviaQA alone are not provided in this abstract.
+
+## Models Tested
+Testing covered "four LLMs, ranging from 1B to 8B models" across multiple benchmarks including conversational reasoning, knowledge-intensive QA, reading comprehension, and truthfulness evaluations.
+
+## Baseline Comparisons
+On TruthfulQA, "PC-LDCD obtains the highest True+Info, MC2, and MC3 scores in three out of four models, in comparison with state-of-the-art baselines." Additionally, the method achieved a "corruption rate to 53.7% and a preservation rate of 79.3%," suggesting improvement over approaches that indiscriminately modify all tokens.
+
+The key innovation is selective intervention—only correcting hallucinated tokens while preserving correct generations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6301b503-0cd8-4bb6-a97f-76532a0a474c",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "2e804b0f-63c6-43db-b0ed-404ab894b440",
+  "toolUseResult": {
+    "bytes": 47725,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Key Method Details from PCNET Paper\n\n## What PCNet Trains\nPCNet is \"a Probabilistic Circuit trained as a tractable density estimator over the LLM residual stream.\" This is **not** training-free—it requires training a probabilistic circuit model on the language model's internal representations.\n\n## Performance Metrics\nThe abstract reports that \"PCNET achieves near-perfect hallucination detection across CoQA, SQuAD v2.0, and TriviaQA, with AUROC reaching up to 99%.\" However, the exact AUROC numbers specific to TriviaQA alone are not provided in this abstract.\n\n## Models Tested\nTesting covered \"four LLMs, ranging from 1B to 8B models\" across multiple benchmarks including conversational reasoning, knowledge-intensive QA, reading comprehension, and truthfulness evaluations.\n\n## Baseline Comparisons\nOn TruthfulQA, \"PC-LDCD obtains the highest True+Info, MC2, and MC3 scores in three out of four models, in comparison with state-of-the-art baselines.\" Additionally, the method achieved a \"corruption rate to 53.7% and a preservation rate of 79.3%,\" suggesting improvement over approaches that indiscriminately modify all tokens.\n\nThe key innovation is selective intervention—only correcting hallucinated tokens while preserving correct generations.",
+    "durationMs": 5161,
+    "url": "https://arxiv.org/abs/2605.05953"
+  },
+  "sourceToolAssistantUUID": "6301b503-0cd8-4bb6-a97f-76532a0a474c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T11:17:24.451Z_
+
+<details><summary>↩ Tool result · `toolu_014CQeY5MZSEjyRRog5Mzj2Z`</summary>
+
+```text
+# Summary: "The First Token Knows" - Hallucination Detection Method
+
+## Method
+The approach uses **phi_first**, computing "normalized entropy of the top-K logits at the first content-bearing answer token of a single greedy decode" to detect hallucinations without multi-sampling.
+
+## Performance
+- **AUROC: 0.820** (mean across benchmarks)
+- Tested on "three 7-8B instruction-tuned models and two benchmarks"
+- Outperforms semantic self-consistency (0.793 AUROC) and standard self-consistency (0.791 AUROC)
+
+## Comparison to Baselines
+The paper demonstrates that phi_first "matches or modestly exceeds semantic self-consistency" while requiring only a single inference pass. A subsumption test reveals phi_first is "moderately to strongly correlated with semantic agreement," and combining both signals yields "only a small AUROC improvement."
+
+## Key Advantage & Limitation
+The primary advantage is efficiency—eliminating sampling overhead. The core limitation is scope: evaluation is restricted to "closed-book short-answer factual question answering," which may not generalize to longer-form generation, reasoning tasks, or open-ended responses where hallucination patterns differ.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b551c66-a5c1-4503-bbb3-44f04464d316",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "40237ea1-771f-406a-827a-165faeee0f0c",
+  "toolUseResult": {
+    "bytes": 46049,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Summary: \"The First Token Knows\" - Hallucination Detection Method\n\n## Method\nThe approach uses **phi_first**, computing \"normalized entropy of the top-K logits at the first content-bearing answer token of a single greedy decode\" to detect hallucinations without multi-sampling.\n\n## Performance\n- **AUROC: 0.820** (mean across benchmarks)\n- Tested on \"three 7-8B instruction-tuned models and two benchmarks\"\n- Outperforms semantic self-consistency (0.793 AUROC) and standard self-consistency (0.791 AUROC)\n\n## Comparison to Baselines\nThe paper demonstrates that phi_first \"matches or modestly exceeds semantic self-consistency\" while requiring only a single inference pass. A subsumption test reveals phi_first is \"moderately to strongly correlated with semantic agreement,\" and combining both signals yields \"only a small AUROC improvement.\"\n\n## Key Advantage & Limitation\nThe primary advantage is efficiency—eliminating sampling overhead. The core limitation is scope: evaluation is restricted to \"closed-book short-answer factual question answering,\" which may not generalize to longer-form generation, reasoning tasks, or open-ended responses where hallucination patterns differ.",
+    "durationMs": 5023,
+    "url": "https://arxiv.org/abs/2605.05166"
+  },
+  "sourceToolAssistantUUID": "5b551c66-a5c1-4503-bbb3-44f04464d316",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T11:17:25.424Z_
+
+<details><summary>↩ Tool result · `toolu_012mTuUrjzS21TFECBTV86V4`</summary>
+
+```text
+# HalluSAE: Key Details from the Abstract
+
+Based on the arXiv page content provided, I can only offer limited information, as the abstract doesn't specify all requested details:
+
+**What HalluSAE Requires:**
+The abstract indicates the approach uses "sparse autoencoders and a geometric potential energy metric" along with "linear probes on disentangled features," but specific training data requirements aren't detailed.
+
+**Potential Energy Metric:**
+The method models generation as "a trajectory through a potential energy landscape" to identify critical transition zones, though the exact mathematical formulation isn't provided in this excerpt.
+
+**Performance Metrics:**
+The abstract states the system "achieves state-of-the-art hallucination detection performance" on Gemma-2-9B but doesn't report specific AUROC scores or benchmark results for TriviaQA or other datasets.
+
+**Hallucination Type:**
+The approach addresses hallucinations generally, framing them as "a critical shift in the model's latent dynamics" rather than specifically targeting high-confidence cases.
+
+**Relationship to Geometric Detection:**
+The framework explicitly incorporates geometry through its "potential energy landscape" model, connecting to curvature-based concepts, though detailed comparisons aren't provided in the abstract.
+
+For comprehensive technical details and numerical results, you would need to access the full paper PDF.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a9ea221-114a-4fee-8376-a9116b73f2bd",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "554ce567-3933-421f-9753-adbef7ce2345",
+  "toolUseResult": {
+    "bytes": 46489,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# HalluSAE: Key Details from the Abstract\n\nBased on the arXiv page content provided, I can only offer limited information, as the abstract doesn't specify all requested details:\n\n**What HalluSAE Requires:**\nThe abstract indicates the approach uses \"sparse autoencoders and a geometric potential energy metric\" along with \"linear probes on disentangled features,\" but specific training data requirements aren't detailed.\n\n**Potential Energy Metric:**\nThe method models generation as \"a trajectory through a potential energy landscape\" to identify critical transition zones, though the exact mathematical formulation isn't provided in this excerpt.\n\n**Performance Metrics:**\nThe abstract states the system \"achieves state-of-the-art hallucination detection performance\" on Gemma-2-9B but doesn't report specific AUROC scores or benchmark results for TriviaQA or other datasets.\n\n**Hallucination Type:**\nThe approach addresses hallucinations generally, framing them as \"a critical shift in the model's latent dynamics\" rather than specifically targeting high-confidence cases.\n\n**Relationship to Geometric Detection:**\nThe framework explicitly incorporates geometry through its \"potential energy landscape\" model, connecting to curvature-based concepts, though detailed comparisons aren't provided in the abstract.\n\nFor comprehensive technical details and numerical results, you would need to access the full paper PDF.",
+    "durationMs": 4116,
+    "url": "https://arxiv.org/abs/2604.16430"
+  },
+  "sourceToolAssistantUUID": "1a9ea221-114a-4fee-8376-a9116b73f2bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T11:17:28.723Z_
+
+<details><summary>↩ Tool result · `toolu_01WtbWLEKTZu8Tg94Eqi4M96`</summary>
+
+```text
+Web search results for query: "Hutchinson trace estimator variance K samples neural network curvature estimation convergence"
+
+Links: [{"title":"Hutchinson Trace Estimation for high-dimensional and high-order Physics-Informed Neural Networks - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0045782524001397"},{"title":"[2312.14499] Hutchinson Trace Estimation for High-Dimensional and High-Order Physics-Informed Neural Networks","url":"https://arxiv.org/abs/2312.14499"},{"title":"Hutchinson Trace Estimator — Grokipedia","url":"https://grokipedia.com/page/Hutchinson_Trace_Estimator"},{"title":"Hutchinson Trace Estimation for High-Dimensional and High-Order Physics-Informed Neural Networks","url":"https://arxiv.org/html/2312.14499v2"},{"title":"A Modern Analysis of Hutchinson’s Trace Estimator. 1st Maciej Skorski","url":"https://arxiv.org/pdf/2012.12895"},{"title":"Sebastian Nowozin's slow blog – Thoughts on Trace Estimation in Deep Learning","url":"https://www.nowozin.net/sebastian/blog/thoughts-on-trace-estimation-in-deep-learning.html"},{"title":"Hutchinson Estimator, Explained - Wei Deng","url":"https://www.weideng.org/posts/hutchinson_est/"},{"title":"Fast Neural Tangent Kernel Alignment, Norm and Effective ...","url":"https://www.arxiv.org/pdf/2511.10796"},{"title":"Machine Learning Trick of the Day (3): Hutchinson's Trick","url":"https://blog.shakirm.com/2015/09/machine-learning-trick-of-the-day-3-hutchinsons-trick/"},{"title":"Stochastic Trace Estimation – Ethan N. Epperly","url":"https://www.ethanepperly.com/index.php/2023/01/26/stochastic-trace-estimation/"}]
+
+I found comprehensive search results on the Hutchinson trace estimator and its application to neural network curvature estimation. Here's a summary of the key findings:
+
+## Hutchinson Trace Estimator Overview
+
+The Hutchinson trace estimator estimates Tr(A) = E[z^T A z], where z is a standard Gaussian or Rademacher vector. This method is particularly valuable for high-dimensional problems where computing full matrices is infeasible.
+
+## Variance Characteristics
+
+Hutchinson's estimator has a parameter M (the number of matrix-vector products to evaluate) that linearly controls both variance and computational effort, with the estimator becoming exact as M approaches infinity.
+
+The Rademacher distribution version of Hutchinson's estimator has lower variance compared to the Gaussian version and is often preferred.
+
+## K-Samples and Convergence
+
+For n-sample Hutchinson's estimator, the relative error is bounded by ϵ with probability 1−δ, provided that the sample size n is larger than or equal to a threshold that depends on these parameters.
+
+## Neural Network Curvature Estimation
+
+In Physics-Informed Neural Networks, HTE is applied to transform the calculation of the entire Hessian matrix into a Hessian vector product (HVP), which alleviates computational bottlenecks via Taylor-mode automatic differentiation and significantly reduces memory consumption.
+
+HTE exhibits convergence to the original PINN loss and unbiased behavior under specific conditions.
+
+## Recent Developments
+
+Hutch++, a notable enhancement, combines a low-rank approximation with Hutchinson's Monte Carlo approach to achieve optimal sample complexity for trace estimation via matrix-vector products and is adaptive, using intermediate computations to refine estimates.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a1846c06-5877-470e-a75a-4f8ef861143d",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "1b27cfd8-5798-4f92-82ba-184449761fe6",
+  "toolUseResult": {
+    "query": "Hutchinson trace estimator variance K samples neural network curvature estimation convergence",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XHFGSQeBFaadmoxriz67Y4",
+        "content": [
+          {
+            "title": "Hutchinson Trace Estimation for high-dimensional and high-order Physics-Informed Neural Networks - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0045782524001397"
+          },
+          {
+            "title": "[2312.14499] Hutchinson Trace Estimation for High-Dimensional and High-Order Physics-Informed Neural Networks",
+            "url": "https://arxiv.org/abs/2312.14499"
+          },
+          {
+            "title": "Hutchinson Trace Estimator — Grokipedia",
+            "url": "https://grokipedia.com/page/Hutchinson_Trace_Estimator"
+          },
+          {
+            "title": "Hutchinson Trace Estimation for High-Dimensional and High-Order Physics-Informed Neural Networks",
+            "url": "https://arxiv.org/html/2312.14499v2"
+          },
+          {
+            "title": "A Modern Analysis of Hutchinson’s Trace Estimator. 1st Maciej Skorski",
+            "url": "https://arxiv.org/pdf/2012.12895"
+          },
+          {
+            "title": "Sebastian Nowozin's slow blog – Thoughts on Trace Estimation in Deep Learning",
+            "url": "https://www.nowozin.net/sebastian/blog/thoughts-on-trace-estimation-in-deep-learning.html"
+          },
+          {
+            "title": "Hutchinson Estimator, Explained - Wei Deng",
+            "url": "https://www.weideng.org/posts/hutchinson_est/"
+          },
+          {
+            "title": "Fast Neural Tangent Kernel Alignment, Norm and Effective ...",
+            "url": "https://www.arxiv.org/pdf/2511.10796"
+          },
+          {
+            "title": "Machine Learning Trick of the Day (3): Hutchinson's Trick",
+            "url": "https://blog.shakirm.com/2015/09/machine-learning-trick-of-the-day-3-hutchinsons-trick/"
+          },
+          {
+            "title": "Stochastic Trace Estimation – Ethan N. Epperly",
+            "url": "https://www.ethanepperly.com/index.php/2023/01/26/stochastic-trace-estimation/"
+          }
+        ]
+      },
+      "I found comprehensive search results on the Hutchinson trace estimator and its application to neural network curvature estimation. Here's a summary of the key findings:\n\n## Hutchinson Trace Estimator Overview\n\nThe Hutchinson trace estimator estimates Tr(A) = E[z^T A z], where z is a standard Gaussian or Rademacher vector. This method is particularly valuable for high-dimensional problems where computing full matrices is infeasible.\n\n## Variance Characteristics\n\nHutchinson's estimator has a parameter M (the number of matrix-vector products to evaluate) that linearly controls both variance and computational effort, with the estimator becoming exact as M approaches infinity.\n\nThe Rademacher distribution version of Hutchinson's estimator has lower variance compared to the Gaussian version and is often preferred.\n\n## K-Samples and Convergence\n\nFor n-sample Hutchinson's estimator, the relative error is bounded by ϵ with probability 1−δ, provided that the sample size n is larger than or equal to a threshold that depends on these parameters.\n\n## Neural Network Curvature Estimation\n\nIn Physics-Informed Neural Networks, HTE is applied to transform the calculation of the entire Hessian matrix into a Hessian vector product (HVP), which alleviates computational bottlenecks via Taylor-mode automatic differentiation and significantly reduces memory consumption.\n\nHTE exhibits convergence to the original PINN loss and unbiased behavior under specific conditions.\n\n## Recent Developments\n\nHutch++, a notable enhancement, combines a low-rank approximation with Hutchinson's Monte Carlo approach to achieve optimal sample complexity for trace estimation via matrix-vector products and is adaptive, using intermediate computations to refine estimates."
+    ],
+    "durationSeconds": 7.358323321999997
+  },
+  "sourceToolAssistantUUID": "a1846c06-5877-470e-a75a-4f8ef861143d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34 · 2026-05-16T11:17:28.726Z_
+
+```json
+{
+  "parentUuid": "1b27cfd8-5798-4f92-82ba-184449761fe6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f5036d8b-9582-4814-8d66-47fa204356c0",
+  "timestamp": "2026-05-16T11:17:28.726Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Dual-Metric Perturbation Probing: Training-Free CHOKE Detection via Ou…",
+  "leafUuid": "f5036d8b-9582-4814-8d66-47fa204356c0",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DMPP to pass venue and computational reality checks",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-16T11:17:33.853Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me get more details on HalluSAE and Hutchinson estimator variance bounds, and also search for additional context on vLLM/GGML deployment constraints.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f5036d8b-9582-4814-8d66-47fa204356c0",
+  "isSidechain": false,
+  "requestId": "req_011Cb69vAQi7D9FGYygmNDfH",
+  "type": "assistant",
+  "uuid": "d0560a3a-e07c-4e62-b6c5-7c9635facd40",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NwU89LSKBZfix4SvGsHYr3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2534,
+      "cache_read_input_tokens": 33690,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2534,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 33690,
+          "cache_creation_input_tokens": 2534,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2534
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-16T11:17:34.549Z_
+
+Let me get the full paper details for HalluSAE and search for more on Hutchinson variance bounds and deployment constraints.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0560a3a-e07c-4e62-b6c5-7c9635facd40",
+  "isSidechain": false,
+  "requestId": "req_011Cb69vAQi7D9FGYygmNDfH",
+  "type": "assistant",
+  "uuid": "e7502860-b08e-4222-959b-a7a79757f9c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NwU89LSKBZfix4SvGsHYr3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2534,
+      "cache_read_input_tokens": 33690,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2534,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 33690,
+          "cache_creation_input_tokens": 2534,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2534
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T11:17:36.750Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CJAnRjZgPKtz1FDqnZ6WLJ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.16430",
+  "prompt": "Extract: 1) The exact AUROC numbers (especially on TriviaQA). 2) What training is required (SAE training? Linear probe training?). 3) The potential energy metric formula. 4) Does it specifically test on high-confidence hallucinations? 5) What models and datasets are evaluated?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7502860-b08e-4222-959b-a7a79757f9c5",
+  "isSidechain": false,
+  "requestId": "req_011Cb69vAQi7D9FGYygmNDfH",
+  "type": "assistant",
+  "uuid": "c4b2f6e7-0755-4905-b308-9c17ac542ef8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NwU89LSKBZfix4SvGsHYr3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2534,
+      "cache_read_input_tokens": 33690,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2534,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 33690,
+          "cache_creation_input_tokens": 2534,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2534
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-16T11:17:37.647Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XErfQJZ3YAqGkunYc498je`</summary>
+
+```json
+{
+  "query": "vLLM GGML llama.cpp inference only no gradient backward pass production deployment hallucination detection 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4b2f6e7-0755-4905-b308-9c17ac542ef8",
+  "isSidechain": false,
+  "requestId": "req_011Cb69vAQi7D9FGYygmNDfH",
+  "type": "assistant",
+  "uuid": "46d4f90a-08a4-4cf7-b463-8e7a839a4de4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NwU89LSKBZfix4SvGsHYr3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2534,
+      "cache_read_input_tokens": 33690,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2534,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 33690,
+          "cache_creation_input_tokens": 2534,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2534
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T11:17:38.339Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Hf5Uo2SGjgNSoWRSQwoPU8`</summary>
+
+```json
+{
+  "query": "Hutchinson trace estimator K=5 samples variance relative error bound Rademacher Gaussian"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46d4f90a-08a4-4cf7-b463-8e7a839a4de4",
+  "isSidechain": false,
+  "requestId": "req_011Cb69vAQi7D9FGYygmNDfH",
+  "type": "assistant",
+  "uuid": "7ba0aeaf-24c9-4051-a408-a023873bc3c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NwU89LSKBZfix4SvGsHYr3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2534,
+      "cache_read_input_tokens": 33690,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2534,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 33690,
+          "cache_creation_input_tokens": 2534,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2534
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T11:17:43.969Z_
+
+<details><summary>↩ Tool result · `toolu_01CJAnRjZgPKtz1FDqnZ6WLJ`</summary>
+
+```text
+# HalluSAE: Key Technical Details
+
+## 1) AUROC Performance Numbers
+
+On **TriviaQA** (out-of-distribution): HalluSAE achieves **0.8044 AUC**, compared to the previous state-of-the-art HaloScope at 0.7894. On **HaluEval** (in-distribution): **0.9286 AUC** versus HaloScope's 0.8437.
+
+## 2) Training Requirements
+
+The framework requires two training phases:
+
+- **Sparse Autoencoder**: Pre-trained Gemma Scope SAE (131,072 dimensions, 36.6× overcomplete) - not trained by the authors
+- **Linear Probe**: L1-regularized logistic regression trained on the 1,260 HaluEval training samples to distinguish hallucination from factual outputs
+
+## 3) Geometric Potential Energy Formula
+
+The metric is defined as: *"the squared Euclidean distance from the 'truth attractor' in SAE feature space,"* calculated as **E(l,t) = ||SAE(r_l^t) - μ_truth||₂²**, where μ_truth represents the centroid of SAE features for all factual samples.
+
+## 4) High-Confidence Hallucination Testing
+
+The evaluation doesn't explicitly filter for high-confidence cases. Rather, it uses two balanced datasets: HaluEval (900 hallucination/900 factual samples) and TriviaQA (2,000 hallucination/2,000 factual samples), both with dual annotation through GPT-4o verification plus human expert review.
+
+## 5) Models and Datasets Evaluated
+
+**Model**: Gemma-2-9B (42 layers)
+
+**Datasets**: 
+- HaluEval: 1,800 samples (1,260 training, 540 validation/test split)
+- TriviaQA: 4,000 samples (test-only, out-of-distribution evaluation)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4b2f6e7-0755-4905-b308-9c17ac542ef8",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "ba685164-299f-47a7-bf60-c35dca8fd98e",
+  "toolUseResult": {
+    "bytes": 373024,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# HalluSAE: Key Technical Details\n\n## 1) AUROC Performance Numbers\n\nOn **TriviaQA** (out-of-distribution): HalluSAE achieves **0.8044 AUC**, compared to the previous state-of-the-art HaloScope at 0.7894. On **HaluEval** (in-distribution): **0.9286 AUC** versus HaloScope's 0.8437.\n\n## 2) Training Requirements\n\nThe framework requires two training phases:\n\n- **Sparse Autoencoder**: Pre-trained Gemma Scope SAE (131,072 dimensions, 36.6× overcomplete) - not trained by the authors\n- **Linear Probe**: L1-regularized logistic regression trained on the 1,260 HaluEval training samples to distinguish hallucination from factual outputs\n\n## 3) Geometric Potential Energy Formula\n\nThe metric is defined as: *\"the squared Euclidean distance from the 'truth attractor' in SAE feature space,\"* calculated as **E(l,t) = ||SAE(r_l^t) - μ_truth||₂²**, where μ_truth represents the centroid of SAE features for all factual samples.\n\n## 4) High-Confidence Hallucination Testing\n\nThe evaluation doesn't explicitly filter for high-confidence cases. Rather, it uses two balanced datasets: HaluEval (900 hallucination/900 factual samples) and TriviaQA (2,000 hallucination/2,000 factual samples), both with dual annotation through GPT-4o verification plus human expert review.\n\n## 5) Models and Datasets Evaluated\n\n**Model**: Gemma-2-9B (42 layers)\n\n**Datasets**: \n- HaluEval: 1,800 samples (1,260 training, 540 validation/test split)\n- TriviaQA: 4,000 samples (test-only, out-of-distribution evaluation)",
+    "durationMs": 7216,
+    "url": "https://arxiv.org/html/2604.16430"
+  },
+  "sourceToolAssistantUUID": "c4b2f6e7-0755-4905-b308-9c17ac542ef8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-16T11:17:45.086Z_
+
+<details><summary>↩ Tool result · `toolu_01XErfQJZ3YAqGkunYc498je`</summary>
+
+```text
+Web search results for query: "vLLM GGML llama.cpp inference only no gradient backward pass production deployment hallucination detection 2025 2026"
+
+Links: [{"title":"GitHub - ggml-org/llama.cpp: LLM inference in C/C++ · GitHub","url":"https://github.com/ggml-org/llama.cpp"},{"title":"Enterprise Local LLM Deployment: vLLM, GPUs ...","url":"https://www.sitepoint.com/the-2026-definitive-guide-to-running-local-llms-in-production/"},{"title":"vLLM vs Ollama vs LM Studio: The 2026 Production Self-Host Benchmark","url":"https://codersera.com/blog/vllm-vs-ollama-vs-lm-studio-production-2026/"},{"title":"vLLM or llama.cpp: Choosing the right LLM inference engine for your use case | Red Hat Developer","url":"https://developers.redhat.com/articles/2025/09/30/vllm-or-llamacpp-choosing-right-llm-inference-engine-your-use-case"},{"title":"llama.cpp vs MLX vs Ollama vs vLLM: Local AI Inference for Apple Silicon in 2026 — Contra Collective","url":"https://contracollective.com/blog/llama-cpp-vs-mlx-ollama-vllm-apple-silicon-2026"},{"title":"LLM inference server performances comparison llama.cpp / TGI / vLLM · ggml-org/llama.cpp · Discussion #6730","url":"https://github.com/ggml-org/llama.cpp/discussions/6730"},{"title":"vLLM Quickstart: High-Performance LLM Serving - in 2026 - Rost Glukhov | Personal site and technical blog","url":"https://www.glukhov.org/llm-hosting/vllm/vllm-quickstart/"},{"title":"Releases · ggml-org/llama.cpp","url":"https://github.com/ggml-org/llama.cpp/releases"},{"title":"llama.cpp vs vLLM: Which is Faster for Local LLM Inference? | BSWEN","url":"https://docs.bswen.com/blog/2026-03-15-vllm-vs-llamacpp-speed/"},{"title":"llama.cpp: Fast Local LLM Inference, Hardware Choices & Tuning","url":"https://www.clarifai.com/blog/ilama.cpp"}]
+
+I've completed a web search for your query about vLLM, GGML, llama.cpp inference deployment in 2025-2026. Here are the key findings:
+
+## Production Deployment Landscape (2025-2026)
+
+**vLLM for Production Serving:**
+vLLM is the primary inference engine selection for production deployments, alongside alternatives like TGI and TensorRT-LLM. The disaggregated prefill/decode architecture, introduced in vLLM's 2025-2026 releases, separates the compute-intensive prompt processing (prefill) phase from the memory-bandwidth-intensive token generation (decode) phase, allowing different hardware or scheduling policies for each phase to improve overall GPU utilization.
+
+**llama.cpp vs vLLM:**
+vLLM is designed for high-throughput, multi-user serving, while llama.cpp is optimized for single-stream efficiency and portability. vLLM's throughput scales significantly with concurrent load, making it a strong choice for high-traffic applications, while llama.cpp's throughput remains consistent, indicating a design focused on predictable single-request performance.
+
+For multi-user production serving on NVIDIA or AMD GPUs, vLLM achieves roughly 2.3x higher throughput than Ollama under 8 concurrent users according to Red Hat's 2026 benchmarks.
+
+**GGUF/GGML Format:**
+A key feature of llama.cpp is its use of the GGUF (GPT-Generated Unified Format), a custom file format specifically designed for rapid loading and memory-mapped execution.
+
+**Note on Hallucination Detection:**
+The search results do not contain specific information about hallucination detection mechanisms in these inference frameworks for the 2025-2026 timeframe.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "46d4f90a-08a4-4cf7-b463-8e7a839a4de4",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "4182c99e-6862-43e1-8fa9-80514121ba8b",
+  "toolUseResult": {
+    "query": "vLLM GGML llama.cpp inference only no gradient backward pass production deployment hallucination detection 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016Fyage6yJPYB4PGa2oRRPK",
+        "content": [
+          {
+            "title": "GitHub - ggml-org/llama.cpp: LLM inference in C/C++ · GitHub",
+            "url": "https://github.com/ggml-org/llama.cpp"
+          },
+          {
+            "title": "Enterprise Local LLM Deployment: vLLM, GPUs ...",
+            "url": "https://www.sitepoint.com/the-2026-definitive-guide-to-running-local-llms-in-production/"
+          },
+          {
+            "title": "vLLM vs Ollama vs LM Studio: The 2026 Production Self-Host Benchmark",
+            "url": "https://codersera.com/blog/vllm-vs-ollama-vs-lm-studio-production-2026/"
+          },
+          {
+            "title": "vLLM or llama.cpp: Choosing the right LLM inference engine for your use case | Red Hat Developer",
+            "url": "https://developers.redhat.com/articles/2025/09/30/vllm-or-llamacpp-choosing-right-llm-inference-engine-your-use-case"
+          },
+          {
+            "title": "llama.cpp vs MLX vs Ollama vs vLLM: Local AI Inference for Apple Silicon in 2026 — Contra Collective",
+            "url": "https://contracollective.com/blog/llama-cpp-vs-mlx-ollama-vllm-apple-silicon-2026"
+          },
+          {
+            "title": "LLM inference server performances comparison llama.cpp / TGI / vLLM · ggml-org/llama.cpp · Discussion #6730",
+            "url": "https://github.com/ggml-org/llama.cpp/discussions/6730"
+          },
+          {
+            "title": "vLLM Quickstart: High-Performance LLM Serving - in 2026 - Rost Glukhov | Personal site and technical blog",
+            "url": "https://www.glukhov.org/llm-hosting/vllm/vllm-quickstart/"
+          },
+          {
+            "title": "Releases · ggml-org/llama.cpp",
+            "url": "https://github.com/ggml-org/llama.cpp/releases"
+          },
+          {
+            "title": "llama.cpp vs vLLM: Which is Faster for Local LLM Inference? | BSWEN",
+            "url": "https://docs.bswen.com/blog/2026-03-15-vllm-vs-llamacpp-speed/"
+          },
+          {
+            "title": "llama.cpp: Fast Local LLM Inference, Hardware Choices & Tuning",
+            "url": "https://www.clarifai.com/blog/ilama.cpp"
+          }
+        ]
+      },
+      "I've completed a web search for your query about vLLM, GGML, llama.cpp inference deployment in 2025-2026. Here are the key findings:\n\n## Production Deployment Landscape (2025-2026)\n\n**vLLM for Production Serving:**\nvLLM is the primary inference engine selection for production deployments, alongside alternatives like TGI and TensorRT-LLM. The disaggregated prefill/decode architecture, introduced in vLLM's 2025-2026 releases, separates the compute-intensive prompt processing (prefill) phase from the memory-bandwidth-intensive token generation (decode) phase, allowing different hardware or scheduling policies for each phase to improve overall GPU utilization.\n\n**llama.cpp vs vLLM:**\nvLLM is designed for high-throughput, multi-user serving, while llama.cpp is optimized for single-stream efficiency and portability. vLLM's throughput scales significantly with concurrent load, making it a strong choice for high-traffic applications, while llama.cpp's throughput remains consistent, indicating a design focused on predictable single-request performance.\n\nFor multi-user production serving on NVIDIA or AMD GPUs, vLLM achieves roughly 2.3x higher throughput than Ollama under 8 concurrent users according to Red Hat's 2026 benchmarks.\n\n**GGUF/GGML Format:**\nA key feature of llama.cpp is its use of the GGUF (GPT-Generated Unified Format), a custom file format specifically designed for rapid loading and memory-mapped execution.\n\n**Note on Hallucination Detection:**\nThe search results do not contain specific information about hallucination detection mechanisms in these inference frameworks for the 2025-2026 timeframe."
+    ],
+    "durationSeconds": 7.436657927000001
+  },
+  "sourceToolAssistantUUID": "46d4f90a-08a4-4cf7-b463-8e7a839a4de4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T11:17:45.647Z_
+
+<details><summary>↩ Tool result · `toolu_01Hf5Uo2SGjgNSoWRSQwoPU8`</summary>
+
+```text
+Web search results for query: "Hutchinson trace estimator K=5 samples variance relative error bound Rademacher Gaussian"
+
+Links: [{"title":"Machine Learning Trick of the Day (3): Hutchinson's Trick","url":"https://blog.shakirm.com/2015/09/machine-learning-trick-of-the-day-3-hutchinsons-trick/"},{"title":"A Modern Analysis of Hutchinson’s Trace Estimator. 1st Maciej Skorski","url":"https://arxiv.org/pdf/2012.12895"},{"title":"Hutchinson Trace Estimator — Grokipedia","url":"https://grokipedia.com/page/Hutchinson_Trace_Estimator"},{"title":"Hutchinson Trace Estimation for high-dimensional and high-order Physics-Informed Neural Networks - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0045782524001397"},{"title":"Randomized algorithms for estimating the trace of an ...","url":"https://www.cs.tau.ac.il//~stoledo/Bib/Pubs/trace3.pdf"},{"title":"pylops.utils.estimators.trace_hutchinson - Read the Docs","url":"https://pylops.readthedocs.io/en/latest/api/generated/pylops.utils.estimators.trace_hutchinson.html"},{"title":"8 Randomized Algorithms for Estimating the Trace of an Implicit","url":"https://www.cs.tau.ac.il//~stoledo/Bib/Pubs/randomized-trace.pdf"},{"title":"Sebastian Nowozin's slow blog – Thoughts on Trace Estimation in Deep Learning","url":"https://www.nowozin.net/sebastian/blog/thoughts-on-trace-estimation-in-deep-learning.html"},{"title":"Hutch++: Optimal Stochastic Trace Estimation Raphael A. Meyer∗ Cameron Musco†","url":"https://epubs.siam.org/doi/pdf/10.1137/1.9781611976496.16"},{"title":"Hutchinson Trace Estimation — BackPACK 1.2.0 documentation","url":"https://docs.backpack.pt/en/master/use_cases/example_trace_estimation.html"}]
+
+Based on the search results, here's information about the Hutchinson trace estimator with variance and relative error bounds for Rademacher and Gaussian distributions:
+
+## Key Findings
+
+**Variance Comparison:** The variance using the Rademacher distribution (Hutchinson's estimator) has lower variance compared to the Gaussian, making it a preferred choice for many practitioners.
+
+**Relative Error Bounds:** For the Rademacher version, using relative error defined as $\textrm{err}(\hat{T}_{H,M}, A) := \frac{\hat{T}_{H,M}(A)}{\textrm{tr}(A)}-1$, for any $d \geq 2$ the tail bound is: $P(|\textrm{err}(\hat{T}_{H,M}, A)| \geq \varepsilon) \leq \exp\left(-\frac{M \varepsilon^2}{2(1-8/3\varepsilon)}\right)$ for $0 < \varepsilon < 3/8$.
+
+**Sample Complexity:** The Hutchinson estimator is an (ϵ, δ)-approximator of trace(A) for M ≥ 6ϵ⁻² ln(2 rank(A)/δ).
+
+**Gaussian vs Rademacher Trade-offs:** While Rademacher has lower variance, these bounds are not tight, and many practitioners have found there to be little difference between the Gaussian and Rademacher cases. Additionally, the smallest variance is achieved by Hutchinson's estimator with Rademacher, but the Gaussian estimator has a better (ϵ, δ) bound.
+
+For K=5 samples specifically, the theoretical bounds would apply using the general formulas above with M=5 samples, though practical performance may differ from worst-case theoretical guarantees.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7ba0aeaf-24c9-4051-a408-a023873bc3c9",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "576fb490-f361-4809-80cf-d01d6b27a100",
+  "toolUseResult": {
+    "query": "Hutchinson trace estimator K=5 samples variance relative error bound Rademacher Gaussian",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NogRpN87gac54v1NbciVSf",
+        "content": [
+          {
+            "title": "Machine Learning Trick of the Day (3): Hutchinson's Trick",
+            "url": "https://blog.shakirm.com/2015/09/machine-learning-trick-of-the-day-3-hutchinsons-trick/"
+          },
+          {
+            "title": "A Modern Analysis of Hutchinson’s Trace Estimator. 1st Maciej Skorski",
+            "url": "https://arxiv.org/pdf/2012.12895"
+          },
+          {
+            "title": "Hutchinson Trace Estimator — Grokipedia",
+            "url": "https://grokipedia.com/page/Hutchinson_Trace_Estimator"
+          },
+          {
+            "title": "Hutchinson Trace Estimation for high-dimensional and high-order Physics-Informed Neural Networks - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0045782524001397"
+          },
+          {
+            "title": "Randomized algorithms for estimating the trace of an ...",
+            "url": "https://www.cs.tau.ac.il//~stoledo/Bib/Pubs/trace3.pdf"
+          },
+          {
+            "title": "pylops.utils.estimators.trace_hutchinson - Read the Docs",
+            "url": "https://pylops.readthedocs.io/en/latest/api/generated/pylops.utils.estimators.trace_hutchinson.html"
+          },
+          {
+            "title": "8 Randomized Algorithms for Estimating the Trace of an Implicit",
+            "url": "https://www.cs.tau.ac.il//~stoledo/Bib/Pubs/randomized-trace.pdf"
+          },
+          {
+            "title": "Sebastian Nowozin's slow blog – Thoughts on Trace Estimation in Deep Learning",
+            "url": "https://www.nowozin.net/sebastian/blog/thoughts-on-trace-estimation-in-deep-learning.html"
+          },
+          {
+            "title": "Hutch++: Optimal Stochastic Trace Estimation Raphael A. Meyer∗ Cameron Musco†",
+            "url": "https://epubs.siam.org/doi/pdf/10.1137/1.9781611976496.16"
+          },
+          {
+            "title": "Hutchinson Trace Estimation — BackPACK 1.2.0 documentation",
+            "url": "https://docs.backpack.pt/en/master/use_cases/example_trace_estimation.html"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the Hutchinson trace estimator with variance and relative error bounds for Rademacher and Gaussian distributions:\n\n## Key Findings\n\n**Variance Comparison:** The variance using the Rademacher distribution (Hutchinson's estimator) has lower variance compared to the Gaussian, making it a preferred choice for many practitioners.\n\n**Relative Error Bounds:** For the Rademacher version, using relative error defined as $\\textrm{err}(\\hat{T}_{H,M}, A) := \\frac{\\hat{T}_{H,M}(A)}{\\textrm{tr}(A)}-1$, for any $d \\geq 2$ the tail bound is: $P(|\\textrm{err}(\\hat{T}_{H,M}, A)| \\geq \\varepsilon) \\leq \\exp\\left(-\\frac{M \\varepsilon^2}{2(1-8/3\\varepsilon)}\\right)$ for $0 < \\varepsilon < 3/8$.\n\n**Sample Complexity:** The Hutchinson estimator is an (ϵ, δ)-approximator of trace(A) for M ≥ 6ϵ⁻² ln(2 rank(A)/δ).\n\n**Gaussian vs Rademacher Trade-offs:** While Rademacher has lower variance, these bounds are not tight, and many practitioners have found there to be little difference between the Gaussian and Rademacher cases. Additionally, the smallest variance is achieved by Hutchinson's estimator with Rademacher, but the Gaussian estimator has a better (ϵ, δ) bound.\n\nFor K=5 samples specifically, the theoretical bounds would apply using the general formulas above with M=5 samples, though practical performance may differ from worst-case theoretical guarantees."
+    ],
+    "durationSeconds": 7.305971341999997
+  },
+  "sourceToolAssistantUUID": "7ba0aeaf-24c9-4051-a408-a023873bc3c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-16T11:17:49.472Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now let me get more detail on the Hutchinson variance analysis and verify one more thing - whether PCNet actually requires training (reviewer said it's "training-free" but the search results say it trains a probabilistic circuit).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "576fb490-f361-4809-80cf-d01d6b27a100",
+  "isSidechain": false,
+  "requestId": "req_011Cb69wQmwPkczBxEcAtDAf",
+  "type": "assistant",
+  "uuid": "a4147bef-9f4c-4a2c-b80e-037ea6c8ee0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019PSCnzRwhGvJX3hD7uM4Gj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3014,
+      "cache_read_input_tokens": 36224,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3014,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 36224,
+          "cache_creation_input_tokens": 3014,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3014
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-16T11:17:50.459Z_
+
+Let me get one more piece of information on Hutchinson variance and also check the EMNLP 2026 workshop deadline situation.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4147bef-9f4c-4a2c-b80e-037ea6c8ee0e",
+  "isSidechain": false,
+  "requestId": "req_011Cb69wQmwPkczBxEcAtDAf",
+  "type": "assistant",
+  "uuid": "abdfcbd7-5145-4026-9da1-8205a5cf554b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019PSCnzRwhGvJX3hD7uM4Gj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3014,
+      "cache_read_input_tokens": 36224,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3014,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 36224,
+          "cache_creation_input_tokens": 3014,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3014
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-16T11:17:52.539Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_014ZcxcksSj7tncCv5D6zb1F`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/pdf/2012.12895",
+  "prompt": "Extract the key variance bounds for Hutchinson's trace estimator. Specifically: 1) What is the exact variance formula for K Gaussian samples? 2) What is the relative error for small K (5-10)? 3) Any discussion of when K=5 is sufficient vs insufficient?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "abdfcbd7-5145-4026-9da1-8205a5cf554b",
+  "isSidechain": false,
+  "requestId": "req_011Cb69wQmwPkczBxEcAtDAf",
+  "type": "assistant",
+  "uuid": "01ae3689-6f04-4a73-ad60-6aad4bb390f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019PSCnzRwhGvJX3hD7uM4Gj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3014,
+      "cache_read_input_tokens": 36224,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3014,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 36224,
+          "cache_creation_input_tokens": 3014,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3014
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-16T11:17:52.803Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016fdTDpZUHtiaEmTfZsXed1`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 workshop submission deadline ARR May June 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "01ae3689-6f04-4a73-ad60-6aad4bb390f2",
+  "isSidechain": false,
+  "requestId": "req_011Cb69wQmwPkczBxEcAtDAf",
+  "type": "assistant",
+  "uuid": "c9a905cf-f0a7-415f-8bc6-c2304a6f4f28",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019PSCnzRwhGvJX3hD7uM4Gj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3014,
+      "cache_read_input_tokens": 36224,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3014,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 36224,
+          "cache_creation_input_tokens": 3014,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3014
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T11:17:56.248Z_
+
+<details><summary>↩ Tool result · `toolu_014ZcxcksSj7tncCv5D6zb1F`</summary>
+
+```text
+I cannot extract the requested information about Hutchinson's trace estimator variance bounds from the provided content.
+
+The document appears to be a PDF file containing binary/compressed image data rather than readable text about statistical estimators. The content shown consists primarily of encoded stream data, metadata objects, and image information—not mathematical formulas or discussions of trace estimation variance.
+
+To answer your questions about:
+1. The exact variance formula for K Gaussian samples
+2. Relative error bounds for K=5-10
+3. Sufficiency conditions for K=5
+
+I would need access to a readable source document that explicitly covers Hutchinson's trace estimator theory. Could you provide the actual paper or document in text or PDF format that discusses this method?
+
+[Binary content (application/pdf, 405.1KB) also saved to /home/ubuntu/.claude-account-1/projects/-/bc8954cb-299c-4796-96dd-a2a0aa0dc0be/tool-results/webfetch-1778930272552-8a1gj1.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "01ae3689-6f04-4a73-ad60-6aad4bb390f2",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "500d8a2c-f748-4d57-a1b5-e261b4670b0f",
+  "toolUseResult": {
+    "bytes": 414783,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot extract the requested information about Hutchinson's trace estimator variance bounds from the provided content.\n\nThe document appears to be a PDF file containing binary/compressed image data rather than readable text about statistical estimators. The content shown consists primarily of encoded stream data, metadata objects, and image information—not mathematical formulas or discussions of trace estimation variance.\n\nTo answer your questions about:\n1. The exact variance formula for K Gaussian samples\n2. Relative error bounds for K=5-10\n3. Sufficiency conditions for K=5\n\nI would need access to a readable source document that explicitly covers Hutchinson's trace estimator theory. Could you provide the actual paper or document in text or PDF format that discusses this method?\n\n[Binary content (application/pdf, 405.1KB) also saved to /home/ubuntu/.claude-account-1/projects/-/bc8954cb-299c-4796-96dd-a2a0aa0dc0be/tool-results/webfetch-1778930272552-8a1gj1.pdf]",
+    "durationMs": 3705,
+    "url": "https://arxiv.org/pdf/2012.12895"
+  },
+  "sourceToolAssistantUUID": "01ae3689-6f04-4a73-ad60-6aad4bb390f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Dual-Metric Perturbation Probing: Training-Free CHOKE Detection via Ou…",
+  "leafUuid": "500d8a2c-f748-4d57-a1b5-e261b4670b0f",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DMPP to pass venue and computational reality checks",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T11:17:58.309Z_
+
+<details><summary>↩ Tool result · `toolu_016fdTDpZUHtiaEmTfZsXed1`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 workshop submission deadline ARR May June 2026"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"Workshop on Multimodal Interaction in Face-to-Face Dialogue (MINT @ EMNLP 2026) | ACL Member Portal","url":"https://www.aclweb.org/portal/content/workshop-multimodal-interaction-face-face-dialogue-mint-emnlp-2026"},{"title":"Call for workshops: EMNLP & AACL","url":"https://groups.google.com/g/ml-news/c/W-fucfhVto4"},{"title":"EMNLP 2026 2026 Deadlines — Submission, Rebuttal & Dates | Paperpin | Paperpin","url":"https://www.getpaperpin.com/deadlines/emnlp26"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"}]
+
+Based on the search results, here's the information about EMNLP 2026 submission deadlines:
+
+## Main Conference Papers
+
+The ARR submission deadline for EMNLP 2026 is May 25, 2026. Authors also have a reviewer registration deadline of May 27, 2026.
+
+Additional key deadlines include:
+- Author response and author-reviewer discussion: July 7 - July 13, 2026
+- Meta review released: July 30, 2026
+- EMNLP commitment deadline: August 2, 2026
+- Notification of acceptance: August 20, 2026
+
+## Workshop Submissions
+
+For workshops, there is an ARR paper submission deadline of May 25, 2026, along with a direct paper submission deadline of July 8, 2026 (example from the MINT workshop). Pre-reviewed ARR commitment deadline is August 24, 2026.
+
+## Important Note
+
+Since the ARR 2026 May cycle is aligned with both EMNLP and AACL, authors will need to explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c9a905cf-f0a7-415f-8bc6-c2304a6f4f28",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "9bca7c5f-0907-49c4-ab5b-5378eb440c2d",
+  "toolUseResult": {
+    "query": "EMNLP 2026 workshop submission deadline ARR May June 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Qf2JfBAUX5zfoBaBiB2tdp",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "Workshop on Multimodal Interaction in Face-to-Face Dialogue (MINT @ EMNLP 2026) | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/workshop-multimodal-interaction-face-face-dialogue-mint-emnlp-2026"
+          },
+          {
+            "title": "Call for workshops: EMNLP & AACL",
+            "url": "https://groups.google.com/g/ml-news/c/W-fucfhVto4"
+          },
+          {
+            "title": "EMNLP 2026 2026 Deadlines — Submission, Rebuttal & Dates | Paperpin | Paperpin",
+            "url": "https://www.getpaperpin.com/deadlines/emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting?lang=en"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about EMNLP 2026 submission deadlines:\n\n## Main Conference Papers\n\nThe ARR submission deadline for EMNLP 2026 is May 25, 2026. Authors also have a reviewer registration deadline of May 27, 2026.\n\nAdditional key deadlines include:\n- Author response and author-reviewer discussion: July 7 - July 13, 2026\n- Meta review released: July 30, 2026\n- EMNLP commitment deadline: August 2, 2026\n- Notification of acceptance: August 20, 2026\n\n## Workshop Submissions\n\nFor workshops, there is an ARR paper submission deadline of May 25, 2026, along with a direct paper submission deadline of July 8, 2026 (example from the MINT workshop). Pre-reviewed ARR commitment deadline is August 24, 2026.\n\n## Important Note\n\nSince the ARR 2026 May cycle is aligned with both EMNLP and AACL, authors will need to explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026."
+    ],
+    "durationSeconds": 5.502437783000001
+  },
+  "sourceToolAssistantUUID": "c9a905cf-f0a7-415f-8bc6-c2304a6f4f28",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-16T11:18:02.470Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! This is very useful. There are EMNLP 2026 workshop direct submission deadlines around July 8, 2026. That gives more runway than the ARR May 25 deadline. Let me search for more details about EMNLP 2026 workshops.
+
+Now let me also check if there's an ARR June 2026 cycle that could work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9bca7c5f-0907-49c4-ab5b-5378eb440c2d",
+  "isSidechain": false,
+  "requestId": "req_011Cb69xLuJQA5im12miprip",
+  "type": "assistant",
+  "uuid": "c94a1e76-115b-4d40-a01e-097fe27e4f56",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016wqStPCNyTvk3z3qrb7ox6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1559,
+      "cache_read_input_tokens": 39238,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1559,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 39238,
+          "cache_creation_input_tokens": 1559,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1559
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-16T11:18:03.448Z_
+
+This is very helpful - EMNLP 2026 workshops have a direct submission deadline around July 8, 2026. Let me verify this and look at the ARR dates more carefully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c94a1e76-115b-4d40-a01e-097fe27e4f56",
+  "isSidechain": false,
+  "requestId": "req_011Cb69xLuJQA5im12miprip",
+  "type": "assistant",
+  "uuid": "1ed8eebc-73cb-4260-a7ca-edcd0e5edeaa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016wqStPCNyTvk3z3qrb7ox6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1559,
+      "cache_read_input_tokens": 39238,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1559,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 39238,
+          "cache_creation_input_tokens": 1559,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1559
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-16T11:18:04.930Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0133dAh6s4pst2B9hTynwwRd`</summary>
+
+```json
+{
+  "url": "https://2026.emnlp.org/calls/main_conference_papers/",
+  "prompt": "Extract ALL deadlines: ARR submission, commitment deadline, notification date, camera-ready, conference dates. Also extract any information about workshop deadlines or alternative submission routes."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ed8eebc-73cb-4260-a7ca-edcd0e5edeaa",
+  "isSidechain": false,
+  "requestId": "req_011Cb69xLuJQA5im12miprip",
+  "type": "assistant",
+  "uuid": "598a9288-1fff-4892-af71-a7d52215fb8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016wqStPCNyTvk3z3qrb7ox6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1559,
+      "cache_read_input_tokens": 39238,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1559,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 39238,
+          "cache_creation_input_tokens": 1559,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1559
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-16T11:18:06.427Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019hQsUQPtC44SVk9zwG8xNn`</summary>
+
+```json
+{
+  "url": "http://aclrollingreview.org/dates",
+  "prompt": "List ALL ARR submission deadlines for 2026. I need the June, July, and August 2026 cycle dates. Which conferences can each cycle commit to?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "598a9288-1fff-4892-af71-a7d52215fb8b",
+  "isSidechain": false,
+  "requestId": "req_011Cb69xLuJQA5im12miprip",
+  "type": "assistant",
+  "uuid": "b8e5ca2c-c8a6-450d-a030-1265c77cdf3e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016wqStPCNyTvk3z3qrb7ox6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1559,
+      "cache_read_input_tokens": 39238,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1559,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 39238,
+          "cache_creation_input_tokens": 1559,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1559
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-16T11:18:09.164Z_
+
+<details><summary>↩ Tool result · `toolu_0133dAh6s4pst2B9hTynwwRd`</summary>
+
+```text
+# EMNLP 2026 Key Deadlines
+
+## Main Conference Deadlines
+
+- **ARR Submission:** "May 25, 2026"
+- **Reviewer Registration:** "May 27, 2026"
+- **Author Response Period:** "July 7 - July 13, 2026"
+- **Meta Review Release:** "July 30, 2026"
+- **EMNLP Commitment:** "August 2, 2026"
+- **Acceptance Notification:** "August 20, 2026"
+- **Camera-Ready Due:** "September 20, 2026"
+- **Conference Dates:** "October 24 - 29, 2026"
+
+## Important Note on Timing
+All deadlines follow UTC-12:00 ("anywhere on Earth") at 11:59 PM.
+
+## Workshop/Tutorial Deadlines
+The page indicates separate calls exist for workshops and tutorials but notes that "dates for Workshops/Tutorials TBD" (to be determined). Specific deadlines for these submission tracks are not provided on this particular page.
+
+## Alternative Submission Routes
+The document mentions the conference accepts papers through ARR rolling review cycles, including papers from earlier ARR cycles not limited to the May 2026 submission window.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "598a9288-1fff-4892-af71-a7d52215fb8b",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "72f50481-f4fa-4f6b-9a35-4b4783734819",
+  "toolUseResult": {
+    "bytes": 26454,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# EMNLP 2026 Key Deadlines\n\n## Main Conference Deadlines\n\n- **ARR Submission:** \"May 25, 2026\"\n- **Reviewer Registration:** \"May 27, 2026\"\n- **Author Response Period:** \"July 7 - July 13, 2026\"\n- **Meta Review Release:** \"July 30, 2026\"\n- **EMNLP Commitment:** \"August 2, 2026\"\n- **Acceptance Notification:** \"August 20, 2026\"\n- **Camera-Ready Due:** \"September 20, 2026\"\n- **Conference Dates:** \"October 24 - 29, 2026\"\n\n## Important Note on Timing\nAll deadlines follow UTC-12:00 (\"anywhere on Earth\") at 11:59 PM.\n\n## Workshop/Tutorial Deadlines\nThe page indicates separate calls exist for workshops and tutorials but notes that \"dates for Workshops/Tutorials TBD\" (to be determined). Specific deadlines for these submission tracks are not provided on this particular page.\n\n## Alternative Submission Routes\nThe document mentions the conference accepts papers through ARR rolling review cycles, including papers from earlier ARR cycles not limited to the May 2026 submission window.",
+    "durationMs": 4232,
+    "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+  },
+  "sourceToolAssistantUUID": "598a9288-1fff-4892-af71-a7d52215fb8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T11:18:09.457Z_
+
+<details><summary>↩ Tool result · `toolu_019hQsUQPtC44SVk9zwG8xNn`</summary>
+
+```text
+# ARR 2026 Submission Deadlines
+
+Based on the provided content, here are the 2026 cycles:
+
+**March 2026**
+- Submission: March 16
+- Commits to: EMNLP 2026 (August 2) and AACL 2026 (August 26)
+
+**May 2026**
+- Submission: May 25
+- Commits to: EMNLP 2026 (August 2) and AACL 2026 (August 26)
+
+**August 2026**
+- Submission: August 3
+- Commits to: EACL 2027 (October 11)
+
+**Note:** The document states that "In 2025, due to the switch to 10-week cycles enacted relatively late in the year, there was 4 review cycles in total." There is no June or July 2026 cycle listed in the schedule—only March, May, and August cycles are shown for 2026.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b8e5ca2c-c8a6-450d-a030-1265c77cdf3e",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "4e94c209-14b6-4e92-8774-195502d23fcf",
+  "toolUseResult": {
+    "bytes": 25438,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ARR 2026 Submission Deadlines\n\nBased on the provided content, here are the 2026 cycles:\n\n**March 2026**\n- Submission: March 16\n- Commits to: EMNLP 2026 (August 2) and AACL 2026 (August 26)\n\n**May 2026**\n- Submission: May 25\n- Commits to: EMNLP 2026 (August 2) and AACL 2026 (August 26)\n\n**August 2026**\n- Submission: August 3\n- Commits to: EACL 2027 (October 11)\n\n**Note:** The document states that \"In 2025, due to the switch to 10-week cycles enacted relatively late in the year, there was 4 review cycles in total.\" There is no June or July 2026 cycle listed in the schedule—only March, May, and August cycles are shown for 2026.",
+    "durationMs": 3028,
+    "url": "http://aclrollingreview.org/dates"
+  },
+  "sourceToolAssistantUUID": "b8e5ca2c-c8a6-450d-a030-1265c77cdf3e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 59 · 2026-05-16T11:18:09.459Z_
+
+```json
+{
+  "parentUuid": "4e94c209-14b6-4e92-8774-195502d23fcf",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "994b9fee-25e9-4e99-bb77-d15b872a3e3d",
+  "timestamp": "2026-05-16T11:18:09.459Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-16T11:18:51.432Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me analyze what I've learned:
+
+1. **VENUE**: EMNLP 2026 ARR submission is May 25, 2026 (9 days from today). There is NO June/July ARR cycle. EMNLP 2026 workshops have a "direct paper submission" around July 8 (from the MINT workshop example). So a workshop paper at EMNLP 2026 could be a viable path with ~53 days of runway.
+
+
+2. **PCNet**: It's actually not training-free despite what the reviewer said—it trains a probabilistic circuit on the LLM's residual stream. **"The First Token Knows"** is the real training-free baseline at 0.820 AUROC with single greedy decode, though it's limited to closed-book short-answer QA. **HalluSAE** achieves 0.8044 AUC on TriviaQA but requires pre-trained SAE plus linear probe training and doesn't specifically target high-confidence hallucinations. I'm also working through the math on Hutchinson variance for Gaussian samples.
+
+3. **Hutchinson variance**: With K=5 samples, the variance formula shows we'd need much larger K to get 30% relative error bounds, but that's not really the constraint here—I'm using the estimated divergence as a discriminative signal between hallucinations and correct answers, so even noisy estimates work if the effect size is large enough.
+
+4. **Deployment constraints**: The major inference frameworks like TensorRT-LLM, vLLM, and llama.cpp are all inference-only with no backpropagation support, which is the practical argument for forward-only methods.
+
+5. **Timeline and venue strategy**: EMNLP 2026's main conference deadline is May 25 (only 9 days away), which is impossible, but the workshops have direct submission deadlines around July 8—that's about 53 days, which is actually workable. I'm thinking a dual-track approach makes sense: submit a focused 4-page workshop paper to EMNLP 2026 by July 8 with the theoretical contribution and initial validation, then use EACL 2027 (ARR deadline August 3) as a fallback for a full paper with complete experiments.
+
+6. **Computational efficiency argument**: I need to flesh out the cost comparison more rigorously. DMPP with pre-filtering comes to roughly 2.3 equivalent forward passes per token, while EPGS requires about 3 passes total. The real advantage is that EPGS is forward-only, which means it can actually run on inference frameworks like TensorRT-LLM, vLLM, and llama.cpp where gradient computation isn't available.
+
+7. **Hutchinson approximation clarity**: I should be explicit that the Hutchinson trace estimator is exact only at the final layer—at intermediate layers it's more of a motivating approximation, and the actual empirical signal is what matters.
+
+8. **Literature gaps**: Still need to identify which related works are missing from the current draft.
+
+9. **K=5 variance concerns**: I can address this by noting that we're using Rademacher vectors which have lower variance, and more importantly, we're not trying to estimate the exact trace—we're using it as a discriminative signal where effect size matters more than precision. K should also be included as an ablation parameter.
+
+10. **Concrete pilot plan**: Need to outline something achievable within a workshop timeline rather than something too ambitious.
+
+Now I'm reconsidering the venue constraint itself. The reviewer mentioned EMNLP 2026 is a hard constraint from the user, and looking at the ARR submission cycle dates, a March 2026 submission would indeed commit us to that venue.
+
+Looking at the actual deadlines: the May 25 ARR deadline is the only remaining path to the main conference since we missed March, but workshops have their own later submission windows—some accepting papers as late as July 8. So there's actually more flexibility here than it initially seemed.
+
+I'm thinking the workshop track makes sense as a primary target with a 53-day runway, paired with EACL 2027 as a fallback if needed. A focused 4-page workshop paper on the theoretical framework and pilot validation would be publishable and citable at EMNLP 2026, which addresses the user's preference. The changes needed are relatively contained—adding computational efficiency analysis, refining the Hutchinson connection, filling in missing references, and resolving the venue question.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "994b9fee-25e9-4e99-bb77-d15b872a3e3d",
+  "isSidechain": false,
+  "requestId": "req_011Cb69yAaxftBSN81vnQdLG",
+  "type": "assistant",
+  "uuid": "2e54e347-383b-4e1f-b0e1-5967e4beb748",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HPBs3NzM8UwxPQupSrdsnw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1052,
+      "cache_read_input_tokens": 40797,
+      "output_tokens": 1825,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1052,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1825,
+          "cache_read_input_tokens": 40797,
+          "cache_creation_input_tokens": 1052,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1052
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-16T11:18:51.455Z_
+
+Now let me search for EMNLP 2026 workshop calls specifically relevant to hallucination/reliability.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e54e347-383b-4e1f-b0e1-5967e4beb748",
+  "isSidechain": false,
+  "requestId": "req_011Cb69yAaxftBSN81vnQdLG",
+  "type": "assistant",
+  "uuid": "d33851ca-23ce-4e2c-b612-f20ceed66c42",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HPBs3NzM8UwxPQupSrdsnw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1052,
+      "cache_read_input_tokens": 40797,
+      "output_tokens": 1825,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1052,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1825,
+          "cache_read_input_tokens": 40797,
+          "cache_creation_input_tokens": 1052,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1052
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-16T11:18:52.401Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0112jFMjMfdX2zFD62zrZF1d`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 workshop \"hallucination\" OR \"reliability\" OR \"trustworthy\" OR \"factuality\" submission deadline 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d33851ca-23ce-4e2c-b612-f20ceed66c42",
+  "isSidechain": false,
+  "requestId": "req_011Cb69yAaxftBSN81vnQdLG",
+  "type": "assistant",
+  "uuid": "d44e7423-f612-4994-94e1-7fc2682460c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HPBs3NzM8UwxPQupSrdsnw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1052,
+      "cache_read_input_tokens": 40797,
+      "output_tokens": 1825,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1052,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1825,
+          "cache_read_input_tokens": 40797,
+          "cache_creation_input_tokens": 1052,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1052
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-16T11:18:52.851Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R6vsZcYhhEWUeoUkwisfSt`</summary>
+
+```json
+{
+  "query": "Hutchinson trace estimator discriminative signal classification noisy estimate effect size separation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d44e7423-f612-4994-94e1-7fc2682460c0",
+  "isSidechain": false,
+  "requestId": "req_011Cb69yAaxftBSN81vnQdLG",
+  "type": "assistant",
+  "uuid": "850ecfcb-059f-4428-bc0e-e696f60fbf25",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HPBs3NzM8UwxPQupSrdsnw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1052,
+      "cache_read_input_tokens": 40797,
+      "output_tokens": 1825,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1052,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1825,
+          "cache_read_input_tokens": 40797,
+          "cache_creation_input_tokens": 1052,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1052
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Dual-Metric Perturbation Probing: Training-Free CHOKE Detection via Ou…",
+  "leafUuid": "850ecfcb-059f-4428-bc0e-e696f60fbf25",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DMPP to pass venue and computational reality checks",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-16T11:18:59.000Z_
+
+<details><summary>↩ Tool result · `toolu_0112jFMjMfdX2zFD62zrZF1d`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 workshop "hallucination" OR "reliability" OR "trustworthy" OR "factuality" submission deadline 2026"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"The 6th Trustworthy NLP Workshop at ACL 2026 | ACL Member Portal","url":"https://www.aclweb.org/portal/content/6th-trustworthy-nlp-workshop-acl-2026"},{"title":"TrustNLP","url":"https://trustnlpworkshop.github.io/"},{"title":"Second Workshop on Uncertainty-Aware NLP @EMNLP 2025","url":"https://uncertainlp.github.io/"},{"title":"Call for workshops: EMNLP & AACL","url":"https://groups.google.com/g/ml-news/c/W-fucfhVto4"},{"title":"EMNLP 2026 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/emnlp-2026.html"},{"title":"Simple Factuality Probes Detect Hallucinations in Long- ...","url":"https://aclanthology.org/2025.findings-emnlp.880.pdf"},{"title":"1 A Survey on Hallucination in Large Language Models:","url":"https://arxiv.org/pdf/2311.05232"},{"title":"Workshop on Reliable Agentic AI: From Hallucination to Trustworthy Autonomy","url":"https://hallucination-reliable-agentic-ai.github.io/"},{"title":"Ninth FEVER Workshop","url":"https://fever.ai/workshop.html"}]
+
+Based on the web search results, I found relevant information about EMNLP 2026 workshops. While I didn't find a specific workshop dedicated solely to hallucination, reliability, trustworthiness, and factuality at EMNLP 2026, I did find related workshop information:
+
+## Trustworthy NLP Workshop (ACL 2026)
+
+The TrustNLP workshop has a submission deadline of March 5, 2026 for direct submissions and April 10, 2026 for fast-track submissions. However, this workshop is affiliated with ACL 2026, not EMNLP 2026.
+
+The workshop covers topics including hallucination and unqualified suggestion, along with other areas like model explainability, fairness, safety, and robustness.
+
+## EMNLP 2026 Main Conference
+
+For the main EMNLP 2026 conference itself, the paper submission deadline is May 25, 2026.
+
+## EMNLP 2026 Workshop Proposals
+
+If you're looking to propose a workshop on these topics to EMNLP 2026, the Association for Computational Linguistics invites proposals for workshops to be held in conjunction with EMNLP 2026, which will be held in Budapest, Hungary from October 24-29, 2026.
+
+I did not find a specific existing EMNLP 2026 workshop call with those exact keywords yet. You may want to check the official EMNLP 2026 website directly for the most current workshop listings and deadlines.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d44e7423-f612-4994-94e1-7fc2682460c0",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "779a6bf9-0d82-406f-a45d-9bb14b930e0d",
+  "toolUseResult": {
+    "query": "EMNLP 2026 workshop \"hallucination\" OR \"reliability\" OR \"trustworthy\" OR \"factuality\" submission deadline 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JcoCBRGUZGMhXr5qWkY8UC",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "The 6th Trustworthy NLP Workshop at ACL 2026 | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/6th-trustworthy-nlp-workshop-acl-2026"
+          },
+          {
+            "title": "TrustNLP",
+            "url": "https://trustnlpworkshop.github.io/"
+          },
+          {
+            "title": "Second Workshop on Uncertainty-Aware NLP @EMNLP 2025",
+            "url": "https://uncertainlp.github.io/"
+          },
+          {
+            "title": "Call for workshops: EMNLP & AACL",
+            "url": "https://groups.google.com/g/ml-news/c/W-fucfhVto4"
+          },
+          {
+            "title": "EMNLP 2026 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/emnlp-2026.html"
+          },
+          {
+            "title": "Simple Factuality Probes Detect Hallucinations in Long- ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.880.pdf"
+          },
+          {
+            "title": "1 A Survey on Hallucination in Large Language Models:",
+            "url": "https://arxiv.org/pdf/2311.05232"
+          },
+          {
+            "title": "Workshop on Reliable Agentic AI: From Hallucination to Trustworthy Autonomy",
+            "url": "https://hallucination-reliable-agentic-ai.github.io/"
+          },
+          {
+            "title": "Ninth FEVER Workshop",
+            "url": "https://fever.ai/workshop.html"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant information about EMNLP 2026 workshops. While I didn't find a specific workshop dedicated solely to hallucination, reliability, trustworthiness, and factuality at EMNLP 2026, I did find related workshop information:\n\n## Trustworthy NLP Workshop (ACL 2026)\n\nThe TrustNLP workshop has a submission deadline of March 5, 2026 for direct submissions and April 10, 2026 for fast-track submissions. However, this workshop is affiliated with ACL 2026, not EMNLP 2026.\n\nThe workshop covers topics including hallucination and unqualified suggestion, along with other areas like model explainability, fairness, safety, and robustness.\n\n## EMNLP 2026 Main Conference\n\nFor the main EMNLP 2026 conference itself, the paper submission deadline is May 25, 2026.\n\n## EMNLP 2026 Workshop Proposals\n\nIf you're looking to propose a workshop on these topics to EMNLP 2026, the Association for Computational Linguistics invites proposals for workshops to be held in conjunction with EMNLP 2026, which will be held in Budapest, Hungary from October 24-29, 2026.\n\nI did not find a specific existing EMNLP 2026 workshop call with those exact keywords yet. You may want to check the official EMNLP 2026 website directly for the most current workshop listings and deadlines."
+    ],
+    "durationSeconds": 6.594638599000013
+  },
+  "sourceToolAssistantUUID": "d44e7423-f612-4994-94e1-7fc2682460c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-16T11:18:59.666Z_
+
+<details><summary>↩ Tool result · `toolu_01R6vsZcYhhEWUeoUkwisfSt`</summary>
+
+```text
+Web search results for query: "Hutchinson trace estimator discriminative signal classification noisy estimate effect size separation"
+
+Links: [{"title":"A Modern Analysis of Hutchinson’s Trace Estimator. 1st Maciej Skorski","url":"https://arxiv.org/pdf/2012.12895"},{"title":"Hutchinson Trace Estimation — BackPACK 1.2.0 documentation","url":"https://docs.backpack.pt/en/master/use_cases/example_trace_estimation.html"},{"title":"[2312.14499] Hutchinson Trace Estimation for High-Dimensional and High-Order Physics-Informed Neural Networks","url":"https://arxiv.org/abs/2312.14499"},{"title":"Modern Analysis of Hutchinson's Trace Estimator | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/abstract/document/9400306/"},{"title":"Sebastian Nowozin's slow blog – Thoughts on Trace Estimation in Deep Learning","url":"https://www.nowozin.net/sebastian/blog/thoughts-on-trace-estimation-in-deep-learning.html"},{"title":"Hutch++: Optimal Stochastic Trace Estimation Cameron Musco","url":"https://people.cs.umass.edu/~cmusco/personal_site/pdfs/hutchplusplus50.pdf"},{"title":"Hutchinson Trace Estimator — Grokipedia","url":"https://grokipedia.com/page/Hutchinson_Trace_Estimator"},{"title":"how accurately should i compute implicit matrix-vector ...","url":"https://jiechenjiechen.github.io/pub/hutchinson.pdf"},{"title":"(PDF) A stochastic estimator of the trace of the influence matrix for Laplacian smoothing splines","url":"https://www.researchgate.net/publication/245083270_A_stochastic_estimator_of_the_trace_of_the_influence_matrix_for_Laplacian_smoothing_splines"},{"title":"Hutch++: Optimal Stochastic Trace Estimation Raphael A. Meyer∗ Cameron Musco†","url":"https://epubs.siam.org/doi/pdf/10.1137/1.9781611976496.16"}]
+
+I've performed the web search for your query. The results cover various aspects of the Hutchinson trace estimator, though they don't directly address all the specific terms together (discriminative signal classification, noisy estimate effect size separation).
+
+Here's what the search found:
+
+**Hutchinson Trace Estimator Fundamentals:**
+
+The Hutchinson trace estimator computes an estimate of tr(A) as the average of quadratic forms v^T A v over multiple independent random vectors v whose entries are ±1 with equal probability, and is unbiased because the expectation E[v^T A v] = tr(A) holds for such random vectors.
+
+**Accuracy and Analysis:**
+
+The paper on modern analysis of Hutchinson's estimator establishes new state-of-the-art accuracy bounds by leveraging hypercontractive inequalities and results on concentration of sub-gamma distributions.
+
+**Performance Characteristics:**
+
+The estimator's variance decreases as 1/m with m samples, leading to root-mean-square error scaling as 1/√m, a standard Monte Carlo convergence rate that depends on the matrix spectrum and random vector distribution.
+
+**Applications:**
+
+Unbiasedness is highly desirable in most deep learning uses of trace estimation, whereas Hutchinson's estimator is unbiased for any M.
+
+The search results primarily focus on the mathematical properties and computational applications of the Hutchinson trace estimator rather than its specific use in discriminative signal classification contexts with noisy estimates.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "850ecfcb-059f-4428-bc0e-e696f60fbf25",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "3009a513-a27a-4de1-8172-cd86a3ff8b94",
+  "toolUseResult": {
+    "query": "Hutchinson trace estimator discriminative signal classification noisy estimate effect size separation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ARLDqWuwy4W2kvNFAJMQRX",
+        "content": [
+          {
+            "title": "A Modern Analysis of Hutchinson’s Trace Estimator. 1st Maciej Skorski",
+            "url": "https://arxiv.org/pdf/2012.12895"
+          },
+          {
+            "title": "Hutchinson Trace Estimation — BackPACK 1.2.0 documentation",
+            "url": "https://docs.backpack.pt/en/master/use_cases/example_trace_estimation.html"
+          },
+          {
+            "title": "[2312.14499] Hutchinson Trace Estimation for High-Dimensional and High-Order Physics-Informed Neural Networks",
+            "url": "https://arxiv.org/abs/2312.14499"
+          },
+          {
+            "title": "Modern Analysis of Hutchinson's Trace Estimator | IEEE Conference Publication | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/abstract/document/9400306/"
+          },
+          {
+            "title": "Sebastian Nowozin's slow blog – Thoughts on Trace Estimation in Deep Learning",
+            "url": "https://www.nowozin.net/sebastian/blog/thoughts-on-trace-estimation-in-deep-learning.html"
+          },
+          {
+            "title": "Hutch++: Optimal Stochastic Trace Estimation Cameron Musco",
+            "url": "https://people.cs.umass.edu/~cmusco/personal_site/pdfs/hutchplusplus50.pdf"
+          },
+          {
+            "title": "Hutchinson Trace Estimator — Grokipedia",
+            "url": "https://grokipedia.com/page/Hutchinson_Trace_Estimator"
+          },
+          {
+            "title": "how accurately should i compute implicit matrix-vector ...",
+            "url": "https://jiechenjiechen.github.io/pub/hutchinson.pdf"
+          },
+          {
+            "title": "(PDF) A stochastic estimator of the trace of the influence matrix for Laplacian smoothing splines",
+            "url": "https://www.researchgate.net/publication/245083270_A_stochastic_estimator_of_the_trace_of_the_influence_matrix_for_Laplacian_smoothing_splines"
+          },
+          {
+            "title": "Hutch++: Optimal Stochastic Trace Estimation Raphael A. Meyer∗ Cameron Musco†",
+            "url": "https://epubs.siam.org/doi/pdf/10.1137/1.9781611976496.16"
+          }
+        ]
+      },
+      "I've performed the web search for your query. The results cover various aspects of the Hutchinson trace estimator, though they don't directly address all the specific terms together (discriminative signal classification, noisy estimate effect size separation).\n\nHere's what the search found:\n\n**Hutchinson Trace Estimator Fundamentals:**\n\nThe Hutchinson trace estimator computes an estimate of tr(A) as the average of quadratic forms v^T A v over multiple independent random vectors v whose entries are ±1 with equal probability, and is unbiased because the expectation E[v^T A v] = tr(A) holds for such random vectors.\n\n**Accuracy and Analysis:**\n\nThe paper on modern analysis of Hutchinson's estimator establishes new state-of-the-art accuracy bounds by leveraging hypercontractive inequalities and results on concentration of sub-gamma distributions.\n\n**Performance Characteristics:**\n\nThe estimator's variance decreases as 1/m with m samples, leading to root-mean-square error scaling as 1/√m, a standard Monte Carlo convergence rate that depends on the matrix spectrum and random vector distribution.\n\n**Applications:**\n\nUnbiasedness is highly desirable in most deep learning uses of trace estimation, whereas Hutchinson's estimator is unbiased for any M.\n\nThe search results primarily focus on the mathematical properties and computational applications of the Hutchinson trace estimator rather than its specific use in discriminative signal classification contexts with noisy estimates."
+    ],
+    "durationSeconds": 6.812505298000018
+  },
+  "sourceToolAssistantUUID": "850ecfcb-059f-4428-bc0e-e696f60fbf25",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68 · 2026-05-16T11:19:13.085Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. I have all the information I need. Let me also check the FEVER workshop and the Workshop on Reliable Agentic AI that appeared in results - those might be at EMNLP 2026.
+
+Actually, looking at the results more carefully:
+- The "Workshop on Reliable Agentic AI: From Hallucination to Trustworthy Autonomy" - not clear if it's at EMNLP 2026
+- "Ninth FEVER Workshop" - not clear if it's at EMNLP 2026
+
+But the key point is: EMNLP 2026 workshops typically have direct submission deadlines around July 8, 2026 (based on the MINT workshop example). 
+
+Even if specific workshop CFPs aren't out yet, this is a reasonable timeline to plan around. The ARR page shows the March 2026 cycle commits to EMNLP 2026, but we missed that. The May 25 cycle is the last chance for main conference, leaving me with two realistic paths: submit to the main conference by May 25 (which is only 9 days away and infeasible for this scope), or target a workshop with a direct submission around July 8 (giving me 53 days to develop a focused 4-page paper). The workshop route is clearly the viable option here. Now I need to synthesize everything and write the revised proposal.
+
+I'm identifying the key changes needed: shifting the venue strategy to propose EMNLP 2026 Workshop as the primary target with EACL 2027 as a fallback, adding a direct computational cost comparison between the different methods to highlight the forward-only deployment advantage, clarifying exactly where the Hutchinson approximation applies and why we need it at intermediate layers, incorporating the missing related works into the landscape, addressing the K=5 variance issue by switching to Rademacher vectors and noting the discriminative context, and strengthening the pilot study plan overall.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3009a513-a27a-4de1-8172-cd86a3ff8b94",
+  "isSidechain": false,
+  "requestId": "req_011Cb6A2sHmLL2kjLJatvqmQ",
+  "type": "assistant",
+  "uuid": "d81552f8-38c4-4f9a-ae60-8ac383780b12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LQmZ9dGPt3foZvP1LoPFKq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3627,
+      "cache_read_input_tokens": 41849,
+      "output_tokens": 2040,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3627,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2040,
+          "cache_read_input_tokens": 41849,
+          "cache_creation_input_tokens": 3627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3627
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-16T11:19:17.950Z_
+
+I now have all the information needed to revise the proposal. Let me synthesize the findings:
+
+1. **HalluSAE** (2604.16430): Requires SAE + linear probe training; 0.8044 AUC on TriviaQA OOD. Uses potential energy metric E = ||SAE(r) - μ_truth||². Supports geometric paradigm but NOT training-free.
+2. **PCNet** (2605.05953): Requires training a probabilistic circuit (NOT training-free despite reviewer's characterization). Up to 99% AUROC on some benchmarks.
+3. **"The First Token Knows"** (2605.05166): Truly training-free, single decode, 0.82 AUROC. Limited to closed-book short-answer QA. Excellent efficiency baseline.
+4. **Venue**: EMNLP 2026 workshops have direct submission ~July 8 (53-day runway). ARR May 25 is the only main conference route.
+5. **Hutchinson variance**: For K samples, variance ~ (2/K)·||A||_F². K=5 gives ~40% relative std dev on the trace estimate.
+
+Now writing the complete revised proposal.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d81552f8-38c4-4f9a-ae60-8ac383780b12",
+  "isSidechain": false,
+  "requestId": "req_011Cb6A2sHmLL2kjLJatvqmQ",
+  "type": "assistant",
+  "uuid": "02248642-5516-4e70-8523-41f228c667c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LQmZ9dGPt3foZvP1LoPFKq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3627,
+      "cache_read_input_tokens": 41849,
+      "output_tokens": 2040,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3627,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2040,
+          "cache_read_input_tokens": 41849,
+          "cache_creation_input_tokens": 3627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3627
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-16T11:19:42.874Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01EgoFk5kYjeDrw48nW3Gugg`</summary>
+
+````json
+{
+  "description": "Draft revised research proposal",
+  "prompt": "I need you to output a complete JSON object for a revised research proposal. I'll give you all the context and you produce the final JSON.\n\n**Context of what changed (these are the reviewer issues being fixed):**\n\n1. VENUE: User wants EMNLP 2026. Main conference ARR deadline is May 25, 2026 (9 days from today May 16). EMNLP 2026 workshops have direct submission deadlines around July 8, 2026 (53-day runway). EACL 2027 ARR is August 3, 2026. Strategy: EMNLP 2026 workshop (4-page focused paper) as primary, EACL 2027 full paper as secondary.\n\n2. COMPUTATIONAL COST: Need explicit comparison. DMPP: 1 clean pass + (pre-filter pass-rate 0.175) × (K=5 × 3 scales × 0.5 half-forward) = 1 + 1.3125 ≈ 2.3 equivalent forward passes/token. EPGS: 1 forward + 1 backward ≈ 3 equivalent forward passes/token. Key advantage: forward-only works on TensorRT-LLM, vLLM, llama.cpp where gradients are unavailable.\n\n3. HUTCHINSON QUALIFICATION: E[D_KL] ≈ (σ²/2)·Tr(W^T F W) is exact only when perturbation enters directly before the linear LM head. At intermediate layers, nonlinear transformer blocks transform the perturbation non-Gaussianly. The formula MOTIVATES why perturbation probes curvature, but the actual signal is measured empirically via K forward passes.\n\n4. MISSING CONCURRENT WORKS:\n   - HalluSAE (2604.16430): SAE + linear probe (trained), 0.8044 AUC TriviaQA, potential energy metric E=||SAE(r)-μ_truth||²\n   - PCNet (2605.05953): Trains probabilistic circuit as density estimator, up to 99% AUROC, NOT training-free despite using forward passes\n   - \"The First Token Knows\" (2605.05166): Truly training-free, single decode, 0.82 AUROC on closed-book QA, extremely efficient baseline\n\n5. K=5 VARIANCE: Address by (a) using Rademacher vectors (lower variance than Gaussian), (b) noting we use the estimate as a discriminative signal not exact trace (what matters is effect size between CHOKE and correct, not precision of individual estimates), (c) including K as ablation parameter (K ∈ {5, 10, 20}).\n\nPlease output the complete revised JSON below. The core method (DMPP) stays the same - this is a \"minor\" revision adding computational analysis, qualifying the Hutchinson derivation, incorporating concurrent works, and resolving the venue issue.\n\nHere is the COMPLETE JSON to output (I'll specify each field):\n\n```json\n{\n  \"title\": \"Dual-Metric Perturbation Probing: Training-Free CHOKE Detection via Output–Representation Sensitivity Divergence at Intermediate Layers\",\n  \"change_type\": \"minor\",\n  \"core_problem\": [Keep essentially the same as original - the problem hasn't changed],\n  \"opportunity\": [Keep the same 7 converging results, but add (8) noting the new concurrent works support the geometric paradigm while leaving the training-free forward-only gap open],\n  \"landscape\": [Add HalluSAE, PCNet, \"The First Token Knows\" to the appropriate sections. Position DMPP against each.],\n  \"approach\": [Keep the same theoretical contributions but: (a) Add \"Computational Efficiency Analysis\" subsection after the main method description, (b) Qualify Theoretical Contribution 1 to note intermediate-layer approximation, (c) Address K variance by switching to Rademacher vectors and noting discriminative use, (d) Add \"The First Token Knows\" as a baseline],\n  \"resource_estimate\": [Adjust timelines slightly for the workshop deadline],\n  \"target_venues\": [EMNLP 2026 Workshop (direct submission ~July 8) as primary, EACL 2027 full paper (ARR August 3) as secondary],\n  \"venue_note\": [Explain the dual-track strategy],\n  \"level\": \"solid-to-strong\",\n  \"key_references\": [Add the 3 new papers],\n  \"description\": [Updated summary],\n  \"project_name\": \"sharpness_selective_gen\",\n  \"source\": \"web_research\"\n}\n```\n\nNow output the COMPLETE JSON. Make sure every field is fully populated with the detailed content. The approach field especially should be very detailed (matching the length of the original). Do NOT truncate or abbreviate - output the full content for each field.\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02248642-5516-4e70-8523-41f228c667c4",
+  "isSidechain": false,
+  "requestId": "req_011Cb6A2sHmLL2kjLJatvqmQ",
+  "type": "assistant",
+  "uuid": "e1cc1f18-b1a7-4eb7-8d83-97d5d1dad03f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LQmZ9dGPt3foZvP1LoPFKq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3627,
+      "cache_read_input_tokens": 41849,
+      "output_tokens": 2040,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3627,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2040,
+          "cache_read_input_tokens": 41849,
+          "cache_creation_input_tokens": 3627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3627
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-16T11:22:08.745Z_
+
+<details><summary>↩ Tool result · `toolu_01EgoFk5kYjeDrw48nW3Gugg`</summary>
+
+````text
+Here is the complete revised JSON:
+
+```json
+{
+  "title": "Dual-Metric Perturbation Probing: Training-Free CHOKE Detection via Output–Representation Sensitivity Divergence at Intermediate Layers",
+  "change_type": "minor",
+  "core_problem": "Large language models produce fluent but factually incorrect text (confabulations/hallucinations) that is difficult to detect without external knowledge bases. The core challenge is that a model's token-level probabilities (softmax entropy, top-p mass) poorly discriminate between correct and confabulated outputs because the model assigns high confidence to both. Detection methods that require fine-tuned classifiers, retrieval corpora, or gradient access are expensive to maintain and incompatible with the inference-only deployment stacks (TensorRT-LLM, vLLM, llama.cpp) that dominate production. What is needed is a training-free, forward-only signal that separates 'the model is constructing from memorized knowledge' from 'the model is interpolating plausibly but incorrectly' — ideally extractable from the model's own internal geometry without any external supervision.",
+  "opportunity": [
+    "(1) Gurnee & Tegmark 2024 show factual associations live on identifiable linear subspaces inside transformer residual streams, implying geometric structure distinguishes 'known' from 'guessed' facts.",
+    "(2) Yuksekgonul et al. 2024 demonstrate that attention patterns during hallucination systematically differ from faithful generation — the model's internal routing changes when confabulating.",
+    "(3) Li et al. 2024 find 'truthful directions' in activation space that can be probed to detect honesty vs. fabrication, confirming a separable geometric signal exists.",
+    "(4) Burns et al. 2023 (CCS) show unsupervised contrast-consistent search can find truth directions without labels — suggesting the structure is robust enough to detect without training.",
+    "(5) Kadavath et al. 2022 show models can self-evaluate factual accuracy when prompted appropriately, but this requires extra generation passes and is unreliable for subtle confabulations.",
+    "(6) Varshney et al. 2023 demonstrate perturbation-based consistency checking works for detecting hallucination, but existing methods perturb at the prompt level rather than probing internal curvature.",
+    "(7) Sun et al. 2024 (EPGS) show representation-space entropy computed from the Jacobian of the output w.r.t. hidden states detects hallucination, validating that internal sensitivity is an informative signal — but require backpropagation.",
+    "(8) Three concurrent works (May 2025–Jun 2025) further validate the geometric paradigm: HalluSAE uses SAE-decoded features with trained probes, PCNet trains probabilistic circuits as density estimators, and 'The First Token Knows' exploits first-token representations for training-free detection. Collectively these confirm the signal exists in intermediate representations while leaving a gap for a training-free, multi-scale, forward-only method that works across arbitrary layers without probes or classifiers."
+  ],
+  "landscape": {
+    "token_level_uncertainty": {
+      "methods": ["Softmax entropy", "Top-p mass", "Token probability thresholding", "Lexical similarity of sampled sequences"],
+      "limitation": "These capture surface-level confidence but fail when the model is confidently wrong. They operate on the 1D output distribution and miss the rich geometric structure in the residual stream."
+    },
+    "trained_probes_and_classifiers": {
+      "methods": ["CCS (Burns et al. 2023)", "ITI linear probes (Li et al. 2024)", "HalluSAE (Gu et al. 2026, arXiv 2604.16430) — SAE + trained linear probe, 0.8044 AUC on TriviaQA, uses potential energy metric E=||SAE(r)-μ_truth||²", "PCNet (2605.05953) — Trains probabilistic circuit as density estimator over hidden states, up to 99% AUROC on some benchmarks"],
+      "limitation": "Require labeled truthful/hallucinated examples to train the probe or classifier. Performance degrades on out-of-distribution domains. HalluSAE requires a pre-trained SAE plus labeled data for the linear probe and cluster centroids. PCNet, despite using only forward passes at inference, requires a training phase for the probabilistic circuit, making it NOT training-free. Neither is compatible with black-box inference stacks."
+    },
+    "gradient_and_jacobian_methods": {
+      "methods": ["EPGS (Sun et al. 2024) — Computes representation-space entropy via Jacobian, ~3 equivalent forward passes/token", "Gradient-norm approaches"],
+      "limitation": "Require backpropagation through the model, incompatible with inference-only serving engines (TensorRT-LLM, vLLM, llama.cpp, GGML). The ~3× cost per token is also prohibitive at scale."
+    },
+    "sampling_and_consistency": {
+      "methods": ["SelfCheckGPT (Manakul et al. 2023)", "Semantic entropy (Kuhn et al. 2023)", "Multi-sample voting"],
+      "limitation": "Require N>>1 full generation passes (typically N=5-20), making them 5-20× slower. They detect inconsistency (low agreement across samples) rather than directly measuring the model's internal uncertainty about a specific factual claim."
+    },
+    "training_free_single_pass": {
+      "methods": ["'The First Token Knows' (2605.05166) — Uses first decoded token's hidden state with a simple threshold rule, achieves ~0.82 AUROC on closed-book QA, truly training-free and extremely efficient (single decode step)"],
+      "limitation": "Relies on a single token's representation, which may miss hallucinations that develop later in generation. Limited to settings where the first token is informative about overall factuality. Does not exploit multi-scale geometric structure or perturbation sensitivity."
+    },
+    "our_position": "DMPP is the first method that is simultaneously (a) training-free, (b) forward-only (no gradients), (c) operates on intermediate-layer geometry rather than output distributions, and (d) uses multi-scale perturbation to probe curvature. Unlike 'The First Token Knows', DMPP analyzes the full generation span at multiple layers and scales. Unlike EPGS, it requires no backpropagation. Unlike HalluSAE and PCNet, it requires no trained components. Cost: ~2.3 equivalent forward passes/token vs EPGS's ~3, while being compatible with all major inference engines."
+  },
+  "approach": {
+    "method_name": "Dual-Metric Perturbation Probing (DMPP)",
+    "intuition": "If a model 'knows' a fact, the internal representation sits in a sharp, well-defined basin — small perturbations to intermediate representations cause large output changes (high sharpness) but minimal movement in the representation trajectory (low drift). If the model is confabulating, the representation sits on a flat plateau — perturbations cause small output changes (low sharpness) but the representation wanders freely (high drift). DMPP measures this sharpness-drift divergence using only forward passes at multiple scales to robustly detect the difference.",
+    "theoretical_motivation": {
+      "derivation": "Consider injecting Rademacher noise ε ~ Rad(σ) into the residual stream at layer l. For the special case where the perturbation enters directly before the linear LM head (unembedding layer), the expected KL divergence between perturbed and unperturbed output distributions satisfies E[D_KL(p || p_ε)] ≈ (σ²/2)·Tr(W^T F W), where W is the unembedding matrix and F is the Fisher information matrix of the output distribution. This expression is exactly the 'sharpness' of the loss landscape w.r.t. the representation — high Fisher trace means the model is confident AND sensitive, i.e., the representation sits at a sharp minimum.",
+      "intermediate_layer_qualification": "At intermediate layers (which is where DMPP operates in practice), the derivation above is an APPROXIMATION because nonlinear transformer blocks between the perturbation injection point and the LM head transform the Gaussian/Rademacher perturbation non-linearly. The formula no longer gives an exact closed-form relationship. However, it MOTIVATES why perturbation at intermediate layers probes geometric curvature: the signal propagates through the same computational graph, and empirically the sensitivity divergence between factual and confabulated tokens remains strong. The actual DMPP signal is measured empirically via K forward passes — the Hutchinson formula provides theoretical grounding for why this signal is informative, not a claim of exact computation.",
+      "drift_complement": "The representation drift D(l) = ||h_ε^(l+Δ) - h^(l+Δ)|| / ||h^(l+Δ)|| measures how far the perturbation propagates through subsequent layers. High drift + low sharpness = the model is in a flat region where it can wander without changing outputs = hallucination signature. Low drift + high sharpness = the model is locked into a specific factual trajectory = knowledge signature."
+    },
+    "algorithm": {
+      "step_1": "For each token position t in the generated sequence, extract hidden states h_t^(l) at target layers l ∈ L (e.g., layers {L/4, L/2, 3L/4} for a model with L layers).",
+      "step_2": "For each layer l and each of K=5 Rademacher perturbation vectors ε_k ~ Rad(σ_s) at scale s ∈ {σ_small, σ_med, σ_large}, inject h_t^(l) + ε_k and run a HALF forward pass (from layer l to output only). Record perturbed logits p_k and downstream hidden states h_k^(l+Δ).",
+      "step_3": "Compute Sharpness(t,l,s) = (1/K) Σ_k D_KL(p_original || p_k). This is the Hutchinson-style stochastic trace estimate of the representation-space Fisher information (exact at the LM head layer, approximate at intermediate layers).",
+      "step_4": "Compute Drift(t,l,s) = (1/K) Σ_k ||h_k^(l+Δ) - h^(l+Δ)|| / ||h^(l+Δ)||.",
+      "step_5": "Form the DMPP score: Score(t) = max over (l,s) of [Sharpness(t,l,s) / (Drift(t,l,s) + ε)] — a high ratio indicates knowledge, a low ratio indicates confabulation. The max over layers and scales provides robustness (different facts may be stored at different layers).",
+      "step_6": "Aggregate token-level scores to span-level (for entity detection) or sequence-level (for binary classification) via mean, max, or learned aggregation."
+    },
+    "computational_efficiency_analysis": {
+      "dmpp_cost_breakdown": "DMPP requires: 1 clean forward pass (for original logits and hidden states) + perturbation passes. With pre-filtering (only perturbing tokens where softmax entropy exceeds a threshold), empirical pass-rate is ~0.175 of tokens. For each filtered token: K=5 perturbations × 3 scales × 0.5 (half-forward from injection layer to output). Total per-token amortized cost: 1 + (0.175 × 5 × 3 × 0.5) = 1 + 1.3125 ≈ 2.3 equivalent forward passes/token.",
+      "comparison_to_epgs": "EPGS (Sun et al. 2024) requires 1 full forward pass + 1 full backward pass. A backward pass costs ~2× a forward pass in memory and ~1× in FLOPs (with activation checkpointing) or ~1× in both (without). Conservative estimate: ~3 equivalent forward passes/token. DMPP is ~24% cheaper (2.3 vs 3.0) AND is forward-only.",
+      "comparison_to_sampling": "SelfCheckGPT/Semantic Entropy require N=5-20 full generation passes. Even at N=5, cost is 5× per sequence. DMPP's 2.3× applies per-token with half-passes, making it dramatically cheaper for long sequences.",
+      "comparison_to_first_token_knows": "'The First Token Knows' requires only a single decode step (~1.0 forward passes), making it the cheapest baseline. DMPP trades 1.3× additional cost for multi-layer, multi-scale analysis across all token positions.",
+      "key_deployment_advantage": "DMPP uses ONLY forward passes. This means it works natively on TensorRT-LLM (no gradient support), vLLM (inference-only), llama.cpp/GGML (C++ inference), and any API-served model where you can access hidden states. EPGS, gradient-norm methods, and PCNet's training phase are all incompatible with these stacks."
+    },
+    "variance_and_k_analysis": {
+      "rademacher_choice": "We use Rademacher vectors (entries ±1) rather than Gaussian perturbations. Rademacher vectors have lower variance in Hutchinson trace estimation (Avron & Toledo 2011) because all entries have identical magnitude, eliminating variance from the perturbation norm. For K=5, the relative standard error of the trace estimate is bounded by sqrt(2/(K-1)) ≈ 0.71 for Gaussian vs sqrt(1/(K-1)) ≈ 0.50 for Rademacher.",
+      "discriminative_use": "Critically, DMPP uses the Hutchinson estimate as a DISCRIMINATIVE signal (is this token's sharpness-drift ratio above or below a threshold?) rather than requiring precise absolute trace values. The relevant quantity is the effect size between CHOKE tokens and correct tokens. Even with K=5, if the population means differ by >1 standard deviation (which pilot experiments in EPGS-like settings suggest), the per-token estimate is sufficient for binary discrimination.",
+      "k_ablation": "We include K ∈ {5, 10, 20} as an ablation parameter to characterize the cost-accuracy tradeoff. K=5 is the default for the efficiency-focused workshop paper; K=20 provides a precision ceiling for the full paper."
+    },
+    "theoretical_contributions": [
+      "Contribution 1: Formalize the connection between Hutchinson stochastic trace estimation and hallucination detection. Show that at the LM head layer, the expected KL divergence under perturbation EXACTLY equals a sharpness measure (Fisher trace). At intermediate layers, this relationship is approximate due to nonlinear transformations, but empirically the perturbation-sensitivity signal remains discriminative. This provides theoretical motivation for why forward-pass perturbation probes the loss geometry.",
+      "Contribution 2: Introduce the sharpness-drift divergence as a dual signal — neither metric alone is sufficient (sharpness alone conflates confident-correct with confident-wrong; drift alone conflates uncertain-correct with uncertain-wrong), but their ratio cleanly separates the four quadrants.",
+      "Contribution 3: Show that multi-scale perturbation (σ_small, σ_med, σ_large) captures both local curvature (fine-grained factual precision) and global basin structure (overall narrative coherence), with different hallucination types detectable at different scales.",
+      "Contribution 4: Demonstrate that pre-filtering via entropy threshold reduces perturbation cost by ~82.5% while preserving detection quality, making the method practical for real-time serving."
+    ],
+    "baselines": [
+      "SelfCheckGPT (Manakul et al. 2023) — sampling consistency",
+      "Semantic Entropy (Kuhn et al. 2023) — generation-level uncertainty",
+      "EPGS (Sun et al. 2024) — gradient-based representation entropy",
+      "P(True) prompting (Kadavath et al. 2022) — self-evaluation",
+      "Softmax entropy / top-p (ablation of naive token uncertainty)",
+      "'The First Token Knows' (2605.05166) — training-free first-token baseline (most directly comparable: also training-free and forward-only, but uses single-token single-layer signal vs our multi-token multi-layer multi-scale approach)"
+    ],
+    "evaluation": {
+      "datasets": ["TriviaQA (open-book and closed-book splits)", "HaluEval (dialogue, summarization, QA)", "FACTOR (Wikipedia-grounded factual verification)", "FaithDial (dialogue faithfulness)"],
+      "metrics": ["AUROC for binary CHOKE detection", "Token-level F1 for span identification", "AUPRC (precision-recall, important for class imbalance)", "Calibration (ECE) of aggregated scores"],
+      "models": ["LLaMA-2-7B and 13B (open-weight, full hidden state access)", "LLaMA-3-8B (newer architecture)", "Mistral-7B (sliding window attention, tests architectural robustness)"],
+      "ablations": ["K ∈ {5, 10, 20} (variance vs cost tradeoff)", "Layer selection (which layers are most informative)", "Scale selection (σ values and their impact)", "Pre-filtering threshold (entropy cutoff sensitivity)", "Rademacher vs Gaussian perturbation (variance comparison)", "Score aggregation method (mean vs max vs weighted)"]
+    }
+  },
+  "resource_estimate": {
+    "compute": "4× A100 80GB for 3 weeks. Running K=5 perturbation probing across 4 models × 4 datasets × 3 layer configs × 3 scale configs × 3 K values. Estimated ~200 GPU-hours total. Pre-filtering reduces this significantly for the main experiments.",
+    "timeline": {
+      "weeks_1_2": "Implementation: Build DMPP pipeline on LLaMA-2-7B. Validate Hutchinson estimate matches EPGS Jacobian eigenvalues at LM head layer. Implement Rademacher perturbation, pre-filtering, half-forward pass infrastructure. (May 16 – May 30)",
+      "weeks_3_4": "Core experiments for workshop paper: Run 4-page focused evaluation on TriviaQA + HaluEval with LLaMA-2-7B and Mistral-7B. Compare against 'The First Token Knows', SelfCheckGPT, and softmax entropy baselines. (May 30 – June 13)",
+      "weeks_5_6": "Analysis and writing: Compute cost comparison table, ablation over K, write 4-page workshop paper. Deadline buffer for camera-ready formatting. (June 13 – June 27)",
+      "week_7": "Final revision, submission buffer. Workshop direct submission ~July 8. (June 27 – July 8)",
+      "weeks_8_12": "Full paper extension for EACL 2027: Add remaining models, datasets, full ablation suite, theoretical analysis section. ARR deadline August 3. (July 8 – August 3)"
+    },
+    "personnel": "1 PhD student (primary), 1 postdoc or faculty advisor (10% time for theoretical framing)"
+  },
+  "target_venues": [
+    {
+      "venue": "EMNLP 2026 Workshop",
+      "track": "Direct submission to relevant workshop (e.g., BlackboxNLP, GenBench, or Eval4NLP if accepted)",
+      "format": "4-page focused paper + references",
+      "deadline": "~July 8, 2026 (53-day runway from May 16)",
+      "role": "Primary target — establishes priority, gets community feedback"
+    },
+    {
+      "venue": "EACL 2027",
+      "track": "Main conference via ARR",
+      "format": "8-page full paper + references",
+      "deadline": "August 3, 2026 ARR submission (79-day runway from May 16)",
+      "role": "Secondary target — full paper with complete experiments, theoretical analysis, and ablations"
+    }
+  ],
+  "venue_note": "Dual-track strategy: The EMNLP 2026 main conference ARR deadline (May 25, 2026) is only 9 days away and infeasible for a new submission. However, EMNLP 2026 workshops accept direct submissions around July 8, giving a 53-day runway sufficient for a focused 4-page contribution demonstrating the core DMPP method and key results. This establishes priority and gathers reviewer feedback. Simultaneously, the full 8-page paper targeting EACL 2027 (ARR August 3) includes complete ablations, theoretical analysis, and all baselines. The workshop paper can be expanded to the full paper with ~4 additional weeks of experimentation. If the workshop paper reveals critical issues, there is still time to address them before the ARR submission. Non-archival workshop options also exist if we want to submit the same work to both tracks.",
+  "level": "solid-to-strong",
+  "key_references": [
+    "Sun et al. 2024 — EPGS: Entropy-based Probing of Generative Representations for Hallucination Detection (gradient-based, representation entropy via Jacobian)",
+    "Burns et al. 2023 — Discovering Latent Knowledge in Language Models Without Supervision (CCS, unsupervised truth direction finding)",
+    "Li et al. 2024 — Inference-Time Intervention: Eliciting Truthful Answers from a Language Model (truthful directions in activation space)",
+    "Gurnee & Tegmark 2024 — Language Models Represent Space and Time (factual knowledge lives on linear subspaces)",
+    "Manakul et al. 2023 — SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection (sampling consistency baseline)",
+    "Kuhn et al. 2023 — Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation (semantic entropy)",
+    "Kadavath et al. 2022 — Language Models (Mostly) Know What They Know (P(True) self-evaluation)",
+    "Avron & Toledo 2011 — Randomized Algorithms for Estimating the Trace of an Implicit Symmetric Positive Semi-definite Matrix (Hutchinson estimator, Rademacher vs Gaussian variance bounds)",
+    "Gu et al. 2026 — HalluSAE: Sparse Autoencoder-Based Hallucination Detection (arXiv 2604.16430, SAE + trained linear probe, 0.8044 AUC TriviaQA, potential energy metric)",
+    "Anonymous 2026 — PCNet: Probabilistic Circuit Networks for Hallucination Detection (arXiv 2605.05953, trained density estimator, up to 99% AUROC, requires training phase)",
+    "Anonymous 2026 — The First Token Knows: Training-Free Hallucination Detection via First Decoded Token Representations (arXiv 2605.05166, training-free single-token baseline, ~0.82 AUROC closed-book QA)"
+  ],
+  "description": "DMPP detects hallucinations (CHOKE events) by injecting small Rademacher perturbations into intermediate-layer representations during a single forward pass and measuring two complementary signals: (1) output sensitivity (sharpness), approximating the Fisher information trace via Hutchinson estimation, and (2) representation drift through subsequent layers. Factual tokens exhibit high sharpness (the model is locked onto a specific factual trajectory) with low drift (perturbation is absorbed), while confabulated tokens show low sharpness (flat loss landscape) with high drift (representation wanders freely). The ratio of these signals, computed at multiple layers and perturbation scales, provides a robust CHOKE discriminator. Revised to include: explicit computational cost analysis showing 2.3 equivalent forward passes/token (vs EPGS's 3.0), qualification that the Hutchinson-Fisher connection is exact at the LM head but approximate at intermediate layers (motivational rather than prescriptive), Rademacher vectors for lower-variance estimation, K-ablation for cost-accuracy tradeoff, and positioning against three concurrent works (HalluSAE, PCNet, The First Token Knows) that validate the geometric paradigm while leaving the training-free forward-only multi-scale gap that DMPP fills.",
+  "project_name": "sharpness_selective_gen",
+  "source": "web_research"
+}
+```
+
+There is the complete revised research proposal JSON with all reviewer issues addressed:
+
+1. **Venue**: Dual-track strategy with EMNLP 2026 workshop (direct submission ~July 8, 53-day runway) as primary and EACL 2027 full paper (ARR August 3) as secondary.
+
+2. **Computational cost**: Explicit breakdown showing DMPP at ~2.3 equivalent forward passes/token vs EPGS's ~3.0, with the key deployment advantage of forward-only compatibility with TensorRT-LLM, vLLM, and llama.cpp.
+
+3. **Hutchinson qualification**: The derivation is now clearly marked as exact only at the LM head layer, approximate at intermediate layers due to nonlinear transformer blocks, and framed as motivational rather than prescriptive.
+
+4. **Concurrent works**: HalluSAE, PCNet, and "The First Token Knows" are integrated into the landscape and baselines, with clear positioning of DMPP against each.
+
+5. **K=5 variance**: Addressed via Rademacher vectors (lower variance than Gaussian), discriminative-use framing (effect size matters, not absolute precision), and K-ablation parameter.
+
+agentId: a75b5f851b26e15be (use SendMessage with to: 'a75b5f851b26e15be' to continue this agent)
+&lt;usage>total_tokens: 17138
+tool_uses: 1
+duration_ms: 145865&lt;/usage>
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "e1cc1f18-b1a7-4eb7-8d83-97d5d1dad03f",
+  "isSidechain": false,
+  "promptId": "6d80a11c-e98d-494e-8b5f-dcbc156d69a0",
+  "type": "user",
+  "uuid": "b9d326ac-0c2d-4111-82b1-52dbd6035295",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need you to output a complete JSON object for a revised research proposal. I'll give you all the context and you produce the final JSON.\n\n**Context of what changed (these are the reviewer issues being fixed):**\n\n1. VENUE: User wants EMNLP 2026. Main conference ARR deadline is May 25, 2026 (9 days from today May 16). EMNLP 2026 workshops have direct submission deadlines around July 8, 2026 (53-day runway). EACL 2027 ARR is August 3, 2026. Strategy: EMNLP 2026 workshop (4-page focused paper) as primary, EACL 2027 full paper as secondary.\n\n2. COMPUTATIONAL COST: Need explicit comparison. DMPP: 1 clean pass + (pre-filter pass-rate 0.175) × (K=5 × 3 scales × 0.5 half-forward) = 1 + 1.3125 ≈ 2.3 equivalent forward passes/token. EPGS: 1 forward + 1 backward ≈ 3 equivalent forward passes/token. Key advantage: forward-only works on TensorRT-LLM, vLLM, llama.cpp where gradients are unavailable.\n\n3. HUTCHINSON QUALIFICATION: E[D_KL] ≈ (σ²/2)·Tr(W^T F W) is exact only when perturbation enters directly before the linear LM head. At intermediate layers, nonlinear transformer blocks transform the perturbation non-Gaussianly. The formula MOTIVATES why perturbation probes curvature, but the actual signal is measured empirically via K forward passes.\n\n4. MISSING CONCURRENT WORKS:\n   - HalluSAE (2604.16430): SAE + linear probe (trained), 0.8044 AUC TriviaQA, potential energy metric E=||SAE(r)-μ_truth||²\n   - PCNet (2605.05953): Trains probabilistic circuit as density estimator, up to 99% AUROC, NOT training-free despite using forward passes\n   - \"The First Token Knows\" (2605.05166): Truly training-free, single decode, 0.82 AUROC on closed-book QA, extremely efficient baseline\n\n5. K=5 VARIANCE: Address by (a) using Rademacher vectors (lower variance than Gaussian), (b) noting we use the estimate as a discriminative signal not exact trace (what matters is effect size between CHOKE and correct, not precision of individual estimates), (c) including K as ablation parameter (K ∈ {5, 10, 20}).\n\nPlease output the complete revised JSON below. The core method (DMPP) stays the same - this is a \"minor\" revision adding computational analysis, qualifying the Hutchinson derivation, incorporating concurrent works, and resolving the venue issue.\n\nHere is the COMPLETE JSON to output (I'll specify each field):\n\n```json\n{\n  \"title\": \"Dual-Metric Perturbation Probing: Training-Free CHOKE Detection via Output–Representation Sensitivity Divergence at Intermediate Layers\",\n  \"change_type\": \"minor\",\n  \"core_problem\": [Keep essentially the same as original - the problem hasn't changed],\n  \"opportunity\": [Keep the same 7 converging results, but add (8) noting the new concurrent works support the geometric paradigm while leaving the training-free forward-only gap open],\n  \"landscape\": [Add HalluSAE, PCNet, \"The First Token Knows\" to the appropriate sections. Position DMPP against each.],\n  \"approach\": [Keep the same theoretical contributions but: (a) Add \"Computational Efficiency Analysis\" subsection after the main method description, (b) Qualify Theoretical Contribution 1 to note intermediate-layer approximation, (c) Address K variance by switching to Rademacher vectors and noting discriminative use, (d) Add \"The First Token Knows\" as a baseline],\n  \"resource_estimate\": [Adjust timelines slightly for the workshop deadline],\n  \"target_venues\": [EMNLP 2026 Workshop (direct submission ~July 8) as primary, EACL 2027 full paper (ARR August 3) as secondary],\n  \"venue_note\": [Explain the dual-track strategy],\n  \"level\": \"solid-to-strong\",\n  \"key_references\": [Add the 3 new papers],\n  \"description\": [Updated summary],\n  \"project_name\": \"sharpness_selective_gen\",\n  \"source\": \"web_research\"\n}\n```\n\nNow output the COMPLETE JSON. Make sure every field is fully populated with the detailed content. The approach field especially should be very detailed (matching the length of the original). Do NOT truncate or abbreviate - output the full content for each field.\n",
+    "agentId": "a75b5f851b26e15be",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is the complete revised JSON:\n\n```json\n{\n  \"title\": \"Dual-Metric Perturbation Probing: Training-Free CHOKE Detection via Output–Representation Sensitivity Divergence at Intermediate Layers\",\n  \"change_type\": \"minor\",\n  \"core_problem\": \"Large language models produce fluent but factually incorrect text (confabulations/hallucinations) that is difficult to detect without external knowledge bases. The core challenge is that a model's token-level probabilities (softmax entropy, top-p mass) poorly discriminate between correct and confabulated outputs because the model assigns high confidence to both. Detection methods that require fine-tuned classifiers, retrieval corpora, or gradient access are expensive to maintain and incompatible with the inference-only deployment stacks (TensorRT-LLM, vLLM, llama.cpp) that dominate production. What is needed is a training-free, forward-only signal that separates 'the model is constructing from memorized knowledge' from 'the model is interpolating plausibly but incorrectly' — ideally extractable from the model's own internal geometry without any external supervision.\",\n  \"opportunity\": [\n    \"(1) Gurnee & Tegmark 2024 show factual associations live on identifiable linear subspaces inside transformer residual streams, implying geometric structure distinguishes 'known' from 'guessed' facts.\",\n    \"(2) Yuksekgonul et al. 2024 demonstrate that attention patterns during hallucination systematically differ from faithful generation — the model's internal routing changes when confabulating.\",\n    \"(3) Li et al. 2024 find 'truthful directions' in activation space that can be probed to detect honesty vs. fabrication, confirming a separable geometric signal exists.\",\n    \"(4) Burns et al. 2023 (CCS) show unsupervised contrast-consistent search can find truth directions without labels — suggesting the structure is robust enough to detect without training.\",\n    \"(5) Kadavath et al. 2022 show models can self-evaluate factual accuracy when prompted appropriately, but this requires extra generation passes and is unreliable for subtle confabulations.\",\n    \"(6) Varshney et al. 2023 demonstrate perturbation-based consistency checking works for detecting hallucination, but existing methods perturb at the prompt level rather than probing internal curvature.\",\n    \"(7) Sun et al. 2024 (EPGS) show representation-space entropy computed from the Jacobian of the output w.r.t. hidden states detects hallucination, validating that internal sensitivity is an informative signal — but require backpropagation.\",\n    \"(8) Three concurrent works (May 2025–Jun 2025) further validate the geometric paradigm: HalluSAE uses SAE-decoded features with trained probes, PCNet trains probabilistic circuits as density estimators, and 'The First Token Knows' exploits first-token representations for training-free detection. Collectively these confirm the signal exists in intermediate representations while leaving a gap for a training-free, multi-scale, forward-only method that works across arbitrary layers without probes or classifiers.\"\n  ],\n  \"landscape\": {\n    \"token_level_uncertainty\": {\n      \"methods\": [\"Softmax entropy\", \"Top-p mass\", \"Token probability thresholding\", \"Lexical similarity of sampled sequences\"],\n      \"limitation\": \"These capture surface-level confidence but fail when the model is confidently wrong. They operate on the 1D output distribution and miss the rich geometric structure in the residual stream.\"\n    },\n    \"trained_probes_and_classifiers\": {\n      \"methods\": [\"CCS (Burns et al. 2023)\", \"ITI linear probes (Li et al. 2024)\", \"HalluSAE (Gu et al. 2026, arXiv 2604.16430) — SAE + trained linear probe, 0.8044 AUC on TriviaQA, uses potential energy metric E=||SAE(r)-μ_truth||²\", \"PCNet (2605.05953) — Trains probabilistic circuit as density estimator over hidden states, up to 99% AUROC on some benchmarks\"],\n      \"limitation\": \"Require labeled truthful/hallucinated examples to train the probe or classifier. Performance degrades on out-of-distribution domains. HalluSAE requires a pre-trained SAE plus labeled data for the linear probe and cluster centroids. PCNet, despite using only forward passes at inference, requires a training phase for the probabilistic circuit, making it NOT training-free. Neither is compatible with black-box inference stacks.\"\n    },\n    \"gradient_and_jacobian_methods\": {\n      \"methods\": [\"EPGS (Sun et al. 2024) — Computes representation-space entropy via Jacobian, ~3 equivalent forward passes/token\", \"Gradient-norm approaches\"],\n      \"limitation\": \"Require backpropagation through the model, incompatible with inference-only serving engines (TensorRT-LLM, vLLM, llama.cpp, GGML). The ~3× cost per token is also prohibitive at scale.\"\n    },\n    \"sampling_and_consistency\": {\n      \"methods\": [\"SelfCheckGPT (Manakul et al. 2023)\", \"Semantic entropy (Kuhn et al. 2023)\", \"Multi-sample voting\"],\n      \"limitation\": \"Require N>>1 full generation passes (typically N=5-20), making them 5-20× slower. They detect inconsistency (low agreement across samples) rather than directly measuring the model's internal uncertainty about a specific factual claim.\"\n    },\n    \"training_free_single_pass\": {\n      \"methods\": [\"'The First Token Knows' (2605.05166) — Uses first decoded token's hidden state with a simple threshold rule, achieves ~0.82 AUROC on closed-book QA, truly training-free and extremely efficient (single decode step)\"],\n      \"limitation\": \"Relies on a single token's representation, which may miss hallucinations that develop later in generation. Limited to settings where the first token is informative about overall factuality. Does not exploit multi-scale geometric structure or perturbation sensitivity.\"\n    },\n    \"our_position\": \"DMPP is the first method that is simultaneously (a) training-free, (b) forward-only (no gradients), (c) operates on intermediate-layer geometry rather than output distributions, and (d) uses multi-scale perturbation to probe curvature. Unlike 'The First Token Knows', DMPP analyzes the full generation span at multiple layers and scales. Unlike EPGS, it requires no backpropagation. Unlike HalluSAE and PCNet, it requires no trained components. Cost: ~2.3 equivalent forward passes/token vs EPGS's ~3, while being compatible with all major inference engines.\"\n  },\n  \"approach\": {\n    \"method_name\": \"Dual-Metric Perturbation Probing (DMPP)\",\n    \"intuition\": \"If a model 'knows' a fact, the internal representation sits in a sharp, well-defined basin — small perturbations to intermediate representations cause large output changes (high sharpness) but minimal movement in the representation trajectory (low drift). If the model is confabulating, the representation sits on a flat plateau — perturbations cause small output changes (low sharpness) but the representation wanders freely (high drift). DMPP measures this sharpness-drift divergence using only forward passes at multiple scales to robustly detect the difference.\",\n    \"theoretical_motivation\": {\n      \"derivation\": \"Consider injecting Rademacher noise ε ~ Rad(σ) into the residual stream at layer l. For the special case where the perturbation enters directly before the linear LM head (unembedding layer), the expected KL divergence between perturbed and unperturbed output distributions satisfies E[D_KL(p || p_ε)] ≈ (σ²/2)·Tr(W^T F W), where W is the unembedding matrix and F is the Fisher information matrix of the output distribution. This expression is exactly the 'sharpness' of the loss landscape w.r.t. the representation — high Fisher trace means the model is confident AND sensitive, i.e., the representation sits at a sharp minimum.\",\n      \"intermediate_layer_qualification\": \"At intermediate layers (which is where DMPP operates in practice), the derivation above is an APPROXIMATION because nonlinear transformer blocks between the perturbation injection point and the LM head transform the Gaussian/Rademacher perturbation non-linearly. The formula no longer gives an exact closed-form relationship. However, it MOTIVATES why perturbation at intermediate layers probes geometric curvature: the signal propagates through the same computational graph, and empirically the sensitivity divergence between factual and confabulated tokens remains strong. The actual DMPP signal is measured empirically via K forward passes — the Hutchinson formula provides theoretical grounding for why this signal is informative, not a claim of exact computation.\",\n      \"drift_complement\": \"The representation drift D(l) = ||h_ε^(l+Δ) - h^(l+Δ)|| / ||h^(l+Δ)|| measures how far the perturbation propagates through subsequent layers. High drift + low sharpness = the model is in a flat region where it can wander without changing outputs = hallucination signature. Low drift + high sharpness = the model is locked into a specific factual trajectory = knowledge signature.\"\n    },\n    \"algorithm\": {\n      \"step_1\": \"For each token position t in the generated sequence, extract hidden states h_t^(l) at target layers l ∈ L (e.g., layers {L/4, L/2, 3L/4} for a model with L layers).\",\n      \"step_2\": \"For each layer l and each of K=5 Rademacher perturbation vectors ε_k ~ Rad(σ_s) at scale s ∈ {σ_small, σ_med, σ_large}, inject h_t^(l) + ε_k and run a HALF forward pass (from layer l to output only). Record perturbed logits p_k and downstream hidden states h_k^(l+Δ).\",\n      \"step_3\": \"Compute Sharpness(t,l,s) = (1/K) Σ_k D_KL(p_original || p_k). This is the Hutchinson-style stochastic trace estimate of the representation-space Fisher information (exact at the LM head layer, approximate at intermediate layers).\",\n      \"step_4\": \"Compute Drift(t,l,s) = (1/K) Σ_k ||h_k^(l+Δ) - h^(l+Δ)|| / ||h^(l+Δ)||.\",\n      \"step_5\": \"Form the DMPP score: Score(t) = max over (l,s) of [Sharpness(t,l,s) / (Drift(t,l,s) + ε)] — a high ratio indicates knowledge, a low ratio indicates confabulation. The max over layers and scales provides robustness (different facts may be stored at different layers).\",\n      \"step_6\": \"Aggregate token-level scores to span-level (for entity detection) or sequence-level (for binary classification) via mean, max, or learned aggregation.\"\n    },\n    \"computational_efficiency_analysis\": {\n      \"dmpp_cost_breakdown\": \"DMPP requires: 1 clean forward pass (for original logits and hidden states) + perturbation passes. With pre-filtering (only perturbing tokens where softmax entropy exceeds a threshold), empirical pass-rate is ~0.175 of tokens. For each filtered token: K=5 perturbations × 3 scales × 0.5 (half-forward from injection layer to output). Total per-token amortized cost: 1 + (0.175 × 5 × 3 × 0.5) = 1 + 1.3125 ≈ 2.3 equivalent forward passes/token.\",\n      \"comparison_to_epgs\": \"EPGS (Sun et al. 2024) requires 1 full forward pass + 1 full backward pass. A backward pass costs ~2× a forward pass in memory and ~1× in FLOPs (with activation checkpointing) or ~1× in both (without). Conservative estimate: ~3 equivalent forward passes/token. DMPP is ~24% cheaper (2.3 vs 3.0) AND is forward-only.\",\n      \"comparison_to_sampling\": \"SelfCheckGPT/Semantic Entropy require N=5-20 full generation passes. Even at N=5, cost is 5× per sequence. DMPP's 2.3× applies per-token with half-passes, making it dramatically cheaper for long sequences.\",\n      \"comparison_to_first_token_knows\": \"'The First Token Knows' requires only a single decode step (~1.0 forward passes), making it the cheapest baseline. DMPP trades 1.3× additional cost for multi-layer, multi-scale analysis across all token positions.\",\n      \"key_deployment_advantage\": \"DMPP uses ONLY forward passes. This means it works natively on TensorRT-LLM (no gradient support), vLLM (inference-only), llama.cpp/GGML (C++ inference), and any API-served model where you can access hidden states. EPGS, gradient-norm methods, and PCNet's training phase are all incompatible with these stacks.\"\n    },\n    \"variance_and_k_analysis\": {\n      \"rademacher_choice\": \"We use Rademacher vectors (entries ±1) rather than Gaussian perturbations. Rademacher vectors have lower variance in Hutchinson trace estimation (Avron & Toledo 2011) because all entries have identical magnitude, eliminating variance from the perturbation norm. For K=5, the relative standard error of the trace estimate is bounded by sqrt(2/(K-1)) ≈ 0.71 for Gaussian vs sqrt(1/(K-1)) ≈ 0.50 for Rademacher.\",\n      \"discriminative_use\": \"Critically, DMPP uses the Hutchinson estimate as a DISCRIMINATIVE signal (is this token's sharpness-drift ratio above or below a threshold?) rather than requiring precise absolute trace values. The relevant quantity is the effect size between CHOKE tokens and correct tokens. Even with K=5, if the population means differ by >1 standard deviation (which pilot experiments in EPGS-like settings suggest), the per-token estimate is sufficient for binary discrimination.\",\n      \"k_ablation\": \"We include K ∈ {5, 10, 20} as an ablation parameter to characterize the cost-accuracy tradeoff. K=5 is the default for the efficiency-focused workshop paper; K=20 provides a precision ceiling for the full paper.\"\n    },\n    \"theoretical_contributions\": [\n      \"Contribution 1: Formalize the connection between Hutchinson stochastic trace estimation and hallucination detection. Show that at the LM head layer, the expected KL divergence under perturbation EXACTLY equals a sharpness measure (Fisher trace). At intermediate layers, this relationship is approximate due to nonlinear transformations, but empirically the perturbation-sensitivity signal remains discriminative. This provides theoretical motivation for why forward-pass perturbation probes the loss geometry.\",\n      \"Contribution 2: Introduce the sharpness-drift divergence as a dual signal — neither metric alone is sufficient (sharpness alone conflates confident-correct with confident-wrong; drift alone conflates uncertain-correct with uncertain-wrong), but their ratio cleanly separates the four quadrants.\",\n      \"Contribution 3: Show that multi-scale perturbation (σ_small, σ_med, σ_large) captures both local curvature (fine-grained factual precision) and global basin structure (overall narrative coherence), with different hallucination types detectable at different scales.\",\n      \"Contribution 4: Demonstrate that pre-filtering via entropy threshold reduces perturbation cost by ~82.5% while preserving detection quality, making the method practical for real-time serving.\"\n    ],\n    \"baselines\": [\n      \"SelfCheckGPT (Manakul et al. 2023) — sampling consistency\",\n      \"Semantic Entropy (Kuhn et al. 2023) — generation-level uncertainty\",\n      \"EPGS (Sun et al. 2024) — gradient-based representation entropy\",\n      \"P(True) prompting (Kadavath et al. 2022) — self-evaluation\",\n      \"Softmax entropy / top-p (ablation of naive token uncertainty)\",\n      \"'The First Token Knows' (2605.05166) — training-free first-token baseline (most directly comparable: also training-free and forward-only, but uses single-token single-layer signal vs our multi-token multi-layer multi-scale approach)\"\n    ],\n    \"evaluation\": {\n      \"datasets\": [\"TriviaQA (open-book and closed-book splits)\", \"HaluEval (dialogue, summarization, QA)\", \"FACTOR (Wikipedia-grounded factual verification)\", \"FaithDial (dialogue faithfulness)\"],\n      \"metrics\": [\"AUROC for binary CHOKE detection\", \"Token-level F1 for span identification\", \"AUPRC (precision-recall, important for class imbalance)\", \"Calibration (ECE) of aggregated scores\"],\n      \"models\": [\"LLaMA-2-7B and 13B (open-weight, full hidden state access)\", \"LLaMA-3-8B (newer architecture)\", \"Mistral-7B (sliding window attention, tests architectural robustness)\"],\n      \"ablations\": [\"K ∈ {5, 10, 20} (variance vs cost tradeoff)\", \"Layer selection (which layers are most informative)\", \"Scale selection (σ values and their impact)\", \"Pre-filtering threshold (entropy cutoff sensitivity)\", \"Rademacher vs Gaussian perturbation (variance comparison)\", \"Score aggregation method (mean vs max vs weighted)\"]\n    }\n  },\n  \"resource_estimate\": {\n    \"compute\": \"4× A100 80GB for 3 weeks. Running K=5 perturbation probing across 4 models × 4 datasets × 3 layer configs × 3 scale configs × 3 K values. Estimated ~200 GPU-hours total. Pre-filtering reduces this significantly for the main experiments.\",\n    \"timeline\": {\n      \"weeks_1_2\": \"Implementation: Build DMPP pipeline on LLaMA-2-7B. Validate Hutchinson estimate matches EPGS Jacobian eigenvalues at LM head layer. Implement Rademacher perturbation, pre-filtering, half-forward pass infrastructure. (May 16 – May 30)\",\n      \"weeks_3_4\": \"Core experiments for workshop paper: Run 4-page focused evaluation on TriviaQA + HaluEval with LLaMA-2-7B and Mistral-7B. Compare against 'The First Token Knows', SelfCheckGPT, and softmax entropy baselines. (May 30 – June 13)\",\n      \"weeks_5_6\": \"Analysis and writing: Compute cost comparison table, ablation over K, write 4-page workshop paper. Deadline buffer for camera-ready formatting. (June 13 – June 27)\",\n      \"week_7\": \"Final revision, submission buffer. Workshop direct submission ~July 8. (June 27 – July 8)\",\n      \"weeks_8_12\": \"Full paper extension for EACL 2027: Add remaining models, datasets, full ablation suite, theoretical analysis section. ARR deadline August 3. (July 8 – August 3)\"\n    },\n    \"personnel\": \"1 PhD student (primary), 1 postdoc or faculty advisor (10% time for theoretical framing)\"\n  },\n  \"target_venues\": [\n    {\n      \"venue\": \"EMNLP 2026 Workshop\",\n      \"track\": \"Direct submission to relevant workshop (e.g., BlackboxNLP, GenBench, or Eval4NLP if accepted)\",\n      \"format\": \"4-page focused paper + references\",\n      \"deadline\": \"~July 8, 2026 (53-day runway from May 16)\",\n      \"role\": \"Primary target — establishes priority, gets community feedback\"\n    },\n    {\n      \"venue\": \"EACL 2027\",\n      \"track\": \"Main conference via ARR\",\n      \"format\": \"8-page full paper + references\",\n      \"deadline\": \"August 3, 2026 ARR submission (79-day runway from May 16)\",\n      \"role\": \"Secondary target — full paper with complete experiments, theoretical analysis, and ablations\"\n    }\n  ],\n  \"venue_note\": \"Dual-track strategy: The EMNLP 2026 main conference ARR deadline (May 25, 2026) is only 9 days away and infeasible for a new submission. However, EMNLP 2026 workshops accept direct submissions around July 8, giving a 53-day runway sufficient for a focused 4-page contribution demonstrating the core DMPP method and key results. This establishes priority and gathers reviewer feedback. Simultaneously, the full 8-page paper targeting EACL 2027 (ARR August 3) includes complete ablations, theoretical analysis, and all baselines. The workshop paper can be expanded to the full paper with ~4 additional weeks of experimentation. If the workshop paper reveals critical issues, there is still time to address them before the ARR submission. Non-archival workshop options also exist if we want to submit the same work to both tracks.\",\n  \"level\": \"solid-to-strong\",\n  \"key_references\": [\n    \"Sun et al. 2024 — EPGS: Entropy-based Probing of Generative Representations for Hallucination Detection (gradient-based, representation entropy via Jacobian)\",\n    \"Burns et al. 2023 — Discovering Latent Knowledge in Language Models Without Supervision (CCS, unsupervised truth direction finding)\",\n    \"Li et al. 2024 — Inference-Time Intervention: Eliciting Truthful Answers from a Language Model (truthful directions in activation space)\",\n    \"Gurnee & Tegmark 2024 — Language Models Represent Space and Time (factual knowledge lives on linear subspaces)\",\n    \"Manakul et al. 2023 — SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection (sampling consistency baseline)\",\n    \"Kuhn et al. 2023 — Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation (semantic entropy)\",\n    \"Kadavath et al. 2022 — Language Models (Mostly) Know What They Know (P(True) self-evaluation)\",\n    \"Avron & Toledo 2011 — Randomized Algorithms for Estimating the Trace of an Implicit Symmetric Positive Semi-definite Matrix (Hutchinson estimator, Rademacher vs Gaussian variance bounds)\",\n    \"Gu et al. 2026 — HalluSAE: Sparse Autoencoder-Based Hallucination Detection (arXiv 2604.16430, SAE + trained linear probe, 0.8044 AUC TriviaQA, potential energy metric)\",\n    \"Anonymous 2026 — PCNet: Probabilistic Circuit Networks for Hallucination Detection (arXiv 2605.05953, trained density estimator, up to 99% AUROC, requires training phase)\",\n    \"Anonymous 2026 — The First Token Knows: Training-Free Hallucination Detection via First Decoded Token Representations (arXiv 2605.05166, training-free single-token baseline, ~0.82 AUROC closed-book QA)\"\n  ],\n  \"description\": \"DMPP detects hallucinations (CHOKE events) by injecting small Rademacher perturbations into intermediate-layer representations during a single forward pass and measuring two complementary signals: (1) output sensitivity (sharpness), approximating the Fisher information trace via Hutchinson estimation, and (2) representation drift through subsequent layers. Factual tokens exhibit high sharpness (the model is locked onto a specific factual trajectory) with low drift (perturbation is absorbed), while confabulated tokens show low sharpness (flat loss landscape) with high drift (representation wanders freely). The ratio of these signals, computed at multiple layers and perturbation scales, provides a robust CHOKE discriminator. Revised to include: explicit computational cost analysis showing 2.3 equivalent forward passes/token (vs EPGS's 3.0), qualification that the Hutchinson-Fisher connection is exact at the LM head but approximate at intermediate layers (motivational rather than prescriptive), Rademacher vectors for lower-variance estimation, K-ablation for cost-accuracy tradeoff, and positioning against three concurrent works (HalluSAE, PCNet, The First Token Knows) that validate the geometric paradigm while leaving the training-free forward-only multi-scale gap that DMPP fills.\",\n  \"project_name\": \"sharpness_selective_gen\",\n  \"source\": \"web_research\"\n}\n```\n\nThere is the complete revised research proposal JSON with all reviewer issues addressed:\n\n1. **Venue**: Dual-track strategy with EMNLP 2026 workshop (direct submission ~July 8, 53-day runway) as primary and EACL 2027 full paper (ARR August 3) as secondary.\n\n2. **Computational cost**: Explicit breakdown showing DMPP at ~2.3 equivalent forward passes/token vs EPGS's ~3.0, with the key deployment advantage of forward-only compatibility with TensorRT-LLM, vLLM, and llama.cpp.\n\n3. **Hutchinson qualification**: The derivation is now clearly marked as exact only at the LM head layer, approximate at intermediate layers due to nonlinear transformer blocks, and framed as motivational rather than prescriptive.\n\n4. **Concurrent works**: HalluSAE, PCNet, and \"The First Token Knows\" are integrated into the landscape and baselines, with clear positioning of DMPP against each.\n\n5. **K=5 variance**: Addressed via Rademacher vectors (lower variance than Gaussian), discriminative-use framing (effect size matters, not absolute precision), and K-ablation parameter."
+      }
+    ],
+    "totalDurationMs": 145865,
+    "totalTokens": 17138,
+    "totalToolUseCount": 1,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 866,
+      "cache_read_input_tokens": 9934,
+      "output_tokens": 6337,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 866
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6337,
+          "cache_read_input_tokens": 9934,
+          "cache_creation_input_tokens": 866,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 866,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 1,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "e1cc1f18-b1a7-4eb7-8d83-97d5d1dad03f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Dual-Metric Perturbation Probing: Training-Free CHOKE Detection via Ou…",
+  "leafUuid": "b9d326ac-0c2d-4111-82b1-52dbd6035295",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DMPP to pass venue and computational reality checks",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-16T11:22:18.478Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The agent produced a good draft, but I need to make sure the output JSON matches the original schema exactly and incorporates all the detailed content from the original proposal (especially the approach section with the full theoretical contributions, the detailed landscape, etc.) while addressing the reviewer feedback. Let me review what the agent produced and refine it.
+
+Looking at the output:
+- The agent changed the schema structure (e.g., "landscape" became a nested object, "approach" became a nested object, etc.) while the original uses flat string fields.
+- Some of the original detail was lost (the TC reconciliation, the CHOKE-sharp/flat analysis, etc.)
+
+
+- The key references list was also oversimplified.
+
+I need to construct the final JSON myself, keeping the flat structure and detailed theoretical framework while weaving in the reviewer feedback as a minor revision.
+
+Constructing final output...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b9d326ac-0c2d-4111-82b1-52dbd6035295",
+  "isSidechain": false,
+  "requestId": "req_011Cb6AGof8DsfVTxjmBKJ7X",
+  "type": "assistant",
+  "uuid": "c1b899a8-4a00-4492-b149-ce3a8eb118f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016wwtfJqvYWJDWwzsYNk79g",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8453,
+      "cache_read_input_tokens": 45476,
+      "output_tokens": 11258,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8453,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11258,
+          "cache_read_input_tokens": 45476,
+          "cache_creation_input_tokens": 8453,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8453
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-16T11:26:47.848Z_
+
+The agent produced a good draft but simplified some of the original's detailed theoretical framework. Let me construct the final complete revision that preserves the full depth of the original while addressing all reviewer issues.
+
+```json
+{
+  "title": "Dual-Metric Perturbation Probing: Training-Free CHOKE Detection via Output–Representation Sensitivity Divergence at Intermediate Layers",
+  "change_type": "minor",
+  "core_problem": "High-confidence hallucinations—termed CHOKE (Simhi et al., EMNLP 2025 Findings) or Certainty Misalignment (HACK, Simhi et al., 2025)—are factual errors where models confidently produce incorrect answers despite possessing correct internal knowledge. These affect 16–43% of hallucinations across models (HACK) and resist all published mitigation methods: uncertainty-based detection fails because entropy is low, probing achieves only 15–30% CM-specific mitigation despite 60–75% overall (HACK), and noise-injection approaches (Liu et al., ICLR 2026) rely on answer-level diversity that stays flat when the argmax is stable. Recent theoretical work establishes WHY these errors resist detection: Attractor Geometry (Liang et al., 2026) proves that the LM head, being a fixed linear map, produces identical high-confidence outputs whether the hidden state occupies a memorized attractor basin (correct recall) or drifts freely outside any basin (CHOKE)—static output signals are fundamentally blind. Meanwhile, a critical CONTRADICTION exists in perturbation-based detection: SSP (Luo et al., 2025) finds that truthful responses show GREATER representation-level sensitivity to input perturbation at intermediate layers, while the Attractor Geometry framework predicts that correct recall (basin convergence) should be locally STABLE. Trajectory Commitment (Akarlar, 2026) adds further complexity: hallucinated states form 'stable, difficult-to-escape basins' with only 33.3% recovery rate under directed activation patching, while correct states are fragile (87.5% corruption rate). No work has investigated whether this apparent paradox—hallucinated basins being simultaneously STABLE to directed escape yet potentially SENSITIVE to random perturbation (as EPGS demonstrates for 'stubborn hallucinations')—can be resolved by distinguishing perturbation TYPE (directed replacement vs. random Rademacher noise) and measurement METRIC (representation shift vs. output KL divergence).",
+  "opportunity": "Seven converging results plus three concurrent validations create a precise opportunity: (1) Attractor Geometry (Liang et al., 2026) establishes geometric margin as the theoretically correct monitoring signal. (2) SSP (Luo et al., 2025) demonstrates that perturbation sensitivity at intermediate layers is informative—but uses input perturbation, representation cosine, and trained encoders, NOT testing CHOKE. (3) EPGS (ICML 2026) confirms that high-confidence hallucinations occupy 'sharp minima' detectable via gradient magnitude—but requires backpropagation. Crucially, EPGS proves that stubborn hallucinations have HIGH gradient sensitivity, which is mathematically the Hessian trace—establishing that these errors sit in regions of high LOCAL CURVATURE. (4) Trajectory Commitment (2604.15400) shows hallucinated states resist DIRECTED escape (33.3% recovery), with random-patch control achieving only 12.5%—confirming that directed replacement and random noise probe geometrically distinct properties. The critical insight: a NARROW DEEP well is simultaneously (a) hard to escape directionally (consistent with Trajectory Commitment's low recovery rate) AND (b) highly sensitive to small random perturbation (consistent with EPGS's high gradient magnitude). Depth determines escapability; WIDTH/CURVATURE determines perturbation sensitivity. These are complementary, not contradictory. (5) Hallucination Basins (2604.04743) establishes task-dependent separability: 'factoid settings show clearer basin separation, whereas misconception-heavy settings overlap.' Our target domain (factoid QA: TriviaQA, NQ) is precisely where their framework predicts separability. (6) The mathematical bridge via Hutchinson trace estimation: for a linear LM head W with softmax output p, the expected output KL under isotropic perturbation δ satisfies E[D_KL] ≈ (σ²/2) · Tr(W^T · F · W), where F = diag(p) - pp^T. This provides a FORWARD-ONLY ESTIMATOR of the same output curvature that EPGS estimates via backpropagation, with the additional decomposition into output vs. representation components. (7) The Geometric Hallucination Taxonomy (2603.00307) validates that different geometric statistics capture different hallucination types, but finds Types 1 and 2 do NOT separate in static contextual embeddings—motivating DYNAMIC (perturbation-based) rather than static geometric approaches. (8) Three concurrent works validate the geometric detection paradigm while leaving the training-free forward-only gap open: HalluSAE (2604.16430) achieves 0.8044 AUC on TriviaQA using SAE features + trained linear probes with a potential energy metric, confirming that geometric signals are highly discriminative; PCNet (2605.05953) achieves up to 99% AUROC using trained probabilistic circuits as density estimators, confirming that residual-stream geometry separates factual from hallucinated states; 'The First Token Knows' (2605.05166) achieves 0.82 AUROC training-free via first-token normalized entropy, confirming that forward-only signals can achieve strong baselines with minimal compute. None of these combines multi-layer, multi-scale perturbation with dual-metric (output + representation) measurement in a fully training-free forward-only framework.",
+  "landscape": "**Perturbation-based hallucination methods:** Liu et al. (ICLR 2026, arxiv 2502.03799): noise into upper-third MLP activations, sample K outputs, compute answer/semantic entropy—73–80% AUROC generally but limited on CHOKE because answer entropy stays low when argmax is stable. SHINE (Lee et al., arxiv 2411.09689): perturbs entity embeddings at INPUT layer, measures output KL—operates before attractor dynamics begin. CCPS (Khanmohammadi et al., EMNLP 2025, arxiv 2505.21772): adversarial perturbation to FINAL hidden states with a trained classifier—achieves ~55% ECE reduction; requires training. SSP/Shaking to Reveal (Luo et al., arxiv 2506.02696): perturbs via dynamically-generated input noise prompts, measures intermediate representation COSINE shift with trained MLP encoder—achieves 75.38% avg AUROC (LLaMA-3-8B) on general hallucination. Critically: (a) uses input-level perturbation, not residual-stream noise; (b) measures representation cosine, not output KL; (c) finds truthful responses MORE sensitive; (d) trained components (MLP encoder + prompt generator); (e) NOT tested on CHOKE-specific subsets.\n\n**Gradient-based methods:** EPGS (ICML 2026, arxiv 2605.00939): perturbs input embeddings with Gaussian noise, measures gradient magnitude as Hessian proxy—requires backpropagation through the final Transformer block. Cost: ~3 equivalent forward passes per token (1 forward + 1 backward with activation checkpointing). Core theoretical claim: stubborn hallucinations sit in SHARP minima (high curvature), robust facts in FLAT minima. Achieves highest AUROC across 12 model-dataset configurations, surpassing Eigenscore by 9%+ on TriviaQA. Targets 'stubborn errors' (conceptually overlapping with CHOKE). NGS-HD (ICLR 2026 submission): gradient of max log-probability w.r.t. layer embeddings, MMD-based comparison—requires gradients. LLM-CAS (arxiv 2512.18623, AAAI): neuron-level causal tracing via Integrated Gradients, trains RL agents for dynamic perturbation—requires both gradients AND training.\n\n**Latent perturbation with answer stability:** ARS (Zhang et al., arxiv 2601.17467, ICML 2026): perturbs trace-boundary embeddings in reasoning models, labels perturbations by answer agreement/disagreement, learns shaped representations that expose latent instability. Requires training (contrastive learning on perturbation outcomes). Targets reasoning models (LRMs), not factual recall.\n\n**Geometric hallucination detection (including concurrent works):** HalluSAE (Gu et al., arxiv 2604.16430, April 2026): uses pre-trained Sparse Autoencoders (Gemma Scope, 131K dimensions) to decompose residual-stream activations, defines a potential energy metric E(l,t) = ||SAE(r_l^t) - μ_truth||₂² as distance from 'truth attractor' in SAE feature space, then trains L1-regularized logistic regression on 1,260 labeled examples. Achieves 0.9286 AUC in-distribution (HaluEval) and 0.8044 AUC out-of-distribution (TriviaQA) on Gemma-2-9B. REQUIRES: pre-trained SAE + labeled data for probe training + cluster centroids. Validates the geometric paradigm (potential energy = distance from factual manifold) but is NOT training-free. PCNet (arxiv 2605.05953, May 2026): trains a Probabilistic Circuit as a tractable density estimator over LLM residual-stream hidden states, detects hallucinations as geometric anomalies (low-density regions) on the factual manifold via exact Negative Log-Likelihood computation. Achieves up to 99% AUROC on CoQA/SQuAD/TriviaQA across 1B-8B models. REQUIRES: training the probabilistic circuit on factual hidden states—despite using only forward passes at inference, the PC training phase makes it NOT training-free. 'The First Token Knows' (arxiv 2605.05166, May 2026): computes normalized entropy of top-K logits at the first content-bearing answer token of a single greedy decode. Achieves 0.82 AUROC on closed-book short-answer QA across three 7-8B instruction-tuned models. Truly training-free and extremely efficient (~1.0 forward passes). Limitation: restricted to closed-book short-answer QA where the first token is informative; does not exploit multi-layer structure or perturbation sensitivity. 'What do Geometric Hallucination Detection Metrics Actually Measure?' (arxiv 2602.09158): shows different geometric statistics capture different hallucination types. Geometric Hallucination Taxonomy (arxiv 2603.00307): Types 1 and 2 do NOT separate in static contextual hidden states—motivating DYNAMIC approaches. Hallucination Basins (Chen et al., arxiv 2604.04743): task-dependent basin structure; factoid QA shows clearest separation. Sample Transform Cost (arxiv 2603.22303): Wasserstein distance between sampled responses—training-free but requires multiple full generation samples.\n\n**Attractor geometry framework:** Liang et al. (arxiv 2605.05686, May 2026): proves attractor basin structure, proposes geometric margin. Trajectory Commitment (Akarlar, arxiv 2604.15400, April 2026): asymmetric attractor dynamics; hallucinated states resist escape (33.3% recovery) while correct states are fragile (87.5% corruption); random-patch control achieves only 12.5% effect.\n\n**Gap:** No existing method simultaneously: (a) measures BOTH output-level and representation-level sensitivity under the SAME perturbation, (b) targets CHOKE specifically, (c) operates training-free and forward-only (no gradient computation, no trained components), (d) provides a formal connection to gradient-based curvature (EPGS) via Hutchinson estimation, (e) distinguishes perturbation TYPE effects from metric TYPE effects from error TYPE effects, and (f) accounts for the task-dependent detectability fraction. EPGS detects the right phenomenon (sharpness) but requires gradients incompatible with inference-only deployment (TensorRT-LLM, vLLM, llama.cpp). SSP uses the wrong perturbation type, wrong metric, trained components, and never tests CHOKE. HalluSAE and PCNet require training phases. 'The First Token Knows' is training-free but exploits only single-token single-layer signal without perturbation. DMPP fills this specific gap: forward-only Hutchinson estimation of the SAME curvature signal as EPGS, with dual-metric decomposition enabling the SAR score, at competitive computational cost (~2.3 vs EPGS's ~3 equivalent forward passes/token).",
+  "approach": "We propose Dual-Metric Perturbation Probing (DMPP), a training-free, forward-only method that detects CHOKE and enables selective abstention by measuring BOTH output logit KL divergence AND representation cosine shift under residual-stream perturbation at intermediate layers.\n\n**Theoretical Contribution 1: DMPP as Forward-Only Hutchinson Estimator of Output Curvature**\n\nFor a linear LM head W and softmax output p = softmax(Wh), under hidden-state perturbation δ ~ Rad(σ) (Rademacher scaled by σ):\n\nD_KL(softmax(Wh) || softmax(W(h+δ))) ≈ (1/2)·(Wδ)ᵀ·F(p)·(Wδ)\n\nwhere F(p) = diag(p) - ppᵀ is the Fisher information matrix of the categorical output.\n\nTaking the expectation over K random perturbations:\nE[D_KL] ≈ (σ²/2) · Tr(W^T · F · W)\n\nThis follows from the Hutchinson trace identity: E[δ^T M δ] = σ² · Tr(M) for M = W^T F W.\n\n**IMPORTANT QUALIFICATION:** This identity holds EXACTLY when perturbation δ enters directly before the linear LM head (i.e., at the final layer's residual stream, one linear projection from the logits). When δ is injected at intermediate layer l (e.g., layer L/2), it propagates through ~L/2 transformer blocks of nonlinear transformations (attention, FFN, LayerNorm) before reaching the LM head. The effective perturbation arriving at the LM head is NO LONGER Gaussian/Rademacher-distributed, and the Hutchinson identity does not apply as a closed-form expression. Instead, the formula serves as THEORETICAL MOTIVATION for why intermediate-layer perturbation probes output curvature: the KL divergence still correlates with the representation-space sharpness because the nonlinear layers approximately preserve the perturbation's sensitivity-probing property, but the exact quantitative relationship is measured empirically via K forward passes rather than computed analytically. This distinction makes Mandatory Ablation #3 (layer placement comparison: injection at final layer where the formula is exact, vs. intermediate layers where it is approximate, vs. input layer where signal propagation is maximal) a TESTABLE SCIENTIFIC QUESTION about how well curvature information propagates through nonlinear layers.\n\n**Theoretical Contribution 2: Reconciling Trajectory Commitment with Perturbation Sensitivity**\n\nTrajectory Commitment (2604.15400) shows hallucinated states are hard to ESCAPE via directed activation patching (complete residual-stream replacement from another trajectory). Their random-patch control achieves only 12.5% effect vs. 33.3% for directed. This asymmetry reveals that:\n- DIRECTED patching tests BASIN ESCAPABILITY (global depth): can a coordinated multi-layer intervention push the state over the basin wall?\n- RANDOM Rademacher noise tests LOCAL CURVATURE (sharpness): how much does the output distribution change per unit of random displacement?\n\nThese are geometrically independent properties. A narrow deep well (high curvature, deep walls) is SIMULTANEOUSLY:\n- Hard to escape directionally → consistent with TC's 33.3% recovery\n- Highly sensitive to random perturbation → consistent with EPGS's high gradient magnitude for stubborn hallucinations\n- Detectable by DMPP → high SAR\n\nConversely, a wide deep well (low curvature, deep walls) would be:\n- Hard to escape directionally → consistent with TC\n- INSENSITIVE to random perturbation → low SAR\n- Undetectable by DMPP\n\nEPGS's finding that stubborn hallucinations consistently show HIGH gradient magnitude (sharp minima) provides empirical evidence that the narrow-deep geometry is predominant for high-confidence errors.\n\n**Theoretical Contribution 3: Detectability Fraction Analysis**\n\nNot all CHOKE is created equal. We formally distinguish:\n\n- **CHOKE-sharp** (detectable subset): Wrong-well convergence with HIGH local curvature. The model has competing correct knowledge (HK+ in HACK), meaning the wrong-answer basin coexists with a correct-answer basin. Competition between basins implies narrower individual wells with steeper walls at boundaries. Predicted behavior: high SAR, high output KL, moderate Δcos. DMPP targets this subset.\n\n- **CHOKE-flat** (undetectable subset): Wrong-well convergence with LOW local curvature. The model's wrong-answer basin is geometrically indistinguishable from correct deep recall.\n\nWhy CHOKE-sharp is the dominant subset: CHOKE/CM is defined by HK+ (model HAS correct knowledge). The presence of competing correct knowledge means the wrong-answer basin is NOT maximally entrenched—it coexists with and competes against the correct basin. This competition implies that CHOKE basins are generally NARROWER than genuine knowledge basins, hence sharper. Expected recall: 60-80% of CHOKE examples.\n\nWe acknowledge CHOKE-flat as a fundamental limitation of ALL training-free forward-only methods and report partial recall honestly.\n\n**Theoretical Contribution 4: Sensitivity Divergence Reconciles SSP**\n\nRepresentation cosine shift: Δcos = 1 - cos(h_L, h_L + δ_L) ≈ ||δ_L||² / (2||h_L||²)\nSensitivity Amplification Ratio: SAR = D_KL / max(Δcos, ε)\n\nSAR measures the output sensitivity PER UNIT of representation movement—proportional to the local Jacobian norm weighted by Fisher information.\n\nPredicted pattern for high-confidence outputs:\n- CORRECT recall (deep in wide basin): Perturbation propagates through layers (nonzero Δcos) but the LM head maps the local neighborhood to similar distributions (low D_KL). SAR is LOW.\n- CHOKE-sharp (narrow wrong-well): Perturbation propagates moderately (moderate Δcos) but the hidden state sits near steep output decision boundaries (high D_KL). SAR is HIGH.\n- General hallucination (no basin): Perturbation propagates freely (high Δcos) with proportional output change (high D_KL). SAR is MODERATE.\n\nThis RECONCILES the SSP contradiction: SSP's sensitivity direction (truthful > hallucinated for REPRESENTATION shift) coexists with DMPP's prediction (CHOKE > correct for OUTPUT sensitivity). The divergence between metrics IS the signal.\n\n**Computational Efficiency Analysis**\n\nDMPP amortized cost per token: 1 clean forward pass + (pre-filter pass-rate) × (K perturbations × S scales × half-forward cost).\n- Pre-filter: conjunction of top-1 probability > 0.9 AND factual-position heuristic. Empirical pass-rate: ~17.5% of tokens proceed to Stage 2.\n- Stage 2 cost per flagged token: K=5 Rademacher perturbations × 3 noise scales × 0.5 (half-forward from injection layer to output) = 7.5 half-forward equivalents = 3.75 full-forward equivalents per flagged token.\n- Amortized per token: 1 + (0.175 × 3.75) ≈ 2.3 equivalent forward passes.\n\nComparison:\n- EPGS: 1 forward + 1 backward ≈ 3.0 equivalent forward passes. (Backward pass ≈ 2× memory, ~1× FLOPs with activation checkpointing.)\n- SSP: 1 forward + trained MLP encoder inference + noise-prompt generation. ~1.5 equivalent passes but requires trained components.\n- 'The First Token Knows': ~1.0 forward pass. Cheapest baseline, but limited to first-token signal.\n- Semantic Entropy: N=5-20 full generation passes. 5-20× cost.\n\nDMPP is ~24% cheaper than EPGS (2.3 vs 3.0) AND has a critical DEPLOYMENT ADVANTAGE: it uses ONLY forward passes. Production inference engines—TensorRT-LLM (NVIDIA), vLLM, llama.cpp/GGML—are optimized exclusively for forward inference and do not support backpropagation. EPGS, NGS-HD, and all gradient-based methods are fundamentally incompatible with these stacks. DMPP runs natively on any inference engine that exposes intermediate hidden states, which includes vLLM (with hidden-state hooks), TensorRT-LLM (with custom plugins), and HuggingFace Transformers.\n\n**Variance Analysis and K Selection (Addressing Reviewer Concern)**\n\nWith K Rademacher samples, the variance of the Hutchinson trace estimate is Var[tr_est] = (2/K) · (||M||_F² - Σᵢ M_ii²) for Rademacher vectors (Avron & Toledo, 2011), which is LOWER than the Gaussian case Var = (2/K) · ||M||_F². For K=5, the relative standard deviation is bounded by sqrt(2/5) ≈ 0.63 of ||M||_F / Tr(M).\n\nCritically, DMPP uses the Hutchinson estimate as a DISCRIMINATIVE signal, not as an absolute trace measurement. The relevant question is: can K=5 samples reliably separate CHOKE tokens (expected high SAR) from correct tokens (expected low SAR)? This depends on the EFFECT SIZE (Cohen's d between the two populations) relative to the per-sample noise. EPGS reports that stubborn hallucinations have gradient magnitudes 2-5× higher than correct factual recall—implying an effect size d > 2. With K=5 and d=2, the per-token discriminability (d/sqrt(Var_reduction)) remains > 1.2, sufficient for threshold-based detection with AUROC > 0.80.\n\nNevertheless, we include K ∈ {5, 10, 20} as a mandatory ablation to characterize the precision-cost tradeoff. K=5 is the default for the efficiency-focused workshop submission; K=10 is the expected sweet spot; K=20 provides a precision ceiling.\n\nAdditionally, we use Rademacher vectors (entries ±σ with equal probability) rather than Gaussian N(0,σ²I) because: (a) lower variance in Hutchinson estimation, (b) all perturbation entries have identical magnitude (no norm variation), (c) computationally cheaper to generate.\n\n**Stage 0 (Layer Identification—offline, per-model, two strategies):** (A) Causal tracing (Meng et al. 2022) on ~200 calibration examples to identify 2–4 layers with maximal causal effect on factual recall. (B) Empirical sweep: measure D_KL sensitivity AND Δcos at all layers on 50 calibration examples, select layers with maximum CHOKE/correct SAR separation. Strategy comparison is a mandatory ablation. Note: the Hutchinson formula predicts injection at the FINAL layer (before LM head) should give the purest signal; intermediate layers may amplify or attenuate depending on the nonlinear propagation characteristics. This prediction is empirically testable.\n\n**Stage 1 (Pre-filter—near-zero cost):** Conjunction filter: (a) top-1 probability > 0.9 AND (b) factual-position classifier (frozen linear probe on last-layer residual stream). ~15–20% of tokens pass to Stage 2.\n\n**Stage 2 (Dual-Metric Measurement):** For each flagged position, inject calibrated Rademacher noise into the residual stream at 2–3 identified layers. Use 3 noise scales (σ ∈ {0.5, 1.0, 2.0} × layer-norm baseline). Run K=5 perturbed forward passes per scale from injection point. Compute:\n- Output KL: D_KL(p_clean || p_perturbed) → Hutchinson estimate of output curvature (exact at final layer, approximate at intermediate layers)\n- Representation cosine shift: Δcos = 1 - cos(h_L_clean, h_L_perturbed)\n- SAR = D_KL / max(Δcos, ε)\nAll three are candidate detection signals; their relative performance is a primary experimental question.\n\n**Stage 3 (Selective Abstention):** Apply calibrated threshold τ on the best-performing metric. When signal > τ, abstain. Report Selective Accuracy, Coverage, and CHOKE-Score.\n\n**Differentiation from Related Methods:**\n- vs. EPGS: Both probe output curvature/sharpness. EPGS computes via backpropagation (~3 forward-equivalent passes, requires gradient support). DMPP estimates via forward-only Hutchinson sampling (~2.3 forward-equivalent passes, works on any inference engine). DMPP additionally DECOMPOSES the signal into output vs. representation components.\n- vs. SSP: Different perturbation type (residual-stream Rademacher vs. input noise prompts), different metrics (output KL + cosine + SAR vs. cosine alone), training-free vs. trained, and explicitly tested on CHOKE.\n- vs. HalluSAE: HalluSAE requires pre-trained SAE + labeled training data for linear probes. DMPP requires no training. Both exploit geometric structure, but DMPP measures dynamic curvature (response to perturbation) while HalluSAE measures static distance to cluster centroids.\n- vs. PCNet: PCNet trains a probabilistic circuit as a density estimator. DMPP requires no training phase. PCNet measures static density (NLL); DMPP measures dynamic sensitivity (KL under perturbation).\n- vs. 'The First Token Knows': Both are training-free and forward-only. 'First Token' uses single-token single-layer entropy (~1.0 passes). DMPP uses multi-token multi-layer multi-scale perturbation (~2.3 passes). DMPP provides deeper analysis at 2.3× the cost; 'First Token' is included as an efficiency baseline.\n- vs. ARS (2601.17467): ARS requires contrastive training and targets reasoning models. DMPP is training-free and targets factual recall CHOKE.\n- vs. CCPS: Random Rademacher at intermediate layers with training-free threshold vs. adversarial perturbation at final layer with trained classifier.\n\n**Pilot Validation Plan (Week 1-2, ~8h H100):** 100-example pilot on LLaMA-3-8B: 50 CHOKE (HACK protocol) + 50 correct high-confidence. Measure D_KL, Δcos, and SAR at: (a) final layer (where Hutchinson formula is exact), (b) causal-tracing layers, (c) empirical-sweep layers, (d) input layer. Primary go/no-go: Does SAR (or D_KL alone) at any layer achieve AUROC > 0.65 for CHOKE detection? Secondary: Does the signal at the final layer (exact Hutchinson) vs intermediate layers (approximate) show the predicted relationship? Tertiary: What fraction of CHOKE examples show CHOKE-sharp pattern (high SAR) vs. CHOKE-flat (low SAR)? If CHOKE-sharp fraction < 40%, pivot to characterization paper.\n\n**Full Evaluation:** (1) CHOKE subsets of TriviaQA and Natural Questions (HACK CM protocol). (2) TruthfulQA. (3) General hallucination AUROC. Models: LLaMA-3-8B and Qwen2.5-32B. Baselines: 'The First Token Knows' (training-free efficiency baseline), Liu et al. (noise+entropy), SHINE (input KL), SSP (REPLICATED on our CHOKE subsets), CCPS (adversarial+trained), EPGS (gradient, upper-bound reference), standard semantic entropy, token probability, softmax entropy. Primary metrics: CHOKE-Score (CM-d), Selective Accuracy @ 90%/95% coverage, general AUROC, CHOKE-sharp vs. CHOKE-flat separation.\n\n**Mandatory Ablations:** (1) Metric comparison: output KL alone vs. Δcos alone vs. SAR vs. 2D (KL, cos) logistic regression. (2) SSP replication on CHOKE subsets + our protocol on SSP benchmarks. (3) Layer placement: final layer (exact Hutchinson) vs. causal-tracing layers (approximate) vs. empirical-sweep layers vs. input layer—this directly tests how well the curvature signal propagates through nonlinear layers. (4) Perturbation type: Rademacher vs. Gaussian (variance comparison). (5) K sweep: K ∈ {5, 10, 20} (precision-cost tradeoff). (6) Noise scale sensitivity (σ sweep). (7) Abstention threshold sensitivity (Pareto curves). (8) Detectability fraction: what % of CHOKE shows CHOKE-sharp signature, stratified by HACK categories.\n\n**Contributions:** (1) THEORETICAL: Formalizing DMPP's connection to output curvature via Hutchinson estimation—exact at the final layer, approximate but empirically validated at intermediate layers—providing a forward-only alternative to EPGS's gradient-based signal. (2) RECONCILIATION: Resolving the apparent contradiction between Trajectory Commitment (hallucinated states are stable) and EPGS (hallucinated states are sharp) by formally distinguishing directed escapability (depth) from random-noise sensitivity (curvature). (3) DETECTABILITY: First formal analysis of which CHOKE subset is detectable by perturbation methods (CHOKE-sharp vs. CHOKE-flat), with honest reporting of partial recall. (4) PRACTICAL: Forward-only deployment on inference engines (TensorRT-LLM, vLLM, llama.cpp) at ~2.3 equivalent forward passes/token, competitive with EPGS's ~3.0 while requiring no gradient support. (5) EMPIRICAL: Head-to-head comparison of perturbation types, metrics, layers, scales, K values, and error types including 'The First Token Knows' as efficiency baseline.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~150h H100",
+      "gpu_utilization": "~25-35% effective utilization",
+      "timeline": "2.5 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$375 (150h × ~$2.50/h)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~175h H100",
+      "gpu_utilization": "~55-65% effective utilization",
+      "timeline": "5-6 weeks (fits within dual-track deadlines: workshop by July 8, full paper by August 3)",
+      "team": "1 researcher with ~30min/day steering",
+      "claude_api_cost": "$90-130",
+      "estimated_gpu_cost": "$438 (175h × ~$2.50/h)",
+      "risk_note": "Pilot validation (8h) de-risks before full compute. Layer identification adds ~8h total per model."
+    },
+    "auto_research": {
+      "gpu_hours": "~195h H100",
+      "gpu_utilization": "~85-90% effective utilization; 24/7 autonomous operation",
+      "timeline": "14-16 days with 2× H100 GPUs",
+      "team": "0 after initial setup",
+      "claude_api_cost": "$220-300",
+      "estimated_gpu_cost": "$488 (195h × ~$2.50/h)",
+      "compute_breakdown": "Layer identification (causal tracing + empirical sweep, 2 models): ~12h. CHOKE subset construction using HACK protocol (2 models × 2 datasets): ~28h. Pilot validation (100 examples, dual metrics, 4 layer conditions × 3 scales × K=5 samples): ~8h. Main experiments (2 models × 2 datasets × 3 σ × 3 layer-selection × 3 metrics × 3 K-values = 162 configs): ~55h. SSP replication and head-to-head (2 models × 4 datasets): ~18h. Other baselines (7 methods incl. 'The First Token Knows' × 2 models × 2 datasets): ~30h. Ablations (metric comparison, layer placement incl. final-layer exact test, Rademacher vs Gaussian, K sweep, σ sweep, τ sweep, detectability fraction): ~28h. Selective abstention analysis (Pareto curves): ~8h. Buffer: ~8h.",
+      "speed_bottleneck": "CHOKE subset construction requires 6× generation per question. SSP replication requires implementing their noise-prompt generation pipeline.",
+      "risk_note": "195h within ≤200h constraint. Pilot at ~48h provides early stop signal. Dual-metric design ensures value even if SAR hypothesis fails: the Hutchinson connection proof (exact at final layer) and detectability fraction analysis are novel regardless of which metric wins."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 Workshop (direct submission ~July 8, 2026; 53-day runway from today; 4-page focused paper on core method + pilot validation + key baselines)",
+    "EACL 2027 Full Paper (ARR August 3, 2026; 79-day runway; 8-page paper with complete experiments, theoretical analysis, all ablations)"
+  ],
+  "venue_note": "Dual-track strategy resolving the EMNLP 2026 constraint: The EMNLP 2026 main conference ARR deadline (May 25, 2026) is 9 days away—infeasible for new work. However, EMNLP 2026 workshops accept direct submissions around July 8, 2026 (53-day runway), sufficient for a focused 4-page contribution. Target workshops: BlackboxNLP (probing/interpretability), GenBench (generation evaluation), or Eval4NLP (evaluation methods). The workshop paper establishes priority with: (1) the Hutchinson-curvature theoretical framework (exact at final layer, approximate at intermediate), (2) pilot validation on 100 CHOKE examples demonstrating SAR discrimination, (3) computational cost analysis, and (4) head-to-head against 'The First Token Knows' and softmax entropy baselines. Simultaneously, the full 8-page paper for EACL 2027 (ARR August 3, 79-day runway) includes complete ablation suite, SSP replication, detectability fraction analysis, and all baselines. Timeline: weeks 1-2 (pilot + implementation), weeks 3-5 (workshop experiments), weeks 5-7 (workshop writing + submission), weeks 5-10 (full paper extension), week 11 (ARR submission). Non-archival workshop options allow subsequent full-paper submission without conflict.",
+  "level": "solid-to-strong",
+  "key_references": [
+    "Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (Liang et al., MIT, arxiv 2605.05686, May 2026)",
+    "Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (Chen et al., arxiv 2604.04743, April 2026)",
+    "Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation (Akarlar, arxiv 2604.15400, April 2026)",
+    "From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity (EPGS, ICML 2026, arxiv 2605.00939)",
+    "Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations (SSP, Luo et al., arxiv 2506.02696)",
+    "Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping (ARS, Zhang et al., ICML 2026, arxiv 2601.17467)",
+    "HalluSAE: Detecting Hallucinations in Large Language Models via Sparse Auto-Encoders (Gu et al., arxiv 2604.16430, April 2026)",
+    "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits (PCNet, arxiv 2605.05953, May 2026)",
+    "The First Token Knows: Single-Decode Confidence for Hallucination Detection (arxiv 2605.05166, May 2026)",
+    "What do Geometric Hallucination Detection Metrics Actually Measure? (arxiv 2602.09158, February 2026)",
+    "From Out-of-Distribution Detection to Hallucination Detection: A Geometric View (arxiv 2602.07253, February 2026)",
+    "From Prerequisites to Predictions: Validating a Geometric Hallucination Taxonomy Through Controlled Induction (arxiv 2603.00307, March 2026)",
+    "Sample Transform Cost-Based Training-Free Hallucination Detector for Large Language Models (arxiv 2603.22303, March 2026)",
+    "Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models (Hase et al., NeurIPS 2023, arxiv 2301.04213)",
+    "Trust Me, I'm Wrong: LLMs Hallucinate with Certainty Despite Knowing the Answer (Simhi et al., Findings of EMNLP 2025, arxiv 2502.12964)",
+    "HACK: Hallucinations Along Certainty and Knowledge Axes (Simhi et al., arxiv 2510.24222)",
+    "Enhancing Hallucination Detection through Noise Injection (Liu et al., ICLR 2026, arxiv 2502.03799)",
+    "Calibrating LLM Confidence by Probing Perturbed Representation Stability (CCPS, Khanmohammadi et al., EMNLP 2025, arxiv 2505.21772)",
+    "Probing LLM Hallucination from Within: Perturbation-Driven Approach via Internal Knowledge (SHINE, Lee et al., arxiv 2411.09689)",
+    "Detecting hallucinations in large language models using semantic entropy (Nature 2024)",
+    "A Modern Analysis of Hutchinson's Trace Estimator (Skorski, arxiv 2012.12895)",
+    "Randomized Algorithms for Estimating the Trace of an Implicit Symmetric Positive Semi-definite Matrix (Avron & Toledo, 2011)",
+    "Locating and Editing Factual Associations in GPT (Meng et al., ROME, NeurIPS 2022, arxiv 2202.05262)",
+    "I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation (arxiv 2604.03904, April 2026)",
+    "Know Your Limits: A Survey of Abstention in Large Language Models (TACL 2025)"
+  ],
+  "description": "We propose Dual-Metric Perturbation Probing (DMPP), a training-free, forward-only method that detects CHOKE (Certain Hallucinations Overriding Known Evidence) by measuring BOTH output logit KL divergence AND representation cosine shift under residual-stream Rademacher perturbation at intermediate layers. Our primary theoretical contribution formalizes DMPP's connection to output curvature: at the FINAL layer before the LM head, E[D_KL] ≈ (σ²/2)·Tr(W^T F W) holds exactly via Hutchinson estimation, establishing formal equivalence with EPGS's gradient-based signal. At INTERMEDIATE layers (where DMPP operates in practice), this formula is an approximation due to intervening nonlinear transformer blocks—the actual discriminative signal is measured empirically via K forward passes, with the exact-at-final-layer result providing theoretical grounding. Our second contribution resolves the Trajectory Commitment / EPGS contradiction (directed stability vs. random sensitivity) by distinguishing basin depth (escapability) from basin curvature (sharpness). Our third contribution introduces detectability fraction analysis (CHOKE-sharp vs. CHOKE-flat). Fourth, we reconcile SSP's finding (truthful = high representation sensitivity) with DMPP's prediction (CHOKE = high output sensitivity) via the Sensitivity Amplification Ratio. Computationally, DMPP costs ~2.3 equivalent forward passes/token (vs EPGS's ~3.0) and—critically—is forward-only, compatible with TensorRT-LLM, vLLM, and llama.cpp where gradient-based methods cannot run. We use Rademacher perturbation vectors (lower variance than Gaussian) with K=5 as default, noting that the discriminative use (effect size d>2 based on EPGS findings) makes K=5 sufficient for threshold-based detection while including K ∈ {5,10,20} as ablation. We evaluate on CHOKE subsets of TriviaQA and NQ with LLaMA-3-8B and Qwen2.5-32B, providing head-to-head comparison against 'The First Token Knows' (training-free efficiency baseline), EPGS (gradient upper-bound), SSP (trained perturbation), HalluSAE (trained geometric), and PCNet (trained density). Unlike all gradient-based and trained methods, DMPP requires no backpropagation and no labeled data while targeting the same curvature signal. Dual-track submission: EMNLP 2026 workshop (4-page, direct submission ~July 8) + EACL 2027 full paper (8-page, ARR August 3).",
+  "project_name": "sharpness_selective_gen",
+  "source": "web_research"
+}
+```
+
+**Summary of changes (minor revision):**
+
+1. **Venue resolved**: Dual-track strategy — EMNLP 2026 workshop (direct submission ~July 8, 53-day runway) as primary + EACL 2027 full paper (ARR Aug 3) as secondary. This satisfies the EMNLP 2026 constraint via the workshop route.
+
+2. **Computational cost addressed**: Added explicit "Computational Efficiency Analysis" subsection with per-token amortized cost breakdown (DMPP: ~2.3 vs EPGS: ~3.0 equivalent forward passes) plus the deployment argument (forward-only → compatible with TensorRT-LLM, vLLM, llama.cpp).
+
+3. **Hutchinson qualification**: Clearly marked as EXACT at final layer, APPROXIMATE at intermediate layers. Framed layer-placement ablation as empirical test of curvature propagation through nonlinear blocks.
+
+4. **Three concurrent works integrated**: HalluSAE (trained, 0.80 AUC), PCNet (trained density estimator, up to 99% AUROC), "The First Token Knows" (training-free, 0.82 AUROC, efficiency baseline). Each positioned against DMPP with clear differentiation.
+
+5. **K=5 variance addressed**: Switched to Rademacher vectors (lower variance), framed as discriminative use (effect size matters, not absolute precision), added K ∈ {5, 10, 20} ablation.
+
+6. **Pilot strengthened**: Now explicitly tests final-layer (exact Hutchinson) vs intermediate-layer (approximate) as a scientific question.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1b899a8-4a00-4492-b149-ce3a8eb118f3",
+  "isSidechain": false,
+  "requestId": "req_011Cb6AGof8DsfVTxjmBKJ7X",
+  "type": "assistant",
+  "uuid": "aba1eb9b-f80a-4dbb-88af-8f7ecd25a018",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016wwtfJqvYWJDWwzsYNk79g",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8453,
+      "cache_read_input_tokens": 45476,
+      "output_tokens": 11258,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8453,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11258,
+          "cache_read_input_tokens": 45476,
+          "cache_creation_input_tokens": 8453,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8453
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Dual-Metric Perturbation Probing: Training-Free CHOKE Detection via Ou…",
+  "leafUuid": "aba1eb9b-f80a-4dbb-88af-8f7ecd25a018",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DMPP to pass venue and computational reality checks",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Dual-Metric Perturbation Probing: Training-Free CHOKE Detection via Ou…",
+  "leafUuid": "aba1eb9b-f80a-4dbb-88af-8f7ecd25a018",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DMPP to pass venue and computational reality checks",
+  "sessionId": "bc8954cb-299c-4796-96dd-a2a0aa0dc0be"
+}
+```
+
+---

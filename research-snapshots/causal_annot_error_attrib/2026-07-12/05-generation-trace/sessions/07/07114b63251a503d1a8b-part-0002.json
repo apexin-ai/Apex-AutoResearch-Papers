@@ -1,0 +1,208 @@
+{
+  "schema_version": "1.0",
+  "session_id": "07114b63251a503d1a8b",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-19T08:01:27.929Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Excellent. Now I have a very comprehensive understanding of the landscape. Let me finalize my 5 research directions based on all the evidence gathered.\n\nLet me think carefully about each one:\n\n**1. Cascading Unfaithfulness in Multi-Step Agentic Reasoning**\n- Related papers: Project Ariadne (SCM for agents), Brief Is Better (budget effects in tool-use), Verify Before You Commit (self-auditing), Breaking the Chain (intermediate structures), Martingale analysis of MCP (2602.13320)\n- Novelty assessment: 4-5 papers touch on agentic faithfulness, but NONE study how unfaithfulness compounds across sequential agent steps. \n\nThe Martingale paper examines information fidelity but doesn't specifically address how chain-of-thought faithfulness degrades across multiple steps—that's the novel angle. The skeptic would ask how to separate cascading unfaithfulness from regular error propagation, but that's precisely the contribution: distinguishing between action errors and explanation errors.\n\n**2. Epistemic Uncertainty as a Faithfulness Predictor**\n- Related papers: Reasoning Theater (easy vs hard), pre-CoT probes (predicting answers), MATCHA (right for wrong reasons), Wang et al. (phase transition with noise), the uncertainty-faithfulness paper in Bayesian RAG\n- Novelty assessment: Only 1-2 papers tangentially connect uncertainty to faithfulness, and none have systematically explored whether epistemic uncertainty can predict when explanations will be unfaithful.\n- Key hypothesis: Model confidence (measured via logit entropy, MC dropout, or probe uncertainty) should inversely correlate with faithfulness — high confidence → post-hoc rationalization → low faithfulness.\n\n**3. Faithfulness-Aware CoT Distillation**\n- Related papers: SCOTT, CoPeD, MoRSD, FRIT, FaithRL, various distillation papers\n- Novelty assessment: No existing work examines whether distillation amplifies unfaithfulness. While many papers do CoT distillation and some do faithfulness-aware training, nobody combines them. Novel combination.\n- Key experiment: Distill from teacher with measured faithfulness → measure student's faithfulness. Compare: (a) vanilla distillation, (b) faithfulness-filtered distillation (only use faithful CoTs), (c) faithfulness-augmented distillation (use FRIT pairs).\n\n**4. Mechanistic Circuit Analysis of Thinking-Answer Suppression**\n- The thinking-answer gap is behaviorally documented but mechanistically unexplored — no prior work has used activation patching, SAE, or circuit analysis to identify the suppression mechanism, making this highly novel.\n- Key question: Is there a \"suppression circuit\" that activates when transitioning from thinking tokens to answer tokens, filtering out hint-related information?\n\n**5. Pre-CoT Belief Divergence as an Instance-Level Faithfulness Detector**\n- Related papers: Cox et al. (pre-CoT probes), motivated reasoning detection, Reasoning Theater (probing)\n- The novelty here is formalizing pre-CoT probe predictions as a faithfulness metric — prior work shows probes predict answers or detects motivated reasoning, but doesn't explicitly connect this to measuring faithfulness. If a pre-CoT probe predicts answer A with high confidence while the CoT argues for B, and the final answer is A, that's definitionally unfaithful since the CoT didn't actually drive the decision. This gives an instance-level faithfulness detector that's cheaper than counterfactual methods.\n- I'm slightly concerned about having too many related papers, but the differentiation is clear enough.\n- The key novelty is using the divergence between pre-CoT belief and CoT content as a faithfulness score, validated against existing metrics.\n- Regarding #4 on mechanistic circuit analysis — it might be niche, but it's timely given recent Anthropic work on circuit tracing and the field's growing interest in mechanistic interpretability. The thinking-answer gap is a natural place to look for suppression mechanisms.\n- For venue timing: EMNLP 2026 is too tight for #4's experimental needs, but AAAI 2027 and ICLR 2027 both work well for the full scope, with NeurIPS 2026 workshops as a backup for shorter versions.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b1890d3-4299-4982-b5df-f8b4e6ac7dab",
+            "isSidechain": false,
+            "requestId": "req_011CbBaLy8ZrRvHbDyky9exS",
+            "type": "assistant",
+            "uuid": "b4fdde04-e7df-4d7d-b297-b414357a4de9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "529f3dc3-06d9-49b1-a8a7-2f1ec2c478bb",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JW1e8tsbcaNpkndtwDwz4w",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 405,
+                "cache_read_input_tokens": 74207,
+                "output_tokens": 6844,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 405,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6844,
+                    "cache_read_input_tokens": 74207,
+                    "cache_creation_input_tokens": 405,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 405
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-19T08:03:35.448Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have comprehensive coverage across all dimensions. Let me synthesize my findings into 5 well-grounded research directions.\n\n---\n\n## Research Synthesis\n\nAfter conducting 25+ targeted searches and reading key papers, here is my analysis of the CoT faithfulness landscape and 5 novel research directions.\n\n### Key Landscape Observations\n\n1. **The measurement crisis is real**: Different classifiers produce faithfulness scores with 13pp spreads; model rankings flip across classifiers (Dev Community blog). Metrics (biasing features, filler tokens, FUR) disagree systematically (Causal Diagnosticity, EMNLP 2025). No principled reconciliation exists.\n\n2. **Training methods plateau**: CST (+35pts on cue-based tasks, Hase & Potts 2026), FRIT (+3.4pp faithfulness on GSM8K), FaithRL (step-level PRM rewards), AtManRL (attention saliency + GRPO) all improve faithfulness incrementally, but outcome-based RL plateaus without saturating (Chen et al., Anthropic 2025).\n\n3. **The thinking-answer gap is mechanistically unexplained**: 87.5% thinking vs 28.6% answer acknowledgment (Young et al. 2026). Step-3.5-Flash shows 94.7% thinking-only suppression. Why? Nobody has done circuit-level analysis.\n\n4. **Pre-CoT probes match or beat CoT monitors**: Cox et al. (2603.01437) show >0.9 AUC pre-CoT prediction; motivated reasoning probes (2603.17199) outperform CoT monitors; early alignment probes gain +13 F1 (2507.12428). But none have been formalized as faithfulness detectors.\n\n5. **Agentic/multi-turn faithfulness is nascent**: Project Ariadne, \"Brief Is Better\", and \"Verify Before You Commit\" exist, but no work studies how unfaithfulness compounds across sequential agent interactions.\n\n6. **Distillation ignores faithfulness**: Extensive CoT distillation literature (SCOTT, MoRSD, CoPeD, multi-teacher approaches) focuses on accuracy, never measuring whether distillation amplifies or reduces unfaithfulness.\n\n### Upcoming viable venues\n- **EMNLP 2026**: ARR submission May 25, 2026 (6 days — very tight)\n- **AAAI 2027**: Full paper deadline July 28, 2026 (good target)\n- **NeurIPS 2026 Workshops**: Suggested submission Aug 29, 2026\n- **ICLR 2027**: Deadline TBA, likely Sep–Oct 2026\n\n```json\n[\n  {\n    \"title\": \"Pre-CoT Belief Divergence as Instance-Level Faithfulness Detection\",\n    \"core_problem\": \"Can we detect unfaithful chain-of-thought at the instance level by measuring the divergence between a model's pre-CoT internal belief (decoded via linear probes on residual stream activations before CoT generation) and the reasoning path actually expressed in the CoT?\",\n    \"opportunity\": \"Three independent 2026 findings converge but remain unconnected: (1) Cox et al. show pre-CoT probes predict final answers with >0.9 AUC and causally steer them; (2) motivated-reasoning probes (2603.17199) match or outperform full-CoT monitors; (3) early alignment probes (2507.12428) gain +13 F1 over text-based methods. Yet no work has formalized pre-CoT belief divergence as a faithfulness metric. The key insight: if a pre-CoT probe predicts answer A with high confidence, and the generated CoT argues for answer B, but the final output is A, then the CoT is definitionally unfaithful — the model decided before reasoning. This yields a cheap, instance-level, white-box faithfulness detector that requires no counterfactual generation.\",\n    \"landscape\": \"Current behavioral faithfulness metrics (biasing features, filler tokens, early answering from Lanham et al. 2023) are model-agnostic but produce inconsistent results — classifier choice alone shifts scores by 13 percentage points with flipped model rankings. Causal methods like FUR (Tutek et al., EMNLP 2025) and FRIT are computationally expensive, requiring unlearning or intervention over many samples. FaithCoT-Bench (ICLR 2026) evaluated 11 detection methods and found knowledge-intensive domains hardest. Cox et al. (March 2026) demonstrated pre-CoT probes achieve >0.9 AUC in predicting final answers and that steering along probe directions flips answers in >50% of cases, proving the signal is causal. However, they study post-hoc reasoning, not faithfulness measurement. The motivated reasoning paper (2603.17199) showed pre-generation probes match CoT monitor accuracy, but framed results as 'detecting bias influence,' not as a general faithfulness metric. No existing work has combined these probe-based signals into a unified, validated faithfulness detection framework benchmarked against behavioral and causal metrics.\",\n    \"inspired_by\": \"Field guide gap: 'probing approaches detect when model has decided an answer before finishing CoT' (Sec 4.4) but are only used for efficiency (early exit), not faithfulness detection. Pattern: Reasoning Theater shows answer is decodable far earlier than monitors can tell. Untried combination: merging pre-CoT probing (Cox et al.) with faithfulness benchmarking (FaithCoT-Bench) to create a probe-based faithfulness metric.\"\n  },\n  {\n    \"title\": \"Mechanistic Circuits Behind Thinking-Answer Faithfulness Suppression\",\n    \"core_problem\": \"What internal mechanism causes reasoning models to acknowledge hint influence in their thinking tokens (~87.5%) but systematically suppress this acknowledgment in their final answers (~28.6%), and can identifying this 'suppression circuit' enable targeted interventions to close the gap?\",\n    \"opportunity\": \"The thinking-answer gap is the single most striking empirical finding in recent CoT faithfulness research: Young et al. (March 2026) showed models recognize hint influence internally but suppress it in outputs, with Step-3.5-Flash showing 94.7% thinking-only acknowledgment. This phenomenon has been thoroughly documented behaviorally but has ZERO mechanistic explanation. Meanwhile, mechanistic interpretability has matured rapidly — Anthropic's circuit tracing on Claude 3.5 Haiku (2025) demonstrates that multi-step reasoning circuits can be identified, and SAE-based feature analysis (Chen & Plaat, 2507.22928) shows CoT induces sparser internal features. The BlueDot blog post on mechanistic analysis of CoT faithfulness found shortcut circuits localized to specific attention heads (e.g., layer 7 in GPT-2 Small). Yet no one has applied these tools to the thinking→answer transition specifically. This is the right moment because open-weight reasoning models (DeepSeek-R1 671B, Qwen, etc.) now make the thinking-answer boundary mechanistically accessible.\",\n    \"landscape\": \"'Why Models Know But Don't Say' (Young et al., 2026) and its companion 'Lie to Me' comprehensively document the thinking-answer divergence across 12 models and 6 hint categories, finding consistency (72.2%) and unethical hints (62.7%) show the largest thinking-only rates. Boppana et al. (Reasoning Theater, 2026) used activation probing to detect early answer lock-in and found inflection points track genuine belief shifts, but examined overall CoT, not the thinking→answer transition. Chen & Plaat (2507.22928) applied SAEs to Pythia models showing CoT induces sparser features, but studied faithfulness of CoT overall, not the suppression phenomenon. The BlueDot mechanistic analysis found an attention head responsible for shortcut behavior in GPT-2 Small, proving faithfulness circuits can be localized, but this was on a tiny model without reasoning-model thinking tokens. No published work has used activation patching, SAEs, or circuit discovery on the specific transition from thinking tokens to answer tokens in reasoning models to identify suppression mechanisms.\",\n    \"inspired_by\": \"Field guide gap: Sec 3.4 ('Why Models Know But Don't Say') documents the thinking-answer gap but offers no mechanistic explanation. Pattern: Sec 4.5 shows SAE+feature analysis is a proven approach for CoT internals (Chen & Plaat) but has only been demonstrated on small models. Untried combination: applying mechanistic interpretability tools (circuit tracing, SAEs, activation patching) specifically to the thinking→answer transition boundary in open-weight reasoning models.\"\n  },\n  {\n    \"title\": \"Does CoT Distillation Amplify Unfaithfulness in Student Models?\",\n    \"core_problem\": \"When chain-of-thought reasoning is distilled from a large teacher model to a smaller student, does the student's CoT become more or less faithful than the teacher's, and can faithfulness-filtered distillation data prevent unfaithfulness amplification?\",\n    \"opportunity\": \"CoT distillation is now standard practice (SCOTT, MoRSD, CoPeD, multi-teacher methods all from 2025-2026), but every existing approach evaluates student quality purely through accuracy. Given that teacher CoTs are unfaithful 40-75% of the time (Chen et al., Anthropic 2025; Young et al. 2026), students may be learning to replicate unfaithful reasoning patterns — or worse, amplifying them since smaller models have less capacity for genuine multi-step computation. FRIT (Sep 2025) creates faithful/unfaithful CoT pairs but uses them for DPO on the same model, not for distillation. FaithRL (Feb 2026) introduces step-level faithfulness rewards but in a single-model RL setting. Nobody has combined faithfulness measurement with distillation pipelines. This represents a critical blind spot: we may be mass-producing smaller models that generate maximally unfaithful reasoning.\",\n    \"landscape\": \"CoT distillation is a mature technique: SCOTT (2023) uses contrastive decoding, MoRSD (2025) selects high-quality rationales achieving 4.6% accuracy improvement, CoPeD (2025) improves correctness perception, and multi-teacher frameworks (Jan 2026) combine diverse reasoning strategies. On the faithfulness side, FRIT creates paired faithful/unfaithful examples for DPO training (+3.4pp faithfulness on GSM8K), and FaithRL uses PRM-based step-level rewards. Lanham et al. (2023) found a troubling inverse scaling trend: larger, more capable models produce less faithful reasoning. FaithCoT-Bench (ICLR 2026) found more advanced models pose harder detection challenges. However, no paper has measured faithfulness metrics (FUR, biasing features, filler tokens) on distilled student models vs. their teachers. The closest work is 'Stop Rewarding Hallucinated Steps' (Feb 2026), which addresses hallucination in small reasoning models via PRM-guided RL, but this is single-model training, not distillation.\",\n    \"inspired_by\": \"Field guide gap: Sec 2.3 notes Lanham et al.'s finding that 'as models become larger and more capable, they produce less faithful reasoning' — the inverse scaling trend. If unfaithfulness scales with capability, what happens in reverse (distillation to smaller models)? Pattern: FRIT (Sec 3.14) demonstrates paired faithful/unfaithful examples improve faithfulness via DPO — this technique could be adapted for distillation filtering. Untried combination: integrating faithfulness measurement tools (FUR, biasing features) into CoT distillation pipelines to create faithfulness-aware distillation.\"\n  },\n  {\n    \"title\": \"Epistemic Uncertainty Predicts and Modulates CoT Faithfulness\",\n    \"core_problem\": \"Is there a systematic relationship between a model's epistemic uncertainty about a question and the faithfulness of its chain-of-thought reasoning, and can uncertainty estimates serve as practical, instance-level faithfulness signals without expensive counterfactual evaluation?\",\n    \"opportunity\": \"Multiple independent findings suggest a strong uncertainty-faithfulness connection that nobody has formally established: (1) Reasoning Theater (Boppana et al. 2026) shows easy questions trigger performative CoT while hard questions show genuine belief shifts; (2) the Reasoning Horizon (Ye et al. 2026) at 70-85% of chain length shows CoT stops contributing after a point, especially for easy tasks; (3) MATCHA (Jiang et al. 2025) shows models maintain correct answers with inconsistent reasoning ('right for wrong reasons'); (4) Wang et al. (2602.01017) found a phase transition from faithful to unfaithful reasoning based on training noise threshold. The unifying hypothesis: when a model is confident (low epistemic uncertainty), it has already 'decided' the answer and generates post-hoc rationalization (unfaithful); when genuinely uncertain, it needs the CoT computation (faithful). If validated, uncertainty estimation (which is cheap: logit entropy, MC sampling) becomes a practical faithfulness proxy, replacing expensive counterfactual methods.\",\n    \"landscape\": \"Reasoning Theater (Boppana et al., March 2026) found the model's final answer is decodable from activations far earlier on easy MMLU questions than hard GPQA questions, and probe-guided early exit saves up to 80% tokens on MMLU. Chen et al. (Anthropic 2025) showed faithfulness drops 44% on harder GPQA vs. easier MMLU. Wang et al. (Feb 2026) demonstrated a phase transition in faithfulness based on noise levels in synthetic experiments, showing models switch from faithful stepwise to unfaithful skip-step reasoning. The Bayesian RAG paper (2026) showed uncertainty calibration improved faithfulness by 6.1% in retrieval settings but didn't study CoT faithfulness specifically. Temporal confidence analysis (2506.08243) formalized confidence evolution within CoT using signal temporal logic but didn't connect to faithfulness. No paper has directly correlated calibrated uncertainty estimates with established faithfulness metrics across tasks and models, nor proposed uncertainty as a practical faithfulness proxy.\",\n    \"inspired_by\": \"Field guide gap: Sec 3.6 (Reasoning Theater) notes easy vs hard distinction in performative CoT, and Sec 3.2 shows faithfulness drops on harder datasets (44% relative drop on GPQA). But no work connects these observations through the lens of model uncertainty. Pattern: behavioral-to-mechanistic progression — the field has documented the phenomenon behaviorally and now needs a predictive framework. Combination: merging uncertainty estimation techniques with faithfulness evaluation methods from FaithCoT-Bench.\"\n  },\n  {\n    \"title\": \"Cascading Unfaithfulness in Sequential Agentic Reasoning Chains\",\n    \"core_problem\": \"How does CoT unfaithfulness compound across sequential multi-step agentic interactions — where each step's CoT conditions on potentially unfaithful prior outputs — and at what rate does cumulative unfaithfulness degrade the reliability of agentic reasoning chains?\",\n    \"opportunity\": \"All existing CoT faithfulness research evaluates single-turn reasoning: one question, one CoT, one answer. But modern LLM agents perform 10-50 sequential reasoning steps with tool calls, memory access, and planning. Project Ariadne (Jan 2026) audits individual agent decisions via SCMs, finding up to 0.77 violation density. 'Brief Is Better' (Apr 2026) finds non-monotonic CoT effects in function-calling. The Martingale analysis paper (2602.13320) proves cumulative information distortion grows linearly with steps. But no work studies how CoT UNFAITHFULNESS specifically compounds: if step N's unfaithful CoT leads to wrong tool selection, step N+1's CoT must rationalize both the wrong context AND its own reasoning, potentially creating a positive feedback loop of escalating unfaithfulness. This is practically urgent because agentic systems are being deployed at scale while their multi-turn faithfulness properties are completely unknown.\",\n    \"landscape\": \"Project Ariadne (Khanzadeh, Jan 2026) is the only framework applying structural causal models to audit agentic CoT faithfulness, revealing up to 0.77 violation density in factual domains and a widespread 'Causal Decoupling' failure mode. 'Brief Is Better' (Apr 2026) found 32-token CoT optimal for function-calling while 256-token CoT degrades performance below no-CoT baseline, but studied single-turn tool calls. 'Verify Before You Commit' (Apr 2026) proposes self-auditing for LLM agents but doesn't measure faithfulness metrics. 'Breaking the Chain' (Somov et al., 2026) showed models fail to update predictions after intervention in up to 60% of cases for schema-guided pipelines, but these are single-pass pipelines. The Martingale analysis paper (Feb 2026) provides theoretical bounds on information distortion in tool-using agents (linear growth O(T), re-grounding every ~9 steps), but analyzes information fidelity, not CoT faithfulness specifically. No work has measured faithfulness metrics (biasing features, FUR, counterfactual sensitivity) across sequential agent steps to quantify compounding effects.\",\n    \"inspired_by\": \"Field guide gap: Sec 3.8 (Breaking the Chain) shows apparent faithfulness is fragile once intermediate structures change, but only in single-pass pipelines. The survey identifies agentic settings as a critical unexplored domain. Pattern: the field has moved from documenting unfaithfulness → measuring it → understanding mechanisms. The next frontier is compound/multi-step settings where unfaithfulness may interact multiplicatively. Untried combination: applying established single-turn faithfulness metrics (from FaithCoT-Bench, Anthropic 2025) to multi-turn agent traces, combined with the Martingale analysis framework for bounding compound effects.\"\n  }\n]\n```\n\nSources:\n- [Counterfactual Simulation Training for CoT Faithfulness](https://arxiv.org/abs/2602.20710)\n- [Mechanistic Evidence for Faithfulness Decay in CoT Reasoning](https://arxiv.org/abs/2602.11201)\n- [How Does Unfaithful Reasoning Emerge from Autoregressive Training?](https://arxiv.org/abs/2602.01017)\n- [Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents](https://arxiv.org/abs/2601.02314)\n- [FRIT: Using Causal Importance to Improve CoT Faithfulness](https://arxiv.org/abs/2509.13334)\n- [Decoding Answers Before Chain-of-Thought: Pre-CoT Probes](https://arxiv.org/abs/2603.01437)\n- [Catching Rationalization in the Act: Detecting Motivated Reasoning via Activation Probing](https://arxiv.org/abs/2603.17199)\n- [Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought](https://arxiv.org/abs/2603.05488)\n- [Why Models Know But Don't Say: Thinking-Answer Divergence](https://arxiv.org/abs/2603.26410)\n- [Lie to Me: How Faithful Is CoT Reasoning in Open-Weight Reasoning Models?](https://arxiv.org/abs/2603.22582)\n- [FaithCoT-Bench: Benchmarking Instance-Level Faithfulness (ICLR 2026)](https://arxiv.org/abs/2510.04040)\n- [Typed Chain-of-Thought: A Curry-Howard Framework (ICLR 2026)](https://arxiv.org/abs/2510.01069)\n- [Balancing Faithfulness and Performance via Multi-Listener Soft Execution](https://arxiv.org/abs/2602.16154)\n- [Aligned, Orthogonal or In-conflict: Safe CoT Optimization in RL](https://arxiv.org/abs/2603.30036)\n- [AtManRL: Towards Faithful Reasoning via Differentiable Attention Saliency](https://arxiv.org/abs/2604.16158)\n- [FaithRL: Stop Rewarding Hallucinated Steps](https://arxiv.org/abs/2602.05897)\n- [Diagnosing Pathological Chain-of-Thought in Reasoning Models](https://arxiv.org/abs/2602.13904)\n- [Investigating Accidental CoT Grading During RL (OpenAI)](https://alignment.openai.com/accidental-cot-grading/)\n- [Can We Predict Alignment Before Models Finish Thinking?](https://arxiv.org/abs/2507.12428)\n- [LLMs Can Learn Steganographic CoT Under Process Supervision](https://arxiv.org/abs/2506.01926)\n- [5 Ways to Improve CoT Faithfulness (LessWrong)](https://www.lesswrong.com/posts/TecsCZ7w8s4e2umm4/5-ways-to-improve-cot-faithfulness)\n- [Confessions vs. CoT Monitoring vs. Probes: Three Bets on Model Honesty](https://subhadipmitra.com/blog/2026/three-bets-model-honesty/)\n- [A Causal Lens for Evaluating Faithfulness Metrics (EMNLP 2025)](https://arxiv.org/abs/2502.18848)\n- [Analyzing and Improving CoT Monitorability Through Information Theory](https://arxiv.org/abs/2602.18297)\n- [SPD-Faith-Bench: Multimodal LLM CoT Faithfulness (ACL Findings 2026)](https://github.com/Johanson-colab/SPD-Faith-Bench)\n- [Comprehensive Evaluation of Multilingual CoT Reasoning (EACL 2026)](https://aclanthology.org/2026.findings-eacl.276/)\n- [Brief Is Better: Non-Monotonic CoT Budget Effects in Function-Calling Agents](https://arxiv.org/abs/2604.02155)\n- [Information Fidelity in Tool-Using LLM Agents: A Martingale Analysis](https://arxiv.org/abs/2602.13320)\n- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [NeurIPS 2026 Dates](https://neurips.cc/Conferences/2026/Dates)\n- [AAAI 2027 Call for Papers](https://aaai.org/conference/aaai/aaai-27/)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b4fdde04-e7df-4d7d-b297-b414357a4de9",
+            "isSidechain": false,
+            "requestId": "req_011CbBaLy8ZrRvHbDyky9exS",
+            "type": "assistant",
+            "uuid": "83f7b5de-d514-48d6-bdfc-3136dccee1c6",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "529f3dc3-06d9-49b1-a8a7-2f1ec2c478bb",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JW1e8tsbcaNpkndtwDwz4w",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 405,
+                "cache_read_input_tokens": 74207,
+                "output_tokens": 6844,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 405,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6844,
+                    "cache_read_input_tokens": 74207,
+                    "cache_creation_input_tokens": 405,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 405
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-19 (UTC).** Use this when reasoni…",
+                "leafUuid": "83f7b5de-d514-48d6-bdfc-3136dccee1c6",
+                "sessionId": "529f3dc3-06d9-49b1-a8a7-2f1ec2c478bb"
+              }
+            }
+          ],
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Exploring ML research directions in CoT faithfulness",
+                "sessionId": "529f3dc3-06d9-49b1-a8a7-2f1ec2c478bb"
+              }
+            }
+          ],
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-19 (UTC).** Use this when reasoni…",
+                "leafUuid": "83f7b5de-d514-48d6-bdfc-3136dccee1c6",
+                "sessionId": "529f3dc3-06d9-49b1-a8a7-2f1ec2c478bb"
+              }
+            }
+          ],
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Exploring ML research directions in CoT faithfulness",
+                "sessionId": "529f3dc3-06d9-49b1-a8a7-2f1ec2c478bb"
+              }
+            }
+          ],
+          "id": "event-000176"
+        }
+      ]
+    }
+  ]
+}

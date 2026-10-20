@@ -1,0 +1,4950 @@
+# Research conversation: You are a senior ML researcher conducting a comprehensive literature survey. **Today's date: 2026-05-30 (UTC).** ## Task
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 82
+- **Recorded user turns:** 8
+- **Tool calls:** 8
+- **Original source:** `logs/chats/exported-trajectories/account-2/d9b8af30-59dc-4c7a-a01f-49c577bff243.jsonl`
+- **Structured JSON:** [`2155a4d2e1753be81224.json`](../../sessions/21/2155a4d2e1753be81224.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-30T06:12:31.040Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T06:12:31.040Z",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "content": "You are a senior ML researcher conducting a comprehensive literature survey.\n\n**Today's date: 2026-05-30 (UTC).**\n\n## Task\nFind the **15 most important recent papers** (published 2024–2026) in or closely related to the following research area:\n\n**Target: AAAI 2026\nTrack: Information Retrieval and Text Mining (Main Technical Track)\n\nDirection: Train a single decoder-only LLM (Llama-3-8B) to simultaneously produce both SPLADE-style sparse representations and dense bi-encoder representations through dual output heads, with a lightweight learned query router that adaptively weights sparse vs. dense retrieval per query. The model is trained via a 3-stage curriculum (independent head pre-training, joint fine-tuning with bidirectional self-distillation, router refinement) and evaluated on MS MARCO, BEIR, and MTEB benchmarks.\n\nSeed Papers:\n- LACONIC-8B (arXiv, Jan 2026) — proves decoder-only LLMs (Llama-3-8B) achieve dense-level effectiveness for sparse retrieval via two-phase curriculum; establishes the sparse head baseline\n- Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (SIGIR, 2025) — systematic comparison showing sparse outperforms dense by 10.5% on BEIR at 8B scale in decoder-only models; confirms complementarity but trains separate models\n- BGE M3-Embedding (arXiv, 2024) — unifies dense+sparse+multi-vec in one encoder-only model with self-KD; proves multi-functionality works but limited to XLM-RoBERTa backbone and fixed interpolation weights\n- RouterRetriever (AAAI, 2025) — learned per-query routing over expert embedding models with +2.1 NDCG@10 gain; proves routing works but routes between separate dense models only\n- CSplade (IJCNLP-AACL, 2025) — documents training instabilities with ReLU sparse heads in causal LMs and proposes mitigations; critical for training stability\n- Sparse and Dense Retrievers Learn Better Together (CIKM, 2025) — bidirectional self-KD between sparse and dense heads improves both in VLP models; proves the self-distillation mechanism but only for text-image retrieval\n\nKnown Gaps:\n- No decoder-only LLM produces both sparse AND dense representations from a single forward pass — LACONIC and Lion-SP/DS train separate models for each modality\n- No learned per-query router exists WITHIN a unified retrieval model — BGE-M3 uses fixed linear interpolation; RouterRetriever routes between separate external models\n- Bidirectional self-distillation between sparse and dense heads has never been studied in decoder-only backbones — only in encoder-only (BGE-M3) and VLP (CIKM 2025) models\n\nTheoretical Anchor: Sparse and dense representations capture complementary information — sparse captures lexical matching signals (exact term overlap, entity names) while dense captures semantic matching signals (paraphrases, conceptual similarity). Lion-SP (SIGIR 2025) showed this complementarity is especially pronounced in decoder-only models (10.5% gap on BEIR). A learned router can exploit query-level signals (specificity, entity density, ambiguity) to optimally weight these complementary representations per query, achieving near-oracle hybrid performance while avoiding the latency cost of always computing both.\n\nConstraints:\n- Compute: ≤200 H100-hours (3B model: ~60hrs for 3-stage training; 8B model: ~120hrs)\n\nQuality Self-Checks:\n- [x] Core insight: Sparse and dense retrieval are complementary in decoder-only LLMs, and a learned per-query router can exploit this complementarity within a single model.\n- [x] Why not obvious: Joint training of sparse and dense heads in decoder-only models faces instability (documented by CSplade); the BGE-M3 approach doesn't directly transfer because encoder-only and decoder-only attention patterns differ fundamentally; and existing routing work operates between separate models, not within a unified architecture.\n- [x] Baseline fear test: Fixed-weight interpolation (the simple baseline) cannot match learned routing because the optimal sparse-dense weight varies dramatically across query types — entity-heavy queries favor sparse while conceptual queries favor dense. The router exploits query-level features that fixed weights ignore.\n- [x] Information exploited: The method exploits (1) per-query lexical vs. semantic difficulty signals via the router head, (2) complementary error patterns between sparse and dense heads via bidirectional self-distillation, and (3) shared backbone representations that transfer knowledge between modalities during joint training.\n\nAvoid:\n- Fixed-weight linear interpolation between sparse and dense scores (this is the well-explored BM25+dense hybrid baseline; the contribution must be LEARNED per-query routing)\n- Separate model ensembles (the contribution requires a SINGLE backbone model with shared parameters; separate sparse and dense models with a router on top is just RouterRetriever)\n- ColBERT/multi-vector retrieval as a third head (adds complexity without addressing the core sparse-vs-dense question; save for future work)\n- Scaling beyond 8B parameters (diminishing returns documented by SIGIR 2025; focus on architecture and training, not scale)**\n\n## What counts as 'important'\n\nPrioritize (in order):\n1. **Best paper awards** at top venues (ACL, EMNLP, NAACL, NeurIPS, ICML, ICLR, AAAI, etc.)\n2. **Oral / spotlight presentations** at these venues\n3. **Highly cited papers** (>50 citations in 1-2 years)\n4. **Papers that introduced widely-adopted methods** (e.g., new training paradigm, new benchmark)\n5. **Recent survey papers** that provide comprehensive field overviews\n6. **Strong recent work** from top labs (Google, Meta, DeepMind, OpenAI, CMU, Stanford, etc.)\n\n## Search strategy\n\nExecute AT LEAST 15 targeted searches:\n\n1. `best paper award ACL EMNLP NeurIPS ICML ICLR 2026 Target: AAAI 2026\nTrack: Information Retrieval and Text Mining (Main Technical Track)\n\nDirection: Train a single decoder-only LLM (Llama-3-8B) to simultaneously produce both SPLADE-style sparse representations and dense bi-encoder representations through dual output heads, with a lightweight learned query router that adaptively weights sparse vs. dense retrieval per query. The model is trained via a 3-stage curriculum (independent head pre-training, joint fine-tuning with bidirectional self-distillation, router refinement) and evaluated on MS MARCO, BEIR, and MTEB benchmarks.\n\nSeed Papers:\n- LACONIC-8B (arXiv, Jan 2026) — proves decoder-only LLMs (Llama-3-8B) achieve dense-level effectiveness for sparse retrieval via two-phase curriculum; establishes the sparse head baseline\n- Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (SIGIR, 2025) — systematic comparison showing sparse outperforms dense by 10.5% on BEIR at 8B scale in decoder-only models; confirms complementarity but trains separate models\n- BGE M3-Embedding (arXiv, 2024) — unifies dense+sparse+multi-vec in one encoder-only model with self-KD; proves multi-functionality works but limited to XLM-RoBERTa backbone and fixed interpolation weights\n- RouterRetriever (AAAI, 2025) — learned per-query routing over expert embedding models with +2.1 NDCG@10 gain; proves routing works but routes between separate dense models only\n- CSplade (IJCNLP-AACL, 2025) — documents training instabilities with ReLU sparse heads in causal LMs and proposes mitigations; critical for training stability\n- Sparse and Dense Retrievers Learn Better Together (CIKM, 2025) — bidirectional self-KD between sparse and dense heads improves both in VLP models; proves the self-distillation mechanism but only for text-image retrieval\n\nKnown Gaps:\n- No decoder-only LLM produces both sparse AND dense representations from a single forward pass — LACONIC and Lion-SP/DS train separate models for each modality\n- No learned per-query router exists WITHIN a unified retrieval model — BGE-M3 uses fixed linear interpolation; RouterRetriever routes between separate external models\n- Bidirectional self-distillation between sparse and dense heads has never been studied in decoder-only backbones — only in encoder-only (BGE-M3) and VLP (CIKM 2025) models\n\nTheoretical Anchor: Sparse and dense representations capture complementary information — sparse captures lexical matching signals (exact term overlap, entity names) while dense captures semantic matching signals (paraphrases, conceptual similarity). Lion-SP (SIGIR 2025) showed this complementarity is especially pronounced in decoder-only models (10.5% gap on BEIR). A learned router can exploit query-level signals (specificity, entity density, ambiguity) to optimally weight these complementary representations per query, achieving near-oracle hybrid performance while avoiding the latency cost of always computing both.\n\nConstraints:\n- Compute: ≤200 H100-hours (3B model: ~60hrs for 3-stage training; 8B model: ~120hrs)\n\nQuality Self-Checks:\n- [x] Core insight: Sparse and dense retrieval are complementary in decoder-only LLMs, and a learned per-query router can exploit this complementarity within a single model.\n- [x] Why not obvious: Joint training of sparse and dense heads in decoder-only models faces instability (documented by CSplade); the BGE-M3 approach doesn't directly transfer because encoder-only and decoder-only attention patterns differ fundamentally; and existing routing work operates between separate models, not within a unified architecture.\n- [x] Baseline fear test: Fixed-weight interpolation (the simple baseline) cannot match learned routing because the optimal sparse-dense weight varies dramatically across query types — entity-heavy queries favor sparse while conceptual queries favor dense. The router exploits query-level features that fixed weights ignore.\n- [x] Information exploited: The method exploits (1) per-query lexical vs. semantic difficulty signals via the router head, (2) complementary error patterns between sparse and dense heads via bidirectional self-distillation, and (3) shared backbone representations that transfer knowledge between modalities during joint training.\n\nAvoid:\n- Fixed-weight linear interpolation between sparse and dense scores (this is the well-explored BM25+dense hybrid baseline; the contribution must be LEARNED per-query routing)\n- Separate model ensembles (the contribution requires a SINGLE backbone model with shared parameters; separate sparse and dense models with a router on top is just RouterRetriever)\n- ColBERT/multi-vector retrieval as a third head (adds complexity without addressing the core sparse-vs-dense question; save for future work)\n- Scaling beyond 8B parameters (diminishing returns documented by SIGIR 2025; focus on architecture and training, not scale)`\n2. `oral spotlight {venue} 2026 {topic}` — for each major venue\n3. `site:openreview.net {topic} 2026 outstanding` — OpenReview 高分论文\n4. `{topic} survey 2026` 或 `{topic} survey 2025` — 综述论文\n5. `site:arxiv.org {topic} 2026` — arXiv 最新高引\n6. `most cited {topic} 2025 2026` — Google Scholar\n7. `site:paperswithcode.com {task} SOTA` — SOTA 排行榜上的论文\n8. `{topic} benchmark {year}` — 定义领域的 benchmark 论文\n9. 对每个找到的重要论文，搜索其 cited-by 发现后续工作\n\nFor EVERY paper you find, use WebFetch to read its abstract and introduction on arXiv or OpenReview. Do NOT rely on search snippets alone — you need to understand what each paper actually does.\n\n## Output format\n\nOutput a JSON array. Each element:\n{\n  \"title\": \"Full paper title\",\n  \"authors\": \"First author et al.\",\n  \"venue\": \"EMNLP 2025 / NeurIPS 2024 / arXiv 2025 / ...\",\n  \"url\": \"https://arxiv.org/abs/... or openreview URL\",\n  \"why_important\": \"Best paper / Oral / High-cited / Introduced X / ...\",\n  \"one_line_summary\": \"What this paper does in one sentence\"\n}\n\nFind at least 15 papers. More is better if they are genuinely relevant.\nIMPORTANT: You MUST end your response with the JSON array."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-30T06:12:31.049Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T06:12:31.049Z",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+## Round 1
+
+33 recorded events
+
+### User
+
+_source line 3 · 2026-05-30T06:12:31.074Z_
+
+You are a senior ML researcher conducting a comprehensive literature survey.
+
+**Today's date: 2026-05-30 (UTC).**
+
+## Task
+Find the **15 most important recent papers** (published 2024–2026) in or closely related to the following research area:
+
+**Target: AAAI 2026
+Track: Information Retrieval and Text Mining (Main Technical Track)
+
+Direction: Train a single decoder-only LLM (Llama-3-8B) to simultaneously produce both SPLADE-style sparse representations and dense bi-encoder representations through dual output heads, with a lightweight learned query router that adaptively weights sparse vs. dense retrieval per query. The model is trained via a 3-stage curriculum (independent head pre-training, joint fine-tuning with bidirectional self-distillation, router refinement) and evaluated on MS MARCO, BEIR, and MTEB benchmarks.
+
+Seed Papers:
+- LACONIC-8B (arXiv, Jan 2026) — proves decoder-only LLMs (Llama-3-8B) achieve dense-level effectiveness for sparse retrieval via two-phase curriculum; establishes the sparse head baseline
+- Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (SIGIR, 2025) — systematic comparison showing sparse outperforms dense by 10.5% on BEIR at 8B scale in decoder-only models; confirms complementarity but trains separate models
+- BGE M3-Embedding (arXiv, 2024) — unifies dense+sparse+multi-vec in one encoder-only model with self-KD; proves multi-functionality works but limited to XLM-RoBERTa backbone and fixed interpolation weights
+- RouterRetriever (AAAI, 2025) — learned per-query routing over expert embedding models with +2.1 NDCG@10 gain; proves routing works but routes between separate dense models only
+- CSplade (IJCNLP-AACL, 2025) — documents training instabilities with ReLU sparse heads in causal LMs and proposes mitigations; critical for training stability
+- Sparse and Dense Retrievers Learn Better Together (CIKM, 2025) — bidirectional self-KD between sparse and dense heads improves both in VLP models; proves the self-distillation mechanism but only for text-image retrieval
+
+Known Gaps:
+- No decoder-only LLM produces both sparse AND dense representations from a single forward pass — LACONIC and Lion-SP/DS train separate models for each modality
+- No learned per-query router exists WITHIN a unified retrieval model — BGE-M3 uses fixed linear interpolation; RouterRetriever routes between separate external models
+- Bidirectional self-distillation between sparse and dense heads has never been studied in decoder-only backbones — only in encoder-only (BGE-M3) and VLP (CIKM 2025) models
+
+Theoretical Anchor: Sparse and dense representations capture complementary information — sparse captures lexical matching signals (exact term overlap, entity names) while dense captures semantic matching signals (paraphrases, conceptual similarity). Lion-SP (SIGIR 2025) showed this complementarity is especially pronounced in decoder-only models (10.5% gap on BEIR). A learned router can exploit query-level signals (specificity, entity density, ambiguity) to optimally weight these complementary representations per query, achieving near-oracle hybrid performance while avoiding the latency cost of always computing both.
+
+Constraints:
+- Compute: ≤200 H100-hours (3B model: ~60hrs for 3-stage training; 8B model: ~120hrs)
+
+Quality Self-Checks:
+- [x] Core insight: Sparse and dense retrieval are complementary in decoder-only LLMs, and a learned per-query router can exploit this complementarity within a single model.
+- [x] Why not obvious: Joint training of sparse and dense heads in decoder-only models faces instability (documented by CSplade); the BGE-M3 approach doesn't directly transfer because encoder-only and decoder-only attention patterns differ fundamentally; and existing routing work operates between separate models, not within a unified architecture.
+- [x] Baseline fear test: Fixed-weight interpolation (the simple baseline) cannot match learned routing because the optimal sparse-dense weight varies dramatically across query types — entity-heavy queries favor sparse while conceptual queries favor dense. The router exploits query-level features that fixed weights ignore.
+- [x] Information exploited: The method exploits (1) per-query lexical vs. semantic difficulty signals via the router head, (2) complementary error patterns between sparse and dense heads via bidirectional self-distillation, and (3) shared backbone representations that transfer knowledge between modalities during joint training.
+
+Avoid:
+- Fixed-weight linear interpolation between sparse and dense scores (this is the well-explored BM25+dense hybrid baseline; the contribution must be LEARNED per-query routing)
+- Separate model ensembles (the contribution requires a SINGLE backbone model with shared parameters; separate sparse and dense models with a router on top is just RouterRetriever)
+- ColBERT/multi-vector retrieval as a third head (adds complexity without addressing the core sparse-vs-dense question; save for future work)
+- Scaling beyond 8B parameters (diminishing returns documented by SIGIR 2025; focus on architecture and training, not scale)**
+
+## What counts as 'important'
+
+Prioritize (in order):
+1. **Best paper awards** at top venues (ACL, EMNLP, NAACL, NeurIPS, ICML, ICLR, AAAI, etc.)
+2. **Oral / spotlight presentations** at these venues
+3. **Highly cited papers** (>50 citations in 1-2 years)
+4. **Papers that introduced widely-adopted methods** (e.g., new training paradigm, new benchmark)
+5. **Recent survey papers** that provide comprehensive field overviews
+6. **Strong recent work** from top labs (Google, Meta, DeepMind, OpenAI, CMU, Stanford, etc.)
+
+## Search strategy
+
+Execute AT LEAST 15 targeted searches:
+
+1. `best paper award ACL EMNLP NeurIPS ICML ICLR 2026 Target: AAAI 2026
+Track: Information Retrieval and Text Mining (Main Technical Track)
+
+Direction: Train a single decoder-only LLM (Llama-3-8B) to simultaneously produce both SPLADE-style sparse representations and dense bi-encoder representations through dual output heads, with a lightweight learned query router that adaptively weights sparse vs. dense retrieval per query. The model is trained via a 3-stage curriculum (independent head pre-training, joint fine-tuning with bidirectional self-distillation, router refinement) and evaluated on MS MARCO, BEIR, and MTEB benchmarks.
+
+Seed Papers:
+- LACONIC-8B (arXiv, Jan 2026) — proves decoder-only LLMs (Llama-3-8B) achieve dense-level effectiveness for sparse retrieval via two-phase curriculum; establishes the sparse head baseline
+- Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (SIGIR, 2025) — systematic comparison showing sparse outperforms dense by 10.5% on BEIR at 8B scale in decoder-only models; confirms complementarity but trains separate models
+- BGE M3-Embedding (arXiv, 2024) — unifies dense+sparse+multi-vec in one encoder-only model with self-KD; proves multi-functionality works but limited to XLM-RoBERTa backbone and fixed interpolation weights
+- RouterRetriever (AAAI, 2025) — learned per-query routing over expert embedding models with +2.1 NDCG@10 gain; proves routing works but routes between separate dense models only
+- CSplade (IJCNLP-AACL, 2025) — documents training instabilities with ReLU sparse heads in causal LMs and proposes mitigations; critical for training stability
+- Sparse and Dense Retrievers Learn Better Together (CIKM, 2025) — bidirectional self-KD between sparse and dense heads improves both in VLP models; proves the self-distillation mechanism but only for text-image retrieval
+
+Known Gaps:
+- No decoder-only LLM produces both sparse AND dense representations from a single forward pass — LACONIC and Lion-SP/DS train separate models for each modality
+- No learned per-query router exists WITHIN a unified retrieval model — BGE-M3 uses fixed linear interpolation; RouterRetriever routes between separate external models
+- Bidirectional self-distillation between sparse and dense heads has never been studied in decoder-only backbones — only in encoder-only (BGE-M3) and VLP (CIKM 2025) models
+
+Theoretical Anchor: Sparse and dense representations capture complementary information — sparse captures lexical matching signals (exact term overlap, entity names) while dense captures semantic matching signals (paraphrases, conceptual similarity). Lion-SP (SIGIR 2025) showed this complementarity is especially pronounced in decoder-only models (10.5% gap on BEIR). A learned router can exploit query-level signals (specificity, entity density, ambiguity) to optimally weight these complementary representations per query, achieving near-oracle hybrid performance while avoiding the latency cost of always computing both.
+
+Constraints:
+- Compute: ≤200 H100-hours (3B model: ~60hrs for 3-stage training; 8B model: ~120hrs)
+
+Quality Self-Checks:
+- [x] Core insight: Sparse and dense retrieval are complementary in decoder-only LLMs, and a learned per-query router can exploit this complementarity within a single model.
+- [x] Why not obvious: Joint training of sparse and dense heads in decoder-only models faces instability (documented by CSplade); the BGE-M3 approach doesn't directly transfer because encoder-only and decoder-only attention patterns differ fundamentally; and existing routing work operates between separate models, not within a unified architecture.
+- [x] Baseline fear test: Fixed-weight interpolation (the simple baseline) cannot match learned routing because the optimal sparse-dense weight varies dramatically across query types — entity-heavy queries favor sparse while conceptual queries favor dense. The router exploits query-level features that fixed weights ignore.
+- [x] Information exploited: The method exploits (1) per-query lexical vs. semantic difficulty signals via the router head, (2) complementary error patterns between sparse and dense heads via bidirectional self-distillation, and (3) shared backbone representations that transfer knowledge between modalities during joint training.
+
+Avoid:
+- Fixed-weight linear interpolation between sparse and dense scores (this is the well-explored BM25+dense hybrid baseline; the contribution must be LEARNED per-query routing)
+- Separate model ensembles (the contribution requires a SINGLE backbone model with shared parameters; separate sparse and dense models with a router on top is just RouterRetriever)
+- ColBERT/multi-vector retrieval as a third head (adds complexity without addressing the core sparse-vs-dense question; save for future work)
+- Scaling beyond 8B parameters (diminishing returns documented by SIGIR 2025; focus on architecture and training, not scale)`
+2. `oral spotlight {venue} 2026 {topic}` — for each major venue
+3. `site:openreview.net {topic} 2026 outstanding` — OpenReview 高分论文
+4. `{topic} survey 2026` 或 `{topic} survey 2025` — 综述论文
+5. `site:arxiv.org {topic} 2026` — arXiv 最新高引
+6. `most cited {topic} 2025 2026` — Google Scholar
+7. `site:paperswithcode.com {task} SOTA` — SOTA 排行榜上的论文
+8. `{topic} benchmark {year}` — 定义领域的 benchmark 论文
+9. 对每个找到的重要论文，搜索其 cited-by 发现后续工作
+
+For EVERY paper you find, use WebFetch to read its abstract and introduction on arXiv or OpenReview. Do NOT rely on search snippets alone — you need to understand what each paper actually does.
+
+## Output format
+
+Output a JSON array. Each element:
+{
+  "title": "Full paper title",
+  "authors": "First author et al.",
+  "venue": "EMNLP 2025 / NeurIPS 2024 / arXiv 2025 / ...",
+  "url": "https://arxiv.org/abs/... or openreview URL",
+  "why_important": "Best paper / Oral / High-cited / Introduced X / ...",
+  "one_line_summary": "What this paper does in one sentence"
+}
+
+Find at least 15 papers. More is better if they are genuinely relevant.
+IMPORTANT: You MUST end your response with the JSON array.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "c5e23b13-5a8b-4dcd-b09b-907f969c761c",
+  "type": "user",
+  "uuid": "d4db6cd3-4f95-4f9d-8cb2-66ac9bced3b4",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-30T06:12:31.072Z_
+
+```json
+{
+  "parentUuid": "d4db6cd3-4f95-4f9d-8cb2-66ac9bced3b4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "6e023553-f073-4111-b188-5466a7971d53",
+  "timestamp": "2026-05-30T06:12:31.072Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-30T06:12:31.072Z_
+
+```json
+{
+  "parentUuid": "6e023553-f073-4111-b188-5466a7971d53",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "8cc132a1-025f-4b4b-8bc3-a1abed41f2f8",
+  "timestamp": "2026-05-30T06:12:31.072Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey for dual sparse-dense decoder-only retrieval",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-30T06:12:35.798Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to conduct a comprehensive literature survey to find the 15 most important recent papers (2024-2026) related to their research direction: training a single decoder-only LLM to produce both sparse and dense representations with a learned query router. Let me break this down into multiple search tasks that can run in parallel.
+
+I need to use WebSearch and WebFetch tools. Let me first load those tool schemas.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8cc132a1-025f-4b4b-8bc3-a1abed41f2f8",
+  "isSidechain": false,
+  "requestId": "req_011CbYFzCRum6sLSeb9rNgf6",
+  "type": "assistant",
+  "uuid": "ee16a1b2-c268-4de4-9397-8a969a7ef4ad",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XAaD9cEhC3aKgb48VEDZxj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15471,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 186,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15471,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 186,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 15471,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15471
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-30T06:12:36.048Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XgJHYqAUpkRQEHffKYKoGL`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee16a1b2-c268-4de4-9397-8a969a7ef4ad",
+  "isSidechain": false,
+  "requestId": "req_011CbYFzCRum6sLSeb9rNgf6",
+  "type": "assistant",
+  "uuid": "f181fd3e-0a57-46e4-bd26-d16143aaa08b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XAaD9cEhC3aKgb48VEDZxj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15471,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 186,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15471,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 186,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 15471,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15471
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-30T06:12:36.059Z_
+
+<details><summary>↩ Tool result · `toolu_01XgJHYqAUpkRQEHffKYKoGL`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f181fd3e-0a57-46e4-bd26-d16143aaa08b",
+  "isSidechain": false,
+  "promptId": "c5e23b13-5a8b-4dcd-b09b-907f969c761c",
+  "type": "user",
+  "uuid": "8b911e04-a6d2-4840-9f19-d8ed39818390",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "f181fd3e-0a57-46e4-bd26-d16143aaa08b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "8b911e04-a6d2-4840-9f19-d8ed39818390",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey for dual sparse-dense decoder-only retrieval",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-30T06:12:47.869Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the WebSearch and WebFetch tools available. Let me launch multiple parallel search agents to cover all the different angles of this literature survey. I'll break this into several parallel search batches to be efficient.
+
+Let me think about the key search topics:
+
+1. Decoder-only LLM for retrieval / embedding (LACONIC, Lion, etc.)
+2. Sparse retrieval with LLMs / SPLADE with decoder-only models
+3. Hybrid sparse-dense retrieval in single model (BGE-M3 style)
+4. Query routing for retrieval
+
+
+5. Self-distillation between retrieval modalities
+6. Curriculum learning for retrieval models
+7. Multi-task retrieval heads
+8. Best paper awards at IR/NLP venues 2024-2026
+9. MTEB/BEIR benchmarks and SOTA
+10. Dense retrieval with LLMs
+
+I'll spin up multiple parallel agents to tackle these searches simultaneously, then aggregate everything together.
+
+Actually, with this many targeted searches needed and the requirement to verify results through WebFetch, running agents in parallel makes sense to cover all the different angles efficiently.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b911e04-a6d2-4840-9f19-d8ed39818390",
+  "isSidechain": false,
+  "requestId": "req_011CbYFzZGYdFSo1aT83hLz5",
+  "type": "assistant",
+  "uuid": "679854c4-3a17-46a3-b2aa-82e2b189f252",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsaHtTjyBnwAYEMnn4giSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 15471,
+      "output_tokens": 2528,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1206,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2528,
+          "cache_read_input_tokens": 15471,
+          "cache_creation_input_tokens": 1206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1206
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-30T06:12:47.888Z_
+
+I'll conduct this comprehensive literature survey by launching multiple parallel search agents covering different aspects of the research area.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "679854c4-3a17-46a3-b2aa-82e2b189f252",
+  "isSidechain": false,
+  "requestId": "req_011CbYFzZGYdFSo1aT83hLz5",
+  "type": "assistant",
+  "uuid": "1fdd33cb-a50f-4717-9d5c-7858491edb3d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsaHtTjyBnwAYEMnn4giSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 15471,
+      "output_tokens": 2528,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1206,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2528,
+          "cache_read_input_tokens": 15471,
+          "cache_creation_input_tokens": 1206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1206
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-30T06:12:53.331Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01RjneP3PqpZPB73iyZZQNp8`</summary>
+
+```json
+{
+  "description": "Search: decoder-only LLM retrieval",
+  "prompt": "You are helping with a literature survey on training decoder-only LLMs for information retrieval, specifically producing both sparse (SPLADE-style) and dense representations from a single model.\n\nExecute these web searches and for each promising paper, fetch its arXiv abstract to verify relevance:\n\n1. Search: \"decoder-only LLM dense retrieval embedding 2025 2026\"\n2. Search: \"LACONIC sparse retrieval decoder-only LLM 2026\"\n3. Search: \"Lion sparse dense retrieval decoder-only SIGIR 2025\"\n4. Search: \"LLM embedding model retrieval 2025 2026 Llama\"\n5. Search: \"decoder-only language model text embedding EMNLP NeurIPS 2025\"\n\nFor each paper found (2024-2026), use WebFetch on its arXiv page to read the abstract and confirm what the paper actually does.\n\nReturn a list of papers with: title, authors, venue, URL, why_important, one_line_summary. Focus on papers about using decoder-only LLMs (like Llama, Mistral) for retrieval tasks - both sparse and dense approaches.",
+  "subagent_type": "general-purpose",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1fdd33cb-a50f-4717-9d5c-7858491edb3d",
+  "isSidechain": false,
+  "requestId": "req_011CbYFzZGYdFSo1aT83hLz5",
+  "type": "assistant",
+  "uuid": "eceb96d0-c237-4f4a-a8c7-341658a7f2eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsaHtTjyBnwAYEMnn4giSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 15471,
+      "output_tokens": 2528,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1206,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2528,
+          "cache_read_input_tokens": 15471,
+          "cache_creation_input_tokens": 1206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1206
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-30T06:13:17.526Z_
+
+<details><summary>↩ Tool result · `toolu_016Vu6bXfakQkAaPGH168VnB`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a268c9d40c0439e0b (internal ID - do not mention to user. Use SendMessage with to: 'a268c9d40c0439e0b' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a268c9d40c0439e0b.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "78d883ad-e9a1-4377-a7a2-f066205f902c",
+  "isSidechain": false,
+  "promptId": "c5e23b13-5a8b-4dcd-b09b-907f969c761c",
+  "type": "user",
+  "uuid": "75e69278-0eb5-4d3f-856a-5eac0e4aaa17",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a268c9d40c0439e0b",
+    "description": "Search: GTE NV-embed E5 models",
+    "prompt": "You are helping with a literature survey on recent text embedding models, especially those using decoder-only LLM backbones.\n\nExecute these web searches and for each promising paper, fetch its arXiv abstract to verify relevance:\n\n1. Search: \"GTE Qwen embedding model 2024 2025 retrieval\"\n2. Search: \"NV-Embed NVIDIA decoder-only embedding 2024 2025\"\n3. Search: \"E5 mistral embedding LLM retrieval 2024\"\n4. Search: \"SFR embedding model Salesforce 2024 2025\"\n5. Search: \"Gecko Google embedding model 2024 2025\"\n6. Search: \"LLM2Vec decoder-only LLM embedding 2024\"\n7. Search: \"Nomic embed text embedding model 2024 2025\"\n\nFor each paper found (2024-2026), use WebFetch on its arXiv page to read the abstract and confirm what the paper actually does.\n\nReturn a list of papers with: title, authors, venue, URL, why_important, one_line_summary. Focus on papers that present new text embedding models using LLM backbones (especially decoder-only architectures like Llama, Mistral, Qwen) and achieve strong results on MTEB, BEIR, or MS MARCO benchmarks.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a268c9d40c0439e0b.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "78d883ad-e9a1-4377-a7a2-f066205f902c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-30T06:12:53.343Z_
+
+<details><summary>↩ Tool result · `toolu_01RjneP3PqpZPB73iyZZQNp8`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a4f16cc0338ff62b3 (internal ID - do not mention to user. Use SendMessage with to: 'a4f16cc0338ff62b3' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a4f16cc0338ff62b3.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eceb96d0-c237-4f4a-a8c7-341658a7f2eb",
+  "isSidechain": false,
+  "promptId": "c5e23b13-5a8b-4dcd-b09b-907f969c761c",
+  "type": "user",
+  "uuid": "c7b361dc-8fed-40cc-9f66-6f5282df7c31",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a4f16cc0338ff62b3",
+    "description": "Search: decoder-only LLM retrieval",
+    "prompt": "You are helping with a literature survey on training decoder-only LLMs for information retrieval, specifically producing both sparse (SPLADE-style) and dense representations from a single model.\n\nExecute these web searches and for each promising paper, fetch its arXiv abstract to verify relevance:\n\n1. Search: \"decoder-only LLM dense retrieval embedding 2025 2026\"\n2. Search: \"LACONIC sparse retrieval decoder-only LLM 2026\"\n3. Search: \"Lion sparse dense retrieval decoder-only SIGIR 2025\"\n4. Search: \"LLM embedding model retrieval 2025 2026 Llama\"\n5. Search: \"decoder-only language model text embedding EMNLP NeurIPS 2025\"\n\nFor each paper found (2024-2026), use WebFetch on its arXiv page to read the abstract and confirm what the paper actually does.\n\nReturn a list of papers with: title, authors, venue, URL, why_important, one_line_summary. Focus on papers about using decoder-only LLMs (like Llama, Mistral) for retrieval tasks - both sparse and dense approaches.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a4f16cc0338ff62b3.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "eceb96d0-c237-4f4a-a8c7-341658a7f2eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-30T06:12:57.307Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_017PkGacGKhDQ4spjSLUgpNm`</summary>
+
+```json
+{
+  "description": "Search: sparse-dense hybrid retrieval",
+  "prompt": "You are helping with a literature survey on hybrid sparse-dense retrieval in unified models and learned query routing.\n\nExecute these web searches and for each promising paper, fetch its arXiv abstract to verify relevance:\n\n1. Search: \"BGE M3 embedding unified sparse dense retrieval 2024\"\n2. Search: \"hybrid sparse dense retrieval single model 2024 2025 2026\"\n3. Search: \"SPLADE learned sparse retrieval 2024 2025 2026\"\n4. Search: \"unified retrieval model sparse dense multi-vector 2025\"\n5. Search: \"joint training sparse dense retrieval self-distillation 2025\"\n\nFor each paper found (2024-2026), use WebFetch on its arXiv page to read the abstract and confirm what the paper actually does.\n\nReturn a list of papers with: title, authors, venue, URL, why_important, one_line_summary. Focus on papers about combining sparse and dense retrieval in a single model, self-distillation between retrieval modalities, and SPLADE-style learned sparse representations.",
+  "subagent_type": "general-purpose",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c7b361dc-8fed-40cc-9f66-6f5282df7c31",
+  "isSidechain": false,
+  "requestId": "req_011CbYFzZGYdFSo1aT83hLz5",
+  "type": "assistant",
+  "uuid": "21bd3ac7-17a9-4bd6-95ed-b65692700b04",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsaHtTjyBnwAYEMnn4giSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 15471,
+      "output_tokens": 2528,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1206,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2528,
+          "cache_read_input_tokens": 15471,
+          "cache_creation_input_tokens": 1206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1206
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-30T06:12:57.321Z_
+
+<details><summary>↩ Tool result · `toolu_017PkGacGKhDQ4spjSLUgpNm`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a1e144d5b6032ec04 (internal ID - do not mention to user. Use SendMessage with to: 'a1e144d5b6032ec04' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a1e144d5b6032ec04.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21bd3ac7-17a9-4bd6-95ed-b65692700b04",
+  "isSidechain": false,
+  "promptId": "c5e23b13-5a8b-4dcd-b09b-907f969c761c",
+  "type": "user",
+  "uuid": "dbbfb19b-1ac9-4a2a-b861-cdb1222799a5",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a1e144d5b6032ec04",
+    "description": "Search: sparse-dense hybrid retrieval",
+    "prompt": "You are helping with a literature survey on hybrid sparse-dense retrieval in unified models and learned query routing.\n\nExecute these web searches and for each promising paper, fetch its arXiv abstract to verify relevance:\n\n1. Search: \"BGE M3 embedding unified sparse dense retrieval 2024\"\n2. Search: \"hybrid sparse dense retrieval single model 2024 2025 2026\"\n3. Search: \"SPLADE learned sparse retrieval 2024 2025 2026\"\n4. Search: \"unified retrieval model sparse dense multi-vector 2025\"\n5. Search: \"joint training sparse dense retrieval self-distillation 2025\"\n\nFor each paper found (2024-2026), use WebFetch on its arXiv page to read the abstract and confirm what the paper actually does.\n\nReturn a list of papers with: title, authors, venue, URL, why_important, one_line_summary. Focus on papers about combining sparse and dense retrieval in a single model, self-distillation between retrieval modalities, and SPLADE-style learned sparse representations.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a1e144d5b6032ec04.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "21bd3ac7-17a9-4bd6-95ed-b65692700b04",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-30T06:13:01.870Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_012xiomd53MVxm7FjPcVB3aL`</summary>
+
+```json
+{
+  "description": "Search: query routing retrieval",
+  "prompt": "You are helping with a literature survey on learned query routing for information retrieval and adaptive retrieval strategies.\n\nExecute these web searches and for each promising paper, fetch its arXiv abstract to verify relevance:\n\n1. Search: \"RouterRetriever learned query routing retrieval AAAI 2025\"\n2. Search: \"adaptive query routing sparse dense retrieval 2024 2025 2026\"\n3. Search: \"mixture of experts retrieval routing 2025 2026\"\n4. Search: \"query-dependent retrieval strategy selection 2024 2025\"\n5. Search: \"learned interpolation weight sparse dense retrieval per-query 2025\"\n\nFor each paper found (2024-2026), use WebFetch on its arXiv page to read the abstract and confirm what the paper actually does.\n\nReturn a list of papers with: title, authors, venue, URL, why_important, one_line_summary. Focus on papers about learning to route or adaptively weight different retrieval strategies per query, mixture-of-experts approaches for retrieval, and query-adaptive hybrid retrieval.",
+  "subagent_type": "general-purpose",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dbbfb19b-1ac9-4a2a-b861-cdb1222799a5",
+  "isSidechain": false,
+  "requestId": "req_011CbYFzZGYdFSo1aT83hLz5",
+  "type": "assistant",
+  "uuid": "890722ab-3aaa-4da5-8f6f-4fd15c1ad927",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsaHtTjyBnwAYEMnn4giSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 15471,
+      "output_tokens": 2528,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1206,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2528,
+          "cache_read_input_tokens": 15471,
+          "cache_creation_input_tokens": 1206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1206
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-30T06:13:01.885Z_
+
+<details><summary>↩ Tool result · `toolu_012xiomd53MVxm7FjPcVB3aL`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a17cf06e02d2052fb (internal ID - do not mention to user. Use SendMessage with to: 'a17cf06e02d2052fb' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a17cf06e02d2052fb.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "890722ab-3aaa-4da5-8f6f-4fd15c1ad927",
+  "isSidechain": false,
+  "promptId": "c5e23b13-5a8b-4dcd-b09b-907f969c761c",
+  "type": "user",
+  "uuid": "1bbfee44-7164-4cd3-9f32-85f02b09ed6e",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a17cf06e02d2052fb",
+    "description": "Search: query routing retrieval",
+    "prompt": "You are helping with a literature survey on learned query routing for information retrieval and adaptive retrieval strategies.\n\nExecute these web searches and for each promising paper, fetch its arXiv abstract to verify relevance:\n\n1. Search: \"RouterRetriever learned query routing retrieval AAAI 2025\"\n2. Search: \"adaptive query routing sparse dense retrieval 2024 2025 2026\"\n3. Search: \"mixture of experts retrieval routing 2025 2026\"\n4. Search: \"query-dependent retrieval strategy selection 2024 2025\"\n5. Search: \"learned interpolation weight sparse dense retrieval per-query 2025\"\n\nFor each paper found (2024-2026), use WebFetch on its arXiv page to read the abstract and confirm what the paper actually does.\n\nReturn a list of papers with: title, authors, venue, URL, why_important, one_line_summary. Focus on papers about learning to route or adaptively weight different retrieval strategies per query, mixture-of-experts approaches for retrieval, and query-adaptive hybrid retrieval.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a17cf06e02d2052fb.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "890722ab-3aaa-4da5-8f6f-4fd15c1ad927",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-30T06:13:06.106Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01Bn6ycERhwN9NFiE92iN89g`</summary>
+
+```json
+{
+  "description": "Search: self-distillation curriculum training",
+  "prompt": "You are helping with a literature survey on self-distillation and curriculum learning for retrieval models.\n\nExecute these web searches and for each promising paper, fetch its arXiv abstract to verify relevance:\n\n1. Search: \"self-distillation retrieval model sparse dense knowledge distillation 2024 2025\"\n2. Search: \"CSplade causal language model sparse retrieval training instability 2025\"\n3. Search: \"curriculum learning retrieval model training 2024 2025 2026\"\n4. Search: \"bidirectional distillation sparse dense retrieval CIKM 2025\"\n5. Search: \"multi-task learning retrieval heads LLM 2025 2026\"\n\nFor each paper found (2024-2026), use WebFetch on its arXiv page to read the abstract and confirm what the paper actually does.\n\nReturn a list of papers with: title, authors, venue, URL, why_important, one_line_summary. Focus on papers about knowledge distillation between retrieval modalities, curriculum learning for training retrieval models, training stability for sparse heads, and multi-task training of retrieval objectives.",
+  "subagent_type": "general-purpose",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1bbfee44-7164-4cd3-9f32-85f02b09ed6e",
+  "isSidechain": false,
+  "requestId": "req_011CbYFzZGYdFSo1aT83hLz5",
+  "type": "assistant",
+  "uuid": "54787700-a86c-4544-b6eb-c0930a05d8b3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsaHtTjyBnwAYEMnn4giSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 15471,
+      "output_tokens": 2528,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1206,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2528,
+          "cache_read_input_tokens": 15471,
+          "cache_creation_input_tokens": 1206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1206
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-30T06:13:06.135Z_
+
+<details><summary>↩ Tool result · `toolu_01Bn6ycERhwN9NFiE92iN89g`</summary>
+
+```text
+Async agent launched successfully.
+agentId: ac10290282562d832 (internal ID - do not mention to user. Use SendMessage with to: 'ac10290282562d832' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/ac10290282562d832.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54787700-a86c-4544-b6eb-c0930a05d8b3",
+  "isSidechain": false,
+  "promptId": "c5e23b13-5a8b-4dcd-b09b-907f969c761c",
+  "type": "user",
+  "uuid": "851f7984-f469-429d-bb67-b774ea2eec43",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "ac10290282562d832",
+    "description": "Search: self-distillation curriculum training",
+    "prompt": "You are helping with a literature survey on self-distillation and curriculum learning for retrieval models.\n\nExecute these web searches and for each promising paper, fetch its arXiv abstract to verify relevance:\n\n1. Search: \"self-distillation retrieval model sparse dense knowledge distillation 2024 2025\"\n2. Search: \"CSplade causal language model sparse retrieval training instability 2025\"\n3. Search: \"curriculum learning retrieval model training 2024 2025 2026\"\n4. Search: \"bidirectional distillation sparse dense retrieval CIKM 2025\"\n5. Search: \"multi-task learning retrieval heads LLM 2025 2026\"\n\nFor each paper found (2024-2026), use WebFetch on its arXiv page to read the abstract and confirm what the paper actually does.\n\nReturn a list of papers with: title, authors, venue, URL, why_important, one_line_summary. Focus on papers about knowledge distillation between retrieval modalities, curriculum learning for training retrieval models, training stability for sparse heads, and multi-task training of retrieval objectives.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/ac10290282562d832.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "54787700-a86c-4544-b6eb-c0930a05d8b3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-30T06:13:10.945Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01R6uK5Ha4zssPpMohguVnS2`</summary>
+
+```json
+{
+  "description": "Search: best papers IR venues 2025-2026",
+  "prompt": "You are helping with a literature survey on information retrieval and text embedding. Search for best/award papers and highly cited recent work.\n\nExecute these web searches and for each promising paper, fetch its arXiv abstract to verify relevance:\n\n1. Search: \"best paper award SIGIR 2025 information retrieval\"\n2. Search: \"best paper award EMNLP 2025 retrieval embedding\"  \n3. Search: \"best paper NeurIPS 2025 retrieval representation learning\"\n4. Search: \"best paper ICLR 2025 2026 text retrieval embedding\"\n5. Search: \"MTEB benchmark leaderboard 2025 2026 state of the art embedding\"\n6. Search: \"most cited information retrieval paper 2024 2025 dense sparse\"\n\nFor each paper found (2024-2026), use WebFetch on its arXiv page to read the abstract and confirm what the paper actually does.\n\nReturn a list of papers with: title, authors, venue, URL, why_important, one_line_summary. Focus on award-winning or highly influential papers in information retrieval, text embeddings, and retrieval model training from 2024-2026.",
+  "subagent_type": "general-purpose",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "851f7984-f469-429d-bb67-b774ea2eec43",
+  "isSidechain": false,
+  "requestId": "req_011CbYFzZGYdFSo1aT83hLz5",
+  "type": "assistant",
+  "uuid": "c903bb4c-f28a-410b-b1cc-a9c24ce11c73",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsaHtTjyBnwAYEMnn4giSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 15471,
+      "output_tokens": 2528,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1206,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2528,
+          "cache_read_input_tokens": 15471,
+          "cache_creation_input_tokens": 1206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1206
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-30T06:13:10.961Z_
+
+<details><summary>↩ Tool result · `toolu_01R6uK5Ha4zssPpMohguVnS2`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a8039034a5926540b (internal ID - do not mention to user. Use SendMessage with to: 'a8039034a5926540b' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a8039034a5926540b.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c903bb4c-f28a-410b-b1cc-a9c24ce11c73",
+  "isSidechain": false,
+  "promptId": "c5e23b13-5a8b-4dcd-b09b-907f969c761c",
+  "type": "user",
+  "uuid": "882e1eb6-4c02-4d87-98bc-e30dd9615b67",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a8039034a5926540b",
+    "description": "Search: best papers IR venues 2025-2026",
+    "prompt": "You are helping with a literature survey on information retrieval and text embedding. Search for best/award papers and highly cited recent work.\n\nExecute these web searches and for each promising paper, fetch its arXiv abstract to verify relevance:\n\n1. Search: \"best paper award SIGIR 2025 information retrieval\"\n2. Search: \"best paper award EMNLP 2025 retrieval embedding\"  \n3. Search: \"best paper NeurIPS 2025 retrieval representation learning\"\n4. Search: \"best paper ICLR 2025 2026 text retrieval embedding\"\n5. Search: \"MTEB benchmark leaderboard 2025 2026 state of the art embedding\"\n6. Search: \"most cited information retrieval paper 2024 2025 dense sparse\"\n\nFor each paper found (2024-2026), use WebFetch on its arXiv page to read the abstract and confirm what the paper actually does.\n\nReturn a list of papers with: title, authors, venue, URL, why_important, one_line_summary. Focus on award-winning or highly influential papers in information retrieval, text embeddings, and retrieval model training from 2024-2026.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a8039034a5926540b.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "c903bb4c-f28a-410b-b1cc-a9c24ce11c73",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-30T06:13:17.515Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_016Vu6bXfakQkAaPGH168VnB`</summary>
+
+```json
+{
+  "description": "Search: GTE NV-embed E5 models",
+  "prompt": "You are helping with a literature survey on recent text embedding models, especially those using decoder-only LLM backbones.\n\nExecute these web searches and for each promising paper, fetch its arXiv abstract to verify relevance:\n\n1. Search: \"GTE Qwen embedding model 2024 2025 retrieval\"\n2. Search: \"NV-Embed NVIDIA decoder-only embedding 2024 2025\"\n3. Search: \"E5 mistral embedding LLM retrieval 2024\"\n4. Search: \"SFR embedding model Salesforce 2024 2025\"\n5. Search: \"Gecko Google embedding model 2024 2025\"\n6. Search: \"LLM2Vec decoder-only LLM embedding 2024\"\n7. Search: \"Nomic embed text embedding model 2024 2025\"\n\nFor each paper found (2024-2026), use WebFetch on its arXiv page to read the abstract and confirm what the paper actually does.\n\nReturn a list of papers with: title, authors, venue, URL, why_important, one_line_summary. Focus on papers that present new text embedding models using LLM backbones (especially decoder-only architectures like Llama, Mistral, Qwen) and achieve strong results on MTEB, BEIR, or MS MARCO benchmarks.",
+  "subagent_type": "general-purpose",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "882e1eb6-4c02-4d87-98bc-e30dd9615b67",
+  "isSidechain": false,
+  "requestId": "req_011CbYFzZGYdFSo1aT83hLz5",
+  "type": "assistant",
+  "uuid": "78d883ad-e9a1-4377-a7a2-f066205f902c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JsaHtTjyBnwAYEMnn4giSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 15471,
+      "output_tokens": 2528,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1206,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2528,
+          "cache_read_input_tokens": 15471,
+          "cache_creation_input_tokens": 1206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1206
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "75e69278-0eb5-4d3f-856a-5eac0e4aaa17",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey for dual sparse-dense decoder-only retrieval",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-30T06:13:24.604Z_
+
+I've launched 6 parallel search agents covering different aspects of the research area:
+
+1. **Decoder-only LLM retrieval** — LACONIC, Lion, LLM embedding models
+2. **Sparse-dense hybrid retrieval** — BGE-M3, unified models, SPLADE
+3. **Query routing for retrieval** — RouterRetriever, adaptive strategies, MoE
+4. **Self-distillation & curriculum training** — CSplade, bidirectional KD, training stability
+5. **Best papers at IR venues 2025-2026** — Award papers, MTEB SOTA
+6. **GTE, NV-Embed, E5 and other LLM embedding models** — Decoder-only embedding architectures
+
+Waiting for all agents to complete their searches...
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "75e69278-0eb5-4d3f-856a-5eac0e4aaa17",
+  "isSidechain": false,
+  "requestId": "req_011CbYG3cv9RTRFNPAcScnns",
+  "type": "assistant",
+  "uuid": "759944fb-b87b-4201-abf8-16e572a29929",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQ67RHxxzLAkwDEFKMvHTp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4075,
+      "cache_read_input_tokens": 16677,
+      "output_tokens": 611,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4075,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 611,
+          "cache_read_input_tokens": 16677,
+          "cache_creation_input_tokens": 4075,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4075
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-30T06:13:32.808Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_015CLqV3fZ1jgPYZHSP8fLyy`</summary>
+
+```json
+{
+  "description": "Search: representation learning surveys",
+  "prompt": "You are helping with a literature survey on text retrieval and representation learning. Execute these additional targeted searches:\n\n1. Search: \"text retrieval survey 2025 2026 dense sparse hybrid\"\n2. Search: \"instruction-tuned embedding model retrieval 2024 2025\"\n3. Search: \"contrastive learning text retrieval 2024 2025 LLM\"\n4. Search: \"late interaction retrieval ColBERT 2024 2025 decoder-only\"\n5. Search: \"MS MARCO BEIR benchmark state of the art 2025 2026\"\n6. Search: \"generative retrieval autoregressive 2024 2025 2026\"\n7. Search: \"LoRA fine-tuning LLM embedding retrieval 2024 2025\"\n\nFor each paper found (2024-2026), use WebFetch on its arXiv page to read the abstract and confirm what the paper actually does. Only include papers directly relevant to: (a) decoder-only LLMs for retrieval, (b) hybrid sparse-dense retrieval, (c) query routing, (d) self-distillation in retrieval, (e) training techniques for retrieval models, or (f) benchmark/evaluation methodology.\n\nReturn a list of papers with: title, authors, venue, URL, why_important, one_line_summary.",
+  "subagent_type": "general-purpose",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "759944fb-b87b-4201-abf8-16e572a29929",
+  "isSidechain": false,
+  "requestId": "req_011CbYG3cv9RTRFNPAcScnns",
+  "type": "assistant",
+  "uuid": "3c8cae99-3b88-402e-8375-643f6dec7614",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQ67RHxxzLAkwDEFKMvHTp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4075,
+      "cache_read_input_tokens": 16677,
+      "output_tokens": 611,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4075,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 611,
+          "cache_read_input_tokens": 16677,
+          "cache_creation_input_tokens": 4075,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4075
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-30T06:13:32.924Z_
+
+<details><summary>↩ Tool result · `toolu_015CLqV3fZ1jgPYZHSP8fLyy`</summary>
+
+```text
+Async agent launched successfully.
+agentId: ae8e16ea2aa07123f (internal ID - do not mention to user. Use SendMessage with to: 'ae8e16ea2aa07123f' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/ae8e16ea2aa07123f.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3c8cae99-3b88-402e-8375-643f6dec7614",
+  "isSidechain": false,
+  "promptId": "c5e23b13-5a8b-4dcd-b09b-907f969c761c",
+  "type": "user",
+  "uuid": "9a5716ec-4af8-46e0-b5b6-3a82044b49a8",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "ae8e16ea2aa07123f",
+    "description": "Search: representation learning surveys",
+    "prompt": "You are helping with a literature survey on text retrieval and representation learning. Execute these additional targeted searches:\n\n1. Search: \"text retrieval survey 2025 2026 dense sparse hybrid\"\n2. Search: \"instruction-tuned embedding model retrieval 2024 2025\"\n3. Search: \"contrastive learning text retrieval 2024 2025 LLM\"\n4. Search: \"late interaction retrieval ColBERT 2024 2025 decoder-only\"\n5. Search: \"MS MARCO BEIR benchmark state of the art 2025 2026\"\n6. Search: \"generative retrieval autoregressive 2024 2025 2026\"\n7. Search: \"LoRA fine-tuning LLM embedding retrieval 2024 2025\"\n\nFor each paper found (2024-2026), use WebFetch on its arXiv page to read the abstract and confirm what the paper actually does. Only include papers directly relevant to: (a) decoder-only LLMs for retrieval, (b) hybrid sparse-dense retrieval, (c) query routing, (d) self-distillation in retrieval, (e) training techniques for retrieval models, or (f) benchmark/evaluation methodology.\n\nReturn a list of papers with: title, authors, venue, URL, why_important, one_line_summary.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/ae8e16ea2aa07123f.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "3c8cae99-3b88-402e-8375-643f6dec7614",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-30T06:13:32.999Z_
+
+```json
+{
+  "parentUuid": "9a5716ec-4af8-46e0-b5b6-3a82044b49a8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0add274e-b705-4b21-b5d1-3cbfba352644",
+  "timestamp": "2026-05-30T06:13:32.999Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-30T06:13:35.365Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The system reminder about task tools is not relevant to my current work - I'm waiting for the background search agents to complete. Let me wait for them to finish. I shouldn't poll or check on them - I'll be notified when they complete.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0add274e-b705-4b21-b5d1-3cbfba352644",
+  "isSidechain": false,
+  "requestId": "req_011CbYG4kScf7BpXP3v4KK83",
+  "type": "assistant",
+  "uuid": "c5a65184-adb7-4fb2-aca3-aaef8d5d2f70",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CtdcRteRmqdK2tdMzYiUbG",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 956,
+      "cache_read_input_tokens": 20752,
+      "output_tokens": 113,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 956,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 113,
+          "cache_read_input_tokens": 20752,
+          "cache_creation_input_tokens": 956,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 956
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-30T06:13:36.567Z_
+
+I'm waiting for all 7 background search agents to complete their literature searches. I'll compile the results once they return. No action needed right now — I'll be automatically notified when each agent finishes.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c5a65184-adb7-4fb2-aca3-aaef8d5d2f70",
+  "isSidechain": false,
+  "requestId": "req_011CbYG4kScf7BpXP3v4KK83",
+  "type": "assistant",
+  "uuid": "16d9c6c4-d94e-41d2-b295-7956f87cb487",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CtdcRteRmqdK2tdMzYiUbG",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 956,
+      "cache_read_input_tokens": 20752,
+      "output_tokens": 113,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 956,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 113,
+          "cache_read_input_tokens": 20752,
+          "cache_creation_input_tokens": 956,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 956
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34 · 2026-05-30T06:15:19.768Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T06:15:19.768Z",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "content": "&lt;task-notification>\n&lt;task-id>a1e144d5b6032ec04&lt;/task-id>\n&lt;tool-use-id>toolu_017PkGacGKhDQ4spjSLUgpNm&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a1e144d5b6032ec04.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search: sparse-dense hybrid retrieval\" completed&lt;/summary>\n&lt;result>I now have a comprehensive set of verified papers. Here is the final curated list.\n\n---\n\n## Literature Survey: Hybrid Sparse-Dense Retrieval in Unified Models and Learned Query Routing (2024--2026)\n\n### 1. BGE M3-Embedding (Flagship Unified Model)\n\n- **Title:** M3-Embedding: Multi-Linguality, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation\n- **Authors:** Jianlv Chen, Shitao Xiao, Peitian Zhang, Kun Luo, Defu Lian, Zheng Liu\n- **Venue:** arXiv preprint, February 2024 (BAAI); widely cited, deployed in production RAG systems\n- **URL:** https://arxiv.org/abs/2402.03216\n- **Why important:** The first model to unify dense, sparse (learned lexical), and multi-vector (ColBERT-style) retrieval in a single encoder. Introduces self-knowledge distillation where relevance scores from all three retrieval modes serve as a shared teacher signal. Supports 100+ languages and 8192-token inputs.\n- **One-line summary:** A single encoder produces dense, sparse, and multi-vector representations simultaneously, trained via cross-mode self-knowledge distillation to achieve SOTA on multilingual, cross-lingual, and long-document retrieval benchmarks.\n\n---\n\n### 2. Scaling Sparse and Dense Retrieval in Decoder-Only LLMs\n\n- **Title:** Scaling Sparse and Dense Retrieval in Decoder-Only LLMs\n- **Authors:** Hansi Zeng, Julian Killingback, Hamed Zamani\n- **Venue:** SIGIR 2025\n- **URL:** https://arxiv.org/abs/2502.15526\n- **Why important:** Systematic study of how sparse vs. dense retrieval scale in decoder-only LLMs (Llama-3 1B/3B/8B). Finds sparse retrieval consistently outperforms dense on in- and out-of-domain benchmarks and is more resilient to noisy training signals. Combining contrastive loss + knowledge distillation at 8B achieves SOTA.\n- **One-line summary:** Sparse retrieval scales better than dense in decoder-only LLMs, and combining contrastive learning with knowledge distillation at 8B scale yields the best results across all evaluation settings.\n\n---\n\n### 3. Sparse and Dense Retrievers Learn Better Together\n\n- **Title:** Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval\n- **Authors:** Jonghyun Song, Youngjune Lee, Gyu-Hwung Cho, Ilhyeon Song, Saehun Kim, Yohan Jo\n- **Venue:** CIKM 2025 (Short Track)\n- **URL:** https://arxiv.org/abs/2508.16707\n- **Why important:** Directly addresses self-distillation between sparse and dense modalities in a single model. Uses an integrated similarity score (weighted sum of dense and sparse similarities) as a shared teacher for bi-directional learning. Requires only fine-tuning the final dense layer and sparse projection head.\n- **One-line summary:** Bi-directional self-knowledge distillation between dense and sparse retrieval heads in a unified model yields sparse retrievers that match or surpass their dense counterparts on MSCOCO and Flickr30k.\n\n---\n\n### 4. Mistral-SPLADE: LLMs for Better Learned Sparse Retrieval\n\n- **Title:** Mistral-SPLADE: LLMs for better Learned Sparse Retrieval\n- **Authors:** Meet Doshi, Vishwajeet Kumar, Rudra Murthy, Vignesh P, Jaydeep Sen\n- **Venue:** arXiv preprint, August 2024\n- **URL:** https://arxiv.org/abs/2408.11119\n- **Why important:** Shows that decoder-only LLMs (Mistral) can serve as the backbone for SPLADE-style learned sparse retrieval and surpass all prior sparse retrievers. Validates the hypothesis that LLMs' richer pre-training produces superior term expansion for sparse representations.\n- **One-line summary:** Using Mistral as the backbone for a SPLADE-style learned sparse retriever (Echo-Mistral-SPLADE) achieves new SOTA on BEIR, demonstrating that LLM-scale models dramatically improve learned sparse retrieval.\n\n---\n\n### 5. CSPLADE: Learned Sparse Retrieval with Causal Language Models\n\n- **Title:** CSPLADE: Learned Sparse Retrieval with Causal Language Models\n- **Authors:** Zhichao Xu, Aosong Feng, Yijun Tian, Haibo Ding, Lin Lee Cheong\n- **Venue:** arXiv preprint, April 2025\n- **URL:** https://arxiv.org/abs/2504.10816\n- **Why important:** Addresses the fundamental challenge of training SPLADE-style sparse retrieval on decoder-only (causal) LLMs. Introduces a lightweight adaptation phase to stabilize contrastive training and model variants that enable bidirectional information flow. Scales learned sparse retrieval to 8B parameters.\n- **One-line summary:** Overcomes training instability and unidirectional attention limitations to successfully train SPLADE-style sparse retrievers on causal LLMs up to 8B scale with competitive retrieval and smaller indexes.\n\n---\n\n### 6. LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval\n\n- **Title:** LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval via a Two-Phase Training Curriculum\n- **Authors:** Zhichao Xu, Shengyao Zhuang, Crystina Zhang, Xueguang Ma, Yijun Tian, Maitrey Mehta, Jimmy Lin, Vivek Srikumar\n- **Venue:** arXiv preprint, January 2026\n- **URL:** https://arxiv.org/abs/2601.01684\n- **Why important:** Demonstrates that learned sparse retrieval can match dense retrieval effectiveness (60.2 nDCG on MTEB, rank 15) while running on commodity CPU hardware. Uses a two-phase curriculum: weakly-supervised pre-finetuning for bidirectional contextualization in causal LLMs, then high-signal finetuning with hard negatives.\n- **One-line summary:** A Llama-3-based family of learned sparse retrievers (1B/3B/8B) that achieves dense-level effectiveness on MTEB while requiring only CPU-based inverted index search, closing the sparse-dense effectiveness gap.\n\n---\n\n### 7. Learning Retrieval Models with Sparse Autoencoders (SPLARE)\n\n- **Title:** Learning Retrieval Models with Sparse Autoencoders\n- **Authors:** Thibault Formal, Maxime Louis, Herve Dejean, Stephane Clinchant\n- **Venue:** arXiv preprint, February 2026\n- **URL:** https://arxiv.org/abs/2603.13277\n- **Why important:** Proposes a fundamentally new approach to learned sparse retrieval: instead of projecting into vocabulary space (as SPLADE does), it uses sparse autoencoders to decompose LLM representations into interpretable latent features. The resulting representations are more language-agnostic and generalizable. SPLARE-7B achieves top results on MMTEB multilingual and English retrieval.\n- **One-line summary:** Sparse autoencoders replace vocabulary-space projection in learned sparse retrieval, producing language-agnostic latent features that outperform SPLADE-style methods in multilingual and out-of-domain settings.\n\n---\n\n### 8. DyVo: Dynamic Vocabularies for Learned Sparse Retrieval with Entities\n\n- **Title:** DyVo: Dynamic Vocabularies for Learned Sparse Retrieval with Entities\n- **Authors:** Thong Nguyen, Shubham Chatterjee, Sean MacAvaney, Iain Mackie, Jeff Dalton, Andrew Yates\n- **Venue:** EMNLP 2024 (Main Conference)\n- **URL:** https://arxiv.org/abs/2410.07722\n- **Why important:** Extends the vocabulary of learned sparse retrieval beyond word pieces to include Wikipedia entities and concepts, addressing the fragmentation problem in entity-rich queries. Uses a dynamic vocabulary head that merges entity weights with word-piece weights for joint representations in standard inverted indexes.\n- **One-line summary:** Enhances SPLADE-style learned sparse retrieval by dynamically incorporating Wikipedia entity embeddings into the retrieval vocabulary, substantially improving performance on entity-rich document ranking.\n\n---\n\n### 9. Contextualization with SPLADE for High Recall Retrieval\n\n- **Title:** Contextualization with SPLADE for High Recall Retrieval\n- **Authors:** Eugene Yang\n- **Venue:** arXiv preprint, May 2024\n- **URL:** https://arxiv.org/abs/2405.03972\n- **Why important:** Demonstrates the practical application of SPLADE's contextualized sparse vectors in high-recall retrieval tasks (eDiscovery, systematic reviews), reducing review costs by 10--18% at 80% recall. Shows that learned sparse representations can combine the interpretability of term-based models with LLM contextualization.\n- **One-line summary:** Applies SPLADE's contextualized sparse vectors to high-recall retrieval scenarios, achieving significant cost reductions in eDiscovery and systematic review workflows.\n\n---\n\n### 10. A Survey of Model Architectures in Information Retrieval (Reference Survey)\n\n- **Title:** A Survey of Model Architectures in Information Retrieval\n- **Authors:** Zhichao Xu, Fengran Mo, Zhiqi Huang, Crystina Zhang, Puxuan Yu, Bei Wang, Jimmy Lin, Vivek Srikumar\n- **Venue:** arXiv preprint, February 2025\n- **URL:** https://arxiv.org/abs/2502.14822\n- **Why important:** Comprehensive survey covering the architectural design space for sparse, dense, and hybrid retrieval models. Separates architecture from training methodology. Useful as a reference for understanding how unified sparse-dense models fit into the broader IR architecture landscape.\n- **One-line summary:** A comprehensive survey tracing the evolution from term-based to neural retrieval architectures, covering sparse, dense, multi-vector, and hybrid approaches with a focus on structural design choices.\n\n---\n\n### Key Themes Across These Papers\n\n1. **Unified single-model sparse+dense retrieval:** BGE M3 (paper 1) is the seminal work; SPLARE (paper 7) proposes a next-generation approach using sparse autoencoders rather than vocabulary projection.\n\n2. **Self-distillation between retrieval modalities:** BGE M3 (paper 1) and Song et al. (paper 3) both use relevance scores from one modality as teacher signals for another, enabling mutual enhancement within a single model.\n\n3. **SPLADE-style learned sparse retrieval at LLM scale:** Mistral-SPLADE (paper 4), CSPLADE (paper 5), and LACONIC (paper 6) all scale learned sparse retrieval to decoder-only LLMs (1B--8B), with LACONIC closing the gap to dense retrieval effectiveness.\n\n4. **Sparse vs. dense scaling laws:** Zeng et al. (paper 2) provides the first systematic study showing sparse retrieval scales more favorably than dense in decoder-only LLMs.\n\n5. **Beyond vocabulary-space sparsity:** DyVo (paper 8) extends to entity vocabularies; SPLARE (paper 7) moves to SAE-derived latent features -- both pushing the representational frontier of learned sparse retrieval.&lt;/result>\n&lt;usage>&lt;total_tokens>26795&lt;/total_tokens>&lt;tool_uses>28&lt;/tool_uses>&lt;duration_ms>142454&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-30T06:15:19.809Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T06:15:19.809Z",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+## Round 2
+
+7 recorded events
+
+### User
+
+_source line 36 · 2026-05-30T06:15:19.835Z_
+
+&lt;task-notification>
+&lt;task-id>a1e144d5b6032ec04&lt;/task-id>
+&lt;tool-use-id>toolu_017PkGacGKhDQ4spjSLUgpNm&lt;/tool-use-id>
+&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a1e144d5b6032ec04.output&lt;/output-file>
+&lt;status>completed&lt;/status>
+&lt;summary>Agent "Search: sparse-dense hybrid retrieval" completed&lt;/summary>
+&lt;result>I now have a comprehensive set of verified papers. Here is the final curated list.
+
+---
+
+## Literature Survey: Hybrid Sparse-Dense Retrieval in Unified Models and Learned Query Routing (2024--2026)
+
+### 1. BGE M3-Embedding (Flagship Unified Model)
+
+- **Title:** M3-Embedding: Multi-Linguality, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation
+- **Authors:** Jianlv Chen, Shitao Xiao, Peitian Zhang, Kun Luo, Defu Lian, Zheng Liu
+- **Venue:** arXiv preprint, February 2024 (BAAI); widely cited, deployed in production RAG systems
+- **URL:** https://arxiv.org/abs/2402.03216
+- **Why important:** The first model to unify dense, sparse (learned lexical), and multi-vector (ColBERT-style) retrieval in a single encoder. Introduces self-knowledge distillation where relevance scores from all three retrieval modes serve as a shared teacher signal. Supports 100+ languages and 8192-token inputs.
+- **One-line summary:** A single encoder produces dense, sparse, and multi-vector representations simultaneously, trained via cross-mode self-knowledge distillation to achieve SOTA on multilingual, cross-lingual, and long-document retrieval benchmarks.
+
+---
+
+### 2. Scaling Sparse and Dense Retrieval in Decoder-Only LLMs
+
+- **Title:** Scaling Sparse and Dense Retrieval in Decoder-Only LLMs
+- **Authors:** Hansi Zeng, Julian Killingback, Hamed Zamani
+- **Venue:** SIGIR 2025
+- **URL:** https://arxiv.org/abs/2502.15526
+- **Why important:** Systematic study of how sparse vs. dense retrieval scale in decoder-only LLMs (Llama-3 1B/3B/8B). Finds sparse retrieval consistently outperforms dense on in- and out-of-domain benchmarks and is more resilient to noisy training signals. Combining contrastive loss + knowledge distillation at 8B achieves SOTA.
+- **One-line summary:** Sparse retrieval scales better than dense in decoder-only LLMs, and combining contrastive learning with knowledge distillation at 8B scale yields the best results across all evaluation settings.
+
+---
+
+### 3. Sparse and Dense Retrievers Learn Better Together
+
+- **Title:** Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval
+- **Authors:** Jonghyun Song, Youngjune Lee, Gyu-Hwung Cho, Ilhyeon Song, Saehun Kim, Yohan Jo
+- **Venue:** CIKM 2025 (Short Track)
+- **URL:** https://arxiv.org/abs/2508.16707
+- **Why important:** Directly addresses self-distillation between sparse and dense modalities in a single model. Uses an integrated similarity score (weighted sum of dense and sparse similarities) as a shared teacher for bi-directional learning. Requires only fine-tuning the final dense layer and sparse projection head.
+- **One-line summary:** Bi-directional self-knowledge distillation between dense and sparse retrieval heads in a unified model yields sparse retrievers that match or surpass their dense counterparts on MSCOCO and Flickr30k.
+
+---
+
+### 4. Mistral-SPLADE: LLMs for Better Learned Sparse Retrieval
+
+- **Title:** Mistral-SPLADE: LLMs for better Learned Sparse Retrieval
+- **Authors:** Meet Doshi, Vishwajeet Kumar, Rudra Murthy, Vignesh P, Jaydeep Sen
+- **Venue:** arXiv preprint, August 2024
+- **URL:** https://arxiv.org/abs/2408.11119
+- **Why important:** Shows that decoder-only LLMs (Mistral) can serve as the backbone for SPLADE-style learned sparse retrieval and surpass all prior sparse retrievers. Validates the hypothesis that LLMs' richer pre-training produces superior term expansion for sparse representations.
+- **One-line summary:** Using Mistral as the backbone for a SPLADE-style learned sparse retriever (Echo-Mistral-SPLADE) achieves new SOTA on BEIR, demonstrating that LLM-scale models dramatically improve learned sparse retrieval.
+
+---
+
+### 5. CSPLADE: Learned Sparse Retrieval with Causal Language Models
+
+- **Title:** CSPLADE: Learned Sparse Retrieval with Causal Language Models
+- **Authors:** Zhichao Xu, Aosong Feng, Yijun Tian, Haibo Ding, Lin Lee Cheong
+- **Venue:** arXiv preprint, April 2025
+- **URL:** https://arxiv.org/abs/2504.10816
+- **Why important:** Addresses the fundamental challenge of training SPLADE-style sparse retrieval on decoder-only (causal) LLMs. Introduces a lightweight adaptation phase to stabilize contrastive training and model variants that enable bidirectional information flow. Scales learned sparse retrieval to 8B parameters.
+- **One-line summary:** Overcomes training instability and unidirectional attention limitations to successfully train SPLADE-style sparse retrievers on causal LLMs up to 8B scale with competitive retrieval and smaller indexes.
+
+---
+
+### 6. LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval
+
+- **Title:** LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval via a Two-Phase Training Curriculum
+- **Authors:** Zhichao Xu, Shengyao Zhuang, Crystina Zhang, Xueguang Ma, Yijun Tian, Maitrey Mehta, Jimmy Lin, Vivek Srikumar
+- **Venue:** arXiv preprint, January 2026
+- **URL:** https://arxiv.org/abs/2601.01684
+- **Why important:** Demonstrates that learned sparse retrieval can match dense retrieval effectiveness (60.2 nDCG on MTEB, rank 15) while running on commodity CPU hardware. Uses a two-phase curriculum: weakly-supervised pre-finetuning for bidirectional contextualization in causal LLMs, then high-signal finetuning with hard negatives.
+- **One-line summary:** A Llama-3-based family of learned sparse retrievers (1B/3B/8B) that achieves dense-level effectiveness on MTEB while requiring only CPU-based inverted index search, closing the sparse-dense effectiveness gap.
+
+---
+
+### 7. Learning Retrieval Models with Sparse Autoencoders (SPLARE)
+
+- **Title:** Learning Retrieval Models with Sparse Autoencoders
+- **Authors:** Thibault Formal, Maxime Louis, Herve Dejean, Stephane Clinchant
+- **Venue:** arXiv preprint, February 2026
+- **URL:** https://arxiv.org/abs/2603.13277
+- **Why important:** Proposes a fundamentally new approach to learned sparse retrieval: instead of projecting into vocabulary space (as SPLADE does), it uses sparse autoencoders to decompose LLM representations into interpretable latent features. The resulting representations are more language-agnostic and generalizable. SPLARE-7B achieves top results on MMTEB multilingual and English retrieval.
+- **One-line summary:** Sparse autoencoders replace vocabulary-space projection in learned sparse retrieval, producing language-agnostic latent features that outperform SPLADE-style methods in multilingual and out-of-domain settings.
+
+---
+
+### 8. DyVo: Dynamic Vocabularies for Learned Sparse Retrieval with Entities
+
+- **Title:** DyVo: Dynamic Vocabularies for Learned Sparse Retrieval with Entities
+- **Authors:** Thong Nguyen, Shubham Chatterjee, Sean MacAvaney, Iain Mackie, Jeff Dalton, Andrew Yates
+- **Venue:** EMNLP 2024 (Main Conference)
+- **URL:** https://arxiv.org/abs/2410.07722
+- **Why important:** Extends the vocabulary of learned sparse retrieval beyond word pieces to include Wikipedia entities and concepts, addressing the fragmentation problem in entity-rich queries. Uses a dynamic vocabulary head that merges entity weights with word-piece weights for joint representations in standard inverted indexes.
+- **One-line summary:** Enhances SPLADE-style learned sparse retrieval by dynamically incorporating Wikipedia entity embeddings into the retrieval vocabulary, substantially improving performance on entity-rich document ranking.
+
+---
+
+### 9. Contextualization with SPLADE for High Recall Retrieval
+
+- **Title:** Contextualization with SPLADE for High Recall Retrieval
+- **Authors:** Eugene Yang
+- **Venue:** arXiv preprint, May 2024
+- **URL:** https://arxiv.org/abs/2405.03972
+- **Why important:** Demonstrates the practical application of SPLADE's contextualized sparse vectors in high-recall retrieval tasks (eDiscovery, systematic reviews), reducing review costs by 10--18% at 80% recall. Shows that learned sparse representations can combine the interpretability of term-based models with LLM contextualization.
+- **One-line summary:** Applies SPLADE's contextualized sparse vectors to high-recall retrieval scenarios, achieving significant cost reductions in eDiscovery and systematic review workflows.
+
+---
+
+### 10. A Survey of Model Architectures in Information Retrieval (Reference Survey)
+
+- **Title:** A Survey of Model Architectures in Information Retrieval
+- **Authors:** Zhichao Xu, Fengran Mo, Zhiqi Huang, Crystina Zhang, Puxuan Yu, Bei Wang, Jimmy Lin, Vivek Srikumar
+- **Venue:** arXiv preprint, February 2025
+- **URL:** https://arxiv.org/abs/2502.14822
+- **Why important:** Comprehensive survey covering the architectural design space for sparse, dense, and hybrid retrieval models. Separates architecture from training methodology. Useful as a reference for understanding how unified sparse-dense models fit into the broader IR architecture landscape.
+- **One-line summary:** A comprehensive survey tracing the evolution from term-based to neural retrieval architectures, covering sparse, dense, multi-vector, and hybrid approaches with a focus on structural design choices.
+
+---
+
+### Key Themes Across These Papers
+
+1. **Unified single-model sparse+dense retrieval:** BGE M3 (paper 1) is the seminal work; SPLARE (paper 7) proposes a next-generation approach using sparse autoencoders rather than vocabulary projection.
+
+2. **Self-distillation between retrieval modalities:** BGE M3 (paper 1) and Song et al. (paper 3) both use relevance scores from one modality as teacher signals for another, enabling mutual enhancement within a single model.
+
+3. **SPLADE-style learned sparse retrieval at LLM scale:** Mistral-SPLADE (paper 4), CSPLADE (paper 5), and LACONIC (paper 6) all scale learned sparse retrieval to decoder-only LLMs (1B--8B), with LACONIC closing the gap to dense retrieval effectiveness.
+
+4. **Sparse vs. dense scaling laws:** Zeng et al. (paper 2) provides the first systematic study showing sparse retrieval scales more favorably than dense in decoder-only LLMs.
+
+5. **Beyond vocabulary-space sparsity:** DyVo (paper 8) extends to entity vocabularies; SPLARE (paper 7) moves to SAE-derived latent features -- both pushing the representational frontier of learned sparse retrieval.&lt;/result>
+&lt;usage>&lt;total_tokens>26795&lt;/total_tokens>&lt;tool_uses>28&lt;/tool_uses>&lt;duration_ms>142454&lt;/duration_ms>&lt;/usage>
+&lt;/task-notification>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "16d9c6c4-d94e-41d2-b295-7956f87cb487",
+  "isSidechain": false,
+  "promptId": "39943acf-6ac9-448d-923a-4378924062e7",
+  "type": "user",
+  "uuid": "cac441d4-ed28-41c0-965e-aa4c3c7324df",
+  "permissionMode": "default",
+  "origin": {
+    "kind": "task-notification"
+  },
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "cac441d4-ed28-41c0-965e-aa4c3c7324df",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey for dual sparse-dense decoder-only retrieval",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-30T06:15:22.260Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the sparse-dense hybrid retrieval agent has completed. Let me wait for the other agents to finish as well before compiling the final results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cac441d4-ed28-41c0-965e-aa4c3c7324df",
+  "isSidechain": false,
+  "requestId": "req_011CbYGCd9nqt58FGjs3NbKy",
+  "type": "assistant",
+  "uuid": "528fc7c9-a80f-4d5f-af0f-09c9f65f4933",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qs8KFKggACNXro5appLsBg",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3179,
+      "cache_read_input_tokens": 21708,
+      "output_tokens": 89,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3179,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 89,
+          "cache_read_input_tokens": 21708,
+          "cache_creation_input_tokens": 3179,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3179
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-30T06:15:22.957Z_
+
+The sparse-dense hybrid retrieval agent has completed with 10 strong papers found. Still waiting for the other 6 agents to finish. I'll compile everything once all results are in.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "528fc7c9-a80f-4d5f-af0f-09c9f65f4933",
+  "isSidechain": false,
+  "requestId": "req_011CbYGCd9nqt58FGjs3NbKy",
+  "type": "assistant",
+  "uuid": "ad266d61-1746-4fd2-939e-4ff59f1935f8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qs8KFKggACNXro5appLsBg",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3179,
+      "cache_read_input_tokens": 21708,
+      "output_tokens": 89,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3179,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 89,
+          "cache_read_input_tokens": 21708,
+          "cache_creation_input_tokens": 3179,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3179
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 41 · 2026-05-30T06:16:04.700Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T06:16:04.700Z",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "content": "&lt;task-notification>\n&lt;task-id>a17cf06e02d2052fb&lt;/task-id>\n&lt;tool-use-id>toolu_012xiomd53MVxm7FjPcVB3aL&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a17cf06e02d2052fb.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search: query routing retrieval\" completed&lt;/summary>\n&lt;result>Now I have a comprehensive set of verified papers. Here is the consolidated survey list:\n\n---\n\n## Literature Survey: Learned Query Routing for Information Retrieval &amp; Adaptive Retrieval Strategies (2024--2026)\n\n### 1. RouterRetriever: Routing over a Mixture of Expert Embedding Models\n\n- **Authors:** Hyunji Lee, Luca Soldaini, Arman Cohan, Minjoon Seo, Kyle Lo\n- **Venue:** AAAI 2025\n- **URL:** https://arxiv.org/abs/2409.02685\n- **Why important:** First work to demonstrate that routing queries across multiple domain-specific expert embedding models outperforms a single general-purpose embedding model for retrieval. Lightweight routing via pilot embeddings makes it easy to add/remove experts without retraining.\n- **One-line summary:** Trains domain-specific retrieval experts and a gate that routes each query to the best expert by comparing query embeddings to pilot embeddings, outperforming both MSMARCO-trained and multi-task models on BEIR by +2.1 and +3.2 nDCG@10 respectively.\n\n---\n\n### 2. MoR: Better Handling Diverse Queries with a Mixture of Sparse, Dense, and Human Retrievers\n\n- **Authors:** Jushaan Singh Kalra, Xinran Zhao, To Eun Kim, Fengyu Cai, Fernando Diaz, Tongshuang Wu\n- **Venue:** arXiv preprint, June 2025\n- **URL:** https://arxiv.org/abs/2506.15862\n- **Why important:** Directly addresses per-query adaptive weighting across heterogeneous retriever types (sparse, dense, human), using zero-shot weighted combination. Shows that small-parameter mixtures beat much larger single retrievers.\n- **One-line summary:** A zero-shot, query-level weighted mixture of BM25, dense, and human retrievers that outperforms every individual retriever and larger 7B models by +10.8% and +3.9% on average using only 0.8B parameters total.\n\n---\n\n### 3. LTRR: Learning To Rank Retrievers for LLMs\n\n- **Authors:** To Eun Kim, Fernando Diaz\n- **Venue:** arXiv preprint, June 2025\n- **URL:** https://arxiv.org/abs/2506.13743\n- **Why important:** Formalizes query routing as a learning-to-rank problem over retrievers, connecting it to classical federated/distributed search. Shows that pairwise ranking with XGBoost and answer-correctness objectives generalize well, including on out-of-distribution queries.\n- **One-line summary:** Frames retriever selection as a learning-to-rank problem (LTRR) where a model ranks multiple retrievers per query by predicted downstream RAG performance, outperforming single-retriever baselines especially with pairwise XGBoost trained on answer correctness.\n\n---\n\n### 4. DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation\n\n- **Authors:** Hsin-Ling Hsu, Jengnan Tzeng\n- **Venue:** arXiv preprint, March 2025\n- **URL:** https://arxiv.org/abs/2503.23013\n- **Why important:** Directly tackles the per-query interpolation weight problem for sparse-dense hybrid retrieval. Uses LLM-based effectiveness scoring to dynamically calibrate the alpha weight between BM25 and dense retrieval for each query.\n- **One-line summary:** Uses an LLM to evaluate top-1 results from BM25 and dense retrieval per query, normalizes effectiveness scores to dynamically set the sparse-dense interpolation weight, yielding +2--7.5 pp gains in Precision@1 and MRR@20 over fixed-weight hybrids.\n\n---\n\n### 5. Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity\n\n- **Authors:** Soyeong Jeong, Jinheon Baek, Sukmin Cho, Sung Ju Hwang, Jong C. Park\n- **Venue:** NAACL 2024\n- **URL:** https://arxiv.org/abs/2403.14403\n- **Why important:** Seminal work on routing queries to different retrieval strategies (no retrieval / single-step / iterative multi-step) based on learned query complexity. Demonstrates that a lightweight T5-based classifier can match always-expensive baselines at much lower cost.\n- **One-line summary:** Trains a T5-Large classifier on automatically derived complexity labels to route each query to no-retrieval, single-step, or iterative multi-step retrieval, matching expensive baselines at substantially lower cost.\n\n---\n\n### 6. RAGRouter: Learning to Route Queries to Multiple Retrieval-Augmented Language Models\n\n- **Authors:** Jiarui Zhang, Xiangyu Liu, Yong Hu, Chaoyue Niu, Fan Wu, Guihai Chen\n- **Venue:** arXiv preprint, May 2025\n- **URL:** https://arxiv.org/abs/2505.23052\n- **Why important:** Goes beyond static knowledge-based routing by incorporating document embeddings and contrastive learning to capture how retrieved documents dynamically affect LLM performance, enabling context-aware model selection.\n- **One-line summary:** Uses document embeddings and contrastive learning to route queries to the most suitable retrieval-augmented LLM by modeling how external documents dynamically shift model capabilities, outperforming static routing under latency constraints.\n\n---\n\n### 7. Unsupervised Query Routing for Retrieval Augmented Generation\n\n- **Authors:** Feiteng Mu, Liwen Zhang, Yong Jiang, Wenjie Li, Zhen Zhang, Pengjun Xie, Fei Huang\n- **Venue:** arXiv preprint, January 2025\n- **URL:** https://arxiv.org/abs/2501.07793\n- **Why important:** Addresses the annotation bottleneck in query routing by proposing an unsupervised method that constructs upper-bound responses to automatically assess retrieval quality and generate training data for routing, enabling scalable real-world deployment.\n- **One-line summary:** Constructs upper-bound responses to automatically evaluate retrieval quality per query and generate training data for routing without manual annotation, significantly improving scalability and out-of-distribution generalization across five datasets.\n\n---\n\n### 8. Lightweight Query Routing for Adaptive RAG: A Baseline Study on RAGRouter-Bench\n\n- **Authors:** Prakhar Bansal, Shivangi Agarwal\n- **Venue:** arXiv preprint, April 2026\n- **URL:** https://arxiv.org/abs/2604.03455\n- **Why important:** Establishes strong baselines for query routing using classical classifiers (TF-IDF + SVM achieves 93.2% accuracy). Surprisingly shows that lexical features outperform semantic embeddings for routing, providing a practical low-cost baseline.\n- **One-line summary:** Evaluates 15 classical classifier configurations for routing queries across RAG strategies on RAGRouter-Bench, finding TF-IDF + SVM achieves 93.2% accuracy with 28.1% token savings, and that lexical features beat semantic embeddings by 3.1 F1 points.\n\n---\n\n### 9. RAGRouter-Bench: A Dataset and Benchmark for Adaptive RAG Routing\n\n- **Authors:** Ziqi Wang, Xi Zhu, Shuhang Lin, Haochen Xue, Minghao Guo, Yongfeng Zhang\n- **Venue:** arXiv preprint, February 2026\n- **URL:** https://arxiv.org/abs/2602.00296\n- **Why important:** Provides the first dedicated benchmark for RAG routing research (7,727 queries, 4 domains, 3 query types). Establishes that no single RAG paradigm dominates and that query-corpus compatibility is the key factor, motivating adaptive routing.\n- **One-line summary:** Introduces a 7,727-query benchmark across four domains for evaluating RAG routing, demonstrating that no one-size-fits-all paradigm exists and that adaptive routing based on query-corpus compatibility outperforms fixed approaches.\n\n---\n\n### 10. QUAM: Adaptive Retrieval through Query Affinity Modelling\n\n- **Authors:** Mandeep Rathee, Sean MacAvaney, Avishek Anand\n- **Venue:** WSDM 2025\n- **URL:** https://arxiv.org/abs/2410.20286\n- **Why important:** Proposes a query-affinity model using relevance-aware document similarity graphs to adaptively improve recall, especially under low re-ranking budgets. Modular design allows injection into any adaptive retrieval pipeline.\n- **One-line summary:** Builds a relevance-aware document similarity graph for query-adaptive re-ranking that improves recall by up to 26% over standard baselines and by 12% when integrated into existing adaptive retrieval methods.\n\n---\n\n### 11. MIXRAG: Mixture-of-Experts Retrieval-Augmented Generation for Textual Graph Understanding and Question Answering\n\n- **Authors:** Lihui Liu, Jiayuan Ding, Subhabrata Mukherjee, Carl J. Yang\n- **Venue:** arXiv preprint, September 2025 (arXiv: 2509.21391)\n- **URL:** https://arxiv.org/abs/2509.21391\n- **Why important:** Applies MoE routing to graph-based retrieval, training multiple specialized graph retrievers (entity, relation, topology) with a dynamic routing controller that adaptively selects and combines retrievers per query.\n- **One-line summary:** A Mixture-of-Experts Graph-RAG framework with multiple specialized graph retrievers (entity, relation, topology) and a dynamic routing controller that selects and combines the most relevant retrievers per query, achieving state-of-the-art across multiple graph QA benchmarks.\n\n---\n\n### 12. Towards Dynamic Dense Retrieval with Routing Strategy\n\n- **Authors:** Zhan Su, Fengran Mo, Jinghan Zhang, Yuchen Hui, Jia Ao Sun, Bingbing Wen, Jian-Yun Nie\n- **Venue:** arXiv preprint, February 2026\n- **URL:** https://arxiv.org/abs/2602.22547\n- **Why important:** Proposes \"dynamic dense retrieval\" (DDR) using prefix-tuned domain modules composed via routing, enabling flexible domain adaptation with only 2% of standard training parameters. Demonstrates that compositional routing of lightweight modules can match full fine-tuning.\n- **One-line summary:** Uses prefix tuning as domain-specific modules combined through dynamic routing to achieve flexible domain adaptation for dense retrieval, matching traditional fine-tuning performance with only 2% of the parameters across six zero-shot tasks.\n\n---\n\n### 13. Mixture-of-Retrieval Experts for Reasoning-Guided Multimodal Knowledge Exploitation\n\n- **Authors:** Chunyi Peng, Zhipeng Xu, Zhenghao Liu, Yishan Li, Yukun Yan, Shuo Wang, Yu Gu, Minghe Yu, Ge Yu, Maosong Sun\n- **Venue:** arXiv preprint, May 2025\n- **URL:** https://arxiv.org/abs/2505.22095\n- **Why important:** Extends MoE retrieval routing to the multimodal setting, where diverse retrieval experts are dynamically coordinated based on evolving reasoning states, trained via stepwise group relative policy optimization.\n- **One-line summary:** Proposes MoRE (Mixture-of-Retrieval Experts) for multimodal LLMs that dynamically selects among diverse retrieval experts based on evolving reasoning states, trained with stepwise group relative policy optimization, achieving 7%+ gains over baselines.\n\n---\n\n### 14. CluSD: LSTM-based Selective Dense Text Retrieval Guided by Sparse Lexical Retrieval\n\n- **Authors:** Yingrui Yang, Parker Carlson, Yifan Qiao, Wentai Xie, Shanxiu He, Tao Yang\n- **Venue:** arXiv preprint, February 2025\n- **URL:** https://arxiv.org/abs/2502.10639\n- **Why important:** Addresses the efficiency side of query-adaptive retrieval by using sparse retrieval signals to selectively trigger dense retrieval only when needed, via LSTM-based cluster selection.\n- **One-line summary:** Uses sparse lexical retrieval scores and an LSTM model to selectively trigger cluster-based dense retrieval only for queries/clusters where it is likely to help, reducing computation while maintaining effectiveness on MS MARCO and BEIR.\n\n---\n\n### Summary of Key Themes\n\nThe papers cluster into several complementary research directions:\n\n1. **Expert retriever routing** (RouterRetriever, MoR, LTRR): Learning which specialized retriever to use per query.\n2. **Per-query sparse-dense weighting** (DAT): Dynamically setting the interpolation weight between BM25 and dense retrieval.\n3. **RAG complexity routing** (Adaptive-RAG, RAGRouter, Unsupervised Query Routing): Choosing retrieval depth/strategy based on query complexity.\n4. **Benchmarks and baselines** (RAGRouter-Bench, Lightweight Query Routing): Infrastructure for evaluating routing approaches.\n5. **MoE-style retrieval** (MIXRAG, MoRE, DDR): Mixture-of-experts architectures applied directly to retrieval components.\n6. **Adaptive re-ranking and selective retrieval** (QUAM, CluSD): Query-adaptive decisions about when and how aggressively to retrieve/re-rank.&lt;/result>\n&lt;usage>&lt;total_tokens>28980&lt;/total_tokens>&lt;tool_uses>34&lt;/tool_uses>&lt;duration_ms>182823&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42 · 2026-05-30T06:16:04.786Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T06:16:04.786Z",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+## Round 3
+
+7 recorded events
+
+### User
+
+_source line 43 · 2026-05-30T06:16:04.807Z_
+
+&lt;task-notification>
+&lt;task-id>a17cf06e02d2052fb&lt;/task-id>
+&lt;tool-use-id>toolu_012xiomd53MVxm7FjPcVB3aL&lt;/tool-use-id>
+&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a17cf06e02d2052fb.output&lt;/output-file>
+&lt;status>completed&lt;/status>
+&lt;summary>Agent "Search: query routing retrieval" completed&lt;/summary>
+&lt;result>Now I have a comprehensive set of verified papers. Here is the consolidated survey list:
+
+---
+
+## Literature Survey: Learned Query Routing for Information Retrieval &amp; Adaptive Retrieval Strategies (2024--2026)
+
+### 1. RouterRetriever: Routing over a Mixture of Expert Embedding Models
+
+- **Authors:** Hyunji Lee, Luca Soldaini, Arman Cohan, Minjoon Seo, Kyle Lo
+- **Venue:** AAAI 2025
+- **URL:** https://arxiv.org/abs/2409.02685
+- **Why important:** First work to demonstrate that routing queries across multiple domain-specific expert embedding models outperforms a single general-purpose embedding model for retrieval. Lightweight routing via pilot embeddings makes it easy to add/remove experts without retraining.
+- **One-line summary:** Trains domain-specific retrieval experts and a gate that routes each query to the best expert by comparing query embeddings to pilot embeddings, outperforming both MSMARCO-trained and multi-task models on BEIR by +2.1 and +3.2 nDCG@10 respectively.
+
+---
+
+### 2. MoR: Better Handling Diverse Queries with a Mixture of Sparse, Dense, and Human Retrievers
+
+- **Authors:** Jushaan Singh Kalra, Xinran Zhao, To Eun Kim, Fengyu Cai, Fernando Diaz, Tongshuang Wu
+- **Venue:** arXiv preprint, June 2025
+- **URL:** https://arxiv.org/abs/2506.15862
+- **Why important:** Directly addresses per-query adaptive weighting across heterogeneous retriever types (sparse, dense, human), using zero-shot weighted combination. Shows that small-parameter mixtures beat much larger single retrievers.
+- **One-line summary:** A zero-shot, query-level weighted mixture of BM25, dense, and human retrievers that outperforms every individual retriever and larger 7B models by +10.8% and +3.9% on average using only 0.8B parameters total.
+
+---
+
+### 3. LTRR: Learning To Rank Retrievers for LLMs
+
+- **Authors:** To Eun Kim, Fernando Diaz
+- **Venue:** arXiv preprint, June 2025
+- **URL:** https://arxiv.org/abs/2506.13743
+- **Why important:** Formalizes query routing as a learning-to-rank problem over retrievers, connecting it to classical federated/distributed search. Shows that pairwise ranking with XGBoost and answer-correctness objectives generalize well, including on out-of-distribution queries.
+- **One-line summary:** Frames retriever selection as a learning-to-rank problem (LTRR) where a model ranks multiple retrievers per query by predicted downstream RAG performance, outperforming single-retriever baselines especially with pairwise XGBoost trained on answer correctness.
+
+---
+
+### 4. DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation
+
+- **Authors:** Hsin-Ling Hsu, Jengnan Tzeng
+- **Venue:** arXiv preprint, March 2025
+- **URL:** https://arxiv.org/abs/2503.23013
+- **Why important:** Directly tackles the per-query interpolation weight problem for sparse-dense hybrid retrieval. Uses LLM-based effectiveness scoring to dynamically calibrate the alpha weight between BM25 and dense retrieval for each query.
+- **One-line summary:** Uses an LLM to evaluate top-1 results from BM25 and dense retrieval per query, normalizes effectiveness scores to dynamically set the sparse-dense interpolation weight, yielding +2--7.5 pp gains in Precision@1 and MRR@20 over fixed-weight hybrids.
+
+---
+
+### 5. Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity
+
+- **Authors:** Soyeong Jeong, Jinheon Baek, Sukmin Cho, Sung Ju Hwang, Jong C. Park
+- **Venue:** NAACL 2024
+- **URL:** https://arxiv.org/abs/2403.14403
+- **Why important:** Seminal work on routing queries to different retrieval strategies (no retrieval / single-step / iterative multi-step) based on learned query complexity. Demonstrates that a lightweight T5-based classifier can match always-expensive baselines at much lower cost.
+- **One-line summary:** Trains a T5-Large classifier on automatically derived complexity labels to route each query to no-retrieval, single-step, or iterative multi-step retrieval, matching expensive baselines at substantially lower cost.
+
+---
+
+### 6. RAGRouter: Learning to Route Queries to Multiple Retrieval-Augmented Language Models
+
+- **Authors:** Jiarui Zhang, Xiangyu Liu, Yong Hu, Chaoyue Niu, Fan Wu, Guihai Chen
+- **Venue:** arXiv preprint, May 2025
+- **URL:** https://arxiv.org/abs/2505.23052
+- **Why important:** Goes beyond static knowledge-based routing by incorporating document embeddings and contrastive learning to capture how retrieved documents dynamically affect LLM performance, enabling context-aware model selection.
+- **One-line summary:** Uses document embeddings and contrastive learning to route queries to the most suitable retrieval-augmented LLM by modeling how external documents dynamically shift model capabilities, outperforming static routing under latency constraints.
+
+---
+
+### 7. Unsupervised Query Routing for Retrieval Augmented Generation
+
+- **Authors:** Feiteng Mu, Liwen Zhang, Yong Jiang, Wenjie Li, Zhen Zhang, Pengjun Xie, Fei Huang
+- **Venue:** arXiv preprint, January 2025
+- **URL:** https://arxiv.org/abs/2501.07793
+- **Why important:** Addresses the annotation bottleneck in query routing by proposing an unsupervised method that constructs upper-bound responses to automatically assess retrieval quality and generate training data for routing, enabling scalable real-world deployment.
+- **One-line summary:** Constructs upper-bound responses to automatically evaluate retrieval quality per query and generate training data for routing without manual annotation, significantly improving scalability and out-of-distribution generalization across five datasets.
+
+---
+
+### 8. Lightweight Query Routing for Adaptive RAG: A Baseline Study on RAGRouter-Bench
+
+- **Authors:** Prakhar Bansal, Shivangi Agarwal
+- **Venue:** arXiv preprint, April 2026
+- **URL:** https://arxiv.org/abs/2604.03455
+- **Why important:** Establishes strong baselines for query routing using classical classifiers (TF-IDF + SVM achieves 93.2% accuracy). Surprisingly shows that lexical features outperform semantic embeddings for routing, providing a practical low-cost baseline.
+- **One-line summary:** Evaluates 15 classical classifier configurations for routing queries across RAG strategies on RAGRouter-Bench, finding TF-IDF + SVM achieves 93.2% accuracy with 28.1% token savings, and that lexical features beat semantic embeddings by 3.1 F1 points.
+
+---
+
+### 9. RAGRouter-Bench: A Dataset and Benchmark for Adaptive RAG Routing
+
+- **Authors:** Ziqi Wang, Xi Zhu, Shuhang Lin, Haochen Xue, Minghao Guo, Yongfeng Zhang
+- **Venue:** arXiv preprint, February 2026
+- **URL:** https://arxiv.org/abs/2602.00296
+- **Why important:** Provides the first dedicated benchmark for RAG routing research (7,727 queries, 4 domains, 3 query types). Establishes that no single RAG paradigm dominates and that query-corpus compatibility is the key factor, motivating adaptive routing.
+- **One-line summary:** Introduces a 7,727-query benchmark across four domains for evaluating RAG routing, demonstrating that no one-size-fits-all paradigm exists and that adaptive routing based on query-corpus compatibility outperforms fixed approaches.
+
+---
+
+### 10. QUAM: Adaptive Retrieval through Query Affinity Modelling
+
+- **Authors:** Mandeep Rathee, Sean MacAvaney, Avishek Anand
+- **Venue:** WSDM 2025
+- **URL:** https://arxiv.org/abs/2410.20286
+- **Why important:** Proposes a query-affinity model using relevance-aware document similarity graphs to adaptively improve recall, especially under low re-ranking budgets. Modular design allows injection into any adaptive retrieval pipeline.
+- **One-line summary:** Builds a relevance-aware document similarity graph for query-adaptive re-ranking that improves recall by up to 26% over standard baselines and by 12% when integrated into existing adaptive retrieval methods.
+
+---
+
+### 11. MIXRAG: Mixture-of-Experts Retrieval-Augmented Generation for Textual Graph Understanding and Question Answering
+
+- **Authors:** Lihui Liu, Jiayuan Ding, Subhabrata Mukherjee, Carl J. Yang
+- **Venue:** arXiv preprint, September 2025 (arXiv: 2509.21391)
+- **URL:** https://arxiv.org/abs/2509.21391
+- **Why important:** Applies MoE routing to graph-based retrieval, training multiple specialized graph retrievers (entity, relation, topology) with a dynamic routing controller that adaptively selects and combines retrievers per query.
+- **One-line summary:** A Mixture-of-Experts Graph-RAG framework with multiple specialized graph retrievers (entity, relation, topology) and a dynamic routing controller that selects and combines the most relevant retrievers per query, achieving state-of-the-art across multiple graph QA benchmarks.
+
+---
+
+### 12. Towards Dynamic Dense Retrieval with Routing Strategy
+
+- **Authors:** Zhan Su, Fengran Mo, Jinghan Zhang, Yuchen Hui, Jia Ao Sun, Bingbing Wen, Jian-Yun Nie
+- **Venue:** arXiv preprint, February 2026
+- **URL:** https://arxiv.org/abs/2602.22547
+- **Why important:** Proposes "dynamic dense retrieval" (DDR) using prefix-tuned domain modules composed via routing, enabling flexible domain adaptation with only 2% of standard training parameters. Demonstrates that compositional routing of lightweight modules can match full fine-tuning.
+- **One-line summary:** Uses prefix tuning as domain-specific modules combined through dynamic routing to achieve flexible domain adaptation for dense retrieval, matching traditional fine-tuning performance with only 2% of the parameters across six zero-shot tasks.
+
+---
+
+### 13. Mixture-of-Retrieval Experts for Reasoning-Guided Multimodal Knowledge Exploitation
+
+- **Authors:** Chunyi Peng, Zhipeng Xu, Zhenghao Liu, Yishan Li, Yukun Yan, Shuo Wang, Yu Gu, Minghe Yu, Ge Yu, Maosong Sun
+- **Venue:** arXiv preprint, May 2025
+- **URL:** https://arxiv.org/abs/2505.22095
+- **Why important:** Extends MoE retrieval routing to the multimodal setting, where diverse retrieval experts are dynamically coordinated based on evolving reasoning states, trained via stepwise group relative policy optimization.
+- **One-line summary:** Proposes MoRE (Mixture-of-Retrieval Experts) for multimodal LLMs that dynamically selects among diverse retrieval experts based on evolving reasoning states, trained with stepwise group relative policy optimization, achieving 7%+ gains over baselines.
+
+---
+
+### 14. CluSD: LSTM-based Selective Dense Text Retrieval Guided by Sparse Lexical Retrieval
+
+- **Authors:** Yingrui Yang, Parker Carlson, Yifan Qiao, Wentai Xie, Shanxiu He, Tao Yang
+- **Venue:** arXiv preprint, February 2025
+- **URL:** https://arxiv.org/abs/2502.10639
+- **Why important:** Addresses the efficiency side of query-adaptive retrieval by using sparse retrieval signals to selectively trigger dense retrieval only when needed, via LSTM-based cluster selection.
+- **One-line summary:** Uses sparse lexical retrieval scores and an LSTM model to selectively trigger cluster-based dense retrieval only for queries/clusters where it is likely to help, reducing computation while maintaining effectiveness on MS MARCO and BEIR.
+
+---
+
+### Summary of Key Themes
+
+The papers cluster into several complementary research directions:
+
+1. **Expert retriever routing** (RouterRetriever, MoR, LTRR): Learning which specialized retriever to use per query.
+2. **Per-query sparse-dense weighting** (DAT): Dynamically setting the interpolation weight between BM25 and dense retrieval.
+3. **RAG complexity routing** (Adaptive-RAG, RAGRouter, Unsupervised Query Routing): Choosing retrieval depth/strategy based on query complexity.
+4. **Benchmarks and baselines** (RAGRouter-Bench, Lightweight Query Routing): Infrastructure for evaluating routing approaches.
+5. **MoE-style retrieval** (MIXRAG, MoRE, DDR): Mixture-of-experts architectures applied directly to retrieval components.
+6. **Adaptive re-ranking and selective retrieval** (QUAM, CluSD): Query-adaptive decisions about when and how aggressively to retrieve/re-rank.&lt;/result>
+&lt;usage>&lt;total_tokens>28980&lt;/total_tokens>&lt;tool_uses>34&lt;/tool_uses>&lt;duration_ms>182823&lt;/duration_ms>&lt;/usage>
+&lt;/task-notification>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad266d61-1746-4fd2-939e-4ff59f1935f8",
+  "isSidechain": false,
+  "promptId": "64c7308b-a498-401d-b680-83b3c2184a65",
+  "type": "user",
+  "uuid": "b50c0e3a-b6b4-4b19-9f55-6ecdb88ee18b",
+  "permissionMode": "default",
+  "origin": {
+    "kind": "task-notification"
+  },
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-30T06:16:07.625Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the query routing agent has completed with 14 papers. Still waiting for the other agents. Let me continue waiting.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b50c0e3a-b6b4-4b19-9f55-6ecdb88ee18b",
+  "isSidechain": false,
+  "requestId": "req_011CbYGFwVS1UgAS7wW3YgvT",
+  "type": "assistant",
+  "uuid": "91a14200-27be-4273-8fb2-102885939071",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011vveTuKAGWouvdHqqPkfWN",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3635,
+      "cache_read_input_tokens": 24887,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3635,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 24887,
+          "cache_creation_input_tokens": 3635,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3635
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-30T06:16:08.801Z_
+
+Two agents complete now. The query routing agent found 14 papers including RouterRetriever, MoR, DAT, Adaptive-RAG, and several MoE retrieval approaches. Waiting for the remaining 5 agents...
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "91a14200-27be-4273-8fb2-102885939071",
+  "isSidechain": false,
+  "requestId": "req_011CbYGFwVS1UgAS7wW3YgvT",
+  "type": "assistant",
+  "uuid": "49569ecf-745f-4cb3-acfe-8efc1018c207",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011vveTuKAGWouvdHqqPkfWN",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3635,
+      "cache_read_input_tokens": 24887,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3635,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 24887,
+          "cache_creation_input_tokens": 3635,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3635
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46 · 2026-05-30T06:16:16.876Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T06:16:16.876Z",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "content": "&lt;task-notification>\n&lt;task-id>a268c9d40c0439e0b&lt;/task-id>\n&lt;tool-use-id>toolu_016Vu6bXfakQkAaPGH168VnB&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a268c9d40c0439e0b.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search: GTE NV-embed E5 models\" completed&lt;/summary>\n&lt;result>I now have all the information I need. Let me compile the comprehensive results.\n\nHere is the curated list of papers on decoder-only LLM-based text embedding models (2024-2026), verified via their arXiv abstracts:\n\n---\n\n## 1. Improving Text Embeddings with Large Language Models (E5-Mistral)\n\n- **Title:** Improving Text Embeddings with Large Language Models\n- **Authors:** Liang Wang, Nan Yang, Xiaolong Huang, Linjun Yang, Rangan Majumder, Furu Wei (Microsoft)\n- **Venue:** ACL 2024\n- **URL:** https://arxiv.org/abs/2401.00368\n- **Why important:** Foundational paper showing that decoder-only LLMs (Mistral-7B) can be fine-tuned into state-of-the-art embedding models using only synthetic data generated by proprietary LLMs. Set the template that many subsequent works (SFR-Embedding, Linq-Embed, NV-Embed) followed. Achieved SOTA on BEIR and MTEB at time of release.\n- **One-line summary:** Fine-tunes Mistral-7B on LLM-generated synthetic data across 93 languages and hundreds of thousands of tasks using contrastive loss, achieving new SOTA on MTEB and BEIR with minimal training steps.\n\n---\n\n## 2. NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models\n\n- **Title:** NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models\n- **Authors:** Chankyu Lee, Rajarshi Roy, Mengyao Xu, Jonathan Raiman, Mohammad Shoeybi, Bryan Catanzaro, Wei Ping (NVIDIA)\n- **Venue:** ICLR 2025 (Spotlight)\n- **URL:** https://arxiv.org/abs/2405.17428\n- **Why important:** Introduces a novel latent attention pooling mechanism for decoder-only LLMs (Mistral-7B backbone), removes causal attention masking during contrastive training, and uses a two-stage contrastive instruction-tuning pipeline. NV-Embed-v1 scored 69.32 on MTEB (56 tasks) ranking #1 in May 2024; NV-Embed-v2 scored 72.31 reclaiming #1 in August 2024.\n- **One-line summary:** Proposes latent attention pooling and two-stage contrastive instruction-tuning on Mistral-7B, achieving the top MTEB score with architectural innovations that outperform mean pooling and last-token approaches.\n\n---\n\n## 3. LLM2Vec: Large Language Models Are Secretly Powerful Text Encoders\n\n- **Title:** LLM2Vec: Large Language Models Are Secretly Powerful Text Encoders\n- **Authors:** Parishad BehnamGhader, Vaibhav Adlakha, Marius Mosbach, Dzmitry Bahdanau, Nicolas Chapados, Siva Reddy\n- **Venue:** COLM 2024 (Conference on Language Modeling)\n- **URL:** https://arxiv.org/abs/2404.05961\n- **Why important:** Provides a principled, general-purpose method to convert any decoder-only LLM into a bidirectional text encoder through three simple steps (bidirectional attention, masked next token prediction, unsupervised contrastive learning). Tested on LLMs from 1.3B to 8B parameters. Achieves unsupervised SOTA on MTEB and is parameter-efficient, requiring no expensive synthetic data.\n- **One-line summary:** Transforms decoder-only LLMs (Llama-2, Mistral, etc.) into powerful bidirectional text encoders via enabling bidirectional attention, masked next-token prediction, and unsupervised contrastive learning, reaching SOTA on MTEB without synthetic data.\n\n---\n\n## 4. Gecko: Versatile Text Embeddings Distilled from Large Language Models\n\n- **Title:** Gecko: Versatile Text Embeddings Distilled from Large Language Models\n- **Authors:** Jinhyuk Lee, Zhuyun Dai, Xiaoqi Ren, Blair Chen, Daniel Cer, Jeremy R. Cole, Kai Hui, Michael Boratko, Rajvi Kapadia, Wen Ding, Yi Luan, Sai Meher Karthik Duddu, Gustavo Hernandez Abrego, Weiqiang Shi, Nithi Gupta, Aditya Kusupati, Prateek Jain, Siddhartha Reddy Jonnalagadda, Ming-Wei Chang, Iftekhar Naim (Google)\n- **Venue:** arXiv preprint, March 2024\n- **URL:** https://arxiv.org/abs/2403.20327\n- **Why important:** Demonstrates that a compact embedding model can match or beat 7x larger models by distilling knowledge from LLMs through a two-step process: synthetic data generation and LLM-based relabeling of positives/hard negatives. Gecko with 256 dimensions outperforms all models with 768 dimensions on MTEB, showing the power of LLM-driven data curation for smaller models.\n- **One-line summary:** Distills LLM knowledge into a compact embedding model using synthetic paired data generation and LLM-based passage relabeling, achieving MTEB performance competitive with 7x larger models at just 256 embedding dimensions.\n\n---\n\n## 5. Towards General Text Embeddings with Multi-stage Contrastive Learning (GTE)\n\n- **Title:** Towards General Text Embeddings with Multi-stage Contrastive Learning\n- **Authors:** Zehan Li, Xin Zhang, Yanzhao Zhang, Dingkun Long, Pengjun Xie, Meishan Zhang (Alibaba DAMO Academy)\n- **Venue:** arXiv preprint, August 2023 (foundational paper; LLM-based GTE-Qwen2 variants released 2024)\n- **URL:** https://arxiv.org/abs/2308.03281\n- **Why important:** The foundational GTE paper from Alibaba that introduced multi-stage contrastive learning for universal text embeddings. The GTE approach was subsequently scaled to decoder-only LLM backbones with gte-Qwen2-1.5B-instruct and gte-Qwen2-7B-instruct (2024), which ranked #1 on MTEB for both English and Chinese as of June 2024. While the base paper uses a BERT-scale encoder, the training paradigm directly enabled the LLM-backbone variants.\n- **One-line summary:** Introduces multi-stage contrastive learning for general text embeddings, with the 110M-parameter GTE-base outperforming OpenAI's embedding API; the training methodology was later scaled to Qwen2 LLM backbones achieving MTEB #1.\n\n---\n\n## 6. Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models\n\n- **Title:** Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models\n- **Authors:** Yanzhao Zhang, Mingxin Li, Dingkun Long, Xin Zhang, Huan Lin, Baosong Yang, Pengjun Xie, An Yang, Dayiheng Liu, Junyang Lin, Fei Huang, Jingren Zhou (Alibaba/Qwen Team)\n- **Venue:** arXiv preprint, June 2025\n- **URL:** https://arxiv.org/abs/2506.05176\n- **Why important:** The latest and most comprehensive LLM-backbone embedding model from the Qwen team. Available in 0.6B, 4B, and 8B sizes built on Qwen3 foundation models. Uses multi-stage training (unsupervised pre-training + supervised fine-tuning) with model merging techniques. The 8B model ranked #1 on the MTEB multilingual leaderboard as of June 2025. Supports ~100 languages and includes reranking capabilities.\n- **One-line summary:** Builds text embedding and reranking models on Qwen3 LLM backbones (0.6B-8B) with multi-stage training and model merging, achieving #1 on MTEB multilingual leaderboard across embedding, retrieval, and reranking tasks.\n\n---\n\n## 7. Nomic Embed: Training a Reproducible Long Context Text Embedder\n\n- **Title:** Nomic Embed: Training a Reproducible Long Context Text Embedder\n- **Authors:** Zach Nussbaum, John X. Morris, Brandon Duderstadt, Andriy Mulyar (Nomic AI)\n- **Venue:** TMLR (Transactions on Machine Learning Research)\n- **URL:** https://arxiv.org/abs/2402.01613\n- **Why important:** The first fully reproducible, open-source, open-weights, open-data 8192-context-length English text embedding model, surpassing OpenAI Ada-002 and text-embedding-3-small. All training code, weights, and data are released under Apache 2.0. While the v1 model uses a BERT-scale encoder (137M params), its fully open nature makes it a critical reference point. The approach was subsequently extended to Nomic Embed v2 with MoE architecture.\n- **One-line summary:** Trains a fully open-source, reproducible 137M-parameter text embedder with 8192-token context, beating OpenAI Ada-002 with all code, weights, and training data released under Apache 2.0.\n\n---\n\n## 8. Training Sparse Mixture of Experts Text Embedding Models (Nomic Embed v2)\n\n- **Title:** Training Sparse Mixture Of Experts Text Embedding Models\n- **Authors:** Zach Nussbaum, Brandon Duderstadt (Nomic AI)\n- **Venue:** arXiv preprint, February 2025\n- **URL:** https://arxiv.org/abs/2502.07972\n- **Why important:** First general-purpose MoE text embedding model. Uses alternating MoE layers with 8 experts and top-2 routing (475M total params, 305M active). Supports ~100 languages and Matryoshka dimensionality (768 to 256). Outperforms similarly sized and larger models on both English and multilingual retrieval benchmarks. Open-source training pipeline released.\n- **One-line summary:** Introduces the first Mixture-of-Experts text embedding model with 475M total / 305M active parameters, achieving competitive multilingual retrieval performance with substantially better compute efficiency than dense models of similar quality.\n\n---\n\n## 9. Linq-Embed-Mistral\n\n- **Title:** Linq-Embed-Mistral Technical Report\n- **Authors:** Chanyeol Choi, Junseong Kim, Seolhwa Lee, Jihoon Kwon, Sangmo Gu, Yejin Kim, Minkyung Cho, Jy-yong Sohn\n- **Venue:** arXiv technical report, December 2024\n- **URL:** https://arxiv.org/abs/2412.03223\n- **Why important:** Builds on E5-Mistral and Mistral-7B-v0.1 with sophisticated data filtering, negative mining, and task ordering strategies. Achieved 68.2 average on MTEB (56 datasets) and ranked #1 for retrieval tasks specifically (score 60.2). Demonstrates how careful data curation on top of an existing LLM-backbone embedding model can yield further substantial gains.\n- **One-line summary:** Refines E5-Mistral via advanced data crafting, filtering, and negative mining to achieve 68.2 average on MTEB and the #1 retrieval score of 60.2 among all models on the leaderboard.\n\n---\n\n## 10. SFR-Embedding-Mistral\n\n- **Title:** SFR-Embedding-Mistral: Enhance Text Retrieval with Transfer Learning (blog post / technical report)\n- **Authors:** Rui Meng, Ye Liu, Shafiq Rayhan Joty, Caiming Xiong, Yingbo Zhou, Semih Yavuz (Salesforce AI Research)\n- **Venue:** Salesforce AI Research Blog, February 2024 (no formal arXiv paper found; model on HuggingFace)\n- **URL:** https://www.salesforce.com/blog/sfr-embedding/ and https://huggingface.co/Salesforce/SFR-Embedding-Mistral\n- **Why important:** Built on E5-Mistral-7B-instruct and Mistral-7B-v0.1, this was the first model to claim #1 on the full MTEB leaderboard (average 67.6 across 56 datasets) in February 2024, surpassing all proprietary models including OpenAI and Cohere. Improved retrieval from 56.9 to 59.0 through multi-task transfer learning across retrieval, clustering, classification, and STS tasks.\n- **One-line summary:** Fine-tunes E5-Mistral with multi-task transfer learning across diverse task types, achieving 67.6 average on MTEB and a retrieval jump from 56.9 to 59.0, claiming #1 overall in February 2024.\n\n---\n\n## Summary of Landscape\n\nThe decoder-only LLM embedding space evolved rapidly in 2024-2025:\n\n1. **E5-Mistral** (ACL 2024) established the paradigm: fine-tune a decoder-only LLM on synthetic contrastive data.\n2. **SFR-Embedding** and **Linq-Embed-Mistral** showed that better data curation and multi-task training on the same Mistral backbone yields large gains.\n3. **NV-Embed** (ICLR 2025 Spotlight) contributed key architectural innovations (latent attention pooling, removing causal masking) and held the MTEB #1 spot.\n4. **LLM2Vec** (COLM 2024) provided a general, unsupervised method to convert any decoder-only LLM into an encoder without synthetic data.\n5. **GTE-Qwen2/Qwen3 Embedding** scaled the multi-stage contrastive approach to Qwen LLM backbones, dominating multilingual benchmarks.\n6. **Gecko** (Google) demonstrated LLM knowledge distillation into compact models.\n7. **Nomic Embed v1/v2** prioritized full reproducibility and open-source, with v2 pioneering MoE architectures for embeddings.\n\nThe backbone of choice progressed from Mistral-7B (early 2024) to Qwen2/Qwen3 and Llama-family models (late 2024-2025), with model sizes ranging from 137M (Nomic) to 8B (Qwen3 Embedding).&lt;/result>\n&lt;usage>&lt;total_tokens>29411&lt;/total_tokens>&lt;tool_uses>28&lt;/tool_uses>&lt;duration_ms>179355&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47 · 2026-05-30T06:16:16.914Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T06:16:16.914Z",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "49569ecf-745f-4cb3-acfe-8efc1018c207",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey for dual sparse-dense decoder-only retrieval",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+## Round 4
+
+5 recorded events
+
+### User
+
+_source line 50 · 2026-05-30T06:16:16.923Z_
+
+&lt;task-notification>
+&lt;task-id>a268c9d40c0439e0b&lt;/task-id>
+&lt;tool-use-id>toolu_016Vu6bXfakQkAaPGH168VnB&lt;/tool-use-id>
+&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a268c9d40c0439e0b.output&lt;/output-file>
+&lt;status>completed&lt;/status>
+&lt;summary>Agent "Search: GTE NV-embed E5 models" completed&lt;/summary>
+&lt;result>I now have all the information I need. Let me compile the comprehensive results.
+
+Here is the curated list of papers on decoder-only LLM-based text embedding models (2024-2026), verified via their arXiv abstracts:
+
+---
+
+## 1. Improving Text Embeddings with Large Language Models (E5-Mistral)
+
+- **Title:** Improving Text Embeddings with Large Language Models
+- **Authors:** Liang Wang, Nan Yang, Xiaolong Huang, Linjun Yang, Rangan Majumder, Furu Wei (Microsoft)
+- **Venue:** ACL 2024
+- **URL:** https://arxiv.org/abs/2401.00368
+- **Why important:** Foundational paper showing that decoder-only LLMs (Mistral-7B) can be fine-tuned into state-of-the-art embedding models using only synthetic data generated by proprietary LLMs. Set the template that many subsequent works (SFR-Embedding, Linq-Embed, NV-Embed) followed. Achieved SOTA on BEIR and MTEB at time of release.
+- **One-line summary:** Fine-tunes Mistral-7B on LLM-generated synthetic data across 93 languages and hundreds of thousands of tasks using contrastive loss, achieving new SOTA on MTEB and BEIR with minimal training steps.
+
+---
+
+## 2. NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models
+
+- **Title:** NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models
+- **Authors:** Chankyu Lee, Rajarshi Roy, Mengyao Xu, Jonathan Raiman, Mohammad Shoeybi, Bryan Catanzaro, Wei Ping (NVIDIA)
+- **Venue:** ICLR 2025 (Spotlight)
+- **URL:** https://arxiv.org/abs/2405.17428
+- **Why important:** Introduces a novel latent attention pooling mechanism for decoder-only LLMs (Mistral-7B backbone), removes causal attention masking during contrastive training, and uses a two-stage contrastive instruction-tuning pipeline. NV-Embed-v1 scored 69.32 on MTEB (56 tasks) ranking #1 in May 2024; NV-Embed-v2 scored 72.31 reclaiming #1 in August 2024.
+- **One-line summary:** Proposes latent attention pooling and two-stage contrastive instruction-tuning on Mistral-7B, achieving the top MTEB score with architectural innovations that outperform mean pooling and last-token approaches.
+
+---
+
+## 3. LLM2Vec: Large Language Models Are Secretly Powerful Text Encoders
+
+- **Title:** LLM2Vec: Large Language Models Are Secretly Powerful Text Encoders
+- **Authors:** Parishad BehnamGhader, Vaibhav Adlakha, Marius Mosbach, Dzmitry Bahdanau, Nicolas Chapados, Siva Reddy
+- **Venue:** COLM 2024 (Conference on Language Modeling)
+- **URL:** https://arxiv.org/abs/2404.05961
+- **Why important:** Provides a principled, general-purpose method to convert any decoder-only LLM into a bidirectional text encoder through three simple steps (bidirectional attention, masked next token prediction, unsupervised contrastive learning). Tested on LLMs from 1.3B to 8B parameters. Achieves unsupervised SOTA on MTEB and is parameter-efficient, requiring no expensive synthetic data.
+- **One-line summary:** Transforms decoder-only LLMs (Llama-2, Mistral, etc.) into powerful bidirectional text encoders via enabling bidirectional attention, masked next-token prediction, and unsupervised contrastive learning, reaching SOTA on MTEB without synthetic data.
+
+---
+
+## 4. Gecko: Versatile Text Embeddings Distilled from Large Language Models
+
+- **Title:** Gecko: Versatile Text Embeddings Distilled from Large Language Models
+- **Authors:** Jinhyuk Lee, Zhuyun Dai, Xiaoqi Ren, Blair Chen, Daniel Cer, Jeremy R. Cole, Kai Hui, Michael Boratko, Rajvi Kapadia, Wen Ding, Yi Luan, Sai Meher Karthik Duddu, Gustavo Hernandez Abrego, Weiqiang Shi, Nithi Gupta, Aditya Kusupati, Prateek Jain, Siddhartha Reddy Jonnalagadda, Ming-Wei Chang, Iftekhar Naim (Google)
+- **Venue:** arXiv preprint, March 2024
+- **URL:** https://arxiv.org/abs/2403.20327
+- **Why important:** Demonstrates that a compact embedding model can match or beat 7x larger models by distilling knowledge from LLMs through a two-step process: synthetic data generation and LLM-based relabeling of positives/hard negatives. Gecko with 256 dimensions outperforms all models with 768 dimensions on MTEB, showing the power of LLM-driven data curation for smaller models.
+- **One-line summary:** Distills LLM knowledge into a compact embedding model using synthetic paired data generation and LLM-based passage relabeling, achieving MTEB performance competitive with 7x larger models at just 256 embedding dimensions.
+
+---
+
+## 5. Towards General Text Embeddings with Multi-stage Contrastive Learning (GTE)
+
+- **Title:** Towards General Text Embeddings with Multi-stage Contrastive Learning
+- **Authors:** Zehan Li, Xin Zhang, Yanzhao Zhang, Dingkun Long, Pengjun Xie, Meishan Zhang (Alibaba DAMO Academy)
+- **Venue:** arXiv preprint, August 2023 (foundational paper; LLM-based GTE-Qwen2 variants released 2024)
+- **URL:** https://arxiv.org/abs/2308.03281
+- **Why important:** The foundational GTE paper from Alibaba that introduced multi-stage contrastive learning for universal text embeddings. The GTE approach was subsequently scaled to decoder-only LLM backbones with gte-Qwen2-1.5B-instruct and gte-Qwen2-7B-instruct (2024), which ranked #1 on MTEB for both English and Chinese as of June 2024. While the base paper uses a BERT-scale encoder, the training paradigm directly enabled the LLM-backbone variants.
+- **One-line summary:** Introduces multi-stage contrastive learning for general text embeddings, with the 110M-parameter GTE-base outperforming OpenAI's embedding API; the training methodology was later scaled to Qwen2 LLM backbones achieving MTEB #1.
+
+---
+
+## 6. Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models
+
+- **Title:** Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models
+- **Authors:** Yanzhao Zhang, Mingxin Li, Dingkun Long, Xin Zhang, Huan Lin, Baosong Yang, Pengjun Xie, An Yang, Dayiheng Liu, Junyang Lin, Fei Huang, Jingren Zhou (Alibaba/Qwen Team)
+- **Venue:** arXiv preprint, June 2025
+- **URL:** https://arxiv.org/abs/2506.05176
+- **Why important:** The latest and most comprehensive LLM-backbone embedding model from the Qwen team. Available in 0.6B, 4B, and 8B sizes built on Qwen3 foundation models. Uses multi-stage training (unsupervised pre-training + supervised fine-tuning) with model merging techniques. The 8B model ranked #1 on the MTEB multilingual leaderboard as of June 2025. Supports ~100 languages and includes reranking capabilities.
+- **One-line summary:** Builds text embedding and reranking models on Qwen3 LLM backbones (0.6B-8B) with multi-stage training and model merging, achieving #1 on MTEB multilingual leaderboard across embedding, retrieval, and reranking tasks.
+
+---
+
+## 7. Nomic Embed: Training a Reproducible Long Context Text Embedder
+
+- **Title:** Nomic Embed: Training a Reproducible Long Context Text Embedder
+- **Authors:** Zach Nussbaum, John X. Morris, Brandon Duderstadt, Andriy Mulyar (Nomic AI)
+- **Venue:** TMLR (Transactions on Machine Learning Research)
+- **URL:** https://arxiv.org/abs/2402.01613
+- **Why important:** The first fully reproducible, open-source, open-weights, open-data 8192-context-length English text embedding model, surpassing OpenAI Ada-002 and text-embedding-3-small. All training code, weights, and data are released under Apache 2.0. While the v1 model uses a BERT-scale encoder (137M params), its fully open nature makes it a critical reference point. The approach was subsequently extended to Nomic Embed v2 with MoE architecture.
+- **One-line summary:** Trains a fully open-source, reproducible 137M-parameter text embedder with 8192-token context, beating OpenAI Ada-002 with all code, weights, and training data released under Apache 2.0.
+
+---
+
+## 8. Training Sparse Mixture of Experts Text Embedding Models (Nomic Embed v2)
+
+- **Title:** Training Sparse Mixture Of Experts Text Embedding Models
+- **Authors:** Zach Nussbaum, Brandon Duderstadt (Nomic AI)
+- **Venue:** arXiv preprint, February 2025
+- **URL:** https://arxiv.org/abs/2502.07972
+- **Why important:** First general-purpose MoE text embedding model. Uses alternating MoE layers with 8 experts and top-2 routing (475M total params, 305M active). Supports ~100 languages and Matryoshka dimensionality (768 to 256). Outperforms similarly sized and larger models on both English and multilingual retrieval benchmarks. Open-source training pipeline released.
+- **One-line summary:** Introduces the first Mixture-of-Experts text embedding model with 475M total / 305M active parameters, achieving competitive multilingual retrieval performance with substantially better compute efficiency than dense models of similar quality.
+
+---
+
+## 9. Linq-Embed-Mistral
+
+- **Title:** Linq-Embed-Mistral Technical Report
+- **Authors:** Chanyeol Choi, Junseong Kim, Seolhwa Lee, Jihoon Kwon, Sangmo Gu, Yejin Kim, Minkyung Cho, Jy-yong Sohn
+- **Venue:** arXiv technical report, December 2024
+- **URL:** https://arxiv.org/abs/2412.03223
+- **Why important:** Builds on E5-Mistral and Mistral-7B-v0.1 with sophisticated data filtering, negative mining, and task ordering strategies. Achieved 68.2 average on MTEB (56 datasets) and ranked #1 for retrieval tasks specifically (score 60.2). Demonstrates how careful data curation on top of an existing LLM-backbone embedding model can yield further substantial gains.
+- **One-line summary:** Refines E5-Mistral via advanced data crafting, filtering, and negative mining to achieve 68.2 average on MTEB and the #1 retrieval score of 60.2 among all models on the leaderboard.
+
+---
+
+## 10. SFR-Embedding-Mistral
+
+- **Title:** SFR-Embedding-Mistral: Enhance Text Retrieval with Transfer Learning (blog post / technical report)
+- **Authors:** Rui Meng, Ye Liu, Shafiq Rayhan Joty, Caiming Xiong, Yingbo Zhou, Semih Yavuz (Salesforce AI Research)
+- **Venue:** Salesforce AI Research Blog, February 2024 (no formal arXiv paper found; model on HuggingFace)
+- **URL:** https://www.salesforce.com/blog/sfr-embedding/ and https://huggingface.co/Salesforce/SFR-Embedding-Mistral
+- **Why important:** Built on E5-Mistral-7B-instruct and Mistral-7B-v0.1, this was the first model to claim #1 on the full MTEB leaderboard (average 67.6 across 56 datasets) in February 2024, surpassing all proprietary models including OpenAI and Cohere. Improved retrieval from 56.9 to 59.0 through multi-task transfer learning across retrieval, clustering, classification, and STS tasks.
+- **One-line summary:** Fine-tunes E5-Mistral with multi-task transfer learning across diverse task types, achieving 67.6 average on MTEB and a retrieval jump from 56.9 to 59.0, claiming #1 overall in February 2024.
+
+---
+
+## Summary of Landscape
+
+The decoder-only LLM embedding space evolved rapidly in 2024-2025:
+
+1. **E5-Mistral** (ACL 2024) established the paradigm: fine-tune a decoder-only LLM on synthetic contrastive data.
+2. **SFR-Embedding** and **Linq-Embed-Mistral** showed that better data curation and multi-task training on the same Mistral backbone yields large gains.
+3. **NV-Embed** (ICLR 2025 Spotlight) contributed key architectural innovations (latent attention pooling, removing causal masking) and held the MTEB #1 spot.
+4. **LLM2Vec** (COLM 2024) provided a general, unsupervised method to convert any decoder-only LLM into an encoder without synthetic data.
+5. **GTE-Qwen2/Qwen3 Embedding** scaled the multi-stage contrastive approach to Qwen LLM backbones, dominating multilingual benchmarks.
+6. **Gecko** (Google) demonstrated LLM knowledge distillation into compact models.
+7. **Nomic Embed v1/v2** prioritized full reproducibility and open-source, with v2 pioneering MoE architectures for embeddings.
+
+The backbone of choice progressed from Mistral-7B (early 2024) to Qwen2/Qwen3 and Llama-family models (late 2024-2025), with model sizes ranging from 137M (Nomic) to 8B (Qwen3 Embedding).&lt;/result>
+&lt;usage>&lt;total_tokens>29411&lt;/total_tokens>&lt;tool_uses>28&lt;/tool_uses>&lt;duration_ms>179355&lt;/duration_ms>&lt;/usage>
+&lt;/task-notification>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "49569ecf-745f-4cb3-acfe-8efc1018c207",
+  "isSidechain": false,
+  "promptId": "a8c679e0-9661-4c77-8f7e-e337ac50cd8e",
+  "type": "user",
+  "uuid": "89cdf3f5-d10c-4165-84ce-5cfeecf3715c",
+  "permissionMode": "default",
+  "origin": {
+    "kind": "task-notification"
+  },
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 51 · 2026-05-30T06:16:17.734Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T06:16:17.734Z",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "content": "&lt;task-notification>\n&lt;task-id>a4f16cc0338ff62b3&lt;/task-id>\n&lt;tool-use-id>toolu_01RjneP3PqpZPB73iyZZQNp8&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a4f16cc0338ff62b3.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search: decoder-only LLM retrieval\" completed&lt;/summary>\n&lt;result>Now I have comprehensive data. Let me compile the final results. Here is the literature survey:\n\n---\n\n## Literature Survey: Decoder-Only LLMs for Information Retrieval (Dense and Sparse Representations)\n\nBelow are the papers found (2023-2026), ordered roughly by relevance to your core question of training decoder-only LLMs for both sparse (SPLADE-style) and dense retrieval from a single model.\n\n---\n\n### 1. Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (Lion)\n\n- **Authors:** Hansi Zeng, Julian Killingback, Hamed Zamani\n- **Venue:** SIGIR 2025\n- **URL:** https://arxiv.org/abs/2502.15526\n- **One-line summary:** Systematic comparison of sparse vs. dense retrieval paradigms across Llama-3 scales (1B/3B/8B), finding sparse retrieval consistently outperforms dense, with the combined contrastive+distillation Lion-SP-8B achieving SOTA.\n- **Why important:** This is the most directly relevant paper -- it explicitly trains decoder-only LLMs for *both* sparse and dense retrieval, compares them head-to-head, and proposes Lion-SP (sparse) and Lion-DS (dense) models using Llama-3. It replaces the causal mask with a bidirectional mask and incorporates masked next-token prediction for the sparse head. Key finding: sparse retrieval from a decoder-only LLM is more robust on out-of-domain benchmarks than dense.\n\n---\n\n### 2. CSplade: Learned Sparse Retrieval with Causal Language Models\n\n- **Authors:** Zhichao Xu, Aosong Feng, Yijun Tian, Haibo Ding, Lin Lee Cheong\n- **Venue:** arXiv preprint (April 2025, revised Nov 2025)\n- **URL:** https://arxiv.org/abs/2504.10816\n- **One-line summary:** Addresses training instability (dying ReLU) and unidirectional attention limitations when scaling SPLADE-style sparse retrieval to 8B decoder-only LLMs, introducing an adaptation phase and bidirectional variants.\n- **Why important:** Directly tackles the engineering challenges of making SPLADE work with large decoder-only models. Provides the first analysis of performance-efficiency tradeoffs through model quantization for sparse retrieval with LLMs.\n\n---\n\n### 3. Mistral-SPLADE: LLMs for Better Learned Sparse Retrieval\n\n- **Authors:** Meet Doshi, Vishwajeet Kumar, Rudra Murthy, Vignesh P, Jaydeep Sen\n- **Venue:** arXiv preprint (August 2024)\n- **URL:** https://arxiv.org/abs/2408.11119\n- **One-line summary:** Uses Mistral-7B as a backbone for SPLADE-style sparse retrieval (Echo-Mistral-SPLADE), achieving SOTA on BEIR by leveraging the LLM's superior capacity for semantic keyword expansion.\n- **Why important:** First major work demonstrating that a decoder-only LLM (Mistral-7B) can be repurposed as a learned sparse retriever, outperforming all encoder-only SPLADE variants on zero-shot benchmarks.\n\n---\n\n### 4. PromptReps: Prompting LLMs to Generate Dense and Sparse Representations for Zero-Shot Document Retrieval\n\n- **Authors:** Shengyao Zhuang, Xueguang Ma, Bevan Koopman, Jimmy Lin, Guido Zuccon\n- **Venue:** arXiv preprint (April 2024, revised Oct 2024)\n- **URL:** https://arxiv.org/abs/2404.18424\n- **One-line summary:** A training-free method that prompts LLMs to produce *both* dense (hidden state) and sparse (token logit) representations for retrieval, competitive with trained embeddings on MSMARCO, TREC, and BEIR.\n- **Why important:** Directly addresses generating both sparse and dense representations from a single decoder-only LLM without any fine-tuning, using prompt engineering alone. Demonstrates that hidden states provide dense vectors while token prediction logits naturally yield sparse vectors.\n\n---\n\n### 5. LLM2Vec: Large Language Models Are Secretly Powerful Text Encoders\n\n- **Authors:** Parishad BehnamGhader, Vaibhav Adlakha, Marius Mosbach, Dzmitry Bahdanau, Nicolas Chapados, Siva Reddy\n- **Venue:** arXiv preprint (April 2024, revised Aug 2024)\n- **URL:** https://arxiv.org/abs/2404.05961\n- **One-line summary:** Unsupervised 3-step recipe (bidirectional attention, masked next-token prediction, contrastive learning) converting decoder-only LLMs (1.3B-8B) into SOTA text encoders on MTEB.\n- **Why important:** Foundational method for converting decoder-only LLMs into dense retrievers. The bidirectional attention + masked next-token prediction recipe is reused by subsequent sparse retrieval work (e.g., Lion). Demonstrated that parameter-efficient adaptation suffices without expensive synthetic data.\n\n---\n\n### 6. Generative Representational Instruction Tuning (GritLM)\n\n- **Authors:** Niklas Muennighoff, Hongjin Su, Liang Wang, Nan Yang, Furu Wei, Tao Yu, Amanpreet Singh, Douwe Kiela\n- **Venue:** arXiv preprint (Feb 2024, revised Mar 2025)\n- **URL:** https://arxiv.org/abs/2402.09906\n- **One-line summary:** Unifies text generation and embedding in a single decoder-only model via instruction-based task distinction, achieving SOTA on MTEB while matching generative quality, and speeding up RAG by &gt;60%.\n- **Why important:** Shows that a single decoder-only model can serve both as a generative LLM and a dense retriever with no performance loss on either task. GritLM 7B and 8x7B are key baselines for unified generation+retrieval.\n\n---\n\n### 7. Improving Text Embeddings with Large Language Models (E5-Mistral)\n\n- **Authors:** Liang Wang, Nan Yang, Xiaolong Huang, Linjun Yang, Rangan Majumder, Furu Wei\n- **Venue:** ACL 2024\n- **URL:** https://arxiv.org/abs/2401.00368\n- **One-line summary:** Fine-tunes Mistral-7B for dense embeddings using purely synthetic data generated by GPT-4 across 93 languages, achieving SOTA on BEIR and MTEB with &lt;1k training steps.\n- **Why important:** Demonstrated that decoder-only LLMs need only minimal contrastive fine-tuning with synthetic data to become excellent dense retrievers. E5-Mistral is a widely-used baseline and starting point for subsequent work (SFR-Embedding, NV-Embed).\n\n---\n\n### 8. NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models\n\n- **Authors:** Chankyu Lee, Rajarshi Roy, Mengyao Xu, Jonathan Raiman, Mohammad Shoeybi, Bryan Catanzaro, Wei Ping\n- **Venue:** ICLR 2025\n- **URL:** https://arxiv.org/abs/2405.17428\n- **One-line summary:** Introduces latent attention pooling and causal-mask removal during contrastive training, plus a two-stage retrieval/non-retrieval pipeline, achieving #1 on MTEB as of mid-2024.\n- **Why important:** Key technical insight that removing the causal attention mask during contrastive training of decoder-only LLMs yields solid improvements. The latent attention layer for pooling outperforms mean pooling. Published at ICLR 2025, establishing important training recipe details.\n\n---\n\n### 9. Causal2Vec: Improving Decoder-only LLMs as Embedding Models through a Contextual Token\n\n- **Authors:** Ailiang Lin, Zhuoyun Li, Yusong Wang, Kotaro Funakoshi, Manabu Okumura\n- **Venue:** arXiv preprint (July 2025)\n- **URL:** https://arxiv.org/abs/2507.23386\n- **One-line summary:** Introduces a lightweight \"Contextual token\" prepended to decoder-only LLM inputs that enables contextualized embeddings while preserving causal attention, reducing sequence length by up to 85% and inference time by 82%.\n- **Why important:** Unlike LLM2Vec/NV-Embed which modify attention masks, Causal2Vec preserves the causal structure and achieves SOTA on MTEB among models trained on public retrieval data only. Offers a fundamentally different architectural approach.\n\n---\n\n### 10. Fine-Tuning LLaMA for Multi-Stage Text Retrieval (RepLLaMA / RankLLaMA)\n\n- **Authors:** Xueguang Ma, Liang Wang, Nan Yang, Furu Wei, Jimmy Lin\n- **Venue:** SIGIR 2024\n- **URL:** https://arxiv.org/abs/2310.08319\n- **One-line summary:** Fine-tunes LLaMA as both a dense retriever (RepLLaMA) and a pointwise reranker (RankLLaMA), showing LLMs surpass smaller models and handle full documents without segmentation.\n- **Why important:** Early and influential work demonstrating that decoder-only LLaMA can be directly fine-tuned as a dense retriever. RepLLaMA is a key baseline cited by nearly all subsequent work (Lion, CSplade, etc.).\n\n---\n\n### 11. Llama2Vec: Unsupervised Adaptation of Large Language Models for Dense Retrieval\n\n- **Authors:** Zheng Liu, Chaofan Li, Shitao Xiao, Yingxia Shao, Defu Lian\n- **Venue:** ACL 2024\n- **URL:** https://arxiv.org/abs/2312.15503\n- **One-line summary:** Adapts LLaMA-2-7B for dense retrieval via two unsupervised pretext tasks (EBAE and EBAR) that shift embeddings from local to global semantic representations, achieving SOTA on MSMARCO and BEIR.\n- **Why important:** Complementary to LLM2Vec -- provides a different unsupervised adaptation approach for converting decoder-only LLMs into dense retrievers, focusing on auto-encoding and auto-regression pretext tasks over Wikipedia.\n\n---\n\n### 12. Training LLMs to be Better Text Embedders through Bidirectional Reconstruction\n\n- **Authors:** Chang Su, Dengliang Shi, Siyuan Huang, Jintao Du, Changhua Meng, Yu Cheng, Weiqiang Wang, Zhouhan Lin\n- **Venue:** EMNLP 2025 (Main Conference)\n- **URL:** https://arxiv.org/abs/2509.03020\n- **One-line summary:** Adds a bidirectional generative reconstruction stage before contrastive learning to enrich the [EOS] token embedding with richer semantics, achieving SOTA on MTEB across different LLM scales.\n- **Why important:** Addresses a fundamental limitation of decoder-only embeddings: the final token lacks intentional semantic training. The EBQ2D/EBD2Q reconstruction tasks directly improve retrieval and ranking quality. Accepted at EMNLP 2025.\n\n---\n\n### 13. Repurposing Language Models into Embedding Models: Finding the Compute-Optimal Recipe\n\n- **Authors:** Alicja Ziarko, Albert Q. Jiang, Bartosz Piotrowski, Wenda Li, Mateja Jamnik, Piotr Milos\n- **Venue:** NeurIPS 2024\n- **URL:** https://arxiv.org/abs/2406.04165\n- **One-line summary:** Develops an algorithm to find compute-optimal configurations (model size, data quantity, LoRA vs. full fine-tuning) for contrastively training decoder-only LLMs as embedding models.\n- **Why important:** Provides practical scaling laws for the field: full fine-tuning wins at lower budgets, LoRA at higher budgets. Essential guidance for practitioners deciding how to invest compute when building retrieval models from decoder-only LLMs.\n\n---\n\n### 14. Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models\n\n- **Authors:** Yanzhao Zhang, Mingxin Li, Dingkun Long, Xin Zhang, Huan Lin, Baosong Yang, Pengjun Xie, An Yang, Dayiheng Liu, Junyang Lin, Fei Huang, Jingren Zhou\n- **Venue:** arXiv preprint (June 2025)\n- **URL:** https://arxiv.org/abs/2506.05176\n- **One-line summary:** Family of decoder-only embedding and reranking models (0.6B/4B/8B) built on Qwen3 with unsupervised pre-training + supervised fine-tuning + model merging, achieving #1 on MTEB multilingual leaderboard.\n- **Why important:** Represents the current industry SOTA for decoder-only dense retrieval. Offers multiple model sizes making it practically deployable. Released under Apache 2.0.\n\n---\n\n### 15. F2LLM-v2: Inclusive, Performant, and Efficient Embeddings for a Multilingual World\n\n- **Authors:** Ziyin Zhang, Zihan Liao, Hang Yu, Peng Di, Rui Wang\n- **Venue:** arXiv preprint (March 2026)\n- **URL:** https://arxiv.org/abs/2603.19223\n- **One-line summary:** Multilingual embedding model family (80M-14B) supporting 200+ languages, using a two-stage LLM-based training pipeline with matryoshka learning, pruning, and distillation.\n- **Why important:** Pushes decoder-only embeddings to extreme scale (14B) and breadth (200+ languages), with practical efficiency via matryoshka dimensionality reduction and model pruning.\n\n---\n\n### 16. On the Robustness of LLM-Based Dense Retrievers\n\n- **Authors:** Yongkang Li, Panagiotis Eustratiadis, Yixing Fan, Evangelos Kanoulas\n- **Venue:** arXiv preprint (April 2026)\n- **URL:** https://arxiv.org/abs/2604.16576\n- **One-line summary:** First systematic robustness study of LLM-based dense retrievers, finding they are more robust to typos and corpus poisoning than encoder-only models, but vulnerable to synonym substitution.\n- **Why important:** Critical evaluation paper: if you build a retriever from a decoder-only LLM, this paper characterizes what failure modes to expect. Shows that model scaling improves robustness.\n\n---\n\n### Summary of Key Themes\n\n**Most directly relevant to \"single decoder-only model producing both sparse and dense representations\":**\n- **Lion (Zeng et al., SIGIR 2025)** -- the clearest example of training a single Llama-3 architecture for both Lion-SP (sparse) and Lion-DS (dense)\n- **PromptReps (Zhuang et al., 2024)** -- training-free method extracting both representations from a single LLM\n- **CSplade (Xu et al., 2025)** -- solving the engineering challenges of SPLADE at decoder-only LLM scale\n- **Mistral-SPLADE (Doshi et al., 2024)** -- first successful SPLADE with a 7B decoder-only model\n\n**Foundational adaptation techniques (decoder-only to embedder):**\n- LLM2Vec, Llama2Vec, NV-Embed, Causal2Vec, Bidirectional Reconstruction (EMNLP 2025)\n\n**Scaling and practical guidance:**\n- Compute-optimal recipe (NeurIPS 2024), Qwen3-Embedding, F2LLM-v2&lt;/result>\n&lt;usage>&lt;total_tokens>30179&lt;/total_tokens>&lt;tool_uses>34&lt;/tool_uses>&lt;duration_ms>204400&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-30T06:16:19.348Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Three agents done now. The GTE/NV-embed agent found 10 papers covering the LLM embedding model landscape. Still waiting for 4 more agents.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89cdf3f5-d10c-4165-84ce-5cfeecf3715c",
+  "isSidechain": false,
+  "requestId": "req_011CbYGGqDBys3RjnquPuKFq",
+  "type": "assistant",
+  "uuid": "78c88640-ca34-490e-aade-41ad8ab2ca2f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KDE95bmNttkcCfzsBSFYJo",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3987,
+      "cache_read_input_tokens": 28522,
+      "output_tokens": 112,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3987,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 112,
+          "cache_read_input_tokens": 28522,
+          "cache_creation_input_tokens": 3987,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3987
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-30T06:16:20.354Z_
+
+Three agents complete. The LLM embedding models agent found 10 papers including E5-Mistral, NV-Embed, LLM2Vec, GTE/Qwen3, and Gecko. Still waiting for 4 more agents...
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78c88640-ca34-490e-aade-41ad8ab2ca2f",
+  "isSidechain": false,
+  "requestId": "req_011CbYGGqDBys3RjnquPuKFq",
+  "type": "assistant",
+  "uuid": "884e2394-ba61-4cb7-a8b4-f4ca1ece4ae7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KDE95bmNttkcCfzsBSFYJo",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3987,
+      "cache_read_input_tokens": 28522,
+      "output_tokens": 112,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3987,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 112,
+          "cache_read_input_tokens": 28522,
+          "cache_creation_input_tokens": 3987,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3987
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54 · 2026-05-30T06:16:20.425Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T06:16:20.425Z",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+## Round 5
+
+7 recorded events
+
+### User
+
+_source line 55 · 2026-05-30T06:16:20.429Z_
+
+&lt;task-notification>
+&lt;task-id>a4f16cc0338ff62b3&lt;/task-id>
+&lt;tool-use-id>toolu_01RjneP3PqpZPB73iyZZQNp8&lt;/tool-use-id>
+&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a4f16cc0338ff62b3.output&lt;/output-file>
+&lt;status>completed&lt;/status>
+&lt;summary>Agent "Search: decoder-only LLM retrieval" completed&lt;/summary>
+&lt;result>Now I have comprehensive data. Let me compile the final results. Here is the literature survey:
+
+---
+
+## Literature Survey: Decoder-Only LLMs for Information Retrieval (Dense and Sparse Representations)
+
+Below are the papers found (2023-2026), ordered roughly by relevance to your core question of training decoder-only LLMs for both sparse (SPLADE-style) and dense retrieval from a single model.
+
+---
+
+### 1. Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (Lion)
+
+- **Authors:** Hansi Zeng, Julian Killingback, Hamed Zamani
+- **Venue:** SIGIR 2025
+- **URL:** https://arxiv.org/abs/2502.15526
+- **One-line summary:** Systematic comparison of sparse vs. dense retrieval paradigms across Llama-3 scales (1B/3B/8B), finding sparse retrieval consistently outperforms dense, with the combined contrastive+distillation Lion-SP-8B achieving SOTA.
+- **Why important:** This is the most directly relevant paper -- it explicitly trains decoder-only LLMs for *both* sparse and dense retrieval, compares them head-to-head, and proposes Lion-SP (sparse) and Lion-DS (dense) models using Llama-3. It replaces the causal mask with a bidirectional mask and incorporates masked next-token prediction for the sparse head. Key finding: sparse retrieval from a decoder-only LLM is more robust on out-of-domain benchmarks than dense.
+
+---
+
+### 2. CSplade: Learned Sparse Retrieval with Causal Language Models
+
+- **Authors:** Zhichao Xu, Aosong Feng, Yijun Tian, Haibo Ding, Lin Lee Cheong
+- **Venue:** arXiv preprint (April 2025, revised Nov 2025)
+- **URL:** https://arxiv.org/abs/2504.10816
+- **One-line summary:** Addresses training instability (dying ReLU) and unidirectional attention limitations when scaling SPLADE-style sparse retrieval to 8B decoder-only LLMs, introducing an adaptation phase and bidirectional variants.
+- **Why important:** Directly tackles the engineering challenges of making SPLADE work with large decoder-only models. Provides the first analysis of performance-efficiency tradeoffs through model quantization for sparse retrieval with LLMs.
+
+---
+
+### 3. Mistral-SPLADE: LLMs for Better Learned Sparse Retrieval
+
+- **Authors:** Meet Doshi, Vishwajeet Kumar, Rudra Murthy, Vignesh P, Jaydeep Sen
+- **Venue:** arXiv preprint (August 2024)
+- **URL:** https://arxiv.org/abs/2408.11119
+- **One-line summary:** Uses Mistral-7B as a backbone for SPLADE-style sparse retrieval (Echo-Mistral-SPLADE), achieving SOTA on BEIR by leveraging the LLM's superior capacity for semantic keyword expansion.
+- **Why important:** First major work demonstrating that a decoder-only LLM (Mistral-7B) can be repurposed as a learned sparse retriever, outperforming all encoder-only SPLADE variants on zero-shot benchmarks.
+
+---
+
+### 4. PromptReps: Prompting LLMs to Generate Dense and Sparse Representations for Zero-Shot Document Retrieval
+
+- **Authors:** Shengyao Zhuang, Xueguang Ma, Bevan Koopman, Jimmy Lin, Guido Zuccon
+- **Venue:** arXiv preprint (April 2024, revised Oct 2024)
+- **URL:** https://arxiv.org/abs/2404.18424
+- **One-line summary:** A training-free method that prompts LLMs to produce *both* dense (hidden state) and sparse (token logit) representations for retrieval, competitive with trained embeddings on MSMARCO, TREC, and BEIR.
+- **Why important:** Directly addresses generating both sparse and dense representations from a single decoder-only LLM without any fine-tuning, using prompt engineering alone. Demonstrates that hidden states provide dense vectors while token prediction logits naturally yield sparse vectors.
+
+---
+
+### 5. LLM2Vec: Large Language Models Are Secretly Powerful Text Encoders
+
+- **Authors:** Parishad BehnamGhader, Vaibhav Adlakha, Marius Mosbach, Dzmitry Bahdanau, Nicolas Chapados, Siva Reddy
+- **Venue:** arXiv preprint (April 2024, revised Aug 2024)
+- **URL:** https://arxiv.org/abs/2404.05961
+- **One-line summary:** Unsupervised 3-step recipe (bidirectional attention, masked next-token prediction, contrastive learning) converting decoder-only LLMs (1.3B-8B) into SOTA text encoders on MTEB.
+- **Why important:** Foundational method for converting decoder-only LLMs into dense retrievers. The bidirectional attention + masked next-token prediction recipe is reused by subsequent sparse retrieval work (e.g., Lion). Demonstrated that parameter-efficient adaptation suffices without expensive synthetic data.
+
+---
+
+### 6. Generative Representational Instruction Tuning (GritLM)
+
+- **Authors:** Niklas Muennighoff, Hongjin Su, Liang Wang, Nan Yang, Furu Wei, Tao Yu, Amanpreet Singh, Douwe Kiela
+- **Venue:** arXiv preprint (Feb 2024, revised Mar 2025)
+- **URL:** https://arxiv.org/abs/2402.09906
+- **One-line summary:** Unifies text generation and embedding in a single decoder-only model via instruction-based task distinction, achieving SOTA on MTEB while matching generative quality, and speeding up RAG by &gt;60%.
+- **Why important:** Shows that a single decoder-only model can serve both as a generative LLM and a dense retriever with no performance loss on either task. GritLM 7B and 8x7B are key baselines for unified generation+retrieval.
+
+---
+
+### 7. Improving Text Embeddings with Large Language Models (E5-Mistral)
+
+- **Authors:** Liang Wang, Nan Yang, Xiaolong Huang, Linjun Yang, Rangan Majumder, Furu Wei
+- **Venue:** ACL 2024
+- **URL:** https://arxiv.org/abs/2401.00368
+- **One-line summary:** Fine-tunes Mistral-7B for dense embeddings using purely synthetic data generated by GPT-4 across 93 languages, achieving SOTA on BEIR and MTEB with &lt;1k training steps.
+- **Why important:** Demonstrated that decoder-only LLMs need only minimal contrastive fine-tuning with synthetic data to become excellent dense retrievers. E5-Mistral is a widely-used baseline and starting point for subsequent work (SFR-Embedding, NV-Embed).
+
+---
+
+### 8. NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models
+
+- **Authors:** Chankyu Lee, Rajarshi Roy, Mengyao Xu, Jonathan Raiman, Mohammad Shoeybi, Bryan Catanzaro, Wei Ping
+- **Venue:** ICLR 2025
+- **URL:** https://arxiv.org/abs/2405.17428
+- **One-line summary:** Introduces latent attention pooling and causal-mask removal during contrastive training, plus a two-stage retrieval/non-retrieval pipeline, achieving #1 on MTEB as of mid-2024.
+- **Why important:** Key technical insight that removing the causal attention mask during contrastive training of decoder-only LLMs yields solid improvements. The latent attention layer for pooling outperforms mean pooling. Published at ICLR 2025, establishing important training recipe details.
+
+---
+
+### 9. Causal2Vec: Improving Decoder-only LLMs as Embedding Models through a Contextual Token
+
+- **Authors:** Ailiang Lin, Zhuoyun Li, Yusong Wang, Kotaro Funakoshi, Manabu Okumura
+- **Venue:** arXiv preprint (July 2025)
+- **URL:** https://arxiv.org/abs/2507.23386
+- **One-line summary:** Introduces a lightweight "Contextual token" prepended to decoder-only LLM inputs that enables contextualized embeddings while preserving causal attention, reducing sequence length by up to 85% and inference time by 82%.
+- **Why important:** Unlike LLM2Vec/NV-Embed which modify attention masks, Causal2Vec preserves the causal structure and achieves SOTA on MTEB among models trained on public retrieval data only. Offers a fundamentally different architectural approach.
+
+---
+
+### 10. Fine-Tuning LLaMA for Multi-Stage Text Retrieval (RepLLaMA / RankLLaMA)
+
+- **Authors:** Xueguang Ma, Liang Wang, Nan Yang, Furu Wei, Jimmy Lin
+- **Venue:** SIGIR 2024
+- **URL:** https://arxiv.org/abs/2310.08319
+- **One-line summary:** Fine-tunes LLaMA as both a dense retriever (RepLLaMA) and a pointwise reranker (RankLLaMA), showing LLMs surpass smaller models and handle full documents without segmentation.
+- **Why important:** Early and influential work demonstrating that decoder-only LLaMA can be directly fine-tuned as a dense retriever. RepLLaMA is a key baseline cited by nearly all subsequent work (Lion, CSplade, etc.).
+
+---
+
+### 11. Llama2Vec: Unsupervised Adaptation of Large Language Models for Dense Retrieval
+
+- **Authors:** Zheng Liu, Chaofan Li, Shitao Xiao, Yingxia Shao, Defu Lian
+- **Venue:** ACL 2024
+- **URL:** https://arxiv.org/abs/2312.15503
+- **One-line summary:** Adapts LLaMA-2-7B for dense retrieval via two unsupervised pretext tasks (EBAE and EBAR) that shift embeddings from local to global semantic representations, achieving SOTA on MSMARCO and BEIR.
+- **Why important:** Complementary to LLM2Vec -- provides a different unsupervised adaptation approach for converting decoder-only LLMs into dense retrievers, focusing on auto-encoding and auto-regression pretext tasks over Wikipedia.
+
+---
+
+### 12. Training LLMs to be Better Text Embedders through Bidirectional Reconstruction
+
+- **Authors:** Chang Su, Dengliang Shi, Siyuan Huang, Jintao Du, Changhua Meng, Yu Cheng, Weiqiang Wang, Zhouhan Lin
+- **Venue:** EMNLP 2025 (Main Conference)
+- **URL:** https://arxiv.org/abs/2509.03020
+- **One-line summary:** Adds a bidirectional generative reconstruction stage before contrastive learning to enrich the [EOS] token embedding with richer semantics, achieving SOTA on MTEB across different LLM scales.
+- **Why important:** Addresses a fundamental limitation of decoder-only embeddings: the final token lacks intentional semantic training. The EBQ2D/EBD2Q reconstruction tasks directly improve retrieval and ranking quality. Accepted at EMNLP 2025.
+
+---
+
+### 13. Repurposing Language Models into Embedding Models: Finding the Compute-Optimal Recipe
+
+- **Authors:** Alicja Ziarko, Albert Q. Jiang, Bartosz Piotrowski, Wenda Li, Mateja Jamnik, Piotr Milos
+- **Venue:** NeurIPS 2024
+- **URL:** https://arxiv.org/abs/2406.04165
+- **One-line summary:** Develops an algorithm to find compute-optimal configurations (model size, data quantity, LoRA vs. full fine-tuning) for contrastively training decoder-only LLMs as embedding models.
+- **Why important:** Provides practical scaling laws for the field: full fine-tuning wins at lower budgets, LoRA at higher budgets. Essential guidance for practitioners deciding how to invest compute when building retrieval models from decoder-only LLMs.
+
+---
+
+### 14. Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models
+
+- **Authors:** Yanzhao Zhang, Mingxin Li, Dingkun Long, Xin Zhang, Huan Lin, Baosong Yang, Pengjun Xie, An Yang, Dayiheng Liu, Junyang Lin, Fei Huang, Jingren Zhou
+- **Venue:** arXiv preprint (June 2025)
+- **URL:** https://arxiv.org/abs/2506.05176
+- **One-line summary:** Family of decoder-only embedding and reranking models (0.6B/4B/8B) built on Qwen3 with unsupervised pre-training + supervised fine-tuning + model merging, achieving #1 on MTEB multilingual leaderboard.
+- **Why important:** Represents the current industry SOTA for decoder-only dense retrieval. Offers multiple model sizes making it practically deployable. Released under Apache 2.0.
+
+---
+
+### 15. F2LLM-v2: Inclusive, Performant, and Efficient Embeddings for a Multilingual World
+
+- **Authors:** Ziyin Zhang, Zihan Liao, Hang Yu, Peng Di, Rui Wang
+- **Venue:** arXiv preprint (March 2026)
+- **URL:** https://arxiv.org/abs/2603.19223
+- **One-line summary:** Multilingual embedding model family (80M-14B) supporting 200+ languages, using a two-stage LLM-based training pipeline with matryoshka learning, pruning, and distillation.
+- **Why important:** Pushes decoder-only embeddings to extreme scale (14B) and breadth (200+ languages), with practical efficiency via matryoshka dimensionality reduction and model pruning.
+
+---
+
+### 16. On the Robustness of LLM-Based Dense Retrievers
+
+- **Authors:** Yongkang Li, Panagiotis Eustratiadis, Yixing Fan, Evangelos Kanoulas
+- **Venue:** arXiv preprint (April 2026)
+- **URL:** https://arxiv.org/abs/2604.16576
+- **One-line summary:** First systematic robustness study of LLM-based dense retrievers, finding they are more robust to typos and corpus poisoning than encoder-only models, but vulnerable to synonym substitution.
+- **Why important:** Critical evaluation paper: if you build a retriever from a decoder-only LLM, this paper characterizes what failure modes to expect. Shows that model scaling improves robustness.
+
+---
+
+### Summary of Key Themes
+
+**Most directly relevant to "single decoder-only model producing both sparse and dense representations":**
+- **Lion (Zeng et al., SIGIR 2025)** -- the clearest example of training a single Llama-3 architecture for both Lion-SP (sparse) and Lion-DS (dense)
+- **PromptReps (Zhuang et al., 2024)** -- training-free method extracting both representations from a single LLM
+- **CSplade (Xu et al., 2025)** -- solving the engineering challenges of SPLADE at decoder-only LLM scale
+- **Mistral-SPLADE (Doshi et al., 2024)** -- first successful SPLADE with a 7B decoder-only model
+
+**Foundational adaptation techniques (decoder-only to embedder):**
+- LLM2Vec, Llama2Vec, NV-Embed, Causal2Vec, Bidirectional Reconstruction (EMNLP 2025)
+
+**Scaling and practical guidance:**
+- Compute-optimal recipe (NeurIPS 2024), Qwen3-Embedding, F2LLM-v2&lt;/result>
+&lt;usage>&lt;total_tokens>30179&lt;/total_tokens>&lt;tool_uses>34&lt;/tool_uses>&lt;duration_ms>204400&lt;/duration_ms>&lt;/usage>
+&lt;/task-notification>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "884e2394-ba61-4cb7-a8b4-f4ca1ece4ae7",
+  "isSidechain": false,
+  "promptId": "e04667f1-2fc4-46e4-9202-971333e57d46",
+  "type": "user",
+  "uuid": "520d1e38-abdd-4354-940e-9eb950d1d6a1",
+  "permissionMode": "default",
+  "origin": {
+    "kind": "task-notification"
+  },
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "520d1e38-abdd-4354-940e-9eb950d1d6a1",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey for dual sparse-dense decoder-only retrieval",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58 · 2026-05-30T06:16:22.669Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T06:16:22.669Z",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "content": "&lt;task-notification>\n&lt;task-id>ac10290282562d832&lt;/task-id>\n&lt;tool-use-id>toolu_01Bn6ycERhwN9NFiE92iN89g&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/ac10290282562d832.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search: self-distillation curriculum training\" completed&lt;/summary>\n&lt;result>Now I have a comprehensive set of papers. Let me compile the final list, focusing on the papers most relevant to the stated research topics (knowledge distillation between retrieval modalities, curriculum learning for training retrieval models, training stability for sparse heads, and multi-task training of retrieval objectives).\n\nHere is the compiled literature survey:\n\n---\n\n## Literature Survey: Self-Distillation, Curriculum Learning, and Multi-Task Training for Retrieval Models (2024--2026)\n\n### 1. M3-Embedding: Multi-Linguality, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation\n\n- **Authors:** Jianlv Chen, Shitao Xiao, Peitian Zhang, Kun Luo, Defu Lian, Zheng Liu\n- **Venue:** arXiv preprint (cs.CL), Feb 2024; revised Dec 2025\n- **URL:** https://arxiv.org/abs/2402.03216\n- **Why important:** Foundational work on self-knowledge distillation across retrieval modalities. Introduces the idea that relevance scores from dense, multi-vector, and sparse retrieval heads within the same model can serve as mutual teacher signals during training -- directly relevant to bidirectional distillation between modalities.\n- **One-line summary:** Unifies dense, multi-vector, and sparse retrieval in a single embedding model by using self-knowledge distillation where each retrieval function's scores teach the others, achieving state-of-the-art multilingual retrieval across 100+ languages.\n\n---\n\n### 2. CSPLADE: Learned Sparse Retrieval with Causal Language Models\n\n- **Authors:** Zhichao Xu, Aosong Feng, Yijun Tian, Haibo Ding, Lin Lee Cheong\n- **Venue:** IJCNLP-AACL 2025 (Main)\n- **URL:** https://arxiv.org/abs/2504.10816\n- **Why important:** Directly addresses training instability when scaling SPLADE-style sparse retrieval to LLMs. Identifies the dying ReLU problem during early contrastive training as the root cause and proposes a lightweight adaptation phase. Also tackles the bidirectional attention mismatch in causal LMs for sparse retrieval.\n- **One-line summary:** Identifies and solves training instability (dying ReLU) and unidirectional attention problems when training 8B-parameter causal LLMs for learned sparse retrieval, proposing an adaptation phase and bidirectional model variants.\n\n---\n\n### 3. LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval via a Two-Phase Training Curriculum\n\n- **Authors:** Zhichao Xu, Shengyao Zhuang, Crystina Zhang, Xueguang Ma, Yijun Tian, Maitrey Mehta, Jimmy Lin, Vivek Srikumar\n- **Venue:** arXiv preprint (cs.IR), Jan 2026\n- **URL:** https://arxiv.org/abs/2601.01684\n- **Why important:** Core curriculum learning paper for sparse retrieval. Proposes a two-phase training curriculum (weakly-supervised pre-finetuning followed by curated hard-negative finetuning) for Llama-3-based sparse retrievers, achieving state-of-the-art 60.2 nDCG on MTEB Retrieval. Directly demonstrates that curriculum design is critical for training LLM-based sparse retrievers.\n- **One-line summary:** A two-phase training curriculum for Llama-3-based learned sparse retrievers (1B/3B/8B) that first adapts causal LLMs for bidirectional contextualization, then fine-tunes with curated hard negatives, achieving SOTA sparse retrieval on MTEB.\n\n---\n\n### 4. Scaling Sparse and Dense Retrieval in Decoder-Only LLMs\n\n- **Authors:** Hansi Zeng, Julian Killingback, Hamed Zamani\n- **Venue:** SIGIR 2025\n- **URL:** https://arxiv.org/abs/2502.15526\n- **Why important:** Systematic comparative study of sparse vs. dense retrieval training objectives (contrastive loss, knowledge distillation, and their combination) as decoder-only LLMs scale from 1B to 8B. Finds that sparse retrieval consistently outperforms dense and is more robust to imperfect training signals -- key evidence for understanding cross-modality distillation dynamics.\n- **One-line summary:** Systematically compares how contrastive loss and knowledge distillation scale for sparse vs. dense retrieval in Llama-3 (1B--8B), finding sparse retrieval consistently outperforms dense and benefits more from scaling with combined objectives.\n\n---\n\n### 5. Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval\n\n- **Authors:** Jonghyun Song, Youngjune Lee, Gyu-Hwung Cho, Ilhyeon Song, Saehun Kim, Yohan Jo\n- **Venue:** CIKM 2025 (Short Paper Track)\n- **URL:** https://arxiv.org/abs/2508.16707\n- **Why important:** Directly addresses bidirectional distillation between sparse and dense retrievers. Uses an integrated similarity score (weighted sum of dense and sparse similarities) as a shared teacher signal for self-knowledge distillation, enabling mutual enhancement. Extends this paradigm to multimodal (text-image) retrieval.\n- **One-line summary:** Proposes bidirectional self-knowledge distillation between sparse and dense retrieval heads using a shared integrated similarity score, showing mutual enhancement on text-image retrieval benchmarks.\n\n---\n\n### 6. DiSCo: LLM Knowledge Distillation for Efficient Sparse Retrieval in Conversational Search\n\n- **Authors:** Simon Lupart, Mohammad Aliannejadi, Evangelos Kanoulas\n- **Venue:** SIGIR 2025\n- **URL:** https://arxiv.org/abs/2410.14609\n- **Why important:** Demonstrates multi-teacher distillation from multiple LLMs into a sparse retrieval model for conversational search. Shows that distilling similarity scores (rather than representations) gives the student more freedom in representation space and better leverages contrastive document relevance. Achieves up to 6-point recall gains out-of-domain.\n- **One-line summary:** Distills knowledge from multiple LLM teachers into an efficient sparse retriever for conversational search by transferring similarity scores rather than representations, achieving strong out-of-domain generalization.\n\n---\n\n### 7. Mistral-SPLADE: LLMs for Better Learned Sparse Retrieval\n\n- **Authors:** Meet Doshi, Vishwajeet Kumar, Rudra Murthy, Vignesh P, Jaydeep Sen\n- **Venue:** arXiv preprint (cs.IR), Aug 2024\n- **URL:** https://arxiv.org/abs/2408.11119\n- **Why important:** Demonstrates that decoder-only LLMs (Mistral) can serve as backbones for SPLADE-style sparse retrieval, surpassing all existing SPLADE variants on BEIR. Relevant to understanding how larger pre-trained LMs with broader data exposure improve semantic keyword expansion for sparse retrieval.\n- **One-line summary:** Uses Mistral (a decoder-only LLM) as the backbone for learned sparse retrieval, surpassing all existing SPLADE variants on the BEIR benchmark by leveraging the LLM's exposure to vastly more pre-training data.\n\n---\n\n### 8. RAG-RL: Advancing Retrieval-Augmented Generation via RL and Curriculum Learning\n\n- **Authors:** Jerry Huang, Siddarth Madala, Risham Sidhu, Cheng Niu, Hao Peng, Julia Hockenmaier, Tong Zhang\n- **Venue:** Findings of EACL 2026\n- **URL:** https://arxiv.org/abs/2503.12759\n- **Why important:** Applies curriculum learning to RAG answer generation, starting with easier examples (only relevant contexts) and progressively increasing difficulty with distractor passages. Demonstrates how curriculum scheduling of retrieval difficulty affects downstream generation quality.\n- **One-line summary:** Uses curriculum learning for RAG training, progressively increasing retrieval difficulty (number of distractor passages) to improve answer generation accuracy and citation quality on multi-hop QA.\n\n---\n\n### 9. Adam: Dense Retrieval Distillation with Adaptive Dark Examples\n\n- **Authors:** Chongyang Tao, Chang Liu, Tao Shen, Can Xu, Xiubo Geng, Binxing Jiao, Daxin Jiang\n- **Venue:** Findings of ACL 2024\n- **URL:** https://arxiv.org/abs/2212.10192\n- **Why important:** Proposes creating \"dark examples\" (moderately relevant passages via mix-up and masking) to better transfer teacher dark knowledge to student retrievers, combined with a self-paced distillation strategy that adaptively selects high-quality training instances. Relevant to curriculum-style distillation scheduling.\n- **One-line summary:** Creates synthetic moderately-relevant \"dark examples\" to enrich teacher-to-student knowledge transfer in dense retrieval distillation, with a self-paced strategy that adaptively focuses on high-quality training instances.\n\n---\n\n### 10. A Multi-Task Embedder for Retrieval Augmented LLMs (LLM-Embedder)\n\n- **Authors:** Peitian Zhang, Shitao Xiao, Zheng Liu, Zhicheng Dou, Jian-Yun Nie\n- **Venue:** ACL 2024 (Long Paper)\n- **URL:** https://arxiv.org/abs/2310.07554\n- **Why important:** Multi-task training of a unified retriever supporting knowledge, memory, example, and tool retrieval for LLM augmentation. Introduces rank-aware reward formulation, graded distillation from LLM feedback, and optimized multi-task learning -- directly relevant to multi-task training of retrieval objectives.\n- **One-line summary:** Trains a unified multi-task embedding model for diverse LLM retrieval needs (knowledge, memory, examples, tools) using rank-aware rewards and graded knowledge distillation from LLM feedback signals.\n\n---\n\n### 11. Contrastive Retrieval Heads Improve Attention-Based Re-Ranking (CoRe Heads)\n\n- **Authors:** Linh Tran, Yulong Li, Radu Florian, Wei Sun\n- **Venue:** arXiv preprint (cs.IR), Oct 2025; revised Mar 2026\n- **URL:** https://arxiv.org/abs/2510.02219\n- **Why important:** Identifies a small subset (&lt;1%) of transformer attention heads using a contrastive scoring metric that correlate with relevant document retrieval. Shows these heads concentrate in middle layers, enabling 50% layer pruning while maintaining accuracy. Relevant to understanding which heads matter for retrieval in multi-task LLM architectures.\n- **One-line summary:** Identifies &lt;1% of attention heads via contrastive scoring that are critical for document ranking, enabling 50% layer pruning with maintained accuracy across three LLMs.\n\n---\n\n### 12. From Interpretability to Performance: Optimizing Retrieval Heads for Long-Context Language Models (RetMask)\n\n- **Authors:** Youmi Ma, Naoaki Okazaki\n- **Venue:** Findings of ACL 2026\n- **URL:** https://arxiv.org/abs/2601.11020\n- **Why important:** Translates mechanistic interpretability findings about retrieval heads into a training method (RetMask) that improves long-context performance. Shows that models with concentrated (sparse) retrieval head patterns benefit most, connecting retrieval head sparsity to trainability.\n- **One-line summary:** Proposes RetMask, a training method that contrasts standard outputs with retrieval-head-ablated outputs, improving long-context performance on HELMET by ~2.28 points and showing that retrieval head sparsity predicts training benefit.\n\n---\n\n### 13. Query-Focused Retrieval Heads Improve Long-Context Reasoning and Re-ranking (QRHead)\n\n- **Authors:** Wuwei Zhang, Fangcong Yin, Howard Yen, Danqi Chen, Xi Ye\n- **Venue:** EMNLP 2025\n- **URL:** https://arxiv.org/abs/2506.09944\n- **Why important:** Builds a retriever (QRRetriever) directly from attention heads identified via query-focused analysis, outperforming dense retrievers and achieving 10%+ gains on multi-hop reasoning. Demonstrates that retrieval-specialized heads can be repurposed as standalone retrieval modules.\n- **One-line summary:** Identifies query-focused retrieval heads in LLMs and repurposes their accumulated attention scores as a zero-shot retriever, outperforming dense retrievers and RankGPT on long-context reasoning and re-ranking tasks.\n\n---\n\n### Summary of Coverage by Topic\n\n| Topic | Key Papers |\n|-------|-----------|\n| **Knowledge distillation between retrieval modalities** | M3-Embedding (#1), Joint Sparse-Dense (#5), DiSCo (#6), Adam (#9), LLM-Embedder (#10) |\n| **Curriculum learning for retrieval training** | LACONIC (#3), RAG-RL (#8), Adam (#9, self-paced) |\n| **Training stability for sparse heads** | CSPLADE (#2), Mistral-SPLADE (#7), Scaling Sparse/Dense (#4) |\n| **Multi-task training of retrieval objectives** | M3-Embedding (#1), LLM-Embedder (#10), Scaling Sparse/Dense (#4) |\n| **Retrieval heads in LLMs** | CoRe Heads (#11), RetMask (#12), QRHead (#13) |&lt;/result>\n&lt;usage>&lt;total_tokens>30245&lt;/total_tokens>&lt;tool_uses>35&lt;/tool_uses>&lt;duration_ms>196559&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-30T06:16:23.139Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Four agents done now. The decoder-only LLM retrieval agent found 16 papers. Still waiting for 3 more agents.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "520d1e38-abdd-4354-940e-9eb950d1d6a1",
+  "isSidechain": false,
+  "requestId": "req_011CbYGH6DLL6KGBGqMyGNoW",
+  "type": "assistant",
+  "uuid": "e787fb11-03ef-4cee-938b-1dee0733408e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019DgKg2ZqwQwBbv7oU3LDTJ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4303,
+      "cache_read_input_tokens": 32509,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4303,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 32509,
+          "cache_creation_input_tokens": 4303,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4303
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-30T06:16:24.058Z_
+
+Four agents complete now. The decoder-only LLM retrieval agent found 16 highly relevant papers including PromptReps, GritLM, RepLLaMA, LLM2Vec, and bidirectional reconstruction methods. Waiting for the final 3 agents...
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e787fb11-03ef-4cee-938b-1dee0733408e",
+  "isSidechain": false,
+  "requestId": "req_011CbYGH6DLL6KGBGqMyGNoW",
+  "type": "assistant",
+  "uuid": "e1153609-1014-40fd-8e0e-10f0b8ed32f8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019DgKg2ZqwQwBbv7oU3LDTJ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4303,
+      "cache_read_input_tokens": 32509,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4303,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 32509,
+          "cache_creation_input_tokens": 4303,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4303
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61 · 2026-05-30T06:16:24.133Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T06:16:24.133Z",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+## Round 6
+
+7 recorded events
+
+### User
+
+_source line 62 · 2026-05-30T06:16:24.137Z_
+
+&lt;task-notification>
+&lt;task-id>ac10290282562d832&lt;/task-id>
+&lt;tool-use-id>toolu_01Bn6ycERhwN9NFiE92iN89g&lt;/tool-use-id>
+&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/ac10290282562d832.output&lt;/output-file>
+&lt;status>completed&lt;/status>
+&lt;summary>Agent "Search: self-distillation curriculum training" completed&lt;/summary>
+&lt;result>Now I have a comprehensive set of papers. Let me compile the final list, focusing on the papers most relevant to the stated research topics (knowledge distillation between retrieval modalities, curriculum learning for training retrieval models, training stability for sparse heads, and multi-task training of retrieval objectives).
+
+Here is the compiled literature survey:
+
+---
+
+## Literature Survey: Self-Distillation, Curriculum Learning, and Multi-Task Training for Retrieval Models (2024--2026)
+
+### 1. M3-Embedding: Multi-Linguality, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation
+
+- **Authors:** Jianlv Chen, Shitao Xiao, Peitian Zhang, Kun Luo, Defu Lian, Zheng Liu
+- **Venue:** arXiv preprint (cs.CL), Feb 2024; revised Dec 2025
+- **URL:** https://arxiv.org/abs/2402.03216
+- **Why important:** Foundational work on self-knowledge distillation across retrieval modalities. Introduces the idea that relevance scores from dense, multi-vector, and sparse retrieval heads within the same model can serve as mutual teacher signals during training -- directly relevant to bidirectional distillation between modalities.
+- **One-line summary:** Unifies dense, multi-vector, and sparse retrieval in a single embedding model by using self-knowledge distillation where each retrieval function's scores teach the others, achieving state-of-the-art multilingual retrieval across 100+ languages.
+
+---
+
+### 2. CSPLADE: Learned Sparse Retrieval with Causal Language Models
+
+- **Authors:** Zhichao Xu, Aosong Feng, Yijun Tian, Haibo Ding, Lin Lee Cheong
+- **Venue:** IJCNLP-AACL 2025 (Main)
+- **URL:** https://arxiv.org/abs/2504.10816
+- **Why important:** Directly addresses training instability when scaling SPLADE-style sparse retrieval to LLMs. Identifies the dying ReLU problem during early contrastive training as the root cause and proposes a lightweight adaptation phase. Also tackles the bidirectional attention mismatch in causal LMs for sparse retrieval.
+- **One-line summary:** Identifies and solves training instability (dying ReLU) and unidirectional attention problems when training 8B-parameter causal LLMs for learned sparse retrieval, proposing an adaptation phase and bidirectional model variants.
+
+---
+
+### 3. LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval via a Two-Phase Training Curriculum
+
+- **Authors:** Zhichao Xu, Shengyao Zhuang, Crystina Zhang, Xueguang Ma, Yijun Tian, Maitrey Mehta, Jimmy Lin, Vivek Srikumar
+- **Venue:** arXiv preprint (cs.IR), Jan 2026
+- **URL:** https://arxiv.org/abs/2601.01684
+- **Why important:** Core curriculum learning paper for sparse retrieval. Proposes a two-phase training curriculum (weakly-supervised pre-finetuning followed by curated hard-negative finetuning) for Llama-3-based sparse retrievers, achieving state-of-the-art 60.2 nDCG on MTEB Retrieval. Directly demonstrates that curriculum design is critical for training LLM-based sparse retrievers.
+- **One-line summary:** A two-phase training curriculum for Llama-3-based learned sparse retrievers (1B/3B/8B) that first adapts causal LLMs for bidirectional contextualization, then fine-tunes with curated hard negatives, achieving SOTA sparse retrieval on MTEB.
+
+---
+
+### 4. Scaling Sparse and Dense Retrieval in Decoder-Only LLMs
+
+- **Authors:** Hansi Zeng, Julian Killingback, Hamed Zamani
+- **Venue:** SIGIR 2025
+- **URL:** https://arxiv.org/abs/2502.15526
+- **Why important:** Systematic comparative study of sparse vs. dense retrieval training objectives (contrastive loss, knowledge distillation, and their combination) as decoder-only LLMs scale from 1B to 8B. Finds that sparse retrieval consistently outperforms dense and is more robust to imperfect training signals -- key evidence for understanding cross-modality distillation dynamics.
+- **One-line summary:** Systematically compares how contrastive loss and knowledge distillation scale for sparse vs. dense retrieval in Llama-3 (1B--8B), finding sparse retrieval consistently outperforms dense and benefits more from scaling with combined objectives.
+
+---
+
+### 5. Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval
+
+- **Authors:** Jonghyun Song, Youngjune Lee, Gyu-Hwung Cho, Ilhyeon Song, Saehun Kim, Yohan Jo
+- **Venue:** CIKM 2025 (Short Paper Track)
+- **URL:** https://arxiv.org/abs/2508.16707
+- **Why important:** Directly addresses bidirectional distillation between sparse and dense retrievers. Uses an integrated similarity score (weighted sum of dense and sparse similarities) as a shared teacher signal for self-knowledge distillation, enabling mutual enhancement. Extends this paradigm to multimodal (text-image) retrieval.
+- **One-line summary:** Proposes bidirectional self-knowledge distillation between sparse and dense retrieval heads using a shared integrated similarity score, showing mutual enhancement on text-image retrieval benchmarks.
+
+---
+
+### 6. DiSCo: LLM Knowledge Distillation for Efficient Sparse Retrieval in Conversational Search
+
+- **Authors:** Simon Lupart, Mohammad Aliannejadi, Evangelos Kanoulas
+- **Venue:** SIGIR 2025
+- **URL:** https://arxiv.org/abs/2410.14609
+- **Why important:** Demonstrates multi-teacher distillation from multiple LLMs into a sparse retrieval model for conversational search. Shows that distilling similarity scores (rather than representations) gives the student more freedom in representation space and better leverages contrastive document relevance. Achieves up to 6-point recall gains out-of-domain.
+- **One-line summary:** Distills knowledge from multiple LLM teachers into an efficient sparse retriever for conversational search by transferring similarity scores rather than representations, achieving strong out-of-domain generalization.
+
+---
+
+### 7. Mistral-SPLADE: LLMs for Better Learned Sparse Retrieval
+
+- **Authors:** Meet Doshi, Vishwajeet Kumar, Rudra Murthy, Vignesh P, Jaydeep Sen
+- **Venue:** arXiv preprint (cs.IR), Aug 2024
+- **URL:** https://arxiv.org/abs/2408.11119
+- **Why important:** Demonstrates that decoder-only LLMs (Mistral) can serve as backbones for SPLADE-style sparse retrieval, surpassing all existing SPLADE variants on BEIR. Relevant to understanding how larger pre-trained LMs with broader data exposure improve semantic keyword expansion for sparse retrieval.
+- **One-line summary:** Uses Mistral (a decoder-only LLM) as the backbone for learned sparse retrieval, surpassing all existing SPLADE variants on the BEIR benchmark by leveraging the LLM's exposure to vastly more pre-training data.
+
+---
+
+### 8. RAG-RL: Advancing Retrieval-Augmented Generation via RL and Curriculum Learning
+
+- **Authors:** Jerry Huang, Siddarth Madala, Risham Sidhu, Cheng Niu, Hao Peng, Julia Hockenmaier, Tong Zhang
+- **Venue:** Findings of EACL 2026
+- **URL:** https://arxiv.org/abs/2503.12759
+- **Why important:** Applies curriculum learning to RAG answer generation, starting with easier examples (only relevant contexts) and progressively increasing difficulty with distractor passages. Demonstrates how curriculum scheduling of retrieval difficulty affects downstream generation quality.
+- **One-line summary:** Uses curriculum learning for RAG training, progressively increasing retrieval difficulty (number of distractor passages) to improve answer generation accuracy and citation quality on multi-hop QA.
+
+---
+
+### 9. Adam: Dense Retrieval Distillation with Adaptive Dark Examples
+
+- **Authors:** Chongyang Tao, Chang Liu, Tao Shen, Can Xu, Xiubo Geng, Binxing Jiao, Daxin Jiang
+- **Venue:** Findings of ACL 2024
+- **URL:** https://arxiv.org/abs/2212.10192
+- **Why important:** Proposes creating "dark examples" (moderately relevant passages via mix-up and masking) to better transfer teacher dark knowledge to student retrievers, combined with a self-paced distillation strategy that adaptively selects high-quality training instances. Relevant to curriculum-style distillation scheduling.
+- **One-line summary:** Creates synthetic moderately-relevant "dark examples" to enrich teacher-to-student knowledge transfer in dense retrieval distillation, with a self-paced strategy that adaptively focuses on high-quality training instances.
+
+---
+
+### 10. A Multi-Task Embedder for Retrieval Augmented LLMs (LLM-Embedder)
+
+- **Authors:** Peitian Zhang, Shitao Xiao, Zheng Liu, Zhicheng Dou, Jian-Yun Nie
+- **Venue:** ACL 2024 (Long Paper)
+- **URL:** https://arxiv.org/abs/2310.07554
+- **Why important:** Multi-task training of a unified retriever supporting knowledge, memory, example, and tool retrieval for LLM augmentation. Introduces rank-aware reward formulation, graded distillation from LLM feedback, and optimized multi-task learning -- directly relevant to multi-task training of retrieval objectives.
+- **One-line summary:** Trains a unified multi-task embedding model for diverse LLM retrieval needs (knowledge, memory, examples, tools) using rank-aware rewards and graded knowledge distillation from LLM feedback signals.
+
+---
+
+### 11. Contrastive Retrieval Heads Improve Attention-Based Re-Ranking (CoRe Heads)
+
+- **Authors:** Linh Tran, Yulong Li, Radu Florian, Wei Sun
+- **Venue:** arXiv preprint (cs.IR), Oct 2025; revised Mar 2026
+- **URL:** https://arxiv.org/abs/2510.02219
+- **Why important:** Identifies a small subset (&lt;1%) of transformer attention heads using a contrastive scoring metric that correlate with relevant document retrieval. Shows these heads concentrate in middle layers, enabling 50% layer pruning while maintaining accuracy. Relevant to understanding which heads matter for retrieval in multi-task LLM architectures.
+- **One-line summary:** Identifies &lt;1% of attention heads via contrastive scoring that are critical for document ranking, enabling 50% layer pruning with maintained accuracy across three LLMs.
+
+---
+
+### 12. From Interpretability to Performance: Optimizing Retrieval Heads for Long-Context Language Models (RetMask)
+
+- **Authors:** Youmi Ma, Naoaki Okazaki
+- **Venue:** Findings of ACL 2026
+- **URL:** https://arxiv.org/abs/2601.11020
+- **Why important:** Translates mechanistic interpretability findings about retrieval heads into a training method (RetMask) that improves long-context performance. Shows that models with concentrated (sparse) retrieval head patterns benefit most, connecting retrieval head sparsity to trainability.
+- **One-line summary:** Proposes RetMask, a training method that contrasts standard outputs with retrieval-head-ablated outputs, improving long-context performance on HELMET by ~2.28 points and showing that retrieval head sparsity predicts training benefit.
+
+---
+
+### 13. Query-Focused Retrieval Heads Improve Long-Context Reasoning and Re-ranking (QRHead)
+
+- **Authors:** Wuwei Zhang, Fangcong Yin, Howard Yen, Danqi Chen, Xi Ye
+- **Venue:** EMNLP 2025
+- **URL:** https://arxiv.org/abs/2506.09944
+- **Why important:** Builds a retriever (QRRetriever) directly from attention heads identified via query-focused analysis, outperforming dense retrievers and achieving 10%+ gains on multi-hop reasoning. Demonstrates that retrieval-specialized heads can be repurposed as standalone retrieval modules.
+- **One-line summary:** Identifies query-focused retrieval heads in LLMs and repurposes their accumulated attention scores as a zero-shot retriever, outperforming dense retrievers and RankGPT on long-context reasoning and re-ranking tasks.
+
+---
+
+### Summary of Coverage by Topic
+
+| Topic | Key Papers |
+|-------|-----------|
+| **Knowledge distillation between retrieval modalities** | M3-Embedding (#1), Joint Sparse-Dense (#5), DiSCo (#6), Adam (#9), LLM-Embedder (#10) |
+| **Curriculum learning for retrieval training** | LACONIC (#3), RAG-RL (#8), Adam (#9, self-paced) |
+| **Training stability for sparse heads** | CSPLADE (#2), Mistral-SPLADE (#7), Scaling Sparse/Dense (#4) |
+| **Multi-task training of retrieval objectives** | M3-Embedding (#1), LLM-Embedder (#10), Scaling Sparse/Dense (#4) |
+| **Retrieval heads in LLMs** | CoRe Heads (#11), RetMask (#12), QRHead (#13) |&lt;/result>
+&lt;usage>&lt;total_tokens>30245&lt;/total_tokens>&lt;tool_uses>35&lt;/tool_uses>&lt;duration_ms>196559&lt;/duration_ms>&lt;/usage>
+&lt;/task-notification>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e1153609-1014-40fd-8e0e-10f0b8ed32f8",
+  "isSidechain": false,
+  "promptId": "ede9d768-f315-4f42-af4d-8b1f45a26f2e",
+  "type": "user",
+  "uuid": "6454b55a-f6ce-4a43-8531-a5d28859eda0",
+  "permissionMode": "default",
+  "origin": {
+    "kind": "task-notification"
+  },
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-30T06:16:26.935Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Five agents complete. The self-distillation/curriculum agent found 13 papers. Still waiting for 2 more agents (best papers at IR venues, and representation learning surveys).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6454b55a-f6ce-4a43-8531-a5d28859eda0",
+  "isSidechain": false,
+  "requestId": "req_011CbYGHN1MUi1PRkJkALaa7",
+  "type": "assistant",
+  "uuid": "64ba783c-5484-484b-95b3-0f7d8db9be5b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XZgYD8Q6qi6ZGHFxTuVoZ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3696,
+      "cache_read_input_tokens": 36812,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3696,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 36812,
+          "cache_creation_input_tokens": 3696,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3696
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-30T06:16:27.973Z_
+
+Five agents complete now. The self-distillation/curriculum agent found 13 papers including DiSCo, LLM-Embedder, and several retrieval heads papers. Waiting for the final 2 agents...
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64ba783c-5484-484b-95b3-0f7d8db9be5b",
+  "isSidechain": false,
+  "requestId": "req_011CbYGHN1MUi1PRkJkALaa7",
+  "type": "assistant",
+  "uuid": "b789afc5-4b49-465b-90fb-40d119208696",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XZgYD8Q6qi6ZGHFxTuVoZ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3696,
+      "cache_read_input_tokens": 36812,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3696,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 36812,
+          "cache_creation_input_tokens": 3696,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3696
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65 · 2026-05-30T06:16:49.767Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T06:16:49.767Z",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "content": "&lt;task-notification>\n&lt;task-id>a8039034a5926540b&lt;/task-id>\n&lt;tool-use-id>toolu_01R6uK5Ha4zssPpMohguVnS2&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a8039034a5926540b.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search: best papers IR venues 2025-2026\" completed&lt;/summary>\n&lt;result>Now I have comprehensive information. Here is the compiled literature survey.\n\n---\n\n## Literature Survey: Award-Winning and Highly Influential Papers in Information Retrieval, Text Embeddings, and Retrieval Model Training (2024--2026)\n\n---\n\n### 1. WARP: An Efficient Engine for Multi-Vector Retrieval\n\n- **Authors:** Jan Luca Scheerer, Matei Zaharia, Christopher Potts, Gustavo Alonso, Omar Khattab\n- **Venue:** SIGIR 2025 -- **Best Paper Award**\n- **URL:** https://arxiv.org/abs/2501.17788\n- **Why important:** Best Paper at the premier IR conference. Addresses a critical scalability bottleneck for ColBERT-style multi-vector retrieval, achieving 41x speedup over XTR and 3x over ColBERTv2/PLAID with no quality loss.\n- **One-line summary:** Introduces three engine-level optimizations (dynamic similarity imputation, implicit decompression, two-stage reduction) that make multi-vector late-interaction retrieval practical at scale.\n\n---\n\n### 2. Scaling Laws for Dense Retrieval\n\n- **Authors:** Yan Fang, Jingtao Zhan, Qingyao Ai, Jiaxin Mao, Weihang Su, Jia Chen, Yiqun Liu\n- **Venue:** SIGIR 2024 -- **Best Paper Award**\n- **URL:** https://arxiv.org/abs/2403.18684\n- **Why important:** Best Paper at SIGIR 2024. First to establish precise power-law scaling relationships for dense retrieval models as a function of model size and training data, enabling principled resource allocation.\n- **One-line summary:** Demonstrates that dense retrieval accuracy follows predictable power-law scaling in model parameters and annotation volume, providing actionable guidance for training budget allocation.\n\n---\n\n### 3. Contextual Document Embeddings\n\n- **Authors:** John X. Morris, Alexander M. Rush\n- **Venue:** ICLR 2025\n- **URL:** https://arxiv.org/abs/2410.02525\n- **Why important:** Published at a top venue; proposes a paradigm shift from context-independent to context-dependent document embeddings, achieving SOTA on MTEB without hard negative mining or score distillation.\n- **One-line summary:** Encodes neighboring document information into document embeddings via a contextual architecture and contrastive loss, improving out-of-domain retrieval substantially.\n\n---\n\n### 4. ColPali: Efficient Document Retrieval with Vision Language Models\n\n- **Authors:** Manuel Faysse, Hugues Sibille, Tony Wu, Bilel Omrani, Gautier Viaud, Celine Hudelot, Pierre Colombo\n- **Venue:** ICLR 2025\n- **URL:** https://arxiv.org/abs/2407.01449\n- **Why important:** Opens a new paradigm for visually-rich document retrieval by producing multi-vector embeddings directly from page images using a vision-language model, eliminating the need for OCR/text-extraction pipelines.\n- **One-line summary:** Applies ColBERT-style late interaction to vision-language model outputs on raw document images, outperforming complex text-extraction retrieval pipelines while being simpler and end-to-end trainable.\n\n---\n\n### 5. NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models\n\n- **Authors:** Chankyu Lee, Rajarshi Roy, Mengyao Xu, Jonathan Raiman, Mohammad Shoeybi, Bryan Catanzaro, Wei Ping\n- **Venue:** ICLR 2025 (Spotlight)\n- **URL:** https://arxiv.org/abs/2405.17428\n- **Why important:** ICLR 2025 Spotlight; demonstrated that decoder-only LLMs can be turned into SOTA embedding models, achieving #1 on MTEB (v1 in May 2024, v2 in Aug 2024). Introduced latent attention pooling and two-stage contrastive instruction tuning.\n- **One-line summary:** Introduces latent attention pooling and a two-stage contrastive fine-tuning pipeline to convert Mistral-7B into the top-ranked generalist embedding model on MTEB.\n\n---\n\n### 6. Generative Representational Instruction Tuning (GritLM)\n\n- **Authors:** Niklas Muennighoff, Hongjin Su, Liang Wang, Nan Yang, Furu Wei, Tao Yu, Amanpreet Singh, Douwe Kiela\n- **Venue:** ICLR 2025 (Oral) / arXiv 2024\n- **URL:** https://arxiv.org/abs/2402.09906\n- **Why important:** Unifies embedding and generation in a single model with no performance loss on either task, speeding up RAG by &gt;60%. GritLM 7B set MTEB SOTA at time of release.\n- **One-line summary:** Trains a single LLM to excel at both text embedding and text generation simultaneously via instruction-based task routing, achieving SOTA on MTEB and strong generative benchmarks.\n\n---\n\n### 7. Improving Text Embeddings with Large Language Models (E5-Mistral)\n\n- **Authors:** Liang Wang, Nan Yang, Xiaolong Huang, Linjun Yang, Rangan Majumder, Furu Wei\n- **Venue:** ACL 2024\n- **URL:** https://arxiv.org/abs/2401.00368\n- **Why important:** Pioneering demonstration that LLM-generated synthetic data alone can produce competitive text embeddings, and that combining synthetic + labeled data achieves SOTA on BEIR and MTEB. Highly cited, foundational to subsequent LLM-based embedding work.\n- **One-line summary:** Generates diverse synthetic training data across 93 languages using LLMs and fine-tunes decoder-only models with contrastive loss to set new SOTA on BEIR/MTEB.\n\n---\n\n### 8. M3-Embedding: Multi-Linguality, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation\n\n- **Authors:** Jianlv Chen, Shitao Xiao, Peitian Zhang, Kun Luo, Defu Lian, Zheng Liu\n- **Venue:** arXiv 2024 (BAAI)\n- **URL:** https://arxiv.org/abs/2402.03216\n- **Why important:** Extremely widely adopted open-source embedding model supporting 100+ languages and unifying dense, sparse, and multi-vector retrieval in a single model with inputs up to 8192 tokens. Foundation for the BGE family.\n- **One-line summary:** Unifies dense, sparse, and multi-vector retrieval in one model supporting 100+ languages and long documents via self-knowledge distillation across retrieval functions.\n\n---\n\n### 9. Gecko: Versatile Text Embeddings Distilled from Large Language Models\n\n- **Authors:** Jinhyuk Lee, Zhuyun Dai, Xiaoqi Ren, Blair Chen, Daniel Cer, et al. (Google)\n- **Venue:** arXiv 2024 / EMNLP 2024\n- **URL:** https://arxiv.org/abs/2403.20327\n- **Why important:** Demonstrates that a compact embedding model can compete with 7x larger models by distilling from LLMs via a two-step synthetic data generation and relabeling pipeline. Influential in the \"small but capable\" embedding model trend.\n- **One-line summary:** Distills knowledge from LLMs into a compact retriever via synthetic data generation and LLM-based passage relabeling, achieving competitive 256-dim embeddings that outperform all 768-dim alternatives.\n\n---\n\n### 10. Gemini Embedding: Generalizable Embeddings from Gemini\n\n- **Authors:** Jinhyuk Lee, Feiyang Chen, Sahil Dua, Daniel Cer, et al. (Google)\n- **Venue:** arXiv, March 2025\n- **URL:** https://arxiv.org/abs/2503.07891\n- **Why important:** Achieved #1 on the MTEB public leaderboard (Borda rank) with a mean score of 68.32, a +5.09 improvement over the next best model. Demonstrates that foundation-model-scale embeddings generalize across languages, modalities, and tasks.\n- **One-line summary:** Builds a highly generalizable embedding model on Gemini's foundation, achieving top MTEB rankings across multilingual, English, and code retrieval domains.\n\n---\n\n### 11. Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models\n\n- **Authors:** Yanzhao Zhang, Mingxin Li, Dingkun Long, Xin Zhang, Huan Lin, et al. (Alibaba)\n- **Venue:** arXiv, June 2025\n- **URL:** https://arxiv.org/abs/2506.05176\n- **Why important:** Open-source (Apache 2.0) SOTA: Qwen3-Embedding-8B scores 70.58 on MTEB Multilingual and 80.68 on MTEB Code, surpassing Gemini Embedding. Provides a full size family (0.6B/4B/8B) for both embedding and reranking.\n- **One-line summary:** Builds on Qwen3 foundation models with multi-stage training (unsupervised pretraining + supervised fine-tuning) to produce the leading open-source embedding and reranking model family.\n\n---\n\n### 12. MMTEB: Massive Multilingual Text Embedding Benchmark\n\n- **Authors:** Kenneth Enevoldsen, Isaac Chung, Imene Kerboua, Marton Kardos, et al. (85 co-authors)\n- **Venue:** ICLR 2025\n- **URL:** https://arxiv.org/abs/2502.13595\n- **Why important:** Accepted at ICLR 2025; the definitive benchmark expansion covering 500+ tasks across 250+ languages, enabling meaningful evaluation of multilingual embedding models. Community-driven successor to the original MTEB.\n- **One-line summary:** Expands MTEB to 500+ tasks across 250+ languages with novel task types (instruction following, long-doc retrieval, code retrieval) and a correlation-based downsampling method to reduce evaluation cost.\n\n---\n\n### 13. Randomly Removing 50% of Dimensions in Text Embeddings has Minimal Impact on Retrieval and Classification Tasks\n\n- **Authors:** Sotaro Takeshita, Yurina Takeshita, Daniel Ruffinelli, Simone Paolo Ponzetto\n- **Venue:** EMNLP 2025 -- **People's Choice Award** (Oral)\n- **URL:** https://arxiv.org/abs/2508.17744\n- **Why important:** People's Choice Award at EMNLP 2025. Reveals that current text embeddings are highly over-dimensioned -- randomly dropping 50% of dimensions causes &lt;10% performance loss, with some dimensions actually hurting performance.\n- **One-line summary:** Empirically shows across 6 SOTA encoders and 26 tasks that half of text embedding dimensions can be randomly removed with minimal retrieval/classification degradation, revealing fundamental redundancy in current representations.\n\n---\n\n### 14. Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning\n\n- **Authors:** Bowen Jin, Hansi Zeng, Zhenrui Yue, Jinsung Yoon, Sercan Arik, Dong Wang, Hamed Zamani, Jiawei Han\n- **Venue:** arXiv, March 2025\n- **URL:** https://arxiv.org/abs/2503.09516\n- **Why important:** Highly cited recent work on training LLMs to autonomously generate search queries during reasoning using RL, achieving 41% improvement over RAG baselines. Bridges retrieval and reasoning.\n- **One-line summary:** Uses reinforcement learning with retrieved-token masking to train LLMs to autonomously issue search queries during multi-step reasoning, substantially outperforming standard RAG approaches.\n\n---\n\n### 15. Rank-R1: Enhancing Reasoning in LLM-based Document Rerankers via Reinforcement Learning\n\n- **Authors:** Shengyao Zhuang, Xueguang Ma, Bevan Koopman, Jimmy Lin, Guido Zuccon\n- **Venue:** arXiv, March 2025\n- **URL:** https://arxiv.org/abs/2503.06034\n- **Why important:** Demonstrates that RL can train LLM-based rerankers to reason about relevance, matching supervised fine-tuning with only 18% of the training data and excelling on complex out-of-domain queries.\n- **One-line summary:** Applies reinforcement learning to LLM-based document rerankers, enabling explicit reasoning about query-document relevance and achieving strong performance with minimal labeled data.\n\n---\n\n### 16. Infini-gram mini: Exact n-gram Search at the Internet Scale with FM-Index\n\n- **Authors:** Hao Xu, Jiacheng Liu, Yejin Choi, Noah A. Smith, Hannaneh Hajishirzi\n- **Venue:** EMNLP 2025 -- **Best Paper Award**\n- **URL:** https://arxiv.org/abs/2506.12229\n- **Why important:** Best Paper at EMNLP 2025. While focused on exact n-gram search rather than dense retrieval, it is directly relevant to IR infrastructure -- enabling exact-match search over 83TB of text with indexes at 44% of corpus size, and uncovering massive benchmark contamination (up to 74.2% in GSM8K).\n- **One-line summary:** Adapts FM-index to natural language at Internet scale (83TB), achieving 18x faster indexing and 3.2x less memory than prior best, while revealing severe benchmark contamination in LLM evaluation sets.\n\n---\n\n### Summary of Award-Winning Papers by Venue\n\n| Venue | Award | Paper |\n|-------|-------|-------|\n| SIGIR 2025 | Best Paper | WARP (multi-vector retrieval engine) |\n| SIGIR 2025 | Best Short Paper | GINGER (grounded nugget-based generation) |\n| SIGIR 2024 | Best Paper | Scaling Laws for Dense Retrieval |\n| EMNLP 2025 | Best Paper | Infini-gram mini (FM-Index search) |\n| EMNLP 2025 | People's Choice | Randomly Removing 50% of Embedding Dimensions |\n| ICLR 2025 | Spotlight | NV-Embed (LLM-based generalist embeddings) |\n| ICLR 2025 | Accepted | ColPali, Contextual Document Embeddings, GritLM, MMTEB |&lt;/result>\n&lt;usage>&lt;total_tokens>39935&lt;/total_tokens>&lt;tool_uses>45&lt;/tool_uses>&lt;duration_ms>218819&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "b789afc5-4b49-465b-90fb-40d119208696",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey for dual sparse-dense decoder-only retrieval",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68 · 2026-05-30T06:16:49.824Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T06:16:49.824Z",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+## Round 7
+
+7 recorded events
+
+### User
+
+_source line 69 · 2026-05-30T06:16:49.854Z_
+
+&lt;task-notification>
+&lt;task-id>a8039034a5926540b&lt;/task-id>
+&lt;tool-use-id>toolu_01R6uK5Ha4zssPpMohguVnS2&lt;/tool-use-id>
+&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/a8039034a5926540b.output&lt;/output-file>
+&lt;status>completed&lt;/status>
+&lt;summary>Agent "Search: best papers IR venues 2025-2026" completed&lt;/summary>
+&lt;result>Now I have comprehensive information. Here is the compiled literature survey.
+
+---
+
+## Literature Survey: Award-Winning and Highly Influential Papers in Information Retrieval, Text Embeddings, and Retrieval Model Training (2024--2026)
+
+---
+
+### 1. WARP: An Efficient Engine for Multi-Vector Retrieval
+
+- **Authors:** Jan Luca Scheerer, Matei Zaharia, Christopher Potts, Gustavo Alonso, Omar Khattab
+- **Venue:** SIGIR 2025 -- **Best Paper Award**
+- **URL:** https://arxiv.org/abs/2501.17788
+- **Why important:** Best Paper at the premier IR conference. Addresses a critical scalability bottleneck for ColBERT-style multi-vector retrieval, achieving 41x speedup over XTR and 3x over ColBERTv2/PLAID with no quality loss.
+- **One-line summary:** Introduces three engine-level optimizations (dynamic similarity imputation, implicit decompression, two-stage reduction) that make multi-vector late-interaction retrieval practical at scale.
+
+---
+
+### 2. Scaling Laws for Dense Retrieval
+
+- **Authors:** Yan Fang, Jingtao Zhan, Qingyao Ai, Jiaxin Mao, Weihang Su, Jia Chen, Yiqun Liu
+- **Venue:** SIGIR 2024 -- **Best Paper Award**
+- **URL:** https://arxiv.org/abs/2403.18684
+- **Why important:** Best Paper at SIGIR 2024. First to establish precise power-law scaling relationships for dense retrieval models as a function of model size and training data, enabling principled resource allocation.
+- **One-line summary:** Demonstrates that dense retrieval accuracy follows predictable power-law scaling in model parameters and annotation volume, providing actionable guidance for training budget allocation.
+
+---
+
+### 3. Contextual Document Embeddings
+
+- **Authors:** John X. Morris, Alexander M. Rush
+- **Venue:** ICLR 2025
+- **URL:** https://arxiv.org/abs/2410.02525
+- **Why important:** Published at a top venue; proposes a paradigm shift from context-independent to context-dependent document embeddings, achieving SOTA on MTEB without hard negative mining or score distillation.
+- **One-line summary:** Encodes neighboring document information into document embeddings via a contextual architecture and contrastive loss, improving out-of-domain retrieval substantially.
+
+---
+
+### 4. ColPali: Efficient Document Retrieval with Vision Language Models
+
+- **Authors:** Manuel Faysse, Hugues Sibille, Tony Wu, Bilel Omrani, Gautier Viaud, Celine Hudelot, Pierre Colombo
+- **Venue:** ICLR 2025
+- **URL:** https://arxiv.org/abs/2407.01449
+- **Why important:** Opens a new paradigm for visually-rich document retrieval by producing multi-vector embeddings directly from page images using a vision-language model, eliminating the need for OCR/text-extraction pipelines.
+- **One-line summary:** Applies ColBERT-style late interaction to vision-language model outputs on raw document images, outperforming complex text-extraction retrieval pipelines while being simpler and end-to-end trainable.
+
+---
+
+### 5. NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models
+
+- **Authors:** Chankyu Lee, Rajarshi Roy, Mengyao Xu, Jonathan Raiman, Mohammad Shoeybi, Bryan Catanzaro, Wei Ping
+- **Venue:** ICLR 2025 (Spotlight)
+- **URL:** https://arxiv.org/abs/2405.17428
+- **Why important:** ICLR 2025 Spotlight; demonstrated that decoder-only LLMs can be turned into SOTA embedding models, achieving #1 on MTEB (v1 in May 2024, v2 in Aug 2024). Introduced latent attention pooling and two-stage contrastive instruction tuning.
+- **One-line summary:** Introduces latent attention pooling and a two-stage contrastive fine-tuning pipeline to convert Mistral-7B into the top-ranked generalist embedding model on MTEB.
+
+---
+
+### 6. Generative Representational Instruction Tuning (GritLM)
+
+- **Authors:** Niklas Muennighoff, Hongjin Su, Liang Wang, Nan Yang, Furu Wei, Tao Yu, Amanpreet Singh, Douwe Kiela
+- **Venue:** ICLR 2025 (Oral) / arXiv 2024
+- **URL:** https://arxiv.org/abs/2402.09906
+- **Why important:** Unifies embedding and generation in a single model with no performance loss on either task, speeding up RAG by &gt;60%. GritLM 7B set MTEB SOTA at time of release.
+- **One-line summary:** Trains a single LLM to excel at both text embedding and text generation simultaneously via instruction-based task routing, achieving SOTA on MTEB and strong generative benchmarks.
+
+---
+
+### 7. Improving Text Embeddings with Large Language Models (E5-Mistral)
+
+- **Authors:** Liang Wang, Nan Yang, Xiaolong Huang, Linjun Yang, Rangan Majumder, Furu Wei
+- **Venue:** ACL 2024
+- **URL:** https://arxiv.org/abs/2401.00368
+- **Why important:** Pioneering demonstration that LLM-generated synthetic data alone can produce competitive text embeddings, and that combining synthetic + labeled data achieves SOTA on BEIR and MTEB. Highly cited, foundational to subsequent LLM-based embedding work.
+- **One-line summary:** Generates diverse synthetic training data across 93 languages using LLMs and fine-tunes decoder-only models with contrastive loss to set new SOTA on BEIR/MTEB.
+
+---
+
+### 8. M3-Embedding: Multi-Linguality, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation
+
+- **Authors:** Jianlv Chen, Shitao Xiao, Peitian Zhang, Kun Luo, Defu Lian, Zheng Liu
+- **Venue:** arXiv 2024 (BAAI)
+- **URL:** https://arxiv.org/abs/2402.03216
+- **Why important:** Extremely widely adopted open-source embedding model supporting 100+ languages and unifying dense, sparse, and multi-vector retrieval in a single model with inputs up to 8192 tokens. Foundation for the BGE family.
+- **One-line summary:** Unifies dense, sparse, and multi-vector retrieval in one model supporting 100+ languages and long documents via self-knowledge distillation across retrieval functions.
+
+---
+
+### 9. Gecko: Versatile Text Embeddings Distilled from Large Language Models
+
+- **Authors:** Jinhyuk Lee, Zhuyun Dai, Xiaoqi Ren, Blair Chen, Daniel Cer, et al. (Google)
+- **Venue:** arXiv 2024 / EMNLP 2024
+- **URL:** https://arxiv.org/abs/2403.20327
+- **Why important:** Demonstrates that a compact embedding model can compete with 7x larger models by distilling from LLMs via a two-step synthetic data generation and relabeling pipeline. Influential in the "small but capable" embedding model trend.
+- **One-line summary:** Distills knowledge from LLMs into a compact retriever via synthetic data generation and LLM-based passage relabeling, achieving competitive 256-dim embeddings that outperform all 768-dim alternatives.
+
+---
+
+### 10. Gemini Embedding: Generalizable Embeddings from Gemini
+
+- **Authors:** Jinhyuk Lee, Feiyang Chen, Sahil Dua, Daniel Cer, et al. (Google)
+- **Venue:** arXiv, March 2025
+- **URL:** https://arxiv.org/abs/2503.07891
+- **Why important:** Achieved #1 on the MTEB public leaderboard (Borda rank) with a mean score of 68.32, a +5.09 improvement over the next best model. Demonstrates that foundation-model-scale embeddings generalize across languages, modalities, and tasks.
+- **One-line summary:** Builds a highly generalizable embedding model on Gemini's foundation, achieving top MTEB rankings across multilingual, English, and code retrieval domains.
+
+---
+
+### 11. Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models
+
+- **Authors:** Yanzhao Zhang, Mingxin Li, Dingkun Long, Xin Zhang, Huan Lin, et al. (Alibaba)
+- **Venue:** arXiv, June 2025
+- **URL:** https://arxiv.org/abs/2506.05176
+- **Why important:** Open-source (Apache 2.0) SOTA: Qwen3-Embedding-8B scores 70.58 on MTEB Multilingual and 80.68 on MTEB Code, surpassing Gemini Embedding. Provides a full size family (0.6B/4B/8B) for both embedding and reranking.
+- **One-line summary:** Builds on Qwen3 foundation models with multi-stage training (unsupervised pretraining + supervised fine-tuning) to produce the leading open-source embedding and reranking model family.
+
+---
+
+### 12. MMTEB: Massive Multilingual Text Embedding Benchmark
+
+- **Authors:** Kenneth Enevoldsen, Isaac Chung, Imene Kerboua, Marton Kardos, et al. (85 co-authors)
+- **Venue:** ICLR 2025
+- **URL:** https://arxiv.org/abs/2502.13595
+- **Why important:** Accepted at ICLR 2025; the definitive benchmark expansion covering 500+ tasks across 250+ languages, enabling meaningful evaluation of multilingual embedding models. Community-driven successor to the original MTEB.
+- **One-line summary:** Expands MTEB to 500+ tasks across 250+ languages with novel task types (instruction following, long-doc retrieval, code retrieval) and a correlation-based downsampling method to reduce evaluation cost.
+
+---
+
+### 13. Randomly Removing 50% of Dimensions in Text Embeddings has Minimal Impact on Retrieval and Classification Tasks
+
+- **Authors:** Sotaro Takeshita, Yurina Takeshita, Daniel Ruffinelli, Simone Paolo Ponzetto
+- **Venue:** EMNLP 2025 -- **People's Choice Award** (Oral)
+- **URL:** https://arxiv.org/abs/2508.17744
+- **Why important:** People's Choice Award at EMNLP 2025. Reveals that current text embeddings are highly over-dimensioned -- randomly dropping 50% of dimensions causes &lt;10% performance loss, with some dimensions actually hurting performance.
+- **One-line summary:** Empirically shows across 6 SOTA encoders and 26 tasks that half of text embedding dimensions can be randomly removed with minimal retrieval/classification degradation, revealing fundamental redundancy in current representations.
+
+---
+
+### 14. Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning
+
+- **Authors:** Bowen Jin, Hansi Zeng, Zhenrui Yue, Jinsung Yoon, Sercan Arik, Dong Wang, Hamed Zamani, Jiawei Han
+- **Venue:** arXiv, March 2025
+- **URL:** https://arxiv.org/abs/2503.09516
+- **Why important:** Highly cited recent work on training LLMs to autonomously generate search queries during reasoning using RL, achieving 41% improvement over RAG baselines. Bridges retrieval and reasoning.
+- **One-line summary:** Uses reinforcement learning with retrieved-token masking to train LLMs to autonomously issue search queries during multi-step reasoning, substantially outperforming standard RAG approaches.
+
+---
+
+### 15. Rank-R1: Enhancing Reasoning in LLM-based Document Rerankers via Reinforcement Learning
+
+- **Authors:** Shengyao Zhuang, Xueguang Ma, Bevan Koopman, Jimmy Lin, Guido Zuccon
+- **Venue:** arXiv, March 2025
+- **URL:** https://arxiv.org/abs/2503.06034
+- **Why important:** Demonstrates that RL can train LLM-based rerankers to reason about relevance, matching supervised fine-tuning with only 18% of the training data and excelling on complex out-of-domain queries.
+- **One-line summary:** Applies reinforcement learning to LLM-based document rerankers, enabling explicit reasoning about query-document relevance and achieving strong performance with minimal labeled data.
+
+---
+
+### 16. Infini-gram mini: Exact n-gram Search at the Internet Scale with FM-Index
+
+- **Authors:** Hao Xu, Jiacheng Liu, Yejin Choi, Noah A. Smith, Hannaneh Hajishirzi
+- **Venue:** EMNLP 2025 -- **Best Paper Award**
+- **URL:** https://arxiv.org/abs/2506.12229
+- **Why important:** Best Paper at EMNLP 2025. While focused on exact n-gram search rather than dense retrieval, it is directly relevant to IR infrastructure -- enabling exact-match search over 83TB of text with indexes at 44% of corpus size, and uncovering massive benchmark contamination (up to 74.2% in GSM8K).
+- **One-line summary:** Adapts FM-index to natural language at Internet scale (83TB), achieving 18x faster indexing and 3.2x less memory than prior best, while revealing severe benchmark contamination in LLM evaluation sets.
+
+---
+
+### Summary of Award-Winning Papers by Venue
+
+| Venue | Award | Paper |
+|-------|-------|-------|
+| SIGIR 2025 | Best Paper | WARP (multi-vector retrieval engine) |
+| SIGIR 2025 | Best Short Paper | GINGER (grounded nugget-based generation) |
+| SIGIR 2024 | Best Paper | Scaling Laws for Dense Retrieval |
+| EMNLP 2025 | Best Paper | Infini-gram mini (FM-Index search) |
+| EMNLP 2025 | People's Choice | Randomly Removing 50% of Embedding Dimensions |
+| ICLR 2025 | Spotlight | NV-Embed (LLM-based generalist embeddings) |
+| ICLR 2025 | Accepted | ColPali, Contextual Document Embeddings, GritLM, MMTEB |&lt;/result>
+&lt;usage>&lt;total_tokens>39935&lt;/total_tokens>&lt;tool_uses>45&lt;/tool_uses>&lt;duration_ms>218819&lt;/duration_ms>&lt;/usage>
+&lt;/task-notification>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b789afc5-4b49-465b-90fb-40d119208696",
+  "isSidechain": false,
+  "promptId": "ba556879-3f25-419d-8543-683350a5d604",
+  "type": "user",
+  "uuid": "a03dfb49-97a0-45ab-bcff-5cb0f49113d8",
+  "permissionMode": "default",
+  "origin": {
+    "kind": "task-notification"
+  },
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-30T06:16:53.452Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Six agents complete. The best papers agent found 16 papers including award winners at SIGIR, EMNLP, ICLR. Still waiting for the final agent (representation learning surveys).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a03dfb49-97a0-45ab-bcff-5cb0f49113d8",
+  "isSidechain": false,
+  "requestId": "req_011CbYGKGBfNpEkbZ9psdTd4",
+  "type": "assistant",
+  "uuid": "be605227-77b9-40d7-88c4-38f39c3ad1d1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HgMPE26fSq25JANgNRZq7d",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3984,
+      "cache_read_input_tokens": 40508,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3984,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 40508,
+          "cache_creation_input_tokens": 3984,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3984
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-30T06:16:54.505Z_
+
+Six agents complete. Excellent results from the best papers agent — found SIGIR 2024/2025 best papers, EMNLP 2025 best paper, and key ICLR 2025 papers. Waiting for the final agent...
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "be605227-77b9-40d7-88c4-38f39c3ad1d1",
+  "isSidechain": false,
+  "requestId": "req_011CbYGKGBfNpEkbZ9psdTd4",
+  "type": "assistant",
+  "uuid": "d859af4d-ae90-4dd2-8427-767dcc635005",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HgMPE26fSq25JANgNRZq7d",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3984,
+      "cache_read_input_tokens": 40508,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3984,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 40508,
+          "cache_creation_input_tokens": 3984,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3984
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 72 · 2026-05-30T06:18:02.339Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T06:18:02.339Z",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "content": "&lt;task-notification>\n&lt;task-id>ae8e16ea2aa07123f&lt;/task-id>\n&lt;tool-use-id>toolu_015CLqV3fZ1jgPYZHSP8fLyy&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/ae8e16ea2aa07123f.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search: representation learning surveys\" completed&lt;/summary>\n&lt;result>I now have comprehensive data. Let me compile the final list of verified, relevant papers.\n\nHere is the curated list of papers (2024--2026) confirmed via arXiv abstract verification, filtered to topics (a)--(f):\n\n---\n\n## 1. NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models\n\n- **Authors:** Chankyu Lee, Rajarshi Roy, Mengyao Xu, Jonathan Raiman, Mohammad Shoeybi, Bryan Catanzaro, Wei Ping\n- **Venue:** ICLR 2025 (Spotlight); arXiv May 2024\n- **URL:** https://arxiv.org/abs/2405.17428\n- **Why important:** Directly addresses (a) decoder-only LLMs for retrieval and (e) training techniques -- introduces latent attention pooling, causal-mask removal during contrastive training, and a two-stage contrastive instruction-tuning pipeline. Topped the MTEB leaderboard.\n- **One-line summary:** Proposes architectural and training innovations (latent attention layer, two-stage contrastive instruction tuning, hard-negative mining) that turn decoder-only LLMs into state-of-the-art generalist embedding models.\n\n---\n\n## 2. Generative Representational Instruction Tuning (GritLM)\n\n- **Authors:** Niklas Muennighoff, Hongjin Su, Liang Wang, Nan Yang, Furu Wei, Tao Yu, Amanpreet Singh, Douwe Kiela\n- **Venue:** arXiv Feb 2024 (revised Mar 2025)\n- **URL:** https://arxiv.org/abs/2402.09906\n- **Why important:** Directly addresses (a) decoder-only LLMs for retrieval and (e) training techniques -- unifies generative and embedding tasks in a single decoder-only model with no performance loss, and speeds up RAG by 60%.\n- **One-line summary:** Trains a single LLM to handle both generation and embedding via instruction-based task switching, achieving SOTA on MTEB while matching dedicated generative models.\n\n---\n\n## 3. LLM2Vec: Large Language Models Are Secretly Powerful Text Encoders\n\n- **Authors:** Parishad BehnamGhader, Vaibhav Adlakha, Marius Mosbach, Dzmitry Bahdanau, Nicolas Chapados, Siva Reddy\n- **Venue:** COLM 2024; arXiv Apr 2024\n- **URL:** https://arxiv.org/abs/2404.05961\n- **Why important:** Directly addresses (a) decoder-only LLMs for retrieval and (e) training techniques -- provides a simple unsupervised recipe (bidirectional attention + masked next-token prediction + SimCSE) to convert any decoder-only LLM into a strong text encoder.\n- **One-line summary:** A three-step unsupervised method transforms causal decoder-only LLMs into powerful text encoders by enabling bidirectional attention, masked next-token prediction, and contrastive learning.\n\n---\n\n## 4. Improving Text Embeddings with Large Language Models (E5-Mistral)\n\n- **Authors:** Liang Wang, Nan Yang, Xiaolong Huang, Linjun Yang, Rangan Majumder, Furu Wei\n- **Venue:** ACL 2024; arXiv Dec 2023\n- **URL:** https://arxiv.org/abs/2401.00368\n- **Why important:** Addresses (a) decoder-only LLMs for retrieval and (e) training techniques -- demonstrates that synthetic data from LLMs plus contrastive fine-tuning of decoder-only models can match or exceed encoder-only embeddings without human-labeled data.\n- **One-line summary:** Fine-tunes open-source decoder-only LLMs on LLM-generated synthetic data with contrastive loss, achieving competitive embeddings without labeled data and SOTA when combined with labeled data.\n\n---\n\n## 5. Fine-Tuning LLaMA for Multi-Stage Text Retrieval (RepLLaMA / RankLLaMA)\n\n- **Authors:** Xueguang Ma, Liang Wang, Nan Yang, Furu Wei, Jimmy Lin\n- **Venue:** SIGIR 2024; arXiv Oct 2023\n- **URL:** https://arxiv.org/abs/2310.08319\n- **Why important:** Foundational work on (a) decoder-only LLMs for retrieval -- establishes that LLaMA fine-tuned as a dense retriever (RepLLaMA) and reranker (RankLLaMA) surpasses smaller models and shows strong zero-shot generalization on BEIR.\n- **One-line summary:** Fine-tunes LLaMA as both a dense bi-encoder retriever and pointwise reranker for MS MARCO, demonstrating that LLMs outperform smaller models and eliminate the need for document segmentation.\n\n---\n\n## 6. M3-Embedding (BGE-M3): Multi-Lingual, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation\n\n- **Authors:** Jianlv Chen, Shitao Xiao, Peitian Zhang, Kun Luo, Defu Lian, Zheng Liu\n- **Venue:** Findings of ACL 2024; arXiv Feb 2024\n- **URL:** https://arxiv.org/abs/2402.03216\n- **Why important:** Directly addresses (b) hybrid sparse-dense retrieval and (d) self-distillation -- a single model simultaneously supports dense, sparse, and multi-vector retrieval, trained with a self-knowledge distillation method that fuses scores across retrieval modalities as teacher signals.\n- **One-line summary:** A unified embedding model that performs dense, sparse, and multi-vector retrieval across 100+ languages, using self-knowledge distillation across retrieval functionalities as the training signal.\n\n---\n\n## 7. Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (Lion-SP / Lion-DN)\n\n- **Authors:** Hansi Zeng, Julian Killingback, Hamed Zamani\n- **Venue:** SIGIR 2025; arXiv Feb 2025\n- **URL:** https://arxiv.org/abs/2502.15526\n- **Why important:** Directly addresses (a) decoder-only LLMs for retrieval, (b) hybrid sparse-dense retrieval, and (e) training techniques -- systematically studies scaling laws for sparse vs. dense retrieval in decoder-only LLMs (Llama-3 1B--8B), finding sparse consistently outperforms dense and scaling benefits emerge with contrastive loss but not knowledge distillation.\n- **One-line summary:** Systematically scales decoder-only LLMs for both sparse and dense retrieval, finding that sparse retrieval consistently outperforms dense and that contrastive learning (not KD) unlocks scaling gains.\n\n---\n\n## 8. CSPLADE: Learned Sparse Retrieval with Causal Language Models\n\n- **Authors:** Zhichao Xu, Aosong Feng, Yijun Tian, Haibo Ding, Lin Lee Cheong\n- **Venue:** IJCNLP-AACL 2025; arXiv Apr 2025\n- **URL:** https://arxiv.org/abs/2504.10816\n- **Why important:** Addresses (a) decoder-only LLMs for retrieval and (e) training techniques -- extends SPLADE-style learned sparse retrieval to 8B decoder-only LLMs by solving training instability (dying ReLU) and unidirectional attention problems.\n- **One-line summary:** Adapts learned sparse retrieval (SPLADE) to causal LLMs at 8B scale by introducing lightweight adaptation training and bidirectional-attention variants, achieving competitive performance with reduced index size.\n\n---\n\n## 9. Promptriever: Instruction-Trained Retrievers Can Be Prompted Like Language Models\n\n- **Authors:** Orion Weller, Benjamin Van Durme, Dawn Lawrie, Ashwin Paranjape, Yuhao Zhang, Jack Hessel\n- **Venue:** ICLR 2025; arXiv Sep 2024\n- **URL:** https://arxiv.org/abs/2409.11136\n- **Why important:** Addresses (e) training techniques and (f) benchmark/evaluation -- trains retrieval models with per-instance natural-language instructions and \"instruction negatives,\" enabling prompt-based control of retrieval behavior at query time.\n- **One-line summary:** Trains a bi-encoder retriever on instruction-augmented data so it can be prompted with natural-language relevance definitions per query, achieving SOTA on instruction-following retrieval benchmarks.\n\n---\n\n## 10. Towards Better Instruction Following Retrieval Models (InF-Embed)\n\n- **Authors:** Yuchen Zhuang, Aaron Trinh, Rushi Qiang, Haotian Sun, Chao Zhang, Hanjun Dai, Bo Dai\n- **Venue:** arXiv May 2025\n- **URL:** https://arxiv.org/abs/2505.21439\n- **Why important:** Addresses (e) training techniques and (f) evaluation -- constructs a 38K instruction-query-passage dataset with reasoning-model-validated hard negatives, and trains InF-Embed with contrastive learning and attention mechanisms for instruction-aware retrieval.\n- **One-line summary:** Introduces a curated instruction-following retrieval dataset with hard negatives validated by a reasoning model, and trains an embedding model that outperforms baselines by 8.1% on instruction-following metrics.\n\n---\n\n## 11. GRACE: Generative Representation Learning via Contrastive Policy Optimization\n\n- **Authors:** Jiashuo Sun, Shixuan Liu, Zhaochen Su, Xianrui Zhong, Pengcheng Jiang, Bowen Jin, Peiran Li, Weijia Shi, Jiawei Han\n- **Venue:** ICLR 2025; arXiv Oct 2025\n- **URL:** https://arxiv.org/abs/2510.04506\n- **Why important:** Addresses (a) decoder-only LLMs for retrieval and (e) training techniques -- reframes contrastive learning as reinforcement learning, where the LLM generates interpretable rationales that are then encoded into embeddings via policy gradient optimization.\n- **One-line summary:** Converts contrastive signals into rewards for a generative policy, training the LLM to produce natural-language rationales that are then encoded into embeddings, yielding 11.5% improvement on MTEB.\n\n---\n\n## 12. RouterRetriever: Routing over a Mixture of Expert Embedding Models\n\n- **Authors:** Hyunji Lee, Luca Soldaini, Arman Cohan, Minjoon Seo, Kyle Lo\n- **Venue:** AAAI 2025; arXiv Sep 2024\n- **URL:** https://arxiv.org/abs/2409.02685\n- **Why important:** Directly addresses (c) query routing -- routes queries to domain-specific expert embedding models, outperforming single general-purpose models on BEIR by +2.1 nDCG@10 and surpassing other routing techniques by +1.8.\n- **One-line summary:** A lightweight query routing mechanism selects the best domain-specific expert embedding model per query, outperforming general-purpose models and enabling modular addition/removal of experts without retraining.\n\n---\n\n## 13. Planning Ahead in Generative Retrieval: Guiding Autoregressive Generation through Simultaneous Decoding (PAG)\n\n- **Authors:** Hansi Zeng, Chen Luo, Hamed Zamani\n- **Venue:** SIGIR 2024; arXiv Apr 2024\n- **URL:** https://arxiv.org/abs/2404.14600\n- **Why important:** Addresses (e) training techniques for generative retrieval -- proposes simultaneous decoding with set-based and sequential identifiers to guide autoregressive document-ID generation, achieving 15.6% MRR improvement on MS MARCO.\n- **One-line summary:** Introduces a simultaneous decoding strategy that combines lexical set-based and quantized sequential identifiers to steer autoregressive generative retrieval, significantly improving MRR and reducing latency.\n\n---\n\n## 14. Constrained Auto-Regressive Decoding Constrains Generative Retrieval\n\n- **Authors:** Shiguang Wu, Zhaochun Ren, Xin Xin, Jiyuan Yang, Mengqi Zhang, Zhumin Chen, Maarten de Rijke, Pengjie Ren\n- **Venue:** SIGIR 2025; arXiv Apr 2025\n- **URL:** https://arxiv.org/abs/2504.09935\n- **Why important:** Addresses (e) training techniques and (f) evaluation methodology for generative retrieval -- provides a theoretical analysis of the limitations of constrained autoregressive decoding, deriving error lower bounds and showing that marginal-distribution-based beam search is suboptimal.\n- **One-line summary:** Provides a theoretical framework showing that constrained autoregressive decoding in generative retrieval introduces fundamental error lower bounds, and that standard beam search with marginal distributions is suboptimal.\n\n---\n\n## 15. Jina-ColBERT-v2: A General-Purpose Multilingual Late Interaction Retriever\n\n- **Authors:** Rohan Jha, Bo Wang, Michael Gunther, Georgios Mastrapas, Saba Sturua, Isabelle Mohr, Andreas Koukounas, Mohammad Kalim Akram, Nan Wang, Han Xiao\n- **Venue:** MRL 2024 (EMNLP Workshop); arXiv Aug 2024\n- **URL:** https://arxiv.org/abs/2408.16672\n- **Why important:** Addresses (b) hybrid sparse-dense (multi-vector) retrieval and (e) training techniques -- improves ColBERT with techniques from single-vector training (weakly supervised pretraining, rotary embeddings), halving storage by reducing embedding dim from 128 to 64 with negligible loss.\n- **One-line summary:** Enhances ColBERT for multilingual late-interaction retrieval by borrowing training techniques from single-vector models and reducing embedding dimensionality by 50% with minimal performance impact.\n\n---\n\n## 16. ScalingNote: Scaling up Retrievers with Large Language Models for Real-World Dense Retrieval\n\n- **Authors:** Suyuan Huang, Chao Zhang, Yuanyuan Wu, Haoxin Zhang, Yuan Wang, Maolin Wang, Shaosheng Cao, Tong Xu, Xiangyu Zhao, Zengchang Qin, Yan Gao, Yunhan Bai, Jun Fan, Yao Hu, Enhong Chen\n- **Venue:** arXiv Nov 2024\n- **URL:** https://arxiv.org/abs/2411.15766\n- **Why important:** Addresses (a) decoder-only LLMs for retrieval, (d) self-distillation, and (e) training techniques -- proposes a two-stage scaling method: first maximize LLM retrieval potential via contrastive learning, then distill the query tower into a smaller BERT model via knowledge distillation for production latency.\n- **One-line summary:** A two-stage method that first trains an LLM-based dual-tower retriever with contrastive learning, then distills only the query tower into BERT for real-world latency, validating dense retrieval scaling laws in industrial settings.\n\n---\n\n## 17. Unleashing the Power of LLMs in Dense Retrieval with Query Likelihood Modeling (LLM-QL)\n\n- **Authors:** Hengran Zhang, Keping Bi, Jiafeng Guo, Xiaojie Sun, Shihao Liu, Daiting Shi, Dawei Yin, Xueqi Cheng\n- **Venue:** arXiv Apr 2025\n- **URL:** https://arxiv.org/abs/2504.05216\n- **Why important:** Addresses (a) decoder-only LLMs for retrieval and (e) training techniques -- uses query likelihood modeling as an auxiliary generative objective to improve LLM-based dense retrieval, with novel Attention Stop and Input Corruption mechanisms.\n- **One-line summary:** Leverages query likelihood modeling with attention stopping and input corruption as auxiliary training signals to improve decoder-only LLM dense retrievers, significantly outperforming prior LLM-based retrievers on MS MARCO and BEIR.\n\n---\n\n## 18. Learning Effective Representations for Retrieval Using Self-Distillation with Adaptive Relevance Margins\n\n- **Authors:** Lukas Gienapp, Niklas Deckers, Martin Potthast, Harrisen Scells\n- **Venue:** ICTIR 2025; arXiv Jul 2024\n- **URL:** https://arxiv.org/abs/2407.21515\n- **Why important:** Directly addresses (d) self-distillation in retrieval and (e) training techniques -- proposes a parameter-free self-distillation loss that uses the encoder's own language modeling signal as supervision, matching teacher-distillation with 13.5% of the data and 3--15x faster training.\n- **One-line summary:** A parameter-free self-distillation loss exploits the encoder's own pre-trained language modeling capabilities as a training signal, matching teacher distillation effectiveness with a fraction of the data and dramatically faster training.\n\n---\n\n## 19. LLMs are Also Effective Embedding Models: An In-depth Overview\n\n- **Authors:** Chongyang Tao, Tao Shen, Shen Gao, Junshuo Zhang, Zhen Li, Kai Hua, Wenpeng Hu, Zhengwei Tao, Shuai Ma\n- **Venue:** arXiv Dec 2024\n- **URL:** https://arxiv.org/abs/2412.12591\n- **Why important:** Survey paper covering (a) decoder-only LLMs for retrieval, (e) training techniques, and (f) evaluation -- comprehensively reviews direct prompting and data-centric tuning strategies for deriving embeddings from LLMs, covering pooling approaches, scaling, and cross-task quality.\n- **One-line summary:** A comprehensive survey of methods for using LLMs as embedding models, covering prompting strategies, data-centric fine-tuning, pooling techniques, and efficiency-accuracy tradeoffs.\n\n---\n\n## 20. Conventional Contrastive Learning Often Falls Short: Improving Dense Retrieval with Cross-Encoder Listwise Distillation and Synthetic Data\n\n- **Authors:** Manveer Singh Tamber, Suleman Kazi, Vivek Sourabh, Jimmy Lin\n- **Venue:** arXiv May 2025\n- **URL:** https://arxiv.org/abs/2505.19274\n- **Why important:** Addresses (d) distillation in retrieval and (e) training techniques -- shows that InfoNCE contrastive loss often hurts SOTA models during fine-tuning, and that cross-encoder listwise distillation with diverse synthetic queries is a more robust training strategy.\n- **One-line summary:** Demonstrates that standard contrastive loss can degrade SOTA embedding models during fine-tuning, and that cross-encoder listwise distillation with varied synthetic query types is a more reliable training approach.\n\n---\n\n## 21. A Survey of Model Architectures in Information Retrieval\n\n- **Authors:** Zhichao Xu, Fengran Mo, Zhiqi Huang, Crystina Zhang, Puxuan Yu, Bei Wang, Jimmy Lin, Vivek Srikumar\n- **Venue:** TMLR (camera ready); arXiv Feb 2025\n- **URL:** https://arxiv.org/abs/2502.14822\n- **Why important:** Comprehensive survey covering (a), (b), (e), and (f) -- traces the evolution from term-based to neural retrieval architectures, covering encoder-only and decoder-only models, sparse/dense/hybrid approaches, and LLMs as both feature extractors and relevance estimators.\n- **One-line summary:** An exhaustive survey tracing IR model architectures from traditional term-based methods through BERT bi-encoders to decoder-only LLMs, covering dense, sparse, hybrid, and generative retrieval paradigms.\n\n---\n\n## 22. Learn Before Represent: Bridging Generative and Contrastive Learning for Domain-Specific LLM Embeddings\n\n- **Authors:** Xiaoyu Liang, Yuchen Peng, Jiale Luo, Wenhao Wang, Haoji Hu, Xincheng Zhou\n- **Venue:** arXiv Jan 2026\n- **URL:** https://arxiv.org/abs/2601.11124\n- **Why important:** Addresses (a) decoder-only LLMs for retrieval and (e) training techniques -- proposes a two-stage framework (information-bottleneck-constrained generative learning + generative-refined contrastive learning) to inject domain knowledge before learning embeddings, particularly for vertical domains.\n- **One-line summary:** A two-stage framework that first injects domain knowledge via information-bottleneck-constrained generative learning, then performs contrastive alignment on compressed representations, achieving significant gains in domain-specific retrieval (chemistry, medical, code).\n\n---\n\n## 23. Aligning Dense Retrievers with LLM Utility via Distillation (UAE)\n\n- **Authors:** Rajinder Sandhu, Di Mu, Cheng Chang, Md Shahriar Tasjid, Himanshu Rai, Maksims Volkovs, Ga Wu\n- **Venue:** arXiv Apr 2026\n- **URL:** https://arxiv.org/abs/2604.22722\n- **Why important:** Addresses (d) distillation in retrieval and (e) training techniques -- distills LLM utility (perplexity reduction) into bi-encoder embeddings via a Utility-Modulated InfoNCE objective, achieving 30% Recall@1 improvement and 180x speedup over LLM reranking.\n- **One-line summary:** Distills generative LLM utility signals (based on perplexity reduction) directly into dense bi-encoder embeddings via a novel Utility-Modulated InfoNCE loss, achieving large retrieval gains at 180x the speed of LLM reranking.\n\n---\n\n## 24. Maintaining MTEB: Towards Long Term Usability and Reproducibility of Embedding Benchmarks\n\n- **Authors:** Isaac Chung, Imene Kerboua, Marton Kardos, Roman Solomatin, Kenneth Enevoldsen\n- **Venue:** arXiv Jun 2025\n- **URL:** https://arxiv.org/abs/2506.21182\n- **Why important:** Addresses (f) benchmark/evaluation methodology -- describes the engineering practices, CI pipelines, and modular design decisions behind the MTEB benchmark that ensure reproducibility and long-term usability of embedding evaluations.\n- **One-line summary:** Documents the engineering practices, CI pipelines, and design decisions for maintaining the MTEB embedding benchmark's reproducibility, integrity, and extensibility over time.&lt;/result>\n&lt;usage>&lt;total_tokens>48525&lt;/total_tokens>&lt;tool_uses>61&lt;/tool_uses>&lt;duration_ms>269518&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "d859af4d-ae90-4dd2-8427-767dcc635005",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey for dual sparse-dense decoder-only retrieval",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 75 · 2026-05-30T06:18:02.421Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T06:18:02.421Z",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+## Round 8
+
+7 recorded events
+
+### User
+
+_source line 76 · 2026-05-30T06:18:02.431Z_
+
+&lt;task-notification>
+&lt;task-id>ae8e16ea2aa07123f&lt;/task-id>
+&lt;tool-use-id>toolu_015CLqV3fZ1jgPYZHSP8fLyy&lt;/tool-use-id>
+&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-adversarial/d9b8af30-59dc-4c7a-a01f-49c577bff243/tasks/ae8e16ea2aa07123f.output&lt;/output-file>
+&lt;status>completed&lt;/status>
+&lt;summary>Agent "Search: representation learning surveys" completed&lt;/summary>
+&lt;result>I now have comprehensive data. Let me compile the final list of verified, relevant papers.
+
+Here is the curated list of papers (2024--2026) confirmed via arXiv abstract verification, filtered to topics (a)--(f):
+
+---
+
+## 1. NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models
+
+- **Authors:** Chankyu Lee, Rajarshi Roy, Mengyao Xu, Jonathan Raiman, Mohammad Shoeybi, Bryan Catanzaro, Wei Ping
+- **Venue:** ICLR 2025 (Spotlight); arXiv May 2024
+- **URL:** https://arxiv.org/abs/2405.17428
+- **Why important:** Directly addresses (a) decoder-only LLMs for retrieval and (e) training techniques -- introduces latent attention pooling, causal-mask removal during contrastive training, and a two-stage contrastive instruction-tuning pipeline. Topped the MTEB leaderboard.
+- **One-line summary:** Proposes architectural and training innovations (latent attention layer, two-stage contrastive instruction tuning, hard-negative mining) that turn decoder-only LLMs into state-of-the-art generalist embedding models.
+
+---
+
+## 2. Generative Representational Instruction Tuning (GritLM)
+
+- **Authors:** Niklas Muennighoff, Hongjin Su, Liang Wang, Nan Yang, Furu Wei, Tao Yu, Amanpreet Singh, Douwe Kiela
+- **Venue:** arXiv Feb 2024 (revised Mar 2025)
+- **URL:** https://arxiv.org/abs/2402.09906
+- **Why important:** Directly addresses (a) decoder-only LLMs for retrieval and (e) training techniques -- unifies generative and embedding tasks in a single decoder-only model with no performance loss, and speeds up RAG by 60%.
+- **One-line summary:** Trains a single LLM to handle both generation and embedding via instruction-based task switching, achieving SOTA on MTEB while matching dedicated generative models.
+
+---
+
+## 3. LLM2Vec: Large Language Models Are Secretly Powerful Text Encoders
+
+- **Authors:** Parishad BehnamGhader, Vaibhav Adlakha, Marius Mosbach, Dzmitry Bahdanau, Nicolas Chapados, Siva Reddy
+- **Venue:** COLM 2024; arXiv Apr 2024
+- **URL:** https://arxiv.org/abs/2404.05961
+- **Why important:** Directly addresses (a) decoder-only LLMs for retrieval and (e) training techniques -- provides a simple unsupervised recipe (bidirectional attention + masked next-token prediction + SimCSE) to convert any decoder-only LLM into a strong text encoder.
+- **One-line summary:** A three-step unsupervised method transforms causal decoder-only LLMs into powerful text encoders by enabling bidirectional attention, masked next-token prediction, and contrastive learning.
+
+---
+
+## 4. Improving Text Embeddings with Large Language Models (E5-Mistral)
+
+- **Authors:** Liang Wang, Nan Yang, Xiaolong Huang, Linjun Yang, Rangan Majumder, Furu Wei
+- **Venue:** ACL 2024; arXiv Dec 2023
+- **URL:** https://arxiv.org/abs/2401.00368
+- **Why important:** Addresses (a) decoder-only LLMs for retrieval and (e) training techniques -- demonstrates that synthetic data from LLMs plus contrastive fine-tuning of decoder-only models can match or exceed encoder-only embeddings without human-labeled data.
+- **One-line summary:** Fine-tunes open-source decoder-only LLMs on LLM-generated synthetic data with contrastive loss, achieving competitive embeddings without labeled data and SOTA when combined with labeled data.
+
+---
+
+## 5. Fine-Tuning LLaMA for Multi-Stage Text Retrieval (RepLLaMA / RankLLaMA)
+
+- **Authors:** Xueguang Ma, Liang Wang, Nan Yang, Furu Wei, Jimmy Lin
+- **Venue:** SIGIR 2024; arXiv Oct 2023
+- **URL:** https://arxiv.org/abs/2310.08319
+- **Why important:** Foundational work on (a) decoder-only LLMs for retrieval -- establishes that LLaMA fine-tuned as a dense retriever (RepLLaMA) and reranker (RankLLaMA) surpasses smaller models and shows strong zero-shot generalization on BEIR.
+- **One-line summary:** Fine-tunes LLaMA as both a dense bi-encoder retriever and pointwise reranker for MS MARCO, demonstrating that LLMs outperform smaller models and eliminate the need for document segmentation.
+
+---
+
+## 6. M3-Embedding (BGE-M3): Multi-Lingual, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation
+
+- **Authors:** Jianlv Chen, Shitao Xiao, Peitian Zhang, Kun Luo, Defu Lian, Zheng Liu
+- **Venue:** Findings of ACL 2024; arXiv Feb 2024
+- **URL:** https://arxiv.org/abs/2402.03216
+- **Why important:** Directly addresses (b) hybrid sparse-dense retrieval and (d) self-distillation -- a single model simultaneously supports dense, sparse, and multi-vector retrieval, trained with a self-knowledge distillation method that fuses scores across retrieval modalities as teacher signals.
+- **One-line summary:** A unified embedding model that performs dense, sparse, and multi-vector retrieval across 100+ languages, using self-knowledge distillation across retrieval functionalities as the training signal.
+
+---
+
+## 7. Scaling Sparse and Dense Retrieval in Decoder-Only LLMs (Lion-SP / Lion-DN)
+
+- **Authors:** Hansi Zeng, Julian Killingback, Hamed Zamani
+- **Venue:** SIGIR 2025; arXiv Feb 2025
+- **URL:** https://arxiv.org/abs/2502.15526
+- **Why important:** Directly addresses (a) decoder-only LLMs for retrieval, (b) hybrid sparse-dense retrieval, and (e) training techniques -- systematically studies scaling laws for sparse vs. dense retrieval in decoder-only LLMs (Llama-3 1B--8B), finding sparse consistently outperforms dense and scaling benefits emerge with contrastive loss but not knowledge distillation.
+- **One-line summary:** Systematically scales decoder-only LLMs for both sparse and dense retrieval, finding that sparse retrieval consistently outperforms dense and that contrastive learning (not KD) unlocks scaling gains.
+
+---
+
+## 8. CSPLADE: Learned Sparse Retrieval with Causal Language Models
+
+- **Authors:** Zhichao Xu, Aosong Feng, Yijun Tian, Haibo Ding, Lin Lee Cheong
+- **Venue:** IJCNLP-AACL 2025; arXiv Apr 2025
+- **URL:** https://arxiv.org/abs/2504.10816
+- **Why important:** Addresses (a) decoder-only LLMs for retrieval and (e) training techniques -- extends SPLADE-style learned sparse retrieval to 8B decoder-only LLMs by solving training instability (dying ReLU) and unidirectional attention problems.
+- **One-line summary:** Adapts learned sparse retrieval (SPLADE) to causal LLMs at 8B scale by introducing lightweight adaptation training and bidirectional-attention variants, achieving competitive performance with reduced index size.
+
+---
+
+## 9. Promptriever: Instruction-Trained Retrievers Can Be Prompted Like Language Models
+
+- **Authors:** Orion Weller, Benjamin Van Durme, Dawn Lawrie, Ashwin Paranjape, Yuhao Zhang, Jack Hessel
+- **Venue:** ICLR 2025; arXiv Sep 2024
+- **URL:** https://arxiv.org/abs/2409.11136
+- **Why important:** Addresses (e) training techniques and (f) benchmark/evaluation -- trains retrieval models with per-instance natural-language instructions and "instruction negatives," enabling prompt-based control of retrieval behavior at query time.
+- **One-line summary:** Trains a bi-encoder retriever on instruction-augmented data so it can be prompted with natural-language relevance definitions per query, achieving SOTA on instruction-following retrieval benchmarks.
+
+---
+
+## 10. Towards Better Instruction Following Retrieval Models (InF-Embed)
+
+- **Authors:** Yuchen Zhuang, Aaron Trinh, Rushi Qiang, Haotian Sun, Chao Zhang, Hanjun Dai, Bo Dai
+- **Venue:** arXiv May 2025
+- **URL:** https://arxiv.org/abs/2505.21439
+- **Why important:** Addresses (e) training techniques and (f) evaluation -- constructs a 38K instruction-query-passage dataset with reasoning-model-validated hard negatives, and trains InF-Embed with contrastive learning and attention mechanisms for instruction-aware retrieval.
+- **One-line summary:** Introduces a curated instruction-following retrieval dataset with hard negatives validated by a reasoning model, and trains an embedding model that outperforms baselines by 8.1% on instruction-following metrics.
+
+---
+
+## 11. GRACE: Generative Representation Learning via Contrastive Policy Optimization
+
+- **Authors:** Jiashuo Sun, Shixuan Liu, Zhaochen Su, Xianrui Zhong, Pengcheng Jiang, Bowen Jin, Peiran Li, Weijia Shi, Jiawei Han
+- **Venue:** ICLR 2025; arXiv Oct 2025
+- **URL:** https://arxiv.org/abs/2510.04506
+- **Why important:** Addresses (a) decoder-only LLMs for retrieval and (e) training techniques -- reframes contrastive learning as reinforcement learning, where the LLM generates interpretable rationales that are then encoded into embeddings via policy gradient optimization.
+- **One-line summary:** Converts contrastive signals into rewards for a generative policy, training the LLM to produce natural-language rationales that are then encoded into embeddings, yielding 11.5% improvement on MTEB.
+
+---
+
+## 12. RouterRetriever: Routing over a Mixture of Expert Embedding Models
+
+- **Authors:** Hyunji Lee, Luca Soldaini, Arman Cohan, Minjoon Seo, Kyle Lo
+- **Venue:** AAAI 2025; arXiv Sep 2024
+- **URL:** https://arxiv.org/abs/2409.02685
+- **Why important:** Directly addresses (c) query routing -- routes queries to domain-specific expert embedding models, outperforming single general-purpose models on BEIR by +2.1 nDCG@10 and surpassing other routing techniques by +1.8.
+- **One-line summary:** A lightweight query routing mechanism selects the best domain-specific expert embedding model per query, outperforming general-purpose models and enabling modular addition/removal of experts without retraining.
+
+---
+
+## 13. Planning Ahead in Generative Retrieval: Guiding Autoregressive Generation through Simultaneous Decoding (PAG)
+
+- **Authors:** Hansi Zeng, Chen Luo, Hamed Zamani
+- **Venue:** SIGIR 2024; arXiv Apr 2024
+- **URL:** https://arxiv.org/abs/2404.14600
+- **Why important:** Addresses (e) training techniques for generative retrieval -- proposes simultaneous decoding with set-based and sequential identifiers to guide autoregressive document-ID generation, achieving 15.6% MRR improvement on MS MARCO.
+- **One-line summary:** Introduces a simultaneous decoding strategy that combines lexical set-based and quantized sequential identifiers to steer autoregressive generative retrieval, significantly improving MRR and reducing latency.
+
+---
+
+## 14. Constrained Auto-Regressive Decoding Constrains Generative Retrieval
+
+- **Authors:** Shiguang Wu, Zhaochun Ren, Xin Xin, Jiyuan Yang, Mengqi Zhang, Zhumin Chen, Maarten de Rijke, Pengjie Ren
+- **Venue:** SIGIR 2025; arXiv Apr 2025
+- **URL:** https://arxiv.org/abs/2504.09935
+- **Why important:** Addresses (e) training techniques and (f) evaluation methodology for generative retrieval -- provides a theoretical analysis of the limitations of constrained autoregressive decoding, deriving error lower bounds and showing that marginal-distribution-based beam search is suboptimal.
+- **One-line summary:** Provides a theoretical framework showing that constrained autoregressive decoding in generative retrieval introduces fundamental error lower bounds, and that standard beam search with marginal distributions is suboptimal.
+
+---
+
+## 15. Jina-ColBERT-v2: A General-Purpose Multilingual Late Interaction Retriever
+
+- **Authors:** Rohan Jha, Bo Wang, Michael Gunther, Georgios Mastrapas, Saba Sturua, Isabelle Mohr, Andreas Koukounas, Mohammad Kalim Akram, Nan Wang, Han Xiao
+- **Venue:** MRL 2024 (EMNLP Workshop); arXiv Aug 2024
+- **URL:** https://arxiv.org/abs/2408.16672
+- **Why important:** Addresses (b) hybrid sparse-dense (multi-vector) retrieval and (e) training techniques -- improves ColBERT with techniques from single-vector training (weakly supervised pretraining, rotary embeddings), halving storage by reducing embedding dim from 128 to 64 with negligible loss.
+- **One-line summary:** Enhances ColBERT for multilingual late-interaction retrieval by borrowing training techniques from single-vector models and reducing embedding dimensionality by 50% with minimal performance impact.
+
+---
+
+## 16. ScalingNote: Scaling up Retrievers with Large Language Models for Real-World Dense Retrieval
+
+- **Authors:** Suyuan Huang, Chao Zhang, Yuanyuan Wu, Haoxin Zhang, Yuan Wang, Maolin Wang, Shaosheng Cao, Tong Xu, Xiangyu Zhao, Zengchang Qin, Yan Gao, Yunhan Bai, Jun Fan, Yao Hu, Enhong Chen
+- **Venue:** arXiv Nov 2024
+- **URL:** https://arxiv.org/abs/2411.15766
+- **Why important:** Addresses (a) decoder-only LLMs for retrieval, (d) self-distillation, and (e) training techniques -- proposes a two-stage scaling method: first maximize LLM retrieval potential via contrastive learning, then distill the query tower into a smaller BERT model via knowledge distillation for production latency.
+- **One-line summary:** A two-stage method that first trains an LLM-based dual-tower retriever with contrastive learning, then distills only the query tower into BERT for real-world latency, validating dense retrieval scaling laws in industrial settings.
+
+---
+
+## 17. Unleashing the Power of LLMs in Dense Retrieval with Query Likelihood Modeling (LLM-QL)
+
+- **Authors:** Hengran Zhang, Keping Bi, Jiafeng Guo, Xiaojie Sun, Shihao Liu, Daiting Shi, Dawei Yin, Xueqi Cheng
+- **Venue:** arXiv Apr 2025
+- **URL:** https://arxiv.org/abs/2504.05216
+- **Why important:** Addresses (a) decoder-only LLMs for retrieval and (e) training techniques -- uses query likelihood modeling as an auxiliary generative objective to improve LLM-based dense retrieval, with novel Attention Stop and Input Corruption mechanisms.
+- **One-line summary:** Leverages query likelihood modeling with attention stopping and input corruption as auxiliary training signals to improve decoder-only LLM dense retrievers, significantly outperforming prior LLM-based retrievers on MS MARCO and BEIR.
+
+---
+
+## 18. Learning Effective Representations for Retrieval Using Self-Distillation with Adaptive Relevance Margins
+
+- **Authors:** Lukas Gienapp, Niklas Deckers, Martin Potthast, Harrisen Scells
+- **Venue:** ICTIR 2025; arXiv Jul 2024
+- **URL:** https://arxiv.org/abs/2407.21515
+- **Why important:** Directly addresses (d) self-distillation in retrieval and (e) training techniques -- proposes a parameter-free self-distillation loss that uses the encoder's own language modeling signal as supervision, matching teacher-distillation with 13.5% of the data and 3--15x faster training.
+- **One-line summary:** A parameter-free self-distillation loss exploits the encoder's own pre-trained language modeling capabilities as a training signal, matching teacher distillation effectiveness with a fraction of the data and dramatically faster training.
+
+---
+
+## 19. LLMs are Also Effective Embedding Models: An In-depth Overview
+
+- **Authors:** Chongyang Tao, Tao Shen, Shen Gao, Junshuo Zhang, Zhen Li, Kai Hua, Wenpeng Hu, Zhengwei Tao, Shuai Ma
+- **Venue:** arXiv Dec 2024
+- **URL:** https://arxiv.org/abs/2412.12591
+- **Why important:** Survey paper covering (a) decoder-only LLMs for retrieval, (e) training techniques, and (f) evaluation -- comprehensively reviews direct prompting and data-centric tuning strategies for deriving embeddings from LLMs, covering pooling approaches, scaling, and cross-task quality.
+- **One-line summary:** A comprehensive survey of methods for using LLMs as embedding models, covering prompting strategies, data-centric fine-tuning, pooling techniques, and efficiency-accuracy tradeoffs.
+
+---
+
+## 20. Conventional Contrastive Learning Often Falls Short: Improving Dense Retrieval with Cross-Encoder Listwise Distillation and Synthetic Data
+
+- **Authors:** Manveer Singh Tamber, Suleman Kazi, Vivek Sourabh, Jimmy Lin
+- **Venue:** arXiv May 2025
+- **URL:** https://arxiv.org/abs/2505.19274
+- **Why important:** Addresses (d) distillation in retrieval and (e) training techniques -- shows that InfoNCE contrastive loss often hurts SOTA models during fine-tuning, and that cross-encoder listwise distillation with diverse synthetic queries is a more robust training strategy.
+- **One-line summary:** Demonstrates that standard contrastive loss can degrade SOTA embedding models during fine-tuning, and that cross-encoder listwise distillation with varied synthetic query types is a more reliable training approach.
+
+---
+
+## 21. A Survey of Model Architectures in Information Retrieval
+
+- **Authors:** Zhichao Xu, Fengran Mo, Zhiqi Huang, Crystina Zhang, Puxuan Yu, Bei Wang, Jimmy Lin, Vivek Srikumar
+- **Venue:** TMLR (camera ready); arXiv Feb 2025
+- **URL:** https://arxiv.org/abs/2502.14822
+- **Why important:** Comprehensive survey covering (a), (b), (e), and (f) -- traces the evolution from term-based to neural retrieval architectures, covering encoder-only and decoder-only models, sparse/dense/hybrid approaches, and LLMs as both feature extractors and relevance estimators.
+- **One-line summary:** An exhaustive survey tracing IR model architectures from traditional term-based methods through BERT bi-encoders to decoder-only LLMs, covering dense, sparse, hybrid, and generative retrieval paradigms.
+
+---
+
+## 22. Learn Before Represent: Bridging Generative and Contrastive Learning for Domain-Specific LLM Embeddings
+
+- **Authors:** Xiaoyu Liang, Yuchen Peng, Jiale Luo, Wenhao Wang, Haoji Hu, Xincheng Zhou
+- **Venue:** arXiv Jan 2026
+- **URL:** https://arxiv.org/abs/2601.11124
+- **Why important:** Addresses (a) decoder-only LLMs for retrieval and (e) training techniques -- proposes a two-stage framework (information-bottleneck-constrained generative learning + generative-refined contrastive learning) to inject domain knowledge before learning embeddings, particularly for vertical domains.
+- **One-line summary:** A two-stage framework that first injects domain knowledge via information-bottleneck-constrained generative learning, then performs contrastive alignment on compressed representations, achieving significant gains in domain-specific retrieval (chemistry, medical, code).
+
+---
+
+## 23. Aligning Dense Retrievers with LLM Utility via Distillation (UAE)
+
+- **Authors:** Rajinder Sandhu, Di Mu, Cheng Chang, Md Shahriar Tasjid, Himanshu Rai, Maksims Volkovs, Ga Wu
+- **Venue:** arXiv Apr 2026
+- **URL:** https://arxiv.org/abs/2604.22722
+- **Why important:** Addresses (d) distillation in retrieval and (e) training techniques -- distills LLM utility (perplexity reduction) into bi-encoder embeddings via a Utility-Modulated InfoNCE objective, achieving 30% Recall@1 improvement and 180x speedup over LLM reranking.
+- **One-line summary:** Distills generative LLM utility signals (based on perplexity reduction) directly into dense bi-encoder embeddings via a novel Utility-Modulated InfoNCE loss, achieving large retrieval gains at 180x the speed of LLM reranking.
+
+---
+
+## 24. Maintaining MTEB: Towards Long Term Usability and Reproducibility of Embedding Benchmarks
+
+- **Authors:** Isaac Chung, Imene Kerboua, Marton Kardos, Roman Solomatin, Kenneth Enevoldsen
+- **Venue:** arXiv Jun 2025
+- **URL:** https://arxiv.org/abs/2506.21182
+- **Why important:** Addresses (f) benchmark/evaluation methodology -- describes the engineering practices, CI pipelines, and modular design decisions behind the MTEB benchmark that ensure reproducibility and long-term usability of embedding evaluations.
+- **One-line summary:** Documents the engineering practices, CI pipelines, and design decisions for maintaining the MTEB embedding benchmark's reproducibility, integrity, and extensibility over time.&lt;/result>
+&lt;usage>&lt;total_tokens>48525&lt;/total_tokens>&lt;tool_uses>61&lt;/tool_uses>&lt;duration_ms>269518&lt;/duration_ms>&lt;/usage>
+&lt;/task-notification>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d859af4d-ae90-4dd2-8427-767dcc635005",
+  "isSidechain": false,
+  "promptId": "77598618-18c0-4a7c-bb78-71484daaccc1",
+  "type": "user",
+  "uuid": "41bf1344-1ab9-452c-ab56-976d5156f8d2",
+  "permissionMode": "default",
+  "origin": {
+    "kind": "task-notification"
+  },
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-30T06:19:17.271Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All 7 agents have completed. Now I need to compile the results from all agents and select the 15 most important papers. Let me go through all the findings and deduplicate, then rank by relevance to the research direction.
+
+Let me organize all unique papers found across all agents:
+
+**Core papers (directly relevant to the research direction):**
+
+1. **BGE M3-Embedding** (Chen et al., 2024) - Unifies dense+sparse+multi-vec in one encoder-only model with self-KD. This is a seed paper.
+2. **Scaling Sparse and Dense Retrieval in Decoder-Only LLMs / Lion** (Zeng et al., SIGIR 2025) - Seed paper.
+
+
+3. **LACONIC** (Xu et al., arXiv Jan 2026) - Seed paper.
+4. **CSplade** (Xu et al., IJCNLP-AACL 2025) - Seed paper.
+5. **RouterRetriever** (Lee et al., AAAI 2025) - Seed paper.
+6. **Sparse and Dense Retrievers Learn Better Together** (Song et al., CIKM 2025) - Seed paper.
+
+**Highly relevant papers beyond the seeds:**
+
+7. **PromptReps** (Zhu et al.) - Continuing to catalog the most impactful papers on hybrid retrieval approaches and their applications. Continuing through the key papers on sparse-dense retrieval methods, including dynamic weighting approaches like DAT and MoR that handle per-query optimization, plus foundational work on scaling laws and specialized architectures like SPLARE. Continuing through more recent embedding and retrieval papers—WARP for multi-vector search, bidirectional reconstruction techniques for decoder-only models, Gecko's distillation approach, MMTEB as a comprehensive benchmark, scaling guidance from compute-optimal research, GRACE's reinforcement learning method, and Promptriever for retrieval augmentation. Now I need to narrow down to the 15 most important papers, keeping in mind the seed papers are already known so I should focus on finding new ones. Let me think through the selection criteria—best paper awards, oral presentations, high citation counts, methods that got widely adopted, surveys, and strong recent work from top labs. Looking back at the list, I should prioritize the papers that meet these standards rather than including everything.
+
+The top tier papers I'm identifying are those with the strongest venue credentials and most direct relevance: GritLM from ICLR 2025 as an oral presentation unifying generation and embedding in decoder-only models, NV-Embed as a spotlight with key training innovations, LLM2Vec as a foundational method that influenced later work, PromptReps for being the most directly relevant non-seed paper that handles both dense and sparse representations, E5-Mistral for pioneering the decoder-only embedding approach, Mistral-SPLADE as the first SPLADE implementation on decoder-only LLMs, and the Scaling Laws for Dense Retrieval paper which won best paper at SIGIR 2024.
+
+Now I'm moving through the second tier of highly relevant papers: RepLLaMA as a foundational baseline, DAT for its per-query weighting approach, MoR for mixture-of-retrievers strategies, SPLARE as an alternative sparse retrieval method using SAEs, a comprehensive IR architecture survey, self-distillation techniques with adaptive margins, DiSCo for multi-teacher distillation on sparse retrieval, and Bidirectional Reconstruction as a training technique specific to decoder-only embeddings.
+
+For tier three, I'm considering papers that touch on the topic but are less central to the core sparse-dense fusion problem: CluSD for selective dense retrieval, Qwen3 as an engineering contribution rather than a conceptual advance, WARP as a multi-vector engine that's somewhat orthogonal to sparse-dense routing, compute-optimal scaling guidance, Adaptive-RAG for routing decisions in RAG systems, contextual embeddings as a different direction, and GRACE as an interesting but tangential RL-based approach. I'm aiming for a balanced selection of fifteen papers that cover the direct advances in sparse-dense fusion while including foundational work and complementary techniques. Continuing with more recent work on retrieval techniques—RepLLaMA and RankLLaMA established foundational approaches for decoder-only models in SIGIR 2024, while newer methods like Dynamic Alpha Tuning and Mixture of Retrievers explore adaptive weighting between sparse and dense signals. I'm also including key training innovations like bidirectional reconstruction and self-distillation with adaptive margins, plus a comprehensive survey on IR architectures and the latest work on compute-optimal recipes for repurposing LLMs as embeddings.
+
+I should factor in CluSD for selective dense retrieval guided by sparse signals and DiSCo for multi-teacher knowledge distillation into sparse retrieval—both are relevant to the routing angle. For the researcher's related work section, I need to organize papers into clear categories: decoder-only models for dense retrieval, decoder-only approaches to sparse retrieval, unified sparse-dense models like PromptReps, and adaptive routing methods like DAT and MoR.
+
+Now I'm narrowing down to my final 15 papers, prioritizing PromptReps as the most directly relevant since it generates both sparse and dense representations from a single decoder-only model, alongside recent strong venues like GritLM from ICLR 2025 Oral and NV-Embed from ICLR 2025 Spotlight, plus foundational work like LLM2Vec and E5-Mistral. Repurposing LLMs into Embedding Models: Compute-Optimal Recipe from NeurIPS 2024 and a comprehensive survey on model architectures in information retrieval from TMLR 2025 round out the list. Though I'm second-guessing whether to include CluSD since it uses sparse retrieval signals for selective dense retrieval triggering, which is relevant to routing—but looking at it more carefully, the LSTM-based cluster selection is a different angle than what I'm focusing on. Let me stick with what I have, though I should really prioritize papers most directly relevant to the core contributions: dual sparse and dense heads in decoder-only LLMs, which PromptReps and GritLM already cover well.
+
+Now I'm mapping out the remaining categories—per-query learned routing through DAT, MoR, CluSD, and Adaptive-RAG; bidirectional self-distillation via Self-Distillation with ARM; training stability from Mistral-SPLADE; decoder-only embeddings from LLM2Vec, NV-Embed, E5-Mistral, and RepLLaMA; scaling laws; the IR architecture survey; and novel approaches like SPLARE and Bidirectional Reconstruction. This gives me solid coverage, though I'm wondering if I should swap in the "LLMs are Also Effective Embedding Models" survey since it's directly on topic, and maybe add Qwen3 Embedding as current state-of-the-art. Let me finalize this to exactly 15 papers.
+
+For my final list, I'm selecting PromptReps for its dual sparse and dense embeddings from a single decoder-only LLM, GritLM for unifying generation and embedding, NV-Embed for its training innovations, LLM2Vec for converting decoder-only models to bidirectional encoders, E5-Mistral as the pioneer in decoder-only embeddings, and Mistral-SPLADE as the first SPLADE variant on a decoder-only backbone.
+
+Now I'm adding more recent work on decoder-only retrieval systems: RepLLaMA and RankLLaMA as foundational approaches, the scaling laws paper that won best paper at SIGIR, dynamic alpha tuning for per-query weighting of sparse and dense components, mixture of retrievers for query-level combination, sparse autoencoders applied to learned sparse retrieval, bidirectional reconstruction as a training technique, and self-distillation with adaptive relevance margins.
+
+I've got a solid foundation here covering scaling, architecture choices, and hybrid retrieval strategies. Let me finalize this into the JSON output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "41bf1344-1ab9-452c-ab56-976d5156f8d2",
+  "isSidechain": false,
+  "requestId": "req_011CbYGQcPygmRrVzKJsf7T4",
+  "type": "assistant",
+  "uuid": "9faaa632-9d62-401a-ab01-add1a1ee831e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMYnknTmFBppmjEDNDQEgh",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5976,
+      "cache_read_input_tokens": 44492,
+      "output_tokens": 8207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5976,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 8207,
+          "cache_read_input_tokens": 44492,
+          "cache_creation_input_tokens": 5976,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5976
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78 · 2026-05-30T06:20:34.745Z_
+
+All 7 agents have completed. Let me now compile and deduplicate the results across all agents to select the 15 most important papers.
+
+Here is the comprehensive literature survey. I've analyzed all findings from the 7 search agents (which collectively executed 265+ web searches and fetches), deduplicated, and ranked the papers by relevance to your research direction.
+
+---
+
+## Key Findings
+
+Your research direction sits at the intersection of three active threads that have **not yet been unified**:
+- **Decoder-only LLMs for retrieval** (both sparse and dense, but always as separate models)
+- **Unified sparse-dense retrieval** (only in encoder-only models like BGE-M3)
+- **Learned query routing** (only between separate external models)
+
+The most critical discovery is **PromptReps** (Zhuang et al., 2024), which demonstrates that a single decoder-only LLM can produce *both* dense (from hidden states) and sparse (from token logits) representations — but without any fine-tuning or learned routing. This is the closest existing work to your proposal and should be prominently discussed.
+
+---
+
+```json
+[
+  {
+    "title": "PromptReps: Prompting Large Language Models to Generate Dense and Sparse Representations for Zero-Shot Document Retrieval",
+    "authors": "Shengyao Zhuang, Xueguang Ma, Bevan Koopman, Jimmy Lin, Guido Zuccon",
+    "venue": "arXiv 2024 (revised Oct 2024)",
+    "url": "https://arxiv.org/abs/2404.18424",
+    "why_important": "Most directly relevant non-seed paper: demonstrates that a single decoder-only LLM can produce BOTH dense (hidden-state) and sparse (token-logit) representations for retrieval without fine-tuning. Establishes the dual-output feasibility that the proposed work extends with learned heads and routing.",
+    "one_line_summary": "Prompts decoder-only LLMs to simultaneously produce dense embeddings (from hidden states) and sparse term weights (from next-token logits) for zero-shot retrieval, competitive with trained models on BEIR."
+  },
+  {
+    "title": "Generative Representational Instruction Tuning (GritLM)",
+    "authors": "Niklas Muennighoff et al.",
+    "venue": "ICLR 2025 (Oral)",
+    "url": "https://arxiv.org/abs/2402.09906",
+    "why_important": "ICLR 2025 Oral. Proves that a single decoder-only model can unify embedding and generation with no performance loss on either, using instruction-based task routing. Directly validates the feasibility of multi-task decoder-only architectures for retrieval and provides architectural precedent for dual-head designs.",
+    "one_line_summary": "Trains a single decoder-only LLM to excel at both text embedding and text generation simultaneously via instruction-based task switching, achieving SOTA on MTEB while speeding up RAG by 60%."
+  },
+  {
+    "title": "NV-Embed: Improved Techniques for Training LLMs as Generalist Embedding Models",
+    "authors": "Chankyu Lee, Rajarshi Roy, Mengyao Xu, Jonathan Raiman, Mohammad Shoeybi, Bryan Catanzaro, Wei Ping",
+    "venue": "ICLR 2025 (Spotlight)",
+    "url": "https://arxiv.org/abs/2405.17428",
+    "why_important": "ICLR 2025 Spotlight. Introduces latent attention pooling and demonstrates that removing causal attention masks during contrastive training improves decoder-only embeddings. Two-stage contrastive instruction-tuning pipeline is directly applicable to the proposed curriculum. Topped MTEB leaderboard.",
+    "one_line_summary": "Proposes latent attention pooling and a two-stage contrastive fine-tuning pipeline to convert Mistral-7B into the top-ranked generalist embedding model on MTEB, with key insight that removing causal masking during training helps."
+  },
+  {
+    "title": "LLM2Vec: Large Language Models Are Secretly Powerful Text Encoders",
+    "authors": "Parishad BehnamGhader, Vaibhav Adlakha, Marius Mosbach, Dzmitry Bahdanau, Nicolas Chapados, Siva Reddy",
+    "venue": "COLM 2024",
+    "url": "https://arxiv.org/abs/2404.05961",
+    "why_important": "Foundational method reused by Lion and LACONIC. Provides the canonical 3-step recipe (bidirectional attention, masked next-token prediction, unsupervised contrastive learning) for converting decoder-only LLMs into text encoders. The bidirectional adaptation step is critical for the proposed work's sparse head.",
+    "one_line_summary": "A three-step unsupervised method transforms causal decoder-only LLMs (1.3B-8B) into powerful bidirectional text encoders, achieving SOTA on MTEB without requiring synthetic data."
+  },
+  {
+    "title": "Improving Text Embeddings with Large Language Models (E5-Mistral)",
+    "authors": "Liang Wang, Nan Yang, Xiaolong Huang, Linjun Yang, Rangan Majumder, Furu Wei",
+    "venue": "ACL 2024",
+    "url": "https://arxiv.org/abs/2401.00368",
+    "why_important": "Highly cited, foundational paper that established the paradigm of fine-tuning decoder-only LLMs (Mistral-7B) for dense retrieval using synthetic contrastive data. All subsequent LLM-based embedding work (NV-Embed, SFR, GritLM, Linq) builds on this template.",
+    "one_line_summary": "Fine-tunes Mistral-7B on LLM-generated synthetic data with contrastive loss to achieve SOTA text embeddings on BEIR and MTEB with minimal training steps."
+  },
+  {
+    "title": "Mistral-SPLADE: LLMs for Better Learned Sparse Retrieval",
+    "authors": "Meet Doshi, Vishwajeet Kumar, Rudra Murthy, Vignesh P, Jaydeep Sen",
+    "venue": "arXiv 2024",
+    "url": "https://arxiv.org/abs/2408.11119",
+    "why_important": "First successful deployment of SPLADE-style learned sparse retrieval on a decoder-only LLM backbone (Mistral-7B), surpassing all encoder-only SPLADE variants on BEIR. Validates that LLMs' richer pre-training produces superior term expansion for sparse heads.",
+    "one_line_summary": "Uses Mistral-7B as the backbone for SPLADE-style learned sparse retrieval (Echo-Mistral-SPLADE), achieving new SOTA on BEIR by leveraging the LLM's capacity for semantic keyword expansion."
+  },
+  {
+    "title": "Scaling Laws for Dense Retrieval",
+    "authors": "Yan Fang, Jingtao Zhan, Qingyao Ai, Jiaxin Mao, Weihang Su, Jia Chen, Yiqun Liu",
+    "venue": "SIGIR 2024 — Best Paper Award",
+    "url": "https://arxiv.org/abs/2403.18684",
+    "why_important": "Best Paper at SIGIR 2024. Establishes precise power-law scaling relationships for dense retrieval as a function of model size and training data, enabling principled resource allocation. Directly informs the compute budget decisions for the proposed 3B/8B training.",
+    "one_line_summary": "Demonstrates that dense retrieval accuracy follows predictable power-law scaling in model parameters and annotation volume, providing actionable guidance for training budget allocation."
+  },
+  {
+    "title": "Fine-Tuning LLaMA for Multi-Stage Text Retrieval (RepLLaMA / RankLLaMA)",
+    "authors": "Xueguang Ma, Liang Wang, Nan Yang, Furu Wei, Jimmy Lin",
+    "venue": "SIGIR 2024",
+    "url": "https://arxiv.org/abs/2310.08319",
+    "why_important": "Early and influential work establishing that LLaMA can be directly fine-tuned as both a dense retriever (RepLLaMA) and a pointwise reranker (RankLLaMA). Key baseline cited by Lion, CSplade, and LACONIC. Demonstrates zero-shot generalization on BEIR.",
+    "one_line_summary": "Fine-tunes LLaMA as both a dense bi-encoder retriever and pointwise reranker for MS MARCO, showing LLMs surpass smaller models and handle full documents without segmentation."
+  },
+  {
+    "title": "DAT: Dynamic Alpha Tuning for Hybrid Retrieval in Retrieval-Augmented Generation",
+    "authors": "Hsin-Ling Hsu, Jengnan Tzeng",
+    "venue": "arXiv 2025",
+    "url": "https://arxiv.org/abs/2503.23013",
+    "why_important": "Directly tackles per-query interpolation weight optimization between sparse (BM25) and dense retrieval. Uses LLM-based effectiveness scoring to dynamically set alpha per query, achieving +2-7.5pp gains over fixed-weight hybrids. Validates the core hypothesis that query-adaptive weighting outperforms fixed interpolation.",
+    "one_line_summary": "Uses an LLM to evaluate top-1 results from BM25 and dense retrieval per query and dynamically sets the sparse-dense interpolation weight, yielding substantial gains over fixed-weight hybrids."
+  },
+  {
+    "title": "MoR: Better Handling Diverse Queries with a Mixture of Sparse, Dense, and Human Retrievers",
+    "authors": "Jushaan Singh Kalra, Xinran Zhao, To Eun Kim, Fengyu Cai, Fernando Diaz, Tongshuang Wu",
+    "venue": "arXiv 2025",
+    "url": "https://arxiv.org/abs/2506.15862",
+    "why_important": "Directly addresses per-query adaptive weighting across heterogeneous retriever types (BM25, dense, human). Shows that small-parameter mixtures beat much larger single retrievers, providing strong evidence that learned query-level routing over sparse+dense is beneficial.",
+    "one_line_summary": "A zero-shot, query-level weighted mixture of BM25, dense, and human retrievers outperforms every individual retriever and larger 7B models by +10.8% using only 0.8B parameters total."
+  },
+  {
+    "title": "SPLARE: Learning Retrieval Models with Sparse Autoencoders",
+    "authors": "Thibault Formal, Maxime Louis, Hervé Déjean, Stéphane Clinchant",
+    "venue": "arXiv 2026",
+    "url": "https://arxiv.org/abs/2603.13277",
+    "why_important": "Proposes a fundamentally new approach to learned sparse retrieval using sparse autoencoders to decompose LLM representations into interpretable latent features instead of vocabulary-space projection. More language-agnostic than SPLADE. SPLARE-7B achieves top results on MMTEB multilingual and English retrieval.",
+    "one_line_summary": "Replaces SPLADE's vocabulary-space projection with sparse autoencoders that decompose LLM representations into interpretable latent features, producing language-agnostic sparse representations that outperform SPLADE on multilingual retrieval."
+  },
+  {
+    "title": "Training LLMs to be Better Text Embedders through Bidirectional Reconstruction",
+    "authors": "Chang Su, Dengliang Shi, Siyuan Huang, Jintao Du, Changhua Meng, Yu Cheng, Weiqiang Wang, Zhouhan Lin",
+    "venue": "EMNLP 2025 (Main Conference)",
+    "url": "https://arxiv.org/abs/2509.03020",
+    "why_important": "Accepted at EMNLP 2025 Main. Adds a bidirectional generative reconstruction stage before contrastive learning to enrich the [EOS] token embedding with richer semantics. Directly applicable as a pre-training step in the proposed curriculum.",
+    "one_line_summary": "Adds a bidirectional reconstruction pre-training stage before contrastive learning to enrich the EOS token embedding of decoder-only LLMs, achieving SOTA text embeddings across multiple LLM scales."
+  },
+  {
+    "title": "Learning Effective Representations for Retrieval Using Self-Distillation with Adaptive Relevance Margins",
+    "authors": "Lukas Gienapp, Niklas Deckers, Martin Potthast, Harrisen Scells",
+    "venue": "ICTIR 2025",
+    "url": "https://arxiv.org/abs/2407.21515",
+    "why_important": "Proposes a parameter-free self-distillation loss using the encoder's own language modeling signal as supervision, matching teacher-distillation with 13.5% of the data. Directly relevant to the bidirectional self-distillation mechanism between sparse and dense heads.",
+    "one_line_summary": "A parameter-free self-distillation loss exploits the encoder's own pre-trained language modeling capabilities as supervision for retrieval training, matching cross-encoder distillation with a fraction of the data."
+  },
+  {
+    "title": "Repurposing Language Models into Embedding Models: Finding the Compute-Optimal Recipe",
+    "authors": "Alicja Ziarko, Albert Q. Jiang, Bartosz Piotrowski, Wenda Li, Mateja Jamnik, Piotr Miłoś",
+    "venue": "NeurIPS 2024",
+    "url": "https://arxiv.org/abs/2406.04165",
+    "why_important": "NeurIPS 2024 paper providing practical scaling laws for converting decoder-only LLMs into embedding models. Finds full fine-tuning wins at lower compute budgets, LoRA at higher budgets. Essential guidance for the proposed 200 H100-hour training budget.",
+    "one_line_summary": "Develops compute-optimal recipes for contrastively training decoder-only LLMs as embedding models, finding that full fine-tuning beats LoRA at lower budgets and vice versa at higher budgets."
+  },
+  {
+    "title": "A Survey of Model Architectures in Information Retrieval",
+    "authors": "Zhichao Xu, Fengran Mo, Zhiqi Huang, Crystina Zhang, Puxuan Yu, Bei Wang, Jimmy Lin, Vivek Srikumar",
+    "venue": "TMLR 2025",
+    "url": "https://arxiv.org/abs/2502.14822",
+    "why_important": "Comprehensive survey (by the LACONIC first author) covering the full design space of sparse, dense, and hybrid retrieval architectures. Separates architecture from training methodology and traces the evolution from term-based to neural models. Essential reference for positioning the proposed work.",
+    "one_line_summary": "An exhaustive survey tracing IR model architectures from traditional term-based methods through BERT bi-encoders to decoder-only LLMs, covering dense, sparse, hybrid, and generative retrieval paradigms."
+  }
+]
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9faaa632-9d62-401a-ab01-add1a1ee831e",
+  "isSidechain": false,
+  "requestId": "req_011CbYGQcPygmRrVzKJsf7T4",
+  "type": "assistant",
+  "uuid": "bc15c6f6-4fcf-4ad2-8411-0e8e03cbd517",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMYnknTmFBppmjEDNDQEgh",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5976,
+      "cache_read_input_tokens": 44492,
+      "output_tokens": 8207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5976,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 8207,
+          "cache_read_input_tokens": 44492,
+          "cache_creation_input_tokens": 5976,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5976
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "bc15c6f6-4fcf-4ad2-8411-0e8e03cbd517",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey for dual sparse-dense decoder-only retrieval",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "bc15c6f6-4fcf-4ad2-8411-0e8e03cbd517",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey for dual sparse-dense decoder-only retrieval",
+  "sessionId": "d9b8af30-59dc-4c7a-a01f-49c577bff243"
+}
+```
+
+---

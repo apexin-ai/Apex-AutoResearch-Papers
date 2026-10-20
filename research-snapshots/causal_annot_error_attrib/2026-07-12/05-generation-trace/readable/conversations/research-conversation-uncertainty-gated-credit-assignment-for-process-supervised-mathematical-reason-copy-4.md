@@ -1,0 +1,3703 @@
+# Research conversation: Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL ## Core Problem Process-aware RL me
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 54
+- **Recorded user turns:** 1
+- **Tool calls:** 15
+- **Original source:** `logs/chats/exported-trajectories/account-1/a2728de6-0e2f-4e6b-9fd4-847868a956bc.jsonl`
+- **Structured JSON:** [`22b958aa2fef8117aa70.json`](../../sessions/22/22b958aa2fef8117aa70.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T08:34:51.787Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T08:34:51.787Z",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "content": "# Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL\n\n## Core Problem\n\nProcess-aware RL methods (PURE, GRPO-λ, PRL, PRPO, PROGRS) treat PRM step-level scores as equally trustworthy or apply only trajectory-level corrections, yet PRMs are demonstrably miscalibrated—overestimating success on uncertain steps—leading to reward hacking where the policy exploits unreliable PRM signals. Two distinct bias sources compound this problem: (a) PRM miscalibration bias—PRM scores deviate from true step correctness probabilities, varying in severity across step types (e.g., well-calibrated on computational steps but poorly calibrated on conceptual reasoning); (b) aggregation bias—structural artifacts of the credit assignment form itself (e.g., min-form's conservative lower-bound effect). Existing methods address neither bias source adaptively at the per-step level. The per-step heterogeneity of PRM calibration quality means that global or trajectory-level corrections cannot fully resolve (a)—adaptive per-step treatment is necessary.\n\n## Research Opportunity\n\nPRM calibration methods have matured rapidly (quantile regression [Park et al., NeurIPS 2025], conditional optimal transport [arXiv 2605.06785]) but are applied exclusively to test-time scaling. PROGRS (arXiv Apr 2026) brings a calibrated PRM into RL training but applies trajectory-level outcome-conditioned centering—a deterministic rule that does not use per-step uncertainty information. No work uses PRM per-step calibration confidence to adaptively gate credit assignment during RL training. Jia et al. [ICML 2025] proved outcome supervision is statistically no harder than process supervision, ensuring fallback to outcome credit preserves learning guarantees. This frames a principled bias-variance tradeoff: process credit provides low-variance but potentially biased (when PRM is miscalibrated) signal; outcome credit is unbiased but high-variance (sparse, trajectory-level). The optimal per-step interpolation depends on local PRM reliability—precisely what calibrated confidence intervals quantify.\n\n## Research Landscape\n\nWe organize the design space along two axes—**signal source** (what drives credit allocation) and **granularity** (per-step vs. trajectory-level)—yielding four quadrants:\n\n| | Per-step | Trajectory-level |\n|---|---|---|\n| **Verifier calibration** | **UGCA (ours)** | PROGRS |\n| **Intrinsic / structural** | Process-Outcome Credit (arXiv 2602.01034) | GRPO, DAPO |\n\n**Process-aware RL (uniform PRM trust).** PURE (NeurIPS 2025) replaces summation-form with min-form credit assignment (82.6% MATH-500, 82.5% AMC23 on Qwen2.5-Math-7B) but assumes PRM scores are reliable. GRPO-λ (arXiv 2510.00194, ICLR 2026) adds eligibility traces to GRPO, improving math scores by 3–4.5 points on 7B models but trusts PRM outputs uniformly. PRPO (arXiv Jan 2026) aligns process and outcome advantages via location-parameter shift on Qwen2.5-Math-1.5B (61.2→64.4% MATH-500) using fixed structural alignment. PRL (arXiv 2026) improves reasoning through process reward learning without conditioning on PRM reliability. PRIME (arXiv Feb 2025) enables online PRM updates through implicit process rewards but uses uniform trust in PRM signals.\n\n**Calibrated PRM in RL (trajectory-level).** PROGRS (arXiv 2604.02341, Apr 2026) uses outcome-conditioned centering with a frozen quantile-regression PRM (74.9% MATH-500 vs 69.7% DAPO), shifting incorrect-trajectory PRM scores to zero mean within each prompt group. This addresses systematic PRM bias at trajectory level but does not use per-step uncertainty information—all steps within a trajectory receive the same centering treatment regardless of individual calibration quality.\n\n**Per-step process-outcome mixing (non-uncertainty-based).** \"Discovering Process-Outcome Credit\" (arXiv 2602.01034) proposes Step-wise Marginal Information Gain + Decoupled Masking for per-step process-outcome credit mixing via Monte Carlo estimation of intrinsic information gain—computationally heavier (requiring additional MC rollouts) and subject to higher estimation variance than calibration-derived uncertainty. VPPO / \"Save the Good Prefix\" (arXiv 2601.18984) uses PRM to localize the first error step and applies binary prefix reward + suffix penalty—a degenerate (hard) form of per-step gating that cannot gracefully handle PRM uncertainty on ambiguous steps.\n\n**Implicit process credit in GRPO.** Sullivan et al. (arXiv 2509.21154, ICLR 2026) prove GRPO + ORM under shared-prefix conditions is equivalent to PRM-aware RL with a Monte-Carlo-based implicit PRM. This implies vanilla GRPO already carries implicit process credit, but this credit is uniform across steps—not adaptive to PRM confidence. UGCA provides the missing per-step adaptivity.\n\n**Confidence-based reward modulation.** UCAS (arXiv Oct 2025) modulates advantages via the policy model's own logit uncertainty. ConfClip (arXiv 2509.17730) uses policy model confidence to weight rewards in RLVR. Uncertainty-Aware Reward Discounting (arXiv Apr 2026) uses ensemble disagreement for reward modulation in general RLHF. All three use policy-side or ensemble-based uncertainty signals that shift with training, whereas UGCA uses an external frozen verifier's calibrated uncertainty—stable, independent of policy training dynamics, and specifically designed to interpolate between process and outcome credit sources rather than simply scaling rewards.\n\n**PRM calibration.** Park et al. (NeurIPS 2025) introduce quantile-regression calibration for PRMs. Distributional PRM (arXiv 2605.06785, May 2026) achieves state-of-the-art calibration via conditional optimal transport, targeting only test-time scaling. PathFinder-PRM (arXiv May 2025) achieves 67.7 PRMScore on PRMBench with error-type-aware scoring but does not feed uncertainty into RL. TP-GRPO (arXiv Jul 2025) uses generative PRM at the thought level with intrinsic signals, not PRM calibration.\n\n**PRM vulnerability.** \"Reward Under Attack\" (arXiv 2603.06621) demonstrates PRMs are systematically exploitable as \"fluency detectors\"—achieving PRM scores >0.9 while ground-truth accuracy <4% under adversarial RL optimization—directly motivating uncertainty-aware trust in PRM signals.\n\n**Gap.** The specific combination—per-step PRM calibration confidence driving adaptive process-outcome credit interpolation during RL training, framed as an uncertainty-driven bias-variance tradeoff—remains unaddressed.\n\n## Proposed Approach\n\nUGCA frames credit assignment as a per-step bias-variance tradeoff. Process credit (PURE-style min-form advantage A^min) provides dense, low-variance signal but inherits PRM miscalibration bias—distinct from the structural aggregation bias of min-form itself, which UGCA does not claim to resolve. Outcome credit (GRPO group-relative advantage A^GRPO) is unbiased (based on verifiable correctness) but high-variance (sparse, trajectory-level). The key insight is separating what the verifier predicts (PRM score) from how confident the verifier is (calibrated confidence interval width)—the former determines the reward signal, the latter determines how much to trust it.\n\nWe equip the off-the-shelf Qwen2.5-Math-PRM-7B with calibrated confidence intervals via quantile regression (adapting open-source code from Park et al., NeurIPS 2025), then define a per-step gating coefficient α_i = σ(−(w_i − τ)/β) based on each step's confidence-interval width w_i. The advantage at step i is A_i = α_i · A^min_i + (1 − α_i) · A^GRPO_i: high-confidence PRM steps (small w_i, high α) lean on low-variance process credit; uncertain steps (large w_i, low α) gracefully degrade to unbiased outcome credit.\n\n**Why not simpler alternatives?** (1) Using raw PRM score magnitude as gating signal conflates \"the PRM thinks this step is correct\" with \"the PRM is confident about this step\"—a PRM can produce narrow, high-confidence intervals around a wrong prediction. Calibrated CI width separates prediction from confidence. (2) Global clipping/truncation of low-confidence PRM scores discards useful information on partially confident steps. (3) PROGRS's trajectory-level centering treats all steps within a trajectory uniformly despite heterogeneous per-step calibration quality.\n\n**Theoretical grounding.** (1) Jia et al. (ICML 2025) prove outcome supervision is statistically no harder than process supervision, ensuring degradation to outcome credit preserves learning guarantees. (2) Under simplifying assumptions (Gaussian noise on PRM scores with variance proportional to w_i²), the MSE-optimal interpolation weight takes a sigmoid-like form in w_i (formal derivation in appendix), providing a prescriptive justification for the gating function form.\n\n## Experimental Design\n\n**Models.** Qwen3-8B and Qwen3-1.7B, trained on MATH training set (8K prompts) using modified GRPO objective atop PURE codebase with veRL framework. Calibrated PRM frozen throughout.\n\n**Baselines.** 8B: GRPO, DAPO, PURE, GRPO-λ, PROGRS (5 baselines). 1.7B: all 8B baselines + PRPO + VPPO (7 baselines), providing complete coverage of fixed process-outcome mixing strategies (PRPO: parametric shift; VPPO: binary first-error gating).\n\n**Benchmarks.** MATH-500, AMC23, AIME 2024, AIME 2025, OlympiadBench, MinervaMath. Pass@1 as primary metric; Pass@8 on AIME benchmarks to increase statistical power (30-problem sets).\n\n**Reward hacking quantification.**\n- PRM-Accuracy Gap (PAG): periodic rollout sampling during training, plotting mean PRM score vs. ground-truth pass rate as overoptimization curves.\n- Per-step uncertainty-conditioned accuracy: steps binned by w_i into 5 quantile bins, reporting per-bin step correctness.\n- Reward hacking rate: proportion of trajectories where PRM score > threshold but final answer incorrect.\n\n**Core assumption validation.** Per-step w_i quantile bins with PRM step-level prediction accuracy (not just policy correctness): if narrow-w_i bins show higher PRM accuracy, the core assumption (CI width proxies PRM reliability) is confirmed. Report Spearman rank correlation between w_i and PRM prediction error.\n\n**Longitudinal PRM calibration tracking.** At every 25% training progress checkpoint, compute ECE and Brier score of frozen PRM on freshly sampled rollouts. Plot calibration quality vs. training progress and gating coefficient α distribution drift. If significant degradation detected, discuss periodic re-calibration as mitigation.\n\n**Cross-family PRM validation.** ECE and Brier score of calibrated Qwen2.5-Math-PRM-7B on Qwen3-8B initial rollouts vs. Qwen2.5 rollouts. If significant degradation, perform additional quantile calibration fine-tuning on Qwen3 data.\n\n**Ablation studies (Qwen3-1.7B, 3 seeds each).**\n- Boundary cases: α≡1 (pure PURE) and α≡0 (pure GRPO).\n- Hard vs. soft gating: binary threshold (α∈{0,1}) vs. sigmoid.\n- Raw PRM score gating: α_i = σ(PRM_score_i) vs. calibrated CI width gating.\n- Calibrated vs. uncalibrated: raw PRM score variance as uncertainty proxy vs. calibrated CI width.\n- Hyperparameters: threshold τ, temperature β, quantile level.\n\n**Statistical rigor.** 1.7B: 3 seeds, mean ± std. 8B: top 2 configs × 3 seeds + evaluation-level bootstrap CIs (1000 resamples).\n\n**Compute fairness.** Per-method training wall-clock time and FLOPs. PRM calibration cost as separate one-time overhead. Accuracy-vs-compute Pareto curves. Theoretical FLOPs comparison with \"Discovering Process-Outcome Credit\" (arXiv 2602.01034) to justify not running as direct baseline (MC estimation overhead makes compute-normalized comparison unfavorable).\n\n## Broader Significance\n\nUGCA instantiates a general principle—Verifier-Uncertainty-Aware RL: when training with imperfect verifiers, credit assignment should adapt to per-instance verifier confidence. Math reasoning is a clean testbed where PRM uncertainty is measurable and calibratable. The framework generalizes to any domain with imperfect step-level verifiers (code generation, scientific reasoning, agentic tasks). We scope experiments to math reasoning and leave cross-domain validation as future work.\n\n## Key References\n\n- Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning (NeurIPS 2025)\n- GRPO-λ / GRPO is Secretly a Process Reward Model (arXiv 2510.00194 / arXiv 2509.21154, ICLR 2026)\n- LLM Reasoning with Process Rewards for Outcome-Guided Steps [PROGRS] (arXiv 2604.02341, 2026)\n- Discovering Process-Outcome Credit in Multi-Step LLM Reasoning (arXiv 2602.01034, 2026)\n- Save the Good Prefix: Precise Error Penalization via Process-Supervised RL [VPPO] (arXiv 2601.18984, 2026)\n- Know What You Don't Know: Uncertainty Calibration of Process Reward Models (Park et al., NeurIPS 2025)\n- Distributional Process Reward Models: Calibrated Prediction via Conditional Optimal Transport (arXiv 2605.06785, 2026)\n- Do We Need to Verify Step by Step? Rethinking Process Supervision from a Theoretical Perspective (Jia et al., ICML 2025)\n- Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping [UCAS] (arXiv 2025)\n- ConfClip: Confidence-Weighted and Clipped Reward for RL in LLMs (arXiv 2509.17730, 2025)\n- PRPO: Aligning Process Reward with Outcome Reward in Policy Optimization (arXiv 2026)\n- PRL: Process Reward Learning Improves LLMs' Reasoning Ability (arXiv 2026)\n- Error Typing for Smarter Rewards [PathFinder-PRM] (arXiv 2025)\n- Process Reinforcement through Implicit Rewards [PRIME] (arXiv 2025)\n- Uncertainty-Aware Reward Discounting (arXiv Apr 2026)\n- Reward Under Attack: Analyzing Robustness and Hackability of PRMs (arXiv 2603.06621, 2026)\n- DAPO: An Open-Source LLM Reinforcement Learning System at Scale (2025)\n- Good Learners Think Their Thinking [TP-GRPO] (arXiv Jul 2025)\n\n## Resource Estimate\n\n- **GPU compute**: ~2900 H100-hours (PRM quantile calibration: 100h; cross-family validation: 20h; Qwen3-1.7B ablations + baselines ~14 configs × 3 seeds: 840h; Qwen3-8B comparison 6 configs (top 2 × 3 seeds + 4 × 1 seed): 1600h; PROGRS/GRPO-λ reproduction development: 80h; DAPO/PROGRS/extra baseline runs: 200h; evaluation + diagnostics: 60h)\n- **Timeline**: 8 weeks (wk1–2: PRM calibration + cross-family validation + PURE/veRL integration + PROGRS core reproduction; wk3–4: 1.7B full ablation sweep + PRPO/VPPO baselines + core assumption validation; wk5–6: 8B runs vs all baselines + longitudinal calibration tracking; wk7: reward-hacking analysis, PAG curves, Pareto curves, per-step visualization; wk8: paper writing and submission)\n- **Estimated GPU cost**: ~$7,250 (H100 spot ~$2.50/hr)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T08:34:51.800Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T08:34:51.800Z",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc"
+}
+```
+
+---
+
+## Round 1
+
+52 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T08:34:51.818Z_
+
+# Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL
+
+## Core Problem
+
+Process-aware RL methods (PURE, GRPO-λ, PRL, PRPO, PROGRS) treat PRM step-level scores as equally trustworthy or apply only trajectory-level corrections, yet PRMs are demonstrably miscalibrated—overestimating success on uncertain steps—leading to reward hacking where the policy exploits unreliable PRM signals. Two distinct bias sources compound this problem: (a) PRM miscalibration bias—PRM scores deviate from true step correctness probabilities, varying in severity across step types (e.g., well-calibrated on computational steps but poorly calibrated on conceptual reasoning); (b) aggregation bias—structural artifacts of the credit assignment form itself (e.g., min-form's conservative lower-bound effect). Existing methods address neither bias source adaptively at the per-step level. The per-step heterogeneity of PRM calibration quality means that global or trajectory-level corrections cannot fully resolve (a)—adaptive per-step treatment is necessary.
+
+## Research Opportunity
+
+PRM calibration methods have matured rapidly (quantile regression [Park et al., NeurIPS 2025], conditional optimal transport [arXiv 2605.06785]) but are applied exclusively to test-time scaling. PROGRS (arXiv Apr 2026) brings a calibrated PRM into RL training but applies trajectory-level outcome-conditioned centering—a deterministic rule that does not use per-step uncertainty information. No work uses PRM per-step calibration confidence to adaptively gate credit assignment during RL training. Jia et al. [ICML 2025] proved outcome supervision is statistically no harder than process supervision, ensuring fallback to outcome credit preserves learning guarantees. This frames a principled bias-variance tradeoff: process credit provides low-variance but potentially biased (when PRM is miscalibrated) signal; outcome credit is unbiased but high-variance (sparse, trajectory-level). The optimal per-step interpolation depends on local PRM reliability—precisely what calibrated confidence intervals quantify.
+
+## Research Landscape
+
+We organize the design space along two axes—**signal source** (what drives credit allocation) and **granularity** (per-step vs. trajectory-level)—yielding four quadrants:
+
+| | Per-step | Trajectory-level |
+|---|---|---|
+| **Verifier calibration** | **UGCA (ours)** | PROGRS |
+| **Intrinsic / structural** | Process-Outcome Credit (arXiv 2602.01034) | GRPO, DAPO |
+
+**Process-aware RL (uniform PRM trust).** PURE (NeurIPS 2025) replaces summation-form with min-form credit assignment (82.6% MATH-500, 82.5% AMC23 on Qwen2.5-Math-7B) but assumes PRM scores are reliable. GRPO-λ (arXiv 2510.00194, ICLR 2026) adds eligibility traces to GRPO, improving math scores by 3–4.5 points on 7B models but trusts PRM outputs uniformly. PRPO (arXiv Jan 2026) aligns process and outcome advantages via location-parameter shift on Qwen2.5-Math-1.5B (61.2→64.4% MATH-500) using fixed structural alignment. PRL (arXiv 2026) improves reasoning through process reward learning without conditioning on PRM reliability. PRIME (arXiv Feb 2025) enables online PRM updates through implicit process rewards but uses uniform trust in PRM signals.
+
+**Calibrated PRM in RL (trajectory-level).** PROGRS (arXiv 2604.02341, Apr 2026) uses outcome-conditioned centering with a frozen quantile-regression PRM (74.9% MATH-500 vs 69.7% DAPO), shifting incorrect-trajectory PRM scores to zero mean within each prompt group. This addresses systematic PRM bias at trajectory level but does not use per-step uncertainty information—all steps within a trajectory receive the same centering treatment regardless of individual calibration quality.
+
+**Per-step process-outcome mixing (non-uncertainty-based).** "Discovering Process-Outcome Credit" (arXiv 2602.01034) proposes Step-wise Marginal Information Gain + Decoupled Masking for per-step process-outcome credit mixing via Monte Carlo estimation of intrinsic information gain—computationally heavier (requiring additional MC rollouts) and subject to higher estimation variance than calibration-derived uncertainty. VPPO / "Save the Good Prefix" (arXiv 2601.18984) uses PRM to localize the first error step and applies binary prefix reward + suffix penalty—a degenerate (hard) form of per-step gating that cannot gracefully handle PRM uncertainty on ambiguous steps.
+
+**Implicit process credit in GRPO.** Sullivan et al. (arXiv 2509.21154, ICLR 2026) prove GRPO + ORM under shared-prefix conditions is equivalent to PRM-aware RL with a Monte-Carlo-based implicit PRM. This implies vanilla GRPO already carries implicit process credit, but this credit is uniform across steps—not adaptive to PRM confidence. UGCA provides the missing per-step adaptivity.
+
+**Confidence-based reward modulation.** UCAS (arXiv Oct 2025) modulates advantages via the policy model's own logit uncertainty. ConfClip (arXiv 2509.17730) uses policy model confidence to weight rewards in RLVR. Uncertainty-Aware Reward Discounting (arXiv Apr 2026) uses ensemble disagreement for reward modulation in general RLHF. All three use policy-side or ensemble-based uncertainty signals that shift with training, whereas UGCA uses an external frozen verifier's calibrated uncertainty—stable, independent of policy training dynamics, and specifically designed to interpolate between process and outcome credit sources rather than simply scaling rewards.
+
+**PRM calibration.** Park et al. (NeurIPS 2025) introduce quantile-regression calibration for PRMs. Distributional PRM (arXiv 2605.06785, May 2026) achieves state-of-the-art calibration via conditional optimal transport, targeting only test-time scaling. PathFinder-PRM (arXiv May 2025) achieves 67.7 PRMScore on PRMBench with error-type-aware scoring but does not feed uncertainty into RL. TP-GRPO (arXiv Jul 2025) uses generative PRM at the thought level with intrinsic signals, not PRM calibration.
+
+**PRM vulnerability.** "Reward Under Attack" (arXiv 2603.06621) demonstrates PRMs are systematically exploitable as "fluency detectors"—achieving PRM scores >0.9 while ground-truth accuracy <4% under adversarial RL optimization—directly motivating uncertainty-aware trust in PRM signals.
+
+**Gap.** The specific combination—per-step PRM calibration confidence driving adaptive process-outcome credit interpolation during RL training, framed as an uncertainty-driven bias-variance tradeoff—remains unaddressed.
+
+## Proposed Approach
+
+UGCA frames credit assignment as a per-step bias-variance tradeoff. Process credit (PURE-style min-form advantage A^min) provides dense, low-variance signal but inherits PRM miscalibration bias—distinct from the structural aggregation bias of min-form itself, which UGCA does not claim to resolve. Outcome credit (GRPO group-relative advantage A^GRPO) is unbiased (based on verifiable correctness) but high-variance (sparse, trajectory-level). The key insight is separating what the verifier predicts (PRM score) from how confident the verifier is (calibrated confidence interval width)—the former determines the reward signal, the latter determines how much to trust it.
+
+We equip the off-the-shelf Qwen2.5-Math-PRM-7B with calibrated confidence intervals via quantile regression (adapting open-source code from Park et al., NeurIPS 2025), then define a per-step gating coefficient α_i = σ(−(w_i − τ)/β) based on each step's confidence-interval width w_i. The advantage at step i is A_i = α_i · A^min_i + (1 − α_i) · A^GRPO_i: high-confidence PRM steps (small w_i, high α) lean on low-variance process credit; uncertain steps (large w_i, low α) gracefully degrade to unbiased outcome credit.
+
+**Why not simpler alternatives?** (1) Using raw PRM score magnitude as gating signal conflates "the PRM thinks this step is correct" with "the PRM is confident about this step"—a PRM can produce narrow, high-confidence intervals around a wrong prediction. Calibrated CI width separates prediction from confidence. (2) Global clipping/truncation of low-confidence PRM scores discards useful information on partially confident steps. (3) PROGRS's trajectory-level centering treats all steps within a trajectory uniformly despite heterogeneous per-step calibration quality.
+
+**Theoretical grounding.** (1) Jia et al. (ICML 2025) prove outcome supervision is statistically no harder than process supervision, ensuring degradation to outcome credit preserves learning guarantees. (2) Under simplifying assumptions (Gaussian noise on PRM scores with variance proportional to w_i²), the MSE-optimal interpolation weight takes a sigmoid-like form in w_i (formal derivation in appendix), providing a prescriptive justification for the gating function form.
+
+## Experimental Design
+
+**Models.** Qwen3-8B and Qwen3-1.7B, trained on MATH training set (8K prompts) using modified GRPO objective atop PURE codebase with veRL framework. Calibrated PRM frozen throughout.
+
+**Baselines.** 8B: GRPO, DAPO, PURE, GRPO-λ, PROGRS (5 baselines). 1.7B: all 8B baselines + PRPO + VPPO (7 baselines), providing complete coverage of fixed process-outcome mixing strategies (PRPO: parametric shift; VPPO: binary first-error gating).
+
+**Benchmarks.** MATH-500, AMC23, AIME 2024, AIME 2025, OlympiadBench, MinervaMath. Pass@1 as primary metric; Pass@8 on AIME benchmarks to increase statistical power (30-problem sets).
+
+**Reward hacking quantification.**
+- PRM-Accuracy Gap (PAG): periodic rollout sampling during training, plotting mean PRM score vs. ground-truth pass rate as overoptimization curves.
+- Per-step uncertainty-conditioned accuracy: steps binned by w_i into 5 quantile bins, reporting per-bin step correctness.
+- Reward hacking rate: proportion of trajectories where PRM score > threshold but final answer incorrect.
+
+**Core assumption validation.** Per-step w_i quantile bins with PRM step-level prediction accuracy (not just policy correctness): if narrow-w_i bins show higher PRM accuracy, the core assumption (CI width proxies PRM reliability) is confirmed. Report Spearman rank correlation between w_i and PRM prediction error.
+
+**Longitudinal PRM calibration tracking.** At every 25% training progress checkpoint, compute ECE and Brier score of frozen PRM on freshly sampled rollouts. Plot calibration quality vs. training progress and gating coefficient α distribution drift. If significant degradation detected, discuss periodic re-calibration as mitigation.
+
+**Cross-family PRM validation.** ECE and Brier score of calibrated Qwen2.5-Math-PRM-7B on Qwen3-8B initial rollouts vs. Qwen2.5 rollouts. If significant degradation, perform additional quantile calibration fine-tuning on Qwen3 data.
+
+**Ablation studies (Qwen3-1.7B, 3 seeds each).**
+- Boundary cases: α≡1 (pure PURE) and α≡0 (pure GRPO).
+- Hard vs. soft gating: binary threshold (α∈{0,1}) vs. sigmoid.
+- Raw PRM score gating: α_i = σ(PRM_score_i) vs. calibrated CI width gating.
+- Calibrated vs. uncalibrated: raw PRM score variance as uncertainty proxy vs. calibrated CI width.
+- Hyperparameters: threshold τ, temperature β, quantile level.
+
+**Statistical rigor.** 1.7B: 3 seeds, mean ± std. 8B: top 2 configs × 3 seeds + evaluation-level bootstrap CIs (1000 resamples).
+
+**Compute fairness.** Per-method training wall-clock time and FLOPs. PRM calibration cost as separate one-time overhead. Accuracy-vs-compute Pareto curves. Theoretical FLOPs comparison with "Discovering Process-Outcome Credit" (arXiv 2602.01034) to justify not running as direct baseline (MC estimation overhead makes compute-normalized comparison unfavorable).
+
+## Broader Significance
+
+UGCA instantiates a general principle—Verifier-Uncertainty-Aware RL: when training with imperfect verifiers, credit assignment should adapt to per-instance verifier confidence. Math reasoning is a clean testbed where PRM uncertainty is measurable and calibratable. The framework generalizes to any domain with imperfect step-level verifiers (code generation, scientific reasoning, agentic tasks). We scope experiments to math reasoning and leave cross-domain validation as future work.
+
+## Key References
+
+- Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning (NeurIPS 2025)
+- GRPO-λ / GRPO is Secretly a Process Reward Model (arXiv 2510.00194 / arXiv 2509.21154, ICLR 2026)
+- LLM Reasoning with Process Rewards for Outcome-Guided Steps [PROGRS] (arXiv 2604.02341, 2026)
+- Discovering Process-Outcome Credit in Multi-Step LLM Reasoning (arXiv 2602.01034, 2026)
+- Save the Good Prefix: Precise Error Penalization via Process-Supervised RL [VPPO] (arXiv 2601.18984, 2026)
+- Know What You Don't Know: Uncertainty Calibration of Process Reward Models (Park et al., NeurIPS 2025)
+- Distributional Process Reward Models: Calibrated Prediction via Conditional Optimal Transport (arXiv 2605.06785, 2026)
+- Do We Need to Verify Step by Step? Rethinking Process Supervision from a Theoretical Perspective (Jia et al., ICML 2025)
+- Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping [UCAS] (arXiv 2025)
+- ConfClip: Confidence-Weighted and Clipped Reward for RL in LLMs (arXiv 2509.17730, 2025)
+- PRPO: Aligning Process Reward with Outcome Reward in Policy Optimization (arXiv 2026)
+- PRL: Process Reward Learning Improves LLMs' Reasoning Ability (arXiv 2026)
+- Error Typing for Smarter Rewards [PathFinder-PRM] (arXiv 2025)
+- Process Reinforcement through Implicit Rewards [PRIME] (arXiv 2025)
+- Uncertainty-Aware Reward Discounting (arXiv Apr 2026)
+- Reward Under Attack: Analyzing Robustness and Hackability of PRMs (arXiv 2603.06621, 2026)
+- DAPO: An Open-Source LLM Reinforcement Learning System at Scale (2025)
+- Good Learners Think Their Thinking [TP-GRPO] (arXiv Jul 2025)
+
+## Resource Estimate
+
+- **GPU compute**: ~2900 H100-hours (PRM quantile calibration: 100h; cross-family validation: 20h; Qwen3-1.7B ablations + baselines ~14 configs × 3 seeds: 840h; Qwen3-8B comparison 6 configs (top 2 × 3 seeds + 4 × 1 seed): 1600h; PROGRS/GRPO-λ reproduction development: 80h; DAPO/PROGRS/extra baseline runs: 200h; evaluation + diagnostics: 60h)
+- **Timeline**: 8 weeks (wk1–2: PRM calibration + cross-family validation + PURE/veRL integration + PROGRS core reproduction; wk3–4: 1.7B full ablation sweep + PRPO/VPPO baselines + core assumption validation; wk5–6: 8B runs vs all baselines + longitudinal calibration tracking; wk7: reward-hacking analysis, PAG curves, Pareto curves, per-step visualization; wk8: paper writing and submission)
+- **Estimated GPU cost**: ~$7,250 (H100 spot ~$2.50/hr)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "e56119ce-c729-42f2-9d84-6aca3cf61e24",
+  "type": "user",
+  "uuid": "b0814535-904c-4842-93bd-badbfe879e94",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T08:34:51.817Z_
+
+```json
+{
+  "parentUuid": "b0814535-904c-4842-93bd-badbfe879e94",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "7f354be4-7072-4dce-8266-a214e3e33f85",
+  "timestamp": "2026-05-27T08:34:51.817Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T08:34:51.817Z_
+
+```json
+{
+  "parentUuid": "7f354be4-7072-4dce-8266-a214e3e33f85",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "b097fcd6-7abf-45a3-8b92-485dca23a836",
+  "timestamp": "2026-05-27T08:34:51.817Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL  ## Core Problem  Process-aware RL methods (PURE, GRPO-λ, PRL, PRPO, PROGRS) treat PRM step-level scores as equal…",
+  "leafUuid": "b097fcd6-7abf-45a3-8b92-485dca23a836",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-gated credit assignment for math reasoning RL",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T08:34:57.306Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this proposal as the 补救 agent (remediation agent), focusing exclusively on experimental design and technical execution completeness. I need to first do thorough literature research to understand the current experimental standards in this field before giving any suggestions.
+
+Let me start by searching for the key papers mentioned and understanding the experimental landscape.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b097fcd6-7abf-45a3-8b92-485dca23a836",
+  "isSidechain": false,
+  "requestId": "req_011CbSmR1kmiongo16515Hrm",
+  "type": "assistant",
+  "uuid": "c8d707df-2a34-44cb-89f2-1faa7143d1e3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4nPJPt5FPckrmj7sicCrp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5514,
+      "cache_read_input_tokens": 14080,
+      "output_tokens": 191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 191,
+          "cache_read_input_tokens": 14080,
+          "cache_creation_input_tokens": 5514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-27T08:34:58.939Z_
+
+I need to do thorough literature research before evaluating the experimental design. Let me search for the key papers and understand current experimental standards in this field.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8d707df-2a34-44cb-89f2-1faa7143d1e3",
+  "isSidechain": false,
+  "requestId": "req_011CbSmR1kmiongo16515Hrm",
+  "type": "assistant",
+  "uuid": "422f75dd-7a08-4883-be8b-29811a643ded",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4nPJPt5FPckrmj7sicCrp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5514,
+      "cache_read_input_tokens": 14080,
+      "output_tokens": 191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 191,
+          "cache_read_input_tokens": 14080,
+          "cache_creation_input_tokens": 5514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-27T08:34:59.216Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PVGvHMT9Lfi2qz7gaP8vUK`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "422f75dd-7a08-4883-be8b-29811a643ded",
+  "isSidechain": false,
+  "requestId": "req_011CbSmR1kmiongo16515Hrm",
+  "type": "assistant",
+  "uuid": "ef106c42-1044-4a6f-a21d-e401c1b4c5e7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4nPJPt5FPckrmj7sicCrp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5514,
+      "cache_read_input_tokens": 14080,
+      "output_tokens": 191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 191,
+          "cache_read_input_tokens": 14080,
+          "cache_creation_input_tokens": 5514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-27T08:34:59.223Z_
+
+<details><summary>↩ Tool result · `toolu_01PVGvHMT9Lfi2qz7gaP8vUK`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef106c42-1044-4a6f-a21d-e401c1b4c5e7",
+  "isSidechain": false,
+  "promptId": "e56119ce-c729-42f2-9d84-6aca3cf61e24",
+  "type": "user",
+  "uuid": "66d5dabd-7cd9-42bd-b2a9-b1fea99094e5",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "ef106c42-1044-4a6f-a21d-e401c1b4c5e7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-27T08:35:02.755Z_
+
+Now let me conduct the prerequisite literature research. I'll search for the key papers and experimental standards in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "66d5dabd-7cd9-42bd-b2a9-b1fea99094e5",
+  "isSidechain": false,
+  "requestId": "req_011CbSmRZkchCAny3Ago6s9S",
+  "type": "assistant",
+  "uuid": "c5418efa-42a1-4e2e-818a-c68452bf964b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CUSKYGYHfn9oVvp8E7gEK6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 19594,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 719,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 19594,
+          "cache_creation_input_tokens": 719,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 719
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-27T08:35:03.588Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GjsTrwjDZWVLc492uRdzFR`</summary>
+
+```json
+{
+  "query": "PURE min-form credit assignment process reward model NeurIPS 2025 experimental setup baselines"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c5418efa-42a1-4e2e-818a-c68452bf964b",
+  "isSidechain": false,
+  "requestId": "req_011CbSmRZkchCAny3Ago6s9S",
+  "type": "assistant",
+  "uuid": "ffa50b15-5626-45fd-8563-c6ee9637953c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CUSKYGYHfn9oVvp8E7gEK6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 19594,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 719,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 19594,
+          "cache_creation_input_tokens": 719,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 719
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-27T08:35:10.531Z_
+
+<details><summary>↩ Tool result · `toolu_01GjsTrwjDZWVLc492uRdzFR`</summary>
+
+```text
+Web search results for query: "PURE min-form credit assignment process reward model NeurIPS 2025 experimental setup baselines"
+
+Links: [{"title":"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning | OpenReview","url":"https://openreview.net/forum?id=3Sxby0hH1q"},{"title":"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning","url":"https://arxiv.org/pdf/2504.15275"},{"title":"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning","url":"https://paperreading.club/page?id=300681"},{"title":"GitHub - CJReinforce/PURE: Official code for the paper, \"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning\" · GitHub","url":"https://github.com/CJReinforce/PURE"},{"title":"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning","url":"https://arxiv.org/html/2504.15275v3"},{"title":"NeurIPS Poster Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning","url":"https://neurips.cc/virtual/2025/poster/120032"},{"title":"[2504.15275] Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning","url":"https://arxiv.org/abs/2504.15275"},{"title":"Min-Form Credit Assignment Is All Process Reward Model ...","url":"https://openreview.net/pdf?id=3Sxby0hH1q"},{"title":"The AI Timeline on X: \"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning Overview: This work identifies canonical summation-form credit assignment as the cause of reward hacking when using process reward models (PRMs) for reinforcement fine-tuning of LLMs. The https://t.co/PeNYqmOV8t\" / X","url":"https://x.com/TheAITimeline/status/1916560394656833851"},{"title":"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning | PDF | Artificial Intelligence | Intelligence (AI) & Semantics","url":"https://www.scribd.com/document/852499415/Stop-Summation-Min-Form-Credit-Assignment-Is-All-Process-Reward-Model-Needs-for-Reasoning"}]
+
+Based on the search results, here's comprehensive information about PURE and its experimental setup:
+
+## Overview
+
+PURE (Process sUpervised Reinforcement lEarning) is proposed to address reward hacking issues in process reward models (PRMs), with a key innovation being a min-form credit assignment that formulates the value function as the minimum of future rewards.
+
+## Problem Identification
+
+The main cause of PRM-induced reward hacking is the canonical summation-form credit assignment in reinforcement learning, which defines the value as cumulative gamma-decayed future rewards and easily induces LLMs to hack steps with high rewards.
+
+## Solution and Benefits
+
+The min-form credit assignment method significantly alleviates reward hacking by limiting the value function range and distributing advantages more reasonably. This method unifies the optimization objective with respect to process rewards during test-time and training-time.
+
+## Experimental Setup and Results
+
+Extensive experiments on 3 base models show that PRM-based approaches enabling min-form credit assignment achieve comparable reasoning performance to verifiable reward-based methods within only 30% steps. The framework supports 3 types of rewards: process reward only (PURE-PRM), verifiable reward only (PURE-VR), which matches the training setup of Deepseek R1-Zero, and a mix.
+
+## Publication
+
+The paper was accepted by NeurIPS 2025 on October 23, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ffa50b15-5626-45fd-8563-c6ee9637953c",
+  "isSidechain": false,
+  "promptId": "e56119ce-c729-42f2-9d84-6aca3cf61e24",
+  "type": "user",
+  "uuid": "9c49fd78-75a9-4fd2-aff2-4c7cb21b5344",
+  "toolUseResult": {
+    "query": "PURE min-form credit assignment process reward model NeurIPS 2025 experimental setup baselines",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UmRH9XjHK8LSkRZqbi8d8S",
+        "content": [
+          {
+            "title": "Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=3Sxby0hH1q"
+          },
+          {
+            "title": "Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning",
+            "url": "https://arxiv.org/pdf/2504.15275"
+          },
+          {
+            "title": "Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning",
+            "url": "https://paperreading.club/page?id=300681"
+          },
+          {
+            "title": "GitHub - CJReinforce/PURE: Official code for the paper, \"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning\" · GitHub",
+            "url": "https://github.com/CJReinforce/PURE"
+          },
+          {
+            "title": "Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning",
+            "url": "https://arxiv.org/html/2504.15275v3"
+          },
+          {
+            "title": "NeurIPS Poster Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning",
+            "url": "https://neurips.cc/virtual/2025/poster/120032"
+          },
+          {
+            "title": "[2504.15275] Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning",
+            "url": "https://arxiv.org/abs/2504.15275"
+          },
+          {
+            "title": "Min-Form Credit Assignment Is All Process Reward Model ...",
+            "url": "https://openreview.net/pdf?id=3Sxby0hH1q"
+          },
+          {
+            "title": "The AI Timeline on X: \"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning Overview: This work identifies canonical summation-form credit assignment as the cause of reward hacking when using process reward models (PRMs) for reinforcement fine-tuning of LLMs. The https://t.co/PeNYqmOV8t\" / X",
+            "url": "https://x.com/TheAITimeline/status/1916560394656833851"
+          },
+          {
+            "title": "Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning | PDF | Artificial Intelligence | Intelligence (AI) & Semantics",
+            "url": "https://www.scribd.com/document/852499415/Stop-Summation-Min-Form-Credit-Assignment-Is-All-Process-Reward-Model-Needs-for-Reasoning"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about PURE and its experimental setup:\n\n## Overview\n\nPURE (Process sUpervised Reinforcement lEarning) is proposed to address reward hacking issues in process reward models (PRMs), with a key innovation being a min-form credit assignment that formulates the value function as the minimum of future rewards.\n\n## Problem Identification\n\nThe main cause of PRM-induced reward hacking is the canonical summation-form credit assignment in reinforcement learning, which defines the value as cumulative gamma-decayed future rewards and easily induces LLMs to hack steps with high rewards.\n\n## Solution and Benefits\n\nThe min-form credit assignment method significantly alleviates reward hacking by limiting the value function range and distributing advantages more reasonably. This method unifies the optimization objective with respect to process rewards during test-time and training-time.\n\n## Experimental Setup and Results\n\nExtensive experiments on 3 base models show that PRM-based approaches enabling min-form credit assignment achieve comparable reasoning performance to verifiable reward-based methods within only 30% steps. The framework supports 3 types of rewards: process reward only (PURE-PRM), verifiable reward only (PURE-VR), which matches the training setup of Deepseek R1-Zero, and a mix.\n\n## Publication\n\nThe paper was accepted by NeurIPS 2025 on October 23, 2025."
+    ],
+    "durationSeconds": 6.934792616000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ffa50b15-5626-45fd-8563-c6ee9637953c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-27T08:35:14.375Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CnrUCZGQb8nZ98uePEhD1v`</summary>
+
+```json
+{
+  "query": "PROGRS calibrated PRM RL training arXiv 2604.02341 experimental design benchmarks ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c49fd78-75a9-4fd2-aff2-4c7cb21b5344",
+  "isSidechain": false,
+  "requestId": "req_011CbSmSPhAJdQe2nQ8AQXJz",
+  "type": "assistant",
+  "uuid": "b1f520ac-6447-47c7-b6cd-544d21cd73d1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UFwPDxeVEpmV8WtWThYA9z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1074,
+      "cache_read_input_tokens": 20313,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1074,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 20313,
+          "cache_creation_input_tokens": 1074,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1074
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-27T08:35:24.030Z_
+
+<details><summary>↩ Tool result · `toolu_01CnrUCZGQb8nZ98uePEhD1v`</summary>
+
+```text
+Web search results for query: "PROGRS calibrated PRM RL training arXiv 2604.02341 experimental design benchmarks ablation"
+
+Links: [{"title":"[2604.02341] LLM Reasoning with Process Rewards for Outcome-Guided Steps","url":"https://arxiv.org/abs/2604.02341"},{"title":"LLM Reasoning with Process Rewards for Outcome-Guided Steps","url":"https://arxiv.org/html/2604.02341"},{"title":"Your Reward Function for RL is Your Best PRM for Search: Unifying RL and Search-Based TTS","url":"https://arxiv.org/pdf/2508.14313"},{"title":"LLM Reasoning with Process Rewards for Outcome-Guided Steps","url":"https://arxiv.org/pdf/2604.02341"},{"title":"Is PRM Necessary? Problem-Solving RL Implicitly Induces PRM Capability in LLMs","url":"https://arxiv.org/pdf/2505.11227"},{"title":"Process Supervision-Guided Policy Optimization for Code Generation","url":"https://arxiv.org/pdf/2410.17621"}]
+
+Based on the search results, I found the arXiv paper you're looking for. Here's what the research is about:
+
+## PROGRS: LLM Reasoning with Process Rewards for Outcome-Guided Steps
+
+PROGRS is a framework that leverages PRMs while keeping outcome correctness dominant.
+
+### Key Technical Approach
+
+PROGRS treats process rewards as relative preferences within outcome groups rather than absolute targets, introducing outcome-conditioned centering, which shifts PRM scores of incorrect trajectories to have zero mean within each prompt group.
+
+PROGRS combines a frozen quantile-regression PRM with a multi-scale coherence evaluator and integrates the resulting centered process bonus into Group Relative Policy Optimization (GRPO) without auxiliary objectives or additional trainable components.
+
+### Experimental Results & Benchmarks
+
+Across MATH-500, AMC, AIME, MinervaMath, and Olympiad-Bench, PROGRS consistently improves Pass@1 over outcome-only baselines (e.g., 74.9% vs. 69.7% on MATH-500; 59.0% vs. 52.0% on AMC-2023) and achieves stronger performance with fewer rollouts.
+
+The paper addresses the fundamental problem that PRM scores are often imperfectly aligned with final correctness and can reward locally fluent reasoning that still ends in an incorrect answer, and when optimized as absolute rewards, such signals can amplify fluent failure modes and induce reward hacking.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b1f520ac-6447-47c7-b6cd-544d21cd73d1",
+  "isSidechain": false,
+  "promptId": "e56119ce-c729-42f2-9d84-6aca3cf61e24",
+  "type": "user",
+  "uuid": "f3b8382b-d2ab-4002-a997-8f1175a04a15",
+  "toolUseResult": {
+    "query": "PROGRS calibrated PRM RL training arXiv 2604.02341 experimental design benchmarks ablation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TLbn48V35Ka7N98cxWqPFx",
+        "content": [
+          {
+            "title": "[2604.02341] LLM Reasoning with Process Rewards for Outcome-Guided Steps",
+            "url": "https://arxiv.org/abs/2604.02341"
+          },
+          {
+            "title": "LLM Reasoning with Process Rewards for Outcome-Guided Steps",
+            "url": "https://arxiv.org/html/2604.02341"
+          },
+          {
+            "title": "Your Reward Function for RL is Your Best PRM for Search: Unifying RL and Search-Based TTS",
+            "url": "https://arxiv.org/pdf/2508.14313"
+          },
+          {
+            "title": "LLM Reasoning with Process Rewards for Outcome-Guided Steps",
+            "url": "https://arxiv.org/pdf/2604.02341"
+          },
+          {
+            "title": "Is PRM Necessary? Problem-Solving RL Implicitly Induces PRM Capability in LLMs",
+            "url": "https://arxiv.org/pdf/2505.11227"
+          },
+          {
+            "title": "Process Supervision-Guided Policy Optimization for Code Generation",
+            "url": "https://arxiv.org/pdf/2410.17621"
+          }
+        ]
+      },
+      "Based on the search results, I found the arXiv paper you're looking for. Here's what the research is about:\n\n## PROGRS: LLM Reasoning with Process Rewards for Outcome-Guided Steps\n\nPROGRS is a framework that leverages PRMs while keeping outcome correctness dominant.\n\n### Key Technical Approach\n\nPROGRS treats process rewards as relative preferences within outcome groups rather than absolute targets, introducing outcome-conditioned centering, which shifts PRM scores of incorrect trajectories to have zero mean within each prompt group.\n\nPROGRS combines a frozen quantile-regression PRM with a multi-scale coherence evaluator and integrates the resulting centered process bonus into Group Relative Policy Optimization (GRPO) without auxiliary objectives or additional trainable components.\n\n### Experimental Results & Benchmarks\n\nAcross MATH-500, AMC, AIME, MinervaMath, and Olympiad-Bench, PROGRS consistently improves Pass@1 over outcome-only baselines (e.g., 74.9% vs. 69.7% on MATH-500; 59.0% vs. 52.0% on AMC-2023) and achieves stronger performance with fewer rollouts.\n\nThe paper addresses the fundamental problem that PRM scores are often imperfectly aligned with final correctness and can reward locally fluent reasoning that still ends in an incorrect answer, and when optimized as absolute rewards, such signals can amplify fluent failure modes and induce reward hacking."
+    ],
+    "durationSeconds": 9.651063823000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b1f520ac-6447-47c7-b6cd-544d21cd73d1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-27T08:35:27.057Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YU1bVRGcsPs2q2kiMqxEPZ`</summary>
+
+```json
+{
+  "query": "\"process reward model\" \"reinforcement learning\" math reasoning 2025 2026 experimental evaluation benchmarks MATH-500 AIME ablation study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f3b8382b-d2ab-4002-a997-8f1175a04a15",
+  "isSidechain": false,
+  "requestId": "req_011CbSmTPMLyCkBRpCh7RCrN",
+  "type": "assistant",
+  "uuid": "bb46a961-588c-4e82-86c9-af6873e31afa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013VbFwgbfJUf3YgKoQvE9NN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 729,
+      "cache_read_input_tokens": 21387,
+      "output_tokens": 85,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 85,
+          "cache_read_input_tokens": 21387,
+          "cache_creation_input_tokens": 729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-27T08:35:43.670Z_
+
+<details><summary>↩ Tool result · `toolu_01YU1bVRGcsPs2q2kiMqxEPZ`</summary>
+
+```text
+Web search results for query: ""process reward model" "reinforcement learning" math reasoning 2025 2026 experimental evaluation benchmarks MATH-500 AIME ablation study"
+
+Links: [{"title":"Mathematical Reasoning in Large Language Models: Benchmarks, Architectures, Evaluation, and Open Challenges","url":"https://arxiv.org/html/2605.19723v1"},{"title":"[2505.02387] RM-R1: Reward Modeling as Reasoning","url":"https://arxiv.org/abs/2505.02387"},{"title":"Preprint PROCESS REINFORCEMENT THROUGH IMPLICIT RE- WARDS","url":"https://arxiv.org/pdf/2502.01456"},{"title":"PRL: Process Reward Learning Improves LLMs’ Reasoning Ability and Broadens the Reasoning Boundary","url":"https://arxiv.org/html/2601.10201v1"},{"title":"[2502.01456] Process Reinforcement through Implicit Rewards","url":"https://arxiv.org/abs/2502.01456"},{"title":"Good Learners Think Their Thinking: Generative PRM Makes Large Reasoning Model More Efficient Math Learner","url":"https://arxiv.org/pdf/2507.23317"},{"title":"SPARK: Stepwise Process-Aware Rewards for Reference-Free Reinforcement Learning","url":"https://arxiv.org/pdf/2512.03244"},{"title":"Entropy-Regularized Process Reward Model","url":"https://arxiv.org/pdf/2412.11006"}]
+
+Based on the search results, here's what I found regarding process reward models, reinforcement learning, and math reasoning research from 2025-2026:
+
+## Recent Research on Process Reward Models and Math Reasoning
+
+Dense process rewards have proven a more effective alternative to sparse outcome-level rewards in the inference-time scaling of large language models, particularly in tasks requiring complex multi-step reasoning.
+
+### Key Papers and Approaches
+
+**PRIME (Process Reinforcement through Implicit Rewards)**: Starting from Qwen2.5-Math-7B-Base, PRIME achieves a 15.1% average improvement across several key reasoning benchmarks over the SFT model. The evaluation covers 7 reasoning benchmarks, focusing on competition-level mathematics and programming tasks, including AIME 2024, AMC, MATH-500, Minerva Math, Olympiad-Bench, and LeetCode.
+
+**Process Reward Learning (PRL)**: Experiments on standard math reasoning benchmarks including MATH500, Minerva Math, and Olympiad Bench using different base models like Qwen2.5-Math and Llama-3.2 series show PRL improves average performance and broadens the reasoning boundary compared to baselines like REINFORCE, RAFT, and GRPO.
+
+**Generative Process Reward Models**: Aggregating multiple independent verifications at the step level produces training data surpassing ground-truth outcome supervision, achieving 47.4% average accuracy across six mathematical reasoning benchmarks using Qwen2.5-Math-7B.
+
+**RM-R1 (Reward Modeling as Reasoning)**: RM-R1 features a chain-of-rubrics mechanism and consists of two key training stages: distillation of high-quality reasoning chains and reinforcement learning with verifiable rewards.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bb46a961-588c-4e82-86c9-af6873e31afa",
+  "isSidechain": false,
+  "promptId": "e56119ce-c729-42f2-9d84-6aca3cf61e24",
+  "type": "user",
+  "uuid": "3000a921-af91-4943-b20e-63c1aa3c4fa6",
+  "toolUseResult": {
+    "query": "\"process reward model\" \"reinforcement learning\" math reasoning 2025 2026 experimental evaluation benchmarks MATH-500 AIME ablation study",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0181CoECNDWmxKmjPqeg1u8Q",
+        "content": [
+          {
+            "title": "Mathematical Reasoning in Large Language Models: Benchmarks, Architectures, Evaluation, and Open Challenges",
+            "url": "https://arxiv.org/html/2605.19723v1"
+          },
+          {
+            "title": "[2505.02387] RM-R1: Reward Modeling as Reasoning",
+            "url": "https://arxiv.org/abs/2505.02387"
+          },
+          {
+            "title": "Preprint PROCESS REINFORCEMENT THROUGH IMPLICIT RE- WARDS",
+            "url": "https://arxiv.org/pdf/2502.01456"
+          },
+          {
+            "title": "PRL: Process Reward Learning Improves LLMs’ Reasoning Ability and Broadens the Reasoning Boundary",
+            "url": "https://arxiv.org/html/2601.10201v1"
+          },
+          {
+            "title": "[2502.01456] Process Reinforcement through Implicit Rewards",
+            "url": "https://arxiv.org/abs/2502.01456"
+          },
+          {
+            "title": "Good Learners Think Their Thinking: Generative PRM Makes Large Reasoning Model More Efficient Math Learner",
+            "url": "https://arxiv.org/pdf/2507.23317"
+          },
+          {
+            "title": "SPARK: Stepwise Process-Aware Rewards for Reference-Free Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2512.03244"
+          },
+          {
+            "title": "Entropy-Regularized Process Reward Model",
+            "url": "https://arxiv.org/pdf/2412.11006"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding process reward models, reinforcement learning, and math reasoning research from 2025-2026:\n\n## Recent Research on Process Reward Models and Math Reasoning\n\nDense process rewards have proven a more effective alternative to sparse outcome-level rewards in the inference-time scaling of large language models, particularly in tasks requiring complex multi-step reasoning.\n\n### Key Papers and Approaches\n\n**PRIME (Process Reinforcement through Implicit Rewards)**: Starting from Qwen2.5-Math-7B-Base, PRIME achieves a 15.1% average improvement across several key reasoning benchmarks over the SFT model. The evaluation covers 7 reasoning benchmarks, focusing on competition-level mathematics and programming tasks, including AIME 2024, AMC, MATH-500, Minerva Math, Olympiad-Bench, and LeetCode.\n\n**Process Reward Learning (PRL)**: Experiments on standard math reasoning benchmarks including MATH500, Minerva Math, and Olympiad Bench using different base models like Qwen2.5-Math and Llama-3.2 series show PRL improves average performance and broadens the reasoning boundary compared to baselines like REINFORCE, RAFT, and GRPO.\n\n**Generative Process Reward Models**: Aggregating multiple independent verifications at the step level produces training data surpassing ground-truth outcome supervision, achieving 47.4% average accuracy across six mathematical reasoning benchmarks using Qwen2.5-Math-7B.\n\n**RM-R1 (Reward Modeling as Reasoning)**: RM-R1 features a chain-of-rubrics mechanism and consists of two key training stages: distillation of high-quality reasoning chains and reinforcement learning with verifiable rewards."
+    ],
+    "durationSeconds": 16.608458057000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "bb46a961-588c-4e82-86c9-af6873e31afa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-27T08:35:47.967Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Hz6hdQgAmgNdKvwXkf5QXX`</summary>
+
+```json
+{
+  "query": "GRPO-lambda eligibility traces ICLR 2026 baselines evaluation setup Qwen math reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3000a921-af91-4943-b20e-63c1aa3c4fa6",
+  "isSidechain": false,
+  "requestId": "req_011CbSmUqQ33XC43T9vDucd4",
+  "type": "assistant",
+  "uuid": "a5fee328-6e6c-4965-9740-5aa15777a672",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9PiJfaGNDdSQZjGSMSniS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 22116,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 903,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 22116,
+          "cache_creation_input_tokens": 903,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 903
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-27T08:35:59.125Z_
+
+<details><summary>↩ Tool result · `toolu_01Hz6hdQgAmgNdKvwXkf5QXX`</summary>
+
+```text
+Web search results for query: "GRPO-lambda eligibility traces ICLR 2026 baselines evaluation setup Qwen math reasoning"
+
+Links: [{"title":"GRPO-$\\lambda$: Credit Assignment improves LLM Reasoning","url":"https://arxiv.org/pdf/2510.00194"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2505.19590"},{"title":"Published as a conference paper at ICLR 2026 REASONING WITH SAMPLING:","url":"https://openreview.net/pdf?id=Vsgq2ldr4K"},{"title":"DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning","url":"https://arxiv.org/html/2505.09655"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf?id=faECRsdRav"},{"title":"JustRL: Scaling a 1.5B LLM with a Simple RL Recipe | ICLR Blogposts 2026","url":"https://iclr-blogposts.github.io/2026/blog/2026/justrl/"},{"title":"DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning","url":"https://arxiv.org/pdf/2505.09655"},{"title":"ICLR 2026 Workshop on Scaling Post-training for LLMs","url":"https://openreview.net/pdf?id=k8DcHShsrJ"}]
+
+Based on the search results, I found relevant information about GRPO-λ and related research presented at ICLR 2026. Here's what I found:
+
+## GRPO-λ: Eligibility Traces and Credit Assignment
+
+GRPO-λ extends GRPO through credit assignment with a novel reparameterization for PPO's eligibility trace, in a critic-free TD learning for language reasoning. The setting of LLM post-training reformulates eligibility traces for the policy as a form of token-specific weighting of the policy gradient loss.
+
+## Performance on Qwen Math Reasoning
+
+GRPO-λ improves R1-Distill-Qwen-7B's evaluation performance by over 4 points on average across math benchmarks including a 10 point improvement on AIME24. Finetuning different sized models and architectures on 4 different mathematical reasoning tasks shows that GRPO-λ learns faster and improves 30-40% better than GRPO on mathematical benchmarks tasks.
+
+## Baseline Evaluation Setup
+
+GRPO and related methods are trained with the Open-R1 framework on the training split of the MATH dataset, which contains 7,500 problems, using Qwen2.5-1.5B and Qwen2.5-3B as backbone models with a chat-based prompting format. Each update processes 128 problems, generating 7 candidate solutions per problem, with a default KL penalty of β = 0.005.
+
+The research demonstrates significant improvements in mathematical reasoning through eligibility trace-based credit assignment mechanisms for policy optimization in large language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a5fee328-6e6c-4965-9740-5aa15777a672",
+  "isSidechain": false,
+  "promptId": "e56119ce-c729-42f2-9d84-6aca3cf61e24",
+  "type": "user",
+  "uuid": "02cc90ca-7cc5-4b74-bb22-b7a51efc74ad",
+  "toolUseResult": {
+    "query": "GRPO-lambda eligibility traces ICLR 2026 baselines evaluation setup Qwen math reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DMFqG4zEAVWHZPh4Vu7NjT",
+        "content": [
+          {
+            "title": "GRPO-$\\lambda$: Credit Assignment improves LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2510.00194"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2505.19590"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 REASONING WITH SAMPLING:",
+            "url": "https://openreview.net/pdf?id=Vsgq2ldr4K"
+          },
+          {
+            "title": "DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2505.09655"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf?id=faECRsdRav"
+          },
+          {
+            "title": "JustRL: Scaling a 1.5B LLM with a Simple RL Recipe | ICLR Blogposts 2026",
+            "url": "https://iclr-blogposts.github.io/2026/blog/2026/justrl/"
+          },
+          {
+            "title": "DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2505.09655"
+          },
+          {
+            "title": "ICLR 2026 Workshop on Scaling Post-training for LLMs",
+            "url": "https://openreview.net/pdf?id=k8DcHShsrJ"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about GRPO-λ and related research presented at ICLR 2026. Here's what I found:\n\n## GRPO-λ: Eligibility Traces and Credit Assignment\n\nGRPO-λ extends GRPO through credit assignment with a novel reparameterization for PPO's eligibility trace, in a critic-free TD learning for language reasoning. The setting of LLM post-training reformulates eligibility traces for the policy as a form of token-specific weighting of the policy gradient loss.\n\n## Performance on Qwen Math Reasoning\n\nGRPO-λ improves R1-Distill-Qwen-7B's evaluation performance by over 4 points on average across math benchmarks including a 10 point improvement on AIME24. Finetuning different sized models and architectures on 4 different mathematical reasoning tasks shows that GRPO-λ learns faster and improves 30-40% better than GRPO on mathematical benchmarks tasks.\n\n## Baseline Evaluation Setup\n\nGRPO and related methods are trained with the Open-R1 framework on the training split of the MATH dataset, which contains 7,500 problems, using Qwen2.5-1.5B and Qwen2.5-3B as backbone models with a chat-based prompting format. Each update processes 128 problems, generating 7 candidate solutions per problem, with a default KL penalty of β = 0.005.\n\nThe research demonstrates significant improvements in mathematical reasoning through eligibility trace-based credit assignment mechanisms for policy optimization in large language models."
+    ],
+    "durationSeconds": 11.153203850000006,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a5fee328-6e6c-4965-9740-5aa15777a672",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL  ## Core Problem  Process-aware RL methods (PURE, GRPO-λ, PRL, PRPO, PROGRS) treat PRM step-level scores as equal…",
+  "leafUuid": "02cc90ca-7cc5-4b74-bb22-b7a51efc74ad",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-gated credit assignment for math reasoning RL",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc"
+}
+```
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-27T08:36:02.134Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MEJHbxwXV5JFKd7u7G6wSo`</summary>
+
+```json
+{
+  "query": "Qwen2.5-Math-PRM-7B quantile regression calibration cross-model transfer generalization 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02cc90ca-7cc5-4b74-bb22-b7a51efc74ad",
+  "isSidechain": false,
+  "requestId": "req_011CbSmVyRGaYdBV7K7xVETK",
+  "type": "assistant",
+  "uuid": "66c12cdf-524a-4ef1-b009-656676873c83",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MqfXt9YTTh9GPo5wHKEd31",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 880,
+      "cache_read_input_tokens": 23019,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 880,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 23019,
+          "cache_creation_input_tokens": 880,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 880
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-27T08:36:09.203Z_
+
+<details><summary>↩ Tool result · `toolu_01MEJHbxwXV5JFKd7u7G6wSo`</summary>
+
+```text
+Web search results for query: "Qwen2.5-Math-PRM-7B quantile regression calibration cross-model transfer generalization 2025 2026"
+
+Links: [{"title":"Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport","url":"https://arxiv.org/html/2605.06785"},{"title":"Know What You Don’t Know: Uncertainty Calibration of Process Reward Models","url":"https://arxiv.org/html/2506.09338"},{"title":"Qwen/Qwen2.5-Math-PRM-7B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen2.5-Math-PRM-7B"},{"title":"README.md · Qwen/Qwen2.5-Math-PRM-7B at main","url":"https://huggingface.co/Qwen/Qwen2.5-Math-PRM-7B/blob/main/README.md"},{"title":"Quantile Regularization: Towards Implicit Calibration of Regression   Models","url":"https://arxiv.org/pdf/2002.12860"},{"title":"Probabilistic Calibration by Design for Neural Network Regression","url":"https://arxiv.org/pdf/2403.11964"}]
+
+Based on the search results, I found relevant research on calibration and quantile regression applied to the Qwen2.5-Math-PRM-7B model:
+
+The Qwen2.5-Math-PRM-7B scorer is used in recent calibration research. Specifically, across different Process Reward Models (PRMs), optimal transport (OT) calibration reduces calibration error and is the best variant for LLM models, with particularly dramatic improvements for weaker models.
+
+The research contrasts different calibration approaches: quantile regression (QR) estimates quantiles independently at fixed levels chosen during training, limiting flexibility at inference time, and can only be evaluated at discrete points with potential inconsistencies like quantile crossing.
+
+Regarding cross-model transfer and generalization, calibration is assessed as a property of both the learned scoring function and its generalization to unseen data, and some results are evaluated entirely out-of-distribution using held-out problems not seen during calibration.
+
+The most recent related work appears to be from early 2025, focusing on improving calibration of process reward models through distributional approaches that provide better uncertainty quantification compared to traditional quantile regression methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "66c12cdf-524a-4ef1-b009-656676873c83",
+  "isSidechain": false,
+  "promptId": "e56119ce-c729-42f2-9d84-6aca3cf61e24",
+  "type": "user",
+  "uuid": "ea273fca-1222-4bf5-a7bc-cb1eac7c5ab3",
+  "toolUseResult": {
+    "query": "Qwen2.5-Math-PRM-7B quantile regression calibration cross-model transfer generalization 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HtVz6fM3dfgRnvUW7sg9RS",
+        "content": [
+          {
+            "title": "Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport",
+            "url": "https://arxiv.org/html/2605.06785"
+          },
+          {
+            "title": "Know What You Don’t Know: Uncertainty Calibration of Process Reward Models",
+            "url": "https://arxiv.org/html/2506.09338"
+          },
+          {
+            "title": "Qwen/Qwen2.5-Math-PRM-7B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen2.5-Math-PRM-7B"
+          },
+          {
+            "title": "README.md · Qwen/Qwen2.5-Math-PRM-7B at main",
+            "url": "https://huggingface.co/Qwen/Qwen2.5-Math-PRM-7B/blob/main/README.md"
+          },
+          {
+            "title": "Quantile Regularization: Towards Implicit Calibration of Regression   Models",
+            "url": "https://arxiv.org/pdf/2002.12860"
+          },
+          {
+            "title": "Probabilistic Calibration by Design for Neural Network Regression",
+            "url": "https://arxiv.org/pdf/2403.11964"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant research on calibration and quantile regression applied to the Qwen2.5-Math-PRM-7B model:\n\nThe Qwen2.5-Math-PRM-7B scorer is used in recent calibration research. Specifically, across different Process Reward Models (PRMs), optimal transport (OT) calibration reduces calibration error and is the best variant for LLM models, with particularly dramatic improvements for weaker models.\n\nThe research contrasts different calibration approaches: quantile regression (QR) estimates quantiles independently at fixed levels chosen during training, limiting flexibility at inference time, and can only be evaluated at discrete points with potential inconsistencies like quantile crossing.\n\nRegarding cross-model transfer and generalization, calibration is assessed as a property of both the learned scoring function and its generalization to unseen data, and some results are evaluated entirely out-of-distribution using held-out problems not seen during calibration.\n\nThe most recent related work appears to be from early 2025, focusing on improving calibration of process reward models through distributional approaches that provide better uncertainty quantification compared to traditional quantile regression methods."
+    ],
+    "durationSeconds": 7.064985474999994,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "66c12cdf-524a-4ef1-b009-656676873c83",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-27T08:36:13.263Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01L5TesHagoqA9CjGpVJ8eYX`</summary>
+
+```json
+{
+  "query": "\"discovering process-outcome credit\" arXiv 2602.01034 experimental setup Monte Carlo rollouts compute cost"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea273fca-1222-4bf5-a7bc-cb1eac7c5ab3",
+  "isSidechain": false,
+  "requestId": "req_011CbSmWiZpveyQ6UFYKjNzk",
+  "type": "assistant",
+  "uuid": "92a2d079-ef15-459a-8de0-3bb7c1c982bf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TYririZSS6TCyhztYWdnsS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 694,
+      "cache_read_input_tokens": 23899,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 694,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 23899,
+          "cache_creation_input_tokens": 694,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 694
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-27T08:36:23.201Z_
+
+<details><summary>↩ Tool result · `toolu_01L5TesHagoqA9CjGpVJ8eYX`</summary>
+
+```text
+Web search results for query: ""discovering process-outcome credit" arXiv 2602.01034 experimental setup Monte Carlo rollouts compute cost"
+
+Links: [{"title":"[2602.01034] Discovering Process-Outcome Credit in Multi-Step LLM Reasoning","url":"https://arxiv.org/abs/2602.01034"},{"title":"Artificial Intelligence Feb 2026","url":"https://arxiv.org/list/cs.AI/2026-02?skip=50&show=2000"},{"title":"Discovering Process–Outcome Credit in Multi-Step LLM Reasoning","url":"https://arxiv.org/html/2602.01034"},{"title":"Discovering Process-Outcome Credit in Multi-Step LLM Reasoning","url":"https://arxiv.org/pdf/2602.01034"},{"title":"[2602.10520v2] Prioritize the Process, Not Just the Outcome: Rewarding Latent Thought Trajectories Improves Reasoning in Looped Language Models","url":"https://arxiv.org/abs/2602.10520v2"},{"title":"[2602.10520v1] Prioritize the Process, Not Just the Outcome: Rewarding Latent Thought Trajectories Improves Reasoning in Looped Language Models","url":"https://arxiv.org/abs/2602.10520v1"},{"title":"[2602.10520] Prioritize the Process, Not Just the Outcome: Rewarding Latent Thought Trajectories Improves Reasoning in Looped Language Models","url":"https://arxiv.org/abs/2602.10520"}]
+
+Based on the search results, I found the arXiv paper 2602.01034 titled "Discovering Process-Outcome Credit in Multi-Step LLM Reasoning" by Xiangwei Wang and colleagues.
+
+The paper addresses a key challenge in reinforcement learning for LLMs: standard outcome-based approaches often suffer from reward sparsity and inefficient credit assignment.
+
+**Key Contributions:**
+
+The authors propose a Step-wise Marginal Information Gain (MIG) mechanism that quantifies the intrinsic value of reasoning steps against a Monotonic Historical Watermark, effectively filtering out training noise. Additionally, they implement a Decoupled Masking Strategy, applying process-oriented rewards specifically to the chain-of-thought (CoT) and outcome-oriented rewards to the full completion.
+
+**Experimental Results:**
+
+Extensive experiments across textual and multi-modal benchmarks (e.g., MATH, Super-CLEVR) demonstrate that their approach consistently outperforms baselines such as GRPO in both sample efficiency and final accuracy.
+
+However, the search results do not contain specific details about the experimental setup regarding Monte Carlo rollouts or compute cost. For that information, you would need to access the full paper PDF directly from arXiv at https://arxiv.org/pdf/2602.01034.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "92a2d079-ef15-459a-8de0-3bb7c1c982bf",
+  "isSidechain": false,
+  "promptId": "e56119ce-c729-42f2-9d84-6aca3cf61e24",
+  "type": "user",
+  "uuid": "2e0c8ad7-c3b2-4e8c-84e9-faef3aaeb759",
+  "toolUseResult": {
+    "query": "\"discovering process-outcome credit\" arXiv 2602.01034 experimental setup Monte Carlo rollouts compute cost",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016gv42zBTspoJ12DmbeBw1B",
+        "content": [
+          {
+            "title": "[2602.01034] Discovering Process-Outcome Credit in Multi-Step LLM Reasoning",
+            "url": "https://arxiv.org/abs/2602.01034"
+          },
+          {
+            "title": "Artificial Intelligence Feb 2026",
+            "url": "https://arxiv.org/list/cs.AI/2026-02?skip=50&show=2000"
+          },
+          {
+            "title": "Discovering Process–Outcome Credit in Multi-Step LLM Reasoning",
+            "url": "https://arxiv.org/html/2602.01034"
+          },
+          {
+            "title": "Discovering Process-Outcome Credit in Multi-Step LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2602.01034"
+          },
+          {
+            "title": "[2602.10520v2] Prioritize the Process, Not Just the Outcome: Rewarding Latent Thought Trajectories Improves Reasoning in Looped Language Models",
+            "url": "https://arxiv.org/abs/2602.10520v2"
+          },
+          {
+            "title": "[2602.10520v1] Prioritize the Process, Not Just the Outcome: Rewarding Latent Thought Trajectories Improves Reasoning in Looped Language Models",
+            "url": "https://arxiv.org/abs/2602.10520v1"
+          },
+          {
+            "title": "[2602.10520] Prioritize the Process, Not Just the Outcome: Rewarding Latent Thought Trajectories Improves Reasoning in Looped Language Models",
+            "url": "https://arxiv.org/abs/2602.10520"
+          }
+        ]
+      },
+      "Based on the search results, I found the arXiv paper 2602.01034 titled \"Discovering Process-Outcome Credit in Multi-Step LLM Reasoning\" by Xiangwei Wang and colleagues.\n\nThe paper addresses a key challenge in reinforcement learning for LLMs: standard outcome-based approaches often suffer from reward sparsity and inefficient credit assignment.\n\n**Key Contributions:**\n\nThe authors propose a Step-wise Marginal Information Gain (MIG) mechanism that quantifies the intrinsic value of reasoning steps against a Monotonic Historical Watermark, effectively filtering out training noise. Additionally, they implement a Decoupled Masking Strategy, applying process-oriented rewards specifically to the chain-of-thought (CoT) and outcome-oriented rewards to the full completion.\n\n**Experimental Results:**\n\nExtensive experiments across textual and multi-modal benchmarks (e.g., MATH, Super-CLEVR) demonstrate that their approach consistently outperforms baselines such as GRPO in both sample efficiency and final accuracy.\n\nHowever, the search results do not contain specific details about the experimental setup regarding Monte Carlo rollouts or compute cost. For that information, you would need to access the full paper PDF directly from arXiv at https://arxiv.org/pdf/2602.01034."
+    ],
+    "durationSeconds": 9.930230517999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "92a2d079-ef15-459a-8de0-3bb7c1c982bf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-27T08:36:26.184Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TpzEQe1kcUfLx9f53d9Wwh`</summary>
+
+```json
+{
+  "query": "VPPO \"save the good prefix\" process supervised RL math reasoning experimental results baselines 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e0c8ad7-c3b2-4e8c-84e9-faef3aaeb759",
+  "isSidechain": false,
+  "requestId": "req_011CbSmXkMkxPNtmsubLUhiW",
+  "type": "assistant",
+  "uuid": "39d6bc28-d7d0-49b5-af4e-3ba128b47321",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X639x96RuQ7GUWKPkAfFPH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 788,
+      "cache_read_input_tokens": 24593,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 24593,
+          "cache_creation_input_tokens": 788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-27T08:36:35.596Z_
+
+<details><summary>↩ Tool result · `toolu_01TpzEQe1kcUfLx9f53d9Wwh`</summary>
+
+```text
+Web search results for query: "VPPO "save the good prefix" process supervised RL math reasoning experimental results baselines 2026"
+
+Links: [{"title":"[2601.18984] Save the Good Prefix: Precise Error Penalization via Process-Supervised RL to Enhance LLM Reasoning","url":"https://arxiv.org/abs/2601.18984"},{"title":"Save the Good Prefix: Precise Error Penalization via Process-Supervised RL to Enhance LLM Reasoning","url":"https://arxiv.org/html/2601.18984v1"},{"title":"Save the Good Prefix: Precise Error Penalization via Process-Supervised","url":"https://www.arxiv.org/pdf/2601.18984"},{"title":"Attention as a Compass: Efficient Exploration for Process-Supervised RL in Reasoning Models","url":"https://arxiv.org/pdf/2509.26628"},{"title":"GRPO-VPS: Enhancing Group Relative Policy Optimization with Verifiable Process Supervision for Effective Reasoning","url":"https://arxiv.org/html/2604.20659v1"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## "Save the Good Prefix: Precise Error Penalization via Process-Supervised RL to Enhance LLM Reasoning"
+
+The paper proposes Verifiable Prefix Policy Optimization (VPPO), which uses process reward models (PRMs) to localize the first error during RL and partitions trajectories into verified correct prefixes and erroneous suffixes based on the first error, rewarding the former while applying targeted penalties only after the detected mistake.
+
+### Key Innovation
+
+VPPO preserves and reinforces the "good prefix" (the maximal correct segment preceding the first error) via an additional reward, while explicitly penalizing only the erroneous suffix, which fixes core failure modes of outcome-only RL and yields more targeted and stable updates.
+
+### Experimental Results
+
+Across multiple reasoning benchmarks, VPPO consistently outperforms sparse-reward RL and prior PRM-guided baselines on both Pass@1 and Pass@K.
+
+The paper was published on arXiv on January 26, 2026, by Haolin Liu and colleagues. You can access the full paper at https://arxiv.org/abs/2601.18984.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "39d6bc28-d7d0-49b5-af4e-3ba128b47321",
+  "isSidechain": false,
+  "promptId": "e56119ce-c729-42f2-9d84-6aca3cf61e24",
+  "type": "user",
+  "uuid": "43b67725-f335-4059-b16d-7d85261cd294",
+  "toolUseResult": {
+    "query": "VPPO \"save the good prefix\" process supervised RL math reasoning experimental results baselines 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MRnXK5XuZLFbaed2nUSNkT",
+        "content": [
+          {
+            "title": "[2601.18984] Save the Good Prefix: Precise Error Penalization via Process-Supervised RL to Enhance LLM Reasoning",
+            "url": "https://arxiv.org/abs/2601.18984"
+          },
+          {
+            "title": "Save the Good Prefix: Precise Error Penalization via Process-Supervised RL to Enhance LLM Reasoning",
+            "url": "https://arxiv.org/html/2601.18984v1"
+          },
+          {
+            "title": "Save the Good Prefix: Precise Error Penalization via Process-Supervised",
+            "url": "https://www.arxiv.org/pdf/2601.18984"
+          },
+          {
+            "title": "Attention as a Compass: Efficient Exploration for Process-Supervised RL in Reasoning Models",
+            "url": "https://arxiv.org/pdf/2509.26628"
+          },
+          {
+            "title": "GRPO-VPS: Enhancing Group Relative Policy Optimization with Verifiable Process Supervision for Effective Reasoning",
+            "url": "https://arxiv.org/html/2604.20659v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## \"Save the Good Prefix: Precise Error Penalization via Process-Supervised RL to Enhance LLM Reasoning\"\n\nThe paper proposes Verifiable Prefix Policy Optimization (VPPO), which uses process reward models (PRMs) to localize the first error during RL and partitions trajectories into verified correct prefixes and erroneous suffixes based on the first error, rewarding the former while applying targeted penalties only after the detected mistake.\n\n### Key Innovation\n\nVPPO preserves and reinforces the \"good prefix\" (the maximal correct segment preceding the first error) via an additional reward, while explicitly penalizing only the erroneous suffix, which fixes core failure modes of outcome-only RL and yields more targeted and stable updates.\n\n### Experimental Results\n\nAcross multiple reasoning benchmarks, VPPO consistently outperforms sparse-reward RL and prior PRM-guided baselines on both Pass@1 and Pass@K.\n\nThe paper was published on arXiv on January 26, 2026, by Haolin Liu and colleagues. You can access the full paper at https://arxiv.org/abs/2601.18984."
+    ],
+    "durationSeconds": 9.406616674000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "39d6bc28-d7d0-49b5-af4e-3ba128b47321",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-27T08:36:35.615Z_
+
+```json
+{
+  "parentUuid": "43b67725-f335-4059-b16d-7d85261cd294",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "16a7e96f-0b3b-459d-8cb8-ba6321beecda",
+  "timestamp": "2026-05-27T08:36:35.615Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-27T08:36:38.948Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PEq1JMgGaTAA6nhgsjduUm`</summary>
+
+```json
+{
+  "query": "Qwen3-8B Qwen3-1.7B math reasoning RL training GRPO veRL 2026 baseline results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16a7e96f-0b3b-459d-8cb8-ba6321beecda",
+  "isSidechain": false,
+  "requestId": "req_011CbSmYg9myEi4dJKkrvHsL",
+  "type": "assistant",
+  "uuid": "8fc09bd9-0738-4e9c-86cf-8bfb4cc0f78e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AorCrpfaynBDzMsntAdocn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 755,
+      "cache_read_input_tokens": 25381,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 755,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 25381,
+          "cache_creation_input_tokens": 755,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 755
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-27T08:36:47.981Z_
+
+<details><summary>↩ Tool result · `toolu_01PEq1JMgGaTAA6nhgsjduUm`</summary>
+
+```text
+Web search results for query: "Qwen3-8B Qwen3-1.7B math reasoning RL training GRPO veRL 2026 baseline results"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2508.05004"},{"title":"Qwen3-8b-base SFT+GRPO Training Report | My Blog","url":"https://dtianyou.com/en/notes/qwen3-8b-base-training/"},{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"},{"title":"Prompt Augmentation Scales up GRPO Training on Mathematical Reasoning","url":"https://arxiv.org/pdf/2602.03190"},{"title":"GitHub - hkust-nlp/simpleRL-reason: Simple RL training for reasoning · GitHub","url":"https://github.com/hkust-nlp/simpleRL-reason"},{"title":"Prompt replay: speeding up grpo with on-policy reuse of high-signal prompts","url":"https://arxiv.org/pdf/2603.21177"},{"title":"Reinforcement Learning for Reasoning in Large Language Models with One Training Example","url":"https://arxiv.org/pdf/2504.20571"}]
+
+I've found relevant research on your query. Here are the key baseline results for Qwen3 models with math reasoning RL training:
+
+## Qwen3-8B Results
+
+For the Qwen3-8B-Base model, three iterations of R-Zero raise the average performance from a baseline of 49.18 to 54.69, a significant gain of +5.51 points. Additionally, the first iteration provides a +1.52 point gain over the baseline on Qwen3-8B-Base.
+
+## Training Methods
+
+The search results reference multiple RL training approaches for mathematical reasoning. A report details SFT (Supervised Fine-tuning) and GRPO (Group-wise Reward Policy Optimization) training of the Qwen3-8b-base model aimed at enhancing performance on mathematical problem-solving, especially for GSM8K and AIME24 datasets. The GRPO phase used approximately 3,000 simplerl level5 math questions to improve the model's reasoning on complex tasks.
+
+The results indicate that GRPO training with veRL (a framework referenced in the training documentation) shows meaningful improvements on Qwen3 models for mathematical reasoning tasks, with the 8B variant starting from around 49% baseline accuracy and improving to approximately 54.7% after training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8fc09bd9-0738-4e9c-86cf-8bfb4cc0f78e",
+  "isSidechain": false,
+  "promptId": "e56119ce-c729-42f2-9d84-6aca3cf61e24",
+  "type": "user",
+  "uuid": "78ccc07e-5e68-4cb4-af76-84da44458a2c",
+  "toolUseResult": {
+    "query": "Qwen3-8B Qwen3-1.7B math reasoning RL training GRPO veRL 2026 baseline results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01G39PMzvp7WeEgK5o63TEki",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2508.05004"
+          },
+          {
+            "title": "Qwen3-8b-base SFT+GRPO Training Report | My Blog",
+            "url": "https://dtianyou.com/en/notes/qwen3-8b-base-training/"
+          },
+          {
+            "title": "2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          },
+          {
+            "title": "Prompt Augmentation Scales up GRPO Training on Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2602.03190"
+          },
+          {
+            "title": "GitHub - hkust-nlp/simpleRL-reason: Simple RL training for reasoning · GitHub",
+            "url": "https://github.com/hkust-nlp/simpleRL-reason"
+          },
+          {
+            "title": "Prompt replay: speeding up grpo with on-policy reuse of high-signal prompts",
+            "url": "https://arxiv.org/pdf/2603.21177"
+          },
+          {
+            "title": "Reinforcement Learning for Reasoning in Large Language Models with One Training Example",
+            "url": "https://arxiv.org/pdf/2504.20571"
+          }
+        ]
+      },
+      "I've found relevant research on your query. Here are the key baseline results for Qwen3 models with math reasoning RL training:\n\n## Qwen3-8B Results\n\nFor the Qwen3-8B-Base model, three iterations of R-Zero raise the average performance from a baseline of 49.18 to 54.69, a significant gain of +5.51 points. Additionally, the first iteration provides a +1.52 point gain over the baseline on Qwen3-8B-Base.\n\n## Training Methods\n\nThe search results reference multiple RL training approaches for mathematical reasoning. A report details SFT (Supervised Fine-tuning) and GRPO (Group-wise Reward Policy Optimization) training of the Qwen3-8b-base model aimed at enhancing performance on mathematical problem-solving, especially for GSM8K and AIME24 datasets. The GRPO phase used approximately 3,000 simplerl level5 math questions to improve the model's reasoning on complex tasks.\n\nThe results indicate that GRPO training with veRL (a framework referenced in the training documentation) shows meaningful improvements on Qwen3 models for mathematical reasoning tasks, with the 8B variant starting from around 49% baseline accuracy and improving to approximately 54.7% after training."
+    ],
+    "durationSeconds": 9.026207050000012,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8fc09bd9-0738-4e9c-86cf-8bfb4cc0f78e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-27T08:36:51.071Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019bhrcZSAwumgYhrvmVPGUQ`</summary>
+
+```json
+{
+  "query": "PRM calibration cross-model generalization frozen PRM different policy model distribution shift RL training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78ccc07e-5e68-4cb4-af76-84da44458a2c",
+  "isSidechain": false,
+  "requestId": "req_011CbSmZaz1Hrg1oyJUvMwbH",
+  "type": "assistant",
+  "uuid": "498f4ba4-dfcb-44ab-82fe-1c4aa0f48884",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AdgH6FRWYfLNeUzSJSts7G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 755,
+      "cache_read_input_tokens": 26136,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 755,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 26136,
+          "cache_creation_input_tokens": 755,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 755
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-27T08:37:04.715Z_
+
+<details><summary>↩ Tool result · `toolu_019bhrcZSAwumgYhrvmVPGUQ`</summary>
+
+```text
+Web search results for query: "PRM calibration cross-model generalization frozen PRM different policy model distribution shift RL training 2025 2026"
+
+Links: [{"title":"An Empirical Study of Pre-trained Model Selection for   Out-of-Distribution Generalization and Calibration","url":"https://arxiv.org/pdf/2307.08187"},{"title":"Understanding Generalization in Role-Playing Models via Information Theory","url":"https://arxiv.org/pdf/2512.17270"},{"title":"Pre-trained Visual Representations Generalize Where it Matters in Model-Based Reinforcement Learning","url":"https://arxiv.org/pdf/2509.12531"},{"title":"Mitigating Distribution Shift in Model-based Offline RL via Shifts-aware Reward Learning","url":"https://arxiv.org/pdf/2408.12830"},{"title":"Domain Generalization for Robust Model-Based Offline Reinforcement   Learning","url":"https://arxiv.org/pdf/2211.14827"}]
+
+The search results contain some relevant information about distribution shift and generalization in RL and model-based settings, but the results don't specifically focus on "PRM calibration" (Process Reward Models) and cross-model generalization with frozen PRMs as the core topic. Let me try a more targeted search:
+
+Links: [{"title":"Know What You Don't Know: Uncertainty Calibration of Process Reward Models | OpenReview","url":"https://openreview.net/forum?id=hzMkfIrdDT"},{"title":"Process Reward Models: Step-Level Feedback for LLMs","url":"https://www.emergentmind.com/topics/process-reward-models-prm"},{"title":"NeurIPS Poster Know What You Don't Know: Uncertainty Calibration of Process Reward Models","url":"https://neurips.cc/virtual/2025/poster/116598"},{"title":"Know What You Don't Know: Uncertainty Calibration of Process Reward Models","url":"https://arxiv.org/pdf/2506.09338"},{"title":"Process Reward Models (PRMs): Calibration & Scaling","url":"https://www.emergentmind.com/topics/process-reward-models-prms"},{"title":"Process Reward Models That Think | OpenReview","url":"https://openreview.net/forum?id=V727xqBYIW"},{"title":"Reward Modeling | RLHF Book by Nathan Lambert","url":"https://rlhfbook.com/c/05-reward-models"},{"title":"Process Reward Model with Q-Value Rankings","url":"https://arxiv.org/pdf/2410.11287"}]
+
+Good! Now let me search specifically for cross-model generalization of PRMs:
+
+Links: [{"title":"Process Reward Models: Step-Level Feedback for LLMs","url":"https://www.emergentmind.com/topics/process-reward-models-prm"},{"title":"Generalizable Process Reward Models via Formally Verified Training Data","url":"https://arxiv.org/pdf/2505.15960"},{"title":"From Mathematical Reasoning to Code: Generalization of Process Reward","url":"https://arxiv.org/pdf/2506.00027"},{"title":"Cross Domain Policy Transfer with Effect Cycle-Consistency","url":"https://arxiv.org/pdf/2403.02018"},{"title":"Cross-lingual Transferring of Pre-trained Contextualized Language Models","url":"https://arxiv.org/pdf/2107.12627"}]
+
+Based on the web search results, I've found relevant research on Process Reward Models (PRMs) and their calibration, though the results don't specifically address a single unified paper on "frozen PRM cross-model generalization with different policy models and distribution shift." Here's what I found:
+
+## PRM Calibration and Generalization Research (2025-2026)
+
+### Calibration of PRMs
+Recent research shows that off-the-shelf PRMs are often poorly calibrated, even state-of-the-art ones. Quantile-regression calibration has been introduced to align PRM outputs with success probabilities, and calibration unlocks instance-adaptive inference-time scaling.
+
+### Cross-Model and Cross-Task Generalization
+Recent work provides an in-depth analysis of cross-task generalization in LLM-based PRMs. Additionally, PRMs can exhibit reward bias, error latency, or reduced transfer to novel reasoning patterns unless explicitly trained for diverse logical structures.
+
+### Distribution Shift and Generalization Challenges
+Domain-reweighted and active filtering strategies are crucial to preserve PRM effectiveness as model scale and input diversity grow. Research has also examined robust cross-domain generalization of PRMs across different reasoning tasks.
+
+The search results indicate active research on PRM calibration, cross-domain transfer, and generalization in 2025-2026, though a specific paper directly addressing all the components you mentioned (frozen PRM with different policy models and distribution shift in RL training) wasn't found in these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "498f4ba4-dfcb-44ab-82fe-1c4aa0f48884",
+  "isSidechain": false,
+  "promptId": "e56119ce-c729-42f2-9d84-6aca3cf61e24",
+  "type": "user",
+  "uuid": "96deb65e-9ca4-43e5-a709-f4eecb1c78e1",
+  "toolUseResult": {
+    "query": "PRM calibration cross-model generalization frozen PRM different policy model distribution shift RL training 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PYvoaKQDh2a9t4qwzYxacK",
+        "content": [
+          {
+            "title": "An Empirical Study of Pre-trained Model Selection for   Out-of-Distribution Generalization and Calibration",
+            "url": "https://arxiv.org/pdf/2307.08187"
+          },
+          {
+            "title": "Understanding Generalization in Role-Playing Models via Information Theory",
+            "url": "https://arxiv.org/pdf/2512.17270"
+          },
+          {
+            "title": "Pre-trained Visual Representations Generalize Where it Matters in Model-Based Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2509.12531"
+          },
+          {
+            "title": "Mitigating Distribution Shift in Model-based Offline RL via Shifts-aware Reward Learning",
+            "url": "https://arxiv.org/pdf/2408.12830"
+          },
+          {
+            "title": "Domain Generalization for Robust Model-Based Offline Reinforcement   Learning",
+            "url": "https://arxiv.org/pdf/2211.14827"
+          }
+        ]
+      },
+      "The search results contain some relevant information about distribution shift and generalization in RL and model-based settings, but the results don't specifically focus on \"PRM calibration\" (Process Reward Models) and cross-model generalization with frozen PRMs as the core topic. Let me try a more targeted search:",
+      {
+        "tool_use_id": "srvtoolu_01ECPHgCyJ1mfmVw8B4hDV1J",
+        "content": [
+          {
+            "title": "Know What You Don't Know: Uncertainty Calibration of Process Reward Models | OpenReview",
+            "url": "https://openreview.net/forum?id=hzMkfIrdDT"
+          },
+          {
+            "title": "Process Reward Models: Step-Level Feedback for LLMs",
+            "url": "https://www.emergentmind.com/topics/process-reward-models-prm"
+          },
+          {
+            "title": "NeurIPS Poster Know What You Don't Know: Uncertainty Calibration of Process Reward Models",
+            "url": "https://neurips.cc/virtual/2025/poster/116598"
+          },
+          {
+            "title": "Know What You Don't Know: Uncertainty Calibration of Process Reward Models",
+            "url": "https://arxiv.org/pdf/2506.09338"
+          },
+          {
+            "title": "Process Reward Models (PRMs): Calibration & Scaling",
+            "url": "https://www.emergentmind.com/topics/process-reward-models-prms"
+          },
+          {
+            "title": "Process Reward Models That Think | OpenReview",
+            "url": "https://openreview.net/forum?id=V727xqBYIW"
+          },
+          {
+            "title": "Reward Modeling | RLHF Book by Nathan Lambert",
+            "url": "https://rlhfbook.com/c/05-reward-models"
+          },
+          {
+            "title": "Process Reward Model with Q-Value Rankings",
+            "url": "https://arxiv.org/pdf/2410.11287"
+          }
+        ]
+      },
+      "Good! Now let me search specifically for cross-model generalization of PRMs:",
+      {
+        "tool_use_id": "srvtoolu_01GyJyXrexGwEJYNrzj2aWCQ",
+        "content": [
+          {
+            "title": "Process Reward Models: Step-Level Feedback for LLMs",
+            "url": "https://www.emergentmind.com/topics/process-reward-models-prm"
+          },
+          {
+            "title": "Generalizable Process Reward Models via Formally Verified Training Data",
+            "url": "https://arxiv.org/pdf/2505.15960"
+          },
+          {
+            "title": "From Mathematical Reasoning to Code: Generalization of Process Reward",
+            "url": "https://arxiv.org/pdf/2506.00027"
+          },
+          {
+            "title": "Cross Domain Policy Transfer with Effect Cycle-Consistency",
+            "url": "https://arxiv.org/pdf/2403.02018"
+          },
+          {
+            "title": "Cross-lingual Transferring of Pre-trained Contextualized Language Models",
+            "url": "https://arxiv.org/pdf/2107.12627"
+          }
+        ]
+      },
+      "Based on the web search results, I've found relevant research on Process Reward Models (PRMs) and their calibration, though the results don't specifically address a single unified paper on \"frozen PRM cross-model generalization with different policy models and distribution shift.\" Here's what I found:\n\n## PRM Calibration and Generalization Research (2025-2026)\n\n### Calibration of PRMs\nRecent research shows that off-the-shelf PRMs are often poorly calibrated, even state-of-the-art ones. Quantile-regression calibration has been introduced to align PRM outputs with success probabilities, and calibration unlocks instance-adaptive inference-time scaling.\n\n### Cross-Model and Cross-Task Generalization\nRecent work provides an in-depth analysis of cross-task generalization in LLM-based PRMs. Additionally, PRMs can exhibit reward bias, error latency, or reduced transfer to novel reasoning patterns unless explicitly trained for diverse logical structures.\n\n### Distribution Shift and Generalization Challenges\nDomain-reweighted and active filtering strategies are crucial to preserve PRM effectiveness as model scale and input diversity grow. Research has also examined robust cross-domain generalization of PRMs across different reasoning tasks.\n\nThe search results indicate active research on PRM calibration, cross-domain transfer, and generalization in 2025-2026, though a specific paper directly addressing all the components you mentioned (frozen PRM with different policy models and distribution shift in RL training) wasn't found in these results."
+    ],
+    "durationSeconds": 13.639314797999992,
+    "searchCount": 3
+  },
+  "sourceToolAssistantUUID": "498f4ba4-dfcb-44ab-82fe-1c4aa0f48884",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL  ## Core Problem  Process-aware RL methods (PURE, GRPO-λ, PRL, PRPO, PROGRS) treat PRM step-level scores as equal…",
+  "leafUuid": "96deb65e-9ca4-43e5-a709-f4eecb1c78e1",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-gated credit assignment for math reasoning RL",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc"
+}
+```
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-27T08:37:07.243Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018w7hVCtHFuRitRob9BoZQ9`</summary>
+
+```json
+{
+  "query": "PRPO \"aligning process reward with outcome reward\" experimental results ablation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96deb65e-9ca4-43e5-a709-f4eecb1c78e1",
+  "isSidechain": false,
+  "requestId": "req_011CbSmaosgPLnB7T3jnMNEr",
+  "type": "assistant",
+  "uuid": "a02fca02-b411-4b9a-86e8-11e26db49018",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A5xKnp4VvbYAVevUNGvvdo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1281,
+      "cache_read_input_tokens": 26891,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1281,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 26891,
+          "cache_creation_input_tokens": 1281,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1281
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-27T08:37:18.757Z_
+
+<details><summary>↩ Tool result · `toolu_018w7hVCtHFuRitRob9BoZQ9`</summary>
+
+```text
+Web search results for query: "PRPO "aligning process reward with outcome reward" experimental results ablation 2026"
+
+Links: [{"title":"[2601.07182] PRPO: Aligning Process Reward with Outcome Reward in Policy Optimization","url":"https://arxiv.org/abs/2601.07182"},{"title":"PRPO: Aligning Process Reward with Outcome Reward in Policy Optimization","url":"https://arxiv.org/html/2601.07182v1"},{"title":"PRPO: Aligning Process Reward with Outcome Reward in Policy Optimization","url":"https://arxiv.org/pdf/2601.07182"},{"title":"Outcome Accuracy is Not Enough: Aligning the Reasoning Process of Reward Models - AI Post Transformers | iHeart","url":"https://www.iheart.com/podcast/1333-ai-post-transformers-294794102/episode/outcome-accuracy-is-not-enough-aligning-322722236/"},{"title":"Beyond Correctness: Harmonizing Process and Outcome Rewards through RL Training","url":"https://arxiv.org/html/2509.03403v1"}]
+
+I found the PRPO paper you're looking for. Here are the key experimental results and ablation findings:
+
+## Main Experimental Results
+
+On MATH500, PRPO improves Qwen2.5-Math-1.5B accuracy from 61.2% to 64.4% over GRPO using only eight rollouts and no value network, demonstrating efficient fine-grained credit assignment within critic-free optimization.
+
+## Ablation Study on Process Advantage Distribution
+
+The algorithm with relative distribution for process-level advantage showed accuracy increasing at first but suddenly dropped to nearly 0% since the 6th epoch, demonstrating instability caused by the Premature Termination Problem, where the model collapses when essential processes that are relatively lower become outliers with extremely low advantages.
+
+An experiment on the Qwen2.5-Math-7B model trained with process advantages alone found that it empirically shortened responses and eventually produced meaningless short strings.
+
+## Key Technical Insight
+
+PRPO segments reasoning sequences based on semantic clues, normalizes PRM scores into token-level advantages, and aligns their distribution with outcome advantages through location-parameter shift.
+
+The paper is from February 2026 and was published on arXiv as paper 2601.07182.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a02fca02-b411-4b9a-86e8-11e26db49018",
+  "isSidechain": false,
+  "promptId": "e56119ce-c729-42f2-9d84-6aca3cf61e24",
+  "type": "user",
+  "uuid": "9e7593bd-a865-4702-9b38-faf25fba8b23",
+  "toolUseResult": {
+    "query": "PRPO \"aligning process reward with outcome reward\" experimental results ablation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01D4KsVsxBDVcbnDAuHwguHv",
+        "content": [
+          {
+            "title": "[2601.07182] PRPO: Aligning Process Reward with Outcome Reward in Policy Optimization",
+            "url": "https://arxiv.org/abs/2601.07182"
+          },
+          {
+            "title": "PRPO: Aligning Process Reward with Outcome Reward in Policy Optimization",
+            "url": "https://arxiv.org/html/2601.07182v1"
+          },
+          {
+            "title": "PRPO: Aligning Process Reward with Outcome Reward in Policy Optimization",
+            "url": "https://arxiv.org/pdf/2601.07182"
+          },
+          {
+            "title": "Outcome Accuracy is Not Enough: Aligning the Reasoning Process of Reward Models - AI Post Transformers | iHeart",
+            "url": "https://www.iheart.com/podcast/1333-ai-post-transformers-294794102/episode/outcome-accuracy-is-not-enough-aligning-322722236/"
+          },
+          {
+            "title": "Beyond Correctness: Harmonizing Process and Outcome Rewards through RL Training",
+            "url": "https://arxiv.org/html/2509.03403v1"
+          }
+        ]
+      },
+      "I found the PRPO paper you're looking for. Here are the key experimental results and ablation findings:\n\n## Main Experimental Results\n\nOn MATH500, PRPO improves Qwen2.5-Math-1.5B accuracy from 61.2% to 64.4% over GRPO using only eight rollouts and no value network, demonstrating efficient fine-grained credit assignment within critic-free optimization.\n\n## Ablation Study on Process Advantage Distribution\n\nThe algorithm with relative distribution for process-level advantage showed accuracy increasing at first but suddenly dropped to nearly 0% since the 6th epoch, demonstrating instability caused by the Premature Termination Problem, where the model collapses when essential processes that are relatively lower become outliers with extremely low advantages.\n\nAn experiment on the Qwen2.5-Math-7B model trained with process advantages alone found that it empirically shortened responses and eventually produced meaningless short strings.\n\n## Key Technical Insight\n\nPRPO segments reasoning sequences based on semantic clues, normalizes PRM scores into token-level advantages, and aligns their distribution with outcome advantages through location-parameter shift.\n\nThe paper is from February 2026 and was published on arXiv as paper 2601.07182."
+    ],
+    "durationSeconds": 11.508489918999985,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a02fca02-b411-4b9a-86e8-11e26db49018",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-27T08:37:21.523Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DQx9Bvd3XKfRdiyYD5vFnC`</summary>
+
+```json
+{
+  "query": "reward hacking process reward model overoptimization measurement PRM-accuracy gap 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e7593bd-a865-4702-9b38-faf25fba8b23",
+  "isSidechain": false,
+  "requestId": "req_011CbSmbquk5MU6g5nm42Lsb",
+  "type": "assistant",
+  "uuid": "1ebe4206-0c9e-4d4d-90b8-816c0e253c6d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016SqjfCYr2oJHN2u9upmjJR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 667,
+      "cache_read_input_tokens": 28172,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 667,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 28172,
+          "cache_creation_input_tokens": 667,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 667
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-27T08:37:34.422Z_
+
+<details><summary>↩ Tool result · `toolu_01DQx9Bvd3XKfRdiyYD5vFnC`</summary>
+
+```text
+Web search results for query: "reward hacking process reward model overoptimization measurement PRM-accuracy gap 2025 2026"
+
+Links: [{"title":"Reward Under Attack: Analyzing the Robustness and Hackability of","url":"https://arxiv.org/pdf/2603.06621"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=reward+hacking"},{"title":"Helping or Herding? Reward Model Ensembles Mitigate but do not Eliminate   Reward Hacking","url":"https://arxiv.org/pdf/2312.09244"},{"title":"Correlated Proxies: A New Definition and Improved Mitigation for Reward Hacking | OpenReview","url":"https://openreview.net/forum?id=msEr27EejF"},{"title":"Inference-Time Reward Hacking in Large Language Models | OpenReview","url":"https://openreview.net/forum?id=hSX7Dd8dxy"},{"title":"Avoiding Reward Hacking","url":"https://www.emergentmind.com/topics/avoiding-reward-hacking"},{"title":"GitHub - xhwang22/Awesome-Reward-Hacking: A curated list of papers and resources on Reward Hacking, Emergent Misalignment, and Proxy Exploitation in Large Models · GitHub","url":"https://github.com/xhwang22/Awesome-Reward-Hacking"},{"title":"Inference-Time Reward Hacking in Large Language Models","url":"https://arxiv.org/pdf/2506.19248"},{"title":"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/html/2604.13602v1"}]
+
+I found comprehensive information on reward hacking, process reward models, overoptimization, and the PRM-accuracy gap. Here are the key findings:
+
+## Reward Hacking and Overoptimization
+
+Reward hacking occurs when language models exploit errors in the reward model to achieve high estimated reward. This phenomenon is also termed reward gaming or reward over-optimization.
+
+## Process Reward Model (PRM) Issues
+
+PRMs often rely on shallow consistency cues rather than causal reasoning structures. This fundamental limitation contributes to the measurement accuracy gap.
+
+## The Measurement Gap
+
+Reward models are underspecified: reward models that perform similarly in-distribution can yield very different rewards when used in alignment due to distribution shift, which results in overoptimization where alignment to one reward model does not improve reward as measured by another reward model trained on the same data.
+
+## Scaling and Overoptimization
+
+Scaling laws for reward model overoptimization show that the gap between proxy and true reward grows with optimization strength and follows predictable functional forms. Larger reward models delay but do not prevent degradation from overoptimization.
+
+## Recent Research (2025-2026)
+
+The field has seen substantial recent developments, including research characterizing reward hacking in inference-time alignment with methods like Best-of-n and Soft Best-of-n, plus new approaches like Best-of-Poisson. A comprehensive survey on "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges" was released in April 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ebe4206-0c9e-4d4d-90b8-816c0e253c6d",
+  "isSidechain": false,
+  "promptId": "e56119ce-c729-42f2-9d84-6aca3cf61e24",
+  "type": "user",
+  "uuid": "22fd3383-0040-4afe-8fe3-1e677acab30b",
+  "toolUseResult": {
+    "query": "reward hacking process reward model overoptimization measurement PRM-accuracy gap 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018hXdReeVwZtnRabmofvXnh",
+        "content": [
+          {
+            "title": "Reward Under Attack: Analyzing the Robustness and Hackability of",
+            "url": "https://arxiv.org/pdf/2603.06621"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=reward+hacking"
+          },
+          {
+            "title": "Helping or Herding? Reward Model Ensembles Mitigate but do not Eliminate   Reward Hacking",
+            "url": "https://arxiv.org/pdf/2312.09244"
+          },
+          {
+            "title": "Correlated Proxies: A New Definition and Improved Mitigation for Reward Hacking | OpenReview",
+            "url": "https://openreview.net/forum?id=msEr27EejF"
+          },
+          {
+            "title": "Inference-Time Reward Hacking in Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=hSX7Dd8dxy"
+          },
+          {
+            "title": "Avoiding Reward Hacking",
+            "url": "https://www.emergentmind.com/topics/avoiding-reward-hacking"
+          },
+          {
+            "title": "GitHub - xhwang22/Awesome-Reward-Hacking: A curated list of papers and resources on Reward Hacking, Emergent Misalignment, and Proxy Exploitation in Large Models · GitHub",
+            "url": "https://github.com/xhwang22/Awesome-Reward-Hacking"
+          },
+          {
+            "title": "Inference-Time Reward Hacking in Large Language Models",
+            "url": "https://arxiv.org/pdf/2506.19248"
+          },
+          {
+            "title": "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+            "url": "https://arxiv.org/html/2604.13602v1"
+          }
+        ]
+      },
+      "I found comprehensive information on reward hacking, process reward models, overoptimization, and the PRM-accuracy gap. Here are the key findings:\n\n## Reward Hacking and Overoptimization\n\nReward hacking occurs when language models exploit errors in the reward model to achieve high estimated reward. This phenomenon is also termed reward gaming or reward over-optimization.\n\n## Process Reward Model (PRM) Issues\n\nPRMs often rely on shallow consistency cues rather than causal reasoning structures. This fundamental limitation contributes to the measurement accuracy gap.\n\n## The Measurement Gap\n\nReward models are underspecified: reward models that perform similarly in-distribution can yield very different rewards when used in alignment due to distribution shift, which results in overoptimization where alignment to one reward model does not improve reward as measured by another reward model trained on the same data.\n\n## Scaling and Overoptimization\n\nScaling laws for reward model overoptimization show that the gap between proxy and true reward grows with optimization strength and follows predictable functional forms. Larger reward models delay but do not prevent degradation from overoptimization.\n\n## Recent Research (2025-2026)\n\nThe field has seen substantial recent developments, including research characterizing reward hacking in inference-time alignment with methods like Best-of-n and Soft Best-of-n, plus new approaches like Best-of-Poisson. A comprehensive survey on \"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges\" was released in April 2026."
+    ],
+    "durationSeconds": 12.893933610999985,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1ebe4206-0c9e-4d4d-90b8-816c0e253c6d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-27T08:37:38.115Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YHETSRSD7Pw8sHZz3mNinR`</summary>
+
+```json
+{
+  "query": "veRL framework Qwen3 compatibility training setup 2026 process reward GRPO implementation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22fd3383-0040-4afe-8fe3-1e677acab30b",
+  "isSidechain": false,
+  "requestId": "req_011CbSmczs2LyQDsSfxLSnoj",
+  "type": "assistant",
+  "uuid": "967ccdc3-146f-4748-81e8-9a3b25443db6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MEQDqn49NniD4v6rknAVcF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 894,
+      "cache_read_input_tokens": 28839,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 894,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 28839,
+          "cache_creation_input_tokens": 894,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 894
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-27T08:37:46.439Z_
+
+<details><summary>↩ Tool result · `toolu_01YHETSRSD7Pw8sHZz3mNinR`</summary>
+
+```text
+Web search results for query: "veRL framework Qwen3 compatibility training setup 2026 process reward GRPO implementation"
+
+Links: [{"title":"GitHub - verl-project/verl: verl/HybridFlow: A Flexible and Efficient RL Post-Training Framework · GitHub","url":"https://github.com/verl-project/verl"},{"title":"verl - Qwen","url":"https://qwen.readthedocs.io/en/latest/training/verl.html"},{"title":"GitHub - langfengQ/verl-agent: verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for paper \"Group-in-Group Policy Optimization for LLM Agent Training\" · GitHub","url":"https://github.com/langfengQ/verl-agent"},{"title":"The missing guide for training Qwen3-VL MOE · Issue #3906 · verl-project/verl","url":"https://github.com/volcengine/verl/issues/3906"},{"title":"Qwen3.5 compatibility issue: bundled Transformers cannot load `qwen3_5`, but upgrading Transformers makes vLLM unusable · Issue #5937 · verl-project/verl","url":"https://github.com/verl-project/verl/issues/5937"},{"title":"Releases · verl-project/verl","url":"https://github.com/verl-project/verl/releases"},{"title":"Announcing VeRL-Omni: Easy, Fast, and Stable RL Training for Diffusion and Omni-Modality Models | vLLM Blog","url":"https://vllm.ai/blog/2026-05-14-verl-omni"},{"title":"Qwen3-VL-Dense RL Training in verl Using Megatron · Issue #3875 · verl-project/verl","url":"https://github.com/volcengine/verl/issues/3875"},{"title":"The Engineering Handbook for GRPO + LoRA with Verl: Training Qwen2.5 on Multi-GPU","url":"https://huggingface.co/blog/Weyaxi/engineering-handbook-grpo-lora-with-verl"},{"title":"Verl LLM Best Practices (DAPO + Qwen3-235B) — verl documentation","url":"https://verl.readthedocs.io/en/latest/perf/best_practices.html"}]
+
+Based on the web search results, here's what I found about veRL framework's Qwen3 compatibility, training setup, process rewards, and GRPO implementation:
+
+## Framework Compatibility and Features
+
+The veRL framework is compatible with Hugging Face Transformers and Modelscope Hub, including Qwen3.5, Qwen3, Qwen-2.5, and other major models.
+
+## Training Setup and Algorithms
+
+veRL supports various combinations of training frameworks and inference frameworks, including FSDP, Megatron-LM, vLLM, and SGLang. veRL also supports training with multiple algorithms such as PPO, GRPO, DAPO, and others.
+
+## GRPO Implementation
+
+veRL supports reinforcement learning with GRPO along with PPO, GSPO, ReMax, REINFORCE++, RLOO, PRIME, DAPO, DrGRPO, KL_Cov and Clip_Cov. Practical examples are available, such as the documented GRPO + LoRA workflow for training.
+
+## Reward Models
+
+veRL supports both model-based reward and function-based reward (verifiable reward) for math, coding, and other tasks.
+
+## Recent Compatibility Issues (2026)
+
+As of April 2026, there is a reported compatibility issue when using Qwen3.5 checkpoints with veRL, where the bundled/default Transformers version cannot load the checkpoint because model_type = qwen3_5 is not recognized.
+
+The search results indicate that veRL is actively maintained and widely used for RL training in industry, though users may encounter version compatibility challenges with newer Qwen models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "967ccdc3-146f-4748-81e8-9a3b25443db6",
+  "isSidechain": false,
+  "promptId": "e56119ce-c729-42f2-9d84-6aca3cf61e24",
+  "type": "user",
+  "uuid": "f67b6a97-8f89-4edc-90ea-8f84e0ddadeb",
+  "toolUseResult": {
+    "query": "veRL framework Qwen3 compatibility training setup 2026 process reward GRPO implementation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0115dcUwF8M3CPCpoqKCTvJ3",
+        "content": [
+          {
+            "title": "GitHub - verl-project/verl: verl/HybridFlow: A Flexible and Efficient RL Post-Training Framework · GitHub",
+            "url": "https://github.com/verl-project/verl"
+          },
+          {
+            "title": "verl - Qwen",
+            "url": "https://qwen.readthedocs.io/en/latest/training/verl.html"
+          },
+          {
+            "title": "GitHub - langfengQ/verl-agent: verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for paper \"Group-in-Group Policy Optimization for LLM Agent Training\" · GitHub",
+            "url": "https://github.com/langfengQ/verl-agent"
+          },
+          {
+            "title": "The missing guide for training Qwen3-VL MOE · Issue #3906 · verl-project/verl",
+            "url": "https://github.com/volcengine/verl/issues/3906"
+          },
+          {
+            "title": "Qwen3.5 compatibility issue: bundled Transformers cannot load `qwen3_5`, but upgrading Transformers makes vLLM unusable · Issue #5937 · verl-project/verl",
+            "url": "https://github.com/verl-project/verl/issues/5937"
+          },
+          {
+            "title": "Releases · verl-project/verl",
+            "url": "https://github.com/verl-project/verl/releases"
+          },
+          {
+            "title": "Announcing VeRL-Omni: Easy, Fast, and Stable RL Training for Diffusion and Omni-Modality Models | vLLM Blog",
+            "url": "https://vllm.ai/blog/2026-05-14-verl-omni"
+          },
+          {
+            "title": "Qwen3-VL-Dense RL Training in verl Using Megatron · Issue #3875 · verl-project/verl",
+            "url": "https://github.com/volcengine/verl/issues/3875"
+          },
+          {
+            "title": "The Engineering Handbook for GRPO + LoRA with Verl: Training Qwen2.5 on Multi-GPU",
+            "url": "https://huggingface.co/blog/Weyaxi/engineering-handbook-grpo-lora-with-verl"
+          },
+          {
+            "title": "Verl LLM Best Practices (DAPO + Qwen3-235B) — verl documentation",
+            "url": "https://verl.readthedocs.io/en/latest/perf/best_practices.html"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about veRL framework's Qwen3 compatibility, training setup, process rewards, and GRPO implementation:\n\n## Framework Compatibility and Features\n\nThe veRL framework is compatible with Hugging Face Transformers and Modelscope Hub, including Qwen3.5, Qwen3, Qwen-2.5, and other major models.\n\n## Training Setup and Algorithms\n\nveRL supports various combinations of training frameworks and inference frameworks, including FSDP, Megatron-LM, vLLM, and SGLang. veRL also supports training with multiple algorithms such as PPO, GRPO, DAPO, and others.\n\n## GRPO Implementation\n\nveRL supports reinforcement learning with GRPO along with PPO, GSPO, ReMax, REINFORCE++, RLOO, PRIME, DAPO, DrGRPO, KL_Cov and Clip_Cov. Practical examples are available, such as the documented GRPO + LoRA workflow for training.\n\n## Reward Models\n\nveRL supports both model-based reward and function-based reward (verifiable reward) for math, coding, and other tasks.\n\n## Recent Compatibility Issues (2026)\n\nAs of April 2026, there is a reported compatibility issue when using Qwen3.5 checkpoints with veRL, where the bundled/default Transformers version cannot load the checkpoint because model_type = qwen3_5 is not recognized.\n\nThe search results indicate that veRL is actively maintained and widely used for RL training in industry, though users may encounter version compatibility challenges with newer Qwen models."
+    ],
+    "durationSeconds": 8.31816240999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "967ccdc3-146f-4748-81e8-9a3b25443db6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-27T08:37:49.878Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XYxR4XeLSDcW1JsGrpZACT`</summary>
+
+```json
+{
+  "query": "DAPO open-source reinforcement learning LLM 2025 experimental setup baselines math benchmarks"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f67b6a97-8f89-4edc-90ea-8f84e0ddadeb",
+  "isSidechain": false,
+  "requestId": "req_011CbSmdtLttV3jiQkAkFfwM",
+  "type": "assistant",
+  "uuid": "ff3095f4-3064-4326-898c-b68f395cde9d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AG5TwPoQZZXNjSKmEu7ncW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1107,
+      "cache_read_input_tokens": 29733,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1107,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 29733,
+          "cache_creation_input_tokens": 1107,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1107
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-27T08:38:01.074Z_
+
+<details><summary>↩ Tool result · `toolu_01XYxR4XeLSDcW1JsGrpZACT`</summary>
+
+```text
+Web search results for query: "DAPO open-source reinforcement learning LLM 2025 experimental setup baselines math benchmarks"
+
+Links: [{"title":"DAPO: An Open-Source LLM Reinforcement Learning System at Scale -- no more guesswork - Heunify","url":"https://heunify.com/content/tutorial/dapo-an-open-source-llm-reinforcement-learning-system-at-scale-no-more-guesswork"},{"title":"DAPO: An Open-Source LLM Reinforcement Learning System at Scale","url":"https://www.researchgate.net/publication/389947184_DAPO_An_Open-Source_LLM_Reinforcement_Learning_System_at_Scale"},{"title":"DAPO: An Open-Source LLM Reinforcement Learning System at Scale Qiying Yu1,2,4∗","url":"https://openreview.net/pdf?id=2a36EMSSTp"},{"title":"DAPO: An Open-Source LLM Reinforcement Learning System at Scale | OpenReview","url":"https://openreview.net/forum?id=2a36EMSSTp"},{"title":"DAPO: An Open Source LLM Reinforcement Learning System at Scale","url":"https://self-supervised.cs.jhu.edu/fa2025/files/presentations/Why-RL-Sep16-AdvancesNLP.pdf"},{"title":"DAPO: An Open-Source LLM Reinforcement Learning System at Scale","url":"https://arxiv.org/html/2503.14476v1"},{"title":"[2503.14476] DAPO: An Open-Source LLM Reinforcement Learning System at Scale","url":"https://arxiv.org/abs/2503.14476"},{"title":"DAPO: An Open-Source LLM Reinforcement Learning System at Scale 1ByteDance Seed","url":"https://arxiv.org/pdf/2503.14476"}]
+
+Based on the search results, here's comprehensive information about DAPO:
+
+## Overview
+
+DAPO (Decoupled Clip and Dynamic sAmpling Policy Optimization) is a fully open-sourced state-of-the-art large-scale RL system that achieves 50 points on AIME 2024 using Qwen2.5-32B base model.
+
+## Key Motivation
+
+Key technical details of state-of-the-art reasoning LLMs are concealed (such as in OpenAI o1 blog and DeepSeek R1 technical report), thus the community still struggles to reproduce their RL training results.
+
+## Performance on Math Benchmarks
+
+The team achieved 50 points on the AIME 2024 math challenge with the Qwen2.5-32B base model—a strong result, surpassing the state-of-the-art DeepSeek R1 with only half the training steps. Additionally, trained on math reasoning tasks, the model's log-scale Accuracy-to-Hallucination Ratio gain (0.806) exceeds GPT-5's (0.207) in a challenging in-domain evaluation (BeyondAIME).
+
+## Experimental Setup
+
+The experimental configuration includes:
+- AdamW optimizer with a constant learning rate of 1×10−6 with linear warm-up over 20 rollout steps; prompt batch size of 512 sampling 16 responses for each prompt; mini-batch size of 512 (16 gradient updates per rollout step)
+- Expected maximum length as 16,384 tokens with additional 4,096 tokens as soft punish cache; maximum generation of 20,480 tokens
+
+## Key Technical Contributions
+
+The four key techniques include: Clip-Higher, which promotes diversity and avoids entropy collapse; Dynamic Sampling, which improves training efficiency and stability; and Token-Level Policy Gradient Loss, which is critical in long-CoT RL scenarios.
+
+## Baselines and Comparisons
+
+GRPO was used as the baseline algorithm with advantages estimated using group reward normalization.
+
+## Open-Source Resources
+
+The training code is built on the verl framework, along with a carefully curated and processed dataset.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff3095f4-3064-4326-898c-b68f395cde9d",
+  "isSidechain": false,
+  "promptId": "e56119ce-c729-42f2-9d84-6aca3cf61e24",
+  "type": "user",
+  "uuid": "d8753196-3fd4-4a16-ba18-084e7506fb1d",
+  "toolUseResult": {
+    "query": "DAPO open-source reinforcement learning LLM 2025 experimental setup baselines math benchmarks",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01L6vv4mtwxTiSmg6EJLRm2n",
+        "content": [
+          {
+            "title": "DAPO: An Open-Source LLM Reinforcement Learning System at Scale -- no more guesswork - Heunify",
+            "url": "https://heunify.com/content/tutorial/dapo-an-open-source-llm-reinforcement-learning-system-at-scale-no-more-guesswork"
+          },
+          {
+            "title": "DAPO: An Open-Source LLM Reinforcement Learning System at Scale",
+            "url": "https://www.researchgate.net/publication/389947184_DAPO_An_Open-Source_LLM_Reinforcement_Learning_System_at_Scale"
+          },
+          {
+            "title": "DAPO: An Open-Source LLM Reinforcement Learning System at Scale Qiying Yu1,2,4∗",
+            "url": "https://openreview.net/pdf?id=2a36EMSSTp"
+          },
+          {
+            "title": "DAPO: An Open-Source LLM Reinforcement Learning System at Scale | OpenReview",
+            "url": "https://openreview.net/forum?id=2a36EMSSTp"
+          },
+          {
+            "title": "DAPO: An Open Source LLM Reinforcement Learning System at Scale",
+            "url": "https://self-supervised.cs.jhu.edu/fa2025/files/presentations/Why-RL-Sep16-AdvancesNLP.pdf"
+          },
+          {
+            "title": "DAPO: An Open-Source LLM Reinforcement Learning System at Scale",
+            "url": "https://arxiv.org/html/2503.14476v1"
+          },
+          {
+            "title": "[2503.14476] DAPO: An Open-Source LLM Reinforcement Learning System at Scale",
+            "url": "https://arxiv.org/abs/2503.14476"
+          },
+          {
+            "title": "DAPO: An Open-Source LLM Reinforcement Learning System at Scale 1ByteDance Seed",
+            "url": "https://arxiv.org/pdf/2503.14476"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about DAPO:\n\n## Overview\n\nDAPO (Decoupled Clip and Dynamic sAmpling Policy Optimization) is a fully open-sourced state-of-the-art large-scale RL system that achieves 50 points on AIME 2024 using Qwen2.5-32B base model.\n\n## Key Motivation\n\nKey technical details of state-of-the-art reasoning LLMs are concealed (such as in OpenAI o1 blog and DeepSeek R1 technical report), thus the community still struggles to reproduce their RL training results.\n\n## Performance on Math Benchmarks\n\nThe team achieved 50 points on the AIME 2024 math challenge with the Qwen2.5-32B base model—a strong result, surpassing the state-of-the-art DeepSeek R1 with only half the training steps. Additionally, trained on math reasoning tasks, the model's log-scale Accuracy-to-Hallucination Ratio gain (0.806) exceeds GPT-5's (0.207) in a challenging in-domain evaluation (BeyondAIME).\n\n## Experimental Setup\n\nThe experimental configuration includes:\n- AdamW optimizer with a constant learning rate of 1×10−6 with linear warm-up over 20 rollout steps; prompt batch size of 512 sampling 16 responses for each prompt; mini-batch size of 512 (16 gradient updates per rollout step)\n- Expected maximum length as 16,384 tokens with additional 4,096 tokens as soft punish cache; maximum generation of 20,480 tokens\n\n## Key Technical Contributions\n\nThe four key techniques include: Clip-Higher, which promotes diversity and avoids entropy collapse; Dynamic Sampling, which improves training efficiency and stability; and Token-Level Policy Gradient Loss, which is critical in long-CoT RL scenarios.\n\n## Baselines and Comparisons\n\nGRPO was used as the baseline algorithm with advantages estimated using group reward normalization.\n\n## Open-Source Resources\n\nThe training code is built on the verl framework, along with a carefully curated and processed dataset."
+    ],
+    "durationSeconds": 11.191478512000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ff3095f4-3064-4326-898c-b68f395cde9d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-27T08:38:09.115Z_
+
+Now I have sufficient research to provide a thorough evaluation. Let me compile my analysis.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8753196-3fd4-4a16-ba18-084e7506fb1d",
+  "isSidechain": false,
+  "requestId": "req_011CbSmexyyPMM2fP8We2rQ6",
+  "type": "assistant",
+  "uuid": "d533565d-99da-4eb8-9068-fd780eb0223c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HzSzomUHw2YvDGA6mnVm4A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1087,
+      "cache_read_input_tokens": 30840,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1087,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 30840,
+          "cache_creation_input_tokens": 1087,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1087
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-27T08:38:09.843Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01V36FwQ2QiKmxerLXD6jymZ`</summary>
+
+```json
+{
+  "query": "Qwen2.5-Math-PRM trained on which data cross-family Qwen3 distribution shift PRM scoring"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d533565d-99da-4eb8-9068-fd780eb0223c",
+  "isSidechain": false,
+  "requestId": "req_011CbSmexyyPMM2fP8We2rQ6",
+  "type": "assistant",
+  "uuid": "10ccfe7a-536a-4a45-989e-7240bcaf0b52",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HzSzomUHw2YvDGA6mnVm4A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1087,
+      "cache_read_input_tokens": 30840,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1087,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 30840,
+          "cache_creation_input_tokens": 1087,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1087
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL  ## Core Problem  Process-aware RL methods (PURE, GRPO-λ, PRL, PRPO, PROGRS) treat PRM step-level scores as equal…",
+  "leafUuid": "10ccfe7a-536a-4a45-989e-7240bcaf0b52",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-gated credit assignment for math reasoning RL",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-27T08:38:17.327Z_
+
+<details><summary>↩ Tool result · `toolu_01V36FwQ2QiKmxerLXD6jymZ`</summary>
+
+```text
+Web search results for query: "Qwen2.5-Math-PRM trained on which data cross-family Qwen3 distribution shift PRM scoring"
+
+Links: [{"title":"Qwen3: Think Deeper, Act Faster | Qwen","url":"https://qwenlm.github.io/blog/qwen3/"},{"title":"Qwen2.5-Math Models","url":"https://www.emergentmind.com/topics/qwen2-5-math-models"},{"title":"README.md · Qwen/Qwen2.5-Math-PRM-7B at main","url":"https://huggingface.co/Qwen/Qwen2.5-Math-PRM-7B/blob/main/README.md"},{"title":"Qwen/Qwen2.5-Math-PRM-72B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen2.5-Math-PRM-72B"},{"title":"Qwen/Qwen2.5-Math-PRM-7B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen2.5-Math-PRM-7B"},{"title":"modeling_qwen2_rm.py · Qwen/Qwen2.5-Math-PRM-7B at main","url":"https://huggingface.co/Qwen/Qwen2.5-Math-PRM-7B/blob/main/modeling_qwen2_rm.py"},{"title":"Qwen2.5-Math-PRM: Advanced Math LLM Framework","url":"https://www.emergentmind.com/topics/qwen2-5-math-prm"},{"title":"Qwen2.5 Model Family Overview","url":"https://www.emergentmind.com/topics/qwen2-5-model-family"}]
+
+Based on the search results, I found information about Qwen2.5-Math-PRM and related details:
+
+The Qwen2.5-Math team constructed a dedicated math corpus (v2), exceeding 1T tokens, curated from public datasets, web documents, books, code repositories, and synthetic math problem generation pipelines.
+
+However, the search results don't contain specific information about:
+- The exact cross-family distribution characteristics of the training data relative to Qwen3
+- Specific details about distribution shift between Qwen2.5-Math-PRM training data and Qwen3
+- Comparative analysis of how PRM scoring performs across the Qwen2.5 and Qwen3 families
+
+The available documentation focuses on the general architecture and methodology of the Qwen2.5-Math-PRM models rather than detailed analysis of cross-family training data characteristics or distribution shift effects. For more specific technical details on these aspects, you may need to consult the official Qwen research papers or technical documentation directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "10ccfe7a-536a-4a45-989e-7240bcaf0b52",
+  "isSidechain": false,
+  "promptId": "e56119ce-c729-42f2-9d84-6aca3cf61e24",
+  "type": "user",
+  "uuid": "26a243be-2ecd-498d-8092-42bdd0fb8a72",
+  "toolUseResult": {
+    "query": "Qwen2.5-Math-PRM trained on which data cross-family Qwen3 distribution shift PRM scoring",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0129wmomd5mpoX4F8yxS2Q5B",
+        "content": [
+          {
+            "title": "Qwen3: Think Deeper, Act Faster | Qwen",
+            "url": "https://qwenlm.github.io/blog/qwen3/"
+          },
+          {
+            "title": "Qwen2.5-Math Models",
+            "url": "https://www.emergentmind.com/topics/qwen2-5-math-models"
+          },
+          {
+            "title": "README.md · Qwen/Qwen2.5-Math-PRM-7B at main",
+            "url": "https://huggingface.co/Qwen/Qwen2.5-Math-PRM-7B/blob/main/README.md"
+          },
+          {
+            "title": "Qwen/Qwen2.5-Math-PRM-72B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen2.5-Math-PRM-72B"
+          },
+          {
+            "title": "Qwen/Qwen2.5-Math-PRM-7B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen2.5-Math-PRM-7B"
+          },
+          {
+            "title": "modeling_qwen2_rm.py · Qwen/Qwen2.5-Math-PRM-7B at main",
+            "url": "https://huggingface.co/Qwen/Qwen2.5-Math-PRM-7B/blob/main/modeling_qwen2_rm.py"
+          },
+          {
+            "title": "Qwen2.5-Math-PRM: Advanced Math LLM Framework",
+            "url": "https://www.emergentmind.com/topics/qwen2-5-math-prm"
+          },
+          {
+            "title": "Qwen2.5 Model Family Overview",
+            "url": "https://www.emergentmind.com/topics/qwen2-5-model-family"
+          }
+        ]
+      },
+      "Based on the search results, I found information about Qwen2.5-Math-PRM and related details:\n\nThe Qwen2.5-Math team constructed a dedicated math corpus (v2), exceeding 1T tokens, curated from public datasets, web documents, books, code repositories, and synthetic math problem generation pipelines.\n\nHowever, the search results don't contain specific information about:\n- The exact cross-family distribution characteristics of the training data relative to Qwen3\n- Specific details about distribution shift between Qwen2.5-Math-PRM training data and Qwen3\n- Comparative analysis of how PRM scoring performs across the Qwen2.5 and Qwen3 families\n\nThe available documentation focuses on the general architecture and methodology of the Qwen2.5-Math-PRM models rather than detailed analysis of cross-family training data characteristics or distribution shift effects. For more specific technical details on these aspects, you may need to consult the official Qwen research papers or technical documentation directly."
+    ],
+    "durationSeconds": 7.480033040000009,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "10ccfe7a-536a-4a45-989e-7240bcaf0b52",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-27T08:39:37.305Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough research to provide a comprehensive evaluation. Let me analyze the proposal's experimental design thoroughly.
+
+Key findings from my research:
+
+1. **PURE (NeurIPS 2025)**: Uses min-form credit assignment, tested on 3 base models, compares against GRPO, uses MATH-500, AMC23, AIME benchmarks. Uses veRL framework.
+
+2. **PROGRS (arXiv Apr 2026)**: Uses outcome-conditioned centering with frozen quantile-regression PRM, evaluated on MATH-500, AMC, AIME, MinervaMath, OlympiadBench. Compares against DAPO and outcome-only baselines.
+
+
+3. **GRPO-λ (ICLR 2026)**: Evaluated on R1-Distill-Qwen-7B with MATH's 7,500-problem training split, benchmarked on AIME24 and other math datasets. **PRPO** shows gains on Qwen2.5-Math-1.5B, pushing MATH-500 performance from 61.2% to 64.4%. **VPPO** uses a PRM to identify the first error point, then applies binary prefix rewards and suffix penalties. The **veRL framework** supports Qwen3 models and provides compatibility across these approaches.
+
+4. **Qwen2.5-Math-PRM-7B** was trained on Qwen2.5-Math data, though cross-family transfer to Qwen3 raises some concerns. **DAPO** uses Qwen2.5-32B trained through veRL and evaluated on AIME 2024.
+
+Looking at the experimental design, I'm noticing strong coverage across baselines—GRPO, DAPO, PURE, GRPO-λ, and PROGRS for the 8B model, plus PRPO and VPPO for the 1.7B variant. The benchmarks span multiple difficulty tiers from MATH-500 through AMC23 to AIME, which gives good granularity for evaluation.
+
+The ablations look thoughtful too—boundary cases, hard versus soft gating, raw versus calibrated rewards, and hyperparameter sweeps. They're also quantifying reward hacking with PAG and per-step uncertainty-conditioned accuracy, validating the core assumption about w_i bins versus PRM accuracy, and tracking calibration longitudinally with statistical rigor across multiple seeds. Compute fairness is addressed through wall-clock time and FLOPs comparisons.
+
+The main tension I'm seeing is the cross-family PRM issue—using a Qwen2.5-Math-PRM-7B trained on Qwen2.5 data to score Qwen3 outputs. The proposal acknowledges this and has plans to address it.
+
+The cross-family validation plus potential recalibration is a real concern, though the mitigation might not fully resolve it since generating Qwen3 rollouts with step-level annotations for fine-tuning is non-trivial. The MATH training set size of 8K prompts aligns with the standard ~7,500 problem set, which is consistent with prior work. The model choices of Qwen3-8B and Qwen3-1.7B are reasonable and within the typical 1.5B-7B range used in the literature, though using the newer Qwen3 family rather than Qwen2.5 creates some additional complexity.
+
+There are a few baseline gaps worth noting: PRIME isn't included despite being relevant for online PRM updates, and while the proposal excludes "Discovering Process-Outcome Credit" due to compute constraints and proposes a theoretical FLOPs comparison instead, reviewers might still push back on this. The ablation study is fairly comprehensive, covering boundary cases, hard versus soft variants, calibrated versus raw outputs, and hyperparameters, though it's missing an analysis of the base advantage formulation choice itself.
+
+On the statistical side, AIME's 30 problems create inherent power limitations even with Pass@8 sampling, though the bootstrap confidence intervals help mitigate this. The compute estimate of roughly 2900 H100-hours and the $7,250 cost projection seem reasonable, with an 8-week timeline that's ambitious but feasible. For PROGRS reproduction, the proposal will need to work with code from April 2026, which may present availability or compatibility challenges.
+
+The longitudinal calibration tracking is a useful contribution, though the proposal's language around "significant degradation" is vague—there's no clear threshold defined, and if re-calibration becomes necessary, the computational cost could balloon. On metrics, Pass@1 as the primary measure is standard practice, and Pass@8 for AIME makes sense, but some reviewers might push for majority voting or best-of-N comparisons given the focus on PRM-guided training.
+
+Looking at what's actually solid versus what needs tightening: the baseline coverage is comprehensive with multiple model sizes represented.
+
+The real technical risks are the cross-family PRM validity—the entire approach hinges on whether calibrated confidence intervals from Qwen2.5-Math-PRM transfer meaningfully to Qwen3, and the proposal's mitigation around "additional quantile calibration fine-tuning" doesn't clearly explain how to obtain step-level ground truth for Qwen3 to make that work. There's also the PROGRS reproduction feasibility concern if the original code isn't accessible, which could derail the timeline. And there's a missing ablation that would help isolate which components are actually driving the improvements. The evaluation setup looks solid—MATH-500, AMC23, AIME, OlympiadBench, and MinervaMath are all standard benchmarks, and Pass@1 is the right metric. The technical integration of PURE's credit assignment into veRL's GRPO framework is feasible since both the PURE codebase and veRL's GRPO support exist; the proposal accounts for this engineering work in the timeline. I should verify there aren't any unfair comparison issues in how they're benchmarking against baselines.
+
+Looking at the experimental setup, they're controlling for training data (same MATH set, 8K prompts), base models (Qwen3-8B and 1.7B), and they've planned a compute fairness analysis with wall-clock time and FLOPs, plus separate reporting of PRM calibration as one-time overhead—this all seems fair. One thing that stands out: the comparison between UGCA and PROGRS operates at different granularities since PROGRS uses outcome-conditioned centering at the trajectory level while UGCA uses per-step gating. The comparison is valid, but reviewers might push for seeing these combined as an ablation to show whether trajectory-level and per-step approaches complement each other.
+
+Now I need to flag the key issues. First, the cross-family PRM calibration approach is underspecified—getting step-level ground truth for Qwen3 outputs either requires expensive MC estimation or risks circularity if using the PRM itself, so this needs a concrete protocol. Second, I should verify whether PROGRS code is available or if reimplementation is feasible within budget. Third, the missing ablation combining UGCA with PROGRS's centering is a natural extension that reviewers will likely ask about. Fourth, testing PRM quality and scale sensitivity with only one 7B model leaves another gap.
+
+Actually, reconsidering—the budget constraint of ~2900 H100-hours and $7,250 makes adding a 72B PRM impractical, and most papers in this space use a single PRM anyway, so that's probably overcritical. I'll mark it as minor. Similarly, for the "Discovering Process-Outcome Credit" exclusion, the proposal does provide a theoretical FLOPs comparison, which might be sufficient, though a small empirical validation could strengthen the argument. The vague mitigation around periodic recalibration also needs concrete thresholds rather than hand-waving.
+
+But the UGCA + PROGRS combination ablation is actually critical—these address orthogonal sources of error (trajectory-level bias and per-step uncertainty), so not showing their interaction leaves reviewers unsure whether UGCA's gains are redundant with PROGRS or genuinely complementary. That's a significant experimental gap I need to flag.
+
+My final assessment: the proposal has several remediable defects including underspecified cross-family PRM calibration, PROGRS reproduction feasibility risk, the missing UGCA + PROGRS ablation, undefined calibration degradation thresholds, and potential reviewer pushback on the "Discovering Process-Outcome Credit" exclusion justification.
+
+None of these are fatal—the experimental design is fundamentally sound and comprehensive. These are refinements to strengthen the work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26a243be-2ecd-498d-8092-42bdd0fb8a72",
+  "isSidechain": false,
+  "requestId": "req_011CbSmgAHQKZn9FGSTb4SjA",
+  "type": "assistant",
+  "uuid": "40b51768-8edc-4c82-a271-1ec3e092a2b3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0135S69Xs2c56scjJSEVvNq9",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 824,
+      "cache_read_input_tokens": 31927,
+      "output_tokens": 8375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 824,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8375,
+          "cache_read_input_tokens": 31927,
+          "cache_creation_input_tokens": 824,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 824
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-27T08:41:27.726Z_
+
+Now I have sufficient research context. Let me compile my comprehensive evaluation.
+
+---
+
+【状态】: 有缺陷待补救
+
+【前置调研发现】
+- **PURE / "Stop Summation" (NeurIPS 2025)**: 在 3 个 base model 上测试，baseline 包括 GRPO 及其变体，评测使用 MATH-500、AMC23、AIME；开源了基于 veRL 框架的代码，证实 min-form credit assignment 在 30% training steps 内达到 verifiable reward 方法性能。
+- **PROGRS / arXiv 2604.02341 (Apr 2026)**: 使用 frozen quantile-regression PRM + outcome-conditioned centering，评测覆盖 MATH-500、AMC、AIME、MinervaMath、OlympiadBench，baseline 为 DAPO 等 outcome-only 方法。PROGRS 在 MATH-500 上达到 74.9% vs DAPO 69.7%。代码开源状态不确定。
+- **GRPO-λ (ICLR 2026)**: 在 R1-Distill-Qwen-7B 上训练，使用 MATH 训练集 (7,500 problems)，评测包含 AIME24 等 benchmark，报告了 4+ 点平均提升。使用 Open-R1 框架。
+- **PRPO (arXiv Jan 2026)**: 在 Qwen2.5-Math-1.5B 上测试，MATH-500 从 61.2→64.4%；ablation 发现 relative distribution 下 process advantage 可导致 premature termination collapse。
+- **VPPO / "Save the Good Prefix" (arXiv Jan 2026)**: 使用 PRM 定位 first error step，评测 Pass@1 和 Pass@K。
+- **DAPO (2025)**: 使用 Qwen2.5-32B + veRL 框架，在 AIME 2024 达到 50 分；训练配置详尽（AdamW, lr=1e-6, batch=512, 16 rollouts/prompt）。
+- **Qwen2.5-Math-PRM-7B**: 基于 Qwen2.5-Math 家族数据训练，跨模型家族（如 Qwen3）的 scoring 可靠性存在已知风险，文献中缺少 Qwen2.5-PRM → Qwen3 policy 的系统性 cross-family 验证。
+- **veRL 框架**: 支持 Qwen3 模型（Qwen3.5 有兼容性问题但 Qwen3 可用），支持 GRPO、DAPO 等多种算法。
+- 调研总结：该领域当前的实验标准要求至少 5+ baselines（含 GRPO/DAPO 作为 outcome-only baseline + 至少 2-3 个 process-aware 方法），评测覆盖 MATH-500 + 竞赛级 benchmark (AIME/AMC)，ablation 需隔离各组件贡献，审稿人普遍关注 reward hacking 的量化分析和 compute fairness。
+
+---
+
+【缺陷 1】
+- 类别: 可行性问题
+- 问题: Proposal 使用 Qwen2.5-Math-PRM-7B（在 Qwen2.5-Math 家族数据上训练）来为 Qwen3-8B/1.7B 的 rollouts 打分和计算 calibrated CI width。Proposal 虽然在"Cross-family PRM validation"中提到了 ECE/Brier score 对比，并提出"If significant degradation, perform additional quantile calibration fine-tuning on Qwen3 data"——但这个 mitigation 的执行协议严重不足：(a) quantile calibration fine-tuning 需要 Qwen3 rollouts 的 step-level ground truth，如何获取？MC estimation 成本高且引入新的 estimation variance，用 PRM 自身标注则循环依赖；(b) 没有定义"significant degradation"的具体阈值（ECE > 多少算 significant？）；(c) 如果确实需要 re-calibration，对 timeline 和 compute budget 的影响未量化。这是整个方法的前提假设（calibrated CI width 有效 proxy PRM reliability），如果跨家族转移失败，核心 gating mechanism 失去意义。
+- 严重度: 可补救
+- 补救方案: (1) 明确 step-level ground truth 获取协议——建议使用 outcome-based MC estimation：对每个 step 生成 N 条 completions（N=8-16），用 final answer correctness 作为 step correctness proxy（类似 Math-Shepherd 方法），这与 PRM 的 training data 构建方式一致且不依赖 PRM 本身；(2) 设定具体降级阈值：如 ECE > 0.10 或 Brier score 相对恶化 > 20% 时触发 re-calibration；(3) 在 compute budget 中显式预留 re-calibration contingency（估算：Qwen3 rollout 生成 ~50h + quantile fine-tuning ~20h ≈ 70h H100，当前预留的 20h 不足）；(4) 将 cross-family validation 作为 week 1 的 go/no-go gate，若降级超阈值则在 week 2 完成 re-calibration 后才进入后续实验。
+- 调研依据: Qwen2.5-Math-PRM-7B 的 HuggingFace 文档及 Park et al. (NeurIPS 2025) 的 calibration 方法论；"Distributional PRM" (arXiv 2605.06785) 评估了 OT calibration 在 out-of-distribution 问题上的表现，提供了 cross-distribution 降级的参考。
+
+【缺陷 2】
+- 类别: 实验设计不足
+- 问题: Proposal 未包含 UGCA + PROGRS 组合的实验。PROGRS 在 trajectory level 做 outcome-conditioned centering（纠正 trajectory 间的系统性 PRM 偏差），UGCA 在 step level 做 uncertainty gating（纠正 step 间的异质性 PRM 可靠性）。这两个机制在不同粒度上操作，理论上是正交且可组合的。缺少这个组合实验会留下关键 reviewer 疑问：(a) UGCA 的 gain 是否与 PROGRS 的 trajectory-level centering 冗余？(b) 两者组合是否能进一步提升性能？(c) 如果 UGCA 在已有 PROGRS centering 的基础上仍有显著提升，这才是 per-step gating 价值的最强论证。
+- 严重度: 可补救
+- 补救方案: 在 8B 实验中增加 UGCA + PROGRS 组合条件（约增加 1 config × 3 seeds ≈ 270 H100-hours）。具体做法：先做 PROGRS 的 trajectory-level centering，然后在 centered advantage 上再做 UGCA 的 per-step α gating。如果 UGCA + PROGRS > max(UGCA, PROGRS)，则证明正交互补性；如果 UGCA + PROGRS ≈ UGCA，则说明 per-step gating 已经隐式涵盖了 trajectory-level correction。无论结果如何，这个实验都大幅增强论文的说服力。
+- 调研依据: PROGRS (arXiv 2604.02341) 的 outcome-conditioned centering 机制与 UGCA 的 per-step gating 操作在不同粒度，基于领域实验规范判断，审稿人面对两个同时期的 closely-related 方法，几乎必然会要求组合比较。
+
+【缺陷 3】
+- 类别: 可行性问题
+- 问题: PROGRS 是 2026 年 4 月的论文（arXiv 2604.02341），Proposal 在 timeline 中将 "PROGRS core reproduction" 安排在 wk1-2。但 PROGRS 的代码是否已开源尚不确定（调研中未找到公开 repo），且其技术方案包含 multi-scale coherence evaluator + outcome-conditioned centering + quantile-regression PRM 集成——如果需要从论文描述完全 re-implement，2 周内同时完成 PRM calibration + cross-family validation + PURE/veRL integration + PROGRS reproduction 的工作量非常紧张。类似地，GRPO-λ 的官方实现使用 Open-R1 框架而非 veRL，可能需要额外适配。
+- 严重度: 可补救
+- 补救方案: (1) 在 week 0（pre-experiment preparation）立即确认 PROGRS 和 GRPO-λ 的代码可用性和框架兼容性；(2) 如果 PROGRS 代码不可用，有两个策略：(a) 简化实现——仅实现 PROGRS 的 core component (outcome-conditioned centering on frozen PRM scores)，不复现 multi-scale coherence evaluator（在论文中注明是 simplified reproduction 并讨论差异）；(b) 重新排 timeline——将 PROGRS reproduction 移至 wk2-3，压缩 wk7 的 analysis 时间；(3) 对 GRPO-λ，考虑使用其公开的 Open-R1 实现直接跑 baseline，不必强制移植到 veRL。在 compute budget 中已包含 "PROGRS/GRPO-λ reproduction development: 80h"，但如果需要从头实现，可能需要追加 ~40-60h 的工程时间。
+- 调研依据: GRPO-λ (arXiv 2510.00194) 使用 Open-R1 框架；PROGRS 的 arXiv 页面和搜索结果未发现明确的开源代码链接。
+
+【缺陷 4】
+- 类别: 评估方案缺陷
+- 问题: "Longitudinal PRM calibration tracking" 部分提出在每 25% training progress checkpoint 上计算 ECE 和 Brier score，但仅说 "If significant degradation detected, discuss periodic re-calibration as mitigation"。这存在两个问题：(a) "discuss" 意味着只是在论文中讨论而非实际执行 mitigation——如果 frozen PRM 的 calibration 随 policy drift 显著恶化，而论文仅 "discuss" 但不解决，审稿人会追问为何不在 training 中实施动态 re-calibration；(b) 如果 calibration 在 training 中途严重退化，UGCA 在后半段训练中的 gating 可能失效，最终结果的归因会变得混乱——是 UGCA 好还是只是前半段训练好？
+- 严重度: 可补救
+- 补救方案: (1) 将 "discuss" 升级为具体协议：若 ECE 在某 checkpoint 相对初始值恶化 > 50%（例如从 0.05 升到 0.075+），则触发一次快速 re-calibration（仅更新 quantile regression heads，frozen backbone，成本约 10-15h H100）；(2) 在 ablation 中增加一个对比条件："UGCA with periodic re-calibration vs. UGCA with frozen calibration throughout"，以量化 calibration drift 的实际影响；(3) 如果 re-calibration 太昂贵，退而求其次：至少在实验结果中按 training phase 分段报告性能（前 50% vs 后 50% steps 的 gain），以展示 UGCA 的效果是否随 calibration drift 衰减。选项 (3) 成本最低，是最小可行的补救方案。
+- 调研依据: 基于领域实验规范判断——frozen reward model + RL training 的 distribution shift 是 RLHF 文献中广泛讨论的已知问题，审稿人对此高度敏感。
+
+【缺陷 5】
+- 类别: baseline 不足或过时
+- 问题: "Discovering Process-Outcome Credit" (arXiv 2602.01034) 是与 UGCA 最直接可比的方法——两者都做 per-step process-outcome credit mixing，区别仅在于 gating signal 来源（MC information gain vs calibrated CI width）。Proposal 选择不跑它作为 direct baseline，仅做 "Theoretical FLOPs comparison"。虽然 compute cost 差异的理由有一定合理性（MC estimation overhead），但审稿人面对一个如此直接可比的方法不在 baseline 中，即使接受 compute 理由，也很可能要求至少一个 small-scale 实证比较（如 1.7B model、1 seed、reduced training steps）来验证理论分析的结论。
+- 严重度: 可补救
+- 补救方案: 在 Qwen3-1.7B 上跑一个 reduced-scale 的 "Discovering Process-Outcome Credit" 实验：使用较少 training steps (如 50% of full training)、1 seed、较少 MC rollouts (如 N=4)，目的不是做公平全面对比，而是获取一个 empirical data point 来 ground 理论 FLOPs 分析。预计额外成本 ~60-80h H100。在论文中明确标注这是 "reduced-scale comparison" 并解释为什么 full-scale comparison 在 compute-normalized 条件下对该方法不利。这比纯理论分析有说服力得多。
+- 调研依据: "Discovering Process-Outcome Credit" (arXiv 2602.01034) 在 MATH 和 Super-CLEVR 上的实验使用了 GRPO 作为 baseline，方法涉及 Step-wise Marginal Information Gain + Decoupled Masking，需要额外 MC rollouts。
+
+【缺陷 6】
+- 类别: ablation 不完整
+- 问题: 当前 ablation 覆盖了 boundary cases、hard vs soft gating、raw PRM score vs calibrated CI width、calibrated vs uncalibrated、hyperparameters——这些都很好。但缺少一个重要的 ablation：**process credit base formulation 的影响**。Proposal 中 process credit 固定使用 PURE-style min-form advantage (A^min)，但一个自然的问题是：如果改用 summation-form (A^sum) 或 mean-form 作为 process credit component，UGCA 的 gating 是否仍然有效？这关系到 UGCA 的 gating mechanism 是否 robust to the choice of underlying process credit formulation，还是其 gain 本质上来自 min-form + gating 的特定组合。
+- 严重度: 可补救
+- 补救方案: 在 1.7B ablation 中增加 1 个条件：UGCA with summation-form process credit (A^sum)，对比 UGCA with min-form process credit (A^min)。这只需修改 advantage 计算的聚合方式，不需要新的模型或 PRM，额外 compute cost ≈ 1 config × 3 seeds ≈ 60h H100。如果两者性能相近，说明 UGCA 的 value 主要来自 gating mechanism 本身；如果 min-form 显著更好，说明 min-form + gating 的组合有特殊协同效应，这本身也是一个有价值的发现。
+- 调研依据: PURE (NeurIPS 2025) 系统性对比了 min-form vs summation-form，证明 min-form 自身已有优势；审稿人可能会质疑 UGCA 的 gain 是否可以归因于 min-form 选择而非 gating 本身。
+
+---
+
+**整体评估总结**
+
+该 Proposal 的实验设计**整体质量很高**，在 baseline 覆盖度、benchmark 选择、reward hacking 量化、core assumption validation、statistical rigor 等方面都达到了顶会标准。以上 6 个缺陷均为**可补救**类别，没有发现方向性致命问题。其中缺陷 1（cross-family PRM 协议）和缺陷 2（UGCA + PROGRS 组合实验）优先级最高——前者关系到方法的基本可行性，后者几乎必然会被审稿人要求。缺陷 3-6 属于"有则显著加分、无则可能被要求 revision"的层级。补救所有 6 个缺陷的额外 compute 成本约 460-530 H100-hours（占原 budget ~16-18%），timeline 影响可通过调整 wk7-8 的分配来吸收。
+
+Sources:
+- [PURE - Stop Summation (NeurIPS 2025)](https://openreview.net/forum?id=3Sxby0hH1q)
+- [PURE GitHub Repository](https://github.com/CJReinforce/PURE)
+- [PROGRS - arXiv 2604.02341](https://arxiv.org/abs/2604.02341)
+- [GRPO-λ - arXiv 2510.00194](https://arxiv.org/pdf/2510.00194)
+- [PRPO - arXiv 2601.07182](https://arxiv.org/abs/2601.07182)
+- [VPPO - Save the Good Prefix](https://arxiv.org/abs/2601.18984)
+- [Discovering Process-Outcome Credit - arXiv 2602.01034](https://arxiv.org/abs/2602.01034)
+- [DAPO - arXiv 2503.14476](https://arxiv.org/abs/2503.14476)
+- [Know What You Don't Know - Park et al. NeurIPS 2025](https://arxiv.org/html/2506.09338)
+- [Distributional PRM - arXiv 2605.06785](https://arxiv.org/html/2605.06785)
+- [Qwen2.5-Math-PRM-7B - HuggingFace](https://huggingface.co/Qwen/Qwen2.5-Math-PRM-7B)
+- [veRL Framework - GitHub](https://github.com/verl-project/verl)
+- [veRL Qwen Documentation](https://qwen.readthedocs.io/en/latest/training/verl.html)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40b51768-8edc-4c82-a271-1ec3e092a2b3",
+  "isSidechain": false,
+  "requestId": "req_011CbSmgAHQKZn9FGSTb4SjA",
+  "type": "assistant",
+  "uuid": "fa0663cd-c14a-4d0b-afaf-2210b4d74e69",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0135S69Xs2c56scjJSEVvNq9",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 824,
+      "cache_read_input_tokens": 31927,
+      "output_tokens": 8375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 824,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8375,
+          "cache_read_input_tokens": 31927,
+          "cache_creation_input_tokens": 824,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 824
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL  ## Core Problem  Process-aware RL methods (PURE, GRPO-λ, PRL, PRPO, PROGRS) treat PRM step-level scores as equal…",
+  "leafUuid": "fa0663cd-c14a-4d0b-afaf-2210b4d74e69",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-gated credit assignment for math reasoning RL",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Uncertainty-Gated Credit Assignment for Process-Supervised Mathematical Reasoning RL  ## Core Problem  Process-aware RL methods (PURE, GRPO-λ, PRL, PRPO, PROGRS) treat PRM step-level scores as equal…",
+  "leafUuid": "fa0663cd-c14a-4d0b-afaf-2210b4d74e69",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-gated credit assignment for math reasoning RL",
+  "sessionId": "a2728de6-0e2f-4e6b-9fd4-847868a956bc"
+}
+```
+
+---

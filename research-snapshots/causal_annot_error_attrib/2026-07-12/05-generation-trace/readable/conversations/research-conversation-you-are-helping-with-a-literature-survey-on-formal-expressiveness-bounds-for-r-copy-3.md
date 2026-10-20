@@ -1,0 +1,2632 @@
+# Research conversation: You are helping with a literature survey on formal expressiveness bounds for retrieval representations. Search for paper
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 44
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/exported-trajectories/account-1/agent-a2de38df4a1fb2bfb.jsonl`
+- **Structured JSON:** [`75c29359e50a42347fe6.json`](../../sessions/75/75c29359e50a42347fe6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+44 recorded events
+
+### User
+
+_source line 1 · 2026-05-30T06:12:52.844Z_
+
+You are helping with a literature survey on formal expressiveness bounds for retrieval representations. 
+
+Search for papers related to sign-rank, embedding limitations, and theoretical bounds for retrieval systems (2024-2026). Execute these searches and for each promising paper, fetch its abstract from arxiv or openreview.
+
+Searches to execute:
+1. WebSearch: "sign-rank embedding retrieval theoretical limitations 2024 2025 2026"
+2. WebSearch: "Weller theoretical limitations embedding-based retrieval ICLR 2026 sign-rank"
+3. WebSearch: "Wang R^2k theoretically large enough embedding top-k retrieval 2026"
+4. WebSearch: "Jacob strengths limitations single-vector embeddings 2026"
+5. WebSearch: "embedding capacity sign-rank binary matrix retrieval 2025 2026"
+
+For each paper you find that's relevant, use WebFetch on its arxiv page to get the full abstract. 
+
+Return a structured list of papers found with: title, authors, venue, URL, abstract summary, and why it's relevant to the topic of formal expressiveness bounds for multi-vector retrieval representations.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "391ad030-6844-4d43-bd1b-0aaea8c205cf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-30T06:12:52.852Z_
+
+```json
+{
+  "parentUuid": "391ad030-6844-4d43-bd1b-0aaea8c205cf",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": []
+  },
+  "type": "attachment",
+  "uuid": "8015b412-6712-442e-a6a6-f4662a4790dd",
+  "timestamp": "2026-05-30T06:12:52.852Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3 · 2026-05-30T06:12:52.854Z_
+
+```json
+{
+  "parentUuid": "8015b412-6712-442e-a6a6-f4662a4790dd",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "4ae94f7b-10fa-4c6a-9eb9-3b1421157884",
+  "timestamp": "2026-05-30T06:12:52.854Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4 · 2026-05-30T06:12:55.984Z_
+
+
+
+I'll start by loading the WebSearch and WebFetch tools, then execute the searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ae94f7b-10fa-4c6a-9eb9-3b1421157884",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG1nmBFuUxHnNdYoyfy",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e2cbe6ee-28c7-4c67-ac9d-41492696bcb4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WRMBicaeGht2CdpC7V7B2h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1572,
+      "cache_read_input_tokens": 7413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1572,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-30T06:12:56.514Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01SGA5FrCb2htbSyVyPYAuFv`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2cbe6ee-28c7-4c67-ac9d-41492696bcb4",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG1nmBFuUxHnNdYoyfy",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8d296585-dfdf-4179-84bc-c0c565b7c391",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WRMBicaeGht2CdpC7V7B2h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1572,
+      "cache_read_input_tokens": 7413,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1572,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-30T06:12:56.518Z_
+
+<details><summary>↩ Tool result · `toolu_01SGA5FrCb2htbSyVyPYAuFv`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8d296585-dfdf-4179-84bc-c0c565b7c391",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "98dea128-731c-47cc-9bb9-3b0d9a48d706",
+  "sourceToolAssistantUUID": "8d296585-dfdf-4179-84bc-c0c565b7c391",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-30T06:12:58.880Z_
+
+
+
+Now let me execute all five searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98dea128-731c-47cc-9bb9-3b0d9a48d706",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG25Lae1gHtZmxKofu7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e50046cf-c4ea-4918-a0ae-8d36a1187c31",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012KqhZwyZLzi7Muh14K4cw5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1122,
+      "cache_read_input_tokens": 8985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1122,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-30T06:12:59.831Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01W9TPnRrRwdas91mH6xGJof`</summary>
+
+```json
+{
+  "query": "sign-rank embedding retrieval theoretical limitations 2024 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e50046cf-c4ea-4918-a0ae-8d36a1187c31",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG25Lae1gHtZmxKofu7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f8b1feb6-4541-4363-a066-41aefe5b5e24",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012KqhZwyZLzi7Muh14K4cw5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1122,
+      "cache_read_input_tokens": 8985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1122,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-30T06:13:00.305Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BRSU6wj3sDh7tGmD9JediZ`</summary>
+
+```json
+{
+  "query": "Weller theoretical limitations embedding-based retrieval ICLR 2026 sign-rank"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8b1feb6-4541-4363-a066-41aefe5b5e24",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG25Lae1gHtZmxKofu7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ae7cc0df-2f29-4d6b-b14a-823573cccc46",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012KqhZwyZLzi7Muh14K4cw5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1122,
+      "cache_read_input_tokens": 8985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1122,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-30T06:13:01.322Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N1Fzb2ZJmH55qBiwriKDNV`</summary>
+
+```json
+{
+  "query": "Wang R^2k theoretically large enough embedding top-k retrieval 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae7cc0df-2f29-4d6b-b14a-823573cccc46",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG25Lae1gHtZmxKofu7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ec0f91af-841f-464a-8f8d-89ef9e0d9528",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012KqhZwyZLzi7Muh14K4cw5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1122,
+      "cache_read_input_tokens": 8985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1122,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-30T06:13:01.794Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GKJmcYx2G8MX1t5RTBREGE`</summary>
+
+```json
+{
+  "query": "Jacob strengths limitations single-vector embeddings 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec0f91af-841f-464a-8f8d-89ef9e0d9528",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG25Lae1gHtZmxKofu7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "03d92b07-559e-4bee-9994-3f59ec3a09d4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012KqhZwyZLzi7Muh14K4cw5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1122,
+      "cache_read_input_tokens": 8985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1122,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-30T06:13:02.426Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019moRDzAE3zutUK2MdiY7Nu`</summary>
+
+```json
+{
+  "query": "embedding capacity sign-rank binary matrix retrieval 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "03d92b07-559e-4bee-9994-3f59ec3a09d4",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG25Lae1gHtZmxKofu7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2bee9dba-cd6c-43f9-80c3-bd82ca54f196",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012KqhZwyZLzi7Muh14K4cw5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1122,
+      "cache_read_input_tokens": 8985,
+      "output_tokens": 282,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1122
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 282,
+          "cache_read_input_tokens": 8985,
+          "cache_creation_input_tokens": 1122,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1122,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-30T06:13:06.131Z_
+
+<details><summary>↩ Tool result · `toolu_01BRSU6wj3sDh7tGmD9JediZ`</summary>
+
+```text
+Web search results for query: "Weller theoretical limitations embedding-based retrieval ICLR 2026 sign-rank"
+
+Links: [{"title":"On the Theoretical Limitations of Embedding-Based Retrieval — a technical blog | by Shubham | Medium","url":"https://shubh7.medium.com/on-the-theoretical-limitations-of-embedding-based-retrieval-a-technical-blog-4a76e2e0946f"},{"title":"The Vector Bottleneck: Limitations of Embedding-Based Retrieval | Shaped","url":"https://www.shaped.ai/blog/the-vector-bottleneck-limitations-of-embedding-based-retrieval"},{"title":"Published as a conference paper at ICLR 2026 ON THE THEORETICAL LIMITATIONS OF","url":"https://openreview.net/pdf/43db7db7a837ff1e0af8065943aec2d036382459.pdf"},{"title":"ℝ^{2⁢𝑘} is Theoretically Large Enough for Embedding-based Top-𝑘 Retrieval","url":"https://arxiv.org/html/2601.20844v2"},{"title":"[2508.21038] On the Theoretical Limitations of Embedding-Based Retrieval","url":"https://arxiv.org/abs/2508.21038"},{"title":"On the Theoretical Limitations of Embedding-Based Retrieval","url":"https://arxiv.org/pdf/2508.21038"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf?id=yKDqg9HwZX"},{"title":"(PDF) On the Theoretical Limitations of Embedding-Based Retrieval","url":"https://www.researchgate.net/publication/395033899_On_the_Theoretical_Limitations_of_Embedding-Based_Retrieval"},{"title":"IntRec: Intent-based Retrieval with Contrastive Refinement","url":"https://arxiv.org/html/2602.17639v1"}]
+
+Based on the search results, I found relevant information about the work you're asking about:
+
+The paper "On the Theoretical Limitations of Embedding-Based Retrieval" is by Orion Weller, Michael Boratko, Iftekhar Naim, and Jinhyuk Lee from Google DeepMind (published August 28, 2025), and it was published as a conference paper at ICLR 2026.
+
+The core contribution involves sign-rank: The authors connect classic results in communication complexity and sign-rank to the representational capacity of dot-product embeddings and show why — for any fixed embedding dimension d — there are combinatorial sets of documents that no single-vector embedding model can return as a top-k result for any query.
+
+The sign rank of the relevance matrix serves as a direct proxy for the "combinatorial complexity" of a retrieval task. More broadly, the work demonstrates that these theoretical limitations may be encountered in realistic settings with extremely simple queries.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ae7cc0df-2f29-4d6b-b14a-823573cccc46",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "c8797b62-6d2f-49fd-84dc-4ab770597483",
+  "sourceToolAssistantUUID": "ae7cc0df-2f29-4d6b-b14a-823573cccc46",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-30T06:13:07.986Z_
+
+<details><summary>↩ Tool result · `toolu_01W9TPnRrRwdas91mH6xGJof`</summary>
+
+```text
+Web search results for query: "sign-rank embedding retrieval theoretical limitations 2024 2025 2026"
+
+Links: [{"title":"On the Theoretical Limitations of Embedding-Based Retrieval","url":"https://arxiv.org/pdf/2508.21038"},{"title":"On the Theoretical Limitations of Embedding-Based Retrieval | OpenReview","url":"https://openreview.net/forum?id=k9CzIvzfaA"},{"title":"[2508.21038] On the Theoretical Limitations of Embedding-Based Retrieval","url":"https://arxiv.org/abs/2508.21038"},{"title":"Limits of Embedding-Based Retrieval","url":"https://www.emergentmind.com/papers/2508.21038"},{"title":"(PDF) On the Theoretical Limitations of Embedding-Based Retrieval","url":"https://www.researchgate.net/publication/395033899_On_the_Theoretical_Limitations_of_Embedding-Based_Retrieval"},{"title":"The Vector Bottleneck: Limitations of Embedding-Based Retrieval | Shaped","url":"https://www.shaped.ai/blog/the-vector-bottleneck-limitations-of-embedding-based-retrieval"},{"title":"On the Theoretical Limitations of Embedding-Based Retrieval — a technical blog | by Shubham | Medium","url":"https://shubh7.medium.com/on-the-theoretical-limitations-of-embedding-based-retrieval-a-technical-blog-4a76e2e0946f"},{"title":"On the Theoretical Limitations of Embedding-Based Retrieval — New Research Paper | by noailabs | Medium","url":"https://noailabs.medium.com/on-the-theoretical-limitations-of-embedding-based-retrieval-new-research-paper-c70dc3edc817"},{"title":"Published as a conference paper at ICLR 2026 ON THE THEORETICAL LIMITATIONS OF","url":"https://openreview.net/pdf/43db7db7a837ff1e0af8065943aec2d036382459.pdf"},{"title":"Theoretical Limitations of Embedding Models and Their Applications in Turkish: An In-Depth Look","url":"https://huggingface.co/blog/nmmursit/theoretical-limitations-of-embedding-models"}]
+
+Based on the search results, I found recent research on sign-rank and theoretical limitations of embedding-based retrieval:
+
+## Key Findings
+
+Single-vector embedding models are theoretically limited by sign-rank constraints, making them unable to represent all top-k document combinations.
+
+**The Main Research Paper:**
+
+A paper titled "On the Theoretical Limitations of Embedding-Based Retrieval" by Orion Weller, Michael Boratko, Iftekhar Naim, and Jinhyuk Lee was released on August 28, 2025. The work connects known results in learning theory, showing that the number of top-k subsets of documents capable of being returned as the result of some query is limited by the dimension of the embedding.
+
+**Theoretical Connection:**
+
+The authors connect classic results in communication complexity and sign-rank to the representational capacity of dot-product embeddings and show why — for any fixed embedding dimension d — there are combinatorial sets of documents that no single-vector embedding model can return as a top-k result for any query.
+
+The sign rank of the relevance matrix is established as a direct proxy for the "combinatorial complexity" of a retrieval task.
+
+**Empirical Validation:**
+
+Empirical validation on the LIMIT dataset shows that state-of-the-art models struggle with low recall scores even at high embedding dimensions.
+
+**Broader Implications:**
+
+The work applies to all modalities of single vector embeddings for any domain of dataset, and as the space of things to represent grows through instructions or multi-modality, they will increasingly run into these theoretical limitations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8b1feb6-4541-4363-a066-41aefe5b5e24",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "e5a53083-57ce-442e-8606-f2262505e2e1",
+  "sourceToolAssistantUUID": "f8b1feb6-4541-4363-a066-41aefe5b5e24",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-30T06:13:08.024Z_
+
+<details><summary>↩ Tool result · `toolu_01GKJmcYx2G8MX1t5RTBREGE`</summary>
+
+```text
+Web search results for query: "Jacob strengths limitations single-vector embeddings 2026"
+
+Links: [{"title":"[2603.29519v1] On Strengths and Limitations of Single-Vector Embeddings","url":"https://arxiv.org/abs/2603.29519v1"},{"title":"[2603.29519] On Strengths and Limitations of Single-Vector Embeddings","url":"https://arxiv.org/abs/2603.29519"},{"title":"(PDF) On Strengths and Limitations of Single-Vector Embeddings","url":"https://www.researchgate.net/publication/403379632_On_Strengths_and_Limitations_of_Single-Vector_Embeddings"},{"title":"On Strengths and Limitations of Single-Vector Embeddings","url":"https://arxiv.org/html/2603.29519v1"},{"title":"On Strengths and Limitations of Single-Vector Embeddings Archish S 1","url":"https://arxiv.org/pdf/2603.29519"},{"title":"On Strengths and Limitations of Single-Vector Embeddings, A Blueprint for Self-Evolving Multi-Agent Recommender Systems, and More!","url":"https://recsys.substack.com/p/on-strengths-and-limitations-of-single"}]
+
+I found search results for a 2026 research paper titled "On Strengths and Limitations of Single-Vector Embeddings." Here are the key findings:
+
+## Key Strengths and Limitations Identified
+
+Domain shift and misalignment between embedding similarities and task relevance are major contributors to performance gaps, though finetuning can improve recall substantially. Even with finetuning, single-vector models remain markedly weaker than multivector representations, pointing to fundamental limitations.
+
+## Catastrophic Forgetting
+
+Finetuning single-vector models on LIMIT-like datasets leads to catastrophic forgetting with performance on MSMARCO dropping by more than 40%, whereas forgetting for multi-vector models is minimal.
+
+## The Drowning in Documents Paradox
+
+Single-vector and multi-vector models differ in how they handle the drowning in documents paradox: as the corpus grows, relevant documents are increasingly "drowned out" because embedding similarities behave, in part, like noisy statistical proxies for relevance. Single-vector models are more susceptible to drowning effects compared to multi-vector models.
+
+The research appears to be from Microsoft and was published on arxiv.org in March 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "03d92b07-559e-4bee-9994-3f59ec3a09d4",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "f18fe7de-24bd-4c98-a3c3-d5a02a594ccf",
+  "sourceToolAssistantUUID": "03d92b07-559e-4bee-9994-3f59ec3a09d4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-30T06:13:08.605Z_
+
+<details><summary>↩ Tool result · `toolu_01N1Fzb2ZJmH55qBiwriKDNV`</summary>
+
+```text
+Web search results for query: "Wang R^2k theoretically large enough embedding top-k retrieval 2026"
+
+Links: [{"title":"[2601.20844] $\\mathbb{R}^{2k}$ is Theoretically Large Enough for Embedding-based Top-$k$ Retrieval","url":"https://arxiv.org/abs/2601.20844"},{"title":"Deterministic Top-k Retrieval","url":"https://www.emergentmind.com/topics/deterministic-top-k-retrieval"},{"title":"R2k is Theoretically Large Enough for Embedding-based Top-k Retrieval","url":"https://arxiv.org/pdf/2601.20844"},{"title":"p2RAG: Privacy-Preserving RAG Service Supporting Arbitrary Top-k Retrieval","url":"https://arxiv.org/pdf/2603.14778"},{"title":"𝑝²RAG: Privacy-Preserving RAG Service Supporting Arbitrary Top-𝑘 Retrieval","url":"https://arxiv.org/html/2603.14778v1"},{"title":"ℝ^{2⁢𝑘} is Theoretically Large Enough for Embedding-based Top-𝑘 Retrieval","url":"https://arxiv.org/html/2601.20844v2"}]
+
+Based on the search results, I found information about the paper you're looking for:
+
+The paper studies the minimal dimension required to embed subset memberships (m elements and m choose k subsets of at most k elements) into vector spaces, denoted as Minimal Embeddable Dimension (MED).
+
+The tight bounds of MED are derived theoretically and supported empirically for various notions of "distances" or "similarities," including the ℓ₂ metric, inner product, and cosine similarity.
+
+Key findings include:
+
+- For inner product and ℓ₂ (Euclidean), ℝ²ᵏ suffices for all m, as cyclic polytope constructions ensure every k-subset is linearly separable from its complement.
+
+- For cosine, ℝ²ᵏ⁺¹ suffices; k−1 is a lower bound in all settings.
+
+- The paper conducts numerical simulation in a more achievable setting, where the subset embeddings are chosen as the centroid of the embeddings of the contained elements, easily realizing a logarithmic dependency between the MED and the number of elements to embed.
+
+The findings imply that embedding-based retrieval limitations stem primarily from learnability challenges, not geometric constraints, guiding future algorithm design.
+
+The paper was submitted on January 28, 2026, by Zihao Wang and colleagues.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec0f91af-841f-464a-8f8d-89ef9e0d9528",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "7598b567-a01c-4a08-9d06-28b5957ca66a",
+  "sourceToolAssistantUUID": "ec0f91af-841f-464a-8f8d-89ef9e0d9528",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-30T06:13:09.384Z_
+
+<details><summary>↩ Tool result · `toolu_019moRDzAE3zutUK2MdiY7Nu`</summary>
+
+```text
+Web search results for query: "embedding capacity sign-rank binary matrix retrieval 2025 2026"
+
+Links: [{"title":"Limits of Embedding-Based Retrieval","url":"https://www.emergentmind.com/papers/2508.21038"},{"title":"On the Theoretical Limitations of Embedding-Based Retrieval | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/theoretical-limitations-embedding-based-retrieval"},{"title":"On the Theoretical Limitations of Embedding-Based Retrieval","url":"https://arxiv.org/pdf/2508.21038"},{"title":"On the Theoretical Limitations of Embedding-Based Retrieval — New Research Paper | by evoailabs | Medium","url":"https://medium.com/@noailabs/on-the-theoretical-limitations-of-embedding-based-retrieval-new-research-paper-c70dc3edc817"},{"title":"Sign-Rank of $k$-Hamming Distance is Constant","url":"https://arxiv.org/pdf/2506.12022"},{"title":"Ranks of Checkered Pattern Matrices with Applications to Information Embedding and Retrieving","url":"https://arxiv.org/pdf/2509.15605"},{"title":"Improved Secret Image Sharing Scheme in Embedding Capacity without Underflow and Overflow","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4553325/"},{"title":"Embeddings in Practice: A Research & Implementation Guide | by Adnan Masood, PhD. | Medium","url":"https://medium.com/@adnanmasood/embeddings-in-practice-a-research-implementation-guide-9dbf20961590"},{"title":"Binary adaptive embeddings from order statistics of random projections","url":"https://arxiv.org/pdf/1701.08511"}]
+
+I found relevant research on this topic. Here are the key findings:
+
+## Main Research: Theoretical Limitations of Embedding-Based Retrieval
+
+A groundbreaking research paper from Google DeepMind, released at the end of August 2025, reveals inherent limitations to embedding-based methods. This research connects the limitations of embedding-based retrieval to established concepts in communication complexity theory and the sign-rank of a relevance matrix, providing a firm theoretical foundation for the observed failures.
+
+## Key Concepts
+
+The research formalizes retrieval with m queries and n documents using a ground-truth relevance matrix A ∈ {0,1}^(m×n), where A_ij = 1 if document j is relevant to query i, with relevance modeled by dot products of embedded vectors.
+
+The smallest embedding dimension d that can realize a given score matrix equals the rank of the score matrix B = U^T V, which leads to finding the minimum rank that correctly orders documents according to relevance specified in A - the row-wise order-preserving rank.
+
+The connection to sign-rank provides a practical mechanism for estimating the representational capacity of embedding models.
+
+## Related Work
+
+Additionally, researchers recently proved that the sign-rank of the k-Hamming Distance matrix on n bits is 2^{O(k)}, independent of the number of bits n.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2bee9dba-cd6c-43f9-80c3-bd82ca54f196",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "a9c46003-1209-4af5-acd1-9967c0d3346c",
+  "sourceToolAssistantUUID": "2bee9dba-cd6c-43f9-80c3-bd82ca54f196",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-30T06:13:12.448Z_
+
+Excellent. I found three key papers. Now let me fetch the abstracts from their arxiv pages in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9c46003-1209-4af5-acd1-9967c0d3346c",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG31WRXGdtb8KMmD8Eg",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4e39115d-d6bf-4fda-be7c-b23710231696",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NoUgsXzw1DdyCrJhCYVnxc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4144,
+      "cache_read_input_tokens": 10107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4144,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-30T06:13:13.453Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TLRGwDdKdXUgUEG59JCsvu`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2508.21038",
+  "prompt": "Extract the full abstract, list of authors, title, and any venue/conference information for this paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4e39115d-d6bf-4fda-be7c-b23710231696",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG31WRXGdtb8KMmD8Eg",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "eda2ac3d-d4d1-41b2-afb2-edaecc4b19f3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NoUgsXzw1DdyCrJhCYVnxc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4144,
+      "cache_read_input_tokens": 10107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4144,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-30T06:13:14.371Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017JYMBPLnLFrwTkxoA1szgK`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.20844",
+  "prompt": "Extract the full abstract, list of authors, title, and any venue/conference information for this paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eda2ac3d-d4d1-41b2-afb2-edaecc4b19f3",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG31WRXGdtb8KMmD8Eg",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "25733003-e746-44ef-ab36-4e56556e8814",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NoUgsXzw1DdyCrJhCYVnxc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4144,
+      "cache_read_input_tokens": 10107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4144,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-30T06:13:14.831Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01BdbB9eKgWgwSYLFqo7S2nu`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.29519",
+  "prompt": "Extract the full abstract, list of authors, title, and any venue/conference information for this paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25733003-e746-44ef-ab36-4e56556e8814",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG31WRXGdtb8KMmD8Eg",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "434e3af5-6e33-4d39-8a66-c125e7ce4626",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NoUgsXzw1DdyCrJhCYVnxc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4144,
+      "cache_read_input_tokens": 10107,
+      "output_tokens": 297,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4144
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 297,
+          "cache_read_input_tokens": 10107,
+          "cache_creation_input_tokens": 4144,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4144,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-30T06:13:17.993Z_
+
+<details><summary>↩ Tool result · `toolu_01TLRGwDdKdXUgUEG59JCsvu`</summary>
+
+```text
+# Paper Information
+
+**Title:** On the Theoretical Limitations of Embedding-Based Retrieval
+
+**Authors:** Orion Weller, Michael Boratko, Iftekhar Naim, Jinhyuk Lee
+
+**Venue:** ICLR'26 (Accepted)
+
+**Abstract:**
+The researchers demonstrate that vector embeddings encounter theoretical constraints in realistic scenarios with straightforward queries. They establish connections to learning theory, proving "the number of top-k subsets of documents capable of being returned as the result of some query is limited by the dimension of the embedding." Through experiments using free parameterized embeddings, they show that returning all document pairs requires relatively high dimensionality. The team introduces a dataset called LIMIT designed to stress-test embedding models based on these findings, revealing that even cutting-edge models struggle with this simplistic task. They conclude that embedding models under the current single-vector framework have inherent limitations and advocate for developing new techniques to address this fundamental challenge.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eda2ac3d-d4d1-41b2-afb2-edaecc4b19f3",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "b5499a04-0cd5-44c8-94c2-708c5879b8da",
+  "sourceToolAssistantUUID": "eda2ac3d-d4d1-41b2-afb2-edaecc4b19f3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-30T06:13:19.222Z_
+
+<details><summary>↩ Tool result · `toolu_017JYMBPLnLFrwTkxoA1szgK`</summary>
+
+```text
+# Paper Information
+
+**Title:** $\mathbb{R}^{2k}$ is Theoretically Large Enough for Embedding-based Top-$k$ Retrieval
+
+**Authors:** Zihao Wang, Hang Yin, Lihui Liu, Hanghang Tong, Yangqiu Song, Ginny Wong, Simon See
+
+**Abstract:** The paper investigates "the minimal dimension required to embed subset memberships" with m elements and $\binom{m}{k}$ subsets. The researchers derive theoretical bounds and provide empirical support for various distance measures including $\ell_2$ metric, inner product, and cosine similarity. Through numerical simulation where "subset embeddings are chosen as the centroid of the embeddings of the contained elements," they achieve logarithmic dependence between dimension and element count. The findings suggest that "embedding-based retrieval limitations stem primarily from learnability challenges, not geometric constraints."
+
+**Venue/Conference:** Computer Science > Machine Learning (arXiv preprint)
+
+**Submission Date:** January 28-29, 2026
+
+**arXiv Identifier:** 2601.20844
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25733003-e746-44ef-ab36-4e56556e8814",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "23a84aa4-5cec-4939-935b-1d43f3d5199f",
+  "sourceToolAssistantUUID": "25733003-e746-44ef-ab36-4e56556e8814",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-30T06:13:20.196Z_
+
+<details><summary>↩ Tool result · `toolu_01BdbB9eKgWgwSYLFqo7S2nu`</summary>
+
+```text
+# Paper Summary
+
+**Title:** "On Strengths and Limitations of Single-Vector Embeddings"
+
+**Authors:** Archish S, Mihir Agarwal, Ankit Garg, Neeraj Kayal, Kirankumar Shiragur
+
+**Venue/Classification:** Computer Science > Information Retrieval (cs.IR)
+
+**Abstract:**
+
+The researchers investigate why single-vector embedding models show poor retrieval performance on the LIMIT dataset. While prior work attributed failures to limited dimensionality, they demonstrate that "dimensionality alone cannot explain the observed failures." 
+
+Key findings include:
+
+- Domain shift and misalignment between embedding similarities and task relevance are major performance drivers
+- Finetuning improves recall substantially, yet single-vector models remain substantially weaker than multi-vector alternatives
+- Finetuning on LIMIT causes "catastrophic forgetting" with MSMarco performance dropping over 40%, while multi-vector models show minimal degradation
+- The team analyzes the "drowning in documents paradox," showing single-vector models are more vulnerable when corpus size increases because "embedding similarities behave, in part, like noisy statistical proxies for relevance"
+
+The analysis combines empirical experiments with mathematical modeling to explain fundamental limitations of single-vector representations compared to multi-vector approaches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "434e3af5-6e33-4d39-8a66-c125e7ce4626",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "b3a0a998-1533-44ed-96f2-a2abdfce278e",
+  "sourceToolAssistantUUID": "434e3af5-6e33-4d39-8a66-c125e7ce4626",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-30T06:13:23.594Z_
+
+Good. Now let me also fetch the two additional related papers that appeared in the search results -- the sign-rank of k-Hamming Distance paper and the checkered pattern matrices paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3a0a998-1533-44ed-96f2-a2abdfce278e",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG3ofJjcKxJqzei9LKE",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b814a8d8-e3cc-41cd-87a7-354aba32fb5c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VzLfLP3fNYQuMLNQvkLUgK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 14251,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1147,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-30T06:13:24.292Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01AQuHr6hiq1Y476sBRgpEVd`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2506.12022",
+  "prompt": "Extract the full abstract, list of authors, title, and any venue/conference information for this paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b814a8d8-e3cc-41cd-87a7-354aba32fb5c",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG3ofJjcKxJqzei9LKE",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3363e5d0-55fa-44b5-a7cd-06c966d289bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VzLfLP3fNYQuMLNQvkLUgK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 14251,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1147,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-30T06:13:25.062Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TH3WHWoqgBikvh7EdTTcCF`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2509.15605",
+  "prompt": "Extract the full abstract, list of authors, title, and any venue/conference information for this paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3363e5d0-55fa-44b5-a7cd-06c966d289bc",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG3ofJjcKxJqzei9LKE",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "176af0fc-8c36-4099-994b-b2e435f57b92",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VzLfLP3fNYQuMLNQvkLUgK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 14251,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1147,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-30T06:13:25.827Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E5ATmBkJXjnL9FxPWp2dpQ`</summary>
+
+```json
+{
+  "query": "\"multi-vector retrieval\" \"expressiveness\" OR \"representational capacity\" OR \"sign-rank\" theoretical bounds 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "176af0fc-8c36-4099-994b-b2e435f57b92",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG3ofJjcKxJqzei9LKE",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "02bfee3c-9eae-41c9-8f5b-1567ba4c77d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VzLfLP3fNYQuMLNQvkLUgK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 14251,
+      "output_tokens": 292,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1147
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 292,
+          "cache_read_input_tokens": 14251,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1147,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-30T06:13:28.111Z_
+
+<details><summary>↩ Tool result · `toolu_01AQuHr6hiq1Y476sBRgpEVd`</summary>
+
+```text
+# Paper Information
+
+**Title:** Sign-Rank of $k$-Hamming Distance is Constant
+
+**Authors:** Mika Göös, Nathaniel Harms, Valentin Imbach, Dmitry Sokolov
+
+**Abstract:** 
+The researchers demonstrate "the sign-rank of the $k$-Hamming Distance matrix on $n$ bits is $2^{O(k)}$, independent of the number of bits $n$." This finding refutes prior conjectures that sign-rank should depend on $n$. The technique applies to matrices reducing to $k$-Hamming Distance and to large-margin matrices previously shown to be irreducible to this distance metric.
+
+**Venue/Conference Information:**
+- arXiv identifier: 2506.12022
+- Category: Computer Science > Computational Complexity (cs.CC)
+- Submitted: May 1, 2025 (v1)
+- Last revised: September 15, 2025 (v2)
+- Paper length: 19 pages, 6 figures
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3363e5d0-55fa-44b5-a7cd-06c966d289bc",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "e4e55470-f362-4d58-91aa-cd013cb1ea61",
+  "sourceToolAssistantUUID": "3363e5d0-55fa-44b5-a7cd-06c966d289bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-30T06:13:29.521Z_
+
+<details><summary>↩ Tool result · `toolu_01TH3WHWoqgBikvh7EdTTcCF`</summary>
+
+```text
+# Paper Information
+
+**Title:** Ranks of Checkered Pattern Matrices with Applications to Information Embedding and Retrieving
+
+**Author:** Hideo Hirose
+
+**Abstract:** The paper examines checkered pattern matrices characterized by square structures using two distinct colors, represented numerically as {1,0} or {1,-1}. Though these representations may appear visually identical when forming checkered patterns, they differ mathematically: matrices using {1,0} have rank 2, while those using {1,-1} have rank 1. Understanding this distinction enables more efficient computational performance for matrix operations involving information embedding and retrieval.
+
+**Venue/Conference Information:** 
+- **Category:** Mathematics > History and Overview (math.HO)
+- **Secondary Subject:** Information Theory (cs.IT)
+- **Submission Date:** September 19, 2025
+- **arXiv Identifier:** 2509.15605
+
+**Additional Details:**
+- Paper length: 8 pages, 3 figures
+- Available formats: PDF, HTML, TeX Source
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "176af0fc-8c36-4099-994b-b2e435f57b92",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "8c385b13-ce17-41fc-bf35-f75d7da71f63",
+  "sourceToolAssistantUUID": "176af0fc-8c36-4099-994b-b2e435f57b92",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-30T06:13:33.716Z_
+
+<details><summary>↩ Tool result · `toolu_01E5ATmBkJXjnL9FxPWp2dpQ`</summary>
+
+```text
+Web search results for query: ""multi-vector retrieval" "expressiveness" OR "representational capacity" OR "sign-rank" theoretical bounds 2025 2026"
+
+Links: [{"title":"Incorporating Token Importance in Multi-Vector Retrieval","url":"https://arxiv.org/pdf/2511.16106"},{"title":"MUVERA: Making multi-vector retrieval as fast as single-vector search","url":"https://research.google/blog/muvera-making-multi-vector-retrieval-as-fast-as-single-vector-search/"},{"title":"[2511.00444] LIR: The First Workshop on Late Interaction and Multi Vector Retrieval @ ECIR 2026","url":"https://arxiv.org/abs/2511.00444"},{"title":"On the Theoretical Limitations of Embedding-Based Retrieval","url":"https://arxiv.org/pdf/2508.21038"},{"title":"Capacity Analysis of Vector Symbolic Architectures","url":"https://arxiv.org/pdf/2301.10352"},{"title":"Efficient Constant-Space Multi-Vector Retrieval","url":"https://arxiv.org/pdf/2504.01818"},{"title":"A $\\mathbb{Z}_2$-Topological Framework for Sign-rank Lower Bounds","url":"https://arxiv.org/pdf/2604.01510"}]
+
+I found some relevant results for your search. Here's what the web search discovered:
+
+## Multi-Vector Retrieval and Theoretical Bounds
+
+Recent work in 2025 introduces fixed-size representation for documents by pooling token embeddings into a smaller set of learned vectors, which improves storage efficiency and simplifies late interaction.
+
+### Expressiveness and Representational Capacity
+
+Research has drawn upon high-dimensional geometry to provide a lower bound on the embedding dimension needed to represent a given combination of relevant documents and queries. Neural models are predominantly used in a single vector capacity, and these embedding models are capable of generalizing to new retrieval datasets while solving increasingly complicated retrieval problems.
+
+### Sign-rank Theoretical Advances
+
+A recent 2026 paper develops a topological framework for proving lower bounds on sign-rank via Z₂-equivariant topology, associating each sign matrix with a free Z₂-simplicial complex whose Z₂-index lower bounds the sign-rank.
+
+### Multi-Vector Retrieval Challenges
+
+Late interaction retrieval methods, pioneered by ColBERT, have emerged as a powerful alternative to single-vector neural IR, leveraging fine-grained, token-level representations to deliver strong generalization and robustness. However, single-vector retrieval benefits from highly optimized algorithms that simultaneously achieve high accuracy and sublinear search times, while the complex nature of multi-vector similarity prevents the direct application of these fast geometric techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "02bfee3c-9eae-41c9-8f5b-1567ba4c77d5",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "ce470c5f-eb71-43fd-92e3-be00503bde61",
+  "sourceToolAssistantUUID": "02bfee3c-9eae-41c9-8f5b-1567ba4c77d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-30T06:13:36.740Z_
+
+Let me fetch more details on the additional relevant papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce470c5f-eb71-43fd-92e3-be00503bde61",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG4oZt36VhFZ9rYstA1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "deb3b7eb-0485-4c78-8878-a30d7d947eef",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6w2wQK5y1zQ2kjZ6YGF5C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1519,
+      "cache_read_input_tokens": 15398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1519,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-30T06:13:37.682Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GiNdbirmFtbbasgnDrVEru`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.01510",
+  "prompt": "Extract the full abstract, list of authors, title, and any venue/conference information for this paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "deb3b7eb-0485-4c78-8878-a30d7d947eef",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG4oZt36VhFZ9rYstA1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6c3a4395-ab84-4893-adeb-f7dcb28cf6e5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6w2wQK5y1zQ2kjZ6YGF5C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1519,
+      "cache_read_input_tokens": 15398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1519,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-30T06:13:38.131Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012bngua8ubJV4gZFHh2o5ho`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2504.01818",
+  "prompt": "Extract the full abstract, list of authors, title, and any venue/conference information for this paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c3a4395-ab84-4893-adeb-f7dcb28cf6e5",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG4oZt36VhFZ9rYstA1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d3e60575-1aa1-4445-9497-2b838b2ad7fa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6w2wQK5y1zQ2kjZ6YGF5C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1519,
+      "cache_read_input_tokens": 15398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1519,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-30T06:13:38.825Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_011FyBv4qK4dAsfnyFbwHf9t`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2511.00444",
+  "prompt": "Extract the full abstract, list of authors, title, and any venue/conference information for this paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3e60575-1aa1-4445-9497-2b838b2ad7fa",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG4oZt36VhFZ9rYstA1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1df86a5c-d69a-4397-a3a2-1c46bc9672c2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6w2wQK5y1zQ2kjZ6YGF5C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1519,
+      "cache_read_input_tokens": 15398,
+      "output_tokens": 284,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1519
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 284,
+          "cache_read_input_tokens": 15398,
+          "cache_creation_input_tokens": 1519,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1519,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-30T06:13:41.291Z_
+
+<details><summary>↩ Tool result · `toolu_012bngua8ubJV4gZFHh2o5ho`</summary>
+
+```text
+# Paper Summary
+
+**Title:** "Efficient Constant-Space Multi-Vector Retrieval"
+
+**Authors:** Sean MacAvaney, Antonio Mallia, Nicola Tonellotto
+
+**Venue:** ECIR 2025
+
+**Abstract:**
+The researchers address storage inefficiency in multi-vector retrieval systems like ColBERT by proposing a method to encode documents using a fixed number of vectors rather than one per token. This approach reduces disk storage requirements and improves operating system paging efficiency. Their experiments on MSMARCO passages and BEIR datasets using ColBERT-v2 demonstrate that documents can be represented with fixed-size vectors while maintaining most of the original retrieval effectiveness.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d3e60575-1aa1-4445-9497-2b838b2ad7fa",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "ecc9d5a5-f591-48ad-8da9-77936c2454ef",
+  "sourceToolAssistantUUID": "d3e60575-1aa1-4445-9497-2b838b2ad7fa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-30T06:13:42.736Z_
+
+<details><summary>↩ Tool result · `toolu_011FyBv4qK4dAsfnyFbwHf9t`</summary>
+
+```text
+# Paper Information
+
+**Title:** "LIR: The First Workshop on Late Interaction and Multi Vector Retrieval @ ECIR 2026"
+
+**Authors:** Benjamin Clavié, Xianming Li, Antoine Chaffin, Omar Khattab, Tom Aarsen, Manuel Faysse, and Jing Li
+
+**Venue:** ECIR 2026 (accepted workshop)
+
+**Abstract:**
+
+The paper describes a workshop focused on late interaction retrieval methods like ColBERT. These approaches leverage "fine-grained, token-level representations" to achieve strong performance, particularly in out-of-domain scenarios. The workshop addresses challenges around efficiency and system integration while exploring emerging applications such as "reasoning-based or cross-modality retrieval." The organizers created this forum to enable researchers and practitioners from diverse backgrounds to share experiences, including early-stage findings and unsuccessful results, fostering collaborative advancement across the fragmented research community in this domain.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1df86a5c-d69a-4397-a3a2-1c46bc9672c2",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "53f9eaa0-ca52-4bb5-8575-62bce930c415",
+  "sourceToolAssistantUUID": "1df86a5c-d69a-4397-a3a2-1c46bc9672c2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-30T06:13:43.266Z_
+
+<details><summary>↩ Tool result · `toolu_01GiNdbirmFtbbasgnDrVEru`</summary>
+
+```text
+# Paper Information
+
+**Title:** "A $\mathbb{Z}_2$-Topological Framework for Sign-rank Lower Bounds"
+
+**Authors:** Florian Frick, Kaave Hosseini, Aliaksei Vasileuski
+
+**Venue/Conference:** Mathematics > Combinatorics (math.CO) on arXiv
+
+**Full Abstract:**
+
+The researchers develop a topological approach for establishing sign-rank lower bounds utilizing $\mathbb{Z}_2$-equivariant topology. They associate a free $\mathbb{Z}_2$-simplicial complex with each sign matrix and demonstrate that sign-rank correlates with the linear variant of $\mathbb{Z}_2$-index. This topological connection enables the application of equivariant topology tools in scenarios where conventional techniques prove insufficient.
+
+The paper's primary contribution involves resolving the sign-rank of the Gap Hamming Distance function. They establish that "sign-rank($\mathrm{GHD}_k^n$) = (1-$o_k$(1)) 2k" where the error term equals $O\left(\sqrt{\frac{\log k}{k}}\right)$. This significantly improves upon prior work by Hatami, Hosseini, and Meng from STOC 2023.
+
+A key technical achievement includes novel analysis of the $\mathbb{Z}_2$-coindex for Vietoris-Rips complexes of hypercubes in sparse regimes, providing essentially optimal bounds in previously unstudied parameter ranges.
+
+**Submission Details:** 38 pages; submitted April 2, 2026; revised April 10, 2026
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6c3a4395-ab84-4893-adeb-f7dcb28cf6e5",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "415200d2-8280-4f1a-9353-6badda8b53e7",
+  "sourceToolAssistantUUID": "6c3a4395-ab84-4893-adeb-f7dcb28cf6e5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-30T06:13:47.819Z_
+
+Now let me do one more search to see if there are any additional papers I might have missed that directly address formal expressiveness bounds for multi-vector representations.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "415200d2-8280-4f1a-9353-6badda8b53e7",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG5WH6foHh7Yvdqbg6i",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5b9ab2b0-6172-465b-9d5b-317779d1d8fc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fX3yhGpsR27yxHUWyS6Rg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 421,
+      "cache_creation_input_tokens": 698,
+      "cache_read_input_tokens": 16917,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 698,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-30T06:13:48.759Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017ATVQ84gqAaah2QtNGX5mt`</summary>
+
+```json
+{
+  "query": "ColBERT multi-vector representational power expressiveness theory formal bounds 2025 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b9ab2b0-6172-465b-9d5b-317779d1d8fc",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG5WH6foHh7Yvdqbg6i",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "96aaff60-503f-4286-a9d6-bce30660a773",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fX3yhGpsR27yxHUWyS6Rg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 421,
+      "cache_creation_input_tokens": 698,
+      "cache_read_input_tokens": 16917,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 698,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-30T06:13:49.586Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WMMPCokr5xS5UGAAbiZZAt`</summary>
+
+```json
+{
+  "query": "LIMIT dataset embedding retrieval benchmark sign-rank 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96aaff60-503f-4286-a9d6-bce30660a773",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG5WH6foHh7Yvdqbg6i",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d6eb629a-a6b4-4c20-8cd2-5d78f6093c1d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fX3yhGpsR27yxHUWyS6Rg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 421,
+      "cache_creation_input_tokens": 698,
+      "cache_read_input_tokens": 16917,
+      "output_tokens": 158,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 698
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 421,
+          "output_tokens": 158,
+          "cache_read_input_tokens": 16917,
+          "cache_creation_input_tokens": 698,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 698,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-30T06:13:57.086Z_
+
+<details><summary>↩ Tool result · `toolu_01WMMPCokr5xS5UGAAbiZZAt`</summary>
+
+```text
+Web search results for query: "LIMIT dataset embedding retrieval benchmark sign-rank 2025 2026"
+
+Links: [{"title":"Limits of Embedding-Based Retrieval","url":"https://www.emergentmind.com/papers/2508.21038"},{"title":"Google DeepMind Finds a Fundamental Bug in RAG: Embedding Limits Break Retrieval at Scale - MarkTechPost","url":"https://www.marktechpost.com/2025/09/04/google-deepmind-finds-a-fundamental-bug-in-rag-embedding-limits-break-retrieval-at-scale/"},{"title":"The fundamental limits of embeddings in RAG applications","url":"https://bdtechtalks.substack.com/p/the-fundamental-limits-of-embeddings"},{"title":"DeepMind Reveals Embedding Ceiling That Breaks RAG at Scale","url":"https://kiadev.net/news/2025-09-04-deepmind-embedding-ceiling-rag-limit"},{"title":"[2508.21038] On the Theoretical Limitations of Embedding-Based Retrieval","url":"https://arxiv.org/abs/2508.21038"},{"title":"On the Theoretical Limitations of Embedding-Based Retrieval","url":"https://arxiv.org/pdf/2508.21038"},{"title":"Benchmarking pre-trained text embedding models in aligning built asset information | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-09052-5"}]
+
+Here are the search results for your query about the LIMIT dataset, embedding retrieval benchmark, and sign-rank:
+
+## Key Findings
+
+Google DeepMind introduced LIMIT (Limitations of Embeddings in Information Retrieval), a benchmark dataset specifically designed to stress-test embedders.
+
+### The LIMIT Dataset Configurations
+
+LIMIT has two configurations: LIMIT full (50K documents), where even strong embedders collapse, with recall@100 often falling below 20%. LIMIT small (46 documents) is a toy-sized setup where models still fail to solve the task.
+
+### Theoretical Foundation: Sign-Rank
+
+The central theoretical result is that the number of distinct top-k subsets of documents that can be returned by any embedding-based model is upper-bounded by the sign-rank of the query relevance (qrel) matrix, which is tightly linked to the embedding dimension. For any given embedding dimension, there is a hard cap on the number and complexity of query-document relationships a model can represent.
+
+### Key Limitation
+
+Even with just 46 documents, no embedder reaches full recall, highlighting that the limitation is not dataset size alone but the single-vector embedding architecture itself. In contrast, BM25, a classical sparse lexical model, does not suffer from this ceiling, as sparse models operate in effectively unbounded dimensional spaces.
+
+The research was updated in March 2026 according to the latest version on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d6eb629a-a6b4-4c20-8cd2-5d78f6093c1d",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "4335256e-e4c0-49aa-94bc-66d15225335d",
+  "sourceToolAssistantUUID": "d6eb629a-a6b4-4c20-8cd2-5d78f6093c1d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-30T06:13:59.297Z_
+
+<details><summary>↩ Tool result · `toolu_017ATVQ84gqAaah2QtNGX5mt`</summary>
+
+```text
+Web search results for query: "ColBERT multi-vector representational power expressiveness theory formal bounds 2025 2026 arxiv"
+
+Links: [{"title":"Incorporating Token Importance in Multi-Vector Retrieval","url":"https://arxiv.org/html/2511.16106v1"},{"title":"ColBERT — A Late Interaction Model For Semantic Search | by Zachariah Zhang | Medium","url":"https://medium.com/@zz1409/colbert-a-late-interaction-model-for-semantic-search-da00f052d30e"},{"title":"ColBERT-XM: A Modular Multi-Vector Representation ...","url":"https://aclanthology.org/2025.coling-main.295.pdf"},{"title":"ColBERT-XM: A Modular Multi-Vector Representation Model for Zero-Shot Multilingual Information Retrieval","url":"https://arxiv.org/html/2402.15059v1"},{"title":"ColBERTv2: Effective and Efficient Retrieval via Lightweight Late   Interaction","url":"https://arxiv.org/pdf/2112.01488"},{"title":"ColBERT: Efficient and Effective Passage Search via Contextualized Late   Interaction over BERT","url":"https://arxiv.org/pdf/2004.12832"},{"title":"Reducing the Footprint of Multi-Vector Retrieval with Minimal   Performance Impact via Token Pooling","url":"https://arxiv.org/pdf/2409.14683"},{"title":"Efficient Constant-Space Multi-Vector Retrieval","url":"https://arxiv.org/pdf/2504.01818"}]
+
+I found several results related to ColBERT and multi-vector retrieval. The search results include recent papers from 2025 and 2024. However, I didn't find a specific paper focused on formal theoretical bounds of ColBERT's representational power and expressiveness. Let me search more specifically for theoretical analysis:
+
+Links: [{"title":"A White Box Analysis of ColBERT","url":"https://arxiv.org/pdf/2012.09650"},{"title":"arXiv:2405.13718v3 [cs.LG] 25 Jun 2025","url":"https://arxiv.org/pdf/2405.13718v3"},{"title":"Formal Power Series Representations in Probability and Expected Utility Theory","url":"https://arxiv.org/html/2508.00294v1"},{"title":"Distilling Dense Representations for Ranking using Tightly-Coupled   Teachers","url":"https://arxiv.org/pdf/2010.11386"},{"title":"Incorporating Token Importance in Multi-Vector Retrieval","url":"https://arxiv.org/pdf/2511.16106"},{"title":"ColBERT-XM: A Modular Multi-Vector Representation Model for Zero-Shot Multilingual Information Retrieval","url":"https://arxiv.org/html/2402.15059v1"},{"title":"Diagnosable ColBERT: Debugging Late-Interaction Retrieval Models Using a Learned Latent Space as Reference","url":"https://arxiv.org/html/2604.19566"}]
+
+Based on my web search results, I found several papers related to ColBERT and multi-vector retrieval, though I did not locate a specific paper focused exclusively on formal theoretical bounds of ColBERT's representational power and expressiveness. Here are the most relevant findings:
+
+## Key Papers and Research Found
+
+**Analysis of ColBERT:**
+ColBERT exhibits a good trade-off between effectiveness and efficiency, and its structure (sum over query terms of similarity scores) is similar to standard IR models like BM25, making analysis easier since the contribution for each term is explicit.
+
+**Expressiveness of Multi-Vector Representations:**
+Using multiple vectors to represent sequences allows for more fine-grained and expressive representation compared to compressing semantics into a single vector, and this approach has frequently been shown to generalize better to out-of-domain settings than dense representations.
+
+**Recent Work (2025):**
+ColBERT uses a late interaction mechanism that independently encodes queries and documents using BERT and computes similarity via fine-grained interactions over token-level vector representations, enabling expressive matching while allowing efficient computation of scores.
+
+**Recent Extensions:**
+ConstBERT (2025) introduces a fixed-size representation for each document by pooling token embeddings into a smaller set of learned vectors, decoupled from individual input tokens, improving storage efficiency.
+
+The search results show active recent research on ColBERT improvements and analysis, but I did not find a paper specifically dedicated to formal theoretical bounds on its representational power expressiveness in the 2025-2026 timeframe on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "96aaff60-503f-4286-a9d6-bce30660a773",
+  "isSidechain": true,
+  "promptId": "ef347152-12ce-4483-971f-2711fec0113d",
+  "agentId": "a2de38df4a1fb2bfb",
+  "type": "user",
+  "uuid": "90ee5bfd-a76d-4226-857e-415dc9850729",
+  "sourceToolAssistantUUID": "96aaff60-503f-4286-a9d6-bce30660a773",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-30T06:14:59.631Z_
+
+Now I have comprehensive information on all the relevant papers. Here is the structured survey:
+
+---
+
+## Literature Survey: Formal Expressiveness Bounds for Retrieval Representations (2024--2026)
+
+### Paper 1: On the Theoretical Limitations of Embedding-Based Retrieval
+
+- **Authors:** Orion Weller, Michael Boratko, Iftekhar Naim, Jinhyuk Lee (Google DeepMind)
+- **Venue:** ICLR 2026 (conference paper)
+- **URL:** https://arxiv.org/abs/2508.21038 | https://openreview.net/forum?id=k9CzIvzfaA
+- **Abstract Summary:** The paper demonstrates that single-vector embeddings encounter fundamental theoretical constraints even in realistic scenarios with straightforward queries. The authors connect results from learning theory and communication complexity to prove that the number of top-k subsets of documents capable of being returned as a retrieval result is limited by the embedding dimension. Specifically, the sign-rank of the ground-truth relevance matrix A in {0,1}^{m x n} serves as a direct proxy for the "combinatorial complexity" of a retrieval task, and the minimum embedding dimension required to faithfully represent all retrieval outcomes is lower-bounded by this sign-rank. They introduce the LIMIT benchmark (two configurations: 50K documents and 46 documents) to stress-test embedding models, showing that even state-of-the-art models fail to achieve full recall on 46 documents. BM25, operating in effectively unbounded-dimensional sparse space, does not suffer from this ceiling.
+- **Relevance:** This is the foundational paper linking sign-rank from communication complexity to embedding-based retrieval capacity. It establishes the core impossibility result: for any fixed dimension d, there exist relevance structures that no single-vector embedding can faithfully represent. This directly motivates the study of multi-vector representations as a way to overcome these bounds.
+
+---
+
+### Paper 2: R^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval
+
+- **Authors:** Zihao Wang, Hang Yin, Lihui Liu, Hanghang Tong, Yangqiu Song, Ginny Wong, Simon See
+- **Venue:** arXiv preprint (cs.LG), January 2026
+- **URL:** https://arxiv.org/abs/2601.20844
+- **Abstract Summary:** The paper investigates the Minimal Embeddable Dimension (MED) -- the smallest embedding dimension needed to represent all possible top-k subsets over m elements. The authors derive tight theoretical bounds for multiple similarity/distance measures: for inner product and L2 (Euclidean), R^{2k} suffices for all m (via cyclic polytope constructions ensuring every k-subset is linearly separable from its complement); for cosine similarity, R^{2k+1} suffices, with k-1 as a lower bound in all settings. Numerical simulations with centroid-based subset embeddings demonstrate a logarithmic dependency between MED and the number of elements. The key conclusion is that embedding-based retrieval limitations stem primarily from learnability challenges, not geometric constraints.
+- **Relevance:** This paper provides a complementary and somewhat contrasting perspective to Weller et al. While Weller et al. show sign-rank-based impossibility results for fixed-dimension embeddings, Wang et al. prove that the geometric capacity is actually quite favorable -- dimension 2k suffices to represent any top-k retrieval outcome regardless of corpus size. The tension is resolved by noting that the practical difficulty lies in learning these embeddings, not in the existence of a valid configuration. This is critical context for understanding what multi-vector representations actually need to overcome.
+
+---
+
+### Paper 3: On Strengths and Limitations of Single-Vector Embeddings
+
+- **Authors:** Archish S, Mihir Agarwal, Ankit Garg, Neeraj Kayal, Kirankumar Shiragur (Microsoft)
+- **Venue:** arXiv preprint (cs.IR), March 2026
+- **URL:** https://arxiv.org/abs/2603.29519
+- **Abstract Summary:** The paper investigates why single-vector embedding models show poor retrieval performance on the LIMIT dataset, challenging the claim that dimensionality alone explains the observed failures. Key findings: (1) Domain shift and misalignment between embedding similarities and task relevance are major contributors to performance gaps; finetuning can improve recall substantially. (2) Even with finetuning, single-vector models remain markedly weaker than multi-vector representations, pointing to fundamental limitations. (3) Finetuning on LIMIT-like datasets causes catastrophic forgetting, with MSMARCO performance dropping by more than 40%, whereas multi-vector models show minimal degradation. (4) The "drowning in documents" paradox: as corpus size grows, relevant documents are increasingly drowned out because embedding similarities behave like noisy statistical proxies for relevance, and single-vector models are more susceptible than multi-vector models.
+- **Relevance:** Directly extends the Weller et al. line of work by teasing apart what causes single-vector failures in practice (domain shift vs. geometric capacity) and providing empirical evidence that multi-vector representations are fundamentally more robust -- both in terms of representational capacity and resistance to catastrophic forgetting. This is key evidence for the practical superiority of multi-vector approaches beyond just the theoretical bounds.
+
+---
+
+### Paper 4: A Z_2-Topological Framework for Sign-rank Lower Bounds
+
+- **Authors:** Florian Frick, Kaave Hosseini, Aliaksei Vasileuski
+- **Venue:** arXiv preprint (math.CO), April 2026
+- **URL:** https://arxiv.org/abs/2604.01510
+- **Abstract Summary:** The paper develops a topological approach for establishing sign-rank lower bounds using Z_2-equivariant topology. Each sign matrix is associated with a free Z_2-simplicial complex whose Z_2-index lower bounds the sign-rank. The primary contribution is resolving the sign-rank of the Gap Hamming Distance function: sign-rank(GHD_k^n) = (1 - o_k(1)) * 2k, with error term O(sqrt(log k / k)). This significantly improves upon prior work by Hatami, Hosseini, and Meng (STOC 2023). A key technical achievement is novel analysis of the Z_2-coindex for Vietoris-Rips complexes of hypercubes in sparse regimes.
+- **Relevance:** While not directly about retrieval, this paper advances the mathematical machinery (sign-rank lower bounds) that underpins the theoretical limitations framework of Weller et al. Improved sign-rank bounds for structured matrices could translate into tighter impossibility results for specific classes of retrieval problems. The topological framework may provide new tools for analyzing the expressiveness of embedding-based retrieval systems.
+
+---
+
+### Paper 5: Sign-Rank of k-Hamming Distance is Constant
+
+- **Authors:** Mika Goos, Nathaniel Harms, Valentin Imbach, Dmitry Sokolov
+- **Venue:** arXiv preprint (cs.CC), May 2025
+- **URL:** https://arxiv.org/abs/2506.12022
+- **Abstract Summary:** The authors prove that the sign-rank of the k-Hamming Distance matrix on n bits is 2^{O(k)}, independent of the number of bits n. This refutes prior conjectures that sign-rank should depend on n. The technique applies to matrices that reduce to k-Hamming Distance and extends to large-margin matrices previously shown to be irreducible to this distance metric.
+- **Relevance:** This is a foundational result in sign-rank theory. The fact that sign-rank of k-Hamming Distance is constant (independent of n) has implications for understanding which classes of relevance matrices have bounded sign-rank and hence can be faithfully represented by low-dimensional embeddings. It provides theoretical tools relevant to characterizing when embedding-based retrieval will or will not encounter capacity limitations.
+
+---
+
+### Additional Relevant Context
+
+- **LIMIT Benchmark** (introduced in Paper 1): Two configurations -- LIMIT-full (50K documents) and LIMIT-small (46 documents). Even on 46 documents, no single-vector embedder achieves full recall. This benchmark has become the standard stress test for embedding capacity.
+
+- **LIR Workshop at ECIR 2026** (https://arxiv.org/abs/2511.00444): The first workshop on Late Interaction and Multi-Vector Retrieval, organized by Benjamin Clavie et al., signals growing community interest in multi-vector alternatives as a response to the theoretical limitations identified in the papers above.
+
+- **Efficient Constant-Space Multi-Vector Retrieval** (MacAvaney et al., ECIR 2025, https://arxiv.org/abs/2504.01818): Addresses the practical storage cost of multi-vector retrieval by encoding documents with a fixed number of vectors rather than one per token, maintaining most retrieval effectiveness.
+
+---
+
+### Summary of the Landscape
+
+The core theoretical thread runs through three key results:
+
+1. **Weller et al. (ICLR 2026)** established that single-vector embeddings have sign-rank-determined capacity limits, creating hard ceilings on retrieval expressiveness for any fixed dimension.
+
+2. **Wang et al. (Jan 2026)** showed that geometrically, dimension 2k always suffices for top-k retrieval -- the bottleneck is learnability, not geometric capacity.
+
+3. **Archish et al. (Mar 2026)** provided empirical evidence that multi-vector representations are fundamentally more expressive and robust than single-vector ones, and that the practical failures of single-vector models stem from a combination of domain shift, noisy similarity proxies, and catastrophic forgetting rather than dimensionality alone.
+
+The sign-rank theory papers (Goos et al. 2025, Frick et al. 2026) advance the underlying mathematical machinery. Together, these papers form a coherent picture: single-vector embedding retrieval has provable expressiveness limitations, the geometric capacity exists but is hard to learn, and multi-vector representations offer a principled path forward -- motivating both theoretical and systems research in this direction.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90ee5bfd-a76d-4226-857e-415dc9850729",
+  "isSidechain": true,
+  "agentId": "a2de38df4a1fb2bfb",
+  "requestId": "req_011CbYG6gqNmFp1EUD8jGMHJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9ba0a739-e6d8-4615-a09e-e6ab72a64df6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "43064794-a3a1-4752-8b36-ef30404673af",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C26gVupyweJMVdwhWLeKGh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 736,
+      "cache_creation_input_tokens": 1744,
+      "cache_read_input_tokens": 17615,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1744,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

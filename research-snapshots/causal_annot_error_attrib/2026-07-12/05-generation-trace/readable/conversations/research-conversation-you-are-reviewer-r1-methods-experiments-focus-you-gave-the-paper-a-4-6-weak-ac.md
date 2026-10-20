@@ -1,0 +1,900 @@
+# Research conversation: You are Reviewer R1 (methods + experiments focus). You gave the paper a 4/6 (Weak Accept). Now you are reading Reviewer 
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 15
+- **Recorded user turns:** 1
+- **Tool calls:** 5
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-a503973443a489bc3.jsonl`
+- **Structured JSON:** [`e0538cd4e131e32269dc.json`](../../sessions/e0/e0538cd4e131e32269dc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+15 recorded events
+
+### User
+
+_source line 1 · 2026-05-20T08:52:57.972Z_
+
+You are Reviewer R1 (methods + experiments focus). You gave the paper a 4/6 (Weak Accept). Now you are reading Reviewer R2's review (novelty + related work focus, also 4/6). 
+
+Your task: respond to R2's review. State where you agree, disagree, or have additional perspective. Focus on points that might change your score.
+
+## Your R1 Review Summary
+
+**Score: 4/6, Confidence: 4/5**
+
+Key strengths you identified:
+- Rigorous MC validation (33/36 theory-MC match, 100K random C search)
+- Honest scope management on formal proofs (2 proved + 4 conjectured)
+- Comprehensive 90-scenario correction framework validation with transparent failure analysis
+
+Key weaknesses you identified:
+- W1: Non-differential misclassification assumption untested — entire framework rests on it, no robustness experiment
+- W2: Empirical topological contexts may be artificial — are the CSS tasks really used in these DAG roles in real research?
+- W3: ASV coverage discrepancy — 0.907 avg coverage at 95% nominal needs more discussion
+- W4: Dirichlet subspace analysis only reported for exposure, not other topologies
+- W5: Correction framework tested with oracle C, not estimated C
+- W6: No proof appendix despite claiming formal proofs
+
+## R2's Review (Novelty + Related Work)
+
+**Score: 4/6, Confidence: 4/5**
+
+Strengths R2 identified:
+- S1: Topology-dependent dichotomy is genuinely novel
+- S2: ASV framework is non-trivial conceptual adaptation
+- S3: Binarization collapse analysis closes important loophole
+- S4: Theory-to-practice completeness (diagnosis → assessment → action → toolkit)
+
+Weaknesses R2 identified:
+- W1 [Major]: "First systematic multi-class treatment" overstates novelty — deep epidemiology literature under-acknowledged (Veierod & Laake 2001, Dosemeci et al. 1990, Ogburn & VanderWeele 2012, Jurek et al. 2005)
+- W2 [Major]: ASV relationship to existing sensitivity analysis tools under-discussed (Rosenbaum 2002, Lash et al. 2009, Fox et al. 2005 — probabilistic bias analysis already uses confusion matrices)
+- W3 [Moderate]: Correction framework decision logic unclear — is it principled or a lookup table?
+- W4 [Moderate]: Missing citations for PPI (Angelopoulos et al. 2023) and DSL (Gligoric et al. 2025)
+- W5 [Moderate]: Hernán & Cole 2009 cited but never discussed
+- W6 [Minor]: Brenner 1993 showed direction reversal for confounders, but paper shows zero violations for confounding — needs reconciliation
+- W7 [Minor]: SIMEX and regression calibration entirely absent
+
+R2's novelty assessment: Contribution 1 (taxonomy) is moderate-to-high novelty; Contribution 2 (ASVs) moderate; Contribution 3 (correction guidance) low-to-moderate.
+
+R2 said only 11 references is far too few — should be 25-35.
+
+## Your Task
+
+In 300-500 words, respond:
+1. Which of R2's points do you agree with?
+2. Which do you disagree with or see differently?
+3. Does R2's review change your assessment? Would you adjust your score?
+4. Any new concerns that R2's review raises for you?
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "af5eafdd-18df-466b-baef-eae9a8b502e4",
+  "agentId": "a503973443a489bc3",
+  "type": "user",
+  "uuid": "a9d2864b-23ca-429c-ba38-1275ebd72f83",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "sessionId": "44efd5d7-3d5f-464d-80ca-d3c01b5a58d8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T08:52:57.982Z_
+
+```json
+{
+  "parentUuid": "a9d2864b-23ca-429c-ba38-1275ebd72f83",
+  "isSidechain": true,
+  "agentId": "a503973443a489bc3",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "ff9014aa-8080-4c5b-9acd-8a67631cc2f7",
+  "timestamp": "2026-05-20T08:52:57.982Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "sessionId": "44efd5d7-3d5f-464d-80ca-d3c01b5a58d8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-20T08:53:01.347Z_
+
+
+
+I'll start by reading the paper and any relevant project files to ground my response properly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff9014aa-8080-4c5b-9acd-8a67631cc2f7",
+  "isSidechain": true,
+  "agentId": "a503973443a489bc3",
+  "requestId": "req_011CbDY8fmjDDEnVRcnsVLcV",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d9629687-74e0-4d0f-9a14-12789214ef7c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "sessionId": "44efd5d7-3d5f-464d-80ca-d3c01b5a58d8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019nATLzm6U2GvpfBkp2z2uh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 7159,
+      "cache_read_input_tokens": 8250,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7159,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-20T08:53:01.561Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XkmBemxUiuXF4YPXePXupR`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d9629687-74e0-4d0f-9a14-12789214ef7c",
+  "isSidechain": true,
+  "agentId": "a503973443a489bc3",
+  "requestId": "req_011CbDY8fmjDDEnVRcnsVLcV",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7068a460-1937-49b7-bd86-80dada4020e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "sessionId": "44efd5d7-3d5f-464d-80ca-d3c01b5a58d8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019nATLzm6U2GvpfBkp2z2uh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 7159,
+      "cache_read_input_tokens": 8250,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 7159
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 8250,
+          "cache_creation_input_tokens": 7159,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 7159,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-20T08:53:01.564Z_
+
+<details><summary>↩ Tool result · `toolu_01XkmBemxUiuXF4YPXePXupR`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7068a460-1937-49b7-bd86-80dada4020e9",
+  "isSidechain": true,
+  "promptId": "af5eafdd-18df-466b-baef-eae9a8b502e4",
+  "agentId": "a503973443a489bc3",
+  "type": "user",
+  "uuid": "1c848496-081d-4736-8fa4-0e12ae814d1c",
+  "sourceToolAssistantUUID": "7068a460-1937-49b7-bd86-80dada4020e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "sessionId": "44efd5d7-3d5f-464d-80ca-d3c01b5a58d8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-20T08:53:04.972Z_
+
+
+
+Let me read the paper report and related materials to ensure my response is well-grounded.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c848496-081d-4736-8fa4-0e12ae814d1c",
+  "isSidechain": true,
+  "agentId": "a503973443a489bc3",
+  "requestId": "req_011CbDY8wDfE11XjzKeCLFPn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "718bb143-f0b4-4d7d-9887-a332f6ef45b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "sessionId": "44efd5d7-3d5f-464d-80ca-d3c01b5a58d8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AGengbvL6VjwNnFoGyExAe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1289,
+      "cache_read_input_tokens": 15409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1289,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T08:53:05.996Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01VhNYMktSKKR7jJhhCGAxYc`</summary>
+
+```json
+{
+  "project": "causal_annot_error_attrib",
+  "file": "report.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "718bb143-f0b4-4d7d-9887-a332f6ef45b3",
+  "isSidechain": true,
+  "agentId": "a503973443a489bc3",
+  "requestId": "req_011CbDY8wDfE11XjzKeCLFPn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a8c8d668-ab64-44c4-95c4-907117cf0413",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "sessionId": "44efd5d7-3d5f-464d-80ca-d3c01b5a58d8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AGengbvL6VjwNnFoGyExAe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1289,
+      "cache_read_input_tokens": 15409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1289,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T08:53:06.014Z_
+
+<details><summary>↩ Tool result · `toolu_01VhNYMktSKKR7jJhhCGAxYc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/report.md\", \"content\": \"# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **mvp_exposure_dirichlet_subspace** (success): Dirichlet(1,1,1) 均匀先验下 85% 违反率在高对角占优子空间（min(diag(C))≥0.7，接近真实 LLM 精度）是否骤降：若 >10% 则论文 claim 对实际 LLM 有现实意义，若 <1% 需标注适用范围\\n- **mvp_exposure_dag** (success): K=3 非差异性 exposure 误分类打破二分类 bias-toward-null 保证：存在 C 结构使 treatment effect 估计产生符号反转或效应放大，而 K=2 下非差异性误分类始终保证衰减\\n- **mvp_confounding_dag** (success): K=3 混淆矩阵下 confounding DAG 的 OLS 偏差可由 plim=(E[Z'Z])^{-1}E[Z'X]β 精确预测，且 K=3 偏差与二分类折叠偏差系统性不同（多分类保留更多混杂信息）\\n\\n## 趋势\\n成功 3 / 负向 0 / 失败 0 / 共 3\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nhome-1x5090: 无 GPU 信息\\n\\n## 告警\\n（无）\\n\", \"total_chars\": 652, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a8c8d668-ab64-44c4-95c4-907117cf0413",
+  "isSidechain": true,
+  "promptId": "af5eafdd-18df-466b-baef-eae9a8b502e4",
+  "agentId": "a503973443a489bc3",
+  "type": "user",
+  "uuid": "0d164c02-c986-43f7-8b1d-69ff630eae1d",
+  "sourceToolAssistantUUID": "a8c8d668-ab64-44c4-95c4-907117cf0413",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "sessionId": "44efd5d7-3d5f-464d-80ca-d3c01b5a58d8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T08:53:06.503Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01GirF4ffjL75dVPYzQEb8jW`</summary>
+
+```json
+{
+  "project": "causal_annot_error_attrib",
+  "file": "literature_map.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d164c02-c986-43f7-8b1d-69ff630eae1d",
+  "isSidechain": true,
+  "agentId": "a503973443a489bc3",
+  "requestId": "req_011CbDY8wDfE11XjzKeCLFPn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ddedd79e-993f-49a0-94bd-76c1b88b074d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "sessionId": "44efd5d7-3d5f-464d-80ca-d3c01b5a58d8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AGengbvL6VjwNnFoGyExAe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1289,
+      "cache_read_input_tokens": 15409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1289,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T08:53:06.513Z_
+
+<details><summary>↩ Tool result · `toolu_01GirF4ffjL75dVPYzQEb8jW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/literature_map.yaml\", \"content\": \"papers:\\n  wood_doughty2018:\\n    title: \\\"Challenges of Using Text Classifiers for Causal Inference\\\"\\n    authors: [\\\"Wood-Doughty, Z.\\\", \\\"Shpitser, I.\\\", \\\"Dredze, M.\\\"]\\n    year: 2018\\n    venue: \\\"EMNLP\\\"\\n    category: \\\"causal-text-classification\\\"\\n    role: \\\"foundation\\\"\\n    relevance: \\\"First to apply DAG reasoning to text classifier measurement error; no formal bias theorems or identifiability conditions; binary only. Direct predecessor — our work extends to multi-class with formal bias expressions.\\\"\\n    abstract: \\\"Applies causal DAG reasoning to analyze how text classifier errors propagate to downstream causal estimates. Proposes matrix adjustment correction but notes severe instability.\\\"\\n    semantic_scholar_id: \\\"\\\"\\n    arxiv_id: \\\"\\\"\\n    verified: false\\n    added_by: \\\"director\\\"\\n\\n  teblunthuis2024:\\n    title: \\\"Misclassification in Automated Content Analysis Causes Bias in Regression. Can We Fix It? Yes We Can!\\\"\\n    authors: [\\\"TeBlunthuis, N.\\\", \\\"Hase, V.\\\", \\\"Chan, C.\\\"]\\n    year: 2024\\n    venue: \\\"Communication Methods and Measures\\\"\\n    category: \\\"causal-text-classification\\\"\\n    role: \\\"foundation\\\"\\n    relevance: \\\"Most complete binary treatment: 4 DAG scenarios (differential/non-differential × IV/DV), testable conditions, MLA method. But binary only, single classifier. Our work generalizes to multi-class K×K confusion matrices.\\\"\\n    abstract: \\\"Provides four DAG scenarios for text classifier measurement error with likelihood ratio tests and Maximum Likelihood Adjustment (MLA) correction for binary classification.\\\"\\n    semantic_scholar_id: \\\"\\\"\\n    arxiv_id: \\\"\\\"\\n    verified: false\\n    added_by: \\\"director\\\"\\n\\n  hernan_cole2009:\\n    title: \\\"Causal Diagrams and Measurement Bias\\\"\\n    authors: [\\\"Hernán, M.A.\\\", \\\"Cole, S.R.\\\"]\\n    year: 2009\\n    venue: \\\"American Journal of Epidemiology\\\"\\n    doi: \\\"10.1093/aje/kwp293\\\"\\n    category: \\\"measurement-error-epidemiology\\\"\\n    role: \\\"foundation\\\"\\n    relevance: \\\"Formalizes starred-node DAGs with differential/non-differential and independent/dependent error taxonomy. Core theoretical foundation for our DAG-based framework.\\\"\\n    abstract: \\\"Formalizes the use of causal DAGs for reasoning about measurement bias, introducing starred-node notation and taxonomy of error types.\\\"\\n    semantic_scholar_id: \\\"\\\"\\n    verified: false\\n    added_by: \\\"director\\\"\\n\\n  vanderweele_li2019:\\n    title: \\\"Simple Sensitivity Analysis for Differential Measurement Error\\\"\\n    authors: [\\\"VanderWeele, T.J.\\\", \\\"Li, Y.\\\"]\\n    year: 2019\\n    venue: \\\"American Journal of Epidemiology\\\"\\n    doi: \\\"10.1093/aje/kwz062\\\"\\n    category: \\\"sensitivity-analysis\\\"\\n    role: \\\"foundation\\\"\\n    relevance: \\\"Provides sensitivity bounds for differential measurement error using risk ratios, but only for binary exposure/outcome. Our ASV framework extends this to multi-class confusion matrices.\\\"\\n    abstract: \\\"Develops simple sensitivity analysis techniques for differential measurement error in binary exposure/outcome settings using risk ratios.\\\"\\n    semantic_scholar_id: \\\"\\\"\\n    verified: false\\n    added_by: \\\"director\\\"\\n\\n  vanderweele_ding2017:\\n    title: \\\"Sensitivity Analysis in Observational Research: Introducing the E-Value\\\"\\n    authors: [\\\"VanderWeele, T.J.\\\", \\\"Ding, P.\\\"]\\n    year: 2017\\n    venue: \\\"Annals of Internal Medicine\\\"\\n    doi: \\\"10.7326/M16-2607\\\"\\n    category: \\\"sensitivity-analysis\\\"\\n    role: \\\"foundation\\\"\\n    relevance: \\\"Introduces E-values for unmeasured confounding — the sensitivity analysis paradigm our ASVs mirror for annotation-induced bias.\\\"\\n    abstract: \\\"Proposes the E-value as an interpretable sensitivity analysis measure for unmeasured confounding in observational studies.\\\"\\n    semantic_scholar_id: \\\"\\\"\\n    verified: false\\n    added_by: \\\"director\\\"\\n\\n  brenner1993:\\n    title: \\\"Bias due to non-differential misclassification of polytomous confounders\\\"\\n    authors: [\\\"Brenner, H.\\\"]\\n    year: 1993\\n    venue: \\\"Journal of Clinical Epidemiology\\\"\\n    doi: \\\"10.1016/0895-4356(93)90148-T\\\"\\n    category: \\\"measurement-error-epidemiology\\\"\\n    role: \\\"foundation\\\"\\n    relevance: \\\"Key result: non-differential misclassification of polytomous confounders can bias in EITHER direction — breaks the binary 'toward null' guarantee. Core motivation for our multi-class taxonomy.\\\"\\n    abstract: \\\"Analyzes bias from non-differential misclassification of polytomous confounders, showing bias can go in either direction unlike the binary case.\\\"\\n    semantic_scholar_id: \\\"\\\"\\n    verified: false\\n    added_by: \\\"director\\\"\\n\\n  veirod_laake2001:\\n    title: \\\"Exposure misclassification: bias in category specific Poisson regression coefficients\\\"\\n    authors: [\\\"Veierød, M.B.\\\", \\\"Laake, P.\\\"]\\n    year: 2001\\n    venue: \\\"Statistics in Medicine\\\"\\n    doi: \\\"10.1002/sim.900\\\"\\n    category: \\\"measurement-error-epidemiology\\\"\\n    role: \\\"foundation\\\"\\n    relevance: \\\"Derives bias expressions for multi-category exposure misclassification in Poisson regression — bias depends on ALL true coefficients weighted by full misclassification matrix. We extend from regression-only to full DAG-based causal framework.\\\"\\n    abstract: \\\"Proves that multi-category exposure misclassification produces bias depending on all true category-specific coefficients weighted by the full misclassification probability matrix.\\\"\\n    semantic_scholar_id: \\\"\\\"\\n    verified: false\\n    added_by: \\\"director\\\"\\n\\n  baumann2025:\\n    title: \\\"Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation\\\"\\n    authors: [\\\"Baumann, M.\\\", \\\"Röttger, P.\\\", \\\"Urman, A.\\\", \\\"Wendsjö, S.\\\", \\\"Plaza-del-Arco, F.M.\\\", \\\"Gruber, N.\\\", \\\"Hovy, D.\\\"]\\n    year: 2025\\n    venue: \\\"arXiv\\\"\\n    arxiv_id: \\\"2509.08825\\\"\\n    category: \\\"llm-annotation-quality\\\"\\n    role: \\\"direct-competitor\\\"\\n    relevance: \\\"Strongest empirical motivation: 37 tasks, 21 studies, 13M labels, 18 models — 31% incorrect downstream conclusions with SOTA LLMs. Coins 'LLM hacking'. Diagnoses the problem we solve.\\\"\\n    abstract: \\\"Demonstrates across 37 annotation tasks from 21 published social science studies that approximately 31% of hypotheses yield incorrect conclusions with SOTA LLMs, rising to 50% for smaller models.\\\"\\n    semantic_scholar_id: \\\"\\\"\\n    verified: false\\n    added_by: \\\"director\\\"\\n\\n  lee_wood_doughty2024:\\n    title: \\\"Categorical Variables and Measurement Error in Causal Inference with LLM Classifiers\\\"\\n    authors: [\\\"Lee, S.\\\", \\\"Wood-Doughty, Z.\\\"]\\n    year: 2024\\n    venue: \\\"arXiv\\\"\\n    arxiv_id: \\\"2411.03004\\\"\\n    category: \\\"causal-text-classification\\\"\\n    role: \\\"direct-competitor\\\"\\n    relevance: \\\"Extends Wood-Doughty (2018) to categorical + LLM classifiers on MIMIC clinical data. But covers only 1 DAG topology (unobserved confounding), no bias taxonomy, no sensitivity analysis. Key differentiation target.\\\"\\n    abstract: \\\"Extends causal measurement error framework to categorical text classifiers and LLMs, applied to clinical NLP on MIMIC data.\\\"\\n    semantic_scholar_id: \\\"\\\"\\n    verified: false\\n    added_by: \\\"director\\\"\\n\\n  gligoric2025:\\n    title: \\\"Can Unconfident LLM Annotations Be Used for Confident Conclusions?\\\"\\n    authors: [\\\"Gligorić, K.\\\", \\\"Jurafsky, D.\\\", \\\"Zou, J.\\\"]\\n    year: 2025\\n    venue: \\\"NAACL\\\"\\n    category: \\\"llm-annotation-correction\\\"\\n    role: \\\"method-component\\\"\\n    relevance: \\\"Notes correlated errors bias estimates, proposes DSL/PPI corrections. One of the correction methods our guidance framework evaluates.\\\"\\n    abstract: \\\"Investigates when LLM annotations with varying confidence can still yield valid downstream conclusions, proposing design-based supervised learning and prediction-powered inference corrections.\\\"\\n    semantic_scholar_id: \\\"\\\"\\n    verified: false\\n    added_by: \\\"director\\\"\\n\\n  messing2026:\\n    title: \\\"Hidden Measurement Error in LLM Pipelines\\\"\\n    authors: [\\\"Messing, S.\\\"]\\n    year: 2026\\n    venue: \\\"arXiv\\\"\\n    arxiv_id: \\\"2604.11581\\\"\\n    category: \\\"llm-annotation-quality\\\"\\n    role: \\\"background\\\"\\n    relevance: \\\"Decomposes LLM pipeline variance via linear mixed models (item-judge interaction dominates at 44%). Explicitly excludes causal identification — the gap we fill.\\\"\\n    abstract: \\\"Decomposes variance in LLM annotation pipelines using linear mixed models, finding item-judge interaction dominates at 44%, but excludes causal identification.\\\"\\n    semantic_scholar_id: \\\"\\\"\\n    verified: false\\n    added_by: \\\"director\\\"\\n\\n  kim_garg2025:\\n    title: \\\"Correlated Errors in Large Language Models\\\"\\n    authors: [\\\"Kim, J.\\\", \\\"Garg, S.\\\", \\\"Peng, Y.\\\", \\\"Garg, N.\\\"]\\n    year: 2025\\n    venue: \\\"ICML\\\"\\n    arxiv_id: \\\"2506.07962\\\"\\n    category: \\\"llm-annotation-quality\\\"\\n    role: \\\"background\\\"\\n    relevance: \\\"Shows models agree 60% when both err, larger models have highly correlated errors across architectures. Undermines ensemble-as-fix assumption — strengthens case that error STRUCTURE analysis (our contribution) is irreplaceable.\\\"\\n    abstract: \\\"Demonstrates that LLM errors are highly correlated across models, with 60% agreement when both err, challenging independence assumptions in ensemble methods.\\\"\\n    semantic_scholar_id: \\\"\\\"\\n    verified: false\\n    added_by: \\\"director\\\"\\n\", \"total_chars\": 8959, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ddedd79e-993f-49a0-94bd-76c1b88b074d",
+  "isSidechain": true,
+  "promptId": "af5eafdd-18df-466b-baef-eae9a8b502e4",
+  "agentId": "a503973443a489bc3",
+  "type": "user",
+  "uuid": "116c139c-b45a-48e5-a0da-1a62960ae022",
+  "sourceToolAssistantUUID": "ddedd79e-993f-49a0-94bd-76c1b88b074d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "sessionId": "44efd5d7-3d5f-464d-80ca-d3c01b5a58d8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T08:53:11.027Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01AvurwfAaFjTtmxPVZmW4go`</summary>
+
+```json
+{
+  "project": "causal_annot_error_attrib",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "116c139c-b45a-48e5-a0da-1a62960ae022",
+  "isSidechain": true,
+  "agentId": "a503973443a489bc3",
+  "requestId": "req_011CbDY9JJRgE75TZwU4HptN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5e4fcd52-35cd-40b5-a8c2-ee724ff7c2b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "sessionId": "44efd5d7-3d5f-464d-80ca-d3c01b5a58d8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012BtYq6f35jmWXx6WgE5APt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4228,
+      "cache_read_input_tokens": 16698,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4228,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T08:53:11.037Z_
+
+<details><summary>↩ Tool result · `toolu_01AvurwfAaFjTtmxPVZmW4go`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/memory.md\", \"content\": \"# Project Memory\\n\\n## MVP 验证发现 (2026-05-20)\\n\\n### Exposure DAG: bias-toward-null 保证在 K=3 下失效（核心发现）\\n**100k 随机 C 搜索：85% 违反 bias-toward-null，83.4% 产生符号反转。** 二分类 K=2 下全部满足 toward null 保证。\\n\\n具体 named structure 结果：\\n- C3_STRUCTURAL_12: β_2=-0.5 → γ̂_2=+0.06（符号反转）\\n- C4_WEAK_DIAG: β_1=1.0 → γ̂_1≈0（近消失）\\n- C5_NEAR_PERM: β_2=-0.5 → γ̂_2=+1.25（符号反转 + 2.5x 放大，最极端）\\n\\n极端随机案例：β_1=1.0 → γ̂_1=-0.84（符号反转），severity=2.83x。\\n\\n**关键洞察**：exposure 误分类场景（A→Y）下，多分类 C 矩阵的交叉污染使得回归将某类的 Y 值归因到错误标签，产生符号反转。这在二分类中不可能发生（只有 2 个类，误标只导致衰减）。\\n\\n### Dirichlet 子空间分析：高精度 LLM 仍有显著违反（关键补充）\\n**即使 min(diag(C))≥0.9（对应高精度 LLM），amplification 违反率仍达 11.9%。** 分层结果：\\n\\n| 子空间 | 违反率 | 符号反转 | 放大 |\\n|--------|--------|----------|------|\\n| 全空间 | 84.9% | 83.3% | 27.5% |\\n| diag≥0.5 | 32.5% | 21.6% | 11.3% |\\n| diag≥0.7 | 13.7% | 2.1% | 11.7% |\\n| diag≥0.9 | 11.9% | 0.0% | 11.9% |\\n\\n**关键 pattern**：随着 C 对角占优增加，符号反转迅速消失（diag≥0.9 降至 0%），但 amplification 保持稳定在 ~12%。这意味着：\\n- 低精度 LLM（<70%）：符号反转是主要风险\\n- 高精度 LLM（>90%）：符号反转消除，但 amplification 持久存在\\n- **论文 framing 可以声称：即使 LLM 精度 >90%，multiclass 效应放大仍以 >10% 概率发生**\\n\\n采样方法：truncated Beta(1,2) 直接采样（非 rejection sampling），50k samples/subspace。首版 rejection sampling 因 diag≥0.9 接受率 ~10⁻⁶ 导致 OOM。\\n\\n### Confounding DAG: 偏差方向性质（对比发现）\\n100k 随机 C 搜索均未发现负偏差。Confounding DAG (A→T, A→Y, T→Y) 中，K=3 误分类偏差始终与 OVB 同向。量级差异显著（K=3 偏差 0.13-0.30 vs binary collapse 0.24-0.30），但无方向反转。\\n\\n**两个 DAG 的差异**：confounding DAG 下 A 通过 T 间接影响 Y，误分类 A 导致残余混杂但方向固定；exposure DAG 下 A 直接决定 Y 的期望，标签交换直接翻转效应估计。\\n\\n### Lee & Wood-Doughty (2024) 技术区分\\n本项目：observed exposure/confounder with noisy LLM annotation（A 可观测，A* 用于规模化）。LWD：unobserved confounding with proxy（A 不可观测）。关键区别：我们的 C 是可从 validation data 估计的 design parameter。\\n\\n### DGP 参数\\n- Confounding DAG: P(A)=[0.4, 0.35, 0.25], alpha=[1.5, -1.0], beta_T=2.0, beta_A=[1.0, -0.5], sigma=1.0\\n- Exposure DAG: P(A)=[0.4, 0.35, 0.25], beta=[0, 1.0, -0.5], sigma_Y=1.0\\n\", \"total_chars\": 1842, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5e4fcd52-35cd-40b5-a8c2-ee724ff7c2b0",
+  "isSidechain": true,
+  "promptId": "af5eafdd-18df-466b-baef-eae9a8b502e4",
+  "agentId": "a503973443a489bc3",
+  "type": "user",
+  "uuid": "90f340e1-0453-4f7c-ba5d-27d4449d95cc",
+  "sourceToolAssistantUUID": "5e4fcd52-35cd-40b5-a8c2-ee724ff7c2b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "sessionId": "44efd5d7-3d5f-464d-80ca-d3c01b5a58d8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T08:53:11.344Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Pp2TaTmwdyHpWMdD8Do4iP`</summary>
+
+```json
+{
+  "project": "causal_annot_error_attrib",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90f340e1-0453-4f7c-ba5d-27d4449d95cc",
+  "isSidechain": true,
+  "agentId": "a503973443a489bc3",
+  "requestId": "req_011CbDY9JJRgE75TZwU4HptN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6160e9f8-30d9-4cd1-b5a9-8bce86fb2899",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "sessionId": "44efd5d7-3d5f-464d-80ca-d3c01b5a58d8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012BtYq6f35jmWXx6WgE5APt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4228,
+      "cache_read_input_tokens": 16698,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4228
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 16698,
+          "cache_creation_input_tokens": 4228,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4228,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T08:53:11.354Z_
+
+<details><summary>↩ Tool result · `toolu_01Pp2TaTmwdyHpWMdD8Do4iP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/paper_framing.md\", \"content\": \"# Paper Framing — causal_annot_error_attrib\\n\\n## Target Venue\\n- Primary: AAAI 2027 (abstract: 2026-07-21, paper: 2026-07-28)\\n- Secondary: ARR October 2026 (~2026-10-15, commit to NAACL 2027 / ACL 2027)\\n- Tertiary: ICWSM 2027 Round 2 (2026-09-15)\\n\\n## Title\\nMulti-Class Annotation Errors Are Not Created Equal: Bias Taxonomy, Sensitivity Analysis, and Correction Guidance for LLM-Annotated Causal Studies\\n\\n## Core Claims (3 条)\\n\\n1. **Multi-class bias taxonomy**: For K≥3 annotation variables, the direction and magnitude of downstream bias depend on the interaction between the K×K confusion matrix structure and the DAG topology — breaking guarantees that hold in the binary case. We provide closed-form bias expressions for K=3 and matrix-form expressions with interpretability tools for general K, across 6 canonical social-science DAG topologies (confounding, mediation, collider, M-bias, instrument, front-door).\\n\\n2. **Annotation Sensitivity Values (ASVs)**: A sensitivity analysis framework for annotation-induced bias. ASVs quantify the minimum degree of differential annotation error needed to overturn a downstream conclusion, parameterized by a reference confusion matrix and amplification factor δ. Reported alongside estimates, analogous to E-values for unmeasured confounding. Formal proofs (monotonicity + sharpness) for 3 priority topologies; MC-validated conjectures for the remaining 3.\\n\\n3. **Correction guidance framework**: A principled decision framework mapping {DAG topology × error structure × ASV} to the appropriate correction method (DSL, PPI, MLA, naive plug-in), characterizing regimes where each applies and where no existing method suffices — including dependence-aware multi-LLM correction as an open problem.\\n\\n## Story Spine\\n\\n- **Problem**: LLMs are rapidly replacing human annotators in CSS, but Baumann et al. (2025) show 31% of downstream conclusions are already incorrect. Researchers lack diagnostic tools to answer: (a) which annotation error structures propagate bias under their causal design, and (b) how robust their conclusions are to annotation error. Kim et al. (ICML 2025) show cross-model errors are highly correlated (60% agreement when both err), meaning ensembles cannot escape systematic bias — researchers MUST analyze the error structure of their chosen annotator, which is exactly what our tools enable.\\n\\n- **Existing approaches & gaps**: Wood-Doughty et al. (2018) apply DAG reasoning to text classifier errors but produce no formal bias theorems (binary only). TeBlunthuis et al. (2024) provide the most complete binary treatment with MLA correction but are limited to K=2, single classifier. Lee & Wood-Doughty (2024) extend to categorical + LLM classifiers but cover only 1 DAG topology (unobserved confounding), with no systematic taxonomy or sensitivity analysis. VanderWeele & Li (2019) provide sensitivity bounds but only for binary risk ratios. Jerzak et al. (EMNLP 2025) benchmark correction methods but treat error as monolithic — if different confusion matrix structures produce qualitatively different bias in different DAG topologies, unconditional benchmarking is itself misleading.\\n\\n- **Our framing**: Multi-class annotation errors are not created equal. The same confusion matrix that produces innocuous residual bias in one DAG topology can produce direction-reversing toxic bias in another. We provide the first systematic characterization of this interaction (the taxonomy), a tool to quantify robustness (ASVs), and guidance for when/how to correct (the framework). This is not a new correction method — it is the missing diagnostic layer that tells researchers which correction is appropriate, or whether correction is needed at all.\\n\\n- **Headline result template**: \\\"Across 6 DAG topologies with K=3,5,7, our bias expressions correctly predict bias direction and magnitude within 95% MC confidence intervals. On 3 CSS tasks annotated by 3 LLMs, ASVs provide calibrated robustness indicators, and our taxonomy identifies cases where commonly applied corrections would increase rather than decrease bias.\\\"\\n\\n## Core Insight (Lead Finding) — DUAL VERSION, gate on plan_001\\n\\n### Version A (≥1 topology shows direction reversal under K≥3 non-differential exposure misclassification)\\nThe binary guarantee that \\\"non-differential exposure misclassification biases toward the null\\\" (Bross 1954) breaks in the multi-class case. For specific confusion matrix structures in specific DAG topologies, K≥3 non-differential error can amplify or reverse effect estimates. Brenner (1993) identified this possibility for polytomous confounder misclassification (\\\"bias can go in either direction\\\"); we provide the first systematic characterization across 6 DAG topologies with exact conditions for each {C structure × topology} cell. Furthermore, binarizing a K-class variable to \\\"escape\\\" into the binary regime is itself hazardous — collapsing introduces new, direction-unpredictable bias (MVP evidence: Δ up to 0.103).\\n\\n### Version B (no direction reversal found across topologies)\\nMulti-class annotation error is structurally irreducible to the binary case: the downstream bias magnitude depends on the full K×K confusion matrix in ways that binary sensitivity/specificity cannot predict, and binarizing a K-class variable introduces new bias (MVP evidence: Δ up to 0.103). While non-differential error preserves bias direction across tested topologies (a useful practitioners' guarantee), the magnitude varies dramatically with confusion matrix structure (0.13–0.30 in confounding DAG alone), and this variation is topology-dependent. ASVs provide the missing robustness measure for this quantitative — not directional — uncertainty.\\n\\n**Gate**: plan_001 results determine which version. ≥2 topologies with reversal → A; 1 → A with that topology as lead; 0 → B. See D003.\\n\\n## MVP Evidence\\n\\n**Confounding DAG + K=3** (confounder misclassification):\\n- Theoretical bias expressions match MC perfectly (6/6 structures within 95% CI) — framework validated\\n- Binary collapse ≠ multi-class: Δ up to 0.103 (near-permutation C), proving K=3 retains more confounding control than binarization\\n- 100k random C search: confounding DAG bias is monotonically toward OVB — this topology is \\\"well-behaved\\\" (predictable direction)\\n- NOTE: Confounding DAG tests residual confounding, NOT bias-toward-null (Bross 1954). Criterion 2 (away-from-null bias) holds for binary too in this topology. See M001.\\n\\n**Exposure DAG K=3** (exposure misclassification — D002/D004 CONFIRMED):\\n- 100k random C: 85% violate bias-toward-null, 83.4% sign reversal, 14.1% amplification\\n- K=2 control: 6/6 toward null (binary guarantee holds)\\n- Worst case: β=1.0 → estimate=-0.84 (sign reversal + 2.83x amplification)\\n- Mechanism: near-permutation C causes label swap → effect direction flips (structurally impossible in K=2)\\n- **Two-DAG contrast**: confounding (monotonic, predictable) vs exposure (unpredictable, topology-dependent) — validates core claim\\n\\n**Dirichlet subspace analysis** (practical relevance validation):\\n- diag≥0.5: 32.5% violation, 21.6% sign reversal, 11.3% amplification\\n- diag≥0.7 (typical LLM accuracy): **13.7% violation**, 2.1% sign reversal, **11.7% amplification**\\n- diag≥0.9 (high-accuracy LLM): **11.9% violation**, 0% sign reversal, **11.9% amplification**\\n- Key pattern: sign reversal vanishes at high accuracy, but **amplification persists at ~12% regardless of accuracy**\\n- Implication: even 90%+ accuracy LLMs face non-trivial effect amplification risk — no \\\"safe accuracy threshold\\\" exists\\n\\n## Venue Fit Risks\\n\\n- **AAAI**: Broad AI audience — emphasize general methodology for \\\"automated annotation measurement error,\\\" not LLM-specific. Frame as extending classical measurement error theory to modern automated labeling.\\n- **ARR/NAACL**: NLP audience — CSS track is natural fit. May want more empirical NLP experiments. Balance theory with practical LLM annotation scenarios.\\n- **Cross-discipline bridge**: Epidemiology (measurement error theory) × NLP (annotation errors). Epi reviewers check proof rigor; NLP reviewers check empirical relevance. Must serve both.\\n\\n## Anticipated Reviewer Concerns & Planned Responses\\n\\n1. **\\\"Trivial extension of binary to multi-class\\\"** → Brenner (1993) proved direction reversal; our taxonomy provides the first systematic characterization across 6 topologies. Binarizing K-class introduces NEW unpredictable bias (MVP evidence). The complexity jump is structural: binary has 2 free parameters (sensitivity, specificity) → scalar bias; K=5 has 20 free parameters → matrix-valued bias requiring eigendecomposition for interpretation. [Experiments: plan_001, plan_008]\\n\\n2. **\\\"Lee & Wood-Doughty (2024) already did categorical\\\"** → They cover 1 topology (unobserved confounding) on 1 dataset (MIMIC). We cover 6 topologies with systematic taxonomy + ASVs + correction guidance. Their work is a stepping stone; ours is the full framework. [Experiments: plan_001]\\n\\n3. **\\\"Why these 6 DAG topologies?\\\"** → These are the canonical CSS causal designs used by Hernán & Cole (2009) and TeBlunthuis et al. (2024). They cover the major roles an annotated variable can play: confounder, mediator, collider, instrument, front-door criterion variable. [Experiments: plan_001]\\n\\n4. **\\\"K≥5 expressions aren't actionable\\\"** → Three interpretability tools: (a) eigendecomposition summaries identifying dominant bias modes, (b) worst-case scalar bounds, (c) diagnostic visualizations. [Experiments: plan_002]\\n\\n5. **\\\"ASV sharpness only proved for 3 topologies\\\"** → Honest scoping reflecting algebraic complexity. Remaining 3 validated via MC with numerical sharpness evidence. Full proofs identified as immediate future work. [Experiments: plan_004, plan_005]\\n\\n6. **\\\"Correlated multi-LLM errors?\\\"** → Kim et al. (ICML 2025) actually STRENGTHENS our case: if ensembles can't fix errors (60% agreement when both err), error structure analysis is the only viable approach. Multi-annotator correction with dependence is identified as an open problem. [Framework discussion]\\n\\n7. **\\\"Empirical validation scope\\\"** → 3 CSS tasks × 3 LLMs × 3 DAG-relevant scenarios. Tasks selected to cover K=2,3,5 annotation complexity. [Experiments: plan_003, plan_006]\\n\", \"total_chars\": 10212, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6160e9f8-30d9-4cd1-b5a9-8bce86fb2899",
+  "isSidechain": true,
+  "promptId": "af5eafdd-18df-466b-baef-eae9a8b502e4",
+  "agentId": "a503973443a489bc3",
+  "type": "user",
+  "uuid": "7b7f4c54-5b78-48ae-b03e-aee176a550ed",
+  "sourceToolAssistantUUID": "6160e9f8-30d9-4cd1-b5a9-8bce86fb2899",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "sessionId": "44efd5d7-3d5f-464d-80ca-d3c01b5a58d8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-20T08:53:41.815Z_
+
+Now I have a thorough understanding of the paper's claims, evidence, and positioning. Let me compose the R1 response to R2's review.
+
+---
+
+**R1 Response to R2's Review**
+
+**Points of agreement.** R2's W1 is well-taken and I should have flagged it myself. The paper's claim to be the "first systematic multi-class treatment" is untenable given Brenner (1993), Veierod & Laake (2001), and Dosemeci et al. (1990). These are not tangential -- Brenner literally proved direction reversal for polytomous confounders, and Veierod & Laake derived bias expressions for multi-category exposure misclassification in Poisson regression. The paper's contribution is the systematic characterization across 6 DAG topologies with ASVs, not the discovery that multi-class misclassification behaves differently. The framing needs significant revision, and only 11 references is indeed far too few for a paper bridging epidemiology and NLP. I agree this should be 25-35.
+
+R2's W4 (missing PPI and DSL citations) is also clearly correct. Angelopoulos et al. (2023) and Gligoric et al. (2025) are among the correction methods the framework claims to guide users toward -- omitting them as citations is a serious oversight. W5 (Hernan & Cole cited but undiscussed) likewise: since their starred-node DAG formalism is the theoretical backbone of the framework, a substantive discussion is mandatory.
+
+**Points of disagreement or nuance.** On W2, I partially disagree. R2 argues the ASV relationship to probabilistic bias analysis (Rosenbaum 2002, Lash et al. 2009, Fox et al. 2005) is under-discussed. The citations should absolutely be added, but the conceptual gap is real: existing probabilistic bias analysis uses scalar sensitivity/specificity parameters for binary misclassification. The ASV contribution is extending this to K x K confusion matrices where the sensitivity parameter space is (K-1) x K-dimensional. This is more than a citation gap -- it is a genuine methodological extension, though the paper must explicitly acknowledge and differentiate from these predecessors.
+
+On W6, I think R2 raises something important that my review missed. Brenner (1993) showed direction reversal for confounders, yet the paper reports zero violations for confounding topology (100k random C search). This deserves reconciliation, but I suspect the answer is straightforward: Brenner's result concerns bias toward/away from null for the confounder-adjusted effect, while the paper's confounding DAG measures residual confounding bias relative to OVB. These are different quantities. The paper should make this distinction explicit.
+
+On W3 (correction framework decision logic), I raised a related concern (my W5: oracle C, not estimated C) but R2's framing as "principled vs. lookup table" is more precise and actionable. I agree this needs clarification.
+
+**Impact on my assessment.** R2's review does not change my score of 4/6. My main concerns (untested non-differential assumption, ASV coverage gap, oracle C) remain unaddressed by R2's perspective, and R2's citation concerns, while valid, are fixable in revision. The core experimental contributions -- the 85% violation rate for exposure topology, the Dirichlet subspace analysis showing persistent amplification at 90%+ accuracy -- remain sound and novel. However, R2 convinces me the novelty framing must be substantially revised downward from "first systematic" to "first DAG-topology-stratified characterization with sensitivity analysis tools," which is still a meaningful contribution but requires more honest positioning relative to the epidemiology literature.
+
+**New concern raised.** R2's W7 (SIMEX and regression calibration absent) is a gap I overlooked. These are the standard correction methods in the measurement error literature. If the correction guidance framework does not discuss them, it cannot credibly claim completeness. This reinforces my existing concern about the framework being tested only with oracle C -- SIMEX is specifically designed for the estimated-C setting.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b7f4c54-5b78-48ae-b03e-aee176a550ed",
+  "isSidechain": true,
+  "agentId": "a503973443a489bc3",
+  "requestId": "req_011CbDY9f7pARc5s26wjxWSM",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4bc9136c-fd57-431f-99e3-a6c4adb905bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+  "sessionId": "44efd5d7-3d5f-464d-80ca-d3c01b5a58d8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NBMob6z9WzsoYo5hPSwE33",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4663,
+      "cache_read_input_tokens": 20926,
+      "output_tokens": 954,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4663
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 954,
+          "cache_read_input_tokens": 20926,
+          "cache_creation_input_tokens": 4663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4663,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

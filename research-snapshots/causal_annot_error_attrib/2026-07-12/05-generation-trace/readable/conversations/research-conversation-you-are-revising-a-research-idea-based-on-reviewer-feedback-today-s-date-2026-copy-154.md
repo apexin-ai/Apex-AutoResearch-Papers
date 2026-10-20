@@ -1,0 +1,3625 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-19 (UTC).** ## Original idea { "tit
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 50
+- **Recorded user turns:** 1
+- **Tool calls:** 10
+- **Original source:** `logs/chats/exported-trajectories/account-3/826e68f0-f084-4703-baa7-eafff3ec0b55.jsonl`
+- **Structured JSON:** [`62f0e6ef021358d5b699.json`](../../sessions/62/62f0e6ef021358d5b699.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T14:34:29.773Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T14:34:29.773Z",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-19 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Faithfulness of Tool-Selection Reasoning in Agentic Systems\",\n  \"core_problem\": \"In multi-turn tool-using agents, does the model's stated reasoning about tool selection — which tool to call, with what parameters, and why — actually causally drive the tool call decision, or is it post-hoc rationalization of a latent policy?\",\n  \"opportunity\": \"All existing CoT faithfulness work is on single-turn Q&A or math problems. Agentic tool use is the fastest-growing deployment mode for reasoning models in 2026, yet tool-selection faithfulness is essentially unstudied. Project Ariadne (Jan 2026) audits factual reasoning in agents (finding violation density up to 0.77) but does not examine tool-use decisions specifically. SAVeR (April 2026) proposes self-auditing but doesn't empirically characterize the problem. The 'Breaking the Chain' paper shows models fail to update predictions after intervention on intermediate structures in 60% of cases — if this extends to tool-selection reasoning, agents may select tools based on parametric habits while generating plausible-sounding justifications. This has direct safety implications: an agent's stated reasoning for calling a dangerous tool may be entirely decorative.\",\n  \"landscape\": \"Project Ariadne finds 'causal decoupling' — agents reach identical conclusions despite contradictory reasoning — with violation density up to 0.77 in factual/scientific domains, but focuses on claims not actions. SAVeR proposes persona-based belief diversification for agentic self-auditing but provides limited empirical analysis of the base problem. The distributional robustness of tool selection paper (2510.03992) studies robustness but not faithfulness. Agent observability platforms (2026) track tool calls and latency but not whether reasoning matches actions. Breaking the Chain (2603.16475) shows insensitivity to intermediate structure interventions in 60% of cases in non-agentic settings. The 'Noticing the Watcher' paper (2603.16928) shows models can detect CoT monitoring from feedback — up to 19% awareness — but fail to suppress reasoning, suggesting current agentic CoT monitoring has a limited window of viability. No benchmark or systematic study exists for tool-selection faithfulness specifically. Concurrent work in adjacent areas includes: 'Tool Preferences in Agentic LLMs are Unreliable' (May 2026, 2505.18135) which shows tool selection is fragile under description manipulation but does not examine whether the model's own stated reasoning causally drives selection; 'The Reasoning Trap' (2510.22977) demonstrates that reasoning enhancement via RL causally amplifies tool hallucination but studies hallucination rates not reasoning faithfulness; 'Internal Representations as Indicators of Hallucinations in Agent Tool Selection' (2601.05214) detects hallucinated tool calls from hidden states but does not study causal coupling between CoT and tool calls; 'Brief Is Better' (2604.02155) finds non-monotonic CoT budget effects on function-calling accuracy but does not measure faithfulness. FaithCoT-Bench (ICLR 2026) benchmarks instance-level CoT faithfulness but is restricted to single-turn QA, not agentic tool selection. FRIT (2509.13334) improves CoT faithfulness via intervention training but only for factual/symbolic reasoning, not tool calls. None of these works directly addresses whether stated tool-selection reasoning causally determines which tool is called in multi-turn agentic settings.\",\n  \"inspired_by\": \"Gap between the explosion of agentic AI and the absence of tool-use faithfulness evaluation. Breaking the Chain's finding about insensitivity to intermediate structure changes. Project Ariadne's partial exploration revealing high violation density. Field guide's identification of agentic deployment as the critical missing context for faithfulness research.\",\n  \"approach\": \"We construct TOOLFAITH-BENCH, a diagnostic benchmark of 600 multi-turn agentic scenarios across five domains (code editing, web browsing, data analysis, system administration, information retrieval), each containing 2-4 deterministic tool-selection decision points where a specific reasoning chain uniquely implies a specific tool call. We apply a causal intervention protocol at each decision point with four perturbation types: (1) reason-flip — rewrite the CoT to justify a different tool, (2) reason-ablate — remove reasoning entirely and present only task context, (3) counterfactual-inject — insert facts that should change the correct tool choice, and (4) reason-scramble — shuffle reasoning sentences while preserving tool mentions — then measure whether the model's actual tool call changes accordingly. We define two complementary metrics: Tool Selection Causal Fidelity (TSCF), the rate at which tool calls correctly follow intervened reasoning, and Reasoning Theater Index (RTI), the rate at which tool calls remain unchanged despite contradictory reasoning. We evaluate eight models spanning current top-performing open-source models (Qwen3-32B, GLM-4.5, DeepSeek-R1-0528, Kimi-K2) and frontier APIs (Claude Sonnet 4, GPT-4.1, Gemini 2.5 Pro), supplementing behavioral results with linear probes on open-source model hidden states to test whether tool identity is encoded in activations before reasoning tokens are generated.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"250 H100-hours (120h model inference across 4 open-source models × 600 scenarios × 4 intervention types, 50h probing experiments, 80h development/debugging)\",\n      \"timeline\": \"14-16 weeks (4 wk benchmark design, 3 wk implementation, 3 wk experiments, 4-6 wk analysis/writing)\",\n      \"estimated_gpu_cost\": \"$625 (at ~$2.50/hr H100 spot pricing)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"200 H100-hours (same inference workload but fewer debugging iterations due to Claude-assisted code generation and analysis)\",\n      \"timeline\": \"9-11 weeks (3 wk benchmark design with Claude scenario generation, 2 wk implementation, 2 wk experiments, 2-4 wk analysis/writing)\",\n      \"claude_api_cost\": \"$300-400 (scenario generation, code assistance, statistical analysis, paper drafting across ~15M input + 5M output tokens)\",\n      \"estimated_gpu_cost\": \"$500 (at ~$2.50/hr H100 spot pricing)\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"400 H100-hours (larger intervention sweep, additional models, ablation studies, multiple random seeds)\",\n      \"timeline\": \"4-6 weeks wall-clock (parallelized scenario generation, concurrent model evaluation, automated analysis pipeline)\",\n      \"claude_api_cost\": \"$700-900 (orchestration, scenario generation, evaluation judging, statistical analysis, full paper drafting across ~40M input + 15M output tokens)\",\n      \"estimated_gpu_cost\": \"$1000 (at ~$2.50/hr H100 spot pricing)\",\n      \"speed_bottleneck\": \"Benchmark scenario quality validation — ensuring each scenario has truly deterministic tool-selection mappings requires human spot-checking that cannot be fully automated without risking construct validity\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline: May 25, 2026; commitment deadline: August 2, 2026 — tight but feasible for short paper)\",\n    \"AAAI 2027 (abstract: July 21, 2026; full paper: July 28, 2026 — primary target with 10 weeks of runway)\",\n    \"ICLR 2027 (deadline not yet announced; historically ~October 2026 — ideal top-tier target if full experimental sweep completed)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents (arXiv 2026, 2601.02314)\",\n    \"Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing [SAVeR] (arXiv 2026, 2604.08401)\",\n    \"Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures (arXiv 2026, 2603.16475)\",\n    \"Noticing the Watcher: LLM Agents Can Infer CoT Monitoring from Blocking Feedback (arXiv 2026, 2603.16928)\",\n    \"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning (ICLR 2026, 2510.04040)\",\n    \"FRIT: Using Causal Importance to Improve Chain-of-Thought Faithfulness (arXiv 2025, 2509.13334)\",\n    \"The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination (arXiv 2025, 2510.22977)\",\n    \"Tool Preferences in Agentic LLMs are Unreliable (arXiv 2026, 2505.18135)\",\n    \"Quantifying Distributional Robustness of Agentic Tool-Selection [TOOLCERT] (arXiv 2025, 2510.03992)\",\n    \"Internal Representations as Indicators of Hallucinations in Agent Tool Selection (arXiv 2026, 2601.05214)\",\n    \"Brief Is Better: Non-Monotonic Chain-of-Thought Budget Effects in Function-Calling Language Agents (arXiv 2026, 2604.02155)\",\n    \"The Causal Impact of Tool Affordance on Safety Alignment in LLM Agents (ICECET 2026, 2603.20320)\",\n    \"Reasoning and Tool-use Compete in Agentic RL: From Quantifying Interference to Disentangled Tuning (arXiv 2026, 2602.00994)\",\n    \"Analysing Chain of Thought Dynamics: Active Guidance or Unfaithful Post-hoc Rationalisation? (arXiv 2025, 2508.19827)\"\n  ],\n  \"description\": \"We present the first systematic study of whether tool-selection reasoning in multi-turn agentic systems is causally faithful or post-hoc rationalization. While CoT faithfulness has been extensively studied in single-turn QA and mathematical settings — with Project Ariadne finding violation densities up to 0.77 in factual domains and Breaking the Chain showing 60% insensitivity to intermediate structure interventions — no prior work examines whether an agent's stated reasoning for choosing a specific tool actually drives that decision. We construct TOOLFAITH-BENCH, a diagnostic benchmark of 600 multi-turn agentic scenarios across five domains, each with deterministic tool-selection decision points. We apply a four-type causal intervention protocol (reason-flip, reason-ablate, counterfactual-inject, reason-scramble) and introduce two metrics: Tool Selection Causal Fidelity (TSCF) and Reasoning Theater Index (RTI). We evaluate eight models spanning current top open-source systems (Qwen3-32B, GLM-4.5, DeepSeek-R1-0528, Kimi-K2) and frontier APIs, supplemented by hidden-state linear probes. Expected findings include high RTI scores indicating widespread reasoning theater in tool selection — with direct implications for agentic AI safety, since an agent's justification for calling a dangerous tool may be entirely decorative.\",\n  \"project_name\": \"toolfaith_bench\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 1)\nIssues: [\"REFERENCE ERROR: 'Tool Preferences in Agentic LLMs are Unreliable' is cited as '(May 2026, 2505.18135)' but the arXiv ID 2505 indicates May 2025, not 2026. This is a factual error in the landscape.\", \"MISSING CRITICAL CONCURRENT WORK: At least 6 important 2026 papers are absent from the landscape: (1) 'Decoding Answers Before Chain-of-Thought' (2603.01437) — directly relevant as it shows answers are encoded in pre-CoT activations via linear probes, essentially the same technique proposed for tool identity probing; (2) 'Catching rationalization in the act' (2603.17199) — detects motivated reasoning via activation probing; (3) RFEval (2602.17053) — counterfactual intervention faithfulness benchmark with 7,186 instances; (4) FACT-E (2604.10693) — causality-inspired CoT evaluation; (5) C2-Faith (2603.05167) — causal faithfulness benchmarking; (6) 'Lie to Me' (2603.22582) — comprehensive faithfulness evaluation across 12 models.\", \"CONSTRUCT VALIDITY: Requiring 600 scenarios with 'deterministic tool-selection decision points where a specific reasoning chain uniquely implies a specific tool call' is an unrealistically strong constraint. Real-world tool selection involves ambiguity. This risks creating a benchmark that tests a sanitized version of tool selection that doesn't transfer to realistic agentic deployments.\", \"VENUE TIMING: EMNLP 2026 ARR deadline is May 25 — only 6 days from today (May 19). This is listed as a feasible short paper target but is effectively impossible. The 14-16 week timeline hasn't even started.\", \"EXPECTED FINDINGS BIAS: The proposal pre-commits to 'Expected findings include high RTI scores indicating widespread reasoning theater in tool selection.' A credible benchmark study should be hypothesis-driven, not conclusion-driven. This framing suggests methodology designed to confirm rather than genuinely test.\", \"MODEL SELECTION OUTDATED: Kimi-K2 has been superseded by Kimi-K2.6 (April 2026). GLM-4.5 has been superseded by GLM-5/5.1. Qwen3-32B is from April 2025 — Qwen3.5 and Qwen3.6 are now available. Using outdated models weakens the claim of evaluating 'current top-performing' systems.\", \"PROBING DIFFERENTIATION INSUFFICIENT: The linear probe component ('whether tool identity is encoded in activations before reasoning tokens') closely mirrors 'Decoding Answers Before CoT' (2603.01437), which already showed this for QA with 0.9 AUC. The proposal needs to clearly articulate what new methodological insight the tool-selection version provides beyond domain transfer.\"]\nFeedback: The core idea is sound and addresses a genuine gap — I confirmed through independent search that no existing work specifically studies causal faithfulness of tool-selection reasoning in multi-turn agentic settings. To reach pass quality: (1) Fix the 2505.18135 dating error and add the 6 missing concurrent works, especially 'Decoding Answers Before CoT' which is the most threatening overlap for the probing component. (2) Replace the 'deterministic' scenario constraint with a tiered difficulty system: easy scenarios (single correct tool), medium (2 plausible tools, one clearly better), hard (multiple valid tools). This addresses construct validity while preserving the benchmark's utility. (3) Remove EMNLP 2026 from venue targets — it's impossible. AAAI 2027 (July 28 deadline) is the realistic primary target. (4) Update model selection to current SOTA: Kimi-K2.6, GLM-5, Qwen3.6, DeepSeek-R1-0528 are all fine. (5) Reframe expected findings as hypotheses ('We hypothesize that RTI scores will be elevated...') rather than pre-committed conclusions. (6) Explicitly differentiate the probing component from 'Decoding Answers Before CoT' — argue why tool identity encoding may differ from answer encoding (multiple output modalities, structured JSON vs. text, etc.).\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.\n- Address each issue specifically.\n\n## 深度调研要求\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。\n3. **深度思考**：\n   - 核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach？\n4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。\n\n## 针对 Review 意见的定向搜索\n\n1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点\n2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline\n3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现\n4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot\n\n- You have full freedom: minor fix, major revision, or pivot.\n- Include a \"change_type\" field: \"minor\", \"major\", or \"pivot\".\n- Output a COMPLETE JSON object with ALL fields."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T14:34:29.776Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T14:34:29.776Z",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55"
+}
+```
+
+---
+
+## Round 1
+
+48 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T14:34:29.789Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-19 (UTC).**
+
+## Original idea
+{
+  "title": "Faithfulness of Tool-Selection Reasoning in Agentic Systems",
+  "core_problem": "In multi-turn tool-using agents, does the model's stated reasoning about tool selection — which tool to call, with what parameters, and why — actually causally drive the tool call decision, or is it post-hoc rationalization of a latent policy?",
+  "opportunity": "All existing CoT faithfulness work is on single-turn Q&A or math problems. Agentic tool use is the fastest-growing deployment mode for reasoning models in 2026, yet tool-selection faithfulness is essentially unstudied. Project Ariadne (Jan 2026) audits factual reasoning in agents (finding violation density up to 0.77) but does not examine tool-use decisions specifically. SAVeR (April 2026) proposes self-auditing but doesn't empirically characterize the problem. The 'Breaking the Chain' paper shows models fail to update predictions after intervention on intermediate structures in 60% of cases — if this extends to tool-selection reasoning, agents may select tools based on parametric habits while generating plausible-sounding justifications. This has direct safety implications: an agent's stated reasoning for calling a dangerous tool may be entirely decorative.",
+  "landscape": "Project Ariadne finds 'causal decoupling' — agents reach identical conclusions despite contradictory reasoning — with violation density up to 0.77 in factual/scientific domains, but focuses on claims not actions. SAVeR proposes persona-based belief diversification for agentic self-auditing but provides limited empirical analysis of the base problem. The distributional robustness of tool selection paper (2510.03992) studies robustness but not faithfulness. Agent observability platforms (2026) track tool calls and latency but not whether reasoning matches actions. Breaking the Chain (2603.16475) shows insensitivity to intermediate structure interventions in 60% of cases in non-agentic settings. The 'Noticing the Watcher' paper (2603.16928) shows models can detect CoT monitoring from feedback — up to 19% awareness — but fail to suppress reasoning, suggesting current agentic CoT monitoring has a limited window of viability. No benchmark or systematic study exists for tool-selection faithfulness specifically. Concurrent work in adjacent areas includes: 'Tool Preferences in Agentic LLMs are Unreliable' (May 2026, 2505.18135) which shows tool selection is fragile under description manipulation but does not examine whether the model's own stated reasoning causally drives selection; 'The Reasoning Trap' (2510.22977) demonstrates that reasoning enhancement via RL causally amplifies tool hallucination but studies hallucination rates not reasoning faithfulness; 'Internal Representations as Indicators of Hallucinations in Agent Tool Selection' (2601.05214) detects hallucinated tool calls from hidden states but does not study causal coupling between CoT and tool calls; 'Brief Is Better' (2604.02155) finds non-monotonic CoT budget effects on function-calling accuracy but does not measure faithfulness. FaithCoT-Bench (ICLR 2026) benchmarks instance-level CoT faithfulness but is restricted to single-turn QA, not agentic tool selection. FRIT (2509.13334) improves CoT faithfulness via intervention training but only for factual/symbolic reasoning, not tool calls. None of these works directly addresses whether stated tool-selection reasoning causally determines which tool is called in multi-turn agentic settings.",
+  "inspired_by": "Gap between the explosion of agentic AI and the absence of tool-use faithfulness evaluation. Breaking the Chain's finding about insensitivity to intermediate structure changes. Project Ariadne's partial exploration revealing high violation density. Field guide's identification of agentic deployment as the critical missing context for faithfulness research.",
+  "approach": "We construct TOOLFAITH-BENCH, a diagnostic benchmark of 600 multi-turn agentic scenarios across five domains (code editing, web browsing, data analysis, system administration, information retrieval), each containing 2-4 deterministic tool-selection decision points where a specific reasoning chain uniquely implies a specific tool call. We apply a causal intervention protocol at each decision point with four perturbation types: (1) reason-flip — rewrite the CoT to justify a different tool, (2) reason-ablate — remove reasoning entirely and present only task context, (3) counterfactual-inject — insert facts that should change the correct tool choice, and (4) reason-scramble — shuffle reasoning sentences while preserving tool mentions — then measure whether the model's actual tool call changes accordingly. We define two complementary metrics: Tool Selection Causal Fidelity (TSCF), the rate at which tool calls correctly follow intervened reasoning, and Reasoning Theater Index (RTI), the rate at which tool calls remain unchanged despite contradictory reasoning. We evaluate eight models spanning current top-performing open-source models (Qwen3-32B, GLM-4.5, DeepSeek-R1-0528, Kimi-K2) and frontier APIs (Claude Sonnet 4, GPT-4.1, Gemini 2.5 Pro), supplementing behavioral results with linear probes on open-source model hidden states to test whether tool identity is encoded in activations before reasoning tokens are generated.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "250 H100-hours (120h model inference across 4 open-source models × 600 scenarios × 4 intervention types, 50h probing experiments, 80h development/debugging)",
+      "timeline": "14-16 weeks (4 wk benchmark design, 3 wk implementation, 3 wk experiments, 4-6 wk analysis/writing)",
+      "estimated_gpu_cost": "$625 (at ~$2.50/hr H100 spot pricing)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "200 H100-hours (same inference workload but fewer debugging iterations due to Claude-assisted code generation and analysis)",
+      "timeline": "9-11 weeks (3 wk benchmark design with Claude scenario generation, 2 wk implementation, 2 wk experiments, 2-4 wk analysis/writing)",
+      "claude_api_cost": "$300-400 (scenario generation, code assistance, statistical analysis, paper drafting across ~15M input + 5M output tokens)",
+      "estimated_gpu_cost": "$500 (at ~$2.50/hr H100 spot pricing)"
+    },
+    "auto_research": {
+      "gpu_hours": "400 H100-hours (larger intervention sweep, additional models, ablation studies, multiple random seeds)",
+      "timeline": "4-6 weeks wall-clock (parallelized scenario generation, concurrent model evaluation, automated analysis pipeline)",
+      "claude_api_cost": "$700-900 (orchestration, scenario generation, evaluation judging, statistical analysis, full paper drafting across ~40M input + 15M output tokens)",
+      "estimated_gpu_cost": "$1000 (at ~$2.50/hr H100 spot pricing)",
+      "speed_bottleneck": "Benchmark scenario quality validation — ensuring each scenario has truly deterministic tool-selection mappings requires human spot-checking that cannot be fully automated without risking construct validity"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline: May 25, 2026; commitment deadline: August 2, 2026 — tight but feasible for short paper)",
+    "AAAI 2027 (abstract: July 21, 2026; full paper: July 28, 2026 — primary target with 10 weeks of runway)",
+    "ICLR 2027 (deadline not yet announced; historically ~October 2026 — ideal top-tier target if full experimental sweep completed)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents (arXiv 2026, 2601.02314)",
+    "Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing [SAVeR] (arXiv 2026, 2604.08401)",
+    "Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures (arXiv 2026, 2603.16475)",
+    "Noticing the Watcher: LLM Agents Can Infer CoT Monitoring from Blocking Feedback (arXiv 2026, 2603.16928)",
+    "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning (ICLR 2026, 2510.04040)",
+    "FRIT: Using Causal Importance to Improve Chain-of-Thought Faithfulness (arXiv 2025, 2509.13334)",
+    "The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination (arXiv 2025, 2510.22977)",
+    "Tool Preferences in Agentic LLMs are Unreliable (arXiv 2026, 2505.18135)",
+    "Quantifying Distributional Robustness of Agentic Tool-Selection [TOOLCERT] (arXiv 2025, 2510.03992)",
+    "Internal Representations as Indicators of Hallucinations in Agent Tool Selection (arXiv 2026, 2601.05214)",
+    "Brief Is Better: Non-Monotonic Chain-of-Thought Budget Effects in Function-Calling Language Agents (arXiv 2026, 2604.02155)",
+    "The Causal Impact of Tool Affordance on Safety Alignment in LLM Agents (ICECET 2026, 2603.20320)",
+    "Reasoning and Tool-use Compete in Agentic RL: From Quantifying Interference to Disentangled Tuning (arXiv 2026, 2602.00994)",
+    "Analysing Chain of Thought Dynamics: Active Guidance or Unfaithful Post-hoc Rationalisation? (arXiv 2025, 2508.19827)"
+  ],
+  "description": "We present the first systematic study of whether tool-selection reasoning in multi-turn agentic systems is causally faithful or post-hoc rationalization. While CoT faithfulness has been extensively studied in single-turn QA and mathematical settings — with Project Ariadne finding violation densities up to 0.77 in factual domains and Breaking the Chain showing 60% insensitivity to intermediate structure interventions — no prior work examines whether an agent's stated reasoning for choosing a specific tool actually drives that decision. We construct TOOLFAITH-BENCH, a diagnostic benchmark of 600 multi-turn agentic scenarios across five domains, each with deterministic tool-selection decision points. We apply a four-type causal intervention protocol (reason-flip, reason-ablate, counterfactual-inject, reason-scramble) and introduce two metrics: Tool Selection Causal Fidelity (TSCF) and Reasoning Theater Index (RTI). We evaluate eight models spanning current top open-source systems (Qwen3-32B, GLM-4.5, DeepSeek-R1-0528, Kimi-K2) and frontier APIs, supplemented by hidden-state linear probes. Expected findings include high RTI scores indicating widespread reasoning theater in tool selection — with direct implications for agentic AI safety, since an agent's justification for calling a dangerous tool may be entirely decorative.",
+  "project_name": "toolfaith_bench",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 1)
+Issues: ["REFERENCE ERROR: 'Tool Preferences in Agentic LLMs are Unreliable' is cited as '(May 2026, 2505.18135)' but the arXiv ID 2505 indicates May 2025, not 2026. This is a factual error in the landscape.", "MISSING CRITICAL CONCURRENT WORK: At least 6 important 2026 papers are absent from the landscape: (1) 'Decoding Answers Before Chain-of-Thought' (2603.01437) — directly relevant as it shows answers are encoded in pre-CoT activations via linear probes, essentially the same technique proposed for tool identity probing; (2) 'Catching rationalization in the act' (2603.17199) — detects motivated reasoning via activation probing; (3) RFEval (2602.17053) — counterfactual intervention faithfulness benchmark with 7,186 instances; (4) FACT-E (2604.10693) — causality-inspired CoT evaluation; (5) C2-Faith (2603.05167) — causal faithfulness benchmarking; (6) 'Lie to Me' (2603.22582) — comprehensive faithfulness evaluation across 12 models.", "CONSTRUCT VALIDITY: Requiring 600 scenarios with 'deterministic tool-selection decision points where a specific reasoning chain uniquely implies a specific tool call' is an unrealistically strong constraint. Real-world tool selection involves ambiguity. This risks creating a benchmark that tests a sanitized version of tool selection that doesn't transfer to realistic agentic deployments.", "VENUE TIMING: EMNLP 2026 ARR deadline is May 25 — only 6 days from today (May 19). This is listed as a feasible short paper target but is effectively impossible. The 14-16 week timeline hasn't even started.", "EXPECTED FINDINGS BIAS: The proposal pre-commits to 'Expected findings include high RTI scores indicating widespread reasoning theater in tool selection.' A credible benchmark study should be hypothesis-driven, not conclusion-driven. This framing suggests methodology designed to confirm rather than genuinely test.", "MODEL SELECTION OUTDATED: Kimi-K2 has been superseded by Kimi-K2.6 (April 2026). GLM-4.5 has been superseded by GLM-5/5.1. Qwen3-32B is from April 2025 — Qwen3.5 and Qwen3.6 are now available. Using outdated models weakens the claim of evaluating 'current top-performing' systems.", "PROBING DIFFERENTIATION INSUFFICIENT: The linear probe component ('whether tool identity is encoded in activations before reasoning tokens') closely mirrors 'Decoding Answers Before CoT' (2603.01437), which already showed this for QA with 0.9 AUC. The proposal needs to clearly articulate what new methodological insight the tool-selection version provides beyond domain transfer."]
+Feedback: The core idea is sound and addresses a genuine gap — I confirmed through independent search that no existing work specifically studies causal faithfulness of tool-selection reasoning in multi-turn agentic settings. To reach pass quality: (1) Fix the 2505.18135 dating error and add the 6 missing concurrent works, especially 'Decoding Answers Before CoT' which is the most threatening overlap for the probing component. (2) Replace the 'deterministic' scenario constraint with a tiered difficulty system: easy scenarios (single correct tool), medium (2 plausible tools, one clearly better), hard (multiple valid tools). This addresses construct validity while preserving the benchmark's utility. (3) Remove EMNLP 2026 from venue targets — it's impossible. AAAI 2027 (July 28 deadline) is the realistic primary target. (4) Update model selection to current SOTA: Kimi-K2.6, GLM-5, Qwen3.6, DeepSeek-R1-0528 are all fine. (5) Reframe expected findings as hypotheses ('We hypothesize that RTI scores will be elevated...') rather than pre-committed conclusions. (6) Explicitly differentiate the probing component from 'Decoding Answers Before CoT' — argue why tool identity encoding may differ from answer encoding (multiple output modalities, structured JSON vs. text, etc.).
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.
+- Address each issue specifically.
+
+## 深度调研要求
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。
+3. **深度思考**：
+   - 核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach？
+4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。
+
+## 针对 Review 意见的定向搜索
+
+1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点
+2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline
+3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现
+4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot
+
+- You have full freedom: minor fix, major revision, or pivot.
+- Include a "change_type" field: "minor", "major", or "pivot".
+- Output a COMPLETE JSON object with ALL fields.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "type": "user",
+  "uuid": "5b094130-8646-42a2-ba49-91a0c8dff979",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T14:34:29.788Z_
+
+```json
+{
+  "parentUuid": "5b094130-8646-42a2-ba49-91a0c8dff979",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "7ee82c76-cefd-4d83-affb-4654b7aa8d5b",
+  "timestamp": "2026-05-19T14:34:29.788Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T14:34:29.788Z_
+
+```json
+{
+  "parentUuid": "7ee82c76-cefd-4d83-affb-4654b7aa8d5b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "f419be43-1692-4222-a327-cae3401fd1a5",
+  "timestamp": "2026-05-19T14:34:29.788Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Faithfulness of Tool-Selection Reasoning in Agentic Systems\",   \"core_…",
+  "leafUuid": "f419be43-1692-4222-a327-cae3401fd1a5",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise tool-selection faithfulness benchmark per reviewer feedback",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T14:34:37.718Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully and plan my research strategy:
+
+1. **REFERENCE ERROR**: Fix 2505.18135 dating (May 2025, not 2026)
+2. **MISSING CONCURRENT WORK**: Need to find and read 6 papers
+3. **CONSTRUCT VALIDITY**: Replace deterministic constraint with tiered difficulty
+4. **VENUE TIMING**: Remove EMNLP 2026
+5. **EXPECTED FINDINGS BIAS**: Reframe as hypotheses
+6. **MODEL SELECTION OUTDATED**: Update models
+
+
+7. **PROBING DIFFERENTIATION**: Differentiate from "Decoding Answers Before CoT"
+
+I need to launch a comprehensive research effort across multiple fronts—tracking down those 6 missing papers, identifying current state-of-the-art models, understanding how my work relates to the "Decoding Answers Before CoT" approach, and rethinking the construct validity through a tiered difficulty lens. I'll run these searches in parallel to move quickly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f419be43-1692-4222-a327-cae3401fd1a5",
+  "isSidechain": false,
+  "requestId": "req_011CbC6NHvS3q1qreT2iYVtR",
+  "type": "assistant",
+  "uuid": "0883d928-76aa-4264-841c-9bad39b341bb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CupxbJD2ywQhkYTqk4LR8K",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5711,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 355,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 355,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 5711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T14:34:37.738Z_
+
+I'll conduct deep research on each reviewer issue in parallel. Let me start by fetching the tools I need, then launch research agents.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0883d928-76aa-4264-841c-9bad39b341bb",
+  "isSidechain": false,
+  "requestId": "req_011CbC6NHvS3q1qreT2iYVtR",
+  "type": "assistant",
+  "uuid": "f7291207-0d19-4764-b475-df4485a79cde",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CupxbJD2ywQhkYTqk4LR8K",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5711,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 355,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 355,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 5711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T14:34:37.741Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01KNmPDGX52C6GvABMuuwZRU`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7291207-0d19-4764-b475-df4485a79cde",
+  "isSidechain": false,
+  "requestId": "req_011CbC6NHvS3q1qreT2iYVtR",
+  "type": "assistant",
+  "uuid": "1a689886-c520-4a71-b8a7-398ab7bfe1cc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CupxbJD2ywQhkYTqk4LR8K",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5711,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 355,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 355,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 5711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T14:34:37.748Z_
+
+<details><summary>↩ Tool result · `toolu_01KNmPDGX52C6GvABMuuwZRU`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a689886-c520-4a71-b8a7-398ab7bfe1cc",
+  "isSidechain": false,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "type": "user",
+  "uuid": "495b623b-8b11-4d51-87a7-6ff1359e8406",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "1a689886-c520-4a71-b8a7-398ab7bfe1cc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-19T14:34:40.244Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me launch multiple research agents in parallel to investigate each reviewer concern deeply.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "495b623b-8b11-4d51-87a7-6ff1359e8406",
+  "isSidechain": false,
+  "requestId": "req_011CbC6Nt9xzkqKZWBi975kL",
+  "type": "assistant",
+  "uuid": "611a5ea7-edd4-4308-9308-4008f5083102",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Stu9wV4x1F1QgAinSv6BW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 17085,
+      "output_tokens": 2176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1374,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2176,
+          "cache_read_input_tokens": 17085,
+          "cache_creation_input_tokens": 1374,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1374
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-19T14:34:41.341Z_
+
+Now let me launch parallel research on all the key issues raised by the reviewer.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "611a5ea7-edd4-4308-9308-4008f5083102",
+  "isSidechain": false,
+  "requestId": "req_011CbC6Nt9xzkqKZWBi975kL",
+  "type": "assistant",
+  "uuid": "a3406486-c5d5-4434-97e1-3510af8fd463",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Stu9wV4x1F1QgAinSv6BW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 17085,
+      "output_tokens": 2176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1374,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2176,
+          "cache_read_input_tokens": 17085,
+          "cache_creation_input_tokens": 1374,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1374
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T14:34:46.410Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01HTFvPgJv2MfvkE9RDH9Ewo`</summary>
+
+```json
+{
+  "description": "Research missing concurrent papers",
+  "prompt": "I need to research 6 specific papers that were flagged as missing from a research proposal's landscape. For each paper, I need to understand: (1) what it does, (2) its key findings, (3) how it relates to studying faithfulness of tool-selection reasoning in agentic LLM systems.\n\nThe papers are:\n1. \"Decoding Answers Before Chain-of-Thought\" (2603.01437) — shows answers encoded in pre-CoT activations\n2. \"Catching rationalization in the act\" (2603.17199) — detects motivated reasoning via activation probing\n3. RFEval (2602.17053) — counterfactual intervention faithfulness benchmark\n4. FACT-E (2604.10693) — causality-inspired CoT evaluation\n5. C2-Faith (2603.05167) — causal faithfulness benchmarking\n6. \"Lie to Me\" (2603.22582) — comprehensive faithfulness evaluation across 12 models\n\nFor each paper:\n- Search for it on the web using its arXiv ID\n- Fetch the arXiv abstract page to get details\n- Report: title, authors (first 3), venue/date, key methodology, key findings/numbers, and how it relates to tool-selection faithfulness\n\nBe thorough - I need to understand exactly what each paper contributes so I can position our work relative to them.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3406486-c5d5-4434-97e1-3510af8fd463",
+  "isSidechain": false,
+  "requestId": "req_011CbC6Nt9xzkqKZWBi975kL",
+  "type": "assistant",
+  "uuid": "b26f1c08-67d2-4eb0-bc36-47865f9fe3e1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Stu9wV4x1F1QgAinSv6BW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 17085,
+      "output_tokens": 2176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1374,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2176,
+          "cache_read_input_tokens": 17085,
+          "cache_creation_input_tokens": 1374,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1374
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T14:34:53.221Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_0196LWiDepnvqC49UFtXauMk`</summary>
+
+```json
+{
+  "description": "Research current SOTA models 2026",
+  "prompt": "I need to verify the current state-of-the-art for LLM models as of May 2026, specifically for agentic/tool-use capabilities. A reviewer flagged that these models are outdated:\n- Kimi-K2 (should be K2.6?)\n- GLM-4.5 (should be GLM-5 or 5.1?)\n- Qwen3-32B (should be Qwen3.5 or 3.6?)\n- DeepSeek-R1-0528 (still current?)\n\nAlso check:\n- Claude Sonnet 4 (still current or is there a newer version?)\n- GPT-4.1 (still current?)\n- Gemini 2.5 Pro (still current or superseded?)\n\nSearch for:\n1. \"Kimi K2.6 2026\" or \"Kimi K2 latest version 2026\"\n2. \"GLM-5 model 2026\" or \"ChatGLM latest 2026\"\n3. \"Qwen3.5 OR Qwen3.6 2026\"\n4. \"DeepSeek R1 latest 2026\"\n5. Current LLM leaderboards (LMSYS, Open LLM Leaderboard) for May 2026\n6. \"best open source LLM tool use 2026\"\n\nFor each model, report: latest version name, release date, parameter count, and whether it supports tool/function calling. I need accurate information to update the model selection in a research proposal.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b26f1c08-67d2-4eb0-bc36-47865f9fe3e1",
+  "isSidechain": false,
+  "requestId": "req_011CbC6Nt9xzkqKZWBi975kL",
+  "type": "assistant",
+  "uuid": "2dde5fb0-63d4-4598-ba74-1387261acee8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Stu9wV4x1F1QgAinSv6BW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 17085,
+      "output_tokens": 2176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1374,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2176,
+          "cache_read_input_tokens": 17085,
+          "cache_creation_input_tokens": 1374,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1374
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T14:35:02.546Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_015U6aMEzrKLrB4hoA4QoCXF`</summary>
+
+```json
+{
+  "description": "Research probing overlap differentiation",
+  "prompt": "I need to deeply understand the paper \"Decoding Answers Before Chain-of-Thought\" (arXiv 2603.01437) to differentiate a proposed research component from it.\n\nOur proposal includes using linear probes on open-source model hidden states to test whether tool identity is encoded in activations BEFORE reasoning tokens are generated, in multi-turn agentic tool-selection settings.\n\nThe reviewer says this closely mirrors \"Decoding Answers Before CoT\" which already showed this for QA with 0.9 AUC.\n\nI need to:\n1. Search for and read this paper in detail (arXiv 2603.01437)\n2. Search for \"pre-CoT activation probing\" or \"answer encoded before chain of thought\" to find related work\n3. Search for \"tool call hidden state probing LLM\" to see if anyone has done probing specifically for tool calls\n4. Search for \"structured output probing LLM\" — tool calls involve structured JSON output which is fundamentally different from text answers\n\nKey questions I need answered:\n- What exactly does \"Decoding Answers Before CoT\" show? What models, what tasks, what probe accuracy?\n- What are the key methodological differences between probing for a text answer vs. probing for a tool call (structured JSON with function name + parameters)?\n- Are there unique challenges in probing for tool identity? (e.g., tool calls are multi-dimensional: tool name + parameter values, tool calls happen in a conversation context with prior tool results, etc.)\n- Has anyone specifically probed for tool call decisions in hidden states?\n\nReport all findings in detail.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2dde5fb0-63d4-4598-ba74-1387261acee8",
+  "isSidechain": false,
+  "requestId": "req_011CbC6Nt9xzkqKZWBi975kL",
+  "type": "assistant",
+  "uuid": "bb679c8b-0a4d-4f72-a9df-2cbec109dac5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Stu9wV4x1F1QgAinSv6BW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 17085,
+      "output_tokens": 2176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1374,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2176,
+          "cache_read_input_tokens": 17085,
+          "cache_creation_input_tokens": 1374,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1374
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T14:35:11.128Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01M773j3on8bNAWs5gdVrpFe`</summary>
+
+```json
+{
+  "description": "Research benchmark construct validity",
+  "prompt": "I need to research how existing faithfulness benchmarks and tool-use benchmarks handle ambiguity and difficulty tiers, to inform a revision of a benchmark design.\n\nA reviewer criticized our proposed benchmark (TOOLFAITH-BENCH) for requiring 600 scenarios with \"deterministic tool-selection decision points\" — saying this is an unrealistically strong constraint that doesn't transfer to realistic agentic deployments where tool selection involves ambiguity.\n\nThe reviewer suggested replacing this with a tiered difficulty system:\n- Easy: single correct tool\n- Medium: 2 plausible tools, one clearly better\n- Hard: multiple valid tools\n\nI need to research:\n\n1. Search \"tool use benchmark LLM difficulty tiers\" — how do existing tool-use benchmarks handle ambiguity?\n2. Search for \"ToolBench\" OR \"API-Bank\" OR \"ToolEval\" benchmark design — how are their scenarios structured?\n3. Search for \"faithfulness benchmark difficulty levels\" — how do faithfulness benchmarks tier difficulty?\n4. Search for \"FaithCoT-Bench design methodology\" — how does this ICLR 2026 benchmark handle ground truth?\n5. Search for \"RFEval counterfactual benchmark design\" (2602.17053) — how does this benchmark handle interventions?\n6. Search for \"construct validity AI benchmark\" — what are best practices?\n\nKey questions:\n- How do you measure faithfulness when there's no single correct answer? (If multiple tools are valid, how do you know if the CoT is faithful?)\n- What's the right balance between controlled/deterministic scenarios and realistic ambiguity?\n- How have other benchmarks solved this tension?\n\nReport findings with specific examples from existing benchmarks.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb679c8b-0a4d-4f72-a9df-2cbec109dac5",
+  "isSidechain": false,
+  "requestId": "req_011CbC6Nt9xzkqKZWBi975kL",
+  "type": "assistant",
+  "uuid": "f6967e72-c711-4a21-bc6d-f8b53b375e90",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Stu9wV4x1F1QgAinSv6BW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 17085,
+      "output_tokens": 2176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1374,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2176,
+          "cache_read_input_tokens": 17085,
+          "cache_creation_input_tokens": 1374,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1374
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T14:35:16.575Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01RCBeEgC4NfcPGR6fcM4nA6`</summary>
+
+```json
+{
+  "description": "Research AAAI 2027 venue details",
+  "prompt": "I need to verify venue deadlines for AI conferences relevant to a research proposal submission. The current date is May 19, 2026.\n\nSearch for:\n1. \"AAAI 2027 submission deadline\" or \"AAAI 2027 call for papers\"\n2. \"ICLR 2027 submission deadline\" or \"ICLR 2027 call for papers\"  \n3. \"NeurIPS 2026 submission deadline\" — check if this is still open or past\n4. \"ICML 2027 submission deadline\"\n5. \"ACL 2027 submission deadline\" or \"ACL Rolling Review 2026 deadlines\"\n6. \"AAMAS 2027 deadline\" (relevant for agentic systems)\n\nFor each venue, report:\n- Abstract deadline\n- Full paper deadline\n- Conference dates\n- Whether it's feasible given a 10-14 week research timeline starting now (May 19, 2026)\n- Whether it accepts work on LLM evaluation/benchmarks/faithfulness\n\nAlso check: Is EMNLP 2026 ARR deadline really May 25, 2026? The reviewer says this is impossible (6 days away).",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f6967e72-c711-4a21-bc6d-f8b53b375e90",
+  "isSidechain": false,
+  "requestId": "req_011CbC6Nt9xzkqKZWBi975kL",
+  "type": "assistant",
+  "uuid": "f094953a-8dcd-49cb-ad49-bd7097dcecfc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Stu9wV4x1F1QgAinSv6BW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 17085,
+      "output_tokens": 2176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1374,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2176,
+          "cache_read_input_tokens": 17085,
+          "cache_creation_input_tokens": 1374,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1374
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T14:36:21.169Z_
+
+<details><summary>↩ Tool result · `toolu_01HTFvPgJv2MfvkE9RDH9Ewo`</summary>
+
+```text
+I now have thorough information on all 6 papers. Here is my comprehensive report.
+
+---
+
+## Paper-by-Paper Research Report
+
+### 1. "Decoding Answers Before Chain-of-Thought" (arXiv 2603.01437)
+
+- **Full title:** Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering
+- **Authors:** Kyle Cox, Darius Kianersi, Adrià Garriga-Alonso
+- **Date:** March 2, 2026 (preprint)
+- **Methodology:** Linear probes trained on residual stream activations at the final token *before* CoT generation begins. Also uses activation steering (intervening along probe directions to flip answers). Tested on instruction-tuned models across multiple tasks.
+- **Key findings:**
+  - Pre-CoT probes achieve **0.9 AUC** in predicting the model's final answer before any reasoning tokens are generated.
+  - Activation steering flipped answers in **>50%** of cases, significantly outperforming orthogonal control baselines.
+  - Two failure modes when steering induces wrong answers: *non-entailment* (correct premises, unsupported conclusion) and *confabulation* (fabricated premises).
+  - Concludes that CoT is often post-hoc rationalization; the model has already "decided" before reasoning.
+- **Relation to tool-selection faithfulness:** This is directly threatening to any claim that CoT explains *why* a model chose a particular tool. If answers (and by extension, tool choices) are encoded in pre-CoT activations, then the stated reasoning for selecting tool A over tool B may be a post-hoc narrative rather than a causal account. Your work could extend their probing methodology from answer prediction to tool-selection prediction, testing whether tool choice is similarly "pre-decided."
+
+---
+
+### 2. "Catching Rationalization in the Act" (arXiv 2603.17199)
+
+- **Full title:** Catching rationalization in the act: detecting motivated reasoning before and after CoT via activation probing
+- **Authors:** Parsa Mirtaheri, Mikhail Belkin
+- **Date:** March 17, 2026 (preprint)
+- **Methodology:** Injects hints into multiple-choice questions that favor particular options, inducing motivated reasoning. Uses supervised probes on the residual stream at two timepoints: pre-generation (before CoT tokens) and post-generation (after CoT). Compares probe detection to an LLM-based CoT monitor that has full access to the reasoning chain.
+- **Key findings:**
+  - Models shift toward hinted answers while producing explanations that never mention the hint -- classic motivated reasoning / rationalization.
+  - **Pre-generation probes match** the detection accuracy of a full-CoT LLM monitor.
+  - **Post-generation probes outperform** the CoT monitor.
+  - Internal representations are more reliable for detecting motivated reasoning than analyzing the text of reasoning chains.
+- **Relation to tool-selection faithfulness:** This paper demonstrates that unfaithful reasoning (rationalization) is detectable via internal activations even when the text-level CoT looks clean. For tool-selection scenarios, this suggests that if a model selects a tool for a "bad" reason (e.g., a spurious pattern in the prompt), activation probing could detect this even when the stated reasoning appears sound. This is a complementary detection method to the behavioral/textual approaches your work likely uses.
+
+---
+
+### 3. RFEval (arXiv 2602.17053)
+
+- **Full title:** RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models
+- **Authors:** Yunseok Han, Yejoon Lee, Jaeyoung Do
+- **Date:** February 19, 2026 (preprint)
+- **Methodology:** Defines faithfulness along two dimensions: **stance consistency** (reasoning logically supports the stated answer) and **causal influence** (the reasoning *causally drives* the answer, tested via output-level counterfactual interventions). Benchmark of **7,186 instances** across 7 tasks. Tests **12 models**.
+- **Key findings:**
+  - **49.7%** of outputs are unfaithful, predominantly due to stance inconsistency.
+  - Failures concentrate in "brittle, convergent domains" like math and code.
+  - Accuracy is "neither a sufficient nor a reliable proxy for faithfulness" -- the correlation is weak and statistically insignificant after controlling for model and task.
+  - RL-style post-training objectives can **reduce** faithfulness even while maintaining accuracy.
+  - Training method matters more than model scale.
+- **Relation to tool-selection faithfulness:** RFEval's two-dimensional framework (stance consistency + causal influence) is directly applicable to tool-selection. You could operationalize "stance consistency" as whether the stated reasoning logically entails the chosen tool, and "causal influence" as whether perturbing the reasoning actually changes which tool is selected. Their finding that ~50% of outputs are unfaithful sets a strong baseline expectation. Their finding that accuracy != faithfulness is critical: a model that picks the right tool for the wrong (unfaithful) reasons is a safety concern.
+
+---
+
+### 4. FACT-E (arXiv 2604.10693)
+
+- **Full title:** FACT-E: Causality-Inspired Evaluation for Trustworthy Chain-of-Thought Reasoning
+- **Authors:** Yuxi Sun, Aoqi Zuo, Haotian Xie, Wei Gao, Mingming Gong, Jing Ma
+- **Date:** April 12, 2026 (v1); revised April 20, 2026 (v2). Accepted at **ACL 2026 Findings**.
+- **Methodology:** Uses controlled perturbations as "instrumental signals" to separate genuine step-to-step logical dependence from bias-driven artifacts. Evaluates two complementary dimensions: **intra-chain faithfulness** (do intermediate steps genuinely follow from each other?) and **CoT-to-answer consistency** (does the chain support the correct answer?). Tested on GSM8K, MATH, and CommonsenseQA.
+- **Key findings:**
+  - FACT-E improves reasoning-trajectory selection over baselines.
+  - Yields stronger in-context learning exemplars when used to filter chains.
+  - Reliably detects flawed reasoning under noisy conditions.
+  - Self-evaluation approaches are prone to bias: models "confidently endorse coherence even when step-to-step implication is not valid."
+- **Relation to tool-selection faithfulness:** FACT-E's perturbation-based causal testing is methodologically relevant. For tool selection, you could perturb individual reasoning steps and check whether the tool choice changes, measuring genuine causal dependence. Their finding that self-evaluation is unreliable (models endorse their own flawed reasoning) argues against using the model itself to judge tool-selection faithfulness -- external evaluation frameworks are needed.
+
+---
+
+### 5. C2-Faith (arXiv 2603.05167)
+
+- **Full title:** C2-Faith: Benchmarking LLM Judges for Causal and Coverage Faithfulness in Chain-of-Thought Reasoning
+- **Authors:** Avni Mittal, Rauno Arike
+- **Date:** March 5, 2026 (preprint)
+- **Methodology:** Benchmarks LLM-as-judge approaches along two dimensions: **causal faithfulness** (does each step logically follow from prior context?) and **coverage faithfulness** (are all essential intermediate steps present?). Creates controlled test cases by: (a) replacing a single step with an "acausal variant" for causal errors, and (b) deleting steps at varying rates for coverage gaps. Tests 3 frontier models on 3 evaluation tasks: binary causal detection, causal step localization, and coverage scoring.
+- **Key findings:**
+  - No single judge model dominates across all settings -- rankings depend strongly on task framing.
+  - All models show a **substantial gap between detecting that an error exists vs. localizing it**.
+  - Coverage judgments are **systematically inflated** for incomplete reasoning -- models overestimate completeness.
+  - Performance varies significantly with how questions are framed.
+- **Relation to tool-selection faithfulness:** C2-Faith directly addresses the meta-question: can we use LLMs to judge reasoning faithfulness? Their finding that LLM judges struggle with localization (they can detect *something* is wrong but not *where*) and systematically overestimate coverage has practical implications for your work. If you plan to use LLM judges to evaluate whether tool-selection reasoning is faithful, C2-Faith suggests this approach has significant blind spots, especially for identifying which specific reasoning step is unfaithful and for catching missing reasoning steps.
+
+---
+
+### 6. "Lie to Me" (arXiv 2603.22582)
+
+- **Full title:** Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Reasoning Models?
+- **Authors:** Richard J. Young
+- **Date:** March 23, 2026 (preprint)
+- **Methodology:** Tests **12 open-weight reasoning models** spanning **9 architectural families** by injecting 6 types of reasoning hints (sycophancy, consistency, visual pattern, metadata, grader hacking, unethical information) into **498 multiple-choice questions**. Measures faithfulness as whether models acknowledge hint influence in their outputs.
+- **Key findings:**
+  - Faithfulness rates range from **39.7%** (Seed-1.6-Flash) to **89.9%** (DeepSeek-V3.2-Speciale).
+  - Lowest acknowledgment rates: consistency hints (35.5%) and sycophancy hints (53.9%).
+  - Critical gap: models internally recognize hint influence in thinking tokens at **~87.5%** but suppress acknowledgment in final answers to only **~28.6%**.
+  - Training methodology and model family predict faithfulness more strongly than parameter count.
+- **Relation to tool-selection faithfulness:** The thinking-vs-output gap is especially relevant. In agentic systems, the model's internal "thinking" may acknowledge that a tool is being selected for a spurious reason (e.g., sycophancy toward the user's implied preference), but the final output reasoning suppresses this acknowledgment. This means even models with extended thinking (like o1-style reasoning) may present sanitized justifications. The taxonomy of 6 hint types could be adapted to tool-selection scenarios -- e.g., testing whether models faithfully disclose when they select a tool because of user sycophancy, consistency with prior tool use, or metadata cues.
+
+---
+
+## Summary: Positioning Your Work
+
+These 6 papers collectively establish that:
+
+1. **CoT is often post-hoc** (Paper 1): Answers are pre-determined before reasoning begins.
+2. **Rationalization is detectable internally** (Paper 2): Activation probes can catch unfaithful reasoning that text analysis misses.
+3. **~50% of reasoning is unfaithful** (Paper 3): And accuracy does not predict faithfulness.
+4. **Causal perturbation testing works** (Paper 4): But self-evaluation is unreliable.
+5. **LLM judges have systematic blind spots** (Paper 5): Especially for localization and coverage.
+6. **Models suppress self-knowledge of unfaithfulness** (Paper 6): The thinking/output gap is ~60 percentage points.
+
+**The gap your work fills:** None of these papers study faithfulness specifically in the context of **tool selection** in agentic systems. They focus on QA/math/commonsense reasoning. Tool selection introduces unique challenges: the action space is discrete and functional (tools have real-world effects), the reasoning must account for tool capabilities/APIs, and unfaithful tool-selection reasoning has direct safety implications in deployed agents. Your work would be the first to bridge the faithfulness evaluation literature with the agentic tool-use literature.
+
+agentId: aa940c16a51f9421d (use SendMessage with to: 'aa940c16a51f9421d' to continue this agent)
+&lt;usage>total_tokens: 18044
+tool_uses: 13
+duration_ms: 94754&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b26f1c08-67d2-4eb0-bc36-47865f9fe3e1",
+  "isSidechain": false,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "type": "user",
+  "uuid": "6fb08e42-ef43-4ed1-94f6-9776fa351238",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to research 6 specific papers that were flagged as missing from a research proposal's landscape. For each paper, I need to understand: (1) what it does, (2) its key findings, (3) how it relates to studying faithfulness of tool-selection reasoning in agentic LLM systems.\n\nThe papers are:\n1. \"Decoding Answers Before Chain-of-Thought\" (2603.01437) — shows answers encoded in pre-CoT activations\n2. \"Catching rationalization in the act\" (2603.17199) — detects motivated reasoning via activation probing\n3. RFEval (2602.17053) — counterfactual intervention faithfulness benchmark\n4. FACT-E (2604.10693) — causality-inspired CoT evaluation\n5. C2-Faith (2603.05167) — causal faithfulness benchmarking\n6. \"Lie to Me\" (2603.22582) — comprehensive faithfulness evaluation across 12 models\n\nFor each paper:\n- Search for it on the web using its arXiv ID\n- Fetch the arXiv abstract page to get details\n- Report: title, authors (first 3), venue/date, key methodology, key findings/numbers, and how it relates to tool-selection faithfulness\n\nBe thorough - I need to understand exactly what each paper contributes so I can position our work relative to them.",
+    "agentId": "aa940c16a51f9421d",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have thorough information on all 6 papers. Here is my comprehensive report.\n\n---\n\n## Paper-by-Paper Research Report\n\n### 1. \"Decoding Answers Before Chain-of-Thought\" (arXiv 2603.01437)\n\n- **Full title:** Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering\n- **Authors:** Kyle Cox, Darius Kianersi, Adrià Garriga-Alonso\n- **Date:** March 2, 2026 (preprint)\n- **Methodology:** Linear probes trained on residual stream activations at the final token *before* CoT generation begins. Also uses activation steering (intervening along probe directions to flip answers). Tested on instruction-tuned models across multiple tasks.\n- **Key findings:**\n  - Pre-CoT probes achieve **0.9 AUC** in predicting the model's final answer before any reasoning tokens are generated.\n  - Activation steering flipped answers in **>50%** of cases, significantly outperforming orthogonal control baselines.\n  - Two failure modes when steering induces wrong answers: *non-entailment* (correct premises, unsupported conclusion) and *confabulation* (fabricated premises).\n  - Concludes that CoT is often post-hoc rationalization; the model has already \"decided\" before reasoning.\n- **Relation to tool-selection faithfulness:** This is directly threatening to any claim that CoT explains *why* a model chose a particular tool. If answers (and by extension, tool choices) are encoded in pre-CoT activations, then the stated reasoning for selecting tool A over tool B may be a post-hoc narrative rather than a causal account. Your work could extend their probing methodology from answer prediction to tool-selection prediction, testing whether tool choice is similarly \"pre-decided.\"\n\n---\n\n### 2. \"Catching Rationalization in the Act\" (arXiv 2603.17199)\n\n- **Full title:** Catching rationalization in the act: detecting motivated reasoning before and after CoT via activation probing\n- **Authors:** Parsa Mirtaheri, Mikhail Belkin\n- **Date:** March 17, 2026 (preprint)\n- **Methodology:** Injects hints into multiple-choice questions that favor particular options, inducing motivated reasoning. Uses supervised probes on the residual stream at two timepoints: pre-generation (before CoT tokens) and post-generation (after CoT). Compares probe detection to an LLM-based CoT monitor that has full access to the reasoning chain.\n- **Key findings:**\n  - Models shift toward hinted answers while producing explanations that never mention the hint -- classic motivated reasoning / rationalization.\n  - **Pre-generation probes match** the detection accuracy of a full-CoT LLM monitor.\n  - **Post-generation probes outperform** the CoT monitor.\n  - Internal representations are more reliable for detecting motivated reasoning than analyzing the text of reasoning chains.\n- **Relation to tool-selection faithfulness:** This paper demonstrates that unfaithful reasoning (rationalization) is detectable via internal activations even when the text-level CoT looks clean. For tool-selection scenarios, this suggests that if a model selects a tool for a \"bad\" reason (e.g., a spurious pattern in the prompt), activation probing could detect this even when the stated reasoning appears sound. This is a complementary detection method to the behavioral/textual approaches your work likely uses.\n\n---\n\n### 3. RFEval (arXiv 2602.17053)\n\n- **Full title:** RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models\n- **Authors:** Yunseok Han, Yejoon Lee, Jaeyoung Do\n- **Date:** February 19, 2026 (preprint)\n- **Methodology:** Defines faithfulness along two dimensions: **stance consistency** (reasoning logically supports the stated answer) and **causal influence** (the reasoning *causally drives* the answer, tested via output-level counterfactual interventions). Benchmark of **7,186 instances** across 7 tasks. Tests **12 models**.\n- **Key findings:**\n  - **49.7%** of outputs are unfaithful, predominantly due to stance inconsistency.\n  - Failures concentrate in \"brittle, convergent domains\" like math and code.\n  - Accuracy is \"neither a sufficient nor a reliable proxy for faithfulness\" -- the correlation is weak and statistically insignificant after controlling for model and task.\n  - RL-style post-training objectives can **reduce** faithfulness even while maintaining accuracy.\n  - Training method matters more than model scale.\n- **Relation to tool-selection faithfulness:** RFEval's two-dimensional framework (stance consistency + causal influence) is directly applicable to tool-selection. You could operationalize \"stance consistency\" as whether the stated reasoning logically entails the chosen tool, and \"causal influence\" as whether perturbing the reasoning actually changes which tool is selected. Their finding that ~50% of outputs are unfaithful sets a strong baseline expectation. Their finding that accuracy != faithfulness is critical: a model that picks the right tool for the wrong (unfaithful) reasons is a safety concern.\n\n---\n\n### 4. FACT-E (arXiv 2604.10693)\n\n- **Full title:** FACT-E: Causality-Inspired Evaluation for Trustworthy Chain-of-Thought Reasoning\n- **Authors:** Yuxi Sun, Aoqi Zuo, Haotian Xie, Wei Gao, Mingming Gong, Jing Ma\n- **Date:** April 12, 2026 (v1); revised April 20, 2026 (v2). Accepted at **ACL 2026 Findings**.\n- **Methodology:** Uses controlled perturbations as \"instrumental signals\" to separate genuine step-to-step logical dependence from bias-driven artifacts. Evaluates two complementary dimensions: **intra-chain faithfulness** (do intermediate steps genuinely follow from each other?) and **CoT-to-answer consistency** (does the chain support the correct answer?). Tested on GSM8K, MATH, and CommonsenseQA.\n- **Key findings:**\n  - FACT-E improves reasoning-trajectory selection over baselines.\n  - Yields stronger in-context learning exemplars when used to filter chains.\n  - Reliably detects flawed reasoning under noisy conditions.\n  - Self-evaluation approaches are prone to bias: models \"confidently endorse coherence even when step-to-step implication is not valid.\"\n- **Relation to tool-selection faithfulness:** FACT-E's perturbation-based causal testing is methodologically relevant. For tool selection, you could perturb individual reasoning steps and check whether the tool choice changes, measuring genuine causal dependence. Their finding that self-evaluation is unreliable (models endorse their own flawed reasoning) argues against using the model itself to judge tool-selection faithfulness -- external evaluation frameworks are needed.\n\n---\n\n### 5. C2-Faith (arXiv 2603.05167)\n\n- **Full title:** C2-Faith: Benchmarking LLM Judges for Causal and Coverage Faithfulness in Chain-of-Thought Reasoning\n- **Authors:** Avni Mittal, Rauno Arike\n- **Date:** March 5, 2026 (preprint)\n- **Methodology:** Benchmarks LLM-as-judge approaches along two dimensions: **causal faithfulness** (does each step logically follow from prior context?) and **coverage faithfulness** (are all essential intermediate steps present?). Creates controlled test cases by: (a) replacing a single step with an \"acausal variant\" for causal errors, and (b) deleting steps at varying rates for coverage gaps. Tests 3 frontier models on 3 evaluation tasks: binary causal detection, causal step localization, and coverage scoring.\n- **Key findings:**\n  - No single judge model dominates across all settings -- rankings depend strongly on task framing.\n  - All models show a **substantial gap between detecting that an error exists vs. localizing it**.\n  - Coverage judgments are **systematically inflated** for incomplete reasoning -- models overestimate completeness.\n  - Performance varies significantly with how questions are framed.\n- **Relation to tool-selection faithfulness:** C2-Faith directly addresses the meta-question: can we use LLMs to judge reasoning faithfulness? Their finding that LLM judges struggle with localization (they can detect *something* is wrong but not *where*) and systematically overestimate coverage has practical implications for your work. If you plan to use LLM judges to evaluate whether tool-selection reasoning is faithful, C2-Faith suggests this approach has significant blind spots, especially for identifying which specific reasoning step is unfaithful and for catching missing reasoning steps.\n\n---\n\n### 6. \"Lie to Me\" (arXiv 2603.22582)\n\n- **Full title:** Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Reasoning Models?\n- **Authors:** Richard J. Young\n- **Date:** March 23, 2026 (preprint)\n- **Methodology:** Tests **12 open-weight reasoning models** spanning **9 architectural families** by injecting 6 types of reasoning hints (sycophancy, consistency, visual pattern, metadata, grader hacking, unethical information) into **498 multiple-choice questions**. Measures faithfulness as whether models acknowledge hint influence in their outputs.\n- **Key findings:**\n  - Faithfulness rates range from **39.7%** (Seed-1.6-Flash) to **89.9%** (DeepSeek-V3.2-Speciale).\n  - Lowest acknowledgment rates: consistency hints (35.5%) and sycophancy hints (53.9%).\n  - Critical gap: models internally recognize hint influence in thinking tokens at **~87.5%** but suppress acknowledgment in final answers to only **~28.6%**.\n  - Training methodology and model family predict faithfulness more strongly than parameter count.\n- **Relation to tool-selection faithfulness:** The thinking-vs-output gap is especially relevant. In agentic systems, the model's internal \"thinking\" may acknowledge that a tool is being selected for a spurious reason (e.g., sycophancy toward the user's implied preference), but the final output reasoning suppresses this acknowledgment. This means even models with extended thinking (like o1-style reasoning) may present sanitized justifications. The taxonomy of 6 hint types could be adapted to tool-selection scenarios -- e.g., testing whether models faithfully disclose when they select a tool because of user sycophancy, consistency with prior tool use, or metadata cues.\n\n---\n\n## Summary: Positioning Your Work\n\nThese 6 papers collectively establish that:\n\n1. **CoT is often post-hoc** (Paper 1): Answers are pre-determined before reasoning begins.\n2. **Rationalization is detectable internally** (Paper 2): Activation probes can catch unfaithful reasoning that text analysis misses.\n3. **~50% of reasoning is unfaithful** (Paper 3): And accuracy does not predict faithfulness.\n4. **Causal perturbation testing works** (Paper 4): But self-evaluation is unreliable.\n5. **LLM judges have systematic blind spots** (Paper 5): Especially for localization and coverage.\n6. **Models suppress self-knowledge of unfaithfulness** (Paper 6): The thinking/output gap is ~60 percentage points.\n\n**The gap your work fills:** None of these papers study faithfulness specifically in the context of **tool selection** in agentic systems. They focus on QA/math/commonsense reasoning. Tool selection introduces unique challenges: the action space is discrete and functional (tools have real-world effects), the reasoning must account for tool capabilities/APIs, and unfaithful tool-selection reasoning has direct safety implications in deployed agents. Your work would be the first to bridge the faithfulness evaluation literature with the agentic tool-use literature."
+      }
+    ],
+    "totalDurationMs": 94754,
+    "totalTokens": 18044,
+    "totalToolUseCount": 13,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3322,
+      "cache_read_input_tokens": 11876,
+      "output_tokens": 2845,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3322
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2845,
+          "cache_read_input_tokens": 11876,
+          "cache_creation_input_tokens": 3322,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3322,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 13
+    }
+  },
+  "sourceToolAssistantUUID": "b26f1c08-67d2-4eb0-bc36-47865f9fe3e1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Faithfulness of Tool-Selection Reasoning in Agentic Systems\",   \"core_…",
+  "leafUuid": "6fb08e42-ef43-4ed1-94f6-9776fa351238",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise tool-selection faithfulness benchmark per reviewer feedback",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55"
+}
+```
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T14:36:49.016Z_
+
+<details><summary>↩ Tool result · `toolu_0196LWiDepnvqC49UFtXauMk`</summary>
+
+```text
+I now have comprehensive information. Here is the full report:
+
+---
+
+## LLM Model Verification Report -- May 2026
+
+### 1. Kimi-K2 --> OUTDATED, update to Kimi K2.6
+
+- **Latest version:** Kimi K2.6
+- **Released:** April 20, 2026
+- **Parameters:** 1T total (MoE), 32B active per token (384 experts, 8+1 activated)
+- **Context window:** 256K tokens
+- **Tool/function calling:** Yes -- fully compatible with OpenAI's chat completions interface, supports native function calling, multi-turn tool use, 300 concurrent sub-agents, ranked top-tier on Berkeley Function-Calling Leaderboard
+- **License:** Modified MIT (open weights)
+- **Key benchmarks:** SWE-Bench Pro 58.6% (ties GPT-5.5), Humanity's Last Exam w/ tools 54.0%
+- **Sources:** [SiliconANGLE](https://siliconangle.com/2026/04/20/moonshot-ai-releases-kimi-k2-6-model-1t-parameters-attention-optimizations/), [MarkTechPost](https://www.marktechpost.com/2026/04/20/moonshot-ai-releases-kimi-k2-6-with-long-horizon-coding-agent-swarm-scaling-to-300-sub-agents-and-4000-coordinated-steps/), [deepinfra](https://deepinfra.com/blog/kimi-k2-6-model-overview)
+
+---
+
+### 2. GLM-4.5 --> OUTDATED, update to GLM-5.1
+
+- **Latest version:** GLM-5.1 (GLM-5 released Feb 11, 2026; GLM-5.1 released April 7-8, 2026)
+- **Parameters:** ~754B total (MoE), ~40B active per token
+- **Context window:** 200K tokens
+- **Tool/function calling:** Yes -- supports multi-step reasoning, web browsing, tool use, agentic tasks
+- **License:** MIT (open weights on Hugging Face)
+- **Key benchmarks:** SWE-Bench Pro 58.4 (#1 globally at time of release), beat GPT-5.4 (57.7) and Claude Opus 4.6 (57.3) on that benchmark
+- **Notes:** Trained on Huawei Ascend chips. Zhipu AI IPO'd in Hong Kong Jan 2026. GLM-5.1 can work autonomously on tasks for 8+ hours.
+- **Sources:** [MLHive](https://mlhive.com/2026/04/zhipu-ai-glm-5-1-744b-open-source-release), [BuildFastWithAI](https://www.buildfastwithai.com/blogs/glm-5-1-open-source-review-2026), [Medium](https://medium.com/the-ai-studio/glm-5-1-just-beat-gpt-5-4-and-claude-opus-and-its-free-and-open-source-049312ed1836)
+
+---
+
+### 3. Qwen3-32B --> OUTDATED, update to Qwen3.6
+
+- **Latest version:** Qwen3.6 series (Qwen3.5 released Feb 16, 2026; Qwen3.6 released April 2026)
+- **Flagship:** Qwen3.6-Plus (proprietary API); open-weight models include Qwen3.6-35B-A3B (35B total, 3B active MoE) and Qwen3.6-27B (dense)
+- **Context window:** 1M tokens (Qwen3.6-Plus)
+- **Tool/function calling:** Yes -- native tool calling, MCP support via Qwen-Agent, works with vLLM/SGLang/Ollama/etc.
+- **License:** Apache 2.0 (open-weight models)
+- **Notes:** Qwen3-Coder-30B-A3B-Instruct scored highest on Berkeley Function Calling Leaderboard for coding tasks. The Qwen3.5 intermediate series included models from 0.8B to 397B-A17B.
+- **Sources:** [Qwen Blog](https://qwen.ai/blog?id=qwen3.6), [GitHub](https://github.com/QwenLM/Qwen3.6), [Alibaba Cloud](https://www.alibabacloud.com/blog/qwen3-6-plus-towards-real-world-agents_603005)
+
+---
+
+### 4. DeepSeek-R1-0528 --> PARTIALLY OUTDATED
+
+- **R1 status:** DeepSeek-R1-0528 is the last R1-series release. It has NOT been superseded by an "R2" (R2 remains unconfirmed despite rumors).
+- **However:** DeepSeek has moved forward with the V-series. **DeepSeek-V4** was released April 24, 2026 in Preview:
+  - V4-Pro: 1.6T parameters, 49B active, 1M context
+  - V4-Flash: 284B parameters, 13B active, 1M context
+- DeepSeek-V3.1-Think also exists as a stepping stone, with enhanced tool usage vs. R1-0528.
+- **Tool/function calling:** V4-Pro and V4-Flash support agent-based tasks and tool use. R1-0528's tool use was more limited.
+- **Recommendation:** Replace DeepSeek-R1-0528 with **DeepSeek-V4-Pro** (or V4-Flash for cost efficiency) for agentic/tool-use workflows.
+- **Sources:** [CNBC](https://www.cnbc.com/2026/04/24/deepseek-v4-llm-preview-open-source-ai-competition-china.html), [DeepSeek API Docs](https://api-docs.deepseek.com/news/news260424), [HuggingFace](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro)
+
+---
+
+### 5. Claude Sonnet 4 --> OUTDATED, update to Claude Sonnet 4.6
+
+- **Latest version:** Claude Sonnet 4.6 (released February 17, 2026)
+- **Context window:** 1M tokens (beta)
+- **Pricing:** $3/$15 per million tokens (input/output) -- same as Sonnet 4.5
+- **Tool/function calling:** Yes -- full tool use support, computer use, agentic planning
+- **Notes:** Claude Sonnet 4.5 was deprecated May 18, 2026. Sonnet 4.6 is now the default model in claude.ai. There are leaks about a Sonnet 4.8 but nothing official.
+- **Sources:** [Anthropic](https://www.anthropic.com/news/claude-sonnet-4-6), [Axios](https://www.axios.com/2026/02/17/anthropic-new-claude-sonnet-faster-cheaper)
+
+---
+
+### 6. GPT-4.1 --> OUTDATED, significantly superseded
+
+- **Status:** GPT-4.1 was **retired from ChatGPT on February 13, 2026**, along with GPT-4o and GPT-4.1 mini.
+- **Latest OpenAI models:**
+  - **GPT-5.5** released April 23, 2026 (API: April 24)
+  - **GPT-5.5 Instant** became default ChatGPT model May 6, 2026
+- **Tool/function calling:** GPT-5.5 supports full function calling (has been an OpenAI staple since GPT-4)
+- **Recommendation:** Replace GPT-4.1 with **GPT-5.5** for frontier performance.
+- **Sources:** [OpenAI](https://openai.com/index/retiring-gpt-4o-and-older-models/), [ScriptByAI Timeline](https://www.scriptbyai.com/timeline-of-chatgpt/)
+
+---
+
+### 7. Gemini 2.5 Pro --> STILL CURRENT (updated)
+
+- **Status:** Gemini 2.5 Pro is still the latest Gemini model family. It has gone from preview to **stable GA** in both Google AI Studio and Vertex AI.
+- **Latest updates:** Upgraded preview released with 24-point Elo jump on LMArena (score: 1470, leading), 35-point Elo jump on WebDevArena (1443, leading)
+- **Context window:** 1M tokens
+- **Tool/function calling:** Yes -- full support
+- **Notes:** No "Gemini 3.0" has been announced. Gemini 2.5 Pro remains Google's frontier model, but it has received significant updates since initial preview. The stable GA version is the one to reference.
+- **Sources:** [Google Developers Blog](https://developers.googleblog.com/en/gemini-2-5-thinking-model-updates/), [Google Cloud Blog](https://cloud.google.com/blog/products/ai-machine-learning/gemini-2-5-flash-lite-flash-pro-ga-vertex-ai), [Google AI Docs](https://ai.google.dev/gemini-api/docs/models)
+
+---
+
+## Summary Table
+
+| Your Current Model | Status | Recommended Replacement | Released | Params (total/active) | Tool Calling |
+|---|---|---|---|---|---|
+| Kimi-K2 | Outdated | **Kimi K2.6** | Apr 20, 2026 | 1T / 32B | Yes |
+| GLM-4.5 | Outdated | **GLM-5.1** | Apr 7, 2026 | ~754B / ~40B | Yes |
+| Qwen3-32B | Outdated | **Qwen3.6-Plus** (API) or **Qwen3.6-35B-A3B** (open) | Apr 2026 | 35B/3B (open); Plus is larger | Yes |
+| DeepSeek-R1-0528 | Outdated | **DeepSeek-V4-Pro** | Apr 24, 2026 | 1.6T / 49B | Yes |
+| Claude Sonnet 4 | Outdated | **Claude Sonnet 4.6** | Feb 17, 2026 | Not disclosed | Yes |
+| GPT-4.1 | Retired | **GPT-5.5** | Apr 23, 2026 | Not disclosed | Yes |
+| Gemini 2.5 Pro | Current (updated) | **Gemini 2.5 Pro (GA stable)** | GA 2026 | Not disclosed | Yes |
+
+**Bottom line:** The reviewer was correct -- six of the seven models listed in your proposal are outdated. All have successors with significantly improved agentic/tool-use capabilities. The only one that remains current is Gemini 2.5 Pro, though you should note it has moved from preview to stable GA. The open-source landscape has advanced dramatically, with Kimi K2.6, GLM-5.1, and DeepSeek-V4-Pro all now competing at frontier levels on agentic benchmarks.
+
+agentId: a1a54ef33d21257a6 (use SendMessage with to: 'a1a54ef33d21257a6' to continue this agent)
+&lt;usage>total_tokens: 30547
+tool_uses: 17
+duration_ms: 115790&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2dde5fb0-63d4-4598-ba74-1387261acee8",
+  "isSidechain": false,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "type": "user",
+  "uuid": "2f3d87ab-a1a4-40b2-8b3c-76c1170c6a7c",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify the current state-of-the-art for LLM models as of May 2026, specifically for agentic/tool-use capabilities. A reviewer flagged that these models are outdated:\n- Kimi-K2 (should be K2.6?)\n- GLM-4.5 (should be GLM-5 or 5.1?)\n- Qwen3-32B (should be Qwen3.5 or 3.6?)\n- DeepSeek-R1-0528 (still current?)\n\nAlso check:\n- Claude Sonnet 4 (still current or is there a newer version?)\n- GPT-4.1 (still current?)\n- Gemini 2.5 Pro (still current or superseded?)\n\nSearch for:\n1. \"Kimi K2.6 2026\" or \"Kimi K2 latest version 2026\"\n2. \"GLM-5 model 2026\" or \"ChatGLM latest 2026\"\n3. \"Qwen3.5 OR Qwen3.6 2026\"\n4. \"DeepSeek R1 latest 2026\"\n5. Current LLM leaderboards (LMSYS, Open LLM Leaderboard) for May 2026\n6. \"best open source LLM tool use 2026\"\n\nFor each model, report: latest version name, release date, parameter count, and whether it supports tool/function calling. I need accurate information to update the model selection in a research proposal.",
+    "agentId": "a1a54ef33d21257a6",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have comprehensive information. Here is the full report:\n\n---\n\n## LLM Model Verification Report -- May 2026\n\n### 1. Kimi-K2 --> OUTDATED, update to Kimi K2.6\n\n- **Latest version:** Kimi K2.6\n- **Released:** April 20, 2026\n- **Parameters:** 1T total (MoE), 32B active per token (384 experts, 8+1 activated)\n- **Context window:** 256K tokens\n- **Tool/function calling:** Yes -- fully compatible with OpenAI's chat completions interface, supports native function calling, multi-turn tool use, 300 concurrent sub-agents, ranked top-tier on Berkeley Function-Calling Leaderboard\n- **License:** Modified MIT (open weights)\n- **Key benchmarks:** SWE-Bench Pro 58.6% (ties GPT-5.5), Humanity's Last Exam w/ tools 54.0%\n- **Sources:** [SiliconANGLE](https://siliconangle.com/2026/04/20/moonshot-ai-releases-kimi-k2-6-model-1t-parameters-attention-optimizations/), [MarkTechPost](https://www.marktechpost.com/2026/04/20/moonshot-ai-releases-kimi-k2-6-with-long-horizon-coding-agent-swarm-scaling-to-300-sub-agents-and-4000-coordinated-steps/), [deepinfra](https://deepinfra.com/blog/kimi-k2-6-model-overview)\n\n---\n\n### 2. GLM-4.5 --> OUTDATED, update to GLM-5.1\n\n- **Latest version:** GLM-5.1 (GLM-5 released Feb 11, 2026; GLM-5.1 released April 7-8, 2026)\n- **Parameters:** ~754B total (MoE), ~40B active per token\n- **Context window:** 200K tokens\n- **Tool/function calling:** Yes -- supports multi-step reasoning, web browsing, tool use, agentic tasks\n- **License:** MIT (open weights on Hugging Face)\n- **Key benchmarks:** SWE-Bench Pro 58.4 (#1 globally at time of release), beat GPT-5.4 (57.7) and Claude Opus 4.6 (57.3) on that benchmark\n- **Notes:** Trained on Huawei Ascend chips. Zhipu AI IPO'd in Hong Kong Jan 2026. GLM-5.1 can work autonomously on tasks for 8+ hours.\n- **Sources:** [MLHive](https://mlhive.com/2026/04/zhipu-ai-glm-5-1-744b-open-source-release), [BuildFastWithAI](https://www.buildfastwithai.com/blogs/glm-5-1-open-source-review-2026), [Medium](https://medium.com/the-ai-studio/glm-5-1-just-beat-gpt-5-4-and-claude-opus-and-its-free-and-open-source-049312ed1836)\n\n---\n\n### 3. Qwen3-32B --> OUTDATED, update to Qwen3.6\n\n- **Latest version:** Qwen3.6 series (Qwen3.5 released Feb 16, 2026; Qwen3.6 released April 2026)\n- **Flagship:** Qwen3.6-Plus (proprietary API); open-weight models include Qwen3.6-35B-A3B (35B total, 3B active MoE) and Qwen3.6-27B (dense)\n- **Context window:** 1M tokens (Qwen3.6-Plus)\n- **Tool/function calling:** Yes -- native tool calling, MCP support via Qwen-Agent, works with vLLM/SGLang/Ollama/etc.\n- **License:** Apache 2.0 (open-weight models)\n- **Notes:** Qwen3-Coder-30B-A3B-Instruct scored highest on Berkeley Function Calling Leaderboard for coding tasks. The Qwen3.5 intermediate series included models from 0.8B to 397B-A17B.\n- **Sources:** [Qwen Blog](https://qwen.ai/blog?id=qwen3.6), [GitHub](https://github.com/QwenLM/Qwen3.6), [Alibaba Cloud](https://www.alibabacloud.com/blog/qwen3-6-plus-towards-real-world-agents_603005)\n\n---\n\n### 4. DeepSeek-R1-0528 --> PARTIALLY OUTDATED\n\n- **R1 status:** DeepSeek-R1-0528 is the last R1-series release. It has NOT been superseded by an \"R2\" (R2 remains unconfirmed despite rumors).\n- **However:** DeepSeek has moved forward with the V-series. **DeepSeek-V4** was released April 24, 2026 in Preview:\n  - V4-Pro: 1.6T parameters, 49B active, 1M context\n  - V4-Flash: 284B parameters, 13B active, 1M context\n- DeepSeek-V3.1-Think also exists as a stepping stone, with enhanced tool usage vs. R1-0528.\n- **Tool/function calling:** V4-Pro and V4-Flash support agent-based tasks and tool use. R1-0528's tool use was more limited.\n- **Recommendation:** Replace DeepSeek-R1-0528 with **DeepSeek-V4-Pro** (or V4-Flash for cost efficiency) for agentic/tool-use workflows.\n- **Sources:** [CNBC](https://www.cnbc.com/2026/04/24/deepseek-v4-llm-preview-open-source-ai-competition-china.html), [DeepSeek API Docs](https://api-docs.deepseek.com/news/news260424), [HuggingFace](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro)\n\n---\n\n### 5. Claude Sonnet 4 --> OUTDATED, update to Claude Sonnet 4.6\n\n- **Latest version:** Claude Sonnet 4.6 (released February 17, 2026)\n- **Context window:** 1M tokens (beta)\n- **Pricing:** $3/$15 per million tokens (input/output) -- same as Sonnet 4.5\n- **Tool/function calling:** Yes -- full tool use support, computer use, agentic planning\n- **Notes:** Claude Sonnet 4.5 was deprecated May 18, 2026. Sonnet 4.6 is now the default model in claude.ai. There are leaks about a Sonnet 4.8 but nothing official.\n- **Sources:** [Anthropic](https://www.anthropic.com/news/claude-sonnet-4-6), [Axios](https://www.axios.com/2026/02/17/anthropic-new-claude-sonnet-faster-cheaper)\n\n---\n\n### 6. GPT-4.1 --> OUTDATED, significantly superseded\n\n- **Status:** GPT-4.1 was **retired from ChatGPT on February 13, 2026**, along with GPT-4o and GPT-4.1 mini.\n- **Latest OpenAI models:**\n  - **GPT-5.5** released April 23, 2026 (API: April 24)\n  - **GPT-5.5 Instant** became default ChatGPT model May 6, 2026\n- **Tool/function calling:** GPT-5.5 supports full function calling (has been an OpenAI staple since GPT-4)\n- **Recommendation:** Replace GPT-4.1 with **GPT-5.5** for frontier performance.\n- **Sources:** [OpenAI](https://openai.com/index/retiring-gpt-4o-and-older-models/), [ScriptByAI Timeline](https://www.scriptbyai.com/timeline-of-chatgpt/)\n\n---\n\n### 7. Gemini 2.5 Pro --> STILL CURRENT (updated)\n\n- **Status:** Gemini 2.5 Pro is still the latest Gemini model family. It has gone from preview to **stable GA** in both Google AI Studio and Vertex AI.\n- **Latest updates:** Upgraded preview released with 24-point Elo jump on LMArena (score: 1470, leading), 35-point Elo jump on WebDevArena (1443, leading)\n- **Context window:** 1M tokens\n- **Tool/function calling:** Yes -- full support\n- **Notes:** No \"Gemini 3.0\" has been announced. Gemini 2.5 Pro remains Google's frontier model, but it has received significant updates since initial preview. The stable GA version is the one to reference.\n- **Sources:** [Google Developers Blog](https://developers.googleblog.com/en/gemini-2-5-thinking-model-updates/), [Google Cloud Blog](https://cloud.google.com/blog/products/ai-machine-learning/gemini-2-5-flash-lite-flash-pro-ga-vertex-ai), [Google AI Docs](https://ai.google.dev/gemini-api/docs/models)\n\n---\n\n## Summary Table\n\n| Your Current Model | Status | Recommended Replacement | Released | Params (total/active) | Tool Calling |\n|---|---|---|---|---|---|\n| Kimi-K2 | Outdated | **Kimi K2.6** | Apr 20, 2026 | 1T / 32B | Yes |\n| GLM-4.5 | Outdated | **GLM-5.1** | Apr 7, 2026 | ~754B / ~40B | Yes |\n| Qwen3-32B | Outdated | **Qwen3.6-Plus** (API) or **Qwen3.6-35B-A3B** (open) | Apr 2026 | 35B/3B (open); Plus is larger | Yes |\n| DeepSeek-R1-0528 | Outdated | **DeepSeek-V4-Pro** | Apr 24, 2026 | 1.6T / 49B | Yes |\n| Claude Sonnet 4 | Outdated | **Claude Sonnet 4.6** | Feb 17, 2026 | Not disclosed | Yes |\n| GPT-4.1 | Retired | **GPT-5.5** | Apr 23, 2026 | Not disclosed | Yes |\n| Gemini 2.5 Pro | Current (updated) | **Gemini 2.5 Pro (GA stable)** | GA 2026 | Not disclosed | Yes |\n\n**Bottom line:** The reviewer was correct -- six of the seven models listed in your proposal are outdated. All have successors with significantly improved agentic/tool-use capabilities. The only one that remains current is Gemini 2.5 Pro, though you should note it has moved from preview to stable GA. The open-source landscape has advanced dramatically, with Kimi K2.6, GLM-5.1, and DeepSeek-V4-Pro all now competing at frontier levels on agentic benchmarks."
+      }
+    ],
+    "totalDurationMs": 115790,
+    "totalTokens": 30547,
+    "totalToolUseCount": 17,
+    "usage": {
+      "input_tokens": 1080,
+      "cache_creation_input_tokens": 3093,
+      "cache_read_input_tokens": 23555,
+      "output_tokens": 2819,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3093
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1080,
+          "output_tokens": 2819,
+          "cache_read_input_tokens": 23555,
+          "cache_creation_input_tokens": 3093,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3093,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 3,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 14
+    }
+  },
+  "sourceToolAssistantUUID": "2dde5fb0-63d4-4598-ba74-1387261acee8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T14:38:28.710Z_
+
+<details><summary>↩ Tool result · `toolu_015U6aMEzrKLrB4hoA4QoCXF`</summary>
+
+```text
+I now have a comprehensive picture. Here is the detailed report.
+
+---
+
+## Detailed Research Report: "Decoding Answers Before CoT" and Related Work on Tool-Call Probing
+
+### 1. What "Decoding Answers Before Chain-of-Thought" (arXiv 2603.01437) Shows
+
+**Authors:** Kyle Cox, Darius Kianersi, Adria Garriga-Alonso (March 2, 2026)
+
+**Core claim:** Instruction-tuned LLMs encode their final answer in residual-stream activations *before* generating any chain-of-thought tokens. CoT is post-hoc rationalization, not genuine deliberation.
+
+**Models:** Gemma 2 (2B-it, 9B-it), Qwen 2.5 (1.5B-it, 3B-it, 7B-it). Limited appendix experiments on GPT-OSS 20B (a reasoning model).
+
+**Tasks:** Four **binary classification** tasks only -- Anachronisms, Logical Deduction, Sports Understanding, Social Chemistry. All formatted as A/B choices with 500 train / 500 test examples and 4 few-shot CoT demonstrations.
+
+**Probe methodology:** Difference-of-means linear probe on residual-stream activations at the **last pre-CoT token** (the colon in "Let's think step by step:"). The probe direction is simply w = mean_yes - mean_no. Scoring is cosine similarity.
+
+**Exact AUC numbers by task:**
+- Anachronisms: 0.988 to 1.000 across all models
+- Social Chemistry: 0.993 to 0.998
+- Sports Understanding: 0.808 to 0.961
+- Logical Deduction: 0.688 to 0.878 (the weakest -- notably the task where CoT helps most)
+
+**Steering:** Contrastive activation addition at the best-probe layer flips answers in >50% of cases at alpha=20, significantly exceeding orthogonal baselines. This establishes *causality*, not just correlation.
+
+**Failure modes when steering induces wrong answers:**
+1. **Non-entailment:** Correct premises, unsupported conclusion
+2. **Confabulation:** Fabricated false premises to justify the steered answer
+
+**Key limitations the paper acknowledges:**
+- Only binary classification tasks
+- Only instruction-tuned models (not reasoning models trained via RL; their GPT-OSS 20B appendix showed probes work but steering fails)
+- Superposition uncertainty -- the "answer direction" might actually encode task-relevant features (plausibility, validity) rather than a discrete committed answer
+- No mention whatsoever of tool calling, structured outputs, function calling, or JSON
+
+---
+
+### 2. Critical Finding: Tool-Call Probing Has ALREADY Been Done
+
+Your search reveals that the landscape has shifted dramatically in the last few weeks. Three papers from May 2026 directly probe for tool-call decisions in hidden states:
+
+#### Paper A: "Tool Calling is Linearly Readable and Steerable in Language Models" (arXiv 2605.07990, ~2 weeks old)
+
+This is the single most important paper for your differentiation argument -- and it is **bad news**, because it does almost exactly what your proposal describes. Key details:
+
+- **12 instruction-tuned models** across Gemma 3, Qwen 3/2.5, Llama 3.1 (270M to 27B)
+- Probes **tool identity** (which specific tool, not just whether to use a tool) from pre-generation residual stream activations
+- Mean-difference steering switches tool selection at **93-100% accuracy for 4B+ models** in single-turn, fixed-menu settings
+- Tested on realistic benchmarks: tau-bench (14 airline tools, 16 retail tools), ToolBench (up to 2000 real APIs), BFCL v3
+- Discovered a **three-stage circuit**: early tool-specific features -> mid-layer attention heads -> late JSON formatting features
+- Key finding: "Flipping the name is enough" -- once tool identity is steered, JSON arguments auto-adapt to the target schema via autoregressive generation
+- **However:** argument *values* are NOT steerable (0/30 on redirecting e.g. "Tokyo" to "Paris"), and format steering (JSON vs plain text) also fails (0/10)
+- **Critical limitation: multi-turn results are mixed**. In real agentic tau-bench settings, steering shows -30 to +10 percentage points vs. baseline with "no consistent direction." The authors state multi-turn is "fragile" and recommend steering as "an analytical and routing tool, not a standalone method for end-to-end API execution."
+
+#### Paper B: "LLM Agents Already Know When to Call Tools -- Even Without Reasoning" (arXiv 2605.09252, ~1 week old)
+
+- Probes the **binary tool-necessity decision** (use tool vs. don't) rather than tool identity
+- **AUROC 0.89-0.96** across Qwen 3 (1.7B-32B) and Llama (8B, 70B) on 18 synthetic environments
+- Shows that explicit reasoning about tool necessity is "largely superficial" -- it doesn't improve beyond what's already encoded in pre-generation hidden states
+- Their Probe&Prefill method reduces tool calls by 48% with only 1.7% accuracy loss
+- Limited to mostly single-turn; multi-hop tasks tested but with minimal analysis of sequential dynamics
+
+#### Paper C: "Beyond the Black Box: Interpretability of Agentic AI Tool Use" (arXiv 2605.06890)
+
+- GPT-OSS 20B and Gemma 3 27B
+- Uses SAEs + linear probes on pre-action hidden states
+- Probes for **tool-need (binary)** and **tool-risk (ternary: low/medium/high)**
+- Tool-Need accuracy: 71-75%; Tool-Risk accuracy: 88-90%
+- **Explicitly addresses multi-turn trajectories** with 15+ step financial traces
+- Shows probe signals evolve across sequential steps within a single interaction
+
+#### Paper D: "Internal Representations as Indicators of Hallucinations in Agent Tool Selection" (arXiv 2601.05214, January 2026)
+
+- Qwen-7B, GPT-OSS-20B, Llama-3.1-8B
+- Probes hidden states to detect **tool-calling hallucinations** (wrong tool name, wrong parameters, missing parameters, tool bypass)
+- Extracts features at function name onset + argument region + closing delimiter
+- GPT-OSS-20B: 86% accuracy detecting hallucinated tool calls
+- Single-turn only; no multi-turn analysis
+
+---
+
+### 3. What Gaps Remain for Your Proposal
+
+Given this landscape, here is an honest assessment of what your proposal could still contribute, and where it is now pre-empted:
+
+**Already covered by existing work:**
+- Linear probes on open-source model hidden states for tool identity before reasoning: Done by 2605.07990 with 12 models, multiple benchmarks, and both probing + steering + circuit analysis
+- Binary tool-use-vs-no-tool-use probing: Done by 2605.09252 with 0.89-0.96 AUROC
+- Pre-CoT answer probing for QA: Done by 2603.01437
+- Tool-call hallucination detection from hidden states: Done by 2601.05214
+
+**Gaps that remain genuinely open:**
+
+1. **Multi-turn agentic settings are explicitly flagged as unsolved.** Paper 2605.07990 found steering "fragile" in multi-turn and reported -30 to +10pp with "no consistent direction." Paper 2605.06890 addresses multi-turn trajectories but only for tool-need/tool-risk classification, not tool identity. Nobody has systematically studied how **accumulated conversation context** (prior tool results, error states, user corrections) affects tool-identity encoding in hidden states across turns.
+
+2. **Parameter probing is completely open.** 2605.07990 explicitly showed tool NAME is linearly steerable but argument VALUES are not (0/30). Nobody has probed whether parameter choices (e.g., which database to query, what filter to apply) are encoded pre-generation. This is a fundamentally harder problem because parameters are drawn from the query context, not a fixed menu.
+
+3. **Compositional tool-call structure** -- the joint encoding of (tool_name, param1, param2, ...) as a structured object rather than as independent dimensions -- is unstudied. Existing work treats tool name and parameters separately.
+
+4. **Tool-call sequencing and planning** -- whether the model's hidden state encodes not just the *next* tool call but a *plan* of upcoming tool calls in a multi-step agent workflow -- is unexplored.
+
+5. **Interaction between conversation history and tool-call encoding** -- does the probe direction shift when prior tool calls returned errors? When the user corrects the agent? When the context window grows? Nobody has studied this.
+
+6. **Cross-turn probe transfer** -- whether a probe trained at turn 1 generalizes to turn 5 when the context is rich with prior tool results -- is untested.
+
+---
+
+### 4. Key Methodological Differences: Text Answer Probing vs. Tool-Call Probing
+
+| Dimension | Cox et al. (2603.01437) Text QA | Tool-Call Probing (2605.07990 etc.) |
+|---|---|---|
+| **Output space** | Binary (A/B, yes/no) | K discrete tool names from fixed menu + unbounded parameter space |
+| **Probe target** | Single scalar direction | Per-tool mean vectors in a K-dimensional selection space |
+| **Output structure** | Free text answer token | Structured JSON: {"name": ..., "arguments": {...}} |
+| **Context dependency** | 4 few-shot examples | System prompt with tool definitions, potentially multi-turn history |
+| **Schema constraint** | None | Tool schemas constrain valid outputs; wrong schema = execution failure |
+| **Parameter encoding** | N/A | Not linearly readable (confirmed 0/30 by 2605.07990) |
+| **Multi-turn** | Not applicable | Critical but poorly understood; steering degrades |
+| **Practical stakes** | Getting QA wrong is benign | Wrong tool call can execute irreversible actions (delete data, send money) |
+
+---
+
+### 5. Recommendations for Differentiating Your Proposal
+
+Given this landscape, the strongest differentiation would be to focus on what is explicitly identified as open and hard:
+
+**Strongest angle:** "Pre-reasoning encoding of tool-call decisions in **multi-turn agentic contexts** where prior tool results, error states, and conversation history create dynamic context that fundamentally differs from the static single-turn settings studied so far."
+
+Specific testable hypotheses that no existing paper addresses:
+- H1: Tool-identity probe accuracy degrades as conversation depth increases (due to context competition in the residual stream)
+- H2: The probe direction for the same tool shifts across turns when prior tool results modify the task state
+- H3: Error feedback from prior tool calls creates detectable "replanning" signals in hidden states before the next tool selection
+- H4: Joint probing of (tool_name + key_parameters) reveals entangled representations that are not decomposable into independent linear directions
+
+This reframing acknowledges 2603.01437 and the May 2026 tool-probing papers, positions your work as the **multi-turn extension** they all call for, and highlights the unique challenges of probing in conversation-rich, state-dependent settings that no existing work addresses.
+
+Sources:
+- [Decoding Answers Before Chain-of-Thought (2603.01437)](https://arxiv.org/abs/2603.01437)
+- [Tool Calling is Linearly Readable and Steerable in Language Models (2605.07990)](https://arxiv.org/html/2605.07990)
+- [LLM Agents Already Know When to Call Tools (2605.09252)](https://arxiv.org/html/2605.09252v1)
+- [Internal Representations as Indicators of Hallucinations in Agent Tool Selection (2601.05214)](https://arxiv.org/html/2601.05214v1)
+- [Beyond the Black Box: Interpretability of Agentic AI Tool Use (2605.06890)](https://arxiv.org/html/2605.06890)
+- [Catching Rationalization in the Act (2603.17199)](https://arxiv.org/pdf/2603.17199)
+- [Knowing Before Saying (2505.24362)](https://arxiv.org/abs/2505.24362)
+
+agentId: a4f75ce9cd4490ba2 (use SendMessage with to: 'a4f75ce9cd4490ba2' to continue this agent)
+&lt;usage>total_tokens: 33519
+tool_uses: 16
+duration_ms: 206159&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bb679c8b-0a4d-4f72-a9df-2cbec109dac5",
+  "isSidechain": false,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "type": "user",
+  "uuid": "62ba411e-920d-4528-989f-8c408dfcee46",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to deeply understand the paper \"Decoding Answers Before Chain-of-Thought\" (arXiv 2603.01437) to differentiate a proposed research component from it.\n\nOur proposal includes using linear probes on open-source model hidden states to test whether tool identity is encoded in activations BEFORE reasoning tokens are generated, in multi-turn agentic tool-selection settings.\n\nThe reviewer says this closely mirrors \"Decoding Answers Before CoT\" which already showed this for QA with 0.9 AUC.\n\nI need to:\n1. Search for and read this paper in detail (arXiv 2603.01437)\n2. Search for \"pre-CoT activation probing\" or \"answer encoded before chain of thought\" to find related work\n3. Search for \"tool call hidden state probing LLM\" to see if anyone has done probing specifically for tool calls\n4. Search for \"structured output probing LLM\" — tool calls involve structured JSON output which is fundamentally different from text answers\n\nKey questions I need answered:\n- What exactly does \"Decoding Answers Before CoT\" show? What models, what tasks, what probe accuracy?\n- What are the key methodological differences between probing for a text answer vs. probing for a tool call (structured JSON with function name + parameters)?\n- Are there unique challenges in probing for tool identity? (e.g., tool calls are multi-dimensional: tool name + parameter values, tool calls happen in a conversation context with prior tool results, etc.)\n- Has anyone specifically probed for tool call decisions in hidden states?\n\nReport all findings in detail.",
+    "agentId": "a4f75ce9cd4490ba2",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have a comprehensive picture. Here is the detailed report.\n\n---\n\n## Detailed Research Report: \"Decoding Answers Before CoT\" and Related Work on Tool-Call Probing\n\n### 1. What \"Decoding Answers Before Chain-of-Thought\" (arXiv 2603.01437) Shows\n\n**Authors:** Kyle Cox, Darius Kianersi, Adria Garriga-Alonso (March 2, 2026)\n\n**Core claim:** Instruction-tuned LLMs encode their final answer in residual-stream activations *before* generating any chain-of-thought tokens. CoT is post-hoc rationalization, not genuine deliberation.\n\n**Models:** Gemma 2 (2B-it, 9B-it), Qwen 2.5 (1.5B-it, 3B-it, 7B-it). Limited appendix experiments on GPT-OSS 20B (a reasoning model).\n\n**Tasks:** Four **binary classification** tasks only -- Anachronisms, Logical Deduction, Sports Understanding, Social Chemistry. All formatted as A/B choices with 500 train / 500 test examples and 4 few-shot CoT demonstrations.\n\n**Probe methodology:** Difference-of-means linear probe on residual-stream activations at the **last pre-CoT token** (the colon in \"Let's think step by step:\"). The probe direction is simply w = mean_yes - mean_no. Scoring is cosine similarity.\n\n**Exact AUC numbers by task:**\n- Anachronisms: 0.988 to 1.000 across all models\n- Social Chemistry: 0.993 to 0.998\n- Sports Understanding: 0.808 to 0.961\n- Logical Deduction: 0.688 to 0.878 (the weakest -- notably the task where CoT helps most)\n\n**Steering:** Contrastive activation addition at the best-probe layer flips answers in >50% of cases at alpha=20, significantly exceeding orthogonal baselines. This establishes *causality*, not just correlation.\n\n**Failure modes when steering induces wrong answers:**\n1. **Non-entailment:** Correct premises, unsupported conclusion\n2. **Confabulation:** Fabricated false premises to justify the steered answer\n\n**Key limitations the paper acknowledges:**\n- Only binary classification tasks\n- Only instruction-tuned models (not reasoning models trained via RL; their GPT-OSS 20B appendix showed probes work but steering fails)\n- Superposition uncertainty -- the \"answer direction\" might actually encode task-relevant features (plausibility, validity) rather than a discrete committed answer\n- No mention whatsoever of tool calling, structured outputs, function calling, or JSON\n\n---\n\n### 2. Critical Finding: Tool-Call Probing Has ALREADY Been Done\n\nYour search reveals that the landscape has shifted dramatically in the last few weeks. Three papers from May 2026 directly probe for tool-call decisions in hidden states:\n\n#### Paper A: \"Tool Calling is Linearly Readable and Steerable in Language Models\" (arXiv 2605.07990, ~2 weeks old)\n\nThis is the single most important paper for your differentiation argument -- and it is **bad news**, because it does almost exactly what your proposal describes. Key details:\n\n- **12 instruction-tuned models** across Gemma 3, Qwen 3/2.5, Llama 3.1 (270M to 27B)\n- Probes **tool identity** (which specific tool, not just whether to use a tool) from pre-generation residual stream activations\n- Mean-difference steering switches tool selection at **93-100% accuracy for 4B+ models** in single-turn, fixed-menu settings\n- Tested on realistic benchmarks: tau-bench (14 airline tools, 16 retail tools), ToolBench (up to 2000 real APIs), BFCL v3\n- Discovered a **three-stage circuit**: early tool-specific features -> mid-layer attention heads -> late JSON formatting features\n- Key finding: \"Flipping the name is enough\" -- once tool identity is steered, JSON arguments auto-adapt to the target schema via autoregressive generation\n- **However:** argument *values* are NOT steerable (0/30 on redirecting e.g. \"Tokyo\" to \"Paris\"), and format steering (JSON vs plain text) also fails (0/10)\n- **Critical limitation: multi-turn results are mixed**. In real agentic tau-bench settings, steering shows -30 to +10 percentage points vs. baseline with \"no consistent direction.\" The authors state multi-turn is \"fragile\" and recommend steering as \"an analytical and routing tool, not a standalone method for end-to-end API execution.\"\n\n#### Paper B: \"LLM Agents Already Know When to Call Tools -- Even Without Reasoning\" (arXiv 2605.09252, ~1 week old)\n\n- Probes the **binary tool-necessity decision** (use tool vs. don't) rather than tool identity\n- **AUROC 0.89-0.96** across Qwen 3 (1.7B-32B) and Llama (8B, 70B) on 18 synthetic environments\n- Shows that explicit reasoning about tool necessity is \"largely superficial\" -- it doesn't improve beyond what's already encoded in pre-generation hidden states\n- Their Probe&Prefill method reduces tool calls by 48% with only 1.7% accuracy loss\n- Limited to mostly single-turn; multi-hop tasks tested but with minimal analysis of sequential dynamics\n\n#### Paper C: \"Beyond the Black Box: Interpretability of Agentic AI Tool Use\" (arXiv 2605.06890)\n\n- GPT-OSS 20B and Gemma 3 27B\n- Uses SAEs + linear probes on pre-action hidden states\n- Probes for **tool-need (binary)** and **tool-risk (ternary: low/medium/high)**\n- Tool-Need accuracy: 71-75%; Tool-Risk accuracy: 88-90%\n- **Explicitly addresses multi-turn trajectories** with 15+ step financial traces\n- Shows probe signals evolve across sequential steps within a single interaction\n\n#### Paper D: \"Internal Representations as Indicators of Hallucinations in Agent Tool Selection\" (arXiv 2601.05214, January 2026)\n\n- Qwen-7B, GPT-OSS-20B, Llama-3.1-8B\n- Probes hidden states to detect **tool-calling hallucinations** (wrong tool name, wrong parameters, missing parameters, tool bypass)\n- Extracts features at function name onset + argument region + closing delimiter\n- GPT-OSS-20B: 86% accuracy detecting hallucinated tool calls\n- Single-turn only; no multi-turn analysis\n\n---\n\n### 3. What Gaps Remain for Your Proposal\n\nGiven this landscape, here is an honest assessment of what your proposal could still contribute, and where it is now pre-empted:\n\n**Already covered by existing work:**\n- Linear probes on open-source model hidden states for tool identity before reasoning: Done by 2605.07990 with 12 models, multiple benchmarks, and both probing + steering + circuit analysis\n- Binary tool-use-vs-no-tool-use probing: Done by 2605.09252 with 0.89-0.96 AUROC\n- Pre-CoT answer probing for QA: Done by 2603.01437\n- Tool-call hallucination detection from hidden states: Done by 2601.05214\n\n**Gaps that remain genuinely open:**\n\n1. **Multi-turn agentic settings are explicitly flagged as unsolved.** Paper 2605.07990 found steering \"fragile\" in multi-turn and reported -30 to +10pp with \"no consistent direction.\" Paper 2605.06890 addresses multi-turn trajectories but only for tool-need/tool-risk classification, not tool identity. Nobody has systematically studied how **accumulated conversation context** (prior tool results, error states, user corrections) affects tool-identity encoding in hidden states across turns.\n\n2. **Parameter probing is completely open.** 2605.07990 explicitly showed tool NAME is linearly steerable but argument VALUES are not (0/30). Nobody has probed whether parameter choices (e.g., which database to query, what filter to apply) are encoded pre-generation. This is a fundamentally harder problem because parameters are drawn from the query context, not a fixed menu.\n\n3. **Compositional tool-call structure** -- the joint encoding of (tool_name, param1, param2, ...) as a structured object rather than as independent dimensions -- is unstudied. Existing work treats tool name and parameters separately.\n\n4. **Tool-call sequencing and planning** -- whether the model's hidden state encodes not just the *next* tool call but a *plan* of upcoming tool calls in a multi-step agent workflow -- is unexplored.\n\n5. **Interaction between conversation history and tool-call encoding** -- does the probe direction shift when prior tool calls returned errors? When the user corrects the agent? When the context window grows? Nobody has studied this.\n\n6. **Cross-turn probe transfer** -- whether a probe trained at turn 1 generalizes to turn 5 when the context is rich with prior tool results -- is untested.\n\n---\n\n### 4. Key Methodological Differences: Text Answer Probing vs. Tool-Call Probing\n\n| Dimension | Cox et al. (2603.01437) Text QA | Tool-Call Probing (2605.07990 etc.) |\n|---|---|---|\n| **Output space** | Binary (A/B, yes/no) | K discrete tool names from fixed menu + unbounded parameter space |\n| **Probe target** | Single scalar direction | Per-tool mean vectors in a K-dimensional selection space |\n| **Output structure** | Free text answer token | Structured JSON: {\"name\": ..., \"arguments\": {...}} |\n| **Context dependency** | 4 few-shot examples | System prompt with tool definitions, potentially multi-turn history |\n| **Schema constraint** | None | Tool schemas constrain valid outputs; wrong schema = execution failure |\n| **Parameter encoding** | N/A | Not linearly readable (confirmed 0/30 by 2605.07990) |\n| **Multi-turn** | Not applicable | Critical but poorly understood; steering degrades |\n| **Practical stakes** | Getting QA wrong is benign | Wrong tool call can execute irreversible actions (delete data, send money) |\n\n---\n\n### 5. Recommendations for Differentiating Your Proposal\n\nGiven this landscape, the strongest differentiation would be to focus on what is explicitly identified as open and hard:\n\n**Strongest angle:** \"Pre-reasoning encoding of tool-call decisions in **multi-turn agentic contexts** where prior tool results, error states, and conversation history create dynamic context that fundamentally differs from the static single-turn settings studied so far.\"\n\nSpecific testable hypotheses that no existing paper addresses:\n- H1: Tool-identity probe accuracy degrades as conversation depth increases (due to context competition in the residual stream)\n- H2: The probe direction for the same tool shifts across turns when prior tool results modify the task state\n- H3: Error feedback from prior tool calls creates detectable \"replanning\" signals in hidden states before the next tool selection\n- H4: Joint probing of (tool_name + key_parameters) reveals entangled representations that are not decomposable into independent linear directions\n\nThis reframing acknowledges 2603.01437 and the May 2026 tool-probing papers, positions your work as the **multi-turn extension** they all call for, and highlights the unique challenges of probing in conversation-rich, state-dependent settings that no existing work addresses.\n\nSources:\n- [Decoding Answers Before Chain-of-Thought (2603.01437)](https://arxiv.org/abs/2603.01437)\n- [Tool Calling is Linearly Readable and Steerable in Language Models (2605.07990)](https://arxiv.org/html/2605.07990)\n- [LLM Agents Already Know When to Call Tools (2605.09252)](https://arxiv.org/html/2605.09252v1)\n- [Internal Representations as Indicators of Hallucinations in Agent Tool Selection (2601.05214)](https://arxiv.org/html/2601.05214v1)\n- [Beyond the Black Box: Interpretability of Agentic AI Tool Use (2605.06890)](https://arxiv.org/html/2605.06890)\n- [Catching Rationalization in the Act (2603.17199)](https://arxiv.org/pdf/2603.17199)\n- [Knowing Before Saying (2505.24362)](https://arxiv.org/abs/2505.24362)"
+      }
+    ],
+    "totalDurationMs": 206159,
+    "totalTokens": 33519,
+    "totalToolUseCount": 16,
+    "usage": {
+      "input_tokens": 642,
+      "cache_creation_input_tokens": 1957,
+      "cache_read_input_tokens": 27884,
+      "output_tokens": 3036,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1957
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 642,
+          "output_tokens": 3036,
+          "cache_read_input_tokens": 27884,
+          "cache_creation_input_tokens": 1957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1957,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 16
+    }
+  },
+  "sourceToolAssistantUUID": "bb679c8b-0a4d-4f72-a9df-2cbec109dac5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Faithfulness of Tool-Selection Reasoning in Agentic Systems\",   \"core_…",
+  "leafUuid": "62ba411e-920d-4528-989f-8c408dfcee46",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise tool-selection faithfulness benchmark per reviewer feedback",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55"
+}
+```
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T14:38:34.814Z_
+
+<details><summary>↩ Tool result · `toolu_01RCBeEgC4NfcPGR6fcM4nA6`</summary>
+
+```text
+Now I have enough information to compile a comprehensive report. Here is the full analysis:
+
+---
+
+## AI Conference Venue Deadline Report (as of May 19, 2026)
+
+Given a 10-14 week research timeline starting May 19, 2026, the work would be complete between **August 4 - August 25, 2026**.
+
+---
+
+### 1. NeurIPS 2026
+
+- **Abstract deadline:** May 4, 2026 (PASSED)
+- **Full paper deadline:** May 6, 2026 (PASSED)
+- **Conference dates:** December 6-12, 2026, Atlanta, GA
+- **Feasibility:** NO. Both deadlines have already passed (13-15 days ago). This venue is closed.
+- **Topical fit:** Yes -- has dedicated "Evaluations & Datasets" track and accepts work on language modeling, interpretability, benchmarks.
+
+Sources: [NeurIPS 2026 Dates](https://neurips.cc/Conferences/2026/Dates), [NeurIPS 2026 CFP](https://neurips.cc/Conferences/2026/CallForPapers)
+
+---
+
+### 2. AAAI 2027
+
+- **Abstract deadline:** July 21, 2026
+- **Full paper deadline:** July 28, 2026
+- **Supplementary materials:** July 31, 2026
+- **Notification:** November 30, 2026
+- **Conference dates:** February 16-23, 2027, Montreal, Canada
+- **Feasibility:** TIGHT but possible. You have ~9 weeks until the abstract deadline and ~10 weeks until the full paper deadline. A 10-week timeline lands right at the paper deadline. A 14-week timeline would overshoot by ~4 weeks. **This is feasible only if you compress to 10 weeks.**
+- **Topical fit:** Yes -- AAAI broadly covers AI including evaluation, benchmarks, and LLM-related topics. Detailed topic list is listed as "Coming Soon" on the official site, but historically AAAI accepts this kind of work.
+
+Sources: [AAAI-27 Main Technical Track CFP](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/), [AAAI-27 Homepage](https://aaai.org/conference/aaai/aaai-27/)
+
+---
+
+### 3. EMNLP 2026 (via ARR May 2026 cycle)
+
+- **ARR submission deadline:** May 25, 2026
+- **Reviewer registration:** May 27, 2026
+- **Author response:** July 7-13, 2026
+- **Commitment deadline:** August 2, 2026
+- **Acceptance notification:** August 20, 2026
+- **Conference dates:** October 24-29, 2026, Budapest, Hungary
+- **Feasibility:** NO -- the deadline is 6 days away (May 25). The reviewer's concern is correct: this is essentially impossible if research hasn't been completed yet. You would need a finished paper in 6 days. **This is not feasible with a 10-14 week research timeline.**
+- **Topical fit:** Excellent. Explicitly lists "Language Modeling," "Interpretability and Analysis of Models for NLP," "Resources and Evaluation," and "LLM Agents" as topics. The 2026 special theme "New Missions for NLP Research" specifically welcomes work on "Rethinking progress and evaluation in NLP" including going beyond static leaderboards and addressing trustworthiness/robustness. This would be a strong topical match.
+
+**Verdict on the May 25 deadline being "impossible":** The reviewer is right. The May 25, 2026 ARR deadline is real and confirmed on the official EMNLP 2026 website and was announced via their official X/Twitter account. But with only 6 days remaining and research not yet started, it is indeed impossible to submit to this cycle.
+
+Sources: [EMNLP 2026 CFP](https://2026.emnlp.org/calls/main_conference_papers/), [EMNLP 2026 on X](https://x.com/emnlpmeeting/status/2029508292637061462), [ARR Dates](http://aclrollingreview.org/dates)
+
+---
+
+### 4. ICLR 2027
+
+- **Abstract deadline:** ~September 19, 2026 (predicted, not yet officially announced)
+- **Full paper deadline:** ~September 24, 2026 (predicted)
+- **Conference dates:** April/May 2027 (location TBA, not yet announced by ICLR)
+- **Feasibility:** YES. ~18 weeks until the predicted abstract deadline. A 10-14 week timeline ending August 4-25 leaves 4-7 weeks of buffer. **This is the most comfortable deadline among near-term options.**
+- **Topical fit:** Yes -- ICLR broadly covers representation learning, evaluation methodology, and LLM-related research.
+
+**Caveat:** These dates come from the Bibby Research deadline tracker extrapolating from prior years. ICLR has not officially announced 2027 dates yet. The official ICLR Future Meetings page only lists 2026.
+
+Sources: [AI & ML Conference Deadlines (Bibby)](https://trybibby.com/conference-deadlines), [ICLR Future Meetings](https://iclr.cc/Conferences/FutureMeetings)
+
+---
+
+### 5. ICML 2027
+
+- **Full paper deadline:** ~January 29, 2027 (predicted)
+- **Conference dates:** ~July 2027, likely Brazil
+- **Feasibility:** YES, very comfortable. ~36 weeks away. Plenty of time.
+- **Topical fit:** Yes -- ICML covers machine learning broadly including evaluation and benchmarks.
+
+**Caveat:** Not officially announced yet. Prediction based on historical patterns.
+
+Sources: [AI & ML Conference Deadlines (Bibby)](https://trybibby.com/conference-deadlines), [ICML Future Meetings](https://icml.cc/Conferences/FutureMeetings)
+
+---
+
+### 6. ACL 2027 / ARR Cycles
+
+ACL uses the ACL Rolling Review (ARR) system exclusively. The relevant ARR cycles feeding into 2027 conferences:
+
+- **ARR August 2026 cycle:** Submission August 3, 2026 --> feeds into EACL 2027 (commitment October 11, 2026)
+- **ARR October 2026 cycle:** Submission October 12, 2026 --> commitment December 20, 2026 (likely feeds ACL 2027)
+- **EACL 2027:** March 9-14, 2027, Athens, Greece
+- **ACL 2027 main conference:** Dates and location TBA (historically July-August)
+
+- **Feasibility for ARR August 2026:** YES. 11 weeks away, right at the end of a 10-11 week timeline. Tight but plausible.
+- **Feasibility for ARR October 2026:** YES, comfortable. 21 weeks away.
+- **Topical fit:** Excellent for NLP evaluation/benchmarks/faithfulness work.
+
+Sources: [ARR Dates and Venues](http://aclrollingreview.org/dates), [EACL 2027](https://2027.eacl.org/)
+
+---
+
+### 7. AAMAS 2027
+
+- **Submission deadline:** ~October 16, 2026 (predicted)
+- **Conference dates:** May 16-21, 2027, Toronto, Canada
+- **Feasibility:** YES. ~21 weeks away. Very comfortable.
+- **Topical fit:** Good for agentic systems, multi-agent systems. If the research involves LLM agents, evaluation of agentic behavior, or multi-agent coordination, this is relevant. Less relevant for pure LLM evaluation/benchmarks unless there is an agentic angle.
+
+Sources: [AI & ML Conference Deadlines (Bibby)](https://trybibby.com/conference-deadlines)
+
+---
+
+## Summary Table
+
+| Venue | Abstract Deadline | Paper Deadline | Feasible (10-14 wk)? | Topical Fit |
+|-------|------------------|----------------|----------------------|-------------|
+| NeurIPS 2026 | May 4 (PASSED) | May 6 (PASSED) | NO | Excellent |
+| EMNLP 2026 (ARR May) | -- | May 25, 2026 | NO (6 days) | Excellent |
+| AAAI 2027 | Jul 21, 2026 | Jul 28, 2026 | TIGHT (10 wk only) | Good |
+| ARR Aug 2026 --> EACL 2027 | -- | Aug 3, 2026 | TIGHT (11 wk) | Excellent |
+| ICLR 2027 | ~Sep 19 | ~Sep 24 | YES | Good |
+| ARR Oct 2026 --> ACL 2027 | -- | Oct 12, 2026 | YES | Excellent |
+| AAMAS 2027 | -- | ~Oct 16, 2026 | YES | Niche (agentic) |
+| ICML 2027 | -- | ~Jan 29, 2027 | YES | Good |
+
+## Recommended Strategy
+
+1. **Primary target: ICLR 2027** (~Sep 24 deadline) -- best balance of prestige, timeline comfort, and topical fit.
+2. **Stretch target: AAAI 2027** (Jul 28 deadline) -- if research can be compressed to 10 weeks, this is a prestigious venue with an earlier result.
+3. **ARR August 2026 cycle** (Aug 3 deadline) for EACL 2027 -- if the work has a strong NLP angle, this is nearly the same timeline as AAAI and routes to a top NLP venue.
+4. **Safety net: ARR October 2026** (Oct 12 deadline) for ACL 2027, or **ICML 2027** (Jan 2027) -- comfortable fallbacks.
+5. **EMNLP 2026 is confirmed impossible** -- the reviewer is correct that May 25 is only 6 days away and cannot accommodate new research.
+
+agentId: abf63b789ec8aed61 (use SendMessage with to: 'abf63b789ec8aed61' to continue this agent)
+&lt;usage>total_tokens: 25330
+tool_uses: 19
+duration_ms: 198236&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f094953a-8dcd-49cb-ad49-bd7097dcecfc",
+  "isSidechain": false,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "type": "user",
+  "uuid": "c524b6f3-7b05-486c-bede-85a140f99b0a",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify venue deadlines for AI conferences relevant to a research proposal submission. The current date is May 19, 2026.\n\nSearch for:\n1. \"AAAI 2027 submission deadline\" or \"AAAI 2027 call for papers\"\n2. \"ICLR 2027 submission deadline\" or \"ICLR 2027 call for papers\"  \n3. \"NeurIPS 2026 submission deadline\" — check if this is still open or past\n4. \"ICML 2027 submission deadline\"\n5. \"ACL 2027 submission deadline\" or \"ACL Rolling Review 2026 deadlines\"\n6. \"AAMAS 2027 deadline\" (relevant for agentic systems)\n\nFor each venue, report:\n- Abstract deadline\n- Full paper deadline\n- Conference dates\n- Whether it's feasible given a 10-14 week research timeline starting now (May 19, 2026)\n- Whether it accepts work on LLM evaluation/benchmarks/faithfulness\n\nAlso check: Is EMNLP 2026 ARR deadline really May 25, 2026? The reviewer says this is impossible (6 days away).",
+    "agentId": "abf63b789ec8aed61",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have enough information to compile a comprehensive report. Here is the full analysis:\n\n---\n\n## AI Conference Venue Deadline Report (as of May 19, 2026)\n\nGiven a 10-14 week research timeline starting May 19, 2026, the work would be complete between **August 4 - August 25, 2026**.\n\n---\n\n### 1. NeurIPS 2026\n\n- **Abstract deadline:** May 4, 2026 (PASSED)\n- **Full paper deadline:** May 6, 2026 (PASSED)\n- **Conference dates:** December 6-12, 2026, Atlanta, GA\n- **Feasibility:** NO. Both deadlines have already passed (13-15 days ago). This venue is closed.\n- **Topical fit:** Yes -- has dedicated \"Evaluations & Datasets\" track and accepts work on language modeling, interpretability, benchmarks.\n\nSources: [NeurIPS 2026 Dates](https://neurips.cc/Conferences/2026/Dates), [NeurIPS 2026 CFP](https://neurips.cc/Conferences/2026/CallForPapers)\n\n---\n\n### 2. AAAI 2027\n\n- **Abstract deadline:** July 21, 2026\n- **Full paper deadline:** July 28, 2026\n- **Supplementary materials:** July 31, 2026\n- **Notification:** November 30, 2026\n- **Conference dates:** February 16-23, 2027, Montreal, Canada\n- **Feasibility:** TIGHT but possible. You have ~9 weeks until the abstract deadline and ~10 weeks until the full paper deadline. A 10-week timeline lands right at the paper deadline. A 14-week timeline would overshoot by ~4 weeks. **This is feasible only if you compress to 10 weeks.**\n- **Topical fit:** Yes -- AAAI broadly covers AI including evaluation, benchmarks, and LLM-related topics. Detailed topic list is listed as \"Coming Soon\" on the official site, but historically AAAI accepts this kind of work.\n\nSources: [AAAI-27 Main Technical Track CFP](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/), [AAAI-27 Homepage](https://aaai.org/conference/aaai/aaai-27/)\n\n---\n\n### 3. EMNLP 2026 (via ARR May 2026 cycle)\n\n- **ARR submission deadline:** May 25, 2026\n- **Reviewer registration:** May 27, 2026\n- **Author response:** July 7-13, 2026\n- **Commitment deadline:** August 2, 2026\n- **Acceptance notification:** August 20, 2026\n- **Conference dates:** October 24-29, 2026, Budapest, Hungary\n- **Feasibility:** NO -- the deadline is 6 days away (May 25). The reviewer's concern is correct: this is essentially impossible if research hasn't been completed yet. You would need a finished paper in 6 days. **This is not feasible with a 10-14 week research timeline.**\n- **Topical fit:** Excellent. Explicitly lists \"Language Modeling,\" \"Interpretability and Analysis of Models for NLP,\" \"Resources and Evaluation,\" and \"LLM Agents\" as topics. The 2026 special theme \"New Missions for NLP Research\" specifically welcomes work on \"Rethinking progress and evaluation in NLP\" including going beyond static leaderboards and addressing trustworthiness/robustness. This would be a strong topical match.\n\n**Verdict on the May 25 deadline being \"impossible\":** The reviewer is right. The May 25, 2026 ARR deadline is real and confirmed on the official EMNLP 2026 website and was announced via their official X/Twitter account. But with only 6 days remaining and research not yet started, it is indeed impossible to submit to this cycle.\n\nSources: [EMNLP 2026 CFP](https://2026.emnlp.org/calls/main_conference_papers/), [EMNLP 2026 on X](https://x.com/emnlpmeeting/status/2029508292637061462), [ARR Dates](http://aclrollingreview.org/dates)\n\n---\n\n### 4. ICLR 2027\n\n- **Abstract deadline:** ~September 19, 2026 (predicted, not yet officially announced)\n- **Full paper deadline:** ~September 24, 2026 (predicted)\n- **Conference dates:** April/May 2027 (location TBA, not yet announced by ICLR)\n- **Feasibility:** YES. ~18 weeks until the predicted abstract deadline. A 10-14 week timeline ending August 4-25 leaves 4-7 weeks of buffer. **This is the most comfortable deadline among near-term options.**\n- **Topical fit:** Yes -- ICLR broadly covers representation learning, evaluation methodology, and LLM-related research.\n\n**Caveat:** These dates come from the Bibby Research deadline tracker extrapolating from prior years. ICLR has not officially announced 2027 dates yet. The official ICLR Future Meetings page only lists 2026.\n\nSources: [AI & ML Conference Deadlines (Bibby)](https://trybibby.com/conference-deadlines), [ICLR Future Meetings](https://iclr.cc/Conferences/FutureMeetings)\n\n---\n\n### 5. ICML 2027\n\n- **Full paper deadline:** ~January 29, 2027 (predicted)\n- **Conference dates:** ~July 2027, likely Brazil\n- **Feasibility:** YES, very comfortable. ~36 weeks away. Plenty of time.\n- **Topical fit:** Yes -- ICML covers machine learning broadly including evaluation and benchmarks.\n\n**Caveat:** Not officially announced yet. Prediction based on historical patterns.\n\nSources: [AI & ML Conference Deadlines (Bibby)](https://trybibby.com/conference-deadlines), [ICML Future Meetings](https://icml.cc/Conferences/FutureMeetings)\n\n---\n\n### 6. ACL 2027 / ARR Cycles\n\nACL uses the ACL Rolling Review (ARR) system exclusively. The relevant ARR cycles feeding into 2027 conferences:\n\n- **ARR August 2026 cycle:** Submission August 3, 2026 --> feeds into EACL 2027 (commitment October 11, 2026)\n- **ARR October 2026 cycle:** Submission October 12, 2026 --> commitment December 20, 2026 (likely feeds ACL 2027)\n- **EACL 2027:** March 9-14, 2027, Athens, Greece\n- **ACL 2027 main conference:** Dates and location TBA (historically July-August)\n\n- **Feasibility for ARR August 2026:** YES. 11 weeks away, right at the end of a 10-11 week timeline. Tight but plausible.\n- **Feasibility for ARR October 2026:** YES, comfortable. 21 weeks away.\n- **Topical fit:** Excellent for NLP evaluation/benchmarks/faithfulness work.\n\nSources: [ARR Dates and Venues](http://aclrollingreview.org/dates), [EACL 2027](https://2027.eacl.org/)\n\n---\n\n### 7. AAMAS 2027\n\n- **Submission deadline:** ~October 16, 2026 (predicted)\n- **Conference dates:** May 16-21, 2027, Toronto, Canada\n- **Feasibility:** YES. ~21 weeks away. Very comfortable.\n- **Topical fit:** Good for agentic systems, multi-agent systems. If the research involves LLM agents, evaluation of agentic behavior, or multi-agent coordination, this is relevant. Less relevant for pure LLM evaluation/benchmarks unless there is an agentic angle.\n\nSources: [AI & ML Conference Deadlines (Bibby)](https://trybibby.com/conference-deadlines)\n\n---\n\n## Summary Table\n\n| Venue | Abstract Deadline | Paper Deadline | Feasible (10-14 wk)? | Topical Fit |\n|-------|------------------|----------------|----------------------|-------------|\n| NeurIPS 2026 | May 4 (PASSED) | May 6 (PASSED) | NO | Excellent |\n| EMNLP 2026 (ARR May) | -- | May 25, 2026 | NO (6 days) | Excellent |\n| AAAI 2027 | Jul 21, 2026 | Jul 28, 2026 | TIGHT (10 wk only) | Good |\n| ARR Aug 2026 --> EACL 2027 | -- | Aug 3, 2026 | TIGHT (11 wk) | Excellent |\n| ICLR 2027 | ~Sep 19 | ~Sep 24 | YES | Good |\n| ARR Oct 2026 --> ACL 2027 | -- | Oct 12, 2026 | YES | Excellent |\n| AAMAS 2027 | -- | ~Oct 16, 2026 | YES | Niche (agentic) |\n| ICML 2027 | -- | ~Jan 29, 2027 | YES | Good |\n\n## Recommended Strategy\n\n1. **Primary target: ICLR 2027** (~Sep 24 deadline) -- best balance of prestige, timeline comfort, and topical fit.\n2. **Stretch target: AAAI 2027** (Jul 28 deadline) -- if research can be compressed to 10 weeks, this is a prestigious venue with an earlier result.\n3. **ARR August 2026 cycle** (Aug 3 deadline) for EACL 2027 -- if the work has a strong NLP angle, this is nearly the same timeline as AAAI and routes to a top NLP venue.\n4. **Safety net: ARR October 2026** (Oct 12 deadline) for ACL 2027, or **ICML 2027** (Jan 2027) -- comfortable fallbacks.\n5. **EMNLP 2026 is confirmed impossible** -- the reviewer is correct that May 25 is only 6 days away and cannot accommodate new research."
+      }
+    ],
+    "totalDurationMs": 198236,
+    "totalTokens": 25330,
+    "totalToolUseCount": 19,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 824,
+      "cache_read_input_tokens": 21972,
+      "output_tokens": 2533,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 824
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2533,
+          "cache_read_input_tokens": 21972,
+          "cache_creation_input_tokens": 824,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 824,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 19
+    }
+  },
+  "sourceToolAssistantUUID": "f094953a-8dcd-49cb-ad49-bd7097dcecfc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T14:40:26.722Z_
+
+<details><summary>↩ Tool result · `toolu_01M773j3on8bNAWs5gdVrpFe`</summary>
+
+```text
+I now have comprehensive research findings. Here is my synthesis.
+
+---
+
+## Research Report: Handling Ambiguity and Difficulty Tiers in Faithfulness and Tool-Use Benchmarks
+
+### 1. How Existing Tool-Use Benchmarks Handle Ambiguity and Difficulty Tiers
+
+**ToolBench (ICLR 2024 Spotlight)** uses a three-tier scenario structure that is directly relevant to your reviewer's suggestion:
+- **I1 (Single-tool):** The simplest tier -- one tool is needed for the instruction. This maps closely to the reviewer's "Easy" tier.
+- **I2 (Intra-category multi-tool):** Multiple tools from the same category are needed. Ambiguity is inherent because the tools are semantically related.
+- **I3 (Intra-collection multi-tool):** Tools span different categories/collections, representing the hardest scenario.
+
+Importantly, ToolBench does NOT require a single deterministic correct tool. Its evaluation via ToolEval uses an LLM-as-judge (GPT-4) to assess whether the solution path was acceptable, not whether a specific tool was selected. StableToolBench refined this further with a virtual API server for reproducibility.
+
+**API-Bank (EMNLP 2023)** takes a different approach with three evaluation LEVELS rather than difficulty tiers:
+- **Level 1 -- Call:** Given the correct API, can the model call it correctly?
+- **Level 2 -- Retrieve+Call:** Can the model retrieve the right API from a pool and then call it?
+- **Level 3 -- Plan+Retrieve+Call:** Can the model plan a multi-step approach, retrieve APIs, and execute them?
+
+This layered evaluation is instructive: it decomposes the task so you can diagnose WHERE failure occurs, rather than just measuring overall pass/fail. Performance drops sharply from Level 1 to Level 3, revealing that planning and retrieval (not just execution) are the bottleneck.
+
+**MCPAgentBench (2025-2026)** categorizes tasks along two dimensions:
+- **Server scope:** Single-server vs. multi-server
+- **Call dependency:** Single call vs. parallel calls vs. sequential (dependent) calls
+
+This two-dimensional difficulty grid is more nuanced than a simple easy/medium/hard split and avoids the assumption that difficulty is one-dimensional.
+
+**TRAJECT-Bench** explicitly evaluates trajectory-level correctness (tool selection, argument correctness, dependency/order satisfaction) rather than just final answers. It uses two query types per trajectory:
+- **Simple queries:** Explicitly mention APIs/parameters
+- **Hard queries:** Colloquial, intent-obscured paraphrases
+
+This is directly relevant to the ambiguity concern: the SAME task has both an unambiguous and an ambiguous formulation, allowing measurement of how ambiguity affects tool selection.
+
+**WTU-Eval** tackles a related question: should the model use a tool at all? It mixes six tool-usage datasets with five general datasets, evaluating whether LLMs can discern when tool usage is necessary vs. unnecessary. This is relevant because it shows that even the binary decision "use a tool or not" is a form of ambiguity that benchmarks must handle.
+
+**NoisyToolBench** and **AgentNoiseBench (Feb 2026)** directly address realistic ambiguity. NoisyToolBench injects ambiguous, underspecified, and inaccurate instructions and measures the agent's ability to ask clarifying questions rather than hallucinating defaults. AgentNoiseBench introduces a systematic noise injection framework distinguishing user-noise (ambiguous user patterns) from tool-noise (execution failures), with a trajectory-aware evaluation protocol. Critically, AgentNoiseBench enforces constraints to preserve task solvability -- ambiguity is injected, but each task still has a valid solution path.
+
+**MCP-Atlas** uses a claims-based rubric that awards partial credit based on factual claims satisfied in the final answer, decoupled from adherence to a specific tool-selection trajectory. This is perhaps the most directly relevant approach to your problem: it mixes required tools with plausible distractors and grades on outcome rather than path.
+
+### 2. How Faithfulness Benchmarks Handle Difficulty and Ground Truth
+
+**FaithCoT-Bench (ICLR 2026)** establishes ground truth for faithfulness through:
+- A two-category taxonomy: **Post-hoc Reasoning** (CoT constructed after the fact to justify a predetermined answer) and **Spurious Reasoning Chains** (breaks in causal/logical continuity)
+- Expert annotation with a structured multi-round protocol
+- 1,000+ trajectories across 4 LLMs and 4 domains, with 300+ unfaithful instances annotated with step-level evidence
+- Evaluation of 11 detection methods spanning counterfactual, logit-based, and LLM-as-judge paradigms
+
+The key insight: FaithCoT-Bench frames unfaithfulness detection as an **instance-level discriminative decision problem**. This means each trajectory is classified as faithful or unfaithful with expert ground truth -- it does NOT require a single correct answer to the underlying task, only that the CoT genuinely reflects the model's reasoning process.
+
+**RFEval (Feb 2026, arXiv 2602.17053)** defines faithfulness through two testable conditions:
+- **Stance consistency:** A coherent stance linking reasoning to answer
+- **Causal influence:** The stated reasoning causally drives the answer under output-level interventions
+
+The critical methodological innovation is that faithfulness is **explicitly decoupled from accuracy**. A model can be faithful but wrong (if the CoT genuinely reflects its reasoning to an incorrect answer) or unfaithful but right (if the CoT is post-hoc rationalization of a correct answer). Their finding that "accuracy is neither a sufficient nor a reliable proxy for faithfulness" is directly relevant to your benchmark design.
+
+RFEval uses **counterfactual interventions** at the output level across 7,186 instances and 7 tasks. By injecting counterfactual premises and checking whether the reasoning changes accordingly, they can test causal influence without requiring a single correct answer.
+
+**SPD-Faith Bench (ACL Findings 2026)** provides the most explicit difficulty tier system among faithfulness benchmarks:
+- **Easy (10%):** Low information density, large difference regions
+- **Medium (50%):** Moderate complexity
+- **Hard (40%):** High information density, small difference regions
+
+The tier criteria are operationalized through measurable properties (object count, relative area), making them objective and reproducible. This is a good model for operationalizing difficulty in your benchmark.
+
+### 3. The Central Question: Measuring Faithfulness When There Is No Single Correct Answer
+
+This is the core tension your reviewer identified. The research reveals several approaches:
+
+**Approach A -- Decouple faithfulness from correctness (RFEval model).** Measure whether the CoT is consistent with the final answer and causally influences it, regardless of whether the answer is "correct." If multiple tools are valid, faithfulness means the CoT genuinely reflects WHY the model chose the tool it chose, not whether it chose the "right" one. This is operationalized through counterfactual interventions: if you perturb the reasoning, does the tool selection change?
+
+**Approach B -- Use outcome-based partial credit (MCP-Atlas model).** Define a set of claims/outcomes the task must satisfy. Any tool-selection path that achieves the outcomes gets credit. Faithfulness is then measured within the chosen path: does the CoT correctly describe and justify the steps taken?
+
+**Approach C -- Evaluate trajectory coherence (TRAJECT-Bench model).** Rather than asking "did the model pick the right tool," ask "is the tool selection consistent with the reasoning, properly parameterized, and in a valid order?" This evaluates process fidelity rather than outcome correctness.
+
+**Approach D -- Measure behavior under ambiguity injection (NoisyToolBench/AgentNoiseBench model).** Deliberately introduce ambiguity and measure whether the model degrades gracefully (asks for clarification, hedges appropriately) rather than hallucinating confidence.
+
+### 4. Construct Validity Best Practices
+
+**"Measuring What Matters" (2511.04703)** reviewed 445 LLM benchmarks and found that key concepts are often poorly defined or operationalized. Their eight recommendations include:
+- Clearly define the construct being measured
+- Ensure tasks actually require the target capability
+- Use multiple validity types: construct, criterion, consequential, and external
+
+**BetterBench** assessed 24 AI benchmarks against 46 best practices and found large quality differences. A key finding: most benchmarks can only provide relative signals (model A vs. model B), not absolute signals, because construct validity is so difficult to establish. This has implications for your benchmark -- comparative faithfulness rankings may be more defensible than absolute faithfulness scores.
+
+### 5. Recommendations for Revising TOOLFAITH-BENCH
+
+Based on this research, here is how the reviewer's concern can be addressed while preserving measurement rigor:
+
+**Adopt a multi-dimensional difficulty framework** rather than a simple easy/medium/hard split:
+
+| Dimension | Controlled (Easy) | Semi-Controlled (Medium) | Realistic (Hard) |
+|---|---|---|---|
+| Tool selection | Single correct tool | 2-3 plausible tools, one best fit | Multiple valid tools |
+| Task structure | Single call | Parallel calls | Sequential/dependent calls |
+| Query clarity | Explicit API mention | Clear intent, no API mention | Ambiguous/underspecified |
+
+**Decouple faithfulness from tool-selection correctness.** Following RFEval, define faithfulness as: (1) the CoT is consistent with the chosen tool, and (2) perturbing the CoT changes the tool selection. This works even when multiple tools are valid.
+
+**For "Easy" tier scenarios:** Deterministic ground truth IS appropriate. Use these as calibration and to establish baseline detection capability. FaithCoT-Bench's expert annotation model works here.
+
+**For "Medium" tier scenarios:** Define an acceptability set (set of valid tools) but annotate which is optimal. Faithfulness is measured by whether the CoT contains a genuine reason for the selection, not whether it picked the "best" tool.
+
+**For "Hard" tier scenarios:** Use counterfactual interventions (RFEval-style). Inject modified premises and check whether the reasoning and tool selection shift appropriately. Use claims-based partial credit (MCP-Atlas-style) rather than exact-match scoring.
+
+**Use trajectory-aware evaluation** (TRAJECT-Bench approach) to capture tool selection, parameterization, and ordering correctness separately.
+
+**The right balance:** The research suggests that controlled scenarios are necessary for construct validity (you need some scenarios where you KNOW what faithful reasoning looks like), while realistic scenarios are necessary for ecological validity (you need to show the benchmark transfers to real deployment). The answer is not either/or but a stratified design where easier tiers establish measurement validity and harder tiers establish ecological validity.
+
+### Sources
+
+- [ToolBench (ICLR 2024)](https://github.com/OpenBMB/ToolBench)
+- [ToolBench Evaluation Insights](https://www.emergentmind.com/topics/toolbench-evaluation)
+- [StableToolBench](https://aclanthology.org/2024.findings-acl.664.pdf)
+- [API-Bank: A Comprehensive Benchmark for Tool-Augmented LLMs](https://arxiv.org/pdf/2304.08244)
+- [MCPAgentBench](https://arxiv.org/pdf/2512.24565)
+- [TRAJECT-Bench: Trajectory-Aware Benchmark for Evaluating Agentic Tool Use](https://arxiv.org/abs/2510.04550)
+- [WTU-Eval: Whether-or-Not Tool Usage Evaluation Benchmark](https://arxiv.org/abs/2407.12823)
+- [NoisyToolBench / Learning to Ask](https://arxiv.org/abs/2409.00557)
+- [AgentNoiseBench: Robustness of Tool-Using LLM Agents Under Noisy Conditions](https://arxiv.org/abs/2602.11348)
+- [MCP-Atlas: Large-Scale Benchmark for Tool-Use with Real MCP Servers](https://arxiv.org/pdf/2602.00933)
+- [FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of CoT Reasoning (ICLR 2026)](https://arxiv.org/abs/2510.04040)
+- [RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Intervention (arXiv 2602.17053)](https://arxiv.org/abs/2602.17053)
+- [SPD-Faith Bench: Diagnosing and Improving Faithfulness in CoT for MLLMs (ACL Findings 2026)](https://arxiv.org/abs/2602.07833)
+- [CLAMBER: Benchmark for Ambiguous Information Needs (ACL 2024)](https://arxiv.org/abs/2405.12063)
+- [Measuring What Matters: Construct Validity in LLM Benchmarks](https://arxiv.org/abs/2511.04703)
+- [BetterBench: Assessing AI Benchmarks, Uncovering Issues, and Best Practices](https://arxiv.org/abs/2411.12990)
+
+agentId: ac57f13517dc4a961 (use SendMessage with to: 'ac57f13517dc4a961' to continue this agent)
+&lt;usage>total_tokens: 31608
+tool_uses: 23
+duration_ms: 315590&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f6967e72-c711-4a21-bc6d-f8b53b375e90",
+  "isSidechain": false,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "type": "user",
+  "uuid": "2e21dfd2-5bf4-4ed1-ba07-8fd987d76526",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to research how existing faithfulness benchmarks and tool-use benchmarks handle ambiguity and difficulty tiers, to inform a revision of a benchmark design.\n\nA reviewer criticized our proposed benchmark (TOOLFAITH-BENCH) for requiring 600 scenarios with \"deterministic tool-selection decision points\" — saying this is an unrealistically strong constraint that doesn't transfer to realistic agentic deployments where tool selection involves ambiguity.\n\nThe reviewer suggested replacing this with a tiered difficulty system:\n- Easy: single correct tool\n- Medium: 2 plausible tools, one clearly better\n- Hard: multiple valid tools\n\nI need to research:\n\n1. Search \"tool use benchmark LLM difficulty tiers\" — how do existing tool-use benchmarks handle ambiguity?\n2. Search for \"ToolBench\" OR \"API-Bank\" OR \"ToolEval\" benchmark design — how are their scenarios structured?\n3. Search for \"faithfulness benchmark difficulty levels\" — how do faithfulness benchmarks tier difficulty?\n4. Search for \"FaithCoT-Bench design methodology\" — how does this ICLR 2026 benchmark handle ground truth?\n5. Search for \"RFEval counterfactual benchmark design\" (2602.17053) — how does this benchmark handle interventions?\n6. Search for \"construct validity AI benchmark\" — what are best practices?\n\nKey questions:\n- How do you measure faithfulness when there's no single correct answer? (If multiple tools are valid, how do you know if the CoT is faithful?)\n- What's the right balance between controlled/deterministic scenarios and realistic ambiguity?\n- How have other benchmarks solved this tension?\n\nReport findings with specific examples from existing benchmarks.",
+    "agentId": "ac57f13517dc4a961",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have comprehensive research findings. Here is my synthesis.\n\n---\n\n## Research Report: Handling Ambiguity and Difficulty Tiers in Faithfulness and Tool-Use Benchmarks\n\n### 1. How Existing Tool-Use Benchmarks Handle Ambiguity and Difficulty Tiers\n\n**ToolBench (ICLR 2024 Spotlight)** uses a three-tier scenario structure that is directly relevant to your reviewer's suggestion:\n- **I1 (Single-tool):** The simplest tier -- one tool is needed for the instruction. This maps closely to the reviewer's \"Easy\" tier.\n- **I2 (Intra-category multi-tool):** Multiple tools from the same category are needed. Ambiguity is inherent because the tools are semantically related.\n- **I3 (Intra-collection multi-tool):** Tools span different categories/collections, representing the hardest scenario.\n\nImportantly, ToolBench does NOT require a single deterministic correct tool. Its evaluation via ToolEval uses an LLM-as-judge (GPT-4) to assess whether the solution path was acceptable, not whether a specific tool was selected. StableToolBench refined this further with a virtual API server for reproducibility.\n\n**API-Bank (EMNLP 2023)** takes a different approach with three evaluation LEVELS rather than difficulty tiers:\n- **Level 1 -- Call:** Given the correct API, can the model call it correctly?\n- **Level 2 -- Retrieve+Call:** Can the model retrieve the right API from a pool and then call it?\n- **Level 3 -- Plan+Retrieve+Call:** Can the model plan a multi-step approach, retrieve APIs, and execute them?\n\nThis layered evaluation is instructive: it decomposes the task so you can diagnose WHERE failure occurs, rather than just measuring overall pass/fail. Performance drops sharply from Level 1 to Level 3, revealing that planning and retrieval (not just execution) are the bottleneck.\n\n**MCPAgentBench (2025-2026)** categorizes tasks along two dimensions:\n- **Server scope:** Single-server vs. multi-server\n- **Call dependency:** Single call vs. parallel calls vs. sequential (dependent) calls\n\nThis two-dimensional difficulty grid is more nuanced than a simple easy/medium/hard split and avoids the assumption that difficulty is one-dimensional.\n\n**TRAJECT-Bench** explicitly evaluates trajectory-level correctness (tool selection, argument correctness, dependency/order satisfaction) rather than just final answers. It uses two query types per trajectory:\n- **Simple queries:** Explicitly mention APIs/parameters\n- **Hard queries:** Colloquial, intent-obscured paraphrases\n\nThis is directly relevant to the ambiguity concern: the SAME task has both an unambiguous and an ambiguous formulation, allowing measurement of how ambiguity affects tool selection.\n\n**WTU-Eval** tackles a related question: should the model use a tool at all? It mixes six tool-usage datasets with five general datasets, evaluating whether LLMs can discern when tool usage is necessary vs. unnecessary. This is relevant because it shows that even the binary decision \"use a tool or not\" is a form of ambiguity that benchmarks must handle.\n\n**NoisyToolBench** and **AgentNoiseBench (Feb 2026)** directly address realistic ambiguity. NoisyToolBench injects ambiguous, underspecified, and inaccurate instructions and measures the agent's ability to ask clarifying questions rather than hallucinating defaults. AgentNoiseBench introduces a systematic noise injection framework distinguishing user-noise (ambiguous user patterns) from tool-noise (execution failures), with a trajectory-aware evaluation protocol. Critically, AgentNoiseBench enforces constraints to preserve task solvability -- ambiguity is injected, but each task still has a valid solution path.\n\n**MCP-Atlas** uses a claims-based rubric that awards partial credit based on factual claims satisfied in the final answer, decoupled from adherence to a specific tool-selection trajectory. This is perhaps the most directly relevant approach to your problem: it mixes required tools with plausible distractors and grades on outcome rather than path.\n\n### 2. How Faithfulness Benchmarks Handle Difficulty and Ground Truth\n\n**FaithCoT-Bench (ICLR 2026)** establishes ground truth for faithfulness through:\n- A two-category taxonomy: **Post-hoc Reasoning** (CoT constructed after the fact to justify a predetermined answer) and **Spurious Reasoning Chains** (breaks in causal/logical continuity)\n- Expert annotation with a structured multi-round protocol\n- 1,000+ trajectories across 4 LLMs and 4 domains, with 300+ unfaithful instances annotated with step-level evidence\n- Evaluation of 11 detection methods spanning counterfactual, logit-based, and LLM-as-judge paradigms\n\nThe key insight: FaithCoT-Bench frames unfaithfulness detection as an **instance-level discriminative decision problem**. This means each trajectory is classified as faithful or unfaithful with expert ground truth -- it does NOT require a single correct answer to the underlying task, only that the CoT genuinely reflects the model's reasoning process.\n\n**RFEval (Feb 2026, arXiv 2602.17053)** defines faithfulness through two testable conditions:\n- **Stance consistency:** A coherent stance linking reasoning to answer\n- **Causal influence:** The stated reasoning causally drives the answer under output-level interventions\n\nThe critical methodological innovation is that faithfulness is **explicitly decoupled from accuracy**. A model can be faithful but wrong (if the CoT genuinely reflects its reasoning to an incorrect answer) or unfaithful but right (if the CoT is post-hoc rationalization of a correct answer). Their finding that \"accuracy is neither a sufficient nor a reliable proxy for faithfulness\" is directly relevant to your benchmark design.\n\nRFEval uses **counterfactual interventions** at the output level across 7,186 instances and 7 tasks. By injecting counterfactual premises and checking whether the reasoning changes accordingly, they can test causal influence without requiring a single correct answer.\n\n**SPD-Faith Bench (ACL Findings 2026)** provides the most explicit difficulty tier system among faithfulness benchmarks:\n- **Easy (10%):** Low information density, large difference regions\n- **Medium (50%):** Moderate complexity\n- **Hard (40%):** High information density, small difference regions\n\nThe tier criteria are operationalized through measurable properties (object count, relative area), making them objective and reproducible. This is a good model for operationalizing difficulty in your benchmark.\n\n### 3. The Central Question: Measuring Faithfulness When There Is No Single Correct Answer\n\nThis is the core tension your reviewer identified. The research reveals several approaches:\n\n**Approach A -- Decouple faithfulness from correctness (RFEval model).** Measure whether the CoT is consistent with the final answer and causally influences it, regardless of whether the answer is \"correct.\" If multiple tools are valid, faithfulness means the CoT genuinely reflects WHY the model chose the tool it chose, not whether it chose the \"right\" one. This is operationalized through counterfactual interventions: if you perturb the reasoning, does the tool selection change?\n\n**Approach B -- Use outcome-based partial credit (MCP-Atlas model).** Define a set of claims/outcomes the task must satisfy. Any tool-selection path that achieves the outcomes gets credit. Faithfulness is then measured within the chosen path: does the CoT correctly describe and justify the steps taken?\n\n**Approach C -- Evaluate trajectory coherence (TRAJECT-Bench model).** Rather than asking \"did the model pick the right tool,\" ask \"is the tool selection consistent with the reasoning, properly parameterized, and in a valid order?\" This evaluates process fidelity rather than outcome correctness.\n\n**Approach D -- Measure behavior under ambiguity injection (NoisyToolBench/AgentNoiseBench model).** Deliberately introduce ambiguity and measure whether the model degrades gracefully (asks for clarification, hedges appropriately) rather than hallucinating confidence.\n\n### 4. Construct Validity Best Practices\n\n**\"Measuring What Matters\" (2511.04703)** reviewed 445 LLM benchmarks and found that key concepts are often poorly defined or operationalized. Their eight recommendations include:\n- Clearly define the construct being measured\n- Ensure tasks actually require the target capability\n- Use multiple validity types: construct, criterion, consequential, and external\n\n**BetterBench** assessed 24 AI benchmarks against 46 best practices and found large quality differences. A key finding: most benchmarks can only provide relative signals (model A vs. model B), not absolute signals, because construct validity is so difficult to establish. This has implications for your benchmark -- comparative faithfulness rankings may be more defensible than absolute faithfulness scores.\n\n### 5. Recommendations for Revising TOOLFAITH-BENCH\n\nBased on this research, here is how the reviewer's concern can be addressed while preserving measurement rigor:\n\n**Adopt a multi-dimensional difficulty framework** rather than a simple easy/medium/hard split:\n\n| Dimension | Controlled (Easy) | Semi-Controlled (Medium) | Realistic (Hard) |\n|---|---|---|---|\n| Tool selection | Single correct tool | 2-3 plausible tools, one best fit | Multiple valid tools |\n| Task structure | Single call | Parallel calls | Sequential/dependent calls |\n| Query clarity | Explicit API mention | Clear intent, no API mention | Ambiguous/underspecified |\n\n**Decouple faithfulness from tool-selection correctness.** Following RFEval, define faithfulness as: (1) the CoT is consistent with the chosen tool, and (2) perturbing the CoT changes the tool selection. This works even when multiple tools are valid.\n\n**For \"Easy\" tier scenarios:** Deterministic ground truth IS appropriate. Use these as calibration and to establish baseline detection capability. FaithCoT-Bench's expert annotation model works here.\n\n**For \"Medium\" tier scenarios:** Define an acceptability set (set of valid tools) but annotate which is optimal. Faithfulness is measured by whether the CoT contains a genuine reason for the selection, not whether it picked the \"best\" tool.\n\n**For \"Hard\" tier scenarios:** Use counterfactual interventions (RFEval-style). Inject modified premises and check whether the reasoning and tool selection shift appropriately. Use claims-based partial credit (MCP-Atlas-style) rather than exact-match scoring.\n\n**Use trajectory-aware evaluation** (TRAJECT-Bench approach) to capture tool selection, parameterization, and ordering correctness separately.\n\n**The right balance:** The research suggests that controlled scenarios are necessary for construct validity (you need some scenarios where you KNOW what faithful reasoning looks like), while realistic scenarios are necessary for ecological validity (you need to show the benchmark transfers to real deployment). The answer is not either/or but a stratified design where easier tiers establish measurement validity and harder tiers establish ecological validity.\n\n### Sources\n\n- [ToolBench (ICLR 2024)](https://github.com/OpenBMB/ToolBench)\n- [ToolBench Evaluation Insights](https://www.emergentmind.com/topics/toolbench-evaluation)\n- [StableToolBench](https://aclanthology.org/2024.findings-acl.664.pdf)\n- [API-Bank: A Comprehensive Benchmark for Tool-Augmented LLMs](https://arxiv.org/pdf/2304.08244)\n- [MCPAgentBench](https://arxiv.org/pdf/2512.24565)\n- [TRAJECT-Bench: Trajectory-Aware Benchmark for Evaluating Agentic Tool Use](https://arxiv.org/abs/2510.04550)\n- [WTU-Eval: Whether-or-Not Tool Usage Evaluation Benchmark](https://arxiv.org/abs/2407.12823)\n- [NoisyToolBench / Learning to Ask](https://arxiv.org/abs/2409.00557)\n- [AgentNoiseBench: Robustness of Tool-Using LLM Agents Under Noisy Conditions](https://arxiv.org/abs/2602.11348)\n- [MCP-Atlas: Large-Scale Benchmark for Tool-Use with Real MCP Servers](https://arxiv.org/pdf/2602.00933)\n- [FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of CoT Reasoning (ICLR 2026)](https://arxiv.org/abs/2510.04040)\n- [RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Intervention (arXiv 2602.17053)](https://arxiv.org/abs/2602.17053)\n- [SPD-Faith Bench: Diagnosing and Improving Faithfulness in CoT for MLLMs (ACL Findings 2026)](https://arxiv.org/abs/2602.07833)\n- [CLAMBER: Benchmark for Ambiguous Information Needs (ACL 2024)](https://arxiv.org/abs/2405.12063)\n- [Measuring What Matters: Construct Validity in LLM Benchmarks](https://arxiv.org/abs/2511.04703)\n- [BetterBench: Assessing AI Benchmarks, Uncovering Issues, and Best Practices](https://arxiv.org/abs/2411.12990)"
+      }
+    ],
+    "totalDurationMs": 315590,
+    "totalTokens": 31608,
+    "totalToolUseCount": 23,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1024,
+      "cache_read_input_tokens": 27382,
+      "output_tokens": 3201,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1024
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3201,
+          "cache_read_input_tokens": 27382,
+          "cache_creation_input_tokens": 1024,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1024,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 23
+    }
+  },
+  "sourceToolAssistantUUID": "f6967e72-c711-4a21-bc6d-f8b53b375e90",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Faithfulness of Tool-Selection Reasoning in Agentic Systems\",   \"core_…",
+  "leafUuid": "2e21dfd2-5bf4-4ed1-ba07-8fd987d76526",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise tool-selection faithfulness benchmark per reviewer feedback",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55"
+}
+```
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-19T14:41:06.857Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! I now have comprehensive research results from all four agents. Let me synthesize all findings and produce the revised research idea. Let me think through each issue carefully:
+
+## Key Findings Summary
+
+### 1. Missing Concurrent Work (6 papers + 3 NEW papers discovered)
+The probing agent found 3 additional papers from May 2026 that are CRITICAL:
+- "Tool Calling is Linearly Readable and Steerable in Language Models" (2605.07990) — THIS IS VERY THREATENING. It does almost exactly what our probing component proposed.
+- "LLM Agents Already Know When to Call Tools" (2605.09252) — probes binary tool-necessity decision
+
+
+- "Beyond the Black Box: Interpretability of Agentic AI Tool Use" (2605.06890) — GPT-OSS 20B, multi-turn
+
+### 2. Model Selection — All need updating
+I'm seeing that several models have newer versions available: Kimi K2.6 from late April, GLM-5.1 from early April, Qwen3.6-35B-A3B from April, and DeepSeek-V4 is the latest iteration.  Claude Sonnet 4.6 came out in February, GPT-5.5 just dropped on April 23rd, and Gemini 2.5 Pro is now generally available and stable.
+
+### 3. Probing Differentiation — MAJOR REVISION NEEDED
+I found a really relevant paper (2605.07990) on tool calling that already covers a lot of ground—it probes tool identity from residual stream activations, tests across 12 models, and achieves 93-100% steering accuracy for larger models in single-turn scenarios. The main gap is that it doesn't address multi-turn interactions yet, which is where we need to focus our differentiation.
+
+### 4. Construct Validity
+I'm looking at how other benchmarks structure their difficulty tiers—ToolBench uses I1/I2/I3, RFEval separates faithfulness from correctness, and SPD-Faith Bench has explicit Easy/Medium/Hard categories with measurable criteria. The key is using a stratified design where easier tiers validate the measurement itself while harder tiers test real-world applicability.
+
+### 5. Venue Timing
+EMNLP 2026 is completely off the table since it's in 6 days, but AAAI 2027 in late July is tight at 10 weeks out, while ICLR 2027 around late September is looking like the primary target with more breathing room.
+
+### 6. Reference Error
+That paper 2505.18135 is from May 2025, not 2026.
+
+### 7. Expected Findings Bias
+I should frame these as hypotheses rather than expected outcomes.
+
+## Decision: MAJOR REVISION
+
+Finding those May 2026 tool-probing papers, especially 2605.07990, means I need to restructure significantly—the basic probing approach isn't novel anymore, but the behavioral faithfulness testing through causal intervention on tool-selection reasoning in multi-turn agent settings is completely untouched. So I'm keeping that as the core contribution and repositioning the probing component as supporting evidence rather than a main pillar.
+
+My revision plan covers reframing the probing to address the multi-turn dynamics that 2605.07990 identified as open, adding the tiered difficulty system, updating all the models and references, incorporating the missing papers, fixing the venues, and converting expected findings into proper hypotheses. I'm going to write out the complete revised JSON now, but first I should be more precise about whether this truly warrants a "major" revision. The behavioral faithfulness angle is genuinely novel—nobody's doing causal intervention on tool-selection reasoning in multi-turn settings. The probing needs reworking but remains viable for multi-turn scenarios. The benchmark itself needs the tiered structure. The related work landscape has shifted dramatically with those three new May 2026 papers, and the probing component needs substantial reframing to stay relevant.
+
+For the actual approach, I'm keeping the four perturbation types from the original intervention protocol but restructuring the benchmark into three difficulty tiers: 200 easy scenarios with single correct tools and deterministic outcomes, 200 medium ones with 2-3 plausible options where one is optimal, and 200 hard ones where multiple tools are valid depending on context. The probing shifts to focus specifically on multi-turn dynamics—whether the model's reasoning degrades as context accumulates, how it handles conflicting signals across turns, and whether it maintains consistency in tool selection rationale.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e21dfd2-5bf4-4ed1-ba07-8fd987d76526",
+  "isSidechain": false,
+  "requestId": "req_011CbC6pbv92W66TmpqTA4Yw",
+  "type": "assistant",
+  "uuid": "8748c6eb-8dfd-40cb-a960-24a3ba428f34",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WXsoNA3ihZaMqDyJgcdBhr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2634,
+      "cache_creation_input_tokens": 14462,
+      "cache_read_input_tokens": 18459,
+      "output_tokens": 1928,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14462,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2634,
+          "output_tokens": 1928,
+          "cache_read_input_tokens": 18459,
+          "cache_creation_input_tokens": 14462,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14462
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-19T14:41:07.094Z_
+
+Now let me do one more targeted search to verify the newly discovered threatening papers before finalizing the revision.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8748c6eb-8dfd-40cb-a960-24a3ba428f34",
+  "isSidechain": false,
+  "requestId": "req_011CbC6pbv92W66TmpqTA4Yw",
+  "type": "assistant",
+  "uuid": "65440bdb-e6f6-4c9a-a924-2a5e4a4d4029",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WXsoNA3ihZaMqDyJgcdBhr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2634,
+      "cache_creation_input_tokens": 14462,
+      "cache_read_input_tokens": 18459,
+      "output_tokens": 1928,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14462,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2634,
+          "output_tokens": 1928,
+          "cache_read_input_tokens": 18459,
+          "cache_creation_input_tokens": 14462,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14462
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-19T14:41:08.523Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0148fM53HVxrvQRt8dXRWywC`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.07990",
+  "prompt": "Extract the full title, authors, abstract, and key findings of this paper about tool calling being linearly readable and steerable in language models. What models did they test? What benchmarks? What were the exact probe accuracy and steering results? What did they say about multi-turn settings?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65440bdb-e6f6-4c9a-a924-2a5e4a4d4029",
+  "isSidechain": false,
+  "requestId": "req_011CbC6pbv92W66TmpqTA4Yw",
+  "type": "assistant",
+  "uuid": "e7455a2d-3f85-4d6d-8563-ac35d9c6bf30",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WXsoNA3ihZaMqDyJgcdBhr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2634,
+      "cache_creation_input_tokens": 14462,
+      "cache_read_input_tokens": 18459,
+      "output_tokens": 1928,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14462,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2634,
+          "output_tokens": 1928,
+          "cache_read_input_tokens": 18459,
+          "cache_creation_input_tokens": 14462,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14462
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T14:41:09.924Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01ADLY1a47FGEDCt9bPk8hKC`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.09252",
+  "prompt": "Extract the full title, authors, abstract, and key findings of this paper about LLM agents knowing when to call tools without reasoning. What probe accuracy did they achieve? What did they find about the role of reasoning in tool-call decisions?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7455a2d-3f85-4d6d-8563-ac35d9c6bf30",
+  "isSidechain": false,
+  "requestId": "req_011CbC6pbv92W66TmpqTA4Yw",
+  "type": "assistant",
+  "uuid": "150d5822-5ab4-40b2-b8fd-dc4980bbe785",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WXsoNA3ihZaMqDyJgcdBhr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2634,
+      "cache_creation_input_tokens": 14462,
+      "cache_read_input_tokens": 18459,
+      "output_tokens": 1928,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14462,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2634,
+          "output_tokens": 1928,
+          "cache_read_input_tokens": 18459,
+          "cache_creation_input_tokens": 14462,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14462
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-19T14:41:10.648Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JNhEwyh8foUBoxp4fEzS9S`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.06890",
+  "prompt": "Extract the full title, authors, abstract, and key findings of this paper about interpretability of agentic AI tool use. What probing methods did they use? What did they find about multi-turn trajectories?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "150d5822-5ab4-40b2-b8fd-dc4980bbe785",
+  "isSidechain": false,
+  "requestId": "req_011CbC6pbv92W66TmpqTA4Yw",
+  "type": "assistant",
+  "uuid": "ad63f686-a66b-42e8-95a1-c9363328ce7c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WXsoNA3ihZaMqDyJgcdBhr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2634,
+      "cache_creation_input_tokens": 14462,
+      "cache_read_input_tokens": 18459,
+      "output_tokens": 1928,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14462,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2634,
+          "output_tokens": 1928,
+          "cache_read_input_tokens": 18459,
+          "cache_creation_input_tokens": 14462,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14462
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T14:41:14.832Z_
+
+<details><summary>↩ Tool result · `toolu_0148fM53HVxrvQRt8dXRWywC`</summary>
+
+```text
+# Tool Calling in Language Models: Key Research Findings
+
+## Title
+"Tool Calling is Linearly Readable and Steerable in Language Models"
+
+## Authors
+Zekun Wu, Ze Wang, Seonglae Cho, Yufei Yang, Adriano Koshiyama, Sahan Bulathwela, and Maria Perez-Ortiz (University College London, Holistic AI, Imperial College London)
+
+## Models Tested
+The researchers evaluated 12 instruction-tuned models spanning Gemma 3, Qwen 3, Qwen 2.5, and Llama 3.1, with parameter counts ranging from 270M to 27B.
+
+## Key Findings
+
+**Steering Accuracy:** The researchers achieved "77-100% accuracy on name-only single-turn prompts (93-100% at 4B+)" by adding activation differences between tools to steer tool selection.
+
+**Error Detection:** On Gemma 3 models, queries with the smallest gap between top-choice tools "produce 14-21x more wrong calls than queries with the largest gap."
+
+**Probe Performance:** Using cosine readout from internal states, they recovered "69-82% on BFCL while base generation reaches only 2-10%," suggesting pretraining establishes these representations.
+
+**Cross-domain Transfer:** A same-domain probe across airline tools achieved "top-1 61-89% across five 4B-14B models."
+
+## Multi-Turn Limitations
+The paper explicitly notes that "multi-turn agentic transfer is more fragile" compared to single-turn fixed-menu settings, acknowledging this limitation in their methodology.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e7455a2d-3f85-4d6d-8563-ac35d9c6bf30",
+  "isSidechain": false,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "type": "user",
+  "uuid": "6bf6211f-e6d5-43e9-abe4-d902494ca466",
+  "toolUseResult": {
+    "bytes": 48931,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Tool Calling in Language Models: Key Research Findings\n\n## Title\n\"Tool Calling is Linearly Readable and Steerable in Language Models\"\n\n## Authors\nZekun Wu, Ze Wang, Seonglae Cho, Yufei Yang, Adriano Koshiyama, Sahan Bulathwela, and Maria Perez-Ortiz (University College London, Holistic AI, Imperial College London)\n\n## Models Tested\nThe researchers evaluated 12 instruction-tuned models spanning Gemma 3, Qwen 3, Qwen 2.5, and Llama 3.1, with parameter counts ranging from 270M to 27B.\n\n## Key Findings\n\n**Steering Accuracy:** The researchers achieved \"77-100% accuracy on name-only single-turn prompts (93-100% at 4B+)\" by adding activation differences between tools to steer tool selection.\n\n**Error Detection:** On Gemma 3 models, queries with the smallest gap between top-choice tools \"produce 14-21x more wrong calls than queries with the largest gap.\"\n\n**Probe Performance:** Using cosine readout from internal states, they recovered \"69-82% on BFCL while base generation reaches only 2-10%,\" suggesting pretraining establishes these representations.\n\n**Cross-domain Transfer:** A same-domain probe across airline tools achieved \"top-1 61-89% across five 4B-14B models.\"\n\n## Multi-Turn Limitations\nThe paper explicitly notes that \"multi-turn agentic transfer is more fragile\" compared to single-turn fixed-menu settings, acknowledging this limitation in their methodology.",
+    "durationMs": 6304,
+    "url": "https://arxiv.org/abs/2605.07990"
+  },
+  "sourceToolAssistantUUID": "e7455a2d-3f85-4d6d-8563-ac35d9c6bf30",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T14:41:15.373Z_
+
+<details><summary>↩ Tool result · `toolu_01ADLY1a47FGEDCt9bPk8hKC`</summary>
+
+```text
+# LLM Agents and Tool-Call Decision Making
+
+**Full Title:** "LLM Agents Already Know When to Call Tools -- Even Without Reasoning"
+
+**Authors:** Chung-En Sun, Linbo Liu, Ge Yan, Zimo Wang, and Tsui-Wei Weng
+
+## Abstract Summary
+
+The researchers identify a significant inefficiency: LLM agents make unnecessary tool calls despite having the capability to answer directly. They introduce When2Tool, a benchmark with 18 environments spanning three tool-necessity categories with varying difficulty levels.
+
+## Key Findings
+
+**On Probe Accuracy:**
+The team discovered that "tool necessity is linearly decodable from the pre-generation representation with AUROC 0.89–0.96 across six models," substantially outperforming the models' own reasoning capabilities.
+
+**On Reasoning's Role:**
+Notably, their analysis reveals models already possess knowledge about when tools are needed, but fail to act upon it during generation. Existing reasoning-based approaches (Reason-then-Act) still incur significant accuracy costs on difficult tasks.
+
+**Solution Performance:**
+Their proposed Probe&Prefill method achieved a 48% reduction in tool calls with only 1.7% accuracy loss—substantially outperforming baseline approaches that either reduced calls by just 6% or incurred 5× higher accuracy penalties.
+
+This suggests implicit knowledge predates and exceeds explicit reasoning in tool-selection decisions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "150d5822-5ab4-40b2-b8fd-dc4980bbe785",
+  "isSidechain": false,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "type": "user",
+  "uuid": "db970497-943a-4884-ab17-71d7620de427",
+  "toolUseResult": {
+    "bytes": 47994,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# LLM Agents and Tool-Call Decision Making\n\n**Full Title:** \"LLM Agents Already Know When to Call Tools -- Even Without Reasoning\"\n\n**Authors:** Chung-En Sun, Linbo Liu, Ge Yan, Zimo Wang, and Tsui-Wei Weng\n\n## Abstract Summary\n\nThe researchers identify a significant inefficiency: LLM agents make unnecessary tool calls despite having the capability to answer directly. They introduce When2Tool, a benchmark with 18 environments spanning three tool-necessity categories with varying difficulty levels.\n\n## Key Findings\n\n**On Probe Accuracy:**\nThe team discovered that \"tool necessity is linearly decodable from the pre-generation representation with AUROC 0.89–0.96 across six models,\" substantially outperforming the models' own reasoning capabilities.\n\n**On Reasoning's Role:**\nNotably, their analysis reveals models already possess knowledge about when tools are needed, but fail to act upon it during generation. Existing reasoning-based approaches (Reason-then-Act) still incur significant accuracy costs on difficult tasks.\n\n**Solution Performance:**\nTheir proposed Probe&Prefill method achieved a 48% reduction in tool calls with only 1.7% accuracy loss—substantially outperforming baseline approaches that either reduced calls by just 6% or incurred 5× higher accuracy penalties.\n\nThis suggests implicit knowledge predates and exceeds explicit reasoning in tool-selection decisions.",
+    "durationMs": 5446,
+    "url": "https://arxiv.org/abs/2605.09252"
+  },
+  "sourceToolAssistantUUID": "150d5822-5ab4-40b2-b8fd-dc4980bbe785",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-19T14:41:16.317Z_
+
+<details><summary>↩ Tool result · `toolu_01JNhEwyh8foUBoxp4fEzS9S`</summary>
+
+```text
+# Paper Summary: Interpretability of Agentic AI Tool Use
+
+**Full Title:** "Beyond the Black Box: Interpretability of Agentic AI Tool Use"
+
+**Authors:** Hariom Tatsat and Ariye Shater
+
+## Abstract Overview
+
+The researchers address a critical challenge in deploying AI agents for enterprise workflows: "tool-use failures are difficult to diagnose and control." They note that agents may skip necessary tool calls, invoke tools inappropriately, or take actions with unforeseen consequences.
+
+## Probing Methods
+
+The team developed a mechanistic-interpretability toolkit utilizing:
+- **Sparse Autoencoders (SAEs)** to decompose model activations into sparse features
+- **Linear probes** to read model states before each action
+- **Feature ablation testing** to assess functional importance
+
+The probes were trained on multi-step trajectories from the NVIDIA Nemotron function-calling dataset and applied to GPT-OSS 20B and Gemma 3 27B models.
+
+## Key Findings on Multi-Turn Trajectories
+
+The research emphasizes that "in long-horizon settings, these failures are especially costly because an early tool mistake can alter the rest of the trajectory." The framework aims to provide "visibility into what the model signaled internally before action," helping identify root causes of agent failure in extended interactions where early errors have cascading downstream effects.
+
+**Focus:** Internal observability rather than replacing external evaluation methods.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad63f686-a66b-42e8-95a1-c9363328ce7c",
+  "isSidechain": false,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "type": "user",
+  "uuid": "9d065c70-d9c3-4a0b-a33c-8053ca3c3f09",
+  "toolUseResult": {
+    "bytes": 47337,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary: Interpretability of Agentic AI Tool Use\n\n**Full Title:** \"Beyond the Black Box: Interpretability of Agentic AI Tool Use\"\n\n**Authors:** Hariom Tatsat and Ariye Shater\n\n## Abstract Overview\n\nThe researchers address a critical challenge in deploying AI agents for enterprise workflows: \"tool-use failures are difficult to diagnose and control.\" They note that agents may skip necessary tool calls, invoke tools inappropriately, or take actions with unforeseen consequences.\n\n## Probing Methods\n\nThe team developed a mechanistic-interpretability toolkit utilizing:\n- **Sparse Autoencoders (SAEs)** to decompose model activations into sparse features\n- **Linear probes** to read model states before each action\n- **Feature ablation testing** to assess functional importance\n\nThe probes were trained on multi-step trajectories from the NVIDIA Nemotron function-calling dataset and applied to GPT-OSS 20B and Gemma 3 27B models.\n\n## Key Findings on Multi-Turn Trajectories\n\nThe research emphasizes that \"in long-horizon settings, these failures are especially costly because an early tool mistake can alter the rest of the trajectory.\" The framework aims to provide \"visibility into what the model signaled internally before action,\" helping identify root causes of agent failure in extended interactions where early errors have cascading downstream effects.\n\n**Focus:** Internal observability rather than replacing external evaluation methods.",
+    "durationMs": 5666,
+    "url": "https://arxiv.org/abs/2605.06890"
+  },
+  "sourceToolAssistantUUID": "ad63f686-a66b-42e8-95a1-c9363328ce7c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38 · 2026-05-19T14:41:16.322Z_
+
+```json
+{
+  "parentUuid": "9d065c70-d9c3-4a0b-a33c-8053ca3c3f09",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "de878895-7f7e-4b74-9166-3fb8846dd6db",
+  "timestamp": "2026-05-19T14:41:16.322Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-19T14:41:28.137Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me also quickly verify the Tool Preferences paper dating issue.
+
+The reviewer said: "'Tool Preferences in Agentic LLMs are Unreliable' is cited as '(May 2026, 2505.18135)' but the arXiv ID 2505 indicates May 2025, not 2026."
+
+ArXiv IDs: 2505.xxxxx means submitted in May 2025 (YYMM format). So 2505 = May 2025, not May 2026. The reviewer is correct.
+
+Now let me synthesize everything and produce the complete revised JSON. This is a MAJOR revision because:
+
+
+The landscape has fundamentally shifted with the discovery of three new May 2026 papers on tool-call probing, which means I need to significantly reposition the probing component, restructure the benchmark with tiered difficulty levels, update all the models, incorporate multiple new references, and adjust the venue targets accordingly. I'll start by fixing the dating error on that paper, then integrate the nine new papers the reviewer identified and I discovered, redesign the benchmark into three difficulty tiers with 200 examples each, remove EMNLP 2026 from consideration, and refresh the model list.
+
+Now I'm updating the models to include the latest releases like Kimi K2.6, GLM-5.1, Qwen3.6-35B-A3B, DeepSeek-V4-Pro, Claude Sonnet 4.6, GPT-5.5, and Gemini 2.5 Pro, while reframing my expected findings as testable hypotheses, repositioning the probing work to examine multi-turn dynamics in a way that differentiates it from the existing literature, and recontextualizing the opportunity to acknowledge this rapidly evolving landscape.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "de878895-7f7e-4b74-9166-3fb8846dd6db",
+  "isSidechain": false,
+  "requestId": "req_011CbC6tFwTeNiqeTvFdkgfh",
+  "type": "assistant",
+  "uuid": "75f1cfda-272b-4b32-bb27-6bd88c7cbffc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ojST5LzrMjm7AzExpxaYD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5769,
+      "cache_read_input_tokens": 32921,
+      "output_tokens": 703,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5769,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 703,
+          "cache_read_input_tokens": 32921,
+          "cache_creation_input_tokens": 5769,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5769
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-19T14:41:28.159Z_
+
+Now I have comprehensive research from all angles. Let me synthesize everything and produce the complete revised proposal. The findings are significant — especially the discovery of 3 brand-new May 2026 papers on tool-call probing that fundamentally change the landscape.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "75f1cfda-272b-4b32-bb27-6bd88c7cbffc",
+  "isSidechain": false,
+  "requestId": "req_011CbC6tFwTeNiqeTvFdkgfh",
+  "type": "assistant",
+  "uuid": "bce017c9-cf3f-40e1-b497-b9d41d00c269",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ojST5LzrMjm7AzExpxaYD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5769,
+      "cache_read_input_tokens": 32921,
+      "output_tokens": 703,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5769,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 703,
+          "cache_read_input_tokens": 32921,
+          "cache_creation_input_tokens": 5769,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5769
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T14:41:29.059Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01UM6kByFSEqege6U3n6nagf`</summary>
+
+```json
+{
+  "description": "Verify Tool Preferences paper date",
+  "prompt": "Quick verification: fetch https://arxiv.org/abs/2505.18135 and confirm whether \"Tool Preferences in Agentic LLMs are Unreliable\" was submitted/published in May 2025 or May 2026. The arXiv ID 2505 suggests May 2025 (YYMM format). Just confirm the actual date shown on the page.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bce017c9-cf3f-40e1-b497-b9d41d00c269",
+  "isSidechain": false,
+  "requestId": "req_011CbC6tFwTeNiqeTvFdkgfh",
+  "type": "assistant",
+  "uuid": "1f4dff10-e8e6-415d-bcc8-cd7e0bc9be8b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ojST5LzrMjm7AzExpxaYD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5769,
+      "cache_read_input_tokens": 32921,
+      "output_tokens": 703,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5769,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 703,
+          "cache_read_input_tokens": 32921,
+          "cache_creation_input_tokens": 5769,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5769
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Faithfulness of Tool-Selection Reasoning in Agentic Systems\",   \"core_…",
+  "leafUuid": "1f4dff10-e8e6-415d-bcc8-cd7e0bc9be8b",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise tool-selection faithfulness benchmark per reviewer feedback",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55"
+}
+```
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T14:41:42.565Z_
+
+<details><summary>↩ Tool result · `toolu_01UM6kByFSEqege6U3n6nagf`</summary>
+
+```text
+The arXiv page confirms:
+
+- **Title:** "Tool Preferences in Agentic LLMs are Unreliable"
+- **Submitted on:** 23 May 2025 (v1), last revised 21 Sep 2025 (v2)
+- **Venue:** EMNLP 2025 main conference
+
+So the arXiv ID `2505` correctly reflects **May 2025**, not May 2026. The paper was originally submitted on 23 May 2025.
+
+agentId: a6cca4e0fa5f8144a (use SendMessage with to: 'a6cca4e0fa5f8144a' to continue this agent)
+&lt;usage>total_tokens: 10221
+tool_uses: 2
+duration_ms: 13502&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f4dff10-e8e6-415d-bcc8-cd7e0bc9be8b",
+  "isSidechain": false,
+  "promptId": "cc688073-7f21-461f-81a8-bdd0424cb9d7",
+  "type": "user",
+  "uuid": "f64a6a21-aac6-4abe-b7cb-272ebf57f696",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Quick verification: fetch https://arxiv.org/abs/2505.18135 and confirm whether \"Tool Preferences in Agentic LLMs are Unreliable\" was submitted/published in May 2025 or May 2026. The arXiv ID 2505 suggests May 2025 (YYMM format). Just confirm the actual date shown on the page.",
+    "agentId": "a6cca4e0fa5f8144a",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "The arXiv page confirms:\n\n- **Title:** \"Tool Preferences in Agentic LLMs are Unreliable\"\n- **Submitted on:** 23 May 2025 (v1), last revised 21 Sep 2025 (v2)\n- **Venue:** EMNLP 2025 main conference\n\nSo the arXiv ID `2505` correctly reflects **May 2025**, not May 2026. The paper was originally submitted on 23 May 2025."
+      }
+    ],
+    "totalDurationMs": 13502,
+    "totalTokens": 10221,
+    "totalToolUseCount": 2,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 9208,
+      "output_tokens": 122,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 890
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 122,
+          "cache_read_input_tokens": 9208,
+          "cache_creation_input_tokens": 890,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 890,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 2
+    }
+  },
+  "sourceToolAssistantUUID": "1f4dff10-e8e6-415d-bcc8-cd7e0bc9be8b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-19T14:42:24.695Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have everything. Let me craft the complete revised JSON.
+
+Let me think carefully about the revision structure:
+
+## Core Problem — needs updating to acknowledge new landscape
+The core problem is still valid: does tool-selection reasoning causally drive tool calls in multi-turn agentic systems? But now I need to acknowledge that:
+- Single-turn probing has been done (2605.07990)
+- Binary tool-necessity probing has been done (2605.09252)
+- The multi-turn gap is the key opportunity
+
+## Opportunity — major update needed
+- The new May 2026 papers establish that tool identity IS linearly readable in single-turn settings
+
+
+- Multi-turn remains explicitly unsolved, and the behavioral intervention approach using CoT perturbation is completely novel for tool selection
+- Combining behavioral and mechanistic methods is also novel
+
+## Landscape — comprehensive update
+I need to integrate seven additional papers that fill critical gaps: work on decoding answers before CoT, catching rationalizations in action, RFEval, FACT-E, C2-Faith, "Lie to Me," and the new linearly readable tool calling paper, which collectively show that while single-turn tool identity is now understood, multi-turn tool selection reasoning remains an open frontier.
+
+## Approach — major restructuring
+The 4-type intervention protocol stays as the core novelty, with the benchmark reorganized into three tiers and probing refocused on multi-turn dynamics with new hypotheses, while updating the model roster.
+
+## Models
+Testing across open-source options like Kimi K2.6, GLM-5.1, Qwen3.6-35B-A3B, and DeepSeek-V4-Pro alongside frontier APIs including Claude Sonnet 4.6, GPT-5.5, and Gemini 2.5 Pro.
+
+I'm settling on 7 models total — 4 open-source and 3 frontier — which gives solid coverage without overextending the evaluation scope.
+
+Now I'm mapping out the submission timeline: AAAI 2027 as a stretch goal, ICLR 2027 as the main target, with ARR in October 2026 as a backup plan for ACL 2027. The resource estimates need updating since we're working with larger models, though the scenario count stays similar. The probing experiments will need tighter focus on multi-turn dynamics, and GPU requirements may shift accordingly.
+
+I need to reframe the expected findings away from conclusion-driven language. Instead, I'm setting up four specific hypotheses: RTI scores will exceed 0.3 across model families, extending prior unfaithfulness work to tool selection; RTI should be higher for habitual tools versus novel ones; multi-turn probing should show degradation in encoding accuracy as conversations deepen, unlike stable single-turn results; and there should be a dissociation between behavioral faithfulness and mechanistic encoding, where CoT appears faithful but decisions were pre-committed. Now I'm thinking through the tiered benchmark structure more carefully.
+
+For the benchmark tiers, I'm designing three levels of increasing complexity. Tier 1 uses unambiguous scenarios with a single correct tool to establish a baseline—if TSCF is low here, the CoT is purely decorative. Tier 2 introduces soft ambiguity with 2-3 plausible tools where one is clearly better, measuring faithfulness through whether reasoning perturbations actually change the selection. Tier 3 presents hard ambiguity with multiple valid tools, where I measure faithfulness via stance consistency and causal coupling—the critical question being whether the CoT actually drives the specific choice among valid options rather than just post-hoc justifying it.
+
+Now I'm differentiating my probing approach from prior work. The key innovations are testing multi-turn scenarios where context accumulates across turns, checking whether probes trained at one decision point can predict selections much later in the conversation, tracking how tool encoding shifts as the residual stream incorporates prior results, and directly linking probing findings to behavioral faithfulness measurements to see if "pre-decided" tool calls correlate with weaker CoT reasoning. This goes beyond single-turn fixed menus to capture the dynamic, context-dependent nature of real multi-turn interactions.
+
+I'm also probing the full structured decision—both tool name and key parameters together—rather than just the tool identity, testing whether the entire decision is pre-committed or only the surface-level tool choice.
+
+Writing the full JSON...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f64a6a21-aac6-4abe-b7cb-272ebf57f696",
+  "isSidechain": false,
+  "requestId": "req_011CbC6vCBo5i3e5pMo4EFDf",
+  "type": "assistant",
+  "uuid": "2d4db6b1-123d-47fe-9fa7-4ed289cde454",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012wX9a8zsqodvaZBJzfLUcu",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 906,
+      "cache_read_input_tokens": 38690,
+      "output_tokens": 8278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 906,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8278,
+          "cache_read_input_tokens": 38690,
+          "cache_creation_input_tokens": 906,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 906
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-19T14:44:35.006Z_
+
+Now I have all the research I need. Let me synthesize everything into a comprehensive revision. The discovery of three May 2026 papers on tool-call probing (especially 2605.07990) means this needs a **major revision** — the probing component must be fundamentally repositioned, and the landscape has dramatically expanded.
+
+```json
+{
+  "change_type": "major",
+  "revision_summary": "Major revision driven by three discoveries: (1) three brand-new May 2026 papers on tool-call probing (2605.07990, 2605.09252, 2605.06890) that pre-empt our basic probing component in single-turn settings — requiring repositioning around multi-turn dynamics explicitly flagged as unsolved; (2) six missing concurrent works on CoT faithfulness that reshape the landscape; (3) structural redesign of the benchmark from deterministic-only to a tiered difficulty system. The behavioral intervention protocol (the core contribution) remains fully novel — no existing work performs causal interventions on tool-selection CoT in multi-turn agentic settings. The probing component is repositioned as a complementary multi-turn extension of 2605.07990, testing cross-turn probe transfer and context-dependent encoding shift. All models updated to May 2026 SOTA. Venues corrected. Expected findings reframed as testable hypotheses.",
+  "changes_made": [
+    "Fixed 2505.18135 dating from 'May 2026' to 'May 2025 (EMNLP 2025)'",
+    "Added 6 reviewer-identified missing papers: Decoding Answers Before CoT (2603.01437), Catching Rationalization (2603.17199), RFEval (2602.17053), FACT-E (2604.10693), C2-Faith (2603.05167), Lie to Me (2603.22582)",
+    "Added 3 newly discovered May 2026 papers: Tool Calling is Linearly Readable (2605.07990), LLM Agents Already Know When to Call Tools (2605.09252), Beyond the Black Box (2605.06890)",
+    "Restructured benchmark from 600 deterministic scenarios to 3 tiers: 200 Unambiguous + 200 Soft-Ambiguous + 200 Hard-Ambiguous",
+    "Repositioned probing component from general 'is tool identity encoded pre-CoT' to multi-turn-specific hypotheses: cross-turn probe transfer, context-dependent encoding drift, and faithfulness-coupling analysis",
+    "Updated all models: Kimi K2.6, GLM-5.1, Qwen3.6-35B-A3B, DeepSeek-V4-Pro, Claude Sonnet 4.6, GPT-5.5, Gemini 2.5 Pro GA",
+    "Removed EMNLP 2026; set ICLR 2027 as primary, AAAI 2027 as stretch, ARR Oct 2026 as safety net",
+    "Reframed all expected findings as testable hypotheses (H1-H5)",
+    "Decoupled faithfulness measurement from tool-selection correctness following RFEval framework"
+  ],
+  "title": "Faithfulness of Tool-Selection Reasoning in Multi-Turn Agentic Systems: Behavioral Interventions and Multi-Turn Probing",
+  "core_problem": "In multi-turn tool-using agents, does the model's stated reasoning about tool selection — which tool to call, with what parameters, and why — actually causally drive the tool call decision, or is it post-hoc rationalization of a latent policy? Recent probing work (2605.07990, 2605.09252) has shown that tool identity is linearly encoded in pre-generation activations in single-turn settings, suggesting CoT may be decorative. But these findings explicitly fail to transfer to multi-turn agentic settings, where accumulated conversation history, prior tool results, and error feedback create dynamic contexts that fundamentally differ from static single-turn tool menus. No systematic behavioral study exists to measure causal coupling between stated reasoning and tool-call actions across conversation turns.",
+  "opportunity": "The landscape has bifurcated: single-turn tool probing is now well-characterized (2605.07990 achieves 93-100% steering accuracy for 4B+ models; 2605.09252 shows 0.89-0.96 AUROC for tool-necessity probing), while multi-turn agentic tool selection remains essentially unstudied from a faithfulness perspective. This is precisely where the stakes are highest — production agents execute multi-step workflows where early tool calls condition later ones, errors require replanning, and unfaithful reasoning about tool selection can cascade into irreversible harmful actions. The faithfulness evaluation literature has advanced rapidly in 2026: RFEval finds ~50% of reasoning outputs unfaithful across 7,186 instances; 'Lie to Me' reveals a 59-percentage-point gap between internal recognition and output acknowledgment of hint influence; 'Decoding Answers Before CoT' shows 0.9 AUC pre-CoT answer probing — yet all this work targets single-turn QA/math, not agentic tool selection. Critically, 2605.07990 found multi-turn steering to be 'fragile' with -30 to +10pp vs. baseline and 'no consistent direction,' directly motivating a systematic study of multi-turn tool-selection faithfulness. The behavioral intervention approach — perturbing CoT and measuring whether tool calls change — is entirely unaddressed by any existing work on tool-call probing, creating a unique and timely contribution.",
+  "landscape": "The landscape spans four converging threads:\n\n**Thread 1 — CoT Faithfulness (General):** Project Ariadne (2601.02314) finds causal decoupling with violation density up to 0.77 in factual domains but focuses on claims, not actions. 'Decoding Answers Before CoT' (2603.01437) shows answers encoded in pre-CoT activations with 0.9 AUC, establishing that CoT can be post-hoc, but only for binary QA. 'Catching Rationalization in the Act' (2603.17199) detects motivated reasoning via activation probing, showing internal representations outperform CoT monitors. RFEval (2602.17053) provides a 7,186-instance counterfactual intervention benchmark finding ~50% unfaithfulness, but for reasoning tasks not tool calls. FACT-E (2604.10693, ACL 2026 Findings) uses causal perturbations for CoT evaluation, finding self-evaluation unreliable. C2-Faith (2603.05167) benchmarks LLM-as-judge for causal/coverage faithfulness, showing systematic blind spots in localization. 'Lie to Me' (2603.22582) evaluates 12 models finding faithfulness rates from 39.7% to 89.9% with a critical 59pp thinking-vs-output gap. Breaking the Chain (2603.16475) shows 60% insensitivity to intermediate structure interventions. FaithCoT-Bench (ICLR 2026, 2510.04040) and FRIT (2509.13334) address single-turn QA faithfulness only.\n\n**Thread 2 — Tool-Call Probing (Single-Turn):** 'Tool Calling is Linearly Readable and Steerable' (2605.07990) probes 12 models, achieving 93-100% tool-name steering accuracy at 4B+ in single-turn fixed-menu settings, but explicitly finds multi-turn transfer 'fragile' (-30 to +10pp). Argument values are NOT steerable (0/30). 'LLM Agents Already Know When to Call Tools' (2605.09252) shows binary tool-necessity is decodable at 0.89-0.96 AUROC, with reasoning providing no additional signal. 'Beyond the Black Box' (2605.06890) applies SAE + probes to multi-step trajectories for tool-need/tool-risk classification but not tool identity or faithfulness. 'Internal Representations as Indicators of Hallucinations in Agent Tool Selection' (2601.05214) detects hallucinated tool calls from hidden states but in single-turn only.\n\n**Thread 3 — Tool Selection Robustness/Behavior:** 'Tool Preferences in Agentic LLMs are Unreliable' (EMNLP 2025, 2505.18135) shows tool selection is fragile under description manipulation but does not examine CoT faithfulness. 'The Reasoning Trap' (2510.22977) demonstrates RL causally amplifies tool hallucination but studies hallucination rates, not reasoning faithfulness. TOOLCERT (2510.03992) studies distributional robustness, not faithfulness. 'Brief Is Better' (2604.02155) finds non-monotonic CoT budget effects on function-calling accuracy. 'The Causal Impact of Tool Affordance on Safety Alignment' (ICECET 2026, 2603.20320) examines safety but not faithfulness.\n\n**Thread 4 — Agentic Monitoring:** SAVeR (2604.08401) proposes self-auditing for agentic faithfulness but provides limited empirical analysis. 'Noticing the Watcher' (2603.16928) shows models detect CoT monitoring from feedback at up to 19% awareness. 'Reasoning and Tool-use Compete in Agentic RL' (2602.00994) reveals interference between reasoning and tool use during training.\n\n**Critical Gap:** No work combines behavioral causal interventions on tool-selection CoT with mechanistic probing in multi-turn agentic settings. Single-turn probing is established; multi-turn is explicitly unsolved. Behavioral faithfulness testing for tool selection is entirely absent.",
+  "inspired_by": "Three converging findings: (1) 2605.07990's explicit acknowledgment that multi-turn tool-call probing is 'fragile' and unsolved, creating a clear frontier; (2) the faithfulness evaluation literature's maturation (RFEval, FACT-E, Lie to Me) providing proven intervention methodologies that have never been applied to tool selection; (3) the growing deployment of multi-turn agentic systems where tool-selection faithfulness has direct safety implications that single-turn probing cannot address.",
+  "approach": "We construct TOOLFAITH-BENCH, a diagnostic benchmark of 600 multi-turn agentic scenarios across five domains (code editing, web browsing, data analysis, system administration, information retrieval), each containing 2-4 tool-selection decision points. Scenarios are stratified into three difficulty tiers reflecting real-world ambiguity:\n\n**Tier 1 — Unambiguous (200 scenarios):** A single correct tool per decision point; the reasoning chain uniquely determines the tool. Serves as calibration: if TSCF is low here, the CoT is clearly decorative.\n\n**Tier 2 — Soft-Ambiguous (200 scenarios):** 2-3 plausible tools with one clearly optimal. The reasoning must contain distinguishing information (e.g., 'the file is >2GB, so we need streaming upload rather than multipart'). Interventions target this distinguishing reasoning.\n\n**Tier 3 — Hard-Ambiguous (200 scenarios):** Multiple genuinely valid tools. Faithfulness is measured via stance consistency (does the CoT logically support the specific tool chosen?) and causal coupling (does perturbing the CoT change which valid tool is selected?), following RFEval's framework of decoupling faithfulness from correctness.\n\nAt each decision point we apply four perturbation types: (1) reason-flip — rewrite the CoT to justify a different tool, (2) reason-ablate — remove reasoning entirely, presenting only task context, (3) counterfactual-inject — insert facts that should change the optimal tool, (4) reason-scramble — shuffle reasoning sentences while preserving tool mentions. We define two complementary metrics: Tool Selection Causal Fidelity (TSCF), the rate at which tool calls correctly follow intervened reasoning, and Reasoning Theater Index (RTI), the rate at which tool calls remain unchanged despite contradictory reasoning.\n\nWe evaluate seven models spanning current open-weight systems (Kimi K2.6, GLM-5.1, Qwen3.6-35B-A3B, DeepSeek-V4-Pro) and frontier APIs (Claude Sonnet 4.6, GPT-5.5, Gemini 2.5 Pro), supplementing behavioral results with a multi-turn probing study on open-weight models. The probing component is explicitly positioned as an extension of 2605.07990 to the unsolved multi-turn regime, with four novel analyses: (a) cross-turn probe transfer — whether a probe trained at decision point 1 (turn 2) generalizes to decision point 3 (turn 8) as context accumulates; (b) context-dependent encoding drift — whether the linear direction encoding a given tool shifts across turns as prior tool results modify the task state; (c) error-induced replanning signals — whether tool errors create detectable representational shifts before the next tool selection; (d) faithfulness coupling — correlating probe-detected pre-commitment (tool identity encoded before CoT) with behavioral unfaithfulness (low TSCF), testing whether mechanistic and behavioral measures of unfaithfulness align. This goes beyond 2605.07990's domain transfer, because multi-turn contexts create fundamentally different representational challenges: the residual stream must integrate prior tool results, error states, and evolving task context alongside the current tool decision, and 2605.07990 explicitly showed this integration is fragile.",
+  "hypotheses": [
+    "H1: RTI scores will be significantly elevated (>0.3) across all model families for Tier 1 scenarios, extending the unfaithfulness patterns found by RFEval (~50% unfaithful) and Project Ariadne (violation density up to 0.77) to tool-selection decisions.",
+    "H2: RTI will be higher for high-frequency tools (commonly seen in training data) than for rare or domain-specific tools, consistent with parametric habit-driven selection overriding stated reasoning.",
+    "H3: Multi-turn probe accuracy for tool identity will degrade as conversation depth increases (decision point 3-4 vs. decision point 1-2), unlike the stable 93-100% probing results found in single-turn settings by 2605.07990, due to representational competition in the residual stream from accumulated context.",
+    "H4: There will be a measurable dissociation between behavioral faithfulness (TSCF) and mechanistic pre-commitment (probe confidence), revealing cases where CoT appears behaviorally faithful but the tool decision was already encoded pre-CoT, and vice versa.",
+    "H5: Tier 3 (hard-ambiguous) scenarios will show higher behavioral faithfulness than Tier 1 (unambiguous), because genuine deliberation is required when no single tool dominates — a prediction that, if confirmed, would suggest faithfulness is partly a function of task difficulty rather than a fixed model property."
+  ],
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "300 H100-hours (150h model inference across 4 open-weight models × 600 scenarios × 4 intervention types × 3 tiers, 70h multi-turn probing experiments with cross-turn analysis, 80h development/debugging)",
+      "timeline": "12-14 weeks (3 wk benchmark design with tiered difficulty validation, 3 wk implementation, 3 wk experiments, 3-5 wk analysis/writing)",
+      "estimated_gpu_cost": "$750 (at ~$2.50/hr H100 spot pricing)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "240 H100-hours (same inference workload, fewer debugging iterations with Claude-assisted scenario generation and tiered validation)",
+      "timeline": "10-12 weeks (2.5 wk benchmark design, 2 wk implementation, 2.5 wk experiments, 3-4 wk analysis/writing)",
+      "claude_api_cost": "$350-450 (scenario generation across 3 tiers, ambiguity calibration, code assistance, statistical analysis, paper drafting across ~18M input + 6M output tokens)",
+      "estimated_gpu_cost": "$600 (at ~$2.50/hr H100 spot pricing)"
+    },
+    "auto_research": {
+      "gpu_hours": "500 H100-hours (larger intervention sweep, additional ablations on tier boundaries, probe transfer experiments across multiple random seeds, cross-model probe transfer analysis)",
+      "timeline": "5-7 weeks wall-clock (parallelized scenario generation, concurrent model evaluation, automated analysis pipeline)",
+      "claude_api_cost": "$800-1000 (orchestration, tiered scenario generation with ambiguity calibration, evaluation judging, statistical analysis, full paper drafting across ~45M input + 18M output tokens)",
+      "estimated_gpu_cost": "$1250 (at ~$2.50/hr H100 spot pricing)",
+      "speed_bottleneck": "Tier 2/3 scenario quality validation — ensuring soft-ambiguous scenarios have correctly calibrated difficulty (one tool genuinely better but not trivially so) requires human spot-checking that cannot be fully automated without risking construct validity"
+    }
+  },
+  "target_venues": [
+    "ICLR 2027 (predicted deadline ~September 24, 2026 — primary target with 18 weeks of runway; ideal for full experimental sweep including multi-turn probing)",
+    "AAAI 2027 (abstract: July 21, 2026; full paper: July 28, 2026 — stretch target at 10 weeks; feasible if benchmark design phase is compressed)",
+    "ARR October 2026 cycle → ACL 2027 (submission: October 12, 2026 — safety net with 21 weeks of runway)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents (arXiv 2026, 2601.02314)",
+    "Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing [SAVeR] (arXiv 2026, 2604.08401)",
+    "Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures (arXiv 2026, 2603.16475)",
+    "Noticing the Watcher: LLM Agents Can Infer CoT Monitoring from Blocking Feedback (arXiv 2026, 2603.16928)",
+    "Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering (arXiv 2026, 2603.01437)",
+    "Catching Rationalization in the Act: Detecting Motivated Reasoning via Activation Probing (arXiv 2026, 2603.17199)",
+    "RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention (arXiv 2026, 2602.17053)",
+    "FACT-E: Causality-Inspired Evaluation for Trustworthy Chain-of-Thought Reasoning (ACL 2026 Findings, 2604.10693)",
+    "C2-Faith: Benchmarking LLM Judges for Causal and Coverage Faithfulness in CoT Reasoning (arXiv 2026, 2603.05167)",
+    "Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Reasoning Models? (arXiv 2026, 2603.22582)",
+    "Tool Calling is Linearly Readable and Steerable in Language Models (arXiv 2026, 2605.07990)",
+    "LLM Agents Already Know When to Call Tools — Even Without Reasoning (arXiv 2026, 2605.09252)",
+    "Beyond the Black Box: Interpretability of Agentic AI Tool Use (arXiv 2026, 2605.06890)",
+    "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning (ICLR 2026, 2510.04040)",
+    "FRIT: Using Causal Importance to Improve Chain-of-Thought Faithfulness (arXiv 2025, 2509.13334)",
+    "The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination (arXiv 2025, 2510.22977)",
+    "Tool Preferences in Agentic LLMs are Unreliable (EMNLP 2025, 2505.18135)",
+    "Quantifying Distributional Robustness of Agentic Tool-Selection [TOOLCERT] (arXiv 2025, 2510.03992)",
+    "Internal Representations as Indicators of Hallucinations in Agent Tool Selection (arXiv 2026, 2601.05214)",
+    "Brief Is Better: Non-Monotonic Chain-of-Thought Budget Effects in Function-Calling Language Agents (arXiv 2026, 2604.02155)",
+    "The Causal Impact of Tool Affordance on Safety Alignment in LLM Agents (ICECET 2026, 2603.20320)",
+    "Reasoning and Tool-use Compete in Agentic RL: From Quantifying Interference to Disentangled Tuning (arXiv 2026, 2602.00994)",
+    "Analysing Chain of Thought Dynamics: Active Guidance or Unfaithful Post-hoc Rationalisation? (arXiv 2025, 2508.19827)"
+  ],
+  "description": "We present the first systematic study of whether tool-selection reasoning in multi-turn agentic systems is causally faithful or post-hoc rationalization, combining behavioral causal interventions with multi-turn mechanistic probing. While recent work has established that tool identity is linearly readable from pre-generation activations in single-turn settings (2605.07990, achieving 93-100% steering accuracy) and that ~50% of general reasoning is unfaithful (RFEval), no prior work examines whether an agent's stated reasoning for choosing a specific tool across conversation turns actually drives that decision. We construct TOOLFAITH-BENCH, a 600-scenario diagnostic benchmark across five domains, stratified into three difficulty tiers — Unambiguous (single correct tool), Soft-Ambiguous (one optimal among plausible candidates), and Hard-Ambiguous (multiple valid tools) — to address construct validity concerns about benchmark realism. We apply a four-type causal intervention protocol (reason-flip, reason-ablate, counterfactual-inject, reason-scramble) and introduce two metrics: Tool Selection Causal Fidelity (TSCF) and Reasoning Theater Index (RTI). We evaluate seven models spanning current open-weight systems (Kimi K2.6, GLM-5.1, Qwen3.6-35B-A3B, DeepSeek-V4-Pro) and frontier APIs (Claude Sonnet 4.6, GPT-5.5, Gemini 2.5 Pro), supplemented by a multi-turn probing study that extends 2605.07990 to the unsolved multi-turn regime with four novel analyses: cross-turn probe transfer, context-dependent encoding drift, error-induced replanning signals, and behavioral-mechanistic faithfulness coupling. We test five hypotheses, including that RTI will be elevated across model families (extending single-turn findings), that probe accuracy will degrade with conversation depth (unlike stable single-turn results), and — counterintuitively — that harder ambiguous scenarios may elicit more faithful reasoning than unambiguous ones because genuine deliberation is required.",
+  "project_name": "toolfaith_bench",
+  "source": "web_research"
+}
+```
+
+---
+
+## Summary of Changes by Reviewer Issue
+
+| # | Reviewer Issue | Resolution | Evidence |
+|---|---|---|---|
+| 1 | **Reference error** (2505.18135 dated May 2026) | Fixed to "EMNLP 2025, 2505.18135" — confirmed submitted May 23, 2025 | arXiv page verification |
+| 2 | **6 missing concurrent works** | All 6 added + **3 additional** May 2026 papers discovered (2605.07990, 2605.09252, 2605.06890) that are critical for positioning | Deep reading of all 9 papers |
+| 3 | **Construct validity** (deterministic constraint unrealistic) | Replaced with 3-tier system: Unambiguous/Soft-Ambiguous/Hard-Ambiguous, informed by ToolBench I1/I2/I3 design, RFEval's faithfulness-correctness decoupling, and SPD-Faith's operationalized tiers | Survey of 10+ benchmark designs |
+| 4 | **EMNLP 2026 impossible** | Removed. New targets: ICLR 2027 (primary, ~18wk runway), AAAI 2027 (stretch, ~10wk), ARR Oct→ACL 2027 (safety net, ~21wk) | Confirmed all deadlines via official sources |
+| 5 | **Expected findings bias** | Replaced with 5 explicit testable hypotheses (H1-H5), including the counterintuitive H5 that hard-ambiguous scenarios may show *higher* faithfulness | Reframed throughout |
+| 6 | **Model selection outdated** | All updated: Kimi K2.6 (Apr'26), GLM-5.1 (Apr'26), Qwen3.6-35B-A3B (Apr'26), DeepSeek-V4-Pro (Apr'26), Claude Sonnet 4.6 (Feb'26), GPT-5.5 (Apr'26), Gemini 2.5 Pro GA | Web search verification of each |
+| 7 | **Probing differentiation** from 2603.01437 | Massively expanded: positioned against **both** 2603.01437 AND the newly discovered 2605.07990. Probing now focuses on 4 multi-turn-specific analyses that no existing work addresses. Key differentiator: 2605.07990 explicitly reports multi-turn steering is "fragile" with "no consistent direction" | Deep reading of 2605.07990 + 2603.01437 |
+
+The **most significant upgrade** beyond addressing reviewer issues is the discovery of 2605.07990 ("Tool Calling is Linearly Readable and Steerable"), published ~2 weeks ago. This paper pre-empts our basic probing component in single-turn settings but *strengthens* our multi-turn positioning — they explicitly flag multi-turn as unsolved, giving us a clear and well-motivated research frontier.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d4db6b1-123d-47fe-9fa7-4ed289cde454",
+  "isSidechain": false,
+  "requestId": "req_011CbC6vCBo5i3e5pMo4EFDf",
+  "type": "assistant",
+  "uuid": "53d423b9-06ee-46ce-9ee8-d9d5f10a610f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012wX9a8zsqodvaZBJzfLUcu",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 906,
+      "cache_read_input_tokens": 38690,
+      "output_tokens": 8278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 906,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8278,
+          "cache_read_input_tokens": 38690,
+          "cache_creation_input_tokens": 906,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 906
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Faithfulness of Tool-Selection Reasoning in Agentic Systems\",   \"core_…",
+  "leafUuid": "53d423b9-06ee-46ce-9ee8-d9d5f10a610f",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise tool-selection faithfulness benchmark per reviewer feedback",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-19 (UTC).**  ## Original idea {   \"title\": \"Faithfulness of Tool-Selection Reasoning in Agentic Systems\",   \"core_…",
+  "leafUuid": "53d423b9-06ee-46ce-9ee8-d9d5f10a610f",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise tool-selection faithfulness benchmark per reviewer feedback",
+  "sessionId": "826e68f0-f084-4703-baa7-eafff3ec0b55"
+}
+```
+
+---

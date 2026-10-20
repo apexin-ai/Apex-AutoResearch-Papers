@@ -1,0 +1,7026 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-16 (UTC).** ## Original idea { "tit
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 100
+- **Recorded user turns:** 1
+- **Tool calls:** 27
+- **Original source:** `logs/chats/exported-trajectories/account-1/63f75369-fce6-4e3c-a194-ced61c2364ea.jsonl`
+- **Structured JSON:** [`d19fc55f9cd96bcfd8e3.json`](../../sessions/d1/d19fc55f9cd96bcfd8e3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T08:34:50.356Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T08:34:50.356Z",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-16 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Step-Level Faithfulness-Gated Rejection Decoding: Enforcing CoT Faithfulness via Hidden-State Consistency Probes\",\n  \"core_problem\": \"LLM reasoning traces are frequently unfaithful to internal computations (15-20% of correct CoT outputs are unfaithful per FaithCoT-Bench ICLR 2026; 25-39% acknowledgment rates per Anthropic 2025; up to 60% failure to update after causal intervention per ICLR 2026 work). While probe-guided decoding has been shown to improve CORRECTNESS at step level (DHC, AAAI 2026), no existing method targets FAITHFULNESS specifically during generation. Correctness probes miss the 15-20% of outputs that are correct-but-unfaithful—where the model arrives at the right answer via reasoning that does not reflect its actual internal computation. Training-time approaches (FaithRL, REMUL) improve faithfulness on average but cannot guarantee step-level faithfulness at inference time for any specific input.\",\n  \"opportunity\": \"Three convergent findings create a precise opening: (1) Step-level probe-guided decoding WORKS for correctness (DHC, AAAI 2026 demonstrates beam search guided by attention-head probes significantly outperforms baselines on mathematical, symbolic, and commonsense tasks); (2) Trace-level probe-guided interventions FAIL (Hidden Error Awareness, May 2026, shows best-of-N ≈ random, self-correction hurts by -3%); (3) Faithfulness is orthogonal to correctness (FaithCoT-Bench documents 15-20% correct-but-unfaithful instances). The reconciliation is clear: step-level selection succeeds because probes have high per-step discrimination (0.95 AUROC) but poor cross-trace ranking; faithfulness is an unaddressed dimension because all existing probe-guided decoding targets correctness. This creates the opportunity for step-level faithfulness-gated rejection decoding—combining DHC's validated step-level selection architecture with faithfulness-specific probes trained on residual stream activations (which encode full computational state, unlike attention-head probes that capture local reasoning patterns).\",\n  \"landscape\": \"**Probe-guided decoding for correctness**: Deep Hidden Cognition (DHC, AAAI 2026, arXiv 2507.10007) trains linear probes on attention head activations to predict step correctness, then uses step-level beam search to select among M candidates. Targets correctness only; does not measure or improve faithfulness. **Failed interventions**: Hidden Error Awareness (arXiv 2605.09502, May 2026) shows 0.95 AUROC probes predict CoT correctness but four interventions fail—probe-guided best-of-N ≈ random (trace-level selection), self-correction hurts -3% (reuses same prefix/computation), activation steering is fragile, patching destroys coherence. Key insight: signal is diagnostic at trace level but selection works at step level (as DHC shows). **Streaming detection**: Streaming Hallucination Detection (arXiv 2601.02170) frames hallucination as evolving latent state with prefix-level tracking—detection only, no correction mechanism. **Monitoring Decoding** (ACL 2025 Findings, arXiv 2503.03106) does token-level factuality monitoring with tree-based regeneration for QA/general text, but targets factuality of claims against world knowledge, not faithfulness of reasoning to internal computation. **Hidden-state geometry**: Where Does Reasoning Break (arXiv 2605.13772, May 2026) uses transport geometry on hidden states for step-level hallucination detection—detection only, no intervention. ICR Probe (ACL 2025) tracks cross-layer hidden state dynamics for hallucination detection. **Probe-based early exit**: Reasoning Models Know When They're Right (arXiv 2504.05419) uses probes for early exit during reasoning, saving 24% tokens—different goal (efficiency, not faithfulness). **Training-time faithfulness**: FaithRL (arXiv 2602.03507) optimizes step-level faithfulness via RL, reducing hallucination by 4.7 points. REMUL (arXiv 2602.16154) uses multi-listener RL for faithfulness. Stop Rewarding Hallucinated Steps (arXiv 2602.05897) uses faithfulness signals in RL. Counterfactual Simulation Training (arXiv 2602.20710) improves faithfulness via fine-tuning. All are training-time methods that improve average faithfulness but cannot enforce per-instance guarantees at inference. **Faithfulness measurement**: FUR (EMNLP 2025 Outstanding Paper) measures parametric faithfulness via unlearning—post-hoc. FaithCoT-Bench (ICLR 2026) benchmarks with 1000+ expert-annotated trajectories. Lie to Me (arXiv 2603.22582) documents faithfulness rates across 12 models. Reasoning Models Don't Always Say What They Think (Anthropic 2025) documents the problem at scale. **Gap**: No method performs step-level rejection decoding gated by FAITHFULNESS probes (as distinct from correctness probes) during CoT generation.\",\n  \"approach\": \"**Method: Step-Level Faithfulness-Gated Rejection Decoding (SFGRD)**\\n\\n**Probe Architecture**: Train lightweight linear probes on RESIDUAL STREAM activations (not attention heads as in DHC) to predict whether a generated reasoning step faithfully reflects the model's internal computation. Residual stream encodes the full computational state—critical for faithfulness detection, which requires comparing text semantics against actual computation, not just assessing logical validity. Probe: f(h_residual) = σ(W^T h + b), trained per-layer with layer selection via validation AUROC.\\n\\n**Training Data Pipeline**: (1) Seed data: FaithCoT-Bench's ~300 unfaithful instances with step-level evidence across 4 domains, providing ~1500 step-level faithful/unfaithful labels. (2) Synthetic expansion: Apply FUR unlearning protocol—for each reasoning step, test whether unlearning the step's key fact changes the model's answer; if not, the step is unfaithful (model doesn't actually use this reasoning). Generate ~5000 additional synthetic labels. (3) Validation: Hold out 20% of FaithCoT-Bench expert annotations for probe evaluation. Target: ≥0.85 AUROC on held-out set (below 0.80 = abort).\\n\\n**Step Boundary Detection**: For reasoning models (Qwen3.5-27B, DeepSeek-R1), step boundaries are identified via double-newline delimiters within &lt;think> blocks (both models use structured reasoning with explicit step formatting). Minimum step length threshold of 20 tokens to avoid fragmentary segments. Ablation: sentence-level boundaries vs. learned segmentation.\\n\\n**Inference-Time Rejection Decoding**: After generating each reasoning step: (1) Extract residual stream activations at final token of step. (2) Faithfulness probe evaluates: p_faithful = f(h_residual). (3) If p_faithful > τ (threshold tuned on validation set): accept step, continue. (4) If p_faithful ≤ τ: REJECT step and regenerate with diversity constraints—suppress rejected step's 4-grams (prevent same articulation), apply temperature scaling (T=1.2→1.5 on successive rejections), regenerate from same prefix. (5) Maximum 3 rejection attempts per step; if all fail, accept highest-scoring attempt (graceful degradation).\\n\\n**Key Differentiators from DHC**: (a) Targets faithfulness, not correctness—probes trained on faithfulness labels, not truth labels. (b) Uses rejection sampling with diversity constraints rather than beam search—more efficient (only regenerates on failure, no M-way generation at every step) and specifically addresses the 'same computation' problem via n-gram blocking. (c) Residual stream probes (full computational state) vs. attention head probes (local reasoning patterns).\\n\\n**Key Differentiators from Hidden Error Awareness's failed interventions**: (a) Step-level rejection (proven viable by DHC's success) vs. trace-level best-of-N (proven to fail). (b) Forced diversity via n-gram suppression prevents 'same flawed computation' problem that killed self-correction (which used simple retry from same prefix with no constraints). (c) Hard acceptance gate vs. soft ranking.\\n\\n**Addressing the Failure Paradox**: DHC's step-level beam search succeeds because at each step, probe discrimination is high (0.95 AUROC) and at least one of M candidates is likely good. Hidden Error Awareness's trace-level best-of-N fails because probe scores don't aggregate reliably across steps for ranking complete traces. SFGRD operates at step level (like DHC) but with the efficiency advantage of rejection sampling. The self-correction failure (model regenerates same error) is specifically countered by n-gram blocking—forcing different token sequences forces different articulation paths for the same underlying computation.\\n\\n**Baselines**: (1) Greedy decoding (no intervention). (2) DHC beam search with correctness probes (reproduction). (3) DHC beam search with faithfulness probes (direct comparison—same probe, different decoding). (4) PRM-guided step-level beam search (process reward model baseline to isolate faithfulness contribution). (5) Self-consistency (majority voting). (6) Probe-guided best-of-N (replicating Hidden Error Awareness's failure as sanity check).\\n\\n**Evaluation**: Primary model: Qwen3.5-27B. Replication: DeepSeek-R1-32B. Datasets: GSM8K (mathematical, where hidden-state findings are validated) + GPQA (knowledge-intensive, testing generalization). Metrics: (a) Faithfulness improvement via FaithCoT-Bench evaluation protocol (counterfactual intervention + unlearning test). (b) Accuracy preservation (≤1% degradation acceptable). (c) Latency overhead (target: <2x greedy). (d) Rejection rate and regeneration statistics.\\n\\n**Ablations**: (1) Residual stream vs. attention head probes. (2) Rejection sampling vs. beam search with faithfulness probes. (3) N-gram blocking vs. no diversity constraints (tests the 'same computation' hypothesis). (4) Threshold sensitivity analysis. (5) Step boundary granularity (newline vs. sentence vs. learned). (6) Probe layer selection.\\n\\n**Explicit Failure Criteria**: (1) Probe AUROC < 0.80 on held-out FaithCoT-Bench data → faithfulness is not detectable from residual stream at step level. (2) Faithfulness improvement < 2% over greedy decoding → step-level rejection doesn't help (signal is diagnostic-only even at step level). (3) Accuracy degradation > 3% → faithfulness enforcement destroys correctness. (4) > 50% of rejected steps regenerate to same unfaithful content despite n-gram blocking → forced diversity doesn't create alternative articulation paths. (5) SFGRD performs ≤ DHC with faithfulness probes → rejection sampling offers no advantage over beam search for faithfulness.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~160h H100 (probe training ~10h, DHC baseline reproduction ~25h, primary experiments Qwen3.5-27B on GSM8K+GPQA ~50h, PRM baseline ~15h, ablations ~30h, DeepSeek-R1 replication ~30h)\",\n      \"gpu_utilization\": \"~25-30% effective utilization; GPU idles during experiment design, analysis, debugging\",\n      \"timeline\": \"8-10 weeks\",\n      \"team\": \"2 researchers (1 mechanistic interpretability/probing, 1 decoding/systems)\",\n      \"estimated_gpu_cost\": \"$480-640 (160h × $3.00-4.00/hr H100)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~180h H100 (same experiments + agent-driven threshold/temperature sweeps)\",\n      \"gpu_utilization\": \"~55-65% utilization; agent queues experiments, human approves design decisions at checkpoints\",\n      \"timeline\": \"3-4 weeks\",\n      \"team\": \"1 researcher, ~45min/day review\",\n      \"claude_api_cost\": \"$200-350 (2500-4500 turns)\",\n      \"estimated_gpu_cost\": \"$540-720 (180h × $3.00-4.00/hr H100)\",\n      \"risk_note\": \"If probe AUROC < 0.80 or rejection sampling shows < 2% improvement, human must decide whether to pivot to alternative probe architectures or accept negative result\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~195h H100 (fits within 200h hard constraint: probe training 10h, synthetic label generation via FUR 15h, primary experiments 55h, all baselines 40h, full ablation suite 35h, DeepSeek-R1 replication 30h, buffer 10h)\",\n      \"gpu_utilization\": \"~85-90% utilization; parallel probe training across layers, pipelined evaluation\",\n      \"timeline\": \"11 days with 2× H100 available concurrently (effective parallelism allows ~18h/day compute)\",\n      \"team\": \"0 (initial 2-hour setup: repo scaffold, compute provisioning, FaithCoT-Bench data download, model weights cached)\",\n      \"claude_api_cost\": \"$350-550 (4500-7000 turns covering implementation, experiment orchestration, debugging, analysis, and paper generation)\",\n      \"estimated_gpu_cost\": \"$585-780 (195h × $3.00-4.00/hr H100)\",\n      \"speed_bottleneck\": \"Inference throughput on 27B/32B models during rejection loops; FUR unlearning protocol for synthetic label generation (requires multiple forward passes per step)\",\n      \"risk_note\": \"Primary risk: faithfulness probes may not generalize from FaithCoT-Bench's math/logic domains to GPQA's knowledge-intensive questions. Mitigation: if GPQA probe AUROC < 0.75, report domain-specific results (GSM8K only) as honest negative finding on generalization. Secondary risk: n-gram blocking may reduce fluency—monitor perplexity of regenerated steps and add fluency constraint if needed.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (estimated abstract Jul 26, paper Aug 2, 2026)\",\n    \"ICLR 2027 (estimated abstract late Sep, paper early Oct 2026)\",\n    \"NeurIPS 2027 (estimated May 2027)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Deep Hidden Cognition Facilitates Reliable Chain-of-Thought Reasoning (AAAI 2026, arXiv 2507.10007) — step-level probe-guided beam search for correctness; primary comparison point\",\n    \"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal (Preprint May 2026, arXiv 2605.09502) — shows trace-level interventions fail; motivates step-level approach\",\n    \"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning (ICLR 2026, arXiv 2510.04040) — evaluation protocol, training data source, correct-unfaithful instances\",\n    \"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps (EMNLP 2025 Outstanding Paper) — FUR protocol for synthetic faithfulness label generation\",\n    \"When Chain-of-Thought Fails, the Solution Hides in the Hidden States (Preprint 2026, arXiv 2604.23351) — demonstrates correct computations exist in hidden states when CoT text is wrong\",\n    \"Reasoning Models Don't Always Say What They Think (Anthropic 2025, arXiv 2505.05410) — documents faithfulness problem at scale\",\n    \"Streaming Hallucination Detection in Long Chain-of-Thought Reasoning (Preprint Jan 2026, arXiv 2601.02170) — streaming step-level detection (detection only, no intervention)\",\n    \"Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation (ACL 2025 Findings, arXiv 2503.03106) — token-level monitoring with tree-based regeneration for factuality\",\n    \"Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification (Preprint Apr 2025, arXiv 2504.05419) — probe-based early exit; demonstrates probe utility during inference\",\n    \"ICR Probe: Tracking Hidden State Dynamics for Reliable Hallucination Detection in LLMs (ACL 2025, arXiv 2507.16488) — cross-layer hidden state dynamics for detection\",\n    \"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (Preprint May 2026, arXiv 2605.13772) — hidden-state geometry for step-level detection\",\n    \"FaithRL: Learning to Reason Faithfully through Step-Level Faithfulness Maximization (Preprint Feb 2026, arXiv 2602.03507) — training-time faithfulness RL\",\n    \"Balancing Faithfulness and Performance in Reasoning via Multi-Listener Soft Execution (REMUL, Preprint Feb 2026, arXiv 2602.16154) — multi-listener RL for faithfulness\",\n    \"Stop Rewarding Hallucinated Steps: Faithfulness-Aware Step-Level RL for Small Reasoning Models (Preprint Feb 2026, arXiv 2602.05897)\",\n    \"Counterfactual Simulation Training for Chain-of-Thought Faithfulness (Preprint Feb 2026, arXiv 2602.20710)\",\n    \"Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Reasoning Models? (Preprint Mar 2026, arXiv 2603.22582)\"\n  ],\n  \"description\": \"We propose Step-Level Faithfulness-Gated Rejection Decoding (SFGRD), which enforces CoT faithfulness as a hard constraint during generation by combining two validated findings: (1) step-level probe-guided decoding works for correctness (DHC, AAAI 2026), and (2) faithfulness is orthogonal to correctness with 15-20% of correct outputs being unfaithful (FaithCoT-Bench, ICLR 2026). SFGRD trains linear probes on residual stream activations—encoding the full computational state—to detect faithfulness violations at step granularity. When a probe detects unfaithful reasoning (text that diverges from what the model actually computed), the step is rejected and regenerated with diversity constraints (4-gram suppression of rejected text, temperature scaling) that force alternative articulation paths. This addresses the critical failure mode documented in Hidden Error Awareness (May 2026): their self-correction failed because models 'regenerate using the same flawed computation,' but n-gram blocking forces genuinely different token sequences. SFGRD differs from DHC in three dimensions: (a) faithfulness probes vs. correctness probes (capturing a dimension DHC misses entirely), (b) rejection sampling with diversity constraints vs. beam search (more efficient, specifically addresses the 'same computation' problem), (c) residual stream vs. attention head activations. We explicitly reconcile the apparent contradiction between DHC's success and Hidden Error Awareness's failure: step-level selection works (high per-step AUROC), trace-level ranking fails (scores don't aggregate across steps). Evaluated on Qwen3.5-27B and DeepSeek-R1-32B across GSM8K and GPQA, with DHC reproduction, PRM-guided beam search, and self-consistency as baselines, measuring faithfulness via FaithCoT-Bench protocol alongside accuracy and latency. We state upfront that <2% faithfulness improvement over greedy would falsify the approach.\",\n  \"project_name\": \"faithful_cot_sfgrd\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 2)\nIssues: [\"CRITICAL — Venue mismatch: User explicitly requested EMNLP 2026 (ARR deadline May 25, 2026), but proposal targets AAAI 2027 (Aug 1), ICLR 2027, NeurIPS 2027. Either include EMNLP 2026 as the primary target or explicitly justify why the scope requires later venues.\", \"MAJOR — Missing competitor: Token-Guard (ICLR 2026, arxiv 2601.21969) performs token-level hallucination control via latent space scoring with iterative pruning and regeneration during generation. The detect-at-fine-granularity-and-regenerate architecture is very similar to SFGRD. Must differentiate (Token-Guard targets factual hallucination vs. SFGRD targets reasoning faithfulness; Token-Guard operates at token level vs. SFGRD at step level).\", \"MAJOR — Missing competitor: 'Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning' (arxiv 2602.11201) uses NLDD + linear probes for step-level faithfulness measurement. Their 'Mapping Gap' finding—internal representations encode correct information but the model fails to use it in decoding—directly threatens SFGRD's core assumption that residual stream probes can detect faithfulness. Must engage with this finding.\", \"MAJOR — Core assumption remains entirely unvalidated: No prior work demonstrates that linear probes on residual stream activations can distinguish faithful vs. unfaithful reasoning steps. Correctness probes achieve 0.95 AUROC because correctness is binary and well-defined. Faithfulness requires comparing text semantics against internal computation—a fundamentally harder task with no empirical precedent. The proposal should include a pilot experiment design or stronger theoretical argument for why this should work.\", \"MAJOR — N-gram blocking hypothesis contradicts known evidence: Hidden Error Awareness explicitly states 'the model generates its correction using the same flawed computation that produced the original error.' This implies the problem is at the computation level, not the articulation level. Blocking surface 4-grams may produce different text expressing the same unfaithful computation. The proposal needs a stronger argument or preliminary evidence that surface diversity translates to computational diversity.\", \"MINOR — Missing additional relevant work: (1) STEP (arxiv 2601.09093) — step-level hidden-state evaluation for trace pruning during generation; (2) ReProbe (arxiv 2511.06209) — lightweight probes on internal states matching PRM performance for step verification; (3) 'The Illusion of Reasoning' (arxiv 2603.22816) — shows faithfulness varies dramatically by domain (R1 models: 91-93% necessity on math vs. 4% for non-reasoning models), important for interpreting domain-specific results; (4) 'Mechanistic Evidence for Faithfulness Decay' shows a 'Reasoning Horizon' at 70-85% of chain length beyond which steps don't matter—relevant for step-level intervention design.\", \"MINOR — Model choice slightly outdated: Qwen3.6-27B released April 2026 supersedes Qwen3.5-27B with significant improvements. Consider updating primary model or justifying the older choice.\", \"MINOR — FUR synthetic label assumption: Using FUR to generate ~5000 synthetic faithfulness labels assumes FUR's definition of faithfulness (does unlearning the step's fact change the answer?) is equivalent to what residual stream probes would detect (does the text diverge from internal computation?). These may measure different aspects of faithfulness. Acknowledge this potential mismatch.\"]\nFeedback: The revision addressed round 1's major issues well—DHC and Hidden Error Awareness are now properly positioned, failure criteria are explicit, and the training data pipeline is specified. However, several critical issues remain:\n\n1. **Fix venue targeting**: The user asked for EMNLP 2026. Either make it the primary target (which may require reducing scope to fit the 11-day timeline) or explicitly justify why the work requires later venues and note EMNLP 2026 as infeasible.\n\n2. **Engage with Token-Guard and Mechanistic Evidence for Faithfulness Decay**: Token-Guard (ICLR 2026) is the closest architectural competitor—same pattern of fine-grained detection + regeneration during generation. Differentiate on target (factuality vs. faithfulness) and granularity (token vs. step). The 'Mapping Gap' from 2602.11201 is the strongest theoretical threat to your approach—address it head-on. One possible argument: the Mapping Gap shows representations encode info not used in decoding, but probes might detect WHEN this gap is large (i.e., when faithfulness is low), even if they can't bridge the gap.\n\n3. **Strengthen the n-gram blocking argument**: Currently the weakest part of the proposal. Options: (a) Cite evidence that diverse token sequences in LLMs correspond to diverse computational paths (e.g., from representation geometry literature), (b) Frame n-gram blocking as one of several diversity mechanisms to be ablated (temperature alone, nucleus sampling diversity, prefix perturbation) rather than the core mechanism, (c) Acknowledge this is a testable hypothesis and design the ablation to explicitly measure whether regenerated steps use different internal computations (e.g., compare hidden state similarity between original and regenerated steps).\n\n4. **Add a feasibility pilot**: Given that the core assumption is unvalidated, consider designing a zero-cost or very-low-cost pilot: take FaithCoT-Bench's existing step-level annotations and test whether a linear probe on cached hidden states can distinguish faithful vs. unfaithful steps. Report expected AUROC before committing to the full pipeline. This could be done in <10 H100-hours and would de-risk the entire project.\n\n5. **Incorporate missing competitors into landscape**: Add Token-Guard, STEP, ReProbe, Mechanistic Evidence for Faithfulness Decay, and 'The Illusion of Reasoning' to the landscape section with clear differentiation.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T08:34:50.361Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T08:34:50.361Z",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+## Round 1
+
+98 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T08:34:50.405Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-16 (UTC).**
+
+## Original idea
+{
+  "title": "Step-Level Faithfulness-Gated Rejection Decoding: Enforcing CoT Faithfulness via Hidden-State Consistency Probes",
+  "core_problem": "LLM reasoning traces are frequently unfaithful to internal computations (15-20% of correct CoT outputs are unfaithful per FaithCoT-Bench ICLR 2026; 25-39% acknowledgment rates per Anthropic 2025; up to 60% failure to update after causal intervention per ICLR 2026 work). While probe-guided decoding has been shown to improve CORRECTNESS at step level (DHC, AAAI 2026), no existing method targets FAITHFULNESS specifically during generation. Correctness probes miss the 15-20% of outputs that are correct-but-unfaithful—where the model arrives at the right answer via reasoning that does not reflect its actual internal computation. Training-time approaches (FaithRL, REMUL) improve faithfulness on average but cannot guarantee step-level faithfulness at inference time for any specific input.",
+  "opportunity": "Three convergent findings create a precise opening: (1) Step-level probe-guided decoding WORKS for correctness (DHC, AAAI 2026 demonstrates beam search guided by attention-head probes significantly outperforms baselines on mathematical, symbolic, and commonsense tasks); (2) Trace-level probe-guided interventions FAIL (Hidden Error Awareness, May 2026, shows best-of-N ≈ random, self-correction hurts by -3%); (3) Faithfulness is orthogonal to correctness (FaithCoT-Bench documents 15-20% correct-but-unfaithful instances). The reconciliation is clear: step-level selection succeeds because probes have high per-step discrimination (0.95 AUROC) but poor cross-trace ranking; faithfulness is an unaddressed dimension because all existing probe-guided decoding targets correctness. This creates the opportunity for step-level faithfulness-gated rejection decoding—combining DHC's validated step-level selection architecture with faithfulness-specific probes trained on residual stream activations (which encode full computational state, unlike attention-head probes that capture local reasoning patterns).",
+  "landscape": "**Probe-guided decoding for correctness**: Deep Hidden Cognition (DHC, AAAI 2026, arXiv 2507.10007) trains linear probes on attention head activations to predict step correctness, then uses step-level beam search to select among M candidates. Targets correctness only; does not measure or improve faithfulness. **Failed interventions**: Hidden Error Awareness (arXiv 2605.09502, May 2026) shows 0.95 AUROC probes predict CoT correctness but four interventions fail—probe-guided best-of-N ≈ random (trace-level selection), self-correction hurts -3% (reuses same prefix/computation), activation steering is fragile, patching destroys coherence. Key insight: signal is diagnostic at trace level but selection works at step level (as DHC shows). **Streaming detection**: Streaming Hallucination Detection (arXiv 2601.02170) frames hallucination as evolving latent state with prefix-level tracking—detection only, no correction mechanism. **Monitoring Decoding** (ACL 2025 Findings, arXiv 2503.03106) does token-level factuality monitoring with tree-based regeneration for QA/general text, but targets factuality of claims against world knowledge, not faithfulness of reasoning to internal computation. **Hidden-state geometry**: Where Does Reasoning Break (arXiv 2605.13772, May 2026) uses transport geometry on hidden states for step-level hallucination detection—detection only, no intervention. ICR Probe (ACL 2025) tracks cross-layer hidden state dynamics for hallucination detection. **Probe-based early exit**: Reasoning Models Know When They're Right (arXiv 2504.05419) uses probes for early exit during reasoning, saving 24% tokens—different goal (efficiency, not faithfulness). **Training-time faithfulness**: FaithRL (arXiv 2602.03507) optimizes step-level faithfulness via RL, reducing hallucination by 4.7 points. REMUL (arXiv 2602.16154) uses multi-listener RL for faithfulness. Stop Rewarding Hallucinated Steps (arXiv 2602.05897) uses faithfulness signals in RL. Counterfactual Simulation Training (arXiv 2602.20710) improves faithfulness via fine-tuning. All are training-time methods that improve average faithfulness but cannot enforce per-instance guarantees at inference. **Faithfulness measurement**: FUR (EMNLP 2025 Outstanding Paper) measures parametric faithfulness via unlearning—post-hoc. FaithCoT-Bench (ICLR 2026) benchmarks with 1000+ expert-annotated trajectories. Lie to Me (arXiv 2603.22582) documents faithfulness rates across 12 models. Reasoning Models Don't Always Say What They Think (Anthropic 2025) documents the problem at scale. **Gap**: No method performs step-level rejection decoding gated by FAITHFULNESS probes (as distinct from correctness probes) during CoT generation.",
+  "approach": "**Method: Step-Level Faithfulness-Gated Rejection Decoding (SFGRD)**\n\n**Probe Architecture**: Train lightweight linear probes on RESIDUAL STREAM activations (not attention heads as in DHC) to predict whether a generated reasoning step faithfully reflects the model's internal computation. Residual stream encodes the full computational state—critical for faithfulness detection, which requires comparing text semantics against actual computation, not just assessing logical validity. Probe: f(h_residual) = σ(W^T h + b), trained per-layer with layer selection via validation AUROC.\n\n**Training Data Pipeline**: (1) Seed data: FaithCoT-Bench's ~300 unfaithful instances with step-level evidence across 4 domains, providing ~1500 step-level faithful/unfaithful labels. (2) Synthetic expansion: Apply FUR unlearning protocol—for each reasoning step, test whether unlearning the step's key fact changes the model's answer; if not, the step is unfaithful (model doesn't actually use this reasoning). Generate ~5000 additional synthetic labels. (3) Validation: Hold out 20% of FaithCoT-Bench expert annotations for probe evaluation. Target: ≥0.85 AUROC on held-out set (below 0.80 = abort).\n\n**Step Boundary Detection**: For reasoning models (Qwen3.5-27B, DeepSeek-R1), step boundaries are identified via double-newline delimiters within &lt;think> blocks (both models use structured reasoning with explicit step formatting). Minimum step length threshold of 20 tokens to avoid fragmentary segments. Ablation: sentence-level boundaries vs. learned segmentation.\n\n**Inference-Time Rejection Decoding**: After generating each reasoning step: (1) Extract residual stream activations at final token of step. (2) Faithfulness probe evaluates: p_faithful = f(h_residual). (3) If p_faithful > τ (threshold tuned on validation set): accept step, continue. (4) If p_faithful ≤ τ: REJECT step and regenerate with diversity constraints—suppress rejected step's 4-grams (prevent same articulation), apply temperature scaling (T=1.2→1.5 on successive rejections), regenerate from same prefix. (5) Maximum 3 rejection attempts per step; if all fail, accept highest-scoring attempt (graceful degradation).\n\n**Key Differentiators from DHC**: (a) Targets faithfulness, not correctness—probes trained on faithfulness labels, not truth labels. (b) Uses rejection sampling with diversity constraints rather than beam search—more efficient (only regenerates on failure, no M-way generation at every step) and specifically addresses the 'same computation' problem via n-gram blocking. (c) Residual stream probes (full computational state) vs. attention head probes (local reasoning patterns).\n\n**Key Differentiators from Hidden Error Awareness's failed interventions**: (a) Step-level rejection (proven viable by DHC's success) vs. trace-level best-of-N (proven to fail). (b) Forced diversity via n-gram suppression prevents 'same flawed computation' problem that killed self-correction (which used simple retry from same prefix with no constraints). (c) Hard acceptance gate vs. soft ranking.\n\n**Addressing the Failure Paradox**: DHC's step-level beam search succeeds because at each step, probe discrimination is high (0.95 AUROC) and at least one of M candidates is likely good. Hidden Error Awareness's trace-level best-of-N fails because probe scores don't aggregate reliably across steps for ranking complete traces. SFGRD operates at step level (like DHC) but with the efficiency advantage of rejection sampling. The self-correction failure (model regenerates same error) is specifically countered by n-gram blocking—forcing different token sequences forces different articulation paths for the same underlying computation.\n\n**Baselines**: (1) Greedy decoding (no intervention). (2) DHC beam search with correctness probes (reproduction). (3) DHC beam search with faithfulness probes (direct comparison—same probe, different decoding). (4) PRM-guided step-level beam search (process reward model baseline to isolate faithfulness contribution). (5) Self-consistency (majority voting). (6) Probe-guided best-of-N (replicating Hidden Error Awareness's failure as sanity check).\n\n**Evaluation**: Primary model: Qwen3.5-27B. Replication: DeepSeek-R1-32B. Datasets: GSM8K (mathematical, where hidden-state findings are validated) + GPQA (knowledge-intensive, testing generalization). Metrics: (a) Faithfulness improvement via FaithCoT-Bench evaluation protocol (counterfactual intervention + unlearning test). (b) Accuracy preservation (≤1% degradation acceptable). (c) Latency overhead (target: <2x greedy). (d) Rejection rate and regeneration statistics.\n\n**Ablations**: (1) Residual stream vs. attention head probes. (2) Rejection sampling vs. beam search with faithfulness probes. (3) N-gram blocking vs. no diversity constraints (tests the 'same computation' hypothesis). (4) Threshold sensitivity analysis. (5) Step boundary granularity (newline vs. sentence vs. learned). (6) Probe layer selection.\n\n**Explicit Failure Criteria**: (1) Probe AUROC < 0.80 on held-out FaithCoT-Bench data → faithfulness is not detectable from residual stream at step level. (2) Faithfulness improvement < 2% over greedy decoding → step-level rejection doesn't help (signal is diagnostic-only even at step level). (3) Accuracy degradation > 3% → faithfulness enforcement destroys correctness. (4) > 50% of rejected steps regenerate to same unfaithful content despite n-gram blocking → forced diversity doesn't create alternative articulation paths. (5) SFGRD performs ≤ DHC with faithfulness probes → rejection sampling offers no advantage over beam search for faithfulness.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~160h H100 (probe training ~10h, DHC baseline reproduction ~25h, primary experiments Qwen3.5-27B on GSM8K+GPQA ~50h, PRM baseline ~15h, ablations ~30h, DeepSeek-R1 replication ~30h)",
+      "gpu_utilization": "~25-30% effective utilization; GPU idles during experiment design, analysis, debugging",
+      "timeline": "8-10 weeks",
+      "team": "2 researchers (1 mechanistic interpretability/probing, 1 decoding/systems)",
+      "estimated_gpu_cost": "$480-640 (160h × $3.00-4.00/hr H100)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~180h H100 (same experiments + agent-driven threshold/temperature sweeps)",
+      "gpu_utilization": "~55-65% utilization; agent queues experiments, human approves design decisions at checkpoints",
+      "timeline": "3-4 weeks",
+      "team": "1 researcher, ~45min/day review",
+      "claude_api_cost": "$200-350 (2500-4500 turns)",
+      "estimated_gpu_cost": "$540-720 (180h × $3.00-4.00/hr H100)",
+      "risk_note": "If probe AUROC < 0.80 or rejection sampling shows < 2% improvement, human must decide whether to pivot to alternative probe architectures or accept negative result"
+    },
+    "auto_research": {
+      "gpu_hours": "~195h H100 (fits within 200h hard constraint: probe training 10h, synthetic label generation via FUR 15h, primary experiments 55h, all baselines 40h, full ablation suite 35h, DeepSeek-R1 replication 30h, buffer 10h)",
+      "gpu_utilization": "~85-90% utilization; parallel probe training across layers, pipelined evaluation",
+      "timeline": "11 days with 2× H100 available concurrently (effective parallelism allows ~18h/day compute)",
+      "team": "0 (initial 2-hour setup: repo scaffold, compute provisioning, FaithCoT-Bench data download, model weights cached)",
+      "claude_api_cost": "$350-550 (4500-7000 turns covering implementation, experiment orchestration, debugging, analysis, and paper generation)",
+      "estimated_gpu_cost": "$585-780 (195h × $3.00-4.00/hr H100)",
+      "speed_bottleneck": "Inference throughput on 27B/32B models during rejection loops; FUR unlearning protocol for synthetic label generation (requires multiple forward passes per step)",
+      "risk_note": "Primary risk: faithfulness probes may not generalize from FaithCoT-Bench's math/logic domains to GPQA's knowledge-intensive questions. Mitigation: if GPQA probe AUROC < 0.75, report domain-specific results (GSM8K only) as honest negative finding on generalization. Secondary risk: n-gram blocking may reduce fluency—monitor perplexity of regenerated steps and add fluency constraint if needed."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (estimated abstract Jul 26, paper Aug 2, 2026)",
+    "ICLR 2027 (estimated abstract late Sep, paper early Oct 2026)",
+    "NeurIPS 2027 (estimated May 2027)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Deep Hidden Cognition Facilitates Reliable Chain-of-Thought Reasoning (AAAI 2026, arXiv 2507.10007) — step-level probe-guided beam search for correctness; primary comparison point",
+    "Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal (Preprint May 2026, arXiv 2605.09502) — shows trace-level interventions fail; motivates step-level approach",
+    "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning (ICLR 2026, arXiv 2510.04040) — evaluation protocol, training data source, correct-unfaithful instances",
+    "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps (EMNLP 2025 Outstanding Paper) — FUR protocol for synthetic faithfulness label generation",
+    "When Chain-of-Thought Fails, the Solution Hides in the Hidden States (Preprint 2026, arXiv 2604.23351) — demonstrates correct computations exist in hidden states when CoT text is wrong",
+    "Reasoning Models Don't Always Say What They Think (Anthropic 2025, arXiv 2505.05410) — documents faithfulness problem at scale",
+    "Streaming Hallucination Detection in Long Chain-of-Thought Reasoning (Preprint Jan 2026, arXiv 2601.02170) — streaming step-level detection (detection only, no intervention)",
+    "Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation (ACL 2025 Findings, arXiv 2503.03106) — token-level monitoring with tree-based regeneration for factuality",
+    "Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification (Preprint Apr 2025, arXiv 2504.05419) — probe-based early exit; demonstrates probe utility during inference",
+    "ICR Probe: Tracking Hidden State Dynamics for Reliable Hallucination Detection in LLMs (ACL 2025, arXiv 2507.16488) — cross-layer hidden state dynamics for detection",
+    "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (Preprint May 2026, arXiv 2605.13772) — hidden-state geometry for step-level detection",
+    "FaithRL: Learning to Reason Faithfully through Step-Level Faithfulness Maximization (Preprint Feb 2026, arXiv 2602.03507) — training-time faithfulness RL",
+    "Balancing Faithfulness and Performance in Reasoning via Multi-Listener Soft Execution (REMUL, Preprint Feb 2026, arXiv 2602.16154) — multi-listener RL for faithfulness",
+    "Stop Rewarding Hallucinated Steps: Faithfulness-Aware Step-Level RL for Small Reasoning Models (Preprint Feb 2026, arXiv 2602.05897)",
+    "Counterfactual Simulation Training for Chain-of-Thought Faithfulness (Preprint Feb 2026, arXiv 2602.20710)",
+    "Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Reasoning Models? (Preprint Mar 2026, arXiv 2603.22582)"
+  ],
+  "description": "We propose Step-Level Faithfulness-Gated Rejection Decoding (SFGRD), which enforces CoT faithfulness as a hard constraint during generation by combining two validated findings: (1) step-level probe-guided decoding works for correctness (DHC, AAAI 2026), and (2) faithfulness is orthogonal to correctness with 15-20% of correct outputs being unfaithful (FaithCoT-Bench, ICLR 2026). SFGRD trains linear probes on residual stream activations—encoding the full computational state—to detect faithfulness violations at step granularity. When a probe detects unfaithful reasoning (text that diverges from what the model actually computed), the step is rejected and regenerated with diversity constraints (4-gram suppression of rejected text, temperature scaling) that force alternative articulation paths. This addresses the critical failure mode documented in Hidden Error Awareness (May 2026): their self-correction failed because models 'regenerate using the same flawed computation,' but n-gram blocking forces genuinely different token sequences. SFGRD differs from DHC in three dimensions: (a) faithfulness probes vs. correctness probes (capturing a dimension DHC misses entirely), (b) rejection sampling with diversity constraints vs. beam search (more efficient, specifically addresses the 'same computation' problem), (c) residual stream vs. attention head activations. We explicitly reconcile the apparent contradiction between DHC's success and Hidden Error Awareness's failure: step-level selection works (high per-step AUROC), trace-level ranking fails (scores don't aggregate across steps). Evaluated on Qwen3.5-27B and DeepSeek-R1-32B across GSM8K and GPQA, with DHC reproduction, PRM-guided beam search, and self-consistency as baselines, measuring faithfulness via FaithCoT-Bench protocol alongside accuracy and latency. We state upfront that <2% faithfulness improvement over greedy would falsify the approach.",
+  "project_name": "faithful_cot_sfgrd",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 2)
+Issues: ["CRITICAL — Venue mismatch: User explicitly requested EMNLP 2026 (ARR deadline May 25, 2026), but proposal targets AAAI 2027 (Aug 1), ICLR 2027, NeurIPS 2027. Either include EMNLP 2026 as the primary target or explicitly justify why the scope requires later venues.", "MAJOR — Missing competitor: Token-Guard (ICLR 2026, arxiv 2601.21969) performs token-level hallucination control via latent space scoring with iterative pruning and regeneration during generation. The detect-at-fine-granularity-and-regenerate architecture is very similar to SFGRD. Must differentiate (Token-Guard targets factual hallucination vs. SFGRD targets reasoning faithfulness; Token-Guard operates at token level vs. SFGRD at step level).", "MAJOR — Missing competitor: 'Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning' (arxiv 2602.11201) uses NLDD + linear probes for step-level faithfulness measurement. Their 'Mapping Gap' finding—internal representations encode correct information but the model fails to use it in decoding—directly threatens SFGRD's core assumption that residual stream probes can detect faithfulness. Must engage with this finding.", "MAJOR — Core assumption remains entirely unvalidated: No prior work demonstrates that linear probes on residual stream activations can distinguish faithful vs. unfaithful reasoning steps. Correctness probes achieve 0.95 AUROC because correctness is binary and well-defined. Faithfulness requires comparing text semantics against internal computation—a fundamentally harder task with no empirical precedent. The proposal should include a pilot experiment design or stronger theoretical argument for why this should work.", "MAJOR — N-gram blocking hypothesis contradicts known evidence: Hidden Error Awareness explicitly states 'the model generates its correction using the same flawed computation that produced the original error.' This implies the problem is at the computation level, not the articulation level. Blocking surface 4-grams may produce different text expressing the same unfaithful computation. The proposal needs a stronger argument or preliminary evidence that surface diversity translates to computational diversity.", "MINOR — Missing additional relevant work: (1) STEP (arxiv 2601.09093) — step-level hidden-state evaluation for trace pruning during generation; (2) ReProbe (arxiv 2511.06209) — lightweight probes on internal states matching PRM performance for step verification; (3) 'The Illusion of Reasoning' (arxiv 2603.22816) — shows faithfulness varies dramatically by domain (R1 models: 91-93% necessity on math vs. 4% for non-reasoning models), important for interpreting domain-specific results; (4) 'Mechanistic Evidence for Faithfulness Decay' shows a 'Reasoning Horizon' at 70-85% of chain length beyond which steps don't matter—relevant for step-level intervention design.", "MINOR — Model choice slightly outdated: Qwen3.6-27B released April 2026 supersedes Qwen3.5-27B with significant improvements. Consider updating primary model or justifying the older choice.", "MINOR — FUR synthetic label assumption: Using FUR to generate ~5000 synthetic faithfulness labels assumes FUR's definition of faithfulness (does unlearning the step's fact change the answer?) is equivalent to what residual stream probes would detect (does the text diverge from internal computation?). These may measure different aspects of faithfulness. Acknowledge this potential mismatch."]
+Feedback: The revision addressed round 1's major issues well—DHC and Hidden Error Awareness are now properly positioned, failure criteria are explicit, and the training data pipeline is specified. However, several critical issues remain:
+
+1. **Fix venue targeting**: The user asked for EMNLP 2026. Either make it the primary target (which may require reducing scope to fit the 11-day timeline) or explicitly justify why the work requires later venues and note EMNLP 2026 as infeasible.
+
+2. **Engage with Token-Guard and Mechanistic Evidence for Faithfulness Decay**: Token-Guard (ICLR 2026) is the closest architectural competitor—same pattern of fine-grained detection + regeneration during generation. Differentiate on target (factuality vs. faithfulness) and granularity (token vs. step). The 'Mapping Gap' from 2602.11201 is the strongest theoretical threat to your approach—address it head-on. One possible argument: the Mapping Gap shows representations encode info not used in decoding, but probes might detect WHEN this gap is large (i.e., when faithfulness is low), even if they can't bridge the gap.
+
+3. **Strengthen the n-gram blocking argument**: Currently the weakest part of the proposal. Options: (a) Cite evidence that diverse token sequences in LLMs correspond to diverse computational paths (e.g., from representation geometry literature), (b) Frame n-gram blocking as one of several diversity mechanisms to be ablated (temperature alone, nucleus sampling diversity, prefix perturbation) rather than the core mechanism, (c) Acknowledge this is a testable hypothesis and design the ablation to explicitly measure whether regenerated steps use different internal computations (e.g., compare hidden state similarity between original and regenerated steps).
+
+4. **Add a feasibility pilot**: Given that the core assumption is unvalidated, consider designing a zero-cost or very-low-cost pilot: take FaithCoT-Bench's existing step-level annotations and test whether a linear probe on cached hidden states can distinguish faithful vs. unfaithful steps. Report expected AUROC before committing to the full pipeline. This could be done in <10 H100-hours and would de-risk the entire project.
+
+5. **Incorporate missing competitors into landscape**: Add Token-Guard, STEP, ReProbe, Mechanistic Evidence for Faithfulness Decay, and 'The Illusion of Reasoning' to the landscape section with clear differentiation.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "d4588659-2c51-41e4-9222-6868db5a7ef8",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T08:34:50.402Z_
+
+```json
+{
+  "parentUuid": "d4588659-2c51-41e4-9222-6868db5a7ef8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "c4f12537-d7d1-4012-8284-fe2bbb99408b",
+  "timestamp": "2026-05-16T08:34:50.402Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T08:34:50.402Z_
+
+```json
+{
+  "parentUuid": "c4f12537-d7d1-4012-8284-fe2bbb99408b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "5b98c186-ffb4-4472-8c35-3b210f96ad0e",
+  "timestamp": "2026-05-16T08:34:50.402Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Step-Level Faithfulness-Gated Rejection Decoding: Enforcing CoT Faithf…",
+  "leafUuid": "5b98c186-ffb4-4472-8c35-3b210f96ad0e",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-level faithfulness detection during CoT generation",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T08:35:00.941Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully and plan my research approach.
+
+The key issues to address:
+
+1. **CRITICAL — Venue mismatch**: Need to target EMNLP 2026 (ARR deadline May 25, 2026) instead of AAAI/ICLR/NeurIPS 2027.
+2. **MAJOR — Missing competitor: Token-Guard** (ICLR 2026, arxiv 2601.21969)
+3. **MAJOR — Missing competitor: Mechanistic Evidence for Faithfulness Decay** (arxiv 2602.11201)
+
+
+4. **MAJOR — Core assumption unvalidated**: Linear probes on residual stream for faithfulness
+5. **MAJOR — N-gram blocking hypothesis contradicts evidence**
+6. **MINOR — Missing additional works**: STEP, ReProbe, Illusion of Reasoning, Reasoning Horizon
+7. **MINOR — Model choice**: Qwen3.6-27B supersedes Qwen3.5-27B
+8. **MINOR — FUR synthetic label assumption**
+
+I need to start by diving into these papers and understanding what the reviewers are pointing out, especially the major issues around my core assumptions and the missing baselines that could undermine my approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b98c186-ffb4-4472-8c35-3b210f96ad0e",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wWrBJwcprG5AJB4QuY",
+  "type": "assistant",
+  "uuid": "02645f1d-f539-4b95-ba38-bca3dcb4b272",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NW3eeMMfGTr8NLFoYJu6uJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12680,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 388,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12680,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 388,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12680
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T08:35:01.015Z_
+
+I'll systematically research each reviewer concern before revising. Let me start by fetching the key papers and searching for additional context.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02645f1d-f539-4b95-ba38-bca3dcb4b272",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wWrBJwcprG5AJB4QuY",
+  "type": "assistant",
+  "uuid": "87c6a1b8-cdeb-454e-ba89-e58a26df9b28",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NW3eeMMfGTr8NLFoYJu6uJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12680,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 388,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12680,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 388,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12680
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T08:35:01.148Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015NYjXjDK45Gea9w2ieTzn4`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "87c6a1b8-cdeb-454e-ba89-e58a26df9b28",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wWrBJwcprG5AJB4QuY",
+  "type": "assistant",
+  "uuid": "e73159e3-8b29-4cac-9527-622e64268ab2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NW3eeMMfGTr8NLFoYJu6uJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12680,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 388,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12680,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 388,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12680
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T08:35:01.157Z_
+
+<details><summary>↩ Tool result · `toolu_015NYjXjDK45Gea9w2ieTzn4`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e73159e3-8b29-4cac-9527-622e64268ab2",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "44289ec6-d06b-4786-bfd1-e494ed63e154",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "e73159e3-8b29-4cac-9527-622e64268ab2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-16T08:35:03.889Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now research the key papers and issues systematically. I'll start with parallel searches for the most critical items.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44289ec6-d06b-4786-bfd1-e494ed63e154",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wXdnTRnzeHVZ4VQn4V",
+  "type": "assistant",
+  "uuid": "5bfe90e3-4c3d-4aa7-a799-9ad0d3c7f5d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GiACx9U8G64RydtKkjbk4D",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1408,
+      "cache_read_input_tokens": 24521,
+      "output_tokens": 646,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 646,
+          "cache_read_input_tokens": 24521,
+          "cache_creation_input_tokens": 1408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-16T08:35:04.352Z_
+
+Let me research the key papers and issues raised by reviewers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5bfe90e3-4c3d-4aa7-a799-9ad0d3c7f5d4",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wXdnTRnzeHVZ4VQn4V",
+  "type": "assistant",
+  "uuid": "757c81cb-ecd4-4662-91c1-56772f025782",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GiACx9U8G64RydtKkjbk4D",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1408,
+      "cache_read_input_tokens": 24521,
+      "output_tokens": 646,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 646,
+          "cache_read_input_tokens": 24521,
+          "cache_creation_input_tokens": 1408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T08:35:06.846Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JeobTeeoN5sG6LRAHnFA2r`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.21969",
+  "prompt": "Extract the full title, authors, abstract, and key method details of this paper (Token-Guard). What exactly does it do? What is the architecture? How does it detect and regenerate? What granularity does it operate at? What models and datasets are used?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "757c81cb-ecd4-4662-91c1-56772f025782",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wXdnTRnzeHVZ4VQn4V",
+  "type": "assistant",
+  "uuid": "7ac054db-1c6c-477f-a936-98bee64ba850",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GiACx9U8G64RydtKkjbk4D",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1408,
+      "cache_read_input_tokens": 24521,
+      "output_tokens": 646,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 646,
+          "cache_read_input_tokens": 24521,
+          "cache_creation_input_tokens": 1408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T08:35:08.845Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XghfNK66cwB63EK9mt191C`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2602.11201",
+  "prompt": "Extract the full title, authors, abstract, and key method details. What is the 'Mapping Gap' finding? What probes do they use? What is NLDD? What is the 'Reasoning Horizon' finding? What are their main conclusions about faithfulness measurement?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ac054db-1c6c-477f-a936-98bee64ba850",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wXdnTRnzeHVZ4VQn4V",
+  "type": "assistant",
+  "uuid": "edb6cde0-be1f-4769-b661-06f34b2dfb12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GiACx9U8G64RydtKkjbk4D",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1408,
+      "cache_read_input_tokens": 24521,
+      "output_tokens": 646,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 646,
+          "cache_read_input_tokens": 24521,
+          "cache_creation_input_tokens": 1408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T08:35:10.731Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0167vEcYsjwEUoPwDwQP4vQW`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.09093",
+  "prompt": "Extract the full title, authors, abstract, and key method details of this paper (STEP). How does it use hidden states for step-level evaluation? Does it do pruning during generation? What is its architecture?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "edb6cde0-be1f-4769-b661-06f34b2dfb12",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wXdnTRnzeHVZ4VQn4V",
+  "type": "assistant",
+  "uuid": "b8d87c11-4206-4b76-aa40-0f0f17893519",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GiACx9U8G64RydtKkjbk4D",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1408,
+      "cache_read_input_tokens": 24521,
+      "output_tokens": 646,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 646,
+          "cache_read_input_tokens": 24521,
+          "cache_creation_input_tokens": 1408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T08:35:12.145Z_
+
+<details><summary>↩ Tool result · `toolu_01JeobTeeoN5sG6LRAHnFA2r`</summary>
+
+```text
+# Token-Guard Paper Summary
+
+## Full Title
+"Token-Guard: Towards Token-Level Hallucination Control via Self-Checking Decoding"
+
+## Authors
+Yifan Zhu, Huiqiang Rong, Haoran Luo
+
+## Abstract
+The paper addresses LLM hallucinations by proposing a decoding-based approach that performs "internal verification at each reasoning step to detect hallucinated tokens before they propagate." The method incorporates latent space evaluation with hallucination risk scoring and uses "iterative pruning and regeneration" to correct detected errors.
+
+## Key Method Details
+
+**Granularity:** Operates at the token level, performing checks during the generation process itself rather than post-hoc.
+
+**Core Mechanism:** The approach combines self-checking verification at each decoding step with latent space evaluation that explicitly scores hallucination risk.
+
+**Error Correction:** When problematic tokens are identified, the system employs iterative pruning and regeneration to dynamically correct them.
+
+**Advantages:** Described as lighter-weight than retrieval-augmented generation (RAG) or reinforcement learning approaches, offering a "scalable, modular solution" without requiring extensive resource-intensive fine-tuning.
+
+## Evaluation & Availability
+- Tested on HALU datasets
+- Code is publicly available
+- Accepted to ICLR 2026
+
+The page does not specify particular model architectures, baseline models, or detailed dataset descriptions beyond the HALU dataset reference.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7ac054db-1c6c-477f-a936-98bee64ba850",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "ba1e17e4-f755-4201-b896-add9a5b9cb18",
+  "toolUseResult": {
+    "bytes": 44905,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Token-Guard Paper Summary\n\n## Full Title\n\"Token-Guard: Towards Token-Level Hallucination Control via Self-Checking Decoding\"\n\n## Authors\nYifan Zhu, Huiqiang Rong, Haoran Luo\n\n## Abstract\nThe paper addresses LLM hallucinations by proposing a decoding-based approach that performs \"internal verification at each reasoning step to detect hallucinated tokens before they propagate.\" The method incorporates latent space evaluation with hallucination risk scoring and uses \"iterative pruning and regeneration\" to correct detected errors.\n\n## Key Method Details\n\n**Granularity:** Operates at the token level, performing checks during the generation process itself rather than post-hoc.\n\n**Core Mechanism:** The approach combines self-checking verification at each decoding step with latent space evaluation that explicitly scores hallucination risk.\n\n**Error Correction:** When problematic tokens are identified, the system employs iterative pruning and regeneration to dynamically correct them.\n\n**Advantages:** Described as lighter-weight than retrieval-augmented generation (RAG) or reinforcement learning approaches, offering a \"scalable, modular solution\" without requiring extensive resource-intensive fine-tuning.\n\n## Evaluation & Availability\n- Tested on HALU datasets\n- Code is publicly available\n- Accepted to ICLR 2026\n\nThe page does not specify particular model architectures, baseline models, or detailed dataset descriptions beyond the HALU dataset reference.",
+    "durationMs": 5295,
+    "url": "https://arxiv.org/abs/2601.21969"
+  },
+  "sourceToolAssistantUUID": "7ac054db-1c6c-477f-a936-98bee64ba850",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T08:35:12.148Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KxMn447UwUXHNu5GCrfmp8`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2511.06209",
+  "prompt": "Extract the full title, authors, abstract, and key method details of ReProbe. How does it use probes on internal states? How does it compare to PRMs? What is its architecture?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba1e17e4-f755-4201-b896-add9a5b9cb18",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wXdnTRnzeHVZ4VQn4V",
+  "type": "assistant",
+  "uuid": "4cdc7c89-d40e-463b-bc58-a69e2963b476",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GiACx9U8G64RydtKkjbk4D",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1408,
+      "cache_read_input_tokens": 24521,
+      "output_tokens": 646,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 646,
+          "cache_read_input_tokens": 24521,
+          "cache_creation_input_tokens": 1408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T08:35:13.312Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DK7LQBB98MnhavvNLBFLDP`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.22816",
+  "prompt": "Extract the full title, authors, abstract, and key findings about faithfulness variation by domain. What are the necessity/sufficiency rates? How does faithfulness vary between reasoning and non-reasoning models? What domains are tested?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4cdc7c89-d40e-463b-bc58-a69e2963b476",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wXdnTRnzeHVZ4VQn4V",
+  "type": "assistant",
+  "uuid": "e9c954c3-122e-4356-afb4-f465b602326e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GiACx9U8G64RydtKkjbk4D",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1408,
+      "cache_read_input_tokens": 24521,
+      "output_tokens": 646,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 646,
+          "cache_read_input_tokens": 24521,
+          "cache_creation_input_tokens": 1408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T08:35:14.285Z_
+
+<details><summary>↩ Tool result · `toolu_01XghfNK66cwB63EK9mt191C`</summary>
+
+```text
+# Research Summary: Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning
+
+## Full Title
+"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning"
+
+## Authors
+Donald Ye, Max Loffgren, Om Kotadia, Linus Wong
+
+## Abstract Summary
+The researchers investigate whether Chain-of-Thought (CoT) explanations genuinely reflect how language models solve problems or merely serve as post-hoc rationalizations. They propose a methodology to measure step-by-step explanation fidelity and discover that models often employ reasoning that doesn't meaningfully influence their final answers.
+
+## NLDD (Normalized Logit Difference Decay)
+NLDD is their proposed metric that measures reasoning step faithfulness by corrupting individual steps and observing confidence drops in model outputs. By standardizing these measurements, it "enables rigorous cross-model comparison across different architectures."
+
+## Reasoning Horizon Finding
+The research identifies a consistent "Reasoning Horizon (k*) at 70--85% of chain length, beyond which reasoning tokens have little or negative effect on the final answer." This suggests that substantial portions of generated explanations may not genuinely contribute to problem-solving.
+
+## Notable Finding (Mapping Gap)
+Models can "encode correct internal representations while completely failing the task," indicating that representation accuracy doesn't guarantee actual reasoning capability.
+
+## Main Conclusions
+Accuracy metrics alone cannot determine whether models genuinely reason through explanations. NLDD provides a mechanism to quantify when Chain-of-Thought reasoning actually matters in model decision-making.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "edb6cde0-be1f-4769-b661-06f34b2dfb12",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "4f4cacdd-f627-4523-bed1-2eb6c75a58fb",
+  "toolUseResult": {
+    "bytes": 46254,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Research Summary: Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning\n\n## Full Title\n\"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning\"\n\n## Authors\nDonald Ye, Max Loffgren, Om Kotadia, Linus Wong\n\n## Abstract Summary\nThe researchers investigate whether Chain-of-Thought (CoT) explanations genuinely reflect how language models solve problems or merely serve as post-hoc rationalizations. They propose a methodology to measure step-by-step explanation fidelity and discover that models often employ reasoning that doesn't meaningfully influence their final answers.\n\n## NLDD (Normalized Logit Difference Decay)\nNLDD is their proposed metric that measures reasoning step faithfulness by corrupting individual steps and observing confidence drops in model outputs. By standardizing these measurements, it \"enables rigorous cross-model comparison across different architectures.\"\n\n## Reasoning Horizon Finding\nThe research identifies a consistent \"Reasoning Horizon (k*) at 70--85% of chain length, beyond which reasoning tokens have little or negative effect on the final answer.\" This suggests that substantial portions of generated explanations may not genuinely contribute to problem-solving.\n\n## Notable Finding (Mapping Gap)\nModels can \"encode correct internal representations while completely failing the task,\" indicating that representation accuracy doesn't guarantee actual reasoning capability.\n\n## Main Conclusions\nAccuracy metrics alone cannot determine whether models genuinely reason through explanations. NLDD provides a mechanism to quantify when Chain-of-Thought reasoning actually matters in model decision-making.",
+    "durationMs": 5438,
+    "url": "https://arxiv.org/abs/2602.11201"
+  },
+  "sourceToolAssistantUUID": "edb6cde0-be1f-4769-b661-06f34b2dfb12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T08:35:16.179Z_
+
+<details><summary>↩ Tool result · `toolu_0167vEcYsjwEUoPwDwQP4vQW`</summary>
+
+```text
+# STEP: Paper Summary
+
+## Full Title
+"Hidden States as Early Signals: Step-level Trace Evaluation and Pruning for Efficient Test-Time Scaling"
+
+## Authors
+Zhixiang Liang, Beichen Huang, Zheng Wang, Minjia Zhang
+
+## Abstract Summary
+The paper addresses computational inefficiency in test-time scaling for Large Language Models. It proposes that "the combination of lengthy reasoning traces with multiple sampling introduces substantial computation and high end-to-end latency." Rather than relying on similarity or confidence signals, the authors introduce a method leveraging neural representations for quality assessment.
+
+## Key Method Details
+
+**Hidden State Utilization:**
+The approach trains "a lightweight step scorer to estimate trace quality" by analyzing the model's internal representations during reasoning generation.
+
+**Dynamic Pruning During Generation:**
+Yes, the method performs pruning in real-time. It implements "a GPU memory-aware pruning strategy that triggers pruning as the GPU memory is saturated by KV cache to reduce end-to-end latency."
+
+**Architecture Overview:**
+- Lightweight step scorer component that evaluates reasoning steps using hidden states
+- Memory-aware pruning trigger mechanism tied to GPU KV cache saturation
+- Framework that prunes unpromising reasoning traces dynamically during decoding
+
+## Performance Results
+The method reportedly "reduces end-to-end inference latency by 45%-70% on average compared to self-consistency while also improving reasoning accuracy" across reasoning benchmarks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b8d87c11-4206-4b76-aa40-0f0f17893519",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "fc435c94-ac47-42f4-be73-f9aa1e53fb67",
+  "toolUseResult": {
+    "bytes": 46959,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# STEP: Paper Summary\n\n## Full Title\n\"Hidden States as Early Signals: Step-level Trace Evaluation and Pruning for Efficient Test-Time Scaling\"\n\n## Authors\nZhixiang Liang, Beichen Huang, Zheng Wang, Minjia Zhang\n\n## Abstract Summary\nThe paper addresses computational inefficiency in test-time scaling for Large Language Models. It proposes that \"the combination of lengthy reasoning traces with multiple sampling introduces substantial computation and high end-to-end latency.\" Rather than relying on similarity or confidence signals, the authors introduce a method leveraging neural representations for quality assessment.\n\n## Key Method Details\n\n**Hidden State Utilization:**\nThe approach trains \"a lightweight step scorer to estimate trace quality\" by analyzing the model's internal representations during reasoning generation.\n\n**Dynamic Pruning During Generation:**\nYes, the method performs pruning in real-time. It implements \"a GPU memory-aware pruning strategy that triggers pruning as the GPU memory is saturated by KV cache to reduce end-to-end latency.\"\n\n**Architecture Overview:**\n- Lightweight step scorer component that evaluates reasoning steps using hidden states\n- Memory-aware pruning trigger mechanism tied to GPU KV cache saturation\n- Framework that prunes unpromising reasoning traces dynamically during decoding\n\n## Performance Results\nThe method reportedly \"reduces end-to-end inference latency by 45%-70% on average compared to self-consistency while also improving reasoning accuracy\" across reasoning benchmarks.",
+    "durationMs": 5444,
+    "url": "https://arxiv.org/abs/2601.09093"
+  },
+  "sourceToolAssistantUUID": "b8d87c11-4206-4b76-aa40-0f0f17893519",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T08:35:17.914Z_
+
+<details><summary>↩ Tool result · `toolu_01KxMn447UwUXHNu5GCrfmp8`</summary>
+
+```text
+# ReProbe: Research Summary
+
+## Title
+"ReProbe: Efficient Test-Time Scaling of Multi-Step Reasoning by Probing Internal States of Large Language Models"
+
+## Authors
+Jingwei Ni, Ekaterina Fadeeva, Tianyi Wu, Mubashara Akhtar, Jiaheng Zhang, Elliott Ash, Markus Leippold, Timothy Baldwin, See-Kiong Ng, Artem Shelmanov, and Mrinmaya Sachan
+
+## Abstract
+The work addresses computational inefficiency in test-time scaling by introducing lightweight verification. The authors propose that "LLMs can solve complex tasks by generating long, multi-step reasoning chains" and note existing methods like Process Reward Models are expensive. Their solution develops "a transformer-based probe that uses the internal states of a frozen LLM to estimate the credibility of its reasoning steps."
+
+## Key Method Details
+
+**Internal State Probing Approach:**
+The system analyzes hidden representations extracted during model generation, enabling lightweight credibility assessment without expensive external verification.
+
+**Training Strategy:**
+Annotations come from two sources: larger models (like DeepSeek-R1) or self-supervised signals from the original model itself.
+
+**Architecture:**
+The probes are minimal—containing fewer than 10 million parameters—demonstrating that substantial reasoning verification capability doesn't require massive models.
+
+## Performance vs. PRMs
+
+The probes "match or exceed the performance of PRMs that are up to 810x larger," suggesting internal state information encodes reliable confidence signals about reasoning quality while requiring dramatically less computational overhead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4cdc7c89-d40e-463b-bc58-a69e2963b476",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "f77ce456-6527-449e-9986-d923550b4d3d",
+  "toolUseResult": {
+    "bytes": 48828,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ReProbe: Research Summary\n\n## Title\n\"ReProbe: Efficient Test-Time Scaling of Multi-Step Reasoning by Probing Internal States of Large Language Models\"\n\n## Authors\nJingwei Ni, Ekaterina Fadeeva, Tianyi Wu, Mubashara Akhtar, Jiaheng Zhang, Elliott Ash, Markus Leippold, Timothy Baldwin, See-Kiong Ng, Artem Shelmanov, and Mrinmaya Sachan\n\n## Abstract\nThe work addresses computational inefficiency in test-time scaling by introducing lightweight verification. The authors propose that \"LLMs can solve complex tasks by generating long, multi-step reasoning chains\" and note existing methods like Process Reward Models are expensive. Their solution develops \"a transformer-based probe that uses the internal states of a frozen LLM to estimate the credibility of its reasoning steps.\"\n\n## Key Method Details\n\n**Internal State Probing Approach:**\nThe system analyzes hidden representations extracted during model generation, enabling lightweight credibility assessment without expensive external verification.\n\n**Training Strategy:**\nAnnotations come from two sources: larger models (like DeepSeek-R1) or self-supervised signals from the original model itself.\n\n**Architecture:**\nThe probes are minimal—containing fewer than 10 million parameters—demonstrating that substantial reasoning verification capability doesn't require massive models.\n\n## Performance vs. PRMs\n\nThe probes \"match or exceed the performance of PRMs that are up to 810x larger,\" suggesting internal state information encodes reliable confidence signals about reasoning quality while requiring dramatically less computational overhead.",
+    "durationMs": 5765,
+    "url": "https://arxiv.org/abs/2511.06209"
+  },
+  "sourceToolAssistantUUID": "4cdc7c89-d40e-463b-bc58-a69e2963b476",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Step-Level Faithfulness-Gated Rejection Decoding: Enforcing CoT Faithf…",
+  "leafUuid": "f77ce456-6527-449e-9986-d923550b4d3d",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-level faithfulness detection during CoT generation",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T08:35:18.619Z_
+
+<details><summary>↩ Tool result · `toolu_01DK7LQBB98MnhavvNLBFLDP`</summary>
+
+```text
+# Research Summary: Measuring Reasoning Rigidity in Language Models
+
+## Full Title
+"Measuring and curing reasoning rigidity: from decorative chain-of-thought to genuine faithfulness"
+
+## Authors
+Abhinaba Basu and Pavan Chakraborty
+
+## Abstract Overview
+The researchers investigate whether language models genuinely use step-by-step reasoning or whether answers are predetermined. They introduce the Step-Level Reasoning Capacity (SLRC) metric with theoretical guarantees and propose LC-CoSR, a training approach designed to reduce reasoning rigidity.
+
+## Key Findings on Faithfulness Variation
+
+**By Model Type:**
+- OpenAI's o4-mini demonstrated the highest faithfulness, showing "74-88% step necessity on five of six tasks"
+- Grok-4's reasoning mode exhibited lower faithfulness than its non-reasoning mode (1.4% versus 7.2% necessity)
+
+**Critical Discovery:**
+The authors identify a "faithfulness paradox" where models with higher SLRC scores became more susceptible to sycophancy (tendency to agree with users).
+
+## Domains and Scale
+Research evaluated 16 frontier models across six domains, with sample sizes ranging from N=133-500.
+
+## Performance Metrics
+The proposed Reasoning Integrity Score (RIS = SLRC × (1-Sycophancy)) "significantly predicts error detection (rho=0.66, p=0.026)."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e9c954c3-122e-4356-afb4-f465b602326e",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "f106d595-c787-43f3-a155-b1ceb505e4c9",
+  "toolUseResult": {
+    "bytes": 46351,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Research Summary: Measuring Reasoning Rigidity in Language Models\n\n## Full Title\n\"Measuring and curing reasoning rigidity: from decorative chain-of-thought to genuine faithfulness\"\n\n## Authors\nAbhinaba Basu and Pavan Chakraborty\n\n## Abstract Overview\nThe researchers investigate whether language models genuinely use step-by-step reasoning or whether answers are predetermined. They introduce the Step-Level Reasoning Capacity (SLRC) metric with theoretical guarantees and propose LC-CoSR, a training approach designed to reduce reasoning rigidity.\n\n## Key Findings on Faithfulness Variation\n\n**By Model Type:**\n- OpenAI's o4-mini demonstrated the highest faithfulness, showing \"74-88% step necessity on five of six tasks\"\n- Grok-4's reasoning mode exhibited lower faithfulness than its non-reasoning mode (1.4% versus 7.2% necessity)\n\n**Critical Discovery:**\nThe authors identify a \"faithfulness paradox\" where models with higher SLRC scores became more susceptible to sycophancy (tendency to agree with users).\n\n## Domains and Scale\nResearch evaluated 16 frontier models across six domains, with sample sizes ranging from N=133-500.\n\n## Performance Metrics\nThe proposed Reasoning Integrity Score (RIS = SLRC × (1-Sycophancy)) \"significantly predicts error detection (rho=0.66, p=0.026).\"",
+    "durationMs": 5306,
+    "url": "https://arxiv.org/abs/2603.22816"
+  },
+  "sourceToolAssistantUUID": "e9c954c3-122e-4356-afb4-f465b602326e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-16T08:35:22.323Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Hmm, the last result for arxiv 2603.22816 doesn't seem to be "The Illusion of Reasoning" - it seems to be a different paper. Let me search for the correct one. Also, let me search for more details on some of these papers and the EMNLP 2026 deadline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f106d595-c787-43f3-a155-b1ceb505e4c9",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wYv61dYGTZ9SHn2W8e",
+  "type": "assistant",
+  "uuid": "80b094e5-5303-44fe-a788-b7b55a28d439",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oqXLJEu7EDBQxmsE5wcR7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2479,
+      "cache_read_input_tokens": 25929,
+      "output_tokens": 370,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 370,
+          "cache_read_input_tokens": 25929,
+          "cache_creation_input_tokens": 2479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-16T08:35:23.911Z_
+
+Let me search for the correct "Illusion of Reasoning" paper, EMNLP 2026 deadline details, Qwen3.6 info, and more on the key papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80b094e5-5303-44fe-a788-b7b55a28d439",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wYv61dYGTZ9SHn2W8e",
+  "type": "assistant",
+  "uuid": "25cee8b5-18b4-4ee0-a309-57d9acc5af8d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oqXLJEu7EDBQxmsE5wcR7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2479,
+      "cache_read_input_tokens": 25929,
+      "output_tokens": 370,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 370,
+          "cache_read_input_tokens": 25929,
+          "cache_creation_input_tokens": 2479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T08:35:24.465Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012QowGTMVghMNYBWpZfs4BW`</summary>
+
+```json
+{
+  "query": "arxiv 2603.22816 \"The Illusion of Reasoning\" faithfulness chain-of-thought"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25cee8b5-18b4-4ee0-a309-57d9acc5af8d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wYv61dYGTZ9SHn2W8e",
+  "type": "assistant",
+  "uuid": "c008d128-00b4-4ab5-8641-4542059fd46c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oqXLJEu7EDBQxmsE5wcR7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2479,
+      "cache_read_input_tokens": 25929,
+      "output_tokens": 370,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 370,
+          "cache_read_input_tokens": 25929,
+          "cache_creation_input_tokens": 2479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T08:35:25.345Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HAj4hgC55ZfnpipCWiHrEs`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR deadline May 2026 submission"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c008d128-00b4-4ab5-8641-4542059fd46c",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wYv61dYGTZ9SHn2W8e",
+  "type": "assistant",
+  "uuid": "61433ee0-fba5-4813-a2a9-3c4200629c4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oqXLJEu7EDBQxmsE5wcR7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2479,
+      "cache_read_input_tokens": 25929,
+      "output_tokens": 370,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 370,
+          "cache_read_input_tokens": 25929,
+          "cache_creation_input_tokens": 2479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T08:35:25.873Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015xissfKXiqLKDw4doqhVqP`</summary>
+
+```json
+{
+  "query": "Qwen3.6-27B release April 2026 model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61433ee0-fba5-4813-a2a9-3c4200629c4d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wYv61dYGTZ9SHn2W8e",
+  "type": "assistant",
+  "uuid": "f0abbc2c-4cb9-4c79-81ab-f931e2c89238",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oqXLJEu7EDBQxmsE5wcR7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2479,
+      "cache_read_input_tokens": 25929,
+      "output_tokens": 370,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 370,
+          "cache_read_input_tokens": 25929,
+          "cache_creation_input_tokens": 2479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T08:35:26.564Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DydPTMCirTRCGfxeCeKC39`</summary>
+
+```json
+{
+  "query": "Token-Guard ICLR 2026 token-level hallucination latent space decoding method details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0abbc2c-4cb9-4c79-81ab-f931e2c89238",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wYv61dYGTZ9SHn2W8e",
+  "type": "assistant",
+  "uuid": "96ef0fa2-cd0c-4782-826c-715e848593bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oqXLJEu7EDBQxmsE5wcR7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2479,
+      "cache_read_input_tokens": 25929,
+      "output_tokens": 370,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 370,
+          "cache_read_input_tokens": 25929,
+          "cache_creation_input_tokens": 2479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T08:35:31.292Z_
+
+<details><summary>↩ Tool result · `toolu_01HAj4hgC55ZfnpipCWiHrEs`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR deadline May 2026 submission"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"Call for workshops: EMNLP & AACL","url":"https://groups.google.com/g/ml-news/c/W-fucfhVto4"},{"title":"EMNLP 2026 2026 Deadlines — Submission, Rebuttal & Dates | Paperpin | Paperpin","url":"https://www.getpaperpin.com/deadlines/emnlp26"}]
+
+Based on the search results, here is the key information about EMNLP 2026 and the ARR May 2026 submission deadline:
+
+## ARR Submission Deadline
+
+The ARR submission deadline for EMNLP 2026 is May 25, 2026.
+
+## Important Policy Update
+
+Since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time, and this choice will be binding. ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.
+
+## Additional Important Deadlines
+
+The reviewer registration deadline for all authors is May 27, 2026, which is shortly after the submission deadline.
+
+## Paper Types Accepted
+
+EMNLP 2026 invites the submission of long and short papers featuring substantial, original, and unpublished research on empirical methods for Natural Language Processing.
+
+The full call for papers is available on the official EMNLP 2026 website at https://2026.emnlp.org/calls/main_conference_papers/.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "61433ee0-fba5-4813-a2a9-3c4200629c4d",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "18c13900-6ff9-4ccd-a50d-38c22a7389bc",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR deadline May 2026 submission",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019VJMQEazmsXFDDSmFvRc2T",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "Call for workshops: EMNLP & AACL",
+            "url": "https://groups.google.com/g/ml-news/c/W-fucfhVto4"
+          },
+          {
+            "title": "EMNLP 2026 2026 Deadlines — Submission, Rebuttal & Dates | Paperpin | Paperpin",
+            "url": "https://www.getpaperpin.com/deadlines/emnlp26"
+          }
+        ]
+      },
+      "Based on the search results, here is the key information about EMNLP 2026 and the ARR May 2026 submission deadline:\n\n## ARR Submission Deadline\n\nThe ARR submission deadline for EMNLP 2026 is May 25, 2026.\n\n## Important Policy Update\n\nSince EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time, and this choice will be binding. ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.\n\n## Additional Important Deadlines\n\nThe reviewer registration deadline for all authors is May 27, 2026, which is shortly after the submission deadline.\n\n## Paper Types Accepted\n\nEMNLP 2026 invites the submission of long and short papers featuring substantial, original, and unpublished research on empirical methods for Natural Language Processing.\n\nThe full call for papers is available on the official EMNLP 2026 website at https://2026.emnlp.org/calls/main_conference_papers/."
+    ],
+    "durationSeconds": 5.942457567999998
+  },
+  "sourceToolAssistantUUID": "61433ee0-fba5-4813-a2a9-3c4200629c4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T08:35:32.115Z_
+
+<details><summary>↩ Tool result · `toolu_012QowGTMVghMNYBWpZfs4BW`</summary>
+
+```text
+Web search results for query: "arxiv 2603.22816 "The Illusion of Reasoning" faithfulness chain-of-thought"
+
+Links: [{"title":"[2603.22816] The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models","url":"https://arxiv.org/abs/2603.22816"},{"title":"The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models","url":"https://arxiv.org/html/2603.22816"},{"title":"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps","url":"https://arxiv.org/html/2502.14829v3"},{"title":"Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Open-Weight Reasoning Models?","url":"https://arxiv.org/html/2603.22582v1"},{"title":"Making Reasoning Matter: Measuring and Improving Faithfulness of Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2402.13950v3"},{"title":"Measuring Faithfulness of Chains of Thought by Unlearning Reasoning Steps","url":"https://arxiv.org/html/2502.14829v1"},{"title":"LIE TO ME: HOW FAITHFUL IS CHAIN-OF-THOUGHT REASONING","url":"https://arxiv.org/pdf/2603.22582"},{"title":"Reasoning Models Don’t Always Say What They Think","url":"https://arxiv.org/html/2505.05410v1"},{"title":"(PDF) Measuring Faithfulness of Chains of Thought by Unlearning Reasoning Steps","url":"https://www.researchgate.net/publication/389207289_Measuring_Faithfulness_of_Chains_of_Thought_by_Unlearning_Reasoning_Steps"},{"title":"Measuring Faithfulness in Chain-of-Thought Reasoning Tamera Lanham","url":"https://arxiv.org/pdf/2307.13702"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## "The Illusion of Reasoning" (arXiv:2603.22816)
+
+This paper examines whether language models' step-by-step reasoning steps are genuinely used or are merely decorative narratives generated after the model has already decided.
+
+**Key Methodology:**
+The researchers introduce step-level faithfulness evaluation by removing one reasoning sentence at a time and checking whether the answer changes, requiring only API access at $1-2 per model per task.
+
+**Main Findings:**
+Evaluating 13 frontier models (GPT-5.4, Claude Opus, DeepSeek-V3.2, DeepSeek-R1, Gemini 2.5 Pro, MiniMax-M2.5, Kimi-K2.5, and others) across six domains, the researchers find reasoning falls into three modes—not the binary faithful/unfaithful of prior work.
+
+The three modes are:
+- "Genuine reasoning," where steps matter and CoT is essential (MiniMax: 37% necessity, +69pp from CoT)
+- "Scaffolding," where CoT helps but steps are interchangeable (Kimi on math: 1% necessity, +94pp from CoT)
+- "Decoration," where CoT adds nothing (DeepSeek-V3.2: 11% necessity, -1pp from CoT)
+
+The DeepSeek model family provides causal evidence: R1 reasoning models show 91-93% necessity on math versus 4% for V3.2—same organisation, proving training objective determines faithfulness.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c008d128-00b4-4ab5-8641-4542059fd46c",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "2eae2dc7-11a4-4e1a-80ee-486646c5d3ce",
+  "toolUseResult": {
+    "query": "arxiv 2603.22816 \"The Illusion of Reasoning\" faithfulness chain-of-thought",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EzBWyf8kXQeEmmsQrSDegT",
+        "content": [
+          {
+            "title": "[2603.22816] The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models",
+            "url": "https://arxiv.org/abs/2603.22816"
+          },
+          {
+            "title": "The illusion of reasoning: step-level evaluation reveals decorative chain-of-thought in frontier language models",
+            "url": "https://arxiv.org/html/2603.22816"
+          },
+          {
+            "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+            "url": "https://arxiv.org/html/2502.14829v3"
+          },
+          {
+            "title": "Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Open-Weight Reasoning Models?",
+            "url": "https://arxiv.org/html/2603.22582v1"
+          },
+          {
+            "title": "Making Reasoning Matter: Measuring and Improving Faithfulness of Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2402.13950v3"
+          },
+          {
+            "title": "Measuring Faithfulness of Chains of Thought by Unlearning Reasoning Steps",
+            "url": "https://arxiv.org/html/2502.14829v1"
+          },
+          {
+            "title": "LIE TO ME: HOW FAITHFUL IS CHAIN-OF-THOUGHT REASONING",
+            "url": "https://arxiv.org/pdf/2603.22582"
+          },
+          {
+            "title": "Reasoning Models Don’t Always Say What They Think",
+            "url": "https://arxiv.org/html/2505.05410v1"
+          },
+          {
+            "title": "(PDF) Measuring Faithfulness of Chains of Thought by Unlearning Reasoning Steps",
+            "url": "https://www.researchgate.net/publication/389207289_Measuring_Faithfulness_of_Chains_of_Thought_by_Unlearning_Reasoning_Steps"
+          },
+          {
+            "title": "Measuring Faithfulness in Chain-of-Thought Reasoning Tamera Lanham",
+            "url": "https://arxiv.org/pdf/2307.13702"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## \"The Illusion of Reasoning\" (arXiv:2603.22816)\n\nThis paper examines whether language models' step-by-step reasoning steps are genuinely used or are merely decorative narratives generated after the model has already decided.\n\n**Key Methodology:**\nThe researchers introduce step-level faithfulness evaluation by removing one reasoning sentence at a time and checking whether the answer changes, requiring only API access at $1-2 per model per task.\n\n**Main Findings:**\nEvaluating 13 frontier models (GPT-5.4, Claude Opus, DeepSeek-V3.2, DeepSeek-R1, Gemini 2.5 Pro, MiniMax-M2.5, Kimi-K2.5, and others) across six domains, the researchers find reasoning falls into three modes—not the binary faithful/unfaithful of prior work.\n\nThe three modes are:\n- \"Genuine reasoning,\" where steps matter and CoT is essential (MiniMax: 37% necessity, +69pp from CoT)\n- \"Scaffolding,\" where CoT helps but steps are interchangeable (Kimi on math: 1% necessity, +94pp from CoT)\n- \"Decoration,\" where CoT adds nothing (DeepSeek-V3.2: 11% necessity, -1pp from CoT)\n\nThe DeepSeek model family provides causal evidence: R1 reasoning models show 91-93% necessity on math versus 4% for V3.2—same organisation, proving training objective determines faithfulness."
+    ],
+    "durationSeconds": 7.6443910690000045
+  },
+  "sourceToolAssistantUUID": "c008d128-00b4-4ab5-8641-4542059fd46c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T08:35:32.589Z_
+
+<details><summary>↩ Tool result · `toolu_015xissfKXiqLKDw4doqhVqP`</summary>
+
+```text
+Web search results for query: "Qwen3.6-27B release April 2026 model"
+
+Links: [{"title":"Qwen/Qwen3.6-27B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.6-27B"},{"title":"Qwen3.6 27B - API Pricing & Providers | OpenRouter","url":"https://openrouter.ai/qwen/qwen3.6-27b"},{"title":"Alibaba Qwen Team Releases Qwen3.6-27B: A Dense Open-Weight Model Outperforming 397B MoE on Agentic Coding Benchmarks - MarkTechPost","url":"https://www.marktechpost.com/2026/04/22/alibaba-qwen-team-releases-qwen3-6-27b-a-dense-open-weight-model-outperforming-397b-moe-on-agentic-coding-benchmarks/"},{"title":"Qwen3.6–27B Is The New King (April 2026) | by Andrew Zhu | Apr, 2026 | Medium","url":"https://xhinker.medium.com/qwen3-6-27b-is-the-new-king-april-2026-09467b6c6335"},{"title":"Qwen3.6-27B: 27B Model Beats 397B on Coding (2026)","url":"https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026"},{"title":"GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub","url":"https://github.com/QwenLM/Qwen3.6"},{"title":"Qwen3.6-27B is here. How to use Qwen3.6–27B for free? | by Mehul Gupta | Data Science in Your Pocket | Apr, 2026 | Medium","url":"https://medium.com/data-science-in-your-pocket/qwen3-27b-is-here-197fb2256b97"},{"title":"Qwen3.6-27B Benchmarks, Pricing & Context Window","url":"https://llm-stats.com/models/qwen3.6-27b"},{"title":"Qwen3.6-27B VRAM Requirements — Dense 27B That Beats 397B-A17B (2026) | Will It Run AI Blog","url":"https://willitrunai.com/blog/qwen-3-6-27b-vram-requirements"},{"title":"Qwen3.6-27B: A Dense 27B Model That Beats a 397B MoE on Coding","url":"https://rits.shanghai.nyu.edu/ai/qwen3-6-27b-a-dense-27b-model-that-beats-a-397b-moe-on-coding"}]
+
+Based on the search results, here's what I found about the Qwen3.6-27B model release:
+
+## Qwen3.6-27B Release Overview
+
+Qwen3.6 27B is a dense 27-billion-parameter language model from the Qwen Team at Alibaba, released in April 2026. More specifically, it was released on April 21, 2026 (with some sources citing April 22, 2026).
+
+## Key Features
+
+It features hybrid multimodal capabilities — accepting text, image, and video inputs — and supports a 262,144-token context window. Additionally, the context length is natively 262,144 tokens and extensible up to 1,010,000 tokens.
+
+## Performance Highlights
+
+Qwen3.6-27B is the family's second model and the first fully dense variant — and on several key benchmarks, it actually outperforms both Qwen3.6-35B-A3B and the much larger Qwen3.5-397B-A17B MoE model.
+
+## Notable Features
+
+It brings substantial improvements in agentic coding, a novel Thinking Preservation mechanism, and a hybrid architecture that blends Gated DeltaNet linear attention with traditional self-attention — all under an Apache 2.0 license.
+
+The Qwen team releases two weight variants on Hugging Face Hub: Qwen/Qwen3.6-27B in BF16 and Qwen/Qwen3.6-27B-FP8, a quantized version using fine-grained FP8 quantization with a block size of 128, with performance metrics nearly identical to the original model.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f0abbc2c-4cb9-4c79-81ab-f931e2c89238",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "ce4bd773-0adc-4d09-b852-b5750da4d2d8",
+  "toolUseResult": {
+    "query": "Qwen3.6-27B release April 2026 model",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016otgKi82R2YEdVFVBR4Qjo",
+        "content": [
+          {
+            "title": "Qwen/Qwen3.6-27B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.6-27B"
+          },
+          {
+            "title": "Qwen3.6 27B - API Pricing & Providers | OpenRouter",
+            "url": "https://openrouter.ai/qwen/qwen3.6-27b"
+          },
+          {
+            "title": "Alibaba Qwen Team Releases Qwen3.6-27B: A Dense Open-Weight Model Outperforming 397B MoE on Agentic Coding Benchmarks - MarkTechPost",
+            "url": "https://www.marktechpost.com/2026/04/22/alibaba-qwen-team-releases-qwen3-6-27b-a-dense-open-weight-model-outperforming-397b-moe-on-agentic-coding-benchmarks/"
+          },
+          {
+            "title": "Qwen3.6–27B Is The New King (April 2026) | by Andrew Zhu | Apr, 2026 | Medium",
+            "url": "https://xhinker.medium.com/qwen3-6-27b-is-the-new-king-april-2026-09467b6c6335"
+          },
+          {
+            "title": "Qwen3.6-27B: 27B Model Beats 397B on Coding (2026)",
+            "url": "https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3.6"
+          },
+          {
+            "title": "Qwen3.6-27B is here. How to use Qwen3.6–27B for free? | by Mehul Gupta | Data Science in Your Pocket | Apr, 2026 | Medium",
+            "url": "https://medium.com/data-science-in-your-pocket/qwen3-27b-is-here-197fb2256b97"
+          },
+          {
+            "title": "Qwen3.6-27B Benchmarks, Pricing & Context Window",
+            "url": "https://llm-stats.com/models/qwen3.6-27b"
+          },
+          {
+            "title": "Qwen3.6-27B VRAM Requirements — Dense 27B That Beats 397B-A17B (2026) | Will It Run AI Blog",
+            "url": "https://willitrunai.com/blog/qwen-3-6-27b-vram-requirements"
+          },
+          {
+            "title": "Qwen3.6-27B: A Dense 27B Model That Beats a 397B MoE on Coding",
+            "url": "https://rits.shanghai.nyu.edu/ai/qwen3-6-27b-a-dense-27b-model-that-beats-a-397b-moe-on-coding"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the Qwen3.6-27B model release:\n\n## Qwen3.6-27B Release Overview\n\nQwen3.6 27B is a dense 27-billion-parameter language model from the Qwen Team at Alibaba, released in April 2026. More specifically, it was released on April 21, 2026 (with some sources citing April 22, 2026).\n\n## Key Features\n\nIt features hybrid multimodal capabilities — accepting text, image, and video inputs — and supports a 262,144-token context window. Additionally, the context length is natively 262,144 tokens and extensible up to 1,010,000 tokens.\n\n## Performance Highlights\n\nQwen3.6-27B is the family's second model and the first fully dense variant — and on several key benchmarks, it actually outperforms both Qwen3.6-35B-A3B and the much larger Qwen3.5-397B-A17B MoE model.\n\n## Notable Features\n\nIt brings substantial improvements in agentic coding, a novel Thinking Preservation mechanism, and a hybrid architecture that blends Gated DeltaNet linear attention with traditional self-attention — all under an Apache 2.0 license.\n\nThe Qwen team releases two weight variants on Hugging Face Hub: Qwen/Qwen3.6-27B in BF16 and Qwen/Qwen3.6-27B-FP8, a quantized version using fine-grained FP8 quantization with a block size of 128, with performance metrics nearly identical to the original model."
+    ],
+    "durationSeconds": 6.713011124000004
+  },
+  "sourceToolAssistantUUID": "f0abbc2c-4cb9-4c79-81ab-f931e2c89238",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T08:35:34.153Z_
+
+<details><summary>↩ Tool result · `toolu_01DydPTMCirTRCGfxeCeKC39`</summary>
+
+```text
+Web search results for query: "Token-Guard ICLR 2026 token-level hallucination latent space decoding method details"
+
+Links: [{"title":"GitHub - RongHuiQiang/Token-Guard: [ICLR 2026] Official resources of \"Token-Guard: Towards Token-Level Hallucination Control via Self-Checking Decoding\" · GitHub","url":"https://github.com/rhq945/Token-Guard"},{"title":"TOKEN-GUARD: TOWARDS TOKEN-LEVEL HALLUCI","url":"https://openreview.net/pdf/d627b27613103d142086cf6b1da93c0f6de8ee8d.pdf"},{"title":"Token-Guard: Towards Token-Level Hallucination Control via Self-Checking Decoding | OpenReview","url":"https://openreview.net/forum?id=5fCDEz43ya"},{"title":"Towards Token-Level Hallucination Control via Self- ...","url":"https://www.arxiv.org/pdf/2601.21969"},{"title":"[2601.21969] Token-Guard: Towards Token-Level Hallucination Control via Self-Checking Decoding","url":"https://arxiv.org/abs/2601.21969"},{"title":"Token-Guard: Towards Token-Level Hallucination Control via Self-Checking Decoding","url":"https://arxiv.org/html/2601.21969"},{"title":"ICLR 2026 Schedule","url":"https://iclr.cc/virtual/2026/calendar"},{"title":"CMIS-2025 FINAL DECISION – REJECTED PAPERS** **1","url":"https://www.facebook.com/groups/cmis.workshop/posts/1616493295840816/"},{"title":"The Hidden Life of Tokens: Reducing Hallucination of Large Vision-Language Models Via Visual Information Steering | OpenReview","url":"https://openreview.net/forum?id=7BKcLeHQsm"},{"title":"Under review as a conference paper at ICLR 2026 MICROSACCADE INSPIRED PROBING:","url":"https://arxiv.org/pdf/2510.01288"}]
+
+Based on the search results, here are the details about Token-Guard, an ICLR 2026 paper on token-level hallucination control:
+
+## Overview
+Token-Guard is a decoding-based framework that mitigates hallucinations in Large Language Models through a three-stage self-checking pipeline.
+
+## Core Method
+Token-Guard is a token-level hallucination control method based on self-checking decoding that performs internal verification at each reasoning step to detect hallucinated tokens before they propagate.
+
+## Latent Space Decoding Details
+At generation step t, a latent environment St is constructed to store semantic representations sj and contextual states hj of accepted tokens aj for j < t. This environment st provides the foundation for self-checking and selection, ensuring that each token maintains contextual consistency and factual reliability.
+
+## Key Innovations
+Token-Guard introduces three key innovations: (1) Token-level Hallucination Control - at each reasoning step, candidate tokens are scored in the latent space and low-confidence tokens are pruned to detect and suppress hallucinated tokens; (2) Segment-level Explicit Hallucination Scoring - relevant tokens are grouped into candidate fragments and assigned hallucination risk scores to guide more reliable fragment selection; (3) Local Enhancement and Global Iteration - when hallucinations are detected, local fragment regeneration and global iteration strategies are applied to dynamically correct prior fragments while maintaining logical consistency.
+
+## Results
+Experiments on HALU datasets show Token-Guard substantially reduces hallucinations and improves generation accuracy, offering a scalable, modular solution for reliable LLM outputs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "96ef0fa2-cd0c-4782-826c-715e848593bf",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "1a786b22-c9b0-45b0-b511-b6225a62150b",
+  "toolUseResult": {
+    "query": "Token-Guard ICLR 2026 token-level hallucination latent space decoding method details",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Xr7fF3jweDXswuhHiaVDij",
+        "content": [
+          {
+            "title": "GitHub - RongHuiQiang/Token-Guard: [ICLR 2026] Official resources of \"Token-Guard: Towards Token-Level Hallucination Control via Self-Checking Decoding\" · GitHub",
+            "url": "https://github.com/rhq945/Token-Guard"
+          },
+          {
+            "title": "TOKEN-GUARD: TOWARDS TOKEN-LEVEL HALLUCI",
+            "url": "https://openreview.net/pdf/d627b27613103d142086cf6b1da93c0f6de8ee8d.pdf"
+          },
+          {
+            "title": "Token-Guard: Towards Token-Level Hallucination Control via Self-Checking Decoding | OpenReview",
+            "url": "https://openreview.net/forum?id=5fCDEz43ya"
+          },
+          {
+            "title": "Towards Token-Level Hallucination Control via Self- ...",
+            "url": "https://www.arxiv.org/pdf/2601.21969"
+          },
+          {
+            "title": "[2601.21969] Token-Guard: Towards Token-Level Hallucination Control via Self-Checking Decoding",
+            "url": "https://arxiv.org/abs/2601.21969"
+          },
+          {
+            "title": "Token-Guard: Towards Token-Level Hallucination Control via Self-Checking Decoding",
+            "url": "https://arxiv.org/html/2601.21969"
+          },
+          {
+            "title": "ICLR 2026 Schedule",
+            "url": "https://iclr.cc/virtual/2026/calendar"
+          },
+          {
+            "title": "CMIS-2025 FINAL DECISION – REJECTED PAPERS** **1",
+            "url": "https://www.facebook.com/groups/cmis.workshop/posts/1616493295840816/"
+          },
+          {
+            "title": "The Hidden Life of Tokens: Reducing Hallucination of Large Vision-Language Models Via Visual Information Steering | OpenReview",
+            "url": "https://openreview.net/forum?id=7BKcLeHQsm"
+          },
+          {
+            "title": "Under review as a conference paper at ICLR 2026 MICROSACCADE INSPIRED PROBING:",
+            "url": "https://arxiv.org/pdf/2510.01288"
+          }
+        ]
+      },
+      "Based on the search results, here are the details about Token-Guard, an ICLR 2026 paper on token-level hallucination control:\n\n## Overview\nToken-Guard is a decoding-based framework that mitigates hallucinations in Large Language Models through a three-stage self-checking pipeline.\n\n## Core Method\nToken-Guard is a token-level hallucination control method based on self-checking decoding that performs internal verification at each reasoning step to detect hallucinated tokens before they propagate.\n\n## Latent Space Decoding Details\nAt generation step t, a latent environment St is constructed to store semantic representations sj and contextual states hj of accepted tokens aj for j < t. This environment st provides the foundation for self-checking and selection, ensuring that each token maintains contextual consistency and factual reliability.\n\n## Key Innovations\nToken-Guard introduces three key innovations: (1) Token-level Hallucination Control - at each reasoning step, candidate tokens are scored in the latent space and low-confidence tokens are pruned to detect and suppress hallucinated tokens; (2) Segment-level Explicit Hallucination Scoring - relevant tokens are grouped into candidate fragments and assigned hallucination risk scores to guide more reliable fragment selection; (3) Local Enhancement and Global Iteration - when hallucinations are detected, local fragment regeneration and global iteration strategies are applied to dynamically correct prior fragments while maintaining logical consistency.\n\n## Results\nExperiments on HALU datasets show Token-Guard substantially reduces hallucinations and improves generation accuracy, offering a scalable, modular solution for reliable LLM outputs."
+    ],
+    "durationSeconds": 7.586769374999996
+  },
+  "sourceToolAssistantUUID": "96ef0fa2-cd0c-4782-826c-715e848593bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36 · 2026-05-16T08:35:34.156Z_
+
+```json
+{
+  "parentUuid": "1a786b22-c9b0-45b0-b511-b6225a62150b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f24152e0-a069-43c1-a553-8ffdaef83248",
+  "timestamp": "2026-05-16T08:35:34.156Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Step-Level Faithfulness-Gated Rejection Decoding: Enforcing CoT Faithf…",
+  "leafUuid": "f24152e0-a069-43c1-a553-8ffdaef83248",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-level faithfulness detection during CoT generation",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-16T08:35:42.867Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I'm getting useful information. Let me now fetch more details on the critical papers and search for additional context on n-gram blocking / surface diversity vs computational diversity, and the feasibility of faithfulness probes on residual streams.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f24152e0-a069-43c1-a553-8ffdaef83248",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wa4T5dNY2agsGdKFdo",
+  "type": "assistant",
+  "uuid": "1b9aa2e1-5f38-4133-94d6-bdb1ee9ff718",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SytYyvZYsvm2rFiCRGog9q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4469,
+      "cache_read_input_tokens": 28408,
+      "output_tokens": 463,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4469,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 463,
+          "cache_read_input_tokens": 28408,
+          "cache_creation_input_tokens": 4469,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4469
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-16T08:35:43.393Z_
+
+Now let me fetch more detailed information on the critical papers and search for evidence on key assumptions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b9aa2e1-5f38-4133-94d6-bdb1ee9ff718",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wa4T5dNY2agsGdKFdo",
+  "type": "assistant",
+  "uuid": "f02408c6-c52d-44a7-8538-17a6dc44edbc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SytYyvZYsvm2rFiCRGog9q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4469,
+      "cache_read_input_tokens": 28408,
+      "output_tokens": 463,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4469,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 463,
+          "cache_read_input_tokens": 28408,
+          "cache_creation_input_tokens": 4469,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4469
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T08:35:46.367Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019PHyzrSR4DohRYEcF1F8xD`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.22816",
+  "prompt": "Extract the full title, abstract, and key findings. Specifically: (1) What are the three modes of reasoning (genuine, scaffolding, decoration)? (2) What are the necessity rates for R1 models on math vs non-reasoning models? (3) What is the domain variation? (4) What models are tested?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f02408c6-c52d-44a7-8538-17a6dc44edbc",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wa4T5dNY2agsGdKFdo",
+  "type": "assistant",
+  "uuid": "6d9e9414-80fe-4129-878f-21249fe01a76",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SytYyvZYsvm2rFiCRGog9q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4469,
+      "cache_read_input_tokens": 28408,
+      "output_tokens": 463,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4469,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 463,
+          "cache_read_input_tokens": 28408,
+          "cache_creation_input_tokens": 4469,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4469
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-16T08:35:48.274Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01D6TxJUJJfrvyuewgjNmj5r`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=5fCDEz43ya",
+  "prompt": "Extract the Token-Guard paper reviews and key method details. What is the three-stage pipeline? How does it construct the latent environment? What are the hallucination risk scores? How does the regeneration work? What datasets and models are used for evaluation?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d9e9414-80fe-4129-878f-21249fe01a76",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wa4T5dNY2agsGdKFdo",
+  "type": "assistant",
+  "uuid": "6ffb9879-561d-47de-821c-a75583480981",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SytYyvZYsvm2rFiCRGog9q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4469,
+      "cache_read_input_tokens": 28408,
+      "output_tokens": 463,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4469,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 463,
+          "cache_read_input_tokens": 28408,
+          "cache_creation_input_tokens": 4469,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4469
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T08:35:49.083Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YJP9e7HpVcBZ7wxP5ycXyt`</summary>
+
+```json
+{
+  "query": "surface token diversity computational diversity LLM hidden states representation geometry diverse decoding"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ffb9879-561d-47de-821c-a75583480981",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wa4T5dNY2agsGdKFdo",
+  "type": "assistant",
+  "uuid": "6f28d76c-ea6e-40c3-bfd2-8189200541db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SytYyvZYsvm2rFiCRGog9q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4469,
+      "cache_read_input_tokens": 28408,
+      "output_tokens": 463,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4469,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 463,
+          "cache_read_input_tokens": 28408,
+          "cache_creation_input_tokens": 4469,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4469
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-16T08:35:49.734Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CLTYSrnTy5DmzFSgKtRfrQ`</summary>
+
+```json
+{
+  "query": "linear probe faithfulness reasoning internal representation detection residual stream 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f28d76c-ea6e-40c3-bfd2-8189200541db",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wa4T5dNY2agsGdKFdo",
+  "type": "assistant",
+  "uuid": "7461bad0-f105-4bcd-a584-bbc83e5358d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SytYyvZYsvm2rFiCRGog9q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4469,
+      "cache_read_input_tokens": 28408,
+      "output_tokens": 463,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4469,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 463,
+          "cache_read_input_tokens": 28408,
+          "cache_creation_input_tokens": 4469,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4469
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-16T08:35:51.647Z_
+
+<details><summary>↩ Tool result · `toolu_01D6TxJUJJfrvyuewgjNmj5r`</summary>
+
+```text
+# Token-Guard Paper Summary
+
+Based on the provided webpage content, I can only offer limited information, as the page displays metadata rather than the full paper details.
+
+## Available Information
+
+**Core Purpose:** The paper introduces Token-Guard, described as a "token-level hallucination control method based on self-checking decoding" that aims to reduce inaccurate content generation in large language models.
+
+**Key Approach:** The method performs "internal verification at each reasoning step to detect hallucinated tokens before they propagate." The system evaluates "candidate fragments...in a latent space with explicit hallucination risk scoring" and uses "iterative pruning and regeneration dynamically correct detected errors."
+
+**Evaluation:** Testing occurred on HALU datasets, demonstrating that Token-Guard "substantially reduces hallucinations and improves generation accuracy."
+
+## Limitations
+
+The webpage excerpt does not contain:
+- Details about a three-stage pipeline structure
+- Specific latent environment construction methodology
+- Definitions of hallucination risk score mechanics
+- Regeneration algorithm specifics
+- Complete dataset and model specifications
+
+For comprehensive technical details about the three-stage pipeline, latent space construction, scoring mechanisms, and evaluation protocols, you would need to consult the full PDF available through OpenReview at the link provided.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ffb9879-561d-47de-821c-a75583480981",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "3faba5b7-0cc7-4ce6-9ea3-ef9c44d66a50",
+  "toolUseResult": {
+    "bytes": 67158,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Token-Guard Paper Summary\n\nBased on the provided webpage content, I can only offer limited information, as the page displays metadata rather than the full paper details.\n\n## Available Information\n\n**Core Purpose:** The paper introduces Token-Guard, described as a \"token-level hallucination control method based on self-checking decoding\" that aims to reduce inaccurate content generation in large language models.\n\n**Key Approach:** The method performs \"internal verification at each reasoning step to detect hallucinated tokens before they propagate.\" The system evaluates \"candidate fragments...in a latent space with explicit hallucination risk scoring\" and uses \"iterative pruning and regeneration dynamically correct detected errors.\"\n\n**Evaluation:** Testing occurred on HALU datasets, demonstrating that Token-Guard \"substantially reduces hallucinations and improves generation accuracy.\"\n\n## Limitations\n\nThe webpage excerpt does not contain:\n- Details about a three-stage pipeline structure\n- Specific latent environment construction methodology\n- Definitions of hallucination risk score mechanics\n- Regeneration algorithm specifics\n- Complete dataset and model specifications\n\nFor comprehensive technical details about the three-stage pipeline, latent space construction, scoring mechanisms, and evaluation protocols, you would need to consult the full PDF available through OpenReview at the link provided.",
+    "durationMs": 3369,
+    "url": "https://openreview.net/forum?id=5fCDEz43ya"
+  },
+  "sourceToolAssistantUUID": "6ffb9879-561d-47de-821c-a75583480981",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T08:35:51.970Z_
+
+<details><summary>↩ Tool result · `toolu_019PHyzrSR4DohRYEcF1F8xD`</summary>
+
+```text
+# Paper Analysis: Reasoning Rigidity in Language Models
+
+**Full Title:** "Measuring and curing reasoning rigidity: from decorative chain-of-thought to genuine faithfulness"
+
+**Abstract Summary:**
+The paper investigates whether language models genuinely use their step-by-step reasoning or produce predetermined answers. Authors introduce the Step-Level Reasoning Capacity (SLRC) metric with formal guarantees and propose LC-CoSR, a training method addressing this issue.
+
+---
+
+## Key Findings
+
+**(1) Three Reasoning Modes:**
+The abstract indicates that "reasoning falls into three modes" but does not explicitly name them. The title suggests categories of decorative versus genuine reasoning, though the specific characterizations of all three modes are not detailed in the provided excerpt.
+
+**(2) R1 Model Performance:**
+The paper states that "OpenAI's o4-mini shows 74-88% step necessity on five of six tasks." However, specific mathematical task performance versus non-reasoning baseline comparisons are not provided in the available content. Notably, "Grok-4's reasoning mode shows lower faithfulness than its non-reasoning mode (1.4% vs 7.2% necessity)."
+
+**(3) Domain Variation:**
+The study evaluated models "across six domains at N=133-500," demonstrating considerable variability, though specific domains are not enumerated in the abstract.
+
+**(4) Models Tested:**
+The paper evaluated 16 frontier models including: o4-mini, GPT-5.4, Claude Opus, Grok-4, DeepSeek-R1, and Gemini 2.5 Pro.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6d9e9414-80fe-4129-878f-21249fe01a76",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "e043bfc6-4600-44f2-8e66-8659353b5198",
+  "toolUseResult": {
+    "bytes": 46351,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Analysis: Reasoning Rigidity in Language Models\n\n**Full Title:** \"Measuring and curing reasoning rigidity: from decorative chain-of-thought to genuine faithfulness\"\n\n**Abstract Summary:**\nThe paper investigates whether language models genuinely use their step-by-step reasoning or produce predetermined answers. Authors introduce the Step-Level Reasoning Capacity (SLRC) metric with formal guarantees and propose LC-CoSR, a training method addressing this issue.\n\n---\n\n## Key Findings\n\n**(1) Three Reasoning Modes:**\nThe abstract indicates that \"reasoning falls into three modes\" but does not explicitly name them. The title suggests categories of decorative versus genuine reasoning, though the specific characterizations of all three modes are not detailed in the provided excerpt.\n\n**(2) R1 Model Performance:**\nThe paper states that \"OpenAI's o4-mini shows 74-88% step necessity on five of six tasks.\" However, specific mathematical task performance versus non-reasoning baseline comparisons are not provided in the available content. Notably, \"Grok-4's reasoning mode shows lower faithfulness than its non-reasoning mode (1.4% vs 7.2% necessity).\"\n\n**(3) Domain Variation:**\nThe study evaluated models \"across six domains at N=133-500,\" demonstrating considerable variability, though specific domains are not enumerated in the abstract.\n\n**(4) Models Tested:**\nThe paper evaluated 16 frontier models including: o4-mini, GPT-5.4, Claude Opus, Grok-4, DeepSeek-R1, and Gemini 2.5 Pro.",
+    "durationMs": 5599,
+    "url": "https://arxiv.org/abs/2603.22816"
+  },
+  "sourceToolAssistantUUID": "6d9e9414-80fe-4129-878f-21249fe01a76",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T08:35:55.907Z_
+
+<details><summary>↩ Tool result · `toolu_01YJP9e7HpVcBZ7wxP5ycXyt`</summary>
+
+```text
+Web search results for query: "surface token diversity computational diversity LLM hidden states representation geometry diverse decoding"
+
+Links: [{"title":"Hidden States as Early Signals: Step-level Trace Evaluation and Pruning for Efficient Test-Time Scaling","url":"https://arxiv.org/html/2601.09093v1"},{"title":"Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs","url":"https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full.pdf"},{"title":"Are language models aware of the road not taken? Token-level uncertainty and hidden state dynamics","url":"https://arxiv.org/html/2511.04527"},{"title":"Evolution of LLM Stages across Model Sizes","url":"https://sidn.baulab.info/evolution/"},{"title":"Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens","url":"https://arxiv.org/html/2602.13517"},{"title":"The Hidden Attack Surface in Every LLM: How Special Tokens Enable 96% Jailbreak Success Rates | Towards AI","url":"https://towardsai.net/p/machine-learning/the-hidden-attack-surface-in-every-llm-how-special-tokens-enable-96-jailbreak-success-rates"},{"title":"Categorical Perception in Large Language Model Hidden States: Structural Warping at Digit-Count Boundaries","url":"https://arxiv.org/html/2603.28258v1"},{"title":"Mining Intrinsic Rewards from LLM Hidden States for Efficient Best-of-N Sampling","url":"https://arxiv.org/html/2505.12225v3"},{"title":"Not All Layers of LLMs Are Necessary During Inference","url":"https://www.ijcai.org/proceedings/2025/0566.pdf"},{"title":"The First to Know: How Token Distributions Reveal Hidden Knowledge in Large Vision-Language Models?","url":"https://arxiv.org/html/2403.09037v1"}]
+
+I've found several relevant research papers and resources related to your search query. Here's what the results cover:
+
+## Key Research Areas Found:
+
+1. **Hidden States and Diversity Analysis**: Research shows that surface-level textual similarity does not necessarily indicate redundancy in reasoning quality, as multiple valid paths can converge to the same correct answer.
+
+2. **Representation Geometry in LLMs**: RSA (Representational Similarity Analysis) helps compare representational geometry across LLM sizes and layers to reveal computational phases, and distinct processing stages exist across model sizes, with early layers showing high similarity, middle layers displaying diverse patterns, and later layers converging again.
+
+3. **Deep-Thinking Tokens and Computational Effort**: Intermediate-layer hidden states are projected into the vocabulary space and compared to the final-layer distribution, with tokens whose distributions do not converge until deeper layers identified as deep-thinking tokens.
+
+4. **Token-Level Diversity Mechanisms**: Token-level selection mechanisms can emphasize semantically decisive portions of reasoning traces, such as intermediate steps, numerical computations, and conclusion markers, while downweighting boilerplate text.
+
+5. **Diverse Decoding Strategies**: Simple decoding strategies can be applied at the generation of the first token, guided by trained linear classifiers on each task.
+
+The research suggests that understanding computational diversity through hidden state analysis is more informative than surface-level token diversity metrics for assessing model behavior and reasoning quality.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6f28d76c-ea6e-40c3-bfd2-8189200541db",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "2e7e4e78-a85d-4d75-8523-650b05c05272",
+  "toolUseResult": {
+    "query": "surface token diversity computational diversity LLM hidden states representation geometry diverse decoding",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01S61ucndSH7ogQsBhA7isUU",
+        "content": [
+          {
+            "title": "Hidden States as Early Signals: Step-level Trace Evaluation and Pruning for Efficient Test-Time Scaling",
+            "url": "https://arxiv.org/html/2601.09093v1"
+          },
+          {
+            "title": "Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full.pdf"
+          },
+          {
+            "title": "Are language models aware of the road not taken? Token-level uncertainty and hidden state dynamics",
+            "url": "https://arxiv.org/html/2511.04527"
+          },
+          {
+            "title": "Evolution of LLM Stages across Model Sizes",
+            "url": "https://sidn.baulab.info/evolution/"
+          },
+          {
+            "title": "Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens",
+            "url": "https://arxiv.org/html/2602.13517"
+          },
+          {
+            "title": "The Hidden Attack Surface in Every LLM: How Special Tokens Enable 96% Jailbreak Success Rates | Towards AI",
+            "url": "https://towardsai.net/p/machine-learning/the-hidden-attack-surface-in-every-llm-how-special-tokens-enable-96-jailbreak-success-rates"
+          },
+          {
+            "title": "Categorical Perception in Large Language Model Hidden States: Structural Warping at Digit-Count Boundaries",
+            "url": "https://arxiv.org/html/2603.28258v1"
+          },
+          {
+            "title": "Mining Intrinsic Rewards from LLM Hidden States for Efficient Best-of-N Sampling",
+            "url": "https://arxiv.org/html/2505.12225v3"
+          },
+          {
+            "title": "Not All Layers of LLMs Are Necessary During Inference",
+            "url": "https://www.ijcai.org/proceedings/2025/0566.pdf"
+          },
+          {
+            "title": "The First to Know: How Token Distributions Reveal Hidden Knowledge in Large Vision-Language Models?",
+            "url": "https://arxiv.org/html/2403.09037v1"
+          }
+        ]
+      },
+      "I've found several relevant research papers and resources related to your search query. Here's what the results cover:\n\n## Key Research Areas Found:\n\n1. **Hidden States and Diversity Analysis**: Research shows that surface-level textual similarity does not necessarily indicate redundancy in reasoning quality, as multiple valid paths can converge to the same correct answer.\n\n2. **Representation Geometry in LLMs**: RSA (Representational Similarity Analysis) helps compare representational geometry across LLM sizes and layers to reveal computational phases, and distinct processing stages exist across model sizes, with early layers showing high similarity, middle layers displaying diverse patterns, and later layers converging again.\n\n3. **Deep-Thinking Tokens and Computational Effort**: Intermediate-layer hidden states are projected into the vocabulary space and compared to the final-layer distribution, with tokens whose distributions do not converge until deeper layers identified as deep-thinking tokens.\n\n4. **Token-Level Diversity Mechanisms**: Token-level selection mechanisms can emphasize semantically decisive portions of reasoning traces, such as intermediate steps, numerical computations, and conclusion markers, while downweighting boilerplate text.\n\n5. **Diverse Decoding Strategies**: Simple decoding strategies can be applied at the generation of the first token, guided by trained linear classifiers on each task.\n\nThe research suggests that understanding computational diversity through hidden state analysis is more informative than surface-level token diversity metrics for assessing model behavior and reasoning quality."
+    ],
+    "durationSeconds": 6.819236293000002
+  },
+  "sourceToolAssistantUUID": "6f28d76c-ea6e-40c3-bfd2-8189200541db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T08:35:58.083Z_
+
+<details><summary>↩ Tool result · `toolu_01CLTYSrnTy5DmzFSgKtRfrQ`</summary>
+
+```text
+Web search results for query: "linear probe faithfulness reasoning internal representation detection residual stream 2025 2026"
+
+Links: [{"title":"A Single Direction of Truth: An Observer Model’s Linear Residual Probe Exposes and Steers Contextual Hallucinations","url":"https://arxiv.org/html/2507.23221v1"},{"title":"Linear Probe Accuracy Scales with Model Size and Benefits from Multi-Layer Ensembling","url":"https://arxiv.org/html/2604.13386v1"},{"title":"Understanding Mechanistic Interpretability in AI Models 8/16/2025 • 40 min read","url":"https://intuitionlabs.ai/pdfs/understanding-mechanistic-interpretability-in-ai-models.pdf"},{"title":"Linear representations in transformers - Nina Panickssery","url":"https://blog.ninapanickssery.com/p/linear-representations-in-transformers"},{"title":"Actually, Othello-GPT Has A Linear Emergent World Representation — Neel Nanda","url":"https://www.neelnanda.io/mechanistic-interpretability/othello"},{"title":"Predicting LLM Answer Accuracy from Question-Only ...","url":"https://arxiv.org/pdf/2509.10625"},{"title":"Understanding intermediate layers using linear classifier probes | Request PDF","url":"https://www.researchgate.net/publication/319770004_Understanding_intermediate_layers_using_linear_classifier_probes"},{"title":"How Do LLMs Persuade? Linear Probes Can Uncover Persuasion Dynamics in Multi-Turn Conversations","url":"https://arxiv.org/html/2508.05625"},{"title":"Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs","url":"https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full.pdf"},{"title":"Published as a conference paper at ICLR 2025 REDEEP: DETECTING HALLUCINATION IN","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/7daf60e805e596c3bd1e843e72ea5560-Paper-Conference.pdf"}]
+
+I've completed the web search for your query about linear probes, faithfulness, reasoning, internal representation detection, and residual streams in 2025-2026. Here are the key findings:
+
+## Recent Research Highlights
+
+**Hallucination Detection and Faithfulness:**
+A generator-agnostic observer model can detect hallucinations via a single forward pass and a linear probe on its residual stream. This probe isolates a single, transferable linear direction separating hallucinated from faithful text, outperforming baselines by 5–27 points and showing robust mid‑layer performance across Gemma‑2 models.
+
+**Linear Representation Hypothesis:**
+The assumption that features are linearly represented in activations is central to mechanistic interpretability, and the transformer's additive residual stream structure favors linear representations, supported by empirical findings that magnitude-based superposition appears only in small models.
+
+**Deception Detection via Linear Probes:**
+For deception specifically, larger models exhibit more distinct and linearly separable deception representations. Linear probes have been shown to outperform sparse autoencoders in downstream detection tasks.
+
+**Reasoning and Internal Representation Analysis:**
+Model activations contain more information than tokens for identifying important reasoning steps, and models encode an internal representation of step importance in their activations.
+
+**Circuit Tracing Framework (March 2025):**
+Anthropic introduced circuit tracing that combines several earlier methods into a unified framework, replacing model's MLPs with cross-layer transcoders – a new type of sparse autoencoder that reads from one layer's residual stream but can provide output to all subsequent MLP layers.
+
+The research demonstrates growing sophistication in using linear probes to detect faithfulness, deception, and reasoning patterns in language model representations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7461bad0-f105-4bcd-a584-bbc83e5358d3",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "5bee24cc-2709-4d6b-9ed5-6a9b7a4e85e3",
+  "toolUseResult": {
+    "query": "linear probe faithfulness reasoning internal representation detection residual stream 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01M6VrAQs3i7rUQp44K16JZX",
+        "content": [
+          {
+            "title": "A Single Direction of Truth: An Observer Model’s Linear Residual Probe Exposes and Steers Contextual Hallucinations",
+            "url": "https://arxiv.org/html/2507.23221v1"
+          },
+          {
+            "title": "Linear Probe Accuracy Scales with Model Size and Benefits from Multi-Layer Ensembling",
+            "url": "https://arxiv.org/html/2604.13386v1"
+          },
+          {
+            "title": "Understanding Mechanistic Interpretability in AI Models 8/16/2025 • 40 min read",
+            "url": "https://intuitionlabs.ai/pdfs/understanding-mechanistic-interpretability-in-ai-models.pdf"
+          },
+          {
+            "title": "Linear representations in transformers - Nina Panickssery",
+            "url": "https://blog.ninapanickssery.com/p/linear-representations-in-transformers"
+          },
+          {
+            "title": "Actually, Othello-GPT Has A Linear Emergent World Representation — Neel Nanda",
+            "url": "https://www.neelnanda.io/mechanistic-interpretability/othello"
+          },
+          {
+            "title": "Predicting LLM Answer Accuracy from Question-Only ...",
+            "url": "https://arxiv.org/pdf/2509.10625"
+          },
+          {
+            "title": "Understanding intermediate layers using linear classifier probes | Request PDF",
+            "url": "https://www.researchgate.net/publication/319770004_Understanding_intermediate_layers_using_linear_classifier_probes"
+          },
+          {
+            "title": "How Do LLMs Persuade? Linear Probes Can Uncover Persuasion Dynamics in Multi-Turn Conversations",
+            "url": "https://arxiv.org/html/2508.05625"
+          },
+          {
+            "title": "Probing Hidden States for Calibrated, Alignment-Resistant Predictions in LLMs",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.09.17.25336018v2.full.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 REDEEP: DETECTING HALLUCINATION IN",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/7daf60e805e596c3bd1e843e72ea5560-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "I've completed the web search for your query about linear probes, faithfulness, reasoning, internal representation detection, and residual streams in 2025-2026. Here are the key findings:\n\n## Recent Research Highlights\n\n**Hallucination Detection and Faithfulness:**\nA generator-agnostic observer model can detect hallucinations via a single forward pass and a linear probe on its residual stream. This probe isolates a single, transferable linear direction separating hallucinated from faithful text, outperforming baselines by 5–27 points and showing robust mid‑layer performance across Gemma‑2 models.\n\n**Linear Representation Hypothesis:**\nThe assumption that features are linearly represented in activations is central to mechanistic interpretability, and the transformer's additive residual stream structure favors linear representations, supported by empirical findings that magnitude-based superposition appears only in small models.\n\n**Deception Detection via Linear Probes:**\nFor deception specifically, larger models exhibit more distinct and linearly separable deception representations. Linear probes have been shown to outperform sparse autoencoders in downstream detection tasks.\n\n**Reasoning and Internal Representation Analysis:**\nModel activations contain more information than tokens for identifying important reasoning steps, and models encode an internal representation of step importance in their activations.\n\n**Circuit Tracing Framework (March 2025):**\nAnthropic introduced circuit tracing that combines several earlier methods into a unified framework, replacing model's MLPs with cross-layer transcoders – a new type of sparse autoencoder that reads from one layer's residual stream but can provide output to all subsequent MLP layers.\n\nThe research demonstrates growing sophistication in using linear probes to detect faithfulness, deception, and reasoning patterns in language model representations."
+    ],
+    "durationSeconds": 8.347431982999995
+  },
+  "sourceToolAssistantUUID": "7461bad0-f105-4bcd-a584-bbc83e5358d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-16T08:36:03.693Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, now let me search for more details on a few key things:
+
+1. The "Mapping Gap" from 2602.11201 - I need to understand this better since it's a threat to the core assumption
+2. Evidence about whether diverse token sequences lead to diverse internal computations
+3. The FUR paper details for understanding the synthetic label assumption issue
+4. The full paper of Token-Guard to understand the regeneration mechanism more deeply
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5bee24cc-2709-4d6b-9ed5-6a9b7a4e85e3",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wbqBfpGURPZaPadM4t",
+  "type": "assistant",
+  "uuid": "57b46e84-feb4-4c7d-b574-aa53b25a3804",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYJyBiFwnBimqPT5ZNwdQB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3025,
+      "cache_read_input_tokens": 32877,
+      "output_tokens": 547,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3025,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 547,
+          "cache_read_input_tokens": 32877,
+          "cache_creation_input_tokens": 3025,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3025
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-16T08:36:04.199Z_
+
+Let me fetch the key papers that directly threaten or support the core assumptions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57b46e84-feb4-4c7d-b574-aa53b25a3804",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wbqBfpGURPZaPadM4t",
+  "type": "assistant",
+  "uuid": "fd4ad45b-6194-4bb9-b937-faa6898a67c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYJyBiFwnBimqPT5ZNwdQB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3025,
+      "cache_read_input_tokens": 32877,
+      "output_tokens": 547,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3025,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 547,
+          "cache_read_input_tokens": 32877,
+          "cache_creation_input_tokens": 3025,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3025
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-16T08:36:08.670Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FGCoou89ubAoSw8MvaFpBT`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2602.11201",
+  "prompt": "Extract detailed information about: (1) The 'Mapping Gap' - what exactly is it? How is it measured? What are the quantitative findings? (2) NLDD methodology details - how exactly does it work? (3) The 'Reasoning Horizon' finding - at what percentage of chain length do steps stop mattering? (4) What linear probes are used and what AUROC do they achieve? (5) What models are tested? (6) Any conclusions about whether probes CAN detect faithfulness from internal representations."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd4ad45b-6194-4bb9-b937-faa6898a67c4",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wbqBfpGURPZaPadM4t",
+  "type": "assistant",
+  "uuid": "1a7615cd-6d9d-440f-a7b7-ae7a8b2adf3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYJyBiFwnBimqPT5ZNwdQB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3025,
+      "cache_read_input_tokens": 32877,
+      "output_tokens": 547,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3025,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 547,
+          "cache_read_input_tokens": 32877,
+          "cache_creation_input_tokens": 3025,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3025
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-16T08:36:11.431Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015BCpSHnK2q3ts25ezgMSer`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2601.21969",
+  "prompt": "Extract detailed method information about Token-Guard: (1) The three-stage pipeline - what are the stages? (2) How does the latent environment work? (3) How are hallucination risk scores computed? (4) How does iterative pruning and regeneration work? (5) What models are used for evaluation? (6) What are the quantitative results? (7) How does it differ from simple rejection sampling?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a7615cd-6d9d-440f-a7b7-ae7a8b2adf3c",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wbqBfpGURPZaPadM4t",
+  "type": "assistant",
+  "uuid": "8a7338c9-69f2-47d2-8548-4a0a4e696165",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYJyBiFwnBimqPT5ZNwdQB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3025,
+      "cache_read_input_tokens": 32877,
+      "output_tokens": 547,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3025,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 547,
+          "cache_read_input_tokens": 32877,
+          "cache_creation_input_tokens": 3025,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3025
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-16T08:36:12.326Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013WXJtVUK4XQhq2jvz2iLVD`</summary>
+
+```json
+{
+  "query": "\"hidden state similarity\" \"regenerated\" OR \"resampled\" diverse decoding different computation paths LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a7338c9-69f2-47d2-8548-4a0a4e696165",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wbqBfpGURPZaPadM4t",
+  "type": "assistant",
+  "uuid": "67afdbd0-4f61-44ab-a3e3-8da57bc9109e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYJyBiFwnBimqPT5ZNwdQB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3025,
+      "cache_read_input_tokens": 32877,
+      "output_tokens": 547,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3025,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 547,
+          "cache_read_input_tokens": 32877,
+          "cache_creation_input_tokens": 3025,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3025
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Step-Level Faithfulness-Gated Rejection Decoding: Enforcing CoT Faithf…",
+  "leafUuid": "67afdbd0-4f61-44ab-a3e3-8da57bc9109e",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-level faithfulness detection during CoT generation",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T08:36:19.968Z_
+
+<details><summary>↩ Tool result · `toolu_01FGCoou89ubAoSw8MvaFpBT`</summary>
+
+```text
+# Analysis of "Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning"
+
+## (1) The Mapping Gap
+
+**Definition & Measurement:**
+The Mapping Gap describes a dissociation between what models encode internally versus what they actually use for predictions. It's measured by comparing linear probe accuracy on hidden states against task performance.
+
+**Key Finding:**
+In Gemma's Dyck-nn evaluation, linear probes recovered stack-depth information at 82.0% accuracy, yet the model achieved 0.0% actual task accuracy. As the paper states: "the model maintains the correct latent state but lacks the decoding mechanism."
+
+This demonstrates that "task-relevant structure is encoded in internal representations but is not utilized in the final decoding step."
+
+## (2) NLDD Methodology
+
+NLDD (Normalized Logit Difference Decay) operates through three steps:
+
+**Global Calibration:** Compute a normalization constant S as "the standard deviation across the full vocabulary" of final-token logits on clean traces.
+
+**Logit Difference:** Calculate the standardized margin between correct and incorrect answer logits, divided by S.
+
+**Faithfulness Quantification:** NLDD measures "proportional confidence loss" when reasoning steps are corrupted. The formula is: (LD_clean - LD_corrupt) / |LD_clean| × 100. Positive values indicate causal reliance; negative values indicate corruption paradoxically improves confidence.
+
+## (3) The Reasoning Horizon (k*)
+
+Models show consistent degradation at **70-85% of chain length**:
+
+- GSM8K: step 5-6 (~85%)
+- Dyck-nn: steps 9-11 of 12 (~80%)
+- PrOntoQA: steps 11-16 of 16 (~70-100%)
+
+Beyond k*, "additional reasoning tokens contribute negligible or negative causal influence on the final prediction." Notably, RSA (representational similarity) remains stable across the horizon, indicating internal consistency without causal influence.
+
+## (4) Linear Probes
+
+**Task-Specific Targets:**
+- Dyck-nn: Stack depth classification (0-10)
+- PrOntoQA: Binary truth value prediction (True/False)
+- GSM8K: Arithmetic operation type (addition/subtraction/multiplication)
+
+**Performance:**
+The paper reports accuracy percentages rather than AUROC. Results ranged from 71.2% to 91.8% across tasks and models (see Table 6). These are described as probe "test accuracy" using L2-regularized logistic regression.
+
+## (5) Models Tested
+
+Three instruction-tuned decoder-only transformers (6.7B-9B parameters):
+- DeepSeek-Coder-6.7B-Instruct (specialized for code/logic)
+- Llama-3.1-8B-Instruct (general-purpose baseline)
+- Gemma-2-9B-Instruct (employs logit soft-capping)
+
+## (6) Can Probes Detect Faithfulness?
+
+**No—this is a core finding.** The research demonstrates that high probe accuracy does NOT guarantee faithfulness. Gemma showed "high representational fidelity does not ensure causal utilization."
+
+The paper explicitly states: "High RSA values indicate representational resilience... In later layers, high RSA implies that the generated reasoning steps have become computationally irrelevant."
+
+Probes reveal *what* information exists in representations, but NLDD reveals *whether* models actually use it for predictions. This distinction is fundamental to the paper's contribution.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a7615cd-6d9d-440f-a7b7-ae7a8b2adf3c",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "0d9b9f34-6548-464c-afea-924086701abb",
+  "toolUseResult": {
+    "bytes": 182560,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of \"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning\"\n\n## (1) The Mapping Gap\n\n**Definition & Measurement:**\nThe Mapping Gap describes a dissociation between what models encode internally versus what they actually use for predictions. It's measured by comparing linear probe accuracy on hidden states against task performance.\n\n**Key Finding:**\nIn Gemma's Dyck-nn evaluation, linear probes recovered stack-depth information at 82.0% accuracy, yet the model achieved 0.0% actual task accuracy. As the paper states: \"the model maintains the correct latent state but lacks the decoding mechanism.\"\n\nThis demonstrates that \"task-relevant structure is encoded in internal representations but is not utilized in the final decoding step.\"\n\n## (2) NLDD Methodology\n\nNLDD (Normalized Logit Difference Decay) operates through three steps:\n\n**Global Calibration:** Compute a normalization constant S as \"the standard deviation across the full vocabulary\" of final-token logits on clean traces.\n\n**Logit Difference:** Calculate the standardized margin between correct and incorrect answer logits, divided by S.\n\n**Faithfulness Quantification:** NLDD measures \"proportional confidence loss\" when reasoning steps are corrupted. The formula is: (LD_clean - LD_corrupt) / |LD_clean| × 100. Positive values indicate causal reliance; negative values indicate corruption paradoxically improves confidence.\n\n## (3) The Reasoning Horizon (k*)\n\nModels show consistent degradation at **70-85% of chain length**:\n\n- GSM8K: step 5-6 (~85%)\n- Dyck-nn: steps 9-11 of 12 (~80%)\n- PrOntoQA: steps 11-16 of 16 (~70-100%)\n\nBeyond k*, \"additional reasoning tokens contribute negligible or negative causal influence on the final prediction.\" Notably, RSA (representational similarity) remains stable across the horizon, indicating internal consistency without causal influence.\n\n## (4) Linear Probes\n\n**Task-Specific Targets:**\n- Dyck-nn: Stack depth classification (0-10)\n- PrOntoQA: Binary truth value prediction (True/False)\n- GSM8K: Arithmetic operation type (addition/subtraction/multiplication)\n\n**Performance:**\nThe paper reports accuracy percentages rather than AUROC. Results ranged from 71.2% to 91.8% across tasks and models (see Table 6). These are described as probe \"test accuracy\" using L2-regularized logistic regression.\n\n## (5) Models Tested\n\nThree instruction-tuned decoder-only transformers (6.7B-9B parameters):\n- DeepSeek-Coder-6.7B-Instruct (specialized for code/logic)\n- Llama-3.1-8B-Instruct (general-purpose baseline)\n- Gemma-2-9B-Instruct (employs logit soft-capping)\n\n## (6) Can Probes Detect Faithfulness?\n\n**No—this is a core finding.** The research demonstrates that high probe accuracy does NOT guarantee faithfulness. Gemma showed \"high representational fidelity does not ensure causal utilization.\"\n\nThe paper explicitly states: \"High RSA values indicate representational resilience... In later layers, high RSA implies that the generated reasoning steps have become computationally irrelevant.\"\n\nProbes reveal *what* information exists in representations, but NLDD reveals *whether* models actually use it for predictions. This distinction is fundamental to the paper's contribution.",
+    "durationMs": 11291,
+    "url": "https://arxiv.org/html/2602.11201"
+  },
+  "sourceToolAssistantUUID": "1a7615cd-6d9d-440f-a7b7-ae7a8b2adf3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-16T08:36:20.261Z_
+
+<details><summary>↩ Tool result · `toolu_015BCpSHnK2q3ts25ezgMSer`</summary>
+
+```text
+# Token-Guard: Detailed Method Analysis
+
+## 1. Three-Stage Pipeline
+
+Token-Guard employs a structured three-phase approach:
+
+- **Phase 1 (Token-Level)**: "At generation step t, a latent environment St is constructed to store semantic representations" and hidden states of accepted tokens before propagation.
+
+- **Phase 2 (Segment-Level)**: Consecutive tokens passing token-level thresholds form candidate segments, which undergo explicit hallucination scoring and local refinement if needed.
+
+- **Phase 3 (Global)**: "Candidate outputs from Stage Two by assembling reliable segments into reasoning chains" for re-evaluation and correction.
+
+## 2. Latent Environment Mechanism
+
+The system maintains running semantic states. "The mean hidden state of the input context tokens" initializes the environment, then "the hidden state of token aja_j" gets incorporated as tokens are validated. This design keeps memory bounded independent of total generation length.
+
+## 3. Hallucination Risk Scoring
+
+A hybrid formula combines two components: "λ·(cosine similarity of hidden states) + (1−λ)·P(token)" balances semantic consistency against model probability. Segment-level scoring additionally incorporates consistency (smoothness between adjacent tokens) and alignment (cosine similarity to input representation).
+
+## 4. Iterative Pruning and Regeneration
+
+When segment scores fall below thresholds, "the lowest-scoring token" gets identified within a local window including neighbors. The LLM regenerates this window "conditioned on surrounding context," then the segment score recalculates. This repeats up to maximum iterations before acceptance or discard.
+
+## 5. Evaluation Models
+
+Testing uses "Meta-Llama-3.1-8B-Instruct" and "Qwen3-8B" as primary backbones, with additional testing on 3B and 13B variants.
+
+## 6. Quantitative Results
+
+On hallucination benchmarks, Token-Guard achieves average F1 scores of 51.03 (Llama) and 53.98 (Qwen), with "relative improvements of up to 16.3% over the strongest baseline" on specific datasets like DROP_nfl.
+
+## 7. Distinction from Rejection Sampling
+
+Unlike simple rejection sampling that discards poor outputs, Token-Guard performs targeted "local fragment regeneration and global iteration strategies" to dynamically correct detected problems while preserving valid reasoning segments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a7338c9-69f2-47d2-8548-4a0a4e696165",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "e31b915d-da45-4711-89af-aa725b853a5f",
+  "toolUseResult": {
+    "bytes": 447160,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Token-Guard: Detailed Method Analysis\n\n## 1. Three-Stage Pipeline\n\nToken-Guard employs a structured three-phase approach:\n\n- **Phase 1 (Token-Level)**: \"At generation step t, a latent environment St is constructed to store semantic representations\" and hidden states of accepted tokens before propagation.\n\n- **Phase 2 (Segment-Level)**: Consecutive tokens passing token-level thresholds form candidate segments, which undergo explicit hallucination scoring and local refinement if needed.\n\n- **Phase 3 (Global)**: \"Candidate outputs from Stage Two by assembling reliable segments into reasoning chains\" for re-evaluation and correction.\n\n## 2. Latent Environment Mechanism\n\nThe system maintains running semantic states. \"The mean hidden state of the input context tokens\" initializes the environment, then \"the hidden state of token aja_j\" gets incorporated as tokens are validated. This design keeps memory bounded independent of total generation length.\n\n## 3. Hallucination Risk Scoring\n\nA hybrid formula combines two components: \"λ·(cosine similarity of hidden states) + (1−λ)·P(token)\" balances semantic consistency against model probability. Segment-level scoring additionally incorporates consistency (smoothness between adjacent tokens) and alignment (cosine similarity to input representation).\n\n## 4. Iterative Pruning and Regeneration\n\nWhen segment scores fall below thresholds, \"the lowest-scoring token\" gets identified within a local window including neighbors. The LLM regenerates this window \"conditioned on surrounding context,\" then the segment score recalculates. This repeats up to maximum iterations before acceptance or discard.\n\n## 5. Evaluation Models\n\nTesting uses \"Meta-Llama-3.1-8B-Instruct\" and \"Qwen3-8B\" as primary backbones, with additional testing on 3B and 13B variants.\n\n## 6. Quantitative Results\n\nOn hallucination benchmarks, Token-Guard achieves average F1 scores of 51.03 (Llama) and 53.98 (Qwen), with \"relative improvements of up to 16.3% over the strongest baseline\" on specific datasets like DROP_nfl.\n\n## 7. Distinction from Rejection Sampling\n\nUnlike simple rejection sampling that discards poor outputs, Token-Guard performs targeted \"local fragment regeneration and global iteration strategies\" to dynamically correct detected problems while preserving valid reasoning segments.",
+    "durationMs": 8825,
+    "url": "https://arxiv.org/html/2601.21969"
+  },
+  "sourceToolAssistantUUID": "8a7338c9-69f2-47d2-8548-4a0a4e696165",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T08:36:21.778Z_
+
+<details><summary>↩ Tool result · `toolu_013WXJtVUK4XQhq2jvz2iLVD`</summary>
+
+```text
+Web search results for query: ""hidden state similarity" "regenerated" OR "resampled" diverse decoding different computation paths LLM 2025 2026"
+
+Links: [{"title":"Efficient semantic uncertainty quantification in language models via diversity-steered sampling | OpenReview","url":"https://openreview.net/forum?id=IiEtQPGVyV"},{"title":"Speculative Decoding: Achieving 2-3x LLM Inference Speedup | Introl Blog","url":"https://introl.com/blog/speculative-decoding-llm-inference-speedup-guide-2025"},{"title":"Speculative Decoding: Accelerating LLM Inference Without Quality Degradation | by Rodrigo J. Ekstein | Jan, 2026 | Medium","url":"https://medium.com/@rjekstein/speculative-decoding-accelerating-llm-inference-without-quality-degradation-0233510794e1"},{"title":"Speculative Decoding and Beyond: An In-Depth Survey of Techniques","url":"https://arxiv.org/html/2502.19732v4"},{"title":"Efficient LLM System with Speculative Decoding | EECS at UC Berkeley","url":"https://www2.eecs.berkeley.edu/Pubs/TechRpts/2025/EECS-2025-224.html"},{"title":"Making LLMs Faster: My Deep Dive into Speculative Decoding | Subhadip Mitra","url":"https://subhadipmitra.com/blog/2025/making-llm-faster/"},{"title":"GitHub - wang2226/Awesome-LLM-Decoding: 📜 Paper list on decoding methods for LLMs and LVLMs","url":"https://github.com/wang2226/Awesome-LLM-Decoding"},{"title":"Speculative Decoding: Types and Optimizations","url":"https://www.aussieai.com/research/speculative-decoding"},{"title":"Mirror Speculative Decoding: Breaking the Serial Barrier in LLM Inference - Apple Machine Learning Research","url":"https://machinelearning.apple.com/research/mirror"},{"title":"Decoding in Latent Spaces for Efficient Inference in LLM- ...","url":"https://aclanthology.org/2025.findings-emnlp.401.pdf"}]
+
+I've performed the web search for your query. Here are the key findings:
+
+## Main Results
+
+The search returned several relevant papers and articles from 2025-2026 related to decoding methods and LLM efficiency. Here are the most relevant matches:
+
+1. **Diversity-Steered Sampling (NeurIPS 2025)**: A paper published in September 2025 and last modified in April 2026 introduces a semantic-similarity penalty term injected into decoding for autoregressive and masked-diffusion LMs, generating semantically diverse answers.
+
+2. **Speculative Decoding Literature**: Multiple sources from 2025-2026 discuss speculative decoding, which involves different computation paths:
+   - A draft model proposes multiple token candidates that a larger target model can verify simultaneously
+   - If tokens are rejected during acceptance/rejection, resampling occurs from an adjusted distribution
+
+3. **Self-Speculative Decoding**: Partial computations in the smaller (self) model can be re-used by the verifier model, with the verifier model effectively overlapping its computations to reduce latency.
+
+4. **Diverse Decoding Approaches**: Some retrieval-based approaches generate diverse drafts from different document subsets and employ self-consistency and self-reflection scores for draft evaluation.
+
+The search results focus heavily on speculative decoding techniques for LLM inference optimization, which aligns with your interest in diverse decoding and different computation paths, though specific papers on "hidden state similarity" with regeneration/resampling may require more targeted searches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "67afdbd0-4f61-44ab-a3e3-8da57bc9109e",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "ab5f5f31-16ff-4510-87a5-d756ff39be7c",
+  "toolUseResult": {
+    "query": "\"hidden state similarity\" \"regenerated\" OR \"resampled\" diverse decoding different computation paths LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E6fjHF4PPBjMWAcqHx19bu",
+        "content": [
+          {
+            "title": "Efficient semantic uncertainty quantification in language models via diversity-steered sampling | OpenReview",
+            "url": "https://openreview.net/forum?id=IiEtQPGVyV"
+          },
+          {
+            "title": "Speculative Decoding: Achieving 2-3x LLM Inference Speedup | Introl Blog",
+            "url": "https://introl.com/blog/speculative-decoding-llm-inference-speedup-guide-2025"
+          },
+          {
+            "title": "Speculative Decoding: Accelerating LLM Inference Without Quality Degradation | by Rodrigo J. Ekstein | Jan, 2026 | Medium",
+            "url": "https://medium.com/@rjekstein/speculative-decoding-accelerating-llm-inference-without-quality-degradation-0233510794e1"
+          },
+          {
+            "title": "Speculative Decoding and Beyond: An In-Depth Survey of Techniques",
+            "url": "https://arxiv.org/html/2502.19732v4"
+          },
+          {
+            "title": "Efficient LLM System with Speculative Decoding | EECS at UC Berkeley",
+            "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2025/EECS-2025-224.html"
+          },
+          {
+            "title": "Making LLMs Faster: My Deep Dive into Speculative Decoding | Subhadip Mitra",
+            "url": "https://subhadipmitra.com/blog/2025/making-llm-faster/"
+          },
+          {
+            "title": "GitHub - wang2226/Awesome-LLM-Decoding: 📜 Paper list on decoding methods for LLMs and LVLMs",
+            "url": "https://github.com/wang2226/Awesome-LLM-Decoding"
+          },
+          {
+            "title": "Speculative Decoding: Types and Optimizations",
+            "url": "https://www.aussieai.com/research/speculative-decoding"
+          },
+          {
+            "title": "Mirror Speculative Decoding: Breaking the Serial Barrier in LLM Inference - Apple Machine Learning Research",
+            "url": "https://machinelearning.apple.com/research/mirror"
+          },
+          {
+            "title": "Decoding in Latent Spaces for Efficient Inference in LLM- ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.401.pdf"
+          }
+        ]
+      },
+      "I've performed the web search for your query. Here are the key findings:\n\n## Main Results\n\nThe search returned several relevant papers and articles from 2025-2026 related to decoding methods and LLM efficiency. Here are the most relevant matches:\n\n1. **Diversity-Steered Sampling (NeurIPS 2025)**: A paper published in September 2025 and last modified in April 2026 introduces a semantic-similarity penalty term injected into decoding for autoregressive and masked-diffusion LMs, generating semantically diverse answers.\n\n2. **Speculative Decoding Literature**: Multiple sources from 2025-2026 discuss speculative decoding, which involves different computation paths:\n   - A draft model proposes multiple token candidates that a larger target model can verify simultaneously\n   - If tokens are rejected during acceptance/rejection, resampling occurs from an adjusted distribution\n\n3. **Self-Speculative Decoding**: Partial computations in the smaller (self) model can be re-used by the verifier model, with the verifier model effectively overlapping its computations to reduce latency.\n\n4. **Diverse Decoding Approaches**: Some retrieval-based approaches generate diverse drafts from different document subsets and employ self-consistency and self-reflection scores for draft evaluation.\n\nThe search results focus heavily on speculative decoding techniques for LLM inference optimization, which aligns with your interest in diverse decoding and different computation paths, though specific papers on \"hidden state similarity\" with regeneration/resampling may require more targeted searches."
+    ],
+    "durationSeconds": 9.449529857000002
+  },
+  "sourceToolAssistantUUID": "67afdbd0-4f61-44ab-a3e3-8da57bc9109e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-16T08:36:26.597Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I now have detailed information on the key papers. Let me search for a few more things:
+
+1. Whether there's evidence that different token sequences in LLMs correspond to different internal computations
+2. The feasibility of a pilot experiment design using FaithCoT-Bench
+3. Any recent work on using probes specifically for faithfulness (not correctness)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab5f5f31-16ff-4510-87a5-d756ff39be7c",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wda39YJfcwbWhNtn6F",
+  "type": "assistant",
+  "uuid": "1d1defd4-fca1-40af-a6e0-32b4fec0ba7d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WfsZzYSzcMC5wipjYY4Bk3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2972,
+      "cache_read_input_tokens": 35902,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2972,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 35902,
+          "cache_creation_input_tokens": 2972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2972
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-16T08:36:27.099Z_
+
+Let me search for a few more critical pieces of evidence.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d1defd4-fca1-40af-a6e0-32b4fec0ba7d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wda39YJfcwbWhNtn6F",
+  "type": "assistant",
+  "uuid": "c7390fe2-2b4f-4628-ad62-68404ab6d710",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WfsZzYSzcMC5wipjYY4Bk3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2972,
+      "cache_read_input_tokens": 35902,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2972,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 35902,
+          "cache_creation_input_tokens": 2972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2972
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-16T08:36:28.541Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UmS4t5tGXvBHbNT1gFQGLy`</summary>
+
+```json
+{
+  "query": "\"residual stream\" probe detect faithfulness unfaithful reasoning step chain-of-thought 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c7390fe2-2b4f-4628-ad62-68404ab6d710",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wda39YJfcwbWhNtn6F",
+  "type": "assistant",
+  "uuid": "d5ec3b20-c5a1-41d5-8853-3b709fdbce10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WfsZzYSzcMC5wipjYY4Bk3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2972,
+      "cache_read_input_tokens": 35902,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2972,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 35902,
+          "cache_creation_input_tokens": 2972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2972
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-16T08:36:29.024Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TGqxcJ9PAYjsUvJFNtb3nz`</summary>
+
+```json
+{
+  "query": "FaithCoT-Bench ICLR 2026 dataset availability hidden states cached activations"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5ec3b20-c5a1-41d5-8853-3b709fdbce10",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wda39YJfcwbWhNtn6F",
+  "type": "assistant",
+  "uuid": "8abdce15-c9c7-49ee-99b9-1340663fa591",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WfsZzYSzcMC5wipjYY4Bk3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2972,
+      "cache_read_input_tokens": 35902,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2972,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 35902,
+          "cache_creation_input_tokens": 2972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2972
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-16T08:36:29.848Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R2F8EeHKqTKurbkPQvkJJt`</summary>
+
+```json
+{
+  "query": "\"diverse beam search\" OR \"diverse decoding\" hidden state cosine similarity different reasoning paths LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8abdce15-c9c7-49ee-99b9-1340663fa591",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wda39YJfcwbWhNtn6F",
+  "type": "assistant",
+  "uuid": "029ad19d-7bbf-4a77-a70d-41c2d6a3cb73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WfsZzYSzcMC5wipjYY4Bk3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2972,
+      "cache_read_input_tokens": 35902,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2972,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 35902,
+          "cache_creation_input_tokens": 2972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2972
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T08:36:36.033Z_
+
+<details><summary>↩ Tool result · `toolu_01UmS4t5tGXvBHbNT1gFQGLy`</summary>
+
+```text
+Web search results for query: ""residual stream" probe detect faithfulness unfaithful reasoning step chain-of-thought 2026"
+
+Links: [{"title":"[2307.13702] Measuring Faithfulness in Chain-of-Thought Reasoning","url":"https://arxiv.org/abs/2307.13702"},{"title":"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps","url":"https://aclanthology.org/2025.emnlp-main.504.pdf"},{"title":"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2510.04040v1"},{"title":"Measuring Faithfulness in Chain-of-Thought Reasoning","url":"https://www.anthropic.com/research/measuring-faithfulness-in-chain-of-thought-reasoning"},{"title":"Making Reasoning Matter: Measuring and Improving Faithfulness of Chain-of-Thought Reasoning | Request PDF","url":"https://www.researchgate.net/publication/386203451_Making_Reasoning_Matter_Measuring_and_Improving_Faithfulness_of_Chain-of-Thought_Reasoning"},{"title":"Detecting Unfaithful Chain-of-Thought: A Mechanistic Interpretability Approach","url":"https://ashioyajotham.substack.com/p/detecting-unfaithful-chain-of-thought"},{"title":"Measuring Faithfulness in Chain-of-Thought Reasoning Tamera Lanham","url":"https://arxiv.org/pdf/2307.13702"},{"title":"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps","url":"https://arxiv.org/html/2502.14829v3"},{"title":"[2502.14829] Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps","url":"https://arxiv.org/abs/2502.14829"},{"title":"Reasoning Theater: Probing for Performative Chain-of-Thought","url":"https://www.goodfire.ai/research/reasoning-theater"}]
+
+I found several relevant research papers and resources on detecting unfaithful chain-of-thought reasoning using probes and residual stream analysis. Here's what the search revealed:
+
+## Key Research Findings
+
+**Mechanistic Interpretability Approach:** Recent work extracted activations at the final token position across 800 examples (400 faithful, 400 unfaithful), with a linear probe achieving 88.1% accuracy and 0.949 ROC-AUC. A specific attention head at layer 7 (L7H6) showed the highest weight in the probe's coefficients and appears to be the primary driver of shortcut behavior—when it activates strongly, the model is bypassing its CoT.
+
+**Benchmark and Detection Methods:** FaithCoT-Bench is a unified benchmark for instance-level CoT unfaithfulness detection that collects CoT traces from four domains and four LLMs, with systematic evaluation of detection methods across counterfactual, logit-based, and LLM-as-Judge paradigms.
+
+**Unlearning-Based Approach:** A framework for measuring parametric faithfulness of generated reasoning proposes Faithfulness by Unlearning Reasoning steps (FUR), which erases information contained in reasoning steps from model parameters and measures faithfulness as the resulting effect on the model's prediction.
+
+**Probe-Based Monitoring:** Probes can enable monitoring for (un)faithfulness by using signals that aren't present in model outputs, with minimal inference overhead. On harder questions requiring multi-step reasoning, the written CoT more faithfully tracks the model's beliefs, while easier questions show performative reasoning where probes detect the final answer earlier than the CoT suggests.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d5ec3b20-c5a1-41d5-8853-3b709fdbce10",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "5b9c1895-e545-425e-a73a-a3fe5dca90cd",
+  "toolUseResult": {
+    "query": "\"residual stream\" probe detect faithfulness unfaithful reasoning step chain-of-thought 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012Rat2ZvTg9PJzDWGYpr7LZ",
+        "content": [
+          {
+            "title": "[2307.13702] Measuring Faithfulness in Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/abs/2307.13702"
+          },
+          {
+            "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+            "url": "https://aclanthology.org/2025.emnlp-main.504.pdf"
+          },
+          {
+            "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2510.04040v1"
+          },
+          {
+            "title": "Measuring Faithfulness in Chain-of-Thought Reasoning",
+            "url": "https://www.anthropic.com/research/measuring-faithfulness-in-chain-of-thought-reasoning"
+          },
+          {
+            "title": "Making Reasoning Matter: Measuring and Improving Faithfulness of Chain-of-Thought Reasoning | Request PDF",
+            "url": "https://www.researchgate.net/publication/386203451_Making_Reasoning_Matter_Measuring_and_Improving_Faithfulness_of_Chain-of-Thought_Reasoning"
+          },
+          {
+            "title": "Detecting Unfaithful Chain-of-Thought: A Mechanistic Interpretability Approach",
+            "url": "https://ashioyajotham.substack.com/p/detecting-unfaithful-chain-of-thought"
+          },
+          {
+            "title": "Measuring Faithfulness in Chain-of-Thought Reasoning Tamera Lanham",
+            "url": "https://arxiv.org/pdf/2307.13702"
+          },
+          {
+            "title": "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+            "url": "https://arxiv.org/html/2502.14829v3"
+          },
+          {
+            "title": "[2502.14829] Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps",
+            "url": "https://arxiv.org/abs/2502.14829"
+          },
+          {
+            "title": "Reasoning Theater: Probing for Performative Chain-of-Thought",
+            "url": "https://www.goodfire.ai/research/reasoning-theater"
+          }
+        ]
+      },
+      "I found several relevant research papers and resources on detecting unfaithful chain-of-thought reasoning using probes and residual stream analysis. Here's what the search revealed:\n\n## Key Research Findings\n\n**Mechanistic Interpretability Approach:** Recent work extracted activations at the final token position across 800 examples (400 faithful, 400 unfaithful), with a linear probe achieving 88.1% accuracy and 0.949 ROC-AUC. A specific attention head at layer 7 (L7H6) showed the highest weight in the probe's coefficients and appears to be the primary driver of shortcut behavior—when it activates strongly, the model is bypassing its CoT.\n\n**Benchmark and Detection Methods:** FaithCoT-Bench is a unified benchmark for instance-level CoT unfaithfulness detection that collects CoT traces from four domains and four LLMs, with systematic evaluation of detection methods across counterfactual, logit-based, and LLM-as-Judge paradigms.\n\n**Unlearning-Based Approach:** A framework for measuring parametric faithfulness of generated reasoning proposes Faithfulness by Unlearning Reasoning steps (FUR), which erases information contained in reasoning steps from model parameters and measures faithfulness as the resulting effect on the model's prediction.\n\n**Probe-Based Monitoring:** Probes can enable monitoring for (un)faithfulness by using signals that aren't present in model outputs, with minimal inference overhead. On harder questions requiring multi-step reasoning, the written CoT more faithfully tracks the model's beliefs, while easier questions show performative reasoning where probes detect the final answer earlier than the CoT suggests."
+    ],
+    "durationSeconds": 7.48810822899999
+  },
+  "sourceToolAssistantUUID": "d5ec3b20-c5a1-41d5-8853-3b709fdbce10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Step-Level Faithfulness-Gated Rejection Decoding: Enforcing CoT Faithf…",
+  "leafUuid": "5b9c1895-e545-425e-a73a-a3fe5dca90cd",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-level faithfulness detection during CoT generation",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-16T08:36:40.989Z_
+
+<details><summary>↩ Tool result · `toolu_01TGqxcJ9PAYjsUvJFNtb3nz`</summary>
+
+```text
+Web search results for query: "FaithCoT-Bench ICLR 2026 dataset availability hidden states cached activations"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026 FAITHCOT-BENCH: BENCHMARKING","url":"https://openreview.net/pdf?id=lN3yKqqzF1"},{"title":"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning | OpenReview","url":"https://openreview.net/forum?id=lN3yKqqzF1"},{"title":"GitHub - berenslab/iclr-dataset: ICLR dataset · GitHub","url":"https://github.com/berenslab/iclr-dataset"},{"title":"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning | Request PDF","url":"https://www.researchgate.net/publication/396249322_FaithCoT-Bench_Benchmarking_Instance-Level_Faithfulness_of_Chain-of-Thought_Reasoning"},{"title":"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2510.04040v1"},{"title":"Reasoning Faithfulness","url":"https://akhil.bio/CoT"},{"title":"ICLR 2026 Statistics - Paper Copilot","url":"https://papercopilot.com/statistics/iclr-statistics/iclr-2026-statistics/"},{"title":"[2510.04040] FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning","url":"https://arxiv.org/abs/2510.04040"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"ICLR 2026","url":"https://iclr.cc/"}]
+
+I found information about FaithCoT-Bench published at ICLR 2026. Let me search for more specific information about dataset availability, hidden states, and cached activations.
+
+Links: [{"title":"Published as a conference paper at ICLR 2026 FAITHCOT-BENCH: BENCHMARKING","url":"https://openreview.net/pdf?id=lN3yKqqzF1"},{"title":"[2510.04040] FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning","url":"https://arxiv.org/abs/2510.04040"},{"title":"GitHub - se7esx/FaithCoT-BENCH · GitHub","url":"https://github.com/se7esx/FaithCoT-BENCH"},{"title":"[PDF] Measuring Faithfulness in Chain-of-Thought Reasoning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/827afa7dd36e4afbb1a49c735bfbb2c69749756e"},{"title":"Reasoning Faithfulness","url":"https://akhil.bio/CoT"},{"title":"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning | OpenReview","url":"https://openreview.net/forum?id=lN3yKqqzF1"},{"title":"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning - haebom","url":"https://slashpage.com/haebom/93nzyxmdeg1ww2wk6r45?lang=en&tl=en"},{"title":"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2510.04040v1"},{"title":"❓ How to use cached hidden states in run_generation ? · Issue #1390 · huggingface/transformers","url":"https://github.com/huggingface/transformers/issues/1390"},{"title":"GitHub - agencyenterprise/vllm-hidden-states: Extract hidden states from intermediate transformer layers using vLLM, with correct per-request tracking. · GitHub","url":"https://github.com/agencyenterprise/vllm-hidden-states"}]
+
+Let me search more specifically for information about data availability and code release for FaithCoT-Bench.
+
+Links: [{"title":"GitHub - se7esx/FaithCoT-BENCH · GitHub","url":"https://github.com/se7esx/FaithCoT-BENCH"},{"title":"Published as a conference paper at ICLR 2026 FAITHCOT-BENCH: BENCHMARKING","url":"https://openreview.net/pdf?id=lN3yKqqzF1"},{"title":"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning | Request PDF","url":"https://www.researchgate.net/publication/396249322_FaithCoT-Bench_Benchmarking_Instance-Level_Faithfulness_of_Chain-of-Thought_Reasoning"},{"title":"[2510.04040] FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning","url":"https://arxiv.org/abs/2510.04040"},{"title":"GitHub - vectara/FaithBench","url":"https://github.com/vectara/FaithBench"},{"title":"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning | OpenReview","url":"https://openreview.net/forum?id=lN3yKqqzF1"},{"title":"GitHub - microsoft/FEA-Bench: [ACL25] FEA-Bench: A Benchmark for Evaluating Repository-Level Code Generation for Feature Implementation · GitHub","url":"https://github.com/microsoft/FEA-Bench"},{"title":"Reasoning Faithfulness","url":"https://akhil.bio/CoT"},{"title":"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2510.04040v1"},{"title":"[PDF] Measuring Faithfulness in Chain-of-Thought Reasoning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/827afa7dd36e4afbb1a49c735bfbb2c69749756e"}]
+
+Based on my web search results, here's what I found about FaithCoT-Bench regarding dataset availability, hidden states, and cached activations:
+
+## Dataset Availability
+
+The raw dataset with unfaithful label has been uploaded and can be found in faithcot.zip on the GitHub repository. Additionally, the code is provided in https://github.com/se7esx/FaithCoT-BENCH, though code for FaithCoT-BENCH is still being organized.
+
+## Hidden States and Future Work
+
+Regarding hidden states and cached activations, the paper acknowledges this as a direction for future research. Future work will investigate whether these signals align with the model's actual decision process using emerging mechanistic tools such as causal probing, circuit analysis, and hidden-state inspection. 
+
+Currently, the benchmark provides the first instance-level dataset for detecting unfaithful reasoning in Chain-of-Thought outputs while it focuses on observable signals.
+
+## Dataset Contents
+
+The benchmark introduces FINE-CoT, a dedicated dataset built from CoT trajectories generated by four representative LLMs on tasks from four domains, with over 1,000 trajectories annotated through expert evaluation, guided by two core reasons of unfaithfulness further refined into eight principles, where each instance is labeled with unfaithfulness status, reasons for unfaithfulness, and step-level evidence.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8abdce15-c9c7-49ee-99b9-1340663fa591",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "09f847c4-7588-4eba-8f72-c19f967a7185",
+  "toolUseResult": {
+    "query": "FaithCoT-Bench ICLR 2026 dataset availability hidden states cached activations",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0162NmWynj13GkZQu8JUSDdj",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026 FAITHCOT-BENCH: BENCHMARKING",
+            "url": "https://openreview.net/pdf?id=lN3yKqqzF1"
+          },
+          {
+            "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=lN3yKqqzF1"
+          },
+          {
+            "title": "GitHub - berenslab/iclr-dataset: ICLR dataset · GitHub",
+            "url": "https://github.com/berenslab/iclr-dataset"
+          },
+          {
+            "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning | Request PDF",
+            "url": "https://www.researchgate.net/publication/396249322_FaithCoT-Bench_Benchmarking_Instance-Level_Faithfulness_of_Chain-of-Thought_Reasoning"
+          },
+          {
+            "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2510.04040v1"
+          },
+          {
+            "title": "Reasoning Faithfulness",
+            "url": "https://akhil.bio/CoT"
+          },
+          {
+            "title": "ICLR 2026 Statistics - Paper Copilot",
+            "url": "https://papercopilot.com/statistics/iclr-statistics/iclr-2026-statistics/"
+          },
+          {
+            "title": "[2510.04040] FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/abs/2510.04040"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          }
+        ]
+      },
+      "I found information about FaithCoT-Bench published at ICLR 2026. Let me search for more specific information about dataset availability, hidden states, and cached activations.",
+      {
+        "tool_use_id": "srvtoolu_01BshSonC77XXvjogaiWDQxx",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026 FAITHCOT-BENCH: BENCHMARKING",
+            "url": "https://openreview.net/pdf?id=lN3yKqqzF1"
+          },
+          {
+            "title": "[2510.04040] FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/abs/2510.04040"
+          },
+          {
+            "title": "GitHub - se7esx/FaithCoT-BENCH · GitHub",
+            "url": "https://github.com/se7esx/FaithCoT-BENCH"
+          },
+          {
+            "title": "[PDF] Measuring Faithfulness in Chain-of-Thought Reasoning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/827afa7dd36e4afbb1a49c735bfbb2c69749756e"
+          },
+          {
+            "title": "Reasoning Faithfulness",
+            "url": "https://akhil.bio/CoT"
+          },
+          {
+            "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=lN3yKqqzF1"
+          },
+          {
+            "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning - haebom",
+            "url": "https://slashpage.com/haebom/93nzyxmdeg1ww2wk6r45?lang=en&tl=en"
+          },
+          {
+            "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2510.04040v1"
+          },
+          {
+            "title": "❓ How to use cached hidden states in run_generation ? · Issue #1390 · huggingface/transformers",
+            "url": "https://github.com/huggingface/transformers/issues/1390"
+          },
+          {
+            "title": "GitHub - agencyenterprise/vllm-hidden-states: Extract hidden states from intermediate transformer layers using vLLM, with correct per-request tracking. · GitHub",
+            "url": "https://github.com/agencyenterprise/vllm-hidden-states"
+          }
+        ]
+      },
+      "Let me search more specifically for information about data availability and code release for FaithCoT-Bench.",
+      {
+        "tool_use_id": "srvtoolu_012DqvJfjQW8nPyoCHSHjYvc",
+        "content": [
+          {
+            "title": "GitHub - se7esx/FaithCoT-BENCH · GitHub",
+            "url": "https://github.com/se7esx/FaithCoT-BENCH"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 FAITHCOT-BENCH: BENCHMARKING",
+            "url": "https://openreview.net/pdf?id=lN3yKqqzF1"
+          },
+          {
+            "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning | Request PDF",
+            "url": "https://www.researchgate.net/publication/396249322_FaithCoT-Bench_Benchmarking_Instance-Level_Faithfulness_of_Chain-of-Thought_Reasoning"
+          },
+          {
+            "title": "[2510.04040] FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/abs/2510.04040"
+          },
+          {
+            "title": "GitHub - vectara/FaithBench",
+            "url": "https://github.com/vectara/FaithBench"
+          },
+          {
+            "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=lN3yKqqzF1"
+          },
+          {
+            "title": "GitHub - microsoft/FEA-Bench: [ACL25] FEA-Bench: A Benchmark for Evaluating Repository-Level Code Generation for Feature Implementation · GitHub",
+            "url": "https://github.com/microsoft/FEA-Bench"
+          },
+          {
+            "title": "Reasoning Faithfulness",
+            "url": "https://akhil.bio/CoT"
+          },
+          {
+            "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/html/2510.04040v1"
+          },
+          {
+            "title": "[PDF] Measuring Faithfulness in Chain-of-Thought Reasoning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/827afa7dd36e4afbb1a49c735bfbb2c69749756e"
+          }
+        ]
+      },
+      "Based on my web search results, here's what I found about FaithCoT-Bench regarding dataset availability, hidden states, and cached activations:\n\n## Dataset Availability\n\nThe raw dataset with unfaithful label has been uploaded and can be found in faithcot.zip on the GitHub repository. Additionally, the code is provided in https://github.com/se7esx/FaithCoT-BENCH, though code for FaithCoT-BENCH is still being organized.\n\n## Hidden States and Future Work\n\nRegarding hidden states and cached activations, the paper acknowledges this as a direction for future research. Future work will investigate whether these signals align with the model's actual decision process using emerging mechanistic tools such as causal probing, circuit analysis, and hidden-state inspection. \n\nCurrently, the benchmark provides the first instance-level dataset for detecting unfaithful reasoning in Chain-of-Thought outputs while it focuses on observable signals.\n\n## Dataset Contents\n\nThe benchmark introduces FINE-CoT, a dedicated dataset built from CoT trajectories generated by four representative LLMs on tasks from four domains, with over 1,000 trajectories annotated through expert evaluation, guided by two core reasons of unfaithfulness further refined into eight principles, where each instance is labeled with unfaithfulness status, reasons for unfaithfulness, and step-level evidence."
+    ],
+    "durationSeconds": 11.962241274
+  },
+  "sourceToolAssistantUUID": "8abdce15-c9c7-49ee-99b9-1340663fa591",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-16T08:36:43.437Z_
+
+<details><summary>↩ Tool result · `toolu_01R2F8EeHKqTKurbkPQvkJJt`</summary>
+
+```text
+Web search results for query: ""diverse beam search" OR "diverse decoding" hidden state cosine similarity different reasoning paths LLM 2025 2026"
+
+Links: [{"title":"Hidden-State Signals in Iterative LLM Repair: What Cosine Similarity at Layer 27 Actually Tells You - Research - Hugging Face Forums","url":"https://discuss.huggingface.co/t/hidden-state-signals-in-iterative-llm-repair-what-cosine-similarity-at-layer-27-actually-tells-you/174143"},{"title":"GitHub - hemingkx/SpeculativeDecodingPapers: 📰 Must-read papers and blogs on Speculative Decoding ⚡️","url":"https://github.com/hemingkx/SpeculativeDecodingPapers"},{"title":"Decoding Algorithms","url":"https://www.aussieai.com/research/decoding"},{"title":"GitHub - wang2226/Awesome-LLM-Decoding: 📜 Paper list on decoding methods for LLMs and LVLMs","url":"https://github.com/wang2226/Awesome-LLM-Decoding"},{"title":"Speculative Sampling — TensorRT-LLM","url":"https://nvidia.github.io/TensorRT-LLM/advanced/speculative-decoding.html"},{"title":"Mirror Speculative Decoding: Breaking the Serial Barrier in LLM Inference - Apple Machine Learning Research","url":"https://machinelearning.apple.com/research/mirror"},{"title":"Speculative decoding | LLM Inference Handbook","url":"https://bentoml.com/llm/inference-optimization/speculative-decoding"},{"title":"Rethinking Layer Relevance in Large Language Models Beyond Cosine Similarity","url":"https://arxiv.org/html/2605.14075"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/a2d537e69a6c6638a3630eef835f07de-Paper-Conference.pdf"},{"title":"Computer Science Mar 2025","url":"https://arxiv.org/list/cs/2025-03?skip=50&show=250"}]
+
+Let me search more specifically for diverse beam search and diverse decoding methods:
+
+Links: [{"title":"ReasoningAgent Update - Beam Search, MCTS, and LATS for LLM Reasoning - DEV Community","url":"https://dev.to/ag2ai/reasoningagent-update-beam-search-mcts-and-lats-for-llm-reasoning-3im1"},{"title":"Collaborative Beam Search: Enhancing LLM Reasoning via Collective Consensus - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.574/"},{"title":"LLM Inferencing strategies —Review of Greedy Search and Beam Search | by Sulbha Jain | Medium","url":"https://medium.com/@sulbha.jindal/llm-inferencing-strategies-review-of-greedy-search-and-beam-search-cfbdb96e021a"},{"title":"Stepwise Reasoning Checkpoint Analysis: A Test Time Scaling Method to Enhance LLMs’ Reasoning","url":"https://arxiv.org/html/2505.17829"},{"title":"FiDeLiS: Faithful Reasoning in Large Language Models for ...","url":"https://aclanthology.org/2025.findings-acl.436.pdf"},{"title":"ReasoningAgent Update - Beam Search, MCTS, and LATS for LLM Reasoning - AG2","url":"https://docs.ag2.ai/latest/docs/blog/2024/12/20/Reasoning-Update/"},{"title":"[2510.26122] Reasoning Path Divergence: A New Metric and Curation Strategy to Unlock LLM Diverse Thinking","url":"https://arxiv.org/abs/2510.26122"},{"title":"More Test-Time Compute Can Hurt: Overestimation Bias in LLM Beam Search","url":"https://arxiv.org/html/2603.15377v1"},{"title":"Creative Beam Search: LLM-as-a-Judge for Improving Response Generation","url":"https://arxiv.org/html/2405.00099v2"},{"title":"Efficient Beam Search for LLMs Using Trie-Based Decoding","url":"https://arxiv.org/html/2502.00085v2"}]
+
+Based on my search results, I found relevant research on diverse decoding and beam search methods for LLMs with a focus on different reasoning paths. Here's what I discovered:
+
+## Key Findings on Diverse Decoding and Reasoning Path Diversity
+
+### Diverse Beam Search and Reasoning Path Diversity
+
+Diverse Verifier Tree Search (DVTS) operates multiple search trees simultaneously, selecting and expanding the most promising reasoning path within each tree, addressing key challenges including the diversity problem where PRMs inadvertently suppress the LLM's sampling diversity.
+
+The diversity problem arises because only high-scoring paths are retained, and these paths often share similar problem-solving approaches.
+
+### Reasoning Path Divergence Metric (Recent 2025-2026)
+
+While Test-Time Scaling (TTS) has proven effective in improving the reasoning ability of large language models, low diversity in model outputs often becomes a bottleneck, partly caused by the "one problem, one solution" (1P1S) training practice. To address this, researchers propose a "one problem, multiple solutions" (1PNS) training paradigm that exposes the model to a variety of valid reasoning trajectories and thus increases inference diversity.
+
+Reasoning Path Divergence (RPD) is a step-level metric that aligns and scores Long Chain-of-Thought solutions to capture differences in intermediate reasoning.
+
+### Collaborative and Multi-Model Diverse Decoding
+
+Collaborative Beam Search leverages multiple LLMs to explore a broader search space, resulting in more diverse candidate steps, using a dynamic quota allocation strategy that reassigns generation budget based on each model's past performance, striking a balance between candidate diversity and quality.
+
+### Hidden State-Based Approaches
+
+Recent research explores whether you can detect whether an LLM is stuck in an unproductive loop by looking at its hidden states—before the output reveals it, with forward hooks at specific layers extracting hidden states and using cosine similarity between current and previous hidden states as a primary signal.
+
+These approaches represent recent developments (2025-2026) in making LLM decoding more diverse while maintaining reasoning quality.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "029ad19d-7bbf-4a77-a70d-41c2d6a3cb73",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "0532b825-8417-49b0-a8c6-b8261822b735",
+  "toolUseResult": {
+    "query": "\"diverse beam search\" OR \"diverse decoding\" hidden state cosine similarity different reasoning paths LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Us8RbsBLF4ZxdZJYXnZnFq",
+        "content": [
+          {
+            "title": "Hidden-State Signals in Iterative LLM Repair: What Cosine Similarity at Layer 27 Actually Tells You - Research - Hugging Face Forums",
+            "url": "https://discuss.huggingface.co/t/hidden-state-signals-in-iterative-llm-repair-what-cosine-similarity-at-layer-27-actually-tells-you/174143"
+          },
+          {
+            "title": "GitHub - hemingkx/SpeculativeDecodingPapers: 📰 Must-read papers and blogs on Speculative Decoding ⚡️",
+            "url": "https://github.com/hemingkx/SpeculativeDecodingPapers"
+          },
+          {
+            "title": "Decoding Algorithms",
+            "url": "https://www.aussieai.com/research/decoding"
+          },
+          {
+            "title": "GitHub - wang2226/Awesome-LLM-Decoding: 📜 Paper list on decoding methods for LLMs and LVLMs",
+            "url": "https://github.com/wang2226/Awesome-LLM-Decoding"
+          },
+          {
+            "title": "Speculative Sampling — TensorRT-LLM",
+            "url": "https://nvidia.github.io/TensorRT-LLM/advanced/speculative-decoding.html"
+          },
+          {
+            "title": "Mirror Speculative Decoding: Breaking the Serial Barrier in LLM Inference - Apple Machine Learning Research",
+            "url": "https://machinelearning.apple.com/research/mirror"
+          },
+          {
+            "title": "Speculative decoding | LLM Inference Handbook",
+            "url": "https://bentoml.com/llm/inference-optimization/speculative-decoding"
+          },
+          {
+            "title": "Rethinking Layer Relevance in Large Language Models Beyond Cosine Similarity",
+            "url": "https://arxiv.org/html/2605.14075"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/a2d537e69a6c6638a3630eef835f07de-Paper-Conference.pdf"
+          },
+          {
+            "title": "Computer Science Mar 2025",
+            "url": "https://arxiv.org/list/cs/2025-03?skip=50&show=250"
+          }
+        ]
+      },
+      "Let me search more specifically for diverse beam search and diverse decoding methods:",
+      {
+        "tool_use_id": "srvtoolu_01FwvKZ9hE7zFT1hyVHFoADo",
+        "content": [
+          {
+            "title": "ReasoningAgent Update - Beam Search, MCTS, and LATS for LLM Reasoning - DEV Community",
+            "url": "https://dev.to/ag2ai/reasoningagent-update-beam-search-mcts-and-lats-for-llm-reasoning-3im1"
+          },
+          {
+            "title": "Collaborative Beam Search: Enhancing LLM Reasoning via Collective Consensus - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.574/"
+          },
+          {
+            "title": "LLM Inferencing strategies —Review of Greedy Search and Beam Search | by Sulbha Jain | Medium",
+            "url": "https://medium.com/@sulbha.jindal/llm-inferencing-strategies-review-of-greedy-search-and-beam-search-cfbdb96e021a"
+          },
+          {
+            "title": "Stepwise Reasoning Checkpoint Analysis: A Test Time Scaling Method to Enhance LLMs’ Reasoning",
+            "url": "https://arxiv.org/html/2505.17829"
+          },
+          {
+            "title": "FiDeLiS: Faithful Reasoning in Large Language Models for ...",
+            "url": "https://aclanthology.org/2025.findings-acl.436.pdf"
+          },
+          {
+            "title": "ReasoningAgent Update - Beam Search, MCTS, and LATS for LLM Reasoning - AG2",
+            "url": "https://docs.ag2.ai/latest/docs/blog/2024/12/20/Reasoning-Update/"
+          },
+          {
+            "title": "[2510.26122] Reasoning Path Divergence: A New Metric and Curation Strategy to Unlock LLM Diverse Thinking",
+            "url": "https://arxiv.org/abs/2510.26122"
+          },
+          {
+            "title": "More Test-Time Compute Can Hurt: Overestimation Bias in LLM Beam Search",
+            "url": "https://arxiv.org/html/2603.15377v1"
+          },
+          {
+            "title": "Creative Beam Search: LLM-as-a-Judge for Improving Response Generation",
+            "url": "https://arxiv.org/html/2405.00099v2"
+          },
+          {
+            "title": "Efficient Beam Search for LLMs Using Trie-Based Decoding",
+            "url": "https://arxiv.org/html/2502.00085v2"
+          }
+        ]
+      },
+      "Based on my search results, I found relevant research on diverse decoding and beam search methods for LLMs with a focus on different reasoning paths. Here's what I discovered:\n\n## Key Findings on Diverse Decoding and Reasoning Path Diversity\n\n### Diverse Beam Search and Reasoning Path Diversity\n\nDiverse Verifier Tree Search (DVTS) operates multiple search trees simultaneously, selecting and expanding the most promising reasoning path within each tree, addressing key challenges including the diversity problem where PRMs inadvertently suppress the LLM's sampling diversity.\n\nThe diversity problem arises because only high-scoring paths are retained, and these paths often share similar problem-solving approaches.\n\n### Reasoning Path Divergence Metric (Recent 2025-2026)\n\nWhile Test-Time Scaling (TTS) has proven effective in improving the reasoning ability of large language models, low diversity in model outputs often becomes a bottleneck, partly caused by the \"one problem, one solution\" (1P1S) training practice. To address this, researchers propose a \"one problem, multiple solutions\" (1PNS) training paradigm that exposes the model to a variety of valid reasoning trajectories and thus increases inference diversity.\n\nReasoning Path Divergence (RPD) is a step-level metric that aligns and scores Long Chain-of-Thought solutions to capture differences in intermediate reasoning.\n\n### Collaborative and Multi-Model Diverse Decoding\n\nCollaborative Beam Search leverages multiple LLMs to explore a broader search space, resulting in more diverse candidate steps, using a dynamic quota allocation strategy that reassigns generation budget based on each model's past performance, striking a balance between candidate diversity and quality.\n\n### Hidden State-Based Approaches\n\nRecent research explores whether you can detect whether an LLM is stuck in an unproductive loop by looking at its hidden states—before the output reveals it, with forward hooks at specific layers extracting hidden states and using cosine similarity between current and previous hidden states as a primary signal.\n\nThese approaches represent recent developments (2025-2026) in making LLM decoding more diverse while maintaining reasoning quality."
+    ],
+    "durationSeconds": 13.586604737000002
+  },
+  "sourceToolAssistantUUID": "029ad19d-7bbf-4a77-a70d-41c2d6a3cb73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 69 · 2026-05-16T08:36:43.441Z_
+
+```json
+{
+  "parentUuid": "0532b825-8417-49b0-a8c6-b8261822b735",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c1415c23-5883-4088-a5fb-ae9286e91b9a",
+  "timestamp": "2026-05-16T08:36:43.441Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-16T08:36:49.731Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very useful. Let me also fetch the "Reasoning Theater" paper from Goodfire, and the observer model probe paper since they're directly relevant to the feasibility of faithfulness probes. Let me also search for the Reasoning Path Divergence metric paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1415c23-5883-4088-a5fb-ae9286e91b9a",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wfAfGtCqSSjKUp6uv3",
+  "type": "assistant",
+  "uuid": "0b0b5ee7-0564-46fe-8584-1f900b6091c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WwDNzMY7YGZpneuJsFbRW4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5003,
+      "cache_read_input_tokens": 38874,
+      "output_tokens": 433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5003,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 433,
+          "cache_read_input_tokens": 38874,
+          "cache_creation_input_tokens": 5003,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5003
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-16T08:36:49.891Z_
+
+Let me fetch two more critical papers that directly support the feasibility of faithfulness probes.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b0b5ee7-0564-46fe-8584-1f900b6091c9",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wfAfGtCqSSjKUp6uv3",
+  "type": "assistant",
+  "uuid": "2b256d74-2240-4239-8f27-91596374ce61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WwDNzMY7YGZpneuJsFbRW4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5003,
+      "cache_read_input_tokens": 38874,
+      "output_tokens": 433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5003,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 433,
+          "cache_read_input_tokens": 38874,
+          "cache_creation_input_tokens": 5003,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5003
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-16T08:36:51.005Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GUN9G9eapydjbEDD42qP5w`</summary>
+
+```json
+{
+  "url": "https://www.goodfire.ai/research/reasoning-theater",
+  "prompt": "Extract: (1) What is \"Reasoning Theater\"? (2) How do they use probes to detect performative/unfaithful CoT? (3) What AUROC or accuracy do probes achieve for distinguishing faithful vs unfaithful reasoning? (4) What are the key findings? (5) What models are tested? (6) Do they use residual stream activations?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b256d74-2240-4239-8f27-91596374ce61",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wfAfGtCqSSjKUp6uv3",
+  "type": "assistant",
+  "uuid": "80117ae4-9150-4437-b902-a734859695cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WwDNzMY7YGZpneuJsFbRW4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5003,
+      "cache_read_input_tokens": 38874,
+      "output_tokens": 433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5003,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 433,
+          "cache_read_input_tokens": 38874,
+          "cache_creation_input_tokens": 5003,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5003
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-16T08:36:53.150Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Ur1QR3hUAoAocZmKS5vDfw`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2507.23221",
+  "prompt": "Extract: title, abstract, key method. How does the linear residual probe detect hallucinations? What AUROC does it achieve? Does it work at token/step level? What is the \"single direction of truth\"?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80117ae4-9150-4437-b902-a734859695cb",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wfAfGtCqSSjKUp6uv3",
+  "type": "assistant",
+  "uuid": "cc6636a4-70b2-4e11-b31b-72e2d49d489c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WwDNzMY7YGZpneuJsFbRW4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5003,
+      "cache_read_input_tokens": 38874,
+      "output_tokens": 433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5003,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 433,
+          "cache_read_input_tokens": 38874,
+          "cache_creation_input_tokens": 5003,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5003
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-16T08:36:53.343Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0195ztMt8wJip3BgnQAeDzDL`</summary>
+
+```json
+{
+  "query": "Goodfire \"Reasoning Theater\" probe faithfulness performative chain-of-thought detection AUROC 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc6636a4-70b2-4e11-b31b-72e2d49d489c",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wfAfGtCqSSjKUp6uv3",
+  "type": "assistant",
+  "uuid": "e0962de1-53bf-4aa9-aa2e-d0d1f00eec16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WwDNzMY7YGZpneuJsFbRW4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5003,
+      "cache_read_input_tokens": 38874,
+      "output_tokens": 433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5003,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 433,
+          "cache_read_input_tokens": 38874,
+          "cache_creation_input_tokens": 5003,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5003
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Step-Level Faithfulness-Gated Rejection Decoding: Enforcing CoT Faithf…",
+  "leafUuid": "e0962de1-53bf-4aa9-aa2e-d0d1f00eec16",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-level faithfulness detection during CoT generation",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-16T08:36:57.391Z_
+
+<details><summary>↩ Tool result · `toolu_01GUN9G9eapydjbEDD42qP5w`</summary>
+
+```text
+# Reasoning Theater: Key Findings
+
+**(1) What is "Reasoning Theater"?**
+
+"Reasoning Theater" refers to performative chain-of-thought—situations where AI models appear to reason step-by-step while already knowing their final answer internally. The research explores this mismatch between external reasoning traces and internal model beliefs.
+
+**(2) How do probes detect performative vs. faithful CoT?**
+
+Researchers trained context-pooling attention probes on model activations to predict final answers at any point during generation. They compared probe predictions against: (a) forced answering (interrupting reasoning to extract the answer), and (b) CoT monitoring (having another LLM infer beliefs from text). Divergence between these methods indicates performativity.
+
+**(3) Probe accuracy metrics:**
+
+The paper reports that "Our best attention probes achieve 87.98% accuracy on MMLU, indicating that they can identify the final answer very early into reasoning." However, specific AUROC scores distinguishing faithful vs. unfaithful reasoning aren't provided in this content.
+
+**(4) Key findings:**
+
+- Easier tasks (MMLU) show more performative reasoning; harder tasks (GPQA-Diamond) show genuine reasoning
+- Larger models know answers earlier on recall-based questions
+- Inflection points ("Wait," "Aha") correlate with genuine uncertainty at response level
+- Early exit using probes saves 68% of tokens on MMLU with 96.7% accuracy retention
+
+**(5) Models tested:**
+
+DeepSeek-R1-0528-671B, GPT-OSS-120B, and DeepSeek-R1 distilled model family
+
+**(6) Residual stream activations:**
+
+The paper doesn't explicitly mention residual stream activations; it uses "internal activations" and layer-level probing but specifics aren't detailed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "80117ae4-9150-4437-b902-a734859695cb",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "f7c4781d-5087-4860-8635-25172f795d77",
+  "toolUseResult": {
+    "bytes": 57591,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Reasoning Theater: Key Findings\n\n**(1) What is \"Reasoning Theater\"?**\n\n\"Reasoning Theater\" refers to performative chain-of-thought—situations where AI models appear to reason step-by-step while already knowing their final answer internally. The research explores this mismatch between external reasoning traces and internal model beliefs.\n\n**(2) How do probes detect performative vs. faithful CoT?**\n\nResearchers trained context-pooling attention probes on model activations to predict final answers at any point during generation. They compared probe predictions against: (a) forced answering (interrupting reasoning to extract the answer), and (b) CoT monitoring (having another LLM infer beliefs from text). Divergence between these methods indicates performativity.\n\n**(3) Probe accuracy metrics:**\n\nThe paper reports that \"Our best attention probes achieve 87.98% accuracy on MMLU, indicating that they can identify the final answer very early into reasoning.\" However, specific AUROC scores distinguishing faithful vs. unfaithful reasoning aren't provided in this content.\n\n**(4) Key findings:**\n\n- Easier tasks (MMLU) show more performative reasoning; harder tasks (GPQA-Diamond) show genuine reasoning\n- Larger models know answers earlier on recall-based questions\n- Inflection points (\"Wait,\" \"Aha\") correlate with genuine uncertainty at response level\n- Early exit using probes saves 68% of tokens on MMLU with 96.7% accuracy retention\n\n**(5) Models tested:**\n\nDeepSeek-R1-0528-671B, GPT-OSS-120B, and DeepSeek-R1 distilled model family\n\n**(6) Residual stream activations:**\n\nThe paper doesn't explicitly mention residual stream activations; it uses \"internal activations\" and layer-level probing but specifics aren't detailed.",
+    "durationMs": 6380,
+    "url": "https://www.goodfire.ai/research/reasoning-theater"
+  },
+  "sourceToolAssistantUUID": "80117ae4-9150-4437-b902-a734859695cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-16T08:37:00.500Z_
+
+<details><summary>↩ Tool result · `toolu_0195ztMt8wJip3BgnQAeDzDL`</summary>
+
+```text
+Web search results for query: "Goodfire "Reasoning Theater" probe faithfulness performative chain-of-thought detection AUROC 2026"
+
+Links: [{"title":"Reasoning Theater: Probing for Performative Chain-of-Thought","url":"https://www.goodfire.ai/research/reasoning-theater"},{"title":"(PDF) Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought","url":"https://www.researchgate.net/publication/401601451_Reasoning_Theater_Disentangling_Model_Beliefs_from_Chain-of-Thought"},{"title":"Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought","url":"https://arxiv.org/html/2603.05488v1"},{"title":"Reasoning Theater: Why Chain-of-Thought Monitoring Fails Your Agentic AI","url":"https://www.rockcybermusings.com/p/reasoning-theater-cot-monitoring-fails-agentic-ai"},{"title":"Reasoning Theater: Probing Performative Chain-of-Thought","url":"https://www.opentrain.ai/papers/reasoning-theater-disentangling-model-beliefs-from-chain-of-thought--arxiv-2603.05488/"},{"title":"Measuring Faithfulness in Chain-of-Thought Reasoning Tamera Lanham","url":"https://www-cdn.anthropic.com/827afa7dd36e4afbb1a49c735bfbb2c69749756e/measuring-faithfulness-in-chain-of-thought-reasoning.pdf"},{"title":"[2603.05488] Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought","url":"https://arxiv.org/abs/2603.05488"},{"title":"Reasoning Theater: When AI Pretends to Think","url":"https://www.emergentmind.com/videos/reasoning-theater-disentangling-cot-beliefs-b8cf6292"},{"title":"Goodfire AI","url":"https://www.goodfire.ai/"},{"title":"Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought | alphaXiv","url":"https://www.alphaxiv.org/overview/2603.05488"}]
+
+Based on the search results, I found comprehensive information about the Goodfire "Reasoning Theater" research on performative chain-of-thought detection. Here's what the research reveals:
+
+## Overview
+
+Goodfire's research uses probes to track "performative chain-of-thought": when models "know" their final answer but continue to generate chain-of-thought anyways.
+
+## Key Findings on Faithfulness
+
+The findings present a nuanced picture of faithfulness in reasoning LLMs: models genuinely reason through hard problems, but coast through easy ones while generating superfluous chain-of-thought. 
+
+On easier recall-based MMLU questions, probes and forced answering can often decode the model's final answer with well-above-chance accuracy from the very beginning of reasoning, while the CoT monitor lags behind. On harder GPQA-Diamond questions requiring multi-step reasoning, all three methods start with low accuracy and improve gradually together, indicating that the written CoT is more faithfully tracking the model's evolving beliefs.
+
+## Probe Performance Metrics
+
+While the search results don't explicitly mention AUROC values in the excerpts returned, the performativity rate, measuring the gap between internal confidence and external verbalization, hit 0.417 on MMLU for DeepSeek-R1. On GPQA-Diamond, the performativity rate dropped to 0.012.
+
+## Practical Applications
+
+Probes enable early exit from reasoning traces, saving up to 68% of tokens with minimal accuracy loss. Attention probes trained on reasoning prefixes are well-calibrated, enabling confidence-based early exit that substantially reduces generation without sacrificing accuracy. Early exit saves 80% and 30% of generated tokens on MMLU-Redux and GPQA-Diamond, respectively, with comparable performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e0962de1-53bf-4aa9-aa2e-d0d1f00eec16",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "947958a0-a5e1-4fb0-8fd2-b90f1d5d65a2",
+  "toolUseResult": {
+    "query": "Goodfire \"Reasoning Theater\" probe faithfulness performative chain-of-thought detection AUROC 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HCWiZ7GUnAPwfU8QNTKvde",
+        "content": [
+          {
+            "title": "Reasoning Theater: Probing for Performative Chain-of-Thought",
+            "url": "https://www.goodfire.ai/research/reasoning-theater"
+          },
+          {
+            "title": "(PDF) Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought",
+            "url": "https://www.researchgate.net/publication/401601451_Reasoning_Theater_Disentangling_Model_Beliefs_from_Chain-of-Thought"
+          },
+          {
+            "title": "Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought",
+            "url": "https://arxiv.org/html/2603.05488v1"
+          },
+          {
+            "title": "Reasoning Theater: Why Chain-of-Thought Monitoring Fails Your Agentic AI",
+            "url": "https://www.rockcybermusings.com/p/reasoning-theater-cot-monitoring-fails-agentic-ai"
+          },
+          {
+            "title": "Reasoning Theater: Probing Performative Chain-of-Thought",
+            "url": "https://www.opentrain.ai/papers/reasoning-theater-disentangling-model-beliefs-from-chain-of-thought--arxiv-2603.05488/"
+          },
+          {
+            "title": "Measuring Faithfulness in Chain-of-Thought Reasoning Tamera Lanham",
+            "url": "https://www-cdn.anthropic.com/827afa7dd36e4afbb1a49c735bfbb2c69749756e/measuring-faithfulness-in-chain-of-thought-reasoning.pdf"
+          },
+          {
+            "title": "[2603.05488] Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought",
+            "url": "https://arxiv.org/abs/2603.05488"
+          },
+          {
+            "title": "Reasoning Theater: When AI Pretends to Think",
+            "url": "https://www.emergentmind.com/videos/reasoning-theater-disentangling-cot-beliefs-b8cf6292"
+          },
+          {
+            "title": "Goodfire AI",
+            "url": "https://www.goodfire.ai/"
+          },
+          {
+            "title": "Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2603.05488"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the Goodfire \"Reasoning Theater\" research on performative chain-of-thought detection. Here's what the research reveals:\n\n## Overview\n\nGoodfire's research uses probes to track \"performative chain-of-thought\": when models \"know\" their final answer but continue to generate chain-of-thought anyways.\n\n## Key Findings on Faithfulness\n\nThe findings present a nuanced picture of faithfulness in reasoning LLMs: models genuinely reason through hard problems, but coast through easy ones while generating superfluous chain-of-thought. \n\nOn easier recall-based MMLU questions, probes and forced answering can often decode the model's final answer with well-above-chance accuracy from the very beginning of reasoning, while the CoT monitor lags behind. On harder GPQA-Diamond questions requiring multi-step reasoning, all three methods start with low accuracy and improve gradually together, indicating that the written CoT is more faithfully tracking the model's evolving beliefs.\n\n## Probe Performance Metrics\n\nWhile the search results don't explicitly mention AUROC values in the excerpts returned, the performativity rate, measuring the gap between internal confidence and external verbalization, hit 0.417 on MMLU for DeepSeek-R1. On GPQA-Diamond, the performativity rate dropped to 0.012.\n\n## Practical Applications\n\nProbes enable early exit from reasoning traces, saving up to 68% of tokens with minimal accuracy loss. Attention probes trained on reasoning prefixes are well-calibrated, enabling confidence-based early exit that substantially reduces generation without sacrificing accuracy. Early exit saves 80% and 30% of generated tokens on MMLU-Redux and GPQA-Diamond, respectively, with comparable performance."
+    ],
+    "durationSeconds": 7.154376667999997
+  },
+  "sourceToolAssistantUUID": "e0962de1-53bf-4aa9-aa2e-d0d1f00eec16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-16T08:37:00.994Z_
+
+<details><summary>↩ Tool result · `toolu_01Ur1QR3hUAoAocZmKS5vDfw`</summary>
+
+```text
+# Paper Summary: "A Single Direction of Truth"
+
+**Title:** A Single Direction of Truth: An Observer Model's Linear Residual Probe Exposes and Steers Contextual Hallucinations
+
+**Abstract Overview:**
+The researchers address contextual hallucinations (unsupported statements) using an "observer model" that detects them through "a single forward pass and a linear probe on its residual stream." Performance improvements range from 5-27 points above baselines.
+
+**Key Method:**
+A generator-agnostic observer model applies a linear probe to the residual stream to identify hallucinations without modifying the original generator.
+
+**Detection Mechanism:**
+The probe "isolates a single, transferable linear direction separating hallucinated from faithful text," suggesting hallucinations follow a predictable internal pattern.
+
+**Performance & Scope:**
+The paper demonstrates "robust mid-layer performance across Gemma-2 models (2B to 27B)" but doesn't specify token-level or step-level granularity in the provided abstract.
+
+**"Single Direction of Truth":**
+This refers to the isolated linear direction in the model's activation space that distinguishes accurate from hallucinated outputs—a low-dimensional signal linked to specific MLP circuits that can be manipulated to causally reduce hallucination rates.
+
+**Additional Resource:** A 2000-example ContraTales benchmark is released for evaluating hallucination detection solutions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc6636a4-70b2-4e11-b31b-72e2d49d489c",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "cf828355-6395-40e7-af46-34a2172000c5",
+  "toolUseResult": {
+    "bytes": 46658,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary: \"A Single Direction of Truth\"\n\n**Title:** A Single Direction of Truth: An Observer Model's Linear Residual Probe Exposes and Steers Contextual Hallucinations\n\n**Abstract Overview:**\nThe researchers address contextual hallucinations (unsupported statements) using an \"observer model\" that detects them through \"a single forward pass and a linear probe on its residual stream.\" Performance improvements range from 5-27 points above baselines.\n\n**Key Method:**\nA generator-agnostic observer model applies a linear probe to the residual stream to identify hallucinations without modifying the original generator.\n\n**Detection Mechanism:**\nThe probe \"isolates a single, transferable linear direction separating hallucinated from faithful text,\" suggesting hallucinations follow a predictable internal pattern.\n\n**Performance & Scope:**\nThe paper demonstrates \"robust mid-layer performance across Gemma-2 models (2B to 27B)\" but doesn't specify token-level or step-level granularity in the provided abstract.\n\n**\"Single Direction of Truth\":**\nThis refers to the isolated linear direction in the model's activation space that distinguishes accurate from hallucinated outputs—a low-dimensional signal linked to specific MLP circuits that can be manipulated to causally reduce hallucination rates.\n\n**Additional Resource:** A 2000-example ContraTales benchmark is released for evaluating hallucination detection solutions.",
+    "durationMs": 7841,
+    "url": "https://arxiv.org/abs/2507.23221"
+  },
+  "sourceToolAssistantUUID": "cc6636a4-70b2-4e11-b31b-72e2d49d489c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80 · 2026-05-16T08:37:07.296Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Now let me also fetch one more critical piece - the Substack article about detecting unfaithful CoT with mechanistic interpretability, since it reports 0.949 ROC-AUC for a linear probe distinguishing faithful vs unfaithful reasoning. This is direct evidence for the feasibility of the core assumption.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf828355-6395-40e7-af46-34a2172000c5",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wgTiE5yZTtTJFB9QBt",
+  "type": "assistant",
+  "uuid": "01b49884-bad0-4d72-bc59-e48178c8db71",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018E9UY3KK7komKSXepoxmjA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1004,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 43877,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1227,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1004,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 43877,
+          "cache_creation_input_tokens": 1227,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1227
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-16T08:37:08.192Z_
+
+Let me fetch the mechanistic interpretability approach to detecting unfaithful CoT — this seems directly relevant to the core feasibility question.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "01b49884-bad0-4d72-bc59-e48178c8db71",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wgTiE5yZTtTJFB9QBt",
+  "type": "assistant",
+  "uuid": "5b9255da-4f0e-402a-9832-c555511deb5f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018E9UY3KK7komKSXepoxmjA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1004,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 43877,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1227,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1004,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 43877,
+          "cache_creation_input_tokens": 1227,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1227
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-16T08:37:12.047Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TdgVSoYNBVUrqVb93tz6QU`</summary>
+
+```json
+{
+  "url": "https://ashioyajotham.substack.com/p/detecting-unfaithful-chain-of-thought",
+  "prompt": "Extract all details about: (1) How was the probe trained? What activations were used? (2) What was the dataset - faithful vs unfaithful examples? (3) The 88.1% accuracy and 0.949 ROC-AUC - what exactly did the probe distinguish? (4) What is the L7H6 attention head finding? (5) What model was used? (6) Is this a linear probe on residual stream or attention heads? (7) Limitations and caveats."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b9255da-4f0e-402a-9832-c555511deb5f",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wgTiE5yZTtTJFB9QBt",
+  "type": "assistant",
+  "uuid": "0814e846-e622-41b3-8a56-4c1066dcd549",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018E9UY3KK7komKSXepoxmjA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1004,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 43877,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1227,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1004,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 43877,
+          "cache_creation_input_tokens": 1227,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1227
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-16T08:37:13.110Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012MP8FmaD77VovDHvE7C2yc`</summary>
+
+```json
+{
+  "query": "arxiv \"detecting unfaithful\" \"chain-of-thought\" probe mechanistic interpretability linear 0.949 AUROC 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0814e846-e622-41b3-8a56-4c1066dcd549",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wgTiE5yZTtTJFB9QBt",
+  "type": "assistant",
+  "uuid": "7d2e1076-9961-4152-a863-b5ab991df7b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018E9UY3KK7komKSXepoxmjA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1004,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 43877,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1227,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1004,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 43877,
+          "cache_creation_input_tokens": 1227,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1227
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-16T08:37:19.708Z_
+
+<details><summary>↩ Tool result · `toolu_012MP8FmaD77VovDHvE7C2yc`</summary>
+
+```text
+Web search results for query: "arxiv "detecting unfaithful" "chain-of-thought" probe mechanistic interpretability linear 0.949 AUROC 2025 2026"
+
+Links: [{"title":"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal","url":"https://arxiv.org/html/2605.09502"},{"title":"When Chains of Thought Don’t Matter: Causal Bypass in Large Language Models","url":"https://arxiv.org/html/2602.03994v1"},{"title":"[2512.23032] Is Chain-of-Thought Really Not Explainability? Chain-of-Thought Can Be Faithful without Hint Verbalization","url":"https://arxiv.org/abs/2512.23032"},{"title":"[2507.22928] How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding","url":"https://arxiv.org/abs/2507.22928"},{"title":"How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding","url":"https://arxiv.org/html/2507.22928v1"},{"title":"Chain of Thought Monitorability: A New and Fragile Opportunity for AI Safety","url":"https://arxiv.org/html/2507.11473v2"},{"title":"Published as a conference paper at ICLR 2026 MECHANISTIC INTERPRETABILITY","url":"https://arxiv.org/pdf/2510.02917"},{"title":"How does Chain of Thought Think? Mechanistic ...","url":"https://arxiv.org/pdf/2507.22928"},{"title":"Verifying Chain-of-Thought Reasoning via Its Computational Graph","url":"https://arxiv.org/html/2510.09312v1"},{"title":"Is Chain-of-Thought Really Not Explainability? Chain-of-Thought Can Be Faithful without Hint Verbalization","url":"https://arxiv.org/html/2512.23032"}]
+
+Based on the search results, I found a highly relevant paper that matches your query parameters:
+
+**"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal"** demonstrates that "a linear probe on hidden states predicts trace correctness with 0.95 AUROC—from the very first reasoning step (0.79)".
+
+This paper directly addresses detecting unfaithful chain-of-thought reasoning through mechanistic interpretability using linear probes on hidden states. The researchers provide "a complementary representational perspective: directly comparing what hidden states encode with what the text expresses, and quantifying the gap."
+
+Key findings from this work include:
+
+- LLMs encode "error-predictive signals in their hidden states during CoT reasoning—signals that emerge early, are concealed from text, and persist across model families and scales."
+
+- The paper concludes that "the signal is diagnostic, not causal: a readout of computation quality, not a lever to redirect it."
+
+- Despite the high AUROC scores indicating reliable detection, "four interventions—activation steering, probe-guided best-of-N, self-correction, and activation patching—all fail."
+
+The paper was published approximately 6 days ago (around May 2026), fitting within your specified timeframe.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7d2e1076-9961-4152-a863-b5ab991df7b2",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "7a16c722-cfd0-4de8-9ddc-530c0cc33606",
+  "toolUseResult": {
+    "query": "arxiv \"detecting unfaithful\" \"chain-of-thought\" probe mechanistic interpretability linear 0.949 AUROC 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EdbGoJH1tT3KjkbnRDaMVM",
+        "content": [
+          {
+            "title": "Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal",
+            "url": "https://arxiv.org/html/2605.09502"
+          },
+          {
+            "title": "When Chains of Thought Don’t Matter: Causal Bypass in Large Language Models",
+            "url": "https://arxiv.org/html/2602.03994v1"
+          },
+          {
+            "title": "[2512.23032] Is Chain-of-Thought Really Not Explainability? Chain-of-Thought Can Be Faithful without Hint Verbalization",
+            "url": "https://arxiv.org/abs/2512.23032"
+          },
+          {
+            "title": "[2507.22928] How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding",
+            "url": "https://arxiv.org/abs/2507.22928"
+          },
+          {
+            "title": "How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding",
+            "url": "https://arxiv.org/html/2507.22928v1"
+          },
+          {
+            "title": "Chain of Thought Monitorability: A New and Fragile Opportunity for AI Safety",
+            "url": "https://arxiv.org/html/2507.11473v2"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 MECHANISTIC INTERPRETABILITY",
+            "url": "https://arxiv.org/pdf/2510.02917"
+          },
+          {
+            "title": "How does Chain of Thought Think? Mechanistic ...",
+            "url": "https://arxiv.org/pdf/2507.22928"
+          },
+          {
+            "title": "Verifying Chain-of-Thought Reasoning via Its Computational Graph",
+            "url": "https://arxiv.org/html/2510.09312v1"
+          },
+          {
+            "title": "Is Chain-of-Thought Really Not Explainability? Chain-of-Thought Can Be Faithful without Hint Verbalization",
+            "url": "https://arxiv.org/html/2512.23032"
+          }
+        ]
+      },
+      "Based on the search results, I found a highly relevant paper that matches your query parameters:\n\n**\"Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal\"** demonstrates that \"a linear probe on hidden states predicts trace correctness with 0.95 AUROC—from the very first reasoning step (0.79)\".\n\nThis paper directly addresses detecting unfaithful chain-of-thought reasoning through mechanistic interpretability using linear probes on hidden states. The researchers provide \"a complementary representational perspective: directly comparing what hidden states encode with what the text expresses, and quantifying the gap.\"\n\nKey findings from this work include:\n\n- LLMs encode \"error-predictive signals in their hidden states during CoT reasoning—signals that emerge early, are concealed from text, and persist across model families and scales.\"\n\n- The paper concludes that \"the signal is diagnostic, not causal: a readout of computation quality, not a lever to redirect it.\"\n\n- Despite the high AUROC scores indicating reliable detection, \"four interventions—activation steering, probe-guided best-of-N, self-correction, and activation patching—all fail.\"\n\nThe paper was published approximately 6 days ago (around May 2026), fitting within your specified timeframe."
+    ],
+    "durationSeconds": 6.595443402000004
+  },
+  "sourceToolAssistantUUID": "7d2e1076-9961-4152-a863-b5ab991df7b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-16T08:37:20.419Z_
+
+<details><summary>↩ Tool result · `toolu_01TdgVSoYNBVUrqVb93tz6QU`</summary>
+
+```text
+# Technical Details: CoT Faithfulness Detection
+
+## (1) Probe Training & Activations
+
+The researchers trained a **linear logistic regression classifier** on activations from 23 key neural network components. They extracted activations "at the final token position, where the model is about to predict the answer." The training set comprised 800 examples (400 faithful, 400 unfaithful pairs).
+
+## (2) Dataset Structure
+
+The contrastive dataset contrasted two scenarios:
+- **Faithful examples**: Correct chain-of-thought reasoning leading to correct answers
+- **Unfaithful examples**: Incorrect CoT paired with correct answers, suggesting the model bypassed the reasoning
+
+Example faithful prompt: "Q: What is 23+45? Steps: units=3+5=8, tens=2+4=6. A:"
+Unfaithful counterpart corrupted the arithmetic steps while maintaining the same numerical problem.
+
+## (3) The 88.1% Accuracy Finding
+
+The probe distinguished "faithful" versus "shortcut-taking" behavior with 88.1% accuracy and 0.949 ROC-AUC. However, this distinction was based on activation patterns correlated with labels, not genuine output differences—since GPT-2 Small couldn't actually perform arithmetic.
+
+## (4) L7H6 Attention Head Discovery
+
+"L7H6 has the highest weight (0.097), nearly 20% higher than the next component." This layer 7 attention head emerged as the primary driver of shortcut behavior. When strongly activated, the model appeared to bypass its stated reasoning.
+
+## (5) Model Used
+
+**GPT-2 Small** served as the experimental subject, with 144 attention heads and 12 MLP layers available for analysis.
+
+## (6) Linear Probe Architecture
+
+The probe operated on "activations from these 23 components"—a mix of attention heads and MLP layers. The authors didn't explicitly state whether this was residual stream or head-specific activations, though "key components" identified through patching suggests layer/head-specific sampling.
+
+## (7) Significant Limitations
+
+- **No meaningful outputs**: GPT-2 cannot perform arithmetic; unfaithful examples were "a fiction" since the model never produced correct answers to bypass
+- **Overconfidence**: The probe showed 88.9% confidence on incorrect predictions, with 11 of 14 false negatives exceeding 99% confidence
+- **Failed intervention**: All ablation experiments yielded 0% accuracy due to the model's fundamental inability with arithmetic
+- **Not deployment-ready**: Authors explicitly state 88% accuracy "isn't deployment-ready"
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0814e846-e622-41b3-8a56-4c1066dcd549",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "d2177b9e-1cb3-4c1d-98ed-3c334ba63250",
+  "toolUseResult": {
+    "bytes": 215518,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Technical Details: CoT Faithfulness Detection\n\n## (1) Probe Training & Activations\n\nThe researchers trained a **linear logistic regression classifier** on activations from 23 key neural network components. They extracted activations \"at the final token position, where the model is about to predict the answer.\" The training set comprised 800 examples (400 faithful, 400 unfaithful pairs).\n\n## (2) Dataset Structure\n\nThe contrastive dataset contrasted two scenarios:\n- **Faithful examples**: Correct chain-of-thought reasoning leading to correct answers\n- **Unfaithful examples**: Incorrect CoT paired with correct answers, suggesting the model bypassed the reasoning\n\nExample faithful prompt: \"Q: What is 23+45? Steps: units=3+5=8, tens=2+4=6. A:\"\nUnfaithful counterpart corrupted the arithmetic steps while maintaining the same numerical problem.\n\n## (3) The 88.1% Accuracy Finding\n\nThe probe distinguished \"faithful\" versus \"shortcut-taking\" behavior with 88.1% accuracy and 0.949 ROC-AUC. However, this distinction was based on activation patterns correlated with labels, not genuine output differences—since GPT-2 Small couldn't actually perform arithmetic.\n\n## (4) L7H6 Attention Head Discovery\n\n\"L7H6 has the highest weight (0.097), nearly 20% higher than the next component.\" This layer 7 attention head emerged as the primary driver of shortcut behavior. When strongly activated, the model appeared to bypass its stated reasoning.\n\n## (5) Model Used\n\n**GPT-2 Small** served as the experimental subject, with 144 attention heads and 12 MLP layers available for analysis.\n\n## (6) Linear Probe Architecture\n\nThe probe operated on \"activations from these 23 components\"—a mix of attention heads and MLP layers. The authors didn't explicitly state whether this was residual stream or head-specific activations, though \"key components\" identified through patching suggests layer/head-specific sampling.\n\n## (7) Significant Limitations\n\n- **No meaningful outputs**: GPT-2 cannot perform arithmetic; unfaithful examples were \"a fiction\" since the model never produced correct answers to bypass\n- **Overconfidence**: The probe showed 88.9% confidence on incorrect predictions, with 11 of 14 false negatives exceeding 99% confidence\n- **Failed intervention**: All ablation experiments yielded 0% accuracy due to the model's fundamental inability with arithmetic\n- **Not deployment-ready**: Authors explicitly state 88% accuracy \"isn't deployment-ready\"",
+    "durationMs": 8369,
+    "url": "https://ashioyajotham.substack.com/p/detecting-unfaithful-chain-of-thought"
+  },
+  "sourceToolAssistantUUID": "0814e846-e622-41b3-8a56-4c1066dcd549",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Step-Level Faithfulness-Gated Rejection Decoding: Enforcing CoT Faithf…",
+  "leafUuid": "d2177b9e-1cb3-4c1d-98ed-3c334ba63250",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-level faithfulness detection during CoT generation",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Assistant
+
+_source line 88 · 2026-05-16T08:37:23.672Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me also search for a few more things to make the revision thorough:
+
+1. EMNLP 2026 specific deadline details and whether 9 days is feasible
+2. Any recent work on the feasibility of the pilot experiment
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2177b9e-1cb3-4c1d-98ed-3c334ba63250",
+  "isSidechain": false,
+  "requestId": "req_011Cb5whtpN9YmqebWoSyqrY",
+  "type": "assistant",
+  "uuid": "afa60393-7cff-4102-8c4d-5180e7ba17d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ZzyBgJskMaXTkGATJRhwG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 45104,
+      "output_tokens": 296,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 853,
+          "output_tokens": 296,
+          "cache_read_input_tokens": 45104,
+          "cache_creation_input_tokens": 2029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-16T08:37:25.082Z_
+
+Let me get one final piece of critical information — the EMNLP 2026 CFP details and timeline feasibility.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "afa60393-7cff-4102-8c4d-5180e7ba17d0",
+  "isSidechain": false,
+  "requestId": "req_011Cb5whtpN9YmqebWoSyqrY",
+  "type": "assistant",
+  "uuid": "f8e9cbd6-ccec-4d0f-9c26-55cf20a3ecf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ZzyBgJskMaXTkGATJRhwG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 45104,
+      "output_tokens": 296,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 853,
+          "output_tokens": 296,
+          "cache_read_input_tokens": 45104,
+          "cache_creation_input_tokens": 2029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-16T08:37:27.507Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VfXg6ba6TAkDiv9NN5WQ5e`</summary>
+
+```json
+{
+  "url": "https://2026.emnlp.org/calls/main_conference_papers/",
+  "prompt": "Extract: (1) All submission deadlines - ARR submission deadline, commitment deadline, notification dates. (2) Paper format requirements (long/short). (3) Any specific requirements about reproducibility or supplementary materials. (4) Conference dates and location."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8e9cbd6-ccec-4d0f-9c26-55cf20a3ecf5",
+  "isSidechain": false,
+  "requestId": "req_011Cb5whtpN9YmqebWoSyqrY",
+  "type": "assistant",
+  "uuid": "7478fc88-faad-4dd2-b254-0168dc468bd4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ZzyBgJskMaXTkGATJRhwG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 45104,
+      "output_tokens": 296,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 853,
+          "output_tokens": 296,
+          "cache_read_input_tokens": 45104,
+          "cache_creation_input_tokens": 2029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-16T08:37:28.113Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B4RJeD7xEFYWJb5mkuf9fH`</summary>
+
+```json
+{
+  "query": "ARR May 2026 cycle submission deadline exact date time anonymity requirements"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7478fc88-faad-4dd2-b254-0168dc468bd4",
+  "isSidechain": false,
+  "requestId": "req_011Cb5whtpN9YmqebWoSyqrY",
+  "type": "assistant",
+  "uuid": "2fa84e49-7bb1-4a47-84cb-44bab512664d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ZzyBgJskMaXTkGATJRhwG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 853,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 45104,
+      "output_tokens": 296,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 853,
+          "output_tokens": 296,
+          "cache_read_input_tokens": 45104,
+          "cache_creation_input_tokens": 2029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-16T08:37:31.770Z_
+
+<details><summary>↩ Tool result · `toolu_01VfXg6ba6TAkDiv9NN5WQ5e`</summary>
+
+```text
+# EMNLP 2026 Submission & Conference Information
+
+## (1) Submission Deadlines
+
+- **ARR Submission:** "May 25, 2026"
+- **Reviewer Registration:** "May 27, 2026"
+- **Author Response Period:** July 7-13, 2026
+- **Meta-Review Release:** July 30, 2026
+- **EMNLP Commitment:** "August 2, 2026"
+- **Acceptance Notification:** "August 20, 2026"
+- **Camera-Ready Due:** "September 20, 2026"
+
+All deadlines are "11:59PM UTC-12:00 ('anywhere on Earth')."
+
+## (2) Paper Format Requirements
+
+- **Long Papers:** 8 pages (9 pages in final camera-ready version)
+- **Short Papers:** 4 pages (5 pages in final camera-ready version)
+
+Papers must adhere to "ARR submission requirements" including anonymization standards and ethics policies.
+
+## (3) Reproducibility & Supplementary Materials
+
+The call references "Optional Supplementary Materials" through ARR guidelines. Papers must include a limitations section and follow the "responsible NLP research checklist."
+
+## (4) Conference Dates & Location
+
+The conference runs "October 24 - 29, 2026." Location is not specified in the provided content. The call notes that "Workshops/Tutorials" dates are "TBD."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7478fc88-faad-4dd2-b254-0168dc468bd4",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "bccf813d-534b-4f2a-b3b8-93b87ca1df31",
+  "toolUseResult": {
+    "bytes": 26454,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# EMNLP 2026 Submission & Conference Information\n\n## (1) Submission Deadlines\n\n- **ARR Submission:** \"May 25, 2026\"\n- **Reviewer Registration:** \"May 27, 2026\"\n- **Author Response Period:** July 7-13, 2026\n- **Meta-Review Release:** July 30, 2026\n- **EMNLP Commitment:** \"August 2, 2026\"\n- **Acceptance Notification:** \"August 20, 2026\"\n- **Camera-Ready Due:** \"September 20, 2026\"\n\nAll deadlines are \"11:59PM UTC-12:00 ('anywhere on Earth').\"\n\n## (2) Paper Format Requirements\n\n- **Long Papers:** 8 pages (9 pages in final camera-ready version)\n- **Short Papers:** 4 pages (5 pages in final camera-ready version)\n\nPapers must adhere to \"ARR submission requirements\" including anonymization standards and ethics policies.\n\n## (3) Reproducibility & Supplementary Materials\n\nThe call references \"Optional Supplementary Materials\" through ARR guidelines. Papers must include a limitations section and follow the \"responsible NLP research checklist.\"\n\n## (4) Conference Dates & Location\n\nThe conference runs \"October 24 - 29, 2026.\" Location is not specified in the provided content. The call notes that \"Workshops/Tutorials\" dates are \"TBD.\"",
+    "durationMs": 4260,
+    "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+  },
+  "sourceToolAssistantUUID": "7478fc88-faad-4dd2-b254-0168dc468bd4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-16T08:37:40.983Z_
+
+<details><summary>↩ Tool result · `toolu_01B4RJeD7xEFYWJb5mkuf9fH`</summary>
+
+```text
+Web search results for query: "ARR May 2026 cycle submission deadline exact date time anonymity requirements"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"Authors Guidelines","url":"http://aclrollingreview.org/authors"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"How ARR works – ACL Rolling Review","url":"http://aclrollingreview.org/reviewing"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"ACL ARR 2026 March | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FMarch"},{"title":"ACL ARR | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR"}]
+
+Let me search more specifically for the ARR May 2026 submission deadline date and time.
+
+Links: [{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"How ARR works – ACL Rolling Review","url":"http://aclrollingreview.org/reviewing"},{"title":"ACL ARR | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR"},{"title":"ACL ARR 2026 March | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FMarch"},{"title":"aclrollingreview/reviewing.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/reviewing.md"}]
+
+Let me search for the specific table with all ARR 2026 cycle dates.
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"ACL ARR 2026 May | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FMay"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"}]
+
+Let me search more specifically for the ARR submission deadline time and date details.
+
+Links: [{"title":"Call for Main Conference Papers - AACL-IJCNLP 2026","url":"https://2026.aaclnet.org/calls/main_conference_papers/"}]
+
+Based on my search results, I can provide you with the following information about the ARR May 2026 cycle:
+
+## Submission Deadline
+
+The submission deadline is always the 15th of the month, which means the ARR May 2026 submission deadline is **May 15, 2026**. 
+
+All deadlines are 11:59PM UTC-12:00 ("anywhere on Earth"), so the exact submission deadline is **May 15, 2026 at 11:59 PM UTC-12:00**.
+
+## Anonymity Requirements
+
+Regarding anonymity, beginning with the February 15, 2024 ARR deadlines, there is no anonymity period or limitation on posting or discussing non-anonymous preprints while the work is under peer review. However, papers must not include authors' names and affiliations, and supplementary materials, including any links to repositories, should also be anonymized at the time of submission itself.
+
+The new policy incentivizes anonymous submissions by special paper awards and priority in acceptance decisions for borderline papers. You select the preprint status of the submission in the submission form. If you choose the 'binding' non-preprint option, you commit to not preprinting until after the review cycle is over, under the penalty of desk rejection.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2fa84e49-7bb1-4a47-84cb-44bab512664d",
+  "isSidechain": false,
+  "promptId": "a88cfe06-d16b-463f-8f6e-511cfe21f164",
+  "type": "user",
+  "uuid": "9237b079-551b-44e1-9395-3cdfb4e29d33",
+  "toolUseResult": {
+    "query": "ARR May 2026 cycle submission deadline exact date time anonymity requirements",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011JiGmwh9MEigQZGngxspxt",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Authors Guidelines",
+            "url": "http://aclrollingreview.org/authors"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "How ARR works – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/reviewing"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "ACL ARR 2026 March | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FMarch"
+          },
+          {
+            "title": "ACL ARR | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR"
+          }
+        ]
+      },
+      "Let me search more specifically for the ARR May 2026 submission deadline date and time.",
+      {
+        "tool_use_id": "srvtoolu_01MyBDHGkipjRtjgiVjiCuZf",
+        "content": [
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "How ARR works – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/reviewing"
+          },
+          {
+            "title": "ACL ARR | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR"
+          },
+          {
+            "title": "ACL ARR 2026 March | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FMarch"
+          },
+          {
+            "title": "aclrollingreview/reviewing.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/reviewing.md"
+          }
+        ]
+      },
+      "Let me search for the specific table with all ARR 2026 cycle dates.",
+      {
+        "tool_use_id": "srvtoolu_011BwM1STebCYaaqJkLVhnmr",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "ACL ARR 2026 May | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FMay"
+          },
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          }
+        ]
+      },
+      "Let me search more specifically for the ARR submission deadline time and date details.",
+      {
+        "tool_use_id": "srvtoolu_013gr7ANyj2gpexk7WoXcPqu",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - AACL-IJCNLP 2026",
+            "url": "https://2026.aaclnet.org/calls/main_conference_papers/"
+          }
+        ]
+      },
+      "Based on my search results, I can provide you with the following information about the ARR May 2026 cycle:\n\n## Submission Deadline\n\nThe submission deadline is always the 15th of the month, which means the ARR May 2026 submission deadline is **May 15, 2026**. \n\nAll deadlines are 11:59PM UTC-12:00 (\"anywhere on Earth\"), so the exact submission deadline is **May 15, 2026 at 11:59 PM UTC-12:00**.\n\n## Anonymity Requirements\n\nRegarding anonymity, beginning with the February 15, 2024 ARR deadlines, there is no anonymity period or limitation on posting or discussing non-anonymous preprints while the work is under peer review. However, papers must not include authors' names and affiliations, and supplementary materials, including any links to repositories, should also be anonymized at the time of submission itself.\n\nThe new policy incentivizes anonymous submissions by special paper awards and priority in acceptance decisions for borderline papers. You select the preprint status of the submission in the submission form. If you choose the 'binding' non-preprint option, you commit to not preprinting until after the review cycle is over, under the penalty of desk rejection."
+    ],
+    "durationSeconds": 12.866641959
+  },
+  "sourceToolAssistantUUID": "2fa84e49-7bb1-4a47-84cb-44bab512664d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 94 · 2026-05-16T08:37:40.987Z_
+
+```json
+{
+  "parentUuid": "9237b079-551b-44e1-9395-3cdfb4e29d33",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3463a859-ee95-4b2c-8d48-08b9f6f9f770",
+  "timestamp": "2026-05-16T08:37:40.987Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 95 · 2026-05-16T08:40:29.622Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Wait, the search says "submission deadline is always the 15th of the month" but the EMNLP 2026 CFP and the tweets explicitly say May 25, 2026 as the ARR submission deadline. Let me check - could the ARR May cycle actually have a deadline of May 15 or May 25?
+
+Looking at the EMNLP 2026 CFP page I fetched earlier: "ARR Submission: May 25, 2026". And the X/Twitter post says "ARR Submission Deadline: May 25, 2026".
+
+However, the ARR dates page says the deadline is the 15th of each month. 
+
+There might be a special extension for the May 2026 cycle. Since today is May 16 and the standard deadline would've already passed, I'm going with the May 25 date that the EMNLP 2026 CFP explicitly states.
+
+So we have 9 days to submit something to ARR May 2026 — that's way too tight for a full paper with comprehensive experiments. We'd need to either submit a position paper or pilot study, or focus on demonstrating feasibility with limited experiments and plan to extend it in a later cycle.
+
+The reviewer's feedback suggests they're open to either approach: we could make EMNLP 2026 the primary target with reduced scope, or justify why the full scope requires later venues. Given the timeline constraints and the fact that the core assumption still needs validation, the smartest move is probably to target EMNLP 2026 with a narrower focus — just the feasibility pilot and initial experiments — rather than trying to cram everything into 9 days.
+
+Now I'm working through the key issues more systematically. For the venue mismatch, EMNLP 2026 becomes the primary target with scope reduced to the pilot and proof-of-concept. On the Token-Guard differentiation, the distinction is actually quite clear: Token-Guard addresses factual hallucination at the token level using latent space similarity, while SFGRD targets reasoning faithfulness at the step level using trained probes to detect whether internal computations align with the model's outputs. These are fundamentally different problems and approaches.
+
+The mechanistic evidence concern is trickier—the Mapping Gap suggests models can encode correct representations but fail to use them in decoding, which could undermine the faithfulness detection approach. But actually, this might work in our favor: the gap itself creates a detectable signal in the residual stream when text diverges from internal computation, and a probe could learn to identify exactly when this mismatch occurs.
+
+There's precedent here too. The Reasoning Theater paper demonstrates that probes can distinguish performative from genuine reasoning, and the Single Direction of Truth work shows linear probes on residual streams can detect hallucinations with meaningful improvements. The Substack post achieved 0.949 AUROC on unfaithful CoT detection in GPT-2 Small, though that's limited since GPT-2 can't actually perform arithmetic. These results suggest a direct pilot on FaithCoT is feasible and could validate whether this approach actually works.
+
+I can design a straightforward pilot: take the ~300 unfaithful examples from FaithCoT-Bench paired with faithful ones, run Qwen 3.6-27B while caching residual stream activations at each step, train a linear probe to distinguish faithful from unfaithful steps, and report AUROC on held-out data—all doable in under 10 H100-hours.
+
+On the n-gram blocking concern, the reviewer has a point. The Hidden Error Awareness paper shows models regenerate using the same flawed computation, which operates at the computational level, not just the surface token level. N-gram blocking only forces different articulation, not different underlying reasoning. I should reframe it as one diversity mechanism among several to ablate, and incorporate hidden-state diversity as a stronger alternative.
+
+The key insight is that I can directly measure whether regenerated steps use different internal computations by comparing residual stream activations between original and regenerated outputs—if cosine similarity stays high despite different tokens, n-gram blocking alone isn't working. I should also test prefix perturbation, where I slightly modify the question or previous step to actually change the input conditioning. This way I can explicitly verify whether different token sequences lead to different attention patterns and computations, rather than just assuming they do.
+
+Now I need to fill in the missing baselines like STEP, ReProbe, Illusion of Reasoning, and Mechanistic Evidence for Faithfulness Decay. I should also update to Qwen3.6-27B since it was released in April 2026. For the FUR synthetic labels, I realize they measure parametric faithfulness (whether unlearning a fact changes the answer) while probes detect representational faithfulness (whether text diverges from internal computation)—these aren't the same thing, so I'll use FUR as a secondary signal and keep expert annotations from FaithCoT-Bench as the primary ground truth.
+
+The core problem still holds: CoT reasoning is often unfaithful and no existing inference-time method directly targets this. The opportunity is real too—step-level probe-guided decoding should work.
+
+To strengthen this, I need to run a feasibility pilot first to validate the probe approach, swap out simple n-gram blocking for a hidden-state diversity mechanism that's more principled, directly address the mapping gap between probes and faithfulness, include all the missing baseline methods, and aim for EMNLP 2026. For scope, I'm thinking Phase 1 as a quick pilot on cached FaithCoT-Bench activations, then Phase 2 as a proof-of-concept running SFGRD on Qwen3.6-27B with one dataset.
+
+Actually, this framing is stronger than I initially thought—the feasibility question itself is the core contribution. If probes can genuinely detect step-level faithfulness, that's a significant empirical finding, and SFGRD becomes the natural application of that discovery. The paper structure would move from motivation straight into pilot results, then the method and its results, with a discussion of limitations and next steps. This feels like a major revision given the venue shift and the need to reframe around the probe feasibility question as the primary contribution.
+
+Now I'm reconsidering the n-gram blocking approach more carefully. The reviewer's point about Hidden Error Awareness cuts to something fundamental—when you regenerate from the same prefix, you're not actually changing the model's internal computation, just the surface realization of the same flawed reasoning. That's a real constraint I need to think through.
+
+Temperature sampling does create different computational paths at each token, but the question is whether those paths lead to genuinely different reasoning or just different ways of expressing the same underlying error. I think the answer is to keep n-gram blocking as a surface mechanism but layer in a hidden-state diversity check—comparing the residual stream activations between the regenerated and original steps to verify they're actually computing something different, not just articulating the same mistake differently.
+
+If regeneration attempts keep producing similar hidden states despite the probe flagging unfaithfulness, that signals I need stronger intervention, so I'd fall back to prefix perturbation—slightly rephrasing the previous step to force genuinely different conditioning. I should design explicit ablations to test which combination works best: n-gram blocking alone, hidden-state diversity checks, prefix perturbation, or all three together.
+
+Now I'm looking at the Mapping Gap paper more carefully to understand what linear probes actually reveal about model computations. The Mapping Gap actually supports our approach—it shows that internal representations and outputs can systematically diverge, and a probe trained on examples of this divergence can learn to detect when faithfulness is low, even if it can't bridge the gap itself. I have evidence for this: Reasoning Theater demonstrates that probes can identify performative chain-of-thought where the internal answer is already known.
+
+Now I'm mapping out the revised proposal with a two-phase approach targeting EMNLP 2026, adding several new baseline methods to the comparison, and restructuring the scope to start with a feasibility pilot before moving to the full proof-of-concept.
+
+I need to account for the tight timeline—with the deadline just nine days away on May 25, I'm looking at a compressed schedule for getting this submission ready.
+
+For the EMNLP track, I'm planning a two-day feasibility pilot on FaithCoT-Bench, followed by three days to develop the SFGRD proof-of-concept using Qwen3.6-27B and GSM8K, then two days for critical ablations comparing residual versus attention probes and testing different diversity mechanisms, with the final two days dedicated to writing and submission. That's roughly 80-100 H100 hours of compute.
+
+If EMNLP doesn't have enough scope, I have AAAI 2027 as a backup where I could expand to include DeepSeek-R1 replication, GPQA benchmarking, and a fuller ablation suite, bringing total compute to around 160 hours.
+
+Now I'm finalizing the JSON structure and need to revisit what the "Illusion of Reasoning" paper actually establishes, since the search results were somewhat unclear.
+
+The paper identifies three distinct modes of reasoning—genuine, scaffolding, and decorative—with R1 models showing 91-93% necessity on mathematical tasks compared to just 4% for non-reasoning models. This distinction is crucial for understanding how faithfulness varies across different domains. I initially got confused because the web fetch returned a different paper's content, but the search result confirms the actual title and key findings about step-level evaluation revealing decorative chain-of-thought patterns in frontier models. I'm noticing there's a discrepancy between the two fetches—the search results and the webpage return different findings, metrics, and model counts, which suggests either a paper revision or possibly two different papers with similar titles. Since the reviewer specifically cited arxiv 2603.22816 as "The Illusion of Reasoning," I'll go with the search result data as the primary source.
+
+Now I need to compile the complete revised JSON with all the key references: Token-Guard, Mechanistic Evidence for Faithfulness Decay, STEP, ReProbe, The Illusion of Reasoning, Reasoning Theater, and A Single Direction of Truth. I also need to update the model name from Qwen3.5-27B to Qwen3.6-27B and change the venue to EMNLP 2026.
+
+Thinking through the n-gram blocking issue the reviewer raised—I see the tension between surface-level diversity and actual computational diversity. The strongest approach seems to be combining n-gram blocking with temperature scaling as the baseline, since n-gram blocking alone might just produce different text without changing the underlying computation. I could also explore hidden-state diversity constraints to directly target computational differences, though that adds complexity. Temperature scaling helps explore different token choices, and prefix perturbation could force different conditioning by rephrasing previous steps.
+
+The key insight is using hidden-state diversity verification after regeneration—checking that the new step has sufficiently different residual stream activations from the rejected step. This turns the n-gram blocking debate into an empirical question I can ablate, and it's a nice contribution because it's not just checking faithfulness but verifying that regeneration actually produces computationally distinct alternatives.
+
+I should also factor in the Reasoning Horizon finding from that paper—steps at 70-85% of chain length have little or negative causal effect. This means SFGRD should concentrate monitoring effort on early and middle steps before the horizon kicks in, since steps beyond that point might be decorative regardless of faithfulness. That could be a useful efficiency consideration for the design.
+
+Now I'm thinking through the FUR synthetic label assumption more carefully. The reviewer's point is that FUR measures parametric faithfulness—whether unlearning the step's fact changes the answer—while probes detect representational faithfulness—whether the text diverges from internal computation. These could be measuring different things entirely. A step could be FUR-faithful but probe-unfaithful if the model needs the knowledge but expresses it differently than it computed it, or vice versa.
+
+My approach is to use FaithCoT-Bench expert annotations as the primary ground truth since they capture human-judged faithfulness, treat FUR as a secondary scalable label source while acknowledging the conceptual gap, train probes on both label types and compare them, and report the correlation between FUR labels and probe predictions as a diagnostic.
+
+For the venue decision, I'm leaning toward a long paper for EMNLP 2026 since the contribution has two distinct parts and would benefit from the extra space for pilot results, proof-of-concept work, and ablations, even with the tight 9-day timeline.
+
+Given the reviewer's feedback about needing scope reduction to fit the timeline, I'm cutting back the original proposal significantly: sticking with just Qwen3.6-27B instead of adding DeepSeek-R1, keeping GSM8K and GPQA for generalization testing, running only the essential ablations comparing residual versus attention probes and diversity mechanisms, dropping the PRM baseline to save GPU hours, and focusing the narrative accordingly.
+
+For the extended AAAI 2027 timeline, I can add back the DeepSeek-R1 replication, include the PRM baseline, run the full ablation suite, and do more comprehensive analysis.
+
+Now I'm calculating the actual resource requirements: the EMNLP 2026 track needs about 70 GPU-hours across pilot work, the core SFGRD experiments, key ablations, and buffer time—bringing it to roughly 9 days on a single H100 with costs around $210-280, while the AAAI 2027 extended version stays closer to the original 160-hour estimate.
+
+Let me finalize the JSON with these updated numbers and timeline constraints.
+
+The real question is whether to position this as a pilot study or a full method paper with proof-of-concept validation. I think framing it as the latter is stronger—I can present the linear probe detection work as the first empirical contribution showing that residual stream activations encode step-level faithfulness, then build the SFGRD method as the second contribution.
+
+Now I'm organizing the JSON structure and need to update the problem framing section. I should incorporate several additional works into the competitive landscape: Mapping Gap as a fundamental challenge rather than just a competitor, Token-Guard for the inference-time enforcement angle, STEP and ReProbe for related probing approaches, Illusion of Reasoning and Reasoning Theater for the broader critique of LLM reasoning, and Mechanistic Evidence for Faithfulness Decay for the theoretical grounding. This means revising the gap statement to account for all these works and position my contributions more precisely.
+
+For the methods, I'm shifting from a simple n-gram blocking approach to a multi-faceted diversity mechanism that combines n-gram blocking with hidden-state diversity verification and temperature scaling. I'm also updating the model specification to Qwen3.6-27B, adding a feasibility pilot as Phase 0 to validate the core probe detection capability, and incorporating Reasoning Horizon-aware step selection as an optional efficiency optimization. I need to explicitly design around the FUR label mismatch issue and add hidden-state similarity comparisons as an ablation study, while leveraging Reasoning Theater probes and Single Direction of Truth as supporting evidence for the approach's feasibility.
+
+On the timeline and venue side, I'm targeting EMNLP 2026 with an ARR deadline of May 25, which means reducing scope to fit that timeline while keeping AAAI 2027 as a backup option for a more comprehensive version. I also need to update the GPU resource estimates to reflect the actual computational requirements.
+
+Now I'm pulling together the key references that support this work—Token-Guard for diversity mechanisms, Mechanistic Evidence for Faithfulness Decay for understanding model behavior, STEP and ReProbe for reasoning step analysis, and the recent papers on Reasoning Theater and Single Direction of Truth that provide empirical grounding for the feasibility of detecting reasoning artifacts.
+
+Writing the complete JSON specification...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3463a859-ee95-4b2c-8d48-08b9f6f9f770",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wjQhz8X3y9j3fTiWTV",
+  "type": "assistant",
+  "uuid": "82a0decd-df03-4be9-b1a7-f08a556b91a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WHPGkSEshf3TJcm3JDYvqT",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2996,
+      "cache_read_input_tokens": 47133,
+      "output_tokens": 15979,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2996,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 15979,
+          "cache_read_input_tokens": 47133,
+          "cache_creation_input_tokens": 2996,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2996
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96 · 2026-05-16T08:44:00.024Z_
+
+Now I have comprehensive information on all the key papers and issues. Let me synthesize my findings and draft the revised proposal.
+
+Key findings from my research:
+- **Token-Guard**: Three-stage pipeline (token-level latent scoring → segment-level hallucination scoring → global iterative correction). Targets factual hallucination, not faithfulness. Uses cosine similarity + probability hybrid scoring.
+- **Mapping Gap** (2602.11201): Models encode correct info at 82% probe accuracy but achieve 0% task accuracy. Critical finding, but supports detection (we detect WHEN the gap is large, not bridge it).
+- **Reasoning Horizon**: Steps beyond 70-85% of chain length have negligible/negative causal influence.
+- **Reasoning Theater** (Goodfire): Probes detect performative CoT at 87.98% accuracy. Performativity rate 0.417 on MMLU vs 0.012 on GPQA. Directly supports probe feasibility.
+- **EMNLP 2026**: ARR deadline May 25, 2026 — 9 days from today.
+- **Qwen3.6-27B**: Released April 2026, significant improvements over 3.5, Apache 2.0.
+
+Now composing the complete revised proposal with all issues addressed.
+
+```json
+{
+  "change_type": "major",
+  "title": "Step-Level Faithfulness-Gated Rejection Decoding: Enforcing CoT Faithfulness via Hidden-State Consistency Probes",
+  "core_problem": "LLM reasoning traces are frequently unfaithful to internal computations (15-20% of correct CoT outputs are unfaithful per FaithCoT-Bench ICLR 2026; 25-39% acknowledgment rates per Anthropic 2025; up to 60% failure to update after causal intervention per ICLR 2026 work). The Illusion of Reasoning (arXiv 2603.22816) further demonstrates that faithfulness varies dramatically by domain and training objective—DeepSeek-R1 shows 91-93% step necessity on math vs. 4% for non-reasoning DeepSeek-V3.2—revealing that unfaithfulness is systematic, not random. While probe-guided decoding has been shown to improve CORRECTNESS at step level (DHC, AAAI 2026), and Token-Guard (ICLR 2026) performs token-level factual hallucination control via latent-space scoring with regeneration, no existing method targets FAITHFULNESS specifically during generation. Correctness probes miss the 15-20% of outputs that are correct-but-unfaithful. Token-Guard addresses factuality (text vs. world knowledge), not faithfulness (text vs. internal computation). Training-time approaches (FaithRL, REMUL) improve faithfulness on average but cannot guarantee step-level faithfulness at inference time for any specific input. Meanwhile, Mechanistic Evidence for Faithfulness Decay (arXiv 2602.11201) documents a 'Mapping Gap'—models encode correct internal representations while failing to use them in decoding—and a 'Reasoning Horizon' at 70-85% of chain length beyond which reasoning tokens have negligible causal effect. These findings constrain where and how inference-time faithfulness interventions can succeed.",
+  "opportunity": "Four convergent findings create a precise opening: (1) Step-level probe-guided decoding WORKS for correctness (DHC, AAAI 2026 demonstrates beam search guided by attention-head probes significantly outperforms baselines); (2) Trace-level probe-guided interventions FAIL (Hidden Error Awareness, May 2026, shows best-of-N ≈ random, self-correction hurts by -3%); (3) Faithfulness is orthogonal to correctness (FaithCoT-Bench documents 15-20% correct-but-unfaithful instances); (4) Probes CAN detect internal-external divergence—Reasoning Theater (Goodfire, arXiv 2603.05488) shows probes detect performative CoT at 87.98% accuracy with performativity rate 0.417 on MMLU, and the 'Single Direction of Truth' (arXiv 2507.23221) isolates a linear direction in residual stream separating faithful from hallucinated text. The Mapping Gap from Mechanistic Evidence for Faithfulness Decay (arXiv 2602.11201) initially appears threatening—models encode correct representations but fail to decode them—but actually SUPPORTS detection: the systematic divergence between internal state and output creates a learnable signal. A probe need not bridge the gap; it need only detect WHEN the gap is large. The reconciliation across all findings is clear: step-level selection succeeds because probes have high per-step discrimination (0.95 AUROC) but poor cross-trace ranking; faithfulness is an unaddressed dimension; and probes can detect the internal-external divergence that constitutes unfaithfulness. This creates the opportunity for step-level faithfulness-gated rejection decoding with hidden-state diversity verification.",
+  "landscape": "**Probe-guided decoding for correctness**: Deep Hidden Cognition (DHC, AAAI 2026, arXiv 2507.10007) trains linear probes on attention head activations to predict step correctness, then uses step-level beam search to select among M candidates. Targets correctness only; does not measure or improve faithfulness. **ReProbe** (arXiv 2511.06209) develops transformer-based probes (<10M params) on frozen LLM internal states matching or exceeding PRMs 810x larger for step-level verification—demonstrates the informativeness of internal states for reasoning quality assessment. **Failed interventions**: Hidden Error Awareness (arXiv 2605.09502, May 2026) shows 0.95 AUROC probes predict CoT correctness but four interventions fail—probe-guided best-of-N ≈ random (trace-level selection), self-correction hurts -3% (reuses same computation), activation steering is fragile, patching destroys coherence. Key insight: signal is diagnostic at trace level but selection works at step level (as DHC shows). **Token-level hallucination control**: Token-Guard (ICLR 2026, arXiv 2601.21969) performs token-level hallucination detection via latent-space cosine similarity + probability hybrid scoring, with segment-level hallucination risk scores and iterative pruning/regeneration. Targets factual hallucination (text vs. world knowledge) at token granularity—fundamentally different from reasoning faithfulness (text vs. internal computation) at step granularity. SFGRD differs in three ways: (a) targets faithfulness rather than factuality, requiring probes that compare text semantics against internal computation, not just token-level consistency; (b) operates at step level rather than token level, matching the granularity at which reasoning faithfulness is defined and measured; (c) uses trained probes rather than unsupervised cosine similarity, because faithfulness is not reducible to local coherence. **Step-level hidden-state evaluation**: STEP (arXiv 2601.09093) trains lightweight step scorers on hidden states for trace quality estimation with GPU memory-aware pruning, reducing latency 45-70% while improving accuracy—targets efficiency via trace pruning, not faithfulness enforcement. **Streaming detection**: Streaming Hallucination Detection (arXiv 2601.02170) frames hallucination as evolving latent state with prefix-level tracking—detection only, no correction mechanism. **Monitoring Decoding** (ACL 2025 Findings, arXiv 2503.03106) does token-level factuality monitoring with tree-based regeneration for QA/general text—targets factuality of claims against world knowledge, not faithfulness of reasoning to internal computation. **Hidden-state geometry**: Where Does Reasoning Break (arXiv 2605.13772, May 2026) uses transport geometry on hidden states for step-level hallucination detection—detection only, no intervention. ICR Probe (ACL 2025) tracks cross-layer hidden state dynamics for hallucination detection. **Internal-external divergence detection**: Reasoning Theater (Goodfire, arXiv 2603.05488) shows probes detect performative CoT at 87.98% accuracy on MMLU—models 'know' their answer early but continue generating decorative reasoning. Performativity rate of 0.417 on easy tasks vs. 0.012 on hard tasks (GPQA-Diamond), demonstrating that internal-external divergence is probe-detectable. A Single Direction of Truth (arXiv 2507.23221) isolates a single linear direction in residual stream separating hallucinated from faithful text, achieving 5-27 point improvements over baselines—demonstrates that faithfulness/hallucination leaves a linear signature in residual stream activations. **Mechanistic faithfulness analysis**: Mechanistic Evidence for Faithfulness Decay (arXiv 2602.11201) introduces NLDD for step-level faithfulness measurement using corruption-based confidence drops. Documents the 'Mapping Gap' (models encode correct representations at 82% probe accuracy but achieve 0% task performance) and 'Reasoning Horizon' (steps beyond 70-85% of chain length have negligible causal effect). The Mapping Gap constrains probe-based approaches: probes can detect what information IS encoded, but the model may not USE it. However, for faithfulness detection (not correction), this is sufficient—detecting WHEN the gap is large IS detecting unfaithfulness. **Faithfulness variation**: The Illusion of Reasoning (arXiv 2603.22816) evaluates 13 frontier models across six domains, identifying three modes: 'genuine reasoning' (steps causally matter), 'scaffolding' (CoT helps but steps are interchangeable), and 'decoration' (CoT adds nothing). R1 models show 91-93% step necessity on math vs. 4% for non-reasoning V3.2—proving training objective determines faithfulness and motivating domain-aware evaluation. **Probe-based early exit**: Reasoning Models Know When They're Right (arXiv 2504.05419) uses probes for early exit during reasoning, saving 24% tokens. **Training-time faithfulness**: FaithRL (arXiv 2602.03507) optimizes step-level faithfulness via RL, reducing hallucination by 4.7 points. REMUL (arXiv 2602.16154) uses multi-listener RL for faithfulness. Stop Rewarding Hallucinated Steps (arXiv 2602.05897) uses faithfulness signals in RL. Counterfactual Simulation Training (arXiv 2602.20710) improves faithfulness via fine-tuning. All are training-time methods that improve average faithfulness but cannot enforce per-instance guarantees at inference. **Faithfulness measurement**: FUR (EMNLP 2025 Outstanding Paper) measures parametric faithfulness via unlearning—post-hoc. FaithCoT-Bench (ICLR 2026) benchmarks with 1000+ expert-annotated trajectories. Lie to Me (arXiv 2603.22582) documents faithfulness rates across 12 models. **Gap**: No method performs step-level rejection decoding gated by FAITHFULNESS probes (as distinct from correctness or factuality probes) during CoT generation, with verified computational diversity in regenerated alternatives.",
+  "approach": "**Method: Step-Level Faithfulness-Gated Rejection Decoding (SFGRD)**\n\nThe approach proceeds in two phases: a feasibility pilot (Phase 1) that validates the core assumption, followed by the full SFGRD method (Phase 2).\n\n**Phase 1: Feasibility Pilot (De-risking the Core Assumption)**\n\nThe central untested assumption is whether linear probes on residual stream activations can distinguish faithful from unfaithful reasoning steps. While probes detect correctness at 0.95 AUROC (Hidden Error Awareness) and performative reasoning at 87.98% accuracy (Reasoning Theater), no work has directly tested faithfulness detection at step level. Pilot design: (1) Take FaithCoT-Bench's ~300 unfaithful instances with step-level evidence (~1500 step-level labels across 4 domains). (2) Run Qwen3.6-27B on these problems, caching residual stream activations at every step boundary. (3) Train linear probe: f(h_residual) = σ(W^T h + b) per layer, with layer selection via validation AUROC. (4) Hold out 20% of expert annotations for evaluation. (5) Report AUROC on held-out set. **Go/no-go**: ≥0.80 AUROC → proceed to Phase 2; <0.80 → report as negative finding with analysis of what faithfulness dimensions are/aren't probe-detectable. **Cost**: <10 H100-hours. **Supporting evidence for feasibility**: (a) Reasoning Theater achieves 87.98% probe accuracy detecting performative CoT (internal-external divergence), (b) Single Direction of Truth isolates a linear faithfulness direction in residual stream, (c) Hidden Error Awareness shows 0.95 AUROC for error detection from hidden states. The task is conceptually between correctness detection (well-established) and full faithfulness measurement (untested)—detecting WHEN internal computation diverges from text, not WHY.\n\n**Phase 2: SFGRD Method**\n\n**Probe Architecture**: Train lightweight linear probes on RESIDUAL STREAM activations (not attention heads as in DHC) to predict whether a generated reasoning step faithfully reflects the model's internal computation. Residual stream encodes the full computational state—critical for faithfulness detection, which requires detecting divergence between text semantics and actual computation. Probe: f(h_residual) = σ(W^T h + b), trained per-layer with layer selection via validation AUROC. The choice of residual stream over attention heads is motivated by (a) the Single Direction of Truth finding that faithfulness signals are linearly encoded in residual stream, and (b) the Mapping Gap finding that residual stream encodes information not expressed in output—precisely the divergence we want to detect.\n\n**Engaging with the Mapping Gap**: Mechanistic Evidence for Faithfulness Decay (arXiv 2602.11201) shows models encode correct internal representations while failing to use them in decoding. This initially appears to threaten our approach: if probes detect what is ENCODED (not what is USED), they may not detect faithfulness. However, we argue the Mapping Gap SUPPORTS faithfulness detection: (a) The Mapping Gap IS the signal—when internal representations systematically diverge from output text, the residual stream at the final token of a step encodes both what the model computed and what it is about to output. A probe can learn to detect this divergence. (b) We do not need to BRIDGE the gap (make the model output what it internally knows); we need to DETECT it (flag when the output diverges from internal computation). (c) The Reasoning Theater finding that probes detect performative reasoning at 87.98% accuracy is empirical evidence that internal-external divergence IS probe-detectable. (d) If the pilot (Phase 1) confirms ≥0.80 AUROC, the question is resolved empirically.\n\n**Training Data Pipeline**: (1) Primary ground truth: FaithCoT-Bench's ~300 unfaithful instances with step-level evidence across 4 domains, providing ~1500 step-level faithful/unfaithful labels from expert annotations. (2) Secondary expansion: Apply FUR unlearning protocol for ~3000 additional synthetic labels, with explicit acknowledgment that FUR measures 'parametric faithfulness' (does unlearning the step's fact change the answer?) while probes target 'representational faithfulness' (does text diverge from internal computation?). These overlap but are not identical—we train on both label types and report correlation as diagnostic. (3) Validation: Hold out 20% of FaithCoT-Bench expert annotations for probe evaluation.\n\n**Step Boundary Detection**: For reasoning models (Qwen3.6-27B, DeepSeek-R1), step boundaries are identified via double-newline delimiters within &lt;think> blocks. Minimum step length threshold of 20 tokens to avoid fragmentary segments. **Reasoning Horizon optimization**: Informed by the finding that steps beyond 70-85% of chain length have negligible causal effect (arXiv 2602.11201), we optionally concentrate monitoring on early/middle steps where faithfulness violations are most consequential. Ablation: full-chain monitoring vs. horizon-aware monitoring.\n\n**Inference-Time Rejection Decoding with Hidden-State Diversity Verification**: After generating each reasoning step: (1) Extract residual stream activations at final token of step. (2) Faithfulness probe evaluates: p_faithful = f(h_residual). (3) If p_faithful > τ (threshold tuned on validation set): accept step, continue. (4) If p_faithful ≤ τ: REJECT step and regenerate with diversity constraints. (5) Maximum 3 rejection attempts per step; if all fail, accept highest-scoring attempt (graceful degradation).\n\n**Multi-Mechanism Diversity for Regeneration** (addressing the 'same computation' problem): Hidden Error Awareness documents that 'the model generates its correction using the same flawed computation that produced the original error.' This implies the problem is computational, not articulatory—blocking surface n-grams may produce different text expressing the same unfaithful computation. We address this with a three-level diversity mechanism:\n\n(a) **Surface diversity** (Level 1): 4-gram suppression of rejected step's text + temperature scaling (T=1.2→1.5 on successive rejections). This forces different token sequences as a baseline mechanism.\n\n(b) **Computational diversity verification** (Level 2, novel): After regeneration, compare residual stream activations of regenerated step h_regen with rejected step h_orig. Compute cosine similarity: sim(h_regen, h_orig). If sim > δ (e.g., 0.95), the regeneration produced the same computation in different words—reject and escalate to Level 3. This directly tests whether surface diversity translates to computational diversity, turning the reviewer's concern into a measurable signal.\n\n(c) **Conditioning perturbation** (Level 3, fallback): If Level 2 detects same-computation regeneration, perturb the conditioning: rephrase the previous accepted step using a lightweight paraphrase operation, then regenerate the current step from the modified prefix. This changes the input to the computation, not just the sampling.\n\n**Key Differentiators from DHC**: (a) Targets faithfulness, not correctness—probes trained on faithfulness labels. (b) Uses rejection sampling with multi-level diversity rather than beam search—more efficient and specifically addresses the 'same computation' problem. (c) Residual stream probes (full computational state) vs. attention head probes (local reasoning patterns). (d) Hidden-state diversity verification ensures regeneration produces genuinely different computations.\n\n**Key Differentiators from Token-Guard**: (a) Targets reasoning faithfulness (text vs. internal computation) vs. factual hallucination (text vs. world knowledge). (b) Operates at step level (matching faithfulness granularity) vs. token level. (c) Uses trained probes with faithfulness labels vs. unsupervised cosine similarity in latent space. (d) Includes computational diversity verification vs. simple local regeneration.\n\n**Key Differentiators from Hidden Error Awareness's failed interventions**: (a) Step-level rejection (proven viable by DHC's success) vs. trace-level best-of-N (proven to fail). (b) Multi-level diversity mechanism with hidden-state verification prevents 'same flawed computation' problem. (c) Hard acceptance gate vs. soft ranking.\n\n**Baselines**: (1) Greedy decoding (no intervention). (2) DHC beam search with correctness probes (reproduction). (3) DHC beam search with faithfulness probes (direct comparison—same probe, different decoding). (4) Self-consistency (majority voting). (5) Probe-guided best-of-N (replicating Hidden Error Awareness's failure as sanity check). (6) Token-Guard-style latent-space scoring adapted to step level (ablation to isolate contribution of trained faithfulness probes vs. unsupervised similarity).\n\n**Evaluation**: Primary model: Qwen3.6-27B. Datasets: GSM8K (mathematical, where hidden-state findings are validated) + GPQA (knowledge-intensive, testing generalization—critical given Illusion of Reasoning's finding of dramatic domain variation). Metrics: (a) Faithfulness improvement via FaithCoT-Bench evaluation protocol (counterfactual intervention + unlearning test). (b) Accuracy preservation (≤1% degradation acceptable). (c) Latency overhead (target: <2x greedy). (d) Rejection rate and regeneration statistics. (e) Hidden-state similarity between original and regenerated steps (quantifying computational diversity). Extended evaluation (for camera-ready or follow-up): DeepSeek-R1-32B replication.\n\n**Ablations**: (1) Residual stream vs. attention head probes. (2) Rejection sampling vs. beam search with faithfulness probes. (3) Diversity mechanism ablation: surface-only (n-gram blocking) vs. hidden-state diversity verification vs. conditioning perturbation vs. combined (tests the 'same computation' hypothesis directly). (4) Threshold sensitivity analysis. (5) Expert annotations vs. FUR synthetic labels for probe training (tests label source impact). (6) Full-chain monitoring vs. Reasoning Horizon-aware monitoring (tests efficiency optimization). (7) Probe layer selection.\n\n**Explicit Failure Criteria**: (1) Probe AUROC < 0.80 on held-out FaithCoT-Bench data → faithfulness is not detectable from residual stream at step level (report as negative finding). (2) Faithfulness improvement < 2% over greedy decoding → step-level rejection doesn't help. (3) Accuracy degradation > 3% → faithfulness enforcement destroys correctness. (4) Hidden-state similarity between original and regenerated steps > 0.95 in > 50% of cases despite diversity mechanisms → forced diversity doesn't create alternative computation paths (report as evidence supporting Hidden Error Awareness's 'same computation' thesis). (5) SFGRD performs ≤ DHC with faithfulness probes → rejection sampling offers no advantage over beam search for faithfulness.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~120h H100 (pilot ~8h, probe training ~8h, primary experiments Qwen3.6-27B on GSM8K+GPQA ~40h, DHC baseline reproduction ~20h, ablations ~25h, DeepSeek-R1 replication ~19h)",
+      "gpu_utilization": "~25-30% effective utilization; GPU idles during experiment design, analysis, debugging",
+      "timeline": "6-8 weeks",
+      "team": "2 researchers (1 mechanistic interpretability/probing, 1 decoding/systems)",
+      "estimated_gpu_cost": "$360-480 (120h × $3.00-4.00/hr H100)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~130h H100 (same experiments + agent-driven threshold/temperature/diversity sweeps)",
+      "gpu_utilization": "~55-65% utilization; agent queues experiments, human approves design decisions at checkpoints",
+      "timeline": "2-3 weeks",
+      "team": "1 researcher, ~45min/day review",
+      "claude_api_cost": "$200-350 (2500-4500 turns)",
+      "estimated_gpu_cost": "$390-520 (130h × $3.00-4.00/hr H100)",
+      "risk_note": "If pilot AUROC < 0.80, human must decide whether to pivot to non-linear probes or accept negative result"
+    },
+    "auto_research": {
+      "gpu_hours": "~75h H100 for EMNLP 2026 scope (pilot 8h, probe training 8h, primary experiments Qwen3.6-27B on GSM8K+GPQA 25h, key baselines 15h, essential ablations 12h, buffer 7h); ~155h H100 for extended AAAI 2027 scope (adds DeepSeek-R1 replication 25h, full ablation suite 25h, PRM baseline 15h, additional analysis 15h)",
+      "gpu_utilization": "~85-90% utilization; parallel probe training across layers, pipelined evaluation",
+      "timeline": "EMNLP scope: 9 days with 1× H100 (~8h/day compute, bottleneck is paper writing not compute); Extended scope: 14 days with 2× H100",
+      "team": "0 (initial 2-hour setup: repo scaffold, compute provisioning, FaithCoT-Bench data download, Qwen3.6-27B weights cached)",
+      "claude_api_cost": "EMNLP scope: $200-350 (2500-4500 turns); Extended scope: $350-550 (4500-7000 turns)",
+      "estimated_gpu_cost": "EMNLP scope: $225-300 (75h × $3.00-4.00/hr H100); Extended scope: $465-620 (155h × $3.00-4.00/hr H100)",
+      "speed_bottleneck": "Inference throughput on 27B model during rejection loops; FUR unlearning protocol for synthetic label generation (requires multiple forward passes per step); paper writing in parallel with final experiments",
+      "risk_note": "Primary risk: faithfulness probes may not generalize from FaithCoT-Bench's math/logic domains to GPQA's knowledge-intensive questions (Illusion of Reasoning shows dramatic domain variation). Mitigation: if GPQA probe AUROC < 0.75, report domain-specific results (GSM8K only) as honest negative finding on generalization. Secondary risk: hidden-state diversity verification may show that all regenerated steps have >0.95 cosine similarity to originals, confirming Hidden Error Awareness's 'same computation' thesis—report as negative finding with quantitative evidence."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline May 25, 2026 — 9 days from today; commitment deadline Aug 2, 2026; primary target with reduced scope: pilot + proof-of-concept on Qwen3.6-27B)",
+    "AAAI 2027 (estimated abstract Jul 26, paper Aug 2, 2026 — backup target for extended version with DeepSeek-R1 replication and full ablation suite, if EMNLP scope proves insufficient)",
+    "ICLR 2027 (estimated abstract late Sep, paper early Oct 2026 — fallback if additional experiments needed)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Deep Hidden Cognition Facilitates Reliable Chain-of-Thought Reasoning (AAAI 2026, arXiv 2507.10007) — step-level probe-guided beam search for correctness; primary comparison point",
+    "Hidden Error Awareness in Chain-of-Thought Reasoning: The Signal Is Diagnostic, Not Causal (Preprint May 2026, arXiv 2605.09502) — shows trace-level interventions fail; motivates step-level approach and 'same computation' problem",
+    "Token-Guard: Towards Token-Level Hallucination Control via Self-Checking Decoding (ICLR 2026, arXiv 2601.21969) — token-level factual hallucination control via latent-space scoring with iterative regeneration; closest architectural competitor, differentiated on target (factuality vs. faithfulness) and granularity (token vs. step)",
+    "Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning (Preprint Feb 2026, arXiv 2602.11201) — introduces NLDD, documents Mapping Gap (correct internal representations not used in decoding) and Reasoning Horizon (70-85%); core theoretical challenge addressed head-on",
+    "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning (ICLR 2026, arXiv 2510.04040) — evaluation protocol, training data source, correct-unfaithful instances",
+    "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps (EMNLP 2025 Outstanding Paper) — FUR protocol for synthetic faithfulness label generation",
+    "Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought (Goodfire, Preprint Mar 2026, arXiv 2603.05488) — probes detect performative CoT at 87.98% accuracy; key feasibility evidence that internal-external divergence is probe-detectable",
+    "A Single Direction of Truth: An Observer Model's Linear Residual Probe Exposes and Steers Contextual Hallucinations (Preprint 2025, arXiv 2507.23221) — linear probe on residual stream isolates single direction separating faithful from hallucinated text; supports residual stream probe architecture",
+    "The Illusion of Reasoning: Step-Level Evaluation Reveals Decorative Chain-of-Thought in Frontier Language Models (Preprint Mar 2026, arXiv 2603.22816) — three reasoning modes (genuine/scaffolding/decoration), R1 91-93% necessity on math vs. 4% for V3.2; motivates domain-aware evaluation",
+    "STEP: Hidden States as Early Signals: Step-Level Trace Evaluation and Pruning for Efficient Test-Time Scaling (Preprint Jan 2026, arXiv 2601.09093) — lightweight step scorer on hidden states for trace pruning, 45-70% latency reduction; targets efficiency not faithfulness",
+    "ReProbe: Efficient Test-Time Scaling by Probing Internal States (Preprint Nov 2025, arXiv 2511.06209) — transformer-based probes (<10M params) on internal states matching PRMs 810x larger; demonstrates richness of internal states for reasoning verification",
+    "When Chain-of-Thought Fails, the Solution Hides in the Hidden States (Preprint 2026, arXiv 2604.23351) — demonstrates correct computations exist in hidden states when CoT text is wrong",
+    "Reasoning Models Don't Always Say What They Think (Anthropic 2025, arXiv 2505.05410) — documents faithfulness problem at scale",
+    "Streaming Hallucination Detection in Long Chain-of-Thought Reasoning (Preprint Jan 2026, arXiv 2601.02170) — streaming step-level detection (detection only, no intervention)",
+    "Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation (ACL 2025 Findings, arXiv 2503.03106) — token-level factuality monitoring with regeneration",
+    "ICR Probe: Tracking Hidden State Dynamics for Reliable Hallucination Detection in LLMs (ACL 2025, arXiv 2507.16488) — cross-layer hidden state dynamics for detection",
+    "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (Preprint May 2026, arXiv 2605.13772) — hidden-state geometry for step-level detection",
+    "FaithRL: Learning to Reason Faithfully through Step-Level Faithfulness Maximization (Preprint Feb 2026, arXiv 2602.03507) — training-time faithfulness RL",
+    "Balancing Faithfulness and Performance in Reasoning via Multi-Listener Soft Execution (REMUL, Preprint Feb 2026, arXiv 2602.16154) — multi-listener RL for faithfulness",
+    "Stop Rewarding Hallucinated Steps: Faithfulness-Aware Step-Level RL for Small Reasoning Models (Preprint Feb 2026, arXiv 2602.05897)",
+    "Counterfactual Simulation Training for Chain-of-Thought Faithfulness (Preprint Feb 2026, arXiv 2602.20710)",
+    "Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Reasoning Models? (Preprint Mar 2026, arXiv 2603.22582)",
+    "Reasoning Models Know When They're Right: Probing Hidden States for Self-Verification (Preprint Apr 2025, arXiv 2504.05419) — probe-based early exit"
+  ],
+  "description": "We propose Step-Level Faithfulness-Gated Rejection Decoding (SFGRD), which enforces CoT faithfulness as a hard constraint during generation. The work proceeds in two phases. Phase 1 is a feasibility pilot: we test whether linear probes on residual stream activations can distinguish faithful from unfaithful reasoning steps using FaithCoT-Bench's expert-annotated data—the core untested assumption, supported by indirect evidence from Reasoning Theater (probes detect performative CoT at 87.98% accuracy) and Single Direction of Truth (linear faithfulness direction in residual stream), but never directly validated for step-level faithfulness. Phase 2 is the SFGRD method: when a faithfulness probe detects that a reasoning step diverges from the model's internal computation, the step is rejected and regenerated with a novel multi-level diversity mechanism: (a) surface diversity via 4-gram suppression, (b) computational diversity verification via hidden-state cosine similarity between original and regenerated steps (directly testing whether surface diversity creates computational diversity, addressing Hidden Error Awareness's 'same computation' finding), and (c) conditioning perturbation as fallback (rephrasing the prefix to force genuinely different input conditioning). We engage head-on with the Mapping Gap (arXiv 2602.11201): models encode correct representations but fail to use them in decoding. We argue this SUPPORTS detection—the systematic divergence between internal state and output creates a learnable signal, and the probe need only detect WHEN the gap is large, not bridge it. SFGRD differs from Token-Guard (ICLR 2026) in targeting faithfulness (text vs. internal computation) rather than factuality (text vs. world knowledge), and operating at step rather than token granularity. It differs from DHC in targeting faithfulness rather than correctness, using residual stream rather than attention head probes, and employing rejection sampling with computational diversity verification rather than beam search. Informed by the Reasoning Horizon finding (steps beyond 70-85% of chain length are causally negligible), we optionally concentrate monitoring on early/middle steps. Evaluated on Qwen3.6-27B across GSM8K and GPQA (testing generalization given Illusion of Reasoning's dramatic domain variation), with DHC reproduction, self-consistency, and best-of-N as baselines. Explicit failure criteria: probe AUROC <0.80 falsifies the core assumption; faithfulness improvement <2% falsifies the approach; hidden-state similarity >0.95 in >50% of regenerations confirms the 'same computation' thesis.",
+  "project_name": "faithful_cot_sfgrd",
+  "source": "web_research"
+}
+```
+
+**Summary of changes (major revision):**
+
+1. **Venue fixed**: EMNLP 2026 (ARR May 25) is now the primary target with reduced scope (pilot + proof-of-concept on single model). AAAI 2027 is backup for extended version.
+
+2. **Token-Guard engaged**: Explicitly differentiated on target (factuality vs. faithfulness), granularity (token vs. step), and detection method (unsupervised cosine similarity vs. trained probes). Added as baseline ablation.
+
+3. **Mapping Gap addressed head-on**: Reframed from threat to support — the systematic internal-external divergence IS the signal probes learn to detect. We don't bridge the gap, we detect WHEN it's large.
+
+4. **Feasibility pilot added**: Phase 1 validates the core assumption (<10 H100-hours) using FaithCoT-Bench cached activations before committing to full pipeline. Go/no-go at 0.80 AUROC.
+
+5. **N-gram blocking replaced with multi-level diversity**: (a) Surface diversity (n-gram blocking), (b) Computational diversity verification via hidden-state cosine similarity between original and regenerated steps (novel — directly measures whether regeneration produces different computation), (c) Conditioning perturbation as fallback. Explicit ablation designed to test the "same computation" hypothesis.
+
+6. **Missing competitors added**: Token-Guard, STEP, ReProbe, Mechanistic Evidence for Faithfulness Decay, Illusion of Reasoning, Reasoning Theater, Single Direction of Truth — all with clear differentiation.
+
+7. **Model updated**: Qwen3.6-27B (April 2026) replaces Qwen3.5-27B.
+
+8. **FUR label mismatch acknowledged**: FaithCoT-Bench expert annotations are primary ground truth; FUR is secondary with explicit acknowledgment that parametric and representational faithfulness may differ.
+
+9. **Reasoning Horizon incorporated**: Optional efficiency optimization concentrating monitoring on steps 1–k* (70-85% of chain length).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82a0decd-df03-4be9-b1a7-f08a556b91a3",
+  "isSidechain": false,
+  "requestId": "req_011Cb5wjQhz8X3y9j3fTiWTV",
+  "type": "assistant",
+  "uuid": "c6f9fd80-f626-41e1-b8ac-facf078e7db0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WHPGkSEshf3TJcm3JDYvqT",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2996,
+      "cache_read_input_tokens": 47133,
+      "output_tokens": 15979,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2996,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 15979,
+          "cache_read_input_tokens": 47133,
+          "cache_creation_input_tokens": 2996,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2996
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 97_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Step-Level Faithfulness-Gated Rejection Decoding: Enforcing CoT Faithf…",
+  "leafUuid": "c6f9fd80-f626-41e1-b8ac-facf078e7db0",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-level faithfulness detection during CoT generation",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 99_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-16 (UTC).**  ## Original idea {   \"title\": \"Step-Level Faithfulness-Gated Rejection Decoding: Enforcing CoT Faithf…",
+  "leafUuid": "c6f9fd80-f626-41e1-b8ac-facf078e7db0",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 100_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Step-level faithfulness detection during CoT generation",
+  "sessionId": "63f75369-fce6-4e3c-a194-ced61c2364ea"
+}
+```
+
+---

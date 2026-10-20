@@ -1,0 +1,6792 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-16 (UTC).** Your job: indep
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 95
+- **Recorded user turns:** 1
+- **Tool calls:** 24
+- **Original source:** `logs/chats/exported-trajectories/account-3/a19e74ec-6a07-4e24-89d2-6d218f8de66d.jsonl`
+- **Structured JSON:** [`11b5f3efb3f84d387bf3.json`](../../sessions/11/11b5f3efb3f84d387bf3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T08:18:11.154Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T08:18:11.154Z",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-16 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (11 days from today 2026-05-14). Track: Generation.\n\nDirection: Faithfulness, hallucination reduction, and calibrated uncertainty in LLM generation. In-scope: hallucination detection via internal representations (linear probes on hidden states, attention patterns, logit signatures), decoding-time interventions that suppress hallucinated content, calibration of verbalized confidence so model uncertainty matches actual accuracy, faithful chain-of-thought (CoT reflects actual computation, not post-hoc rationalization), attribution-aware generation with provenance to source spans, fine-grained atomic-claim verification during or after generation. Cross-cutting with Interpretability and Language Modeling tracks — the contribution must improve GENERATION quality, not just analyze model internals.\n\nContribution type: METHOD ONLY. Must propose a concrete detection algorithm, decoding-time intervention, training recipe, or calibration method. Pure analysis (\"we found models hallucinate when X\") is out of scope. Method + faithfulness analysis OK if analysis validates the method.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Hallucination work is mostly inference + lightweight probe training — budget for forward passes across many prompts + small classifier heads (linear probes, MLPs on hidden states). Avoid full SFT of large models.\n2. Time: ≤11 days. Use existing open models (Llama-3, Qwen3, DeepSeek-R1 distills, Mistral) + existing hallucination/faithfulness benchmarks. Build on interpretability toolkits (TransformerLens, nnsight) for hidden-state extraction if needed.\n3. Eval: TruthfulQA, HaluEval, FaithBench, FActScore, FELM, SimpleQA, LongFact for hallucination detection/reduction; ECE / Brier score / selective accuracy for calibration; faithfulness metrics on CoT (causal interventions, unlearning probes); attribution precision/recall on ELI5-attributed, ExpertQA. Must report both hallucination reduction AND utility preservation (MT-Bench, MMLU) — don't kill helpfulness while suppressing hallucinations.\n\nWhy this matters now: EMNLP 2025 awarded TWO Outstanding Papers in this space (\"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations\", \"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps\"), and the second annual Uncertainty Quantification workshop was held alongside. Hallucination is THE blocking issue for LLM deployment in high-stakes domains, and methods that exploit internal representations (rather than external retrieval or RLHF) are an emerging frontier. Look for: representation-level hallucination detectors that generalize across model families, decoding-time refusal/abstention mechanisms triggered by uncertainty features, calibration methods that work without holdout data, faithful-by-construction reasoning architectures (vs. post-hoc rationalization), atomic-fact-level verification integrated into generation. Avoid: yet another hallucination benchmark, RLHF-from-scratch calibration training, prompt-only \"say I don't know\" tricks, retrieval-augmented faithfulness (covered by Seed 2). Distinguish from existing Interpretability seed: that seed focuses on interpretability METHODS (circuits, probes as tools); this seed uses interpretability TECHNIQUES as means to improve generation faithfulness — output-quality contribution must be primary.**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-16?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 2/10)\n{\n  \"title\": \"Miscalibration-Triggered Adaptive Generation via Logit-Level Intervention\",\n  \"core_problem\": \"Overconfident hallucinations (model asserts falsehoods with high verbal confidence despite internal epistemic uncertainty) are the most user-deceptive failure mode. Existing inference-time mitigation methods either use absolute uncertainty thresholds (missing calibrated predictions that happen to be uncertain) or rely on activation steering (which larger models actively resist via Endogenous Steering Resistance). No method targets the specific verbal-internal mismatch signal at the logit level during online generation with severity-graded responses.\",\n  \"opportunity\": \"Ji et al. (EMNLP 2025 Outstanding) proved verbal-internal uncertainty mismatch predicts hallucinations better than uncertainty alone, but only demonstrated offline binary activation intervention on short-form QA—an approach now shown to be undermined by ESR in larger models (arXiv 2602.06941). Meanwhile, obalcells et al. (arXiv 2509.03531) demonstrated real-time entity-level hallucination detection via linear probes with AUC >0.85, and AdaDec/UT-ACA proved that logit-level pause-and-rerank/rollback mechanisms work during generation. The opportunity is to combine the miscalibration trigger signal with ESR-immune logit-level intervention at entity granularity—something no existing work does. All building blocks are publicly available: VUF extraction code (Facebook Research), hallucination probes (obalcells/hallucination_probes), FActScore toolkit, and contrastive decoding implementations.\",\n  \"landscape\": \"Ji et al. (EMNLP 2025) showed ~30% reduction in overconfident hallucinations via linear activation intervention on the VUF direction, but only for short-form answers with binary logic, and ESR (arXiv 2602.06941, Feb 2026) demonstrates that Llama-3.3-70B actively resists activation steering mid-generation—invalidating this approach for larger models. DoLa (ICLR 2024) contrasts logits across layers for factuality (+12-17% on TruthfulQA) but uses layer disagreement, not miscalibration. ActLCD (EMNLP 2025) extends DoLa with RL-optimized layer selection (+19.81% on TruthfulQA) but still targets layer contrast, not verbal-semantic mismatch. AdaDec (arXiv 2506.08980) uses entropy thresholds for binary pause/rerank in code generation (+15.5% Pass@1) but is domain-specific and single-action. UT-ACA (arXiv 2603.18446) triggers rollback-regeneration via logit margin uncertainty for long-context QA but does not use miscalibration and targets context allocation, not factuality. Token-Aware ITI (TA-ITI, ICLR 2025) achieves +25.8% truthfulness via token-level intervention but still operates on internal activations, not logits, making it susceptible to ESR. Simple Factuality Probes (EMNLP 2025 Findings, obalcells et al.) detect entity-level hallucinations in real-time with linear probes (AUC 0.90 for Llama-3.3-70B) but only detect—no intervention mechanism. LoGU (ACL 2025) adds hedging via SFT+DPO training. CURE (arXiv 2604.12046) achieves 39.9% accuracy gain via multi-stage fine-tuning. No existing work combines: (a) miscalibration-based trigger (verbal vs. semantic uncertainty mismatch), (b) ESR-immune logit-level intervention, (c) graded action vocabulary (hedge vs. abstain), (d) fine-tuning-free online operation at entity granularity in long-form generation.\",\n  \"approach\": \"We propose MisTAG (Miscalibration-Triggered Adaptive Generation), a fine-tuning-free inference-time framework that monitors verbal-internal uncertainty mismatch at entity boundaries during long-form generation and triggers ESR-immune logit-level interventions graded by mismatch severity.\\n\\n**Miscalibration Detection**: At each entity span (detected via token-type patterns: capitalized tokens, numerals, named entities identified by the hallucination probe's entity-onset signal from obalcells et al.), we compute a miscalibration score as the discrepancy between (1) verbal confidence, extracted via projection onto the Verbal Uncertainty Feature direction (Ji et al.) in the residual stream, and (2) internal epistemic uncertainty, estimated via a lightweight linear factuality probe trained on hidden states. High verbal confidence + high probe-estimated hallucination probability = high miscalibration.\\n\\n**Graded Logit-Level Intervention** (two actions, ESR-immune since they operate on the output distribution, not internal activations):\\n- *Mild mismatch → Hedge*: Apply contrastive logit adjustment at the next token prediction: boost log-probabilities of uncertainty-expressing tokens ('likely', 'approximately', 'reportedly', 'possibly') and suppress assertive tokens ('definitely', 'certainly', 'clearly') using a learned logit bias vector. This is analogous to DoLa's contrastive approach but triggered by miscalibration rather than layer disagreement.\\n- *Severe mismatch → Abstain*: Rollback generation to the last sentence boundary (discard tokens and KV-cache entries, following UT-ACA's rollback mechanism), then regenerate with forced uncertainty prefix decoding (constrained decoding that begins the replacement sentence with an explicit epistemic marker like 'It is unclear whether...' or 'I'm not certain, but...').\\n\\n**Threshold Optimization**: Action thresholds (mild vs. severe) are jointly optimized on a small validation set (~200 examples) using a composite objective balancing FActScore precision, informativeness (response length preservation), and fluency (perplexity). We use a learned logistic regression boundary (following AdaDec's data-driven threshold approach) rather than hand-tuned cutoffs.\\n\\n**Evaluation**: We evaluate on Qwen3-8B and Qwen3-32B across four evaluation axes: (1) FActScore biographies and LongFact for factual precision, (2) MT-Bench for multi-turn dialogue quality preservation, (3) MMLU for knowledge retention verification. Baselines include: Ji et al.'s activation-based single intervention, DoLa contrastive decoding, ActLCD, greedy/nucleus decoding, and the detect-only hallucination probe (obalcells) without intervention.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~150h A100 80GB (VUF extraction 2 models ~10h, probe training ~10h, logit bias vector learning ~10h, threshold optimization ~20h, main experiments 2 models × 4 benchmarks ~70h, ablations ~30h)\",\n      \"gpu_utilization\": \"~35-40% effective utilization; GPU idles while researchers debug probe integration, analyze outputs, and iterate on threshold selection\",\n      \"timeline\": \"6-8 weeks\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"$225 (150h × ~$1.50/h on Lambda Labs/RunPod A100 80GB spot)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~200h A100 80GB (more systematic threshold sweeps and baseline comparisons, ~33% more experiments than manual)\",\n      \"gpu_utilization\": \"~55-65% effective utilization; agent fills gaps with automated evaluation pipelines\",\n      \"timeline\": \"3-4 weeks\",\n      \"team\": \"1 researcher, ~40min/day reviewing experiment proposals and validating generation quality\",\n      \"claude_api_cost\": \"$60-140 (600-1400 turns for code generation, experiment orchestration, result analysis)\",\n      \"estimated_gpu_cost\": \"$300 (200h × ~$1.50/h)\",\n      \"risk_note\": \"FActScore evaluation is the throughput bottleneck (atomic-fact verification is API-bound); MT-Bench requires LLM-judge calls that add latency\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~350h A100 80GB (broader threshold grid, multiple probe architectures, comprehensive ablation matrix, automatic error analysis)\",\n      \"gpu_utilization\": \">90% effective utilization; continuous pipelining of extraction → probing → generation → evaluation\",\n      \"timeline\": \"10-14 days with 2× A100 80GB (parallelized across 2 target models plus ablation variants)\",\n      \"team\": \"0 (initial setup only: provide HuggingFace model access tokens, FActScore API credentials, codebase pointers)\",\n      \"claude_api_cost\": \"$150-350 (1500-3500 turns for end-to-end implementation, debugging, evaluation, and paper drafting)\",\n      \"estimated_gpu_cost\": \"$525 (350h × ~$1.50/h)\",\n      \"speed_bottleneck\": \"FActScore atomic-fact verification throughput (API-rate-limited) and MT-Bench LLM-judge evaluation\",\n      \"risk_note\": \"Automated threshold optimization may converge to precision-heavy solutions; Qwen3-32B at FP16 requires ~64GB VRAM leaving limited headroom for hidden state extraction (INT8 quantization may be needed, which could affect probe quality)\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline: May 25, 2026; conference: October 24-29, Budapest)\",\n    \"AAAI 2027 (expected deadline: ~August 2026; conference: February 16-23, Montréal)\",\n    \"ICLR 2027 (expected deadline: ~October 2026)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (Ji et al., EMNLP 2025 Outstanding)\",\n    \"Endogenous Resistance to Activation Steering in Language Models (arXiv 2602.06941, Feb 2026)\",\n    \"Real-Time Detection of Hallucinated Entities in Long-Form Generation (obalcells et al., arXiv 2509.03531)\",\n    \"DoLa: Decoding by Contrasting Layers Improves Factuality in Large Language Models (ICLR 2024)\",\n    \"Active Layer-Contrastive Decoding Reduces Hallucination in Large Language Model Generation (ActLCD, EMNLP 2025)\",\n    \"Towards Better Code Generation: Adaptive Decoding with Uncertainty Guidance (AdaDec, arXiv 2506.08980)\",\n    \"UT-ACA: Uncertainty-Triggered Adaptive Context Allocation for Long-Context Inference (arXiv 2603.18446)\",\n    \"Token-Aware Inference-Time Intervention for Large Language Model Alignment (TA-ITI, ICLR 2025)\",\n    \"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation (EMNLP 2023)\",\n    \"FACTORY: A Challenging Human-Verified Prompt Set for Long-Form Factuality (arXiv 2508.00109)\",\n    \"Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation (ICLR 2023)\",\n    \"LoGU: Long-form Generation with Uncertainty Expressions (ACL 2025)\"\n  ],\n  \"description\": \"Overconfident hallucinations—where an LLM asserts falsehoods with high verbal confidence despite internal epistemic uncertainty—are the most user-deceptive failure mode. Ji et al. (EMNLP 2025) proved verbal-internal mismatch predicts hallucinations, but their activation steering intervention is undermined by Endogenous Steering Resistance (ESR) in larger models. We propose MisTAG, a fine-tuning-free inference-time framework that monitors verbal-internal uncertainty mismatch at entity boundaries (leveraging obalcells et al.'s real-time entity detection probes) and triggers ESR-immune logit-level interventions: contrastive logit bias to boost hedging tokens for mild miscalibration, and sentence-level rollback with constrained uncertainty-prefix regeneration for severe cases. Unlike activation steering, logit manipulation operates on the final output distribution and cannot be internally resisted. Thresholds are optimized via data-driven logistic regression on a small validation set. We evaluate on Qwen3-8B and Qwen3-32B across FActScore biographies and LongFact (factual precision), with MT-Bench and MMLU (utility preservation), comparing against Ji et al.'s activation intervention, DoLa, ActLCD, and detect-only baselines. The primary contribution is the first system unifying miscalibration-based triggering with ESR-immune logit-level graded intervention for online long-form factual generation.\",\n  \"project_name\": \"mistag_gen_control\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"Endogenous Steering Resistance (ESR, arxiv 2602.06941, Feb 2026) shows that larger LLMs can resist and override activation steering mid-generation. This directly undermines the 'hedge insertion via activation steering along VUF direction' mechanism, especially for Llama 4 Maverick (400B params). The paper shows Llama-3.3-70B exhibits substantial ESR—larger models like Maverick will likely resist more.\", \"Online per-claim segmentation during autoregressive generation is never specified. How do you identify claim boundaries in real-time? FActScore-style decomposition uses a separate LLM call post-hoc. Token-level probes (like the Real-Time Detection paper, arxiv 2509.03531) avoid this problem by working at token level. The proposal conflates 'per-claim' monitoring with 'online' generation without addressing this fundamental tension.\", \"Citation injection ('pause generation to retrieve and inject supporting citations') requires interrupting autoregressive generation, performing retrieval, and conditioning further generation on retrieved passages. This means modifying the KV-cache, potentially resetting generation state, or using a complex interleaving mechanism. No existing system does this reliably mid-generation without explicit architecture support (like RETRO). The mechanism is undefined.\", \"'Training-free' claim is misleading: factuality probes require supervised training on labeled hallucination data, VUF extraction requires contrastive data collection, and threshold optimization requires a labeled validation set. The system is 'LLM fine-tuning-free' but still requires substantial supervised signal. This distinction matters for positioning against baselines.\", \"Llama 4 Maverick (400B total MoE params, 17B active) requires minimum 4x A100 80GB even with INT4 quantization for inference. Hidden state extraction for probing during generation significantly increases memory requirements (storing intermediate activations). The 200 A100-hour budget for 3 models × 3 benchmarks including this 400B model is unrealistically tight.\", \"Missing MT-Bench and MMLU evaluation—the user's hard constraints require 'utility preservation' metrics, but the proposal only mentions FActScore-based optimization and three factuality benchmarks. Without explicit utility metrics, the paper cannot demonstrate it 'doesn't kill helpfulness while suppressing hallucinations.'\", \"11-day timeline is extremely aggressive for a system with this many interacting components: VUF extraction for 3 new models, probe training, multi-action policy implementation, threshold optimization, RAG integration for citation injection, FActScore evaluation (API-rate-limited), ablations across 3 models × 3 benchmarks, plus paper writing.\"]\nFeedback: The idea has a solid conceptual foundation but faces critical execution gaps. Priority revisions: (1) **Drop activation steering for hedging** — ESR makes it unreliable for larger models. Replace with token-probability manipulation (e.g., boost uncertainty-expressing tokens via logit bias) or constrained decoding that forces hedge tokens when mismatch is detected. (2) **Switch from per-claim to per-sentence or per-entity monitoring** — use sentence boundaries (easily detected via punctuation tokens) or entity-span boundaries (using the obalcells/hallucination_probes token-level approach) instead of undefined 'claim' boundaries. (3) **Simplify to two actions** (hedge + abstain) and drop citation injection — mid-generation RAG is an unsolved architectural challenge that deserves its own paper. You can mention it as future work. (4) **Replace Llama 4 Maverick with Llama 3.1 70B or Qwen3-32B** — these fit on 1-2 A100s with room for hidden state extraction, making the compute budget realistic. (5) **Rename 'training-free' to 'fine-tuning-free'** to be honest about the probe training and threshold optimization requirements. (6) **Add explicit utility preservation evaluation**: MT-Bench and MMLU as required by the user constraints. (7) **Scope reduction for 11-day timeline**: focus on 2 models, 2 benchmarks, 2 actions — a clean, focused contribution is publishable; an overscoped half-finished one is not.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T08:18:11.160Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T08:18:11.160Z",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+## Round 1
+
+93 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T08:18:11.196Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-16 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (11 days from today 2026-05-14). Track: Generation.
+
+Direction: Faithfulness, hallucination reduction, and calibrated uncertainty in LLM generation. In-scope: hallucination detection via internal representations (linear probes on hidden states, attention patterns, logit signatures), decoding-time interventions that suppress hallucinated content, calibration of verbalized confidence so model uncertainty matches actual accuracy, faithful chain-of-thought (CoT reflects actual computation, not post-hoc rationalization), attribution-aware generation with provenance to source spans, fine-grained atomic-claim verification during or after generation. Cross-cutting with Interpretability and Language Modeling tracks — the contribution must improve GENERATION quality, not just analyze model internals.
+
+Contribution type: METHOD ONLY. Must propose a concrete detection algorithm, decoding-time intervention, training recipe, or calibration method. Pure analysis ("we found models hallucinate when X") is out of scope. Method + faithfulness analysis OK if analysis validates the method.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Hallucination work is mostly inference + lightweight probe training — budget for forward passes across many prompts + small classifier heads (linear probes, MLPs on hidden states). Avoid full SFT of large models.
+2. Time: ≤11 days. Use existing open models (Llama-3, Qwen3, DeepSeek-R1 distills, Mistral) + existing hallucination/faithfulness benchmarks. Build on interpretability toolkits (TransformerLens, nnsight) for hidden-state extraction if needed.
+3. Eval: TruthfulQA, HaluEval, FaithBench, FActScore, FELM, SimpleQA, LongFact for hallucination detection/reduction; ECE / Brier score / selective accuracy for calibration; faithfulness metrics on CoT (causal interventions, unlearning probes); attribution precision/recall on ELI5-attributed, ExpertQA. Must report both hallucination reduction AND utility preservation (MT-Bench, MMLU) — don't kill helpfulness while suppressing hallucinations.
+
+Why this matters now: EMNLP 2025 awarded TWO Outstanding Papers in this space ("Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations", "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps"), and the second annual Uncertainty Quantification workshop was held alongside. Hallucination is THE blocking issue for LLM deployment in high-stakes domains, and methods that exploit internal representations (rather than external retrieval or RLHF) are an emerging frontier. Look for: representation-level hallucination detectors that generalize across model families, decoding-time refusal/abstention mechanisms triggered by uncertainty features, calibration methods that work without holdout data, faithful-by-construction reasoning architectures (vs. post-hoc rationalization), atomic-fact-level verification integrated into generation. Avoid: yet another hallucination benchmark, RLHF-from-scratch calibration training, prompt-only "say I don't know" tricks, retrieval-augmented faithfulness (covered by Seed 2). Distinguish from existing Interpretability seed: that seed focuses on interpretability METHODS (circuits, probes as tools); this seed uses interpretability TECHNIQUES as means to improve generation faithfulness — output-quality contribution must be primary.**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-16?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 2/10)
+{
+  "title": "Miscalibration-Triggered Adaptive Generation via Logit-Level Intervention",
+  "core_problem": "Overconfident hallucinations (model asserts falsehoods with high verbal confidence despite internal epistemic uncertainty) are the most user-deceptive failure mode. Existing inference-time mitigation methods either use absolute uncertainty thresholds (missing calibrated predictions that happen to be uncertain) or rely on activation steering (which larger models actively resist via Endogenous Steering Resistance). No method targets the specific verbal-internal mismatch signal at the logit level during online generation with severity-graded responses.",
+  "opportunity": "Ji et al. (EMNLP 2025 Outstanding) proved verbal-internal uncertainty mismatch predicts hallucinations better than uncertainty alone, but only demonstrated offline binary activation intervention on short-form QA—an approach now shown to be undermined by ESR in larger models (arXiv 2602.06941). Meanwhile, obalcells et al. (arXiv 2509.03531) demonstrated real-time entity-level hallucination detection via linear probes with AUC >0.85, and AdaDec/UT-ACA proved that logit-level pause-and-rerank/rollback mechanisms work during generation. The opportunity is to combine the miscalibration trigger signal with ESR-immune logit-level intervention at entity granularity—something no existing work does. All building blocks are publicly available: VUF extraction code (Facebook Research), hallucination probes (obalcells/hallucination_probes), FActScore toolkit, and contrastive decoding implementations.",
+  "landscape": "Ji et al. (EMNLP 2025) showed ~30% reduction in overconfident hallucinations via linear activation intervention on the VUF direction, but only for short-form answers with binary logic, and ESR (arXiv 2602.06941, Feb 2026) demonstrates that Llama-3.3-70B actively resists activation steering mid-generation—invalidating this approach for larger models. DoLa (ICLR 2024) contrasts logits across layers for factuality (+12-17% on TruthfulQA) but uses layer disagreement, not miscalibration. ActLCD (EMNLP 2025) extends DoLa with RL-optimized layer selection (+19.81% on TruthfulQA) but still targets layer contrast, not verbal-semantic mismatch. AdaDec (arXiv 2506.08980) uses entropy thresholds for binary pause/rerank in code generation (+15.5% Pass@1) but is domain-specific and single-action. UT-ACA (arXiv 2603.18446) triggers rollback-regeneration via logit margin uncertainty for long-context QA but does not use miscalibration and targets context allocation, not factuality. Token-Aware ITI (TA-ITI, ICLR 2025) achieves +25.8% truthfulness via token-level intervention but still operates on internal activations, not logits, making it susceptible to ESR. Simple Factuality Probes (EMNLP 2025 Findings, obalcells et al.) detect entity-level hallucinations in real-time with linear probes (AUC 0.90 for Llama-3.3-70B) but only detect—no intervention mechanism. LoGU (ACL 2025) adds hedging via SFT+DPO training. CURE (arXiv 2604.12046) achieves 39.9% accuracy gain via multi-stage fine-tuning. No existing work combines: (a) miscalibration-based trigger (verbal vs. semantic uncertainty mismatch), (b) ESR-immune logit-level intervention, (c) graded action vocabulary (hedge vs. abstain), (d) fine-tuning-free online operation at entity granularity in long-form generation.",
+  "approach": "We propose MisTAG (Miscalibration-Triggered Adaptive Generation), a fine-tuning-free inference-time framework that monitors verbal-internal uncertainty mismatch at entity boundaries during long-form generation and triggers ESR-immune logit-level interventions graded by mismatch severity.\n\n**Miscalibration Detection**: At each entity span (detected via token-type patterns: capitalized tokens, numerals, named entities identified by the hallucination probe's entity-onset signal from obalcells et al.), we compute a miscalibration score as the discrepancy between (1) verbal confidence, extracted via projection onto the Verbal Uncertainty Feature direction (Ji et al.) in the residual stream, and (2) internal epistemic uncertainty, estimated via a lightweight linear factuality probe trained on hidden states. High verbal confidence + high probe-estimated hallucination probability = high miscalibration.\n\n**Graded Logit-Level Intervention** (two actions, ESR-immune since they operate on the output distribution, not internal activations):\n- *Mild mismatch → Hedge*: Apply contrastive logit adjustment at the next token prediction: boost log-probabilities of uncertainty-expressing tokens ('likely', 'approximately', 'reportedly', 'possibly') and suppress assertive tokens ('definitely', 'certainly', 'clearly') using a learned logit bias vector. This is analogous to DoLa's contrastive approach but triggered by miscalibration rather than layer disagreement.\n- *Severe mismatch → Abstain*: Rollback generation to the last sentence boundary (discard tokens and KV-cache entries, following UT-ACA's rollback mechanism), then regenerate with forced uncertainty prefix decoding (constrained decoding that begins the replacement sentence with an explicit epistemic marker like 'It is unclear whether...' or 'I'm not certain, but...').\n\n**Threshold Optimization**: Action thresholds (mild vs. severe) are jointly optimized on a small validation set (~200 examples) using a composite objective balancing FActScore precision, informativeness (response length preservation), and fluency (perplexity). We use a learned logistic regression boundary (following AdaDec's data-driven threshold approach) rather than hand-tuned cutoffs.\n\n**Evaluation**: We evaluate on Qwen3-8B and Qwen3-32B across four evaluation axes: (1) FActScore biographies and LongFact for factual precision, (2) MT-Bench for multi-turn dialogue quality preservation, (3) MMLU for knowledge retention verification. Baselines include: Ji et al.'s activation-based single intervention, DoLa contrastive decoding, ActLCD, greedy/nucleus decoding, and the detect-only hallucination probe (obalcells) without intervention.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~150h A100 80GB (VUF extraction 2 models ~10h, probe training ~10h, logit bias vector learning ~10h, threshold optimization ~20h, main experiments 2 models × 4 benchmarks ~70h, ablations ~30h)",
+      "gpu_utilization": "~35-40% effective utilization; GPU idles while researchers debug probe integration, analyze outputs, and iterate on threshold selection",
+      "timeline": "6-8 weeks",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$225 (150h × ~$1.50/h on Lambda Labs/RunPod A100 80GB spot)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~200h A100 80GB (more systematic threshold sweeps and baseline comparisons, ~33% more experiments than manual)",
+      "gpu_utilization": "~55-65% effective utilization; agent fills gaps with automated evaluation pipelines",
+      "timeline": "3-4 weeks",
+      "team": "1 researcher, ~40min/day reviewing experiment proposals and validating generation quality",
+      "claude_api_cost": "$60-140 (600-1400 turns for code generation, experiment orchestration, result analysis)",
+      "estimated_gpu_cost": "$300 (200h × ~$1.50/h)",
+      "risk_note": "FActScore evaluation is the throughput bottleneck (atomic-fact verification is API-bound); MT-Bench requires LLM-judge calls that add latency"
+    },
+    "auto_research": {
+      "gpu_hours": "~350h A100 80GB (broader threshold grid, multiple probe architectures, comprehensive ablation matrix, automatic error analysis)",
+      "gpu_utilization": ">90% effective utilization; continuous pipelining of extraction → probing → generation → evaluation",
+      "timeline": "10-14 days with 2× A100 80GB (parallelized across 2 target models plus ablation variants)",
+      "team": "0 (initial setup only: provide HuggingFace model access tokens, FActScore API credentials, codebase pointers)",
+      "claude_api_cost": "$150-350 (1500-3500 turns for end-to-end implementation, debugging, evaluation, and paper drafting)",
+      "estimated_gpu_cost": "$525 (350h × ~$1.50/h)",
+      "speed_bottleneck": "FActScore atomic-fact verification throughput (API-rate-limited) and MT-Bench LLM-judge evaluation",
+      "risk_note": "Automated threshold optimization may converge to precision-heavy solutions; Qwen3-32B at FP16 requires ~64GB VRAM leaving limited headroom for hidden state extraction (INT8 quantization may be needed, which could affect probe quality)"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline: May 25, 2026; conference: October 24-29, Budapest)",
+    "AAAI 2027 (expected deadline: ~August 2026; conference: February 16-23, Montréal)",
+    "ICLR 2027 (expected deadline: ~October 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations (Ji et al., EMNLP 2025 Outstanding)",
+    "Endogenous Resistance to Activation Steering in Language Models (arXiv 2602.06941, Feb 2026)",
+    "Real-Time Detection of Hallucinated Entities in Long-Form Generation (obalcells et al., arXiv 2509.03531)",
+    "DoLa: Decoding by Contrasting Layers Improves Factuality in Large Language Models (ICLR 2024)",
+    "Active Layer-Contrastive Decoding Reduces Hallucination in Large Language Model Generation (ActLCD, EMNLP 2025)",
+    "Towards Better Code Generation: Adaptive Decoding with Uncertainty Guidance (AdaDec, arXiv 2506.08980)",
+    "UT-ACA: Uncertainty-Triggered Adaptive Context Allocation for Long-Context Inference (arXiv 2603.18446)",
+    "Token-Aware Inference-Time Intervention for Large Language Model Alignment (TA-ITI, ICLR 2025)",
+    "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation (EMNLP 2023)",
+    "FACTORY: A Challenging Human-Verified Prompt Set for Long-Form Factuality (arXiv 2508.00109)",
+    "Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation (ICLR 2023)",
+    "LoGU: Long-form Generation with Uncertainty Expressions (ACL 2025)"
+  ],
+  "description": "Overconfident hallucinations—where an LLM asserts falsehoods with high verbal confidence despite internal epistemic uncertainty—are the most user-deceptive failure mode. Ji et al. (EMNLP 2025) proved verbal-internal mismatch predicts hallucinations, but their activation steering intervention is undermined by Endogenous Steering Resistance (ESR) in larger models. We propose MisTAG, a fine-tuning-free inference-time framework that monitors verbal-internal uncertainty mismatch at entity boundaries (leveraging obalcells et al.'s real-time entity detection probes) and triggers ESR-immune logit-level interventions: contrastive logit bias to boost hedging tokens for mild miscalibration, and sentence-level rollback with constrained uncertainty-prefix regeneration for severe cases. Unlike activation steering, logit manipulation operates on the final output distribution and cannot be internally resisted. Thresholds are optimized via data-driven logistic regression on a small validation set. We evaluate on Qwen3-8B and Qwen3-32B across FActScore biographies and LongFact (factual precision), with MT-Bench and MMLU (utility preservation), comparing against Ji et al.'s activation intervention, DoLa, ActLCD, and detect-only baselines. The primary contribution is the first system unifying miscalibration-based triggering with ESR-immune logit-level graded intervention for online long-form factual generation.",
+  "project_name": "mistag_gen_control",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["Endogenous Steering Resistance (ESR, arxiv 2602.06941, Feb 2026) shows that larger LLMs can resist and override activation steering mid-generation. This directly undermines the 'hedge insertion via activation steering along VUF direction' mechanism, especially for Llama 4 Maverick (400B params). The paper shows Llama-3.3-70B exhibits substantial ESR—larger models like Maverick will likely resist more.", "Online per-claim segmentation during autoregressive generation is never specified. How do you identify claim boundaries in real-time? FActScore-style decomposition uses a separate LLM call post-hoc. Token-level probes (like the Real-Time Detection paper, arxiv 2509.03531) avoid this problem by working at token level. The proposal conflates 'per-claim' monitoring with 'online' generation without addressing this fundamental tension.", "Citation injection ('pause generation to retrieve and inject supporting citations') requires interrupting autoregressive generation, performing retrieval, and conditioning further generation on retrieved passages. This means modifying the KV-cache, potentially resetting generation state, or using a complex interleaving mechanism. No existing system does this reliably mid-generation without explicit architecture support (like RETRO). The mechanism is undefined.", "'Training-free' claim is misleading: factuality probes require supervised training on labeled hallucination data, VUF extraction requires contrastive data collection, and threshold optimization requires a labeled validation set. The system is 'LLM fine-tuning-free' but still requires substantial supervised signal. This distinction matters for positioning against baselines.", "Llama 4 Maverick (400B total MoE params, 17B active) requires minimum 4x A100 80GB even with INT4 quantization for inference. Hidden state extraction for probing during generation significantly increases memory requirements (storing intermediate activations). The 200 A100-hour budget for 3 models × 3 benchmarks including this 400B model is unrealistically tight.", "Missing MT-Bench and MMLU evaluation—the user's hard constraints require 'utility preservation' metrics, but the proposal only mentions FActScore-based optimization and three factuality benchmarks. Without explicit utility metrics, the paper cannot demonstrate it 'doesn't kill helpfulness while suppressing hallucinations.'", "11-day timeline is extremely aggressive for a system with this many interacting components: VUF extraction for 3 new models, probe training, multi-action policy implementation, threshold optimization, RAG integration for citation injection, FActScore evaluation (API-rate-limited), ablations across 3 models × 3 benchmarks, plus paper writing."]
+Feedback: The idea has a solid conceptual foundation but faces critical execution gaps. Priority revisions: (1) **Drop activation steering for hedging** — ESR makes it unreliable for larger models. Replace with token-probability manipulation (e.g., boost uncertainty-expressing tokens via logit bias) or constrained decoding that forces hedge tokens when mismatch is detected. (2) **Switch from per-claim to per-sentence or per-entity monitoring** — use sentence boundaries (easily detected via punctuation tokens) or entity-span boundaries (using the obalcells/hallucination_probes token-level approach) instead of undefined 'claim' boundaries. (3) **Simplify to two actions** (hedge + abstain) and drop citation injection — mid-generation RAG is an unsolved architectural challenge that deserves its own paper. You can mention it as future work. (4) **Replace Llama 4 Maverick with Llama 3.1 70B or Qwen3-32B** — these fit on 1-2 A100s with room for hidden state extraction, making the compute budget realistic. (5) **Rename 'training-free' to 'fine-tuning-free'** to be honest about the probe training and threshold optimization requirements. (6) **Add explicit utility preservation evaluation**: MT-Bench and MMLU as required by the user constraints. (7) **Scope reduction for 11-day timeline**: focus on 2 models, 2 benchmarks, 2 actions — a clean, focused contribution is publishable; an overscoped half-finished one is not.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "ff823324-7f6f-4193-ad64-2e89d8ccaf0f",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T08:18:11.193Z_
+
+```json
+{
+  "parentUuid": "ff823324-7f6f-4193-ad64-2e89d8ccaf0f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "613437a7-e429-444c-acbd-68480dfbdc59",
+  "timestamp": "2026-05-16T08:18:11.193Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T08:18:11.193Z_
+
+```json
+{
+  "parentUuid": "613437a7-e429-444c-acbd-68480dfbdc59",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "2d462111-dc4f-45bd-be7f-c4d63db997bd",
+  "timestamp": "2026-05-16T08:18:11.193Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2d462111-dc4f-45bd-be7f-c4d63db997bd",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Miscalibration-triggered adaptive generation via logit intervention",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T08:18:22.677Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this revised idea (MisTAG - Miscalibration-Triggered Adaptive Generation via Logit-Level Intervention). This is round 2/10, so I need to independently verify claims, check novelty, feasibility, and whether the revisions adequately address round 1 issues.
+
+Let me start by identifying what was revised from round 1:
+1. Dropped activation steering for hedging → replaced with logit-level intervention (contrastive logit bias)
+
+
+2. Shifted from monitoring individual claims to tracking entity-level patterns
+3. Narrowed the intervention toolkit to hedging and abstention, removing citation injection
+4. Swapped out Llama 4 Maverick for Qwen3-8B and Qwen3-32B as the base models
+5. Reframed the approach as "fine-tuning-free" rather than "training-free"
+6. Added MT-Bench and MMLU to the evaluation suite
+7. Tightened the overall scope
+
+These revisions seem to address the main concerns from round 1. Now I need to verify whether the foundational papers actually support these claims—specifically checking if the ESR paper exists and whether Ji et al.'s work at EMNLP actually covers what's being cited here.
+
+I should also verify the obalcells et al. reference, assess whether the novelty claim holds up (whether anyone else has combined miscalibration triggers with logit-level interventions), sanity-check the resource estimates, and see if there are other relevant works that got overlooked. Let me start digging into these.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d462111-dc4f-45bd-be7f-c4d63db997bd",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vFBaZTnE78eF8dBSu3",
+  "type": "assistant",
+  "uuid": "71516a57-a386-44c2-ab16-0a8ed8c05aac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLWuN33MMZwbbjHCr3bjKP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13784,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 464,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13784,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 464,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13784,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13784
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T08:18:22.680Z_
+
+I'll conduct an independent verification of this revised idea's claims, checking key references, novelty, and feasibility.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71516a57-a386-44c2-ab16-0a8ed8c05aac",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vFBaZTnE78eF8dBSu3",
+  "type": "assistant",
+  "uuid": "bfce503d-c210-4308-889c-acd7bcaabd3b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLWuN33MMZwbbjHCr3bjKP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13784,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 464,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13784,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 464,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13784,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13784
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T08:18:22.853Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0122FfqPn9KvuueQiiZnEUki`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bfce503d-c210-4308-889c-acd7bcaabd3b",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vFBaZTnE78eF8dBSu3",
+  "type": "assistant",
+  "uuid": "4c773219-68f2-442b-a3e9-1627300795b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLWuN33MMZwbbjHCr3bjKP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13784,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 464,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13784,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 464,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13784,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13784
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T08:18:22.859Z_
+
+<details><summary>↩ Tool result · `toolu_0122FfqPn9KvuueQiiZnEUki`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4c773219-68f2-442b-a3e9-1627300795b3",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "51423c06-754f-48ef-8a40-b95a16ee1318",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "4c773219-68f2-442b-a3e9-1627300795b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-16T08:18:27.205Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now search for the key claims in this paper. I'll start with multiple parallel searches to verify the core references and check for competing work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51423c06-754f-48ef-8a40-b95a16ee1318",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vG3UfwgCfsqErimyJP",
+  "type": "assistant",
+  "uuid": "d8bd138c-ba58-4468-a101-b0c1b4e4c4ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GTsonT6Y7Vxt4SsWEKXoaP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1484,
+      "cache_read_input_tokens": 25625,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1484,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 25625,
+          "cache_creation_input_tokens": 1484,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1484
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-16T08:18:28.166Z_
+
+Starting my independent verification of this idea's claims. Let me search for the key references and competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8bd138c-ba58-4468-a101-b0c1b4e4c4ab",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vG3UfwgCfsqErimyJP",
+  "type": "assistant",
+  "uuid": "2cde1eba-86e9-46e7-ae95-0860189e93c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GTsonT6Y7Vxt4SsWEKXoaP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1484,
+      "cache_read_input_tokens": 25625,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1484,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 25625,
+          "cache_creation_input_tokens": 1484,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1484
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T08:18:29.010Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NQBBSNJLY84cx2WLUPjk3V`</summary>
+
+```json
+{
+  "query": "Ji et al. \"Calibrating Verbal Uncertainty as a Linear Feature\" EMNLP 2025 Outstanding Paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2cde1eba-86e9-46e7-ae95-0860189e93c6",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vG3UfwgCfsqErimyJP",
+  "type": "assistant",
+  "uuid": "e1569a68-7962-424d-a5c9-b5b617472781",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GTsonT6Y7Vxt4SsWEKXoaP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1484,
+      "cache_read_input_tokens": 25625,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1484,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 25625,
+          "cache_creation_input_tokens": 1484,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1484
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T08:18:29.692Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JprHjNkWdRHaFhfYR48uNV`</summary>
+
+```json
+{
+  "query": "\"Endogenous Steering Resistance\" activation steering language models arxiv 2602.06941 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1569a68-7962-424d-a5c9-b5b617472781",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vG3UfwgCfsqErimyJP",
+  "type": "assistant",
+  "uuid": "2783b197-da74-491f-b574-9fc5e21f8052",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GTsonT6Y7Vxt4SsWEKXoaP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1484,
+      "cache_read_input_tokens": 25625,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1484,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 25625,
+          "cache_creation_input_tokens": 1484,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1484
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T08:18:30.322Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Gs8kdb77BT4XTX2Vb1VcAn`</summary>
+
+```json
+{
+  "query": "obalcells \"Real-Time Detection of Hallucinated Entities\" hallucination probes arxiv 2509.03531"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2783b197-da74-491f-b574-9fc5e21f8052",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vG3UfwgCfsqErimyJP",
+  "type": "assistant",
+  "uuid": "c2caa001-1007-4029-8270-f4cbb21b982b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GTsonT6Y7Vxt4SsWEKXoaP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1484,
+      "cache_read_input_tokens": 25625,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1484,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 25625,
+          "cache_creation_input_tokens": 1484,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1484
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T08:18:30.475Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ShZ4587ncgX7GdJT4DDdoJ`</summary>
+
+```json
+{
+  "query": "\"Token-Aware Inference-Time Intervention\" TA-ITI ICLR 2025 truthfulness"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2caa001-1007-4029-8270-f4cbb21b982b",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vG3UfwgCfsqErimyJP",
+  "type": "assistant",
+  "uuid": "5ead7e7d-1c5f-4bcb-9790-cdca38acd423",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GTsonT6Y7Vxt4SsWEKXoaP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1484,
+      "cache_read_input_tokens": 25625,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1484,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 25625,
+          "cache_creation_input_tokens": 1484,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1484
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T08:18:36.497Z_
+
+<details><summary>↩ Tool result · `toolu_01NQBBSNJLY84cx2WLUPjk3V`</summary>
+
+```text
+Web search results for query: "Ji et al. "Calibrating Verbal Uncertainty as a Linear Feature" EMNLP 2025 Outstanding Paper"
+
+Links: [{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.187/"},{"title":"[2503.14477] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/abs/2503.14477"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://www.researchgate.net/publication/397424902_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to ...","url":"https://aclanthology.org/2025.emnlp-main.187.pdf"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/2025.emnlp-main.187@ACL"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/html/2503.14477v1"},{"title":"dblp: Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations.","url":"https://dblp.org/rec/journals/corr/abs-2503-14477.html"},{"title":"(PDF) Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://www.researchgate.net/publication/389947447_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"},{"title":"Awards - EMNLP 2025","url":"https://2025.emnlp.org/program/awards/"},{"title":"Verbal Uncertainty Estimation","url":"https://www.emergentmind.com/topics/verbal-uncertainty-estimation"}]
+
+I found the paper! Here are the search results for "Calibrating Verbal Uncertainty as a Linear Feature" by Ji et al.:
+
+## Paper Overview
+
+"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations" by Ji et al. was published at the 2025 Conference on Empirical Methods in Natural Language Processing, pages 3769–3793, Suzhou, China.
+
+## Key Findings
+
+The paper addresses how LLMs often adopt an assertive language style also when making false claims, which "overconfident hallucinations" that mislead users and erode trust.
+
+The authors find that "verbal uncertainty" is governed by a single linear feature in the representation space of LLMs, and show that this has only moderate correlation with the actual "semantic uncertainty" of the model.
+
+The research demonstrates that (1) the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone and (2) they can intervene on verbal uncertainty at inference time and reduce confident hallucinations on short-form answers, achieving an average relative reduction of ~30%.
+
+## Award Recognition
+
+The paper "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations" by Ziwei Ji, Lei Yu, Yeskendir Koishekenov, Yejin Bang, Anthony Hartshorn, Alan Schelten, Cheng Zhang, Pascale Fung, and Nicola Cancedda was listed among the awards at EMNLP 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e1569a68-7962-424d-a5c9-b5b617472781",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "3182a410-378f-4176-bfff-c4d73047b25f",
+  "toolUseResult": {
+    "query": "Ji et al. \"Calibrating Verbal Uncertainty as a Linear Feature\" EMNLP 2025 Outstanding Paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NgAsaHb7ehwZrhWA37n4yR",
+        "content": [
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.187/"
+          },
+          {
+            "title": "[2503.14477] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/abs/2503.14477"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://www.researchgate.net/publication/397424902_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.187.pdf"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/2025.emnlp-main.187@ACL"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/html/2503.14477v1"
+          },
+          {
+            "title": "dblp: Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations.",
+            "url": "https://dblp.org/rec/journals/corr/abs-2503-14477.html"
+          },
+          {
+            "title": "(PDF) Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://www.researchgate.net/publication/389947447_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"
+          },
+          {
+            "title": "Awards - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/awards/"
+          },
+          {
+            "title": "Verbal Uncertainty Estimation",
+            "url": "https://www.emergentmind.com/topics/verbal-uncertainty-estimation"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results for \"Calibrating Verbal Uncertainty as a Linear Feature\" by Ji et al.:\n\n## Paper Overview\n\n\"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations\" by Ji et al. was published at the 2025 Conference on Empirical Methods in Natural Language Processing, pages 3769–3793, Suzhou, China.\n\n## Key Findings\n\nThe paper addresses how LLMs often adopt an assertive language style also when making false claims, which \"overconfident hallucinations\" that mislead users and erode trust.\n\nThe authors find that \"verbal uncertainty\" is governed by a single linear feature in the representation space of LLMs, and show that this has only moderate correlation with the actual \"semantic uncertainty\" of the model.\n\nThe research demonstrates that (1) the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone and (2) they can intervene on verbal uncertainty at inference time and reduce confident hallucinations on short-form answers, achieving an average relative reduction of ~30%.\n\n## Award Recognition\n\nThe paper \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations\" by Ziwei Ji, Lei Yu, Yeskendir Koishekenov, Yejin Bang, Anthony Hartshorn, Alan Schelten, Cheng Zhang, Pascale Fung, and Nicola Cancedda was listed among the awards at EMNLP 2025."
+    ],
+    "durationSeconds": 7.483284302
+  },
+  "sourceToolAssistantUUID": "e1569a68-7962-424d-a5c9-b5b617472781",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T08:18:37.368Z_
+
+<details><summary>↩ Tool result · `toolu_01ShZ4587ncgX7GdJT4DDdoJ`</summary>
+
+```text
+Web search results for query: ""Token-Aware Inference-Time Intervention" TA-ITI ICLR 2025 truthfulness"
+
+Links: [{"title":"Token-Aware Inference-Time Intervention for Large Language Model Alignment | OpenReview","url":"https://openreview.net/forum?id=af2ztLTFqe"},{"title":"TOKEN-AWARE INFERENCE-TIME INTERVENTION FOR ...","url":"https://openreview.net/pdf?id=af2ztLTFqe"},{"title":"[2306.03341] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model","url":"https://arxiv.org/abs/2306.03341"},{"title":"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | OpenReview","url":"https://openreview.net/forum?id=aLLuYpn83y"},{"title":"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model","url":"https://arxiv.org/pdf/2306.03341"},{"title":"Inference-Time Intervention (ITI)","url":"https://www.emergentmind.com/topics/inference-time-intervention-iti"},{"title":"[PDF] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Inference-Time-Intervention:-Eliciting-Truthful-a-Li-Patel/405f8f5f1c6df1b3343c812832479aad5180b65f"},{"title":"Inference-Time Intervention: Eliciting Truthful Answers from ...","url":"https://www.lesswrong.com/posts/kuQfnotjkQA4Kkfou/inference-time-intervention-eliciting-truthful-answers-from"},{"title":"GitHub - likenneth/honest_llama: Inference-Time Intervention: Eliciting Truthful Answers from a Language Model · GitHub","url":"https://github.com/likenneth/honest_llama"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf?id=EXFKk4Y3yc"}]
+
+Based on the search results, here's what I found about Token-Aware Inference-Time Intervention (TA-ITI):
+
+## Overview
+
+Token-Aware Inference-Time Intervention (TA-ITI) explores the implementation of ITI from a token-level perspective, moving beyond traditional sentence-level approaches.
+
+## Key Components
+
+TA-ITI achieves token-aware inference-time intervention through MIG (MI-guided Token-level Graph Aggregation) and MAI (Misalignment-aware Adaptive Token-level Intervention), where MIG first probes an accurate alignment direction through token-aware enhancement, and MAI intervenes adaptively guided by token-aware misalignment.
+
+## Performance on Truthfulness
+
+Extensive experiments on three alignment capabilities demonstrate the efficacy of TA-ITI, notably surpassing baseline by 25.8% on the primary metric of truthfulness. Extensive experiments on typical alignment capabilities of truthfulness, harmlessness, and fairness have confirmed that the proposed TA-ITI achieves superior alignment performance.
+
+## Key Advantage
+
+TA-ITI breaks free from the constraints of conventional sentence-level approaches, thereby significantly improving alignment performance.
+
+The paper appears to be under review at ICLR 2025 (based on the OpenReview submission date of October 4, 2024).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ead7e7d-1c5f-4bcb-9790-cdca38acd423",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "f61d959f-8720-4cf5-ac42-1aca4af85895",
+  "toolUseResult": {
+    "query": "\"Token-Aware Inference-Time Intervention\" TA-ITI ICLR 2025 truthfulness",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EaHsyqXu6UaAP3QwRqEGQx",
+        "content": [
+          {
+            "title": "Token-Aware Inference-Time Intervention for Large Language Model Alignment | OpenReview",
+            "url": "https://openreview.net/forum?id=af2ztLTFqe"
+          },
+          {
+            "title": "TOKEN-AWARE INFERENCE-TIME INTERVENTION FOR ...",
+            "url": "https://openreview.net/pdf?id=af2ztLTFqe"
+          },
+          {
+            "title": "[2306.03341] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model",
+            "url": "https://arxiv.org/abs/2306.03341"
+          },
+          {
+            "title": "Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | OpenReview",
+            "url": "https://openreview.net/forum?id=aLLuYpn83y"
+          },
+          {
+            "title": "Inference-Time Intervention: Eliciting Truthful Answers from a Language Model",
+            "url": "https://arxiv.org/pdf/2306.03341"
+          },
+          {
+            "title": "Inference-Time Intervention (ITI)",
+            "url": "https://www.emergentmind.com/topics/inference-time-intervention-iti"
+          },
+          {
+            "title": "[PDF] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Inference-Time-Intervention:-Eliciting-Truthful-a-Li-Patel/405f8f5f1c6df1b3343c812832479aad5180b65f"
+          },
+          {
+            "title": "Inference-Time Intervention: Eliciting Truthful Answers from ...",
+            "url": "https://www.lesswrong.com/posts/kuQfnotjkQA4Kkfou/inference-time-intervention-eliciting-truthful-answers-from"
+          },
+          {
+            "title": "GitHub - likenneth/honest_llama: Inference-Time Intervention: Eliciting Truthful Answers from a Language Model · GitHub",
+            "url": "https://github.com/likenneth/honest_llama"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf?id=EXFKk4Y3yc"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Token-Aware Inference-Time Intervention (TA-ITI):\n\n## Overview\n\nToken-Aware Inference-Time Intervention (TA-ITI) explores the implementation of ITI from a token-level perspective, moving beyond traditional sentence-level approaches.\n\n## Key Components\n\nTA-ITI achieves token-aware inference-time intervention through MIG (MI-guided Token-level Graph Aggregation) and MAI (Misalignment-aware Adaptive Token-level Intervention), where MIG first probes an accurate alignment direction through token-aware enhancement, and MAI intervenes adaptively guided by token-aware misalignment.\n\n## Performance on Truthfulness\n\nExtensive experiments on three alignment capabilities demonstrate the efficacy of TA-ITI, notably surpassing baseline by 25.8% on the primary metric of truthfulness. Extensive experiments on typical alignment capabilities of truthfulness, harmlessness, and fairness have confirmed that the proposed TA-ITI achieves superior alignment performance.\n\n## Key Advantage\n\nTA-ITI breaks free from the constraints of conventional sentence-level approaches, thereby significantly improving alignment performance.\n\nThe paper appears to be under review at ICLR 2025 (based on the OpenReview submission date of October 4, 2024)."
+    ],
+    "durationSeconds": 6.890414145000002
+  },
+  "sourceToolAssistantUUID": "5ead7e7d-1c5f-4bcb-9790-cdca38acd423",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T08:18:37.475Z_
+
+<details><summary>↩ Tool result · `toolu_01Gs8kdb77BT4XTX2Vb1VcAn`</summary>
+
+```text
+Web search results for query: "obalcells "Real-Time Detection of Hallucinated Entities" hallucination probes arxiv 2509.03531"
+
+Links: [{"title":"GitHub - obalcells/hallucination_probes: Real-Time Detection of Hallucinated Entities in Long-Form Generation · GitHub","url":"https://github.com/obalcells/hallucination_probes"},{"title":"[2509.03531] Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/abs/2509.03531"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/html/2509.03531v1"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://www.hallucination-probes.com/"},{"title":"[2509.03531v1] Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/abs/2509.03531v1"},{"title":"Is Someone Finally Taking Charge of the Problem of AI Spouting Nonsense?","url":"https://eu.36kr.com/en/p/3460383980066178"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation | alphaXiv","url":"https://www.alphaxiv.org/overview/2509.03531"},{"title":"Hallucination Probes - a obalcells Collection","url":"https://huggingface.co/collections/obalcells/hallucination-probes"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://www.researchgate.net/publication/395270424_Real-Time_Detection_of_Hallucinated_Entities_in_Long-Form_Generation"},{"title":"Paper Review: Real-Time Detection of Hallucinated Entities in Long-Form Generation - AI Research - Sophos AI - Sophos Community - Connect, Learn, and Stay Secure","url":"https://community.sophos.com/sophos-ai/b/ai-research/posts/paper_2d00_review_2d00_hallucination_2d00_detection"}]
+
+I found comprehensive information about this paper. Here's what I discovered:
+
+## Paper Overview
+
+"Real-Time Detection of Hallucinated Entities in Long-Form Generation" addresses the problem of hallucinations in LLMs used in high-stakes applications like medical consultations or legal advice. The authors present a cheap, scalable method for real-time identification of hallucinated tokens in long-form generations, scaling it to 70B parameter models.
+
+## Key Approach
+
+The approach targets entity-level hallucinations (fabricated names, dates, citations) rather than claim-level, naturally mapping to token-level labels and enabling streaming detection. The team developed an annotation methodology that leverages web search to annotate model responses with grounded labels indicating which tokens correspond to fabricated entities.
+
+## Performance Results
+
+Evaluating across four model families, their classifiers consistently outperform baselines on long-form responses, including more expensive methods such as semantic entropy (e.g., AUC 0.90 vs 0.71 for Llama-3.3-70B), and are also an improvement in short-form question-answering settings.
+
+Despite being trained only to detect hallucinated entities, their probes effectively detect incorrect answers in mathematical reasoning tasks, indicating generalization beyond entities.
+
+## Resources
+
+The paper link is arxiv.org/abs/2509.03531, with a project website at hallucination-probes.com. Pretrained hallucination detection probes for various LLMs are available, including linear probes, LoRA probes with KL regularization, and LoRA probes with LM regularization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c2caa001-1007-4029-8270-f4cbb21b982b",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "e5d54123-0244-4a83-98f4-9e7f235333c0",
+  "toolUseResult": {
+    "query": "obalcells \"Real-Time Detection of Hallucinated Entities\" hallucination probes arxiv 2509.03531",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0141aamfAszz3VpwgaT5T5R6",
+        "content": [
+          {
+            "title": "GitHub - obalcells/hallucination_probes: Real-Time Detection of Hallucinated Entities in Long-Form Generation · GitHub",
+            "url": "https://github.com/obalcells/hallucination_probes"
+          },
+          {
+            "title": "[2509.03531] Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/abs/2509.03531"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/html/2509.03531v1"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://www.hallucination-probes.com/"
+          },
+          {
+            "title": "[2509.03531v1] Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/abs/2509.03531v1"
+          },
+          {
+            "title": "Is Someone Finally Taking Charge of the Problem of AI Spouting Nonsense?",
+            "url": "https://eu.36kr.com/en/p/3460383980066178"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2509.03531"
+          },
+          {
+            "title": "Hallucination Probes - a obalcells Collection",
+            "url": "https://huggingface.co/collections/obalcells/hallucination-probes"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://www.researchgate.net/publication/395270424_Real-Time_Detection_of_Hallucinated_Entities_in_Long-Form_Generation"
+          },
+          {
+            "title": "Paper Review: Real-Time Detection of Hallucinated Entities in Long-Form Generation - AI Research - Sophos AI - Sophos Community - Connect, Learn, and Stay Secure",
+            "url": "https://community.sophos.com/sophos-ai/b/ai-research/posts/paper_2d00_review_2d00_hallucination_2d00_detection"
+          }
+        ]
+      },
+      "I found comprehensive information about this paper. Here's what I discovered:\n\n## Paper Overview\n\n\"Real-Time Detection of Hallucinated Entities in Long-Form Generation\" addresses the problem of hallucinations in LLMs used in high-stakes applications like medical consultations or legal advice. The authors present a cheap, scalable method for real-time identification of hallucinated tokens in long-form generations, scaling it to 70B parameter models.\n\n## Key Approach\n\nThe approach targets entity-level hallucinations (fabricated names, dates, citations) rather than claim-level, naturally mapping to token-level labels and enabling streaming detection. The team developed an annotation methodology that leverages web search to annotate model responses with grounded labels indicating which tokens correspond to fabricated entities.\n\n## Performance Results\n\nEvaluating across four model families, their classifiers consistently outperform baselines on long-form responses, including more expensive methods such as semantic entropy (e.g., AUC 0.90 vs 0.71 for Llama-3.3-70B), and are also an improvement in short-form question-answering settings.\n\nDespite being trained only to detect hallucinated entities, their probes effectively detect incorrect answers in mathematical reasoning tasks, indicating generalization beyond entities.\n\n## Resources\n\nThe paper link is arxiv.org/abs/2509.03531, with a project website at hallucination-probes.com. Pretrained hallucination detection probes for various LLMs are available, including linear probes, LoRA probes with KL regularization, and LoRA probes with LM regularization."
+    ],
+    "durationSeconds": 7.150440207
+  },
+  "sourceToolAssistantUUID": "c2caa001-1007-4029-8270-f4cbb21b982b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T08:18:37.519Z_
+
+<details><summary>↩ Tool result · `toolu_01JprHjNkWdRHaFhfYR48uNV`</summary>
+
+```text
+Web search results for query: ""Endogenous Steering Resistance" activation steering language models arxiv 2602.06941 2026"
+
+Links: [{"title":"[2602.06941] Endogenous Resistance to Activation Steering in Language Models","url":"https://arxiv.org/abs/2602.06941"},{"title":"Endogenous Resistance to Activation Steering in Language Models","url":"https://arxiv.org/html/2602.06941v1"},{"title":"(PDF) A Unified Understanding and Evaluation of Steering Methods","url":"https://www.researchgate.net/publication/388754740_A_Unified_Understanding_and_Evaluation_of_Steering_Methods"},{"title":"Euphonium: Steering Video Flow Matching via","url":"https://arxiv.org/pdf/2602.04928"},{"title":"Endogenous and exogenous steering - Econlib","url":"https://www.econlib.org/endogenous-and-exogenous-steering/"},{"title":"Steer2Edit: From Activation Steering to Component-Level Editing","url":"https://arxiv.org/pdf/2602.09870"},{"title":"A Unified Understanding and Evaluation of Steering Methods","url":"https://arxiv.org/html/2502.02716v1"},{"title":"[2602.17881] Understanding Unreliability of Steering Vectors in Language Models: Geometric Predictors and the Limits of Linear Approximations","url":"https://arxiv.org/abs/2602.17881"},{"title":"Steering Endogenous Butyrate Production in the Intestinal Tract of Broilers as a Tool to Improve Gut Health - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/26734618/"},{"title":"Endogenous Product Design: A Linear Demand Approach","url":"https://arxiv.org/html/2602.02833"}]
+
+I found the paper you're looking for! Here's what I found about it:
+
+## Endogenous Resistance to Activation Steering in Language Models
+
+Large language models can resist task-misaligned activation steering during inference, sometimes recovering mid-generation to produce improved responses even when steering remains active. This phenomenon is termed Endogenous Steering Resistance (ESR).
+
+**Key Findings:**
+
+- Using sparse autoencoder (SAE) latents to steer model activations, Llama-3.3-70B shows substantial ESR, while smaller models from the Llama-3 and Gemma-2 families exhibit the phenomenon less frequently.
+
+- The researchers identified 26 SAE latents that activate differentially during off-topic content and are causally linked to ESR in Llama-3.3-70B. Zero-ablating these latents reduces the multi-attempt rate by 25%, providing causal evidence for dedicated internal consistency-checking circuits.
+
+- ESR can be deliberately enhanced through both prompting and training: meta-prompts instructing the model to self-monitor increase the multi-attempt rate by 4x for Llama-3.3-70B, and fine-tuning on self-correction examples successfully induces ESR.
+
+**Implications:**
+
+ESR could protect against adversarial manipulation but might also interfere with beneficial safety interventions that rely on activation steering.
+
+The paper was published on February 6, 2026 (arXiv ID: 2602.06941) and code is available on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2783b197-da74-491f-b574-9fc5e21f8052",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "b673216b-a0f4-4b01-9d98-1af7ed882b25",
+  "toolUseResult": {
+    "query": "\"Endogenous Steering Resistance\" activation steering language models arxiv 2602.06941 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VLy4c2eiaGhZfg4i3fABw2",
+        "content": [
+          {
+            "title": "[2602.06941] Endogenous Resistance to Activation Steering in Language Models",
+            "url": "https://arxiv.org/abs/2602.06941"
+          },
+          {
+            "title": "Endogenous Resistance to Activation Steering in Language Models",
+            "url": "https://arxiv.org/html/2602.06941v1"
+          },
+          {
+            "title": "(PDF) A Unified Understanding and Evaluation of Steering Methods",
+            "url": "https://www.researchgate.net/publication/388754740_A_Unified_Understanding_and_Evaluation_of_Steering_Methods"
+          },
+          {
+            "title": "Euphonium: Steering Video Flow Matching via",
+            "url": "https://arxiv.org/pdf/2602.04928"
+          },
+          {
+            "title": "Endogenous and exogenous steering - Econlib",
+            "url": "https://www.econlib.org/endogenous-and-exogenous-steering/"
+          },
+          {
+            "title": "Steer2Edit: From Activation Steering to Component-Level Editing",
+            "url": "https://arxiv.org/pdf/2602.09870"
+          },
+          {
+            "title": "A Unified Understanding and Evaluation of Steering Methods",
+            "url": "https://arxiv.org/html/2502.02716v1"
+          },
+          {
+            "title": "[2602.17881] Understanding Unreliability of Steering Vectors in Language Models: Geometric Predictors and the Limits of Linear Approximations",
+            "url": "https://arxiv.org/abs/2602.17881"
+          },
+          {
+            "title": "Steering Endogenous Butyrate Production in the Intestinal Tract of Broilers as a Tool to Improve Gut Health - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/26734618/"
+          },
+          {
+            "title": "Endogenous Product Design: A Linear Demand Approach",
+            "url": "https://arxiv.org/html/2602.02833"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found about it:\n\n## Endogenous Resistance to Activation Steering in Language Models\n\nLarge language models can resist task-misaligned activation steering during inference, sometimes recovering mid-generation to produce improved responses even when steering remains active. This phenomenon is termed Endogenous Steering Resistance (ESR).\n\n**Key Findings:**\n\n- Using sparse autoencoder (SAE) latents to steer model activations, Llama-3.3-70B shows substantial ESR, while smaller models from the Llama-3 and Gemma-2 families exhibit the phenomenon less frequently.\n\n- The researchers identified 26 SAE latents that activate differentially during off-topic content and are causally linked to ESR in Llama-3.3-70B. Zero-ablating these latents reduces the multi-attempt rate by 25%, providing causal evidence for dedicated internal consistency-checking circuits.\n\n- ESR can be deliberately enhanced through both prompting and training: meta-prompts instructing the model to self-monitor increase the multi-attempt rate by 4x for Llama-3.3-70B, and fine-tuning on self-correction examples successfully induces ESR.\n\n**Implications:**\n\nESR could protect against adversarial manipulation but might also interfere with beneficial safety interventions that rely on activation steering.\n\nThe paper was published on February 6, 2026 (arXiv ID: 2602.06941) and code is available on GitHub."
+    ],
+    "durationSeconds": 7.820770273999998
+  },
+  "sourceToolAssistantUUID": "2783b197-da74-491f-b574-9fc5e21f8052",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b673216b-a0f4-4b01-9d98-1af7ed882b25",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Miscalibration-triggered adaptive generation via logit intervention",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-16T08:18:42.000Z_
+
+Good - core references verified. Let me now search for competing work and check if there are papers the generator missed that do similar logit-level intervention for hallucination reduction.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b673216b-a0f4-4b01-9d98-1af7ed882b25",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vH7sNWG6zP4FDCrHSy",
+  "type": "assistant",
+  "uuid": "195a56ff-b5fa-4837-8820-3ee752a2d4a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QPfaf2HmqB6YZZZZ6kEDid",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1875,
+      "cache_creation_input_tokens": 2128,
+      "cache_read_input_tokens": 27109,
+      "output_tokens": 220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2128,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1875,
+          "output_tokens": 220,
+          "cache_read_input_tokens": 27109,
+          "cache_creation_input_tokens": 2128,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2128
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T08:18:42.484Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EibadsC6wwJCKRwHzC6PMw`</summary>
+
+```json
+{
+  "query": "logit-level intervention hallucination reduction decoding time 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "195a56ff-b5fa-4837-8820-3ee752a2d4a8",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vH7sNWG6zP4FDCrHSy",
+  "type": "assistant",
+  "uuid": "c831238b-35a1-4ddd-9222-8c1f32815d9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QPfaf2HmqB6YZZZZ6kEDid",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1875,
+      "cache_creation_input_tokens": 2128,
+      "cache_read_input_tokens": 27109,
+      "output_tokens": 220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2128,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1875,
+          "output_tokens": 220,
+          "cache_read_input_tokens": 27109,
+          "cache_creation_input_tokens": 2128,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2128
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T08:18:43.475Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Uan8JFsHUvWKyd29FjCST3`</summary>
+
+```json
+{
+  "query": "\"miscalibration\" \"verbal confidence\" hallucination detection intervention 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c831238b-35a1-4ddd-9222-8c1f32815d9a",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vH7sNWG6zP4FDCrHSy",
+  "type": "assistant",
+  "uuid": "971743fc-d1f4-4775-896d-b2b32ae680f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QPfaf2HmqB6YZZZZ6kEDid",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1875,
+      "cache_creation_input_tokens": 2128,
+      "cache_read_input_tokens": 27109,
+      "output_tokens": 220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2128,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1875,
+          "output_tokens": 220,
+          "cache_read_input_tokens": 27109,
+          "cache_creation_input_tokens": 2128,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2128
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T08:18:44.594Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012MTVqRJeRcvUcXCzMyFcRs`</summary>
+
+```json
+{
+  "query": "UT-ACA \"Uncertainty-Triggered Adaptive Context Allocation\" arxiv 2603.18446"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "971743fc-d1f4-4775-896d-b2b32ae680f7",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vH7sNWG6zP4FDCrHSy",
+  "type": "assistant",
+  "uuid": "76b94749-c42d-4bc2-82e7-60c5c60c93c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QPfaf2HmqB6YZZZZ6kEDid",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1875,
+      "cache_creation_input_tokens": 2128,
+      "cache_read_input_tokens": 27109,
+      "output_tokens": 220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2128,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1875,
+          "output_tokens": 220,
+          "cache_read_input_tokens": 27109,
+          "cache_creation_input_tokens": 2128,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2128
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T08:18:49.953Z_
+
+<details><summary>↩ Tool result · `toolu_01EibadsC6wwJCKRwHzC6PMw`</summary>
+
+```text
+Web search results for query: "logit-level intervention hallucination reduction decoding time 2025 2026"
+
+Links: [{"title":"InEx: Hallucination Mitigation via Introspection and Cross- ...","url":"https://arxiv.org/pdf/2512.02981"},{"title":"The Hidden Life of Tokens: Reducing Hallucination of Large Vision-Language Models Via Visual Information Steering | OpenReview","url":"https://openreview.net/forum?id=7BKcLeHQsm"},{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202510.0540/v1"},{"title":"Mitigating Hallucinations in Vision-Language Models through Image-Guided Head Suppression","url":"https://arxiv.org/html/2505.16411"},{"title":"Attention-space Contrastive Guidance for Efficient ...","url":"https://arxiv.org/pdf/2601.13707"},{"title":"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub","url":"https://github.com/EdinburghNLP/awesome-hallucination-detection"},{"title":"Med-VCD: Mitigating hallucination for medical large vision language models through visual contrastive decoding - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0010482525017019"},{"title":"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits","url":"https://arxiv.org/html/2605.05953"},{"title":"Attention-space Contrastive Guidance for Efficient Hallucination Mitigation in LVLMs","url":"https://arxiv.org/html/2601.13707"}]
+
+I've performed a web search for your query. Here are the key findings related to logit-level interventions for hallucination reduction and decoding time in 2025-2026:
+
+## Decoding-Time Control Methods
+
+Decoding-time control regulates token-level generation through logit calibration or uncertainty-based penalties through various methods from 2024-2025. However, these techniques often generate overconfident yet unreliable outputs due to shallow, modality-unaware reasoning and poor uncertainty modeling.
+
+## Logit-Level Approaches
+
+Recent research has focused on several logit-level intervention strategies:
+
+1. **Contrastive Decoding Methods**: These methods compare logits under image-conditioned and text-only inputs to penalize language-biased continuations, though they act only on final logits after intermediate representations are formed and therefore provide only post-hoc correction.
+
+2. **Latency Concerns**: Logit-level methods often require multiple forward passes to obtain a reference signal, which increases decoding latency. In medical vision-language models, VCD-based methods typically rely on multiple decoding rounds and external visual localization tools, which introduce significant computational overhead and limit real-time usability.
+
+3. **Vision-Language Model Focus**: Research reveals patterns in LVLM hallucination including gradual visual information loss and hidden genuine information, with VISTA proposed as a training-free inference-time intervention framework.
+
+## Recent 2025-2026 Developments
+
+The search results show ongoing work on attention-space and latent steering approaches that aim to address limitations of pure logit-level interventions while maintaining computational efficiency.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c831238b-35a1-4ddd-9222-8c1f32815d9a",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "add0e557-55af-408b-9373-f1d52bc48917",
+  "toolUseResult": {
+    "query": "logit-level intervention hallucination reduction decoding time 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016c4Tw4yzKyjgv3K4hUS61D",
+        "content": [
+          {
+            "title": "InEx: Hallucination Mitigation via Introspection and Cross- ...",
+            "url": "https://arxiv.org/pdf/2512.02981"
+          },
+          {
+            "title": "The Hidden Life of Tokens: Reducing Hallucination of Large Vision-Language Models Via Visual Information Steering | OpenReview",
+            "url": "https://openreview.net/forum?id=7BKcLeHQsm"
+          },
+          {
+            "title": "LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.",
+            "url": "https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"
+          },
+          {
+            "title": "A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org",
+            "url": "https://www.preprints.org/manuscript/202510.0540/v1"
+          },
+          {
+            "title": "Mitigating Hallucinations in Vision-Language Models through Image-Guided Head Suppression",
+            "url": "https://arxiv.org/html/2505.16411"
+          },
+          {
+            "title": "Attention-space Contrastive Guidance for Efficient ...",
+            "url": "https://arxiv.org/pdf/2601.13707"
+          },
+          {
+            "title": "GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub",
+            "url": "https://github.com/EdinburghNLP/awesome-hallucination-detection"
+          },
+          {
+            "title": "Med-VCD: Mitigating hallucination for medical large vision language models through visual contrastive decoding - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0010482525017019"
+          },
+          {
+            "title": "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits",
+            "url": "https://arxiv.org/html/2605.05953"
+          },
+          {
+            "title": "Attention-space Contrastive Guidance for Efficient Hallucination Mitigation in LVLMs",
+            "url": "https://arxiv.org/html/2601.13707"
+          }
+        ]
+      },
+      "I've performed a web search for your query. Here are the key findings related to logit-level interventions for hallucination reduction and decoding time in 2025-2026:\n\n## Decoding-Time Control Methods\n\nDecoding-time control regulates token-level generation through logit calibration or uncertainty-based penalties through various methods from 2024-2025. However, these techniques often generate overconfident yet unreliable outputs due to shallow, modality-unaware reasoning and poor uncertainty modeling.\n\n## Logit-Level Approaches\n\nRecent research has focused on several logit-level intervention strategies:\n\n1. **Contrastive Decoding Methods**: These methods compare logits under image-conditioned and text-only inputs to penalize language-biased continuations, though they act only on final logits after intermediate representations are formed and therefore provide only post-hoc correction.\n\n2. **Latency Concerns**: Logit-level methods often require multiple forward passes to obtain a reference signal, which increases decoding latency. In medical vision-language models, VCD-based methods typically rely on multiple decoding rounds and external visual localization tools, which introduce significant computational overhead and limit real-time usability.\n\n3. **Vision-Language Model Focus**: Research reveals patterns in LVLM hallucination including gradual visual information loss and hidden genuine information, with VISTA proposed as a training-free inference-time intervention framework.\n\n## Recent 2025-2026 Developments\n\nThe search results show ongoing work on attention-space and latent steering approaches that aim to address limitations of pure logit-level interventions while maintaining computational efficiency."
+    ],
+    "durationSeconds": 7.464605541000001
+  },
+  "sourceToolAssistantUUID": "c831238b-35a1-4ddd-9222-8c1f32815d9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T08:18:50.813Z_
+
+<details><summary>↩ Tool result · `toolu_012MTVqRJeRcvUcXCzMyFcRs`</summary>
+
+```text
+Web search results for query: "UT-ACA "Uncertainty-Triggered Adaptive Context Allocation" arxiv 2603.18446"
+
+Links: [{"title":"UT-ACA: Uncertainty-Triggered Adaptive Context Allocation for Long-Context Inference","url":"https://arxiv.org/html/2603.18446"},{"title":"[2603.18446] UT-ACA: Uncertainty-Triggered Adaptive Context Allocation for Long-Context Inference","url":"https://arxiv.org/abs/2603.18446"},{"title":"Computer Science Jun 2025","url":"https://www.arxiv.org/list/cs/2025-06?skip=10025&show=2000"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=1500&show=2000"},{"title":"Computer Science Jan 2025","url":"https://arxiv.org/list/cs/2025-01?skip=3725&show=2000"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=1292&show=1000"},{"title":"Computer Science Jun 2025","url":"https://arxiv.org/list/cs/2025-06?skip=12350&show=2000"},{"title":"Machine Learning Jul 2025","url":"https://arxiv.org/list/cs.LG/2025-07?skip=450&show=2000"},{"title":"Artificial Intelligence","url":"https://arxiv.org/list/cs.AI/pastweek?skip=560&show=2000"},{"title":"Artificial Intelligence May 2025","url":"https://arxiv.org/list/cs.AI/2025-05?skip=3575&show=1000"}]
+
+I found the paper! Here are the details for arxiv paper 2603.18446:
+
+**Title:** UT-ACA: Uncertainty-Triggered Adaptive Context Allocation for Long-Context Inference
+
+**Authors:** Lang Zhou, Shuxuan Li, Zhuohao Li, Shi Liu, Zhilin Zhao, Wei-Shi Zheng from Sun Yat-sen University, Shenzhen Loop Area Institute, and Southern University of Science and Technology
+
+**Submission Date:** March 19, 2026
+
+**Overview:** The paper addresses the challenge of long-context inference in large language models due to attention dilution and out-of-distribution degradation. Most context selection methods allocate a fixed context budget throughout decoding despite highly non-uniform token-level contextual demands.
+
+**Approach:** UT-ACA is an inference-time framework that dynamically adjusts the context window based on token-wise uncertainty. It learns an uncertainty detector that combines semantic embeddings with logit-based confidence while accounting for uncertainty accumulation across decoding steps.
+
+You can access the paper directly at https://arxiv.org/abs/2603.18446 or https://arxiv.org/html/2603.18446.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76b94749-c42d-4bc2-82e7-60c5c60c93c6",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "039c80dd-a302-4f69-b481-e57a82ab79ff",
+  "toolUseResult": {
+    "query": "UT-ACA \"Uncertainty-Triggered Adaptive Context Allocation\" arxiv 2603.18446",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0175vSJ4Y3596rS2CAM38w3D",
+        "content": [
+          {
+            "title": "UT-ACA: Uncertainty-Triggered Adaptive Context Allocation for Long-Context Inference",
+            "url": "https://arxiv.org/html/2603.18446"
+          },
+          {
+            "title": "[2603.18446] UT-ACA: Uncertainty-Triggered Adaptive Context Allocation for Long-Context Inference",
+            "url": "https://arxiv.org/abs/2603.18446"
+          },
+          {
+            "title": "Computer Science Jun 2025",
+            "url": "https://www.arxiv.org/list/cs/2025-06?skip=10025&show=2000"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-05?skip=1500&show=2000"
+          },
+          {
+            "title": "Computer Science Jan 2025",
+            "url": "https://arxiv.org/list/cs/2025-01?skip=3725&show=2000"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/recent?skip=1292&show=1000"
+          },
+          {
+            "title": "Computer Science Jun 2025",
+            "url": "https://arxiv.org/list/cs/2025-06?skip=12350&show=2000"
+          },
+          {
+            "title": "Machine Learning Jul 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-07?skip=450&show=2000"
+          },
+          {
+            "title": "Artificial Intelligence",
+            "url": "https://arxiv.org/list/cs.AI/pastweek?skip=560&show=2000"
+          },
+          {
+            "title": "Artificial Intelligence May 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-05?skip=3575&show=1000"
+          }
+        ]
+      },
+      "I found the paper! Here are the details for arxiv paper 2603.18446:\n\n**Title:** UT-ACA: Uncertainty-Triggered Adaptive Context Allocation for Long-Context Inference\n\n**Authors:** Lang Zhou, Shuxuan Li, Zhuohao Li, Shi Liu, Zhilin Zhao, Wei-Shi Zheng from Sun Yat-sen University, Shenzhen Loop Area Institute, and Southern University of Science and Technology\n\n**Submission Date:** March 19, 2026\n\n**Overview:** The paper addresses the challenge of long-context inference in large language models due to attention dilution and out-of-distribution degradation. Most context selection methods allocate a fixed context budget throughout decoding despite highly non-uniform token-level contextual demands.\n\n**Approach:** UT-ACA is an inference-time framework that dynamically adjusts the context window based on token-wise uncertainty. It learns an uncertainty detector that combines semantic embeddings with logit-based confidence while accounting for uncertainty accumulation across decoding steps.\n\nYou can access the paper directly at https://arxiv.org/abs/2603.18446 or https://arxiv.org/html/2603.18446."
+    ],
+    "durationSeconds": 6.2157048060000015
+  },
+  "sourceToolAssistantUUID": "76b94749-c42d-4bc2-82e7-60c5c60c93c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T08:18:53.329Z_
+
+<details><summary>↩ Tool result · `toolu_01Uan8JFsHUvWKyd29FjCST3`</summary>
+
+```text
+Web search results for query: ""miscalibration" "verbal confidence" hallucination detection intervention 2025 2026"
+
+Links: [{"title":"Hallucination, monofacts, and miscalibration: An empirical investigation - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12933039/"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/html/2503.14477v1"},{"title":"Hallucination, monofacts, and miscalibration: An empirical investigation | PNAS","url":"https://www.pnas.org/doi/10.1073/pnas.2533582123"},{"title":"[2502.08666] Hallucination, Monofacts, and Miscalibration: An Empirical Investigation","url":"https://arxiv.org/abs/2502.08666"},{"title":"Overconfidence and Calibration in Medical VQA: Empirical Findings and Hallucination-Aware Mitigation","url":"https://arxiv.org/html/2604.02543"},{"title":"Hallucination Detection and Mitigation in Large Language Models","url":"https://arxiv.org/html/2601.09929v1"},{"title":"AI Hallucination Rates & Benchmarks in 2026","url":"https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/"},{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"A Comprehensive Survey of Hallucination in Large Language Models: Causes, Detection, and Mitigation","url":"https://arxiv.org/html/2510.06265v1"},{"title":"Hallucination and Calibration in Language Models Harutyun Harry Ilanyan","url":"https://wp.math.berkeley.edu/drp/wp-content/uploads/sites/18/2025/05/2025_Spring_Ilanyan.pdf"}]
+
+I found several highly relevant research papers from 2025-2026 on this topic. Here's what the search reveals:
+
+## Key Research Findings
+
+**Verbal Confidence and Hallucination Miscalibration:**
+
+A recent study discovers a linear verbal uncertainty feature that can detect hallucinations arising from miscalibration between high semantic uncertainty and low verbal uncertainty, and can mitigate hallucinations by intervening on activations along this feature direction at inference time. The miscalibration of semantic and verbal uncertainty triggers overconfident hallucinations.
+
+**Training-based Intervention:**
+
+Selective upweighting—a technique that strategically repeats as little as 5% of training examples to deliberately inject miscalibration into the model—reduces hallucination by up to 40%. Hallucination is not a mysterious failure mode but a predictable outcome of monofact rates and model miscalibration.
+
+**Detection Methods:**
+
+Expected Calibration Error (ECE) quantifies miscalibration—the disconnect between the model's confidence scores and actual accuracy—and helps flag scenarios where models are confidently wrong. Additionally, a logistic regression model can predict hallucinations by combining verbal uncertainty with semantic uncertainty to significantly enhance detection performance.
+
+**Recent Trends:**
+
+Methods like "Rewarding Doubt" integrate confidence calibration into reinforcement learning, penalizing both over- and underconfidence, and uncertainty-aware RLHF variants score cautious, evidence-backed answers higher than verbose but unsupported ones.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "971743fc-d1f4-4775-896d-b2b32ae680f7",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "7f74baf4-d6ee-4718-bfbf-55751f8c5fd8",
+  "toolUseResult": {
+    "query": "\"miscalibration\" \"verbal confidence\" hallucination detection intervention 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013M4HWdGLX4EUcxcqBp8XG4",
+        "content": [
+          {
+            "title": "Hallucination, monofacts, and miscalibration: An empirical investigation - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12933039/"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/html/2503.14477v1"
+          },
+          {
+            "title": "Hallucination, monofacts, and miscalibration: An empirical investigation | PNAS",
+            "url": "https://www.pnas.org/doi/10.1073/pnas.2533582123"
+          },
+          {
+            "title": "[2502.08666] Hallucination, Monofacts, and Miscalibration: An Empirical Investigation",
+            "url": "https://arxiv.org/abs/2502.08666"
+          },
+          {
+            "title": "Overconfidence and Calibration in Medical VQA: Empirical Findings and Hallucination-Aware Mitigation",
+            "url": "https://arxiv.org/html/2604.02543"
+          },
+          {
+            "title": "Hallucination Detection and Mitigation in Large Language Models",
+            "url": "https://arxiv.org/html/2601.09929v1"
+          },
+          {
+            "title": "AI Hallucination Rates & Benchmarks in 2026",
+            "url": "https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/"
+          },
+          {
+            "title": "LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.",
+            "url": "https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"
+          },
+          {
+            "title": "A Comprehensive Survey of Hallucination in Large Language Models: Causes, Detection, and Mitigation",
+            "url": "https://arxiv.org/html/2510.06265v1"
+          },
+          {
+            "title": "Hallucination and Calibration in Language Models Harutyun Harry Ilanyan",
+            "url": "https://wp.math.berkeley.edu/drp/wp-content/uploads/sites/18/2025/05/2025_Spring_Ilanyan.pdf"
+          }
+        ]
+      },
+      "I found several highly relevant research papers from 2025-2026 on this topic. Here's what the search reveals:\n\n## Key Research Findings\n\n**Verbal Confidence and Hallucination Miscalibration:**\n\nA recent study discovers a linear verbal uncertainty feature that can detect hallucinations arising from miscalibration between high semantic uncertainty and low verbal uncertainty, and can mitigate hallucinations by intervening on activations along this feature direction at inference time. The miscalibration of semantic and verbal uncertainty triggers overconfident hallucinations.\n\n**Training-based Intervention:**\n\nSelective upweighting—a technique that strategically repeats as little as 5% of training examples to deliberately inject miscalibration into the model—reduces hallucination by up to 40%. Hallucination is not a mysterious failure mode but a predictable outcome of monofact rates and model miscalibration.\n\n**Detection Methods:**\n\nExpected Calibration Error (ECE) quantifies miscalibration—the disconnect between the model's confidence scores and actual accuracy—and helps flag scenarios where models are confidently wrong. Additionally, a logistic regression model can predict hallucinations by combining verbal uncertainty with semantic uncertainty to significantly enhance detection performance.\n\n**Recent Trends:**\n\nMethods like \"Rewarding Doubt\" integrate confidence calibration into reinforcement learning, penalizing both over- and underconfidence, and uncertainty-aware RLHF variants score cautious, evidence-backed answers higher than verbose but unsupported ones."
+    ],
+    "durationSeconds": 9.850888363000006
+  },
+  "sourceToolAssistantUUID": "971743fc-d1f4-4775-896d-b2b32ae680f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-16T08:18:53.333Z_
+
+```json
+{
+  "parentUuid": "7f74baf4-d6ee-4718-bfbf-55751f8c5fd8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0daa4df9-65c7-4d90-9dca-d59da686c23c",
+  "timestamp": "2026-05-16T08:18:53.333Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-16T08:19:01.035Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good - I've confirmed the key references exist. Let me now look for competing work more specifically - papers that combine uncertainty/miscalibration signals with logit-level interventions during generation. I also want to check the "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits" paper (2605.05953) which appeared in one of my earlier search results - that looks like it could be very recent concurrent work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0daa4df9-65c7-4d90-9dca-d59da686c23c",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vJHYKHc3RqhuE2mYJy",
+  "type": "assistant",
+  "uuid": "93f982f9-3d52-4f2e-b164-46305612a6e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K35CmJzqDSbnsNHCb298uQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 763,
+      "cache_creation_input_tokens": 4090,
+      "cache_read_input_tokens": 29237,
+      "output_tokens": 319,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4090,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 763,
+          "output_tokens": 319,
+          "cache_read_input_tokens": 29237,
+          "cache_creation_input_tokens": 4090,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4090
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-16T08:19:01.530Z_
+
+Let me now check for very recent concurrent work and specific competing approaches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93f982f9-3d52-4f2e-b164-46305612a6e2",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vJHYKHc3RqhuE2mYJy",
+  "type": "assistant",
+  "uuid": "399aaced-5d31-4f3d-a22e-2042ce8d2b6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K35CmJzqDSbnsNHCb298uQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 763,
+      "cache_creation_input_tokens": 4090,
+      "cache_read_input_tokens": 29237,
+      "output_tokens": 319,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4090,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 763,
+          "output_tokens": 319,
+          "cache_read_input_tokens": 29237,
+          "cache_creation_input_tokens": 4090,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4090
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-16T08:19:02.439Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QmrxKPDm5TxrWrSZSCUc1V`</summary>
+
+```json
+{
+  "query": "\"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits\" arxiv 2605"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "399aaced-5d31-4f3d-a22e-2042ce8d2b6e",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vJHYKHc3RqhuE2mYJy",
+  "type": "assistant",
+  "uuid": "886a3c1a-265d-40d6-a51d-d90cd53ce8a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K35CmJzqDSbnsNHCb298uQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 763,
+      "cache_creation_input_tokens": 4090,
+      "cache_read_input_tokens": 29237,
+      "output_tokens": 319,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4090,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 763,
+          "output_tokens": 319,
+          "cache_read_input_tokens": 29237,
+          "cache_creation_input_tokens": 4090,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4090
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T08:19:02.999Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NfCJtmDups8DgNfUcmHPxe`</summary>
+
+```json
+{
+  "query": "AdaDec \"Adaptive Decoding with Uncertainty Guidance\" code generation arxiv 2506.08980"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "886a3c1a-265d-40d6-a51d-d90cd53ce8a1",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vJHYKHc3RqhuE2mYJy",
+  "type": "assistant",
+  "uuid": "5309d895-4ea8-45fd-8644-d0a363f588cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K35CmJzqDSbnsNHCb298uQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 763,
+      "cache_creation_input_tokens": 4090,
+      "cache_read_input_tokens": 29237,
+      "output_tokens": 319,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4090,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 763,
+          "output_tokens": 319,
+          "cache_read_input_tokens": 29237,
+          "cache_creation_input_tokens": 4090,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4090
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-16T08:19:03.606Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JCUVDQEqdEJbLnKkrcXXHh`</summary>
+
+```json
+{
+  "query": "contrastive decoding logit bias hallucination suppression hedge abstain uncertainty 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5309d895-4ea8-45fd-8644-d0a363f588cb",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vJHYKHc3RqhuE2mYJy",
+  "type": "assistant",
+  "uuid": "652ccb84-1802-4d4e-8f83-f68b2e6eab98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K35CmJzqDSbnsNHCb298uQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 763,
+      "cache_creation_input_tokens": 4090,
+      "cache_read_input_tokens": 29237,
+      "output_tokens": 319,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4090,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 763,
+          "output_tokens": 319,
+          "cache_read_input_tokens": 29237,
+          "cache_creation_input_tokens": 4090,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4090
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "652ccb84-1802-4d4e-8f83-f68b2e6eab98",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Miscalibration-triggered adaptive generation via logit intervention",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T08:19:09.683Z_
+
+<details><summary>↩ Tool result · `toolu_01QmrxKPDm5TxrWrSZSCUc1V`</summary>
+
+```text
+Web search results for query: ""Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits" arxiv 2605"
+
+Links: [{"title":"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits","url":"https://arxiv.org/html/2605.05953"},{"title":"[2605.05953] Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits","url":"https://arxiv.org/abs/2605.05953"},{"title":"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation","url":"https://arxiv.org/html/2604.15400v1"},{"title":"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations","url":"https://arxiv.org/html/2604.04743v1"},{"title":"Hallucination, Monofacts, and Miscalibration: An Empirical Investigation","url":"https://arxiv.org/html/2502.08666v3"},{"title":"A Probabilistic Framework for LLM Hallucination Detection via Belief Tree Propagation","url":"https://arxiv.org/html/2406.06950v1"},{"title":"Probabilistic Guarantees for Reducing Contextual Hallucinations in LLMs","url":"https://arxiv.org/pdf/2601.00641"},{"title":"[2605.05134] Low-Cost Black-Box Detection of LLM Hallucinations via Dynamical System Prediction","url":"https://arxiv.org/abs/2605.05134"},{"title":"[2604.15400] Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation","url":"https://arxiv.org/abs/2604.15400"},{"title":"Efficient Hallucination Detection: Adaptive Bayesian Estimation of Semantic Entropy with Guided Semantic Exploration","url":"https://arxiv.org/html/2603.22812v1"}]
+
+I found the paper you're looking for! Here's a summary of the search results:
+
+## "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits"
+
+The paper addresses the critical challenge of LLM hallucinations by proposing PCNet, a Probabilistic Circuit trained as a tractable density estimator over the LLM residual stream.
+
+**Key contributions:**
+
+1. **Detection Method:** The method detects hallucinations as geometric anomalies on the factual manifold, which is done via exact Negative Log-Likelihood computation, hence without the need for sampling, external verifiers, or weight modifications.
+
+2. **Problem Addressed:** Existing approaches show promising results in terms of hallucination correction, but still suffer from a main limitation: they apply corrections indiscriminately to every token, corrupting also the originally correct generations.
+
+3. **Solution:** PC-LDCD (PC-Latent Density Contrastive Decoding) is a manifold-preserving intervention that performs a density-penalized lookahead search in the discrete vocabulary space, intervening only when the latent geometry deviates from factual regions.
+
+The paper is available at arXiv:2605.05953 and was published about a week ago.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "886a3c1a-265d-40d6-a51d-d90cd53ce8a1",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "4c20775d-7a9b-46d0-a2da-9891f3728347",
+  "toolUseResult": {
+    "query": "\"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits\" arxiv 2605",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YKK5JqNiSAbVE7t1meJ9H4",
+        "content": [
+          {
+            "title": "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits",
+            "url": "https://arxiv.org/html/2605.05953"
+          },
+          {
+            "title": "[2605.05953] Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits",
+            "url": "https://arxiv.org/abs/2605.05953"
+          },
+          {
+            "title": "Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation",
+            "url": "https://arxiv.org/html/2604.15400v1"
+          },
+          {
+            "title": "Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations",
+            "url": "https://arxiv.org/html/2604.04743v1"
+          },
+          {
+            "title": "Hallucination, Monofacts, and Miscalibration: An Empirical Investigation",
+            "url": "https://arxiv.org/html/2502.08666v3"
+          },
+          {
+            "title": "A Probabilistic Framework for LLM Hallucination Detection via Belief Tree Propagation",
+            "url": "https://arxiv.org/html/2406.06950v1"
+          },
+          {
+            "title": "Probabilistic Guarantees for Reducing Contextual Hallucinations in LLMs",
+            "url": "https://arxiv.org/pdf/2601.00641"
+          },
+          {
+            "title": "[2605.05134] Low-Cost Black-Box Detection of LLM Hallucinations via Dynamical System Prediction",
+            "url": "https://arxiv.org/abs/2605.05134"
+          },
+          {
+            "title": "[2604.15400] Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation",
+            "url": "https://arxiv.org/abs/2604.15400"
+          },
+          {
+            "title": "Efficient Hallucination Detection: Adaptive Bayesian Estimation of Semantic Entropy with Guided Semantic Exploration",
+            "url": "https://arxiv.org/html/2603.22812v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's a summary of the search results:\n\n## \"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits\"\n\nThe paper addresses the critical challenge of LLM hallucinations by proposing PCNet, a Probabilistic Circuit trained as a tractable density estimator over the LLM residual stream.\n\n**Key contributions:**\n\n1. **Detection Method:** The method detects hallucinations as geometric anomalies on the factual manifold, which is done via exact Negative Log-Likelihood computation, hence without the need for sampling, external verifiers, or weight modifications.\n\n2. **Problem Addressed:** Existing approaches show promising results in terms of hallucination correction, but still suffer from a main limitation: they apply corrections indiscriminately to every token, corrupting also the originally correct generations.\n\n3. **Solution:** PC-LDCD (PC-Latent Density Contrastive Decoding) is a manifold-preserving intervention that performs a density-penalized lookahead search in the discrete vocabulary space, intervening only when the latent geometry deviates from factual regions.\n\nThe paper is available at arXiv:2605.05953 and was published about a week ago."
+    ],
+    "durationSeconds": 7.234840816000004
+  },
+  "sourceToolAssistantUUID": "886a3c1a-265d-40d6-a51d-d90cd53ce8a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T08:19:11.301Z_
+
+<details><summary>↩ Tool result · `toolu_01NfCJtmDups8DgNfUcmHPxe`</summary>
+
+```text
+Web search results for query: "AdaDec "Adaptive Decoding with Uncertainty Guidance" code generation arxiv 2506.08980"
+
+Links: [{"title":"AdaDec: Uncertainty-Guided Adaptive Decoding for LLM-based Code Generation","url":"https://arxiv.org/html/2506.08980v1"},{"title":"Towards Better Code Generation: Adaptive Decoding with Uncertainty Guidance","url":"https://arxiv.org/pdf/2506.08980"},{"title":"[2506.08980] Towards Better Code Generation: Adaptive Decoding with Uncertainty Guidance","url":"https://arxiv.org/abs/2506.08980"},{"title":"Towards Better Code Generation: Adaptive Decoding with Uncertainty Guidance | alphaXiv","url":"https://www.alphaxiv.org/resources/2506.08980v2"},{"title":"Paper page - Towards Better Code Generation: Adaptive Decoding with Uncertainty Guidance","url":"https://huggingface.co/papers/2506.08980"},{"title":"AdaDec: Uncertainty-Guided Adaptive Decoding for LLM- ...","url":"https://www.researchgate.net/publication/392561295_AdaDec_Uncertainty-Guided_Adaptive_Decoding_for_LLM-based_Code_Generation"},{"title":"Learning Adaptive LLM Decoding","url":"https://arxiv.org/html/2603.09065v1"},{"title":"AdaDecode: Accelerating LLM Decoding with Adaptive Layer Parallelism","url":"https://arxiv.org/html/2506.03700"},{"title":"AdaSD: Adaptive Speculative Decoding for Efficient Language Model Inference","url":"https://arxiv.org/html/2512.11280"},{"title":"[2407.18698v2] Adaptive Contrastive Search: Uncertainty-Guided Decoding for Open-Ended Text Generation","url":"https://arxiv.org/abs/2407.18698v2"}]
+
+I found detailed information about AdaDec (arxiv 2506.08980). Here's a summary of the paper:
+
+## Overview
+
+AdaDec is an uncertainty-guided adaptive decoding framework for code generation with large language models that enhances standard decoding by incorporating a pause-then-rerank mechanism that reacts to model uncertainty, measured by Shannon entropy at each step.
+
+## How It Works
+
+When uncertainty exceeds a threshold, decoding is paused and a reranking procedure is triggered. Because a fixed threshold does not generalize well across different models, AdaDec learns this threshold through a data-driven logistic regression approach.
+
+During reranking, AdaDec selects the top candidate tokens and evaluates them using a lookahead strategy inspired by A* search heuristics and a prior constrained generation method, scoring each candidate based on expected future continuations.
+
+## Performance Results
+
+Experiments on HumanEval and MBPP benchmarks show that AdaDec improves Pass1 accuracy by up to 15.5% over greedy decoding, outperforms or matches beam search, and reduces computational cost and latency through efficient, selective pausing.
+
+AdaDec selectively pauses decoding at a low rate (between 3.95% and 11.88%), which leads to reductions in token generation of up to 54.72% and sometimes decreases overall latency.
+
+## Key Features
+
+AdaDec demonstrates strong generalizability, consistently improving code generation accuracy across a wide range of model sizes and both benchmark datasets.
+
+The paper was authored by Chong Wang, Yanlin Wang, Zibin Zheng, Xin Peng, Mingwei Liu, Kaifeng He, and Zike Li, and code is mentioned to be publicly available.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5309d895-4ea8-45fd-8644-d0a363f588cb",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "65e7c7ce-8564-46ae-9046-8796a5ff9cdd",
+  "toolUseResult": {
+    "query": "AdaDec \"Adaptive Decoding with Uncertainty Guidance\" code generation arxiv 2506.08980",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01142RHgFb8NV5HBo3aek4Mv",
+        "content": [
+          {
+            "title": "AdaDec: Uncertainty-Guided Adaptive Decoding for LLM-based Code Generation",
+            "url": "https://arxiv.org/html/2506.08980v1"
+          },
+          {
+            "title": "Towards Better Code Generation: Adaptive Decoding with Uncertainty Guidance",
+            "url": "https://arxiv.org/pdf/2506.08980"
+          },
+          {
+            "title": "[2506.08980] Towards Better Code Generation: Adaptive Decoding with Uncertainty Guidance",
+            "url": "https://arxiv.org/abs/2506.08980"
+          },
+          {
+            "title": "Towards Better Code Generation: Adaptive Decoding with Uncertainty Guidance | alphaXiv",
+            "url": "https://www.alphaxiv.org/resources/2506.08980v2"
+          },
+          {
+            "title": "Paper page - Towards Better Code Generation: Adaptive Decoding with Uncertainty Guidance",
+            "url": "https://huggingface.co/papers/2506.08980"
+          },
+          {
+            "title": "AdaDec: Uncertainty-Guided Adaptive Decoding for LLM- ...",
+            "url": "https://www.researchgate.net/publication/392561295_AdaDec_Uncertainty-Guided_Adaptive_Decoding_for_LLM-based_Code_Generation"
+          },
+          {
+            "title": "Learning Adaptive LLM Decoding",
+            "url": "https://arxiv.org/html/2603.09065v1"
+          },
+          {
+            "title": "AdaDecode: Accelerating LLM Decoding with Adaptive Layer Parallelism",
+            "url": "https://arxiv.org/html/2506.03700"
+          },
+          {
+            "title": "AdaSD: Adaptive Speculative Decoding for Efficient Language Model Inference",
+            "url": "https://arxiv.org/html/2512.11280"
+          },
+          {
+            "title": "[2407.18698v2] Adaptive Contrastive Search: Uncertainty-Guided Decoding for Open-Ended Text Generation",
+            "url": "https://arxiv.org/abs/2407.18698v2"
+          }
+        ]
+      },
+      "I found detailed information about AdaDec (arxiv 2506.08980). Here's a summary of the paper:\n\n## Overview\n\nAdaDec is an uncertainty-guided adaptive decoding framework for code generation with large language models that enhances standard decoding by incorporating a pause-then-rerank mechanism that reacts to model uncertainty, measured by Shannon entropy at each step.\n\n## How It Works\n\nWhen uncertainty exceeds a threshold, decoding is paused and a reranking procedure is triggered. Because a fixed threshold does not generalize well across different models, AdaDec learns this threshold through a data-driven logistic regression approach.\n\nDuring reranking, AdaDec selects the top candidate tokens and evaluates them using a lookahead strategy inspired by A* search heuristics and a prior constrained generation method, scoring each candidate based on expected future continuations.\n\n## Performance Results\n\nExperiments on HumanEval and MBPP benchmarks show that AdaDec improves Pass1 accuracy by up to 15.5% over greedy decoding, outperforms or matches beam search, and reduces computational cost and latency through efficient, selective pausing.\n\nAdaDec selectively pauses decoding at a low rate (between 3.95% and 11.88%), which leads to reductions in token generation of up to 54.72% and sometimes decreases overall latency.\n\n## Key Features\n\nAdaDec demonstrates strong generalizability, consistently improving code generation accuracy across a wide range of model sizes and both benchmark datasets.\n\nThe paper was authored by Chong Wang, Yanlin Wang, Zibin Zheng, Xin Peng, Mingwei Liu, Kaifeng He, and Zike Li, and code is mentioned to be publicly available."
+    ],
+    "durationSeconds": 8.298349891000004
+  },
+  "sourceToolAssistantUUID": "5309d895-4ea8-45fd-8644-d0a363f588cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T08:19:12.041Z_
+
+<details><summary>↩ Tool result · `toolu_01JCUVDQEqdEJbLnKkrcXXHh`</summary>
+
+```text
+Web search results for query: "contrastive decoding logit bias hallucination suppression hedge abstain uncertainty 2025 2026"
+
+Links: [{"title":"GitHub - NishilBalar/Awesome-LVLM-Hallucination: up-to-date curated list of state-of-the-art Large vision language models hallucinations research work, papers & resources · GitHub","url":"https://github.com/NishilBalar/Awesome-LVLM-Hallucination"},{"title":"Mitigating Hallucinations in Large Vision-Language Models via Dual Contrastive Decoding | Proceedings of the 7th ACM International Conference on Multimedia in Asia","url":"https://dl.acm.org/doi/10.1145/3743093.3770933"},{"title":"Decoupling Contrastive Decoding: Robust Hallucination Mitigation in Multimodal Large Language Models","url":"https://arxiv.org/html/2504.08809v2"},{"title":"(PDF) Self-introspective decoding: Alleviating hallucinations for large vision-language models","url":"https://www.researchgate.net/publication/390310161_Self-introspective_decoding_Alleviating_hallucinations_for_large_vision-language_models"},{"title":"Mitigating Hallucinations in Large Vision-Language Models with Internal Fact-based Contrastive Decoding","url":"https://arxiv.org/html/2502.01056v1"},{"title":"NeurIPS Poster Alleviating Hallucinations in Large Language Models through Multi-Model Contrastive Decoding and Dynamic Hallucination Detection","url":"https://neurips.cc/virtual/2025/poster/118154"},{"title":"[2504.12137] Efficient Contrastive Decoding with Probabilistic Hallucination Detection - Mitigating Hallucinations in Large Vision Language Models -","url":"https://arxiv.org/abs/2504.12137"},{"title":"Mitigating Hallucinations in Large Vision-Language Models via Summary-Guided Decoding","url":"https://www.researchgate.net/publication/392504323_Mitigating_Hallucinations_in_Large_Vision-Language_Models_via_Summary-Guided_Decoding"},{"title":"SDCD: Structure-Disrupted Contrastive Decoding for Mitigating Hallucinations in Large Vision-Language Models","url":"https://arxiv.org/html/2601.03500"},{"title":"DELTA - CONTRASTIVE DECODING MITIGATES TEXT ...","url":"https://openreview.net/notes/edits/attachment?id=psDG4tEdjS&name=pdf"}]
+
+Based on the search results, I found several recent papers and research developments related to contrastive decoding for hallucination suppression in 2025-2026:
+
+## Key Recent Research (2025-2026)
+
+**Contrastive Decoding Methods:**
+
+Training-free methods resort to contrastive decoding to alleviate hallucination. Recent approaches include:
+
+1. **Internal Fact-based Contrastive Decoding (IFCD)** - A novel model-agnostic approach designed to mitigate and suppress hallucinations during the inference process of LVLMs by exploiting the LVLMs' own hallucinations. IFCD significantly alleviates both object-level and attribute-level hallucinations while achieving an average 9% accuracy improvement on POPE and 8% accuracy improvement on MME object hallucinations subset.
+
+2. **Structure-Disrupted Contrastive Decoding (SDCD)** - A training-free algorithm which performs contrastive calibration to address visual statistical bias in vision encoders.
+
+3. **Self-Introspective Decoding (SID)** - A training-free decoding strategy that amplifies vision-and-text association hallucinations to guide LVLMs in contrastive decoding, thereby improving faithfulness.
+
+4. **Efficient Contrastive Decoding (ECD)** - A method that leverages probabilistic hallucination detection to shift the output distribution towards contextually accurate answers at inference time.
+
+**Challenges Identified:**
+
+Artificial contrastive distributions may not reflect the authentic hallucinations produced by MLLMs, as they are vision-and-text agnostic and can introduce uncertainty noise in the decoding process.
+
+**Multi-Model Approaches:**
+
+Multi-Model Contrastive Decoding (MCD) integrates a pretrained language model with an evil model and a truthful model for contrastive decoding.
+
+The research indicates an active area of development focusing on improving hallucination suppression through refined contrastive decoding techniques while addressing logit bias and uncertainty issues.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "652ccb84-1802-4d4e-8f83-f68b2e6eab98",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "0d16d660-3166-416b-9d2d-1221457770ae",
+  "toolUseResult": {
+    "query": "contrastive decoding logit bias hallucination suppression hedge abstain uncertainty 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014zmrnANg1UX6hxMhz3Q2ek",
+        "content": [
+          {
+            "title": "GitHub - NishilBalar/Awesome-LVLM-Hallucination: up-to-date curated list of state-of-the-art Large vision language models hallucinations research work, papers & resources · GitHub",
+            "url": "https://github.com/NishilBalar/Awesome-LVLM-Hallucination"
+          },
+          {
+            "title": "Mitigating Hallucinations in Large Vision-Language Models via Dual Contrastive Decoding | Proceedings of the 7th ACM International Conference on Multimedia in Asia",
+            "url": "https://dl.acm.org/doi/10.1145/3743093.3770933"
+          },
+          {
+            "title": "Decoupling Contrastive Decoding: Robust Hallucination Mitigation in Multimodal Large Language Models",
+            "url": "https://arxiv.org/html/2504.08809v2"
+          },
+          {
+            "title": "(PDF) Self-introspective decoding: Alleviating hallucinations for large vision-language models",
+            "url": "https://www.researchgate.net/publication/390310161_Self-introspective_decoding_Alleviating_hallucinations_for_large_vision-language_models"
+          },
+          {
+            "title": "Mitigating Hallucinations in Large Vision-Language Models with Internal Fact-based Contrastive Decoding",
+            "url": "https://arxiv.org/html/2502.01056v1"
+          },
+          {
+            "title": "NeurIPS Poster Alleviating Hallucinations in Large Language Models through Multi-Model Contrastive Decoding and Dynamic Hallucination Detection",
+            "url": "https://neurips.cc/virtual/2025/poster/118154"
+          },
+          {
+            "title": "[2504.12137] Efficient Contrastive Decoding with Probabilistic Hallucination Detection - Mitigating Hallucinations in Large Vision Language Models -",
+            "url": "https://arxiv.org/abs/2504.12137"
+          },
+          {
+            "title": "Mitigating Hallucinations in Large Vision-Language Models via Summary-Guided Decoding",
+            "url": "https://www.researchgate.net/publication/392504323_Mitigating_Hallucinations_in_Large_Vision-Language_Models_via_Summary-Guided_Decoding"
+          },
+          {
+            "title": "SDCD: Structure-Disrupted Contrastive Decoding for Mitigating Hallucinations in Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2601.03500"
+          },
+          {
+            "title": "DELTA - CONTRASTIVE DECODING MITIGATES TEXT ...",
+            "url": "https://openreview.net/notes/edits/attachment?id=psDG4tEdjS&name=pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found several recent papers and research developments related to contrastive decoding for hallucination suppression in 2025-2026:\n\n## Key Recent Research (2025-2026)\n\n**Contrastive Decoding Methods:**\n\nTraining-free methods resort to contrastive decoding to alleviate hallucination. Recent approaches include:\n\n1. **Internal Fact-based Contrastive Decoding (IFCD)** - A novel model-agnostic approach designed to mitigate and suppress hallucinations during the inference process of LVLMs by exploiting the LVLMs' own hallucinations. IFCD significantly alleviates both object-level and attribute-level hallucinations while achieving an average 9% accuracy improvement on POPE and 8% accuracy improvement on MME object hallucinations subset.\n\n2. **Structure-Disrupted Contrastive Decoding (SDCD)** - A training-free algorithm which performs contrastive calibration to address visual statistical bias in vision encoders.\n\n3. **Self-Introspective Decoding (SID)** - A training-free decoding strategy that amplifies vision-and-text association hallucinations to guide LVLMs in contrastive decoding, thereby improving faithfulness.\n\n4. **Efficient Contrastive Decoding (ECD)** - A method that leverages probabilistic hallucination detection to shift the output distribution towards contextually accurate answers at inference time.\n\n**Challenges Identified:**\n\nArtificial contrastive distributions may not reflect the authentic hallucinations produced by MLLMs, as they are vision-and-text agnostic and can introduce uncertainty noise in the decoding process.\n\n**Multi-Model Approaches:**\n\nMulti-Model Contrastive Decoding (MCD) integrates a pretrained language model with an evil model and a truthful model for contrastive decoding.\n\nThe research indicates an active area of development focusing on improving hallucination suppression through refined contrastive decoding techniques while addressing logit bias and uncertainty issues."
+    ],
+    "durationSeconds": 8.432464714000002
+  },
+  "sourceToolAssistantUUID": "652ccb84-1802-4d4e-8f83-f68b2e6eab98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-16T08:19:28.018Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Very important finding: "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits" (arXiv 2605.05953, May 2026) is a very recent concurrent paper that does dynamic intervention at decoding time using density-based anomaly detection on the residual stream. This is highly relevant - it proposes PC-LDCD (Probabilistic Circuit Latent Density Contrastive Decoding) which intervenes ONLY when latent geometry deviates from factual regions. This is quite similar in spirit to MisTAG (selectively intervene at the logit level when internal signals indicate hallucination).
+
+
+I should dig deeper into how PC-LDCD actually compares to our approach, and also track down those other papers - the NeurIPS work on multi-model contrastive decoding, plus CURE and LoGU which keep coming up in the literature.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d16d660-3166-416b-9d2d-1221457770ae",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vKfUCt6RgRceG47PN8",
+  "type": "assistant",
+  "uuid": "2a113318-2e0b-4af8-8e67-4701f4902112",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015C3Ni93UQFbagD8PpMPQ4z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4038,
+      "cache_read_input_tokens": 33327,
+      "output_tokens": 466,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4038,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 466,
+          "cache_read_input_tokens": 33327,
+          "cache_creation_input_tokens": 4038,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4038
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-16T08:19:28.020Z_
+
+Let me look deeper at the very recent concurrent work and check more specific competing approaches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a113318-2e0b-4af8-8e67-4701f4902112",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vKfUCt6RgRceG47PN8",
+  "type": "assistant",
+  "uuid": "dd3cb545-b726-411e-9028-71bb4f241af0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015C3Ni93UQFbagD8PpMPQ4z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4038,
+      "cache_read_input_tokens": 33327,
+      "output_tokens": 466,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4038,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 466,
+          "cache_read_input_tokens": 33327,
+          "cache_creation_input_tokens": 4038,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4038
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-16T08:19:29.192Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019nYt3cYAuPNwCxs41RNovg`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.05953",
+  "prompt": "Extract the full abstract and key method details of this paper. What exactly is the intervention mechanism? How does it compare to logit-level contrastive decoding? What models are evaluated? What benchmarks and results are reported?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dd3cb545-b726-411e-9028-71bb4f241af0",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vKfUCt6RgRceG47PN8",
+  "type": "assistant",
+  "uuid": "976cdc59-c78e-449e-b293-9bd5ee348d2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015C3Ni93UQFbagD8PpMPQ4z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4038,
+      "cache_read_input_tokens": 33327,
+      "output_tokens": 466,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4038,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 466,
+          "cache_read_input_tokens": 33327,
+          "cache_creation_input_tokens": 4038,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4038
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-16T08:19:30.050Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014Yp4FWG5dHDwp8zsAzZkyU`</summary>
+
+```json
+{
+  "query": "ActLCD \"Active Layer-Contrastive Decoding\" EMNLP 2025 TruthfulQA results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "976cdc59-c78e-449e-b293-9bd5ee348d2d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vKfUCt6RgRceG47PN8",
+  "type": "assistant",
+  "uuid": "feb6eb9c-04d2-4432-8215-060a0ef52610",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015C3Ni93UQFbagD8PpMPQ4z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4038,
+      "cache_read_input_tokens": 33327,
+      "output_tokens": 466,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4038,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 466,
+          "cache_read_input_tokens": 33327,
+          "cache_creation_input_tokens": 4038,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4038
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T08:19:35.327Z_
+
+<details><summary>↩ Tool result · `toolu_019nYt3cYAuPNwCxs41RNovg`</summary>
+
+```text
+# Paper Summary: Hallucination Detection via Probabilistic Circuits
+
+## Abstract
+The researchers address hallucination in LLMs by proposing PCNET, which "detect[s] hallucinations as geometric anomalies on the factual manifold" using exact Negative Log-Likelihood computation without sampling or external verifiers.
+
+## Intervention Mechanism
+The key contribution is **PC-LDCD (Probabilistic Circuit Latent Density Contrastive Decoding)**, which operates as a dynamic gate. Rather than applying corrections universally, the method "only" intervenes "when the latent geometry deviates from factual regions, while leaving correct generations untouched."
+
+The mechanism works by:
+- Training PCNET as a tractable density estimator over the LLM residual stream
+- Using exact likelihood computations to identify hallucination signals
+- Triggering corrective decoding only at problematic tokens
+
+## Comparison to Standard Contrastive Decoding
+Unlike traditional logit-level approaches, this method operates in the latent space and selectively applies interventions, reducing what the authors call the "corruption rate to 53.7%" while maintaining a "preservation rate of 79.3%"—meaning it avoids unnecessarily modifying correct outputs.
+
+## Models Evaluated
+Four language models spanning 1B to 8B parameters
+
+## Benchmarks and Results
+- **CoQA, SQuAD v2.0, TriviaQA**: Near-perfect detection with AUROC reaching 99%
+- **TruthfulQA**: Highest scores on True+Info, MC2, and MC3 metrics in three of four models compared to baselines
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "976cdc59-c78e-449e-b293-9bd5ee348d2d",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "48b14364-3180-4c7d-b1a3-7ab3c5b47bde",
+  "toolUseResult": {
+    "bytes": 47725,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary: Hallucination Detection via Probabilistic Circuits\n\n## Abstract\nThe researchers address hallucination in LLMs by proposing PCNET, which \"detect[s] hallucinations as geometric anomalies on the factual manifold\" using exact Negative Log-Likelihood computation without sampling or external verifiers.\n\n## Intervention Mechanism\nThe key contribution is **PC-LDCD (Probabilistic Circuit Latent Density Contrastive Decoding)**, which operates as a dynamic gate. Rather than applying corrections universally, the method \"only\" intervenes \"when the latent geometry deviates from factual regions, while leaving correct generations untouched.\"\n\nThe mechanism works by:\n- Training PCNET as a tractable density estimator over the LLM residual stream\n- Using exact likelihood computations to identify hallucination signals\n- Triggering corrective decoding only at problematic tokens\n\n## Comparison to Standard Contrastive Decoding\nUnlike traditional logit-level approaches, this method operates in the latent space and selectively applies interventions, reducing what the authors call the \"corruption rate to 53.7%\" while maintaining a \"preservation rate of 79.3%\"—meaning it avoids unnecessarily modifying correct outputs.\n\n## Models Evaluated\nFour language models spanning 1B to 8B parameters\n\n## Benchmarks and Results\n- **CoQA, SQuAD v2.0, TriviaQA**: Near-perfect detection with AUROC reaching 99%\n- **TruthfulQA**: Highest scores on True+Info, MC2, and MC3 metrics in three of four models compared to baselines",
+    "durationMs": 6131,
+    "url": "https://arxiv.org/abs/2605.05953"
+  },
+  "sourceToolAssistantUUID": "976cdc59-c78e-449e-b293-9bd5ee348d2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "48b14364-3180-4c7d-b1a3-7ab3c5b47bde",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Miscalibration-triggered adaptive generation via logit intervention",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T08:19:36.526Z_
+
+<details><summary>↩ Tool result · `toolu_014Yp4FWG5dHDwp8zsAzZkyU`</summary>
+
+```text
+Web search results for query: "ActLCD "Active Layer-Contrastive Decoding" EMNLP 2025 TruthfulQA results"
+
+Links: [{"title":"Active Layer-Contrastive Decoding Reduces Hallucination in Large Language Model Generation - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.150/"},{"title":"[2505.23657] Active Layer-Contrastive Decoding Reduces Hallucination in Large Language Model Generation","url":"https://arxiv.org/abs/2505.23657"},{"title":"Active Layer-Contrastive Decoding Reduces Hallucination in Large","url":"https://arxiv.org/pdf/2505.23657"},{"title":"[Literature Review] Active Layer-Contrastive Decoding Reduces Hallucination in Large Language Model Generation","url":"https://www.themoonlight.io/en/review/active-layer-contrastive-decoding-reduces-hallucination-in-large-language-model-generation"},{"title":"Active Layer-Contrastive Decoding Reduces Hallucination ...","url":"https://aclanthology.org/2025.emnlp-main.150.pdf"},{"title":"Entropy Guided Extrapolative Decoding to Improve ...","url":"https://aclanthology.org/2025.coling-main.439.pdf"},{"title":"Regularized Contrastive Decoding with Hard Negative ...","url":"https://aclanthology.org/2025.findings-emnlp.322.pdf"},{"title":"DeCoRe: Decoding by Contrasting Retrieval Heads to ...","url":"https://aclanthology.org/2025.findings-emnlp.531.pdf"},{"title":"Active Layer-Contrastive Decoding Reduces Hallucination in Large Language Model Generation","url":"https://arxiv.org/html/2505.23657v3"},{"title":"Accepted Main Conference Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/main_papers/"}]
+
+Based on the search results, here's what I found about ActLCD and its TruthfulQA results:
+
+## ActLCD Overview
+
+Active Layer-Contrastive Decoding (ActLCD) is a novel decoding strategy that actively decides when to apply contrasting layers during generation. By casting decoding as a sequential decision-making problem, ActLCD employs a reinforcement learning policy guided by a reward-aware classifier to optimize factuality beyond the token level.
+
+## TruthfulQA Results
+
+Evaluation metrics for TruthfulQA included %Truth, %Info, %T*I, and on TruthfulQA, ActLCD significantly improved %T*I (up to +19.81%).
+
+## Overall Performance
+
+ActLCD surpasses state-of-the-art methods across five benchmarks, showcasing its effectiveness in mitigating hallucinations in diverse generation scenarios. Experiments were conducted across five benchmarks: TruthfulQA and LongFact (open-domain factuality), StrategyQA and GSM8k (chain-of-thought reasoning), and a domain-specific package hallucination benchmark.
+
+The paper was published at EMNLP 2025 and is available through the ACL Anthology.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "feb6eb9c-04d2-4432-8215-060a0ef52610",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "832b488d-d475-4168-92da-8767ba3dbd70",
+  "toolUseResult": {
+    "query": "ActLCD \"Active Layer-Contrastive Decoding\" EMNLP 2025 TruthfulQA results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N1uCSJ2wvE9NTC1SU2ESpg",
+        "content": [
+          {
+            "title": "Active Layer-Contrastive Decoding Reduces Hallucination in Large Language Model Generation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.150/"
+          },
+          {
+            "title": "[2505.23657] Active Layer-Contrastive Decoding Reduces Hallucination in Large Language Model Generation",
+            "url": "https://arxiv.org/abs/2505.23657"
+          },
+          {
+            "title": "Active Layer-Contrastive Decoding Reduces Hallucination in Large",
+            "url": "https://arxiv.org/pdf/2505.23657"
+          },
+          {
+            "title": "[Literature Review] Active Layer-Contrastive Decoding Reduces Hallucination in Large Language Model Generation",
+            "url": "https://www.themoonlight.io/en/review/active-layer-contrastive-decoding-reduces-hallucination-in-large-language-model-generation"
+          },
+          {
+            "title": "Active Layer-Contrastive Decoding Reduces Hallucination ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.150.pdf"
+          },
+          {
+            "title": "Entropy Guided Extrapolative Decoding to Improve ...",
+            "url": "https://aclanthology.org/2025.coling-main.439.pdf"
+          },
+          {
+            "title": "Regularized Contrastive Decoding with Hard Negative ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.322.pdf"
+          },
+          {
+            "title": "DeCoRe: Decoding by Contrasting Retrieval Heads to ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.531.pdf"
+          },
+          {
+            "title": "Active Layer-Contrastive Decoding Reduces Hallucination in Large Language Model Generation",
+            "url": "https://arxiv.org/html/2505.23657v3"
+          },
+          {
+            "title": "Accepted Main Conference Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/main_papers/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about ActLCD and its TruthfulQA results:\n\n## ActLCD Overview\n\nActive Layer-Contrastive Decoding (ActLCD) is a novel decoding strategy that actively decides when to apply contrasting layers during generation. By casting decoding as a sequential decision-making problem, ActLCD employs a reinforcement learning policy guided by a reward-aware classifier to optimize factuality beyond the token level.\n\n## TruthfulQA Results\n\nEvaluation metrics for TruthfulQA included %Truth, %Info, %T*I, and on TruthfulQA, ActLCD significantly improved %T*I (up to +19.81%).\n\n## Overall Performance\n\nActLCD surpasses state-of-the-art methods across five benchmarks, showcasing its effectiveness in mitigating hallucinations in diverse generation scenarios. Experiments were conducted across five benchmarks: TruthfulQA and LongFact (open-domain factuality), StrategyQA and GSM8k (chain-of-thought reasoning), and a domain-specific package hallucination benchmark.\n\nThe paper was published at EMNLP 2025 and is available through the ACL Anthology."
+    ],
+    "durationSeconds": 6.470464993000001
+  },
+  "sourceToolAssistantUUID": "feb6eb9c-04d2-4432-8215-060a0ef52610",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-16T08:19:49.878Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I've found an extremely important concurrent work: "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits" (arXiv 2605.05953, May 2026 - about 1 week old!). This paper:
+1. Detects hallucinations via internal representations (residual stream density estimation)
+2. Selectively intervenes at decoding time (only when anomaly detected)
+3. Uses contrastive decoding as the intervention mechanism
+
+This is VERY similar to what MisTAG proposes! The key differences are:
+
+
+- MisTAG triggers interventions based on miscalibration (the gap between verbal and internal uncertainty), whereas PCNet uses density-based anomaly detection in the residual stream
+- MisTAG offers graded interventions with hedging or abstention options, while PCNet applies a single contrastive decoding intervention
+- MisTAG operates at the entity level using probes, while PCNet works at token granularity with a trained density estimator
+
+The main limitation is that PCNet was only tested on smaller models up to 8B parameters and short-form QA datasets, whereas MisTAG is designed for long-form generation tasks.
+
+Now I need to verify the publication venue for TA-ITI, check if there are other selective intervention papers I should consider, and look into Qwen3 model availability for my compute estimates.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "832b488d-d475-4168-92da-8767ba3dbd70",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vMUBMhY1inDfgxtAE4",
+  "type": "assistant",
+  "uuid": "39cef078-2395-4e0a-abf4-a58db40b2caf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YEF3PBos5iLXaDZUwNRV1h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1729,
+      "cache_read_input_tokens": 37365,
+      "output_tokens": 639,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 639,
+          "cache_read_input_tokens": 37365,
+          "cache_creation_input_tokens": 1729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-16T08:19:49.901Z_
+
+Important finding - there's a very recent concurrent paper (arXiv 2605.05953, ~1 week old) doing dynamic intervention via internal representations. Let me verify more details and check model availability.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39cef078-2395-4e0a-abf4-a58db40b2caf",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vMUBMhY1inDfgxtAE4",
+  "type": "assistant",
+  "uuid": "a6990826-7c6b-43c4-9990-eb17c4018d34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YEF3PBos5iLXaDZUwNRV1h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1729,
+      "cache_read_input_tokens": 37365,
+      "output_tokens": 639,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 639,
+          "cache_read_input_tokens": 37365,
+          "cache_creation_input_tokens": 1729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-16T08:19:53.233Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014Hpd6VGmANFSK8UQUG8Z3i`</summary>
+
+```json
+{
+  "query": "Qwen3-8B Qwen3-32B huggingface model availability inference 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a6990826-7c6b-43c4-9990-eb17c4018d34",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vMUBMhY1inDfgxtAE4",
+  "type": "assistant",
+  "uuid": "1abe8ab7-52c7-4bcf-b81b-12d433d62618",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YEF3PBos5iLXaDZUwNRV1h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1729,
+      "cache_read_input_tokens": 37365,
+      "output_tokens": 639,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 639,
+          "cache_read_input_tokens": 37365,
+          "cache_creation_input_tokens": 1729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-16T08:19:53.426Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016SoQipkS6qnpB1SWx7iYWQ`</summary>
+
+```json
+{
+  "query": "\"selective decoding intervention\" \"uncertainty trigger\" hallucination factuality 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1abe8ab7-52c7-4bcf-b81b-12d433d62618",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vMUBMhY1inDfgxtAE4",
+  "type": "assistant",
+  "uuid": "0d1163eb-bd22-4ebe-91c2-830e0a2a5116",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YEF3PBos5iLXaDZUwNRV1h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1729,
+      "cache_read_input_tokens": 37365,
+      "output_tokens": 639,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 639,
+          "cache_read_input_tokens": 37365,
+          "cache_creation_input_tokens": 1729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-16T08:19:53.549Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B5fbG41vYu2ooRo1Cprn1Z`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR submission deadline May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d1163eb-bd22-4ebe-91c2-830e0a2a5116",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vMUBMhY1inDfgxtAE4",
+  "type": "assistant",
+  "uuid": "084d7de0-7db3-4e3a-9dfd-b6d1b0b3efa5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YEF3PBos5iLXaDZUwNRV1h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1729,
+      "cache_read_input_tokens": 37365,
+      "output_tokens": 639,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 639,
+          "cache_read_input_tokens": 37365,
+          "cache_creation_input_tokens": 1729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-16T08:19:57.854Z_
+
+<details><summary>↩ Tool result · `toolu_01B5fbG41vYu2ooRo1Cprn1Z`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR submission deadline May 2026"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"EMNLP 2026 2026 Deadlines — Submission, Rebuttal & Dates | Paperpin | Paperpin","url":"https://www.getpaperpin.com/deadlines/emnlp26"},{"title":"EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X","url":"https://x.com/emnlpmeeting/status/1892259536137785419"}]
+
+Based on the search results, here's the information about EMNLP 2026 ARR submission deadline in May 2026:
+
+## Key Deadline
+
+The ARR submission deadline for EMNLP 2026 is May 25, 2026.
+
+## Important Additional Information
+
+After submission, all authors must complete the author registration form by May 27, 2026 EoD AoE.
+
+## Special Policy Note
+
+Since the ARR 2026 May cycle is aligned with both EMNLP and AACL conferences, authors must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026.
+
+## Other Important Dates in the Timeline
+
+The reviewer registration deadline for all authors is May 27, 2026, author response and author-reviewer discussion occurs July 7-13, 2026, and the meta review is released July 30, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "084d7de0-7db3-4e3a-9dfd-b6d1b0b3efa5",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "1ff44bff-5d50-4937-8b9d-adb918d7fdb9",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR submission deadline May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DnR7QxK5sBwdxgFaEEEc2G",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 2026 Deadlines — Submission, Rebuttal & Dates | Paperpin | Paperpin",
+            "url": "https://www.getpaperpin.com/deadlines/emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X",
+            "url": "https://x.com/emnlpmeeting/status/1892259536137785419"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about EMNLP 2026 ARR submission deadline in May 2026:\n\n## Key Deadline\n\nThe ARR submission deadline for EMNLP 2026 is May 25, 2026.\n\n## Important Additional Information\n\nAfter submission, all authors must complete the author registration form by May 27, 2026 EoD AoE.\n\n## Special Policy Note\n\nSince the ARR 2026 May cycle is aligned with both EMNLP and AACL conferences, authors must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026.\n\n## Other Important Dates in the Timeline\n\nThe reviewer registration deadline for all authors is May 27, 2026, author response and author-reviewer discussion occurs July 7-13, 2026, and the meta review is released July 30, 2026."
+    ],
+    "durationSeconds": 4.302627622
+  },
+  "sourceToolAssistantUUID": "084d7de0-7db3-4e3a-9dfd-b6d1b0b3efa5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T08:19:59.897Z_
+
+<details><summary>↩ Tool result · `toolu_014Hpd6VGmANFSK8UQUG8Z3i`</summary>
+
+```text
+Web search results for query: "Qwen3-8B Qwen3-32B huggingface model availability inference 2026"
+
+Links: [{"title":"Qwen/Qwen3-32B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-32B"},{"title":"Qwen/Qwen3-8B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-8B"},{"title":"Qwen/Qwen3-VL-32B-Instruct · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-VL-32B-Instruct"},{"title":"Qwen/Qwen3.6-35B-A3B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.6-35B-A3B"},{"title":"Qwen/Qwen3.6-27B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.6-27B"},{"title":"Qwen/WebWorld-32B · Hugging Face","url":"https://huggingface.co/Qwen/WebWorld-32B"},{"title":"nvidia/Qwen3-32B-NVFP4 · Hugging Face","url":"https://huggingface.co/nvidia/Qwen3-32B-NVFP4"},{"title":"Qwen/Qwen3-32B-FP8 · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-32B-FP8"},{"title":"Qwen3 - a Qwen Collection","url":"https://huggingface.co/collections/Qwen/qwen3"},{"title":"Qwen/Qwen3.5-0.8B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.5-0.8B"}]
+
+Based on the web search results, here's what I found about Qwen3-8B and Qwen3-32B models on Hugging Face:
+
+## Model Availability
+
+Qwen3-32B has 32.8B parameters with 64 layers and supports context lengths of 32,768 tokens natively and 131,072 tokens with YaRN. Qwen3 has thinking capabilities enabled by default, which means the model will use its reasoning abilities to enhance the quality of generated responses.
+
+Both models are available on Hugging Face at:
+- Qwen/Qwen3-8B
+- Qwen/Qwen3-32B
+
+## Inference Support
+
+The code of Qwen3 has been integrated into the latest Hugging Face transformers, and transformers versions below 4.51.0 will encounter an error with the 'qwen3' key.
+
+YaRN is currently supported by several inference frameworks, including transformers and llama.cpp for local use, vllm and sglang for deployment.
+
+## Quantized Versions
+
+Additional variants are also available, including the FP8 version of Qwen3-32B with context length of 32,768 tokens natively and 131,072 tokens with YaRN, and Qwen3-32B-NVFP4, which is quantized to FP4 data type and ready for inference with TensorRT-LLM.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1abe8ab7-52c7-4bcf-b81b-12d433d62618",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "22ff628b-064d-4f4f-b6cb-9a6e38ebe020",
+  "toolUseResult": {
+    "query": "Qwen3-8B Qwen3-32B huggingface model availability inference 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015sAEUNEV3uhVv6jegT7yGz",
+        "content": [
+          {
+            "title": "Qwen/Qwen3-32B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-32B"
+          },
+          {
+            "title": "Qwen/Qwen3-8B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-8B"
+          },
+          {
+            "title": "Qwen/Qwen3-VL-32B-Instruct · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-VL-32B-Instruct"
+          },
+          {
+            "title": "Qwen/Qwen3.6-35B-A3B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+          },
+          {
+            "title": "Qwen/Qwen3.6-27B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.6-27B"
+          },
+          {
+            "title": "Qwen/WebWorld-32B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/WebWorld-32B"
+          },
+          {
+            "title": "nvidia/Qwen3-32B-NVFP4 · Hugging Face",
+            "url": "https://huggingface.co/nvidia/Qwen3-32B-NVFP4"
+          },
+          {
+            "title": "Qwen/Qwen3-32B-FP8 · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-32B-FP8"
+          },
+          {
+            "title": "Qwen3 - a Qwen Collection",
+            "url": "https://huggingface.co/collections/Qwen/qwen3"
+          },
+          {
+            "title": "Qwen/Qwen3.5-0.8B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about Qwen3-8B and Qwen3-32B models on Hugging Face:\n\n## Model Availability\n\nQwen3-32B has 32.8B parameters with 64 layers and supports context lengths of 32,768 tokens natively and 131,072 tokens with YaRN. Qwen3 has thinking capabilities enabled by default, which means the model will use its reasoning abilities to enhance the quality of generated responses.\n\nBoth models are available on Hugging Face at:\n- Qwen/Qwen3-8B\n- Qwen/Qwen3-32B\n\n## Inference Support\n\nThe code of Qwen3 has been integrated into the latest Hugging Face transformers, and transformers versions below 4.51.0 will encounter an error with the 'qwen3' key.\n\nYaRN is currently supported by several inference frameworks, including transformers and llama.cpp for local use, vllm and sglang for deployment.\n\n## Quantized Versions\n\nAdditional variants are also available, including the FP8 version of Qwen3-32B with context length of 32,768 tokens natively and 131,072 tokens with YaRN, and Qwen3-32B-NVFP4, which is quantized to FP4 data type and ready for inference with TensorRT-LLM."
+    ],
+    "durationSeconds": 6.659891424000001
+  },
+  "sourceToolAssistantUUID": "1abe8ab7-52c7-4bcf-b81b-12d433d62618",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-16T08:20:01.460Z_
+
+<details><summary>↩ Tool result · `toolu_016SoQipkS6qnpB1SWx7iYWQ`</summary>
+
+```text
+Web search results for query: ""selective decoding intervention" "uncertainty trigger" hallucination factuality 2026 arxiv"
+
+Links: [{"title":"Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation","url":"https://arxiv.org/html/2503.03106v1"},{"title":"[2503.03106] Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation","url":"https://arxiv.org/abs/2503.03106"},{"title":"DHI: Leveraging Diverse Hallucination Induction for Enhanced Contrastive Factuality Control in Large Language Models","url":"https://arxiv.org/html/2601.01156"},{"title":"Hallucinations Undermine Trust; Metacognition is a Way Forward","url":"https://arxiv.org/html/2605.01428v1"},{"title":"Neural Uncertainty Principle: A Unified View of Adversarial Fragility and LLM Hallucination","url":"https://arxiv.org/html/2603.19562"},{"title":"A novel hallucination classification framework","url":"https://arxiv.org/html/2510.05189v1"},{"title":"ACT Now: Preempting LVLM Hallucinations via Adaptive Context Integration","url":"https://arxiv.org/html/2604.00983v1"},{"title":"GRAD: Graph-Retrieved Adaptive Decoding for Hallucination Mitigation","url":"https://arxiv.org/html/2511.03900"},{"title":"1 Beyond Accuracy: Rethinking Hallucination and Regulatory Response in","url":"https://arxiv.org/pdf/2509.13345"},{"title":"Theoretical Foundations and Mitigation of Hallucination in Large Language Models","url":"https://arxiv.org/html/2507.22915v1"}]
+
+Based on the web search results, I found several relevant papers from arXiv addressing hallucination mitigation and factuality in large language models. Here are the key findings:
+
+## Most Relevant Results:
+
+**1. Monitoring Decoding (MD) - 2025**
+
+A framework that dynamically monitors the generation process and selectively applies in-process interventions, focusing on revising crucial tokens responsible for hallucinations by identifying hallucination-prone tokens during generation using a monitor function and refining them through a tree-based decoding strategy. This approach improved model performance by 15.4% on TruthfulQA, 11.2% on TriviaQA and 13.6% on GSM8K for Llama-2-7B-chat model.
+
+**2. DHI: Diverse Hallucination Induction - January 2026**
+
+This selective strategy ensures that contrastive adjustment is only applied when the Positive Model exhibits uncertainty (when multiple tokens have comparable probabilities), while when the Positive Model is highly confident, its output is used directly without modification.
+
+**3. Other Recent Papers on Hallucination Mitigation:**
+
+- GRAD (Graph-Retrieved Adaptive Decoding), a decoding-time method that constructs a sparse token transition graph by accumulating next-token logits across a small retrieved corpus, which are adaptively fused with model logits to favor high-evidence continuations while preserving fluency.
+
+- ACT (Adaptive Context Integration), a training-free inference intervention designed to preemptively calibrate attention allocation by unifying Visual Context Exploration and Semantic Context Aggregation modules.
+
+These papers represent recent advancements in selective decoding interventions that use uncertainty detection to trigger targeted hallucination mitigation strategies during text generation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0d1163eb-bd22-4ebe-91c2-830e0a2a5116",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "85a7c4fb-23cd-4ba4-b15e-c3128b4559b2",
+  "toolUseResult": {
+    "query": "\"selective decoding intervention\" \"uncertainty trigger\" hallucination factuality 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EMSMNw6WvbRrJ83GZrCog6",
+        "content": [
+          {
+            "title": "Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation",
+            "url": "https://arxiv.org/html/2503.03106v1"
+          },
+          {
+            "title": "[2503.03106] Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation",
+            "url": "https://arxiv.org/abs/2503.03106"
+          },
+          {
+            "title": "DHI: Leveraging Diverse Hallucination Induction for Enhanced Contrastive Factuality Control in Large Language Models",
+            "url": "https://arxiv.org/html/2601.01156"
+          },
+          {
+            "title": "Hallucinations Undermine Trust; Metacognition is a Way Forward",
+            "url": "https://arxiv.org/html/2605.01428v1"
+          },
+          {
+            "title": "Neural Uncertainty Principle: A Unified View of Adversarial Fragility and LLM Hallucination",
+            "url": "https://arxiv.org/html/2603.19562"
+          },
+          {
+            "title": "A novel hallucination classification framework",
+            "url": "https://arxiv.org/html/2510.05189v1"
+          },
+          {
+            "title": "ACT Now: Preempting LVLM Hallucinations via Adaptive Context Integration",
+            "url": "https://arxiv.org/html/2604.00983v1"
+          },
+          {
+            "title": "GRAD: Graph-Retrieved Adaptive Decoding for Hallucination Mitigation",
+            "url": "https://arxiv.org/html/2511.03900"
+          },
+          {
+            "title": "1 Beyond Accuracy: Rethinking Hallucination and Regulatory Response in",
+            "url": "https://arxiv.org/pdf/2509.13345"
+          },
+          {
+            "title": "Theoretical Foundations and Mitigation of Hallucination in Large Language Models",
+            "url": "https://arxiv.org/html/2507.22915v1"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers from arXiv addressing hallucination mitigation and factuality in large language models. Here are the key findings:\n\n## Most Relevant Results:\n\n**1. Monitoring Decoding (MD) - 2025**\n\nA framework that dynamically monitors the generation process and selectively applies in-process interventions, focusing on revising crucial tokens responsible for hallucinations by identifying hallucination-prone tokens during generation using a monitor function and refining them through a tree-based decoding strategy. This approach improved model performance by 15.4% on TruthfulQA, 11.2% on TriviaQA and 13.6% on GSM8K for Llama-2-7B-chat model.\n\n**2. DHI: Diverse Hallucination Induction - January 2026**\n\nThis selective strategy ensures that contrastive adjustment is only applied when the Positive Model exhibits uncertainty (when multiple tokens have comparable probabilities), while when the Positive Model is highly confident, its output is used directly without modification.\n\n**3. Other Recent Papers on Hallucination Mitigation:**\n\n- GRAD (Graph-Retrieved Adaptive Decoding), a decoding-time method that constructs a sparse token transition graph by accumulating next-token logits across a small retrieved corpus, which are adaptively fused with model logits to favor high-evidence continuations while preserving fluency.\n\n- ACT (Adaptive Context Integration), a training-free inference intervention designed to preemptively calibrate attention allocation by unifying Visual Context Exploration and Semantic Context Aggregation modules.\n\nThese papers represent recent advancements in selective decoding interventions that use uncertainty detection to trigger targeted hallucination mitigation strategies during text generation."
+    ],
+    "durationSeconds": 8.031426464000004
+  },
+  "sourceToolAssistantUUID": "0d1163eb-bd22-4ebe-91c2-830e0a2a5116",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58 · 2026-05-16T08:20:01.464Z_
+
+```json
+{
+  "parentUuid": "85a7c4fb-23cd-4ba4-b15e-c3128b4559b2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "821f8682-7c79-4d23-828e-61550a6bde1a",
+  "timestamp": "2026-05-16T08:20:01.464Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "821f8682-7c79-4d23-828e-61550a6bde1a",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Miscalibration-triggered adaptive generation via logit intervention",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-16T08:20:13.499Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Critical finding! "Monitoring Decoding" (arXiv 2503.03106, March 2025) is very relevant - it dynamically monitors generation, identifies hallucination-prone tokens, and applies in-process interventions using tree-based decoding. This is conceptually similar to MisTAG's approach of monitoring during generation and selectively intervening.
+
+Let me now check this paper more carefully, and also check whether there's overlap with the "Hallucination as an Anomaly" paper.
+
+Let me also verify:
+1. Whether TA-ITI is ICLR 2025 or 2026 (search results suggested it might be ICLR 2026)
+
+
+2. The specific mechanisms Monitoring Decoding uses and whether it overlaps with any verbal uncertainty or logit-based interventions.
+
+I'm seeing a pattern here - Monitoring Decoding and PC-LDCD (May 2026) both use real-time monitoring to trigger selective interventions, though with different signals. I need to confirm whether TA-ITI is actually ICLR 2026 and check if any of these papers combine verbal uncertainty mismatch with logit interventions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "821f8682-7c79-4d23-828e-61550a6bde1a",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vPKXGH4PMat1XaLMYt",
+  "type": "assistant",
+  "uuid": "3ac290e9-d401-421b-9f12-bfc3c842d122",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013ve1u6FMRKWbn3nbM89uAG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 968,
+      "cache_creation_input_tokens": 2554,
+      "cache_read_input_tokens": 39094,
+      "output_tokens": 592,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2554,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 968,
+          "output_tokens": 592,
+          "cache_read_input_tokens": 39094,
+          "cache_creation_input_tokens": 2554,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2554
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-16T08:20:13.836Z_
+
+Found a critical competing paper. Let me verify "Monitoring Decoding" which also does real-time hallucination monitoring with selective intervention.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ac290e9-d401-421b-9f12-bfc3c842d122",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vPKXGH4PMat1XaLMYt",
+  "type": "assistant",
+  "uuid": "570f194f-480d-4fa7-9fad-12c1f473e9c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013ve1u6FMRKWbn3nbM89uAG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 968,
+      "cache_creation_input_tokens": 2554,
+      "cache_read_input_tokens": 39094,
+      "output_tokens": 592,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2554,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 968,
+          "output_tokens": 592,
+          "cache_read_input_tokens": 39094,
+          "cache_creation_input_tokens": 2554,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2554
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-16T08:20:15.824Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017j61CdX44pHPfZ3ejc84wp`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2503.03106",
+  "prompt": "Extract the full abstract, key method details, what models were evaluated, benchmarks used, and results. How does this method detect hallucination-prone tokens during generation? What intervention does it apply? How does it compare to DoLa and other baselines?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "570f194f-480d-4fa7-9fad-12c1f473e9c8",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vPKXGH4PMat1XaLMYt",
+  "type": "assistant",
+  "uuid": "1d604ef5-9cba-403a-9914-bde022636fba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013ve1u6FMRKWbn3nbM89uAG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 968,
+      "cache_creation_input_tokens": 2554,
+      "cache_read_input_tokens": 39094,
+      "output_tokens": 592,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2554,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 968,
+          "output_tokens": 592,
+          "cache_read_input_tokens": 39094,
+          "cache_creation_input_tokens": 2554,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2554
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-16T08:20:16.293Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015ERp45n7CFhQ3RNAf7cJhJ`</summary>
+
+```json
+{
+  "query": "\"Monitoring Decoding\" \"partial response\" hallucination factuality generation Zheng 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d604ef5-9cba-403a-9914-bde022636fba",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vPKXGH4PMat1XaLMYt",
+  "type": "assistant",
+  "uuid": "7d81b499-43ff-4c27-94bf-32d9a7d885ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013ve1u6FMRKWbn3nbM89uAG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 968,
+      "cache_creation_input_tokens": 2554,
+      "cache_read_input_tokens": 39094,
+      "output_tokens": 592,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2554,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 968,
+          "output_tokens": 592,
+          "cache_read_input_tokens": 39094,
+          "cache_creation_input_tokens": 2554,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2554
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-16T08:20:23.532Z_
+
+<details><summary>↩ Tool result · `toolu_015ERp45n7CFhQ3RNAf7cJhJ`</summary>
+
+```text
+Web search results for query: ""Monitoring Decoding" "partial response" hallucination factuality generation Zheng 2025"
+
+Links: [{"title":"[2503.03106] Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation","url":"https://arxiv.org/abs/2503.03106"},{"title":"Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation","url":"https://arxiv.org/html/2503.03106v1"},{"title":"Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation","url":"https://www.researchgate.net/publication/394269763_Monitoring_Decoding_Mitigating_Hallucination_via_Evaluating_the_Factuality_of_Partial_Response_during_Generation"},{"title":"Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/monitoring-decoding-mitigating-hallucination-via-evaluating-factuality"},{"title":"[Quick Review] Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation","url":"https://liner.com/review/monitoring-decoding-mitigating-hallucination-via-evaluating-factuality-partial-response-during"},{"title":"Mitigating Hallucination via Evaluating the Factuality of ...","url":"https://aclanthology.org/2025.findings-acl.752.pdf"},{"title":"Monitoring Decoding: Mitigating Hallucination via Evaluating the","url":"https://www.researchgate.net/publication/389617318_Monitoring_Decoding_Mitigating_Hallucination_via_Evaluating_the_Factuality_of_Partial_Response_during_Generation/fulltext/67c9beef32265243f583202b/Monitoring-Decoding-Mitigating-Hallucination-via-Evaluating-the-Factuality-of-Partial-Response-during-Generation.pdf?origin=scientificContributions"},{"title":"Computer Science Mar 2025","url":"https://arxiv.org/list/cs/2025-03?skip=1575&show=2000"},{"title":"Computation and Language Mar 2025","url":"https://arxiv.org/list/cs.CL/2025-03?skip=200&show=2000"},{"title":"A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions | ACM Transactions on Information Systems","url":"https://dl.acm.org/doi/10.1145/3703155"}]
+
+Based on the search results, I found a research paper matching your query. Here's what I found:
+
+## Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation
+
+This paper introduces Monitoring Decoding (MD), a novel framework that dynamically monitors the generation process and selectively applies in-process interventions, focusing on revising crucial tokens responsible for hallucinations.
+
+**Key Innovation:**
+Instead of waiting until completion of multiple full-length generations, the approach identifies hallucination-prone tokens during generation using a monitor function, and further refines these tokens through a tree-based decoding strategy.
+
+**How It Works:**
+MD employs an in-process detection mechanism utilizing a monitor function that assesses the factual consistency of intermediate tokens and flags those with hallucination risk. A tree-based revision mechanism in MD systematically revises identified tokens by selectively resampling and refining them through an efficient tree-based decoding algorithm.
+
+**Performance Results:**
+Experimental results demonstrate that MD consistently outperforms self-consistency-based approaches in both effectiveness and efficiency, achieving higher factual accuracy while significantly reducing computational overhead. For instance, MD boosted TruthfulQA performance by 15% on Gemma-2, TriviaQA by 23%, NQ-Open by 34.7%, and GSM8K by 31.2%.
+
+The paper appears to be available on arXiv (2503.03106) and was accepted to ACL 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7d81b499-43ff-4c27-94bf-32d9a7d885ab",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "bf01c65f-4d59-40ed-83c7-3e2d81895082",
+  "toolUseResult": {
+    "query": "\"Monitoring Decoding\" \"partial response\" hallucination factuality generation Zheng 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014bixT6p4skLwSq3zrMSynU",
+        "content": [
+          {
+            "title": "[2503.03106] Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation",
+            "url": "https://arxiv.org/abs/2503.03106"
+          },
+          {
+            "title": "Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation",
+            "url": "https://arxiv.org/html/2503.03106v1"
+          },
+          {
+            "title": "Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation",
+            "url": "https://www.researchgate.net/publication/394269763_Monitoring_Decoding_Mitigating_Hallucination_via_Evaluating_the_Factuality_of_Partial_Response_during_Generation"
+          },
+          {
+            "title": "Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/monitoring-decoding-mitigating-hallucination-via-evaluating-factuality"
+          },
+          {
+            "title": "[Quick Review] Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation",
+            "url": "https://liner.com/review/monitoring-decoding-mitigating-hallucination-via-evaluating-factuality-partial-response-during"
+          },
+          {
+            "title": "Mitigating Hallucination via Evaluating the Factuality of ...",
+            "url": "https://aclanthology.org/2025.findings-acl.752.pdf"
+          },
+          {
+            "title": "Monitoring Decoding: Mitigating Hallucination via Evaluating the",
+            "url": "https://www.researchgate.net/publication/389617318_Monitoring_Decoding_Mitigating_Hallucination_via_Evaluating_the_Factuality_of_Partial_Response_during_Generation/fulltext/67c9beef32265243f583202b/Monitoring-Decoding-Mitigating-Hallucination-via-Evaluating-the-Factuality-of-Partial-Response-during-Generation.pdf?origin=scientificContributions"
+          },
+          {
+            "title": "Computer Science Mar 2025",
+            "url": "https://arxiv.org/list/cs/2025-03?skip=1575&show=2000"
+          },
+          {
+            "title": "Computation and Language Mar 2025",
+            "url": "https://arxiv.org/list/cs.CL/2025-03?skip=200&show=2000"
+          },
+          {
+            "title": "A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions | ACM Transactions on Information Systems",
+            "url": "https://dl.acm.org/doi/10.1145/3703155"
+          }
+        ]
+      },
+      "Based on the search results, I found a research paper matching your query. Here's what I found:\n\n## Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation\n\nThis paper introduces Monitoring Decoding (MD), a novel framework that dynamically monitors the generation process and selectively applies in-process interventions, focusing on revising crucial tokens responsible for hallucinations.\n\n**Key Innovation:**\nInstead of waiting until completion of multiple full-length generations, the approach identifies hallucination-prone tokens during generation using a monitor function, and further refines these tokens through a tree-based decoding strategy.\n\n**How It Works:**\nMD employs an in-process detection mechanism utilizing a monitor function that assesses the factual consistency of intermediate tokens and flags those with hallucination risk. A tree-based revision mechanism in MD systematically revises identified tokens by selectively resampling and refining them through an efficient tree-based decoding algorithm.\n\n**Performance Results:**\nExperimental results demonstrate that MD consistently outperforms self-consistency-based approaches in both effectiveness and efficiency, achieving higher factual accuracy while significantly reducing computational overhead. For instance, MD boosted TruthfulQA performance by 15% on Gemma-2, TriviaQA by 23%, NQ-Open by 34.7%, and GSM8K by 31.2%.\n\nThe paper appears to be available on arXiv (2503.03106) and was accepted to ACL 2025."
+    ],
+    "durationSeconds": 7.234999005000005
+  },
+  "sourceToolAssistantUUID": "7d81b499-43ff-4c27-94bf-32d9a7d885ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-16T08:20:24.898Z_
+
+<details><summary>↩ Tool result · `toolu_017j61CdX44pHPfZ3ejc84wp`</summary>
+
+```text
+# Monitoring Decoding: Hallucination Mitigation Framework
+
+## Abstract
+The paper introduces Monitoring Decoding (MD), a framework that "dynamically monitors the generation process and selectively applies in-process interventions" to address hallucinations in large language models.
+
+## Key Method Details
+
+**Hallucination Detection:**
+The approach identifies problematic tokens during generation using a monitor function, rather than waiting for complete outputs.
+
+**Intervention Strategy:**
+MD employs "a tree-based decoding strategy" to refine tokens identified as hallucination-prone during the generation process itself.
+
+## Models & Evaluation
+
+The webpage does not specify which particular LLM architectures were evaluated or provide detailed benchmark names beyond describing the experimental approach.
+
+## Results
+
+MD reportedly "consistently outperforms self-consistency-based approaches in both effectiveness and efficiency, achieving higher factual accuracy while significantly reducing computational overhead."
+
+## Comparison to Baselines
+
+The abstract mentions superiority over "self-consistency-based approaches" but does not specifically reference DoLa or other baseline methods by name on this page. The paper was accepted to ACL 2025 (Findings), suggesting peer-reviewed validation of its claims.
+
+**Note:** Full technical details, model specifications, and comprehensive baseline comparisons would require accessing the complete paper PDF.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1d604ef5-9cba-403a-9914-bde022636fba",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "f6c9fe18-6dd9-4261-850e-a0a7220547e5",
+  "toolUseResult": {
+    "bytes": 48479,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Monitoring Decoding: Hallucination Mitigation Framework\n\n## Abstract\nThe paper introduces Monitoring Decoding (MD), a framework that \"dynamically monitors the generation process and selectively applies in-process interventions\" to address hallucinations in large language models.\n\n## Key Method Details\n\n**Hallucination Detection:**\nThe approach identifies problematic tokens during generation using a monitor function, rather than waiting for complete outputs.\n\n**Intervention Strategy:**\nMD employs \"a tree-based decoding strategy\" to refine tokens identified as hallucination-prone during the generation process itself.\n\n## Models & Evaluation\n\nThe webpage does not specify which particular LLM architectures were evaluated or provide detailed benchmark names beyond describing the experimental approach.\n\n## Results\n\nMD reportedly \"consistently outperforms self-consistency-based approaches in both effectiveness and efficiency, achieving higher factual accuracy while significantly reducing computational overhead.\"\n\n## Comparison to Baselines\n\nThe abstract mentions superiority over \"self-consistency-based approaches\" but does not specifically reference DoLa or other baseline methods by name on this page. The paper was accepted to ACL 2025 (Findings), suggesting peer-reviewed validation of its claims.\n\n**Note:** Full technical details, model specifications, and comprehensive baseline comparisons would require accessing the complete paper PDF.",
+    "durationMs": 9068,
+    "url": "https://arxiv.org/abs/2503.03106"
+  },
+  "sourceToolAssistantUUID": "1d604ef5-9cba-403a-9914-bde022636fba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-16T08:20:37.301Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very important. "Monitoring Decoding" (ACL 2025 Findings) proposes a framework that:
+1. Monitors generation in real-time
+2. Identifies hallucination-prone tokens using a monitor function
+3. Applies tree-based revision on flagged tokens
+
+This is conceptually very similar to MisTAG's approach of monitoring during generation and intervening. The key differences are:
+- MisTAG uses verbal-internal miscalibration as the trigger signal; MD uses a "monitor function" (which checks factual consistency)
+
+
+- MisTAG applies logit-level interventions with hedge tokens and rollback, while MD uses tree-based decoding revision
+- MisTAG operates at entity-level granularity whereas MD works at the token level
+
+Notably, the generator doesn't cite Monitoring Decoding, which seems like a significant gap. I'm also seeing that PC-LDCD (May 2026, just a week old) is concurrent work using internal representation anomaly detection to selectively trigger contrastive decoding on hallucination-flagged tokens. I should check whether there's existing work combining verbal uncertainty signals with logit manipulation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f6c9fe18-6dd9-4261-850e-a0a7220547e5",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vR2zeYyo6LuyLRjB8T",
+  "type": "assistant",
+  "uuid": "8dcf78f5-b5f9-445f-9c0b-86f99949d732",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EGzSCF1bKSiF62oWT4bGCH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1101,
+      "cache_creation_input_tokens": 1874,
+      "cache_read_input_tokens": 41648,
+      "output_tokens": 495,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1874,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1101,
+          "output_tokens": 495,
+          "cache_read_input_tokens": 41648,
+          "cache_creation_input_tokens": 1874,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1874
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68 · 2026-05-16T08:20:37.302Z_
+
+Let me check for more specific competing work on the verbal uncertainty + intervention combination.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8dcf78f5-b5f9-445f-9c0b-86f99949d732",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vR2zeYyo6LuyLRjB8T",
+  "type": "assistant",
+  "uuid": "641d1100-24da-4c7e-a733-77ae3a398349",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EGzSCF1bKSiF62oWT4bGCH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1101,
+      "cache_creation_input_tokens": 1874,
+      "cache_read_input_tokens": 41648,
+      "output_tokens": 495,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1874,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1101,
+          "output_tokens": 495,
+          "cache_read_input_tokens": 41648,
+          "cache_creation_input_tokens": 1874,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1874
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-16T08:20:37.572Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HKhM5AYSoZEH3XMkjiKMcY`</summary>
+
+```json
+{
+  "query": "\"verbal uncertainty\" \"logit\" intervention calibration hallucination LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "641d1100-24da-4c7e-a733-77ae3a398349",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vR2zeYyo6LuyLRjB8T",
+  "type": "assistant",
+  "uuid": "3cf9e8df-d7f8-4b89-a4c6-5c48b2a0604b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EGzSCF1bKSiF62oWT4bGCH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1101,
+      "cache_creation_input_tokens": 1874,
+      "cache_read_input_tokens": 41648,
+      "output_tokens": 495,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1874,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1101,
+          "output_tokens": 495,
+          "cache_read_input_tokens": 41648,
+          "cache_creation_input_tokens": 1874,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1874
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-16T08:20:37.989Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VcZve42A4Q7XK6ScMV6gAd`</summary>
+
+```json
+{
+  "query": "rollback generation sentence-level hallucination LLM decoding regeneration 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3cf9e8df-d7f8-4b89-a4c6-5c48b2a0604b",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vR2zeYyo6LuyLRjB8T",
+  "type": "assistant",
+  "uuid": "4554998a-f647-4df0-9d6e-7890527d4fa0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EGzSCF1bKSiF62oWT4bGCH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1101,
+      "cache_creation_input_tokens": 1874,
+      "cache_read_input_tokens": 41648,
+      "output_tokens": 495,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1874,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1101,
+          "output_tokens": 495,
+          "cache_read_input_tokens": 41648,
+          "cache_creation_input_tokens": 1874,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1874
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-16T08:20:45.998Z_
+
+<details><summary>↩ Tool result · `toolu_01HKhM5AYSoZEH3XMkjiKMcY`</summary>
+
+```text
+Web search results for query: ""verbal uncertainty" "logit" intervention calibration hallucination LLM 2025 2026"
+
+Links: [{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/html/2503.14477v1"},{"title":"[2503.14477] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/abs/2503.14477"},{"title":"Logical Consistency as a Bridge: Improving LLM Hallucination Detection via Label Constraint Modeling between Responses and Self-Judgments","url":"https://arxiv.org/html/2605.03971"},{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"LLM Hallucinations","url":"https://www.emergentmind.com/topics/hallucination-in-large-language-models"},{"title":"[Literature Review] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://www.themoonlight.io/en/review/calibrating-verbal-uncertainty-as-a-linear-feature-to-reduce-hallucinations"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to ...","url":"https://aclanthology.org/2025.emnlp-main.187.pdf"},{"title":"A Survey on Uncertainty Quantification of Large Language Models: Taxonomy, Open Research Challenges, and Future Directions | ACM Computing Surveys","url":"https://dl.acm.org/doi/10.1145/3744238"},{"title":"A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202510.0540/v1"},{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://www.researchgate.net/publication/397424902_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"}]
+
+Based on the web search results, here's what I found about verbal uncertainty, logit-based approaches, intervention, calibration, and hallucination in LLMs:
+
+## Key Research: "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations"
+
+The most directly relevant work is a study showing that the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone, and that verbal uncertainty is governed by a single linear feature in LLM representation space with only moderate correlation to actual semantic uncertainty. The researchers demonstrated they can intervene on verbal uncertainty at inference time and reduce hallucinations on short-form answers by an average relative reduction of 32%.
+
+### Understanding the Framework
+
+Verbal Uncertainty (VU) refers to the expressed uncertainty conveyed through linguistic choices in model responses, while Semantic Uncertainty (SU) captures the model's intrinsic level of uncertainty regarding the correctness of its predictions. The researchers propose Mechanistic Uncertainty Calibration (MUC), which steers LLM activations to calibrate verbal uncertainty with semantic uncertainty, effectively reducing hallucinations by an average relative reduction of 31.9% in short-form QA tasks.
+
+### Related Calibration Approaches
+
+Beyond verbal uncertainty, logit-based methods interpret the output probability distribution as a proxy for model confidence, where lower confidence or higher entropy often correlates with hallucination. Additionally, model calibration techniques include temperature scaling, isotonic regression, and Bayesian post-hoc calibration to align model confidence with factual accuracy.
+
+### Broader Context
+
+OpenAI's September 2025 paper shows that next-token training objectives and common leaderboards reward confident guessing over calibrated uncertainty, so models learn to bluff. This highlights why addressing calibration and uncertainty expression remains critical for reducing hallucinations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3cf9e8df-d7f8-4b89-a4c6-5c48b2a0604b",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "b2895423-28ca-456f-836d-111a9038e6ed",
+  "toolUseResult": {
+    "query": "\"verbal uncertainty\" \"logit\" intervention calibration hallucination LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01S8rJqReavDTYv5Q7e2Uv22",
+        "content": [
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/html/2503.14477v1"
+          },
+          {
+            "title": "[2503.14477] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/abs/2503.14477"
+          },
+          {
+            "title": "Logical Consistency as a Bridge: Improving LLM Hallucination Detection via Label Constraint Modeling between Responses and Self-Judgments",
+            "url": "https://arxiv.org/html/2605.03971"
+          },
+          {
+            "title": "LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.",
+            "url": "https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"
+          },
+          {
+            "title": "LLM Hallucinations",
+            "url": "https://www.emergentmind.com/topics/hallucination-in-large-language-models"
+          },
+          {
+            "title": "[Literature Review] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://www.themoonlight.io/en/review/calibrating-verbal-uncertainty-as-a-linear-feature-to-reduce-hallucinations"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.187.pdf"
+          },
+          {
+            "title": "A Survey on Uncertainty Quantification of Large Language Models: Taxonomy, Open Research Challenges, and Future Directions | ACM Computing Surveys",
+            "url": "https://dl.acm.org/doi/10.1145/3744238"
+          },
+          {
+            "title": "A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org",
+            "url": "https://www.preprints.org/manuscript/202510.0540/v1"
+          },
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://www.researchgate.net/publication/397424902_Calibrating_Verbal_Uncertainty_as_a_Linear_Feature_to_Reduce_Hallucinations"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about verbal uncertainty, logit-based approaches, intervention, calibration, and hallucination in LLMs:\n\n## Key Research: \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations\"\n\nThe most directly relevant work is a study showing that the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone, and that verbal uncertainty is governed by a single linear feature in LLM representation space with only moderate correlation to actual semantic uncertainty. The researchers demonstrated they can intervene on verbal uncertainty at inference time and reduce hallucinations on short-form answers by an average relative reduction of 32%.\n\n### Understanding the Framework\n\nVerbal Uncertainty (VU) refers to the expressed uncertainty conveyed through linguistic choices in model responses, while Semantic Uncertainty (SU) captures the model's intrinsic level of uncertainty regarding the correctness of its predictions. The researchers propose Mechanistic Uncertainty Calibration (MUC), which steers LLM activations to calibrate verbal uncertainty with semantic uncertainty, effectively reducing hallucinations by an average relative reduction of 31.9% in short-form QA tasks.\n\n### Related Calibration Approaches\n\nBeyond verbal uncertainty, logit-based methods interpret the output probability distribution as a proxy for model confidence, where lower confidence or higher entropy often correlates with hallucination. Additionally, model calibration techniques include temperature scaling, isotonic regression, and Bayesian post-hoc calibration to align model confidence with factual accuracy.\n\n### Broader Context\n\nOpenAI's September 2025 paper shows that next-token training objectives and common leaderboards reward confident guessing over calibrated uncertainty, so models learn to bluff. This highlights why addressing calibration and uncertainty expression remains critical for reducing hallucinations."
+    ],
+    "durationSeconds": 8.42092787700001
+  },
+  "sourceToolAssistantUUID": "3cf9e8df-d7f8-4b89-a4c6-5c48b2a0604b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b2895423-28ca-456f-836d-111a9038e6ed",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Miscalibration-triggered adaptive generation via logit intervention",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-16T08:20:50.234Z_
+
+<details><summary>↩ Tool result · `toolu_01VcZve42A4Q7XK6ScMV6gAd`</summary>
+
+```text
+Web search results for query: "rollback generation sentence-level hallucination LLM decoding regeneration 2025 2026"
+
+Links: [{"title":"A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202510.0540/v1"},{"title":"LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.","url":"https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"},{"title":"LLM Hallucinations","url":"https://www.emergentmind.com/topics/hallucination-in-large-language-models"},{"title":"LLM hallucination rate evaluation for engineering | PatSnap","url":"https://www.patsnap.com/resources/blog/articles/llm-hallucination-rate-evaluation-for-engineering/"},{"title":"Reducing hallucinations of large language models via hierarchical semantic piece | Complex & Intelligent Systems | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s40747-025-01833-9"},{"title":"Large Language Models Hallucination: A Comprehensive Survey","url":"https://arxiv.org/html/2510.06265v2"},{"title":"What does it mean LLM's hallucination?","url":"https://github.com/SalvatoreRa/artificial-intelligence-articles/blob/main/articles/LLM_hallucinations.md"},{"title":"LLM Hallucinations in Practical Code Generation: Phenomena, Mechanism, and Mitigation | Proceedings of the ACM on Software Engineering","url":"https://dl.acm.org/doi/10.1145/3728894"},{"title":"Reducing LLM Hallucinations: A Developer's Guide | Zep","url":"https://www.getzep.com/ai-agents/reducing-llm-hallucinations/"},{"title":"Hallucination Detection and Mitigation in Large Language ...","url":"https://arxiv.org/pdf/2601.09929"}]
+
+Based on the search results, I found relevant information about hallucination mitigation strategies and recent research in this domain from 2025-2026:
+
+## Key Findings on Hallucination Mitigation
+
+**Sentence-Level and Regeneration Approaches:**
+
+Entropy- and evidence-guided regeneration involves automatic identification and rewriting of high-entropy or ungrounded spans using lower-vulnerability models or fact-checkers. Additionally, hierarchical semantic piece (HSP) methods for hallucination detection extract multi-granularity semantic pieces from both reference material and generated text, with sentence-level semantic pieces encapsulating global semantic information, while entity-level semantic pieces handle local semantic information.
+
+**Decoding-Level Mitigation:**
+
+Recent 2025 research highlights the importance of decoding strategies. A 2025 multi-model study in npj Digital Medicine shows that simple prompt-based mitigation cut GPT-4o's hallucination rate from 53% to 23%, while temperature tweaks alone barely moved the needle. Furthermore, high temperature or sub-optimal sampling can nudge the model toward unlikely, sometimes fabricated, tokens.
+
+**Rollback and Detection Mechanisms:**
+
+Model calibration techniques including temperature scaling, isotonic regression, and Bayesian post-hoc calibration align model confidence with factual accuracy. Additionally, multi-model debate/voting architectures significantly reduce the incidence of persistent, high-confidence hallucinations.
+
+These approaches represent the current state-of-the-art in addressing sentence-level hallucinations through regeneration and decoding strategies as of 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4554998a-f647-4df0-9d6e-7890527d4fa0",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "90e2bd7b-4a5a-462d-ab6a-a642f6f2c1a5",
+  "toolUseResult": {
+    "query": "rollback generation sentence-level hallucination LLM decoding regeneration 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NCEJ89EMpbjyNdkfF5eqb4",
+        "content": [
+          {
+            "title": "A Survey on Hallucination in Large Language Models: Definitions, Detection, and Mitigation[v1] | Preprints.org",
+            "url": "https://www.preprints.org/manuscript/202510.0540/v1"
+          },
+          {
+            "title": "LLM Hallucinations in 2026: How to Understand and Tackle AI’s Most Persistent Quirk | Lakera – Protecting AI teams that disrupt the world.",
+            "url": "https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models"
+          },
+          {
+            "title": "LLM Hallucinations",
+            "url": "https://www.emergentmind.com/topics/hallucination-in-large-language-models"
+          },
+          {
+            "title": "LLM hallucination rate evaluation for engineering | PatSnap",
+            "url": "https://www.patsnap.com/resources/blog/articles/llm-hallucination-rate-evaluation-for-engineering/"
+          },
+          {
+            "title": "Reducing hallucinations of large language models via hierarchical semantic piece | Complex & Intelligent Systems | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s40747-025-01833-9"
+          },
+          {
+            "title": "Large Language Models Hallucination: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2510.06265v2"
+          },
+          {
+            "title": "What does it mean LLM's hallucination?",
+            "url": "https://github.com/SalvatoreRa/artificial-intelligence-articles/blob/main/articles/LLM_hallucinations.md"
+          },
+          {
+            "title": "LLM Hallucinations in Practical Code Generation: Phenomena, Mechanism, and Mitigation | Proceedings of the ACM on Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1145/3728894"
+          },
+          {
+            "title": "Reducing LLM Hallucinations: A Developer's Guide | Zep",
+            "url": "https://www.getzep.com/ai-agents/reducing-llm-hallucinations/"
+          },
+          {
+            "title": "Hallucination Detection and Mitigation in Large Language ...",
+            "url": "https://arxiv.org/pdf/2601.09929"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about hallucination mitigation strategies and recent research in this domain from 2025-2026:\n\n## Key Findings on Hallucination Mitigation\n\n**Sentence-Level and Regeneration Approaches:**\n\nEntropy- and evidence-guided regeneration involves automatic identification and rewriting of high-entropy or ungrounded spans using lower-vulnerability models or fact-checkers. Additionally, hierarchical semantic piece (HSP) methods for hallucination detection extract multi-granularity semantic pieces from both reference material and generated text, with sentence-level semantic pieces encapsulating global semantic information, while entity-level semantic pieces handle local semantic information.\n\n**Decoding-Level Mitigation:**\n\nRecent 2025 research highlights the importance of decoding strategies. A 2025 multi-model study in npj Digital Medicine shows that simple prompt-based mitigation cut GPT-4o's hallucination rate from 53% to 23%, while temperature tweaks alone barely moved the needle. Furthermore, high temperature or sub-optimal sampling can nudge the model toward unlikely, sometimes fabricated, tokens.\n\n**Rollback and Detection Mechanisms:**\n\nModel calibration techniques including temperature scaling, isotonic regression, and Bayesian post-hoc calibration align model confidence with factual accuracy. Additionally, multi-model debate/voting architectures significantly reduce the incidence of persistent, high-confidence hallucinations.\n\nThese approaches represent the current state-of-the-art in addressing sentence-level hallucinations through regeneration and decoding strategies as of 2025-2026."
+    ],
+    "durationSeconds": 12.241775178999989
+  },
+  "sourceToolAssistantUUID": "4554998a-f647-4df0-9d6e-7890527d4fa0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-16T08:21:21.775Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now check one more critical thing - the feasibility of the Qwen3-32B model with hidden state extraction on a single A100 80GB. The model has 32.8B parameters. At FP16, that's ~66GB VRAM just for model weights. That leaves almost no headroom for KV-cache and hidden state extraction. The generator acknowledges this in the risk note ("INT8 quantization may be needed").
+
+Let me also verify the resource estimates more carefully and check if there's anything else critical I'm missing.
+
+Key issues I've identified so far:
+
+1. **Critical Missing Related Work**: "Monitoring Decoding" (ACL 2025 Findings, arXiv 2503.03106) does real-time hallucination monitoring + selective intervention during generation. 
+
+This paper isn't cited, and it's doing something very similar - using a monitor function to assess factual consistency of partial responses and applying tree-based revision.
+
+2. **Critical Concurrent Work**: "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits" (arXiv 2605.05953, May 2026) proposes selective contrastive decoding triggered by internal representation anomaly detection. This is essentially the same approach as MisTAG - detecting hallucinations through internal representations and then intervening at the logit level.
+
+3. **TA-ITI venue discrepancy**: The generator claims TA-ITI is ICLR 2025, but the search results indicate it's published elsewhere.
+
+Looking more carefully at the search results, the OpenReview submission from October 2024 would align with the ICLR 2025 cycle, so the venue attribution seems correct - that "ICLR 2026" link is probably a different paper.
+
+4. **VRAM feasibility for Qwen3-32B**: At FP16, Qwen3-32B requires around 66GB of VRAM, which is extremely tight on an A100 80GB system when extracting hidden states during generation. INT8 quantization could reduce this to roughly 33GB, but there's a tradeoff - the probes were likely trained on full-precision hidden states, so quantization might degrade probe quality.
+
+5. **Novelty assessment**: Looking at the specific combination of miscalibration triggers...
+
+logit-level interventions...and graded actions, this is novel, though the broader paradigm of detecting hallucinations during generation and intervening selectively has already been explored in recent work like Monitoring Decoding and PC-LDCD. The distinguishing factor is the particular trigger signal (verbal-internal mismatch) paired with the specific response mechanism (graded hedging through logit manipulation), which represents incremental rather than transformative novelty.
+
+6. **ESR immunity claim**: The argument that logit-level manipulation resists ESR is theoretically sound given that ESR specifically targeted activation steering, but I should note that if the model has learned to compensate for logit biases through its generation patterns, analogous resistance could emerge - this is speculative but worth flagging.
+
+7. **Practical concerns**: Examining the limitations of the approach...
+
+the contrastive logit bias vector for boosting hedging tokens lacks clarity on how it's actually learned and what training data is used. The entity detection mechanism relies on probes that identify hallucinated entities, but it's unclear whether they can pinpoint entity boundaries during generation as the proposal assumes. The rollback mechanism also raises questions about computational cost - discarding tokens and KV-cache entries requires careful implementation, though precedent exists in other work.
+
+8. **Timeline assessment**: With the narrower scope of 2 models, 4 benchmarks, and 2 actions, 11 days in auto research mode is tight but plausible given the existing building blocks available.
+
+9. **Evaluation bottleneck**: FActScore evaluation is API-dependent and expensive, which could become a significant constraint when running long-form generation across multiple models.
+
+I should search for any existing work that extends the VUF approach from Ji et al. to see if there's relevant prior work I'm missing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90e2bd7b-4a5a-462d-ab6a-a642f6f2c1a5",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vSuK6juZbUjbPNRXLK",
+  "type": "assistant",
+  "uuid": "46b9fe9e-c0a1-4a58-8f1b-2cb6b23b271f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VGRkhEY3CJYbWwuEn5ZSfy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3579,
+      "cache_read_input_tokens": 43522,
+      "output_tokens": 1215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1215,
+          "cache_read_input_tokens": 43522,
+          "cache_creation_input_tokens": 3579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-16T08:21:21.777Z_
+
+Let me verify one more critical aspect - whether Ji et al.'s work has already been extended to logit-level interventions by follow-up papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46b9fe9e-c0a1-4a58-8f1b-2cb6b23b271f",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vSuK6juZbUjbPNRXLK",
+  "type": "assistant",
+  "uuid": "6a67dd1a-ffbc-4177-9cab-baceb975c616",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VGRkhEY3CJYbWwuEn5ZSfy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3579,
+      "cache_read_input_tokens": 43522,
+      "output_tokens": 1215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1215,
+          "cache_read_input_tokens": 43522,
+          "cache_creation_input_tokens": 3579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-16T08:21:22.228Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UJ5wS6vQXaYoajGCkKyfZ1`</summary>
+
+```json
+{
+  "query": "Ji verbal uncertainty feature extension follow-up hallucination intervention logit 2025 2026 site:arxiv.org"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a67dd1a-ffbc-4177-9cab-baceb975c616",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vSuK6juZbUjbPNRXLK",
+  "type": "assistant",
+  "uuid": "81c33600-7d88-4a36-af5a-a039faa51504",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VGRkhEY3CJYbWwuEn5ZSfy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3579,
+      "cache_read_input_tokens": 43522,
+      "output_tokens": 1215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1215,
+          "cache_read_input_tokens": 43522,
+          "cache_creation_input_tokens": 3579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-16T08:21:22.863Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015aZHJCGi8y3j8sQb17j5Jp`</summary>
+
+```json
+{
+  "query": "FActScore evaluation cost API calls long-form generation 2025 practical computational"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81c33600-7d88-4a36-af5a-a039faa51504",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vSuK6juZbUjbPNRXLK",
+  "type": "assistant",
+  "uuid": "776e857b-89a0-4a53-9c71-0123244cc640",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VGRkhEY3CJYbWwuEn5ZSfy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3579,
+      "cache_read_input_tokens": 43522,
+      "output_tokens": 1215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1215,
+          "cache_read_input_tokens": 43522,
+          "cache_creation_input_tokens": 3579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-16T08:21:28.714Z_
+
+<details><summary>↩ Tool result · `toolu_01UJ5wS6vQXaYoajGCkKyfZ1`</summary>
+
+```text
+Web search results for query: "Ji verbal uncertainty feature extension follow-up hallucination intervention logit 2025 2026 site:arxiv.org"
+
+Links: [{"title":"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/html/2503.14477v1"},{"title":"[2503.14477] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations","url":"https://arxiv.org/abs/2503.14477"},{"title":"Logical Consistency as a Bridge: Improving LLM Hallucination Detection via Label Constraint Modeling between Responses and Self-Judgments","url":"https://arxiv.org/html/2605.03971v1"},{"title":"Hallucination Detection and Mitigation in Large Language Models","url":"https://arxiv.org/html/2601.09929v1"},{"title":"I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation","url":"https://arxiv.org/html/2604.03904"},{"title":"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits","url":"https://arxiv.org/html/2605.05953"},{"title":"RePPL: Recalibrating Perplexity by Uncertainty in Semantic Propagation and Language Generation for Explainable QA Hallucination Detection","url":"https://arxiv.org/html/2505.15386v1"},{"title":"Hallucination Detection and Mitigation in Large Language ...","url":"https://arxiv.org/pdf/2601.09929"},{"title":"A Survey of Multimodal Hallucination Evaluation and Detection","url":"https://arxiv.org/html/2507.19024v2"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2601.18753"}]
+
+The search has returned relevant results about verbal uncertainty and hallucination detection in large language models. Here are the key findings:
+
+## Main Paper Found
+
+The primary result is arXiv paper 2503.14477 titled "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations" by Ziwei Ji and 8 other authors, with versions from March 18, 2025 and April 22, 2025.
+
+## Key Research Contributions
+
+The researchers found that "verbal uncertainty" is governed by a single linear feature in the representation space of LLMs, and show that this has only moderate correlation with the actual "semantic uncertainty" of the model.
+
+The work demonstrates that (1) the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone and (2) they can intervene on verbal uncertainty at inference time and reduce hallucinations.
+
+## Methodology
+
+The research adopts three closed-book short-form QA datasets: TriviaQA, NQ-Open, and PopQA; and considers models including Llama3.1-8B-Instruct, Mistral-7B-Instruct-v0.3, and Qwen2.5-7B-Instruct, extracting activations of the last token for each question at each layer.
+
+According to the authors, theirs is "the first work to show the effectiveness of combining VU and SU for hallucination detection."
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "81c33600-7d88-4a36-af5a-a039faa51504",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "eea9e60a-c2f2-43cb-b601-9ebf375f97f4",
+  "toolUseResult": {
+    "query": "Ji verbal uncertainty feature extension follow-up hallucination intervention logit 2025 2026 site:arxiv.org",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MMwbWJdi79rG5jMJNkkEKM",
+        "content": [
+          {
+            "title": "Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/html/2503.14477v1"
+          },
+          {
+            "title": "[2503.14477] Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations",
+            "url": "https://arxiv.org/abs/2503.14477"
+          },
+          {
+            "title": "Logical Consistency as a Bridge: Improving LLM Hallucination Detection via Label Constraint Modeling between Responses and Self-Judgments",
+            "url": "https://arxiv.org/html/2605.03971v1"
+          },
+          {
+            "title": "Hallucination Detection and Mitigation in Large Language Models",
+            "url": "https://arxiv.org/html/2601.09929v1"
+          },
+          {
+            "title": "I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation",
+            "url": "https://arxiv.org/html/2604.03904"
+          },
+          {
+            "title": "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits",
+            "url": "https://arxiv.org/html/2605.05953"
+          },
+          {
+            "title": "RePPL: Recalibrating Perplexity by Uncertainty in Semantic Propagation and Language Generation for Explainable QA Hallucination Detection",
+            "url": "https://arxiv.org/html/2505.15386v1"
+          },
+          {
+            "title": "Hallucination Detection and Mitigation in Large Language ...",
+            "url": "https://arxiv.org/pdf/2601.09929"
+          },
+          {
+            "title": "A Survey of Multimodal Hallucination Evaluation and Detection",
+            "url": "https://arxiv.org/html/2507.19024v2"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2601.18753"
+          }
+        ]
+      },
+      "The search has returned relevant results about verbal uncertainty and hallucination detection in large language models. Here are the key findings:\n\n## Main Paper Found\n\nThe primary result is arXiv paper 2503.14477 titled \"Calibrating Verbal Uncertainty as a Linear Feature to Reduce Hallucinations\" by Ziwei Ji and 8 other authors, with versions from March 18, 2025 and April 22, 2025.\n\n## Key Research Contributions\n\nThe researchers found that \"verbal uncertainty\" is governed by a single linear feature in the representation space of LLMs, and show that this has only moderate correlation with the actual \"semantic uncertainty\" of the model.\n\nThe work demonstrates that (1) the mismatch between semantic and verbal uncertainty is a better predictor of hallucinations than semantic uncertainty alone and (2) they can intervene on verbal uncertainty at inference time and reduce hallucinations.\n\n## Methodology\n\nThe research adopts three closed-book short-form QA datasets: TriviaQA, NQ-Open, and PopQA; and considers models including Llama3.1-8B-Instruct, Mistral-7B-Instruct-v0.3, and Qwen2.5-7B-Instruct, extracting activations of the last token for each question at each layer.\n\nAccording to the authors, theirs is \"the first work to show the effectiveness of combining VU and SU for hallucination detection.\""
+    ],
+    "durationSeconds": 6.4807148729999895
+  },
+  "sourceToolAssistantUUID": "81c33600-7d88-4a36-af5a-a039faa51504",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-16T08:21:29.464Z_
+
+<details><summary>↩ Tool result · `toolu_015aZHJCGi8y3j8sQb17j5Jp`</summary>
+
+```text
+Web search results for query: "FActScore evaluation cost API calls long-form generation 2025 practical computational"
+
+Links: [{"title":"GitHub - shmsw25/FActScore: A package to evaluate factuality of long-form generation. Original implementation of our EMNLP 2023 paper \"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation\" · GitHub","url":"https://github.com/shmsw25/FActScore"},{"title":"GitHub - lflage/OpenFActScore: A package to evaluate factuality of long-form generation using open usage models.","url":"https://github.com/lflage/OpenFActScore"},{"title":"FactScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Research - AI at Meta","url":"https://ai.meta.com/research/publications/factscore-fine-grained-atomic-evaluation-of-factual-precision-in-long-form-text-generation/"},{"title":"factscore · PyPI","url":"https://pypi.org/project/factscore/"},{"title":"[2305.14251] FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation","url":"https://arxiv.org/abs/2305.14251"},{"title":"FActScore/factscore/factscorer.py at main · shmsw25/FActScore","url":"https://github.com/shmsw25/FActScore/blob/main/factscore/factscorer.py"},{"title":"[PDF] FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/FActScore:-Fine-grained-Atomic-Evaluation-of-in-Min-Krishna/bd5deadc58ee45b5e004378ba1d54a96bc947b4a"},{"title":"ü \u0007\u0007\u0007\u0007 VERIFASTSCORE: Speeding up long-form factuality evaluation","url":"https://arxiv.org/pdf/2505.16973"},{"title":"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation - Paper Detail","url":"https://deeplearn.org/arxiv/420040/factscore:-fine-grained-atomic-evaluation-of-factual-precision-in-long-form-text-generation"},{"title":"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | OpenReview","url":"https://openreview.net/forum?id=GLA4ablO3M"}]
+
+Based on the search results, here's what I found regarding FActScore evaluation costs and API calls for long-form generation:
+
+## API Cost for FActScore Evaluation
+
+FActScore costs approximately $1 of API cost per 100 sentences. For example, evaluating 100 generations with 5 sentences each would cost $5 total.
+
+## What is FActScore?
+
+FActScore breaks a generation into a series of atomic facts and computes the percentage of atomic facts supported by a reliable knowledge source. It is an automatic evaluation metric for factual precision in long-form text generation that uses large language models and retrieval to break down generations into atomic facts and measure correctness against a knowledge source like Wikipedia.
+
+## Computational Considerations
+
+Long-form evaluation methods like FActScore rely on a pipelined approach that uses LLMs to decompose text into atomic claims and verify each claim, which is slow and requires many calls to large models to evaluate a text.
+
+## Cost Estimation Options
+
+FActScore provides a cost estimation feature via the `--cost_estimate` flag, which can be set to "consider_cache" (default) or "ignore_cache" to estimate OpenAI API costs before running evaluation.
+
+The search results primarily reference the original FActScore implementation from 2023, rather than 2025-specific developments. If you're interested in newer practical improvements or recent developments in computational efficiency for FActScore, a more specific search might be needed.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "776e857b-89a0-4a53-9c71-0123244cc640",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "76f8df60-cf47-48df-8b78-d9162c84016d",
+  "toolUseResult": {
+    "query": "FActScore evaluation cost API calls long-form generation 2025 practical computational",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ft9MjgigESFD2svYUDg6xZ",
+        "content": [
+          {
+            "title": "GitHub - shmsw25/FActScore: A package to evaluate factuality of long-form generation. Original implementation of our EMNLP 2023 paper \"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation\" · GitHub",
+            "url": "https://github.com/shmsw25/FActScore"
+          },
+          {
+            "title": "GitHub - lflage/OpenFActScore: A package to evaluate factuality of long-form generation using open usage models.",
+            "url": "https://github.com/lflage/OpenFActScore"
+          },
+          {
+            "title": "FactScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Research - AI at Meta",
+            "url": "https://ai.meta.com/research/publications/factscore-fine-grained-atomic-evaluation-of-factual-precision-in-long-form-text-generation/"
+          },
+          {
+            "title": "factscore · PyPI",
+            "url": "https://pypi.org/project/factscore/"
+          },
+          {
+            "title": "[2305.14251] FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation",
+            "url": "https://arxiv.org/abs/2305.14251"
+          },
+          {
+            "title": "FActScore/factscore/factscorer.py at main · shmsw25/FActScore",
+            "url": "https://github.com/shmsw25/FActScore/blob/main/factscore/factscorer.py"
+          },
+          {
+            "title": "[PDF] FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/FActScore:-Fine-grained-Atomic-Evaluation-of-in-Min-Krishna/bd5deadc58ee45b5e004378ba1d54a96bc947b4a"
+          },
+          {
+            "title": "ü \u0007\u0007\u0007\u0007 VERIFASTSCORE: Speeding up long-form factuality evaluation",
+            "url": "https://arxiv.org/pdf/2505.16973"
+          },
+          {
+            "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation - Paper Detail",
+            "url": "https://deeplearn.org/arxiv/420040/factscore:-fine-grained-atomic-evaluation-of-factual-precision-in-long-form-text-generation"
+          },
+          {
+            "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation | OpenReview",
+            "url": "https://openreview.net/forum?id=GLA4ablO3M"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding FActScore evaluation costs and API calls for long-form generation:\n\n## API Cost for FActScore Evaluation\n\nFActScore costs approximately $1 of API cost per 100 sentences. For example, evaluating 100 generations with 5 sentences each would cost $5 total.\n\n## What is FActScore?\n\nFActScore breaks a generation into a series of atomic facts and computes the percentage of atomic facts supported by a reliable knowledge source. It is an automatic evaluation metric for factual precision in long-form text generation that uses large language models and retrieval to break down generations into atomic facts and measure correctness against a knowledge source like Wikipedia.\n\n## Computational Considerations\n\nLong-form evaluation methods like FActScore rely on a pipelined approach that uses LLMs to decompose text into atomic claims and verify each claim, which is slow and requires many calls to large models to evaluate a text.\n\n## Cost Estimation Options\n\nFActScore provides a cost estimation feature via the `--cost_estimate` flag, which can be set to \"consider_cache\" (default) or \"ignore_cache\" to estimate OpenAI API costs before running evaluation.\n\nThe search results primarily reference the original FActScore implementation from 2023, rather than 2025-specific developments. If you're interested in newer practical improvements or recent developments in computational efficiency for FActScore, a more specific search might be needed."
+    ],
+    "durationSeconds": 6.59782310899999
+  },
+  "sourceToolAssistantUUID": "776e857b-89a0-4a53-9c71-0123244cc640",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "76f8df60-cf47-48df-8b78-d9162c84016d",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Miscalibration-triggered adaptive generation via logit intervention",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-16T08:22:14.856Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I see a paper called "I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation" (arXiv 2604.03904, April 2026) which seems relevant - it deals with confidence-aware abstention for hallucination mitigation. Let me check if it's relevant to MisTAG's abstention mechanism.
+
+Also, VeriFastScore (arXiv 2505.16973) seems like a faster FActScore evaluation method, which could help with the evaluation bottleneck.
+
+
+Now I'm going through my references to verify which ones actually exist and are correctly described. I've confirmed several papers including Ji et al. from EMNLP 2025, ESR showing Llama-3.3-70B's resistance to steering, and the work on AUC performance metrics, though I notice the DoLa reference appears to be cut off. I'm uncertain whether TA-ITI was actually accepted to ICLR 2025 or 2026 based on the OpenReview data—the generator claims 2025, which seems reasonable but I can't fully verify it. I'm also noticing some critical related work that wasn't cited: Monitoring Decoding from ACL 2025 Findings uses a similar real-time hallucination monitoring approach during generation with comparable improvements on TruthfulQA, and there's another paper on hallucination detection as an anomaly detection problem that I should flag.
+
+Looking at the novelty more carefully, MisTAG's specific contribution is using the verbal-internal mismatch as a trigger signal rather than just uncertainty or anomaly detection, combined with operating at the logit level to avoid prompt injection, offering graded responses, and working at entity granularity. That's a valid technical novelty—no other paper combines these elements exactly—but it's incremental rather than a breakthrough, since the broader paradigm of monitoring and selective intervention during generation already exists in prior work.
+
+On feasibility, running Qwen3-32B in FP16 would require around 66GB of VRAM on an A100, which is tight and might need INT8 quantization. The 11-day timeline across 2 models and 4 benchmarks is aggressive but potentially achievable with existing components, and the compute estimate of 150-350 A100 hours fits within the 200 H100-hour budget.
+
+For impact, the core problem of overconfident hallucinations is well-motivated, and the approach could work without fine-tuning. However, the improvements might be incremental given that prior work already shows meaningful gains—Ji et al. achieved ~30% reduction, DoLa showed +12-17%, and ActLCD showed +19.81%. The main risk is FActScore evaluation, which is API-bound and could become expensive and slow.
+
+On the positive side, if MisTAG demonstrates effectiveness on long-form generation (where Ji et al. only tested short-form) and scales to larger models (where activation steering breaks down), that would be a meaningful contribution. The paper itself is clearly written with solid technical grounding, though there are some gaps—particularly around how the learned logit bias vector is actually trained and what data it uses. The approach addresses real limitations of prior work and builds on established, publicly available tools, but the novelty is somewhat compositional, combining existing pieces rather than introducing fundamentally new ideas. The missing related work on Monitoring Decoding and PC-LDCD is also a concern.
+
+There are practical constraints I'm worried about: VRAM usage for Qwen3-32B with hidden state extraction will be tight, the entity boundary detection during generation isn't clearly solved by the proposed probes (they detect hallucinated entities, not entity onsets), and FActScore evaluation could become a severe bottleneck given the 11-day timeline. The learned logit bias training procedure needs more specificity, and the overall feasibility sits around 3.5/5—mostly workable with existing components but with several underspecified technical details and resource constraints that could derail the timeline.
+
+Looking at the scoring across novelty, feasibility, clarity, and impact, I'm getting an average of 3.5, which falls below the 4.0 threshold. The work is compositional rather than fundamentally novel, and while the ESR-immunity angle is compelling, it needs strong empirical validation to justify the effort. I should do another search for the I-CALM paper to make sure I'm not missing related work before finalizing this assessment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "76f8df60-cf47-48df-8b78-d9162c84016d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vVo4PmCg2aGxKtxS3A",
+  "type": "assistant",
+  "uuid": "a14f801b-b36b-4919-8c24-792be2edf8a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DQYE9RBRtPPpU8EQnxySuV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3099,
+      "cache_read_input_tokens": 47101,
+      "output_tokens": 2087,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3099,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2087,
+          "cache_read_input_tokens": 47101,
+          "cache_creation_input_tokens": 3099,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3099
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84 · 2026-05-16T08:22:14.858Z_
+
+Let me check one more important competitor - the confidence-aware abstention paper from April 2026.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a14f801b-b36b-4919-8c24-792be2edf8a1",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vVo4PmCg2aGxKtxS3A",
+  "type": "assistant",
+  "uuid": "4e90467d-0fd1-4b9b-9fbe-c6c61efca16f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DQYE9RBRtPPpU8EQnxySuV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3099,
+      "cache_read_input_tokens": 47101,
+      "output_tokens": 2087,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3099,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2087,
+          "cache_read_input_tokens": 47101,
+          "cache_creation_input_tokens": 3099,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3099
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-16T08:22:14.897Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CrNvQ4uycGzgNT9gc3pVLH`</summary>
+
+```json
+{
+  "query": "I-CALM \"Incentivizing Confidence-Aware Abstention\" hallucination LLM arxiv 2604"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4e90467d-0fd1-4b9b-9fbe-c6c61efca16f",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vVo4PmCg2aGxKtxS3A",
+  "type": "assistant",
+  "uuid": "a1adb209-86d7-4deb-bd93-b1555b5e04e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DQYE9RBRtPPpU8EQnxySuV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3099,
+      "cache_read_input_tokens": 47101,
+      "output_tokens": 2087,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3099,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2087,
+          "cache_read_input_tokens": 47101,
+          "cache_creation_input_tokens": 3099,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3099
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-16T08:22:14.922Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ybybe2uRyXkCpDmX2Zrgqc`</summary>
+
+```json
+{
+  "query": "Qwen3-32B VRAM requirements hidden state extraction inference memory A100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a1adb209-86d7-4deb-bd93-b1555b5e04e7",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vVo4PmCg2aGxKtxS3A",
+  "type": "assistant",
+  "uuid": "d0adedae-9caa-46cd-9049-ebf8b096168b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DQYE9RBRtPPpU8EQnxySuV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3099,
+      "cache_read_input_tokens": 47101,
+      "output_tokens": 2087,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3099,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2087,
+          "cache_read_input_tokens": 47101,
+          "cache_creation_input_tokens": 3099,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3099
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-16T08:22:22.078Z_
+
+<details><summary>↩ Tool result · `toolu_01CrNvQ4uycGzgNT9gc3pVLH`</summary>
+
+```text
+Web search results for query: "I-CALM "Incentivizing Confidence-Aware Abstention" hallucination LLM arxiv 2604"
+
+Links: [{"title":"I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation","url":"https://arxiv.org/html/2604.03904v1"},{"title":"[2604.03904v1] I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation","url":"https://arxiv.org/abs/2604.03904v1"},{"title":"[2604.03904] I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation","url":"https://arxiv.org/abs/2604.03904"},{"title":"(PDF) I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation","url":"https://www.researchgate.net/publication/403562099_I-CALM_Incentivizing_Confidence-Aware_Abstention_for_LLM_Hallucination_Mitigation"},{"title":"Mitigating LLM Hallucination via Behaviorally Calibrated Reinforcement Learning","url":"https://arxiv.org/pdf/2512.19920"},{"title":"[2512.19920] Mitigating LLM Hallucination via Behaviorally Calibrated Reinforcement Learning","url":"https://arxiv.org/abs/2512.19920"},{"title":"Mitigating LLM Hallucinations via Conformal Abstention","url":"https://arxiv.org/pdf/2405.01563"},{"title":"Uncertainty-Based Abstention in LLMs Improves Safety and Reduces Hallucinations","url":"https://arxiv.org/html/2404.10960v1"},{"title":"Don’t Hallucinate, Abstain: Identifying LLM Knowledge Gaps via Multi-LLM Collaboration","url":"https://www.researchgate.net/publication/384216001_Don't_Hallucinate_Abstain_Identifying_LLM_Knowledge_Gaps_via_Multi-LLM_Collaboration"},{"title":"[2405.01563] Mitigating LLM Hallucinations via Conformal Abstention","url":"https://arxiv.org/abs/2405.01563"}]
+
+I found the paper! Here's what I learned about I-CALM:
+
+## I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation
+
+The work shows that prompt-level incentive framing, especially when paired with lightweight normative guidance, can improve selective answering and reduce hallucination risk on factual questions with a verifiable answer without changing model weights.
+
+### The Framework
+
+I-CALM is a prompt-based framework that (i) elicits verbal confidence, (ii) partially rewards abstention through explicit reward schemes, and (iii) adds lightweight normative principles emphasizing truthfulness, humility, and responsibility.
+
+### Key Findings
+
+Using GPT-5 mini on PopQA as the main setting, the study found that confidence-eliciting, abstention-rewarding prompts, especially with norms, reduce the false-answer rate on answered cases mainly by identifying and shifting error-prone cases to abstention and re-calibrating their confidence.
+
+The resulting benefit should be interpreted as movement along a tunable abstention–hallucination frontier rather than as evidence of improved underlying factual competence under forced answering. The prompt-based abstention framework is viewed as a lightweight routing/control mechanism that complements retrieval, tool use, escalation, and training-based methods.
+
+The paper was published on arXiv as **2604.03904** in April 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a1adb209-86d7-4deb-bd93-b1555b5e04e7",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "2f1f172a-1a86-400d-bfa1-11610efc4988",
+  "toolUseResult": {
+    "query": "I-CALM \"Incentivizing Confidence-Aware Abstention\" hallucination LLM arxiv 2604",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JbTDpK5PNeJfGkirCm7pKG",
+        "content": [
+          {
+            "title": "I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation",
+            "url": "https://arxiv.org/html/2604.03904v1"
+          },
+          {
+            "title": "[2604.03904v1] I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation",
+            "url": "https://arxiv.org/abs/2604.03904v1"
+          },
+          {
+            "title": "[2604.03904] I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation",
+            "url": "https://arxiv.org/abs/2604.03904"
+          },
+          {
+            "title": "(PDF) I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation",
+            "url": "https://www.researchgate.net/publication/403562099_I-CALM_Incentivizing_Confidence-Aware_Abstention_for_LLM_Hallucination_Mitigation"
+          },
+          {
+            "title": "Mitigating LLM Hallucination via Behaviorally Calibrated Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2512.19920"
+          },
+          {
+            "title": "[2512.19920] Mitigating LLM Hallucination via Behaviorally Calibrated Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2512.19920"
+          },
+          {
+            "title": "Mitigating LLM Hallucinations via Conformal Abstention",
+            "url": "https://arxiv.org/pdf/2405.01563"
+          },
+          {
+            "title": "Uncertainty-Based Abstention in LLMs Improves Safety and Reduces Hallucinations",
+            "url": "https://arxiv.org/html/2404.10960v1"
+          },
+          {
+            "title": "Don’t Hallucinate, Abstain: Identifying LLM Knowledge Gaps via Multi-LLM Collaboration",
+            "url": "https://www.researchgate.net/publication/384216001_Don't_Hallucinate_Abstain_Identifying_LLM_Knowledge_Gaps_via_Multi-LLM_Collaboration"
+          },
+          {
+            "title": "[2405.01563] Mitigating LLM Hallucinations via Conformal Abstention",
+            "url": "https://arxiv.org/abs/2405.01563"
+          }
+        ]
+      },
+      "I found the paper! Here's what I learned about I-CALM:\n\n## I-CALM: Incentivizing Confidence-Aware Abstention for LLM Hallucination Mitigation\n\nThe work shows that prompt-level incentive framing, especially when paired with lightweight normative guidance, can improve selective answering and reduce hallucination risk on factual questions with a verifiable answer without changing model weights.\n\n### The Framework\n\nI-CALM is a prompt-based framework that (i) elicits verbal confidence, (ii) partially rewards abstention through explicit reward schemes, and (iii) adds lightweight normative principles emphasizing truthfulness, humility, and responsibility.\n\n### Key Findings\n\nUsing GPT-5 mini on PopQA as the main setting, the study found that confidence-eliciting, abstention-rewarding prompts, especially with norms, reduce the false-answer rate on answered cases mainly by identifying and shifting error-prone cases to abstention and re-calibrating their confidence.\n\nThe resulting benefit should be interpreted as movement along a tunable abstention–hallucination frontier rather than as evidence of improved underlying factual competence under forced answering. The prompt-based abstention framework is viewed as a lightweight routing/control mechanism that complements retrieval, tool use, escalation, and training-based methods.\n\nThe paper was published on arXiv as **2604.03904** in April 2026."
+    ],
+    "durationSeconds": 7.168231300000014
+  },
+  "sourceToolAssistantUUID": "a1adb209-86d7-4deb-bd93-b1555b5e04e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-16T08:22:23.319Z_
+
+<details><summary>↩ Tool result · `toolu_01Ybybe2uRyXkCpDmX2Zrgqc`</summary>
+
+```text
+Web search results for query: "Qwen3-32B VRAM requirements hidden state extraction inference memory A100"
+
+Links: [{"title":"Qwen 3 GPU Requirements — Original Family (0.6B–235B) VRAM Guide (2026) | Will It Run AI Blog","url":"https://willitrunai.com/blog/qwen-3-gpu-requirements"},{"title":"What GPU is required to run the Qwen/QwQ-32B model ...","url":"https://jarvislabs.ai/ai-faqs/what-gpu-is-required-to-run-qwen-qwq-32b-model-from-hugging-face"},{"title":"Deploy Qwen 3 on GPU Cloud: Hardware Requirements and Setup Guide | Spheron Blog","url":"https://www.spheron.network/blog/deploy-qwen3-gpu-cloud/"},{"title":"Qwen Qwen3 32B: VRAM Needs, GPU Requirements & Benchmark Speeds - localai.computer","url":"https://localai.computer/models/qwen-qwen3-32b"},{"title":"Qwen3-32B: Specifications and GPU VRAM Requirements","url":"https://apxml.com/models/qwen3-32b"},{"title":"Qwen 3 Hardware Guide — 0.8B to 72B VRAM Requirements | Compute Market","url":"https://www.compute-market.com/blog/qwen-3-local-hardware-guide-2026"},{"title":"Qwen Inference GPU/VRAM Requirement Calculator - AI Tools","url":"https://app.linpp2009.com/en/llm-gpu-memory-calculator/qwen"},{"title":"Qwen3-Coder: How to Run Locally | Unsloth Documentation","url":"https://unsloth.ai/docs/models/tutorials/qwen3-coder-how-to-run-locally"},{"title":"Best VRAM Cheat Sheet for Local LLMs: Every Model, Every Quant | InsiderLLM","url":"https://insiderllm.com/guides/vram-requirements-local-llms/"},{"title":"Qwen 3: What You Need to Know - Gradient Flow","url":"https://gradientflow.com/qwen-3/"}]
+
+Based on the search results, here's comprehensive information about Qwen3-32B VRAM requirements for inference on A100 GPUs:
+
+## Qwen3-32B VRAM Requirements Summary
+
+### Full Precision (FP16)
+The model needs 64GB at FP16, which means a single A100 80GB GPU is required for full precision inference.
+
+### Quantized Versions for A100
+For A100 80GB, use INT8 on A100, as FP16 is not viable for production with the 32B FP16 weights (~64 GB) plus 15-20% activation and framework overhead reaching ~73.6-76.8 GB at runtime, which exceeds the 72 GB cap from --gpu-memory-utilization 0.9. A100 lacks FP8 Tensor Core support, so INT8 is the recommended approach for quantization on this hardware.
+
+### Common Quantization Levels
+Qwen3-32B needs roughly 16GB VRAM for Q4_K_M and 24GB for Q5_K_M, with Q8 (32GB) or FP16 (64GB) for higher quality output.
+
+### Runtime Memory Overhead
+INT8 weights (~32 GB) reach ~37-38 GB at runtime, fitting with ~34-35 GB of KV cache headroom on an A100 80GB when using INT8 quantization with proper configuration.
+
+### Model Architecture
+The model is constructed on a 64-layer transformer architecture with 32.8 billion parameters, utilizing Grouped Query Attention (GQA) with 64 query heads and 8 key-value heads.
+
+For hidden state extraction during inference, the memory requirements would be similar, though extracting intermediate activations could require additional temporary memory depending on the extraction method used.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d0adedae-9caa-46cd-9049-ebf8b096168b",
+  "isSidechain": false,
+  "promptId": "a18036af-ec4c-4184-836c-b283595b3d7d",
+  "type": "user",
+  "uuid": "d04c34bf-9326-430a-a5d3-de7a975f985f",
+  "toolUseResult": {
+    "query": "Qwen3-32B VRAM requirements hidden state extraction inference memory A100",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y4Kd1CmsWr7tidTK85tGg2",
+        "content": [
+          {
+            "title": "Qwen 3 GPU Requirements — Original Family (0.6B–235B) VRAM Guide (2026) | Will It Run AI Blog",
+            "url": "https://willitrunai.com/blog/qwen-3-gpu-requirements"
+          },
+          {
+            "title": "What GPU is required to run the Qwen/QwQ-32B model ...",
+            "url": "https://jarvislabs.ai/ai-faqs/what-gpu-is-required-to-run-qwen-qwq-32b-model-from-hugging-face"
+          },
+          {
+            "title": "Deploy Qwen 3 on GPU Cloud: Hardware Requirements and Setup Guide | Spheron Blog",
+            "url": "https://www.spheron.network/blog/deploy-qwen3-gpu-cloud/"
+          },
+          {
+            "title": "Qwen Qwen3 32B: VRAM Needs, GPU Requirements & Benchmark Speeds - localai.computer",
+            "url": "https://localai.computer/models/qwen-qwen3-32b"
+          },
+          {
+            "title": "Qwen3-32B: Specifications and GPU VRAM Requirements",
+            "url": "https://apxml.com/models/qwen3-32b"
+          },
+          {
+            "title": "Qwen 3 Hardware Guide — 0.8B to 72B VRAM Requirements | Compute Market",
+            "url": "https://www.compute-market.com/blog/qwen-3-local-hardware-guide-2026"
+          },
+          {
+            "title": "Qwen Inference GPU/VRAM Requirement Calculator - AI Tools",
+            "url": "https://app.linpp2009.com/en/llm-gpu-memory-calculator/qwen"
+          },
+          {
+            "title": "Qwen3-Coder: How to Run Locally | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/tutorials/qwen3-coder-how-to-run-locally"
+          },
+          {
+            "title": "Best VRAM Cheat Sheet for Local LLMs: Every Model, Every Quant | InsiderLLM",
+            "url": "https://insiderllm.com/guides/vram-requirements-local-llms/"
+          },
+          {
+            "title": "Qwen 3: What You Need to Know - Gradient Flow",
+            "url": "https://gradientflow.com/qwen-3/"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about Qwen3-32B VRAM requirements for inference on A100 GPUs:\n\n## Qwen3-32B VRAM Requirements Summary\n\n### Full Precision (FP16)\nThe model needs 64GB at FP16, which means a single A100 80GB GPU is required for full precision inference.\n\n### Quantized Versions for A100\nFor A100 80GB, use INT8 on A100, as FP16 is not viable for production with the 32B FP16 weights (~64 GB) plus 15-20% activation and framework overhead reaching ~73.6-76.8 GB at runtime, which exceeds the 72 GB cap from --gpu-memory-utilization 0.9. A100 lacks FP8 Tensor Core support, so INT8 is the recommended approach for quantization on this hardware.\n\n### Common Quantization Levels\nQwen3-32B needs roughly 16GB VRAM for Q4_K_M and 24GB for Q5_K_M, with Q8 (32GB) or FP16 (64GB) for higher quality output.\n\n### Runtime Memory Overhead\nINT8 weights (~32 GB) reach ~37-38 GB at runtime, fitting with ~34-35 GB of KV cache headroom on an A100 80GB when using INT8 quantization with proper configuration.\n\n### Model Architecture\nThe model is constructed on a 64-layer transformer architecture with 32.8 billion parameters, utilizing Grouped Query Attention (GQA) with 64 query heads and 8 key-value heads.\n\nFor hidden state extraction during inference, the memory requirements would be similar, though extracting intermediate activations could require additional temporary memory depending on the extraction method used."
+    ],
+    "durationSeconds": 8.38743799799998
+  },
+  "sourceToolAssistantUUID": "d0adedae-9caa-46cd-9049-ebf8b096168b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 89 · 2026-05-16T08:22:23.324Z_
+
+```json
+{
+  "parentUuid": "d04c34bf-9326-430a-a5d3-de7a975f985f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c75df5bf-8542-4aa6-b0cb-1841c423bb54",
+  "timestamp": "2026-05-16T08:22:23.324Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 90 · 2026-05-16T08:23:01.195Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This confirms the VRAM issue. Qwen3-32B at FP16 needs ~64GB, which is basically the entire A100 80GB. Adding activation overhead (15-20%) gets you to 73-77GB, which is at the limit. For hidden state extraction during generation (storing intermediate activations for the probe), you'd need additional memory. So INT8 quantization is essentially required.
+
+But here's the critical question: do the obalcells probes work with INT8 quantized models? Were they trained on FP16 hidden states? If so, quantization would change the hidden state distribution and the probes might not transfer. This is a real practical concern.
+
+
+I-CALM is prompt-based without logit-level intervention, so it's more of a baseline comparison than a direct competitor—especially since the generator explicitly excludes prompt-only approaches. Still, it's worth noting as context. Now I'm compiling my final assessment of the critical issues, including a missing related work citation on monitoring hallucinations during decoding that appears to be a direct competitor to MisTAG.
+
+There's also concurrent work from May 2026 that does selective contrastive decoding triggered by anomaly detection on the residual stream—achieving SOTA on TruthfulQA and conceptually very similar to MisTAG, just with a different trigger signal. This absolutely needs to be cited and differentiated.
+
+The entity onset detection proposal is also problematic: it claims to use an "entity-onset signal" from prior work, but that work actually detects hallucinated entities, not entity boundaries, so the mechanism here is underspecified and potentially mischaracterized.
+
+There are also practical constraints I need to verify: the VRAM requirements for extracting hidden states from Qwen3-32B in FP16 would exceed available memory, forcing INT8 quantization which might degrade probe quality; the "learned logit bias vector" lacks specification on how it's trained, what data it uses, and whether it's static or learned; and I need to check whether the full pipeline fits within the 200 H100-hour budget. So converting to H100 equivalents, 150 A100-hours becomes roughly 50-75 H100-hours and 350 A100-hours translates to 117-175 H100-hours—both comfortably under the 200 H100-hour budget. The generator's estimates in A100-hours work out fine when converted, though it would be cleaner if they'd specified H100-hours directly to match the constraint.
+
+Looking at the scoring now: novelty is moderate at 3/5 since while the combination of miscalibration detection, logit-level intervention, graded actions, and entity-level granularity is novel, the underlying paradigm and individual components draw from existing work, and there are gaps in related work coverage. Feasibility sits at 3.5/5—the building blocks exist and are accessible, the timeline is tight but potentially achievable, though entity onset detection needs more specificity, VRAM constraints are snug for Qwen3-32B, and the impact of INT8 quantization on probe quality remains uncertain. Clarity rates well at 4/5 with solid structure and motivation, though some details like logit bias vector training and entity onset detection could be more precise. Impact scores 3.5/5 as an important and practical problem, with real value if it generalizes to long-form generation.
+
+Averaging these scores gives 3.5, which falls short of the 4.0 threshold, so the proposal needs revision. The core concept is sound, but I should strengthen the related work differentiation from Monitoring Decoding and PC-LDCD, nail down the entity onset detection mechanism, detail the logit bias vector training, evaluate the INT8 quantization tradeoffs, and potentially pivot to Qwen3-8B as the main target with Qwen3-32B as a scaling experiment to ease VRAM pressure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c75df5bf-8542-4aa6-b0cb-1841c423bb54",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vZmLpVty5tjN7UsF3K",
+  "type": "assistant",
+  "uuid": "e181f0c6-b5ea-4031-9d66-2e435645e183",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pjgcf95uB6byw1vwPd6i9",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4186,
+      "cache_read_input_tokens": 50200,
+      "output_tokens": 3316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4186,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3316,
+          "cache_read_input_tokens": 50200,
+          "cache_creation_input_tokens": 4186,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4186
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91 · 2026-05-16T08:23:37.845Z_
+
+I've completed my independent verification. Here's my assessment:
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3, "rationale": "The combination of miscalibration trigger + logit-level intervention is novel, but the general paradigm of 'detect during generation → selectively intervene' already exists in Monitoring Decoding (ACL 2025 Findings) and PC-LDCD (arXiv 2605.05953, May 2026). Each individual component (VUF from Ji et al., probes from obalcells, contrastive logit manipulation, rollback from UT-ACA) is borrowed from existing work. This is valid compositional novelty but not breakthrough novelty—and the two most directly comparable works are not cited."},
+    "feasibility": {"score": 3, "rationale": "Building blocks exist publicly, but three technical gaps threaten execution: (1) entity onset detection during generation is underspecified—obalcells' probes detect hallucinated entities, not entity boundaries for all entities; (2) Qwen3-32B at FP16 requires ~64GB + overhead, forcing INT8 quantization whose impact on probe quality is unknown; (3) the 'learned logit bias vector' training procedure is unspecified (loss function, data source, optimization)."},
+    "clarity": {"score": 4, "rationale": "Well-structured proposal with clear motivation (ESR invalidates activation steering → move to logit level), logical graded action vocabulary, and explicit evaluation plan covering both factuality and utility. Technical specification gaps exist but the overall architecture is clearly communicated."},
+    "impact": {"score": 3, "rationale": "Important problem with practical deployment value. But incremental improvement over existing work: Ji et al. already shows ~30% reduction, ActLCD shows +19.81% on TruthfulQA, and PC-LDCD (published last week) achieves SOTA on TruthfulQA via similar selective-intervention logic. The contribution narrows to showing miscalibration is a better trigger signal than alternatives—valid but narrow."}
+  },
+  "issues": [
+    "Critical missing related work: 'Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation' (ACL 2025 Findings, arXiv 2503.03106) does real-time hallucination monitoring during generation with selective token-level intervention via tree-based decoding. Achieves +15% on TruthfulQA. This directly competes in the 'online detect-then-intervene' paradigm and MUST be cited and compared against.",
+    "Critical concurrent work: 'Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits' (arXiv 2605.05953, published ~May 8, 2026) proposes PC-LDCD—selective contrastive decoding triggered by internal representation anomaly detection on the residual stream. Achieves SOTA on TruthfulQA for models up to 8B. Conceptually near-identical paradigm (internal signal → selective logit-level intervention) with different trigger signal (density anomaly vs. miscalibration). Must be cited, differentiated, and ideally used as a baseline.",
+    "Entity onset detection is underspecified and misattributed. The proposal claims obalcells' probes provide an 'entity-onset signal,' but their probes classify whether tokens belong to HALLUCINATED entities—they do not identify entity boundaries for all entities during generation. A separate NER-like mechanism is needed to identify where to compute the miscalibration score, and this component is not described.",
+    "The 'learned logit bias vector' training procedure is unspecified. What training data? What loss function? Is it a fixed hand-crafted vector (boosting hedging tokens) or learned from data? If learned, what constitutes the positive/negative examples? This is a core component of the mild-mismatch intervention and needs full specification.",
+    "Qwen3-32B at FP16 consumes ~64GB + 15-20% framework overhead = 73-77GB on A100 80GB, leaving <3GB for KV-cache and hidden state extraction. INT8 quantization is mandatory but creates a probe-quality risk: if probes are trained on FP16 hidden states and evaluated on INT8 states, the representation distribution shift could degrade detection accuracy. No mitigation plan is specified.",
+    "Compute budget ambiguity: The user constraint is ≤200 H100-hours, but the proposal estimates in A100-hours. Auto research mode at 350 A100-hours, while likely within budget after H100 conversion (due to H100's higher throughput), should be explicitly stated in H100-equivalent terms to confirm compliance."
+  ],
+  "feedback": "The idea is well-motivated and the round 1 revisions (dropping activation steering, simplifying to 2 actions, removing citation injection, replacing Maverick) are all correct improvements. The core contribution—showing miscalibration is a better trigger signal than raw uncertainty for selective intervention—is valid. To reach pass threshold:\n\n1. **Cite and differentiate from Monitoring Decoding (ACL 2025) and PC-LDCD (May 2026)**: Monitoring Decoding uses external factual consistency checking (LLM-based monitor) which is expensive; PC-LDCD uses density estimation requiring a separate trained probabilistic circuit. MisTAG's advantage is that miscalibration (VUF vs. probe) is cheaper to compute and directly targets the failure mode (overconfident hallucination) rather than general factual error. Make this explicit.\n\n2. **Specify entity onset detection**: Use a simple heuristic: apply miscalibration scoring at EVERY token but weight by the probe's hallucination probability (which naturally peaks at entity tokens). Alternatively, use a lightweight NER pass on the prefix, or simply trigger scoring at every noun/proper-noun token identified by part-of-speech patterns. Don't rely on obalcells' probes for boundary detection—they detect hallucination, not boundaries.\n\n3. **Specify the logit bias vector**: Define it as a static vocabulary-level vector derived from a curated list of hedge tokens (+bias) and assertive tokens (-bias), with magnitudes tuned on the validation set. This is simpler and more robust than a 'learned' vector and avoids another training step.\n\n4. **Address INT8 quantization for Qwen3-32B**: Either (a) train probes directly on INT8 hidden states (cheap—just run forward passes in INT8 mode), or (b) make Qwen3-8B the primary evaluation target (fits easily in FP16 on A100 80GB) and treat Qwen3-32B as a scaling test with INT8-trained probes.\n\n5. **Add Monitoring Decoding and PC-LDCD as baselines**: This strengthens the paper by showing miscalibration-triggered intervention outperforms density-based (PC-LDCD) and factuality-monitor-based (MD) triggers on the specific failure mode of overconfident hallucinations.",
+  "reason": "Solid compositional idea with clear motivation, but two critical missing related works (Monitoring Decoding, PC-LDCD) undermine the novelty framing, and three underspecified components (entity onset detection, logit bias vector training, INT8 probe quality) create feasibility risk."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e181f0c6-b5ea-4031-9d66-2e435645e183",
+  "isSidechain": false,
+  "requestId": "req_011Cb5vZmLpVty5tjN7UsF3K",
+  "type": "assistant",
+  "uuid": "41f2260b-32b7-4260-b8c3-f5788e34187d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pjgcf95uB6byw1vwPd6i9",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4186,
+      "cache_read_input_tokens": 50200,
+      "output_tokens": 3316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4186,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3316,
+          "cache_read_input_tokens": 50200,
+          "cache_creation_input_tokens": 4186,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4186
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 92_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "41f2260b-32b7-4260-b8c3-f5788e34187d",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 93_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Miscalibration-triggered adaptive generation via logit intervention",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 94_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-16 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "41f2260b-32b7-4260-b8c3-f5788e34187d",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 95_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Miscalibration-triggered adaptive generation via logit intervention",
+  "sessionId": "a19e74ec-6a07-4e24-89d2-6d218f8de66d"
+}
+```
+
+---

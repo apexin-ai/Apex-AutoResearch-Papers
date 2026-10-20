@@ -1,0 +1,3617 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-15 (UTC).** ## Original idea { "tit
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/exported-trajectories/account-2/0c4f2d41-a688-45cf-aab7-26af488ae9a4.jsonl`
+- **Structured JSON:** [`586a480744771fbdeca7.json`](../../sessions/58/586a480744771fbdeca7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T16:07:51.295Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T16:07:51.295Z",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-15 (UTC).**\n\n## Original idea\n{\n  \"title\": \"TemporalFuse: Adaptive Multi-Signal Temporal Fusion for Early Hallucination Detection via Learned Signal Dynamics\",\n  \"core_problem\": \"Real-time hallucination detection during LLM generation requires monitoring internal signals, but practitioners face two unsolved problems. First, existing detectors each rely on a single signal type — attention patterns (SinkProbe, AUROC 0.89 on HaluEval-QA), hidden-state dynamics (EigenTrack, 0.82–0.94 AUROC; HSAD via FFT), or log-probabilities (HALT via GRU) — with no principled way to combine them. Static comparisons disagree on which signal is best: HALUPROBE (arXiv 2502.13490) and Proxy Analyzers (arXiv 2605.07209) both find attention-based features dominant (attention entropy + per-head source-document attention account for 88%+ of Random Forest importance in Proxy Analyzers), while krogoldAI's empirical study finds FFN activations (82.96% accuracy, 91.04% AUC) outperform attention (79.90%, 88.46% AUC), concluding attention 'added no value beyond what FFN activations already provided.' This conflict persists because all comparisons are static — they collapse temporal dynamics into single snapshots, ignoring that different signals may carry complementary information at different generation stages. Second, and more critically, no existing method optimizes for early detection — identifying hallucination from partial responses (e.g., after only 25% of tokens are generated). Current detectors are trained and evaluated on complete responses, yet real-time guardrails must act as early as possible. Early time series classification is well-established in other domains (MultiETSC, RL-based early classifiers) but has never been applied to hallucination detection during LLM generation. These two gaps — no multi-signal temporal fusion, no early-detection optimization — mean practitioners building real-time hallucination guardrails must choose a single signal type with no principled basis, deploy a detector that cannot be trusted until generation is nearly complete, and sacrifice either accuracy (single signal) or latency (waiting for full response).\",\n  \"opportunity\": \"Five independent research threads converge to make adaptive temporal fusion both possible and timely. (1) Signal validation: SinkProbe (arXiv 2604.10697) established attention sinks, EigenTrack (arXiv 2509.15735) validated hidden-state spectral features, and HALT (arXiv 2602.02888) proved log-probability time series — each independently effective for hallucination detection via temporal modeling, but never combined. (2) Causal grounding: SinkTrack (ICLR 2026) demonstrated that modifying attention sinks causally affects hallucination; ReDeEP (ICLR 2025) showed Knowledge FFNs and Copying Heads carry mechanistically distinct hallucination information — establishing that different signal types carry independent, non-redundant information. (3) Temporal complementarity evidence: Hallucination as Trajectory Commitment (arXiv 2604.15400) showed residual-stream trajectories bifurcate at the first generated token in 44.3% of prompts, while Shadows in the Attention (arXiv 2505.16894) found attention-locking thresholds emerge gradually — suggesting attention and hidden-state signals have fundamentally different temporal profiles, creating an opportunity for fusion. (4) Cross-modal fusion precedent: Attention-based fusion of multiple temporal signal streams is well-established in multivariate time series anomaly detection (MFGAN, DSAC) and multi-modal monitoring, but has never been applied to LLM internal signals. (5) Early classification methodology: Prefix-based multi-horizon training for time series is mature (tslearn, MultiETSC), providing the methodological foundation for optimizing detection at partial observation.\\n\\nThe key insight: if different signals carry complementary information at different generation stages (attention sinks as routing indicators, hidden states as computation indicators, log-probs as confidence indicators), then a learned time-varying fusion should outperform any fixed single-signal detector, and optimizing for early detection should yield faster-acting guardrails. We test this with TemporalFuse — the first adaptive multi-signal temporal fusion method for hallucination detection during autoregressive generation. The fusion architecture is the primary methodological contribution; the analysis of learned signal weights provides the first temporal comparison of signal types as an interpretable byproduct.\",\n  \"landscape\": \"**Static signal-type comparison for hallucination detection:** HALUPROBE (arXiv 2502.13490, Feb 2025) compares attention weights, hidden-state activations, and logits with static classifiers on Llama-2-7B and Vicuna-7B, finding attention-based lookback ratio achieves highest accuracy. Proxy Analyzers (arXiv 2605.07209, May 2026) finds per-head source-document attention and attention entropy account for 88%+ of Random Forest importance across 18 features and 7 analyzer architectures. However, krogoldAI (HuggingFace blog, Dec 2025) found FFN activations (91.04% AUC) outperform attention (88.46% AUC) using Ministral-8B on 145K examples — directly contradicting both. LLM-Check (NSF 2025) also finds hidden-state methods (SAPLMA) generally outperform logit-based and attention-based methods. All comparisons are static; none model temporal dynamics during generation. **TemporalFuse resolves this conflict by showing how optimal signal reliance varies across generation stages — a signal dominant statically may not be dominant at partial observation.**\\n\\n**Multi-signal fusion for hallucination detection:** HaluNet (arXiv 2512.24562, Dec 2025) fuses semantic embeddings, log-likelihoods, and entropy via a multi-branch architecture — but uses parallel fusion on complete responses, not learned temporal fusion during generation. ReDeEP (ICLR 2025) combines Knowledge FFN scores and Copying Head attention for RAG hallucination detection — mechanistically principled but operates on single forward passes. CHARM (ICLR 2026) applies GNNs on graphs combining attention and activation features — static aggregation, no temporal modeling. UniFact (arXiv 2512.02772) benchmarks hidden-state and logit methods but does not fuse signals. **No prior work learns time-varying weights over multiple signal types during autoregressive generation.**\\n\\n**Single-signal temporal/trajectory detection:** EigenTrack (arXiv 2509.15735) tracks hidden-state spectral dynamics via GRU (0.82–0.94 AUROC). HALT (arXiv 2602.02888) treats log-probs as time series via bidirectional GRU. HSAD (arXiv 2509.13154) applies FFT to cross-layer hidden-state activations. Step-Level Hidden-State Transport Geometry (arXiv 2605.13772) uses BiLSTM on hidden-state geometric features. ICR Probe (ACL 2025) tracks cross-layer hidden-state evolution. **Each validates temporal modeling for one signal type; none combine multiple signals or optimize for early detection.**\\n\\n**Cascaded/adaptive detection systems:** HaluGate (vLLM blog, Dec 2025) implements a three-stage cascade (Sentinel binary classifier → token-level detector → NLI explainer) achieving 72.2% query skip rate — but cascades at the query-type level using external signals, not across internal signal types. HALL-OPT (Nature Scientific Reports 2026) combines dual-stream attention detection with adaptive token pruning — but streams are parallel, not sequentially gated. Monitoring Decoding (ACL Findings 2025) gates expensive correction based on cheap monitoring — gates mitigation, not detection depth. Energy-efficient speculative decoding (arXiv 2508.12590) filters tokens for expensive verification using attention-weight statistics and uncertainty — the closest paradigm to our approach but applied to speculative decoding, not hallucination detection. **No prior work cascades across internal signal types (attention → hidden states → log-probs) with learned escalation for hallucination detection.**\\n\\n**Cross-modal temporal fusion in other domains:** Attention-based fusion of multiple temporal signal streams is well-established in multivariate time series anomaly detection (MFGAN, DSAC), video anomaly detection, and industrial monitoring. These provide architectural precedent for our cross-signal attention mechanism but have never been applied to LLM internal signals.\\n\\n**The open gaps:** (1) No method fuses multiple internal signal types with learned temporal weighting during generation — existing fusion is static (HaluNet, CHARM, ReDeEP) or external (HaluGate). (2) No method optimizes for early detection at partial observation fractions — all detectors are trained on complete responses. (3) No analysis shows how optimal signal reliance changes during generation — static comparisons collapse temporal dynamics. TemporalFuse addresses all three.\",\n  \"approach\": \"We propose TemporalFuse, an adaptive temporal fusion method that learns time-varying weights over three internal signal streams — attention sinks, hidden-state spectral features, and log-probabilities — to detect hallucination during autoregressive generation, optimized for the earliest possible detection. The primary methodological contribution is the fusion architecture and early-detection training objective; the analysis of learned fusion weights provides the first temporal signal comparison as an interpretable byproduct.\\n\\n**Theoretical Motivation: Why Fusion Should Outperform Single Signals.** The three signal types occupy different positions in the transformer's computational pipeline: attention heads function as information routing (WHERE the model reads — Wu et al., ICLR 2025), hidden states represent accumulated computation (WHAT the model has computed — FFN key-value memories, Geva et al., EMNLP 2021), and log-probabilities reflect output confidence (HOW certain the model is). Because routing decisions causally precede the computation they gate, and both precede the output distribution, these signals should carry complementary information: a routing error may appear in attention features before the residual stream incorporates erroneous information, while confidence collapse in log-probs may be the most direct indicator of hallucination once it manifests. If the signals are temporally complementary (shifting at different times and rates), learned fusion can outperform any individual signal by attending to the most informative signal at each generation stage. If they are temporally redundant, fusion still cannot underperform the best individual signal (it can learn to assign all weight to one arm). This asymmetry makes fusion the principled default.\\n\\n**Architecture: Three-Arm Temporal Encoder + Cross-Signal Gating + Early-Detection Loss.**\\n\\nFor each generation, we extract three parallel feature streams at every decoding step t:\\n\\n*Arm 1 — SinkWatch (Attention Sinks):* Per-step features from top-K informative head-layer combinations (K=5–15) identified via SinkProbe's ℓ₁-regularized analysis: sink scores for top-k sink tokens (k=2–3), sink concentration, sink entropy, context-attention ratio, plus first-order temporal derivatives. Raw dim ~50–120.\\n\\n*Arm 2 — SpectralTrack (Hidden States):* Per-step spectral features from sliding-window covariance matrices of hidden-state activations: leading eigenvalues, spectral gaps, entropy, RMT statistics. Matching EigenTrack's design. Raw dim ~10–20.\\n\\n*Arm 3 — LogProbTrack (Log-Probabilities):* Per-step log-probability features: token log-prob, predictive entropy, top-k probability gap, rank. Matching HALT's design. Raw dim ~25.\\n\\nEach arm includes a per-arm learned linear projection to common dimension d=32, then feeds into an identical unidirectional GRU (hidden_dim=64, ~25K recurrent parameters). At each step t, the three GRU hidden states h_t^sink, h_t^spec, h_t^logp ∈ ℝ^64 represent modality-specific temporal summaries.\\n\\n**Cross-Signal Gating Network (Novel Component 1).** A learned gating network dynamically weights the three signal streams at each step:\\n- Input: concatenation [h_t^sink; h_t^spec; h_t^logp] ∈ ℝ^192\\n- Gating MLP: 192 → 64 (ReLU) → 3 (softmax) → gate weights α_t ∈ ℝ^3\\n- Fused representation: z_t = Σ_i α_t^i · h_t^i ∈ ℝ^64\\n- Detection score: ŷ_t = σ(w^T z_t + b)\\n\\nThe gate weights α_t are directly interpretable: α_t^sink = 0.6 at step 5 means the model assigns 60% importance to attention sink features at that generation stage. By plotting mean gate weights across steps for factual vs. hallucinated generations, we obtain the first temporal map of signal importance during hallucination — the comparison result emerges as an interpretable analysis of the method. Total gating parameters: ~12.5K (negligible vs. 75K total GRU parameters).\\n\\n**Multi-Horizon Early-Detection Loss (Novel Component 2).** Instead of training only on complete responses, we optimize detection at multiple observation fractions simultaneously:\\n\\nL = Σ_{f ∈ F} w_f · BCE(ŷ_{T·f}, y)\\n\\nwhere F = {0.25, 0.50, 0.75, 1.0} are observation fractions, ŷ_{T·f} is the detection score at step ⌊T·f⌋, y is the ground-truth label, and w_f = f (linear weighting — more lenient at early fractions, full weight at complete observation). This adapts early time series classification methodology (MultiETSC, RL-based early classifiers) to hallucination detection for the first time, explicitly training the model to produce informative predictions before generation is complete. The loss encourages the gating network to attend to whichever signal carries the earliest discriminative information.\\n\\n**Primary Analyses (EMNLP Short Paper).** (1) Fusion vs. individual arms: AUROC/AUPRC comparing TemporalFuse against each individual arm, testing whether fusion outperforms the best single signal. (2) Early-detection curves: AUROC at observation fractions {0.10, 0.25, 0.50, 0.75, 1.0} for TemporalFuse vs. individual arms, demonstrating the benefit of multi-horizon training. (3) Temporal signal importance map: mean gate weights α_t across steps for factual vs. hallucinated generations — the first visualization of how optimal signal reliance changes during hallucination onset. This directly answers 'which signal, when?' without framing it as a standalone comparison study. (4) Static-vs-temporal ranking: comparing signal rankings from our learned gate weights against HALUPROBE's and Proxy Analyzers' static findings. (5) Ablation: TemporalFuse with/without multi-horizon loss; TemporalFuse with/without gating (equal-weight fusion baseline); individual arms with temporal GRU vs. static logistic regression.\\n\\n**Statistical Rigor.** 5-fold stratified cross-validation, reporting mean ± std for all metrics. Bootstrap 95% CIs (1000 resamples) for pairwise comparisons. Paired permutation tests (10,000 permutations, p < 0.05). Cohen's d effect sizes.\\n\\n**Entity-Match Onset Annotation (for temporal signal importance analysis).** For the subset of TruthfulQA used in temporal gate-weight analysis, we apply objective NER-based curation: include questions where (a) the reference answer contains ≥1 named entity detected by spaCy NER (model en_core_web_lg), AND (b) the question matches factoid patterns (starts with 'Who', 'What is/was', 'Where is/was', 'When did/was', or contains 'name of'). Onset = first generated token matching a hallucinated entity (entity not in reference, detected by NER). We supplement with NLI sliding-window annotation (window size 10 tokens, entailment threshold 0.5 via DeBERTa-v3-large-MNLI). Report agreement rate between entity-match and NLI-window onset.\\n\\n**Pilot Design (First 48 hours).** 100 TruthfulQA examples on Llama-3.1-8B: extract all three feature streams, train TemporalFuse and individual arms. **Decision rule:** If all three signals are perfectly correlated temporally (Pearson r > 0.95 between per-step GRU logits across all arm pairs), fusion cannot help — pivot to analyzing why temporal dynamics are redundant despite carrying different static information. If signals show distinct temporal profiles (r < 0.85 for at least one pair), proceed with full experiments.\\n\\n**Dual-Target Venue Strategy:**\\n\\n*EMNLP 2026 (ARR May 25 — short paper, 4 pages):* 1 model (Llama-3.1-8B-Instruct), 1 benchmark (TruthfulQA), 1K examples. Focus: TemporalFuse method + early-detection curves + temporal signal importance map + ablations. Core claim: adaptive temporal fusion outperforms individual signals, especially at partial observation. Backup: if May 25 proves infeasible, submit to June ARR cycle (commitment deadline still allows EMNLP 2026 proceedings).\\n\\n*AAAI 2027 (full paper, 8 pages, paper deadline July 28):* 3 models (Llama-3.1-8B, Mistral-7B-v0.3, Llama-3.1-70B), 3 benchmarks (TruthfulQA, TriviaQA, HaluEval-QA), 2K examples per pair. **Fourth arm: FFN activations** (matching krogoldAI's feature design — mean-pooled FFN outputs from informative mid-layers) to directly resolve the conflicting static evidence. Full temporal characterization, complementarity analysis, CascadeProbe extension (using learned gate thresholds as escalation triggers for compute-adaptive detection), DoLa intervention when the fused probability exceeds threshold.\\n\\n**Baselines.** Single-signal temporal: individual GRU arms (SinkWatch, SpectralTrack, LogProbTrack). Static: SinkProbe, LapEigvals, TOHA. Prior temporal: EigenTrack, HALT. Online: MIND, DRIFT, PCNet. Multi-signal static: HaluNet-style parallel fusion (equal-weight concatenation of static features). Ablation: equal-weight temporal fusion (no gating), TemporalFuse without multi-horizon loss.\\n\\n**Evaluation Metrics.** Primary: AUROC and AUPRC with 95% bootstrap CIs. Secondary: early-detection AUROC at partial observation fractions, F1 at calibrated threshold, latency overhead (ms/token), gate weight entropy (measuring signal specialization), Cohen's d. For AAAI: hallucination rate reduction with DoLa intervention, compute-accuracy Pareto curves for CascadeProbe.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~190h H100 total. EMNLP short paper: ~52h (feature extraction for 3 arms × 1K examples on Llama-8B: ~20h; GRU + fusion training with 5-fold CV: ~10h; baselines including HaluNet-style and HALUPROBE-style: ~12h; curated subset annotation + analysis: ~6h; pilot: ~4h). AAAI full paper (incremental): ~138h additional (multi-model extraction: ~60h; 70B experiments: ~20h; 4th FFN arm: ~12h; CascadeProbe extension: ~8h; extended baselines + DoLa intervention: ~20h; additional CV + ablations: ~18h).\",\n      \"gpu_utilization\": \"Moderate (~50–60%).\",\n      \"timeline\": \"EMNLP short paper: 10 days (May 15–25), with June ARR cycle as realistic backup if debugging delays occur. AAAI full paper: additional 8 weeks (May 25–July 21).\",\n      \"team\": \"1–2 researchers\",\n      \"estimated_gpu_cost\": \"$475–570\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~210h H100 total.\",\n      \"gpu_utilization\": \"Moderate-high (~60–70%).\",\n      \"timeline\": \"EMNLP: 10 days (May 25 target, June ARR backup). AAAI: 8 additional weeks.\",\n      \"team\": \"1 researcher, ~60min/day for EMNLP sprint, ~45min/day for AAAI\",\n      \"claude_api_cost\": \"$220–380 (~2200–3800 turns).\",\n      \"estimated_gpu_cost\": \"$525–630.\",\n      \"risk_note\": \"Primary risk: signals may be temporally redundant (fusion ≈ best individual arm). Mitigation: (1) pilot correlation check in first 48 hours — if r > 0.95 across all pairs, shift focus to understanding why; (2) even if fusion margin is small, the early-detection curves and temporal signal importance maps are novel contributions independent of fusion magnitude; (3) the multi-horizon loss may still improve individual arms. Secondary risk: EMNLP 10-day timeline is aggressive. Mitigation: (1) June ARR cycle as concrete backup — still makes EMNLP 2026 proceedings via August 2 commitment deadline; (2) short paper scope (1 model, 1 benchmark) is tractable; (3) fusion architecture adds minimal implementation overhead (~200 lines on top of three arms). Tertiary risk: entity-match onset annotation unreliable. Mitigation: NER-based curation criteria are objective and reproducible; NLI sliding-window supplement provides independent validation; TriviaQA added as primary onset benchmark in AAAI version.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~230h H100 total.\",\n      \"gpu_utilization\": \"High (~80%+).\",\n      \"timeline\": \"EMNLP: 7–8 days. AAAI: 3 additional weeks.\",\n      \"team\": \"0 (initial setup + final review only)\",\n      \"claude_api_cost\": \"$320–530 (~3200–5300 turns).\",\n      \"estimated_gpu_cost\": \"$575–690.\",\n      \"speed_bottleneck\": \"Bottlenecked by eager-mode attention extraction (~3–4× slower than standard inference). 1K examples × ~100 tokens ≈ 10–15h on single H100, parallelizable. The gating network and multi-horizon loss add negligible training overhead.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (primary short-term target — ARR May 25, 2026 target with June ARR cycle as realistic backup; commitment deadline August 2, 2026; 4-page short paper focusing on TemporalFuse method, early-detection curves, and temporal signal importance analysis; Findings track acceptable)\",\n    \"AAAI 2027 (primary long-term target — abstract deadline July 21, paper deadline July 28, 2026; full 8-page method paper with 4 signal arms including FFN, multi-model evaluation, CascadeProbe extension, intervention experiments)\",\n    \"ICLR 2027 (fallback — deadline expected ~October 2026; allows additional experiments if AAAI timeline requires descoping)\"\n  ],\n  \"level\": \"solid-to-strong\",\n  \"key_references\": [\n    \"What are Models Thinking about? Understanding Large Language Model Hallucinations 'Psychology' through Model Inner State Analysis [HALUPROBE] (arXiv 2502.13490, Feb 2025)\",\n    \"Hallucination Detection via Activations of Open-Weight Proxy Analyzers [Proxy Analyzers] (arXiv 2605.07209, May 2026)\",\n    \"Towards Unification of Hallucination Detection and Fact Verification for Large Language Models [UniFact] (arXiv 2512.02772, Dec 2025)\",\n    \"Attention Sinks as Internal Signals for Hallucination Detection in Large Language Models [SinkProbe] (arXiv 2604.10697, April 2026)\",\n    \"EigenTrack: Spectral Activation Feature Tracking for Hallucination and Out-of-Distribution Detection in LLMs and VLMs (arXiv 2509.15735, 2025)\",\n    \"HALT: Hallucination Assessment via Log-probs as Time series (arXiv 2602.02888, Feb 2026)\",\n    \"Unsupervised Real-Time Hallucination Detection based on the Internal States of Large Language Models [MIND] (ACL Findings 2024, arXiv 2403.06448)\",\n    \"LLM Hallucination Detection: A Fast Fourier Transform Method Based on Hidden Layer Temporal Signals [HSAD] (arXiv 2509.13154, Sep 2025)\",\n    \"HaluNet: Multi-Granular Uncertainty Modeling for Efficient Hallucination Detection in LLM Question Answering (arXiv 2512.24562, Dec 2025)\",\n    \"ReDeEP: Detecting Hallucination in Retrieval-Augmented Generation via Mechanistic Interpretability (ICLR 2025, arXiv 2410.11414)\",\n    \"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation (arXiv 2604.15400, April 2026)\",\n    \"Before the First Token: Scale-Dependent Emergence of Hallucination Signals in Autoregressive Language Models (arXiv 2604.13068, April 2026)\",\n    \"Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arXiv 2605.13772, May 2026)\",\n    \"Shadows in the Attention: Contextual Perturbation and Representation Drift in the Dynamics of Hallucination in LLMs (arXiv 2505.16894, May 2025)\",\n    \"HalluSAE: Detecting Hallucinations in Large Language Models via Sparse Auto-Encoders (arXiv 2604.16430, April 2026)\",\n    \"Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (arXiv 2605.05686, May 2026)\",\n    \"Uncertainty-Aware Attention Heads: Efficient Unsupervised Uncertainty Quantification for LLMs [RAUQ] (arXiv 2505.20045, May 2025)\",\n    \"Hallucination Detection in LLMs with Topological Divergence on Attention Graphs [TOHA] (ACL 2026, arXiv 2504.10063)\",\n    \"SinkTrack: Attention Sink based Context Anchoring for Large Language Models (ICLR 2026, arXiv 2604.10027)\",\n    \"FACTUM: Mechanistic Detection of Citation Hallucination in Long-Form RAG (arXiv 2601.05866, Jan 2026)\",\n    \"First Hallucination Tokens Are Different from Conditional Ones (arXiv 2507.20836, 2025)\",\n    \"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (arXiv 2604.04743, April 2026)\",\n    \"ICR Probe: Tracking Hidden State Dynamics for Reliable Hallucination Detection in LLMs (ACL 2025, arXiv 2507.16488)\",\n    \"Real-Time Detection of Hallucinated Entities in Long-Form Generation (arXiv 2509.03531, 2025)\",\n    \"Attention Sink in Transformers: A Survey on Utilization, Interpretation, and Mitigation (arXiv 2604.10098, April 2026)\",\n    \"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits [PCNet/PC-LDCD] (arXiv 2605.05953, May 2026)\",\n    \"DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness (arXiv 2601.14210, Jan 2026)\",\n    \"Hallucination Detection in LLMs Using Spectral Features of Attention Maps [LapEigvals] (EMNLP 2025, arXiv 2502.17598)\",\n    \"Neural Message-Passing on Attention Graphs for Hallucination Detection [CHARM] (ICLR 2026, arXiv 2509.24770)\",\n    \"Spectral Guardrails for Agents in the Wild: Detecting Tool Use Hallucinations via Attention Topology (arXiv 2602.08082, Feb 2026)\",\n    \"AggTruth: Contextual Hallucination Detection using Aggregated Attention Scores in LLMs (ICCS 2025, arXiv 2506.18628)\",\n    \"Streaming Hallucination Detection in Long Chain-of-Thought Reasoning (arXiv 2601.02170, Jan 2026)\",\n    \"Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation (ACL Findings 2025, arXiv 2503.03106)\",\n    \"DoLa: Decoding by Contrasting Layers Improves Factuality in Large Language Models (ICLR 2024)\",\n    \"Detecting Contextual Hallucinations in Large Language Models with Frequency-Aware Attention (arXiv 2602.18145, Feb 2026)\",\n    \"Mirage in the Eyes: Hallucination Attack on Multi-modal Large Language Models with Only Attention Sink (USENIX Security 2025, arXiv 2501.15269)\",\n    \"Retrieval Head Mechanistically Explains Long-Context Factuality (Wu et al., ICLR 2025)\",\n    \"Transformer Feed-Forward Layers Are Key-Value Memories (Geva et al., EMNLP 2021)\",\n    \"HaluGate: Token-Level Truth — Three-Stage Conditional Hallucination Detection Pipeline (vLLM Blog, Dec 2025)\",\n    \"HALL-OPT: Hallucination-Aware Learning and Latency Optimization Transformer for Real-Time Edge Intelligence (Nature Scientific Reports, 2026)\",\n    \"LLM-Check: Investigating Detection of Hallucinations in Large Language Models (NSF, 2025)\",\n    \"krogoldAI: LLM Hallucination Detection via Internal Representations (HuggingFace Blog, Dec 2025)\",\n    \"Energy-Efficient Speculative Decoding with Uncertainty-Awareness and Adaptive Token Filtering (arXiv 2508.12590, 2025)\"\n  ],\n  \"description\": \"TemporalFuse proposes the first adaptive multi-signal temporal fusion method for early hallucination detection during autoregressive LLM generation. Unlike prior detectors that each rely on a single internal signal type — attention sinks (SinkProbe), hidden-state spectral features (EigenTrack), or log-probabilities (HALT) — TemporalFuse trains three parallel GRU encoders on these signal streams and introduces a cross-signal gating network that learns time-varying weights over the signal streams at each generation step. The gating MLP (192→64→3 with softmax) produces interpretable per-step weights α_t indicating which signal the model relies on at each generation stage, providing the first temporal map of signal importance during hallucination onset. The method also introduces a multi-horizon early-detection loss that optimizes detection at multiple observation fractions simultaneously (L = Σ w_f·BCE at fractions {0.25, 0.5, 0.75, 1.0}), adapting early time series classification methodology to hallucination detection for the first time — explicitly training the model to detect hallucination from partial responses. The architecture uses identical GRU encoders (~25K recurrent parameters each) with per-arm linear projections (raw dims ~50–120 / ~10–20 / ~25 → common d=32), ensuring the fusion improvement reflects genuine signal complementarity rather than architectural differences. This directly addresses the unresolved conflict between static signal comparisons: HALUPROBE and Proxy Analyzers find attention dominant, krogoldAI finds FFN/hidden states dominant — TemporalFuse shows how optimal reliance varies temporally, explaining why static snapshots disagree. The framework is grounded in mechanistic interpretability: attention heads route information (WHERE), hidden states accumulate computation (WHAT), log-probs reflect confidence (HOW) — since these pipeline stages process information sequentially, they should carry temporally complementary hallucination signatures, making learned fusion the principled default. For the EMNLP 2026 short paper (ARR May 25, June backup): 1 model (Llama-3.1-8B), 1 benchmark (TruthfulQA), 1K examples, demonstrating fusion outperforms individual arms especially at partial observation, with interpretable temporal signal importance analysis. Entity-match onset annotation uses objective NER-based curation (spaCy en_core_web_lg, factoid question patterns). For AAAI 2027 full paper: adds a fourth FFN activation arm (resolving krogoldAI conflict), 3 models, 3 benchmarks, CascadeProbe extension (using learned gate thresholds for compute-adaptive escalation), and DoLa intervention. All claims supported by 5-fold stratified CV with bootstrap 95% CIs and paired permutation tests. Explicit pilot decision rule: if per-step GRU logits across all arm pairs show Pearson r > 0.95 (temporal redundancy), the contribution focuses on why signals are redundant despite carrying different static information. Total compute: ≤230 H100-hours.\",\n  \"project_name\": \"temporal_fuse_hallu\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 8)\nIssues: [\"FACTUAL ERROR — NO JUNE ARR CYCLE: The proposal repeatedly claims 'June ARR cycle as realistic backup' (in target_venues, resource_estimate, and risk_note). This is factually wrong. ARR operates on 10-week cycles in 2026: March 16, May 25, August 3, October 12. There is no June cycle. The EMNLP 2026 commitment deadline is August 2, 2026, so papers submitted in the August 3 cycle cannot be committed to EMNLP 2026. May 25 is the ONLY submission deadline that allows EMNLP 2026 commitment. This removes the entire risk mitigation strategy and makes the 10-day timeline non-negotiable.\", \"MISSING CITATION — HaDeMiF (ICLR 2025, OpenReview VwOYxPScxB): Fuses hidden states + prediction characteristics (confidence, uncertainty, consistency) for hallucination detection via two compact networks (D3T + MLP), achieving calibrated hallucination detection with <2% parameter overhead. This is a published ICLR paper that combines multiple signal types for hallucination detection — directly relevant to TemporalFuse's multi-signal fusion contribution. Must be cited and differentiated: HaDeMiF fuses output-space characteristics + hidden states statically on complete responses; TemporalFuse fuses attention sinks + spectral features + log-probs with learned temporal gating during generation.\", \"MISSING CITATION — INSIDE/EigenScore (ICLR 2024, Chen et al.): The foundational paper establishing that LLMs' internal states retain hallucination-detection power, introducing EigenScore — an eigenvalue-based metric on hidden-state covariance matrices. This directly informs SpectralTrack's feature design and is essential context for any paper using internal representations for hallucination detection.\", \"RISK NOTE INVALIDATED: The risk_note states 'June ARR cycle as concrete backup — still makes EMNLP 2026 proceedings via August 2 commitment deadline.' Since no June cycle exists, this entire mitigation is void. The proposal must honestly acknowledge that missing May 25 means no EMNLP 2026 (only AAAI 2027 or later ACL venues).\", \"MINOR — Streaming Hallucination Detection (arXiv 2601.02170) positioning: This paper is cited but insufficiently discussed in the landscape. It also models hallucination as temporal evolution during generation with cumulative prefix-level signals — conceptually overlapping with TemporalFuse's temporal approach. The key difference (external NLI judges vs. internal signal fusion, CoT vs. factual QA) should be explicitly stated in the landscape section.\"]\nFeedback: The proposal is very close to passing. Three targeted fixes needed:\n\n1. **Fix the June ARR factual error (CRITICAL).** Remove all mentions of 'June ARR cycle as realistic backup.' Replace with honest acknowledgment: 'May 25 is the only ARR submission deadline eligible for EMNLP 2026 commitment (August 2). If May 25 is missed, the short paper targets the August 3 ARR cycle for EACL 2027 or commitment to AACL, while the full method paper proceeds to AAAI 2027 (July 28 paper deadline).' Adjust the risk note accordingly. This is a 2-sentence fix but changes the feasibility calculus — the 10-day timeline becomes non-negotiable, which the proposal should own rather than hand-wave with a nonexistent backup.\n\n2. **Add HaDeMiF and INSIDE citations.** HaDeMiF (ICLR 2025): cite in 'Multi-signal fusion' subsection and differentiate — HaDeMiF fuses output characteristics + hidden states statically; TemporalFuse fuses 3 internal signal types with learned temporal gating during generation. INSIDE/EigenScore (ICLR 2024): cite in SpectralTrack arm description as foundational work establishing eigenvalue-based hallucination detection from internal states.\n\n3. **Strengthen Streaming Hallucination Detection positioning.** Explicitly state in landscape: 'Streaming Hallucination Detection (2601.02170) also models hallucination as temporally evolving during generation, but uses external NLI judges on CoT reasoning steps rather than fusing internal signal streams during factual QA generation — different signal source, different task domain, different method.'\n\nThese are minor fixes that should take <30 minutes. The core idea, architecture, experimental design, and analysis plan are all sound.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\").\n\n## 停滞提醒\n这个 idea 已经经过 8 轮修订，近 3 轮的平均分从 3.8 到 4.0，没有明显改善。\n\n请认真思考：\n- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？\n- 如果你认为问题出在 approach 而非 framing，可以做 major revision。\n- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。\n- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。\n\n最终由你判断——做你认为最能提升 idea 质量的选择。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T16:07:51.307Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T16:07:51.307Z",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4"
+}
+```
+
+---
+
+## Round 1
+
+51 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T16:07:51.369Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-15 (UTC).**
+
+## Original idea
+{
+  "title": "TemporalFuse: Adaptive Multi-Signal Temporal Fusion for Early Hallucination Detection via Learned Signal Dynamics",
+  "core_problem": "Real-time hallucination detection during LLM generation requires monitoring internal signals, but practitioners face two unsolved problems. First, existing detectors each rely on a single signal type — attention patterns (SinkProbe, AUROC 0.89 on HaluEval-QA), hidden-state dynamics (EigenTrack, 0.82–0.94 AUROC; HSAD via FFT), or log-probabilities (HALT via GRU) — with no principled way to combine them. Static comparisons disagree on which signal is best: HALUPROBE (arXiv 2502.13490) and Proxy Analyzers (arXiv 2605.07209) both find attention-based features dominant (attention entropy + per-head source-document attention account for 88%+ of Random Forest importance in Proxy Analyzers), while krogoldAI's empirical study finds FFN activations (82.96% accuracy, 91.04% AUC) outperform attention (79.90%, 88.46% AUC), concluding attention 'added no value beyond what FFN activations already provided.' This conflict persists because all comparisons are static — they collapse temporal dynamics into single snapshots, ignoring that different signals may carry complementary information at different generation stages. Second, and more critically, no existing method optimizes for early detection — identifying hallucination from partial responses (e.g., after only 25% of tokens are generated). Current detectors are trained and evaluated on complete responses, yet real-time guardrails must act as early as possible. Early time series classification is well-established in other domains (MultiETSC, RL-based early classifiers) but has never been applied to hallucination detection during LLM generation. These two gaps — no multi-signal temporal fusion, no early-detection optimization — mean practitioners building real-time hallucination guardrails must choose a single signal type with no principled basis, deploy a detector that cannot be trusted until generation is nearly complete, and sacrifice either accuracy (single signal) or latency (waiting for full response).",
+  "opportunity": "Five independent research threads converge to make adaptive temporal fusion both possible and timely. (1) Signal validation: SinkProbe (arXiv 2604.10697) established attention sinks, EigenTrack (arXiv 2509.15735) validated hidden-state spectral features, and HALT (arXiv 2602.02888) proved log-probability time series — each independently effective for hallucination detection via temporal modeling, but never combined. (2) Causal grounding: SinkTrack (ICLR 2026) demonstrated that modifying attention sinks causally affects hallucination; ReDeEP (ICLR 2025) showed Knowledge FFNs and Copying Heads carry mechanistically distinct hallucination information — establishing that different signal types carry independent, non-redundant information. (3) Temporal complementarity evidence: Hallucination as Trajectory Commitment (arXiv 2604.15400) showed residual-stream trajectories bifurcate at the first generated token in 44.3% of prompts, while Shadows in the Attention (arXiv 2505.16894) found attention-locking thresholds emerge gradually — suggesting attention and hidden-state signals have fundamentally different temporal profiles, creating an opportunity for fusion. (4) Cross-modal fusion precedent: Attention-based fusion of multiple temporal signal streams is well-established in multivariate time series anomaly detection (MFGAN, DSAC) and multi-modal monitoring, but has never been applied to LLM internal signals. (5) Early classification methodology: Prefix-based multi-horizon training for time series is mature (tslearn, MultiETSC), providing the methodological foundation for optimizing detection at partial observation.\n\nThe key insight: if different signals carry complementary information at different generation stages (attention sinks as routing indicators, hidden states as computation indicators, log-probs as confidence indicators), then a learned time-varying fusion should outperform any fixed single-signal detector, and optimizing for early detection should yield faster-acting guardrails. We test this with TemporalFuse — the first adaptive multi-signal temporal fusion method for hallucination detection during autoregressive generation. The fusion architecture is the primary methodological contribution; the analysis of learned signal weights provides the first temporal comparison of signal types as an interpretable byproduct.",
+  "landscape": "**Static signal-type comparison for hallucination detection:** HALUPROBE (arXiv 2502.13490, Feb 2025) compares attention weights, hidden-state activations, and logits with static classifiers on Llama-2-7B and Vicuna-7B, finding attention-based lookback ratio achieves highest accuracy. Proxy Analyzers (arXiv 2605.07209, May 2026) finds per-head source-document attention and attention entropy account for 88%+ of Random Forest importance across 18 features and 7 analyzer architectures. However, krogoldAI (HuggingFace blog, Dec 2025) found FFN activations (91.04% AUC) outperform attention (88.46% AUC) using Ministral-8B on 145K examples — directly contradicting both. LLM-Check (NSF 2025) also finds hidden-state methods (SAPLMA) generally outperform logit-based and attention-based methods. All comparisons are static; none model temporal dynamics during generation. **TemporalFuse resolves this conflict by showing how optimal signal reliance varies across generation stages — a signal dominant statically may not be dominant at partial observation.**\n\n**Multi-signal fusion for hallucination detection:** HaluNet (arXiv 2512.24562, Dec 2025) fuses semantic embeddings, log-likelihoods, and entropy via a multi-branch architecture — but uses parallel fusion on complete responses, not learned temporal fusion during generation. ReDeEP (ICLR 2025) combines Knowledge FFN scores and Copying Head attention for RAG hallucination detection — mechanistically principled but operates on single forward passes. CHARM (ICLR 2026) applies GNNs on graphs combining attention and activation features — static aggregation, no temporal modeling. UniFact (arXiv 2512.02772) benchmarks hidden-state and logit methods but does not fuse signals. **No prior work learns time-varying weights over multiple signal types during autoregressive generation.**\n\n**Single-signal temporal/trajectory detection:** EigenTrack (arXiv 2509.15735) tracks hidden-state spectral dynamics via GRU (0.82–0.94 AUROC). HALT (arXiv 2602.02888) treats log-probs as time series via bidirectional GRU. HSAD (arXiv 2509.13154) applies FFT to cross-layer hidden-state activations. Step-Level Hidden-State Transport Geometry (arXiv 2605.13772) uses BiLSTM on hidden-state geometric features. ICR Probe (ACL 2025) tracks cross-layer hidden-state evolution. **Each validates temporal modeling for one signal type; none combine multiple signals or optimize for early detection.**\n\n**Cascaded/adaptive detection systems:** HaluGate (vLLM blog, Dec 2025) implements a three-stage cascade (Sentinel binary classifier → token-level detector → NLI explainer) achieving 72.2% query skip rate — but cascades at the query-type level using external signals, not across internal signal types. HALL-OPT (Nature Scientific Reports 2026) combines dual-stream attention detection with adaptive token pruning — but streams are parallel, not sequentially gated. Monitoring Decoding (ACL Findings 2025) gates expensive correction based on cheap monitoring — gates mitigation, not detection depth. Energy-efficient speculative decoding (arXiv 2508.12590) filters tokens for expensive verification using attention-weight statistics and uncertainty — the closest paradigm to our approach but applied to speculative decoding, not hallucination detection. **No prior work cascades across internal signal types (attention → hidden states → log-probs) with learned escalation for hallucination detection.**\n\n**Cross-modal temporal fusion in other domains:** Attention-based fusion of multiple temporal signal streams is well-established in multivariate time series anomaly detection (MFGAN, DSAC), video anomaly detection, and industrial monitoring. These provide architectural precedent for our cross-signal attention mechanism but have never been applied to LLM internal signals.\n\n**The open gaps:** (1) No method fuses multiple internal signal types with learned temporal weighting during generation — existing fusion is static (HaluNet, CHARM, ReDeEP) or external (HaluGate). (2) No method optimizes for early detection at partial observation fractions — all detectors are trained on complete responses. (3) No analysis shows how optimal signal reliance changes during generation — static comparisons collapse temporal dynamics. TemporalFuse addresses all three.",
+  "approach": "We propose TemporalFuse, an adaptive temporal fusion method that learns time-varying weights over three internal signal streams — attention sinks, hidden-state spectral features, and log-probabilities — to detect hallucination during autoregressive generation, optimized for the earliest possible detection. The primary methodological contribution is the fusion architecture and early-detection training objective; the analysis of learned fusion weights provides the first temporal signal comparison as an interpretable byproduct.\n\n**Theoretical Motivation: Why Fusion Should Outperform Single Signals.** The three signal types occupy different positions in the transformer's computational pipeline: attention heads function as information routing (WHERE the model reads — Wu et al., ICLR 2025), hidden states represent accumulated computation (WHAT the model has computed — FFN key-value memories, Geva et al., EMNLP 2021), and log-probabilities reflect output confidence (HOW certain the model is). Because routing decisions causally precede the computation they gate, and both precede the output distribution, these signals should carry complementary information: a routing error may appear in attention features before the residual stream incorporates erroneous information, while confidence collapse in log-probs may be the most direct indicator of hallucination once it manifests. If the signals are temporally complementary (shifting at different times and rates), learned fusion can outperform any individual signal by attending to the most informative signal at each generation stage. If they are temporally redundant, fusion still cannot underperform the best individual signal (it can learn to assign all weight to one arm). This asymmetry makes fusion the principled default.\n\n**Architecture: Three-Arm Temporal Encoder + Cross-Signal Gating + Early-Detection Loss.**\n\nFor each generation, we extract three parallel feature streams at every decoding step t:\n\n*Arm 1 — SinkWatch (Attention Sinks):* Per-step features from top-K informative head-layer combinations (K=5–15) identified via SinkProbe's ℓ₁-regularized analysis: sink scores for top-k sink tokens (k=2–3), sink concentration, sink entropy, context-attention ratio, plus first-order temporal derivatives. Raw dim ~50–120.\n\n*Arm 2 — SpectralTrack (Hidden States):* Per-step spectral features from sliding-window covariance matrices of hidden-state activations: leading eigenvalues, spectral gaps, entropy, RMT statistics. Matching EigenTrack's design. Raw dim ~10–20.\n\n*Arm 3 — LogProbTrack (Log-Probabilities):* Per-step log-probability features: token log-prob, predictive entropy, top-k probability gap, rank. Matching HALT's design. Raw dim ~25.\n\nEach arm includes a per-arm learned linear projection to common dimension d=32, then feeds into an identical unidirectional GRU (hidden_dim=64, ~25K recurrent parameters). At each step t, the three GRU hidden states h_t^sink, h_t^spec, h_t^logp ∈ ℝ^64 represent modality-specific temporal summaries.\n\n**Cross-Signal Gating Network (Novel Component 1).** A learned gating network dynamically weights the three signal streams at each step:\n- Input: concatenation [h_t^sink; h_t^spec; h_t^logp] ∈ ℝ^192\n- Gating MLP: 192 → 64 (ReLU) → 3 (softmax) → gate weights α_t ∈ ℝ^3\n- Fused representation: z_t = Σ_i α_t^i · h_t^i ∈ ℝ^64\n- Detection score: ŷ_t = σ(w^T z_t + b)\n\nThe gate weights α_t are directly interpretable: α_t^sink = 0.6 at step 5 means the model assigns 60% importance to attention sink features at that generation stage. By plotting mean gate weights across steps for factual vs. hallucinated generations, we obtain the first temporal map of signal importance during hallucination — the comparison result emerges as an interpretable analysis of the method. Total gating parameters: ~12.5K (negligible vs. 75K total GRU parameters).\n\n**Multi-Horizon Early-Detection Loss (Novel Component 2).** Instead of training only on complete responses, we optimize detection at multiple observation fractions simultaneously:\n\nL = Σ_{f ∈ F} w_f · BCE(ŷ_{T·f}, y)\n\nwhere F = {0.25, 0.50, 0.75, 1.0} are observation fractions, ŷ_{T·f} is the detection score at step ⌊T·f⌋, y is the ground-truth label, and w_f = f (linear weighting — more lenient at early fractions, full weight at complete observation). This adapts early time series classification methodology (MultiETSC, RL-based early classifiers) to hallucination detection for the first time, explicitly training the model to produce informative predictions before generation is complete. The loss encourages the gating network to attend to whichever signal carries the earliest discriminative information.\n\n**Primary Analyses (EMNLP Short Paper).** (1) Fusion vs. individual arms: AUROC/AUPRC comparing TemporalFuse against each individual arm, testing whether fusion outperforms the best single signal. (2) Early-detection curves: AUROC at observation fractions {0.10, 0.25, 0.50, 0.75, 1.0} for TemporalFuse vs. individual arms, demonstrating the benefit of multi-horizon training. (3) Temporal signal importance map: mean gate weights α_t across steps for factual vs. hallucinated generations — the first visualization of how optimal signal reliance changes during hallucination onset. This directly answers 'which signal, when?' without framing it as a standalone comparison study. (4) Static-vs-temporal ranking: comparing signal rankings from our learned gate weights against HALUPROBE's and Proxy Analyzers' static findings. (5) Ablation: TemporalFuse with/without multi-horizon loss; TemporalFuse with/without gating (equal-weight fusion baseline); individual arms with temporal GRU vs. static logistic regression.\n\n**Statistical Rigor.** 5-fold stratified cross-validation, reporting mean ± std for all metrics. Bootstrap 95% CIs (1000 resamples) for pairwise comparisons. Paired permutation tests (10,000 permutations, p < 0.05). Cohen's d effect sizes.\n\n**Entity-Match Onset Annotation (for temporal signal importance analysis).** For the subset of TruthfulQA used in temporal gate-weight analysis, we apply objective NER-based curation: include questions where (a) the reference answer contains ≥1 named entity detected by spaCy NER (model en_core_web_lg), AND (b) the question matches factoid patterns (starts with 'Who', 'What is/was', 'Where is/was', 'When did/was', or contains 'name of'). Onset = first generated token matching a hallucinated entity (entity not in reference, detected by NER). We supplement with NLI sliding-window annotation (window size 10 tokens, entailment threshold 0.5 via DeBERTa-v3-large-MNLI). Report agreement rate between entity-match and NLI-window onset.\n\n**Pilot Design (First 48 hours).** 100 TruthfulQA examples on Llama-3.1-8B: extract all three feature streams, train TemporalFuse and individual arms. **Decision rule:** If all three signals are perfectly correlated temporally (Pearson r > 0.95 between per-step GRU logits across all arm pairs), fusion cannot help — pivot to analyzing why temporal dynamics are redundant despite carrying different static information. If signals show distinct temporal profiles (r < 0.85 for at least one pair), proceed with full experiments.\n\n**Dual-Target Venue Strategy:**\n\n*EMNLP 2026 (ARR May 25 — short paper, 4 pages):* 1 model (Llama-3.1-8B-Instruct), 1 benchmark (TruthfulQA), 1K examples. Focus: TemporalFuse method + early-detection curves + temporal signal importance map + ablations. Core claim: adaptive temporal fusion outperforms individual signals, especially at partial observation. Backup: if May 25 proves infeasible, submit to June ARR cycle (commitment deadline still allows EMNLP 2026 proceedings).\n\n*AAAI 2027 (full paper, 8 pages, paper deadline July 28):* 3 models (Llama-3.1-8B, Mistral-7B-v0.3, Llama-3.1-70B), 3 benchmarks (TruthfulQA, TriviaQA, HaluEval-QA), 2K examples per pair. **Fourth arm: FFN activations** (matching krogoldAI's feature design — mean-pooled FFN outputs from informative mid-layers) to directly resolve the conflicting static evidence. Full temporal characterization, complementarity analysis, CascadeProbe extension (using learned gate thresholds as escalation triggers for compute-adaptive detection), DoLa intervention when the fused probability exceeds threshold.\n\n**Baselines.** Single-signal temporal: individual GRU arms (SinkWatch, SpectralTrack, LogProbTrack). Static: SinkProbe, LapEigvals, TOHA. Prior temporal: EigenTrack, HALT. Online: MIND, DRIFT, PCNet. Multi-signal static: HaluNet-style parallel fusion (equal-weight concatenation of static features). Ablation: equal-weight temporal fusion (no gating), TemporalFuse without multi-horizon loss.\n\n**Evaluation Metrics.** Primary: AUROC and AUPRC with 95% bootstrap CIs. Secondary: early-detection AUROC at partial observation fractions, F1 at calibrated threshold, latency overhead (ms/token), gate weight entropy (measuring signal specialization), Cohen's d. For AAAI: hallucination rate reduction with DoLa intervention, compute-accuracy Pareto curves for CascadeProbe.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~190h H100 total. EMNLP short paper: ~52h (feature extraction for 3 arms × 1K examples on Llama-8B: ~20h; GRU + fusion training with 5-fold CV: ~10h; baselines including HaluNet-style and HALUPROBE-style: ~12h; curated subset annotation + analysis: ~6h; pilot: ~4h). AAAI full paper (incremental): ~138h additional (multi-model extraction: ~60h; 70B experiments: ~20h; 4th FFN arm: ~12h; CascadeProbe extension: ~8h; extended baselines + DoLa intervention: ~20h; additional CV + ablations: ~18h).",
+      "gpu_utilization": "Moderate (~50–60%).",
+      "timeline": "EMNLP short paper: 10 days (May 15–25), with June ARR cycle as realistic backup if debugging delays occur. AAAI full paper: additional 8 weeks (May 25–July 21).",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "$475–570"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~210h H100 total.",
+      "gpu_utilization": "Moderate-high (~60–70%).",
+      "timeline": "EMNLP: 10 days (May 25 target, June ARR backup). AAAI: 8 additional weeks.",
+      "team": "1 researcher, ~60min/day for EMNLP sprint, ~45min/day for AAAI",
+      "claude_api_cost": "$220–380 (~2200–3800 turns).",
+      "estimated_gpu_cost": "$525–630.",
+      "risk_note": "Primary risk: signals may be temporally redundant (fusion ≈ best individual arm). Mitigation: (1) pilot correlation check in first 48 hours — if r > 0.95 across all pairs, shift focus to understanding why; (2) even if fusion margin is small, the early-detection curves and temporal signal importance maps are novel contributions independent of fusion magnitude; (3) the multi-horizon loss may still improve individual arms. Secondary risk: EMNLP 10-day timeline is aggressive. Mitigation: (1) June ARR cycle as concrete backup — still makes EMNLP 2026 proceedings via August 2 commitment deadline; (2) short paper scope (1 model, 1 benchmark) is tractable; (3) fusion architecture adds minimal implementation overhead (~200 lines on top of three arms). Tertiary risk: entity-match onset annotation unreliable. Mitigation: NER-based curation criteria are objective and reproducible; NLI sliding-window supplement provides independent validation; TriviaQA added as primary onset benchmark in AAAI version."
+    },
+    "auto_research": {
+      "gpu_hours": "~230h H100 total.",
+      "gpu_utilization": "High (~80%+).",
+      "timeline": "EMNLP: 7–8 days. AAAI: 3 additional weeks.",
+      "team": "0 (initial setup + final review only)",
+      "claude_api_cost": "$320–530 (~3200–5300 turns).",
+      "estimated_gpu_cost": "$575–690.",
+      "speed_bottleneck": "Bottlenecked by eager-mode attention extraction (~3–4× slower than standard inference). 1K examples × ~100 tokens ≈ 10–15h on single H100, parallelizable. The gating network and multi-horizon loss add negligible training overhead."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (primary short-term target — ARR May 25, 2026 target with June ARR cycle as realistic backup; commitment deadline August 2, 2026; 4-page short paper focusing on TemporalFuse method, early-detection curves, and temporal signal importance analysis; Findings track acceptable)",
+    "AAAI 2027 (primary long-term target — abstract deadline July 21, paper deadline July 28, 2026; full 8-page method paper with 4 signal arms including FFN, multi-model evaluation, CascadeProbe extension, intervention experiments)",
+    "ICLR 2027 (fallback — deadline expected ~October 2026; allows additional experiments if AAAI timeline requires descoping)"
+  ],
+  "level": "solid-to-strong",
+  "key_references": [
+    "What are Models Thinking about? Understanding Large Language Model Hallucinations 'Psychology' through Model Inner State Analysis [HALUPROBE] (arXiv 2502.13490, Feb 2025)",
+    "Hallucination Detection via Activations of Open-Weight Proxy Analyzers [Proxy Analyzers] (arXiv 2605.07209, May 2026)",
+    "Towards Unification of Hallucination Detection and Fact Verification for Large Language Models [UniFact] (arXiv 2512.02772, Dec 2025)",
+    "Attention Sinks as Internal Signals for Hallucination Detection in Large Language Models [SinkProbe] (arXiv 2604.10697, April 2026)",
+    "EigenTrack: Spectral Activation Feature Tracking for Hallucination and Out-of-Distribution Detection in LLMs and VLMs (arXiv 2509.15735, 2025)",
+    "HALT: Hallucination Assessment via Log-probs as Time series (arXiv 2602.02888, Feb 2026)",
+    "Unsupervised Real-Time Hallucination Detection based on the Internal States of Large Language Models [MIND] (ACL Findings 2024, arXiv 2403.06448)",
+    "LLM Hallucination Detection: A Fast Fourier Transform Method Based on Hidden Layer Temporal Signals [HSAD] (arXiv 2509.13154, Sep 2025)",
+    "HaluNet: Multi-Granular Uncertainty Modeling for Efficient Hallucination Detection in LLM Question Answering (arXiv 2512.24562, Dec 2025)",
+    "ReDeEP: Detecting Hallucination in Retrieval-Augmented Generation via Mechanistic Interpretability (ICLR 2025, arXiv 2410.11414)",
+    "Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation (arXiv 2604.15400, April 2026)",
+    "Before the First Token: Scale-Dependent Emergence of Hallucination Signals in Autoregressive Language Models (arXiv 2604.13068, April 2026)",
+    "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arXiv 2605.13772, May 2026)",
+    "Shadows in the Attention: Contextual Perturbation and Representation Drift in the Dynamics of Hallucination in LLMs (arXiv 2505.16894, May 2025)",
+    "HalluSAE: Detecting Hallucinations in Large Language Models via Sparse Auto-Encoders (arXiv 2604.16430, April 2026)",
+    "Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (arXiv 2605.05686, May 2026)",
+    "Uncertainty-Aware Attention Heads: Efficient Unsupervised Uncertainty Quantification for LLMs [RAUQ] (arXiv 2505.20045, May 2025)",
+    "Hallucination Detection in LLMs with Topological Divergence on Attention Graphs [TOHA] (ACL 2026, arXiv 2504.10063)",
+    "SinkTrack: Attention Sink based Context Anchoring for Large Language Models (ICLR 2026, arXiv 2604.10027)",
+    "FACTUM: Mechanistic Detection of Citation Hallucination in Long-Form RAG (arXiv 2601.05866, Jan 2026)",
+    "First Hallucination Tokens Are Different from Conditional Ones (arXiv 2507.20836, 2025)",
+    "Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (arXiv 2604.04743, April 2026)",
+    "ICR Probe: Tracking Hidden State Dynamics for Reliable Hallucination Detection in LLMs (ACL 2025, arXiv 2507.16488)",
+    "Real-Time Detection of Hallucinated Entities in Long-Form Generation (arXiv 2509.03531, 2025)",
+    "Attention Sink in Transformers: A Survey on Utilization, Interpretation, and Mitigation (arXiv 2604.10098, April 2026)",
+    "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits [PCNet/PC-LDCD] (arXiv 2605.05953, May 2026)",
+    "DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness (arXiv 2601.14210, Jan 2026)",
+    "Hallucination Detection in LLMs Using Spectral Features of Attention Maps [LapEigvals] (EMNLP 2025, arXiv 2502.17598)",
+    "Neural Message-Passing on Attention Graphs for Hallucination Detection [CHARM] (ICLR 2026, arXiv 2509.24770)",
+    "Spectral Guardrails for Agents in the Wild: Detecting Tool Use Hallucinations via Attention Topology (arXiv 2602.08082, Feb 2026)",
+    "AggTruth: Contextual Hallucination Detection using Aggregated Attention Scores in LLMs (ICCS 2025, arXiv 2506.18628)",
+    "Streaming Hallucination Detection in Long Chain-of-Thought Reasoning (arXiv 2601.02170, Jan 2026)",
+    "Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation (ACL Findings 2025, arXiv 2503.03106)",
+    "DoLa: Decoding by Contrasting Layers Improves Factuality in Large Language Models (ICLR 2024)",
+    "Detecting Contextual Hallucinations in Large Language Models with Frequency-Aware Attention (arXiv 2602.18145, Feb 2026)",
+    "Mirage in the Eyes: Hallucination Attack on Multi-modal Large Language Models with Only Attention Sink (USENIX Security 2025, arXiv 2501.15269)",
+    "Retrieval Head Mechanistically Explains Long-Context Factuality (Wu et al., ICLR 2025)",
+    "Transformer Feed-Forward Layers Are Key-Value Memories (Geva et al., EMNLP 2021)",
+    "HaluGate: Token-Level Truth — Three-Stage Conditional Hallucination Detection Pipeline (vLLM Blog, Dec 2025)",
+    "HALL-OPT: Hallucination-Aware Learning and Latency Optimization Transformer for Real-Time Edge Intelligence (Nature Scientific Reports, 2026)",
+    "LLM-Check: Investigating Detection of Hallucinations in Large Language Models (NSF, 2025)",
+    "krogoldAI: LLM Hallucination Detection via Internal Representations (HuggingFace Blog, Dec 2025)",
+    "Energy-Efficient Speculative Decoding with Uncertainty-Awareness and Adaptive Token Filtering (arXiv 2508.12590, 2025)"
+  ],
+  "description": "TemporalFuse proposes the first adaptive multi-signal temporal fusion method for early hallucination detection during autoregressive LLM generation. Unlike prior detectors that each rely on a single internal signal type — attention sinks (SinkProbe), hidden-state spectral features (EigenTrack), or log-probabilities (HALT) — TemporalFuse trains three parallel GRU encoders on these signal streams and introduces a cross-signal gating network that learns time-varying weights over the signal streams at each generation step. The gating MLP (192→64→3 with softmax) produces interpretable per-step weights α_t indicating which signal the model relies on at each generation stage, providing the first temporal map of signal importance during hallucination onset. The method also introduces a multi-horizon early-detection loss that optimizes detection at multiple observation fractions simultaneously (L = Σ w_f·BCE at fractions {0.25, 0.5, 0.75, 1.0}), adapting early time series classification methodology to hallucination detection for the first time — explicitly training the model to detect hallucination from partial responses. The architecture uses identical GRU encoders (~25K recurrent parameters each) with per-arm linear projections (raw dims ~50–120 / ~10–20 / ~25 → common d=32), ensuring the fusion improvement reflects genuine signal complementarity rather than architectural differences. This directly addresses the unresolved conflict between static signal comparisons: HALUPROBE and Proxy Analyzers find attention dominant, krogoldAI finds FFN/hidden states dominant — TemporalFuse shows how optimal reliance varies temporally, explaining why static snapshots disagree. The framework is grounded in mechanistic interpretability: attention heads route information (WHERE), hidden states accumulate computation (WHAT), log-probs reflect confidence (HOW) — since these pipeline stages process information sequentially, they should carry temporally complementary hallucination signatures, making learned fusion the principled default. For the EMNLP 2026 short paper (ARR May 25, June backup): 1 model (Llama-3.1-8B), 1 benchmark (TruthfulQA), 1K examples, demonstrating fusion outperforms individual arms especially at partial observation, with interpretable temporal signal importance analysis. Entity-match onset annotation uses objective NER-based curation (spaCy en_core_web_lg, factoid question patterns). For AAAI 2027 full paper: adds a fourth FFN activation arm (resolving krogoldAI conflict), 3 models, 3 benchmarks, CascadeProbe extension (using learned gate thresholds for compute-adaptive escalation), and DoLa intervention. All claims supported by 5-fold stratified CV with bootstrap 95% CIs and paired permutation tests. Explicit pilot decision rule: if per-step GRU logits across all arm pairs show Pearson r > 0.95 (temporal redundancy), the contribution focuses on why signals are redundant despite carrying different static information. Total compute: ≤230 H100-hours.",
+  "project_name": "temporal_fuse_hallu",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 8)
+Issues: ["FACTUAL ERROR — NO JUNE ARR CYCLE: The proposal repeatedly claims 'June ARR cycle as realistic backup' (in target_venues, resource_estimate, and risk_note). This is factually wrong. ARR operates on 10-week cycles in 2026: March 16, May 25, August 3, October 12. There is no June cycle. The EMNLP 2026 commitment deadline is August 2, 2026, so papers submitted in the August 3 cycle cannot be committed to EMNLP 2026. May 25 is the ONLY submission deadline that allows EMNLP 2026 commitment. This removes the entire risk mitigation strategy and makes the 10-day timeline non-negotiable.", "MISSING CITATION — HaDeMiF (ICLR 2025, OpenReview VwOYxPScxB): Fuses hidden states + prediction characteristics (confidence, uncertainty, consistency) for hallucination detection via two compact networks (D3T + MLP), achieving calibrated hallucination detection with <2% parameter overhead. This is a published ICLR paper that combines multiple signal types for hallucination detection — directly relevant to TemporalFuse's multi-signal fusion contribution. Must be cited and differentiated: HaDeMiF fuses output-space characteristics + hidden states statically on complete responses; TemporalFuse fuses attention sinks + spectral features + log-probs with learned temporal gating during generation.", "MISSING CITATION — INSIDE/EigenScore (ICLR 2024, Chen et al.): The foundational paper establishing that LLMs' internal states retain hallucination-detection power, introducing EigenScore — an eigenvalue-based metric on hidden-state covariance matrices. This directly informs SpectralTrack's feature design and is essential context for any paper using internal representations for hallucination detection.", "RISK NOTE INVALIDATED: The risk_note states 'June ARR cycle as concrete backup — still makes EMNLP 2026 proceedings via August 2 commitment deadline.' Since no June cycle exists, this entire mitigation is void. The proposal must honestly acknowledge that missing May 25 means no EMNLP 2026 (only AAAI 2027 or later ACL venues).", "MINOR — Streaming Hallucination Detection (arXiv 2601.02170) positioning: This paper is cited but insufficiently discussed in the landscape. It also models hallucination as temporal evolution during generation with cumulative prefix-level signals — conceptually overlapping with TemporalFuse's temporal approach. The key difference (external NLI judges vs. internal signal fusion, CoT vs. factual QA) should be explicitly stated in the landscape section."]
+Feedback: The proposal is very close to passing. Three targeted fixes needed:
+
+1. **Fix the June ARR factual error (CRITICAL).** Remove all mentions of 'June ARR cycle as realistic backup.' Replace with honest acknowledgment: 'May 25 is the only ARR submission deadline eligible for EMNLP 2026 commitment (August 2). If May 25 is missed, the short paper targets the August 3 ARR cycle for EACL 2027 or commitment to AACL, while the full method paper proceeds to AAAI 2027 (July 28 paper deadline).' Adjust the risk note accordingly. This is a 2-sentence fix but changes the feasibility calculus — the 10-day timeline becomes non-negotiable, which the proposal should own rather than hand-wave with a nonexistent backup.
+
+2. **Add HaDeMiF and INSIDE citations.** HaDeMiF (ICLR 2025): cite in 'Multi-signal fusion' subsection and differentiate — HaDeMiF fuses output characteristics + hidden states statically; TemporalFuse fuses 3 internal signal types with learned temporal gating during generation. INSIDE/EigenScore (ICLR 2024): cite in SpectralTrack arm description as foundational work establishing eigenvalue-based hallucination detection from internal states.
+
+3. **Strengthen Streaming Hallucination Detection positioning.** Explicitly state in landscape: 'Streaming Hallucination Detection (2601.02170) also models hallucination as temporally evolving during generation, but uses external NLI judges on CoT reasoning steps rather than fusing internal signal streams during factual QA generation — different signal source, different task domain, different method.'
+
+These are minor fixes that should take <30 minutes. The core idea, architecture, experimental design, and analysis plan are all sound.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+## 停滞提醒
+这个 idea 已经经过 8 轮修订，近 3 轮的平均分从 3.8 到 4.0，没有明显改善。
+
+请认真思考：
+- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？
+- 如果你认为问题出在 approach 而非 framing，可以做 major revision。
+- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。
+- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。
+
+最终由你判断——做你认为最能提升 idea 质量的选择。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "b57ebe29-19ac-454a-8f8e-1b7a5d34d729",
+  "type": "user",
+  "uuid": "c81f594c-8416-4fb4-b01c-0125ed85eaac",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T16:07:51.364Z_
+
+```json
+{
+  "parentUuid": "c81f594c-8416-4fb4-b01c-0125ed85eaac",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "7a1aba35-6a8b-456e-b2d7-198b5578f2dc",
+  "timestamp": "2026-05-15T16:07:51.364Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T16:07:51.364Z_
+
+```json
+{
+  "parentUuid": "7a1aba35-6a8b-456e-b2d7-198b5578f2dc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "1d161219-308a-491b-8312-dd701e2e8606",
+  "timestamp": "2026-05-15T16:07:51.364Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-15 (UTC).**  ## Original idea {   \"title\": \"TemporalFuse: Adaptive Multi-Signal Temporal Fusion for Early Hallucin…",
+  "leafUuid": "1d161219-308a-491b-8312-dd701e2e8606",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise TemporalFuse with ARR calendar fix and missing citations",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-15T16:08:03.439Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully:
+
+1. **CRITICAL: No June ARR cycle** - The proposal incorrectly claims a June ARR backup. ARR 2026 cycles are March 16, May 25, August 3, October 12. May 25 is the only deadline for EMNLP 2026 commitment (August 2). This is a factual fix.
+
+2. **Missing citation: HaDeMiF (ICLR 2025)** - Fuses hidden states + prediction characteristics statically. Need to cite and differentiate.
+
+
+3. **Missing citation: INSIDE/EigenScore (ICLR 2024)** - Foundational eigenvalue-based hallucination detection from internal states. Need to cite for SpectralTrack.
+4. **Risk note invalidated** - Need to update risk mitigation without the June backup.
+5. **Streaming Hallucination Detection positioning** - Need better differentiation.
+
+The reviewer says "very close to passing" and these are "minor fixes that should take <30 minutes." The core idea, architecture, experimental design are all sound. Given the stagnation warning (8 rounds, scores 3.8-4.0), I need to think about whether this needs more than minor fixes. But the reviewer explicitly says the core is sound, so I should focus on these targeted citations and factual corrections rather than a major restructuring.
+
+Before I make the fixes, I need to verify the details on HaDeMiF, INSIDE/EigenScore, the ARR submission timeline, and the streaming hallucination detection work to ensure I'm citing them accurately.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d161219-308a-491b-8312-dd701e2e8606",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eFZ9UYZxmhcPeuLnr5",
+  "type": "assistant",
+  "uuid": "d8212c3b-7c00-4950-a303-d841e8c7f32d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AZvM8UjYHdQi8JzLaKkUNE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16011,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 566,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 566,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-15T16:08:03.441Z_
+
+I'll research the specific items the reviewer flagged before making revisions. Let me look up the missing citations and verify the ARR timeline.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8212c3b-7c00-4950-a303-d841e8c7f32d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eFZ9UYZxmhcPeuLnr5",
+  "type": "assistant",
+  "uuid": "a5471347-ccb3-40a2-b89b-c6f016ec4731",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AZvM8UjYHdQi8JzLaKkUNE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16011,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 566,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 566,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T16:08:03.496Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Y8Gp85qTFoFwsdT2dyRrHT`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a5471347-ccb3-40a2-b89b-c6f016ec4731",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eFZ9UYZxmhcPeuLnr5",
+  "type": "assistant",
+  "uuid": "18851c92-2377-4f71-8d0d-502fa9fd785f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AZvM8UjYHdQi8JzLaKkUNE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16011,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 566,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 566,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T16:08:03.501Z_
+
+<details><summary>↩ Tool result · `toolu_01Y8Gp85qTFoFwsdT2dyRrHT`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "18851c92-2377-4f71-8d0d-502fa9fd785f",
+  "isSidechain": false,
+  "promptId": "b57ebe29-19ac-454a-8f8e-1b7a5d34d729",
+  "type": "user",
+  "uuid": "fded16d2-3e97-407f-8f31-0d2cdc7c2cd8",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "18851c92-2377-4f71-8d0d-502fa9fd785f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-15T16:08:05.835Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for the missing citations and verify the ARR timeline in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fded16d2-3e97-407f-8f31-0d2cdc7c2cd8",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eGSxSM2joaThViTkap",
+  "type": "assistant",
+  "uuid": "ea4891d6-050f-4ec0-8713-9221bc6c1128",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KXFJvJumESa7SucPPLQMam",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1584,
+      "cache_read_input_tokens": 27852,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1584,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 27852,
+          "cache_creation_input_tokens": 1584,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1584
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-15T16:08:06.405Z_
+
+Let me research all the flagged items in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea4891d6-050f-4ec0-8713-9221bc6c1128",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eGSxSM2joaThViTkap",
+  "type": "assistant",
+  "uuid": "f10d2500-cfde-4bf5-944a-7150cb4b80a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KXFJvJumESa7SucPPLQMam",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1584,
+      "cache_read_input_tokens": 27852,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1584,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 27852,
+          "cache_creation_input_tokens": 1584,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1584
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T16:08:06.826Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JDqvJuTLhq61ERbTwFSGfi`</summary>
+
+```json
+{
+  "query": "HaDeMiF ICLR 2025 hallucination detection multi-signal fusion hidden states"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f10d2500-cfde-4bf5-944a-7150cb4b80a8",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eGSxSM2joaThViTkap",
+  "type": "assistant",
+  "uuid": "2973ff2c-623f-4b77-830d-c6f3852037f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KXFJvJumESa7SucPPLQMam",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1584,
+      "cache_read_input_tokens": 27852,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1584,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 27852,
+          "cache_creation_input_tokens": 1584,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1584
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T16:08:13.681Z_
+
+<details><summary>↩ Tool result · `toolu_01JDqvJuTLhq61ERbTwFSGfi`</summary>
+
+```text
+Web search results for query: "HaDeMiF ICLR 2025 hallucination detection multi-signal fusion hidden states"
+
+Links: [{"title":"HaDeMiF: Hallucination Detection and Mitigation in Large Language Models","url":"https://proceedings.iclr.cc/paper_files/paper/2025/hash/c98987c5ec4f30920d7190dc699e3daf-Abstract-Conference.html"},{"title":"HADEMIF: HALLUCINATION DETECTION AND MITI","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/c98987c5ec4f30920d7190dc699e3daf-Paper-Conference.pdf"},{"title":"HaDeMiF: Hallucination Detection and Mitigation in Large Language Models | OpenReview","url":"https://openreview.net/forum?id=VwOYxPScxB"},{"title":"Awesome-LLM-LVLM-Hallucination-Detection-and-Mitigation/README.md at main · mala-lab/Awesome-LLM-LVLM-Hallucination-Detection-and-Mitigation","url":"https://github.com/mala-lab/Awesome-LLM-LVLM-Hallucination-Detection-and-Mitigation/blob/main/README.md"},{"title":"HaDeMiF: Hallucination Detection and Mitigation in Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/HaDeMiF:-Hallucination-Detection-and-Mitigation-in-Zhou-Zhang/f7a47a7de7289d6fd69e3bf226f7cdaffa670a3f"},{"title":"Hallucination Detection and Mitigation in Large Language Models","url":"https://arxiv.org/html/2601.09929v1"},{"title":"Hallucination Detection and Mitigation in Large Language ...","url":"https://arxiv.org/pdf/2601.09929"},{"title":"Towards Mitigation of Hallucination for LLM-empowered ...","url":"https://arxiv.org/pdf/2507.15903"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/8001c3568152d134d821cd46d4d84768-Paper-Conference.pdf"},{"title":"GitHub - showlab/Awesome-MLLM-Hallucination: 📖 A curated list of resources dedicated to hallucination of multimodal large language models (MLLM).","url":"https://github.com/showlab/Awesome-MLLM-Hallucination"}]
+
+I found detailed information about HaDeMiF from ICLR 2025. Here's what the research presents:
+
+## Overview
+
+HaDeMiF is an advanced framework for detecting and mitigating hallucinations in LLMs that was presented at the International Conference on Learning Representations 2025 (ICLR 2025).
+
+## The Multi-Signal Fusion Approach
+
+The framework uses a multi-signal fusion strategy with two key components:
+
+Hallucinations within the output and semantic spaces of LLMs are comprehensively captured through two compact networks—a novel, interpretable tree model known as the Deep Dynamic Decision Tree (D3T) and a Multilayer Perceptron (MLP)—which take as input a set of prediction characteristics and the hidden states of tokens, respectively.
+
+More specifically:
+- The D3T detects hallucinations in the output space by leveraging prediction characteristics such as prediction confidence, uncertainty, and consistency, extracted from the LLMs as inputs.
+- An MLP is employed to capture hallucinations within the deep semantic space, using token hidden states as input.
+
+## Calibration and Mitigation
+
+The predictions of LLMs are subsequently calibrated using the outputs from the D3T and MLP networks, aiming to mitigate hallucinations and enhance model calibration.
+
+## Practical Efficiency
+
+HaDeMiF can be applied during both the inference and fine-tuning phases of LLMs, introducing less than 2% of the parameters relative to the LLMs through the training of two small-scale networks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2973ff2c-623f-4b77-830d-c6f3852037f0",
+  "isSidechain": false,
+  "promptId": "b57ebe29-19ac-454a-8f8e-1b7a5d34d729",
+  "type": "user",
+  "uuid": "dc697c2b-b618-423b-9479-48535ea5d441",
+  "toolUseResult": {
+    "query": "HaDeMiF ICLR 2025 hallucination detection multi-signal fusion hidden states",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018mBYcPgSWUqZDYGfGRBYYZ",
+        "content": [
+          {
+            "title": "HaDeMiF: Hallucination Detection and Mitigation in Large Language Models",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/c98987c5ec4f30920d7190dc699e3daf-Abstract-Conference.html"
+          },
+          {
+            "title": "HADEMIF: HALLUCINATION DETECTION AND MITI",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/c98987c5ec4f30920d7190dc699e3daf-Paper-Conference.pdf"
+          },
+          {
+            "title": "HaDeMiF: Hallucination Detection and Mitigation in Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=VwOYxPScxB"
+          },
+          {
+            "title": "Awesome-LLM-LVLM-Hallucination-Detection-and-Mitigation/README.md at main · mala-lab/Awesome-LLM-LVLM-Hallucination-Detection-and-Mitigation",
+            "url": "https://github.com/mala-lab/Awesome-LLM-LVLM-Hallucination-Detection-and-Mitigation/blob/main/README.md"
+          },
+          {
+            "title": "HaDeMiF: Hallucination Detection and Mitigation in Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/HaDeMiF:-Hallucination-Detection-and-Mitigation-in-Zhou-Zhang/f7a47a7de7289d6fd69e3bf226f7cdaffa670a3f"
+          },
+          {
+            "title": "Hallucination Detection and Mitigation in Large Language Models",
+            "url": "https://arxiv.org/html/2601.09929v1"
+          },
+          {
+            "title": "Hallucination Detection and Mitigation in Large Language ...",
+            "url": "https://arxiv.org/pdf/2601.09929"
+          },
+          {
+            "title": "Towards Mitigation of Hallucination for LLM-empowered ...",
+            "url": "https://arxiv.org/pdf/2507.15903"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/8001c3568152d134d821cd46d4d84768-Paper-Conference.pdf"
+          },
+          {
+            "title": "GitHub - showlab/Awesome-MLLM-Hallucination: 📖 A curated list of resources dedicated to hallucination of multimodal large language models (MLLM).",
+            "url": "https://github.com/showlab/Awesome-MLLM-Hallucination"
+          }
+        ]
+      },
+      "I found detailed information about HaDeMiF from ICLR 2025. Here's what the research presents:\n\n## Overview\n\nHaDeMiF is an advanced framework for detecting and mitigating hallucinations in LLMs that was presented at the International Conference on Learning Representations 2025 (ICLR 2025).\n\n## The Multi-Signal Fusion Approach\n\nThe framework uses a multi-signal fusion strategy with two key components:\n\nHallucinations within the output and semantic spaces of LLMs are comprehensively captured through two compact networks—a novel, interpretable tree model known as the Deep Dynamic Decision Tree (D3T) and a Multilayer Perceptron (MLP)—which take as input a set of prediction characteristics and the hidden states of tokens, respectively.\n\nMore specifically:\n- The D3T detects hallucinations in the output space by leveraging prediction characteristics such as prediction confidence, uncertainty, and consistency, extracted from the LLMs as inputs.\n- An MLP is employed to capture hallucinations within the deep semantic space, using token hidden states as input.\n\n## Calibration and Mitigation\n\nThe predictions of LLMs are subsequently calibrated using the outputs from the D3T and MLP networks, aiming to mitigate hallucinations and enhance model calibration.\n\n## Practical Efficiency\n\nHaDeMiF can be applied during both the inference and fine-tuning phases of LLMs, introducing less than 2% of the parameters relative to the LLMs through the training of two small-scale networks."
+    ],
+    "durationSeconds": 6.848607167000002
+  },
+  "sourceToolAssistantUUID": "2973ff2c-623f-4b77-830d-c6f3852037f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T16:08:17.063Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RxeVYrE3X3xRwmE43CCuvo`</summary>
+
+```json
+{
+  "query": "INSIDE EigenScore ICLR 2024 Chen internal states hallucination detection eigenvalue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dc697c2b-b618-423b-9479-48535ea5d441",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eHC42BMiDaQpyhK5p9",
+  "type": "assistant",
+  "uuid": "aa98b338-b9fc-44be-9d02-c2a6da4e7211",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SBBLK5Ka8v5myctm7Bh1RM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1180,
+      "cache_read_input_tokens": 29436,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1180,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 29436,
+          "cache_creation_input_tokens": 1180,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1180
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T16:08:23.800Z_
+
+<details><summary>↩ Tool result · `toolu_01RxeVYrE3X3xRwmE43CCuvo`</summary>
+
+```text
+Web search results for query: "INSIDE EigenScore ICLR 2024 Chen internal states hallucination detection eigenvalue"
+
+Links: [{"title":"llms' internal states retain the power of hallucination detection","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/0d1986a61e30e5fa408c81216a616e20-Paper-Conference.pdf"},{"title":"INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection","url":"https://proceedings.iclr.cc/paper_files/paper/2024/hash/0d1986a61e30e5fa408c81216a616e20-Abstract-Conference.html"},{"title":"[Quick Review] INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection","url":"https://liner.com/review/inside-llms-internal-states-retain-the-power-of-hallucination-detection"},{"title":"INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection | OpenReview","url":"https://openreview.net/forum?id=Zj12nzlQbz"},{"title":"[2402.03744] INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection","url":"https://arxiv.org/abs/2402.03744"},{"title":"ICLR Poster INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection","url":"https://iclr.cc/virtual/2024/poster/18385"},{"title":"Self-Consistency Hallucination Detection","url":"https://www.emergentmind.com/topics/self-consistency-based-hallucination-detection"},{"title":"INSIDE: LLMs’ Internal States Retain the Power of Hallucination Detection","url":"https://arxiv.org/html/2402.03744v2"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2601.18753"},{"title":"llms' internal states retain the power of hallucination detection","url":"https://arxiv.org/pdf/2402.03744"}]
+
+Based on the search results, here's what I found about the INSIDE paper with EigenScore from ICLR 2024:
+
+## Paper Overview
+
+The paper "INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection" was published at ICLR 2024 by Chao Chen, Kai Liu, Ze Chen, Yi Gu, Yue Wu, Mingyuan Tao, Zhihang Fu, and Jieping Ye.
+
+## Key Contribution: EigenScore
+
+The paper proposes an EigenScore metric that exploits the eigenvalues of responses' covariance matrix to measure the semantic consistency/diversity in the dense embedding space.
+
+## Problem Being Addressed
+
+Previous efforts in detecting hallucinations have been employed at logit-level uncertainty estimation or language-level self-consistency evaluation, where the semantic information is inevitably lost during the token-decoding procedure.
+
+## Methodology
+
+The approach involves two main components:
+
+1. An EigenScore metric is introduced regarding the eigenvalues of sentence embeddings' covariance matrix to explore semantic consistency in the embedding space.
+
+2. A test-time feature clipping approach is developed to truncate extreme activations in internal states, reducing overconfident generations and improving overconfident hallucination detection.
+
+## Performance
+
+The method achieves state-of-the-art hallucination detection performance on several QA benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa98b338-b9fc-44be-9d02-c2a6da4e7211",
+  "isSidechain": false,
+  "promptId": "b57ebe29-19ac-454a-8f8e-1b7a5d34d729",
+  "type": "user",
+  "uuid": "d63e810b-df76-407f-8275-9755cdf48975",
+  "toolUseResult": {
+    "query": "INSIDE EigenScore ICLR 2024 Chen internal states hallucination detection eigenvalue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QHGdjCjJssj3VMu21kWKBU",
+        "content": [
+          {
+            "title": "llms' internal states retain the power of hallucination detection",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/0d1986a61e30e5fa408c81216a616e20-Paper-Conference.pdf"
+          },
+          {
+            "title": "INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/0d1986a61e30e5fa408c81216a616e20-Abstract-Conference.html"
+          },
+          {
+            "title": "[Quick Review] INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection",
+            "url": "https://liner.com/review/inside-llms-internal-states-retain-the-power-of-hallucination-detection"
+          },
+          {
+            "title": "INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection | OpenReview",
+            "url": "https://openreview.net/forum?id=Zj12nzlQbz"
+          },
+          {
+            "title": "[2402.03744] INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection",
+            "url": "https://arxiv.org/abs/2402.03744"
+          },
+          {
+            "title": "ICLR Poster INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection",
+            "url": "https://iclr.cc/virtual/2024/poster/18385"
+          },
+          {
+            "title": "Self-Consistency Hallucination Detection",
+            "url": "https://www.emergentmind.com/topics/self-consistency-based-hallucination-detection"
+          },
+          {
+            "title": "INSIDE: LLMs’ Internal States Retain the Power of Hallucination Detection",
+            "url": "https://arxiv.org/html/2402.03744v2"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2601.18753"
+          },
+          {
+            "title": "llms' internal states retain the power of hallucination detection",
+            "url": "https://arxiv.org/pdf/2402.03744"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the INSIDE paper with EigenScore from ICLR 2024:\n\n## Paper Overview\n\nThe paper \"INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection\" was published at ICLR 2024 by Chao Chen, Kai Liu, Ze Chen, Yi Gu, Yue Wu, Mingyuan Tao, Zhihang Fu, and Jieping Ye.\n\n## Key Contribution: EigenScore\n\nThe paper proposes an EigenScore metric that exploits the eigenvalues of responses' covariance matrix to measure the semantic consistency/diversity in the dense embedding space.\n\n## Problem Being Addressed\n\nPrevious efforts in detecting hallucinations have been employed at logit-level uncertainty estimation or language-level self-consistency evaluation, where the semantic information is inevitably lost during the token-decoding procedure.\n\n## Methodology\n\nThe approach involves two main components:\n\n1. An EigenScore metric is introduced regarding the eigenvalues of sentence embeddings' covariance matrix to explore semantic consistency in the embedding space.\n\n2. A test-time feature clipping approach is developed to truncate extreme activations in internal states, reducing overconfident generations and improving overconfident hallucination detection.\n\n## Performance\n\nThe method achieves state-of-the-art hallucination detection performance on several QA benchmarks."
+    ],
+    "durationSeconds": 6.733292544
+  },
+  "sourceToolAssistantUUID": "aa98b338-b9fc-44be-9d02-c2a6da4e7211",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T16:08:26.505Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GxpfgPFw6cYA5cRyBcACsr`</summary>
+
+```json
+{
+  "query": "ARR 2026 submission deadlines cycles schedule ACL Rolling Review"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d63e810b-df76-407f-8275-9755cdf48975",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eHwHHuQqYK216farCP",
+  "type": "assistant",
+  "uuid": "4f876017-e9c3-418f-8b9b-2d2e959c533c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N3rb6ZRc5AQSgZFXUV7Xnf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 955,
+      "cache_read_input_tokens": 30616,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 955,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 30616,
+          "cache_creation_input_tokens": 955,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 955
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T16:08:32.882Z_
+
+<details><summary>↩ Tool result · `toolu_01GxpfgPFw6cYA5cRyBcACsr`</summary>
+
+```text
+Web search results for query: "ARR 2026 submission deadlines cycles schedule ACL Rolling Review"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/incentives2026"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewing"},{"title":"ACL ARR 2026 March | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FMarch"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"}]
+
+Based on the search results, here's information about ARR 2026 submission deadlines, cycles, and schedule:
+
+## Review Cycle Schedule Changes
+
+ARR switched to 10-week cycles starting in May 2025, replacing the previous 8-week cycles. This means instead of 6 cycles a year there will generally be 5, with more reasonable timelines for the review tasks and author response, as well as platform maintenance.
+
+## 2026 Submission Deadlines
+
+For ACL 2026, the submission deadline for papers to be submitted to ARR is January 5, 2026. After submission, all authors must complete the author registration form by January 7th 2026 EoD AoE. If they get assignments, reviews must be completed by February 7th, and meta-reviews by March 3rd.
+
+## General Cycle Pattern
+
+The submission deadline is always the 15th of the month; other dates vary due to the length of months, timing of weekends, etc. ARR works on a two-monthly review cycle.
+
+For more comprehensive details about all 2026 cycles and deadlines, you can visit the official ARR website at aclrollingreview.org/dates.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f876017-e9c3-418f-8b9b-2d2e959c533c",
+  "isSidechain": false,
+  "promptId": "b57ebe29-19ac-454a-8f8e-1b7a5d34d729",
+  "type": "user",
+  "uuid": "893bba32-6851-4f9b-8cab-6c4055c23278",
+  "toolUseResult": {
+    "query": "ARR 2026 submission deadlines cycles schedule ACL Rolling Review",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016c64nd78mCtGKcP4xAoNLF",
+        "content": [
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/incentives2026"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewing"
+          },
+          {
+            "title": "ACL ARR 2026 March | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FMarch"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          }
+        ]
+      },
+      "Based on the search results, here's information about ARR 2026 submission deadlines, cycles, and schedule:\n\n## Review Cycle Schedule Changes\n\nARR switched to 10-week cycles starting in May 2025, replacing the previous 8-week cycles. This means instead of 6 cycles a year there will generally be 5, with more reasonable timelines for the review tasks and author response, as well as platform maintenance.\n\n## 2026 Submission Deadlines\n\nFor ACL 2026, the submission deadline for papers to be submitted to ARR is January 5, 2026. After submission, all authors must complete the author registration form by January 7th 2026 EoD AoE. If they get assignments, reviews must be completed by February 7th, and meta-reviews by March 3rd.\n\n## General Cycle Pattern\n\nThe submission deadline is always the 15th of the month; other dates vary due to the length of months, timing of weekends, etc. ARR works on a two-monthly review cycle.\n\nFor more comprehensive details about all 2026 cycles and deadlines, you can visit the official ARR website at aclrollingreview.org/dates."
+    ],
+    "durationSeconds": 6.373287566000006
+  },
+  "sourceToolAssistantUUID": "4f876017-e9c3-418f-8b9b-2d2e959c533c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-15 (UTC).**  ## Original idea {   \"title\": \"TemporalFuse: Adaptive Multi-Signal Temporal Fusion for Early Hallucin…",
+  "leafUuid": "893bba32-6851-4f9b-8cab-6c4055c23278",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise TemporalFuse with ARR calendar fix and missing citations",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4"
+}
+```
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T16:08:35.920Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011JmuxNz5cV1YA4DebERabK`</summary>
+
+```json
+{
+  "query": "Streaming hallucination detection long chain-of-thought reasoning arXiv 2601.02170"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "893bba32-6851-4f9b-8cab-6c4055c23278",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eJc5uztQcKjKFomi8Z",
+  "type": "assistant",
+  "uuid": "6eec50a6-3859-497d-9edb-bb44ee741dd9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MJwbQznSpUA4RSgPwZAzvR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 807,
+      "cache_read_input_tokens": 31571,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 807,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 31571,
+          "cache_creation_input_tokens": 807,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 807
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T16:08:42.043Z_
+
+<details><summary>↩ Tool result · `toolu_011JmuxNz5cV1YA4DebERabK`</summary>
+
+```text
+Web search results for query: "Streaming hallucination detection long chain-of-thought reasoning arXiv 2601.02170"
+
+Links: [{"title":"[2601.02170] Streaming Hallucination Detection in Long Chain-of-Thought Reasoning","url":"https://arxiv.org/abs/2601.02170"},{"title":"Streaming Hallucination Detection in Long Chain-of-Thought Reasoning","url":"https://web3.arxiv.org/pdf/2601.02170"},{"title":"Streaming Hallucination Detection in Long Chain-of-Thought Reasoning | alphaXiv","url":"https://www.alphaxiv.org/zh/overview/2601.02170v1"},{"title":"Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping","url":"https://arxiv.org/html/2601.17467"},{"title":"Chain-of-Thought Prompting Obscures Hallucination Cues in Large Language Models: An Empirical Evaluation - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.67/"},{"title":"From Detection to Diagnosis: Advancing Hallucination Analysis with Automated Data Synthesis","url":"https://arxiv.org/html/2601.09734"},{"title":"Automating hallucination detection with chain-of-thought reasoning - Amazon Science","url":"https://www.amazon.science/blog/automating-hallucination-detection-with-chain-of-thought-reasoning"},{"title":"Real-Time Detection of Hallucinated Entities in Long-Form Generation","url":"https://arxiv.org/html/2509.03531v1"},{"title":"Sanity Checks for Long-Form Hallucination Detection","url":"https://arxiv.org/html/2605.08346v1"},{"title":"Mitigating Prompt-Induced Hallucinations in Large Language Models via Structured Reasoning","url":"https://arxiv.org/html/2601.02739v1"}]
+
+I found the paper you're looking for. Here's what I found:
+
+## Streaming Hallucination Detection in Long Chain-of-Thought Reasoning (arXiv 2601.02170)
+
+Long chain-of-thought (CoT) reasoning improves the performance of large language models, yet hallucinations in such settings often emerge subtly and propagate across reasoning steps.
+
+**Key Contribution:**
+
+The paper suggests that hallucination in long CoT reasoning is better understood as an evolving latent state rather than a one-off erroneous event. The authors treat step-level hallucination judgments as local observations and introduce a cumulative prefix-level hallucination signal that tracks the global evolution of the reasoning state over the entire trajectory.
+
+**Approach:**
+
+The approach enables streaming hallucination detection in long CoT reasoning, providing real-time, interpretable evidence.
+
+**Authors:**
+
+The paper was authored by Haolang Lu, Minghui Pan, Ripeng Li, Guoshun Nan, Jialin Zhuang, Zijie Zhao, Zhongxiang Sun, Kun Wang, and Yang Liu. It was submitted on January 5, 2026.
+
+You can access the full paper at https://arxiv.org/abs/2601.02170.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6eec50a6-3859-497d-9edb-bb44ee741dd9",
+  "isSidechain": false,
+  "promptId": "b57ebe29-19ac-454a-8f8e-1b7a5d34d729",
+  "type": "user",
+  "uuid": "5ee43462-9156-47d4-87a2-3e0b846623f5",
+  "toolUseResult": {
+    "query": "Streaming hallucination detection long chain-of-thought reasoning arXiv 2601.02170",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QuB97PjbVwwxyptMH1Szwn",
+        "content": [
+          {
+            "title": "[2601.02170] Streaming Hallucination Detection in Long Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/abs/2601.02170"
+          },
+          {
+            "title": "Streaming Hallucination Detection in Long Chain-of-Thought Reasoning",
+            "url": "https://web3.arxiv.org/pdf/2601.02170"
+          },
+          {
+            "title": "Streaming Hallucination Detection in Long Chain-of-Thought Reasoning | alphaXiv",
+            "url": "https://www.alphaxiv.org/zh/overview/2601.02170v1"
+          },
+          {
+            "title": "Harnessing Reasoning Trajectories for Hallucination Detection via Answer-agreement Representation Shaping",
+            "url": "https://arxiv.org/html/2601.17467"
+          },
+          {
+            "title": "Chain-of-Thought Prompting Obscures Hallucination Cues in Large Language Models: An Empirical Evaluation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-emnlp.67/"
+          },
+          {
+            "title": "From Detection to Diagnosis: Advancing Hallucination Analysis with Automated Data Synthesis",
+            "url": "https://arxiv.org/html/2601.09734"
+          },
+          {
+            "title": "Automating hallucination detection with chain-of-thought reasoning - Amazon Science",
+            "url": "https://www.amazon.science/blog/automating-hallucination-detection-with-chain-of-thought-reasoning"
+          },
+          {
+            "title": "Real-Time Detection of Hallucinated Entities in Long-Form Generation",
+            "url": "https://arxiv.org/html/2509.03531v1"
+          },
+          {
+            "title": "Sanity Checks for Long-Form Hallucination Detection",
+            "url": "https://arxiv.org/html/2605.08346v1"
+          },
+          {
+            "title": "Mitigating Prompt-Induced Hallucinations in Large Language Models via Structured Reasoning",
+            "url": "https://arxiv.org/html/2601.02739v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's what I found:\n\n## Streaming Hallucination Detection in Long Chain-of-Thought Reasoning (arXiv 2601.02170)\n\nLong chain-of-thought (CoT) reasoning improves the performance of large language models, yet hallucinations in such settings often emerge subtly and propagate across reasoning steps.\n\n**Key Contribution:**\n\nThe paper suggests that hallucination in long CoT reasoning is better understood as an evolving latent state rather than a one-off erroneous event. The authors treat step-level hallucination judgments as local observations and introduce a cumulative prefix-level hallucination signal that tracks the global evolution of the reasoning state over the entire trajectory.\n\n**Approach:**\n\nThe approach enables streaming hallucination detection in long CoT reasoning, providing real-time, interpretable evidence.\n\n**Authors:**\n\nThe paper was authored by Haolang Lu, Minghui Pan, Ripeng Li, Guoshun Nan, Jialin Zhuang, Zijie Zhao, Zhongxiang Sun, Kun Wang, and Yang Liu. It was submitted on January 5, 2026.\n\nYou can access the full paper at https://arxiv.org/abs/2601.02170."
+    ],
+    "durationSeconds": 6.1190420929999965
+  },
+  "sourceToolAssistantUUID": "6eec50a6-3859-497d-9edb-bb44ee741dd9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-15T16:08:45.098Z_
+
+Now let me fetch the actual ARR dates page and the HaDeMiF paper for precise details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ee43462-9156-47d4-87a2-3e0b846623f5",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eKHYj9zADnHJF8zoaW",
+  "type": "assistant",
+  "uuid": "b2a00e35-6c2e-46bb-83a7-9547f81fa56d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0117NsLnw9VJFkqKErirx6ZB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 32378,
+      "output_tokens": 163,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 892,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 163,
+          "cache_read_input_tokens": 32378,
+          "cache_creation_input_tokens": 892,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 892
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T16:08:46.473Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CnSdMKQEx3QHMiMNCQS1Xi`</summary>
+
+```json
+{
+  "url": "https://aclrollingreview.org/dates",
+  "prompt": "List all 2026 ARR submission deadlines/cycles. I need the exact dates for each cycle in 2026. Also list which venues (EMNLP, EACL, AACL, etc.) each cycle can commit to, and commitment deadlines."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b2a00e35-6c2e-46bb-83a7-9547f81fa56d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eKHYj9zADnHJF8zoaW",
+  "type": "assistant",
+  "uuid": "31e6ee69-7cb4-4257-9083-1e633560948c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0117NsLnw9VJFkqKErirx6ZB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 32378,
+      "output_tokens": 163,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 892,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 163,
+          "cache_read_input_tokens": 32378,
+          "cache_creation_input_tokens": 892,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 892
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T16:08:50.068Z_
+
+<details><summary>↩ Tool result · `toolu_01CnSdMKQEx3QHMiMNCQS1Xi`</summary>
+
+```text
+# 2026 ARR Submission Cycles and Venues
+
+Based on the page content, here are the 2026 ARR cycles:
+
+## Submission Deadlines and Cycles
+
+**March 2026 Cycle**
+- Submission deadline: March 16, 2026
+- Cycle end: May 24, 2026
+
+**May 2026 Cycle**
+- Submission deadline: May 25, 2026
+- Cycle end: August 2, 2026
+
+**August 2026 Cycle**
+- Submission deadline: August 3, 2026
+- Cycle end: October 11, 2026
+
+**October 2026 Cycle**
+- Submission deadline: October 12, 2026
+- Cycle end: December 20, 2026
+
+## Venue Commitments by Cycle
+
+The page indicates that "any paper that is not desk rejected will receive reviews. Once authors have reviews they may choose to" submit elsewhere or "commit their paper _and reviews_ to a publication venue."
+
+**May 2026 cycle papers can commit to:**
+- EMNLP 2026 (commitment deadline: August 2, 2026)
+- AACL 2026 (commitment deadline: August 26, 2026)
+
+**August 2026 cycle papers can commit to:**
+- EACL 2027 (commitment deadline: October 11, 2026)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "31e6ee69-7cb4-4257-9083-1e633560948c",
+  "isSidechain": false,
+  "promptId": "b57ebe29-19ac-454a-8f8e-1b7a5d34d729",
+  "type": "user",
+  "uuid": "c09d21a6-891b-4649-bb3d-0035f3b58ad0",
+  "toolUseResult": {
+    "bytes": 25438,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# 2026 ARR Submission Cycles and Venues\n\nBased on the page content, here are the 2026 ARR cycles:\n\n## Submission Deadlines and Cycles\n\n**March 2026 Cycle**\n- Submission deadline: March 16, 2026\n- Cycle end: May 24, 2026\n\n**May 2026 Cycle**\n- Submission deadline: May 25, 2026\n- Cycle end: August 2, 2026\n\n**August 2026 Cycle**\n- Submission deadline: August 3, 2026\n- Cycle end: October 11, 2026\n\n**October 2026 Cycle**\n- Submission deadline: October 12, 2026\n- Cycle end: December 20, 2026\n\n## Venue Commitments by Cycle\n\nThe page indicates that \"any paper that is not desk rejected will receive reviews. Once authors have reviews they may choose to\" submit elsewhere or \"commit their paper _and reviews_ to a publication venue.\"\n\n**May 2026 cycle papers can commit to:**\n- EMNLP 2026 (commitment deadline: August 2, 2026)\n- AACL 2026 (commitment deadline: August 26, 2026)\n\n**August 2026 cycle papers can commit to:**\n- EACL 2027 (commitment deadline: October 11, 2026)",
+    "durationMs": 3590,
+    "url": "https://aclrollingreview.org/dates"
+  },
+  "sourceToolAssistantUUID": "31e6ee69-7cb4-4257-9083-1e633560948c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T16:08:54.865Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QgmLHEMk4bz7cZUtTU1Upx`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=VwOYxPScxB",
+  "prompt": "Extract the full details of HaDeMiF: title, authors, key method details, what signal types it fuses, how the fusion works (static vs temporal), whether it operates on complete responses or during generation, and its performance results. Also note the exact venue (ICLR 2025 poster/spotlight/oral?)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c09d21a6-891b-4649-bb3d-0035f3b58ad0",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eKsYsBxB58JSdpnmNf",
+  "type": "assistant",
+  "uuid": "b4464541-33a4-49c9-9f88-94a0b2af3936",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016qiVhi2CX71Tcoy8gENBmV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 504,
+      "cache_read_input_tokens": 33270,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 504,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 33270,
+          "cache_creation_input_tokens": 504,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 504
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T16:08:59.010Z_
+
+<details><summary>↩ Tool result · `toolu_01QgmLHEMk4bz7cZUtTU1Upx`</summary>
+
+```text
+# HaDeMiF: Hallucination Detection and Mitigation Framework
+
+**Title:** "HaDeMiF: Hallucination Detection and Mitigation in Large Language Models"
+
+**Authors:** Xiaoling Zhou, Mingjie Zhang, Zhemg Lee, Wei Ye, Shikun Zhang
+
+**Venue:** ICLR 2025 Poster presentation
+
+## Key Method Details
+
+The framework employs two compact networks operating in parallel:
+
+1. **Deep Dynamic Decision Tree (D3T)** - An interpretable tree model analyzing prediction characteristics
+2. **Multilayer Perceptron (MLP)** - Processing hidden states of tokens
+
+**Signal Types Fused:** The system combines "prediction characteristics and the hidden states of tokens" to capture hallucinations across output and semantic spaces.
+
+**Fusion Approach:** The networks operate on these dual signals simultaneously rather than sequentially, with outputs used to calibrate LLM predictions.
+
+**Operational Scope:** The framework functions "during both the inference and fine-tuning phases" and appears designed for complete response evaluation rather than generation-time intervention.
+
+## Performance & Efficiency
+
+- **Parameter Overhead:** "Less than 2% of the parameters relative to the LLMs"
+- **Demonstrated Effectiveness:** The authors claim "effectiveness...in hallucination detection and model calibration across text generation tasks with responses of varying lengths"
+
+**Note:** Specific quantitative performance metrics are not provided in this abstract summary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b4464541-33a4-49c9-9f88-94a0b2af3936",
+  "isSidechain": false,
+  "promptId": "b57ebe29-19ac-454a-8f8e-1b7a5d34d729",
+  "type": "user",
+  "uuid": "eccfcd09-dc80-4efa-b8c3-8179ca9fb5cd",
+  "toolUseResult": {
+    "bytes": 72785,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# HaDeMiF: Hallucination Detection and Mitigation Framework\n\n**Title:** \"HaDeMiF: Hallucination Detection and Mitigation in Large Language Models\"\n\n**Authors:** Xiaoling Zhou, Mingjie Zhang, Zhemg Lee, Wei Ye, Shikun Zhang\n\n**Venue:** ICLR 2025 Poster presentation\n\n## Key Method Details\n\nThe framework employs two compact networks operating in parallel:\n\n1. **Deep Dynamic Decision Tree (D3T)** - An interpretable tree model analyzing prediction characteristics\n2. **Multilayer Perceptron (MLP)** - Processing hidden states of tokens\n\n**Signal Types Fused:** The system combines \"prediction characteristics and the hidden states of tokens\" to capture hallucinations across output and semantic spaces.\n\n**Fusion Approach:** The networks operate on these dual signals simultaneously rather than sequentially, with outputs used to calibrate LLM predictions.\n\n**Operational Scope:** The framework functions \"during both the inference and fine-tuning phases\" and appears designed for complete response evaluation rather than generation-time intervention.\n\n## Performance & Efficiency\n\n- **Parameter Overhead:** \"Less than 2% of the parameters relative to the LLMs\"\n- **Demonstrated Effectiveness:** The authors claim \"effectiveness...in hallucination detection and model calibration across text generation tasks with responses of varying lengths\"\n\n**Note:** Specific quantitative performance metrics are not provided in this abstract summary.",
+    "durationMs": 4142,
+    "url": "https://openreview.net/forum?id=VwOYxPScxB"
+  },
+  "sourceToolAssistantUUID": "b4464541-33a4-49c9-9f88-94a0b2af3936",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-15T16:08:59.013Z_
+
+```json
+{
+  "parentUuid": "eccfcd09-dc80-4efa-b8c3-8179ca9fb5cd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "286fb366-fdfa-4f0d-aad7-1dda478ffbdb",
+  "timestamp": "2026-05-15T16:08:59.013Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T16:09:03.707Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UUE4LiBn48sWXikq7s1kKa`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2402.03744",
+  "prompt": "Extract full details of INSIDE/EigenScore paper: exact title, all authors, venue (ICLR 2024), key methodology, how EigenScore works (eigenvalue-based metric on covariance matrices of what exactly - hidden states? sentence embeddings?), what benchmarks used, and performance results. I need to understand whether EigenScore operates on hidden states directly or on sentence-level embeddings derived from hidden states."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "286fb366-fdfa-4f0d-aad7-1dda478ffbdb",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eLXm2HiNo6SnePdkfA",
+  "type": "assistant",
+  "uuid": "910f42f3-88c5-4e72-9402-405742a31d00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Cw5n4JLLCCfsULAVV6bmR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 603,
+      "cache_read_input_tokens": 33774,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 603,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 33774,
+          "cache_creation_input_tokens": 603,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 603
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T16:09:08.946Z_
+
+<details><summary>↩ Tool result · `toolu_01UUE4LiBn48sWXikq7s1kKa`</summary>
+
+```text
+# INSIDE/EigenScore Paper Details
+
+**Full Title:** "INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection"
+
+**Authors:** Chao Chen, Kai Liu, Ze Chen, Yi Gu, Yue Wu, Mingyuan Tao, Zhihang Fu, Jieping Ye
+
+**Venue:** ICLR 2024
+
+## Key Methodology
+
+The research proposes examining "dense semantic information retained within LLMs'" internal computational layers for detecting when models generate false or unsupported claims. A novel metric called EigenScore forms the technical core.
+
+## EigenScore Mechanism
+
+The abstract indicates the approach "exploits the eigenvalues of responses' covariance matrix to measure the semantic consistency/diversity in the dense embedding space." However, the provided content does not explicitly clarify whether EigenScore operates directly on hidden layer activations or on derived sentence-level embeddings—this distinction requires consulting the full paper.
+
+## Additional Findings
+
+Beyond EigenScore, researchers explored "a test time feature clipping approach" to reduce overconfident model outputs by truncating extreme activation values in internal states.
+
+## Evaluation
+
+The paper conducted "extensive experiments and ablation studies...on several popular LLMs and question-answering (QA) benchmarks," though specific benchmark names and numerical performance metrics are not detailed in this abstract excerpt.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "910f42f3-88c5-4e72-9402-405742a31d00",
+  "isSidechain": false,
+  "promptId": "b57ebe29-19ac-454a-8f8e-1b7a5d34d729",
+  "type": "user",
+  "uuid": "e4324c44-5b87-4dad-a6c6-2e43eb2b2785",
+  "toolUseResult": {
+    "bytes": 46930,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# INSIDE/EigenScore Paper Details\n\n**Full Title:** \"INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection\"\n\n**Authors:** Chao Chen, Kai Liu, Ze Chen, Yi Gu, Yue Wu, Mingyuan Tao, Zhihang Fu, Jieping Ye\n\n**Venue:** ICLR 2024\n\n## Key Methodology\n\nThe research proposes examining \"dense semantic information retained within LLMs'\" internal computational layers for detecting when models generate false or unsupported claims. A novel metric called EigenScore forms the technical core.\n\n## EigenScore Mechanism\n\nThe abstract indicates the approach \"exploits the eigenvalues of responses' covariance matrix to measure the semantic consistency/diversity in the dense embedding space.\" However, the provided content does not explicitly clarify whether EigenScore operates directly on hidden layer activations or on derived sentence-level embeddings—this distinction requires consulting the full paper.\n\n## Additional Findings\n\nBeyond EigenScore, researchers explored \"a test time feature clipping approach\" to reduce overconfident model outputs by truncating extreme activation values in internal states.\n\n## Evaluation\n\nThe paper conducted \"extensive experiments and ablation studies...on several popular LLMs and question-answering (QA) benchmarks,\" though specific benchmark names and numerical performance metrics are not detailed in this abstract excerpt.",
+    "durationMs": 5237,
+    "url": "https://arxiv.org/abs/2402.03744"
+  },
+  "sourceToolAssistantUUID": "910f42f3-88c5-4e72-9402-405742a31d00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T16:09:11.768Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ENzRhhEno7tL99A6kKBjP6`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 commitment deadline ARR May cycle August"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4324c44-5b87-4dad-a6c6-2e43eb2b2785",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eMGJNJ9yi8xohQHXHX",
+  "type": "assistant",
+  "uuid": "98edae95-ad61-40ef-b6a1-f145f67a8be1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUthNYugsMpGAHGg38X29x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 34377,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 491,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 34377,
+          "cache_creation_input_tokens": 491,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 491
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T16:09:15.968Z_
+
+<details><summary>↩ Tool result · `toolu_01ENzRhhEno7tL99A6kKBjP6`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 commitment deadline ARR May cycle August"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"Workshop on Multimodal Interaction in Face-to-Face Dialogue (MINT @ EMNLP 2026) | ACL Member Portal","url":"https://www.aclweb.org/portal/content/workshop-multimodal-interaction-face-face-dialogue-mint-emnlp-2026"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"EMNLP 2026 2026 Deadlines — Submission, Rebuttal & Dates | Paperpin | Paperpin","url":"https://www.getpaperpin.com/deadlines/emnlp26"}]
+
+Based on the search results, here's the key information about EMNLP 2026 commitment deadline related to the ARR May cycle:
+
+The ARR submission deadline for long and short papers is May 25, 2026, and the EMNLP commitment deadline is August 2, 2026.
+
+Papers must be submitted by the ARR 2026 May cycle at the latest, and papers that have received reviews and a meta-review from ARR (whether from the ARR 2026 May cycle or an earlier ARR cycle) may be committed to EMNLP via the commitment link.
+
+In the workflow, the meta review is released on July 30, 2026, before the August 2, 2026 commitment deadline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98edae95-ad61-40ef-b6a1-f145f67a8be1",
+  "isSidechain": false,
+  "promptId": "b57ebe29-19ac-454a-8f8e-1b7a5d34d729",
+  "type": "user",
+  "uuid": "631c5cd1-a5d1-48cd-81f7-f5a02345e7b5",
+  "toolUseResult": {
+    "query": "EMNLP 2026 commitment deadline ARR May cycle August",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FJ7rThurxHbfGhTh1Tzbq3",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "Workshop on Multimodal Interaction in Face-to-Face Dialogue (MINT @ EMNLP 2026) | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/workshop-multimodal-interaction-face-face-dialogue-mint-emnlp-2026"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 2026 Deadlines — Submission, Rebuttal & Dates | Paperpin | Paperpin",
+            "url": "https://www.getpaperpin.com/deadlines/emnlp26"
+          }
+        ]
+      },
+      "Based on the search results, here's the key information about EMNLP 2026 commitment deadline related to the ARR May cycle:\n\nThe ARR submission deadline for long and short papers is May 25, 2026, and the EMNLP commitment deadline is August 2, 2026.\n\nPapers must be submitted by the ARR 2026 May cycle at the latest, and papers that have received reviews and a meta-review from ARR (whether from the ARR 2026 May cycle or an earlier ARR cycle) may be committed to EMNLP via the commitment link.\n\nIn the workflow, the meta review is released on July 30, 2026, before the August 2, 2026 commitment deadline."
+    ],
+    "durationSeconds": 4.194393414999999
+  },
+  "sourceToolAssistantUUID": "98edae95-ad61-40ef-b6a1-f145f67a8be1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T16:09:19.417Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VAHBSHGBJmi9bL7pH542iM`</summary>
+
+```json
+{
+  "query": "EACL 2027 deadline commitment ARR August cycle 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "631c5cd1-a5d1-48cd-81f7-f5a02345e7b5",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eMnLeLamc2GPmq6ESL",
+  "type": "assistant",
+  "uuid": "b13ad823-0124-4d72-8b60-6b4db57b4e3f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MmnK84K39ZNYERLWP7M5DS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 846,
+      "cache_read_input_tokens": 34868,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 846,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 34868,
+          "cache_creation_input_tokens": 846,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 846
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T16:09:23.887Z_
+
+<details><summary>↩ Tool result · `toolu_01VAHBSHGBJmi9bL7pH542iM`</summary>
+
+```text
+Web search results for query: "EACL 2027 deadline commitment ARR August cycle 2026"
+
+Links: [{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"The 20th Conference of the European Chapter of the Association for Computational LinguisticsAthens, GreeceMarch 9-14, 2027 -","url":"https://2027.eacl.org/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"eaclmeeting on X: \"📢⚠️ IMPORTANT DATE CORRECTION: the ARR deadline for EACL 2027 is Aug 3, 2026 (not Aug 6 as previously announced). EACL is earlier than usual in '27, so this is the only viable ARR cycle! 📚 All areas of CL/NLP + related fields welcome. Full CfP coming soon. #NLProc #EACL2027\" / X","url":"https://x.com/eaclmeeting/status/2051971432171688436"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EACL 2027 Call for Main Conference Papers","url":"https://2027.eacl.org/calls/papers/"},{"title":"EACL: Conference of the European Chapter of the Association for Computational Linguistics 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=785"},{"title":"EACL 2026 SRW ARR Commitment | OpenReview","url":"https://openreview.net/group?id=eacl.org%2FEACL%2F2026%2FSRW_ARR_Commitment"},{"title":"Call for Student Research Workshop Papers -","url":"https://2026.eacl.org/calls/srw/"}]
+
+Based on the search results, here are the key deadlines for EACL 2027 regarding ARR (ACL Rolling Review):
+
+**EACL 2027 ARR Deadlines:**
+
+- ARR submission deadline (long & short papers): August 3, 2026
+- Commitment Date: October 11, 2026
+
+The ARR deadline for EACL 2027 is August 3, 2026 (not August 6 as previously announced), and since EACL is earlier than usual in 2027, this is the only viable ARR cycle.
+
+All deadlines are 11:59PM UTC-12:00 ("anywhere on Earth").
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b13ad823-0124-4d72-8b60-6b4db57b4e3f",
+  "isSidechain": false,
+  "promptId": "b57ebe29-19ac-454a-8f8e-1b7a5d34d729",
+  "type": "user",
+  "uuid": "3e1b1ac6-26f3-4a61-84d6-3cad953900eb",
+  "toolUseResult": {
+    "query": "EACL 2027 deadline commitment ARR August cycle 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AEU7Vcgg1thvxSpHDUfwem",
+        "content": [
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "The 20th Conference of the European Chapter of the Association for Computational LinguisticsAthens, GreeceMarch 9-14, 2027 -",
+            "url": "https://2027.eacl.org/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "eaclmeeting on X: \"📢⚠️ IMPORTANT DATE CORRECTION: the ARR deadline for EACL 2027 is Aug 3, 2026 (not Aug 6 as previously announced). EACL is earlier than usual in '27, so this is the only viable ARR cycle! 📚 All areas of CL/NLP + related fields welcome. Full CfP coming soon. #NLProc #EACL2027\" / X",
+            "url": "https://x.com/eaclmeeting/status/2051971432171688436"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "EACL 2027 Call for Main Conference Papers",
+            "url": "https://2027.eacl.org/calls/papers/"
+          },
+          {
+            "title": "EACL: Conference of the European Chapter of the Association for Computational Linguistics 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=785"
+          },
+          {
+            "title": "EACL 2026 SRW ARR Commitment | OpenReview",
+            "url": "https://openreview.net/group?id=eacl.org%2FEACL%2F2026%2FSRW_ARR_Commitment"
+          },
+          {
+            "title": "Call for Student Research Workshop Papers -",
+            "url": "https://2026.eacl.org/calls/srw/"
+          }
+        ]
+      },
+      "Based on the search results, here are the key deadlines for EACL 2027 regarding ARR (ACL Rolling Review):\n\n**EACL 2027 ARR Deadlines:**\n\n- ARR submission deadline (long & short papers): August 3, 2026\n- Commitment Date: October 11, 2026\n\nThe ARR deadline for EACL 2027 is August 3, 2026 (not August 6 as previously announced), and since EACL is earlier than usual in 2027, this is the only viable ARR cycle.\n\nAll deadlines are 11:59PM UTC-12:00 (\"anywhere on Earth\")."
+    ],
+    "durationSeconds": 4.466472206000006
+  },
+  "sourceToolAssistantUUID": "b13ad823-0124-4d72-8b60-6b4db57b4e3f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-15 (UTC).**  ## Original idea {   \"title\": \"TemporalFuse: Adaptive Multi-Signal Temporal Fusion for Early Hallucin…",
+  "leafUuid": "3e1b1ac6-26f3-4a61-84d6-3cad953900eb",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise TemporalFuse with ARR calendar fix and missing citations",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4"
+}
+```
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-15T16:09:26.131Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TgbteddMxQHZSCSAAMxewc`</summary>
+
+```json
+{
+  "query": "AACL 2026 commitment deadline ARR submission"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e1b1ac6-26f3-4a61-84d6-3cad953900eb",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eNN7Q1PSBZvvUJWSTd",
+  "type": "assistant",
+  "uuid": "a6ce429d-4971-4723-b17a-eb7eb3ab8072",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0112crFQ1TEM45qWb9vjapzR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 806,
+      "cache_read_input_tokens": 35714,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 806,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 35714,
+          "cache_creation_input_tokens": 806,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 806
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T16:09:29.411Z_
+
+<details><summary>↩ Tool result · `toolu_01TgbteddMxQHZSCSAAMxewc`</summary>
+
+```text
+Web search results for query: "AACL 2026 commitment deadline ARR submission"
+
+Links: [{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"Call for Student Research Workshop Papers -","url":"https://2026.eacl.org/calls/srw/"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"Incentives 2026","url":"http://aclrollingreview.org/incentives2026"},{"title":"*SEM 2026: Commitment Link for ARR-Reviewed Papers (Deadline: 10 April 2026) | ACL Member Portal","url":"https://www.aclweb.org/portal/content/sem-2026-commitment-link-arr-reviewed-papers-deadline-10-april-2026"},{"title":"AACL 2026 on X: \"🚨AACL-IJCNLP 2026 will be held in Hengqin, China from November 6-10, 2026. The CFP is now out! ARR submission deadline (long &amp; short papers): May 25, 2026! #NLProc #NLP Dates and full CFP here: https://t.co/4ON2H5M7zQ @aadi_joshi @kta84912 https://t.co/9ZKWmY7Jvv\" / X","url":"https://x.com/aaclmeeting/status/2041832211599733075"},{"title":"Update ACL 2025 and 2026 conference deadlines · huggingface/ai-deadlines at 9dc485d","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/9dc485d7522c481c65e1e366500d2ab6398449d9"}]
+
+Based on the search results, here's the information about AACL 2026's commitment deadline for ARR submissions:
+
+For AACL 2026, the commitment deadline for ARR submissions is August 26, 2026. Additionally, the final ARR submission date for AACL 2026 is May 25, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a6ce429d-4971-4723-b17a-eb7eb3ab8072",
+  "isSidechain": false,
+  "promptId": "b57ebe29-19ac-454a-8f8e-1b7a5d34d729",
+  "type": "user",
+  "uuid": "0003924c-1953-4b60-bdfd-9ab4de2e0145",
+  "toolUseResult": {
+    "query": "AACL 2026 commitment deadline ARR submission",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017xyKmk7AU5nnyFbDukGzFV",
+        "content": [
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Call for Student Research Workshop Papers -",
+            "url": "https://2026.eacl.org/calls/srw/"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Incentives 2026",
+            "url": "http://aclrollingreview.org/incentives2026"
+          },
+          {
+            "title": "*SEM 2026: Commitment Link for ARR-Reviewed Papers (Deadline: 10 April 2026) | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/sem-2026-commitment-link-arr-reviewed-papers-deadline-10-april-2026"
+          },
+          {
+            "title": "AACL 2026 on X: \"🚨AACL-IJCNLP 2026 will be held in Hengqin, China from November 6-10, 2026. The CFP is now out! ARR submission deadline (long &amp; short papers): May 25, 2026! #NLProc #NLP Dates and full CFP here: https://t.co/4ON2H5M7zQ @aadi_joshi @kta84912 https://t.co/9ZKWmY7Jvv\" / X",
+            "url": "https://x.com/aaclmeeting/status/2041832211599733075"
+          },
+          {
+            "title": "Update ACL 2025 and 2026 conference deadlines · huggingface/ai-deadlines at 9dc485d",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/9dc485d7522c481c65e1e366500d2ab6398449d9"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about AACL 2026's commitment deadline for ARR submissions:\n\nFor AACL 2026, the commitment deadline for ARR submissions is August 26, 2026. Additionally, the final ARR submission date for AACL 2026 is May 25, 2026."
+    ],
+    "durationSeconds": 3.276870305999997
+  },
+  "sourceToolAssistantUUID": "a6ce429d-4971-4723-b17a-eb7eb3ab8072",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-15T16:09:32.348Z_
+
+Now let me read the INSIDE paper more carefully to understand EigenScore's exact mechanism.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0003924c-1953-4b60-bdfd-9ab4de2e0145",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eNmkhVv1rvXF6LyngY",
+  "type": "assistant",
+  "uuid": "f6a08c69-e695-440b-b1ad-4dbaed913677",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UkMrVwPTgju3kfC6JVvQRv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 766,
+      "cache_read_input_tokens": 36520,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 766,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 36520,
+          "cache_creation_input_tokens": 766,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 766
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T16:09:33.828Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Q65AAa9sjHHqkgGL9SJNCk`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2402.03744v2",
+  "prompt": "Extract the specific methodology of EigenScore: Does it operate on hidden states directly or sentence-level embeddings? How exactly is the covariance matrix constructed? What layers are used? Is it applied per-token or per-response? Also extract the key results/benchmarks."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f6a08c69-e695-440b-b1ad-4dbaed913677",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eNmkhVv1rvXF6LyngY",
+  "type": "assistant",
+  "uuid": "92028bc8-f4d4-4985-8b35-0ece9b91f14d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UkMrVwPTgju3kfC6JVvQRv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 766,
+      "cache_read_input_tokens": 36520,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 766,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 36520,
+          "cache_creation_input_tokens": 766,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 766
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T16:09:39.774Z_
+
+<details><summary>↩ Tool result · `toolu_01Q65AAa9sjHHqkgGL9SJNCk`</summary>
+
+```text
+# EigenScore Methodology
+
+## Operational Level
+EigenScore operates on **sentence-level embeddings** rather than per-token hidden states. The approach extracts a single embedding per response that captures the full sentence semantics.
+
+## Embedding Selection
+The method uses "the embedding of the last token in the middle layer" as the sentence representation. Ablation studies showed this outperformed averaging all tokens or using final-layer embeddings, suggesting "the last token of the middle layers retain more information about the truthfulness."
+
+## Covariance Matrix Construction
+For K generated responses:
+1. Stack K sentence embeddings into matrix **Z** ∈ ℝ^(d×K)
+2. Apply centering matrix J_d to normalize
+3. Compute covariance: **Σ = Z^T · J_d · Z**, yielding K×K matrix
+4. Add small regularization (α=0.001) for numerical stability
+
+## EigenScore Calculation
+The metric is the "logarithm determinant (LogDet) of the covariance matrix," computed as the average log of eigenvalues via SVD. Higher scores indicate greater semantic divergence across generations (hallucination).
+
+## Key Results
+**Main benchmarks (AUROC):**
+- **CoQA**: 80.4% (LLaMA-7B), 79.5% (LLaMA-13B)
+- **SQuAD**: 81.5-83.8% across models
+- **NQ**: 76.5-78.2% across models
+
+EigenScore improved over Lexical Similarity by **5.6-8.9%** on CoQA/SQuAD datasets.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "92028bc8-f4d4-4985-8b35-0ece9b91f14d",
+  "isSidechain": false,
+  "promptId": "b57ebe29-19ac-454a-8f8e-1b7a5d34d729",
+  "type": "user",
+  "uuid": "b20f3cd7-5639-434a-bee6-4921b9e2d454",
+  "toolUseResult": {
+    "bytes": 451516,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# EigenScore Methodology\n\n## Operational Level\nEigenScore operates on **sentence-level embeddings** rather than per-token hidden states. The approach extracts a single embedding per response that captures the full sentence semantics.\n\n## Embedding Selection\nThe method uses \"the embedding of the last token in the middle layer\" as the sentence representation. Ablation studies showed this outperformed averaging all tokens or using final-layer embeddings, suggesting \"the last token of the middle layers retain more information about the truthfulness.\"\n\n## Covariance Matrix Construction\nFor K generated responses:\n1. Stack K sentence embeddings into matrix **Z** ∈ ℝ^(d×K)\n2. Apply centering matrix J_d to normalize\n3. Compute covariance: **Σ = Z^T · J_d · Z**, yielding K×K matrix\n4. Add small regularization (α=0.001) for numerical stability\n\n## EigenScore Calculation\nThe metric is the \"logarithm determinant (LogDet) of the covariance matrix,\" computed as the average log of eigenvalues via SVD. Higher scores indicate greater semantic divergence across generations (hallucination).\n\n## Key Results\n**Main benchmarks (AUROC):**\n- **CoQA**: 80.4% (LLaMA-7B), 79.5% (LLaMA-13B)\n- **SQuAD**: 81.5-83.8% across models\n- **NQ**: 76.5-78.2% across models\n\nEigenScore improved over Lexical Similarity by **5.6-8.9%** on CoQA/SQuAD datasets.",
+    "durationMs": 5943,
+    "url": "https://arxiv.org/html/2402.03744v2"
+  },
+  "sourceToolAssistantUUID": "92028bc8-f4d4-4985-8b35-0ece9b91f14d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T16:09:42.383Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Xk4cVHwhbwHZKgS7LbC4ek`</summary>
+
+```json
+{
+  "query": "AAAI 2027 paper submission deadline abstract deadline July 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b20f3cd7-5639-434a-bee6-4921b9e2d454",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ePY6CDSTgRufSDmBWL",
+  "type": "assistant",
+  "uuid": "5fc8e7db-e95a-4c0c-921e-31fbff84aa6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GMrHh4aC3qGobusbsmchgB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 559,
+      "cache_read_input_tokens": 37286,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 559,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 37286,
+          "cache_creation_input_tokens": 559,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 559
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T16:09:46.154Z_
+
+<details><summary>↩ Tool result · `toolu_01Xk4cVHwhbwHZKgS7LbC4ek`</summary>
+
+```text
+Web search results for query: "AAAI 2027 paper submission deadline abstract deadline July 2026"
+
+Links: [{"title":"AAAI-26 Submission Instructions - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/submission-instructions/"},{"title":"AI/ML Conference Timeline | NIU AI","url":"https://www.niuai.org/resources/conference-timeline/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AAAI 2027 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"The 40th Annual AAAI Conference on Artificial Intelligence","url":"https://aaai.org/conference/aaai/aaai-26/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"AAAI-27 - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/"},{"title":"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...","url":"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/conference/?id=aaai27"}]
+
+Based on the search results, here is the information for AAAI 2027 paper submission deadlines:
+
+The abstract deadline for AAAI 2027 is July 21, 2026 at 11:59 PM UTC-12, and the full paper deadline is July 28, 2026 at 11:59 PM UTC-12. The conference will be held from February 16 to February 23, 2027 in Montréal, Canada.
+
+Additional deadlines include supplementary material and code due by July 31, 2026, notification of Phase 1 rejections on September 24, 2026, an author feedback window from October 19-25, 2026, and final notification of acceptance or rejection on November 30, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5fc8e7db-e95a-4c0c-921e-31fbff84aa6f",
+  "isSidechain": false,
+  "promptId": "b57ebe29-19ac-454a-8f8e-1b7a5d34d729",
+  "type": "user",
+  "uuid": "9a766963-22d1-4c46-b38a-c06cdacdce2d",
+  "toolUseResult": {
+    "query": "AAAI 2027 paper submission deadline abstract deadline July 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EqSyD7nZ87mdZ7MbfEbnzH",
+        "content": [
+          {
+            "title": "AAAI-26 Submission Instructions - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+          },
+          {
+            "title": "AI/ML Conference Timeline | NIU AI",
+            "url": "https://www.niuai.org/resources/conference-timeline/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AAAI 2027 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "The 40th Annual AAAI Conference on Artificial Intelligence",
+            "url": "https://aaai.org/conference/aaai/aaai-26/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "AAAI-27 - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/"
+          },
+          {
+            "title": "🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...",
+            "url": "https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/conference/?id=aaai27"
+          }
+        ]
+      },
+      "Based on the search results, here is the information for AAAI 2027 paper submission deadlines:\n\nThe abstract deadline for AAAI 2027 is July 21, 2026 at 11:59 PM UTC-12, and the full paper deadline is July 28, 2026 at 11:59 PM UTC-12. The conference will be held from February 16 to February 23, 2027 in Montréal, Canada.\n\nAdditional deadlines include supplementary material and code due by July 31, 2026, notification of Phase 1 rejections on September 24, 2026, an author feedback window from October 19-25, 2026, and final notification of acceptance or rejection on November 30, 2026."
+    ],
+    "durationSeconds": 3.7667121849999967
+  },
+  "sourceToolAssistantUUID": "5fc8e7db-e95a-4c0c-921e-31fbff84aa6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-15T16:09:49.501Z_
+
+Good — I now have all the facts I need. Let me verify one more thing about AACL commitment details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9a766963-22d1-4c46-b38a-c06cdacdce2d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eQ1L3bAqzFToxpL9Jj",
+  "type": "assistant",
+  "uuid": "c0fb24bb-52c8-4adc-8fbe-07a4e1aa702a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016oT7U2oPx6J5whPizhkRmf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 780,
+      "cache_read_input_tokens": 37845,
+      "output_tokens": 162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 780,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 162,
+          "cache_read_input_tokens": 37845,
+          "cache_creation_input_tokens": 780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 780
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-15T16:09:50.937Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01C6ddwZTcwgHNiRmiRq2bPt`</summary>
+
+```json
+{
+  "url": "https://aclrollingreview.org/dates",
+  "prompt": "List ALL venue commitment deadlines for the May 2026 and August 2026 ARR cycles. Which venues can May 2026 cycle papers commit to? Which venues can August 2026 cycle papers commit to? I need exact dates and venue names."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0fb24bb-52c8-4adc-8fbe-07a4e1aa702a",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eQ1L3bAqzFToxpL9Jj",
+  "type": "assistant",
+  "uuid": "7484e8cd-aa24-4892-a4a0-637d397d3402",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016oT7U2oPx6J5whPizhkRmf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 780,
+      "cache_read_input_tokens": 37845,
+      "output_tokens": 162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 780,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 162,
+          "cache_read_input_tokens": 37845,
+          "cache_creation_input_tokens": 780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 780
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T16:09:53.469Z_
+
+<details><summary>↩ Tool result · `toolu_01C6ddwZTcwgHNiRmiRq2bPt`</summary>
+
+```text
+# ARR Venue Commitment Deadlines
+
+## May 2026 Cycle Papers
+
+Papers submitted in May 2026 can commit to:
+
+1. **EMNLP 2026** - Commitment deadline: "August 2, 2026"
+2. **AACL 2026** - Commitment deadline: "August 26, 2026"
+
+## August 2026 Cycle Papers
+
+Papers submitted in August 2026 can commit to:
+
+1. **EACL 2027** - Commitment deadline: "October 11, 2026"
+
+---
+
+**Summary:** The May cycle supports two venues with August deadlines, while the August cycle has one venue with an October deadline. Papers from the May submission round have two destination options, whereas August submissions are limited to EACL 2027.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7484e8cd-aa24-4892-a4a0-637d397d3402",
+  "isSidechain": false,
+  "promptId": "b57ebe29-19ac-454a-8f8e-1b7a5d34d729",
+  "type": "user",
+  "uuid": "ddf913ed-3a83-4d40-901f-0ae3e269e878",
+  "toolUseResult": {
+    "bytes": 25438,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ARR Venue Commitment Deadlines\n\n## May 2026 Cycle Papers\n\nPapers submitted in May 2026 can commit to:\n\n1. **EMNLP 2026** - Commitment deadline: \"August 2, 2026\"\n2. **AACL 2026** - Commitment deadline: \"August 26, 2026\"\n\n## August 2026 Cycle Papers\n\nPapers submitted in August 2026 can commit to:\n\n1. **EACL 2027** - Commitment deadline: \"October 11, 2026\"\n\n---\n\n**Summary:** The May cycle supports two venues with August deadlines, while the August cycle has one venue with an October deadline. Papers from the May submission round have two destination options, whereas August submissions are limited to EACL 2027.",
+    "durationMs": 2529,
+    "url": "https://aclrollingreview.org/dates"
+  },
+  "sourceToolAssistantUUID": "7484e8cd-aa24-4892-a4a0-637d397d3402",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-15T16:10:19.841Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me summarize what I've learned and plan the revisions:
+
+1. **ARR Timeline Fix (CRITICAL)**:
+   - ARR 2026 cycles: March 16, May 25, August 3, October 12
+   - No June cycle exists
+   - May 25 is the ONLY cycle for EMNLP 2026 (commitment deadline August 2)
+   - If May 25 is missed, August 3 cycle can commit to EACL 2027 (commitment deadline October 11) or AACL 2026 (wait, AACL commitment is August 26 — that's for May cycle papers too)
+   - Actually, from the data: May cycle → EMNLP 2026 (Aug 2) or AACL 2026 (Aug 26). August cycle → EACL 2027, while full paper → AAAI 2027
+
+2. **HaDeMiF (ICLR 2025)**: The approach fuses hidden states through an MLP alongside prediction characteristics like confidence, uncertainty, and consistency via D3T, applying static fusion on complete responses with less than 2% parameter overhead.
+
+3. **INSIDE/EigenScore (ICLR 2024)**: This method computes eigenvalues from the covariance matrix of sentence embeddings at the last token of middle layers, generating multiple responses to build the covariance matrix and using log-det as the hallucination score. It achieves strong results on CoQA (80.4%) and SQuAD (81.5-83.8% AUROC), establishing a key foundation for hidden-state-based detection approaches.
+
+4. **Streaming Hallucination Detection (2601.02170)**: This work frames hallucination detection differently—as an evolving latent state during long chain-of-thought reasoning rather than factual QA tasks. It relies on external NLI judges rather than internal model signals, operating at the cumulative prefix level.
+
+Now I'm looking at the reviewer feedback about minor revisions needed. The core architecture and experimental design are solid, so I need to make targeted updates: remove references to the June ARR cycle and clarify that May 25 is the firm deadline with August 3 as a backup for EACL 2027, add the HaDeMiF citation to properly position the work in the landscape, and integrate the INSIDE/EigenScore reference into the SpectralTrack description.
+
+Going through each section systematically: the core problem and opportunity sections don't need changes, but the landscape section needs HaDeMiF added to the multi-signal fusion subsection and INSIDE/EigenScore positioned in foundational works, while strengthening how Streaming Hallucination Detection fits into the broader context. The approach section requires adding INSIDE/EigenScore to SpectralTrack and removing the June ARR backup language from the venue strategy. I'll need to update the resource estimate and target venues to reflect the corrected timeline, and add the missing references to the key_references section.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ddf913ed-3a83-4d40-901f-0ae3e269e878",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eQYbVN3PgwvZKa447s",
+  "type": "assistant",
+  "uuid": "e6b6e2a6-8e57-4536-93a5-d7a1173e27d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HsFQh6WymxmNCKgPAF4GkA",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 361,
+      "cache_read_input_tokens": 38625,
+      "output_tokens": 11292,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 361,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11292,
+          "cache_read_input_tokens": 38625,
+          "cache_creation_input_tokens": 361,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 361
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-15T16:14:25.217Z_
+
+I have all the facts I need. Here's what I found:
+
+- **ARR 2026 cycles confirmed**: March 16, May 25, August 3, October 12 — no June cycle. May 25 → EMNLP 2026 (Aug 2) or AACL 2026 (Aug 26). August 3 → EACL 2027 (Oct 11).
+- **HaDeMiF (ICLR 2025)**: Fuses hidden states (MLP) + prediction characteristics (D3T) statically on complete responses, <2% parameter overhead.
+- **INSIDE/EigenScore (ICLR 2024)**: Sentence-level eigenvalue metric on covariance of last-token middle-layer embeddings across multiple generations. Foundational for hidden-state hallucination detection.
+- **Streaming Hallucination Detection (2601.02170)**: External NLI judges on CoT reasoning steps, cumulative prefix-level hallucination signal.
+
+All three reviewer issues are targeted fixes to an otherwise sound proposal. Producing the revised JSON now.
+
+```json
+{
+  "change_type": "minor",
+  "title": "TemporalFuse: Adaptive Multi-Signal Temporal Fusion for Early Hallucination Detection via Learned Signal Dynamics",
+  "core_problem": "Real-time hallucination detection during LLM generation requires monitoring internal signals, but practitioners face two unsolved problems. First, existing detectors each rely on a single signal type — attention patterns (SinkProbe, AUROC 0.89 on HaluEval-QA), hidden-state dynamics (EigenTrack, 0.82–0.94 AUROC; HSAD via FFT), or log-probabilities (HALT via GRU) — with no principled way to combine them. Static comparisons disagree on which signal is best: HALUPROBE (arXiv 2502.13490) and Proxy Analyzers (arXiv 2605.07209) both find attention-based features dominant (attention entropy + per-head source-document attention account for 88%+ of Random Forest importance in Proxy Analyzers), while krogoldAI's empirical study finds FFN activations (82.96% accuracy, 91.04% AUC) outperform attention (79.90%, 88.46% AUC), concluding attention 'added no value beyond what FFN activations already provided.' This conflict persists because all comparisons are static — they collapse temporal dynamics into single snapshots, ignoring that different signals may carry complementary information at different generation stages. Second, and more critically, no existing method optimizes for early detection — identifying hallucination from partial responses (e.g., after only 25% of tokens are generated). Current detectors are trained and evaluated on complete responses, yet real-time guardrails must act as early as possible. Early time series classification is well-established in other domains (MultiETSC, RL-based early classifiers) but has never been applied to hallucination detection during LLM generation. These two gaps — no multi-signal temporal fusion, no early-detection optimization — mean practitioners building real-time hallucination guardrails must choose a single signal type with no principled basis, deploy a detector that cannot be trusted until generation is nearly complete, and sacrifice either accuracy (single signal) or latency (waiting for full response).",
+  "opportunity": "Five independent research threads converge to make adaptive temporal fusion both possible and timely. (1) Signal validation: SinkProbe (arXiv 2604.10697) established attention sinks, EigenTrack (arXiv 2509.15735) validated hidden-state spectral features, and HALT (arXiv 2602.02888) proved log-probability time series — each independently effective for hallucination detection via temporal modeling, but never combined. The foundational basis for internal-state hallucination detection was established by INSIDE (ICLR 2024), which showed that LLMs' internal states retain hallucination-detection power via EigenScore, an eigenvalue-based metric on hidden-state covariance matrices. (2) Causal grounding: SinkTrack (ICLR 2026) demonstrated that modifying attention sinks causally affects hallucination; ReDeEP (ICLR 2025) showed Knowledge FFNs and Copying Heads carry mechanistically distinct hallucination information — establishing that different signal types carry independent, non-redundant information. (3) Temporal complementarity evidence: Hallucination as Trajectory Commitment (arXiv 2604.15400) showed residual-stream trajectories bifurcate at the first generated token in 44.3% of prompts, while Shadows in the Attention (arXiv 2505.16894) found attention-locking thresholds emerge gradually — suggesting attention and hidden-state signals have fundamentally different temporal profiles, creating an opportunity for fusion. (4) Cross-modal fusion precedent: Attention-based fusion of multiple temporal signal streams is well-established in multivariate time series anomaly detection (MFGAN, DSAC) and multi-modal monitoring, but has never been applied to LLM internal signals. (5) Early classification methodology: Prefix-based multi-horizon training for time series is mature (tslearn, MultiETSC), providing the methodological foundation for optimizing detection at partial observation.\n\nThe key insight: if different signals carry complementary information at different generation stages (attention sinks as routing indicators, hidden states as computation indicators, log-probs as confidence indicators), then a learned time-varying fusion should outperform any fixed single-signal detector, and optimizing for early detection should yield faster-acting guardrails. We test this with TemporalFuse — the first adaptive multi-signal temporal fusion method for hallucination detection during autoregressive generation. The fusion architecture is the primary methodological contribution; the analysis of learned signal weights provides the first temporal comparison of signal types as an interpretable byproduct.",
+  "landscape": "**Static signal-type comparison for hallucination detection:** HALUPROBE (arXiv 2502.13490, Feb 2025) compares attention weights, hidden-state activations, and logits with static classifiers on Llama-2-7B and Vicuna-7B, finding attention-based lookback ratio achieves highest accuracy. Proxy Analyzers (arXiv 2605.07209, May 2026) finds per-head source-document attention and attention entropy account for 88%+ of Random Forest importance across 18 features and 7 analyzer architectures. However, krogoldAI (HuggingFace blog, Dec 2025) found FFN activations (91.04% AUC) outperform attention (88.46% AUC) using Ministral-8B on 145K examples — directly contradicting both. LLM-Check (NSF 2025) also finds hidden-state methods (SAPLMA) generally outperform logit-based and attention-based methods. All comparisons are static; none model temporal dynamics during generation. **TemporalFuse resolves this conflict by showing how optimal signal reliance varies across generation stages — a signal dominant statically may not be dominant at partial observation.**\n\n**Foundational internal-state detection:** INSIDE (ICLR 2024, Chen et al.) established the foundational principle that LLMs' internal states retain hallucination-detection power, introducing EigenScore — an eigenvalue-based metric on the covariance matrix of last-token middle-layer embeddings across multiple generations. EigenScore measures semantic consistency in the dense embedding space and achieved 80–84% AUROC across QA benchmarks. This directly informs SpectralTrack's feature design: while INSIDE operates at the sentence level across multiple generations, SpectralTrack extends eigenvalue-based features to per-step sliding-window analysis within a single generation, enabling temporal tracking.\n\n**Multi-signal fusion for hallucination detection:** HaDeMiF (ICLR 2025, Zhou et al.) fuses hidden states (via MLP) and prediction characteristics — confidence, uncertainty, consistency — (via Deep Dynamic Decision Tree) for hallucination detection and calibration, achieving effective detection with <2% parameter overhead. However, HaDeMiF operates on complete responses with static fusion of output-space characteristics and hidden states; it does not model temporal dynamics during generation, does not incorporate attention-based signals, and does not optimize for early detection. HaluNet (arXiv 2512.24562, Dec 2025) fuses semantic embeddings, log-likelihoods, and entropy via a multi-branch architecture — but uses parallel fusion on complete responses, not learned temporal fusion during generation. ReDeEP (ICLR 2025) combines Knowledge FFN scores and Copying Head attention for RAG hallucination detection — mechanistically principled but operates on single forward passes. CHARM (ICLR 2026) applies GNNs on graphs combining attention and activation features — static aggregation, no temporal modeling. UniFact (arXiv 2512.02772) benchmarks hidden-state and logit methods but does not fuse signals. **No prior work — including HaDeMiF, HaluNet, and CHARM — learns time-varying weights over multiple signal types during autoregressive generation or optimizes for early detection at partial observation.**\n\n**Single-signal temporal/trajectory detection:** EigenTrack (arXiv 2509.15735) tracks hidden-state spectral dynamics via GRU (0.82–0.94 AUROC). HALT (arXiv 2602.02888) treats log-probs as time series via bidirectional GRU. HSAD (arXiv 2509.13154) applies FFT to cross-layer hidden-state activations. Step-Level Hidden-State Transport Geometry (arXiv 2605.13772) uses BiLSTM on hidden-state geometric features. ICR Probe (ACL 2025) tracks cross-layer hidden-state evolution. **Each validates temporal modeling for one signal type; none combine multiple signals or optimize for early detection.**\n\n**Streaming and temporal hallucination detection during generation:** Streaming Hallucination Detection (arXiv 2601.02170, Lu et al.) also models hallucination as temporally evolving during generation, treating step-level hallucination judgments as local observations and introducing a cumulative prefix-level signal that tracks the global evolution of the reasoning state. However, it uses external NLI judges on chain-of-thought reasoning steps rather than fusing internal signal streams — a fundamentally different signal source (external model judgments vs. internal activations), different task domain (long CoT reasoning vs. factual QA generation), and different method (cumulative NLI scoring vs. learned multi-signal temporal fusion). TemporalFuse shares the temporal framing but addresses the complementary problem of fusing multiple internal signals for factual QA, without requiring external judges.\n\n**Cascaded/adaptive detection systems:** HaluGate (vLLM blog, Dec 2025) implements a three-stage cascade (Sentinel binary classifier → token-level detector → NLI explainer) achieving 72.2% query skip rate — but cascades at the query-type level using external signals, not across internal signal types. HALL-OPT (Nature Scientific Reports 2026) combines dual-stream attention detection with adaptive token pruning — but streams are parallel, not sequentially gated. Monitoring Decoding (ACL Findings 2025) gates expensive correction based on cheap monitoring — gates mitigation, not detection depth. Energy-efficient speculative decoding (arXiv 2508.12590) filters tokens for expensive verification using attention-weight statistics and uncertainty — the closest paradigm to our approach but applied to speculative decoding, not hallucination detection. **No prior work cascades across internal signal types (attention → hidden states → log-probs) with learned escalation for hallucination detection.**\n\n**Cross-modal temporal fusion in other domains:** Attention-based fusion of multiple temporal signal streams is well-established in multivariate time series anomaly detection (MFGAN, DSAC), video anomaly detection, and industrial monitoring. These provide architectural precedent for our cross-signal attention mechanism but have never been applied to LLM internal signals.\n\n**The open gaps:** (1) No method fuses multiple internal signal types with learned temporal weighting during generation — existing fusion is static (HaDeMiF, HaluNet, CHARM, ReDeEP) or external (HaluGate). (2) No method optimizes for early detection at partial observation fractions — all detectors are trained on complete responses. (3) No analysis shows how optimal signal reliance changes during generation — static comparisons collapse temporal dynamics. TemporalFuse addresses all three.",
+  "approach": "We propose TemporalFuse, an adaptive temporal fusion method that learns time-varying weights over three internal signal streams — attention sinks, hidden-state spectral features, and log-probabilities — to detect hallucination during autoregressive generation, optimized for the earliest possible detection. The primary methodological contribution is the fusion architecture and early-detection training objective; the analysis of learned fusion weights provides the first temporal signal comparison as an interpretable byproduct.\n\n**Theoretical Motivation: Why Fusion Should Outperform Single Signals.** The three signal types occupy different positions in the transformer's computational pipeline: attention heads function as information routing (WHERE the model reads — Wu et al., ICLR 2025), hidden states represent accumulated computation (WHAT the model has computed — FFN key-value memories, Geva et al., EMNLP 2021), and log-probabilities reflect output confidence (HOW certain the model is). Because routing decisions causally precede the computation they gate, and both precede the output distribution, these signals should carry complementary information: a routing error may appear in attention features before the residual stream incorporates erroneous information, while confidence collapse in log-probs may be the most direct indicator of hallucination once it manifests. If the signals are temporally complementary (shifting at different times and rates), learned fusion can outperform any individual signal by attending to the most informative signal at each generation stage. If they are temporally redundant, fusion still cannot underperform the best individual signal (it can learn to assign all weight to one arm). This asymmetry makes fusion the principled default.\n\n**Architecture: Three-Arm Temporal Encoder + Cross-Signal Gating + Early-Detection Loss.**\n\nFor each generation, we extract three parallel feature streams at every decoding step t:\n\n*Arm 1 — SinkWatch (Attention Sinks):* Per-step features from top-K informative head-layer combinations (K=5–15) identified via SinkProbe's ℓ₁-regularized analysis: sink scores for top-k sink tokens (k=2–3), sink concentration, sink entropy, context-attention ratio, plus first-order temporal derivatives. Raw dim ~50–120.\n\n*Arm 2 — SpectralTrack (Hidden States):* Per-step spectral features from sliding-window covariance matrices of hidden-state activations: leading eigenvalues, spectral gaps, entropy, RMT statistics. This extends the eigenvalue-based hallucination detection paradigm established by INSIDE/EigenScore (ICLR 2024, Chen et al.) — which showed that eigenvalues of hidden-state covariance matrices capture hallucination-relevant semantic structure — from sentence-level multi-generation analysis to per-step sliding-window tracking within a single generation, matching EigenTrack's temporal design. Raw dim ~10–20.\n\n*Arm 3 — LogProbTrack (Log-Probabilities):* Per-step log-probability features: token log-prob, predictive entropy, top-k probability gap, rank. Matching HALT's design. Raw dim ~25.\n\nEach arm includes a per-arm learned linear projection to common dimension d=32, then feeds into an identical unidirectional GRU (hidden_dim=64, ~25K recurrent parameters). At each step t, the three GRU hidden states h_t^sink, h_t^spec, h_t^logp ∈ ℝ^64 represent modality-specific temporal summaries.\n\n**Cross-Signal Gating Network (Novel Component 1).** A learned gating network dynamically weights the three signal streams at each step:\n- Input: concatenation [h_t^sink; h_t^spec; h_t^logp] ∈ ℝ^192\n- Gating MLP: 192 → 64 (ReLU) → 3 (softmax) → gate weights α_t ∈ ℝ^3\n- Fused representation: z_t = Σ_i α_t^i · h_t^i ∈ ℝ^64\n- Detection score: ŷ_t = σ(w^T z_t + b)\n\nThe gate weights α_t are directly interpretable: α_t^sink = 0.6 at step 5 means the model assigns 60% importance to attention sink features at that generation stage. By plotting mean gate weights across steps for factual vs. hallucinated generations, we obtain the first temporal map of signal importance during hallucination — the comparison result emerges as an interpretable analysis of the method. Total gating parameters: ~12.5K (negligible vs. 75K total GRU parameters).\n\n**Multi-Horizon Early-Detection Loss (Novel Component 2).** Instead of training only on complete responses, we optimize detection at multiple observation fractions simultaneously:\n\nL = Σ_{f ∈ F} w_f · BCE(ŷ_{T·f}, y)\n\nwhere F = {0.25, 0.50, 0.75, 1.0} are observation fractions, ŷ_{T·f} is the detection score at step ⌊T·f⌋, y is the ground-truth label, and w_f = f (linear weighting — more lenient at early fractions, full weight at complete observation). This adapts early time series classification methodology (MultiETSC, RL-based early classifiers) to hallucination detection for the first time, explicitly training the model to produce informative predictions before generation is complete. The loss encourages the gating network to attend to whichever signal carries the earliest discriminative information.\n\n**Primary Analyses (EMNLP Short Paper).** (1) Fusion vs. individual arms: AUROC/AUPRC comparing TemporalFuse against each individual arm, testing whether fusion outperforms the best single signal. (2) Early-detection curves: AUROC at observation fractions {0.10, 0.25, 0.50, 0.75, 1.0} for TemporalFuse vs. individual arms, demonstrating the benefit of multi-horizon training. (3) Temporal signal importance map: mean gate weights α_t across steps for factual vs. hallucinated generations — the first visualization of how optimal signal reliance changes during hallucination onset. This directly answers 'which signal, when?' without framing it as a standalone comparison study. (4) Static-vs-temporal ranking: comparing signal rankings from our learned gate weights against HALUPROBE's and Proxy Analyzers' static findings. (5) Ablation: TemporalFuse with/without multi-horizon loss; TemporalFuse with/without gating (equal-weight fusion baseline); individual arms with temporal GRU vs. static logistic regression.\n\n**Statistical Rigor.** 5-fold stratified cross-validation, reporting mean ± std for all metrics. Bootstrap 95% CIs (1000 resamples) for pairwise comparisons. Paired permutation tests (10,000 permutations, p < 0.05). Cohen's d effect sizes.\n\n**Entity-Match Onset Annotation (for temporal signal importance analysis).** For the subset of TruthfulQA used in temporal gate-weight analysis, we apply objective NER-based curation: include questions where (a) the reference answer contains ≥1 named entity detected by spaCy NER (model en_core_web_lg), AND (b) the question matches factoid patterns (starts with 'Who', 'What is/was', 'Where is/was', 'When did/was', or contains 'name of'). Onset = first generated token matching a hallucinated entity (entity not in reference, detected by NER). We supplement with NLI sliding-window annotation (window size 10 tokens, entailment threshold 0.5 via DeBERTa-v3-large-MNLI). Report agreement rate between entity-match and NLI-window onset.\n\n**Pilot Design (First 48 hours).** 100 TruthfulQA examples on Llama-3.1-8B: extract all three feature streams, train TemporalFuse and individual arms. **Decision rule:** If all three signals are perfectly correlated temporally (Pearson r > 0.95 between per-step GRU logits across all arm pairs), fusion cannot help — pivot to analyzing why temporal dynamics are redundant despite carrying different static information. If signals show distinct temporal profiles (r < 0.85 for at least one pair), proceed with full experiments.\n\n**Dual-Target Venue Strategy:**\n\n*EMNLP 2026 (ARR May 25 — short paper, 4 pages):* 1 model (Llama-3.1-8B-Instruct), 1 benchmark (TruthfulQA), 1K examples. Focus: TemporalFuse method + early-detection curves + temporal signal importance map + ablations. Core claim: adaptive temporal fusion outperforms individual signals, especially at partial observation. May 25 is the only ARR submission deadline eligible for EMNLP 2026 commitment (August 2, 2026). There is no June ARR cycle — the 10-day timeline (May 15–25) is non-negotiable for EMNLP 2026. If May 25 is missed, the short paper targets the August 3 ARR cycle for commitment to EACL 2027 (commitment deadline October 11, 2026), while the full method paper proceeds to AAAI 2027 independently.\n\n*AAAI 2027 (full paper, 8 pages, abstract deadline July 21, paper deadline July 28):* 3 models (Llama-3.1-8B, Mistral-7B-v0.3, Llama-3.1-70B), 3 benchmarks (TruthfulQA, TriviaQA, HaluEval-QA), 2K examples per pair. **Fourth arm: FFN activations** (matching krogoldAI's feature design — mean-pooled FFN outputs from informative mid-layers) to directly resolve the conflicting static evidence. Full temporal characterization, complementarity analysis, CascadeProbe extension (using learned gate thresholds as escalation triggers for compute-adaptive detection), DoLa intervention when the fused probability exceeds threshold.\n\n**Baselines.** Single-signal temporal: individual GRU arms (SinkWatch, SpectralTrack, LogProbTrack). Static: SinkProbe, LapEigvals, TOHA. Prior temporal: EigenTrack, HALT. Online: MIND, DRIFT, PCNet. Multi-signal static: HaDeMiF-style fusion (hidden states + prediction characteristics, static), HaluNet-style parallel fusion (equal-weight concatenation of static features). Ablation: equal-weight temporal fusion (no gating), TemporalFuse without multi-horizon loss.\n\n**Evaluation Metrics.** Primary: AUROC and AUPRC with 95% bootstrap CIs. Secondary: early-detection AUROC at partial observation fractions, F1 at calibrated threshold, latency overhead (ms/token), gate weight entropy (measuring signal specialization), Cohen's d. For AAAI: hallucination rate reduction with DoLa intervention, compute-accuracy Pareto curves for CascadeProbe.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~190h H100 total. EMNLP short paper: ~52h (feature extraction for 3 arms × 1K examples on Llama-8B: ~20h; GRU + fusion training with 5-fold CV: ~10h; baselines including HaDeMiF-style and HALUPROBE-style: ~12h; curated subset annotation + analysis: ~6h; pilot: ~4h). AAAI full paper (incremental): ~138h additional (multi-model extraction: ~60h; 70B experiments: ~20h; 4th FFN arm: ~12h; CascadeProbe extension: ~8h; extended baselines + DoLa intervention: ~20h; additional CV + ablations: ~18h).",
+      "gpu_utilization": "Moderate (~50–60%).",
+      "timeline": "EMNLP short paper: 10 days (May 15–25). This timeline is non-negotiable — May 25 is the only ARR deadline eligible for EMNLP 2026. If missed, the short paper shifts to the August 3 ARR cycle targeting EACL 2027. AAAI full paper: additional 8 weeks (May 25–July 21).",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "$475–570"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~210h H100 total.",
+      "gpu_utilization": "Moderate-high (~60–70%).",
+      "timeline": "EMNLP: 10 days (May 15–25, non-negotiable for EMNLP 2026; fallback: August 3 ARR → EACL 2027). AAAI: 8 additional weeks.",
+      "team": "1 researcher, ~60min/day for EMNLP sprint, ~45min/day for AAAI",
+      "claude_api_cost": "$220–380 (~2200–3800 turns).",
+      "estimated_gpu_cost": "$525–630.",
+      "risk_note": "Primary risk: signals may be temporally redundant (fusion ≈ best individual arm). Mitigation: (1) pilot correlation check in first 48 hours — if r > 0.95 across all pairs, shift focus to understanding why; (2) even if fusion margin is small, the early-detection curves and temporal signal importance maps are novel contributions independent of fusion magnitude; (3) the multi-horizon loss may still improve individual arms. Secondary risk: the 10-day EMNLP timeline is aggressive and non-negotiable — May 25 is the only ARR submission deadline for EMNLP 2026 commitment (August 2). There is no June ARR cycle; the next cycle after May 25 is August 3, which can only commit to EACL 2027 (October 11 commitment deadline). Mitigation: (1) short paper scope (1 model, 1 benchmark) is tractable in 10 days; (2) fusion architecture adds minimal implementation overhead (~200 lines on top of three arms); (3) if EMNLP is missed, the short paper targets August 3 ARR → EACL 2027, while the full method paper proceeds to AAAI 2027 (July 28 paper deadline) independently — both venue paths remain viable. Tertiary risk: entity-match onset annotation unreliable. Mitigation: NER-based curation criteria are objective and reproducible; NLI sliding-window supplement provides independent validation; TriviaQA added as primary onset benchmark in AAAI version."
+    },
+    "auto_research": {
+      "gpu_hours": "~230h H100 total.",
+      "gpu_utilization": "High (~80%+).",
+      "timeline": "EMNLP: 7–8 days. AAAI: 3 additional weeks.",
+      "team": "0 (initial setup + final review only)",
+      "claude_api_cost": "$320–530 (~3200–5300 turns).",
+      "estimated_gpu_cost": "$575–690.",
+      "speed_bottleneck": "Bottlenecked by eager-mode attention extraction (~3–4× slower than standard inference). 1K examples × ~100 tokens ≈ 10–15h on single H100, parallelizable. The gating network and multi-horizon loss add negligible training overhead."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (primary short-term target — ARR May 25, 2026, the only submission deadline eligible for EMNLP 2026 commitment on August 2, 2026; 4-page short paper focusing on TemporalFuse method, early-detection curves, and temporal signal importance analysis; Findings track acceptable; if missed, short paper targets August 3 ARR → EACL 2027 commitment October 11, 2026)",
+    "AAAI 2027 (primary long-term target — abstract deadline July 21, paper deadline July 28, 2026; full 8-page method paper with 4 signal arms including FFN, multi-model evaluation, CascadeProbe extension, intervention experiments)",
+    "ICLR 2027 (fallback — deadline expected ~October 2026; allows additional experiments if AAAI timeline requires descoping)"
+  ],
+  "level": "solid-to-strong",
+  "key_references": [
+    "What are Models Thinking about? Understanding Large Language Model Hallucinations 'Psychology' through Model Inner State Analysis [HALUPROBE] (arXiv 2502.13490, Feb 2025)",
+    "Hallucination Detection via Activations of Open-Weight Proxy Analyzers [Proxy Analyzers] (arXiv 2605.07209, May 2026)",
+    "Towards Unification of Hallucination Detection and Fact Verification for Large Language Models [UniFact] (arXiv 2512.02772, Dec 2025)",
+    "Attention Sinks as Internal Signals for Hallucination Detection in Large Language Models [SinkProbe] (arXiv 2604.10697, April 2026)",
+    "EigenTrack: Spectral Activation Feature Tracking for Hallucination and Out-of-Distribution Detection in LLMs and VLMs (arXiv 2509.15735, 2025)",
+    "HALT: Hallucination Assessment via Log-probs as Time series (arXiv 2602.02888, Feb 2026)",
+    "Unsupervised Real-Time Hallucination Detection based on the Internal States of Large Language Models [MIND] (ACL Findings 2024, arXiv 2403.06448)",
+    "LLM Hallucination Detection: A Fast Fourier Transform Method Based on Hidden Layer Temporal Signals [HSAD] (arXiv 2509.13154, Sep 2025)",
+    "HaluNet: Multi-Granular Uncertainty Modeling for Efficient Hallucination Detection in LLM Question Answering (arXiv 2512.24562, Dec 2025)",
+    "ReDeEP: Detecting Hallucination in Retrieval-Augmented Generation via Mechanistic Interpretability (ICLR 2025, arXiv 2410.11414)",
+    "HaDeMiF: Hallucination Detection and Mitigation in Large Language Models (ICLR 2025, OpenReview VwOYxPScxB, arXiv 2601.09929)",
+    "INSIDE: LLMs' Internal States Retain the Power of Hallucination Detection [EigenScore] (ICLR 2024, arXiv 2402.03744)",
+    "Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation (arXiv 2604.15400, April 2026)",
+    "Before the First Token: Scale-Dependent Emergence of Hallucination Signals in Autoregressive Language Models (arXiv 2604.13068, April 2026)",
+    "Where Does Reasoning Break? Step-Level Hallucination Detection via Hidden-State Transport Geometry (arXiv 2605.13772, May 2026)",
+    "Shadows in the Attention: Contextual Perturbation and Representation Drift in the Dynamics of Hallucination in LLMs (arXiv 2505.16894, May 2025)",
+    "HalluSAE: Detecting Hallucinations in Large Language Models via Sparse Auto-Encoders (arXiv 2604.16430, April 2026)",
+    "Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination (arXiv 2605.05686, May 2026)",
+    "Uncertainty-Aware Attention Heads: Efficient Unsupervised Uncertainty Quantification for LLMs [RAUQ] (arXiv 2505.20045, May 2025)",
+    "Hallucination Detection in LLMs with Topological Divergence on Attention Graphs [TOHA] (ACL 2026, arXiv 2504.10063)",
+    "SinkTrack: Attention Sink based Context Anchoring for Large Language Models (ICLR 2026, arXiv 2604.10027)",
+    "FACTUM: Mechanistic Detection of Citation Hallucination in Long-Form RAG (arXiv 2601.05866, Jan 2026)",
+    "First Hallucination Tokens Are Different from Conditional Ones (arXiv 2507.20836, 2025)",
+    "Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (arXiv 2604.04743, April 2026)",
+    "ICR Probe: Tracking Hidden State Dynamics for Reliable Hallucination Detection in LLMs (ACL 2025, arXiv 2507.16488)",
+    "Real-Time Detection of Hallucinated Entities in Long-Form Generation (arXiv 2509.03531, 2025)",
+    "Attention Sink in Transformers: A Survey on Utilization, Interpretation, and Mitigation (arXiv 2604.10098, April 2026)",
+    "Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits [PCNet/PC-LDCD] (arXiv 2605.05953, May 2026)",
+    "DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness (arXiv 2601.14210, Jan 2026)",
+    "Hallucination Detection in LLMs Using Spectral Features of Attention Maps [LapEigvals] (EMNLP 2025, arXiv 2502.17598)",
+    "Neural Message-Passing on Attention Graphs for Hallucination Detection [CHARM] (ICLR 2026, arXiv 2509.24770)",
+    "Spectral Guardrails for Agents in the Wild: Detecting Tool Use Hallucinations via Attention Topology (arXiv 2602.08082, Feb 2026)",
+    "AggTruth: Contextual Hallucination Detection using Aggregated Attention Scores in LLMs (ICCS 2025, arXiv 2506.18628)",
+    "Streaming Hallucination Detection in Long Chain-of-Thought Reasoning (arXiv 2601.02170, Jan 2026)",
+    "Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation (ACL Findings 2025, arXiv 2503.03106)",
+    "DoLa: Decoding by Contrasting Layers Improves Factuality in Large Language Models (ICLR 2024)",
+    "Detecting Contextual Hallucinations in Large Language Models with Frequency-Aware Attention (arXiv 2602.18145, Feb 2026)",
+    "Mirage in the Eyes: Hallucination Attack on Multi-modal Large Language Models with Only Attention Sink (USENIX Security 2025, arXiv 2501.15269)",
+    "Retrieval Head Mechanistically Explains Long-Context Factuality (Wu et al., ICLR 2025)",
+    "Transformer Feed-Forward Layers Are Key-Value Memories (Geva et al., EMNLP 2021)",
+    "HaluGate: Token-Level Truth — Three-Stage Conditional Hallucination Detection Pipeline (vLLM Blog, Dec 2025)",
+    "HALL-OPT: Hallucination-Aware Learning and Latency Optimization Transformer for Real-Time Edge Intelligence (Nature Scientific Reports, 2026)",
+    "LLM-Check: Investigating Detection of Hallucinations in Large Language Models (NSF, 2025)",
+    "krogoldAI: LLM Hallucination Detection via Internal Representations (HuggingFace Blog, Dec 2025)",
+    "Energy-Efficient Speculative Decoding with Uncertainty-Awareness and Adaptive Token Filtering (arXiv 2508.12590, 2025)"
+  ],
+  "description": "TemporalFuse proposes the first adaptive multi-signal temporal fusion method for early hallucination detection during autoregressive LLM generation. Unlike prior detectors that each rely on a single internal signal type — attention sinks (SinkProbe), hidden-state spectral features (EigenTrack), or log-probabilities (HALT) — and unlike prior multi-signal approaches that fuse statically on complete responses (HaDeMiF fuses hidden states + prediction characteristics via D3T/MLP; HaluNet fuses embeddings + log-likelihoods + entropy via parallel branches; CHARM combines attention and activation features via GNN) — TemporalFuse trains three parallel GRU encoders on these signal streams and introduces a cross-signal gating network that learns time-varying weights over the signal streams at each generation step. The gating MLP (192→64→3 with softmax) produces interpretable per-step weights α_t indicating which signal the model relies on at each generation stage, providing the first temporal map of signal importance during hallucination onset. The method also introduces a multi-horizon early-detection loss that optimizes detection at multiple observation fractions simultaneously (L = Σ w_f·BCE at fractions {0.25, 0.5, 0.75, 1.0}), adapting early time series classification methodology to hallucination detection for the first time — explicitly training the model to detect hallucination from partial responses. The SpectralTrack arm extends the eigenvalue-based hallucination detection paradigm established by INSIDE/EigenScore (ICLR 2024) — which showed LLMs' internal states retain hallucination-detection power via eigenvalues of hidden-state covariance matrices — from sentence-level multi-generation analysis to per-step sliding-window tracking within a single generation. The architecture uses identical GRU encoders (~25K recurrent parameters each) with per-arm linear projections (raw dims ~50–120 / ~10–20 / ~25 → common d=32), ensuring the fusion improvement reflects genuine signal complementarity rather than architectural differences. This directly addresses the unresolved conflict between static signal comparisons: HALUPROBE and Proxy Analyzers find attention dominant, krogoldAI finds FFN/hidden states dominant — TemporalFuse shows how optimal reliance varies temporally, explaining why static snapshots disagree. The framework is grounded in mechanistic interpretability: attention heads route information (WHERE), hidden states accumulate computation (WHAT), log-probs reflect confidence (HOW) — since these pipeline stages process information sequentially, they should carry temporally complementary hallucination signatures, making learned fusion the principled default. For the EMNLP 2026 short paper (ARR May 25 — the only deadline eligible for EMNLP 2026 commitment on August 2; if missed, short paper targets August 3 ARR → EACL 2027): 1 model (Llama-3.1-8B), 1 benchmark (TruthfulQA), 1K examples, demonstrating fusion outperforms individual arms especially at partial observation, with interpretable temporal signal importance analysis. Entity-match onset annotation uses objective NER-based curation (spaCy en_core_web_lg, factoid question patterns). For AAAI 2027 full paper (abstract July 21, paper July 28): adds a fourth FFN activation arm (resolving krogoldAI conflict), 3 models, 3 benchmarks, CascadeProbe extension (using learned gate thresholds for compute-adaptive escalation), and DoLa intervention. All claims supported by 5-fold stratified CV with bootstrap 95% CIs and paired permutation tests. Explicit pilot decision rule: if per-step GRU logits across all arm pairs show Pearson r > 0.95 (temporal redundancy), the contribution focuses on why signals are redundant despite carrying different static information. Total compute: ≤230 H100-hours.",
+  "project_name": "temporal_fuse_hallu",
+  "source": "web_research"
+}
+```
+
+**Summary of changes (all minor, targeted fixes):**
+
+1. **Fixed June ARR factual error (CRITICAL)** — Removed all 6 mentions of "June ARR cycle as realistic backup" across `approach`, `resource_estimate`, `target_venues`, and `description`. Replaced with accurate statement: May 25 is the only ARR deadline for EMNLP 2026 (commitment August 2). Fallback is August 3 ARR → EACL 2027 (commitment October 11). The 10-day timeline is explicitly acknowledged as non-negotiable.
+
+2. **Added HaDeMiF (ICLR 2025) and INSIDE/EigenScore (ICLR 2024)** — HaDeMiF cited and differentiated in the "Multi-signal fusion" landscape subsection (static fusion of hidden states + prediction characteristics on complete responses, vs. TemporalFuse's learned temporal gating of 3 internal signal types during generation). Added to baselines. INSIDE/EigenScore cited in new "Foundational internal-state detection" landscape subsection and in SpectralTrack arm description, establishing the eigenvalue paradigm that SpectralTrack extends from sentence-level to per-step tracking. Both added to `key_references`.
+
+3. **Strengthened Streaming Hallucination Detection positioning** — Expanded from a brief citation to a full differentiation paragraph in a new "Streaming and temporal hallucination detection" landscape subsection: external NLI judges vs. internal signals, CoT reasoning vs. factual QA, cumulative scoring vs. learned multi-signal fusion.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6b6e2a6-8e57-4536-93a5-d7a1173e27d7",
+  "isSidechain": false,
+  "requestId": "req_011Cb4eQYbVN3PgwvZKa447s",
+  "type": "assistant",
+  "uuid": "f77b84f7-f9e4-44e0-961d-0e0236231c79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HsFQh6WymxmNCKgPAF4GkA",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 361,
+      "cache_read_input_tokens": 38625,
+      "output_tokens": 11292,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 361,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11292,
+          "cache_read_input_tokens": 38625,
+          "cache_creation_input_tokens": 361,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 361
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-15 (UTC).**  ## Original idea {   \"title\": \"TemporalFuse: Adaptive Multi-Signal Temporal Fusion for Early Hallucin…",
+  "leafUuid": "f77b84f7-f9e4-44e0-961d-0e0236231c79",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise TemporalFuse with ARR calendar fix and missing citations",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-15 (UTC).**  ## Original idea {   \"title\": \"TemporalFuse: Adaptive Multi-Signal Temporal Fusion for Early Hallucin…",
+  "leafUuid": "f77b84f7-f9e4-44e0-961d-0e0236231c79",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise TemporalFuse with ARR calendar fix and missing citations",
+  "sessionId": "0c4f2d41-a688-45cf-aab7-26af488ae9a4"
+}
+```
+
+---

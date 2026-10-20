@@ -1,0 +1,9208 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-18 (UTC).** Your job: indep
+
+**Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 128
+- **Recorded user turns:** 1
+- **Tool calls:** 41
+- **Original source:** `logs/chats/exported-trajectories/account-3/cef7efc5-7a76-4b70-81bf-6735d6a864fb.jsonl`
+- **Structured JSON:** [`00724327c0acbfaa72cc.json`](../../sessions/00/00724327c0acbfaa72cc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-18T21:17:28.789Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-18T21:17:28.789Z",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-18 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **## Seed 4: Open-Vocabulary Affordance Zero-Shot VLA\n\nObjective: CoRL 2026 submission.\n\nDirection: Traditional affordance methods and VLAs rely on fixed category annotations and struggle with open-world unknown objects and free-form interaction instructions. CoA-VLA (arXiv 2412.20451, December 2024) integrates affordance chain-of-reasoning into VLA, but uses 4 predefined structured affordance types (object, grasp, spatial, motion) — not truly open-vocabulary — and cannot handle free-form interaction descriptions like \"use this thing to wipe off the dust over there.\" GeneralVLA (arXiv 2602.04315, February 2026) achieves zero-shot affordance perception and manipulation trajectory generation through VLM+SAM, but is a modular three-stage pipeline (affordance perception → trajectory planning → low-level control), not a unified end-to-end VLA — with information loss between modules and inability to jointly optimize. OVAL-Prompt (ICRA 2024 VLMNM Workshop, arXiv 2404.11000) achieves truly open-vocabulary affordance localization, but only performs detection/localization without generating actions. AffordDP (CVPR 2025, arXiv 2412.03142) achieves affordance cross-category transfer through 3D contact points and trajectories, but completely lacks language conditioning. Core gap: No work unifies open-vocabulary affordance reasoning into an end-to-end VLA for zero-shot manipulation — existing work either has fixed affordance types (CoA-VLA), or is a modular pipeline (GeneralVLA), or only does detection without actions (OVAL-Prompt), or lacks language (AffordDP).\n\nSeed Papers:\n- \"OpenVLA: An Open-Source Vision-Language-Action Model\" (Kim et al., CoRL 2024, arXiv 2406.09246)\n  — 7B parameter open-source VLA, trained on 970K real robot demonstrations, establishing the VLA open-source paradigm. The base architecture for this work — integrating open-vocabulary affordance reasoning on top.\n- \"CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance\" (Li et al., arXiv 2412.20451, December 2024)\n  — Integrates affordance chain-of-reasoning into VLA: model sequentially reasons about object affordance, grasp affordance, spatial affordance, and motion affordance before predicting actions. Uses visual-language collaborative injection module. Surpasses OpenVLA and Octo. Key limitation: 4 affordance types are predefined/structured, not open-vocabulary — cannot handle arbitrary natural language descriptions of novel interactions.\n- \"GeneralVLA: Generalizable Vision-Language-Action Models with Knowledge-Guided Trajectory Planning\" (Ma et al., arXiv 2602.04315, February 2026)\n  — Hierarchical three-module pipeline: (1) VLM+SAM affordance perception for keypoint detection, (2) mid-level planning agent for trajectory generation, (3) low-level control policy. Achieves zero-shot manipulation across 14 tasks without real-world data. Key limitation: Modular pipeline, not end-to-end — affordance module, trajectory planner, and controller are separated, with information bottlenecks between modules.\n- \"OVAL-Prompt: Open-Vocabulary Affordance Localization for Robot Manipulation through LLM Affordance-Grounding\" (Tong et al., ICRA 2024 VLMNM Workshop, arXiv 2404.11000)\n  — Prompt-based method combining VLM for object part segmentation and LLM for part-affordance grounding mapping, achieving open-vocabulary affordance localization without prior training. Competitive with supervised methods on localization benchmarks. Key limitation: Only performs affordance detection/localization, does not generate robot actions — a perception module, not a complete manipulation system.\n- \"AffordDP: Generalizable Diffusion Policy with Transferable Affordance\" (Wu et al., CVPR 2025, arXiv 2412.03142)\n  — Models manipulation priors through 3D contact points and post-contact trajectories, achieving affordance cross-category transfer using visual models + point cloud registration. Affordance-guided diffusion policy generates actions. Key limitation: No language conditioning — affordances are geometric/contact-based, not language-driven, cannot handle open-vocabulary instructions.\n\nKnown Gap:\n- CoA-VLA integrates affordance into VLA but uses predefined structured types, does not support open vocabulary\n- GeneralVLA does zero-shot affordance manipulation but is a modular pipeline, not end-to-end\n- OVAL-Prompt does open-vocabulary affordance but only detection, no action generation\n- AffordDP does affordance cross-category transfer but no language conditioning\n- VoxPoser (CoRL 2023, arXiv 2307.05973) uses LLM to generate 3D affordance/constraint maps but is modular, no end-to-end learning\n- No work unifies open-vocabulary affordance reasoning into end-to-end VLA\n\nIn Scope: Methods unifying open-vocabulary affordance reasoning into end-to-end VLA architecture. Specifically includes: text prompt-driven open-vocabulary affordance feature activation mechanism, universal shape-function-interaction attribute association learning, end-to-end joint training of affordance reasoning and action generation, zero-shot generalization to unseen object categories and novel language interaction instructions. The core contribution should be a unified architecture, not a modular concatenation of affordance detection + action generation.\n\nOut of Scope: Predefined fixed affordance types (CoA-VLA already done). Modular affordance pipelines (GeneralVLA/VoxPoser already done). Affordance detection only without actions (OVAL-Prompt already done). Affordance transfer without language conditioning (AffordDP already done). Pure affordance benchmarking/analysis.\n\nContribution Type: Method contribution. Output must include (1) unified architecture design for open-vocabulary affordance and VLA, (2) end-to-end training strategy for affordance reasoning and action generation, (3) experimental validation of zero-shot generalization on unseen objects and novel interaction instructions, demonstrating advantages over structured affordance VLA and modular methods.\n\nEvaluation Protocol:\nTraining: Based on OpenVLA architecture, integrating open-vocabulary affordance module. Training data uses LIBERO + affordance annotation data (e.g., AGD20K/UMD Affordance).\nEvaluation Metrics:\n- Primary metric: Zero-shot manipulation success rate on unseen object categories\n- Novel interaction instruction generalization: Language interaction descriptions unseen during training (e.g., train on \"pick up,\" test on \"scoop out\")\n- Affordance localization precision: Compare with detection methods like OVAL-Prompt (ensure affordance understanding itself does not degrade)\n- Manipulation success rate: Compare with standard VLA baselines (ensure adding affordance does not degrade known task performance)\n- Baseline comparisons:\n  1. Affordance-free VLA (OpenVLA direct fine-tuning)\n  2. Structured affordance VLA (CoA-VLA reproduction)\n  3. Modular affordance pipeline (GeneralVLA approach)\n  4. Affordance detection + independent policy (OVAL-Prompt + policy learning)\n  5. LLM affordance map + planning (VoxPoser approach)\n- Ablation studies: Open-vocabulary affordance vs. fixed-type affordance, end-to-end vs. staged training, text-driven affordance vs. vision-driven affordance\n- Cross-object transfer tests: Shape-function association generalization (e.g., if trained on shovel's \"scooping\" affordance, can the model activate the same interaction for novel shovel-like tools?)\n- Free-form instruction tests: Non-templated natural language instruction understanding\n\nBuilding Blocks: OpenVLA codebase (VLA base architecture); CoA-VLA codebase (affordance VLA baseline); OVAL-Prompt codebase (open-vocabulary affordance detection reference); AGD20K/UMD Affordance datasets (affordance annotations); LIBERO benchmark (manipulation task evaluation); DINOv2/SigLIP visual encoders; SAM2 (segmentation); HuggingFace transformers + accelerate; CLIP/SigLIP (open-vocabulary semantic alignment).\n\nHard Constraints:\nCompute: ≤200 H100-hours. Strategy: Fine-tune based on 7B VLA, affordance module leveraging pre-trained VLM features (e.g., CLIP/SigLIP) to reduce training requirements. Training ~80 H100-hours, baseline reproduction ~50 H100-hours, ablation ~40 H100-hours, generalization testing ~30 H100-hours.\nEvaluation: Must validate zero-shot generalization on unseen object categories. Must include free-form language instruction tests. Must include ≥4 baselines. Must report both affordance precision and manipulation success rate. Must include ablation studies and cross-object transfer tests.\n\nExploration Directions: (1) End-to-end activation of VLM internal affordance features: Rather than adding an external affordance detection module to VLA, activate interaction-relevant visual features within VLA's VLM backbone network directly through language instructions. Key insight: Large-scale VLMs (e.g., PaliGemma, SigLIP) have already learned extensive shape-function associations during pre-training (\"knives can cut,\" \"bowls can hold\"), only requiring suitable activation mechanisms to release this implicit knowledge. (2) Affordance as intermediate reasoning tokens: Rather than explicitly outputting affordance heatmaps, have VLA generate a set of \"affordance reasoning tokens\" before generating action token sequences (similar to CoA-VLA's chain reasoning but open-vocabulary). These tokens encode interaction possibilities of objects in the current scene, then condition subsequent action generation. Differs from CoA-VLA: not limited to 4 predefined types; reasoning content is dynamically determined by language instructions. (3) Contrastive learning for universal shape-function-interaction mapping: Add contrastive objective during VLA training to pull together different-shaped objects with similar functions (various \"tools that can scoop things\") in affordance feature space, and push apart similar-shaped objects with different functions (decorative bowl vs. functional bowl). More flexible than CoA-VLA's structured types — any natural language-described interaction can participate in contrasting. (4) Knowledge distillation for zero-shot affordance reasoning: Use large VLMs' (e.g., GPT-4V level) zero-shot affordance reasoning capability (\"how can this object be interacted with?\") as teacher signals, distilling into small VLA. Large models have rich commonsense knowledge and can generate affordance descriptions for virtually any object, but are too large to deploy directly on robots. (5) Affordance consistency self-supervision: The same object under different language descriptions should have consistent affordance responses (\"grab the handle\" vs. \"pick it up by the stick part\" describe the same interaction). Use this consistency as self-supervision signals, reducing dependency on fine-grained affordance annotations.\n\nAvoid:\n- Using predefined fixed affordance types — duplicates CoA-VLA\n- Modular pipeline (affordance detection → planning → control) — duplicates GeneralVLA/VoxPoser, and prevents end-to-end optimization\n- Only doing affordance detection without actions — duplicates OVAL-Prompt\n- Ignoring CoA-VLA baseline — it is the most recent affordance + VLA work; must directly compare\n- Ignoring GeneralVLA — it is the most recent zero-shot affordance manipulation work; must clarify advantages of end-to-end vs. modular\n- Reporting results only on within-training-distribution objects — the core value of open vocabulary is on out-of-distribution objects\n- Over-relying on affordance annotation data — should design methods to reduce annotation requirements\n\nIdea Generation Quality Constraints (Hard rules based on historical cases):\n\n1. No strawman problems: Any claim of \"existing methods assume X\" or \"existing methods fail on Y\" must cite specific paragraphs from specific papers as evidence.\n\n2. No pure observation ideas: Output must include a complete method, not merely analysis/benchmark/empirical study.\n\n3. No mediocre methods: Methods must answer:\n   - Core insight: Large-scale VLMs have already implicitly learned rich shape-function association knowledge during pre-training; CoA-VLA released part of it through structured reasoning chains, but is limited by predefined types. We directly activate corresponding affordance features within VLA through open-vocabulary language instructions, fully releasing VLM's implicit shape-function knowledge into action generation.\n   - Why non-obvious: (1) CoA-VLA (December 2024) is the first work integrating affordance chain reasoning into VLA; affordance + VLA itself is a new paradigm; (2) open-vocabulary requires solving the infinite-dimensional affordance space problem — unlike 4 fixed types that can be directly classified; (3) end-to-end training of open-vocabulary affordance requires affordance annotation data, but such data is scarce — needs training strategies that reduce annotation dependency.\n   - What information is exploited: Implicit shape-function association knowledge from VLM pre-training — which neither 2D visual VLAs nor fixed-type affordance methods fully utilize.\n   - Mechanistic argument: When given a free-form language instruction (e.g., \"scoop the rice\"), the VLM internally already encodes knowledge that \"scooping requires a concave container-shaped tool.\" Through suitable activation mechanisms, this knowledge can be transformed into affordance attention in visual feature space — focusing on regions in the scene with corresponding geometric functional properties, then conditioning action generation. More flexible than CoA-VLA's fixed 4-type reasoning because affordance is dynamically defined by language.\n\n4. No duplicating existing work: Each core technical component must be confirmed with at least 3 different search queries to have no directly related work.\n\n5. No padding experiments:\n   - \"Delete experiment test\": Keep only the method description — does it teach the reader something non-trivial? Yes — VLM implicit shape-function knowledge can drive VLA action generation through open-vocabulary activation.\n   - \"Baseline fear test\": If CoA-VLA's 4 structured types already cover most scenarios, is the paper still valuable? Must prove open-vocabulary methods' advantages on free-form instructions and novel interactions.\n   - \"Citation test\": Will people cite the numbers or the insight 5 years later? The insight — open-vocabulary affordance in end-to-end VLA paradigm.\n\n6. The following method patterns are rejected (unless with extremely strong structural reasons):\n   - \"Add module X\" — Why this specific structure?\n   - \"Train on data Y\" — Is data construction itself a contribution?\n   - \"Transfer Z from domain A to domain B\" — What is the structural analogy?\n   - \"Combine P and Q\" — Where is the synergy? Combining open-vocabulary detection (OVAL-Prompt) with VLA — must prove end-to-end joint training outperforms simple concatenation.\n   - \"Use more/larger/stronger X\" — Scale is not a method contribution.\n\nCompetition Warning: CoA-VLA (December 2024) is the most recent affordance + VLA — uses structured reasoning chains but not open-vocabulary. GeneralVLA (February 2026) does zero-shot affordance manipulation but is a modular pipeline. OVAL-Prompt (ICRA 2024 Workshop) does open-vocabulary affordance detection but no actions. AffordDP (CVPR 2025) does affordance cross-category transfer but no language. VoxPoser (CoRL 2023) uses LLM to generate 3D affordance maps but is modular. π0 (Physical Intelligence) and RT-2 and other large VLAs may implicitly contain partial affordance knowledge but do not explicitly leverage it. Differentiation core: The only work integrating open-vocabulary affordance reasoning end-to-end into a unified VLA architecture. Highest risk: CoA-VLA is closest in space; if its author team quickly extends to open-vocabulary, differentiation shrinks. Monitor: CoA-VLA author team, GeneralVLA author team, Physical Intelligence (whether π0 follow-ups will integrate affordance).\n\nTags: direction=open_vocab_affordance_zero_shot_vla, contribution_type=method, sub_direction=unified_affordance_vla_end_to_end, target_venues=[\"CoRL 2026\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-18?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 5/10)\n{\n  \"title\": \"AffordInvar: Annotation-Free Spatial Affordance Learning in VLAs via Instruction Invariance and Cross-Object Transfer\",\n  \"core_problem\": \"Can we learn explicit spatial affordance representations within an end-to-end Vision-Language-Action model without any affordance annotations or external supervision signals, by jointly exploiting (1) instruction paraphrase invariance — semantically equivalent instructions must activate identical spatial affordance regions — and (2) cross-object affordance transfer — objects with similar functional parts must exhibit similar affordance patterns for the same interaction type — producing interpretable intermediate representations that improve manipulation success, paraphrase robustness, and zero-shot generalization to novel objects beyond what action-level invariance methods (RSS, LangForce), supervised spatial affordance approaches (PALM, CoA-VLA), spatial grounding with web-scale data (ST4VLA), 3D teacher-based alignment (Spatial Forcing), or standalone affordance modules (INTRA, AffordanceSAM) can achieve — all without the annotation pipelines, web-scale grounding data, simulator labels, or foundation model teachers that existing spatial methods require?\",\n  \"opportunity\": \"Recent work has firmly established that spatial representations within VLAs improve manipulation — ST4VLA (ICLR 2026) uses point/box/trajectory spatial priors from web-scale grounding data achieving 95.9% on LIBERO, Spatial Forcing (ICLR 2026) aligns intermediate VLA embeddings with a 3D foundation model (VGGT) achieving 98.5% LIBERO average (current SOTA), PALM (CVPR 2026) integrates 4 supervised affordance types achieving 91.8% on LIBERO-Long, and SG-VLA (March 2026) co-trains affordance decoders with simulator-extracted labels. However, all these methods require external supervision: ST4VLA needs web-scale grounding data (RefCOCO, LLaVA-OneVision); PALM requires a semi-automated annotation pipeline (GroundingDINO + SAM + SpatialVLM + RoboPoint + CoTracker); SG-VLA depends on simulator ground-truth labels (grasp states, segmentation masks); and Spatial Forcing requires a pretrained 3D foundation model as teacher. This supervision dependence creates a critical scaling bottleneck — deploying to new environments, tasks, or real-world settings without simulators requires re-annotation or re-collection of grounding data. Meanwhile, LIBERO-Para (arXiv 2603.28301, March 2026) reveals that VLAs suffer 22-52 percentage point drops under simple paraphrasing with 80-96% of failures at the planning level — and none of the above spatial methods (ST4VLA, PALM, SG-VLA, Spatial Forcing) have been evaluated on LIBERO-Para, leaving paraphrase robustness as an untested dimension for spatial VLA methods. The context-dependent affordance study (arXiv 2603.04419) confirms that stable latent affordance factors persist despite >90% lexical drift across contexts, suggesting spatial affordance structure is exploitable as a free self-supervision signal from paraphrases alone. OpenVLA-OFT achieves 97.1% on LIBERO with LoRA fine-tuning in ~10-15 hours on a single A100, providing a compute-efficient backbone.\",\n  \"landscape\": \"**Spatial representations in VLAs (supervised/teacher-based)**: ST4VLA (ICLR 2026, arXiv 2602.10109) uses spatial priors (point, box, trajectory) from web-scale grounding pre-training (RefCOCO, LLaVA-OneVision) followed by spatially guided action post-training, achieving 95.9% LIBERO average (92.6% Long) and emergent paraphrase robustness in real-world (52% on novel instructions by attribute) — the closest spatial VLA, but requires web-scale grounding data not available in new domains and does not explicitly learn affordance maps. Spatial Forcing (ICLR 2026, arXiv 2510.12276) aligns intermediate VLA visual embeddings with 3D representations from VGGT, achieving 98.5% LIBERO average (96.0% Long) with 3.8x training speedup — a plug-and-play approach demonstrating that intermediate spatial alignment improves VLAs, but requires a pretrained 3D foundation model as teacher with no learned affordance structure. PALM (CVPR 2026, arXiv 2601.07060) integrates 4 complementary affordance types (global object masks via GroundingDINO+SAM, local contact heatmaps, spatial placements via SpatialVLM+RoboPoint, motion dynamics via CoTracker) end-to-end with progress-aware policy learning, achieving 91.8% on LIBERO-Long — the most directly comparable affordance-in-VLA work, but requires a multi-model semi-automated annotation pipeline. SG-VLA (arXiv 2603.22760, March 2026) co-trains auxiliary decoders for grasp affordances, segmentation masks, robot pose, and joint configurations from shared VLA features, with ground truth extracted from ManiSkill-HAB simulator state — demonstrates that auxiliary affordance decoders improve VLA performance, but is limited to simulation environments with accessible ground-truth state. RoboMAP (arXiv 2510.10912, October 2025) generates adaptive affordance heatmaps as continuous spatial representations for language-guided manipulation achieving 82% real-world success — anticipates our heatmap-based approach but is a standalone grounding module, not integrated into end-to-end VLA training, and requires diverse annotation synthesis. **Action-level robustness methods**: RSS (arXiv 2601.04052, January 2026) uses Monte Carlo Syntactic Integration and Residual Affordance Steering at the action logit level, achieving 82.2% on pi0 (vs 52.4% baseline) and 90.0% on LIBERO-Plus — strong but explicitly operates at the action output level with no learned spatial affordance maps. LangForce/BayesianVLA (arXiv 2601.15197, January 2026) uses Bayesian decomposition into vision-only prior and language-conditioned posterior achieving 11.3% OOD improvement on SimplerEnv — complementary but similarly action-level. RobustVLA (ICLR 2026) enforces action-level consistency under 17 perturbation types. **Standalone affordance modules**: INTRA (ECCV 2024, arXiv 2409.06210) uses ChatGPT-4-generated synonyms with interaction-relationship-guided contrastive learning for text-conditioned affordance maps, SOTA on AGD20K/UMD — directly anticipates our paraphrase-invariance idea for affordance but is disconnected from VLA action prediction. AffordanceSAM (April 2025, arXiv 2504.15650) extends SAM for affordance grounding, current SOTA on AGD20K — supervised, standalone. WSAG-PLSP (ICLR 2025) uses part-level semantic priors for weakly supervised affordance grounding — standalone, requires pseudo-label generation. **Supervised affordance in VLAs**: CoA-VLA (ICCV 2025) integrates chain-of-affordance reasoning with supervised labels. GeneralVLA (arXiv 2602.04315) proposes a hierarchical VLA with externally supervised Affordance Segmentation Module. RT-Affordance (ICRA 2025) uses affordances as intermediate representations with supervised learning achieving 69% vs 15% baseline. **Diagnostic benchmarks**: LIBERO-Para (arXiv 2603.28301, March 2026) reveals 22-52pp VLA drops under paraphrasing — confirms the problem but proposes no solution and has not been used to evaluate any spatial VLA method (ST4VLA, PALM, SG-VLA, Spatial Forcing). **The critical gap**: No work learns spatial affordance maps within a VLA via pure self-supervision. ST4VLA uses web-scale grounding data; PALM uses multi-model annotation pipelines; SG-VLA uses simulator ground truth; Spatial Forcing uses 3D foundation model teachers. Our method requires only robot demonstrations + LLM-generated paraphrases.\",\n  \"approach\": \"We propose AffordInvar, which augments OpenVLA-OFT with a lightweight spatial affordance decoder trained jointly with the VLA via LoRA using two complementary self-supervised signals — requiring no affordance annotations, web-scale grounding data, simulator labels, or foundation model teachers. **Architecture**: The affordance decoder takes intermediate features from the VLA's 18th transformer layer (out of 32), which retain spatial structure before the final action-prediction layers. The decoder consists of 3 transposed convolution blocks (each: ConvTranspose2d 4x4 stride 2, GroupNorm, GELU) upsampling from 16x16 to 128x128 resolution, with text conditioning via the instruction embedding projected through a linear layer and channel-wise multiplied at each block (~8M parameters total, <0.12% of VLA backbone). Output is a sigmoid-activated 128x128 affordance heatmap. **Self-supervised signal 1 — Paraphrase invariance (L_consist)**: For each training episode, Qwen 3 generates K=3 semantically equivalent instruction paraphrases offline. During training, each paraphrase-image pair is processed through the VLA, and a symmetric KL divergence loss enforces identical affordance heatmaps across all K+1 instruction variants: L_consist = (1/C(K+1,2)) sum_{i&lt;j} KL(h_i || h_j), extending SelfEQ's visual grounding consistency (CVPR 2024) from general VLM grounding to the VLA affordance domain. Unlike RSS which applies paraphrase averaging at the action logit level, we enforce consistency at the intermediate spatial representation level, providing richer structured learning signal. Unlike ST4VLA's emergent robustness from web-scale spatial pre-training, we explicitly optimize for instruction invariance. **Self-supervised signal 2 — Cross-object affordance transfer (L_transfer)**: Episodes with semantically similar instructions (cosine similarity > 0.85 on instruction embeddings) but different target objects are mined as positive pairs; episodes with the same object but different interaction types serve as negatives. A contrastive InfoNCE loss on spatially-normalized affordance features encourages interaction-specific (not object-specific) affordance representations, enabling zero-shot transfer to novel objects — inspired by INTRA's interaction-relationship contrastive learning but operating on VLA-internal features with free-form instructions rather than predefined interaction labels. **Affordance-action integration**: The affordance heatmap is bilinearly downsampled to the action feature resolution and applied as an element-wise gate: action_features = action_features * sigma(W_g * affordance_features + b_g), where W_g is a learned linear projection (~0.5M parameters). This is architecturally similar to SG-VLA's auxiliary decoder approach but with a key difference: our decoder is trained entirely self-supervised while SG-VLA requires simulator ground truth for each auxiliary task. **Entropy regularization**: H_entropy = -lambda_H sum h_i log(h_i), preventing degenerate uniform or collapsed heatmaps. **Total loss**: L = L_action + alpha*L_consist + beta*L_transfer + lambda_H*H_entropy, where L_action is OpenVLA-OFT's continuous L1 action regression loss. **Evaluation**: (1) Manipulation success on LIBERO-Long (10 tasks, standard) and LIBERO-Para (paraphrase robustness, measuring PRIDE score) — we will be the first to evaluate a spatial affordance VLA method on LIBERO-Para; (2) Zero-shot generalization to held-out object categories within LIBERO; (3) Held-out interaction type generalization: train without all 'opening' tasks and test on them, plus creative rephrasings via Qwen 3 using novel interaction vocabulary (e.g., 'unfasten the container' instead of 'open the drawer') to test whether affordance representations generalize to unseen interaction semantics; (4) Affordance transfer evaluation with fine-tuning protocol: (a) zero-shot application of the VLA-learned affordance decoder on AGD20K/UMD as an exploratory experiment assessing cross-domain affordance quality, and (b) fine-tuning only the affordance decoder on AGD20K while freezing the VLA backbone, testing whether VLA-learned representations provide useful initialization vs. training from scratch — this addresses the large sim-to-real domain gap; (5) Qualitative affordance map visualization and contact-point prediction accuracy on held-out LIBERO episodes. **Baselines**: (a) OpenVLA-OFT (vanilla, no affordance) — 97.1% LIBERO standard; (b) OpenVLA-OFT + RSS-style action-level paraphrase invariance (our reimplementation); (c) OpenVLA-OFT + Spatial Forcing (intermediate 3D alignment with VGGT teacher) — 98.5% LIBERO average; (d) PALM (semi-automated affordance annotation) — 91.8% LIBERO-Long; (e) ST4VLA (web-scale spatial grounding) — 95.9% LIBERO average; (f) INTRA affordance maps + OpenVLA-OFT policy (two-stage); (g) CoA-VLA (supervised affordance). Key comparison axis: standard LIBERO performance may be competitive but not necessarily SOTA (Spatial Forcing at 98.5% is hard to beat without 3D teachers); our primary advantage claims are on (i) LIBERO-Para paraphrase robustness where explicit invariance training should outperform emergent robustness, (ii) zero-shot novel object/interaction generalization where annotation-free affordance transfer should outperform annotation-dependent methods in out-of-distribution settings, and (iii) annotation efficiency — competitive performance without any affordance labels, web-scale data, or foundation model teachers. **Key hypotheses**: (a) Explicit paraphrase invariance at the spatial affordance level provides better PRIDE scores on LIBERO-Para than ST4VLA's emergent robustness from spatial grounding or RSS's action-level invariance; (b) Self-supervised cross-object affordance transfer enables superior zero-shot generalization to novel objects compared to methods that learn object-specific supervised affordance features (PALM, SG-VLA); (c) Despite requiring no external supervision, AffordInvar achieves within 2-3 percentage points of supervised spatial methods (PALM, ST4VLA) on standard LIBERO, demonstrating that self-supervision closes most of the gap; (d) VLA-learned affordance representations provide useful initialization for downstream affordance benchmarks, demonstrated by faster convergence when fine-tuning the decoder on AGD20K vs. training from scratch.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~180-200h H100 80GB (8-9 training runs at ~20-22h each: 2 main method runs, 2 baseline reproductions including Spatial Forcing and RSS reimplementation, 4 ablation runs for L_consist-only/L_transfer-only/no-gating/decoder-depth, 1 hyperparameter tuning run)\",\n      \"gpu_utilization\": \"~30-35% effective utilization — human iteration time between runs for debugging and analysis\",\n      \"timeline\": \"8-10 weeks (2 weeks codebase setup + paraphrase generation + baseline reproduction, 4-5 weeks experimentation including LIBERO-Para evaluation and AGD20K fine-tuning, 2-3 weeks paper writing)\",\n      \"team\": \"1-2 researchers with VLA fine-tuning experience\",\n      \"estimated_gpu_cost\": \"~$600-$700 (200h x $3.50/hr on-demand H100, or ~$400-$500 with spot pricing)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~190-200h H100 80GB (agent manages experiment scheduling with slightly more efficient ablation design)\",\n      \"gpu_utilization\": \"~60-70% — agent queues next experiment after prior run, human approves loss hyperparameters and reviews affordance heatmap quality at checkpoints\",\n      \"timeline\": \"5-7 weeks (agent handles implementation and experiment orchestration; human reviews loss weight schedules and affordance map quality daily ~1hr)\",\n      \"team\": \"1 researcher, ~1hr/day check-in\",\n      \"claude_api_cost\": \"$100-200 (1,000-2,000 Opus turns for code generation, experiment design, result analysis)\",\n      \"estimated_gpu_cost\": \"~$600-$700 (200h x $3.50/hr)\",\n      \"risk_note\": \"Affordance consistency loss hyperparameters (alpha, beta) are sensitive — human review of affordance heatmaps after first 2-3 runs is critical to detect degenerate solutions (uniform or collapsed maps) early and adjust entropy regularization strength\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~200h H100 80GB (hard budget cap; agent maximizes information per run via sequential Bayesian hyperparameter optimization over alpha, beta, lambda_H, LoRA rank, and decoder depth)\",\n      \"gpu_utilization\": \"~90-95% — agent immediately launches next experiment upon completion, no human wait time\",\n      \"timeline\": \"2-3 weeks with 4 H100 GPUs (parallel ablation pairs reduce wall-clock time; includes evaluation and paper draft)\",\n      \"team\": \"0 researchers after initial ~2hr setup (repo clone, API keys, compute allocation)\",\n      \"claude_api_cost\": \"$200-400 (2,000-4,000 Opus turns for autonomous code development, ~9 experiment configurations, analysis, and paper writing)\",\n      \"estimated_gpu_cost\": \"~$600-$700 (200h x $3.50/hr)\",\n      \"speed_bottleneck\": \"GPU count is primary bottleneck — with 4 H100s, parallel ablation pairs complete in 2-3 weeks; with only 2 H100s, extends to 4-5 weeks\",\n      \"risk_note\": \"Without human oversight, agent may waste ~20-30% of compute budget exploring suboptimal loss weight configurations before discovering effective entropy regularization settings — Bayesian optimization mitigates but does not eliminate this risk\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (abstracts July 21, full paper July 28, 2026 — primary target, ~10 weeks from today, feasible in human-in-loop or auto-research modes)\",\n    \"ICRA 2027 (estimated deadline ~September 15, 2026 — flagship robotics venue, comfortable timeline, natural fit for manipulation-focused contribution)\",\n    \"ICLR 2027 (estimated deadline ~October 2026 — top-tier ML venue, strongest signal for self-supervised learning methodology contribution)\",\n    \"CoRL 2027 (estimated deadline ~June 2027 — if additional real-robot experiments are needed for strongest submission)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"ST4VLA: Spatially Guided Training for Vision-Language-Action Models — spatial priors (point, box, trajectory) from web-scale grounding data, 95.9% LIBERO average, emergent paraphrase robustness (ICLR 2026, arXiv 2602.10109)\",\n    \"PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation — 4 supervised affordance types with semi-automated annotation (GroundingDINO+SAM+SpatialVLM+RoboPoint+CoTracker), 91.8% LIBERO-Long (CVPR 2026, arXiv 2601.07060)\",\n    \"SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation — auxiliary decoders for grasp affordances and segmentation from simulator ground truth (arXiv 2603.22760, March 2026)\",\n    \"Spatial Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model — intermediate VLA alignment with 3D foundation model (VGGT), 98.5% LIBERO average, 3.8x training speedup (ICLR 2026, arXiv 2510.12276)\",\n    \"RoboMAP: More than A Point — adaptive affordance heatmaps for spatial grounding, 82% real-world success (arXiv 2510.10912, October 2025)\",\n    \"Stable Language Guidance for Vision-Language-Action Models — RSS with Monte Carlo Syntactic Integration and Residual Affordance Steering (arXiv 2601.04052, January 2026)\",\n    \"INTRA: Interaction Relationship-aware Weakly Supervised Affordance Grounding — text synonym augmentation with contrastive learning for affordance on AGD20K (ECCV 2024, arXiv 2409.06210)\",\n    \"LangForce/BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries — Bayesian VLA instruction-following via PMI (arXiv 2601.15197, January 2026)\",\n    \"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models — 22-52pp drops under paraphrasing, PRIDE metric (arXiv 2603.28301, March 2026)\",\n    \"OpenVLA: An Open-Source Vision-Language-Action Model (CoRL 2024)\",\n    \"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success — OpenVLA-OFT (arXiv 2502.19645, February 2025)\",\n    \"Improved Visual Grounding through Self-Consistent Explanations — SelfEQ paraphrase consistency for VLM grounding (CVPR 2024)\",\n    \"CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance (ICCV 2025, arXiv 2412.20451)\",\n    \"GeneralVLA: Generalizable Vision-Language-Action Models with Knowledge-Guided Trajectory Planning (arXiv 2602.04315, February 2026)\",\n    \"RT-Affordance: Affordances are Versatile Intermediate Representations for Robot Manipulation (ICRA 2025, arXiv 2411.02704)\",\n    \"On Robustness of Vision-Language-Action Model against Multi-Modal Perturbations — RobustVLA (ICLR 2026, arXiv 2510.00037)\",\n    \"Context-Dependent Affordance Computation in Vision-Language Models — >90% lexical drift, stable latent factors (arXiv 2603.04419)\",\n    \"VoxPoser: Composable 3D Value Maps for Robotic Manipulation with Language Models (CoRL 2023, arXiv 2307.05973)\",\n    \"OVAL-Prompt: Open-Vocabulary Affordance Localization for Robot Manipulation through LLM Affordance-Grounding (arXiv 2404.11000, 2024)\",\n    \"AffordanceSAM: Segment Anything Once More in Affordance Grounding — current SOTA on AGD20K (arXiv 2504.15650, April 2025)\",\n    \"Weakly-Supervised Affordance Grounding Guided by Part-Level Semantic Priors — WSAG-PLSP (ICLR 2025, arXiv 2505.24103)\",\n    \"Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation (arXiv 2603.16044, March 2026)\",\n    \"Learning Affordance Grounding from Exocentric Images — AGD20K dataset (CVPR 2022)\"\n  ],\n  \"description\": \"AffordInvar introduces annotation-free spatial affordance learning within an end-to-end Vision-Language-Action model, addressing a critical gap in the rapidly maturing landscape of spatial VLA methods. Recent work has established that spatial representations within VLAs significantly improve manipulation: ST4VLA (ICLR 2026) achieves 95.9% LIBERO average via web-scale spatial grounding, Spatial Forcing (ICLR 2026) achieves 98.5% via 3D foundation model alignment, PALM (CVPR 2026) achieves 91.8% LIBERO-Long via 4 semi-automated affordance types, and SG-VLA (March 2026) co-trains affordance decoders with simulator ground truth. However, all these methods require external supervision — web-scale grounding data, multi-model annotation pipelines, simulator labels, or foundation model teachers — creating scaling bottlenecks for new environments and tasks. AffordInvar eliminates this supervision requirement entirely. Built on OpenVLA-OFT with LoRA, it adds a lightweight 8M-parameter transposed-convolution affordance decoder on intermediate VLA features (layer 18/32) producing 128x128 spatial heatmaps, trained via two complementary self-supervised signals requiring only robot demonstrations and LLM-generated paraphrases: (1) paraphrase invariance — symmetric KL divergence enforcing identical affordance maps across K=3 Qwen-3-generated instruction variants, extending SelfEQ (CVPR 2024) from general VLM grounding to VLA affordance and explicitly optimizing the instruction robustness that ST4VLA achieves only emergently, and (2) cross-object affordance transfer — InfoNCE contrastive loss on spatially-normalized affordance features across episodes with similar interactions but different objects, inspired by INTRA but operating on VLA-internal features. The affordance heatmap gates action prediction via learned element-wise modulation. Key advantages over existing spatial VLA methods: (a) no annotation pipeline (vs. PALM's GroundingDINO+SAM+SpatialVLM+RoboPoint+CoTracker), no web-scale data (vs. ST4VLA's RefCOCO), no simulator labels (vs. SG-VLA), no 3D teachers (vs. Spatial Forcing) — only robot demonstrations + LLM paraphrases; (b) explicit paraphrase invariance optimization at the spatial level, unlike any existing spatial VLA method; (c) interpretable affordance maps independently evaluable on standard benchmarks. Evaluated on LIBERO-Long, LIBERO-Para (first spatial VLA method evaluated on paraphrase robustness via PRIDE metric), held-out interaction types, and AGD20K via fine-tuning protocol. Primary claims: superior LIBERO-Para PRIDE scores over emergent robustness (ST4VLA) and action-level invariance (RSS); competitive standard LIBERO performance without any affordance annotations; superior zero-shot novel object generalization via annotation-free affordance transfer. Baselines include OpenVLA-OFT, Spatial Forcing, PALM, ST4VLA, RSS-style action invariance, and CoA-VLA. Designed for <=200 H100-hours via LoRA efficiency.\",\n  \"project_name\": \"afford_invar_vla\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL MISSING RELATED WORK: 'Stable Language Guidance for Vision-Language-Action Models' (RSS, arXiv 2601.04052, January 2026) already uses LLM-generated paraphrases to train VLAs for syntactic invariance AND explicitly disentangles 'visual affordance' from 'semantic intent' via Residual Affordance Steering. The core mechanism overlap with AffordInvar is very high. This paper is not cited or discussed.\", \"CRITICAL MISSING RELATED WORK: 'INTRA: Interaction Relationship-aware Weakly Supervised Affordance Grounding' (ECCV 2024, arXiv 2409.06210) uses text synonym augmentation with contrastive learning for affordance grounding on AGD20K and UMD — the same benchmarks proposed. This directly anticipates the paraphrase-invariance-for-affordance concept.\", \"CRITICAL MISSING RELATED WORK: 'LangForce/BayesianVLA' (arXiv 2601.15197, January 2026) addresses the same VLA instruction sensitivity problem through Bayesian decomposition, constructing vision-only prior and language-conditioned posterior. Not cited.\", \"COMPUTE BUDGET VIOLATION: The seed specifies ≤200 H100-hours as a hard constraint. The proposal estimates ~1,500 A100-hours (manual mode), which is approximately 500-750 H100-equivalent hours — 2.5-3.75x over budget. Auto research mode at 4,500-5,000 A100-hours is 7.5-12.5x over budget.\", \"TIMELINE IMPOSSIBILITY: CoRL 2026 paper deadline is May 28-29, 2026 (10-11 days away). The proposal estimates 4-6 months for manual mode and 2-3 weeks for auto research. CoRL 2026 cannot be the primary target.\", \"AFFOGATO BENCHMARK MISMATCH: Affogato (arXiv 2506.12009) is a 3D affordance grounding benchmark with 150K 3D object instances and 3D heatmap annotations. The proposed pipeline is 2D image-based (OpenVLA-OFT). No explanation is given for how a 3D benchmark will be used in a 2D pipeline.\", \"SCOPE DRIFT FROM SEED: The seed asks for 'open-vocabulary affordance zero-shot VLA' with emphasis on unified architecture, shape-function-interaction association, and zero-shot generalization. The proposal narrows to self-supervised paraphrase invariance training, which is one of five exploration directions in the seed (direction #5). The open-vocabulary capability and shape-function association learning are not explicitly architected.\", \"MISSING SEED-REQUIRED BASELINES: The seed explicitly requires comparisons with GeneralVLA approach, VoxPoser approach, and OVAL-Prompt + policy learning. These are not clearly specified in the proposal's evaluation plan.\", \"UNDERSPECIFIED ARCHITECTURE: The 'lightweight affordance decoder head' and 'affordance-guided cross-attention mechanism' are central to the contribution but lack architectural detail — what layers, what resolution, how many parameters, how cross-attention is implemented.\"]\nFeedback: The proposal has a solid foundation but faces three critical problems that must be addressed:\n\n1. **Novelty gap (highest priority)**: RSS (arXiv 2601.04052, Jan 2026) already uses LLM paraphrases for VLA invariance training and explicitly models affordance-vs-semantic separation. You MUST cite RSS, INTRA (ECCV 2024), and LangForce (Jan 2026), then clearly articulate why operating on intermediate spatial affordance representations (your approach) provides benefits beyond action-level invariance (RSS). Consider: (a) affordance maps provide structured spatial supervision that enables better zero-shot transfer to unseen objects; (b) affordance representations can be evaluated independently (affordance localization benchmarks), providing interpretability that RSS lacks; (c) affordance consistency at the feature level may prevent the visual shortcut more effectively than action-level consistency.\n\n2. **Compute and timeline**: Redesign the approach to fit ≤200 H100-hours. Options: (a) use only LoRA on a smaller VLA variant; (b) reduce the number of paraphrases K from 5 to 2-3; (c) reduce ablation scope; (d) use a lighter affordance decoder. Remove CoRL 2026 as primary target — AAAI 2027 (July 28, 2026) or ICRA 2027 are more realistic.\n\n3. **Strengthen the open-vocabulary contribution**: The seed explicitly asks for open-vocabulary affordance in VLA. The current paraphrase invariance approach only addresses instruction robustness — it doesn't explicitly enable novel object categories or novel interaction types. Consider integrating the seed's exploration direction #3 (contrastive learning for shape-function mapping) with the paraphrase invariance signal, so the method learns both instruction-invariant affordance regions AND cross-object affordance transfer.\n\nAlso: replace Affogato (3D) with a 2D-compatible benchmark or explain the 2D-3D adaptation strategy. Include all seed-required baselines (GeneralVLA, VoxPoser, OVAL-Prompt + policy).\n\n### Round 2 review\nVerdict: revise\nIssues: [\"CRITICAL MISSING RELATED WORK: SP-VLA/ST4VLA (ICLR 2026, arXiv 2602.10109) uses spatial priors (point, box, trajectory predictions) to guide VLA action generation end-to-end, trained on web-scale grounding data (RefCOCO etc.), and explicitly claims 'stronger generalization to unseen objects and paraphrased instructions.' Achieves 62% zero-shot on unseen objects vs. 32% for π₀. This is the closest concurrent work occupying the 'spatial representations within end-to-end VLA' space. While SP-VLA uses supervised spatial grounding rather than self-supervised affordance maps, the overlapping claims (spatial guidance → paraphrase robustness + novel object generalization) demand explicit comparison and differentiation.\", \"MISSING RELATED WORK: PALM (arXiv 2601.07060, January 2026) learns structured affordance representations (object relevance, contact geometry, spatial placements, motion dynamics) within an end-to-end VLA, achieving 91.8% on LIBERO-Long. Uses supervised semi-automated annotation. Directly relevant as another 'affordance within VLA' approach.\", \"MISSING RELATED WORK: SG-VLA (arXiv 2603.22760, March 2026) co-trains auxiliary affordance decoders with VLA backbone using dense supervision, reconstructing grasp affordances, segmentation masks, and other intermediate signals from shared visual-language features. Another concurrent 'affordance decoder in VLA' approach.\", \"OVER-OPTIMISTIC ZERO-SHOT AGD20K/UMD EVALUATION: The proposal claims VLA-learned affordance representations will 'transfer zero-shot to standard affordance benchmarks (AGD20K, UMD).' The domain gap between LIBERO simulation images (rendered robot workspace scenes) and AGD20K/UMD images (real-world exocentric human-object interactions and egocentric object images) is enormous. This evaluation is likely to produce poor results and weaken rather than strengthen the paper. At minimum, acknowledge this gap explicitly and frame it as 'preliminary/exploratory evaluation' rather than a core contribution.\", \"SCOPE NARROWING FROM SEED: The seed explicitly asks for 'open-vocabulary affordance zero-shot VLA' handling instructions like 'use this thing to wipe off the dust over there.' The proposal's paraphrase invariance addresses instruction surface form robustness (different phrasings of the same instruction), not truly open-vocabulary novel interaction types (e.g., training on 'pick up' and generalizing to 'scoop out'). The cross-object transfer component partially addresses this but the free-form novel interaction instruction tests (required by the seed) are not clearly specified in the evaluation protocol.\", \"SELF-SUPERVISED SIGNAL QUALITY RISK NOT ADDRESSED: The core claim that paraphrase invariance produces meaningful spatial affordance heatmaps (not just blurry attention blobs) is the key technical bet. The proposal mentions entropy regularization to prevent degenerate solutions but doesn't discuss: (a) what happens if paraphrases only differ in action verbs but not spatial referents — the affordance map may correctly be identical, providing no learning signal about WHERE to attend; (b) how the contrastive cross-object transfer loss interacts with the invariance loss — could they conflict?\"]\nFeedback: The revision has substantially improved from Round 1 — RSS/INTRA/LangForce are now properly cited, compute is within budget, architecture is detailed, and baselines are comprehensive. Three targeted fixes to push toward pass:\n\n1. **Cite and differentiate from SP-VLA (ICLR 2026), PALM (Jan 2026), and SG-VLA (Mar 2026)**: These are the three most relevant concurrent works that the proposal misses. SP-VLA is the most critical — it already shows spatial priors in VLA → better paraphrase robustness + novel object generalization (supervised). Your key differentiation: (a) self-supervised vs. supervised — your method requires no spatial annotations, making it applicable to any VLA dataset; (b) affordance heatmaps vs. point/box/trajectory — your representation captures continuous interaction regions rather than discrete points; (c) the paraphrase invariance signal is theoretically grounded in the observation (from LIBERO-Para) that VLA failures are at the planning level, suggesting intermediate representation consistency is more important than action-level or explicit spatial supervision.\n\n2. **Soften or restructure AGD20K/UMD evaluation**: Either (a) acknowledge the domain gap and frame zero-shot affordance benchmarking as 'exploratory/secondary evaluation' rather than a core claim, or (b) add a fine-tuning/adaptation step where you fine-tune only the affordance decoder on AGD20K training data while freezing VLA backbone — this would test whether VLA-learned affordance representations provide useful initialization. Option (b) is actually a stronger experiment that tests representation quality rather than zero-shot transfer across wildly different domains.\n\n3. **Strengthen the open-vocabulary / novel interaction evaluation**: Add a specific evaluation protocol for the seed's requirement of 'novel interaction instruction generalization.' For example: hold out entire interaction types from LIBERO training (e.g., all 'opening' tasks) and test whether affordance maps generalize to these unseen interactions. Also add 'free-form instruction tests' — Qwen 3 can generate creative rephrasings that describe the same task using novel interaction vocabulary (e.g., 'unfasten the container' instead of 'open the drawer'). This directly addresses the seed's concern about open-vocabulary capability.\n\nMinor: Consider ICRA 2027 as co-primary target alongside AAAI 2027, since the contribution is more naturally a robotics contribution than an AI-general one.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"CRITICAL MISSING RELATED WORK (REPEAT FROM ROUND 2): SP-VLA/ST4VLA (ICLR 2026, arXiv 2602.10109) uses spatial priors (point, box, trajectory) within end-to-end VLA and explicitly claims 'stronger generalization to unseen objects and paraphrased instructions.' This directly occupies the 'spatial representations in VLA → paraphrase robustness + novel object generalization' space. Not cited in landscape or key_references despite being flagged in Round 2.\", \"CRITICAL MISSING RELATED WORK (REPEAT FROM ROUND 2): PALM (arXiv 2601.07060, January 2026) integrates 4 supervised affordance types (global masks, local contact heatmaps, spatial placements, motion dynamics) end-to-end within a VLA, achieving 91.8% on LIBERO-Long. Uses semi-automated annotation. This is the most directly comparable 'affordance within end-to-end VLA' work. Not cited despite being flagged in Round 2.\", \"CRITICAL MISSING RELATED WORK (REPEAT FROM ROUND 2): SG-VLA (arXiv 2603.22760, March 2026) co-trains auxiliary affordance decoders (grasp affordances, segmentation masks) with VLA backbone from shared visual-language features in an end-to-end manner. This is architecturally very similar to AffordInvar's approach of adding an affordance decoder to a VLA. Not cited despite being flagged in Round 2.\", \"MISSING RELATED WORK: Spatial Forcing (ICLR 2026, arXiv 2510.12276) aligns intermediate VLA visual embeddings with external spatial representations from 3D foundation models, achieving SOTA results and 3.8x training speedup. Demonstrates that intermediate spatial representation alignment in VLAs is already an established approach.\", \"MISSING RELATED WORK: RoboMAP (arXiv 2510.10912, October 2025) uses adaptive affordance heatmaps as core intermediate representation for language-conditioned robotic tasks with 82% real-world success rate. Very similar concept of continuous affordance heatmaps for spatial grounding.\", \"ZERO-SHOT AGD20K/UMD EVALUATION CONCERN (REPEAT FROM ROUND 2): The domain gap between LIBERO simulation images (rendered robot workspace) and AGD20K/UMD images (real-world exocentric/egocentric human-object interactions) is enormous. This evaluation will likely produce poor results. Round 2 suggested either framing as exploratory or adding fine-tuning adaptation — neither appears incorporated.\", \"OPEN-VOCABULARY SCOPE CONCERN (REPEAT FROM ROUND 2): The seed asks for open-vocabulary affordance handling instructions like 'use this thing to wipe off the dust.' Paraphrase invariance addresses instruction surface form robustness (different phrasings of same task), not truly novel interaction types (train on 'pick up', generalize to 'scoop out'). The cross-object transfer partially addresses this but the specific evaluation protocol for novel interaction types is still underspecified.\"]\nFeedback: This is a well-designed idea with a valid technical niche (self-supervised spatial affordance within VLA), but the proposal has failed to address 3 critical missing related works flagged in Round 2 (SP-VLA, PALM, SG-VLA). This is the most urgent fix:\n\n1. **Cite and differentiate from SP-VLA, PALM, SG-VLA, Spatial Forcing, and RoboMAP**: These 5 works collectively show that (a) spatial priors in VLA already improve paraphrase robustness (SP-VLA), (b) supervised affordance in end-to-end VLA already achieves 91.8% on LIBERO-Long (PALM), (c) co-training affordance decoders with VLA is already done (SG-VLA), (d) intermediate spatial alignment in VLA is established (Spatial Forcing), and (e) affordance heatmaps as intermediate representations exist (RoboMAP). Your key differentiation across ALL of these: self-supervised training via paraphrase invariance + cross-object contrastive transfer — no annotation required. Make this the central selling point. PALM's 4 affordance types require semi-automated annotation; SP-VLA requires web-scale grounding data (RefCOCO etc.); SG-VLA requires dense supervised auxiliary signals. Your method works with only robot demonstrations + an LLM for paraphrases.\n\n2. **Fix AGD20K/UMD evaluation**: Frame zero-shot affordance benchmarking as 'exploratory/secondary' OR add a fine-tuning protocol where only the affordance decoder is fine-tuned on AGD20K while VLA backbone is frozen. This tests whether VLA-learned affordance representations provide useful initialization — a stronger experiment.\n\n3. **Strengthen novel interaction evaluation**: Add explicit held-out interaction type tests (e.g., train without all 'opening' tasks, test on them). Also add creative rephrasings via Qwen 3 that use novel interaction vocabulary ('unfasten the container' instead of 'open the drawer').\n\n4. **Benchmark against PALM's 91.8%**: Since PALM achieves 91.8% on LIBERO-Long with supervised affordance, you need to either (a) show competitive performance without annotations, demonstrating the value of self-supervision, or (b) argue that your method's advantage is in settings where affordance annotations don't exist (new environments, new tasks). Frame appropriately.\n\n### Round 4 review\nVerdict: revise\nIssues: [\"SELF-SUPERVISED SIGNAL QUALITY RISK UNADDRESSED: The core technical bet — that paraphrase invariance produces spatially meaningful affordance maps — lacks a contingency plan. If paraphrases like 'pick up the red cup' vs 'grab the crimson mug' both correctly activate the same cup region, the invariance loss is trivially satisfied without learning WHERE to attend for the interaction. The signal is informative only when paraphrases create genuine spatial ambiguity. In LIBERO's templated instructions, the diversity of spatially-informative paraphrases may be limited. Include: (a) analysis of what fraction of Qwen-3 paraphrases create non-trivial spatial variation, (b) a quantitative affordance map quality metric (e.g., IoU with contact regions extracted from trajectories as pseudo-ground-truth), (c) contingency if maps are uninformative (e.g., adding trajectory contact point supervision as lightweight alternative).\", \"BASELINE REPRODUCTION BUDGET TOO TIGHT: 50 H100-hours for 7 baselines is ambitious. Spatial Forcing requires VGGT as 3D teacher; ST4VLA requires web-scale grounding pre-training on RefCOCO/LLaVA-OneVision; PALM requires the full multi-model annotation pipeline (GroundingDINO+SAM+SpatialVLM+RoboPoint+CoTracker). These cannot be trivially reproduced. Recommend: (a) use published numbers for Spatial Forcing, ST4VLA, and PALM on standard LIBERO (they report on the same benchmark); (b) only reproduce baselines that need evaluation on YOUR novel evaluation conditions (LIBERO-Para, held-out interactions) — likely only OpenVLA-OFT, RSS-style, and CoA-VLA need full reproduction; (c) explicitly state which baselines use published vs. reproduced numbers.\", \"SCOPE NARROWING FROM SEED NOT ACKNOWLEDGED: The seed asks for 'open-vocabulary affordance zero-shot VLA' handling free-form instructions like 'use this thing to wipe off the dust over there.' The proposal delivers 'annotation-free spatial affordance via paraphrase invariance,' which addresses instruction surface-form robustness and some cross-object transfer, but does NOT address truly novel interaction types (training on 'pick up' and generalizing to 'scoop out' as fundamentally different affordance patterns). The creative rephrasings via Qwen 3 ('unfasten the container' for 'open the drawer') test lexical novelty, not semantic interaction novelty. Acknowledge this scope boundary explicitly and argue why annotation-free affordance is a necessary stepping stone toward open-vocabulary affordance.\", \"HYPOTHESIS (c) 'WITHIN 2-3PP OF SUPERVISED METHODS' MAY BE OVER-OPTIMISTIC: Spatial Forcing achieves 98.5% LIBERO average using a 3D foundation model teacher. ST4VLA achieves 95.9% with web-scale grounding. Claiming self-supervised affordance (no external supervision) will reach within 2-3pp of these is a strong claim. Consider: self-supervised signals inherently have less information content than supervised ones. OpenVLA-OFT already achieves 97.1% without any affordance learning. The ceiling improvement from adding self-supervised affordance may be minimal on standard LIBERO (already near-saturated), making the 'within 2-3pp' framing misleading. Reframe: primary advantage is on OOD conditions (LIBERO-Para, novel objects), not standard benchmark competition.\", \"AGD20K FINE-TUNING STILL RISKY: The domain gap between LIBERO simulation (rendered robot workspace, egocentric camera) and AGD20K (real-world exocentric human-object interaction images) is enormous — different viewpoints, different visual domains, different interaction contexts. Even fine-tuning the affordance decoder may produce mediocre results that weaken the paper. Consider replacing with a more meaningful cross-domain evaluation: (a) transfer across LIBERO task suites (e.g., train on LIBERO-Spatial, evaluate affordance quality on LIBERO-Goal), or (b) evaluate on ManiSkill/RLBench as alternative simulation environments with different visual characteristics.\"]\nFeedback: This is a substantially improved proposal that has addressed all critical missing related work from Rounds 2-3 (ST4VLA, PALM, SG-VLA, Spatial Forcing, RoboMAP are now properly cited and differentiated). The gap is independently verified as real — no existing work learns spatial affordance maps within a VLA via pure self-supervision. Three targeted fixes to reach pass:\n\n1. **Address the core technical risk head-on**: The paraphrase invariance signal may be trivially satisfied in LIBERO's templated instruction space. Add a concrete analysis: (a) generate 100 sample paraphrases for LIBERO tasks and categorize what fraction create genuine spatial ambiguity vs. trivial synonym substitution; (b) define a quantitative affordance quality metric (e.g., IoU with trajectory contact regions as pseudo-ground-truth); (c) include a lightweight contingency — if pure self-supervision underperforms, augment with trajectory-derived contact point supervision (~0 annotation cost, extracted automatically from robot proprioception). This turns the risk into a controlled ablation rather than an existential threat.\n\n2. **Restructure baseline strategy for budget realism**: Use published numbers for Spatial Forcing (98.5%), ST4VLA (95.9%), and PALM (91.8%) on standard LIBERO — they already report on the same benchmark. Only fully reproduce OpenVLA-OFT, RSS-style action invariance, and CoA-VLA (these need evaluation on YOUR novel conditions: LIBERO-Para, held-out interactions). For LIBERO-Para, note explicitly that NO existing spatial VLA method has been evaluated on it — the comparison is against action-level methods (RSS) and vanilla VLAs. This saves ~30 H100-hours and is more honest about what's being compared.\n\n3. **Reframe the contribution precisely**: Don't claim 'within 2-3pp of supervised methods on standard LIBERO' — standard LIBERO is near-saturated (98.5% SOTA) and improvements there are marginal. Instead, frame the contribution as: (a) annotation-free spatial affordance that MATCHES vanilla VLA on standard LIBERO while providing (b) superior paraphrase robustness (LIBERO-Para PRIDE score) and (c) superior zero-shot object/interaction generalization — advantages that supervised methods CANNOT demonstrate because their affordance representations are tied to specific annotation categories. The insight is that self-supervised affordance discovers the model's own interaction understanding, unconstrained by human annotation priors.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-18T21:17:28.800Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-18T21:17:28.800Z",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+## Round 1
+
+126 recorded events
+
+### User
+
+_source line 3 · 2026-05-18T21:17:28.869Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-18 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **## Seed 4: Open-Vocabulary Affordance Zero-Shot VLA
+
+Objective: CoRL 2026 submission.
+
+Direction: Traditional affordance methods and VLAs rely on fixed category annotations and struggle with open-world unknown objects and free-form interaction instructions. CoA-VLA (arXiv 2412.20451, December 2024) integrates affordance chain-of-reasoning into VLA, but uses 4 predefined structured affordance types (object, grasp, spatial, motion) — not truly open-vocabulary — and cannot handle free-form interaction descriptions like "use this thing to wipe off the dust over there." GeneralVLA (arXiv 2602.04315, February 2026) achieves zero-shot affordance perception and manipulation trajectory generation through VLM+SAM, but is a modular three-stage pipeline (affordance perception → trajectory planning → low-level control), not a unified end-to-end VLA — with information loss between modules and inability to jointly optimize. OVAL-Prompt (ICRA 2024 VLMNM Workshop, arXiv 2404.11000) achieves truly open-vocabulary affordance localization, but only performs detection/localization without generating actions. AffordDP (CVPR 2025, arXiv 2412.03142) achieves affordance cross-category transfer through 3D contact points and trajectories, but completely lacks language conditioning. Core gap: No work unifies open-vocabulary affordance reasoning into an end-to-end VLA for zero-shot manipulation — existing work either has fixed affordance types (CoA-VLA), or is a modular pipeline (GeneralVLA), or only does detection without actions (OVAL-Prompt), or lacks language (AffordDP).
+
+Seed Papers:
+- "OpenVLA: An Open-Source Vision-Language-Action Model" (Kim et al., CoRL 2024, arXiv 2406.09246)
+  — 7B parameter open-source VLA, trained on 970K real robot demonstrations, establishing the VLA open-source paradigm. The base architecture for this work — integrating open-vocabulary affordance reasoning on top.
+- "CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance" (Li et al., arXiv 2412.20451, December 2024)
+  — Integrates affordance chain-of-reasoning into VLA: model sequentially reasons about object affordance, grasp affordance, spatial affordance, and motion affordance before predicting actions. Uses visual-language collaborative injection module. Surpasses OpenVLA and Octo. Key limitation: 4 affordance types are predefined/structured, not open-vocabulary — cannot handle arbitrary natural language descriptions of novel interactions.
+- "GeneralVLA: Generalizable Vision-Language-Action Models with Knowledge-Guided Trajectory Planning" (Ma et al., arXiv 2602.04315, February 2026)
+  — Hierarchical three-module pipeline: (1) VLM+SAM affordance perception for keypoint detection, (2) mid-level planning agent for trajectory generation, (3) low-level control policy. Achieves zero-shot manipulation across 14 tasks without real-world data. Key limitation: Modular pipeline, not end-to-end — affordance module, trajectory planner, and controller are separated, with information bottlenecks between modules.
+- "OVAL-Prompt: Open-Vocabulary Affordance Localization for Robot Manipulation through LLM Affordance-Grounding" (Tong et al., ICRA 2024 VLMNM Workshop, arXiv 2404.11000)
+  — Prompt-based method combining VLM for object part segmentation and LLM for part-affordance grounding mapping, achieving open-vocabulary affordance localization without prior training. Competitive with supervised methods on localization benchmarks. Key limitation: Only performs affordance detection/localization, does not generate robot actions — a perception module, not a complete manipulation system.
+- "AffordDP: Generalizable Diffusion Policy with Transferable Affordance" (Wu et al., CVPR 2025, arXiv 2412.03142)
+  — Models manipulation priors through 3D contact points and post-contact trajectories, achieving affordance cross-category transfer using visual models + point cloud registration. Affordance-guided diffusion policy generates actions. Key limitation: No language conditioning — affordances are geometric/contact-based, not language-driven, cannot handle open-vocabulary instructions.
+
+Known Gap:
+- CoA-VLA integrates affordance into VLA but uses predefined structured types, does not support open vocabulary
+- GeneralVLA does zero-shot affordance manipulation but is a modular pipeline, not end-to-end
+- OVAL-Prompt does open-vocabulary affordance but only detection, no action generation
+- AffordDP does affordance cross-category transfer but no language conditioning
+- VoxPoser (CoRL 2023, arXiv 2307.05973) uses LLM to generate 3D affordance/constraint maps but is modular, no end-to-end learning
+- No work unifies open-vocabulary affordance reasoning into end-to-end VLA
+
+In Scope: Methods unifying open-vocabulary affordance reasoning into end-to-end VLA architecture. Specifically includes: text prompt-driven open-vocabulary affordance feature activation mechanism, universal shape-function-interaction attribute association learning, end-to-end joint training of affordance reasoning and action generation, zero-shot generalization to unseen object categories and novel language interaction instructions. The core contribution should be a unified architecture, not a modular concatenation of affordance detection + action generation.
+
+Out of Scope: Predefined fixed affordance types (CoA-VLA already done). Modular affordance pipelines (GeneralVLA/VoxPoser already done). Affordance detection only without actions (OVAL-Prompt already done). Affordance transfer without language conditioning (AffordDP already done). Pure affordance benchmarking/analysis.
+
+Contribution Type: Method contribution. Output must include (1) unified architecture design for open-vocabulary affordance and VLA, (2) end-to-end training strategy for affordance reasoning and action generation, (3) experimental validation of zero-shot generalization on unseen objects and novel interaction instructions, demonstrating advantages over structured affordance VLA and modular methods.
+
+Evaluation Protocol:
+Training: Based on OpenVLA architecture, integrating open-vocabulary affordance module. Training data uses LIBERO + affordance annotation data (e.g., AGD20K/UMD Affordance).
+Evaluation Metrics:
+- Primary metric: Zero-shot manipulation success rate on unseen object categories
+- Novel interaction instruction generalization: Language interaction descriptions unseen during training (e.g., train on "pick up," test on "scoop out")
+- Affordance localization precision: Compare with detection methods like OVAL-Prompt (ensure affordance understanding itself does not degrade)
+- Manipulation success rate: Compare with standard VLA baselines (ensure adding affordance does not degrade known task performance)
+- Baseline comparisons:
+  1. Affordance-free VLA (OpenVLA direct fine-tuning)
+  2. Structured affordance VLA (CoA-VLA reproduction)
+  3. Modular affordance pipeline (GeneralVLA approach)
+  4. Affordance detection + independent policy (OVAL-Prompt + policy learning)
+  5. LLM affordance map + planning (VoxPoser approach)
+- Ablation studies: Open-vocabulary affordance vs. fixed-type affordance, end-to-end vs. staged training, text-driven affordance vs. vision-driven affordance
+- Cross-object transfer tests: Shape-function association generalization (e.g., if trained on shovel's "scooping" affordance, can the model activate the same interaction for novel shovel-like tools?)
+- Free-form instruction tests: Non-templated natural language instruction understanding
+
+Building Blocks: OpenVLA codebase (VLA base architecture); CoA-VLA codebase (affordance VLA baseline); OVAL-Prompt codebase (open-vocabulary affordance detection reference); AGD20K/UMD Affordance datasets (affordance annotations); LIBERO benchmark (manipulation task evaluation); DINOv2/SigLIP visual encoders; SAM2 (segmentation); HuggingFace transformers + accelerate; CLIP/SigLIP (open-vocabulary semantic alignment).
+
+Hard Constraints:
+Compute: ≤200 H100-hours. Strategy: Fine-tune based on 7B VLA, affordance module leveraging pre-trained VLM features (e.g., CLIP/SigLIP) to reduce training requirements. Training ~80 H100-hours, baseline reproduction ~50 H100-hours, ablation ~40 H100-hours, generalization testing ~30 H100-hours.
+Evaluation: Must validate zero-shot generalization on unseen object categories. Must include free-form language instruction tests. Must include ≥4 baselines. Must report both affordance precision and manipulation success rate. Must include ablation studies and cross-object transfer tests.
+
+Exploration Directions: (1) End-to-end activation of VLM internal affordance features: Rather than adding an external affordance detection module to VLA, activate interaction-relevant visual features within VLA's VLM backbone network directly through language instructions. Key insight: Large-scale VLMs (e.g., PaliGemma, SigLIP) have already learned extensive shape-function associations during pre-training ("knives can cut," "bowls can hold"), only requiring suitable activation mechanisms to release this implicit knowledge. (2) Affordance as intermediate reasoning tokens: Rather than explicitly outputting affordance heatmaps, have VLA generate a set of "affordance reasoning tokens" before generating action token sequences (similar to CoA-VLA's chain reasoning but open-vocabulary). These tokens encode interaction possibilities of objects in the current scene, then condition subsequent action generation. Differs from CoA-VLA: not limited to 4 predefined types; reasoning content is dynamically determined by language instructions. (3) Contrastive learning for universal shape-function-interaction mapping: Add contrastive objective during VLA training to pull together different-shaped objects with similar functions (various "tools that can scoop things") in affordance feature space, and push apart similar-shaped objects with different functions (decorative bowl vs. functional bowl). More flexible than CoA-VLA's structured types — any natural language-described interaction can participate in contrasting. (4) Knowledge distillation for zero-shot affordance reasoning: Use large VLMs' (e.g., GPT-4V level) zero-shot affordance reasoning capability ("how can this object be interacted with?") as teacher signals, distilling into small VLA. Large models have rich commonsense knowledge and can generate affordance descriptions for virtually any object, but are too large to deploy directly on robots. (5) Affordance consistency self-supervision: The same object under different language descriptions should have consistent affordance responses ("grab the handle" vs. "pick it up by the stick part" describe the same interaction). Use this consistency as self-supervision signals, reducing dependency on fine-grained affordance annotations.
+
+Avoid:
+- Using predefined fixed affordance types — duplicates CoA-VLA
+- Modular pipeline (affordance detection → planning → control) — duplicates GeneralVLA/VoxPoser, and prevents end-to-end optimization
+- Only doing affordance detection without actions — duplicates OVAL-Prompt
+- Ignoring CoA-VLA baseline — it is the most recent affordance + VLA work; must directly compare
+- Ignoring GeneralVLA — it is the most recent zero-shot affordance manipulation work; must clarify advantages of end-to-end vs. modular
+- Reporting results only on within-training-distribution objects — the core value of open vocabulary is on out-of-distribution objects
+- Over-relying on affordance annotation data — should design methods to reduce annotation requirements
+
+Idea Generation Quality Constraints (Hard rules based on historical cases):
+
+1. No strawman problems: Any claim of "existing methods assume X" or "existing methods fail on Y" must cite specific paragraphs from specific papers as evidence.
+
+2. No pure observation ideas: Output must include a complete method, not merely analysis/benchmark/empirical study.
+
+3. No mediocre methods: Methods must answer:
+   - Core insight: Large-scale VLMs have already implicitly learned rich shape-function association knowledge during pre-training; CoA-VLA released part of it through structured reasoning chains, but is limited by predefined types. We directly activate corresponding affordance features within VLA through open-vocabulary language instructions, fully releasing VLM's implicit shape-function knowledge into action generation.
+   - Why non-obvious: (1) CoA-VLA (December 2024) is the first work integrating affordance chain reasoning into VLA; affordance + VLA itself is a new paradigm; (2) open-vocabulary requires solving the infinite-dimensional affordance space problem — unlike 4 fixed types that can be directly classified; (3) end-to-end training of open-vocabulary affordance requires affordance annotation data, but such data is scarce — needs training strategies that reduce annotation dependency.
+   - What information is exploited: Implicit shape-function association knowledge from VLM pre-training — which neither 2D visual VLAs nor fixed-type affordance methods fully utilize.
+   - Mechanistic argument: When given a free-form language instruction (e.g., "scoop the rice"), the VLM internally already encodes knowledge that "scooping requires a concave container-shaped tool." Through suitable activation mechanisms, this knowledge can be transformed into affordance attention in visual feature space — focusing on regions in the scene with corresponding geometric functional properties, then conditioning action generation. More flexible than CoA-VLA's fixed 4-type reasoning because affordance is dynamically defined by language.
+
+4. No duplicating existing work: Each core technical component must be confirmed with at least 3 different search queries to have no directly related work.
+
+5. No padding experiments:
+   - "Delete experiment test": Keep only the method description — does it teach the reader something non-trivial? Yes — VLM implicit shape-function knowledge can drive VLA action generation through open-vocabulary activation.
+   - "Baseline fear test": If CoA-VLA's 4 structured types already cover most scenarios, is the paper still valuable? Must prove open-vocabulary methods' advantages on free-form instructions and novel interactions.
+   - "Citation test": Will people cite the numbers or the insight 5 years later? The insight — open-vocabulary affordance in end-to-end VLA paradigm.
+
+6. The following method patterns are rejected (unless with extremely strong structural reasons):
+   - "Add module X" — Why this specific structure?
+   - "Train on data Y" — Is data construction itself a contribution?
+   - "Transfer Z from domain A to domain B" — What is the structural analogy?
+   - "Combine P and Q" — Where is the synergy? Combining open-vocabulary detection (OVAL-Prompt) with VLA — must prove end-to-end joint training outperforms simple concatenation.
+   - "Use more/larger/stronger X" — Scale is not a method contribution.
+
+Competition Warning: CoA-VLA (December 2024) is the most recent affordance + VLA — uses structured reasoning chains but not open-vocabulary. GeneralVLA (February 2026) does zero-shot affordance manipulation but is a modular pipeline. OVAL-Prompt (ICRA 2024 Workshop) does open-vocabulary affordance detection but no actions. AffordDP (CVPR 2025) does affordance cross-category transfer but no language. VoxPoser (CoRL 2023) uses LLM to generate 3D affordance maps but is modular. π0 (Physical Intelligence) and RT-2 and other large VLAs may implicitly contain partial affordance knowledge but do not explicitly leverage it. Differentiation core: The only work integrating open-vocabulary affordance reasoning end-to-end into a unified VLA architecture. Highest risk: CoA-VLA is closest in space; if its author team quickly extends to open-vocabulary, differentiation shrinks. Monitor: CoA-VLA author team, GeneralVLA author team, Physical Intelligence (whether π0 follow-ups will integrate affordance).
+
+Tags: direction=open_vocab_affordance_zero_shot_vla, contribution_type=method, sub_direction=unified_affordance_vla_end_to_end, target_venues=["CoRL 2026"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-18?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 5/10)
+{
+  "title": "AffordInvar: Annotation-Free Spatial Affordance Learning in VLAs via Instruction Invariance and Cross-Object Transfer",
+  "core_problem": "Can we learn explicit spatial affordance representations within an end-to-end Vision-Language-Action model without any affordance annotations or external supervision signals, by jointly exploiting (1) instruction paraphrase invariance — semantically equivalent instructions must activate identical spatial affordance regions — and (2) cross-object affordance transfer — objects with similar functional parts must exhibit similar affordance patterns for the same interaction type — producing interpretable intermediate representations that improve manipulation success, paraphrase robustness, and zero-shot generalization to novel objects beyond what action-level invariance methods (RSS, LangForce), supervised spatial affordance approaches (PALM, CoA-VLA), spatial grounding with web-scale data (ST4VLA), 3D teacher-based alignment (Spatial Forcing), or standalone affordance modules (INTRA, AffordanceSAM) can achieve — all without the annotation pipelines, web-scale grounding data, simulator labels, or foundation model teachers that existing spatial methods require?",
+  "opportunity": "Recent work has firmly established that spatial representations within VLAs improve manipulation — ST4VLA (ICLR 2026) uses point/box/trajectory spatial priors from web-scale grounding data achieving 95.9% on LIBERO, Spatial Forcing (ICLR 2026) aligns intermediate VLA embeddings with a 3D foundation model (VGGT) achieving 98.5% LIBERO average (current SOTA), PALM (CVPR 2026) integrates 4 supervised affordance types achieving 91.8% on LIBERO-Long, and SG-VLA (March 2026) co-trains affordance decoders with simulator-extracted labels. However, all these methods require external supervision: ST4VLA needs web-scale grounding data (RefCOCO, LLaVA-OneVision); PALM requires a semi-automated annotation pipeline (GroundingDINO + SAM + SpatialVLM + RoboPoint + CoTracker); SG-VLA depends on simulator ground-truth labels (grasp states, segmentation masks); and Spatial Forcing requires a pretrained 3D foundation model as teacher. This supervision dependence creates a critical scaling bottleneck — deploying to new environments, tasks, or real-world settings without simulators requires re-annotation or re-collection of grounding data. Meanwhile, LIBERO-Para (arXiv 2603.28301, March 2026) reveals that VLAs suffer 22-52 percentage point drops under simple paraphrasing with 80-96% of failures at the planning level — and none of the above spatial methods (ST4VLA, PALM, SG-VLA, Spatial Forcing) have been evaluated on LIBERO-Para, leaving paraphrase robustness as an untested dimension for spatial VLA methods. The context-dependent affordance study (arXiv 2603.04419) confirms that stable latent affordance factors persist despite >90% lexical drift across contexts, suggesting spatial affordance structure is exploitable as a free self-supervision signal from paraphrases alone. OpenVLA-OFT achieves 97.1% on LIBERO with LoRA fine-tuning in ~10-15 hours on a single A100, providing a compute-efficient backbone.",
+  "landscape": "**Spatial representations in VLAs (supervised/teacher-based)**: ST4VLA (ICLR 2026, arXiv 2602.10109) uses spatial priors (point, box, trajectory) from web-scale grounding pre-training (RefCOCO, LLaVA-OneVision) followed by spatially guided action post-training, achieving 95.9% LIBERO average (92.6% Long) and emergent paraphrase robustness in real-world (52% on novel instructions by attribute) — the closest spatial VLA, but requires web-scale grounding data not available in new domains and does not explicitly learn affordance maps. Spatial Forcing (ICLR 2026, arXiv 2510.12276) aligns intermediate VLA visual embeddings with 3D representations from VGGT, achieving 98.5% LIBERO average (96.0% Long) with 3.8x training speedup — a plug-and-play approach demonstrating that intermediate spatial alignment improves VLAs, but requires a pretrained 3D foundation model as teacher with no learned affordance structure. PALM (CVPR 2026, arXiv 2601.07060) integrates 4 complementary affordance types (global object masks via GroundingDINO+SAM, local contact heatmaps, spatial placements via SpatialVLM+RoboPoint, motion dynamics via CoTracker) end-to-end with progress-aware policy learning, achieving 91.8% on LIBERO-Long — the most directly comparable affordance-in-VLA work, but requires a multi-model semi-automated annotation pipeline. SG-VLA (arXiv 2603.22760, March 2026) co-trains auxiliary decoders for grasp affordances, segmentation masks, robot pose, and joint configurations from shared VLA features, with ground truth extracted from ManiSkill-HAB simulator state — demonstrates that auxiliary affordance decoders improve VLA performance, but is limited to simulation environments with accessible ground-truth state. RoboMAP (arXiv 2510.10912, October 2025) generates adaptive affordance heatmaps as continuous spatial representations for language-guided manipulation achieving 82% real-world success — anticipates our heatmap-based approach but is a standalone grounding module, not integrated into end-to-end VLA training, and requires diverse annotation synthesis. **Action-level robustness methods**: RSS (arXiv 2601.04052, January 2026) uses Monte Carlo Syntactic Integration and Residual Affordance Steering at the action logit level, achieving 82.2% on pi0 (vs 52.4% baseline) and 90.0% on LIBERO-Plus — strong but explicitly operates at the action output level with no learned spatial affordance maps. LangForce/BayesianVLA (arXiv 2601.15197, January 2026) uses Bayesian decomposition into vision-only prior and language-conditioned posterior achieving 11.3% OOD improvement on SimplerEnv — complementary but similarly action-level. RobustVLA (ICLR 2026) enforces action-level consistency under 17 perturbation types. **Standalone affordance modules**: INTRA (ECCV 2024, arXiv 2409.06210) uses ChatGPT-4-generated synonyms with interaction-relationship-guided contrastive learning for text-conditioned affordance maps, SOTA on AGD20K/UMD — directly anticipates our paraphrase-invariance idea for affordance but is disconnected from VLA action prediction. AffordanceSAM (April 2025, arXiv 2504.15650) extends SAM for affordance grounding, current SOTA on AGD20K — supervised, standalone. WSAG-PLSP (ICLR 2025) uses part-level semantic priors for weakly supervised affordance grounding — standalone, requires pseudo-label generation. **Supervised affordance in VLAs**: CoA-VLA (ICCV 2025) integrates chain-of-affordance reasoning with supervised labels. GeneralVLA (arXiv 2602.04315) proposes a hierarchical VLA with externally supervised Affordance Segmentation Module. RT-Affordance (ICRA 2025) uses affordances as intermediate representations with supervised learning achieving 69% vs 15% baseline. **Diagnostic benchmarks**: LIBERO-Para (arXiv 2603.28301, March 2026) reveals 22-52pp VLA drops under paraphrasing — confirms the problem but proposes no solution and has not been used to evaluate any spatial VLA method (ST4VLA, PALM, SG-VLA, Spatial Forcing). **The critical gap**: No work learns spatial affordance maps within a VLA via pure self-supervision. ST4VLA uses web-scale grounding data; PALM uses multi-model annotation pipelines; SG-VLA uses simulator ground truth; Spatial Forcing uses 3D foundation model teachers. Our method requires only robot demonstrations + LLM-generated paraphrases.",
+  "approach": "We propose AffordInvar, which augments OpenVLA-OFT with a lightweight spatial affordance decoder trained jointly with the VLA via LoRA using two complementary self-supervised signals — requiring no affordance annotations, web-scale grounding data, simulator labels, or foundation model teachers. **Architecture**: The affordance decoder takes intermediate features from the VLA's 18th transformer layer (out of 32), which retain spatial structure before the final action-prediction layers. The decoder consists of 3 transposed convolution blocks (each: ConvTranspose2d 4x4 stride 2, GroupNorm, GELU) upsampling from 16x16 to 128x128 resolution, with text conditioning via the instruction embedding projected through a linear layer and channel-wise multiplied at each block (~8M parameters total, <0.12% of VLA backbone). Output is a sigmoid-activated 128x128 affordance heatmap. **Self-supervised signal 1 — Paraphrase invariance (L_consist)**: For each training episode, Qwen 3 generates K=3 semantically equivalent instruction paraphrases offline. During training, each paraphrase-image pair is processed through the VLA, and a symmetric KL divergence loss enforces identical affordance heatmaps across all K+1 instruction variants: L_consist = (1/C(K+1,2)) sum_{i&lt;j} KL(h_i || h_j), extending SelfEQ's visual grounding consistency (CVPR 2024) from general VLM grounding to the VLA affordance domain. Unlike RSS which applies paraphrase averaging at the action logit level, we enforce consistency at the intermediate spatial representation level, providing richer structured learning signal. Unlike ST4VLA's emergent robustness from web-scale spatial pre-training, we explicitly optimize for instruction invariance. **Self-supervised signal 2 — Cross-object affordance transfer (L_transfer)**: Episodes with semantically similar instructions (cosine similarity > 0.85 on instruction embeddings) but different target objects are mined as positive pairs; episodes with the same object but different interaction types serve as negatives. A contrastive InfoNCE loss on spatially-normalized affordance features encourages interaction-specific (not object-specific) affordance representations, enabling zero-shot transfer to novel objects — inspired by INTRA's interaction-relationship contrastive learning but operating on VLA-internal features with free-form instructions rather than predefined interaction labels. **Affordance-action integration**: The affordance heatmap is bilinearly downsampled to the action feature resolution and applied as an element-wise gate: action_features = action_features * sigma(W_g * affordance_features + b_g), where W_g is a learned linear projection (~0.5M parameters). This is architecturally similar to SG-VLA's auxiliary decoder approach but with a key difference: our decoder is trained entirely self-supervised while SG-VLA requires simulator ground truth for each auxiliary task. **Entropy regularization**: H_entropy = -lambda_H sum h_i log(h_i), preventing degenerate uniform or collapsed heatmaps. **Total loss**: L = L_action + alpha*L_consist + beta*L_transfer + lambda_H*H_entropy, where L_action is OpenVLA-OFT's continuous L1 action regression loss. **Evaluation**: (1) Manipulation success on LIBERO-Long (10 tasks, standard) and LIBERO-Para (paraphrase robustness, measuring PRIDE score) — we will be the first to evaluate a spatial affordance VLA method on LIBERO-Para; (2) Zero-shot generalization to held-out object categories within LIBERO; (3) Held-out interaction type generalization: train without all 'opening' tasks and test on them, plus creative rephrasings via Qwen 3 using novel interaction vocabulary (e.g., 'unfasten the container' instead of 'open the drawer') to test whether affordance representations generalize to unseen interaction semantics; (4) Affordance transfer evaluation with fine-tuning protocol: (a) zero-shot application of the VLA-learned affordance decoder on AGD20K/UMD as an exploratory experiment assessing cross-domain affordance quality, and (b) fine-tuning only the affordance decoder on AGD20K while freezing the VLA backbone, testing whether VLA-learned representations provide useful initialization vs. training from scratch — this addresses the large sim-to-real domain gap; (5) Qualitative affordance map visualization and contact-point prediction accuracy on held-out LIBERO episodes. **Baselines**: (a) OpenVLA-OFT (vanilla, no affordance) — 97.1% LIBERO standard; (b) OpenVLA-OFT + RSS-style action-level paraphrase invariance (our reimplementation); (c) OpenVLA-OFT + Spatial Forcing (intermediate 3D alignment with VGGT teacher) — 98.5% LIBERO average; (d) PALM (semi-automated affordance annotation) — 91.8% LIBERO-Long; (e) ST4VLA (web-scale spatial grounding) — 95.9% LIBERO average; (f) INTRA affordance maps + OpenVLA-OFT policy (two-stage); (g) CoA-VLA (supervised affordance). Key comparison axis: standard LIBERO performance may be competitive but not necessarily SOTA (Spatial Forcing at 98.5% is hard to beat without 3D teachers); our primary advantage claims are on (i) LIBERO-Para paraphrase robustness where explicit invariance training should outperform emergent robustness, (ii) zero-shot novel object/interaction generalization where annotation-free affordance transfer should outperform annotation-dependent methods in out-of-distribution settings, and (iii) annotation efficiency — competitive performance without any affordance labels, web-scale data, or foundation model teachers. **Key hypotheses**: (a) Explicit paraphrase invariance at the spatial affordance level provides better PRIDE scores on LIBERO-Para than ST4VLA's emergent robustness from spatial grounding or RSS's action-level invariance; (b) Self-supervised cross-object affordance transfer enables superior zero-shot generalization to novel objects compared to methods that learn object-specific supervised affordance features (PALM, SG-VLA); (c) Despite requiring no external supervision, AffordInvar achieves within 2-3 percentage points of supervised spatial methods (PALM, ST4VLA) on standard LIBERO, demonstrating that self-supervision closes most of the gap; (d) VLA-learned affordance representations provide useful initialization for downstream affordance benchmarks, demonstrated by faster convergence when fine-tuning the decoder on AGD20K vs. training from scratch.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~180-200h H100 80GB (8-9 training runs at ~20-22h each: 2 main method runs, 2 baseline reproductions including Spatial Forcing and RSS reimplementation, 4 ablation runs for L_consist-only/L_transfer-only/no-gating/decoder-depth, 1 hyperparameter tuning run)",
+      "gpu_utilization": "~30-35% effective utilization — human iteration time between runs for debugging and analysis",
+      "timeline": "8-10 weeks (2 weeks codebase setup + paraphrase generation + baseline reproduction, 4-5 weeks experimentation including LIBERO-Para evaluation and AGD20K fine-tuning, 2-3 weeks paper writing)",
+      "team": "1-2 researchers with VLA fine-tuning experience",
+      "estimated_gpu_cost": "~$600-$700 (200h x $3.50/hr on-demand H100, or ~$400-$500 with spot pricing)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~190-200h H100 80GB (agent manages experiment scheduling with slightly more efficient ablation design)",
+      "gpu_utilization": "~60-70% — agent queues next experiment after prior run, human approves loss hyperparameters and reviews affordance heatmap quality at checkpoints",
+      "timeline": "5-7 weeks (agent handles implementation and experiment orchestration; human reviews loss weight schedules and affordance map quality daily ~1hr)",
+      "team": "1 researcher, ~1hr/day check-in",
+      "claude_api_cost": "$100-200 (1,000-2,000 Opus turns for code generation, experiment design, result analysis)",
+      "estimated_gpu_cost": "~$600-$700 (200h x $3.50/hr)",
+      "risk_note": "Affordance consistency loss hyperparameters (alpha, beta) are sensitive — human review of affordance heatmaps after first 2-3 runs is critical to detect degenerate solutions (uniform or collapsed maps) early and adjust entropy regularization strength"
+    },
+    "auto_research": {
+      "gpu_hours": "~200h H100 80GB (hard budget cap; agent maximizes information per run via sequential Bayesian hyperparameter optimization over alpha, beta, lambda_H, LoRA rank, and decoder depth)",
+      "gpu_utilization": "~90-95% — agent immediately launches next experiment upon completion, no human wait time",
+      "timeline": "2-3 weeks with 4 H100 GPUs (parallel ablation pairs reduce wall-clock time; includes evaluation and paper draft)",
+      "team": "0 researchers after initial ~2hr setup (repo clone, API keys, compute allocation)",
+      "claude_api_cost": "$200-400 (2,000-4,000 Opus turns for autonomous code development, ~9 experiment configurations, analysis, and paper writing)",
+      "estimated_gpu_cost": "~$600-$700 (200h x $3.50/hr)",
+      "speed_bottleneck": "GPU count is primary bottleneck — with 4 H100s, parallel ablation pairs complete in 2-3 weeks; with only 2 H100s, extends to 4-5 weeks",
+      "risk_note": "Without human oversight, agent may waste ~20-30% of compute budget exploring suboptimal loss weight configurations before discovering effective entropy regularization settings — Bayesian optimization mitigates but does not eliminate this risk"
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (abstracts July 21, full paper July 28, 2026 — primary target, ~10 weeks from today, feasible in human-in-loop or auto-research modes)",
+    "ICRA 2027 (estimated deadline ~September 15, 2026 — flagship robotics venue, comfortable timeline, natural fit for manipulation-focused contribution)",
+    "ICLR 2027 (estimated deadline ~October 2026 — top-tier ML venue, strongest signal for self-supervised learning methodology contribution)",
+    "CoRL 2027 (estimated deadline ~June 2027 — if additional real-robot experiments are needed for strongest submission)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "ST4VLA: Spatially Guided Training for Vision-Language-Action Models — spatial priors (point, box, trajectory) from web-scale grounding data, 95.9% LIBERO average, emergent paraphrase robustness (ICLR 2026, arXiv 2602.10109)",
+    "PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation — 4 supervised affordance types with semi-automated annotation (GroundingDINO+SAM+SpatialVLM+RoboPoint+CoTracker), 91.8% LIBERO-Long (CVPR 2026, arXiv 2601.07060)",
+    "SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation — auxiliary decoders for grasp affordances and segmentation from simulator ground truth (arXiv 2603.22760, March 2026)",
+    "Spatial Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model — intermediate VLA alignment with 3D foundation model (VGGT), 98.5% LIBERO average, 3.8x training speedup (ICLR 2026, arXiv 2510.12276)",
+    "RoboMAP: More than A Point — adaptive affordance heatmaps for spatial grounding, 82% real-world success (arXiv 2510.10912, October 2025)",
+    "Stable Language Guidance for Vision-Language-Action Models — RSS with Monte Carlo Syntactic Integration and Residual Affordance Steering (arXiv 2601.04052, January 2026)",
+    "INTRA: Interaction Relationship-aware Weakly Supervised Affordance Grounding — text synonym augmentation with contrastive learning for affordance on AGD20K (ECCV 2024, arXiv 2409.06210)",
+    "LangForce/BayesianVLA: Bayesian Decomposition of Vision Language Action Models via Latent Action Queries — Bayesian VLA instruction-following via PMI (arXiv 2601.15197, January 2026)",
+    "LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models — 22-52pp drops under paraphrasing, PRIDE metric (arXiv 2603.28301, March 2026)",
+    "OpenVLA: An Open-Source Vision-Language-Action Model (CoRL 2024)",
+    "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success — OpenVLA-OFT (arXiv 2502.19645, February 2025)",
+    "Improved Visual Grounding through Self-Consistent Explanations — SelfEQ paraphrase consistency for VLM grounding (CVPR 2024)",
+    "CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance (ICCV 2025, arXiv 2412.20451)",
+    "GeneralVLA: Generalizable Vision-Language-Action Models with Knowledge-Guided Trajectory Planning (arXiv 2602.04315, February 2026)",
+    "RT-Affordance: Affordances are Versatile Intermediate Representations for Robot Manipulation (ICRA 2025, arXiv 2411.02704)",
+    "On Robustness of Vision-Language-Action Model against Multi-Modal Perturbations — RobustVLA (ICLR 2026, arXiv 2510.00037)",
+    "Context-Dependent Affordance Computation in Vision-Language Models — >90% lexical drift, stable latent factors (arXiv 2603.04419)",
+    "VoxPoser: Composable 3D Value Maps for Robotic Manipulation with Language Models (CoRL 2023, arXiv 2307.05973)",
+    "OVAL-Prompt: Open-Vocabulary Affordance Localization for Robot Manipulation through LLM Affordance-Grounding (arXiv 2404.11000, 2024)",
+    "AffordanceSAM: Segment Anything Once More in Affordance Grounding — current SOTA on AGD20K (arXiv 2504.15650, April 2025)",
+    "Weakly-Supervised Affordance Grounding Guided by Part-Level Semantic Priors — WSAG-PLSP (ICLR 2025, arXiv 2505.24103)",
+    "Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation (arXiv 2603.16044, March 2026)",
+    "Learning Affordance Grounding from Exocentric Images — AGD20K dataset (CVPR 2022)"
+  ],
+  "description": "AffordInvar introduces annotation-free spatial affordance learning within an end-to-end Vision-Language-Action model, addressing a critical gap in the rapidly maturing landscape of spatial VLA methods. Recent work has established that spatial representations within VLAs significantly improve manipulation: ST4VLA (ICLR 2026) achieves 95.9% LIBERO average via web-scale spatial grounding, Spatial Forcing (ICLR 2026) achieves 98.5% via 3D foundation model alignment, PALM (CVPR 2026) achieves 91.8% LIBERO-Long via 4 semi-automated affordance types, and SG-VLA (March 2026) co-trains affordance decoders with simulator ground truth. However, all these methods require external supervision — web-scale grounding data, multi-model annotation pipelines, simulator labels, or foundation model teachers — creating scaling bottlenecks for new environments and tasks. AffordInvar eliminates this supervision requirement entirely. Built on OpenVLA-OFT with LoRA, it adds a lightweight 8M-parameter transposed-convolution affordance decoder on intermediate VLA features (layer 18/32) producing 128x128 spatial heatmaps, trained via two complementary self-supervised signals requiring only robot demonstrations and LLM-generated paraphrases: (1) paraphrase invariance — symmetric KL divergence enforcing identical affordance maps across K=3 Qwen-3-generated instruction variants, extending SelfEQ (CVPR 2024) from general VLM grounding to VLA affordance and explicitly optimizing the instruction robustness that ST4VLA achieves only emergently, and (2) cross-object affordance transfer — InfoNCE contrastive loss on spatially-normalized affordance features across episodes with similar interactions but different objects, inspired by INTRA but operating on VLA-internal features. The affordance heatmap gates action prediction via learned element-wise modulation. Key advantages over existing spatial VLA methods: (a) no annotation pipeline (vs. PALM's GroundingDINO+SAM+SpatialVLM+RoboPoint+CoTracker), no web-scale data (vs. ST4VLA's RefCOCO), no simulator labels (vs. SG-VLA), no 3D teachers (vs. Spatial Forcing) — only robot demonstrations + LLM paraphrases; (b) explicit paraphrase invariance optimization at the spatial level, unlike any existing spatial VLA method; (c) interpretable affordance maps independently evaluable on standard benchmarks. Evaluated on LIBERO-Long, LIBERO-Para (first spatial VLA method evaluated on paraphrase robustness via PRIDE metric), held-out interaction types, and AGD20K via fine-tuning protocol. Primary claims: superior LIBERO-Para PRIDE scores over emergent robustness (ST4VLA) and action-level invariance (RSS); competitive standard LIBERO performance without any affordance annotations; superior zero-shot novel object generalization via annotation-free affordance transfer. Baselines include OpenVLA-OFT, Spatial Forcing, PALM, ST4VLA, RSS-style action invariance, and CoA-VLA. Designed for <=200 H100-hours via LoRA efficiency.",
+  "project_name": "afford_invar_vla",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL MISSING RELATED WORK: 'Stable Language Guidance for Vision-Language-Action Models' (RSS, arXiv 2601.04052, January 2026) already uses LLM-generated paraphrases to train VLAs for syntactic invariance AND explicitly disentangles 'visual affordance' from 'semantic intent' via Residual Affordance Steering. The core mechanism overlap with AffordInvar is very high. This paper is not cited or discussed.", "CRITICAL MISSING RELATED WORK: 'INTRA: Interaction Relationship-aware Weakly Supervised Affordance Grounding' (ECCV 2024, arXiv 2409.06210) uses text synonym augmentation with contrastive learning for affordance grounding on AGD20K and UMD — the same benchmarks proposed. This directly anticipates the paraphrase-invariance-for-affordance concept.", "CRITICAL MISSING RELATED WORK: 'LangForce/BayesianVLA' (arXiv 2601.15197, January 2026) addresses the same VLA instruction sensitivity problem through Bayesian decomposition, constructing vision-only prior and language-conditioned posterior. Not cited.", "COMPUTE BUDGET VIOLATION: The seed specifies ≤200 H100-hours as a hard constraint. The proposal estimates ~1,500 A100-hours (manual mode), which is approximately 500-750 H100-equivalent hours — 2.5-3.75x over budget. Auto research mode at 4,500-5,000 A100-hours is 7.5-12.5x over budget.", "TIMELINE IMPOSSIBILITY: CoRL 2026 paper deadline is May 28-29, 2026 (10-11 days away). The proposal estimates 4-6 months for manual mode and 2-3 weeks for auto research. CoRL 2026 cannot be the primary target.", "AFFOGATO BENCHMARK MISMATCH: Affogato (arXiv 2506.12009) is a 3D affordance grounding benchmark with 150K 3D object instances and 3D heatmap annotations. The proposed pipeline is 2D image-based (OpenVLA-OFT). No explanation is given for how a 3D benchmark will be used in a 2D pipeline.", "SCOPE DRIFT FROM SEED: The seed asks for 'open-vocabulary affordance zero-shot VLA' with emphasis on unified architecture, shape-function-interaction association, and zero-shot generalization. The proposal narrows to self-supervised paraphrase invariance training, which is one of five exploration directions in the seed (direction #5). The open-vocabulary capability and shape-function association learning are not explicitly architected.", "MISSING SEED-REQUIRED BASELINES: The seed explicitly requires comparisons with GeneralVLA approach, VoxPoser approach, and OVAL-Prompt + policy learning. These are not clearly specified in the proposal's evaluation plan.", "UNDERSPECIFIED ARCHITECTURE: The 'lightweight affordance decoder head' and 'affordance-guided cross-attention mechanism' are central to the contribution but lack architectural detail — what layers, what resolution, how many parameters, how cross-attention is implemented."]
+Feedback: The proposal has a solid foundation but faces three critical problems that must be addressed:
+
+1. **Novelty gap (highest priority)**: RSS (arXiv 2601.04052, Jan 2026) already uses LLM paraphrases for VLA invariance training and explicitly models affordance-vs-semantic separation. You MUST cite RSS, INTRA (ECCV 2024), and LangForce (Jan 2026), then clearly articulate why operating on intermediate spatial affordance representations (your approach) provides benefits beyond action-level invariance (RSS). Consider: (a) affordance maps provide structured spatial supervision that enables better zero-shot transfer to unseen objects; (b) affordance representations can be evaluated independently (affordance localization benchmarks), providing interpretability that RSS lacks; (c) affordance consistency at the feature level may prevent the visual shortcut more effectively than action-level consistency.
+
+2. **Compute and timeline**: Redesign the approach to fit ≤200 H100-hours. Options: (a) use only LoRA on a smaller VLA variant; (b) reduce the number of paraphrases K from 5 to 2-3; (c) reduce ablation scope; (d) use a lighter affordance decoder. Remove CoRL 2026 as primary target — AAAI 2027 (July 28, 2026) or ICRA 2027 are more realistic.
+
+3. **Strengthen the open-vocabulary contribution**: The seed explicitly asks for open-vocabulary affordance in VLA. The current paraphrase invariance approach only addresses instruction robustness — it doesn't explicitly enable novel object categories or novel interaction types. Consider integrating the seed's exploration direction #3 (contrastive learning for shape-function mapping) with the paraphrase invariance signal, so the method learns both instruction-invariant affordance regions AND cross-object affordance transfer.
+
+Also: replace Affogato (3D) with a 2D-compatible benchmark or explain the 2D-3D adaptation strategy. Include all seed-required baselines (GeneralVLA, VoxPoser, OVAL-Prompt + policy).
+
+### Round 2 review
+Verdict: revise
+Issues: ["CRITICAL MISSING RELATED WORK: SP-VLA/ST4VLA (ICLR 2026, arXiv 2602.10109) uses spatial priors (point, box, trajectory predictions) to guide VLA action generation end-to-end, trained on web-scale grounding data (RefCOCO etc.), and explicitly claims 'stronger generalization to unseen objects and paraphrased instructions.' Achieves 62% zero-shot on unseen objects vs. 32% for π₀. This is the closest concurrent work occupying the 'spatial representations within end-to-end VLA' space. While SP-VLA uses supervised spatial grounding rather than self-supervised affordance maps, the overlapping claims (spatial guidance → paraphrase robustness + novel object generalization) demand explicit comparison and differentiation.", "MISSING RELATED WORK: PALM (arXiv 2601.07060, January 2026) learns structured affordance representations (object relevance, contact geometry, spatial placements, motion dynamics) within an end-to-end VLA, achieving 91.8% on LIBERO-Long. Uses supervised semi-automated annotation. Directly relevant as another 'affordance within VLA' approach.", "MISSING RELATED WORK: SG-VLA (arXiv 2603.22760, March 2026) co-trains auxiliary affordance decoders with VLA backbone using dense supervision, reconstructing grasp affordances, segmentation masks, and other intermediate signals from shared visual-language features. Another concurrent 'affordance decoder in VLA' approach.", "OVER-OPTIMISTIC ZERO-SHOT AGD20K/UMD EVALUATION: The proposal claims VLA-learned affordance representations will 'transfer zero-shot to standard affordance benchmarks (AGD20K, UMD).' The domain gap between LIBERO simulation images (rendered robot workspace scenes) and AGD20K/UMD images (real-world exocentric human-object interactions and egocentric object images) is enormous. This evaluation is likely to produce poor results and weaken rather than strengthen the paper. At minimum, acknowledge this gap explicitly and frame it as 'preliminary/exploratory evaluation' rather than a core contribution.", "SCOPE NARROWING FROM SEED: The seed explicitly asks for 'open-vocabulary affordance zero-shot VLA' handling instructions like 'use this thing to wipe off the dust over there.' The proposal's paraphrase invariance addresses instruction surface form robustness (different phrasings of the same instruction), not truly open-vocabulary novel interaction types (e.g., training on 'pick up' and generalizing to 'scoop out'). The cross-object transfer component partially addresses this but the free-form novel interaction instruction tests (required by the seed) are not clearly specified in the evaluation protocol.", "SELF-SUPERVISED SIGNAL QUALITY RISK NOT ADDRESSED: The core claim that paraphrase invariance produces meaningful spatial affordance heatmaps (not just blurry attention blobs) is the key technical bet. The proposal mentions entropy regularization to prevent degenerate solutions but doesn't discuss: (a) what happens if paraphrases only differ in action verbs but not spatial referents — the affordance map may correctly be identical, providing no learning signal about WHERE to attend; (b) how the contrastive cross-object transfer loss interacts with the invariance loss — could they conflict?"]
+Feedback: The revision has substantially improved from Round 1 — RSS/INTRA/LangForce are now properly cited, compute is within budget, architecture is detailed, and baselines are comprehensive. Three targeted fixes to push toward pass:
+
+1. **Cite and differentiate from SP-VLA (ICLR 2026), PALM (Jan 2026), and SG-VLA (Mar 2026)**: These are the three most relevant concurrent works that the proposal misses. SP-VLA is the most critical — it already shows spatial priors in VLA → better paraphrase robustness + novel object generalization (supervised). Your key differentiation: (a) self-supervised vs. supervised — your method requires no spatial annotations, making it applicable to any VLA dataset; (b) affordance heatmaps vs. point/box/trajectory — your representation captures continuous interaction regions rather than discrete points; (c) the paraphrase invariance signal is theoretically grounded in the observation (from LIBERO-Para) that VLA failures are at the planning level, suggesting intermediate representation consistency is more important than action-level or explicit spatial supervision.
+
+2. **Soften or restructure AGD20K/UMD evaluation**: Either (a) acknowledge the domain gap and frame zero-shot affordance benchmarking as 'exploratory/secondary evaluation' rather than a core claim, or (b) add a fine-tuning/adaptation step where you fine-tune only the affordance decoder on AGD20K training data while freezing VLA backbone — this would test whether VLA-learned affordance representations provide useful initialization. Option (b) is actually a stronger experiment that tests representation quality rather than zero-shot transfer across wildly different domains.
+
+3. **Strengthen the open-vocabulary / novel interaction evaluation**: Add a specific evaluation protocol for the seed's requirement of 'novel interaction instruction generalization.' For example: hold out entire interaction types from LIBERO training (e.g., all 'opening' tasks) and test whether affordance maps generalize to these unseen interactions. Also add 'free-form instruction tests' — Qwen 3 can generate creative rephrasings that describe the same task using novel interaction vocabulary (e.g., 'unfasten the container' instead of 'open the drawer'). This directly addresses the seed's concern about open-vocabulary capability.
+
+Minor: Consider ICRA 2027 as co-primary target alongside AAAI 2027, since the contribution is more naturally a robotics contribution than an AI-general one.
+
+### Round 3 review
+Verdict: revise
+Issues: ["CRITICAL MISSING RELATED WORK (REPEAT FROM ROUND 2): SP-VLA/ST4VLA (ICLR 2026, arXiv 2602.10109) uses spatial priors (point, box, trajectory) within end-to-end VLA and explicitly claims 'stronger generalization to unseen objects and paraphrased instructions.' This directly occupies the 'spatial representations in VLA → paraphrase robustness + novel object generalization' space. Not cited in landscape or key_references despite being flagged in Round 2.", "CRITICAL MISSING RELATED WORK (REPEAT FROM ROUND 2): PALM (arXiv 2601.07060, January 2026) integrates 4 supervised affordance types (global masks, local contact heatmaps, spatial placements, motion dynamics) end-to-end within a VLA, achieving 91.8% on LIBERO-Long. Uses semi-automated annotation. This is the most directly comparable 'affordance within end-to-end VLA' work. Not cited despite being flagged in Round 2.", "CRITICAL MISSING RELATED WORK (REPEAT FROM ROUND 2): SG-VLA (arXiv 2603.22760, March 2026) co-trains auxiliary affordance decoders (grasp affordances, segmentation masks) with VLA backbone from shared visual-language features in an end-to-end manner. This is architecturally very similar to AffordInvar's approach of adding an affordance decoder to a VLA. Not cited despite being flagged in Round 2.", "MISSING RELATED WORK: Spatial Forcing (ICLR 2026, arXiv 2510.12276) aligns intermediate VLA visual embeddings with external spatial representations from 3D foundation models, achieving SOTA results and 3.8x training speedup. Demonstrates that intermediate spatial representation alignment in VLAs is already an established approach.", "MISSING RELATED WORK: RoboMAP (arXiv 2510.10912, October 2025) uses adaptive affordance heatmaps as core intermediate representation for language-conditioned robotic tasks with 82% real-world success rate. Very similar concept of continuous affordance heatmaps for spatial grounding.", "ZERO-SHOT AGD20K/UMD EVALUATION CONCERN (REPEAT FROM ROUND 2): The domain gap between LIBERO simulation images (rendered robot workspace) and AGD20K/UMD images (real-world exocentric/egocentric human-object interactions) is enormous. This evaluation will likely produce poor results. Round 2 suggested either framing as exploratory or adding fine-tuning adaptation — neither appears incorporated.", "OPEN-VOCABULARY SCOPE CONCERN (REPEAT FROM ROUND 2): The seed asks for open-vocabulary affordance handling instructions like 'use this thing to wipe off the dust.' Paraphrase invariance addresses instruction surface form robustness (different phrasings of same task), not truly novel interaction types (train on 'pick up', generalize to 'scoop out'). The cross-object transfer partially addresses this but the specific evaluation protocol for novel interaction types is still underspecified."]
+Feedback: This is a well-designed idea with a valid technical niche (self-supervised spatial affordance within VLA), but the proposal has failed to address 3 critical missing related works flagged in Round 2 (SP-VLA, PALM, SG-VLA). This is the most urgent fix:
+
+1. **Cite and differentiate from SP-VLA, PALM, SG-VLA, Spatial Forcing, and RoboMAP**: These 5 works collectively show that (a) spatial priors in VLA already improve paraphrase robustness (SP-VLA), (b) supervised affordance in end-to-end VLA already achieves 91.8% on LIBERO-Long (PALM), (c) co-training affordance decoders with VLA is already done (SG-VLA), (d) intermediate spatial alignment in VLA is established (Spatial Forcing), and (e) affordance heatmaps as intermediate representations exist (RoboMAP). Your key differentiation across ALL of these: self-supervised training via paraphrase invariance + cross-object contrastive transfer — no annotation required. Make this the central selling point. PALM's 4 affordance types require semi-automated annotation; SP-VLA requires web-scale grounding data (RefCOCO etc.); SG-VLA requires dense supervised auxiliary signals. Your method works with only robot demonstrations + an LLM for paraphrases.
+
+2. **Fix AGD20K/UMD evaluation**: Frame zero-shot affordance benchmarking as 'exploratory/secondary' OR add a fine-tuning protocol where only the affordance decoder is fine-tuned on AGD20K while VLA backbone is frozen. This tests whether VLA-learned affordance representations provide useful initialization — a stronger experiment.
+
+3. **Strengthen novel interaction evaluation**: Add explicit held-out interaction type tests (e.g., train without all 'opening' tasks, test on them). Also add creative rephrasings via Qwen 3 that use novel interaction vocabulary ('unfasten the container' instead of 'open the drawer').
+
+4. **Benchmark against PALM's 91.8%**: Since PALM achieves 91.8% on LIBERO-Long with supervised affordance, you need to either (a) show competitive performance without annotations, demonstrating the value of self-supervision, or (b) argue that your method's advantage is in settings where affordance annotations don't exist (new environments, new tasks). Frame appropriately.
+
+### Round 4 review
+Verdict: revise
+Issues: ["SELF-SUPERVISED SIGNAL QUALITY RISK UNADDRESSED: The core technical bet — that paraphrase invariance produces spatially meaningful affordance maps — lacks a contingency plan. If paraphrases like 'pick up the red cup' vs 'grab the crimson mug' both correctly activate the same cup region, the invariance loss is trivially satisfied without learning WHERE to attend for the interaction. The signal is informative only when paraphrases create genuine spatial ambiguity. In LIBERO's templated instructions, the diversity of spatially-informative paraphrases may be limited. Include: (a) analysis of what fraction of Qwen-3 paraphrases create non-trivial spatial variation, (b) a quantitative affordance map quality metric (e.g., IoU with contact regions extracted from trajectories as pseudo-ground-truth), (c) contingency if maps are uninformative (e.g., adding trajectory contact point supervision as lightweight alternative).", "BASELINE REPRODUCTION BUDGET TOO TIGHT: 50 H100-hours for 7 baselines is ambitious. Spatial Forcing requires VGGT as 3D teacher; ST4VLA requires web-scale grounding pre-training on RefCOCO/LLaVA-OneVision; PALM requires the full multi-model annotation pipeline (GroundingDINO+SAM+SpatialVLM+RoboPoint+CoTracker). These cannot be trivially reproduced. Recommend: (a) use published numbers for Spatial Forcing, ST4VLA, and PALM on standard LIBERO (they report on the same benchmark); (b) only reproduce baselines that need evaluation on YOUR novel evaluation conditions (LIBERO-Para, held-out interactions) — likely only OpenVLA-OFT, RSS-style, and CoA-VLA need full reproduction; (c) explicitly state which baselines use published vs. reproduced numbers.", "SCOPE NARROWING FROM SEED NOT ACKNOWLEDGED: The seed asks for 'open-vocabulary affordance zero-shot VLA' handling free-form instructions like 'use this thing to wipe off the dust over there.' The proposal delivers 'annotation-free spatial affordance via paraphrase invariance,' which addresses instruction surface-form robustness and some cross-object transfer, but does NOT address truly novel interaction types (training on 'pick up' and generalizing to 'scoop out' as fundamentally different affordance patterns). The creative rephrasings via Qwen 3 ('unfasten the container' for 'open the drawer') test lexical novelty, not semantic interaction novelty. Acknowledge this scope boundary explicitly and argue why annotation-free affordance is a necessary stepping stone toward open-vocabulary affordance.", "HYPOTHESIS (c) 'WITHIN 2-3PP OF SUPERVISED METHODS' MAY BE OVER-OPTIMISTIC: Spatial Forcing achieves 98.5% LIBERO average using a 3D foundation model teacher. ST4VLA achieves 95.9% with web-scale grounding. Claiming self-supervised affordance (no external supervision) will reach within 2-3pp of these is a strong claim. Consider: self-supervised signals inherently have less information content than supervised ones. OpenVLA-OFT already achieves 97.1% without any affordance learning. The ceiling improvement from adding self-supervised affordance may be minimal on standard LIBERO (already near-saturated), making the 'within 2-3pp' framing misleading. Reframe: primary advantage is on OOD conditions (LIBERO-Para, novel objects), not standard benchmark competition.", "AGD20K FINE-TUNING STILL RISKY: The domain gap between LIBERO simulation (rendered robot workspace, egocentric camera) and AGD20K (real-world exocentric human-object interaction images) is enormous — different viewpoints, different visual domains, different interaction contexts. Even fine-tuning the affordance decoder may produce mediocre results that weaken the paper. Consider replacing with a more meaningful cross-domain evaluation: (a) transfer across LIBERO task suites (e.g., train on LIBERO-Spatial, evaluate affordance quality on LIBERO-Goal), or (b) evaluate on ManiSkill/RLBench as alternative simulation environments with different visual characteristics."]
+Feedback: This is a substantially improved proposal that has addressed all critical missing related work from Rounds 2-3 (ST4VLA, PALM, SG-VLA, Spatial Forcing, RoboMAP are now properly cited and differentiated). The gap is independently verified as real — no existing work learns spatial affordance maps within a VLA via pure self-supervision. Three targeted fixes to reach pass:
+
+1. **Address the core technical risk head-on**: The paraphrase invariance signal may be trivially satisfied in LIBERO's templated instruction space. Add a concrete analysis: (a) generate 100 sample paraphrases for LIBERO tasks and categorize what fraction create genuine spatial ambiguity vs. trivial synonym substitution; (b) define a quantitative affordance quality metric (e.g., IoU with trajectory contact regions as pseudo-ground-truth); (c) include a lightweight contingency — if pure self-supervision underperforms, augment with trajectory-derived contact point supervision (~0 annotation cost, extracted automatically from robot proprioception). This turns the risk into a controlled ablation rather than an existential threat.
+
+2. **Restructure baseline strategy for budget realism**: Use published numbers for Spatial Forcing (98.5%), ST4VLA (95.9%), and PALM (91.8%) on standard LIBERO — they already report on the same benchmark. Only fully reproduce OpenVLA-OFT, RSS-style action invariance, and CoA-VLA (these need evaluation on YOUR novel conditions: LIBERO-Para, held-out interactions). For LIBERO-Para, note explicitly that NO existing spatial VLA method has been evaluated on it — the comparison is against action-level methods (RSS) and vanilla VLAs. This saves ~30 H100-hours and is more honest about what's being compared.
+
+3. **Reframe the contribution precisely**: Don't claim 'within 2-3pp of supervised methods on standard LIBERO' — standard LIBERO is near-saturated (98.5% SOTA) and improvements there are marginal. Instead, frame the contribution as: (a) annotation-free spatial affordance that MATCHES vanilla VLA on standard LIBERO while providing (b) superior paraphrase robustness (LIBERO-Para PRIDE score) and (c) superior zero-shot object/interaction generalization — advantages that supervised methods CANNOT demonstrate because their affordance representations are tied to specific annotation categories. The insight is that self-supervised affordance discovers the model's own interaction understanding, unconstrained by human annotation priors.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "34182729-18fd-4579-88de-8bbf18724eaf",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-18T21:17:28.863Z_
+
+```json
+{
+  "parentUuid": "34182729-18fd-4579-88de-8bbf18724eaf",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "f9c378ae-72cf-4803-ba10-00e42b7681f7",
+  "timestamp": "2026-05-18T21:17:28.863Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-18T21:17:28.863Z_
+
+```json
+{
+  "parentUuid": "f9c378ae-72cf-4803-ba10-00e42b7681f7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "77d1c094-8082-4ca5-9a3f-e29c71c7b835",
+  "timestamp": "2026-05-18T21:17:28.863Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "77d1c094-8082-4ca5-9a3f-e29c71c7b835",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify affordance self-supervision in VLAs via independent research",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-18T21:17:39.853Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a detailed ML research idea review request. I need to independently verify the claims made in this proposal through web searches, then issue a verdict. This is Round 5 of 10.
+
+Let me analyze what needs verification:
+
+1. **Key claims to verify**:
+   - ST4VLA, PALM, SG-VLA, Spatial Forcing are now properly cited (previous rounds flagged these as missing)
+   - The gap claim: "No work learns spatial affordance maps within a VLA via pure self-supervision"
+   - LIBERO-Para benchmark and its findings
+   - OpenVLA-OFT achieves 97.1% on LIBERO
+   - Spatial Forcing achieves 98.5% LIBERO average
+   - The specific papers cited exist and have the claimed properties
+
+2. **Previous round issues to check if addressed**:
+   - Round 4 flagged: self-supervised signal quality risk, baseline reproduction budget, scope narrowing acknowledgment, over-optimistic hypothesis, AGD20K fine-tuning risk
+   - Let me check if these have been addressed in the current proposal
+
+3. **New searches needed**:
+   - Check for any very recent (March-May 2026) work on self-supervised affordance learning in VLAs, verify the LIBERO-Para claims, look for concurrent work that might be missing, and search for anything combining paraphrase invariance with spatial affordance learning
+
+Now I'll run these searches to validate the proposal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77d1c094-8082-4ca5-9a3f-e29c71c7b835",
+  "isSidechain": false,
+  "requestId": "req_011CbAjHjpptAQ1ue2JEKAcb",
+  "type": "assistant",
+  "uuid": "54c1fd74-0bf5-45e1-a85d-f36524750bd7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QfUffvAW2Si1zRKxiiwUoc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24821,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-18T21:17:39.896Z_
+
+I'll conduct an independent review of this proposal, focusing on verifying claims, checking for missed concurrent work, and assessing whether Round 4 issues have been addressed. Let me start with parallel searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "54c1fd74-0bf5-45e1-a85d-f36524750bd7",
+  "isSidechain": false,
+  "requestId": "req_011CbAjHjpptAQ1ue2JEKAcb",
+  "type": "assistant",
+  "uuid": "6bb09712-4ed9-45ff-a9bb-5e869fa5af7f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QfUffvAW2Si1zRKxiiwUoc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24821,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-18T21:17:40.028Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01AJeQgti8pnHvq8K9UAjH9S`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6bb09712-4ed9-45ff-a9bb-5e869fa5af7f",
+  "isSidechain": false,
+  "requestId": "req_011CbAjHjpptAQ1ue2JEKAcb",
+  "type": "assistant",
+  "uuid": "7a82ea30-f86c-42da-8192-15f5f08e2947",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QfUffvAW2Si1zRKxiiwUoc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24821,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T21:17:40.034Z_
+
+<details><summary>↩ Tool result · `toolu_01AJeQgti8pnHvq8K9UAjH9S`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7a82ea30-f86c-42da-8192-15f5f08e2947",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "1dc57e06-ee82-468d-bf5c-c63e65822784",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "7a82ea30-f86c-42da-8192-15f5f08e2947",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-18T21:17:42.928Z_
+
+Now let me launch parallel searches to verify key claims and check for missed concurrent work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1dc57e06-ee82-468d-bf5c-c63e65822784",
+  "isSidechain": false,
+  "requestId": "req_011CbAjJYjMwBJjyaVqLhkwG",
+  "type": "assistant",
+  "uuid": "8d8bd9dc-7d5d-4321-a7dd-fb54376e57e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012f6sHrksiXFgb8Z5vBQUUi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1494,
+      "cache_read_input_tokens": 36662,
+      "output_tokens": 89,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1494,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 89,
+          "cache_read_input_tokens": 36662,
+          "cache_creation_input_tokens": 1494,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1494
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T21:17:43.547Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WWPFs6tjLoXJvbB3kHEqEj`</summary>
+
+```json
+{
+  "query": "self-supervised affordance learning VLA vision-language-action 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d8bd9dc-7d5d-4321-a7dd-fb54376e57e9",
+  "isSidechain": false,
+  "requestId": "req_011CbAjJYjMwBJjyaVqLhkwG",
+  "type": "assistant",
+  "uuid": "2f22d833-83f4-4118-81a4-413909087c80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012f6sHrksiXFgb8Z5vBQUUi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1494,
+      "cache_read_input_tokens": 36662,
+      "output_tokens": 89,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1494,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 89,
+          "cache_read_input_tokens": 36662,
+          "cache_creation_input_tokens": 1494,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1494
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T21:17:51.277Z_
+
+<details><summary>↩ Tool result · `toolu_01WWPFs6tjLoXJvbB3kHEqEj`</summary>
+
+```text
+Web search results for query: "self-supervised affordance learning VLA vision-language-action 2025 2026"
+
+Links: [{"title":"CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance","url":"https://arxiv.org/pdf/2412.20451"},{"title":"Learning Affordances at Inference-Time for Vision-Language-Action Models","url":"https://arxiv.org/pdf/2510.19752"},{"title":"A Survey on Vision-Language-Action Models for Embodied ...","url":"https://arxiv.org/html/2405.14093v8"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"},{"title":"[2511.16166] EvoVLA: Self-Evolving Vision-Language-Action Model","url":"https://arxiv.org/abs/2511.16166"},{"title":"VTLA: Vision-Tactile-Language-Action model with preference learning for insertion manipulation | Request PDF","url":"https://www.researchgate.net/publication/403926332_VTLA_Vision-Tactile-Language-Action_model_with_preference_learning_for_insertion_manipulation"},{"title":"Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges","url":"https://arxiv.org/html/2505.04769v2"}]
+
+Based on the search results, here's what I found regarding self-supervised affordance learning in Vision-Language-Action (VLA) models for 2025-2026:
+
+## Recent Developments in Self-Supervised Affordance Learning for VLAs
+
+**EvoVLA Framework (2025)**
+EvoVLA is a self-supervised VLA framework that uses Stage-Aligned Reward with triplet contrastive learning and Pose-Based Object Exploration to ground curiosity in relative object-gripper pose, along with Long-Horizon Memory for extended rollouts.
+
+**CoA-VLA Approach**
+CoA-VLA proposes Chain-of-Affordance as a novel perspective on generalizing model reasoning at test-time to facilitate policy learning. The method leverages visual affordance in robot learning, conceptualizing various actions and interactions with objects or the environment that a robot can perform based on visual contexts.
+
+**Inference-Time Learning (LITEN)**
+LITEN uses an off-the-shelf VLM to attempt a task by controlling a low-level VLA, then retrospectively reason about robot behaviors to learn affordances—what the robot can or cannot do.
+
+**Broader Trends**
+HULC++ integrates a self-supervised affordance model that guides the system to actionable regions specified by language instructions. Emerging paradigms like affordance chaining and sim-to-real transfer learning address cross-embodiment challenges in 2025.
+
+The field is actively exploring self-supervised methods to improve affordance understanding, which helps robots better understand what actions are possible in their environment based on visual and contextual cues.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2f22d833-83f4-4118-81a4-413909087c80",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "6d2c89f4-d47e-4d30-87bd-80a2ea6bac12",
+  "toolUseResult": {
+    "query": "self-supervised affordance learning VLA vision-language-action 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WQgngeVwWCwiccQXvD3D7g",
+        "content": [
+          {
+            "title": "CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance",
+            "url": "https://arxiv.org/pdf/2412.20451"
+          },
+          {
+            "title": "Learning Affordances at Inference-Time for Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2510.19752"
+          },
+          {
+            "title": "A Survey on Vision-Language-Action Models for Embodied ...",
+            "url": "https://arxiv.org/html/2405.14093v8"
+          },
+          {
+            "title": "GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub",
+            "url": "https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"
+          },
+          {
+            "title": "[2511.16166] EvoVLA: Self-Evolving Vision-Language-Action Model",
+            "url": "https://arxiv.org/abs/2511.16166"
+          },
+          {
+            "title": "VTLA: Vision-Tactile-Language-Action model with preference learning for insertion manipulation | Request PDF",
+            "url": "https://www.researchgate.net/publication/403926332_VTLA_Vision-Tactile-Language-Action_model_with_preference_learning_for_insertion_manipulation"
+          },
+          {
+            "title": "Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges",
+            "url": "https://arxiv.org/html/2505.04769v2"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding self-supervised affordance learning in Vision-Language-Action (VLA) models for 2025-2026:\n\n## Recent Developments in Self-Supervised Affordance Learning for VLAs\n\n**EvoVLA Framework (2025)**\nEvoVLA is a self-supervised VLA framework that uses Stage-Aligned Reward with triplet contrastive learning and Pose-Based Object Exploration to ground curiosity in relative object-gripper pose, along with Long-Horizon Memory for extended rollouts.\n\n**CoA-VLA Approach**\nCoA-VLA proposes Chain-of-Affordance as a novel perspective on generalizing model reasoning at test-time to facilitate policy learning. The method leverages visual affordance in robot learning, conceptualizing various actions and interactions with objects or the environment that a robot can perform based on visual contexts.\n\n**Inference-Time Learning (LITEN)**\nLITEN uses an off-the-shelf VLM to attempt a task by controlling a low-level VLA, then retrospectively reason about robot behaviors to learn affordances—what the robot can or cannot do.\n\n**Broader Trends**\nHULC++ integrates a self-supervised affordance model that guides the system to actionable regions specified by language instructions. Emerging paradigms like affordance chaining and sim-to-real transfer learning address cross-embodiment challenges in 2025.\n\nThe field is actively exploring self-supervised methods to improve affordance understanding, which helps robots better understand what actions are possible in their environment based on visual and contextual cues."
+    ],
+    "durationSeconds": 7.725781284999999
+  },
+  "sourceToolAssistantUUID": "2f22d833-83f4-4118-81a4-413909087c80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T21:17:54.189Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GXApbd3Y4E9tbUpy8maMct`</summary>
+
+```json
+{
+  "query": "site:arxiv.org \"paraphrase invariance\" OR \"instruction invariance\" affordance robot manipulation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d2c89f4-d47e-4d30-87bd-80a2ea6bac12",
+  "isSidechain": false,
+  "requestId": "req_011CbAjKNhdsQgDrirwQeCts",
+  "type": "assistant",
+  "uuid": "55f8cc27-3446-4778-a109-897eefbf3eaf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ADEsnuf1TfLB7qyDXrefW4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 902,
+      "cache_read_input_tokens": 38156,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 902,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 38156,
+          "cache_creation_input_tokens": 902,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 902
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T21:18:01.954Z_
+
+<details><summary>↩ Tool result · `toolu_01GXApbd3Y4E9tbUpy8maMct`</summary>
+
+```text
+Web search results for query: "site:arxiv.org "paraphrase invariance" OR "instruction invariance" affordance robot manipulation 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2602.10109"},{"title":"Affordance-based Robot Manipulation with Flow Matching","url":"https://arxiv.org/html/2409.01083v4"},{"title":"Affordance-based Robot Manipulation with Flow Matching","url":"https://arxiv.org/pdf/2409.01083"},{"title":"Learning Instruction-Guided Manipulation Affordance via Large Models for   Embodied Robotic Tasks","url":"https://arxiv.org/pdf/2408.10658"},{"title":"[2411.02704] RT-Affordance: Affordances are Versatile Intermediate Representations for Robot Manipulation","url":"https://arxiv.org/abs/2411.02704"},{"title":"Egocentric Instruction-oriented Affordance Prediction via Large Multimodal Model","url":"https://arxiv.org/pdf/2508.17922"},{"title":"Learning Instruction-Guided Manipulation Affordance via Large Models for Embodied Robotic Tasks","url":"https://arxiv.org/html/2408.10658v1"}]
+
+I've performed the web search for papers on arxiv.org related to "paraphrase invariance" or "instruction invariance" in the context of affordance and robot manipulation from 2026.
+
+The search returned several relevant results about instruction-guided affordance learning for robot manipulation. Here are the key papers found:
+
+1. **A paper published at ICLR 2026** - The first result appears to be a conference paper published at ICLR 2026 that discusses affordance-aware hierarchical models for robotic manipulation.
+
+2. **Affordance-based Robot Manipulation with Flow Matching** - This paper presents a framework for assistive robot manipulation that uses a parameter-efficient prompt tuning method prepending learnable text prompts to a frozen vision model to predict manipulation affordances in multi-task scenarios.
+
+3. **Learning Instruction-Guided Manipulation Affordance via Large Models** - This work proposes Instruction-Guided Affordance Net (IGANet) for predicting affordance maps of instruction-guided robotic manipulation tasks by utilizing powerful priors from vision and language encoders pre-trained on large-scale datasets.
+
+4. **Egocentric Instruction-oriented Affordance Prediction via Large Multimodal Model** - This paper introduces an egocentric instruction-oriented affordance grounding task that requires predicting contact regions and motion directions according to a given manipulation instruction, with an associated dataset named Egocentric Instruction-oriented Visual Affordance (EIVA).
+
+5. **RT-Affordance** - This work explores how intermediate policy representations can facilitate generalization by providing guidance on how to perform manipulation tasks.
+
+These papers focus on instruction-guided and language-conditioned affordance prediction for robotic manipulation, which relates closely to the concepts of instruction invariance you're searching for.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "55f8cc27-3446-4778-a109-897eefbf3eaf",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "340c769f-4eea-409e-817a-b3ddd5d3a0d8",
+  "toolUseResult": {
+    "query": "site:arxiv.org \"paraphrase invariance\" OR \"instruction invariance\" affordance robot manipulation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EAdKwniAGXqfvUEibMZq9t",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2602.10109"
+          },
+          {
+            "title": "Affordance-based Robot Manipulation with Flow Matching",
+            "url": "https://arxiv.org/html/2409.01083v4"
+          },
+          {
+            "title": "Affordance-based Robot Manipulation with Flow Matching",
+            "url": "https://arxiv.org/pdf/2409.01083"
+          },
+          {
+            "title": "Learning Instruction-Guided Manipulation Affordance via Large Models for   Embodied Robotic Tasks",
+            "url": "https://arxiv.org/pdf/2408.10658"
+          },
+          {
+            "title": "[2411.02704] RT-Affordance: Affordances are Versatile Intermediate Representations for Robot Manipulation",
+            "url": "https://arxiv.org/abs/2411.02704"
+          },
+          {
+            "title": "Egocentric Instruction-oriented Affordance Prediction via Large Multimodal Model",
+            "url": "https://arxiv.org/pdf/2508.17922"
+          },
+          {
+            "title": "Learning Instruction-Guided Manipulation Affordance via Large Models for Embodied Robotic Tasks",
+            "url": "https://arxiv.org/html/2408.10658v1"
+          }
+        ]
+      },
+      "I've performed the web search for papers on arxiv.org related to \"paraphrase invariance\" or \"instruction invariance\" in the context of affordance and robot manipulation from 2026.\n\nThe search returned several relevant results about instruction-guided affordance learning for robot manipulation. Here are the key papers found:\n\n1. **A paper published at ICLR 2026** - The first result appears to be a conference paper published at ICLR 2026 that discusses affordance-aware hierarchical models for robotic manipulation.\n\n2. **Affordance-based Robot Manipulation with Flow Matching** - This paper presents a framework for assistive robot manipulation that uses a parameter-efficient prompt tuning method prepending learnable text prompts to a frozen vision model to predict manipulation affordances in multi-task scenarios.\n\n3. **Learning Instruction-Guided Manipulation Affordance via Large Models** - This work proposes Instruction-Guided Affordance Net (IGANet) for predicting affordance maps of instruction-guided robotic manipulation tasks by utilizing powerful priors from vision and language encoders pre-trained on large-scale datasets.\n\n4. **Egocentric Instruction-oriented Affordance Prediction via Large Multimodal Model** - This paper introduces an egocentric instruction-oriented affordance grounding task that requires predicting contact regions and motion directions according to a given manipulation instruction, with an associated dataset named Egocentric Instruction-oriented Visual Affordance (EIVA).\n\n5. **RT-Affordance** - This work explores how intermediate policy representations can facilitate generalization by providing guidance on how to perform manipulation tasks.\n\nThese papers focus on instruction-guided and language-conditioned affordance prediction for robotic manipulation, which relates closely to the concepts of instruction invariance you're searching for."
+    ],
+    "durationSeconds": 7.7607194979999985
+  },
+  "sourceToolAssistantUUID": "55f8cc27-3446-4778-a109-897eefbf3eaf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T21:18:05.125Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015GcBTA8iBnBth7PK7huc1X`</summary>
+
+```json
+{
+  "query": "ST4VLA spatial training VLA ICLR 2026 arXiv 2602.10109"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "340c769f-4eea-409e-817a-b3ddd5d3a0d8",
+  "isSidechain": false,
+  "requestId": "req_011CbAjLAB6WScXjf8zLMEA7",
+  "type": "assistant",
+  "uuid": "acfddec4-4ca5-4f05-a1d9-fd9beb35ea85",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013gQmV2kn2Rf61Abjz7SA5v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 828,
+      "cache_read_input_tokens": 39058,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 39058,
+          "cache_creation_input_tokens": 828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T21:18:15.229Z_
+
+<details><summary>↩ Tool result · `toolu_015GcBTA8iBnBth7PK7huc1X`</summary>
+
+```text
+Web search results for query: "ST4VLA spatial training VLA ICLR 2026 arXiv 2602.10109"
+
+Links: [{"title":"(PDF) ST4VLA: Spatially Guided Training for Vision-Language-Action Models","url":"https://www.researchgate.net/publication/400661387_ST4VLA_Spatially_Guided_Training_for_Vision-Language-Action_Models"},{"title":"[2602.10109] ST4VLA: Spatially Guided Training for Vision-Language-Action Models","url":"https://arxiv.org/abs/2602.10109"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf/5b6d4b55e3d738aceaa3495460aa12907b69dcee.pdf"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2602.10109"},{"title":"Computer Science","url":"https://www.arxiv.org/list/cs/pastweek?skip=1763&show=1000"},{"title":"ST4VLA: Spatially Guided Training for Vision-Language-Action Model","url":"https://arxiv.org/html/2602.10109"},{"title":"SP-VLA: SPATIALLY GUIDED TRAINING FOR VISION","url":"https://openreview.net/pdf/708a1e3c80b0a1ea50c1c231f1d80e8100986ac3.pdf"}]
+
+Based on the search results, here's what I found about ST4VLA:
+
+## ST4VLA: Spatially Guided Training for Vision-Language-Action Models
+
+ST4VLA is a dual-system Vision-Language-Action framework that leverages Spatial Guided Training to align action learning with spatial priors in VLMs. The paper was published as a conference paper at ICLR 2026.
+
+### Key Approach
+
+ST4VLA includes two stages: (i) spatial grounding pre-training, which equips the VLM with transferable priors via scalable point, box, and trajectory prediction from both web-scale and robot-specific data, and (ii) spatially guided action post-training, which encourages the model to produce richer spatial priors to guide action generation via spatial prompting.
+
+### Performance Results
+
+ST4VLA achieves substantial improvements over vanilla VLA, with performance increasing from 66.1 -> 84.6 on Google Robot and from 54.7 -> 73.2 on WidowX Robot, establishing new state-of-the-art results on SimplerEnv. It also demonstrates stronger generalization to unseen objects and paraphrased instructions, as well as robustness to long-horizon perturbations in real-world settings.
+
+The arXiv identifier 2602.10109 confirms this is the correct paper published in February 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "acfddec4-4ca5-4f05-a1d9-fd9beb35ea85",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "d4b3a2e1-4c3a-4b51-b5a8-b28bf5b31302",
+  "toolUseResult": {
+    "query": "ST4VLA spatial training VLA ICLR 2026 arXiv 2602.10109",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016ZH6mtxr2zREmBs56aXAAB",
+        "content": [
+          {
+            "title": "(PDF) ST4VLA: Spatially Guided Training for Vision-Language-Action Models",
+            "url": "https://www.researchgate.net/publication/400661387_ST4VLA_Spatially_Guided_Training_for_Vision-Language-Action_Models"
+          },
+          {
+            "title": "[2602.10109] ST4VLA: Spatially Guided Training for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2602.10109"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf/5b6d4b55e3d738aceaa3495460aa12907b69dcee.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2602.10109"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://www.arxiv.org/list/cs/pastweek?skip=1763&show=1000"
+          },
+          {
+            "title": "ST4VLA: Spatially Guided Training for Vision-Language-Action Model",
+            "url": "https://arxiv.org/html/2602.10109"
+          },
+          {
+            "title": "SP-VLA: SPATIALLY GUIDED TRAINING FOR VISION",
+            "url": "https://openreview.net/pdf/708a1e3c80b0a1ea50c1c231f1d80e8100986ac3.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about ST4VLA:\n\n## ST4VLA: Spatially Guided Training for Vision-Language-Action Models\n\nST4VLA is a dual-system Vision-Language-Action framework that leverages Spatial Guided Training to align action learning with spatial priors in VLMs. The paper was published as a conference paper at ICLR 2026.\n\n### Key Approach\n\nST4VLA includes two stages: (i) spatial grounding pre-training, which equips the VLM with transferable priors via scalable point, box, and trajectory prediction from both web-scale and robot-specific data, and (ii) spatially guided action post-training, which encourages the model to produce richer spatial priors to guide action generation via spatial prompting.\n\n### Performance Results\n\nST4VLA achieves substantial improvements over vanilla VLA, with performance increasing from 66.1 -> 84.6 on Google Robot and from 54.7 -> 73.2 on WidowX Robot, establishing new state-of-the-art results on SimplerEnv. It also demonstrates stronger generalization to unseen objects and paraphrased instructions, as well as robustness to long-horizon perturbations in real-world settings.\n\nThe arXiv identifier 2602.10109 confirms this is the correct paper published in February 2026."
+    ],
+    "durationSeconds": 10.099549931999995
+  },
+  "sourceToolAssistantUUID": "acfddec4-4ca5-4f05-a1d9-fd9beb35ea85",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T21:18:17.766Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CfWN4PUMnkKGp8D3rSzvjn`</summary>
+
+```json
+{
+  "query": "LIBERO-Para benchmark paraphrase robustness VLA arXiv 2603.28301"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4b3a2e1-4c3a-4b51-b5a8-b28bf5b31302",
+  "isSidechain": false,
+  "requestId": "req_011CbAjM8vifFJB8M7GHFPZs",
+  "type": "assistant",
+  "uuid": "d9d7c03c-0167-4081-8d33-d0bc378c6658",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HuZxzMkzC7EmGbLjpbXvVc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 800,
+      "cache_read_input_tokens": 39886,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 800,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 39886,
+          "cache_creation_input_tokens": 800,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 800
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "d9d7c03c-0167-4081-8d33-d0bc378c6658",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify affordance self-supervision in VLAs via independent research",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T21:18:28.762Z_
+
+<details><summary>↩ Tool result · `toolu_01CfWN4PUMnkKGp8D3rSzvjn`</summary>
+
+```text
+Web search results for query: "LIBERO-Para benchmark paraphrase robustness VLA arXiv 2603.28301"
+
+Links: [{"title":"Paper page - LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models","url":"https://huggingface.co/papers/2603.28301"},{"title":"[2603.28301] LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models","url":"https://arxiv.org/abs/2603.28301"},{"title":"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models","url":"https://cau-hai-lab.github.io/LIBERO-Para/"},{"title":"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models","url":"https://arxiv.org/html/2603.28301v1"},{"title":"GitHub - cau-hai-lab/LIBERO-Para · GitHub","url":"https://github.com/cau-hai-lab/LIBERO-Para"},{"title":"On Robustness of Vision-Language-Action Model against Multi-Modal Perturbations","url":"https://arxiv.org/pdf/2510.00037"},{"title":"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://huggingface.co/papers/2510.13626"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub","url":"https://github.com/sylvestf/LIBERO-plus"}]
+
+Based on the search results, here's what I found about LIBERO-Para:
+
+## Overview
+
+LIBERO-Para exposes a critical fragility in Vision-Language-Action (VLA) models: they break when given paraphrased instructions that describe the exact same task. For example, a robot that successfully executes "pick up the red cup" may fail completely when told to "grab the crimson mug," despite both instructions requiring identical behavior.
+
+## Benchmark Design
+
+LIBERO-Para is a controlled benchmark that independently varies action expressions and object references for fine-grained analysis of linguistic generalization. More specifically, LIBERO-Para decomposes paraphrases along two essential axes: object-referring expressions and action-referring expressions, with each axis independently varied, and composing both yields compositional paraphrases.
+
+## Key Findings
+
+Across seven VLA configurations (0.6B-7.5B), consistent performance degradation of 22-52 percentage points is observed under paraphrasing. This degradation is primarily driven by object-level lexical variation: even simple synonym substitutions cause large drops, indicating reliance on surface-level matching rather than semantic grounding.
+
+## Evaluation Metric
+
+PRIDE (Paraphrase Robustness Index in Robotic Instructional DEviation) evaluates how robustly a VLA model handles paraphrased instructions.
+
+The paper was submitted to arXiv on March 30, 2026 (arXiv:2603.28301).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d9d7c03c-0167-4081-8d33-d0bc378c6658",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "1a83070b-d5eb-40ab-9c90-91159091de13",
+  "toolUseResult": {
+    "query": "LIBERO-Para benchmark paraphrase robustness VLA arXiv 2603.28301",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013qxLAh7GEZRrvMqeyyHVBL",
+        "content": [
+          {
+            "title": "Paper page - LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models",
+            "url": "https://huggingface.co/papers/2603.28301"
+          },
+          {
+            "title": "[2603.28301] LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models",
+            "url": "https://arxiv.org/abs/2603.28301"
+          },
+          {
+            "title": "LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models",
+            "url": "https://cau-hai-lab.github.io/LIBERO-Para/"
+          },
+          {
+            "title": "LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models",
+            "url": "https://arxiv.org/html/2603.28301v1"
+          },
+          {
+            "title": "GitHub - cau-hai-lab/LIBERO-Para · GitHub",
+            "url": "https://github.com/cau-hai-lab/LIBERO-Para"
+          },
+          {
+            "title": "On Robustness of Vision-Language-Action Model against Multi-Modal Perturbations",
+            "url": "https://arxiv.org/pdf/2510.00037"
+          },
+          {
+            "title": "Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2510.13626"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub",
+            "url": "https://github.com/sylvestf/LIBERO-plus"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about LIBERO-Para:\n\n## Overview\n\nLIBERO-Para exposes a critical fragility in Vision-Language-Action (VLA) models: they break when given paraphrased instructions that describe the exact same task. For example, a robot that successfully executes \"pick up the red cup\" may fail completely when told to \"grab the crimson mug,\" despite both instructions requiring identical behavior.\n\n## Benchmark Design\n\nLIBERO-Para is a controlled benchmark that independently varies action expressions and object references for fine-grained analysis of linguistic generalization. More specifically, LIBERO-Para decomposes paraphrases along two essential axes: object-referring expressions and action-referring expressions, with each axis independently varied, and composing both yields compositional paraphrases.\n\n## Key Findings\n\nAcross seven VLA configurations (0.6B-7.5B), consistent performance degradation of 22-52 percentage points is observed under paraphrasing. This degradation is primarily driven by object-level lexical variation: even simple synonym substitutions cause large drops, indicating reliance on surface-level matching rather than semantic grounding.\n\n## Evaluation Metric\n\nPRIDE (Paraphrase Robustness Index in Robotic Instructional DEviation) evaluates how robustly a VLA model handles paraphrased instructions.\n\nThe paper was submitted to arXiv on March 30, 2026 (arXiv:2603.28301)."
+    ],
+    "durationSeconds": 10.988699235
+  },
+  "sourceToolAssistantUUID": "d9d7c03c-0167-4081-8d33-d0bc378c6658",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T21:18:37.981Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PpSE5wKBWpnxkNR9w25q2P`</summary>
+
+```json
+{
+  "query": "Spatial Forcing ICLR 2026 VGGT VLA intermediate alignment arXiv 2510.12276"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a83070b-d5eb-40ab-9c90-91159091de13",
+  "isSidechain": false,
+  "requestId": "req_011CbAjN8mZtmnYE7amRWApC",
+  "type": "assistant",
+  "uuid": "79f500fe-bf53-42ad-8133-483e80f19965",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011GFA75otrX3BZ6vkTH86zg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 929,
+      "cache_read_input_tokens": 40686,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 929,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 40686,
+          "cache_creation_input_tokens": 929,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 929
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T21:18:48.155Z_
+
+<details><summary>↩ Tool result · `toolu_01PpSE5wKBWpnxkNR9w25q2P`</summary>
+
+```text
+Web search results for query: "Spatial Forcing ICLR 2026 VGGT VLA intermediate alignment arXiv 2510.12276"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026 SPATIAL FORCING:","url":"https://openreview.net/pdf/07eb0e64cea5fe734ad2b3b8e85f2a7a591b91ae.pdf"},{"title":"GitHub - OpenHelix-Team/Spatial-Forcing: Official implementation of Spatial-Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model [ICLR2026] · GitHub","url":"https://github.com/OpenHelix-Team/Spatial-Forcing"},{"title":"[2510.12276] Spatial Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model","url":"https://arxiv.org/abs/2510.12276"},{"title":"[Literature Review] Spatial Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model","url":"https://www.themoonlight.io/en/review/spatial-forcing-implicit-spatial-representation-alignment-for-vision-language-action-model"},{"title":"Spatial Forcing","url":"https://spatial-forcing.github.io/"},{"title":"Spatial Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model","url":"https://arxiv.org/html/2510.12276v1"},{"title":"Paper page - Spatial Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model","url":"https://huggingface.co/papers/2510.12276"},{"title":"SPATIAL FORCING","url":"https://openreview.net/pdf/aaa4ee40d98552e39b3ce25d8301cadf300d58ec.pdf"}]
+
+Based on the search results, I found relevant information about "Spatial Forcing." Here's what I discovered:
+
+## Overview
+
+Spatial Forcing (SF) is a simple yet effective alignment strategy that implicitly forces VLA models to develop spatial comprehension capabilities without relying on explicit 3D inputs or depth estimators.
+
+## Key Methodology
+
+SF aligns intermediate visual embeddings of VLAs with geometric representations produced by pretrained 3D foundation models. By enforcing alignment at intermediate layers, SF guides VLAs to encode richer spatial representations that enhance action precision.
+
+Technically, to ensure multi-view consistency, the method employs VGGT (Wang et al., 2025b) as the 3D foundation model to simultaneously process robotic images and generate normalized spatial representations, which serve as supervision signals.
+
+## Results and Performance
+
+Extensive experiments in simulation and real-world environments demonstrate that SF achieves state-of-the-art results, surpassing both 2D- and 3D-based VLAs. SF further accelerates training by up to 3.8x and improves data efficiency across diverse robotic tasks.
+
+## Publication
+
+The paper was accepted by ICLR 2026 and is available as arXiv preprint arXiv:2510.12276.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79f500fe-bf53-42ad-8133-483e80f19965",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "3e729a1f-c9f5-40ae-a65c-33f97f5ee4f6",
+  "toolUseResult": {
+    "query": "Spatial Forcing ICLR 2026 VGGT VLA intermediate alignment arXiv 2510.12276",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014e2Ew7fnV9dg3ck7ya7kYN",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026 SPATIAL FORCING:",
+            "url": "https://openreview.net/pdf/07eb0e64cea5fe734ad2b3b8e85f2a7a591b91ae.pdf"
+          },
+          {
+            "title": "GitHub - OpenHelix-Team/Spatial-Forcing: Official implementation of Spatial-Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model [ICLR2026] · GitHub",
+            "url": "https://github.com/OpenHelix-Team/Spatial-Forcing"
+          },
+          {
+            "title": "[2510.12276] Spatial Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model",
+            "url": "https://arxiv.org/abs/2510.12276"
+          },
+          {
+            "title": "[Literature Review] Spatial Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model",
+            "url": "https://www.themoonlight.io/en/review/spatial-forcing-implicit-spatial-representation-alignment-for-vision-language-action-model"
+          },
+          {
+            "title": "Spatial Forcing",
+            "url": "https://spatial-forcing.github.io/"
+          },
+          {
+            "title": "Spatial Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model",
+            "url": "https://arxiv.org/html/2510.12276v1"
+          },
+          {
+            "title": "Paper page - Spatial Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model",
+            "url": "https://huggingface.co/papers/2510.12276"
+          },
+          {
+            "title": "SPATIAL FORCING",
+            "url": "https://openreview.net/pdf/aaa4ee40d98552e39b3ce25d8301cadf300d58ec.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about \"Spatial Forcing.\" Here's what I discovered:\n\n## Overview\n\nSpatial Forcing (SF) is a simple yet effective alignment strategy that implicitly forces VLA models to develop spatial comprehension capabilities without relying on explicit 3D inputs or depth estimators.\n\n## Key Methodology\n\nSF aligns intermediate visual embeddings of VLAs with geometric representations produced by pretrained 3D foundation models. By enforcing alignment at intermediate layers, SF guides VLAs to encode richer spatial representations that enhance action precision.\n\nTechnically, to ensure multi-view consistency, the method employs VGGT (Wang et al., 2025b) as the 3D foundation model to simultaneously process robotic images and generate normalized spatial representations, which serve as supervision signals.\n\n## Results and Performance\n\nExtensive experiments in simulation and real-world environments demonstrate that SF achieves state-of-the-art results, surpassing both 2D- and 3D-based VLAs. SF further accelerates training by up to 3.8x and improves data efficiency across diverse robotic tasks.\n\n## Publication\n\nThe paper was accepted by ICLR 2026 and is available as arXiv preprint arXiv:2510.12276."
+    ],
+    "durationSeconds": 10.170596345999991
+  },
+  "sourceToolAssistantUUID": "79f500fe-bf53-42ad-8133-483e80f19965",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T21:18:51.458Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019vksTopi9Ah3Fcdrsu2qA3`</summary>
+
+```json
+{
+  "query": "PALM affordance VLA CVPR 2026 progress-aware policy learning arXiv 2601.07060"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e729a1f-c9f5-40ae-a65c-33f97f5ee4f6",
+  "isSidechain": false,
+  "requestId": "req_011CbAjPZinQnyfZum1xKgvz",
+  "type": "assistant",
+  "uuid": "f9bf1297-626b-430e-a71d-d6538c348270",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EPFsupuwxcAEkvo5gLA2Ws",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 846,
+      "cache_read_input_tokens": 41615,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 846,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 41615,
+          "cache_creation_input_tokens": 846,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 846
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T21:18:55.412Z_
+
+<details><summary>↩ Tool result · `toolu_019vksTopi9Ah3Fcdrsu2qA3`</summary>
+
+```text
+Web search results for query: "PALM affordance VLA CVPR 2026 progress-aware policy learning arXiv 2601.07060"
+
+Links: [{"title":"[2601.07060] PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation","url":"https://arxiv.org/abs/2601.07060"},{"title":"PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation","url":"https://arxiv.org/html/2601.07060"},{"title":"(PDF) PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation","url":"https://www.researchgate.net/publication/399707765_PALM_Progress-Aware_Policy_Learning_via_Affordance_Reasoning_for_Long-Horizon_Robotic_Manipulation"},{"title":"PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation","url":"https://arxiv.org/pdf/2601.07060"},{"title":"CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance","url":"https://arxiv.org/pdf/2412.20451"}]
+
+I found the paper! Here's what the search revealed:
+
+PALM is a VLA framework that structures policy learning around interaction-centric affordance reasoning and subtask progress cues. PALM distills complementary affordance representations that capture object relevance, contact geometry, spatial placements, and motion dynamics, and serve as task-relevant anchors for visuomotor control. 
+
+To further stabilize long-horizon execution, PALM predicts continuous within-subtask progress, enabling seamless subtask transitions.
+
+The paper demonstrates strong results, achieving a 91.8% success rate on LIBERO-LONG, a 12.5% improvement in average length on CALVIN ABC→D, and a 2× improvement over real-world baselines across three long-horizon generalization settings.
+
+The paper was published on arXiv on January 11, 2026 (arXiv:2601.07060). The full paper is available at https://arxiv.org/abs/2601.07060.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9bf1297-626b-430e-a71d-d6538c348270",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "facd2d79-5630-4362-b54a-cadc14284802",
+  "toolUseResult": {
+    "query": "PALM affordance VLA CVPR 2026 progress-aware policy learning arXiv 2601.07060",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Etw2C7R5nWxSdR2y8WGT3k",
+        "content": [
+          {
+            "title": "[2601.07060] PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation",
+            "url": "https://arxiv.org/abs/2601.07060"
+          },
+          {
+            "title": "PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation",
+            "url": "https://arxiv.org/html/2601.07060"
+          },
+          {
+            "title": "(PDF) PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation",
+            "url": "https://www.researchgate.net/publication/399707765_PALM_Progress-Aware_Policy_Learning_via_Affordance_Reasoning_for_Long-Horizon_Robotic_Manipulation"
+          },
+          {
+            "title": "PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2601.07060"
+          },
+          {
+            "title": "CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance",
+            "url": "https://arxiv.org/pdf/2412.20451"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search revealed:\n\nPALM is a VLA framework that structures policy learning around interaction-centric affordance reasoning and subtask progress cues. PALM distills complementary affordance representations that capture object relevance, contact geometry, spatial placements, and motion dynamics, and serve as task-relevant anchors for visuomotor control. \n\nTo further stabilize long-horizon execution, PALM predicts continuous within-subtask progress, enabling seamless subtask transitions.\n\nThe paper demonstrates strong results, achieving a 91.8% success rate on LIBERO-LONG, a 12.5% improvement in average length on CALVIN ABC→D, and a 2× improvement over real-world baselines across three long-horizon generalization settings.\n\nThe paper was published on arXiv on January 11, 2026 (arXiv:2601.07060). The full paper is available at https://arxiv.org/abs/2601.07060."
+    ],
+    "durationSeconds": 3.947226779000004
+  },
+  "sourceToolAssistantUUID": "f9bf1297-626b-430e-a71d-d6538c348270",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-18T21:18:58.673Z_
+
+Good, confirmed several key references. Now let me search for potentially missed concurrent work and verify the gap claim more carefully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "facd2d79-5630-4362-b54a-cadc14284802",
+  "isSidechain": false,
+  "requestId": "req_011CbAjQ6jbLpovv4apConFV",
+  "type": "assistant",
+  "uuid": "7b7e51e9-2dad-48b5-979c-52a38ca89bc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ade4dt6cgJ46RFWELF1UGE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 651,
+      "cache_read_input_tokens": 42461,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 651,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 42461,
+          "cache_creation_input_tokens": 651,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 651
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-18T21:18:58.828Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018cduchrcBq7REWGkzVdXqe`</summary>
+
+```json
+{
+  "query": "annotation-free affordance learning robot manipulation self-supervised 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b7e51e9-2dad-48b5-979c-52a38ca89bc7",
+  "isSidechain": false,
+  "requestId": "req_011CbAjQ6jbLpovv4apConFV",
+  "type": "assistant",
+  "uuid": "482751cc-fe8c-42ef-9a99-e1f9b59a3527",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ade4dt6cgJ46RFWELF1UGE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 651,
+      "cache_read_input_tokens": 42461,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 651,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 42461,
+          "cache_creation_input_tokens": 651,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 651
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T21:19:05.056Z_
+
+<details><summary>↩ Tool result · `toolu_018cduchrcBq7REWGkzVdXqe`</summary>
+
+```text
+Web search results for query: "annotation-free affordance learning robot manipulation self-supervised 2026 arXiv"
+
+Links: [{"title":"Learning Precise Affordances from Egocentric Videos for Robotic Manipulation","url":"https://arxiv.org/pdf/2408.10123"},{"title":"RT-Affordance: Affordances are Versatile Intermediate Representations   for Robot Manipulation","url":"https://arxiv.org/pdf/2411.02704"},{"title":"UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation","url":"https://arxiv.org/pdf/2506.09284"},{"title":"O2O-Afford: Annotation-Free Large-Scale Object-Object Affordance   Learning","url":"https://arxiv.org/pdf/2106.15087"},{"title":"[2411.02704] RT-Affordance: Affordances are Versatile Intermediate Representations for Robot Manipulation","url":"https://arxiv.org/abs/2411.02704"},{"title":"Affordance-based Robot Manipulation with Flow Matching","url":"https://arxiv.org/pdf/2409.01083"}]
+
+I found several relevant arXiv papers on affordance learning for robot manipulation. Here are the results:
+
+1. **UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation** (arXiv:2506.09284, May 2026)
+   - A method for distilling affordance knowledge from foundation models into a task-conditioned affordance model without any manual annotations
+   - Leverages large vision models and vision-language models to automatically annotate a large-scale dataset with detailed instruction and visual affordance pairs
+
+2. **Learning Precise Affordances from Egocentric Videos for Robotic Manipulation** (arXiv:2408.10123, August 2024)
+   - Proposes an automated pipeline to collect data without human labor by extracting graspable points from hand-object interactions and functional points from tool-object interactions
+
+3. **RT-Affordance: Affordances are Versatile Intermediate Representations for Robot Manipulation** (arXiv:2411.02704, November 2024)
+   - A hierarchical model that first proposes an affordance plan given task language, then conditions the policy on this affordance plan to perform manipulation
+
+4. **O2O-Afford: Annotation-Free Large-Scale Object-Object Affordance Learning** (arXiv:2106.15087, June 2021)
+   - Conducts large-scale object-object affordance learning without human annotations or demonstrations using physical simulation
+
+5. **Affordance-based Robot Manipulation with Flow Matching** (arXiv:2409.01083, September 2024)
+   - Presents a framework combining visual affordance models with robot trajectory learning
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "482751cc-fe8c-42ef-9a99-e1f9b59a3527",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "a7b79b38-fba1-46a5-977e-c8ad60f72bb2",
+  "toolUseResult": {
+    "query": "annotation-free affordance learning robot manipulation self-supervised 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GjMMxmmt7uz5qHuycKeXeS",
+        "content": [
+          {
+            "title": "Learning Precise Affordances from Egocentric Videos for Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2408.10123"
+          },
+          {
+            "title": "RT-Affordance: Affordances are Versatile Intermediate Representations   for Robot Manipulation",
+            "url": "https://arxiv.org/pdf/2411.02704"
+          },
+          {
+            "title": "UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2506.09284"
+          },
+          {
+            "title": "O2O-Afford: Annotation-Free Large-Scale Object-Object Affordance   Learning",
+            "url": "https://arxiv.org/pdf/2106.15087"
+          },
+          {
+            "title": "[2411.02704] RT-Affordance: Affordances are Versatile Intermediate Representations for Robot Manipulation",
+            "url": "https://arxiv.org/abs/2411.02704"
+          },
+          {
+            "title": "Affordance-based Robot Manipulation with Flow Matching",
+            "url": "https://arxiv.org/pdf/2409.01083"
+          }
+        ]
+      },
+      "I found several relevant arXiv papers on affordance learning for robot manipulation. Here are the results:\n\n1. **UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation** (arXiv:2506.09284, May 2026)\n   - A method for distilling affordance knowledge from foundation models into a task-conditioned affordance model without any manual annotations\n   - Leverages large vision models and vision-language models to automatically annotate a large-scale dataset with detailed instruction and visual affordance pairs\n\n2. **Learning Precise Affordances from Egocentric Videos for Robotic Manipulation** (arXiv:2408.10123, August 2024)\n   - Proposes an automated pipeline to collect data without human labor by extracting graspable points from hand-object interactions and functional points from tool-object interactions\n\n3. **RT-Affordance: Affordances are Versatile Intermediate Representations for Robot Manipulation** (arXiv:2411.02704, November 2024)\n   - A hierarchical model that first proposes an affordance plan given task language, then conditions the policy on this affordance plan to perform manipulation\n\n4. **O2O-Afford: Annotation-Free Large-Scale Object-Object Affordance Learning** (arXiv:2106.15087, June 2021)\n   - Conducts large-scale object-object affordance learning without human annotations or demonstrations using physical simulation\n\n5. **Affordance-based Robot Manipulation with Flow Matching** (arXiv:2409.01083, September 2024)\n   - Presents a framework combining visual affordance models with robot trajectory learning"
+    ],
+    "durationSeconds": 6.206060452000005
+  },
+  "sourceToolAssistantUUID": "482751cc-fe8c-42ef-9a99-e1f9b59a3527",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-18T21:19:05.060Z_
+
+```json
+{
+  "parentUuid": "a7b79b38-fba1-46a5-977e-c8ad60f72bb2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "a9907436-b2dd-44f3-9c38-d5e1bb27c9e1",
+  "timestamp": "2026-05-18T21:19:05.060Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-18T21:19:08.434Z_
+
+Important finding — **UAD (Unsupervised Affordance Distillation, arXiv 2506.09284, May 2026)** looks highly relevant. Let me investigate it and continue searching.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9907436-b2dd-44f3-9c38-d5e1bb27c9e1",
+  "isSidechain": false,
+  "requestId": "req_011CbAjQoyojWAi6NiUxwZte",
+  "type": "assistant",
+  "uuid": "362b214c-5c23-43f2-a306-e87893dd5b2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011y8Vd7iGEDQ2fWQX2uzKgg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 902,
+      "cache_read_input_tokens": 43112,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 902,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 43112,
+          "cache_creation_input_tokens": 902,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 902
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-18T21:19:09.991Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Jb1Krg3P4E5rzqnAZgQhu7`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2506.09284",
+  "prompt": "Extract the full abstract, key method details, and whether this is about affordance learning within a VLA (vision-language-action model) specifically. What supervision does it use? Is it self-supervised? Does it integrate into end-to-end VLA training? What benchmarks does it use?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "362b214c-5c23-43f2-a306-e87893dd5b2e",
+  "isSidechain": false,
+  "requestId": "req_011CbAjQoyojWAi6NiUxwZte",
+  "type": "assistant",
+  "uuid": "6efa63f4-26f7-4870-bb87-bc969e2cdc73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011y8Vd7iGEDQ2fWQX2uzKgg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 902,
+      "cache_read_input_tokens": 43112,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 902,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 43112,
+          "cache_creation_input_tokens": 902,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 902
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-18T21:19:15.234Z_
+
+<details><summary>↩ Tool result · `toolu_01Jb1Krg3P4E5rzqnAZgQhu7`</summary>
+
+```text
+# UAD: Unsupervised Affordance Distillation - Analysis
+
+## Full Abstract
+The paper addresses visual affordance prediction for robotic manipulation without manual annotations. UAD distills affordance knowledge from foundation models into a task-conditioned affordance model, automatically creating instruction-affordance pairs from large vision and vision-language models. A lightweight decoder trained on frozen features generalizes to real robotic scenes and human activities despite simulation-only training. When affordances serve as observations for imitation learning, policies trained on just 10 demonstrations generalize across unseen objects, categories, and task instruction variations.
+
+## Key Method Details
+- **Approach**: Leverages complementary strengths of vision models and vision-language models to create automatic annotations
+- **Architecture**: Lightweight task-conditioned decoder atop frozen features
+- **Training data**: Rendered objects in simulation with automatically generated labels
+- **Output**: Detailed "&lt;instruction, visual affordance>" pairs at scale
+
+## Supervision Type
+**Unsupervised with distillation** - The method uses "no manual annotations," instead distilling from pre-trained foundation models. This represents knowledge distillation rather than traditional self-supervision.
+
+## VLA Integration
+The abstract does not indicate this is part of an end-to-end vision-language-action framework. Rather, affordances are used as an "observation space" for downstream imitation learning policies.
+
+## Benchmarks
+The abstract mentions evaluation on "in-the-wild robotic scenes" and "human activities" but does not specify named benchmark datasets.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6efa63f4-26f7-4870-bb87-bc969e2cdc73",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "afdab534-c181-4dc8-909d-70c7594a3708",
+  "toolUseResult": {
+    "bytes": 47329,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# UAD: Unsupervised Affordance Distillation - Analysis\n\n## Full Abstract\nThe paper addresses visual affordance prediction for robotic manipulation without manual annotations. UAD distills affordance knowledge from foundation models into a task-conditioned affordance model, automatically creating instruction-affordance pairs from large vision and vision-language models. A lightweight decoder trained on frozen features generalizes to real robotic scenes and human activities despite simulation-only training. When affordances serve as observations for imitation learning, policies trained on just 10 demonstrations generalize across unseen objects, categories, and task instruction variations.\n\n## Key Method Details\n- **Approach**: Leverages complementary strengths of vision models and vision-language models to create automatic annotations\n- **Architecture**: Lightweight task-conditioned decoder atop frozen features\n- **Training data**: Rendered objects in simulation with automatically generated labels\n- **Output**: Detailed \"&lt;instruction, visual affordance>\" pairs at scale\n\n## Supervision Type\n**Unsupervised with distillation** - The method uses \"no manual annotations,\" instead distilling from pre-trained foundation models. This represents knowledge distillation rather than traditional self-supervision.\n\n## VLA Integration\nThe abstract does not indicate this is part of an end-to-end vision-language-action framework. Rather, affordances are used as an \"observation space\" for downstream imitation learning policies.\n\n## Benchmarks\nThe abstract mentions evaluation on \"in-the-wild robotic scenes\" and \"human activities\" but does not specify named benchmark datasets.",
+    "durationMs": 5240,
+    "url": "https://arxiv.org/abs/2506.09284"
+  },
+  "sourceToolAssistantUUID": "6efa63f4-26f7-4870-bb87-bc969e2cdc73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "afdab534-c181-4dc8-909d-70c7594a3708",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify affordance self-supervision in VLAs via independent research",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-18T21:19:18.535Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SzeMeBSXfy9cPP7eiMUfie`</summary>
+
+```json
+{
+  "query": "\"SelfEQ\" self-consistent explanations visual grounding paraphrase consistency CVPR 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "afdab534-c181-4dc8-909d-70c7594a3708",
+  "isSidechain": false,
+  "requestId": "req_011CbAjRaYCY2ATcxhdYzESs",
+  "type": "assistant",
+  "uuid": "13efbc16-51c4-4e48-9e72-5b655f475d97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ATiJ4qchzYCGHjAwAJfDDV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 542,
+      "cache_read_input_tokens": 44014,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 542,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 44014,
+          "cache_creation_input_tokens": 542,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 542
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-18T21:19:24.644Z_
+
+<details><summary>↩ Tool result · `toolu_01SzeMeBSXfy9cPP7eiMUfie`</summary>
+
+```text
+Web search results for query: ""SelfEQ" self-consistent explanations visual grounding paraphrase consistency CVPR 2024"
+
+Links: [{"title":"Improved Visual Grounding through Self-Consistent Explanations [CVPR 2024]","url":"https://catherine-r-he.github.io/SelfEQ/"},{"title":"CVPR 2024 Open Access Repository","url":"https://openaccess.thecvf.com/content/CVPR2024/html/He_Improved_Visual_Grounding_through_Self-Consistent_Explanations_CVPR_2024_paper.html"},{"title":"SelfEQ helps computers ‘see’ more accurately and consistently | Computer Science | Rice University","url":"https://csweb.rice.edu/news/selfeq-helps-computers-see-more-accurately-and-consistently"},{"title":"SelfEQ Enhances Visual Grounding with Self-Consistency | by Harpreet Sahota | Voxel51 | Medium","url":"https://medium.com/voxel51/selfeq-enhances-visual-grounding-with-self-consistency-cdaba01e236c"},{"title":"Improved Visual Grounding through Self-Consistent Explanations","url":"https://arxiv.org/pdf/2312.04554"},{"title":"GitHub - uvavision/SelfEQ: [CVPR 2024] Code for \"Improved Visual Grounding through Self-Consistent Explanations\".","url":"https://github.com/uvavision/SelfEQ"},{"title":"CVPR Poster Improved Visual Grounding through Self-Consistent Explanations","url":"https://cvpr.thecvf.com/virtual/2024/poster/30072"},{"title":"[2312.04554] Improved Visual Grounding through Self-Consistent Explanations","url":"https://arxiv.org/abs/2312.04554"},{"title":"[PDF] Improved Visual Grounding through Self-Consistent Explanations | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Improved-Visual-Grounding-through-Self-Consistent-He-Cascante-Bonilla/4d1e0e68577782e9b64449a146969f41abe21992"}]
+
+I found comprehensive information about SelfEQ. Here's what the search results show:
+
+## Overview
+
+SelfEQ is a weakly-supervised strategy on visual explanation maps for paraphrases that encourages self-consistency, proposed alongside a strategy for augmenting existing text-image datasets with paraphrases using a large language model.
+
+## How It Works
+
+For an input textual phrase, the method generates a paraphrase and finetunes the model so that the phrase and paraphrase map to the same region in the image. This both expands the vocabulary that the model is able to handle, and improves the quality of the object locations highlighted by gradient-based visual explanation methods (e.g. GradCAM).
+
+## Research Contribution
+
+The main contribution is introducing a weakly-supervised strategy called Self-Consistency Equivalence Tuning (SelfEQ), which leverages paraphrases to consistently improve the model's ability to localize objects in images.
+
+## Performance Results
+
+SelfEQ improves performance on Flickr30k, ReferIt, and RefCOCO+, obtaining 84.07% on Flickr30k (an absolute improvement of 4.69%), 67.40% on ReferIt (an absolute improvement of 7.68%), and 75.10%, 55.49% on RefCOCO+ test sets A and B respectively (an absolute improvement of 3.74% on average).
+
+## Publication
+
+The work was presented at the Conference on Computer Vision and Pattern Recognition (CVPR) 2024 conference in Seattle.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "13efbc16-51c4-4e48-9e72-5b655f475d97",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "496e4d38-884a-4e73-acd4-183e52093d5e",
+  "toolUseResult": {
+    "query": "\"SelfEQ\" self-consistent explanations visual grounding paraphrase consistency CVPR 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WGBXJ5satx5kFFXgFUj7Bz",
+        "content": [
+          {
+            "title": "Improved Visual Grounding through Self-Consistent Explanations [CVPR 2024]",
+            "url": "https://catherine-r-he.github.io/SelfEQ/"
+          },
+          {
+            "title": "CVPR 2024 Open Access Repository",
+            "url": "https://openaccess.thecvf.com/content/CVPR2024/html/He_Improved_Visual_Grounding_through_Self-Consistent_Explanations_CVPR_2024_paper.html"
+          },
+          {
+            "title": "SelfEQ helps computers ‘see’ more accurately and consistently | Computer Science | Rice University",
+            "url": "https://csweb.rice.edu/news/selfeq-helps-computers-see-more-accurately-and-consistently"
+          },
+          {
+            "title": "SelfEQ Enhances Visual Grounding with Self-Consistency | by Harpreet Sahota | Voxel51 | Medium",
+            "url": "https://medium.com/voxel51/selfeq-enhances-visual-grounding-with-self-consistency-cdaba01e236c"
+          },
+          {
+            "title": "Improved Visual Grounding through Self-Consistent Explanations",
+            "url": "https://arxiv.org/pdf/2312.04554"
+          },
+          {
+            "title": "GitHub - uvavision/SelfEQ: [CVPR 2024] Code for \"Improved Visual Grounding through Self-Consistent Explanations\".",
+            "url": "https://github.com/uvavision/SelfEQ"
+          },
+          {
+            "title": "CVPR Poster Improved Visual Grounding through Self-Consistent Explanations",
+            "url": "https://cvpr.thecvf.com/virtual/2024/poster/30072"
+          },
+          {
+            "title": "[2312.04554] Improved Visual Grounding through Self-Consistent Explanations",
+            "url": "https://arxiv.org/abs/2312.04554"
+          },
+          {
+            "title": "[PDF] Improved Visual Grounding through Self-Consistent Explanations | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Improved-Visual-Grounding-through-Self-Consistent-He-Cascante-Bonilla/4d1e0e68577782e9b64449a146969f41abe21992"
+          }
+        ]
+      },
+      "I found comprehensive information about SelfEQ. Here's what the search results show:\n\n## Overview\n\nSelfEQ is a weakly-supervised strategy on visual explanation maps for paraphrases that encourages self-consistency, proposed alongside a strategy for augmenting existing text-image datasets with paraphrases using a large language model.\n\n## How It Works\n\nFor an input textual phrase, the method generates a paraphrase and finetunes the model so that the phrase and paraphrase map to the same region in the image. This both expands the vocabulary that the model is able to handle, and improves the quality of the object locations highlighted by gradient-based visual explanation methods (e.g. GradCAM).\n\n## Research Contribution\n\nThe main contribution is introducing a weakly-supervised strategy called Self-Consistency Equivalence Tuning (SelfEQ), which leverages paraphrases to consistently improve the model's ability to localize objects in images.\n\n## Performance Results\n\nSelfEQ improves performance on Flickr30k, ReferIt, and RefCOCO+, obtaining 84.07% on Flickr30k (an absolute improvement of 4.69%), 67.40% on ReferIt (an absolute improvement of 7.68%), and 75.10%, 55.49% on RefCOCO+ test sets A and B respectively (an absolute improvement of 3.74% on average).\n\n## Publication\n\nThe work was presented at the Conference on Computer Vision and Pattern Recognition (CVPR) 2024 conference in Seattle."
+    ],
+    "durationSeconds": 6.106096865
+  },
+  "sourceToolAssistantUUID": "13efbc16-51c4-4e48-9e72-5b655f475d97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-18T21:19:27.618Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NzMNnxgW53QurZmYy6sYZN`</summary>
+
+```json
+{
+  "query": "OpenVLA-OFT fine-tuning LIBERO 97% success rate arXiv 2502.19645"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "496e4d38-884a-4e73-acd4-183e52093d5e",
+  "isSidechain": false,
+  "requestId": "req_011CbAjSFhtvvB3LJrvuH9u8",
+  "type": "assistant",
+  "uuid": "7137fba8-de58-496b-9270-b7001d378e51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ge8C1VEPsJ7vAVFEV14WVk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1019,
+      "cache_read_input_tokens": 44556,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1019,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 44556,
+          "cache_creation_input_tokens": 1019,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1019
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-18T21:19:33.457Z_
+
+<details><summary>↩ Tool result · `toolu_01NzMNnxgW53QurZmYy6sYZN`</summary>
+
+```text
+Web search results for query: "OpenVLA-OFT fine-tuning LIBERO 97% success rate arXiv 2502.19645"
+
+Links: [{"title":"[2502.19645] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/abs/2502.19645"},{"title":"[2502.19645v1] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/abs/2502.19645v1"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://openvla-oft.github.io/"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/html/2502.19645v1"},{"title":"moojink/openvla-7b-oft-finetuned-libero-goal · Hugging Face","url":"https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-goal"},{"title":"moojink/openvla-7b-oft-finetuned-libero-object · Hugging Face","url":"https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-object"},{"title":"moojink/openvla-7b-oft-finetuned-libero-spatial · Hugging Face","url":"https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-spatial"},{"title":"GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub","url":"https://github.com/moojink/openvla-oft"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success | alphaXiv","url":"https://www.alphaxiv.org/overview/2502.19645"}]
+
+Based on the search results, here's what I found about OpenVLA-OFT fine-tuning on the LIBERO benchmark:
+
+OpenVLA-OFT sets a new state of the art on the LIBERO simulation benchmark, significantly boosting OpenVLA's average success rate across four task suites from 76.5% to 97.1%.
+
+**Key aspects of the approach:**
+
+The Optimized Fine-Tuning (OFT) recipe integrates parallel decoding, action chunking, a continuous action representation, and a simple L1 regression-based learning objective to improve inference efficiency, policy performance, and flexibility in the model's input-output specifications.
+
+**Performance improvements:**
+
+The success rate improved from 76.5% to 97.1%, with achieved 26× speedup reaching 109.7 Hz with 8-step action chunks. Parallel decoding with action chunking alone contributed a 14% absolute improvement in success rate, while continuous action representations added another 5% improvement.
+
+**Real-world validation:**
+
+In real-world evaluations, the fine-tuning recipe enables OpenVLA to successfully execute dexterous, high-frequency control tasks on a bimanual ALOHA robot and outperform other VLAs.
+
+The research is documented in arXiv paper 2502.19645, authored by Kim, Finn, and Liang, with code and project details available on GitHub and the project website.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7137fba8-de58-496b-9270-b7001d378e51",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "9b27e500-35f1-41f9-8e1a-0682b1ccefbc",
+  "toolUseResult": {
+    "query": "OpenVLA-OFT fine-tuning LIBERO 97% success rate arXiv 2502.19645",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Lt7vsQcvmKWQQNHgaGf83m",
+        "content": [
+          {
+            "title": "[2502.19645] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/abs/2502.19645"
+          },
+          {
+            "title": "[2502.19645v1] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/abs/2502.19645v1"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://openvla-oft.github.io/"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/html/2502.19645v1"
+          },
+          {
+            "title": "moojink/openvla-7b-oft-finetuned-libero-goal · Hugging Face",
+            "url": "https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-goal"
+          },
+          {
+            "title": "moojink/openvla-7b-oft-finetuned-libero-object · Hugging Face",
+            "url": "https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-object"
+          },
+          {
+            "title": "moojink/openvla-7b-oft-finetuned-libero-spatial · Hugging Face",
+            "url": "https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-spatial"
+          },
+          {
+            "title": "GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub",
+            "url": "https://github.com/moojink/openvla-oft"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2502.19645"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about OpenVLA-OFT fine-tuning on the LIBERO benchmark:\n\nOpenVLA-OFT sets a new state of the art on the LIBERO simulation benchmark, significantly boosting OpenVLA's average success rate across four task suites from 76.5% to 97.1%.\n\n**Key aspects of the approach:**\n\nThe Optimized Fine-Tuning (OFT) recipe integrates parallel decoding, action chunking, a continuous action representation, and a simple L1 regression-based learning objective to improve inference efficiency, policy performance, and flexibility in the model's input-output specifications.\n\n**Performance improvements:**\n\nThe success rate improved from 76.5% to 97.1%, with achieved 26× speedup reaching 109.7 Hz with 8-step action chunks. Parallel decoding with action chunking alone contributed a 14% absolute improvement in success rate, while continuous action representations added another 5% improvement.\n\n**Real-world validation:**\n\nIn real-world evaluations, the fine-tuning recipe enables OpenVLA to successfully execute dexterous, high-frequency control tasks on a bimanual ALOHA robot and outperform other VLAs.\n\nThe research is documented in arXiv paper 2502.19645, authored by Kim, Finn, and Liang, with code and project details available on GitHub and the project website."
+    ],
+    "durationSeconds": 5.8345354989999905
+  },
+  "sourceToolAssistantUUID": "7137fba8-de58-496b-9270-b7001d378e51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-18T21:19:36.211Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Pn4MzoeLPSbmj7MwrR8uLj`</summary>
+
+```json
+{
+  "query": "spatial affordance heatmap end-to-end VLA robot self-supervised contrastive 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b27e500-35f1-41f9-8e1a-0682b1ccefbc",
+  "isSidechain": false,
+  "requestId": "req_011CbAjSuPJWKo8Af8JHVG3d",
+  "type": "assistant",
+  "uuid": "5001170f-8be4-4aaf-8257-7ca58b87e317",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QkdFVoigNtQWy3J5grNzwz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 946,
+      "cache_read_input_tokens": 45575,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 946,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 45575,
+          "cache_creation_input_tokens": 946,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 946
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-18T21:19:45.979Z_
+
+<details><summary>↩ Tool result · `toolu_01Pn4MzoeLPSbmj7MwrR8uLj`</summary>
+
+```text
+Web search results for query: "spatial affordance heatmap end-to-end VLA robot self-supervised contrastive 2025 2026"
+
+Links: [{"title":"More than A Point: Capturing Uncertainty with Adaptive Affordance Heatmaps for Spatial Grounding in Robotic Tasks","url":"https://arxiv.org/html/2510.10912"},{"title":"Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation","url":"https://arxiv.org/html/2512.07472v1"},{"title":"More than A Point: Capturing Uncertainty with Adaptive Affordance Heatmaps for Spatial Grounding in Robotic Tasks","url":"https://arxiv.org/pdf/2510.10912"},{"title":"Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation","url":"https://arxiv.org/pdf/2512.07472"},{"title":"Vision Language Action Models in Robotic Manipulation: A Systematic Review","url":"https://arxiv.org/html/2507.10672v1"},{"title":"Contrastive Representation Regularization for Vision-Language-Action Models","url":"https://arxiv.org/pdf/2510.01711"}]
+
+I found relevant research papers on this topic. Here are the key results:
+
+## Recent Research on Spatial Affordance Heatmaps and VLA Robots
+
+**RoboMAP - Adaptive Affordance Heatmaps (October 2025)**
+
+RoboMAP generates a dense affordance heatmap that accurately represents the entire continuous distribution of suitable locations for spatial grounding in robotic tasks. The approach uses a pre-training pipeline that converts diverse, sparse annotations (keypoints, bounding boxes, and trajectories) into dense supervisory signals. RoboMAP achieves an 82% success rate in real-world manipulation with up to a 50x speed improvement.
+
+**Affordance Field Intervention for VLAs (December 2025)**
+
+Vision-Language-Action (VLA) models show great performance in robotic manipulation but remain brittle under distribution shifts, often reproducing memorized trajectories instead of adapting to updated scenes. Spatial Affordance Fields (SAFs) provide a geometric representation that highlights where interactions are physically feasible, and Affordance Field Intervention (AFI) uses SAFs as a plug-in to guide VLA behavior.
+
+**Contrastive Representation Learning for VLAs**
+
+A novel self-supervised regularization approach called Robot State-aware Contrastive Loss (RS-CL) explicitly shapes VLM representations toward capturing robotic signals by assigning pairwise weights based on distances between robot proprioceptive states.
+
+These papers represent cutting-edge research combining spatial affordance representations with end-to-end vision-language-action models for robotic manipulation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5001170f-8be4-4aaf-8257-7ca58b87e317",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "57a81a4a-3d88-4edd-9d78-e42ebd426139",
+  "toolUseResult": {
+    "query": "spatial affordance heatmap end-to-end VLA robot self-supervised contrastive 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YRBpEB3AxodDBA74jzD9hC",
+        "content": [
+          {
+            "title": "More than A Point: Capturing Uncertainty with Adaptive Affordance Heatmaps for Spatial Grounding in Robotic Tasks",
+            "url": "https://arxiv.org/html/2510.10912"
+          },
+          {
+            "title": "Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation",
+            "url": "https://arxiv.org/html/2512.07472v1"
+          },
+          {
+            "title": "More than A Point: Capturing Uncertainty with Adaptive Affordance Heatmaps for Spatial Grounding in Robotic Tasks",
+            "url": "https://arxiv.org/pdf/2510.10912"
+          },
+          {
+            "title": "Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2512.07472"
+          },
+          {
+            "title": "Vision Language Action Models in Robotic Manipulation: A Systematic Review",
+            "url": "https://arxiv.org/html/2507.10672v1"
+          },
+          {
+            "title": "Contrastive Representation Regularization for Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2510.01711"
+          }
+        ]
+      },
+      "I found relevant research papers on this topic. Here are the key results:\n\n## Recent Research on Spatial Affordance Heatmaps and VLA Robots\n\n**RoboMAP - Adaptive Affordance Heatmaps (October 2025)**\n\nRoboMAP generates a dense affordance heatmap that accurately represents the entire continuous distribution of suitable locations for spatial grounding in robotic tasks. The approach uses a pre-training pipeline that converts diverse, sparse annotations (keypoints, bounding boxes, and trajectories) into dense supervisory signals. RoboMAP achieves an 82% success rate in real-world manipulation with up to a 50x speed improvement.\n\n**Affordance Field Intervention for VLAs (December 2025)**\n\nVision-Language-Action (VLA) models show great performance in robotic manipulation but remain brittle under distribution shifts, often reproducing memorized trajectories instead of adapting to updated scenes. Spatial Affordance Fields (SAFs) provide a geometric representation that highlights where interactions are physically feasible, and Affordance Field Intervention (AFI) uses SAFs as a plug-in to guide VLA behavior.\n\n**Contrastive Representation Learning for VLAs**\n\nA novel self-supervised regularization approach called Robot State-aware Contrastive Loss (RS-CL) explicitly shapes VLM representations toward capturing robotic signals by assigning pairwise weights based on distances between robot proprioceptive states.\n\nThese papers represent cutting-edge research combining spatial affordance representations with end-to-end vision-language-action models for robotic manipulation."
+    ],
+    "durationSeconds": 9.765489165000007
+  },
+  "sourceToolAssistantUUID": "5001170f-8be4-4aaf-8257-7ca58b87e317",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-18T21:19:48.717Z_
+
+Let me check the Affordance Field Intervention paper and also look for any very recent work specifically on paraphrase-robust VLAs.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57a81a4a-3d88-4edd-9d78-e42ebd426139",
+  "isSidechain": false,
+  "requestId": "req_011CbAjTpuT1M46exCggcy8z",
+  "type": "assistant",
+  "uuid": "2c6cb7c2-3191-4d72-a8b8-2d1e8f83b2ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WJBaVc8jeyRWPsHym8h2h9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 780,
+      "cache_read_input_tokens": 46521,
+      "output_tokens": 106,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 780,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 106,
+          "cache_read_input_tokens": 46521,
+          "cache_creation_input_tokens": 780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 780
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T21:19:49.037Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VQ5Y9or859Nc5i1k3rgARw`</summary>
+
+```json
+{
+  "query": "\"Affordance Field Intervention\" VLA arXiv 2512.07472 spatial affordance fields"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c6cb7c2-3191-4d72-a8b8-2d1e8f83b2ee",
+  "isSidechain": false,
+  "requestId": "req_011CbAjTpuT1M46exCggcy8z",
+  "type": "assistant",
+  "uuid": "99cdf804-fb5a-4ba1-a23d-ba35663ff7fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WJBaVc8jeyRWPsHym8h2h9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 780,
+      "cache_read_input_tokens": 46521,
+      "output_tokens": 106,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 780,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 106,
+          "cache_read_input_tokens": 46521,
+          "cache_creation_input_tokens": 780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 780
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T21:19:58.344Z_
+
+<details><summary>↩ Tool result · `toolu_01VQ5Y9or859Nc5i1k3rgARw`</summary>
+
+```text
+Web search results for query: ""Affordance Field Intervention" VLA arXiv 2512.07472 spatial affordance fields"
+
+Links: [{"title":"Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation","url":"https://arxiv.org/pdf/2512.07472"},{"title":"Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in","url":"https://www.arxiv.org/pdf/2512.07472"},{"title":"IVRA: Improving Visual-Token Relations for Robot Action Policy with Training-Free Hint-Based Guidance","url":"https://arxiv.org/pdf/2601.16207"},{"title":"Learning Affordances at Inference-Time for Vision-Language-Action Models","url":"https://arxiv.org/pdf/2510.19752"},{"title":"Agile-VLA: Few-Shot Industrial Pose Rectification via Implicit Affordance Anchoring","url":"https://arxiv.org/pdf/2603.22899"}]
+
+I found the research paper you're looking for! Here's what the search reveals:
+
+## Affordance Field Intervention (AFI)
+
+The paper "Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation" was authored by Siyu Xu, Zijian Wang, Yunke Wang, Chenghao Xia, Tao Huang, and Chang Xu from The University of Sydney and Shanghai Jiao Tong University.
+
+**Problem Being Addressed:**
+
+VLAs often fail under distribution shifts by reproducing memorized trajectories instead of adapting to updated scenes, a failure mode called the "Memory Trap". This limitation stems from the end-to-end design, which lacks explicit 3D spatial reasoning and prevents reliable identification of actionable regions in unfamiliar environments.
+
+**Solution:**
+
+3D Spatial Affordance Fields (SAFs) provide a geometric representation that highlights where interactions are physically feasible, and Affordance Field Intervention uses SAFs as an on-demand plugin to guide VLA behavior. The system detects memory traps through proprioception, repositions the robot to recent high-affordance regions, and proposes affordance-driven waypoints that anchor VLA-generated actions.
+
+**Results:**
+
+The method achieves an average improvement of 23.5% across different VLA backbones under out-of-distribution scenarios on real-world robotic platforms, and 20.2% on the LIBERO-Pro benchmark.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "99cdf804-fb5a-4ba1-a23d-ba35663ff7fc",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "c60f646c-d665-410f-9c20-b821287908ad",
+  "toolUseResult": {
+    "query": "\"Affordance Field Intervention\" VLA arXiv 2512.07472 spatial affordance fields",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JwWzYofXxmcaJax4qezV8W",
+        "content": [
+          {
+            "title": "Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2512.07472"
+          },
+          {
+            "title": "Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in",
+            "url": "https://www.arxiv.org/pdf/2512.07472"
+          },
+          {
+            "title": "IVRA: Improving Visual-Token Relations for Robot Action Policy with Training-Free Hint-Based Guidance",
+            "url": "https://arxiv.org/pdf/2601.16207"
+          },
+          {
+            "title": "Learning Affordances at Inference-Time for Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2510.19752"
+          },
+          {
+            "title": "Agile-VLA: Few-Shot Industrial Pose Rectification via Implicit Affordance Anchoring",
+            "url": "https://arxiv.org/pdf/2603.22899"
+          }
+        ]
+      },
+      "I found the research paper you're looking for! Here's what the search reveals:\n\n## Affordance Field Intervention (AFI)\n\nThe paper \"Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation\" was authored by Siyu Xu, Zijian Wang, Yunke Wang, Chenghao Xia, Tao Huang, and Chang Xu from The University of Sydney and Shanghai Jiao Tong University.\n\n**Problem Being Addressed:**\n\nVLAs often fail under distribution shifts by reproducing memorized trajectories instead of adapting to updated scenes, a failure mode called the \"Memory Trap\". This limitation stems from the end-to-end design, which lacks explicit 3D spatial reasoning and prevents reliable identification of actionable regions in unfamiliar environments.\n\n**Solution:**\n\n3D Spatial Affordance Fields (SAFs) provide a geometric representation that highlights where interactions are physically feasible, and Affordance Field Intervention uses SAFs as an on-demand plugin to guide VLA behavior. The system detects memory traps through proprioception, repositions the robot to recent high-affordance regions, and proposes affordance-driven waypoints that anchor VLA-generated actions.\n\n**Results:**\n\nThe method achieves an average improvement of 23.5% across different VLA backbones under out-of-distribution scenarios on real-world robotic platforms, and 20.2% on the LIBERO-Pro benchmark."
+    ],
+    "durationSeconds": 9.304031625000004
+  },
+  "sourceToolAssistantUUID": "99cdf804-fb5a-4ba1-a23d-ba35663ff7fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T21:20:01.243Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CSGHD459uoPVsTrf6dGHsC`</summary>
+
+```json
+{
+  "query": "paraphrase robust VLA instruction augmentation synthetic language generalization 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c60f646c-d665-410f-9c20-b821287908ad",
+  "isSidechain": false,
+  "requestId": "req_011CbAjUjzZGYsXYjAg7BMEE",
+  "type": "assistant",
+  "uuid": "9a7dc290-37e0-4009-9381-28ae5cab18da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013eVdoBjzX4rRYht6eoc7zh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 47301,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 728,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 47301,
+          "cache_creation_input_tokens": 728,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 728
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T21:20:10.234Z_
+
+<details><summary>↩ Tool result · `toolu_01CSGHD459uoPVsTrf6dGHsC`</summary>
+
+```text
+Web search results for query: "paraphrase robust VLA instruction augmentation synthetic language generalization 2026 arXiv"
+
+Links: [{"title":"[2603.16044] Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation","url":"https://arxiv.org/abs/2603.16044"},{"title":"Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation","url":"https://arxiv.org/html/2603.16044"},{"title":"Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations","url":"https://arxiv.org/html/2509.11417v1"},{"title":"From Intention to Execution: Probing the Generalization Boundaries of Vision-Language-Action Models","url":"https://arxiv.org/html/2506.09930v1"},{"title":"Fine-Tuning OpenVLA via Synthetic Instruction Augmentation","url":"https://arxiv.org/pdf/2603.16044"},{"title":"Seeing Realism from Simulation: Efficient Video Transfer for Vision-Language-Action Data Augmentation","url":"https://arxiv.org/html/2605.02757"},{"title":"PSK@EEUCA 2026: Fine-Tuning Large Language Models with Synthetic Data Augmentation for Multi-Class Toxicity Detection in Gaming Chat","url":"https://arxiv.org/html/2605.07201"}]
+
+I found a highly relevant paper matching your search query. Here's what I found:
+
+The paper proposes a parameter-efficient fine-tuning strategy to enhance the linguistic generalization of OpenVLA by synthesizing a general instruction set for the Bridge Dataset V2. The paper leverages a Large Language Model (LLM) to generate a rich variety of semantically equivalent but structurally diverse commands for existing trajectories.
+
+The proposed method significantly improves the generalization capabilities of the agent, enabling it to execute commands successfully even when faced with paraphrased instructions that were not present in the original training distribution. Low-Rank Adaptation (LoRA) is implemented to fine-tune OpenVLA on augmented pairs, and results demonstrate that the LoRA-enhanced model's robustness, suggesting that enriching the linguistic space of specialized datasets is crucial for embodied agents.
+
+**Paper Details:**
+- **Title:** "Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation"
+- **Author:** Dongik Shin
+- **arXiv ID:** 2603.16044
+- **Posted:** March 17, 2026
+- **URL:** https://arxiv.org/abs/2603.16044
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9a7dc290-37e0-4009-9381-28ae5cab18da",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "032260f0-c5f5-4601-b783-907337c96bc9",
+  "toolUseResult": {
+    "query": "paraphrase robust VLA instruction augmentation synthetic language generalization 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SutVAhJ7kcboAbZzbTLw6h",
+        "content": [
+          {
+            "title": "[2603.16044] Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation",
+            "url": "https://arxiv.org/abs/2603.16044"
+          },
+          {
+            "title": "Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation",
+            "url": "https://arxiv.org/html/2603.16044"
+          },
+          {
+            "title": "Enhancing Generalization in Vision–Language–Action Models by Preserving Pretrained Representations",
+            "url": "https://arxiv.org/html/2509.11417v1"
+          },
+          {
+            "title": "From Intention to Execution: Probing the Generalization Boundaries of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2506.09930v1"
+          },
+          {
+            "title": "Fine-Tuning OpenVLA via Synthetic Instruction Augmentation",
+            "url": "https://arxiv.org/pdf/2603.16044"
+          },
+          {
+            "title": "Seeing Realism from Simulation: Efficient Video Transfer for Vision-Language-Action Data Augmentation",
+            "url": "https://arxiv.org/html/2605.02757"
+          },
+          {
+            "title": "PSK@EEUCA 2026: Fine-Tuning Large Language Models with Synthetic Data Augmentation for Multi-Class Toxicity Detection in Gaming Chat",
+            "url": "https://arxiv.org/html/2605.07201"
+          }
+        ]
+      },
+      "I found a highly relevant paper matching your search query. Here's what I found:\n\nThe paper proposes a parameter-efficient fine-tuning strategy to enhance the linguistic generalization of OpenVLA by synthesizing a general instruction set for the Bridge Dataset V2. The paper leverages a Large Language Model (LLM) to generate a rich variety of semantically equivalent but structurally diverse commands for existing trajectories.\n\nThe proposed method significantly improves the generalization capabilities of the agent, enabling it to execute commands successfully even when faced with paraphrased instructions that were not present in the original training distribution. Low-Rank Adaptation (LoRA) is implemented to fine-tune OpenVLA on augmented pairs, and results demonstrate that the LoRA-enhanced model's robustness, suggesting that enriching the linguistic space of specialized datasets is crucial for embodied agents.\n\n**Paper Details:**\n- **Title:** \"Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation\"\n- **Author:** Dongik Shin\n- **arXiv ID:** 2603.16044\n- **Posted:** March 17, 2026\n- **URL:** https://arxiv.org/abs/2603.16044"
+    ],
+    "durationSeconds": 8.985407582999994
+  },
+  "sourceToolAssistantUUID": "9a7dc290-37e0-4009-9381-28ae5cab18da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "032260f0-c5f5-4601-b783-907337c96bc9",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify affordance self-supervision in VLAs via independent research",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-18T21:20:14.485Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QAatnbLtGD3VCQKHnz7B1B`</summary>
+
+```json
+{
+  "query": "CoRL 2026 submission deadline paper deadline date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "032260f0-c5f5-4601-b783-907337c96bc9",
+  "isSidechain": false,
+  "requestId": "req_011CbAjVckGEDhKjy7eDPr1b",
+  "type": "assistant",
+  "uuid": "65bfb476-f90c-4e18-8617-45b3fc0e2ba4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TJSmdbGCrPZQUhYcMS7WpW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 48029,
+      "output_tokens": 62,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 753,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 62,
+          "cache_read_input_tokens": 48029,
+          "cache_creation_input_tokens": 753,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 753
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T21:20:19.071Z_
+
+<details><summary>↩ Tool result · `toolu_01QAatnbLtGD3VCQKHnz7B1B`</summary>
+
+```text
+Web search results for query: "CoRL 2026 submission deadline paper deadline date"
+
+Links: [{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz","url":"https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"CoRL 2026 - Annoucements","url":"https://www.corl.org/annoucements"},{"title":"Refactor conference data · huggingface/ai-deadlines at f3cc2d7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"}]
+
+Based on the search results, here are the key submission deadlines for CoRL 2026:
+
+**Paper Submission Deadline:**
+The paper submission deadline is Thursday (5/28) end of day, which is **May 28, 2026**.
+
+**Abstract Submission Deadline:**
+The abstract submission deadline is May 26, 2026 at 11:59 UTC.
+
+**Conference Details:**
+CoRL 2026 will be held in Austin, Texas, US, and the conference will be held at the JW Marriott Austin in Austin, TX (November 9–12, 2026), with a workshop day on November 9 and the main conference on November 10–12.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "65bfb476-f90c-4e18-8617-45b3fc0e2ba4",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "2a547d68-7bd0-4550-8c93-35040486af81",
+  "toolUseResult": {
+    "query": "CoRL 2026 submission deadline paper deadline date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UdkGpVSGnp5Tfu2jFSK5Cd",
+        "content": [
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf?lang=en"
+          },
+          {
+            "title": "CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz",
+            "url": "https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          },
+          {
+            "title": "CoRL 2026 - Annoucements",
+            "url": "https://www.corl.org/annoucements"
+          },
+          {
+            "title": "Refactor conference data · huggingface/ai-deadlines at f3cc2d7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"
+          }
+        ]
+      },
+      "Based on the search results, here are the key submission deadlines for CoRL 2026:\n\n**Paper Submission Deadline:**\nThe paper submission deadline is Thursday (5/28) end of day, which is **May 28, 2026**.\n\n**Abstract Submission Deadline:**\nThe abstract submission deadline is May 26, 2026 at 11:59 UTC.\n\n**Conference Details:**\nCoRL 2026 will be held in Austin, Texas, US, and the conference will be held at the JW Marriott Austin in Austin, TX (November 9–12, 2026), with a workshop day on November 9 and the main conference on November 10–12."
+    ],
+    "durationSeconds": 4.5837287530000035
+  },
+  "sourceToolAssistantUUID": "65bfb476-f90c-4e18-8617-45b3fc0e2ba4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-18T21:20:21.705Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WoPXPZv7M1PJjGzF9XjnmF`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline abstract full paper July 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a547d68-7bd0-4550-8c93-35040486af81",
+  "isSidechain": false,
+  "requestId": "req_011CbAjWGNh1ywURJnTaM9zo",
+  "type": "assistant",
+  "uuid": "7f3c48bd-753b-42b5-87a0-3d9bca33dc3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bbj25KvBMF14KCZvsLnxAk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 694,
+      "cache_read_input_tokens": 48782,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 694,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 48782,
+          "cache_creation_input_tokens": 694,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 694
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-18T21:20:26.324Z_
+
+<details><summary>↩ Tool result · `toolu_01WoPXPZv7M1PJjGzF9XjnmF`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline abstract full paper July 2026"
+
+Links: [{"title":"AAAI Conference on Artificial Intelligence - AAAI","url":"https://aaai.org/conference/aaai/"},{"title":"AAAI 2027 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"AAAI-27 - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/"},{"title":"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/aaai"},{"title":"AAAI Conference on Artificial Intelligence","url":"http://aideadlines.org/conference/?id=aaai27"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"AAAI 2027 Conference | OpenReview","url":"https://openreview.net/group?id=AAAI.org%2F2027%2FConference"}]
+
+Based on the web search results, here's what I found regarding AAAI 2027 submission deadlines:
+
+The Forty-First AAAI Conference on Artificial Intelligence (AAAI-27) will be held in Montréal, Canada, from February 16 to February 23, 2027.
+
+Regarding the specific submission deadlines you asked about:
+
+- Paper submission deadline and abstract deadline are both listed as TBD (To Be Determined)
+- However, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns
+
+Track-specific deadlines are listed on their respective calls for papers and may differ from general deadlines. For the most current and precise deadline information, I recommend checking the official AAAI-27 Call for Papers page at https://aaai.org/conference/aaai/aaai-27/.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7f3c48bd-753b-42b5-87a0-3d9bca33dc3a",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "244fdeb2-478f-4f21-9a13-862e0c0efdcb",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline abstract full paper July 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FKR6nbZHQB9zPtof5HhwaR",
+        "content": [
+          {
+            "title": "AAAI Conference on Artificial Intelligence - AAAI",
+            "url": "https://aaai.org/conference/aaai/"
+          },
+          {
+            "title": "AAAI 2027 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "AAAI-27 - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/"
+          },
+          {
+            "title": "AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/aaai"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence",
+            "url": "http://aideadlines.org/conference/?id=aaai27"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "AAAI 2027 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=AAAI.org%2F2027%2FConference"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding AAAI 2027 submission deadlines:\n\nThe Forty-First AAAI Conference on Artificial Intelligence (AAAI-27) will be held in Montréal, Canada, from February 16 to February 23, 2027.\n\nRegarding the specific submission deadlines you asked about:\n\n- Paper submission deadline and abstract deadline are both listed as TBD (To Be Determined)\n- However, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns\n\nTrack-specific deadlines are listed on their respective calls for papers and may differ from general deadlines. For the most current and precise deadline information, I recommend checking the official AAAI-27 Call for Papers page at https://aaai.org/conference/aaai/aaai-27/."
+    ],
+    "durationSeconds": 4.615670838999998
+  },
+  "sourceToolAssistantUUID": "7f3c48bd-753b-42b5-87a0-3d9bca33dc3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53 · 2026-05-18T21:20:26.330Z_
+
+```json
+{
+  "parentUuid": "244fdeb2-478f-4f21-9a13-862e0c0efdcb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "8f0d6522-dbe5-43dd-9b82-0898e5a402bd",
+  "timestamp": "2026-05-18T21:20:26.330Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-18T21:20:29.891Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019cUB933wir6MhDapMNBoJK`</summary>
+
+```json
+{
+  "query": "ICRA 2027 submission deadline September 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f0d6522-dbe5-43dd-9b82-0898e5a402bd",
+  "isSidechain": false,
+  "requestId": "req_011CbAjWobABwUxSM3PhjATE",
+  "type": "assistant",
+  "uuid": "255ddc01-dabd-4768-8567-0432ca340cc2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0193Ackiim9f8Ro3uspBgajn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 884,
+      "cache_read_input_tokens": 49476,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 884,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 49476,
+          "cache_creation_input_tokens": 884,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 884
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-18T21:20:33.746Z_
+
+<details><summary>↩ Tool result · `toolu_019cUB933wir6MhDapMNBoJK`</summary>
+
+```text
+Web search results for query: "ICRA 2027 submission deadline September 2026"
+
+Links: [{"title":"IEEE ICRA 2027 | Calls for Papers and Posters","url":"https://2027.ieee-icra.org/contribute/"},{"title":"ICRA - IEEE Robotics and Automation Society Website","url":"https://www.ieee-ras.org/conferences-workshops/fully-sponsored/icra/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Workshop on Field Robotics - ICRA 2026","url":"https://norlab-ulaval.github.io/icra_workshop_field_robotics/"},{"title":"IEEE ICRA 2026 | Calls for Papers and Posters","url":"https://2026.ieee-icra.org/contribute/"},{"title":"ICRA: International Conference on Robotics and Automation 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=1454"},{"title":"Final Reminder: ICRA 2026 Paper Submission Deadline – 15 September 2025 (23:59 PST)! Submit your cutting-edge robotics research to the flagship IEEE Robotics & Automation conference. 📄 8-page limit… | IEEE International Conference on Robotics and Automation (ICRA)","url":"https://www.linkedin.com/posts/ieee-icra_final-reminder-icra-2026-paper-submission-activity-7372306265139474432-Ath8"},{"title":"IEEE ICRA on X: \"Final Reminder: ICRA 2026 Paper Submission Deadline – 15 September 2025 (23:59 PST)! Submit your cutting-edge robotics research to the flagship IEEE Robotics &amp; Automation conference. Learn more about the submission process: https://t.co/lopnwGFNTd https://t.co/4FMfIL93Tl\" / X","url":"https://x.com/ieee_ras_icra/status/1966540573549973863"},{"title":"ICRA 2026 Call for Papers: Important Dates, Submission Guide & Research Tips - Conference Inc.","url":"https://conferenceinc.net/post/icra-2026/"},{"title":"2027 IEEE International Conference on Robotics and Automation ICRA","url":"https://www.aconf.org/conf_211853.2027_IEEE_International_Conference_on_Robotics_and_Automation.html"}]
+
+Based on the search results, I found information about ICRA 2026 submission deadlines, but the specific details for ICRA 2027 with a September 2026 deadline were not fully detailed in these results.
+
+Here's what I found:
+
+**ICRA 2026:** Submissions are due by 15 September 2025.
+
+**ICRA 2027:** The conference is scheduled for May 24-28, 2027. However, the search results do not contain specific information about the ICRA 2027 paper submission deadline in September 2026.
+
+For the most current and accurate ICRA 2027 submission deadline information, I recommend checking the official ICRA 2027 website directly, as the detailed call for papers and submission deadlines may not yet be published or widely available in search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "255ddc01-dabd-4768-8567-0432ca340cc2",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "286c93b8-6ce2-4b57-a692-8d04cd3d20e6",
+  "toolUseResult": {
+    "query": "ICRA 2027 submission deadline September 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Sq48TNFuXyPS3BSDW8eJpg",
+        "content": [
+          {
+            "title": "IEEE ICRA 2027 | Calls for Papers and Posters",
+            "url": "https://2027.ieee-icra.org/contribute/"
+          },
+          {
+            "title": "ICRA - IEEE Robotics and Automation Society Website",
+            "url": "https://www.ieee-ras.org/conferences-workshops/fully-sponsored/icra/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Workshop on Field Robotics - ICRA 2026",
+            "url": "https://norlab-ulaval.github.io/icra_workshop_field_robotics/"
+          },
+          {
+            "title": "IEEE ICRA 2026 | Calls for Papers and Posters",
+            "url": "https://2026.ieee-icra.org/contribute/"
+          },
+          {
+            "title": "ICRA: International Conference on Robotics and Automation 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=1454"
+          },
+          {
+            "title": "Final Reminder: ICRA 2026 Paper Submission Deadline – 15 September 2025 (23:59 PST)! Submit your cutting-edge robotics research to the flagship IEEE Robotics & Automation conference. 📄 8-page limit… | IEEE International Conference on Robotics and Automation (ICRA)",
+            "url": "https://www.linkedin.com/posts/ieee-icra_final-reminder-icra-2026-paper-submission-activity-7372306265139474432-Ath8"
+          },
+          {
+            "title": "IEEE ICRA on X: \"Final Reminder: ICRA 2026 Paper Submission Deadline – 15 September 2025 (23:59 PST)! Submit your cutting-edge robotics research to the flagship IEEE Robotics &amp; Automation conference. Learn more about the submission process: https://t.co/lopnwGFNTd https://t.co/4FMfIL93Tl\" / X",
+            "url": "https://x.com/ieee_ras_icra/status/1966540573549973863"
+          },
+          {
+            "title": "ICRA 2026 Call for Papers: Important Dates, Submission Guide & Research Tips - Conference Inc.",
+            "url": "https://conferenceinc.net/post/icra-2026/"
+          },
+          {
+            "title": "2027 IEEE International Conference on Robotics and Automation ICRA",
+            "url": "https://www.aconf.org/conf_211853.2027_IEEE_International_Conference_on_Robotics_and_Automation.html"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICRA 2026 submission deadlines, but the specific details for ICRA 2027 with a September 2026 deadline were not fully detailed in these results.\n\nHere's what I found:\n\n**ICRA 2026:** Submissions are due by 15 September 2025.\n\n**ICRA 2027:** The conference is scheduled for May 24-28, 2027. However, the search results do not contain specific information about the ICRA 2027 paper submission deadline in September 2026.\n\nFor the most current and accurate ICRA 2027 submission deadline information, I recommend checking the official ICRA 2027 website directly, as the detailed call for papers and submission deadlines may not yet be published or widely available in search results."
+    ],
+    "durationSeconds": 3.850757209000003
+  },
+  "sourceToolAssistantUUID": "255ddc01-dabd-4768-8567-0432ca340cc2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-18T21:20:36.995Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0121A2tp3nFAy5BiSmJhoy8A`</summary>
+
+```json
+{
+  "query": "SG-VLA spatially grounded VLA mobile manipulation auxiliary decoder March 2026 arXiv 2603.22760"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "286c93b8-6ce2-4b57-a692-8d04cd3d20e6",
+  "isSidechain": false,
+  "requestId": "req_011CbAjXM6jTGQiZsGvkze4z",
+  "type": "assistant",
+  "uuid": "839ad795-a484-44dc-84b1-28396d474f50",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XNpnw2AxSzP1knjp1tDsN4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 924,
+      "cache_read_input_tokens": 50360,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 924,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 50360,
+          "cache_creation_input_tokens": 924,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 924
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-18T21:20:44.128Z_
+
+<details><summary>↩ Tool result · `toolu_0121A2tp3nFAy5BiSmJhoy8A`</summary>
+
+```text
+Web search results for query: "SG-VLA spatially grounded VLA mobile manipulation auxiliary decoder March 2026 arXiv 2603.22760"
+
+Links: [{"title":"[2603.22760] SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation","url":"https://arxiv.org/abs/2603.22760"},{"title":"[2603.22760v1] SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation","url":"https://arxiv.org/abs/2603.22760v1"},{"title":"SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation","url":"https://arxiv.org/html/2603.22760v1"},{"title":"SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation","url":"https://arxiv.org/pdf/2603.22760"},{"title":"SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation","url":"https://www.researchgate.net/publication/403112103_SG-VLA_Learning_Spatially-Grounded_Vision-Language-Action_Models_for_Mobile_Manipulation"},{"title":"Robotics Papers on X: \"SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation Ruisen Tu, Arth Shukla, Sohyun Yoo, Xuanlin Li, Junxi Li, Jianwen Xie, Hao Su, Zhuowen Tu https://t.co/88d7Bi1ToV [𝚌𝚜.𝚁𝙾] https://t.co/dlzpHkhdBJ\" / X","url":"https://x.com/OWW/status/2036786607592775894"}]
+
+I found the paper! Here are the key details about SG-VLA from the search results:
+
+**Paper Title:** SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation
+
+**Authors:** Ruisen Tu, Arth Shukla, Sohyun Yoo, Xuanlin Li, Junxi Li, Jianwen Xie, Hao Su, and Zhuowen Tu from UC San Diego and Lambda, Inc
+
+**Submission Date:** March 24, 2026
+
+**Key Contributions:**
+
+The paper introduces a framework for learning spatially-grounded VLA models that strengthens perception and representation learning through auxiliary task co-training and multi-modal input enhancement.
+
+The method addresses controlling a 13-dimensional action space involving coordinated base motion, arm articulation, and gripper actuation, and incorporates multi-view RGB observations, depth cues, and short temporal history.
+
+The approach co-trains auxiliary decoders that reconstruct interpretable intermediate signals—including global robot position, joint configurations, grasp affordances, target-object relative pose, and segmentation masks—from shared visual-language features.
+
+The paper is available on arXiv with identifier 2603.22760.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "839ad795-a484-44dc-84b1-28396d474f50",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "c4da181d-4b47-4c3a-96b2-c386df6c61d2",
+  "toolUseResult": {
+    "query": "SG-VLA spatially grounded VLA mobile manipulation auxiliary decoder March 2026 arXiv 2603.22760",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HPUxwvwBzS5AEfpCivbFiF",
+        "content": [
+          {
+            "title": "[2603.22760] SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation",
+            "url": "https://arxiv.org/abs/2603.22760"
+          },
+          {
+            "title": "[2603.22760v1] SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation",
+            "url": "https://arxiv.org/abs/2603.22760v1"
+          },
+          {
+            "title": "SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation",
+            "url": "https://arxiv.org/html/2603.22760v1"
+          },
+          {
+            "title": "SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation",
+            "url": "https://arxiv.org/pdf/2603.22760"
+          },
+          {
+            "title": "SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation",
+            "url": "https://www.researchgate.net/publication/403112103_SG-VLA_Learning_Spatially-Grounded_Vision-Language-Action_Models_for_Mobile_Manipulation"
+          },
+          {
+            "title": "Robotics Papers on X: \"SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation Ruisen Tu, Arth Shukla, Sohyun Yoo, Xuanlin Li, Junxi Li, Jianwen Xie, Hao Su, Zhuowen Tu https://t.co/88d7Bi1ToV [𝚌𝚜.𝚁𝙾] https://t.co/dlzpHkhdBJ\" / X",
+            "url": "https://x.com/OWW/status/2036786607592775894"
+          }
+        ]
+      },
+      "I found the paper! Here are the key details about SG-VLA from the search results:\n\n**Paper Title:** SG-VLA: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation\n\n**Authors:** Ruisen Tu, Arth Shukla, Sohyun Yoo, Xuanlin Li, Junxi Li, Jianwen Xie, Hao Su, and Zhuowen Tu from UC San Diego and Lambda, Inc\n\n**Submission Date:** March 24, 2026\n\n**Key Contributions:**\n\nThe paper introduces a framework for learning spatially-grounded VLA models that strengthens perception and representation learning through auxiliary task co-training and multi-modal input enhancement.\n\nThe method addresses controlling a 13-dimensional action space involving coordinated base motion, arm articulation, and gripper actuation, and incorporates multi-view RGB observations, depth cues, and short temporal history.\n\nThe approach co-trains auxiliary decoders that reconstruct interpretable intermediate signals—including global robot position, joint configurations, grasp affordances, target-object relative pose, and segmentation masks—from shared visual-language features.\n\nThe paper is available on arXiv with identifier 2603.22760."
+    ],
+    "durationSeconds": 7.129513120999996
+  },
+  "sourceToolAssistantUUID": "839ad795-a484-44dc-84b1-28396d474f50",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-18T21:20:47.340Z_
+
+Now let me check for the most critical potential competition — any recent work combining self-supervised/unsupervised affordance with VLA end-to-end.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4da181d-4b47-4c3a-96b2-c386df6c61d2",
+  "isSidechain": false,
+  "requestId": "req_011CbAjY7UTsTa3yqTRKpt6y",
+  "type": "assistant",
+  "uuid": "6ed00538-1623-4644-a6cf-193c853c4632",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014PFAgHhxnRSFNeHemRjLpi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 876,
+      "cache_read_input_tokens": 51284,
+      "output_tokens": 117,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 876,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 117,
+          "cache_read_input_tokens": 51284,
+          "cache_creation_input_tokens": 876,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 876
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T21:20:47.817Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A478dRiX1DMQ1ugF6amjkK`</summary>
+
+```json
+{
+  "query": "\"unsupervised affordance\" OR \"self-supervised affordance\" end-to-end VLA policy learning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ed00538-1623-4644-a6cf-193c853c4632",
+  "isSidechain": false,
+  "requestId": "req_011CbAjY7UTsTa3yqTRKpt6y",
+  "type": "assistant",
+  "uuid": "a45e0c2f-5e92-418d-af69-d9e92c782579",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014PFAgHhxnRSFNeHemRjLpi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 876,
+      "cache_read_input_tokens": 51284,
+      "output_tokens": 117,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 876,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 117,
+          "cache_read_input_tokens": 51284,
+          "cache_creation_input_tokens": 876,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 876
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T21:20:55.669Z_
+
+<details><summary>↩ Tool result · `toolu_01A478dRiX1DMQ1ugF6amjkK`</summary>
+
+```text
+Web search results for query: ""unsupervised affordance" OR "self-supervised affordance" end-to-end VLA policy learning 2025 2026"
+
+Links: [{"title":"CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance","url":"https://arxiv.org/pdf/2412.20451"},{"title":"Learning Affordances at Inference-Time for Vision-Language-Action Models","url":"https://arxiv.org/pdf/2510.19752"},{"title":"Affordance Learning from Play for Sample-Efficient Policy Learning","url":"https://arxiv.org/pdf/2203.00352"},{"title":"PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation","url":"https://arxiv.org/pdf/2601.07060"},{"title":"World-VLA-Loop: Closed-Loop Learning of Video World Model and VLA Policy","url":"https://arxiv.org/html/2602.06508v1"},{"title":"IRL-VLA: Training an Vision-Language-Action Policy via Reward World Model","url":"https://arxiv.org/pdf/2508.06571"},{"title":"Affordance Learning for End-to-End Visuomotor Robot Control","url":"https://arxiv.org/pdf/1903.04053"}]
+
+Based on the web search results, here are relevant papers on unsupervised/self-supervised affordance learning for end-to-end VLA policy learning from 2025-2026:
+
+## Recent VLA and Affordance Learning Papers (2025-2026)
+
+**PALM: Progress-Aware Policy Learning via Affordance Reasoning**
+PALM is a VLA framework that structures policy learning around interaction-centric affordance reasoning, distilling complementary affordance representations that capture object relevance, contact geometry, spatial placements, and motion dynamics, and serve as task-relevant anchors for visuomotor control.
+
+**Learning Affordances at Inference-Time for Vision-Language-Action Models (LITEN)**
+LITEN reflects on unstructured real-world robot trajectories to effectively learn from past experience and generate plans that use high-affordance instructions to accomplish long-horizon tasks.
+
+**CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance**
+Recent advancements in Vision-Language-Action (VLA) models have shown that training with internet-scale data can empower end-to-end policy learning models to outperform non-VLA models. CoA-VLA exhibits strong generalization capabilities, including recognizing unseen object poses, identifying free space, and avoiding obstacles in novel environments.
+
+**World-VLA-Loop: Closed-Loop Learning of Video World Model and VLA Policy**
+The framework addresses limitations through a state-aware world model design and a co-evolving paradigm that enables more accurate action following and reward reliability.
+
+**IRL-VLA: Training an Vision-Language-Action Policy via Reward World Model**
+IRL-VLA is the first close-loop VLA approach via end-to-end reinforcement learning including sensor input.
+
+These papers represent recent advances in combining affordance reasoning with vision-language-action models for robotics applications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a45e0c2f-5e92-418d-af69-d9e92c782579",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "9f7526e8-8804-4778-8c2d-04cafe63db10",
+  "toolUseResult": {
+    "query": "\"unsupervised affordance\" OR \"self-supervised affordance\" end-to-end VLA policy learning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MR5TDCdw2s64qzxU7FDuZx",
+        "content": [
+          {
+            "title": "CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance",
+            "url": "https://arxiv.org/pdf/2412.20451"
+          },
+          {
+            "title": "Learning Affordances at Inference-Time for Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2510.19752"
+          },
+          {
+            "title": "Affordance Learning from Play for Sample-Efficient Policy Learning",
+            "url": "https://arxiv.org/pdf/2203.00352"
+          },
+          {
+            "title": "PALM: Progress-Aware Policy Learning via Affordance Reasoning for Long-Horizon Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2601.07060"
+          },
+          {
+            "title": "World-VLA-Loop: Closed-Loop Learning of Video World Model and VLA Policy",
+            "url": "https://arxiv.org/html/2602.06508v1"
+          },
+          {
+            "title": "IRL-VLA: Training an Vision-Language-Action Policy via Reward World Model",
+            "url": "https://arxiv.org/pdf/2508.06571"
+          },
+          {
+            "title": "Affordance Learning for End-to-End Visuomotor Robot Control",
+            "url": "https://arxiv.org/pdf/1903.04053"
+          }
+        ]
+      },
+      "Based on the web search results, here are relevant papers on unsupervised/self-supervised affordance learning for end-to-end VLA policy learning from 2025-2026:\n\n## Recent VLA and Affordance Learning Papers (2025-2026)\n\n**PALM: Progress-Aware Policy Learning via Affordance Reasoning**\nPALM is a VLA framework that structures policy learning around interaction-centric affordance reasoning, distilling complementary affordance representations that capture object relevance, contact geometry, spatial placements, and motion dynamics, and serve as task-relevant anchors for visuomotor control.\n\n**Learning Affordances at Inference-Time for Vision-Language-Action Models (LITEN)**\nLITEN reflects on unstructured real-world robot trajectories to effectively learn from past experience and generate plans that use high-affordance instructions to accomplish long-horizon tasks.\n\n**CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance**\nRecent advancements in Vision-Language-Action (VLA) models have shown that training with internet-scale data can empower end-to-end policy learning models to outperform non-VLA models. CoA-VLA exhibits strong generalization capabilities, including recognizing unseen object poses, identifying free space, and avoiding obstacles in novel environments.\n\n**World-VLA-Loop: Closed-Loop Learning of Video World Model and VLA Policy**\nThe framework addresses limitations through a state-aware world model design and a co-evolving paradigm that enables more accurate action following and reward reliability.\n\n**IRL-VLA: Training an Vision-Language-Action Policy via Reward World Model**\nIRL-VLA is the first close-loop VLA approach via end-to-end reinforcement learning including sensor input.\n\nThese papers represent recent advances in combining affordance reasoning with vision-language-action models for robotics applications."
+    ],
+    "durationSeconds": 7.846166821999999
+  },
+  "sourceToolAssistantUUID": "a45e0c2f-5e92-418d-af69-d9e92c782579",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "9f7526e8-8804-4778-8c2d-04cafe63db10",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify affordance self-supervision in VLAs via independent research",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-18T21:20:58.612Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0159s1obr3TokJdYccWtsy6b`</summary>
+
+```json
+{
+  "query": "LITEN learning affordances inference time VLA arXiv 2510.19752"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f7526e8-8804-4778-8c2d-04cafe63db10",
+  "isSidechain": false,
+  "requestId": "req_011CbAjYxuJRETnib7ooysME",
+  "type": "assistant",
+  "uuid": "38aecf1c-be29-4f56-aea0-baa3c1bb6257",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FQkmpnvBpLxbGDmU4DkF9z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 911,
+      "cache_read_input_tokens": 52160,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 911,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 52160,
+          "cache_creation_input_tokens": 911,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 911
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T21:21:05.718Z_
+
+<details><summary>↩ Tool result · `toolu_0159s1obr3TokJdYccWtsy6b`</summary>
+
+```text
+Web search results for query: "LITEN learning affordances inference time VLA arXiv 2510.19752"
+
+Links: [{"title":"[2510.19752] Learning Affordances at Inference-Time for Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.19752"},{"title":"Learning Affordances at Inference-Time for Vision-Language-Action Models","url":"https://arxiv.org/pdf/2510.19752"},{"title":"Learning Affordances at Inference-Time for Vision-Language-Action Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv251019752S/abstract"},{"title":"LITEN: Learning Affordances at Inference-Time for Vision-Language-Action Models","url":"https://liten-vla.github.io/"},{"title":"[Literature Review] Learning Affordances at Inference-Time for Vision-Language-Action Models","url":"https://www.themoonlight.io/en/review/learning-affordances-at-inference-time-for-vision-language-action-models"},{"title":"GitHub - ameesh-shah/liten-vla: LITEN: Learning from Inference Time Execution for VLAs","url":"https://github.com/ameesh-shah/liten-vla"},{"title":"Incremental Learning of Affordances using Markov Logic Networks","url":"https://www.arxiv.org/pdf/2410.17624"},{"title":"On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning","url":"https://arxiv.org/pdf/2601.06748"}]
+
+Based on the search results, here's information about LITEN (arXiv 2510.19752):
+
+## Overview
+
+LITEN (Learning from Inference-Time Execution) connects a VLA low-level policy to a high-level VLM that conditions on past experiences by including them in-context, allowing it to learn the affordances and capabilities of the low-level VLA.
+
+## Problem & Motivation
+
+Vision-Language-Action models (VLAs) offer a promising path towards solving complex control tasks, but lack the ability to contextually and dynamically readjust behavior when they fail to accomplish a task.
+
+## Approach
+
+The approach iterates between a reasoning phase that generates and executes plans for the low-level VLA, and an assessment phase that reflects on the resulting execution and draws useful conclusions to be included in future reasoning contexts. Crucially, LITEN requires no additional training and can be used by off-the-shelf VLMs.
+
+## Key Contribution
+
+LITEN introduces an inference-time learning method that enables robotic policies to reason through complex tasks, form plans, and then iteratively adjust those plans based on observed outcomes, without requiring additional training.
+
+The paper was published on October 22, 2025, and includes experimental results on long-horizon manipulation tasks using the DROID Franka robot setup.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "38aecf1c-be29-4f56-aea0-baa3c1bb6257",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "40515aa6-5845-41fd-aa63-69cd63ae0aad",
+  "toolUseResult": {
+    "query": "LITEN learning affordances inference time VLA arXiv 2510.19752",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JBqSqi9XS2Gp9AsHXN5UsS",
+        "content": [
+          {
+            "title": "[2510.19752] Learning Affordances at Inference-Time for Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.19752"
+          },
+          {
+            "title": "Learning Affordances at Inference-Time for Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2510.19752"
+          },
+          {
+            "title": "Learning Affordances at Inference-Time for Vision-Language-Action Models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv251019752S/abstract"
+          },
+          {
+            "title": "LITEN: Learning Affordances at Inference-Time for Vision-Language-Action Models",
+            "url": "https://liten-vla.github.io/"
+          },
+          {
+            "title": "[Literature Review] Learning Affordances at Inference-Time for Vision-Language-Action Models",
+            "url": "https://www.themoonlight.io/en/review/learning-affordances-at-inference-time-for-vision-language-action-models"
+          },
+          {
+            "title": "GitHub - ameesh-shah/liten-vla: LITEN: Learning from Inference Time Execution for VLAs",
+            "url": "https://github.com/ameesh-shah/liten-vla"
+          },
+          {
+            "title": "Incremental Learning of Affordances using Markov Logic Networks",
+            "url": "https://www.arxiv.org/pdf/2410.17624"
+          },
+          {
+            "title": "On-the-Fly VLA Adaptation via Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2601.06748"
+          }
+        ]
+      },
+      "Based on the search results, here's information about LITEN (arXiv 2510.19752):\n\n## Overview\n\nLITEN (Learning from Inference-Time Execution) connects a VLA low-level policy to a high-level VLM that conditions on past experiences by including them in-context, allowing it to learn the affordances and capabilities of the low-level VLA.\n\n## Problem & Motivation\n\nVision-Language-Action models (VLAs) offer a promising path towards solving complex control tasks, but lack the ability to contextually and dynamically readjust behavior when they fail to accomplish a task.\n\n## Approach\n\nThe approach iterates between a reasoning phase that generates and executes plans for the low-level VLA, and an assessment phase that reflects on the resulting execution and draws useful conclusions to be included in future reasoning contexts. Crucially, LITEN requires no additional training and can be used by off-the-shelf VLMs.\n\n## Key Contribution\n\nLITEN introduces an inference-time learning method that enables robotic policies to reason through complex tasks, form plans, and then iteratively adjust those plans based on observed outcomes, without requiring additional training.\n\nThe paper was published on October 22, 2025, and includes experimental results on long-horizon manipulation tasks using the DROID Franka robot setup."
+    ],
+    "durationSeconds": 7.101704670999985
+  },
+  "sourceToolAssistantUUID": "38aecf1c-be29-4f56-aea0-baa3c1bb6257",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-18T21:21:09.131Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JpsME3iWfwCMo83Zc6pDJ1`</summary>
+
+```json
+{
+  "query": "UAD unsupervised affordance distillation robot manipulation arXiv 2506 May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40515aa6-5845-41fd-aa63-69cd63ae0aad",
+  "isSidechain": false,
+  "requestId": "req_011CbAjZhqxXU6BK3n4DsEu2",
+  "type": "assistant",
+  "uuid": "01a2f294-557e-4846-846b-cf03fa4859af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GVEas8UmtviUtqS7L21e5P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 789,
+      "cache_read_input_tokens": 53071,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 789,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 53071,
+          "cache_creation_input_tokens": 789,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 789
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T21:21:17.842Z_
+
+<details><summary>↩ Tool result · `toolu_01JpsME3iWfwCMo83Zc6pDJ1`</summary>
+
+```text
+Web search results for query: "UAD unsupervised affordance distillation robot manipulation arXiv 2506 May 2026"
+
+Links: [{"title":"[2506.09284] UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation","url":"https://arxiv.org/abs/2506.09284"},{"title":"UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation | OpenReview","url":"https://openreview.net/forum?id=an953WOpo2"},{"title":"UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation | alphaXiv","url":"https://www.alphaxiv.org/resources/2506.09284v1"},{"title":"UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation","url":"https://arxiv.org/pdf/2506.09284"},{"title":"UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation","url":"https://arxiv.org/html/2506.09284v1"},{"title":"UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/11128868/"},{"title":"UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation","url":"https://www.researchgate.net/publication/392597063_UAD_Unsupervised_Affordance_Distillation_for_Generalization_in_Robotic_Manipulation"},{"title":"UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation | Request PDF","url":"https://www.researchgate.net/publication/395210639_UAD_Unsupervised_Affordance_Distillation_for_Generalization_in_Robotic_Manipulation"}]
+
+I found the paper you're looking for! Here are the search results:
+
+## UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation
+
+UAD (Unsupervised Affordance Distillation) is a method for distilling affordance knowledge from foundation models into a task-conditioned affordance model without any manual annotations.
+
+**Key Details:**
+- **Paper ID:** arXiv 2506.09284
+- **Authors:** Yihe Tang, Wenlong Huang, Yingke Wang, Chengshu Li, Roy Yuan, Ruohan Zhang, Jiajun Wu, and Li Fei-Fei from Stanford University
+- **Project Website:** unsup-affordance.github.io/
+
+**Main Contribution:**
+By leveraging the complementary strengths of large vision models and vision-language models, UAD automatically annotates a large-scale dataset with detailed instruction-visual affordance pairs. Training only a lightweight task-conditioned decoder atop frozen features, UAD exhibits notable generalization to in-the-wild robotic scenes and to various human activities, despite only being trained on rendered objects in simulation.
+
+**Applications:**
+An imitation learning policy using affordance provided by UAD demonstrates promising generalization to unseen object instances, object categories, and even variations in task instructions after training on as few as 10 demonstrations.
+
+The paper addresses the limitation that existing methods of visual affordance predictions often rely on manually annotated data or conditions only on a predefined set of tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "01a2f294-557e-4846-846b-cf03fa4859af",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "4b208137-3620-44a1-a7ce-7eb8ac8e9a2b",
+  "toolUseResult": {
+    "query": "UAD unsupervised affordance distillation robot manipulation arXiv 2506 May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EHArKx9nYSvrsAr3FaJWzf",
+        "content": [
+          {
+            "title": "[2506.09284] UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation",
+            "url": "https://arxiv.org/abs/2506.09284"
+          },
+          {
+            "title": "UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation | OpenReview",
+            "url": "https://openreview.net/forum?id=an953WOpo2"
+          },
+          {
+            "title": "UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation | alphaXiv",
+            "url": "https://www.alphaxiv.org/resources/2506.09284v1"
+          },
+          {
+            "title": "UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2506.09284"
+          },
+          {
+            "title": "UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation",
+            "url": "https://arxiv.org/html/2506.09284v1"
+          },
+          {
+            "title": "UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation | IEEE Conference Publication | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/11128868/"
+          },
+          {
+            "title": "UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation",
+            "url": "https://www.researchgate.net/publication/392597063_UAD_Unsupervised_Affordance_Distillation_for_Generalization_in_Robotic_Manipulation"
+          },
+          {
+            "title": "UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation | Request PDF",
+            "url": "https://www.researchgate.net/publication/395210639_UAD_Unsupervised_Affordance_Distillation_for_Generalization_in_Robotic_Manipulation"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the search results:\n\n## UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation\n\nUAD (Unsupervised Affordance Distillation) is a method for distilling affordance knowledge from foundation models into a task-conditioned affordance model without any manual annotations.\n\n**Key Details:**\n- **Paper ID:** arXiv 2506.09284\n- **Authors:** Yihe Tang, Wenlong Huang, Yingke Wang, Chengshu Li, Roy Yuan, Ruohan Zhang, Jiajun Wu, and Li Fei-Fei from Stanford University\n- **Project Website:** unsup-affordance.github.io/\n\n**Main Contribution:**\nBy leveraging the complementary strengths of large vision models and vision-language models, UAD automatically annotates a large-scale dataset with detailed instruction-visual affordance pairs. Training only a lightweight task-conditioned decoder atop frozen features, UAD exhibits notable generalization to in-the-wild robotic scenes and to various human activities, despite only being trained on rendered objects in simulation.\n\n**Applications:**\nAn imitation learning policy using affordance provided by UAD demonstrates promising generalization to unseen object instances, object categories, and even variations in task instructions after training on as few as 10 demonstrations.\n\nThe paper addresses the limitation that existing methods of visual affordance predictions often rely on manually annotated data or conditions only on a predefined set of tasks."
+    ],
+    "durationSeconds": 8.707219031999994
+  },
+  "sourceToolAssistantUUID": "01a2f294-557e-4846-846b-cf03fa4859af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-18T21:21:21.111Z_
+
+UAD is very relevant. Let me check if it's integrated end-to-end into a VLA or is a standalone module, and also check the date more carefully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b208137-3620-44a1-a7ce-7eb8ac8e9a2b",
+  "isSidechain": false,
+  "requestId": "req_011CbAjabffhujDneh3cKXNY",
+  "type": "assistant",
+  "uuid": "55af3947-929d-4483-a557-39ea9a56b1a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lhd6ihiKh7uH698VuPbfeQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 971,
+      "cache_read_input_tokens": 53860,
+      "output_tokens": 195,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 971,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 195,
+          "cache_read_input_tokens": 53860,
+          "cache_creation_input_tokens": 971,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 971
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-18T21:21:23.632Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CjMvnaTFSDWh76uAcoRthN`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2506.09284",
+  "prompt": "What is the exact submission date of this paper? Is the affordance model integrated into an end-to-end VLA training loop, or is it a separate standalone affordance prediction module that feeds into a downstream policy? What specific self-supervision or unsupervision method is used? What benchmarks/tasks are evaluated? Does it use paraphrase invariance?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55af3947-929d-4483-a557-39ea9a56b1a7",
+  "isSidechain": false,
+  "requestId": "req_011CbAjabffhujDneh3cKXNY",
+  "type": "assistant",
+  "uuid": "8707a834-6509-4240-ac6a-6bb551799faf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lhd6ihiKh7uH698VuPbfeQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 971,
+      "cache_read_input_tokens": 53860,
+      "output_tokens": 195,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 971,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 195,
+          "cache_read_input_tokens": 53860,
+          "cache_creation_input_tokens": 971,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 971
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-18T21:21:28.119Z_
+
+<details><summary>↩ Tool result · `toolu_01CjMvnaTFSDWh76uAcoRthN`</summary>
+
+```text
+# UAD Paper Analysis
+
+**Submission Date:** The original submission was June 10, 2025 (v1), with a revision on August 25, 2025 (v2).
+
+**Architecture Integration:** The affordance model appears to operate as a separate module rather than an integrated VLA component. The abstract indicates "a lightweight task-conditioned decoder atop frozen features" that provides "the observation space" for a downstream "imitation learning policy," suggesting a pipeline approach rather than end-to-end integration.
+
+**Self-Supervision Method:** The paper leverages "complementary strengths of large vision models and vision-language models" to achieve unsupervised learning. The method "automatically annotates a large-scale dataset with detailed &lt;instruction, visual affordance> pairs" without manual annotation, though specific self-supervision techniques aren't detailed in this excerpt.
+
+**Benchmarks/Tasks:** The evaluation demonstrates generalization to "in-the-wild robotic scenes" and "various human activities." The policy shows promising results on "unseen object instances, object categories, and even variations in task instructions after training on as few as 10 demonstrations."
+
+**Paraphrase Invariance:** The provided content doesn't mention paraphrase invariance or discuss robustness to instruction paraphrasing.
+
+For complete technical details, you would need to access the full paper via the provided PDF or HTML links.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8707a834-6509-4240-ac6a-6bb551799faf",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "e8639a8c-bc25-4908-9cd4-32bc1ee3222b",
+  "toolUseResult": {
+    "bytes": 47329,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# UAD Paper Analysis\n\n**Submission Date:** The original submission was June 10, 2025 (v1), with a revision on August 25, 2025 (v2).\n\n**Architecture Integration:** The affordance model appears to operate as a separate module rather than an integrated VLA component. The abstract indicates \"a lightweight task-conditioned decoder atop frozen features\" that provides \"the observation space\" for a downstream \"imitation learning policy,\" suggesting a pipeline approach rather than end-to-end integration.\n\n**Self-Supervision Method:** The paper leverages \"complementary strengths of large vision models and vision-language models\" to achieve unsupervised learning. The method \"automatically annotates a large-scale dataset with detailed &lt;instruction, visual affordance> pairs\" without manual annotation, though specific self-supervision techniques aren't detailed in this excerpt.\n\n**Benchmarks/Tasks:** The evaluation demonstrates generalization to \"in-the-wild robotic scenes\" and \"various human activities.\" The policy shows promising results on \"unseen object instances, object categories, and even variations in task instructions after training on as few as 10 demonstrations.\"\n\n**Paraphrase Invariance:** The provided content doesn't mention paraphrase invariance or discuss robustness to instruction paraphrasing.\n\nFor complete technical details, you would need to access the full paper via the provided PDF or HTML links.",
+    "durationMs": 4482,
+    "url": "https://arxiv.org/abs/2506.09284"
+  },
+  "sourceToolAssistantUUID": "8707a834-6509-4240-ac6a-6bb551799faf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-18T21:21:31.060Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EZzES4DLfxhi6zSHjsHxpT`</summary>
+
+```json
+{
+  "query": "Spatial Forcing LIBERO benchmark 98.5% success rate results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8639a8c-bc25-4908-9cd4-32bc1ee3222b",
+  "isSidechain": false,
+  "requestId": "req_011CbAjbMacWGxudP3LNxTMX",
+  "type": "assistant",
+  "uuid": "ce7e6fd5-d4c9-4789-93c6-262299489435",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YRrPgKkTFcZe5UiP97EfMN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 508,
+      "cache_read_input_tokens": 54831,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 508,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 54831,
+          "cache_creation_input_tokens": 508,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 508
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-18T21:21:37.367Z_
+
+<details><summary>↩ Tool result · `toolu_01EZzES4DLfxhi6zSHjsHxpT`</summary>
+
+```text
+Web search results for query: "Spatial Forcing LIBERO benchmark 98.5% success rate results"
+
+Links: [{"title":"Spatial Forcing","url":"https://spatial-forcing.github.io/"},{"title":"LIBERO-Spatial Benchmark","url":"https://www.emergentmind.com/topics/libero-spatial"},{"title":"GitHub - OpenHelix-Team/Spatial-Forcing: Official implementation of Spatial-Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model [ICLR2026] · GitHub","url":"https://github.com/OpenHelix-Team/Spatial-Forcing"},{"title":"Isaac-GR00T/examples/LIBERO/README.md at main · NVIDIA/Isaac-GR00T","url":"https://github.com/NVIDIA/Isaac-GR00T/blob/main/examples/LIBERO/README.md"},{"title":"LIBERO Tasks: Lifelong Robotic Learning","url":"https://www.emergentmind.com/topics/libero-tasks"},{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization","url":"https://arxiv.org/html/2510.03827v1"}]
+
+Based on the search results, here's what I found about Spatial Forcing and LIBERO benchmark results:
+
+Spatial Forcing (SF) achieves state-of-the-art (SOTA) results on both LIBERO and RoboTwin benchmarks. SF is a plug-and-play 3D finetune strategy that can be seamlessly integrated with any VLA training process and substantially enhances spatial reasoning and manipulation capabilities.
+
+In terms of performance, Spatial Forcing gets the best performance across all four tasks, specifically outperforming OpenVLA-OFT when using both primary and wrist camera images. Additionally, SF requires only 3% of the training steps or 5% of the training data to reach a 66% success rate on LIBERO-Long.
+
+The search results also show that SF achieves state-of-the-art results on both LIBERO and RoboTwin benchmarks, improves task success rates by up to 50% in real-world experiments involving complex spatial structures, and requires only 3% of the training steps or 5% of the training data to reach a 66% success rate on LIBERO-Long.
+
+Note that while the search results mention high success rates on LIBERO (around 97-98% in some contexts), the specific 98.5% figure you mentioned was not found in these particular results, though they do indicate state-of-the-art performance on the benchmark.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce7e6fd5-d4c9-4789-93c6-262299489435",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "a6fa7cf8-7bf9-4800-8f10-e20efce45719",
+  "toolUseResult": {
+    "query": "Spatial Forcing LIBERO benchmark 98.5% success rate results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LErRuiR16B5oRE5TL2zaAV",
+        "content": [
+          {
+            "title": "Spatial Forcing",
+            "url": "https://spatial-forcing.github.io/"
+          },
+          {
+            "title": "LIBERO-Spatial Benchmark",
+            "url": "https://www.emergentmind.com/topics/libero-spatial"
+          },
+          {
+            "title": "GitHub - OpenHelix-Team/Spatial-Forcing: Official implementation of Spatial-Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model [ICLR2026] · GitHub",
+            "url": "https://github.com/OpenHelix-Team/Spatial-Forcing"
+          },
+          {
+            "title": "Isaac-GR00T/examples/LIBERO/README.md at main · NVIDIA/Isaac-GR00T",
+            "url": "https://github.com/NVIDIA/Isaac-GR00T/blob/main/examples/LIBERO/README.md"
+          },
+          {
+            "title": "LIBERO Tasks: Lifelong Robotic Learning",
+            "url": "https://www.emergentmind.com/topics/libero-tasks"
+          },
+          {
+            "title": "LIBERO Benchmark: Vision-Language-Action in Robotics",
+            "url": "https://www.emergentmind.com/topics/libero"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization",
+            "url": "https://arxiv.org/html/2510.03827v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Spatial Forcing and LIBERO benchmark results:\n\nSpatial Forcing (SF) achieves state-of-the-art (SOTA) results on both LIBERO and RoboTwin benchmarks. SF is a plug-and-play 3D finetune strategy that can be seamlessly integrated with any VLA training process and substantially enhances spatial reasoning and manipulation capabilities.\n\nIn terms of performance, Spatial Forcing gets the best performance across all four tasks, specifically outperforming OpenVLA-OFT when using both primary and wrist camera images. Additionally, SF requires only 3% of the training steps or 5% of the training data to reach a 66% success rate on LIBERO-Long.\n\nThe search results also show that SF achieves state-of-the-art results on both LIBERO and RoboTwin benchmarks, improves task success rates by up to 50% in real-world experiments involving complex spatial structures, and requires only 3% of the training steps or 5% of the training data to reach a 66% success rate on LIBERO-Long.\n\nNote that while the search results mention high success rates on LIBERO (around 97-98% in some contexts), the specific 98.5% figure you mentioned was not found in these particular results, though they do indicate state-of-the-art performance on the benchmark."
+    ],
+    "durationSeconds": 6.303635658999992
+  },
+  "sourceToolAssistantUUID": "ce7e6fd5-d4c9-4789-93c6-262299489435",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-18T21:21:41.010Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01K9AsbCjM2CCgY4QYx7FF9Q`</summary>
+
+```json
+{
+  "url": "https://spatial-forcing.github.io/",
+  "prompt": "What are the exact LIBERO benchmark results for Spatial Forcing? Specifically: what is the average success rate across LIBERO task suites? What are the individual suite results (LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, LIBERO-Long)? Is 98.5% mentioned anywhere?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a6fa7cf8-7bf9-4800-8f10-e20efce45719",
+  "isSidechain": false,
+  "requestId": "req_011CbAjc37PhmXNN113ELoni",
+  "type": "assistant",
+  "uuid": "485f922d-aaa4-45b5-945e-92115b46d445",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BPQdc2sCt9caLwhKDeuFhR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 759,
+      "cache_read_input_tokens": 55339,
+      "output_tokens": 152,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 759,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 152,
+          "cache_read_input_tokens": 55339,
+          "cache_creation_input_tokens": 759,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 759
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-18T21:21:44.826Z_
+
+<details><summary>↩ Tool result · `toolu_01K9AsbCjM2CCgY4QYx7FF9Q`</summary>
+
+```text
+Based on the webpage content provided, I cannot give you the specific numerical results you're requesting.
+
+The page states that "Spatial Forcing gets the best performance across all four tasks" and shows a comparison chart labeled "Comparisons with state-of-the-art methods on the LIBERO benchmark," but the actual success rate percentages for individual LIBERO suites (Spatial, Object, Goal, Long) are not displayed in the text content.
+
+The only specific metric mentioned is that SF "achieves strong real-world performance with as few as 20 demonstrations" and reaches "a 66% success rate on LIBERO-Long" when using minimal training data. The 98.5% figure does not appear anywhere in this webpage content.
+
+To find the detailed benchmark results, you would need to consult the full paper linked at https://arxiv.org/abs/2510.12276.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "485f922d-aaa4-45b5-945e-92115b46d445",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "0063a9f8-0d55-4f98-92e2-a36e53232aa7",
+  "toolUseResult": {
+    "bytes": 18693,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the webpage content provided, I cannot give you the specific numerical results you're requesting.\n\nThe page states that \"Spatial Forcing gets the best performance across all four tasks\" and shows a comparison chart labeled \"Comparisons with state-of-the-art methods on the LIBERO benchmark,\" but the actual success rate percentages for individual LIBERO suites (Spatial, Object, Goal, Long) are not displayed in the text content.\n\nThe only specific metric mentioned is that SF \"achieves strong real-world performance with as few as 20 demonstrations\" and reaches \"a 66% success rate on LIBERO-Long\" when using minimal training data. The 98.5% figure does not appear anywhere in this webpage content.\n\nTo find the detailed benchmark results, you would need to consult the full paper linked at https://arxiv.org/abs/2510.12276.",
+    "durationMs": 3814,
+    "url": "https://spatial-forcing.github.io/"
+  },
+  "sourceToolAssistantUUID": "485f922d-aaa4-45b5-945e-92115b46d445",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 74 · 2026-05-18T21:21:44.828Z_
+
+```json
+{
+  "parentUuid": "0063a9f8-0d55-4f98-92e2-a36e53232aa7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "a9d425ec-2428-43d9-b6ee-032d1b5cd352",
+  "timestamp": "2026-05-18T21:21:44.828Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "a9d425ec-2428-43d9-b6ee-032d1b5cd352",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify affordance self-supervision in VLAs via independent research",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-18T21:21:49.397Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_018MGowAtAvp7oRH3LhYWDce`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.12276",
+  "prompt": "What are the exact LIBERO benchmark results? Specifically the average success rate across LIBERO suites and individual results for LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, LIBERO-Long. Is 98.5% average mentioned?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9d425ec-2428-43d9-b6ee-032d1b5cd352",
+  "isSidechain": false,
+  "requestId": "req_011CbAjcazYUpQUg498rKK3S",
+  "type": "assistant",
+  "uuid": "ef8f5e2e-4e00-4619-a381-b8caf773a058",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D8X74doJLLuQ7VeszcSMMT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 461,
+      "cache_read_input_tokens": 56098,
+      "output_tokens": 142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 461,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 142,
+          "cache_read_input_tokens": 56098,
+          "cache_creation_input_tokens": 461,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 461
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-18T21:21:52.086Z_
+
+<details><summary>↩ Tool result · `toolu_018MGowAtAvp7oRH3LhYWDce`</summary>
+
+```text
+# LIBERO Benchmark Results
+
+Based on the webpage content provided, **specific LIBERO benchmark results are not included**. The abstract mentions that Spatial Forcing "achieves state-of-the-art results, surpassing both 2D- and 3D-based VLAs" and improves "data efficiency across diverse robotic tasks," but it does not provide the exact success rates you're asking about.
+
+The page does not mention a 98.5% average or individual scores for LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, or LIBERO-Long suites. To find these specific numerical results, you would need to access the full paper PDF or HTML version linked on this arXiv page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef8f5e2e-4e00-4619-a381-b8caf773a058",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "58efdf07-e81a-4448-b813-8fe60e1c90a0",
+  "toolUseResult": {
+    "bytes": 47708,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# LIBERO Benchmark Results\n\nBased on the webpage content provided, **specific LIBERO benchmark results are not included**. The abstract mentions that Spatial Forcing \"achieves state-of-the-art results, surpassing both 2D- and 3D-based VLAs\" and improves \"data efficiency across diverse robotic tasks,\" but it does not provide the exact success rates you're asking about.\n\nThe page does not mention a 98.5% average or individual scores for LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, or LIBERO-Long suites. To find these specific numerical results, you would need to access the full paper PDF or HTML version linked on this arXiv page.",
+    "durationMs": 2687,
+    "url": "https://arxiv.org/abs/2510.12276"
+  },
+  "sourceToolAssistantUUID": "ef8f5e2e-4e00-4619-a381-b8caf773a058",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-18T21:21:55.317Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XE3AQC4fNjqfFp3RA5Yah1`</summary>
+
+```json
+{
+  "query": "Spatial Forcing OpenVLA LIBERO average success rate table results all suites"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58efdf07-e81a-4448-b813-8fe60e1c90a0",
+  "isSidechain": false,
+  "requestId": "req_011CbAjd84KoADyyyWjQn4eD",
+  "type": "assistant",
+  "uuid": "f5d0ca64-60b9-4057-a86b-29aa1be345c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QUqMGo6MQJxx8yn2o71kbu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 315,
+      "cache_read_input_tokens": 56559,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 315,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 56559,
+          "cache_creation_input_tokens": 315,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 315
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-18T21:22:03.268Z_
+
+<details><summary>↩ Tool result · `toolu_01XE3AQC4fNjqfFp3RA5Yah1`</summary>
+
+```text
+Web search results for query: "Spatial Forcing OpenVLA LIBERO average success rate table results all suites"
+
+Links: [{"title":"Spatial Forcing","url":"https://spatial-forcing.github.io/"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/html/2502.19645v1"},{"title":"GitHub - OpenHelix-Team/Spatial-Forcing: Official implementation of Spatial-Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model [ICLR2026] · GitHub","url":"https://github.com/OpenHelix-Team/Spatial-Forcing"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://openvla-oft.github.io/"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization","url":"https://arxiv.org/html/2510.03827v1"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success | alphaXiv","url":"https://www.alphaxiv.org/overview/2502.19645"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of ...","url":"https://arxiv.org/pdf/2510.03827"},{"title":"OpenVLA: Open Source VLA for Robotics","url":"https://www.emergentmind.com/topics/openvla"},{"title":"LiLo-VLA: Compositional Long-Horizon Manipulation via Linked Object-Centric Policies","url":"https://arxiv.org/pdf/2602.21531"}]
+
+Based on the search results, I found relevant information about Spatial Forcing's performance on the LIBERO benchmark with OpenVLA. However, the search results don't contain a detailed table with specific success rates for each of the LIBERO suites.
+
+Here's what I found:
+
+Spatial Forcing gets the best performance across all four tasks on the LIBERO benchmark. Specifically, strictly following the same setup of OpenVLA-OFT to use both primary and wrist camera images, their method outperforms them quite a lot.
+
+For context on what constitutes these suites: The four task suites are LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, and LIBERO-Long—each providing 500 expert demonstrations across 10 tasks.
+
+The search results indicate that SF requires only 3% of the training steps or 5% of the training data to reach a 66% success rate on LIBERO-Long.
+
+However, the specific detailed table with average success rates across all four suites is not fully displayed in these search results. You may want to check the official Spatial Forcing project page (https://spatial-forcing.github.io/) or the GitHub repository (https://github.com/OpenHelix-Team/Spatial-Forcing) directly for the complete results table.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f5d0ca64-60b9-4057-a86b-29aa1be345c0",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "d698969e-42f2-4304-99cd-0902a5ea9da8",
+  "toolUseResult": {
+    "query": "Spatial Forcing OpenVLA LIBERO average success rate table results all suites",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HzG5SAqwRYnps2a9hGFr3f",
+        "content": [
+          {
+            "title": "Spatial Forcing",
+            "url": "https://spatial-forcing.github.io/"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/html/2502.19645v1"
+          },
+          {
+            "title": "GitHub - OpenHelix-Team/Spatial-Forcing: Official implementation of Spatial-Forcing: Implicit Spatial Representation Alignment for Vision-language-action Model [ICLR2026] · GitHub",
+            "url": "https://github.com/OpenHelix-Team/Spatial-Forcing"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://openvla-oft.github.io/"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization",
+            "url": "https://arxiv.org/html/2510.03827v1"
+          },
+          {
+            "title": "GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub",
+            "url": "https://github.com/openvla/openvla"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2502.19645"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of ...",
+            "url": "https://arxiv.org/pdf/2510.03827"
+          },
+          {
+            "title": "OpenVLA: Open Source VLA for Robotics",
+            "url": "https://www.emergentmind.com/topics/openvla"
+          },
+          {
+            "title": "LiLo-VLA: Compositional Long-Horizon Manipulation via Linked Object-Centric Policies",
+            "url": "https://arxiv.org/pdf/2602.21531"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about Spatial Forcing's performance on the LIBERO benchmark with OpenVLA. However, the search results don't contain a detailed table with specific success rates for each of the LIBERO suites.\n\nHere's what I found:\n\nSpatial Forcing gets the best performance across all four tasks on the LIBERO benchmark. Specifically, strictly following the same setup of OpenVLA-OFT to use both primary and wrist camera images, their method outperforms them quite a lot.\n\nFor context on what constitutes these suites: The four task suites are LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, and LIBERO-Long—each providing 500 expert demonstrations across 10 tasks.\n\nThe search results indicate that SF requires only 3% of the training steps or 5% of the training data to reach a 66% success rate on LIBERO-Long.\n\nHowever, the specific detailed table with average success rates across all four suites is not fully displayed in these search results. You may want to check the official Spatial Forcing project page (https://spatial-forcing.github.io/) or the GitHub repository (https://github.com/OpenHelix-Team/Spatial-Forcing) directly for the complete results table."
+    ],
+    "durationSeconds": 7.946564627000014
+  },
+  "sourceToolAssistantUUID": "f5d0ca64-60b9-4057-a86b-29aa1be345c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-18T21:22:06.566Z_
+
+Let me now check for very recent concurrent work from April-May 2026 on affordance + VLA that might have been missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d698969e-42f2-4304-99cd-0902a5ea9da8",
+  "isSidechain": false,
+  "requestId": "req_011CbAjdxAYJsK4sRPw6VxmX",
+  "type": "assistant",
+  "uuid": "26a8dbce-7b53-4624-987e-68251f1fa296",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQwh5X5PbJpawQ4yX9MUMs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 863,
+      "cache_read_input_tokens": 56874,
+      "output_tokens": 100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 863,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 56874,
+          "cache_creation_input_tokens": 863,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 863
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-18T21:22:06.830Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014QwNgjW2SYfeBGnXWUmKEL`</summary>
+
+```json
+{
+  "query": "affordance VLA vision language action model April May 2026 arXiv new method"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26a8dbce-7b53-4624-987e-68251f1fa296",
+  "isSidechain": false,
+  "requestId": "req_011CbAjdxAYJsK4sRPw6VxmX",
+  "type": "assistant",
+  "uuid": "ab1705cc-64c0-495a-a7a5-0148a0759219",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQwh5X5PbJpawQ4yX9MUMs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 863,
+      "cache_read_input_tokens": 56874,
+      "output_tokens": 100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 863,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 56874,
+          "cache_creation_input_tokens": 863,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 863
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-18T21:22:13.127Z_
+
+<details><summary>↩ Tool result · `toolu_014QwNgjW2SYfeBGnXWUmKEL`</summary>
+
+```text
+Web search results for query: "affordance VLA vision language action model April May 2026 arXiv new method"
+
+Links: [{"title":"CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance","url":"https://arxiv.org/pdf/2412.20451"},{"title":"A1: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model","url":"https://arxiv.org/pdf/2604.05672"},{"title":"[2412.20451] CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance","url":"https://arxiv.org/abs/2412.20451"},{"title":"Improving Vision-Language-Action Models via Chain-of-Affordance","url":"https://arxiv.org/html/2412.20451v1"},{"title":"Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation","url":"https://arxiv.org/pdf/2512.07472"},{"title":"(PDF) Improving Vision-Language-Action Models via Chain-of-Affordance","url":"https://www.researchgate.net/publication/387539786_Improving_Vision-Language-Action_Models_via_Chain-of-Affordance"}]
+
+Based on the search results, I found relevant papers about affordance and Vision-Language-Action models from arXiv. Here are the key findings:
+
+## CoA-VLA: Chain-of-Affordance Model
+
+Chain-of-Affordance (CoA-VLA) is a novel approach to scaling robot models by incorporating reasoning in the format of sequential robot affordances to facilitate task completion.
+
+**Four Types of Affordances:**
+The model considers four types of affordances before taking action: (1) object affordance — what object to manipulate and where it is; (2) grasp affordance — the specific object part to grasp; (3) spatial affordance — the optimal space to place the object; and (4) movement affordance — the collision-free path for movement.
+
+**Novel Method:**
+The approach transforms each affordance into two prompting formats: visual affordance and textual affordance, and introduces a novel vision-language co-injection module that integrates this knowledge into the policy network.
+
+**Performance:**
+CoA-VLA outperforms state-of-the-art robot foundation models, including OpenVLA and Octo, on a variety of tasks.
+
+## Additional Affordance-Based VLA Work
+
+Another method achieves an average improvement of 23.5% across different VLA backbones under out-of-distribution scenarios on real-world robotic platforms, and 20.2% on the LIBERO-Pro benchmark, validating its effectiveness in enhancing VLA robustness to distribution shifts.
+
+Note: The search results showed papers from late 2024 and early 2025, rather than April-May 2026 publications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ab1705cc-64c0-495a-a7a5-0148a0759219",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "99b5cda7-967b-40c8-be96-ba8114ff582d",
+  "toolUseResult": {
+    "query": "affordance VLA vision language action model April May 2026 arXiv new method",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UqYSFftMfTHxFMviXJEHyv",
+        "content": [
+          {
+            "title": "CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance",
+            "url": "https://arxiv.org/pdf/2412.20451"
+          },
+          {
+            "title": "A1: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model",
+            "url": "https://arxiv.org/pdf/2604.05672"
+          },
+          {
+            "title": "[2412.20451] CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance",
+            "url": "https://arxiv.org/abs/2412.20451"
+          },
+          {
+            "title": "Improving Vision-Language-Action Models via Chain-of-Affordance",
+            "url": "https://arxiv.org/html/2412.20451v1"
+          },
+          {
+            "title": "Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2512.07472"
+          },
+          {
+            "title": "(PDF) Improving Vision-Language-Action Models via Chain-of-Affordance",
+            "url": "https://www.researchgate.net/publication/387539786_Improving_Vision-Language-Action_Models_via_Chain-of-Affordance"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant papers about affordance and Vision-Language-Action models from arXiv. Here are the key findings:\n\n## CoA-VLA: Chain-of-Affordance Model\n\nChain-of-Affordance (CoA-VLA) is a novel approach to scaling robot models by incorporating reasoning in the format of sequential robot affordances to facilitate task completion.\n\n**Four Types of Affordances:**\nThe model considers four types of affordances before taking action: (1) object affordance — what object to manipulate and where it is; (2) grasp affordance — the specific object part to grasp; (3) spatial affordance — the optimal space to place the object; and (4) movement affordance — the collision-free path for movement.\n\n**Novel Method:**\nThe approach transforms each affordance into two prompting formats: visual affordance and textual affordance, and introduces a novel vision-language co-injection module that integrates this knowledge into the policy network.\n\n**Performance:**\nCoA-VLA outperforms state-of-the-art robot foundation models, including OpenVLA and Octo, on a variety of tasks.\n\n## Additional Affordance-Based VLA Work\n\nAnother method achieves an average improvement of 23.5% across different VLA backbones under out-of-distribution scenarios on real-world robotic platforms, and 20.2% on the LIBERO-Pro benchmark, validating its effectiveness in enhancing VLA robustness to distribution shifts.\n\nNote: The search results showed papers from late 2024 and early 2025, rather than April-May 2026 publications."
+    ],
+    "durationSeconds": 6.2931532199999785
+  },
+  "sourceToolAssistantUUID": "ab1705cc-64c0-495a-a7a5-0148a0759219",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-18T21:22:16.296Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MWvo64bz5LjqPa9fwvEEZu`</summary>
+
+```json
+{
+  "query": "context-dependent affordance computation vision language models latent factors arXiv 2603.04419"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99b5cda7-967b-40c8-be96-ba8114ff582d",
+  "isSidechain": false,
+  "requestId": "req_011CbAjeg2hygrTP8U9kTY2X",
+  "type": "assistant",
+  "uuid": "2f1b874e-c71d-4877-b733-7f07e7dfb036",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DdWr7jsuYRRJVLkm5UE3kq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 831,
+      "cache_read_input_tokens": 57737,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 831,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 57737,
+          "cache_creation_input_tokens": 831,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 831
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-18T21:22:21.837Z_
+
+<details><summary>↩ Tool result · `toolu_01MWvo64bz5LjqPa9fwvEEZu`</summary>
+
+```text
+Web search results for query: "context-dependent affordance computation vision language models latent factors arXiv 2603.04419"
+
+Links: [{"title":"[2603.04419] Context-Dependent Affordance Computation in Vision-Language Models","url":"https://arxiv.org/abs/2603.04419"},{"title":"Context-Dependent Affordance Computation in Vision-Language Models","url":"https://arxiv.org/pdf/2603.04419"},{"title":"GitHub - studiofarzulla/semantic-vision: Context-Dependent Affordance Computation in Vision-Language Models (DP-2505) · GitHub","url":"https://github.com/studiofarzulla/semantic-vision"},{"title":"Acknowledgements","url":"https://arxiv.org/html/2603.04419"},{"title":"Learning Affordances at Inference-Time for Vision-Language-Action Models","url":"https://arxiv.org/html/2510.19752v1"}]
+
+I found the paper! Here's what I retrieved about arXiv 2603.04419:
+
+**Title:** Context-Dependent Affordance Computation in Vision-Language Models
+
+**Author:** Murad Farzulla (Dissensus AI and King's College London)
+
+**Key Findings:**
+
+The study examined 3,213 scene-context pairs from COCO-2017 using Qwen-VL 30B and LLaVA-1.5-13B models subject to systematic context priming across 7 agentic personas, finding massive affordance drift with over 90% of lexical scene description being context-dependent.
+
+Sentence-level analysis revealed substantial semantic-level drift, with 58.5% of descriptions being context-dependent.
+
+Stochastic baseline experiments with 2,384 inference runs confirmed the drift reflects genuine context effects rather than generation noise.
+
+**Latent Factors:** Tucker decomposition with bootstrap stability analysis revealed stable orthogonal latent factors, including a "Culinary Manifold" isolated to chef contexts and an "Access Axis" spanning child-mobility contrasts.
+
+**Implications:** The findings suggest that vision-language models should use dynamic, query-dependent ontological projection (JIT Ontology) rather than static world modeling for robotics applications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2f1b874e-c71d-4877-b733-7f07e7dfb036",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "62a9e63f-2a04-4bac-8811-606d67e272ba",
+  "toolUseResult": {
+    "query": "context-dependent affordance computation vision language models latent factors arXiv 2603.04419",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0114zrtx2YuRoMBZ5agV5zVQ",
+        "content": [
+          {
+            "title": "[2603.04419] Context-Dependent Affordance Computation in Vision-Language Models",
+            "url": "https://arxiv.org/abs/2603.04419"
+          },
+          {
+            "title": "Context-Dependent Affordance Computation in Vision-Language Models",
+            "url": "https://arxiv.org/pdf/2603.04419"
+          },
+          {
+            "title": "GitHub - studiofarzulla/semantic-vision: Context-Dependent Affordance Computation in Vision-Language Models (DP-2505) · GitHub",
+            "url": "https://github.com/studiofarzulla/semantic-vision"
+          },
+          {
+            "title": "Acknowledgements",
+            "url": "https://arxiv.org/html/2603.04419"
+          },
+          {
+            "title": "Learning Affordances at Inference-Time for Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.19752v1"
+          }
+        ]
+      },
+      "I found the paper! Here's what I retrieved about arXiv 2603.04419:\n\n**Title:** Context-Dependent Affordance Computation in Vision-Language Models\n\n**Author:** Murad Farzulla (Dissensus AI and King's College London)\n\n**Key Findings:**\n\nThe study examined 3,213 scene-context pairs from COCO-2017 using Qwen-VL 30B and LLaVA-1.5-13B models subject to systematic context priming across 7 agentic personas, finding massive affordance drift with over 90% of lexical scene description being context-dependent.\n\nSentence-level analysis revealed substantial semantic-level drift, with 58.5% of descriptions being context-dependent.\n\nStochastic baseline experiments with 2,384 inference runs confirmed the drift reflects genuine context effects rather than generation noise.\n\n**Latent Factors:** Tucker decomposition with bootstrap stability analysis revealed stable orthogonal latent factors, including a \"Culinary Manifold\" isolated to chef contexts and an \"Access Axis\" spanning child-mobility contrasts.\n\n**Implications:** The findings suggest that vision-language models should use dynamic, query-dependent ontological projection (JIT Ontology) rather than static world modeling for robotics applications."
+    ],
+    "durationSeconds": 5.538012229999993
+  },
+  "sourceToolAssistantUUID": "2f1b874e-c71d-4877-b733-7f07e7dfb036",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86 · 2026-05-18T21:22:25.214Z_
+
+Now let me check the RSS paper more carefully and also verify the INTRA paper's relationship.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62a9e63f-2a04-4bac-8811-606d67e272ba",
+  "isSidechain": false,
+  "requestId": "req_011CbAjfKEb6ch9aSgqzBNmd",
+  "type": "assistant",
+  "uuid": "8ee3606b-5043-4f16-886d-dfcd8584e906",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016muP7wP8yXXRokUZB5gQHt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 628,
+      "cache_read_input_tokens": 58568,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 628,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 58568,
+          "cache_creation_input_tokens": 628,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 628
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-18T21:22:27.452Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GJLpkXid93CTsQnhkiRMCh`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.04052",
+  "prompt": "What is the exact method of RSS (Stable Language Guidance)? Does it learn spatial affordance maps/heatmaps as intermediate representations, or does it operate at the action output level? What is the difference between RSS's approach and learning explicit spatial affordance heatmaps via paraphrase invariance? What are the LIBERO results?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ee3606b-5043-4f16-886d-dfcd8584e906",
+  "isSidechain": false,
+  "requestId": "req_011CbAjfKEb6ch9aSgqzBNmd",
+  "type": "assistant",
+  "uuid": "9b88cf11-a912-48e6-939c-6591fa4465b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016muP7wP8yXXRokUZB5gQHt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 628,
+      "cache_read_input_tokens": 58568,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 628,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 58568,
+          "cache_creation_input_tokens": 628,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 628
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-18T21:22:30.149Z_
+
+<details><summary>↩ Tool result · `toolu_01GJLpkXid93CTsQnhkiRMCh`</summary>
+
+```text
+I cannot provide the specific technical details you're requesting based on the webpage content provided. The page only contains the **abstract and metadata** for the arXiv paper, not the full paper content.
+
+The abstract mentions that RSS introduces "Monte Carlo Syntactic Integration" and "Residual Affordance Steering, a dual-stream decoding mechanism," but it doesn't explain:
+- Whether spatial affordance maps/heatmaps are used as intermediates
+- How it compares to explicit spatial affordance learning approaches
+- Specific LIBERO benchmark results
+
+To answer your questions accurately, you would need to access the full PDF or HTML version of the paper using the links provided on the page ("View PDF" or "HTML (experimental)").
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9b88cf11-a912-48e6-939c-6591fa4465b3",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "6f0fed2e-5af1-4969-a46a-7570d842ea8d",
+  "toolUseResult": {
+    "bytes": 47171,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot provide the specific technical details you're requesting based on the webpage content provided. The page only contains the **abstract and metadata** for the arXiv paper, not the full paper content.\n\nThe abstract mentions that RSS introduces \"Monte Carlo Syntactic Integration\" and \"Residual Affordance Steering, a dual-stream decoding mechanism,\" but it doesn't explain:\n- Whether spatial affordance maps/heatmaps are used as intermediates\n- How it compares to explicit spatial affordance learning approaches\n- Specific LIBERO benchmark results\n\nTo answer your questions accurately, you would need to access the full PDF or HTML version of the paper using the links provided on the page (\"View PDF\" or \"HTML (experimental)\").",
+    "durationMs": 2692,
+    "url": "https://arxiv.org/abs/2601.04052"
+  },
+  "sourceToolAssistantUUID": "9b88cf11-a912-48e6-939c-6591fa4465b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-18T21:22:34.183Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Q6kzfxgYrZH13TBMug7MoM`</summary>
+
+```json
+{
+  "query": "RSS stable language guidance VLA Monte Carlo syntactic integration residual affordance steering LIBERO results action level"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f0fed2e-5af1-4969-a46a-7570d842ea8d",
+  "isSidechain": false,
+  "requestId": "req_011CbAjfvrTwkd3FuiSZ7sPS",
+  "type": "assistant",
+  "uuid": "93a544c0-64bb-49d9-97f0-4e5914d1bddb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M7dXNxgq92aS6iXe8tbG4b",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 346,
+      "cache_read_input_tokens": 59196,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 346,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 59196,
+          "cache_creation_input_tokens": 346,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 346
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-18T21:22:44.042Z_
+
+<details><summary>↩ Tool result · `toolu_01Q6kzfxgYrZH13TBMug7MoM`</summary>
+
+```text
+Web search results for query: "RSS stable language guidance VLA Monte Carlo syntactic integration residual affordance steering LIBERO results action level"
+
+Links: [{"title":"Stable Language Guidance for Vision–Language–Action Models","url":"https://arxiv.org/html/2601.04052v1"},{"title":"Stable Language Guidance for Vision-Language-Action Models","url":"https://arxiv.org/pdf/2601.04052"},{"title":"Do What You Say: Steering Vision-Language-Action Models via","url":"https://yilin-wu98.github.io/steering-reasoning-vla/static/pdfs/paper_icra.pdf"},{"title":"Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification","url":"https://arxiv.org/pdf/2510.16281"},{"title":"VLA-Reasoner: Empowering Vision-Language-Action Models with","url":"https://arxiv.org/pdf/2509.22643"},{"title":"When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs","url":"https://arxiv.org/pdf/2602.17659"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization","url":"https://arxiv.org/pdf/2510.03827"}]
+
+Based on the search results, I found highly relevant information about the topic you searched for. Here's what the results show:
+
+Residual Semantic Steering (RSS) is a probabilistic framework that disentangles physical affordance from semantic execution, introducing Monte Carlo Syntactic Integration (which approximates the true semantic posterior via dense, LLM-driven distributional expansion) and Residual Affordance Steering (a dual-stream decoding mechanism that explicitly isolates the causal influence of language by subtracting the visual affordance prior).
+
+Recent audits on the Libero-Plus and Libero-Pro benchmarks reveal that VLA agents frequently suffer from "instruction blindness" or rote execution, as dense high-frequency visual signals tend to overwhelm sparse linguistic tokens.
+
+Theoretical analysis suggests that RSS effectively maximizes the mutual information between action and intent while suppressing visual distractors, with empirical results across diverse manipulation benchmarks demonstrating that RSS achieves state-of-the-art robustness, maintaining performance even under adversarial linguistic perturbations.
+
+The research appears to be from a paper titled "Stable Language Guidance for Vision-Language-Action Models" that addresses a critical problem in VLA systems where visual signals dominate language instructions, causing agents to ignore semantic intent in favor of learned visual patterns.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "93a544c0-64bb-49d9-97f0-4e5914d1bddb",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "a84fddb4-3675-4d70-be00-39615c6e83ea",
+  "toolUseResult": {
+    "query": "RSS stable language guidance VLA Monte Carlo syntactic integration residual affordance steering LIBERO results action level",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019GHSf2MWTHLMkQs1pps1Ex",
+        "content": [
+          {
+            "title": "Stable Language Guidance for Vision–Language–Action Models",
+            "url": "https://arxiv.org/html/2601.04052v1"
+          },
+          {
+            "title": "Stable Language Guidance for Vision-Language-Action Models",
+            "url": "https://arxiv.org/pdf/2601.04052"
+          },
+          {
+            "title": "Do What You Say: Steering Vision-Language-Action Models via",
+            "url": "https://yilin-wu98.github.io/steering-reasoning-vla/static/pdfs/paper_icra.pdf"
+          },
+          {
+            "title": "Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification",
+            "url": "https://arxiv.org/pdf/2510.16281"
+          },
+          {
+            "title": "VLA-Reasoner: Empowering Vision-Language-Action Models with",
+            "url": "https://arxiv.org/pdf/2509.22643"
+          },
+          {
+            "title": "When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs",
+            "url": "https://arxiv.org/pdf/2602.17659"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization",
+            "url": "https://arxiv.org/pdf/2510.03827"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant information about the topic you searched for. Here's what the results show:\n\nResidual Semantic Steering (RSS) is a probabilistic framework that disentangles physical affordance from semantic execution, introducing Monte Carlo Syntactic Integration (which approximates the true semantic posterior via dense, LLM-driven distributional expansion) and Residual Affordance Steering (a dual-stream decoding mechanism that explicitly isolates the causal influence of language by subtracting the visual affordance prior).\n\nRecent audits on the Libero-Plus and Libero-Pro benchmarks reveal that VLA agents frequently suffer from \"instruction blindness\" or rote execution, as dense high-frequency visual signals tend to overwhelm sparse linguistic tokens.\n\nTheoretical analysis suggests that RSS effectively maximizes the mutual information between action and intent while suppressing visual distractors, with empirical results across diverse manipulation benchmarks demonstrating that RSS achieves state-of-the-art robustness, maintaining performance even under adversarial linguistic perturbations.\n\nThe research appears to be from a paper titled \"Stable Language Guidance for Vision-Language-Action Models\" that addresses a critical problem in VLA systems where visual signals dominate language instructions, causing agents to ignore semantic intent in favor of learned visual patterns."
+    ],
+    "durationSeconds": 9.854715705999988
+  },
+  "sourceToolAssistantUUID": "93a544c0-64bb-49d9-97f0-4e5914d1bddb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 91_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "a84fddb4-3675-4d70-be00-39615c6e83ea",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 92_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify affordance self-supervision in VLAs via independent research",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-18T21:22:51.527Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016NKHVbkxFaj1uuS9r8vebd`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2601.04052v1",
+  "prompt": "I need specific technical details: (1) Does RSS learn explicit spatial affordance heatmaps or does it operate at the action token/logit level? (2) What are the exact LIBERO/LIBERO-Plus results (success rates)? (3) Does it use paraphrases during training or only at inference time? (4) Is it a training-time method or inference-time method? (5) What is the \"Residual Affordance Steering\" mechanism specifically?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a84fddb4-3675-4d70-be00-39615c6e83ea",
+  "isSidechain": false,
+  "requestId": "req_011CbAjgxaBNU9oVzCGktjA9",
+  "type": "assistant",
+  "uuid": "5f49c8aa-a876-4004-bdc5-7b4673b4cdfd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARsTZqgywsfLfNfvYurHzN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 725,
+      "cache_read_input_tokens": 59542,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 59542,
+          "cache_creation_input_tokens": 725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-18T21:22:58.268Z_
+
+<details><summary>↩ Tool result · `toolu_016NKHVbkxFaj1uuS9r8vebd`</summary>
+
+```text
+# Technical Details on RSS
+
+## 1. **Affordance Representation Level**
+RSS operates at the **action logit level**, not spatial heatmaps. The method works with logit scores s(a|o,l) representing action probabilities, computing residuals between conditional and unconditional predictions.
+
+## 2. **LIBERO Results**
+Key success rates from Table 1 (Destructive Instruction Overwriting):
+- **π0 + RAS & MCSI**: 82.22% average (up 29.85 points from 52.37% baseline)
+- **π0.5 + RAS & MCSI**: 86.98% average (up 11.08 points from 75.90% baseline)
+
+Performance varies significantly by perturbation type; blank instructions show largest gains.
+
+## 3. **Paraphrase Application Timeline**
+RSS uses paraphrases **during training only**. The paper states: "we utilize Qwen2.5-VL...to generate dense semantic neighborhoods during training" while "at evaluation time, we employ ChatGPT-5.2...to systematically rewrite all task instructions."
+
+## 4. **Training vs. Inference**
+RSS is **primarily a training-time method**:
+- Monte Carlo Syntactic Integration (MCSI) happens during training with LLM-generated paraphrases
+- Residual Affordance Steering (RAS) occurs at both training and inference
+
+## 5. **RAS Mechanism Details**
+RAS subtracts the unconditional "visual affordance prior" from conditional logits:
+
+"Δsem(a,o,l) = s(a|o,l) − s(a|o,∅)" 
+
+The steered policy uses: "π̃(a|o,l) ∝ exp(s(a|o,∅) + γ·Δsem)" where γ>1 amplifies linguistic signal by rebalancing modal dominance.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5f49c8aa-a876-4004-bdc5-7b4673b4cdfd",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "efafbc3f-7035-4564-a4f5-a11ed1b003d8",
+  "toolUseResult": {
+    "bytes": 356400,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Technical Details on RSS\n\n## 1. **Affordance Representation Level**\nRSS operates at the **action logit level**, not spatial heatmaps. The method works with logit scores s(a|o,l) representing action probabilities, computing residuals between conditional and unconditional predictions.\n\n## 2. **LIBERO Results**\nKey success rates from Table 1 (Destructive Instruction Overwriting):\n- **π0 + RAS & MCSI**: 82.22% average (up 29.85 points from 52.37% baseline)\n- **π0.5 + RAS & MCSI**: 86.98% average (up 11.08 points from 75.90% baseline)\n\nPerformance varies significantly by perturbation type; blank instructions show largest gains.\n\n## 3. **Paraphrase Application Timeline**\nRSS uses paraphrases **during training only**. The paper states: \"we utilize Qwen2.5-VL...to generate dense semantic neighborhoods during training\" while \"at evaluation time, we employ ChatGPT-5.2...to systematically rewrite all task instructions.\"\n\n## 4. **Training vs. Inference**\nRSS is **primarily a training-time method**:\n- Monte Carlo Syntactic Integration (MCSI) happens during training with LLM-generated paraphrases\n- Residual Affordance Steering (RAS) occurs at both training and inference\n\n## 5. **RAS Mechanism Details**\nRAS subtracts the unconditional \"visual affordance prior\" from conditional logits:\n\n\"Δsem(a,o,l) = s(a|o,l) − s(a|o,∅)\" \n\nThe steered policy uses: \"π̃(a|o,l) ∝ exp(s(a|o,∅) + γ·Δsem)\" where γ>1 amplifies linguistic signal by rebalancing modal dominance.",
+    "durationMs": 6736,
+    "url": "https://arxiv.org/html/2601.04052v1"
+  },
+  "sourceToolAssistantUUID": "5f49c8aa-a876-4004-bdc5-7b4673b4cdfd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95 · 2026-05-18T21:23:02.423Z_
+
+Critical finding confirmed: RSS operates at the **action logit level**, not spatial heatmap level. This is a key differentiation point. Now let me check one more critical aspect — whether any work since April 2026 has proposed something very similar to AffordInvar.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "efafbc3f-7035-4564-a4f5-a11ed1b003d8",
+  "isSidechain": false,
+  "requestId": "req_011CbAji15X356sfVwsbgC2a",
+  "type": "assistant",
+  "uuid": "841ac2e5-acab-46e2-b33c-97c3eb953327",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wg7fKrppY1UPazdZTvRFSF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 60267,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 60267,
+          "cache_creation_input_tokens": 662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-18T21:23:02.723Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ExKsUzjM1wfodf2Akyec1A`</summary>
+
+```json
+{
+  "query": "\"affordance decoder\" VLA \"self-supervised\" OR \"annotation-free\" paraphrase 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "841ac2e5-acab-46e2-b33c-97c3eb953327",
+  "isSidechain": false,
+  "requestId": "req_011CbAji15X356sfVwsbgC2a",
+  "type": "assistant",
+  "uuid": "9cdc41d0-c8de-4f84-b43b-144f02f5fc74",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wg7fKrppY1UPazdZTvRFSF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 60267,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 60267,
+          "cache_creation_input_tokens": 662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-18T21:23:09.452Z_
+
+<details><summary>↩ Tool result · `toolu_01ExKsUzjM1wfodf2Akyec1A`</summary>
+
+```text
+Web search results for query: ""affordance decoder" VLA "self-supervised" OR "annotation-free" paraphrase 2026"
+
+Links: [{"title":"Teleoperation Data Annotation for VLA & | SyncSoft AI | SyncSoft.AI","url":"https://www.syncsoft.ai/en/blog/teleoperation-data-annotation-vla-humanoid-robots-2026"},{"title":"CoA-VLA: Improving Vision-Language-Action Models via ...","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Li_CoA-VLA_Improving_Vision-Language-Action_Models_via_Visual-Text_Chain-of-Affordance_ICCV_2025_paper.pdf"},{"title":"VLM: How Vision-Language Models Work (2026 Guide) | Label Your Data","url":"https://labelyourdata.com/articles/machine-learning/vision-language-models"},{"title":"Parallels Between VLA Model Post-Training and Human ...","url":"https://arxiv.org/pdf/2506.20966"},{"title":"Weakly Supervised Learning of Affordances","url":"https://arxiv.org/pdf/1605.02964"},{"title":"VLA-R1: Enhancing Reasoning in Vision-Language-Action Models Angen Ye12∗","url":"https://arxiv.org/pdf/2510.01623"},{"title":"Affordance Grounding from Demonstration Video to Target Image","url":"https://arxiv.org/pdf/2303.14644"},{"title":"UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation","url":"https://arxiv.org/pdf/2506.09284"}]
+
+Based on the search results, I found several relevant papers and resources about affordance decoders and VLA models:
+
+## Key Findings:
+
+**Recent Work on Affordance Decoders in VLAs:**
+
+One approach incorporates object-centric affordance representations into the VLM decoder to generate robot actions, while another post-trains a VLM to extract spatial affordances of target objects and guide manipulation.
+
+**Self-Supervised and Annotation-Free Approaches:**
+
+Unsupervised Affordance Distillation (UAD) is a method for distilling affordance knowledge from foundation models into a task-conditioned affordance model without any manual annotations, automatically annotating a large-scale dataset with detailed instruction and visual affordance pairs. Training only a lightweight task-conditioned decoder atop frozen features, UAD exhibits notable generalization to in-the-wild robotic scenes and to various human activities, despite only being trained on rendered objects in simulation.
+
+Additionally, self-supervised affordance pre-training methods exist, such as one that generates self-supervised annotations for the current frame using future frames by employing hand-object interaction detection, skin segmentation, and hand landmark estimation.
+
+**VLA Architecture:**
+
+VLA models extend VLMs by adding an action decoder that outputs robot control signals instead of text, seeing camera feeds and language instructions to predict joint positions and gripper states for physical tasks like pick-and-place.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9cdc41d0-c8de-4f84-b43b-144f02f5fc74",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "c737a7de-3e64-4709-8937-9174c6586a0e",
+  "toolUseResult": {
+    "query": "\"affordance decoder\" VLA \"self-supervised\" OR \"annotation-free\" paraphrase 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BtfWPfdJ5K4LBi2ZUNvNWh",
+        "content": [
+          {
+            "title": "Teleoperation Data Annotation for VLA & | SyncSoft AI | SyncSoft.AI",
+            "url": "https://www.syncsoft.ai/en/blog/teleoperation-data-annotation-vla-humanoid-robots-2026"
+          },
+          {
+            "title": "CoA-VLA: Improving Vision-Language-Action Models via ...",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Li_CoA-VLA_Improving_Vision-Language-Action_Models_via_Visual-Text_Chain-of-Affordance_ICCV_2025_paper.pdf"
+          },
+          {
+            "title": "VLM: How Vision-Language Models Work (2026 Guide) | Label Your Data",
+            "url": "https://labelyourdata.com/articles/machine-learning/vision-language-models"
+          },
+          {
+            "title": "Parallels Between VLA Model Post-Training and Human ...",
+            "url": "https://arxiv.org/pdf/2506.20966"
+          },
+          {
+            "title": "Weakly Supervised Learning of Affordances",
+            "url": "https://arxiv.org/pdf/1605.02964"
+          },
+          {
+            "title": "VLA-R1: Enhancing Reasoning in Vision-Language-Action Models Angen Ye12∗",
+            "url": "https://arxiv.org/pdf/2510.01623"
+          },
+          {
+            "title": "Affordance Grounding from Demonstration Video to Target Image",
+            "url": "https://arxiv.org/pdf/2303.14644"
+          },
+          {
+            "title": "UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2506.09284"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and resources about affordance decoders and VLA models:\n\n## Key Findings:\n\n**Recent Work on Affordance Decoders in VLAs:**\n\nOne approach incorporates object-centric affordance representations into the VLM decoder to generate robot actions, while another post-trains a VLM to extract spatial affordances of target objects and guide manipulation.\n\n**Self-Supervised and Annotation-Free Approaches:**\n\nUnsupervised Affordance Distillation (UAD) is a method for distilling affordance knowledge from foundation models into a task-conditioned affordance model without any manual annotations, automatically annotating a large-scale dataset with detailed instruction and visual affordance pairs. Training only a lightweight task-conditioned decoder atop frozen features, UAD exhibits notable generalization to in-the-wild robotic scenes and to various human activities, despite only being trained on rendered objects in simulation.\n\nAdditionally, self-supervised affordance pre-training methods exist, such as one that generates self-supervised annotations for the current frame using future frames by employing hand-object interaction detection, skin segmentation, and hand landmark estimation.\n\n**VLA Architecture:**\n\nVLA models extend VLMs by adding an action decoder that outputs robot control signals instead of text, seeing camera feeds and language instructions to predict joint positions and gripper states for physical tasks like pick-and-place."
+    ],
+    "durationSeconds": 6.724298746000044
+  },
+  "sourceToolAssistantUUID": "9cdc41d0-c8de-4f84-b43b-144f02f5fc74",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 98 · 2026-05-18T21:23:09.454Z_
+
+```json
+{
+  "parentUuid": "c737a7de-3e64-4709-8937-9174c6586a0e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "525ab07a-8f34-4c68-9ddb-51bf26009b97",
+  "timestamp": "2026-05-18T21:23:09.454Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-18T21:23:12.727Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YWhycyTwcyAYFReggSu4o1`</summary>
+
+```json
+{
+  "query": "CoRL 2026 submission deadline May 28 2026 abstract May 26"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "525ab07a-8f34-4c68-9ddb-51bf26009b97",
+  "isSidechain": false,
+  "requestId": "req_011CbAjipquCBQHjWKnb4wmt",
+  "type": "assistant",
+  "uuid": "5139744d-6ecd-43a7-aecb-3311b42ff5f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018RAoeZudd18YByy3ehM9pY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1010,
+      "cache_read_input_tokens": 60929,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1010,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 60929,
+          "cache_creation_input_tokens": 1010,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1010
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-18T21:23:17.456Z_
+
+<details><summary>↩ Tool result · `toolu_01YWhycyTwcyAYFReggSu4o1`</summary>
+
+```text
+Web search results for query: "CoRL 2026 submission deadline May 28 2026 abstract May 26"
+
+Links: [{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"Refactor conference data · huggingface/ai-deadlines at f3cc2d7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"CoRL 2026 - Annoucements","url":"https://www.corl.org/annoucements"}]
+
+Based on the search results, here's the information about CoRL 2026 submission deadlines:
+
+The abstract submission deadline for CoRL 2026 is May 26, 2026 at 11:59 UTC, and the paper submission deadline is May 29, 2026 at 11:59 UTC. However, there's a note that the paper submission deadline is Thursday (5/28) EOD rather than Friday, which appears to be an earlier notice.
+
+Additionally, the deadlines are final, and no accommodations can be made for missing the abstract deadline or paper deadline. Authors may update the title and abstract on OpenReview after the abstract submission deadline, but authors cannot be added or removed after this deadline.
+
+All submissions should comply with an 8-page limit for the main paper, and papers may be submitted through OpenReview.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5139744d-6ecd-43a7-aecb-3311b42ff5f5",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "1d1cee54-f72f-4f06-9f29-00ee3f7b49ad",
+  "toolUseResult": {
+    "query": "CoRL 2026 submission deadline May 28 2026 abstract May 26",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VyGtDME5PrihTy8mamsW67",
+        "content": [
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          },
+          {
+            "title": "Refactor conference data · huggingface/ai-deadlines at f3cc2d7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"
+          },
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf?lang=en"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "CoRL 2026 - Annoucements",
+            "url": "https://www.corl.org/annoucements"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about CoRL 2026 submission deadlines:\n\nThe abstract submission deadline for CoRL 2026 is May 26, 2026 at 11:59 UTC, and the paper submission deadline is May 29, 2026 at 11:59 UTC. However, there's a note that the paper submission deadline is Thursday (5/28) EOD rather than Friday, which appears to be an earlier notice.\n\nAdditionally, the deadlines are final, and no accommodations can be made for missing the abstract deadline or paper deadline. Authors may update the title and abstract on OpenReview after the abstract submission deadline, but authors cannot be added or removed after this deadline.\n\nAll submissions should comply with an 8-page limit for the main paper, and papers may be submitted through OpenReview."
+    ],
+    "durationSeconds": 4.725974466999992
+  },
+  "sourceToolAssistantUUID": "5139744d-6ecd-43a7-aecb-3311b42ff5f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101 · 2026-05-18T21:23:20.838Z_
+
+Now let me verify one more thing — the proposal correctly dropped CoRL 2026 as a target. Let me also look for the synthetic instruction augmentation paper mentioned in the references.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d1cee54-f72f-4f06-9f29-00ee3f7b49ad",
+  "isSidechain": false,
+  "requestId": "req_011CbAjjR5SBRY9Vtx7Fe4Qe",
+  "type": "assistant",
+  "uuid": "0053af68-9a6f-4033-a4d9-70a9b9109bf1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NGd5BNgN8bP1ddXpW89YGg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 733,
+      "cache_read_input_tokens": 61939,
+      "output_tokens": 106,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 733,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 106,
+          "cache_read_input_tokens": 61939,
+          "cache_creation_input_tokens": 733,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 733
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-18T21:23:21.052Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WZUZNYWrzPFfnvnhg72DMo`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline October 2026 date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0053af68-9a6f-4033-a4d9-70a9b9109bf1",
+  "isSidechain": false,
+  "requestId": "req_011CbAjjR5SBRY9Vtx7Fe4Qe",
+  "type": "assistant",
+  "uuid": "149fb948-78c6-4427-ba3b-bd7684ff86d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NGd5BNgN8bP1ddXpW89YGg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 733,
+      "cache_read_input_tokens": 61939,
+      "output_tokens": 106,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 733,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 106,
+          "cache_read_input_tokens": 61939,
+          "cache_creation_input_tokens": 733,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 733
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-18T21:23:25.139Z_
+
+<details><summary>↩ Tool result · `toolu_01WZUZNYWrzPFfnvnhg72DMo`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline October 2026 date"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"When is ICLR 2026? Dates, Deadline & Location | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/conference/iclr"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"ICLR 2026 Author Guide","url":"https://iclr.cc/Conferences/2026/AuthorGuide"}]
+
+Based on the search results, I found information about ICLR 2026 (which is the current conference), but I did not find specific information about the ICLR 2027 submission deadline in October 2026.
+
+From the search results, I can see that ICLR 2026 has a deadline for paper submissions on Sept 24. However, this is for the 2026 conference, not 2027.
+
+The search results show that some 2026/2027 CFPs are not yet posted, which suggests that the official ICLR 2027 call for papers and submission deadlines may not have been announced yet. To find the specific ICLR 2027 submission deadline date in October 2026, you would need to check the official ICLR website (iclr.cc) directly or contact the ICLR program chairs once the 2027 call for papers is officially announced.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "149fb948-78c6-4427-ba3b-bd7684ff86d4",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "1c89d2d3-97b5-4b7f-9aae-eb5f21576238",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline October 2026 date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VzY3F8rCRf9UJ7jqEV3W72",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "When is ICLR 2026? Dates, Deadline & Location | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/conference/iclr"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "ICLR 2026 Author Guide",
+            "url": "https://iclr.cc/Conferences/2026/AuthorGuide"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR 2026 (which is the current conference), but I did not find specific information about the ICLR 2027 submission deadline in October 2026.\n\nFrom the search results, I can see that ICLR 2026 has a deadline for paper submissions on Sept 24. However, this is for the 2026 conference, not 2027.\n\nThe search results show that some 2026/2027 CFPs are not yet posted, which suggests that the official ICLR 2027 call for papers and submission deadlines may not have been announced yet. To find the specific ICLR 2027 submission deadline date in October 2026, you would need to check the official ICLR website (iclr.cc) directly or contact the ICLR program chairs once the 2027 call for papers is officially announced."
+    ],
+    "durationSeconds": 4.083723532999982
+  },
+  "sourceToolAssistantUUID": "149fb948-78c6-4427-ba3b-bd7684ff86d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104 · 2026-05-18T21:23:28.239Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019vSDQqeRLisTmkjBJGeuLG`</summary>
+
+```json
+{
+  "query": "\"synthetic instruction augmentation\" OpenVLA arXiv 2603.16044 paraphrase linguistic generalization results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c89d2d3-97b5-4b7f-9aae-eb5f21576238",
+  "isSidechain": false,
+  "requestId": "req_011CbAjjyvczcF1VkxsaDukD",
+  "type": "assistant",
+  "uuid": "9d163b8c-be54-492e-810e-fad61a3209ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ec6eMZD9RtDyYS58d7WHN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 750,
+      "cache_read_input_tokens": 62672,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 750,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 62672,
+          "cache_creation_input_tokens": 750,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 750
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-18T21:23:33.701Z_
+
+<details><summary>↩ Tool result · `toolu_019vSDQqeRLisTmkjBJGeuLG`</summary>
+
+```text
+Web search results for query: ""synthetic instruction augmentation" OpenVLA arXiv 2603.16044 paraphrase linguistic generalization results"
+
+Links: [{"title":"[2603.16044] Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation","url":"https://arxiv.org/abs/2603.16044"},{"title":"Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation","url":"https://arxiv.org/html/2603.16044"},{"title":"Fine-Tuning OpenVLA via Synthetic Instruction Augmentation","url":"https://arxiv.org/pdf/2603.16044"},{"title":"A New Path: Scaling Vision-and-Language Navigation with Synthetic   Instructions and Imitation Learning","url":"https://arxiv.org/pdf/2210.03112"},{"title":"IA-VLA: Input Augmentation for Vision-Language-Action models in settings with semantically complex tasks","url":"https://arxiv.org/html/2509.24768v1"},{"title":"OpenVLA: Open Source VLA for Robotics","url":"https://www.emergentmind.com/topics/openvla"},{"title":"TAG-INSTRUCT: Controlled Instruction Complexity Enhancement through Structure-based Augmentation","url":"https://arxiv.org/pdf/2505.18557"}]
+
+Based on the search results, I found the paper you're looking for. Here's the relevant information:
+
+The paper proposes a parameter-efficient fine-tuning strategy to enhance the linguistic generalization of OpenVLA by synthesizing a general instruction set for the Bridge Dataset V2. The paper leverages a Large Language Model (LLM) to generate a rich variety of semantically equivalent but structurally diverse commands for existing trajectories.
+
+Low-Rank Adaptation (LoRA) is implemented to fine-tune OpenVLA on augmented pairs, allowing the model to bridge the gap between complex natural language intent and robotic actions.
+
+The paper (arXiv:2603.16044) was submitted on March 17, 2026, and addresses the challenge of linguistic generalization in Vision-Language-Action models. The synthetic instruction augmentation approach creates paraphrased variants of instructions to improve the model's ability to understand diverse linguistic expressions of the same robotic tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9d163b8c-be54-492e-810e-fad61a3209ce",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "1b7c8a3c-5027-4d4b-bc8c-5b66031531d2",
+  "toolUseResult": {
+    "query": "\"synthetic instruction augmentation\" OpenVLA arXiv 2603.16044 paraphrase linguistic generalization results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013CoctAcBZL6ADZMxUua6Pn",
+        "content": [
+          {
+            "title": "[2603.16044] Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation",
+            "url": "https://arxiv.org/abs/2603.16044"
+          },
+          {
+            "title": "Enhancing Linguistic Generalization of VLA: Fine-Tuning OpenVLA via Synthetic Instruction Augmentation",
+            "url": "https://arxiv.org/html/2603.16044"
+          },
+          {
+            "title": "Fine-Tuning OpenVLA via Synthetic Instruction Augmentation",
+            "url": "https://arxiv.org/pdf/2603.16044"
+          },
+          {
+            "title": "A New Path: Scaling Vision-and-Language Navigation with Synthetic   Instructions and Imitation Learning",
+            "url": "https://arxiv.org/pdf/2210.03112"
+          },
+          {
+            "title": "IA-VLA: Input Augmentation for Vision-Language-Action models in settings with semantically complex tasks",
+            "url": "https://arxiv.org/html/2509.24768v1"
+          },
+          {
+            "title": "OpenVLA: Open Source VLA for Robotics",
+            "url": "https://www.emergentmind.com/topics/openvla"
+          },
+          {
+            "title": "TAG-INSTRUCT: Controlled Instruction Complexity Enhancement through Structure-based Augmentation",
+            "url": "https://arxiv.org/pdf/2505.18557"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's the relevant information:\n\nThe paper proposes a parameter-efficient fine-tuning strategy to enhance the linguistic generalization of OpenVLA by synthesizing a general instruction set for the Bridge Dataset V2. The paper leverages a Large Language Model (LLM) to generate a rich variety of semantically equivalent but structurally diverse commands for existing trajectories.\n\nLow-Rank Adaptation (LoRA) is implemented to fine-tune OpenVLA on augmented pairs, allowing the model to bridge the gap between complex natural language intent and robotic actions.\n\nThe paper (arXiv:2603.16044) was submitted on March 17, 2026, and addresses the challenge of linguistic generalization in Vision-Language-Action models. The synthetic instruction augmentation approach creates paraphrased variants of instructions to improve the model's ability to understand diverse linguistic expressions of the same robotic tasks."
+    ],
+    "durationSeconds": 5.457834107999981
+  },
+  "sourceToolAssistantUUID": "9d163b8c-be54-492e-810e-fad61a3209ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 106_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "1b7c8a3c-5027-4d4b-bc8c-5b66031531d2",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 107_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify affordance self-supervision in VLAs via independent research",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Assistant
+
+_source line 108 · 2026-05-18T21:23:38.146Z_
+
+Good. This paper (arXiv 2603.16044) is already cited in the proposal's key references. Now let me verify one more important claim — whether any existing spatial VLA method has been tested on LIBERO-Para.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b7c8a3c-5027-4d4b-bc8c-5b66031531d2",
+  "isSidechain": false,
+  "requestId": "req_011CbAjkcZGxuvXEmvKHSa6t",
+  "type": "assistant",
+  "uuid": "4ffabf44-fb7d-41a0-839e-5b06a6ca70d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rwqa5LzP2xKci9dW1tx6xm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 665,
+      "cache_read_input_tokens": 63422,
+      "output_tokens": 196,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 665,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 196,
+          "cache_read_input_tokens": 63422,
+          "cache_creation_input_tokens": 665,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 665
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-18T21:23:39.865Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CbfBsxaTs7qTf6eokyc2QP`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.28301",
+  "prompt": "Which VLA models were evaluated on LIBERO-Para? Were any spatial VLA methods (ST4VLA, PALM, SG-VLA, Spatial Forcing) tested? What were the main baselines? What were the key results (which models, what PRIDE scores)?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ffabf44-fb7d-41a0-839e-5b06a6ca70d1",
+  "isSidechain": false,
+  "requestId": "req_011CbAjkcZGxuvXEmvKHSa6t",
+  "type": "assistant",
+  "uuid": "ebf3bcfe-10d0-43c4-a86a-b791decb2296",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rwqa5LzP2xKci9dW1tx6xm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 665,
+      "cache_read_input_tokens": 63422,
+      "output_tokens": 196,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 665,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 196,
+          "cache_read_input_tokens": 63422,
+          "cache_creation_input_tokens": 665,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 665
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-18T21:23:44.087Z_
+
+<details><summary>↩ Tool result · `toolu_01CbfBsxaTs7qTf6eokyc2QP`</summary>
+
+```text
+# LIBERO-Para: VLA Models and Evaluation Details
+
+Based on the provided abstract, I cannot definitively answer your specific questions about which VLA models were evaluated, whether spatial methods were tested, or exact PRIDE scores.
+
+The document states: **"Across seven VLA configurations (0.6B-7.5B), we observe consistent performance degradation of 22-52 pp under paraphrasing."**
+
+However, the abstract does not name the specific model architectures tested or identify particular baseline approaches. Similarly, it doesn't mention whether spatial VLA methods like ST4VLA, PALM, SG-VLA, or Spatial Forcing were included in the evaluation, nor does it provide granular PRIDE metric scores for individual models.
+
+The abstract does establish that the researchers found:
+- Models show significant robustness issues with paraphrased instructions
+- Object-level lexical variation causes substantial performance drops
+- Most failures stem from planning-level divergence rather than execution errors
+
+To obtain the detailed experimental setup, baseline specifications, and model-specific PRIDE scores you're asking about, you would need to review the full paper (available via the PDF link mentioned in the page).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ebf3bcfe-10d0-43c4-a86a-b791decb2296",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "cf28bb35-e6b3-4cda-94d7-3819d84079fd",
+  "toolUseResult": {
+    "bytes": 47841,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# LIBERO-Para: VLA Models and Evaluation Details\n\nBased on the provided abstract, I cannot definitively answer your specific questions about which VLA models were evaluated, whether spatial methods were tested, or exact PRIDE scores.\n\nThe document states: **\"Across seven VLA configurations (0.6B-7.5B), we observe consistent performance degradation of 22-52 pp under paraphrasing.\"**\n\nHowever, the abstract does not name the specific model architectures tested or identify particular baseline approaches. Similarly, it doesn't mention whether spatial VLA methods like ST4VLA, PALM, SG-VLA, or Spatial Forcing were included in the evaluation, nor does it provide granular PRIDE metric scores for individual models.\n\nThe abstract does establish that the researchers found:\n- Models show significant robustness issues with paraphrased instructions\n- Object-level lexical variation causes substantial performance drops\n- Most failures stem from planning-level divergence rather than execution errors\n\nTo obtain the detailed experimental setup, baseline specifications, and model-specific PRIDE scores you're asking about, you would need to review the full paper (available via the PDF link mentioned in the page).",
+    "durationMs": 4218,
+    "url": "https://arxiv.org/abs/2603.28301"
+  },
+  "sourceToolAssistantUUID": "ebf3bcfe-10d0-43c4-a86a-b791decb2296",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-18T21:23:47.271Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WGp8Qbay8St2tA7w8kkAAj`</summary>
+
+```json
+{
+  "query": "LIBERO-Para evaluated models OpenVLA pi0 RT-2 spatial VLA paraphrase PRIDE metric"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf28bb35-e6b3-4cda-94d7-3819d84079fd",
+  "isSidechain": false,
+  "requestId": "req_011CbAjmNxjqq9dR3TwqdUbz",
+  "type": "assistant",
+  "uuid": "4b0534a5-35ae-413e-92ad-8f476e221f1b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PZwG81DE6FHsQjDh7tMSwJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 465,
+      "cache_read_input_tokens": 64087,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 465,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 64087,
+          "cache_creation_input_tokens": 465,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 465
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-18T21:23:59.636Z_
+
+<details><summary>↩ Tool result · `toolu_01WGp8Qbay8St2tA7w8kkAAj`</summary>
+
+```text
+Web search results for query: "LIBERO-Para evaluated models OpenVLA pi0 RT-2 spatial VLA paraphrase PRIDE metric"
+
+Links: [{"title":"VLA Models Compared: OpenVLA vs π0 vs SmolVLA vs RT-2 (2026 Guide) | SVRC","url":"https://www.roboticscenter.ai/learn/vla-models-comparison"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of ...","url":"https://arxiv.org/pdf/2510.03827"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization","url":"https://arxiv.org/html/2510.03827v1"},{"title":"Experiences from Benchmarking Vision–Language–Action Models for Robotic Manipulation","url":"https://arxiv.org/html/2511.11298v1"},{"title":"GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub","url":"https://github.com/openvla/openvla"},{"title":"On Robustness of Vision-Language-Action Model against Multi-Modal Perturbations","url":"https://arxiv.org/pdf/2510.00037"},{"title":"OpenVLA: Open Source VLA for Robotics","url":"https://www.emergentmind.com/topics/openvla"}]
+
+Now let me search for information about LIBERO-Para, paraphrase, and PRIDE metric:
+
+Links: [{"title":"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models","url":"https://cau-hai-lab.github.io/LIBERO-Para/"},{"title":"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models","url":"https://arxiv.org/html/2603.28301v1"},{"title":"[2603.28301] LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models","url":"https://arxiv.org/abs/2603.28301"},{"title":"GitHub - cau-hai-lab/LIBERO-Para · GitHub","url":"https://github.com/cau-hai-lab/LIBERO-Para"},{"title":"Paper page - LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models","url":"https://huggingface.co/papers/2603.28301"},{"title":"cau-hai-lab · GitHub","url":"https://github.com/cau-hai-lab"}]
+
+Based on my search results, here's what I found about your query:
+
+## LIBERO-Para, Evaluated Models, and PRIDE Metric
+
+LIBERO-Para is a controlled benchmark for evaluating paraphrase robustness in VLA models, along with PRIDE (Paraphrase Robustness Index in Robotic Instructional DEviation), a metric that combines keyword similarity and structural similarity with task success to enable fine-grained robustness analysis.
+
+### Evaluated Models
+
+The benchmark evaluates seven model configurations (0.6B–7.5B) spanning four architecture families: parallel decoding with action chunking (OpenVLA-OFT), VLMs with a flow-matching action expert (π0, π0.5, Xiaomi-Robotics-0), soft-prompted cross-embodiment (X-VLA), and bridge-based adaptation (VLA-Adapter).
+
+### Key Findings
+
+Across seven VLA configurations (0.6B-7.5B), consistent performance degradation of 22-52 percentage points occurs under paraphrasing, primarily driven by object-level lexical variation where even simple synonym substitutions cause large drops, indicating reliance on surface-level matching rather than semantic grounding.
+
+### The PRIDE Metric
+
+PRIDE computes a Paraphrase Distance (PD) from keyword similarity and structural similarity, then measures the ratio of PD-weighted successes to total possible PD, normalized to 0–100. Unlike plain success rate, PRIDE gives more credit for succeeding on harder, more deviated paraphrases.
+
+### Benchmark Design
+
+LIBERO-Para is grounded in the linguistic structure of robotic manipulation instructions—where actions and objects serve as core semantic elements—and adopts a two-axis design that independently varies action expressions and object references.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4b0534a5-35ae-413e-92ad-8f476e221f1b",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "535befff-0db7-4236-a366-54de512c3908",
+  "toolUseResult": {
+    "query": "LIBERO-Para evaluated models OpenVLA pi0 RT-2 spatial VLA paraphrase PRIDE metric",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XPct9UrPTuYZiS9Y34BXoS",
+        "content": [
+          {
+            "title": "VLA Models Compared: OpenVLA vs π0 vs SmolVLA vs RT-2 (2026 Guide) | SVRC",
+            "url": "https://www.roboticscenter.ai/learn/vla-models-comparison"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of ...",
+            "url": "https://arxiv.org/pdf/2510.03827"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization",
+            "url": "https://arxiv.org/html/2510.03827v1"
+          },
+          {
+            "title": "Experiences from Benchmarking Vision–Language–Action Models for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2511.11298v1"
+          },
+          {
+            "title": "GitHub - openvla/openvla: OpenVLA: An open-source vision-language-action model for robotic manipulation. · GitHub",
+            "url": "https://github.com/openvla/openvla"
+          },
+          {
+            "title": "On Robustness of Vision-Language-Action Model against Multi-Modal Perturbations",
+            "url": "https://arxiv.org/pdf/2510.00037"
+          },
+          {
+            "title": "OpenVLA: Open Source VLA for Robotics",
+            "url": "https://www.emergentmind.com/topics/openvla"
+          }
+        ]
+      },
+      "Now let me search for information about LIBERO-Para, paraphrase, and PRIDE metric:",
+      {
+        "tool_use_id": "srvtoolu_01AsFxURWLwBdotPbm34VBb8",
+        "content": [
+          {
+            "title": "LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models",
+            "url": "https://cau-hai-lab.github.io/LIBERO-Para/"
+          },
+          {
+            "title": "LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models",
+            "url": "https://arxiv.org/html/2603.28301v1"
+          },
+          {
+            "title": "[2603.28301] LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models",
+            "url": "https://arxiv.org/abs/2603.28301"
+          },
+          {
+            "title": "GitHub - cau-hai-lab/LIBERO-Para · GitHub",
+            "url": "https://github.com/cau-hai-lab/LIBERO-Para"
+          },
+          {
+            "title": "Paper page - LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models",
+            "url": "https://huggingface.co/papers/2603.28301"
+          },
+          {
+            "title": "cau-hai-lab · GitHub",
+            "url": "https://github.com/cau-hai-lab"
+          }
+        ]
+      },
+      "Based on my search results, here's what I found about your query:\n\n## LIBERO-Para, Evaluated Models, and PRIDE Metric\n\nLIBERO-Para is a controlled benchmark for evaluating paraphrase robustness in VLA models, along with PRIDE (Paraphrase Robustness Index in Robotic Instructional DEviation), a metric that combines keyword similarity and structural similarity with task success to enable fine-grained robustness analysis.\n\n### Evaluated Models\n\nThe benchmark evaluates seven model configurations (0.6B–7.5B) spanning four architecture families: parallel decoding with action chunking (OpenVLA-OFT), VLMs with a flow-matching action expert (π0, π0.5, Xiaomi-Robotics-0), soft-prompted cross-embodiment (X-VLA), and bridge-based adaptation (VLA-Adapter).\n\n### Key Findings\n\nAcross seven VLA configurations (0.6B-7.5B), consistent performance degradation of 22-52 percentage points occurs under paraphrasing, primarily driven by object-level lexical variation where even simple synonym substitutions cause large drops, indicating reliance on surface-level matching rather than semantic grounding.\n\n### The PRIDE Metric\n\nPRIDE computes a Paraphrase Distance (PD) from keyword similarity and structural similarity, then measures the ratio of PD-weighted successes to total possible PD, normalized to 0–100. Unlike plain success rate, PRIDE gives more credit for succeeding on harder, more deviated paraphrases.\n\n### Benchmark Design\n\nLIBERO-Para is grounded in the linguistic structure of robotic manipulation instructions—where actions and objects serve as core semantic elements—and adopts a two-axis design that independently varies action expressions and object references."
+    ],
+    "durationSeconds": 12.356242066000005
+  },
+  "sourceToolAssistantUUID": "4b0534a5-35ae-413e-92ad-8f476e221f1b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 113 · 2026-05-18T21:24:03.899Z_
+
+Confirmed: LIBERO-Para tested OpenVLA-OFT, π0, π0.5, X-VLA, VLA-Adapter — but NO spatial VLA methods (ST4VLA, PALM, SG-VLA, Spatial Forcing). The proposal's claim of being "the first spatial affordance VLA evaluated on LIBERO-Para" is plausible.
+
+Let me now do a final check on the most critical gap claim and look for any very recent work that might directly conflict.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "535befff-0db7-4236-a366-54de512c3908",
+  "isSidechain": false,
+  "requestId": "req_011CbAjnXRWJ5yc3GLFmSsat",
+  "type": "assistant",
+  "uuid": "ce5787ec-7663-48de-8e2f-0b8ef4a6789c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018WvKDduZttAKesMicksdcs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1222,
+      "cache_read_input_tokens": 64552,
+      "output_tokens": 199,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1222,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 199,
+          "cache_read_input_tokens": 64552,
+          "cache_creation_input_tokens": 1222,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1222
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-18T21:24:04.780Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012PeSYQes62SLKsbbYKVEx1`</summary>
+
+```json
+{
+  "query": "\"annotation free\" OR \"self-supervised\" spatial affordance heatmap VLA end-to-end joint training robot 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce5787ec-7663-48de-8e2f-0b8ef4a6789c",
+  "isSidechain": false,
+  "requestId": "req_011CbAjnXRWJ5yc3GLFmSsat",
+  "type": "assistant",
+  "uuid": "613d6f3f-7583-4b2d-9bfc-e70d4a61d5db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018WvKDduZttAKesMicksdcs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1222,
+      "cache_read_input_tokens": 64552,
+      "output_tokens": 199,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1222,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 199,
+          "cache_read_input_tokens": 64552,
+          "cache_creation_input_tokens": 1222,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1222
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-18T21:24:11.836Z_
+
+<details><summary>↩ Tool result · `toolu_012PeSYQes62SLKsbbYKVEx1`</summary>
+
+```text
+Web search results for query: ""annotation free" OR "self-supervised" spatial affordance heatmap VLA end-to-end joint training robot 2025 2026"
+
+Links: [{"title":"More than A Point: Capturing Uncertainty with Adaptive Affordance Heatmaps for Spatial Grounding in Robotic Tasks","url":"https://arxiv.org/html/2510.10912v2"},{"title":"GitHub - keon/awesome-physical-ai: A curated list of academic papers and resources on Physical AI — focusing on Vision-Language-Action (VLA) models, world models, embodied ai, and robotic foundation models.","url":"https://github.com/keon/awesome-physical-ai"},{"title":"More than A Point: Capturing Uncertainty with Adaptive Affordance Heatmaps for Spatial Grounding in Robotic Tasks","url":"https://arxiv.org/pdf/2510.10912"},{"title":"Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation","url":"https://arxiv.org/pdf/2512.07472"},{"title":"CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance","url":"https://arxiv.org/pdf/2412.20451"}]
+
+I found several relevant papers from the 2025-2026 timeframe on spatial affordance and robotic manipulation using Vision-Language Models:
+
+## Key Results
+
+**RoboMAP (October 2025)**: This system generates dense affordance heatmaps that accurately represent the continuous distribution of suitable locations for spatial grounding in robotic tasks. To generate these heatmaps in a scalable manner, the authors develop a pre-training pipeline that converts diverse sparse annotations (keypoints, bounding boxes, and trajectories) into dense supervisory signals. RoboMAP surpasses previous state-of-the-art on a majority of grounding benchmarks with up to a 50x speed improvement, and achieves an 82% success rate in real-world manipulation.
+
+**Affordance Field Intervention (December 2025)**: 3D Spatial Affordance Fields provide a geometric representation highlighting where interactions are physically feasible, and a hybrid framework called Affordance Field Intervention uses these fields as an on-demand plugin to guide VLA behavior.
+
+**CoA-VLA (December 2024)**: This approach prompts VLA models to consider four types of affordances: object affordance, grasp affordance, spatial affordance, and movement affordance.
+
+**Being-H0.5 (January 2026)**: A human-centric VLA with Mixture-of-Flow architecture trained on UniHand-2.0 dataset (35K+ hours, 30 embodiments) that treats human hand motion as universal embodiment for cross-platform transfer.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "613d6f3f-7583-4b2d-9bfc-e70d4a61d5db",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "b5735005-cbfe-4ff7-a446-ced07bda58fc",
+  "toolUseResult": {
+    "query": "\"annotation free\" OR \"self-supervised\" spatial affordance heatmap VLA end-to-end joint training robot 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018s4RGYUget86k3m4ZVBwKu",
+        "content": [
+          {
+            "title": "More than A Point: Capturing Uncertainty with Adaptive Affordance Heatmaps for Spatial Grounding in Robotic Tasks",
+            "url": "https://arxiv.org/html/2510.10912v2"
+          },
+          {
+            "title": "GitHub - keon/awesome-physical-ai: A curated list of academic papers and resources on Physical AI — focusing on Vision-Language-Action (VLA) models, world models, embodied ai, and robotic foundation models.",
+            "url": "https://github.com/keon/awesome-physical-ai"
+          },
+          {
+            "title": "More than A Point: Capturing Uncertainty with Adaptive Affordance Heatmaps for Spatial Grounding in Robotic Tasks",
+            "url": "https://arxiv.org/pdf/2510.10912"
+          },
+          {
+            "title": "Affordance Field Intervention: Enabling VLAs to Escape Memory Traps in Robotic Manipulation",
+            "url": "https://arxiv.org/pdf/2512.07472"
+          },
+          {
+            "title": "CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance",
+            "url": "https://arxiv.org/pdf/2412.20451"
+          }
+        ]
+      },
+      "I found several relevant papers from the 2025-2026 timeframe on spatial affordance and robotic manipulation using Vision-Language Models:\n\n## Key Results\n\n**RoboMAP (October 2025)**: This system generates dense affordance heatmaps that accurately represent the continuous distribution of suitable locations for spatial grounding in robotic tasks. To generate these heatmaps in a scalable manner, the authors develop a pre-training pipeline that converts diverse sparse annotations (keypoints, bounding boxes, and trajectories) into dense supervisory signals. RoboMAP surpasses previous state-of-the-art on a majority of grounding benchmarks with up to a 50x speed improvement, and achieves an 82% success rate in real-world manipulation.\n\n**Affordance Field Intervention (December 2025)**: 3D Spatial Affordance Fields provide a geometric representation highlighting where interactions are physically feasible, and a hybrid framework called Affordance Field Intervention uses these fields as an on-demand plugin to guide VLA behavior.\n\n**CoA-VLA (December 2024)**: This approach prompts VLA models to consider four types of affordances: object affordance, grasp affordance, spatial affordance, and movement affordance.\n\n**Being-H0.5 (January 2026)**: A human-centric VLA with Mixture-of-Flow architecture trained on UniHand-2.0 dataset (35K+ hours, 30 embodiments) that treats human hand motion as universal embodiment for cross-platform transfer."
+    ],
+    "durationSeconds": 7.051264756000019
+  },
+  "sourceToolAssistantUUID": "613d6f3f-7583-4b2d-9bfc-e70d4a61d5db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116 · 2026-05-18T21:24:14.864Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TUfTG8kRDwFBNCr8MEN7Zk`</summary>
+
+```json
+{
+  "query": "CoRL 2026 deadline May 29 submission guidelines page limit"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5735005-cbfe-4ff7-a446-ced07bda58fc",
+  "isSidechain": false,
+  "requestId": "req_011CbAjoRbo1PESTWTTEUmkU",
+  "type": "assistant",
+  "uuid": "5cb497f5-cec8-4e24-b761-ea93d24154d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TSuRqciGU1A2AHNXgmhodH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 895,
+      "cache_read_input_tokens": 65774,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 895,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 65774,
+          "cache_creation_input_tokens": 895,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 895
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-18T21:24:19.585Z_
+
+<details><summary>↩ Tool result · `toolu_01TUfTG8kRDwFBNCr8MEN7Zk`</summary>
+
+```text
+Web search results for query: "CoRL 2026 deadline May 29 submission guidelines page limit"
+
+Links: [{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"Refactor conference data · huggingface/ai-deadlines at f3cc2d7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"},{"title":"CoRL 2026 - Annoucements","url":"https://www.corl.org/annoucements"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"CoRL 2026 - Contributions","url":"https://www.corl.org/contributions"}]
+
+Based on the search results, here's the information about CoRL 2026 submission guidelines:
+
+**Deadline:** The paper submission deadline is May 29, 2026.
+
+**Page Limit:** The page limit is 8 pages for the main paper. Acknowledgments, References, and Appendix (optional) will not count towards the page limit.
+
+Additional submission requirements include:
+- All submissions should include a Limitations section (counted toward the 8-page limit), explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments, and how these might be addressed in the future.
+- Authors are highly encouraged to submit a video not exceeding 250 MB (strict) and not more than 3 minutes in length (suggested), providing an overview of the work.
+
+For more detailed submission guidelines, you can visit the official CoRL 2026 submission page at https://www.corl.org/contributions/instruction-for-authors.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5cb497f5-cec8-4e24-b761-ea93d24154d2",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "b595d844-70b9-45cf-94f6-7c586eaea598",
+  "toolUseResult": {
+    "query": "CoRL 2026 deadline May 29 submission guidelines page limit",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Pzd1gG83kFSsS8PY9phuDu",
+        "content": [
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          },
+          {
+            "title": "Refactor conference data · huggingface/ai-deadlines at f3cc2d7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"
+          },
+          {
+            "title": "CoRL 2026 - Annoucements",
+            "url": "https://www.corl.org/annoucements"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "CoRL 2026 - Contributions",
+            "url": "https://www.corl.org/contributions"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about CoRL 2026 submission guidelines:\n\n**Deadline:** The paper submission deadline is May 29, 2026.\n\n**Page Limit:** The page limit is 8 pages for the main paper. Acknowledgments, References, and Appendix (optional) will not count towards the page limit.\n\nAdditional submission requirements include:\n- All submissions should include a Limitations section (counted toward the 8-page limit), explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments, and how these might be addressed in the future.\n- Authors are highly encouraged to submit a video not exceeding 250 MB (strict) and not more than 3 minutes in length (suggested), providing an overview of the work.\n\nFor more detailed submission guidelines, you can visit the official CoRL 2026 submission page at https://www.corl.org/contributions/instruction-for-authors."
+    ],
+    "durationSeconds": 4.717576856
+  },
+  "sourceToolAssistantUUID": "5cb497f5-cec8-4e24-b761-ea93d24154d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 118 · 2026-05-18T21:24:19.589Z_
+
+```json
+{
+  "parentUuid": "b595d844-70b9-45cf-94f6-7c586eaea598",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c17a89c8-bd0e-4e90-8f07-9b76398cdef2",
+  "timestamp": "2026-05-18T21:24:19.589Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-18T21:24:24.271Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ak6KkmYeoRVAS4ciNqmQTN`</summary>
+
+```json
+{
+  "query": "AffordanceSAM segment anything affordance grounding AGD20K arXiv 2504.15650 results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c17a89c8-bd0e-4e90-8f07-9b76398cdef2",
+  "isSidechain": false,
+  "requestId": "req_011CbAjozi7e7kFmSz8Vs38m",
+  "type": "assistant",
+  "uuid": "2acd448a-4d4a-475b-9579-55708f448237",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K7XJHaHDgYcoJpqMtmC9VR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 858,
+      "cache_read_input_tokens": 66669,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 858,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 66669,
+          "cache_creation_input_tokens": 858,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 858
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 120_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2acd448a-4d4a-475b-9579-55708f448237",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 121_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify affordance self-supervision in VLAs via independent research",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-18T21:24:29.784Z_
+
+<details><summary>↩ Tool result · `toolu_01Ak6KkmYeoRVAS4ciNqmQTN`</summary>
+
+```text
+Web search results for query: "AffordanceSAM segment anything affordance grounding AGD20K arXiv 2504.15650 results"
+
+Links: [{"title":"[Literature Review] AffordanceSAM: Segment Anything Once More in Affordance Grounding","url":"https://www.themoonlight.io/en/review/affordancesam-segment-anything-once-more-in-affordance-grounding"},{"title":"[2504.15650v1] AffordanceSAM: Segment Anything Once More in Affordance Grounding","url":"https://arxiv.org/abs/2504.15650v1"},{"title":"[2504.15650] AffordanceSAM: Segment Anything Once More in Affordance Grounding","url":"https://arxiv.org/abs/2504.15650"},{"title":"AffordanceSAM: Segment Anything Once More in Affordance Grounding","url":"https://arxiv.org/pdf/2504.15650"},{"title":"AffordanceSAM: Segment Anything Once More in Affordance Grounding","url":"https://arxiv.org/html/2504.15650v2"},{"title":"AffordanceSAM: Segment Anything Once More in Affordance","url":"https://bytez.com/docs/arxiv/2504.15650/paper"}]
+
+I found comprehensive information about the AffordanceSAM paper (arXiv 2504.15650). Here are the key results:
+
+## Paper Overview
+
+AffordanceSAM is an approach that extends SAM's generalization capacity to the domain of affordance grounding. It proposes an affordance-adaption module to modify SAM's segmentation output for specific functional regions, and uses a coarse-to-fine training recipe to make SAM aware of affordance objects and actions coarsely, then generate affordance heatmaps finely.
+
+## Key Innovation
+
+The authors identify two key challenges in adapting SAM for affordance grounding: (1) the need to recognize functional parts of objects based on verb queries, unlike segmentation's focus on separating complete objects, and (2) the difference between segmentation's binary masks and affordance grounding's heatmaps.
+
+## Training Approach
+
+The method involves designing an affordance-adaption module and curating a coarse-to-fine annotated dataset called C2F-Aff to thoroughly transfer SAM's robust performance to affordance in a three-stage training manner.
+
+## Results
+
+AffordanceSAM achieves state-of-the-art (SOTA) performance on the AGD20K benchmark and exhibits strong generalized capacity, surpassing previous methods and handling tasks with novel objects and affordance functions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2acd448a-4d4a-475b-9579-55708f448237",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "22b587fb-de03-4ec0-bb8e-6f4aacb22ab3",
+  "toolUseResult": {
+    "query": "AffordanceSAM segment anything affordance grounding AGD20K arXiv 2504.15650 results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KWGMyN2Ws7k6EmqnQ7M58G",
+        "content": [
+          {
+            "title": "[Literature Review] AffordanceSAM: Segment Anything Once More in Affordance Grounding",
+            "url": "https://www.themoonlight.io/en/review/affordancesam-segment-anything-once-more-in-affordance-grounding"
+          },
+          {
+            "title": "[2504.15650v1] AffordanceSAM: Segment Anything Once More in Affordance Grounding",
+            "url": "https://arxiv.org/abs/2504.15650v1"
+          },
+          {
+            "title": "[2504.15650] AffordanceSAM: Segment Anything Once More in Affordance Grounding",
+            "url": "https://arxiv.org/abs/2504.15650"
+          },
+          {
+            "title": "AffordanceSAM: Segment Anything Once More in Affordance Grounding",
+            "url": "https://arxiv.org/pdf/2504.15650"
+          },
+          {
+            "title": "AffordanceSAM: Segment Anything Once More in Affordance Grounding",
+            "url": "https://arxiv.org/html/2504.15650v2"
+          },
+          {
+            "title": "AffordanceSAM: Segment Anything Once More in Affordance",
+            "url": "https://bytez.com/docs/arxiv/2504.15650/paper"
+          }
+        ]
+      },
+      "I found comprehensive information about the AffordanceSAM paper (arXiv 2504.15650). Here are the key results:\n\n## Paper Overview\n\nAffordanceSAM is an approach that extends SAM's generalization capacity to the domain of affordance grounding. It proposes an affordance-adaption module to modify SAM's segmentation output for specific functional regions, and uses a coarse-to-fine training recipe to make SAM aware of affordance objects and actions coarsely, then generate affordance heatmaps finely.\n\n## Key Innovation\n\nThe authors identify two key challenges in adapting SAM for affordance grounding: (1) the need to recognize functional parts of objects based on verb queries, unlike segmentation's focus on separating complete objects, and (2) the difference between segmentation's binary masks and affordance grounding's heatmaps.\n\n## Training Approach\n\nThe method involves designing an affordance-adaption module and curating a coarse-to-fine annotated dataset called C2F-Aff to thoroughly transfer SAM's robust performance to affordance in a three-stage training manner.\n\n## Results\n\nAffordanceSAM achieves state-of-the-art (SOTA) performance on the AGD20K benchmark and exhibits strong generalized capacity, surpassing previous methods and handling tasks with novel objects and affordance functions."
+    ],
+    "durationSeconds": 5.509611155999999
+  },
+  "sourceToolAssistantUUID": "2acd448a-4d4a-475b-9579-55708f448237",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 123 · 2026-05-18T21:24:33.118Z_
+
+Now I have enough information to render my verdict. Let me synthesize my findings.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22b587fb-de03-4ec0-bb8e-6f4aacb22ab3",
+  "isSidechain": false,
+  "requestId": "req_011CbAjpkKDJb1xLhdXu687E",
+  "type": "assistant",
+  "uuid": "8ba456c6-0bab-4f2d-b47f-70a5d042fbee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L813wbHGjV1cGuW5x6kUZx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 748,
+      "cache_read_input_tokens": 67527,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 748,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 67527,
+          "cache_creation_input_tokens": 748,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 748
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 124 · 2026-05-18T21:24:34.264Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FXCzJrWb7t28kYazhWZ7cf`</summary>
+
+```json
+{
+  "query": "OpenVLA-OFT LIBERO 97.1% LIBERO-Long LIBERO-Spatial LIBERO-Object LIBERO-Goal individual results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ba456c6-0bab-4f2d-b47f-70a5d042fbee",
+  "isSidechain": false,
+  "requestId": "req_011CbAjpkKDJb1xLhdXu687E",
+  "type": "assistant",
+  "uuid": "7ef36bbd-41fb-4d8c-b2ff-9a82dc37046c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L813wbHGjV1cGuW5x6kUZx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 748,
+      "cache_read_input_tokens": 67527,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 748,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 67527,
+          "cache_creation_input_tokens": 748,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 748
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 125 · 2026-05-18T21:25:02.372Z_
+
+<details><summary>↩ Tool result · `toolu_01FXCzJrWb7t28kYazhWZ7cf`</summary>
+
+```text
+Web search results for query: "OpenVLA-OFT LIBERO 97.1% LIBERO-Long LIBERO-Spatial LIBERO-Object LIBERO-Goal individual results"
+
+Links: [{"title":"OpenVLA-OFT","url":"https://openvla-oft.github.io/"},{"title":"Training Data for OpenVLA | Data Requirements & Formats | Claru","url":"https://claru.ai/models/openvla"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/pdf/2502.19645"},{"title":"Experiences from Benchmarking Vision–Language–Action Models for Robotic Manipulation","url":"https://arxiv.org/html/2511.11298v1"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"Sylvest/openvla-7b-oft-finetuned-libero-plus-mixdata · Hugging Face","url":"https://huggingface.co/Sylvest/openvla-7b-oft-finetuned-libero-plus-mixdata"},{"title":"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019","url":"https://openreview.net/pdf/bf4411a9941dccca2977e464f53188af2a03a6d3.pdf"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub","url":"https://github.com/moojink/openvla-oft"}]
+
+I found information about OpenVLA-OFT and its LIBERO benchmark results. Let me search for the specific individual results across the different LIBERO task suites you mentioned.
+
+Links: [{"title":"GitHub - Ariostgx/ript-vla: Interactive Post-Training for Vision-Language-Action Models · GitHub","url":"https://github.com/Ariostgx/ript-vla"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning","url":"https://arxiv.org/html/2509.09674v1"},{"title":"moojink/openvla-7b-oft-finetuned-libero-spatial-object-goal-10 · Hugging Face","url":"https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-spatial-object-goal-10"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success | alphaXiv","url":"https://www.alphaxiv.org/overview/2502.19645"},{"title":"OpenVLA-OFT","url":"https://openvla-oft.github.io/"},{"title":"moojink/openvla-7b-oft-finetuned-libero-10 · Hugging Face","url":"https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-10"},{"title":"MemoryVLA: Perceptual-Cognitive Memory in Vision-Language-Action Models for Robotic Manipulation","url":"https://arxiv.org/html/2508.19236v1"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization","url":"https://arxiv.org/html/2510.03827v1"}]
+
+Let me search for a more specific source that contains the individual suite results.
+
+Links: [{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019","url":"https://openreview.net/pdf/bf4411a9941dccca2977e464f53188af2a03a6d3.pdf"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"OpenVLA-OFT","url":"https://openvla-oft.github.io/"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/pdf/2502.19645"},{"title":"Sylvest/openvla-7b-oft-finetuned-libero-plus-mixdata · Hugging Face","url":"https://huggingface.co/Sylvest/openvla-7b-oft-finetuned-libero-plus-mixdata"},{"title":"Interactive Post-Training for Vision-Language-Action Models","url":"https://openreview.net/pdf/1ce871c2effb9d50718a6160a602d79f305a10eb.pdf"},{"title":"About OpenVLA-OFT performance on LIBERO task suites · Issue #218 · openvla/openvla","url":"https://github.com/openvla/openvla/issues/218"}]
+
+Let me try searching for the actual paper or a source with the specific per-suite breakdown table.
+
+Links: [{"title":"[2502.19645] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/abs/2502.19645"},{"title":"(PDF) Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://www.researchgate.net/publication/389399234_Fine-Tuning_Vision-Language-Action_Models_Optimizing_Speed_and_Success"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/html/2502.19645v2"},{"title":"VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching","url":"https://arxiv.org/html/2502.02175"},{"title":"Training Data for OpenVLA | Data Requirements & Formats | Claru","url":"https://claru.ai/models/openvla"},{"title":"GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub","url":"https://github.com/moojink/openvla-oft"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success | alphaXiv","url":"https://www.alphaxiv.org/overview/2502.19645"}]
+
+Let me search for more specific per-suite results with exact numbers.
+
+Links: [{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/html/2502.19645v1"},{"title":"[2502.19645] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/abs/2502.19645"},{"title":"Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success","url":"https://arxiv.org/pdf/2502.19645"},{"title":"OpenVLA-OFT","url":"https://openvla-oft.github.io/"},{"title":"Training Data for OpenVLA | Data Requirements & Formats | Claru","url":"https://claru.ai/models/openvla"},{"title":"VAT: VISION ACTION TRANSFORMER BY UNLOCKING FULL REPRESENTATION OF VIT","url":"https://www.arxiv.org/pdf/2512.06013"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"LIBERO-Object: Lifelong Learning in Robotic Manipulation","url":"https://www.emergentmind.com/topics/libero-object"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"}]
+
+Based on my search results, I found the individual suite results for OpenVLA-OFT on LIBERO! Here's what I found:
+
+## OpenVLA-OFT LIBERO Results (97.1% Average)
+
+OpenVLA-OFT achieves the following individual results across the LIBERO task suites:
+- **LIBERO-Spatial**: 97.6%
+- **LIBERO-Object**: 98.4%
+- **LIBERO-Goal**: 97.9%
+- **LIBERO-Long**: 94.5%
+- **Average**: 97.1%
+
+The LIBERO-Long suite showed particularly large gains with the OFT approach, improving from 66.2% to 96.8% (note: there appears to be a slight discrepancy in the Long suite results across different sources, with one citing 94.5% and another 96.8%).
+
+OpenVLA-OFT achieves a 97.1% average success rate across four task suites, outperforming both fine-tuned OpenVLA policies (76.5%) and π0 policies (94.2%).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7ef36bbd-41fb-4d8c-b2ff-9a82dc37046c",
+  "isSidechain": false,
+  "promptId": "e412fd48-39f1-45a1-a0c3-3d4aded1371d",
+  "type": "user",
+  "uuid": "74f3044f-cd39-45c3-a83c-03af4c8c947a",
+  "toolUseResult": {
+    "query": "OpenVLA-OFT LIBERO 97.1% LIBERO-Long LIBERO-Spatial LIBERO-Object LIBERO-Goal individual results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012DcRZfLmsA4x2qGHFZpnGr",
+        "content": [
+          {
+            "title": "OpenVLA-OFT",
+            "url": "https://openvla-oft.github.io/"
+          },
+          {
+            "title": "Training Data for OpenVLA | Data Requirements & Formats | Claru",
+            "url": "https://claru.ai/models/openvla"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/pdf/2502.19645"
+          },
+          {
+            "title": "Experiences from Benchmarking Vision–Language–Action Models for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2511.11298v1"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "Sylvest/openvla-7b-oft-finetuned-libero-plus-mixdata · Hugging Face",
+            "url": "https://huggingface.co/Sylvest/openvla-7b-oft-finetuned-libero-plus-mixdata"
+          },
+          {
+            "title": "000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019",
+            "url": "https://openreview.net/pdf/bf4411a9941dccca2977e464f53188af2a03a6d3.pdf"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub",
+            "url": "https://github.com/moojink/openvla-oft"
+          }
+        ]
+      },
+      "I found information about OpenVLA-OFT and its LIBERO benchmark results. Let me search for the specific individual results across the different LIBERO task suites you mentioned.",
+      {
+        "tool_use_id": "srvtoolu_01FpWgmzNyQqkBVDZFb22zHY",
+        "content": [
+          {
+            "title": "GitHub - Ariostgx/ript-vla: Interactive Post-Training for Vision-Language-Action Models · GitHub",
+            "url": "https://github.com/Ariostgx/ript-vla"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "SimpleVLA-RL: Scaling VLA Training via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2509.09674v1"
+          },
+          {
+            "title": "moojink/openvla-7b-oft-finetuned-libero-spatial-object-goal-10 · Hugging Face",
+            "url": "https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-spatial-object-goal-10"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2502.19645"
+          },
+          {
+            "title": "OpenVLA-OFT",
+            "url": "https://openvla-oft.github.io/"
+          },
+          {
+            "title": "moojink/openvla-7b-oft-finetuned-libero-10 · Hugging Face",
+            "url": "https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-10"
+          },
+          {
+            "title": "MemoryVLA: Perceptual-Cognitive Memory in Vision-Language-Action Models for Robotic Manipulation",
+            "url": "https://arxiv.org/html/2508.19236v1"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization",
+            "url": "https://arxiv.org/html/2510.03827v1"
+          }
+        ]
+      },
+      "Let me search for a more specific source that contains the individual suite results.",
+      {
+        "tool_use_id": "srvtoolu_014YMAMQVGrwnUrrrnBnRcPM",
+        "content": [
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019",
+            "url": "https://openreview.net/pdf/bf4411a9941dccca2977e464f53188af2a03a6d3.pdf"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "OpenVLA-OFT",
+            "url": "https://openvla-oft.github.io/"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/pdf/2502.19645"
+          },
+          {
+            "title": "Sylvest/openvla-7b-oft-finetuned-libero-plus-mixdata · Hugging Face",
+            "url": "https://huggingface.co/Sylvest/openvla-7b-oft-finetuned-libero-plus-mixdata"
+          },
+          {
+            "title": "Interactive Post-Training for Vision-Language-Action Models",
+            "url": "https://openreview.net/pdf/1ce871c2effb9d50718a6160a602d79f305a10eb.pdf"
+          },
+          {
+            "title": "About OpenVLA-OFT performance on LIBERO task suites · Issue #218 · openvla/openvla",
+            "url": "https://github.com/openvla/openvla/issues/218"
+          }
+        ]
+      },
+      "Let me try searching for the actual paper or a source with the specific per-suite breakdown table.",
+      {
+        "tool_use_id": "srvtoolu_01Ga3uBAJhJspmFD9qyGAwnD",
+        "content": [
+          {
+            "title": "[2502.19645] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/abs/2502.19645"
+          },
+          {
+            "title": "(PDF) Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://www.researchgate.net/publication/389399234_Fine-Tuning_Vision-Language-Action_Models_Optimizing_Speed_and_Success"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/html/2502.19645v2"
+          },
+          {
+            "title": "VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching",
+            "url": "https://arxiv.org/html/2502.02175"
+          },
+          {
+            "title": "Training Data for OpenVLA | Data Requirements & Formats | Claru",
+            "url": "https://claru.ai/models/openvla"
+          },
+          {
+            "title": "GitHub - moojink/openvla-oft: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success · GitHub",
+            "url": "https://github.com/moojink/openvla-oft"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2502.19645"
+          }
+        ]
+      },
+      "Let me search for more specific per-suite results with exact numbers.",
+      {
+        "tool_use_id": "srvtoolu_016kXkjhdCQkV6irjqtoHWuu",
+        "content": [
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/html/2502.19645v1"
+          },
+          {
+            "title": "[2502.19645] Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/abs/2502.19645"
+          },
+          {
+            "title": "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success",
+            "url": "https://arxiv.org/pdf/2502.19645"
+          },
+          {
+            "title": "OpenVLA-OFT",
+            "url": "https://openvla-oft.github.io/"
+          },
+          {
+            "title": "Training Data for OpenVLA | Data Requirements & Formats | Claru",
+            "url": "https://claru.ai/models/openvla"
+          },
+          {
+            "title": "VAT: VISION ACTION TRANSFORMER BY UNLOCKING FULL REPRESENTATION OF VIT",
+            "url": "https://www.arxiv.org/pdf/2512.06013"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "LIBERO-Object: Lifelong Learning in Robotic Manipulation",
+            "url": "https://www.emergentmind.com/topics/libero-object"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          }
+        ]
+      },
+      "Based on my search results, I found the individual suite results for OpenVLA-OFT on LIBERO! Here's what I found:\n\n## OpenVLA-OFT LIBERO Results (97.1% Average)\n\nOpenVLA-OFT achieves the following individual results across the LIBERO task suites:\n- **LIBERO-Spatial**: 97.6%\n- **LIBERO-Object**: 98.4%\n- **LIBERO-Goal**: 97.9%\n- **LIBERO-Long**: 94.5%\n- **Average**: 97.1%\n\nThe LIBERO-Long suite showed particularly large gains with the OFT approach, improving from 66.2% to 96.8% (note: there appears to be a slight discrepancy in the Long suite results across different sources, with one citing 94.5% and another 96.8%).\n\nOpenVLA-OFT achieves a 97.1% average success rate across four task suites, outperforming both fine-tuned OpenVLA policies (76.5%) and π0 policies (94.2%)."
+    ],
+    "durationSeconds": 28.104182666999986
+  },
+  "sourceToolAssistantUUID": "7ef36bbd-41fb-4d8c-b2ff-9a82dc37046c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 126 · 2026-05-18T21:25:54.091Z_
+
+I now have comprehensive information to render my verdict. Let me synthesize all findings.
+
+**Summary of my independent verification:**
+
+1. **All key references verified as real**: ST4VLA (ICLR 2026), Spatial Forcing (ICLR 2026), PALM (CVPR 2026), SG-VLA (Mar 2026), LIBERO-Para (Mar 2026), OpenVLA-OFT (Feb 2025), SelfEQ (CVPR 2024), RSS (Jan 2026), INTRA (ECCV 2024) — all exist and claims match.
+
+2. **Gap claim verified**: No work combines self-supervised spatial affordance learning within end-to-end VLA training. UAD (Jun 2025/Stanford) is the closest — unsupervised affordance distillation — but is a standalone module feeding downstream imitation learning, not integrated into VLA training.
+
+3. **LIBERO-Para claim verified**: No spatial VLA method (ST4VLA, PALM, SG-VLA, Spatial Forcing) has been evaluated on LIBERO-Para. The benchmark tested OpenVLA-OFT, π0, π0.5, X-VLA, VLA-Adapter only.
+
+4. **RSS differentiation verified**: RSS operates at the action logit level, not spatial heatmap level — the proposal's differentiation is valid.
+
+5. **Venue timelines**: CoRL 2026 deadline is May 29 — correctly dropped. AAAI 2027 (~July 2026) and ICRA 2027 (~Sep 2026) are realistic targets.
+
+6. **Round 4 issues assessment**: Let me check which have been addressed in this revision.
+
+```json
+{
+  "verdict": "pass",
+  "scores": {
+    "novelty": {"score": 4, "rationale": "Independently verified: no existing work learns spatial affordance maps within a VLA via pure self-supervision. The combination of paraphrase invariance (extending SelfEQ to VLA affordance) + cross-object contrastive transfer (extending INTRA to VLA-internal features) is genuinely novel. RSS operates at action logits, not spatial features. UAD is standalone, not end-to-end. ST4VLA/PALM/SG-VLA/Spatial Forcing all require external supervision. The gap is real and well-positioned."},
+    "feasibility": {"score": 4, "rationale": "200 H100-hours with LoRA on OpenVLA-OFT is realistic — OFT itself trains in ~10-15h on a single A100. The 8M decoder is lightweight. Paraphrase generation via Qwen 3 is straightforward. Using published numbers for Spatial Forcing/ST4VLA/PALM on standard LIBERO and only reproducing RSS/CoA-VLA for novel evaluations (LIBERO-Para, held-out interactions) is a smart budget allocation. The AGD20K fine-tuning protocol (rather than zero-shot) correctly addresses the domain gap concern from earlier rounds."},
+    "clarity": {"score": 4, "rationale": "The proposal is exceptionally detailed: architecture (3 ConvTranspose2d blocks, 16x16→128x128, ~8M params), loss functions (symmetric KL, InfoNCE, entropy regularization), training strategy (LoRA on OpenVLA-OFT), evaluation protocol (LIBERO-Long, LIBERO-Para PRIDE, held-out interactions, AGD20K fine-tuning), and baselines (7 comparisons with clear justification for published vs. reproduced numbers). The key hypotheses are explicitly stated and falsifiable."},
+    "impact": {"score": 3, "rationale": "The self-supervised spatial affordance paradigm is valuable — annotation bottlenecks are a real obstacle for spatial VLA methods. However, standard LIBERO is near-saturated (98.5% SOTA) and the improvement margin may be slim. The primary value proposition rests on LIBERO-Para (new benchmark, untested by competitors) and zero-shot generalization — these are important but less established evaluation axes. If paraphrase invariance produces only blurry attention blobs rather than precise affordance maps, the contribution weakens to a robustness technique rather than a spatial affordance method. The contingency plan (trajectory contact point supervision as fallback) partially mitigates this but the core bet on self-supervised signal quality remains a moderate risk."}
+  },
+  "issues": [
+    "MODERATE RISK — Self-supervised signal quality: The proposal acknowledges this risk (Round 4 feedback) and includes entropy regularization + a contingency plan (trajectory contact points as lightweight supervision). However, the specific analysis requested in Round 4 — what fraction of Qwen-3 paraphrases create genuine spatial ambiguity vs. trivial synonym substitution in LIBERO's templated instructions — is discussed conceptually but not operationalized as a pre-experiment diagnostic. Running this analysis before committing to full training would save substantial compute if the signal proves weak.",
+    "MODERATE RISK — Hypothesis (c) reframing: The proposal now correctly positions the primary advantage on LIBERO-Para and OOD generalization rather than standard LIBERO competition, but the hypothesis still states 'within 2-3 percentage points of supervised spatial methods' on standard LIBERO. Given OpenVLA-OFT already achieves 97.1% without any affordance and Spatial Forcing achieves ~98.5%, the ceiling improvement from adding self-supervised affordance on standard LIBERO may be negligible or negative (added complexity). Consider explicitly hypothesizing that standard LIBERO performance should be maintained (not degraded) rather than improved, with gains concentrated on OOD/paraphrase conditions.",
+    "MINOR — UAD (arXiv 2506.09284, Stanford, June 2025) is not cited: While UAD is a standalone affordance module (not end-to-end VLA), it represents the closest work on 'unsupervised/annotation-free affordance for robot manipulation' and should be acknowledged in the landscape discussion to preempt reviewer concerns about novelty.",
+    "MINOR — Spatial Forcing 98.5% LIBERO average not independently verified with exact numbers: The proposal cites 98.5% average and 96.0% Long, but the project page and abstract don't surface exact per-suite numbers. While this doesn't affect the proposal's validity (the approximate SOTA status is confirmed), having verified source numbers for the camera-ready version would strengthen the comparison.",
+    "MINOR — The 'first spatial VLA evaluated on LIBERO-Para' claim is strong but should be hedged: LIBERO-Para was published March 2026 and it's plausible that concurrent work may evaluate spatial VLAs on it before this paper is submitted (AAAI 2027 deadline ~July 2026)."
+  ],
+  "feedback": "This proposal has matured significantly over 5 rounds and now presents a well-differentiated, technically detailed, and feasible research plan. The gap is independently verified as real. Three minor improvements for the final submission: (1) Add UAD (Stanford, 2506.09284) to landscape — it's the closest annotation-free affordance work and reviewers will find it. Your differentiation: end-to-end VLA integration vs. standalone module. (2) Reframe hypothesis (c) from 'within 2-3pp of supervised methods' to 'maintains OpenVLA-OFT baseline performance on standard LIBERO while achieving superior LIBERO-Para PRIDE and OOD generalization' — this is more defensible given the 97-98.5% saturation range. (3) Hedge the 'first spatial VLA on LIBERO-Para' claim slightly — say 'to our knowledge' since 2+ months remain before AAAI deadline.",
+  "reason": "Independently verified novel gap (self-supervised spatial affordance in end-to-end VLA), all critical prior-round issues addressed (missing related work, compute budget, venue targets, AGD20K evaluation), feasible within stated constraints. Remaining issues are moderate risks and minor citation gaps, not structural flaws."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "74f3044f-cd39-45c3-a83c-03af4c8c947a",
+  "isSidechain": false,
+  "requestId": "req_011CbAjs9exSDFeX8Dw9Cse8",
+  "type": "assistant",
+  "uuid": "293267d1-9224-44e0-b2a2-aeba85dde824",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RyLGRG4PUxrEENGFQbjMwk",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2562,
+      "cache_read_input_tokens": 68275,
+      "output_tokens": 1914,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2562,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1914,
+          "cache_read_input_tokens": 68275,
+          "cache_creation_input_tokens": 2562,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2562
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 127_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-18 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "293267d1-9224-44e0-b2a2-aeba85dde824",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 128_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify affordance self-supervision in VLAs via independent research",
+  "sessionId": "cef7efc5-7a76-4b70-81bf-6735d6a864fb"
+}
+```
+
+---
